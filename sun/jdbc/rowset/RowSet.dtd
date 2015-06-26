@@ -1,0 +1,72 @@
+<!ELEMENT RowSet (properties, metadata, data)>
+
+<!ELEMENT properties (command,concurrency,datasource,
+escape-processing,fetch-direction,fetch-size,isolation-level,key-columns,
+map,max-field-size,max-rows,query-timeout,read-only,rowset-type,
+show-deleted,table-name,url)>
+
+<!ELEMENT null EMPTY>
+
+<!ELEMENT command (#PCDATA|null)*>
+<!ELEMENT concurrency (#PCDATA|null)*>
+<!ELEMENT datasource (#PCDATA|null)*>
+<!ELEMENT escape-processing (#PCDATA|null)*>
+<!ELEMENT fetch-direction (#PCDATA|null)*>
+<!ELEMENT fetch-size (#PCDATA|null)*>
+<!ELEMENT isolation-level (#PCDATA|null)*>
+
+<!ELEMENT key-columns (column)*>
+<!ELEMENT column (#PCDATA|null)*>
+
+<!ELEMENT map (type, class)*>
+<!ELEMENT type (#PCDATA|null)*>
+<!ELEMENT class (#PCDATA|null)*>
+
+<!ELEMENT max-field-size (#PCDATA|null)*>
+<!ELEMENT max-rows (#PCDATA|null)*>
+<!ELEMENT query-timeout (#PCDATA|null)*>
+<!ELEMENT read-only (#PCDATA|null)*>
+<!ELEMENT rowset-type (#PCDATA|null)*>
+<!ELEMENT show-deleted (#PCDATA|null)*>
+<!ELEMENT table-name (#PCDATA|null)*>
+<!ELEMENT url (#PCDATA|null)*>
+
+<!ELEMENT metadata (column-count, (column-definition*))>
+
+<!ELEMENT column-definition
+(column-index, auto-increment,case-sensitive,currency,nullable,
+signed,searchable,column-display-size,column-label,column-name,
+schema-name,column-precision,column-scale,table-name,catalog-name,
+column-type,column-type-name)>
+
+<!ELEMENT column-count (#PCDATA|null)*>
+
+<!ELEMENT column-index (#PCDATA|null)*>
+<!ELEMENT auto-increment (#PCDATA|null)*>
+<!ELEMENT case-sensitive (#PCDATA|null)*>
+<!ELEMENT currency (#PCDATA|null)*>
+<!ELEMENT nullable (#PCDATA|null)*>
+<!ELEMENT signed (#PCDATA|null)*>
+<!ELEMENT searchable (#PCDATA|null)*>
+<!ELEMENT column-display-size (#PCDATA|null)*>
+<!ELEMENT column-label (#PCDATA|null)*>
+<!ELEMENT column-name (#PCDATA|null)*>
+<!ELEMENT schema-name (#PCDATA|null)*>
+<!ELEMENT column-precision (#PCDATA|null)*>
+<!ELEMENT column-scale (#PCDATA|null)*>
+<!ELEMENT catalog-name (#PCDATA|null)*>
+<!ELEMENT column-type (#PCDATA|null)*>
+<!ELEMENT column-type-name (#PCDATA|null)*>
+
+<!ELEMENT data (row*,ins*,del*,insdel*)>
+<!ELEMENT row (col|upd)*>
+<!ELEMENT ins (col|upd)*>
+<!ELEMENT del (col|upd)*>
+<!ELEMENT insdel ((col|upd)*)>
+
+<!ELEMENT col (#PCDATA|null)*>
+<!ELEMENT upd (#PCDATA|null)*>
+
+
+
+

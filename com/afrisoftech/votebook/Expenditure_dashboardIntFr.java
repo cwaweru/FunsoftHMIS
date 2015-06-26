@@ -1,0 +1,1029 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.afrisoftech.votebook;
+
+/**
+ *
+ * @author sytem partners
+ */
+public class Expenditure_dashboardIntFr extends javax.swing.JInternalFrame {
+
+    /**
+     * Creates new form Expenditure_dashboardIntFr
+     */
+     java.sql.Connection connectDB = null;
+org.netbeans.lib.sql.pool.PooledConnectionSource pConnDB = null;
+    String supplier=null,invoice=null,creditor_created=null,commited=null,voucher_no=null,examination=null,approval=null,cash=null,accountant=null,finance_manager=null;
+
+    public Expenditure_dashboardIntFr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
+     
+        connectDB = connDb;
+
+        pConnDB = pconnDB;
+        
+        initComponents();
+        
+        
+        try{
+      int rows=0;
+      int num_rows=0;
+      
+      ///checking if their is a row that exists
+      java.sql.Statement ps2 = connectDB.createStatement();
+            //java.sql.ResultSet rs2 = ps1.executeQuery("SELECT distinct purchase_req,aie_approval::date,forward_to_cso::date,determine_mode_of_pur::date,assign_buyer::date,approved_by_tc::date,evaluation::date,awarding::date,contract::date,raise_lpo_lso::date FROM st_pr_progress");
+            java.sql.ResultSet rs3 = ps2.executeQuery("SELECT count(*)  FROM ac_dashboard where cash is null"); 
+            while (rs3.next()) {
+               num_rows=rs3.getInt(1);
+            
+            }
+            
+            if(num_rows>0){
+   java.sql.Statement ps1 = connectDB.createStatement();
+            //java.sql.ResultSet rs2 = ps1.executeQuery("SELECT distinct purchase_req,aie_approval::date,forward_to_cso::date,determine_mode_of_pur::date,assign_buyer::date,approved_by_tc::date,evaluation::date,awarding::date,contract::date,raise_lpo_lso::date FROM st_pr_progress");
+            java.sql.ResultSet rs2 = ps1.executeQuery("SELECT supplier, invoice_no, creditor_created, creditor_created_by,commited, commited_by, voucher_no, examination, examination_by, approval, approval_by, cash, cash_by,accountant,finance_head  FROM ac_dashboard where  cash is null and cancelled=false"); 
+            while (rs2.next()) {
+                
+              
+              supplier=rs2.getString("supplier");
+               invoice=rs2.getString("invoice_no");
+              creditor_created=rs2.getString("creditor_created");
+              commited=rs2.getString("commited");
+              voucher_no=rs2.getString("voucher_no");
+              examination=rs2.getString("examination");
+              approval=rs2.getString("approval");
+              cash=rs2.getString("cash");
+              accountant=rs2.getString("accountant");
+              finance_manager=rs2.getString("finance_head");
+              
+                ////RETRIEVING THE ProgressBar
+                
+                 
+                 
+                  dashTbl.getModel().setValueAt(supplier,rows,0);
+               
+//                  javax.swing.table.TableColumn ccDateEditorw = dashTbl.getColumnModel().getColumn(1);
+//                DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+//               renderer.setBackground(Color.red);
+//               ccDateEditorw.setCellRenderer(renderer);
+        
+                  dashTbl.getModel().setValueAt(invoice,rows,1);
+          
+                
+                     dashTbl.getModel().setValueAt(creditor_created,rows,2);
+                  
+              
+                        dashTbl.getModel().setValueAt(commited,rows,3);
+             
+       
+                          dashTbl.getModel().setValueAt(voucher_no,rows,4);
+                          
+                           dashTbl.getModel().setValueAt(accountant,rows,5);
+                     
+                            //dashTbl.getModel().setValueAt(finance_manager,rows,6);
+                 
+                            dashTbl.getModel().setValueAt(examination,rows,6);
+                     
+                            dashTbl.getModel().setValueAt(approval,rows,7);
+                      
+                           dashTbl.getModel().setValueAt(cash,rows,8);
+                          
+                          
+                  
+             
+                  
+                  
+                    
+                 
+                     
+                rows++;       
+                     
+                 }
+                     
+         
+             
+            }
+            else{
+            System.out.println("DO NOTHING");
+            
+            }
+            
+   
+   }
+   catch(Exception eax){
+       eax.printStackTrace();
+   System.out.println(eax.getMessage());
+   
+   }
+
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        datePicker1 = new com.afrisoftech.lib.DatePicker();
+        jLabel3 = new javax.swing.JLabel();
+        datePicker2 = new com.afrisoftech.lib.DatePicker();
+        jPanel3 = new javax.swing.JPanel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        jCheckBox5 = new javax.swing.JCheckBox();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox();
+        jCheckBox4 = new javax.swing.JCheckBox();
+        jLabel5 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox();
+        jTextField1 = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        dashTbl = new javax.swing.JTable();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("UNIVERSAL DASH-BOARD");
+        setPreferredSize(new java.awt.Dimension(1100, 550));
+        getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Filter  Options", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 102, 102)));
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        jLabel2.setText("Begin Date");
+        jLabel2.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(jLabel2, gridBagConstraints);
+
+        datePicker1.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(datePicker1, gridBagConstraints);
+
+        jLabel3.setText("End Date");
+        jLabel3.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(jLabel3, gridBagConstraints);
+
+        datePicker2.setEnabled(false);
+        datePicker2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                datePicker2MouseClicked(evt);
+            }
+        });
+        datePicker2.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+                datePicker2CaretPositionChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(datePicker2, gridBagConstraints);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel3.setLayout(new java.awt.GridBagLayout());
+
+        buttonGroup1.add(jCheckBox1);
+        jCheckBox1.setText("Filter By Dates");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
+        jPanel3.add(jCheckBox1, gridBagConstraints);
+
+        buttonGroup1.add(jCheckBox2);
+        jCheckBox2.setText("Filter By Stage");
+        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
+        jPanel3.add(jCheckBox2, gridBagConstraints);
+
+        buttonGroup1.add(jCheckBox3);
+        jCheckBox3.setText("Filter By PV");
+        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox3ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
+        jPanel3.add(jCheckBox3, gridBagConstraints);
+
+        buttonGroup1.add(jCheckBox5);
+        jCheckBox5.setText("Filter By Supplier");
+        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox5ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jCheckBox5, new java.awt.GridBagConstraints());
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        jPanel1.add(jPanel3, gridBagConstraints);
+
+        jLabel1.setText("Stages ");
+        jLabel1.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(jLabel1, gridBagConstraints);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Checking /Raising Invoice", "VoteBook", "AIE Holder", "Examination", "Authority to Pay", "Payment" }));
+        jComboBox1.setEnabled(false);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        jPanel1.add(jComboBox1, gridBagConstraints);
+
+        jLabel4.setText("PV Options");
+        jLabel4.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(jLabel4, gridBagConstraints);
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "IMPREST", "CREDITOR" }));
+        jComboBox2.setEnabled(false);
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(jComboBox2, gridBagConstraints);
+
+        jCheckBox4.setToolTipText("Filter By Dates");
+        jCheckBox4.setEnabled(false);
+        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox4ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        jPanel1.add(jCheckBox4, gridBagConstraints);
+
+        jLabel5.setText("Supplier");
+        jLabel5.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(jLabel5, gridBagConstraints);
+
+        jComboBox3.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "(select '-'  union select distinct supplier_name from st_suppliers where supplier_name is not null ) order by 1"));
+        jComboBox3.setEnabled(false);
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        jPanel1.add(jComboBox3, gridBagConstraints);
+
+        jTextField1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jTextField1CaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        jPanel1.add(jTextField1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        getContentPane().add(jPanel1, gridBagConstraints);
+
+        jPanel2.setLayout(new java.awt.GridBagLayout());
+
+        dashTbl.setBackground(new java.awt.Color(255, 255, 204));
+        dashTbl.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        dashTbl.setFont(new java.awt.Font("Garamond", 0, 12)); // NOI18N
+        dashTbl.setForeground(new java.awt.Color(102, 0, 204));
+        dashTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Supplier/Payee Name", "Invoice", "Checking/Raising Invoice", "VoteBook", "Voucher No", "AIE Holder", "Examination", "Authority To Pay", "Payment"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        dashTbl.setGridColor(new java.awt.Color(51, 255, 102));
+        dashTbl.setRowHeight(20);
+        dashTbl.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        dashTbl.setSelectionForeground(new java.awt.Color(255, 51, 51));
+        jScrollPane1.setViewportView(dashTbl);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel2.add(jScrollPane1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 12.0;
+        getContentPane().add(jPanel2, gridBagConstraints);
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    jLabel2.setEnabled(true);
+    jLabel3.setEnabled(true);
+    datePicker1.setEnabled(true);
+    datePicker2.setEnabled(true);
+     jLabel1.setEnabled(false);
+    jComboBox1.setEnabled(false);
+      jLabel4.setEnabled(false);
+        jComboBox2.setEnabled(false);
+        jCheckBox4.setEnabled(true);
+          jLabel5.setEnabled(false);
+     jComboBox3.setEnabled(false);
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    jLabel1.setEnabled(true);
+    jComboBox1.setEnabled(true);
+    
+     jLabel2.setEnabled(false);
+    jLabel3.setEnabled(false);
+    datePicker1.setEnabled(false);
+    datePicker2.setEnabled(false);
+     jLabel4.setEnabled(false);
+        jComboBox2.setEnabled(false);
+        jCheckBox4.setEnabled(false);
+          jLabel5.setEnabled(false);
+     jComboBox3.setEnabled(false);
+    }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        try{
+      int rows=0;
+      int num_rows=0;
+      String captured_col=null;
+      
+
+
+
+
+
+      
+      if(jComboBox1.getSelectedItem().equals("Checking /Raising Invoice")){
+      
+      captured_col="supplier";
+      
+      }
+      else if(jComboBox1.getSelectedItem().equals("VoteBook")){
+       captured_col="commited";
+      }
+       else if(jComboBox1.getSelectedItem().equals("Examination")){
+       captured_col="examination";
+      }
+      else if(jComboBox1.getSelectedItem().equals("Authority to Pay")){
+       captured_col="approval";
+      }
+       else if(jComboBox1.getSelectedItem().equals("Payment")){
+       captured_col="cash";
+      }
+       else if(jComboBox1.getSelectedItem().equals("AIE Holder")){
+       captured_col="accountant";
+       
+       }
+      
+      ///checking if their is a row that exists
+      java.sql.Statement ps2 = connectDB.createStatement();
+      String query_count="SELECT count(*)  FROM ac_dashboard  where "+captured_col+" is not null";
+      String query_dash="SELECT supplier, invoice_no, creditor_created, creditor_created_by,commited, commited_by, voucher_no, examination, examination_by, approval, approval_by, cash, cash_by,accountant,finance_head  FROM ac_dashboard where "+captured_col+" is not null and cancelled=false";
+            //java.sql.ResultSet rs2 = ps1.executeQuery("SELECT distinct purchase_req,aie_approval::date,forward_to_cso::date,determine_mode_of_pur::date,assign_buyer::date,approved_by_tc::date,evaluation::date,awarding::date,contract::date,raise_lpo_lso::date FROM st_pr_progress");
+            java.sql.ResultSet rs3 = ps2.executeQuery(query_count); 
+            while (rs3.next()) {
+               num_rows=rs3.getInt(1);
+               System.out.println("NUMBERSSS "+num_rows);
+            
+            }
+                 for (int k = 0; k < dashTbl.getRowCount(); k++) {
+            for (int r = 0; r < dashTbl.getColumnCount(); r++) {
+                dashTbl.getModel().setValueAt(null, k, r);
+            }
+        }
+              
+            
+            if(num_rows>0){
+   java.sql.Statement ps1 = connectDB.createStatement();
+            //java.sql.ResultSet rs2 = ps1.executeQuery("SELECT distinct purchase_req,aie_approval::date,forward_to_cso::date,determine_mode_of_pur::date,assign_buyer::date,approved_by_tc::date,evaluation::date,awarding::date,contract::date,raise_lpo_lso::date FROM st_pr_progress");
+            java.sql.ResultSet rs2 = ps1.executeQuery(query_dash); 
+            while (rs2.next()) {
+                
+              
+              supplier=rs2.getString("supplier");
+               invoice=rs2.getString("invoice_no");
+              creditor_created=rs2.getString("creditor_created");
+              commited=rs2.getString("commited");
+              voucher_no=rs2.getString("voucher_no");
+              examination=rs2.getString("examination");
+              approval=rs2.getString("approval");
+              cash=rs2.getString("cash");
+              accountant=rs2.getString("accountant");
+                    //finance_manager=rs2.getString("finance_head");
+              
+                ////RETRIEVING THE ProgressBar
+                
+                 
+                 
+                  dashTbl.getModel().setValueAt(supplier,rows,0);
+               
+//                  javax.swing.table.TableColumn ccDateEditorw = dashTbl.getColumnModel().getColumn(1);
+//                DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+//               renderer.setBackground(Color.red);
+//               ccDateEditorw.setCellRenderer(renderer);
+        
+                  dashTbl.getModel().setValueAt(invoice,rows,1);
+          
+                
+                     dashTbl.getModel().setValueAt(creditor_created,rows,2);
+                  
+              
+                        dashTbl.getModel().setValueAt(commited,rows,3);
+             
+       
+                          dashTbl.getModel().setValueAt(voucher_no,rows,4);
+                 
+                            dashTbl.getModel().setValueAt(examination,rows,6);
+                     
+                            dashTbl.getModel().setValueAt(accountant,rows,5);
+                            
+                            //dashTbl.getModel().setValueAt(finance_manager,rows,6);
+                            
+                            dashTbl.getModel().setValueAt(approval,rows,7);
+                      
+                           dashTbl.getModel().setValueAt(cash,rows,8);
+                          
+                          
+                  
+             
+                  
+                  
+                    
+                 
+                     
+                rows++;       
+                     
+                 }
+                     
+         
+             
+            }
+            else{
+            System.out.println("DO NOTHING");
+            
+            }
+            
+   
+   }
+   catch(Exception eax){
+       eax.printStackTrace();
+   System.out.println(eax.getMessage());
+   
+   }
+
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+        jLabel4.setEnabled(true);
+        jComboBox2.setEnabled(true);
+        jLabel2.setEnabled(false);
+    jLabel3.setEnabled(false);
+    datePicker1.setEnabled(false);
+    datePicker2.setEnabled(false);
+     jLabel1.setEnabled(false);
+    jComboBox1.setEnabled(false);
+     jCheckBox4.setEnabled(false);
+    }//GEN-LAST:event_jCheckBox3ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+         try{
+      int rows=0;
+      int num_rows=0;
+      String captured_col=null;
+      
+      if(jComboBox2.getSelectedItem().equals("IMPREST")){
+      
+      captured_col="voucher_no ilike 'IMP%'";
+      
+      }
+      else if(jComboBox2.getSelectedItem().equals("CREDITOR")){
+       captured_col="voucher_no ilike 'VC%'";
+      }
+       
+      ///checking if their is a row that exists
+      java.sql.Statement ps2 = connectDB.createStatement();
+      String query_count="SELECT count(*)  FROM ac_dashboard  where "+captured_col;
+      String query_dash="SELECT supplier, invoice_no, creditor_created, creditor_created_by,commited, commited_by, voucher_no, examination, examination_by, approval, approval_by, cash, cash_by,accountant,finance_head FROM ac_dashboard where cancelled=false and  "+captured_col ;
+            //java.sql.ResultSet rs2 = ps1.executeQuery("SELECT distinct purchase_req,aie_approval::date,forward_to_cso::date,determine_mode_of_pur::date,assign_buyer::date,approved_by_tc::date,evaluation::date,awarding::date,contract::date,raise_lpo_lso::date FROM st_pr_progress");
+            java.sql.ResultSet rs3 = ps2.executeQuery(query_count); 
+            while (rs3.next()) {
+               num_rows=rs3.getInt(1);
+               System.out.println("NUMBERSSS "+num_rows);
+            
+            }
+                 for (int k = 0; k < dashTbl.getRowCount(); k++) {
+            for (int r = 0; r < dashTbl.getColumnCount(); r++) {
+                dashTbl.getModel().setValueAt(null, k, r);
+            }
+        }
+              
+            
+            if(num_rows>0){
+   java.sql.Statement ps1 = connectDB.createStatement();
+            //java.sql.ResultSet rs2 = ps1.executeQuery("SELECT distinct purchase_req,aie_approval::date,forward_to_cso::date,determine_mode_of_pur::date,assign_buyer::date,approved_by_tc::date,evaluation::date,awarding::date,contract::date,raise_lpo_lso::date FROM st_pr_progress");
+            java.sql.ResultSet rs2 = ps1.executeQuery(query_dash); 
+            while (rs2.next()) {
+                
+              
+              supplier=rs2.getString("supplier");
+               invoice=rs2.getString("invoice_no");
+              creditor_created=rs2.getString("creditor_created");
+              commited=rs2.getString("commited");
+              voucher_no=rs2.getString("voucher_no");
+              examination=rs2.getString("examination");
+              approval=rs2.getString("approval");
+              cash=rs2.getString("cash");
+              accountant=rs2.getString("accountant");
+             // finance_manager=rs2.getString("finance_head");
+                ////RETRIEVING THE ProgressBar
+               
+                 
+                 
+                  dashTbl.getModel().setValueAt(supplier,rows,0);
+               
+//                  javax.swing.table.TableColumn ccDateEditorw = dashTbl.getColumnModel().getColumn(1);
+//                DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+//               renderer.setBackground(Color.red);
+//               ccDateEditorw.setCellRenderer(renderer);
+        
+                  dashTbl.getModel().setValueAt(invoice,rows,1);
+          
+                
+                     dashTbl.getModel().setValueAt(creditor_created,rows,2);
+                  
+              
+                        dashTbl.getModel().setValueAt(commited,rows,3);
+             
+       
+                          dashTbl.getModel().setValueAt(voucher_no,rows,4);
+                 
+                            dashTbl.getModel().setValueAt(examination,rows,6);
+                     
+                            dashTbl.getModel().setValueAt(accountant,rows,5);
+                            
+                            //dashTbl.getModel().setValueAt(finance_manager,rows,6);
+                            
+                            dashTbl.getModel().setValueAt(approval,rows,7);
+                      
+                           dashTbl.getModel().setValueAt(cash,rows,8);
+                          
+                          
+                  
+             
+                  
+                  
+                    
+                 
+                     
+                rows++;       
+                     
+                 }
+                     
+         
+             
+            }
+            else{
+            System.out.println("DO NOTHING");
+            
+            }
+            
+   
+   }
+   catch(Exception eax){
+       eax.printStackTrace();
+   System.out.println(eax.getMessage());
+   
+   }
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void datePicker2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_datePicker2MouseClicked
+         
+
+    }//GEN-LAST:event_datePicker2MouseClicked
+
+    private void datePicker2CaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_datePicker2CaretPositionChanged
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_datePicker2CaretPositionChanged
+
+    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+        try{
+            System.out.println("DGFDGDG DFG WEEEE ");
+            int rows=0;
+            int num_rows=0;
+
+            ///checking if their is a row that exists
+            java.sql.Statement ps2 = connectDB.createStatement();
+
+            // String query_dash="SELECT supplier, invoice_no, creditor_created, creditor_created_by,commited, commited_by, voucher_no, examination, examination_by, approval, approval_by, cash, cash_by  FROM ac_dashboard where creditor_created::date between '"+this.datePicker1.getDate().toString()+"' and '"+this.datePicker2.getDate().toString()+"'";
+            //java.sql.ResultSet rs2 = ps1.executeQuery("SELECT distinct purchase_req,aie_approval::date,forward_to_cso::date,determine_mode_of_pur::date,assign_buyer::date,approved_by_tc::date,evaluation::date,awarding::date,contract::date,raise_lpo_lso::date FROM st_pr_progress");
+            java.sql.ResultSet rs3 = ps2.executeQuery("SELECT count(*)  FROM ac_dashboard  where creditor_created::date between '"+this.datePicker1.getDate().toString()+"' and '"+this.datePicker2.getDate().toString()+"'");
+            while (rs3.next()) {
+                num_rows=rs3.getInt(1);
+                System.out.println("NUMBERSSS "+num_rows);
+
+            }
+            for (int k = 0; k < dashTbl.getRowCount(); k++) {
+                for (int r = 0; r < dashTbl.getColumnCount(); r++) {
+                    dashTbl.getModel().setValueAt(null, k, r);
+                }
+            }
+
+            if(num_rows>0){
+                java.sql.Statement ps1 = connectDB.createStatement();
+                //java.sql.ResultSet rs2 = ps1.executeQuery("SELECT distinct purchase_req,aie_approval::date,forward_to_cso::date,determine_mode_of_pur::date,assign_buyer::date,approved_by_tc::date,evaluation::date,awarding::date,contract::date,raise_lpo_lso::date FROM st_pr_progress");
+                java.sql.ResultSet rs2 = ps1.executeQuery("SELECT supplier, invoice_no, creditor_created, creditor_created_by,commited, commited_by, voucher_no, examination, examination_by, approval, approval_by, cash, cash_by ,accountant,finance_head FROM ac_dashboard where creditor_created::date between '"+this.datePicker1.getDate().toString()+"' and '"+this.datePicker2.getDate().toString()+"' and cancelled=false");
+                while (rs2.next()) {
+
+                    supplier=rs2.getString("supplier");
+                    invoice=rs2.getString("invoice_no");
+                    creditor_created=rs2.getString("creditor_created");
+                    commited=rs2.getString("commited");
+                    voucher_no=rs2.getString("voucher_no");
+                    examination=rs2.getString("examination");
+                    approval=rs2.getString("approval");
+                    cash=rs2.getString("cash");
+                    accountant=rs2.getString("accountant");
+                    //finance_manager=rs2.getString("finance_head");
+
+                    ////RETRIEVING THE ProgressBar
+
+                    dashTbl.getModel().setValueAt(supplier,rows,0);
+
+                    //                  javax.swing.table.TableColumn ccDateEditorw = dashTbl.getColumnModel().getColumn(1);
+                    //                DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+                    //               renderer.setBackground(Color.red);
+                    //               ccDateEditorw.setCellRenderer(renderer);
+
+                    dashTbl.getModel().setValueAt(invoice,rows,1);
+
+                    dashTbl.getModel().setValueAt(creditor_created,rows,2);
+
+                    dashTbl.getModel().setValueAt(commited,rows,3);
+
+                    dashTbl.getModel().setValueAt(voucher_no,rows,4);
+
+                    dashTbl.getModel().setValueAt(examination,rows,6);
+                    
+                    dashTbl.getModel().setValueAt(accountant,rows,5);
+                    
+                   // dashTbl.getModel().setValueAt(finance_manager,rows,6);
+                    
+                    dashTbl.getModel().setValueAt(approval,rows,7);
+
+                    dashTbl.getModel().setValueAt(cash,rows,8);
+
+                    rows++;
+
+                }
+
+            }
+            else{
+                System.out.println("DO NOTHING");
+
+            }
+
+        }
+        catch(Exception eax){
+            eax.printStackTrace();
+            System.out.println(eax.getMessage());
+
+        }
+    }//GEN-LAST:event_jCheckBox4ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+        try{
+            System.out.println("DGFDGDG DFG WEEEE ");
+            int rows=0;
+            int num_rows=0;
+
+            ///checking if their is a row that exists
+            java.sql.Statement ps2 = connectDB.createStatement();
+
+            // String query_dash="SELECT supplier, invoice_no, creditor_created, creditor_created_by,commited, commited_by, voucher_no, examination, examination_by, approval, approval_by, cash, cash_by  FROM ac_dashboard where creditor_created::date between '"+this.datePicker1.getDate().toString()+"' and '"+this.datePicker2.getDate().toString()+"'";
+            //java.sql.ResultSet rs2 = ps1.executeQuery("SELECT distinct purchase_req,aie_approval::date,forward_to_cso::date,determine_mode_of_pur::date,assign_buyer::date,approved_by_tc::date,evaluation::date,awarding::date,contract::date,raise_lpo_lso::date FROM st_pr_progress");
+            java.sql.ResultSet rs3 = ps2.executeQuery("SELECT count(*)  FROM ac_dashboard  where supplier='"+jComboBox3.getSelectedItem()+"'");
+            while (rs3.next()) {
+                num_rows=rs3.getInt(1);
+                System.out.println("NUMBERSSS "+num_rows);
+
+            }
+            for (int k = 0; k < dashTbl.getRowCount(); k++) {
+                for (int r = 0; r < dashTbl.getColumnCount(); r++) {
+                    dashTbl.getModel().setValueAt(null, k, r);
+                }
+            }
+
+            if(num_rows>0){
+                java.sql.Statement ps1 = connectDB.createStatement();
+                //java.sql.ResultSet rs2 = ps1.executeQuery("SELECT distinct purchase_req,aie_approval::date,forward_to_cso::date,determine_mode_of_pur::date,assign_buyer::date,approved_by_tc::date,evaluation::date,awarding::date,contract::date,raise_lpo_lso::date FROM st_pr_progress");
+                java.sql.ResultSet rs2 = ps1.executeQuery("SELECT supplier, invoice_no, creditor_created, creditor_created_by,commited, commited_by, voucher_no, examination, examination_by, approval, approval_by, cash, cash_by ,accountant,finance_head FROM ac_dashboard where supplier='"+jComboBox3.getSelectedItem()+"' and cancelled=false");
+                while (rs2.next()) {
+
+                    supplier=rs2.getString("supplier");
+                    invoice=rs2.getString("invoice_no");
+                    creditor_created=rs2.getString("creditor_created");
+                    commited=rs2.getString("commited");
+                    voucher_no=rs2.getString("voucher_no");
+                    examination=rs2.getString("examination");
+                    approval=rs2.getString("approval");
+                    cash=rs2.getString("cash");
+                    accountant=rs2.getString("accountant");
+                   // finance_manager=rs2.getString("finance_head");
+
+                    ////RETRIEVING THE ProgressBar
+
+                    dashTbl.getModel().setValueAt(supplier,rows,0);
+
+                    //                  javax.swing.table.TableColumn ccDateEditorw = dashTbl.getColumnModel().getColumn(1);
+                    //                DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+                    //               renderer.setBackground(Color.red);
+                    //               ccDateEditorw.setCellRenderer(renderer);
+
+                    dashTbl.getModel().setValueAt(invoice,rows,1);
+
+                    dashTbl.getModel().setValueAt(creditor_created,rows,2);
+
+                    dashTbl.getModel().setValueAt(commited,rows,3);
+
+                    dashTbl.getModel().setValueAt(voucher_no,rows,4);
+
+                    dashTbl.getModel().setValueAt(examination,rows,6);
+                    
+                    dashTbl.getModel().setValueAt(accountant,rows,5);
+                    
+                   // dashTbl.getModel().setValueAt(finance_manager,rows,6);
+                    
+                    dashTbl.getModel().setValueAt(approval,rows,7);
+
+                    dashTbl.getModel().setValueAt(cash,rows,8);
+
+                    rows++;
+
+                }
+
+            }
+            else{
+                System.out.println("DO NOTHING");
+
+            }
+
+        }
+        catch(Exception eax){
+            eax.printStackTrace();
+            System.out.println(eax.getMessage());
+
+        }
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
+        // TODO add your handling code here:
+        jLabel4.setEnabled(true);
+        jComboBox2.setEnabled(true);
+        jLabel2.setEnabled(false);
+    jLabel3.setEnabled(false);
+    datePicker1.setEnabled(false);
+    datePicker2.setEnabled(false);
+     jLabel1.setEnabled(false);
+    jComboBox1.setEnabled(false);
+     jCheckBox4.setEnabled(false);
+     jLabel5.setEnabled(true);
+     jComboBox3.setEnabled(true);
+     
+    }//GEN-LAST:event_jCheckBox5ActionPerformed
+
+    private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTextField1CaretUpdate
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTable dashTbl;
+    private com.afrisoftech.lib.DatePicker datePicker1;
+    private com.afrisoftech.lib.DatePicker datePicker2;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JCheckBox jCheckBox5;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBox3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    // End of variables declaration//GEN-END:variables
+}

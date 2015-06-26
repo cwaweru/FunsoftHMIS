@@ -1,0 +1,70 @@
+19/5/2014
+--------------
+com.afrisoftech.hospinventory.StockGroupsintfr.java 
+	- checks for duplicates before adding/editing items.
+	- drop list checkbox now loads appropriate table model and editing can be done per category.
+
+com.afrisoftech.hospinventory.StockCountingAdjintfr.java
+	-Constantly checks for date during multiple user actions to ensure integrity.
+	-Checks for store allocated and prevents progress if this hasn't been satisfied.
+	-Filters search table to present user with only items in store allocated to to prevent logical user mistakes.
+
+20/5/2014
+--------------
+com.afrisoftech.accounting.SecurityStoresReleaseIntfr.java
+	-user now has filter panel provided to filter records through an irq number as opposed to manually searching through several records for desired irq. 
+
+21/5/2014
+---------------
+com.afrisoftech.hospinventory.CreditNoteintfr.java
+	-dnote jsearch dialog wider to better view info in multiple columns.
+	-cannot select a dnote without first selecting a store (prevents logocal user errors)
+	-when searching for dnote, user only sees dnotes from selected stores (also prevents logical user errors)
+	-cannot reverse dnote without a reason - enhances data completeness.
+
+com.afrisoftech.hospinventory.ReverseIssiuingintfr.java
+	-changed the checkbox label oreviously labelled "Main Store" to "Central Store".
+	-authority that reverses issued items has access to all stores in the combobox regardless of whether they are allocated a store (done after complaint from 		 warehouse manager)
+	-the search irq dialog now produces search results relevant to the store selected in the issuing store combobox.
+	-reversing authority can now reverse via irq as well as via transaction_no.
+	-removed unnecessary requisition no search dialog (usially used for issuing)
+	-renamed save button to reverse issued items.
+
+com.afrisoftech.hospinventory.RcvBranchRequisintfr.java
+	-requisitioning search dialog now wider to accomodate all columns adequately.
+
+com.afrisoftech.hospinventory.StoredBalPdf.java
+	-stores stock balance report for main store tallies with item flow for central stores - used "ilike", removed "=" in sub_store sum query.
+	-eliminated duplicates from report, so total stock value now more accurate.
+	-CAVEAT: IF THE REPORT COMES ACROSS TWO OR MORE RECORDS THAT SHARE A CODE, THE BALANCES FOR THOSE ITEMS WILL NOT BE ACCURATE! THIS WILL ALSO AFFECT TOTAL 		 STOCK VALUE!!
+	-PENDING: IMPROVEMENT OF SPEED WHEN GENERATING THIS REPORT.
+
+27/5/2014
+---------------
+com.afrisoftech.lib.HosStoresDrugsDatePanel.java
+	-The panel used for item flow, stores stock ledger etc now allows substores to search via item code as well as item description.
+
+28/5/2014
+---------------
+com.afrisoftech.hospinventory.StoredBalPerCategoryPdf.java - NEW CLASS
+	-produces a subset of com.afrisoftech.hospinventory.StoredBalPdf's report. Subset on the basis of item category.
+
+com.afrisoftech.lib.HosStoresWithCategory.java - NEW CLASS
+	-provides the same dialog as com.afrisoftech.lib.HosStore but with an added combobox for specifying the category from which store balance is required.
+
+com.afrisoftech.hospinventory.DrugFlowPdf.java
+	-The report now includes the username at the end of each row - done to avoid confusion over physical staff rotation (and not rotating the staff in the 		 system) and also to falsify allegations that billing staff are issuing pharmacy stock. 
+
+29/5/2014
+---------------
+com.afrisoftech.hospinventory.CheckGrnDetails.java
+	-the original code only displays grn entries when total value>0. If total value of dnote =0, the entry cannot be seen. changed the sql to >=0 to facilitate 		 viewing before reversal.
+
+com.afrisoftech.hospinventory.CreditNoteintfr.java
+	-original code only allows selection of dnotes whose total value>0. changed it to >=0 to allow reversal, and by extension, reduction of concerned stock as 		 per the invalid dnote.
+
+com.afrisoftech.hospinventory.StoresReconciliationPdf.java NEW CLASS
+	-Previously non existent, it details stock reconciliation transactions of store selected within the date ranges specified bu the user. Also includes user who 		 reconciled for audit purposes.
+
+
+
