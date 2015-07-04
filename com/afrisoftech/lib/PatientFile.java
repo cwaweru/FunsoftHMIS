@@ -986,7 +986,7 @@ public class PatientFile {
 
         try {
             java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT (CASE WHEN patient_name is null THEN (SELECT name FROM hp_patient_visit WHERE hp_patient_visit.patient_no = ? ORDER BY 1 DESC LIMIT 1) ELSE patient_name END) as patient_names,"
-                    + " (SELECT date_admitted FROM hp_admission WHERE hp_admission.patient_no = ? AND check_out = false ORDER BY 1 DESC LIMIT 1),"
+                    + "(SELECT date_admitted FROM hp_admission WHERE hp_admission.patient_no = ? AND check_out = false ORDER BY 1 DESC LIMIT 1),"
                     + "(SELECT visit_id FROM hp_admission WHERE hp_admission.patient_no = ? AND check_out = false ORDER BY 1 DESC LIMIT 1) as visitid,"
                     + "(CASE WHEN (SELECT year_of_birth::date FROM hp_inpatient_register WHERE hp_inpatient_register.patient_no = ? ORDER BY 1 DESC LIMIT 1) "
                     + "is null THEN (SELECT year_of_birth::date FROM hp_patient_register WHERE patient_no = ? ORDER BY 1 DESC LIMIT 1) ELSE "

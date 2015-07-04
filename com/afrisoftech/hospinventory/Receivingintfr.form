@@ -389,7 +389,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="totalAmountTxt">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="text" type="java.lang.String" value="0.00"/>
@@ -498,7 +498,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="grnDetailsTable">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="10" style="0"/>
@@ -621,12 +621,12 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseClicked"/>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTable1KeyReleased"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="grnDetailsTableMouseClicked"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="grnDetailsTableKeyReleased"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()/*new com.afrisoftech.dbadmin.JTable()*/"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*&#xa;cmbox.setModel(new org.netbeans.lib.sql.models.ComboBoxModel (crset2, &quot;item_description&quot;, null, null, null));&#xa;    javax.swing.table.TableColumn s = this.jTable1.getColumn(&quot;Item description&quot;);&#xa;    s.setCellEditor(new javax.swing.DefaultCellEditor(cmbox));&#xa;                cmbox.addActionListener(new java.awt.event.ActionListener() {&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;                cmboxActionPerformed(evt);&#xa;            }&#xa;        });&#xa; */&#xa;javax.swing.table.TableColumn dateEditor = jTable1.getColumnModel().getColumn(13);&#xa;//com.afrisoftech.lib.DateCellEditor dateCellEditor = new com.afrisoftech.lib.DateCellEditor(new org.jdesktop.swingx.JXDatePicker(), jTable1);&#xa;com.afrisoftech.lib.DateCellEditor dateCellEditor = new com.afrisoftech.lib.DateCellEditor(new com.afrisoftech.lib.DatePicker(), jTable1);&#xa;dateEditor.setCellEditor(dateCellEditor);&#xa;//jTable1.setRowHeight(30);&#xa;javax.swing.table.DefaultTableCellRenderer cellRenderer = new javax.swing.table.DefaultTableCellRenderer();&#xa;cellRenderer.setHorizontalAlignment(cellRenderer.TRAILING);&#xa;dateEditor.setCellRenderer(cellRenderer);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*&#xa;cmbox.setModel(new org.netbeans.lib.sql.models.ComboBoxModel (crset2, &quot;item_description&quot;, null, null, null));&#xa;    javax.swing.table.TableColumn s = this.jTable1.getColumn(&quot;Item description&quot;);&#xa;    s.setCellEditor(new javax.swing.DefaultCellEditor(cmbox));&#xa;                cmbox.addActionListener(new java.awt.event.ActionListener() {&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;                cmboxActionPerformed(evt);&#xa;            }&#xa;        });&#xa; */&#xa;javax.swing.table.TableColumn dateEditor = grnDetailsTable.getColumnModel().getColumn(13);&#xa;//com.afrisoftech.lib.DateCellEditor dateCellEditor = new com.afrisoftech.lib.DateCellEditor(new org.jdesktop.swingx.JXDatePicker(), grnDetailsTable);&#xa;com.afrisoftech.lib.DateCellEditor dateCellEditor = new com.afrisoftech.lib.DateCellEditor(new com.afrisoftech.lib.DatePicker(), grnDetailsTable);&#xa;dateEditor.setCellEditor(dateCellEditor);&#xa;//jTable1.setRowHeight(30);&#xa;javax.swing.table.DefaultTableCellRenderer cellRenderer = new javax.swing.table.DefaultTableCellRenderer();&#xa;cellRenderer.setHorizontalAlignment(cellRenderer.TRAILING);&#xa;dateEditor.setCellRenderer(cellRenderer);"/>
               </AuxValues>
             </Component>
           </SubComponents>

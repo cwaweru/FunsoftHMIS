@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.afrisoftech.votebook;
 
 import static com.afrisoftech.hospital.HospitalMain.saccopn;
@@ -23,69 +22,60 @@ public class YearlyAllocationIntFr extends javax.swing.JInternalFrame {
      */
     java.sql.Connection connectDB = null;
     org.netbeans.lib.sql.pool.PooledConnectionSource pConnDB = null;
-     double total_amt=0.0,balance=0.0;
-     int num1=0;
-     Boolean check_balance=false;
-    
-    public YearlyAllocationIntFr( java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
-      
-       connectDB = connDb;
-       
+    double total_amt = 0.0, balance = 0.0;
+    int num1 = 0;
+    Boolean check_balance = false;
+
+    public YearlyAllocationIntFr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
+
+        connectDB = connDb;
 
         pConnDB = pconnDB;
         initComponents();
-        
-       
-        
+
     }
-    
-    public void creatingFinancialYear(javax.swing.JTextField mm){
-    
-        int limit_days=30;
-        int limit_mnth=6;
-       
-        
-        try{
+
+    public void creatingFinancialYear(javax.swing.JTextField mm) {
+
+        int limit_days = 30;
+        int limit_mnth = 6;
+
+        try {
             //        java.sql.Statement stmt=connectDB.createStatement();
 //        java.sql.ResultSet res=stmt.executeQuery("select current_date::date");
 //        
 //        while (res.next()){
 //        java.util.Date gets=res.getDate(1);
-            
+
             Calendar now = Calendar.getInstance();
             int year = now.get(Calendar.YEAR);
             int month = now.get(Calendar.MONTH); // Note: zero based!
             int day = now.get(Calendar.DAY_OF_MONTH);
-            String financial_yr=null;
-            Object yr=null,next_year=null;
-         
-        if(month>=limit_mnth && day>=limit_days){
+            String financial_yr = null;
+            Object yr = null, next_year = null;
 
-             yr=year;
-             int y=year+1;
-             next_year=y;
-            financial_yr= yr.toString()+"/"+ next_year;
-             
-  }
-        else{
-             yr=year;
-             int y=year-1;
-             next_year=y;
-        financial_yr= next_year+"/"+ yr;
-        
+            if (month >= limit_mnth && day >= limit_days) {
+
+                yr = year;
+                int y = year + 1;
+                next_year = y;
+                financial_yr = yr.toString() + "/" + next_year;
+
+            } else {
+                yr = year;
+                int y = year - 1;
+                next_year = y;
+                financial_yr = next_year + "/" + yr;
+
+            }
+
+            mm.setText(financial_yr);
+
+        } catch (Exception esc) {
+            esc.printStackTrace();
+
         }
-        
-        mm.setText(financial_yr);
-            
-        
-        }
-        
-        catch(Exception esc){
-        esc.printStackTrace();
-        
-        }
-    
-    
+
     }
 
     /**
@@ -683,37 +673,35 @@ public class YearlyAllocationIntFr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void jTextField114CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField114CaretUpdate
-        if (jTextField114.getCaretPosition() >=2) {//com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT subhead FROM subheads ORDER BY 1")
-              String classes=null;
-             try{
-          java.sql.Statement  st11= connectDB.createStatement();
-       java.sql.ResultSet ress1= st11.executeQuery("select class from vb_class where classname = '"+aieTypeCbx.getSelectedItem()+"'");
-       while(ress1.next()){
-        classes=ress1.getString(1);
-            jSearchTable3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct subhead,subheadname  from subheads where srccode='"+headCbx.getSelectedItem()+"'  and subhead not in (select DISTINCT subhead from ac_aie_allocation where head='"+headCbx.getSelectedItem()+"' and financial_year='"+financial_yrTxt.getText()+"' and aieno='"+aieNoTxt.getText()+"') and subhead ilike '%"+jTextField114.getText()+"%' and station  ilike '%"+classes+"%' order by subhead asc "));
-            jSearchScrollPane3.setViewportView(jSearchTable3);
-            System.out.println("Cannot sort out");
-       }
-             }
-             catch(Exception edr){
-             edr.printStackTrace();
-             
-             }
+        if (jTextField114.getCaretPosition() >= 2) {//com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT subhead FROM subheads ORDER BY 1")
+            String classes = null;
+            try {
+                java.sql.Statement st11 = connectDB.createStatement();
+                java.sql.ResultSet ress1 = st11.executeQuery("select class from vb_class where classname = '" + aieTypeCbx.getSelectedItem() + "'");
+                while (ress1.next()) {
+                    classes = ress1.getString(1);
+                    jSearchTable3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct subhead,subheadname  from subheads where srccode='" + headCbx.getSelectedItem() + "'  and subhead not in (select DISTINCT subhead from ac_aie_allocation where head='" + headCbx.getSelectedItem() + "' and financial_year='" + financial_yrTxt.getText() + "' and aieno='" + aieNoTxt.getText() + "') and subhead ilike '%" + jTextField114.getText() + "%' and station  ilike '%" + classes + "%' order by subhead asc "));
+                    jSearchScrollPane3.setViewportView(jSearchTable3);
+                    System.out.println("Cannot sort out");
+                }
+            } catch (Exception edr) {
+                edr.printStackTrace();
+
+            }
         }// Add your handling code here:
     }//GEN-LAST:event_jTextField114CaretUpdate
 
     private void jSearchTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable3MouseClicked
-        
-         /////checks
-        try{
-           subheadsTbl.setValueAt(jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 0), subheadsTbl.getSelectedRow(),0);
-            subheadsTbl.setValueAt(jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 1), subheadsTbl.getSelectedRow(),2);
-           
-       }
-       catch(Exception ed){
+
+        /////checks
+        try {
+            subheadsTbl.setValueAt(jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 0), subheadsTbl.getSelectedRow(), 0);
+            subheadsTbl.setValueAt(jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 1), subheadsTbl.getSelectedRow(), 2);
+
+        } catch (Exception ed) {
             ed.printStackTrace();
-               
-               }
+
+        }
         jSearchDialog3.dispose();
 
         // Add your handling code here:
@@ -724,258 +712,233 @@ public class YearlyAllocationIntFr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton92ActionPerformed
 
     private void subheadsTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subheadsTblMouseClicked
-        
-        if(subheadsTbl.getSelectedColumn()==0){
-         System.out.println("Showing dialog");
-        java.awt.Point point = jScrollPane1.getLocationOnScreen();
-        jSearchDialog3.setSize(600, 200);
-        jSearchDialog3.setLocation(point);
-        jSearchDialog3.setVisible(true);
+
+        if (subheadsTbl.getSelectedColumn() == 0) {
+            System.out.println("Showing dialog");
+            java.awt.Point point = jScrollPane1.getLocationOnScreen();
+            jSearchDialog3.setSize(600, 200);
+            jSearchDialog3.setLocation(point);
+            jSearchDialog3.setVisible(true);
         }
-        
+
         headAmtTxt.setEnabled(false);
-       Boolean check_no_amt=false; 
-        
-        
-       
-       
-        
-        
-        
-        for(int j=0; j<subheadsTbl.getRowCount();j++){
-         if(subheadsTbl.getValueAt(j,0)!=null && subheadsTbl.getValueAt(j,1)!=null){
+        Boolean check_no_amt = false;
+
+        for (int j = 0; j < subheadsTbl.getRowCount(); j++) {
+            if (subheadsTbl.getValueAt(j, 0) != null && subheadsTbl.getValueAt(j, 1) != null) {
            // if(subheadsTbl.getModel().isCellEditable(subheadsTbl.getSelectedRow(), 1)){
-            
-         //total_amt=total_amt+Double.parseDouble(subheadsTbl.getValueAt(j,1).toString());
-             try{
-            balance=Double.parseDouble(VoteHeadBalTxt.getText().toString().replace(",", ""))-com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(subheadsTbl, 1);
-             
-            if(balance<0){
-        check_no_amt=true;
-            
-        }
-             
-             }
-             
-             catch(Exception est){
-             est.printStackTrace();
-             System.out.println( est.getMessage());
-             
-             }
+
+                //total_amt=total_amt+Double.parseDouble(subheadsTbl.getValueAt(j,1).toString());
+                try {
+                    balance = Double.parseDouble(VoteHeadBalTxt.getText().toString().replace(",", "")) - com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(subheadsTbl, 1);
+
+                    if (balance < 0) {
+                        check_no_amt = true;
+
+                    }
+
+                } catch (Exception est) {
+                    est.printStackTrace();
+                    System.out.println(est.getMessage());
+
+                }
          //}
-         
+
+            } else {
+                System.out.println("do nothing");
+
+            }
         }
-         else{
-         System.out.println("do nothing");
-         
-         }
-        }
-        
-        if(check_no_amt==true){
-        
-            JOptionPane.showMessageDialog(null, "You have exhausted the head amount","ERROR MESSAGE",JOptionPane.ERROR_MESSAGE);
+
+        if (check_no_amt == true) {
+
+            JOptionPane.showMessageDialog(null, "You have exhausted the head amount", "ERROR MESSAGE", JOptionPane.ERROR_MESSAGE);
             yearlyAllocationBtn.setEnabled(false);
-        }
-        else{
-        yearlyAllocationBtn.setEnabled(true);
-        
+        } else {
+            yearlyAllocationBtn.setEnabled(true);
+
         }
        // balance=Double.parseDouble(headAmtTxt.getText().toString())-total_amt;
-        
-      
+
         currentBalanceTxt.setForeground(Color.red);
-        currentBalanceTxt.setText( com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(balance));
-        
+        currentBalanceTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(balance));
+
 //        if(balance<0){
 //           JOptionPane.showMessageDialog(null, "You have exhausted the head amount","ERROR MESSAGE",JOptionPane.ERROR_MESSAGE);
 //        }
-      
-          
-        
-        
-        
+
     }//GEN-LAST:event_subheadsTblMouseClicked
 
     private void yearlyAllocationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearlyAllocationBtnActionPerformed
         ////CREATING YEARLY ALLOCATIONS
-        try{
-            if(!aieAmtTxt.getText().equals("0.0")){
-                if(Double.parseDouble(VoteHeadBalTxt.getText().toString().replace(",", ""))>0){
-            Boolean check_status=false;
-            String  user=null;
-            
-            java.sql.Statement stmts = connectDB.createStatement();
-            java.sql.ResultSet res=stmts.executeQuery("select current_user");
-            while(res.next()){
-           user= res.getString(1);
-            
-            }
-            
-            //////////getting  the date
-            Date now_date=null;
-            java.sql.Statement stmts1 = connectDB.createStatement();
-            java.sql.ResultSet res1=stmts1.executeQuery("select current_date");
-            while(res1.next()){
-           now_date= res1.getDate(1);
-            
-            }
-            
-for(int i=0; i<subheadsTbl.getRowCount(); i++ ){
-    
-    if(subheadsTbl.getValueAt(i, 1)!=null && subheadsTbl.getValueAt(i, 0)!=null){
+        try {
+            if (!aieAmtTxt.getText().equals("0.0")) {
+                if (Double.parseDouble(VoteHeadBalTxt.getText().toString().replace(",", "")) > 0) {
+                    Boolean check_status = false;
+                    String user = null;
 
+                    java.sql.Statement stmts = connectDB.createStatement();
+                    java.sql.ResultSet res = stmts.executeQuery("select current_user");
+                    while (res.next()) {
+                        user = res.getString(1);
 
-       for(int k=1;k<5;k++){
+                    }
 
-        java.sql.PreparedStatement pstmt=connectDB.prepareStatement(" INSERT INTO ac_aie_allocation(\n" +
-"            aieno, vote, subvote, class, aie_amount, head, head_amount, subhead, \n" +
-"            subhead_yearly_amt, subhead_quartely_amount, subitem, \n" +
-"            subitem_amt, donorcode, donoritem, status, reversedby, enteredon, \n" +
-"            enteredby, modifiedby, financial_year, \n" +
-"            aie_reference_no, date_received, period, vote_balance)\n" +
-"    VALUES (?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?,?)");
-        pstmt.setObject(1,aieNoTxt.getText());
-        pstmt.setObject(2,voteCbx.getSelectedItem());
-        pstmt.setObject(3,headCbx.getSelectedItem());
-        java.sql.Statement stmtss= connectDB.createStatement();
-        java.sql.ResultSet resd=stmts.executeQuery("select class from vb_class where classname='"+aieTypeCbx.getSelectedItem()+"'");
-        while(resd.next()){
-         pstmt.setObject(4,resd.getString(1));
-        }
-         pstmt.setDouble(5,Double.parseDouble(aieAmtTxt.getText().toString().replace(",", "")));
-         pstmt.setObject(6,headCbx.getSelectedItem());
-         pstmt.setDouble(7,Double.parseDouble(headAmtTxt.getText().toString().replace(",", "")));
-         pstmt.setObject(8,subheadsTbl.getValueAt(i,0));
-         pstmt.setDouble(9,Double.parseDouble(subheadsTbl.getValueAt(i,1).toString().replace(",", "")));
-         pstmt.setDouble(10,((Double.parseDouble(subheadsTbl.getValueAt(i,1).toString().replace(",", "")))*0.25));
-         pstmt.setObject(11,"");
-         pstmt.setDouble(12,0.0);
-         pstmt.setObject(13,"");
-         pstmt.setObject(14,"");
-         pstmt.setObject(15,"0");
-         pstmt.setObject(16,"");
-         pstmt.setObject(17,now_date);
-         pstmt.setObject(18,user);
-         
-         pstmt.setObject(19,"");
-         //pstmt.setObject(20,"");
-        pstmt.setObject(20,financial_yrTxt.getText());
-        pstmt.setObject(21,jTextField1.getText());
-        pstmt.setObject(22,now_date);
-        String quarter=null;
-        if(k==1){  quarter="1st Quarter";  }    
-        else if(k==2){quarter="2nd Quarter";}
-        else if(k==3){quarter="3rd Quarter";}
-        else if(k==4){quarter="4th Quarter";}
-        
-        
-        pstmt.setObject(23,quarter);
-        pstmt.setDouble(24,0.0);
-        pstmt.executeUpdate();
+                    //////////getting  the date
+                    Date now_date = null;
+                    java.sql.Statement stmts1 = connectDB.createStatement();
+                    java.sql.ResultSet res1 = stmts1.executeQuery("select current_date");
+                    while (res1.next()) {
+                        now_date = res1.getDate(1);
 
-        
-        check_status=true;
-       
-       }
-    }       
-}
+                    }
 
-if(check_status==true){
-JOptionPane.showMessageDialog(null,"Yearly Allocation Done Successfuly", "CONFIRMATION MESSAGE",JOptionPane.INFORMATION_MESSAGE);
-  
-for (int k = 0; k < subheadsTbl.getRowCount(); k++) {
-                for (int r = 0; r < subheadsTbl.getColumnCount(); r++) {
-                    subheadsTbl.getModel().setValueAt(null, k, r);
-                }
-        }
-headAmtTxt.setText(null);
-headAmtTxt.setEnabled(true);
-VoteHeadBalTxt.setText(null);
+                    for (int i = 0; i < subheadsTbl.getRowCount(); i++) {
+
+                        if (subheadsTbl.getValueAt(i, 1) != null && subheadsTbl.getValueAt(i, 0) != null) {
+
+                            for (int k = 1; k < 5; k++) {
+
+                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement(" INSERT INTO ac_aie_allocation(\n"
+                                        + "            aieno, vote, subvote, class, aie_amount, head, head_amount, subhead, \n"
+                                        + "            subhead_yearly_amt, subhead_quartely_amount, subitem, \n"
+                                        + "            subitem_amt, donorcode, donoritem, status, reversedby, enteredon, \n"
+                                        + "            enteredby, modifiedby, financial_year, \n"
+                                        + "            aie_reference_no, date_received, period, vote_balance)\n"
+                                        + "    VALUES (?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?,?)");
+                                pstmt.setObject(1, aieNoTxt.getText());
+                                pstmt.setObject(2, voteCbx.getSelectedItem());
+                                pstmt.setObject(3, headCbx.getSelectedItem());
+                                java.sql.Statement stmtss = connectDB.createStatement();
+                                java.sql.ResultSet resd = stmts.executeQuery("select class from vb_class where classname='" + aieTypeCbx.getSelectedItem() + "'");
+                                while (resd.next()) {
+                                    pstmt.setObject(4, resd.getString(1));
+                                }
+                                pstmt.setDouble(5, Double.parseDouble(aieAmtTxt.getText().toString().replace(",", "")));
+                                pstmt.setObject(6, headCbx.getSelectedItem());
+                                pstmt.setDouble(7, Double.parseDouble(headAmtTxt.getText().toString().replace(",", "")));
+                                pstmt.setObject(8, subheadsTbl.getValueAt(i, 0));
+                                pstmt.setDouble(9, Double.parseDouble(subheadsTbl.getValueAt(i, 1).toString().replace(",", "")));
+                                pstmt.setDouble(10, ((Double.parseDouble(subheadsTbl.getValueAt(i, 1).toString().replace(",", ""))) * 0.25));
+                                pstmt.setObject(11, "");
+                                pstmt.setDouble(12, 0.0);
+                                pstmt.setObject(13, "");
+                                pstmt.setObject(14, "");
+                                pstmt.setObject(15, "0");
+                                pstmt.setObject(16, "");
+                                pstmt.setObject(17, now_date);
+                                pstmt.setObject(18, user);
+
+                                pstmt.setObject(19, "");
+                                //pstmt.setObject(20,"");
+                                pstmt.setObject(20, financial_yrTxt.getText());
+                                pstmt.setObject(21, jTextField1.getText());
+                                pstmt.setObject(22, now_date);
+                                String quarter = null;
+                                if (k == 1) {
+                                    quarter = "1st Quarter";
+                                } else if (k == 2) {
+                                    quarter = "2nd Quarter";
+                                } else if (k == 3) {
+                                    quarter = "3rd Quarter";
+                                } else if (k == 4) {
+                                    quarter = "4th Quarter";
+                                }
+
+                                pstmt.setObject(23, quarter);
+                                pstmt.setDouble(24, 0.0);
+                                pstmt.executeUpdate();
+
+                                check_status = true;
+
+                            }
+                        }
+                    }
+
+                    if (check_status == true) {
+                        JOptionPane.showMessageDialog(null, "Yearly Allocation Done Successfuly", "CONFIRMATION MESSAGE", JOptionPane.INFORMATION_MESSAGE);
+
+                        for (int k = 0; k < subheadsTbl.getRowCount(); k++) {
+                            for (int r = 0; r < subheadsTbl.getColumnCount(); r++) {
+                                subheadsTbl.getModel().setValueAt(null, k, r);
+                            }
+                        }
+                        headAmtTxt.setText(null);
+                        headAmtTxt.setEnabled(true);
+                        VoteHeadBalTxt.setText(null);
 
 ////budget balance
-try{
-                java.sql.Statement  st8= connectDB.createStatement();
-                java.sql.ResultSet res8= st8.executeQuery(" SELECT  (aie_amount-sum(subhead_quartely_amount))  FROM ac_aie_allocation where aieno='"+aieNoTxt.getText()+"' and financial_year='"+financial_yrTxt.getText()+"' group by aie_amount ");
-                while(res8.next()){
-                   BudgetBalTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(Double.parseDouble(res8.getString(1))));
-                }
-                
-}
-catch(Exception edf){
-edf.printStackTrace();
+                        try {
+                            java.sql.Statement st8 = connectDB.createStatement();
+                            java.sql.ResultSet res8 = st8.executeQuery(" SELECT  (aie_amount-sum(subhead_quartely_amount))  FROM ac_aie_allocation where aieno='" + aieNoTxt.getText() + "' and financial_year='" + financial_yrTxt.getText() + "' group by aie_amount ");
+                            while (res8.next()) {
+                                BudgetBalTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(Double.parseDouble(res8.getString(1))));
+                            }
 
-}
+                        } catch (Exception edf) {
+                            edf.printStackTrace();
 
+                        }
 
-}
-else{
-JOptionPane.showMessageDialog(null,"Double Check Your Entries", "ERROR MESSAGE",JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Double Check Your Entries", "ERROR MESSAGE", JOptionPane.ERROR_MESSAGE);
 
-}
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "The Vote Head cannot be zero", "ERROR MESSAGE", JOptionPane.ERROR_MESSAGE);
+
                 }
-                else{
-                 JOptionPane.showMessageDialog(null,"The Vote Head cannot be zero", "ERROR MESSAGE",JOptionPane.ERROR_MESSAGE);   
-                
-                }
-}
-        else{
-            JOptionPane.showMessageDialog(null,"The budgeted Amount Cannot Be zero", "ERROR MESSAGE",JOptionPane.ERROR_MESSAGE);   
-                }
+            } else {
+                JOptionPane.showMessageDialog(null, "The budgeted Amount Cannot Be zero", "ERROR MESSAGE", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception est) {
+            est.printStackTrace();
+            System.out.println(est);
+
         }
-        catch(Exception est){
-        est.printStackTrace();
-        System.out.println(est);
-        
-        }
-        
-        
+
+
     }//GEN-LAST:event_yearlyAllocationBtnActionPerformed
 
     private void subheadsTblKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_subheadsTblKeyReleased
         //calculating the total
-        
-       
+
+
     }//GEN-LAST:event_subheadsTblKeyReleased
 
     private void aieAmtTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_aieAmtTxtCaretUpdate
-        try{
-            if(check_balance==false){
-        System.out.println("SAAAAAAAAAAAAAAAAAAA  "+aieAmtTxt.getText());
-        BudgetBalTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(Double.parseDouble(aieAmtTxt.getText().replace(",",""))));
-        }
-        
-        else
-        {
-           System.out.println("DO NOTHING");
-                }
-        }
-        catch(Exception dfs){
-        dfs.printStackTrace();
-        
+        try {
+            if (check_balance == false) {
+                System.out.println("SAAAAAAAAAAAAAAAAAAA  " + aieAmtTxt.getText());
+                BudgetBalTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(Double.parseDouble(aieAmtTxt.getText().replace(",", ""))));
+            } else {
+                System.out.println("DO NOTHING");
+            }
+        } catch (Exception dfs) {
+            dfs.printStackTrace();
+
         }
     }//GEN-LAST:event_aieAmtTxtCaretUpdate
 
     private void aieAmtTxtMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aieAmtTxtMouseReleased
-       
+
     }//GEN-LAST:event_aieAmtTxtMouseReleased
 
     private void aieAmtTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aieAmtTxtMousePressed
-       
+
     }//GEN-LAST:event_aieAmtTxtMousePressed
 
     private void aieAmtTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aieAmtTxtMouseExited
- 
-         if(aieAmtTxt.getText()!=null){
-         try{
-            aieAmtTxt.setText( com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(Double.parseDouble(aieAmtTxt.getText().toString().replace(",",""))));
+
+        if (aieAmtTxt.getText() != null) {
+            try {
+                aieAmtTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(Double.parseDouble(aieAmtTxt.getText().toString().replace(",", ""))));
+            } catch (Exception esf) {
+                esf.printStackTrace();
+
+            }
         }
-         catch(Exception esf){
-         esf.printStackTrace();
-         
-         }
-         }
-        
-       
+
 
     }//GEN-LAST:event_aieAmtTxtMouseExited
 
@@ -984,136 +947,128 @@ JOptionPane.showMessageDialog(null,"Double Check Your Entries", "ERROR MESSAGE",
     }//GEN-LAST:event_aieAmtTxtFocusLost
 
     private void aieNoTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_aieNoTxtCaretUpdate
-         /////checks
-        try{
-            if(aieNoTxt.getCaretPosition()>=4){
-        java.sql.Statement  st1= connectDB.createStatement();
-       java.sql.ResultSet ress= st1.executeQuery(" SELECT count(*) as num  FROM ac_aie_allocation where aieno ilike '"+aieNoTxt.getText()+"%' and financial_year='"+financial_yrTxt.getText()+"' ");
-       while(ress.next()){
-        num1=ress.getInt(1);
-       }
-       
-       Double aie_amt=0.0,fin_yr=null;
-       if(num1>=1){
-           check_balance=true;
-        java.sql.Statement  st2= connectDB.createStatement();
-       java.sql.ResultSet res2= st2.executeQuery(" SELECT distinct aie_amount,aie_reference_no   FROM ac_aie_allocation where aieno='"+aieNoTxt.getText()+"' and financial_year='"+financial_yrTxt.getText()+"' ");
-       while(res2.next()){
-        aie_amt=res2.getDouble(1);
-        //fin_yr=res2.getString(2);
-         aieAmtTxt.setEnabled(false);
-        aieAmtTxt.setText(aie_amt.toString());
-        jTextField1.setEditable(false);
-        jTextField1.setForeground(Color.red);
-        jTextField1.setText(res2.getString(2));
-        
-        //////BUDGET BALANCE
-        try{
-         java.sql.Statement  st8= connectDB.createStatement();
-       java.sql.ResultSet res8= st8.executeQuery(" SELECT  (aie_amount-sum(subhead_quartely_amount))  FROM ac_aie_allocation where aieno='"+aieNoTxt.getText()+"' and financial_year='"+financial_yrTxt.getText()+"' group by aie_amount ");
-       while(res8.next()){
-           BudgetBalTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(Double.parseDouble(res8.getString(1))));
-       }
-        }
-        catch(Exception bs){
-        bs.printStackTrace();
-        
-        }
-       
-       }
-       }
-       else{
-       //////dealing with a new aieno
+        /////checks
+        try {
+            if (aieNoTxt.getCaretPosition() >= 4) {
+                java.sql.Statement st1 = connectDB.createStatement();
+                java.sql.ResultSet ress = st1.executeQuery(" SELECT count(*) as num  FROM ac_aie_allocation where aieno ilike '" + aieNoTxt.getText() + "%' and financial_year='" + financial_yrTxt.getText() + "' ");
+                while (ress.next()) {
+                    num1 = ress.getInt(1);
+                }
 
-          aieAmtTxt.setText("0.0");
-          BudgetBalTxt.setText("0.0");
-           aieAmtTxt.setEnabled(true);
-            jTextField1.setEditable(true);
-       
-       }
-        }
-            else{
-            System.out.println("Nothing");
-            aieAmtTxt.setEditable(true);
+                Double aie_amt = 0.0, fin_yr = null;
+                if (num1 >= 1) {
+                    check_balance = true;
+                    java.sql.Statement st2 = connectDB.createStatement();
+                    java.sql.ResultSet res2 = st2.executeQuery(" SELECT distinct aie_amount,aie_reference_no   FROM ac_aie_allocation where aieno='" + aieNoTxt.getText() + "' and financial_year='" + financial_yrTxt.getText() + "' ");
+                    while (res2.next()) {
+                        aie_amt = res2.getDouble(1);
+                        //fin_yr=res2.getString(2);
+                        aieAmtTxt.setEnabled(false);
+                        aieAmtTxt.setText(aie_amt.toString());
+                        jTextField1.setEditable(false);
+                        jTextField1.setForeground(Color.red);
+                        jTextField1.setText(res2.getString(2));
+
+                        //////BUDGET BALANCE
+                        try {
+                            java.sql.Statement st8 = connectDB.createStatement();
+                            java.sql.ResultSet res8 = st8.executeQuery(" SELECT  (aie_amount-sum(subhead_quartely_amount))  FROM ac_aie_allocation where aieno='" + aieNoTxt.getText() + "' and financial_year='" + financial_yrTxt.getText() + "' group by aie_amount ");
+                            while (res8.next()) {
+                                BudgetBalTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(Double.parseDouble(res8.getString(1))));
+                            }
+                        } catch (Exception bs) {
+                            bs.printStackTrace();
+
+                        }
+
+                    }
+                } else {
+                    //////dealing with a new aieno
+
+                    aieAmtTxt.setText("0.0");
+                    BudgetBalTxt.setText("0.0");
+                    aieAmtTxt.setEnabled(true);
+                    jTextField1.setEditable(true);
+
+                }
+            } else {
+                System.out.println("Nothing");
+                aieAmtTxt.setEditable(true);
             }
-        }
-       catch(Exception ed){
+        } catch (Exception ed) {
             ed.printStackTrace();
-               
-               }
+
+        }
     }//GEN-LAST:event_aieNoTxtCaretUpdate
 
     private void headCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headCbxActionPerformed
-     //headCbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT head FROM heads  ORDER BY 1 "));
+        //headCbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT head FROM heads  ORDER BY 1 "));
         ////GETTING THE HEADER BALANCE
-        try{
-              java.sql.Statement  st1192= connectDB.createStatement();
-       java.sql.ResultSet ress192= st1192.executeQuery("select headname from heads where head = '"+headCbx.getSelectedItem()+"'");
-       if(ress192.next()){
-           
-        jLabel13.setText(ress192.getString(1));
-       
-       }
-            
-            
-            Double head_amt=0.0;
-            Double subhead_quarterly_total=0.0;
-            String class_vb=null;
-         java.sql.Statement  st11= connectDB.createStatement();
-       java.sql.ResultSet ress1= st11.executeQuery("select class from vb_class where classname = '"+aieTypeCbx.getSelectedItem()+"'");
-       while(ress1.next()){
-           
-        class_vb=ress1.getString(1);
-       
-       }
-        java.sql.Statement  st1= connectDB.createStatement();
-       java.sql.ResultSet ress= st1.executeQuery(" SELECT count(*) as num FROM ac_aie_allocation where aieno ilike '"+aieNoTxt.getText()+"%' and financial_year='"+financial_yrTxt.getText()+"' and  head='"+headCbx.getSelectedItem()+"' and class='"+class_vb+"'");
-       while(ress.next()){
-        num1=ress.getInt(1);
-       // head_amt=ress.getDouble(2);
-       }
-       String head_amt_str=null;
-        java.sql.Statement  st6= connectDB.createStatement();
-       java.sql.ResultSet ress6= st6.executeQuery(" SELECT head_amount  FROM ac_aie_allocation where aieno ilike '"+aieNoTxt.getText()+"%' and financial_year='"+financial_yrTxt.getText()+"' and  head='"+headCbx.getSelectedItem()+"' and class='"+class_vb+"' group by head_amount");
-       while(ress6.next()){
-       
-        head_amt_str=ress6.getString(1);
-       }
-       
-       
-       if(num1>=1){
-        java.sql.Statement  st2= connectDB.createStatement();
-       java.sql.ResultSet res2= st2.executeQuery(" SELECT  sum(subhead_quartely_amount)    FROM ac_aie_allocation where aieno='"+aieNoTxt.getText()+"' and financial_year='"+financial_yrTxt.getText()+"' and head='"+headCbx.getSelectedItem()+"' ");
-       while(res2.next()){
-        subhead_quarterly_total=res2.getDouble(1);
-        //fin_yr=res2.getString(2);
-         aieAmtTxt.setEnabled(false);
-         Object obj=Double.parseDouble(head_amt_str)-subhead_quarterly_total;
-        // Object objs=head_amt;
-         headAmtTxt.setForeground(Color.red);
-         headAmtTxt.setText(head_amt_str);
-         headAmtTxt.setEditable(false);
-         VoteHeadBalTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(Double.parseDouble(obj.toString())));
-         currentBalanceTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(Double.parseDouble(obj.toString())));
-        
-       }
-       }
-       else{
-           if(head_amt_str!=null){
-           head_amt=0.0;
-           }
-           Object obh=head_amt,obs;
-       headAmtTxt.setForeground(Color.red);
-       headAmtTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(Double.parseDouble(obh.toString())));
-       headAmtTxt.setEditable(true);
-       
-       currentBalanceTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(head_amt-com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(subheadsTbl, 1)));
-      
-       }
-        }
-        catch(Exception edf){
-        edf.printStackTrace();
-        
+        try {
+            java.sql.Statement st1192 = connectDB.createStatement();
+            java.sql.ResultSet ress192 = st1192.executeQuery("select headname from heads where head = '" + headCbx.getSelectedItem() + "'");
+            if (ress192.next()) {
+
+                jLabel13.setText(ress192.getString(1));
+
+            }
+
+            Double head_amt = 0.0;
+            Double subhead_quarterly_total = 0.0;
+            String class_vb = null;
+            java.sql.Statement st11 = connectDB.createStatement();
+            java.sql.ResultSet ress1 = st11.executeQuery("select class from vb_class where classname = '" + aieTypeCbx.getSelectedItem() + "'");
+            while (ress1.next()) {
+
+                class_vb = ress1.getString(1);
+
+            }
+            java.sql.Statement st1 = connectDB.createStatement();
+            java.sql.ResultSet ress = st1.executeQuery(" SELECT count(*) as num FROM ac_aie_allocation where aieno ilike '" + aieNoTxt.getText() + "%' and financial_year='" + financial_yrTxt.getText() + "' and  head='" + headCbx.getSelectedItem() + "' and class='" + class_vb + "'");
+            while (ress.next()) {
+                num1 = ress.getInt(1);
+                // head_amt=ress.getDouble(2);
+            }
+            String head_amt_str = null;
+            java.sql.Statement st6 = connectDB.createStatement();
+            java.sql.ResultSet ress6 = st6.executeQuery(" SELECT head_amount  FROM ac_aie_allocation where aieno ilike '" + aieNoTxt.getText() + "%' and financial_year='" + financial_yrTxt.getText() + "' and  head='" + headCbx.getSelectedItem() + "' and class='" + class_vb + "' group by head_amount");
+            while (ress6.next()) {
+
+                head_amt_str = ress6.getString(1);
+            }
+
+            if (num1 >= 1) {
+                java.sql.Statement st2 = connectDB.createStatement();
+                java.sql.ResultSet res2 = st2.executeQuery(" SELECT  sum(subhead_quartely_amount)    FROM ac_aie_allocation where aieno='" + aieNoTxt.getText() + "' and financial_year='" + financial_yrTxt.getText() + "' and head='" + headCbx.getSelectedItem() + "' ");
+                while (res2.next()) {
+                    subhead_quarterly_total = res2.getDouble(1);
+                    //fin_yr=res2.getString(2);
+                    aieAmtTxt.setEnabled(false);
+                    Object obj = Double.parseDouble(head_amt_str) - subhead_quarterly_total;
+                    // Object objs=head_amt;
+                    headAmtTxt.setForeground(Color.red);
+                    headAmtTxt.setText(head_amt_str);
+                    headAmtTxt.setEditable(false);
+                    VoteHeadBalTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(Double.parseDouble(obj.toString())));
+                    currentBalanceTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(Double.parseDouble(obj.toString())));
+
+                }
+            } else {
+                if (head_amt_str != null) {
+                    head_amt = 0.0;
+                }
+                Object obh = head_amt, obs;
+                headAmtTxt.setForeground(Color.red);
+                headAmtTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(Double.parseDouble(obh.toString())));
+                headAmtTxt.setEditable(true);
+
+                currentBalanceTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(head_amt - com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(subheadsTbl, 1)));
+
+            }
+        } catch (Exception edf) {
+            edf.printStackTrace();
+
         }
     }//GEN-LAST:event_headCbxActionPerformed
 
@@ -1128,22 +1083,22 @@ JOptionPane.showMessageDialog(null,"Double Check Your Entries", "ERROR MESSAGE",
 
     private void headAmtTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_headAmtTxtCaretUpdate
         // TODO add your handling code here:
-       try{
-            Double head_amt=0.0;
-            Double subhead_quarterly_total=0.0;
-            String jth=null;
-             java.sql.Statement  st11= connectDB.createStatement();
-       java.sql.ResultSet ress1= st11.executeQuery("select class from vb_class where classname = '"+aieTypeCbx.getSelectedItem()+"'");
-       while(ress1.next()){
-        jth=ress1.getString(1);
-        
-       }
-        java.sql.Statement  st1= connectDB.createStatement();
-       java.sql.ResultSet ress= st1.executeQuery(" SELECT count(*) as num FROM ac_aie_allocation where aieno ilike '"+aieNoTxt.getText()+"%' and financial_year='"+financial_yrTxt.getText()+"' and  head='"+headCbx.getSelectedItem()+"' and class='"+jth+"'");
-       while(ress.next()){
-        num1=ress.getInt(1);
-       // head_amt=ress.getDouble(2);
-       }
+        try {
+            Double head_amt = 0.0;
+            Double subhead_quarterly_total = 0.0;
+            String jth = null;
+            java.sql.Statement st11 = connectDB.createStatement();
+            java.sql.ResultSet ress1 = st11.executeQuery("select class from vb_class where classname = '" + aieTypeCbx.getSelectedItem() + "'");
+            while (ress1.next()) {
+                jth = ress1.getString(1);
+
+            }
+            java.sql.Statement st1 = connectDB.createStatement();
+            java.sql.ResultSet ress = st1.executeQuery(" SELECT count(*) as num FROM ac_aie_allocation where aieno ilike '" + aieNoTxt.getText() + "%' and financial_year='" + financial_yrTxt.getText() + "' and  head='" + headCbx.getSelectedItem() + "' and class='" + jth + "'");
+            while (ress.next()) {
+                num1 = ress.getInt(1);
+                // head_amt=ress.getDouble(2);
+            }
 //       String head_amt_str=null;
 //        java.sql.Statement  st6= connectDB.createStatement();
 //       java.sql.ResultSet ress6= st6.executeQuery(" SELECT head_amount  FROM ac_aie_allocation where aieno ilike '"+aieNoTxt.getText()+"%' and financial_year='"+financial_yrTxt.getText()+"' and  head='"+headCbx.getSelectedItem()+"' group by head_amount");
@@ -1151,9 +1106,8 @@ JOptionPane.showMessageDialog(null,"Double Check Your Entries", "ERROR MESSAGE",
 //       
 //        head_amt_str=ress6.getString(1);
 //       }
-       
-       
-       if(num1>=1){
+
+            if (num1 >= 1) {
 //        java.sql.Statement  st2= connectDB.createStatement();
 //       java.sql.ResultSet res2= st2.executeQuery(" SELECT  sum(subhead_quartely_amount)    FROM ac_aie_allocation where aieno='"+aieNoTxt.getText()+"' and financial_year='"+financial_yrTxt.getText()+"' and head='"+headCbx.getSelectedItem()+"' ");
 //       while(res2.next()){
@@ -1168,16 +1122,14 @@ JOptionPane.showMessageDialog(null,"Double Check Your Entries", "ERROR MESSAGE",
 //         VoteHeadBalTxt.setText(obj.toString());
 //        
 //       }
-       }
-       else{
-          
-          VoteHeadBalTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(Double.parseDouble(headAmtTxt.getText().replace(",", ""))));
-      
-       }
-        }
-        catch(Exception edf){
-        edf.printStackTrace();
-        
+            } else {
+
+                VoteHeadBalTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(Double.parseDouble(headAmtTxt.getText().replace(",", ""))));
+
+            }
+        } catch (Exception edf) {
+            edf.printStackTrace();
+
         }
     }//GEN-LAST:event_headAmtTxtCaretUpdate
 
@@ -1215,53 +1167,49 @@ JOptionPane.showMessageDialog(null,"Double Check Your Entries", "ERROR MESSAGE",
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void aieTypeCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aieTypeCbxActionPerformed
-        
-       try{
-             headCbx.removeAllItems();
-             String classes=null;
-             
-          java.sql.Statement  st11= connectDB.createStatement();
-       java.sql.ResultSet ress1= st11.executeQuery("select class from vb_class where classname = '"+aieTypeCbx.getSelectedItem()+"'");
-       while(ress1.next()){
-        classes=ress1.getString(1);
-      
-       
-       
-        java.sql.Statement  st1= connectDB.createStatement();
-       java.sql.ResultSet ress= st1.executeQuery("SELECT head FROM heads where subvote ilike '%"+classes.replace(",","")+"%' order by 1");
-       while(ress.next()){
-        headCbx.addItem(ress.getString(1));
-       // head_amt=ress.getDouble(2);
-       }
-        // head_amt=ress.getDouble(2);
-       }
-       
-        }
-        catch(Exception edf){
-        edf.printStackTrace();
-        
+
+        try {
+            headCbx.removeAllItems();
+            String classes = null;
+
+            java.sql.Statement st11 = connectDB.createStatement();
+            java.sql.ResultSet ress1 = st11.executeQuery("select class from vb_class where classname = '" + aieTypeCbx.getSelectedItem() + "'");
+            while (ress1.next()) {
+                classes = ress1.getString(1);
+
+                java.sql.Statement st1 = connectDB.createStatement();
+                java.sql.ResultSet ress = st1.executeQuery("SELECT head FROM heads where subvote ilike '%" + classes.replace(",", "") + "%' order by 1");
+                while (ress.next()) {
+                    headCbx.addItem(ress.getString(1));
+                    // head_amt=ress.getDouble(2);
+                }
+                // head_amt=ress.getDouble(2);
+            }
+
+        } catch (Exception edf) {
+            edf.printStackTrace();
+
         }
     }//GEN-LAST:event_aieTypeCbxActionPerformed
 
     private void headAmtTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headAmtTxtMouseExited
- if(headAmtTxt.getText()!=null){
-         try{
-            headAmtTxt.setText( com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(Double.parseDouble(headAmtTxt.getText().toString().replace(",",""))));
-        }
-         catch(Exception esf){
-         esf.printStackTrace();
-         
-         }
-         }        // TODO add your handling code here:
+        if (headAmtTxt.getText() != null) {
+            try {
+                headAmtTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(Double.parseDouble(headAmtTxt.getText().toString().replace(",", ""))));
+            } catch (Exception esf) {
+                esf.printStackTrace();
+
+            }
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_headAmtTxtMouseExited
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
- dispose();        
+        dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-          int rows2Delete = subheadsTbl.getSelectedRowCount();
+        int rows2Delete = subheadsTbl.getSelectedRowCount();
 
         int[] selectedRows = subheadsTbl.getSelectedRows();
 
@@ -1277,15 +1225,11 @@ JOptionPane.showMessageDialog(null,"Double Check Your Entries", "ERROR MESSAGE",
 
                 for (int i = 0; i < selectedRows.length; i++) {
 
-
-
                     javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) subheadsTbl.getModel();
 
                     defTableModel.removeRow(selectedRows[i]);
 
                 }
-
-
 
             } else {
 
@@ -1293,7 +1237,7 @@ JOptionPane.showMessageDialog(null,"Double Check Your Entries", "ERROR MESSAGE",
 
                 defTableModel.removeRow(subheadsTbl.getSelectedRow());
             }
-            }
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField114ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField114ActionPerformed
@@ -1302,18 +1246,17 @@ JOptionPane.showMessageDialog(null,"Double Check Your Entries", "ERROR MESSAGE",
 
     private void voteCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voteCbxActionPerformed
         // TODO add your handling code here:
-      try{
-        java.sql.Statement  st1192= connectDB.createStatement();
-       java.sql.ResultSet ress192= st1192.executeQuery("SELECT votename FROM votes where vote= '"+voteCbx.getSelectedItem()+"'");
-       if(ress192.next()){
-           
-        jLabel10.setText(ress192.getString(1));
-       
-       }
-      }catch(Exception h)
-      {
-        h.printStackTrace();
-    }
+        try {
+            java.sql.Statement st1192 = connectDB.createStatement();
+            java.sql.ResultSet ress192 = st1192.executeQuery("SELECT votename FROM votes where vote= '" + voteCbx.getSelectedItem() + "'");
+            if (ress192.next()) {
+
+                jLabel10.setText(ress192.getString(1));
+
+            }
+        } catch (Exception h) {
+            h.printStackTrace();
+        }
     }//GEN-LAST:event_voteCbxActionPerformed
 //private void searchButton2Clicked() {
 //

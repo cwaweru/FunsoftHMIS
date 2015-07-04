@@ -99,6 +99,8 @@ public class CloseSuspSchemeIntfr extends javax.swing.JInternalFrame {
         expiryDatePicker = new com.afrisoftech.lib.DatePicker();
         jTextField7 = new javax.swing.JTextField();
         jComboBox11 = new javax.swing.JComboBox();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
 
         jSearchDialog.setModal(true);
         jSearchDialog.setUndecorated(true);
@@ -251,62 +253,6 @@ public class CloseSuspSchemeIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         getContentPane().add(jLabel4, gridBagConstraints);
 
-        try {
-            java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);
-            java.util.Date dateInstance = java.util.Calendar.getInstance().getTime();
-            //        java.lang.String dateString2Parse = null;
-            //        dateString2Parse = String.valueOf(dateInstance.getDate())+"-"+String.valueOf(dateInstance.getMonth()+1)+"-200"+String.valueOf(dateInstance.getYear()-100);
-
-            java.util.Date formattedDate = dateFormat.parse(dateInstance.toLocaleString());
-            System.out.println(dateFormat.format(formattedDate));
-            javax.swing.SpinnerDateModel beginDate = new javax.swing.SpinnerDateModel(formattedDate, null, null,java.util.Calendar.DAY_OF_MONTH);
-            //   javax.swing.SpinnerDateModel endDate = new javax.swing.SpinnerDateModel(formattedDate, null, null,java.util.Calendar.DAY_OF_MONTH);
-
-            beginDateSpinner = new javax.swing.JSpinner(beginDate);
-            //     endDateSpinner = new javax.swing.JSpinner(endDate);
-
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 8;
-            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-            gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.weighty = 1.0;
-            jPanel1.add(beginDateSpinner, gridBagConstraints);
-
-        } catch(java.text.ParseException parseExec) {
-
-            javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), parseExec.getMessage());
-
-        }
-        try {
-            java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);
-            java.util.Date dateInstance = java.util.Calendar.getInstance().getTime();
-            //        java.lang.String dateString2Parse = null;
-            //        dateString2Parse = String.valueOf(dateInstance.getDate())+"-"+String.valueOf(dateInstance.getMonth()+1)+"-200"+String.valueOf(dateInstance.getYear()-100);
-
-            java.util.Date formattedDate = dateFormat.parse(dateInstance.toLocaleString());
-            System.out.println(dateFormat.format(formattedDate));
-            javax.swing.SpinnerDateModel beginDate = new javax.swing.SpinnerDateModel(formattedDate, null, null,java.util.Calendar.DAY_OF_MONTH);
-            //   javax.swing.SpinnerDateModel endDate = new javax.swing.SpinnerDateModel(formattedDate, null, null,java.util.Calendar.DAY_OF_MONTH);
-
-            endDateSpinner = new javax.swing.JSpinner(beginDate);
-            //     endDateSpinner = new javax.swing.JSpinner(endDate);
-
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 3;
-            gridBagConstraints.gridy = 8;
-            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-            gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.weighty = 1.0;
-            jPanel1.add(endDateSpinner, gridBagConstraints);
-
-        } catch(java.text.ParseException parseExec) {
-
-            javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), parseExec.getMessage());
-
-        }
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
@@ -563,6 +509,8 @@ public class CloseSuspSchemeIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         jPanel1.add(jLabel11, gridBagConstraints);
 
@@ -631,6 +579,8 @@ public class CloseSuspSchemeIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         jPanel1.add(jComboBox3, gridBagConstraints);
 
@@ -671,6 +621,81 @@ public class CloseSuspSchemeIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         jPanel1.add(jComboBox11, gridBagConstraints);
+
+        try {
+            java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);
+            java.util.Date dateInstance = java.util.Calendar.getInstance().getTime();
+            //        java.lang.String dateString2Parse = null;
+            //        dateString2Parse = String.valueOf(dateInstance.getDate())+"-"+String.valueOf(dateInstance.getMonth()+1)+"-200"+String.valueOf(dateInstance.getYear()-100);
+
+            java.util.Date formattedDate = dateFormat.parse(dateInstance.toLocaleString());
+            System.out.println(dateFormat.format(formattedDate));
+            javax.swing.SpinnerDateModel beginDate = new javax.swing.SpinnerDateModel(formattedDate, null, null,java.util.Calendar.DAY_OF_MONTH);
+            //   javax.swing.SpinnerDateModel endDate = new javax.swing.SpinnerDateModel(formattedDate, null, null,java.util.Calendar.DAY_OF_MONTH);
+
+            beginDateSpinner = new javax.swing.JSpinner(beginDate);
+            //     endDateSpinner = new javax.swing.JSpinner(endDate);
+
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 0;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel7.add(beginDateSpinner, gridBagConstraints);
+
+        } catch(java.text.ParseException parseExec) {
+
+            javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), parseExec.getMessage());
+
+        }
+        jPanel7.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(jPanel7, gridBagConstraints);
+
+        try {
+            java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);
+            java.util.Date dateInstance = java.util.Calendar.getInstance().getTime();
+            //        java.lang.String dateString2Parse = null;
+            //        dateString2Parse = String.valueOf(dateInstance.getDate())+"-"+String.valueOf(dateInstance.getMonth()+1)+"-200"+String.valueOf(dateInstance.getYear()-100);
+
+            java.util.Date formattedDate = dateFormat.parse(dateInstance.toLocaleString());
+            System.out.println(dateFormat.format(formattedDate));
+            javax.swing.SpinnerDateModel beginDate = new javax.swing.SpinnerDateModel(formattedDate, null, null,java.util.Calendar.DAY_OF_MONTH);
+            //   javax.swing.SpinnerDateModel endDate = new javax.swing.SpinnerDateModel(formattedDate, null, null,java.util.Calendar.DAY_OF_MONTH);
+
+            endDateSpinner = new javax.swing.JSpinner(beginDate);
+            //     endDateSpinner = new javax.swing.JSpinner(endDate);
+
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 0;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel8.add(endDateSpinner, gridBagConstraints);
+
+        } catch(java.text.ParseException parseExec) {
+
+            javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), parseExec.getMessage());
+
+        }
+        jPanel8.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jPanel1.add(jPanel8, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 4;
@@ -1019,6 +1044,8 @@ public class CloseSuspSchemeIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JDialog jSearchDialog;
     private javax.swing.JPanel jSearchPanel;
     private javax.swing.JScrollPane jSearchScrollPane;

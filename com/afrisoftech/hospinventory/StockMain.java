@@ -432,6 +432,8 @@ public class StockMain extends javax.swing.JFrame {
         reprintJobCardjMenuItemmnit = new javax.swing.JMenuItem();
         assignedJobCardjMenuItemmnit = new javax.swing.JMenuItem();
         sworkloadmnit = new javax.swing.JMenuItem();
+        jSeparator14 = new javax.swing.JPopupMenu.Separator();
+        storesLedgerReportsmnit = new javax.swing.JMenuItem();
         lnfmn = new javax.swing.JMenu();
         swinglnfmnit1 = new javax.swing.JCheckBoxMenuItem();
         winlnfmnit1 = new javax.swing.JCheckBoxMenuItem();
@@ -2560,6 +2562,15 @@ public class StockMain extends javax.swing.JFrame {
         mtcemn.add(jobCardsjMenumnit);
 
         reportsmn.add(mtcemn);
+        reportsmn.add(jSeparator14);
+
+        storesLedgerReportsmnit.setText("Stores Ledger Reports");
+        storesLedgerReportsmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                storesLedgerReportsmnitActionPerformed(evt);
+            }
+        });
+        reportsmn.add(storesLedgerReportsmnit);
 
         purchasemb.add(reportsmn);
 
@@ -5456,6 +5467,17 @@ public class StockMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bypassAcceptanceCertificatemnitActionPerformed
 
+    private void storesLedgerReportsmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storesLedgerReportsmnitActionPerformed
+            javax.swing.JInternalFrame dismth = new com.afrisoftech.hospinventory.StoresLedgerReportsIntfr(connectDB);
+        medicdspane.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            dismth.setSelected(true);
+            dismth.setSize(medicdspane.getSize());
+            dismth.setVisible(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }    // TODO add your handling code here:
+    }//GEN-LAST:event_storesLedgerReportsmnitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -6087,6 +6109,7 @@ public class StockMain extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JPopupMenu.Separator jSeparator13;
+    private javax.swing.JPopupMenu.Separator jSeparator14;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -6220,6 +6243,7 @@ public class StockMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem stockvariancesmnit;
     private javax.swing.JMenu stockviews;
     private javax.swing.JMenuItem storeAllocationmnit;
+    private javax.swing.JMenuItem storesLedgerReportsmnit;
     private javax.swing.JMenuItem storesstockbalmnit;
     private javax.swing.JMenu supmn;
     private javax.swing.JMenuItem suppServMnuItm;
