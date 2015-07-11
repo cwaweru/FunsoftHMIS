@@ -1938,6 +1938,37 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
+            <Menu class="javax.swing.JMenu" name="bedmagmentmn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Bed Management"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="bedmangtmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Bed Management and Transfer"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bedmangtmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="newbedmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="New Bed"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newbedmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="bedbrekgsmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Bed Breakages"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bedbrekgsmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
             <Menu class="javax.swing.JMenu" name="Clinical">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Clinical"/>
@@ -2125,12 +2156,20 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
+            <MenuItem class="javax.swing.JMenuItem" name="anteNatalCaremnit">
               <Properties>
-                <Property name="text" type="java.lang.String" value="MCH Services"/>
+                <Property name="text" type="java.lang.String" value="MCH ANC Services"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem4ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="anteNatalCaremnitActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="postNatalCaremnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="MCH Post Natal Care"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="postNatalCaremnitActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="rhCentreMnit">
@@ -2141,39 +2180,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rhCentreMnitActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JSeparator" name="jSeparator29">
-            </MenuItem>
-            <Menu class="javax.swing.JMenu" name="bedmagmentmn">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Bed Management"/>
-              </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="bedmangtmnit">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Bed Management and Transfer"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bedmangtmnitActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="newbedmnit">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="New Bed"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newbedmnitActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="bedbrekgsmnit">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Bed Breakages"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bedbrekgsmnitActionPerformed"/>
-                  </Events>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="gbvmnit">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
@@ -2182,6 +2188,8 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gbvmnitActionPerformed"/>
               </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JSeparator" name="jSeparator29">
             </MenuItem>
             <Menu class="javax.swing.JMenu" name="morturymn">
               <Properties>

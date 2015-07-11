@@ -1243,6 +1243,10 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         patdischmnit = new javax.swing.JMenuItem();
         nhifcreditsmnit = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        bedmagmentmn = new javax.swing.JMenu();
+        bedmangtmnit = new javax.swing.JMenuItem();
+        newbedmnit = new javax.swing.JMenuItem();
+        bedbrekgsmnit = new javax.swing.JMenuItem();
         Clinical = new javax.swing.JMenu();
         clinicalhistmnit = new javax.swing.JMenuItem();
         opattendbydocmnit = new javax.swing.JMenuItem();
@@ -1268,14 +1272,11 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         bookingschsmnit = new javax.swing.JMenuItem();
         bookingsconfchmnit = new javax.swing.JMenuItem();
         clinicBookingsmnit = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        anteNatalCaremnit = new javax.swing.JMenuItem();
+        postNatalCaremnit = new javax.swing.JMenuItem();
         rhCentreMnit = new javax.swing.JMenuItem();
-        jSeparator29 = new javax.swing.JSeparator();
-        bedmagmentmn = new javax.swing.JMenu();
-        bedmangtmnit = new javax.swing.JMenuItem();
-        newbedmnit = new javax.swing.JMenuItem();
-        bedbrekgsmnit = new javax.swing.JMenuItem();
         gbvmnit = new javax.swing.JCheckBoxMenuItem();
+        jSeparator29 = new javax.swing.JSeparator();
         morturymn = new javax.swing.JMenu();
         admissmnit = new javax.swing.JMenuItem();
         deathregistermnit = new javax.swing.JMenuItem();
@@ -4347,6 +4348,34 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         emrmn.add(inpatientmn);
 
+        bedmagmentmn.setText("Bed Management");
+
+        bedmangtmnit.setText("Bed Management and Transfer");
+        bedmangtmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bedmangtmnitActionPerformed(evt);
+            }
+        });
+        bedmagmentmn.add(bedmangtmnit);
+
+        newbedmnit.setText("New Bed");
+        newbedmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newbedmnitActionPerformed(evt);
+            }
+        });
+        bedmagmentmn.add(newbedmnit);
+
+        bedbrekgsmnit.setText("Bed Breakages");
+        bedbrekgsmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bedbrekgsmnitActionPerformed(evt);
+            }
+        });
+        bedmagmentmn.add(bedbrekgsmnit);
+
+        emrmn.add(bedmagmentmn);
+
         Clinical.setText("Clinical");
 
         clinicalhistmnit.setText("Clinical History");
@@ -4511,13 +4540,21 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         emrmn.add(clinicsapp);
 
-        jMenuItem4.setText("MCH Services");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        anteNatalCaremnit.setText("MCH ANC Services");
+        anteNatalCaremnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                anteNatalCaremnitActionPerformed(evt);
             }
         });
-        emrmn.add(jMenuItem4);
+        emrmn.add(anteNatalCaremnit);
+
+        postNatalCaremnit.setText("MCH Post Natal Care");
+        postNatalCaremnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                postNatalCaremnitActionPerformed(evt);
+            }
+        });
+        emrmn.add(postNatalCaremnit);
 
         rhCentreMnit.setText("Reproductive Health Centre");
         rhCentreMnit.addActionListener(new java.awt.event.ActionListener() {
@@ -4526,35 +4563,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         emrmn.add(rhCentreMnit);
-        emrmn.add(jSeparator29);
-
-        bedmagmentmn.setText("Bed Management");
-
-        bedmangtmnit.setText("Bed Management and Transfer");
-        bedmangtmnit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bedmangtmnitActionPerformed(evt);
-            }
-        });
-        bedmagmentmn.add(bedmangtmnit);
-
-        newbedmnit.setText("New Bed");
-        newbedmnit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newbedmnitActionPerformed(evt);
-            }
-        });
-        bedmagmentmn.add(newbedmnit);
-
-        bedbrekgsmnit.setText("Bed Breakages");
-        bedbrekgsmnit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bedbrekgsmnitActionPerformed(evt);
-            }
-        });
-        bedmagmentmn.add(bedbrekgsmnit);
-
-        emrmn.add(bedmagmentmn);
 
         gbvmnit.setSelected(true);
         gbvmnit.setText("GBV Recorder");
@@ -4564,6 +4572,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         emrmn.add(gbvmnit);
+        emrmn.add(jSeparator29);
 
         morturymn.setText("Farewell Home");
 
@@ -18865,7 +18874,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         // TODO add your handling code here:
     }//GEN-LAST:event_votepaymentmnitActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void anteNatalCaremnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anteNatalCaremnitActionPerformed
         com.afrisoftech.records.FPMCHIntfr comp = new com.afrisoftech.records.FPMCHIntfr(connectDB);
         saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
         comp.setSize(saccopn.getSize());
@@ -18873,7 +18882,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             comp.setSelected(true);
         } catch (java.beans.PropertyVetoException pvt) {
         }        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_anteNatalCaremnitActionPerformed
 
     private void vallocationmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vallocationmnitActionPerformed
         com.afrisoftech.lib.HosDatePanel dates = new com.afrisoftech.lib.HosDatePanel(this, true, this.VoteAllocation, connectDB);
@@ -20563,6 +20572,16 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private void departmentalreportMenuItemnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentalreportMenuItemnitActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_departmentalreportMenuItemnitActionPerformed
+
+    private void postNatalCaremnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postNatalCaremnitActionPerformed
+        com.afrisoftech.records.FPMCHPostNatalIntfr dismth = new com.afrisoftech.records.FPMCHPostNatalIntfr(connectDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }       // TODO add your handling code here:
+    }//GEN-LAST:event_postNatalCaremnitActionPerformed
 
     /**
      * Exit the Application
@@ -24046,6 +24065,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem annualageingmnit;
     private javax.swing.JMenuItem annualpayersummnit;
     private javax.swing.JMenuItem anteNataRoutineExamsmnit;
+    private javax.swing.JMenuItem anteNatalCaremnit;
     private javax.swing.JMenuItem anteNatalTestsmnit;
     private javax.swing.JMenuItem anualPayeragmnit;
     private javax.swing.JMenuItem anualplmnit;
@@ -24449,7 +24469,6 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
@@ -24801,6 +24820,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem pnltxttrdmnit;
     private javax.swing.JMenuItem poprequestmnit;
     private javax.swing.JMenuItem postInvoicesmnit;
+    private javax.swing.JMenuItem postNatalCaremnit;
     private javax.swing.JMenuItem postOpeningBalancesPatientsmnit;
     private javax.swing.JMenuItem postdatedchqmnit;
     private javax.swing.JMenuItem printreceiptmnit;
