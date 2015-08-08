@@ -1627,7 +1627,7 @@
                         <Component class="javax.swing.JLabel" name="ageLbl">
                           <Properties>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="66" green="66" red="ff" type="rgb"/>
+                              <Color blue="99" green="33" red="ff" type="rgb"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Age(YRS)"/>
                           </Properties>
@@ -1639,6 +1639,9 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel50">
                           <Properties>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="99" green="33" red="ff" type="rgb"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="Specialty Clinic"/>
                           </Properties>
                           <Constraints>
@@ -1665,7 +1668,7 @@
                         <Component class="javax.swing.JLabel" name="cSheetNoLbl">
                           <Properties>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="66" green="0" red="ff" type="rgb"/>
+                              <Color blue="99" green="33" red="ff" type="rgb"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="C-Sheet Number"/>
                           </Properties>
@@ -1716,13 +1719,13 @@
                               <Font name="Tahoma" size="14" style="1"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="33" green="0" red="ff" type="rgb"/>
+                              <Color blue="99" green="33" red="ff" type="rgb"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Patient Urgency"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="0" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+                              <GridBagConstraints gridX="0" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="20" insetsBottom="0" insetsRight="0" anchor="17" weightX="1.0" weightY="1.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1761,7 +1764,7 @@
                             <Component class="javax.swing.JLabel" name="jLabel66">
                               <Properties>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="66" green="66" red="ff" type="rgb"/>
+                                  <Color blue="99" green="33" red="ff" type="rgb"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Date of Birth"/>
                               </Properties>
@@ -1788,6 +1791,34 @@
                             </Component>
                           </SubComponents>
                         </Container>
+                        <Component class="javax.swing.JLabel" name="jLabel60">
+                          <Properties>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="99" green="33" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Patient with disability"/>
+                          </Properties>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                              <GridBagConstraints gridX="0" gridY="9" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="20" insetsBottom="0" insetsRight="0" anchor="17" weightX="1.0" weightY="1.0"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                        <Component class="javax.swing.JComboBox" name="disabilityCmbx">
+                          <Properties>
+                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                              <StringArray count="2">
+                                <StringItem index="0" value="N"/>
+                                <StringItem index="1" value="Y"/>
+                              </StringArray>
+                            </Property>
+                          </Properties>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                              <GridBagConstraints gridX="1" gridY="9" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="17" weightX="1.0" weightY="1.0"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
                       </SubComponents>
                     </Container>
                     <Container class="javax.swing.JPanel" name="otherDetailsPanel">
@@ -1819,7 +1850,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel3">
                           <Properties>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="33" green="33" red="ff" type="rgb"/>
+                              <Color blue="99" green="33" red="ff" type="rgb"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Physical Residence"/>
                           </Properties>
@@ -1846,7 +1877,7 @@
                         <Component class="javax.swing.JLabel" name="idNoLbl1">
                           <Properties>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="33" green="33" red="ff" type="rgb"/>
+                              <Color blue="99" green="33" red="ff" type="rgb"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Nationality"/>
                           </Properties>
@@ -1895,7 +1926,7 @@
                                   <Color blue="ff" green="cc" red="ff" type="rgb"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="66" green="33" red="ff" type="rgb"/>
+                                  <Color blue="99" green="33" red="ff" type="rgb"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="NOK Names"/>
                               </Properties>
@@ -1911,7 +1942,7 @@
                                   <Color blue="ff" green="cc" red="ff" type="rgb"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="33" green="33" red="ff" type="rgb"/>
+                                  <Color blue="99" green="33" red="ff" type="rgb"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Relationship"/>
                               </Properties>
@@ -2019,7 +2050,6 @@
                             </Component>
                             <Component class="javax.swing.JComboBox" name="nokRelationShipCmbx">
                               <Properties>
-                                <Property name="editable" type="boolean" value="true"/>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                                   <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB,&quot;SELECT DISTINCT relation_description FROM nok_relationship order by 1&quot;)" type="code"/>
                                 </Property>
@@ -2035,7 +2065,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel39">
                           <Properties>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="ff" type="rgb"/>
+                              <Color blue="99" green="33" red="ff" type="rgb"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Referred From "/>
                           </Properties>
@@ -2048,7 +2078,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel40">
                           <Properties>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="66" green="0" red="ff" type="rgb"/>
+                              <Color blue="99" green="33" red="ff" type="rgb"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="OLD File Number(Unit Number)"/>
                           </Properties>
@@ -2111,7 +2141,6 @@
                         </Component>
                         <Component class="javax.swing.JComboBox" name="referredcombo">
                           <Properties>
-                            <Property name="editable" type="boolean" value="true"/>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="10">
                                 <StringItem index="0" value="-"/>
@@ -2136,7 +2165,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel55">
                           <Properties>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="66" green="0" red="ff" type="rgb"/>
+                              <Color blue="99" green="33" red="ff" type="rgb"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Other Numbers"/>
                           </Properties>
@@ -3678,7 +3707,7 @@
                         <Component class="javax.swing.JComboBox" name="patientSpecialityCmbx">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                              <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT &apos;--ALL--&apos; as department UNION SELECT DISTINCT  department as department from hp_patient_visit ORDER BY 1&quot;)&#xd;&#xa;" type="code"/>
+                              <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT &apos;--ALL--&apos; as department UNION SELECT DISTINCT clinic as department from hp_patient_visit ORDER BY 1&quot;)&#xd;&#xa;" type="code"/>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -3721,11 +3750,11 @@
                             <Component class="javax.swing.JTable" name="reportsTable">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                                  <Connection code="com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, &quot;SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, user_name as registar from hp_patient_visit WHERE date = current_date order by 1&quot;)&#xd;&#xa;" type="code"/>
+                                  <Connection code="com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, &quot;SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE date = current_date order by 1&quot;)&#xd;&#xa;" type="code"/>
                                 </Property>
                               </Properties>
                               <AuxValues>
-                                <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="new com.afrisoftech.dbadmin.JXTable();"/>
+                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JXTable();"/>
                               </AuxValues>
                             </Component>
                           </SubComponents>
@@ -3770,6 +3799,42 @@
                         </Component>
                       </SubComponents>
                     </Container>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="mapsPanel">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                      <JTabbedPaneConstraints tabName="Spatial Information/GIS MAPS">
+                        <Property name="tabTitle" type="java.lang.String" value="Spatial Information/GIS MAPS"/>
+                      </JTabbedPaneConstraints>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
+                  <SubComponents>
+                    <Component class="com.roots.map.MapPanel" name="mapPanel1">
+                      <Properties>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                            <TitledBorder title="Funsoft Healthcare Geographic Information System (GIS)">
+                              <Font PropertyName="font" name="Tahoma" size="11" style="2"/>
+                              <Color PropertyName="color" blue="ff" green="66" red="66" type="rgb"/>
+                            </TitledBorder>
+                          </Border>
+                        </Property>
+                        <Property name="mapPosition" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
+                          <Point value="[9655, 8084]"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mapPanel1MouseClicked"/>
+                      </Events>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                          <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>
@@ -4032,6 +4097,9 @@
               <Dimension value="[80, 189]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="hierarchyChanged" listener="java.awt.event.HierarchyListener" parameters="java.awt.event.HierarchyEvent" handler="buttonPanelHierarchyChanged"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="6" gridY="1" gridWidth="1" gridHeight="9" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
@@ -4235,7 +4303,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                  <GridBagConstraints gridX="0" gridY="7" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
+                  <GridBagConstraints gridX="0" gridY="7" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -4249,10 +4317,13 @@
                     <MatteColorBorder/>
                   </Border>
                 </Property>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[142, 37]"/>
+                </Property>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                  <GridBagConstraints gridX="0" gridY="5" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="2.0" weightY="10.0"/>
+                  <GridBagConstraints gridX="0" gridY="5" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="2.0" weightY="20.0"/>
                 </Constraint>
               </Constraints>
 
@@ -4265,13 +4336,16 @@
                         <LineBorder/>
                       </Border>
                     </Property>
+                    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[142, 37]"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value=" new javax.swing.JPanel()"/>
                   </AuxValues>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                      <GridBagConstraints gridX="-1" gridY="-1" gridWidth="2" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="200.0"/>
+                      <GridBagConstraints gridX="-1" gridY="-1" gridWidth="2" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="10.0"/>
                     </Constraint>
                   </Constraints>
 

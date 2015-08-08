@@ -18,13 +18,19 @@ import com.afrisoftech.lib.DBObject;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.WebcamResolution;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.InetAddress;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.net.UnknownHostException;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -36,6 +42,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -88,7 +95,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         pConnDB = pconnDB;
 
         initComponents();
-
+        
         dbObject = new com.afrisoftech.lib.DBObject();
         branchTxt.setText(getCashPoint());
         jTextField22.setText(getShiftNumber());
@@ -245,6 +252,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         jPanel9 = new javax.swing.JPanel();
         jLabel66 = new javax.swing.JLabel();
         datePickerYOB = new com.afrisoftech.lib.DatePicker();
+        jLabel60 = new javax.swing.JLabel();
+        disabilityCmbx = new javax.swing.JComboBox();
         otherDetailsPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         residenceTxt = new javax.swing.JTextField();
@@ -402,12 +411,13 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         patientSpecialityCmbx = new javax.swing.JComboBox();
         reportsMainPanel = new javax.swing.JPanel();
         reportsScrollPane = new javax.swing.JScrollPane();
-        new com.afrisoftech.dbadmin.JXTable();
-        reportsTable = new javax.swing.JTable();
+        reportsTable = new com.afrisoftech.dbadmin.JXTable();
         reportsActionPanel = new javax.swing.JPanel();
         refreshBtn = new javax.swing.JButton();
         reportsHelpBtn = new javax.swing.JButton();
         reportsSpacerLbl = new javax.swing.JLabel();
+        mapsPanel = new javax.swing.JPanel();
+        mapPanel1 = new com.roots.map.MapPanel();
         payModePanel = new javax.swing.JPanel();
         branchTxt = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -2017,7 +2027,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     gridBagConstraints.weighty = 1.0;
                                     patientSearchPanel.add(jTextField16, gridBagConstraints);
 
-                                    ageLbl.setForeground(new java.awt.Color(255, 102, 102));
+                                    ageLbl.setForeground(new java.awt.Color(255, 51, 153));
                                     ageLbl.setText("Age(YRS)");
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridx = 0;
@@ -2028,6 +2038,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
                                     patientSearchPanel.add(ageLbl, gridBagConstraints);
 
+                                    jLabel50.setForeground(new java.awt.Color(255, 51, 153));
                                     jLabel50.setText("Specialty Clinic");
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridx = 0;
@@ -2048,7 +2059,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     gridBagConstraints.weighty = 1.0;
                                     patientSearchPanel.add(specialtyClinicCmbx, gridBagConstraints);
 
-                                    cSheetNoLbl.setForeground(new java.awt.Color(255, 0, 102));
+                                    cSheetNoLbl.setForeground(new java.awt.Color(255, 51, 153));
                                     cSheetNoLbl.setText("C-Sheet Number");
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridx = 0;
@@ -2081,13 +2092,15 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     patientSearchPanel.add(urgencyCMBX, gridBagConstraints);
 
                                     jLabel57.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-                                    jLabel57.setForeground(new java.awt.Color(255, 0, 51));
+                                    jLabel57.setForeground(new java.awt.Color(255, 51, 153));
                                     jLabel57.setText("Patient Urgency");
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridx = 0;
                                     gridBagConstraints.gridy = 0;
+                                    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
                                     gridBagConstraints.weightx = 1.0;
                                     gridBagConstraints.weighty = 1.0;
+                                    gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
                                     patientSearchPanel.add(jLabel57, gridBagConstraints);
 
                                     jLabel58.setText("jLabel58");
@@ -2117,7 +2130,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     });
                                     jPanel9.setLayout(new java.awt.GridBagLayout());
 
-                                    jLabel66.setForeground(new java.awt.Color(255, 102, 102));
+                                    jLabel66.setForeground(new java.awt.Color(255, 51, 153));
                                     jLabel66.setText("Date of Birth");
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridx = 0;
@@ -2170,6 +2183,26 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     gridBagConstraints.weighty = 1.0;
                                     patientSearchPanel.add(jPanel9, gridBagConstraints);
 
+                                    jLabel60.setForeground(new java.awt.Color(255, 51, 153));
+                                    jLabel60.setText("Patient with disability");
+                                    gridBagConstraints = new java.awt.GridBagConstraints();
+                                    gridBagConstraints.gridx = 0;
+                                    gridBagConstraints.gridy = 9;
+                                    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                                    gridBagConstraints.weightx = 1.0;
+                                    gridBagConstraints.weighty = 1.0;
+                                    gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+                                    patientSearchPanel.add(jLabel60, gridBagConstraints);
+
+                                    disabilityCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N", "Y" }));
+                                    gridBagConstraints = new java.awt.GridBagConstraints();
+                                    gridBagConstraints.gridx = 1;
+                                    gridBagConstraints.gridy = 9;
+                                    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                                    gridBagConstraints.weightx = 1.0;
+                                    gridBagConstraints.weighty = 1.0;
+                                    patientSearchPanel.add(disabilityCmbx, gridBagConstraints);
+
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridx = 0;
                                     gridBagConstraints.gridy = 1;
@@ -2184,7 +2217,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     otherDetailsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 102), null, null), "Other Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
                                     otherDetailsPanel.setLayout(new java.awt.GridBagLayout());
 
-                                    jLabel3.setForeground(new java.awt.Color(255, 51, 51));
+                                    jLabel3.setForeground(new java.awt.Color(255, 51, 153));
                                     jLabel3.setText("Physical Residence");
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridx = 0;
@@ -2215,7 +2248,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
                                     otherDetailsPanel.add(residenceTxt, gridBagConstraints);
 
-                                    idNoLbl1.setForeground(new java.awt.Color(255, 51, 51));
+                                    idNoLbl1.setForeground(new java.awt.Color(255, 51, 153));
                                     idNoLbl1.setText("Nationality");
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridx = 0;
@@ -2242,7 +2275,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     nokDetails.setLayout(new java.awt.GridBagLayout());
 
                                     jLabel28.setBackground(new java.awt.Color(255, 204, 255));
-                                    jLabel28.setForeground(new java.awt.Color(255, 51, 102));
+                                    jLabel28.setForeground(new java.awt.Color(255, 51, 153));
                                     jLabel28.setText("NOK Names");
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridx = 3;
@@ -2254,7 +2287,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     nokDetails.add(jLabel28, gridBagConstraints);
 
                                     jLabel29.setBackground(new java.awt.Color(255, 204, 255));
-                                    jLabel29.setForeground(new java.awt.Color(255, 51, 51));
+                                    jLabel29.setForeground(new java.awt.Color(255, 51, 153));
                                     jLabel29.setText("Relationship");
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridx = 3;
@@ -2363,7 +2396,6 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
                                     nokDetails.add(nokNameTxt, gridBagConstraints);
 
-                                    nokRelationShipCmbx.setEditable(true);
                                     nokRelationShipCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB,"SELECT DISTINCT relation_description FROM nok_relationship order by 1"));
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridx = 4;
@@ -2385,7 +2417,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     gridBagConstraints.weighty = 1.0;
                                     otherDetailsPanel.add(nokDetails, gridBagConstraints);
 
-                                    jLabel39.setForeground(new java.awt.Color(255, 0, 0));
+                                    jLabel39.setForeground(new java.awt.Color(255, 51, 153));
                                     jLabel39.setText("Referred From ");
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridx = 0;
@@ -2396,7 +2428,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
                                     otherDetailsPanel.add(jLabel39, gridBagConstraints);
 
-                                    jLabel40.setForeground(new java.awt.Color(255, 0, 102));
+                                    jLabel40.setForeground(new java.awt.Color(255, 51, 153));
                                     jLabel40.setText("OLD File Number(Unit Number)");
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridx = 0;
@@ -2452,7 +2484,6 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     gridBagConstraints.weighty = 1.0;
                                     otherDetailsPanel.add(countyofResidenceCmbx, gridBagConstraints);
 
-                                    referredcombo.setEditable(true);
                                     referredcombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "County Hospital", "Health Center(Outside Nairobi)", "Health Center(Within Nairobi)", "Private Facility or Doctor", "NGO Facility", "Outside country", "Casualty dept at KNH", "Other dept at KNH", "Not Refered/Unknown Status" }));
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridx = 1;
@@ -2460,7 +2491,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                     otherDetailsPanel.add(referredcombo, gridBagConstraints);
 
-                                    jLabel55.setForeground(new java.awt.Color(255, 0, 102));
+                                    jLabel55.setForeground(new java.awt.Color(255, 51, 153));
                                     jLabel55.setText("Other Numbers");
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridx = 0;
@@ -3695,7 +3726,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     gridBagConstraints.weighty = 1.0;
                                     reportsHeaderPanel.add(endDatePicker, gridBagConstraints);
 
-                                    patientSpecialityCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '--ALL--' as department UNION SELECT DISTINCT  department as department from hp_patient_visit ORDER BY 1")
+                                    patientSpecialityCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '--ALL--' as department UNION SELECT DISTINCT clinic as department from hp_patient_visit ORDER BY 1")
                                     );
                                     patientSpecialityCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Select service specialty"));
                                     patientSpecialityCmbx.addActionListener(new java.awt.event.ActionListener() {
@@ -3717,7 +3748,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                     reportsMainPanel.setLayout(new java.awt.GridBagLayout());
 
-                                    reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, user_name as registar from hp_patient_visit WHERE date = current_date order by 1")
+                                    reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE date = current_date order by 1")
                                     );
                                     reportsScrollPane.setViewportView(reportsTable);
 
@@ -3765,6 +3796,23 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     reportsPanel.add(reportsActionPanel, gridBagConstraints);
 
                                     billindDetailsTabbedPane.addTab("Report of registered patients", reportsPanel);
+
+                                    mapsPanel.setLayout(new java.awt.GridBagLayout());
+
+                                    mapPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Funsoft Healthcare Geographic Information System (GIS)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 11), new java.awt.Color(102, 102, 255))); // NOI18N
+                                    mapPanel1.setMapPosition(new java.awt.Point(9655, 8084));
+                                    mapPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+                                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                            mapPanel1MouseClicked(evt);
+                                        }
+                                    });
+                                    gridBagConstraints = new java.awt.GridBagConstraints();
+                                    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                                    gridBagConstraints.weightx = 1.0;
+                                    gridBagConstraints.weighty = 1.0;
+                                    mapsPanel.add(mapPanel1, gridBagConstraints);
+
+                                    billindDetailsTabbedPane.addTab("Spatial Information/GIS MAPS", mapsPanel);
 
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridx = 0;
@@ -3972,6 +4020,11 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     buttonPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
                                     buttonPanel.setMinimumSize(new java.awt.Dimension(80, 189));
                                     buttonPanel.setPreferredSize(new java.awt.Dimension(80, 189));
+                                    buttonPanel.addHierarchyListener(new java.awt.event.HierarchyListener() {
+                                        public void hierarchyChanged(java.awt.event.HierarchyEvent evt) {
+                                            buttonPanelHierarchyChanged(evt);
+                                        }
+                                    });
                                     buttonPanel.setLayout(new java.awt.GridBagLayout());
 
                                     jButton301.setMnemonic('S');
@@ -4139,18 +4192,22 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     gridBagConstraints.gridx = 0;
                                     gridBagConstraints.gridy = 7;
                                     gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                                    gridBagConstraints.weightx = 1.0;
+                                    gridBagConstraints.weighty = 1.0;
                                     buttonPanel.add(jButton9, gridBagConstraints);
 
                                     webCameraPanel.setBackground(new java.awt.Color(204, 204, 255));
                                     webCameraPanel.setBorder(new javax.swing.border.MatteBorder(null));
+                                    webCameraPanel.setMaximumSize(new java.awt.Dimension(142, 37));
                                     webCameraPanel.setLayout(new java.awt.GridBagLayout());
 
                                     webCamPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+                                    webCamPanel.setMaximumSize(new java.awt.Dimension(142, 37));
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridwidth = 2;
                                     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
                                     gridBagConstraints.weightx = 1.0;
-                                    gridBagConstraints.weighty = 200.0;
+                                    gridBagConstraints.weighty = 10.0;
                                     webCameraPanel.add(webCamPanel, gridBagConstraints);
 
                                     startBtn.setText("Start");
@@ -4181,7 +4238,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     gridBagConstraints.gridy = 5;
                                     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
                                     gridBagConstraints.weightx = 2.0;
-                                    gridBagConstraints.weighty = 10.0;
+                                    gridBagConstraints.weighty = 20.0;
                                     buttonPanel.add(webCameraPanel, gridBagConstraints);
 
                                     gridBagConstraints = new java.awt.GridBagConstraints();
@@ -4225,10 +4282,10 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
             selectedchkbx1 = jCheckBox1113.getText();
         }
 
-        if (createNewFileRbtn.isSelected()) {
-            com.afrisoftech.reports.PatientFilePdf pFile = new com.afrisoftech.reports.PatientFilePdf();
-            pFile.PatientFilePdf(connectDB, patientNumberTxt.getText().toUpperCase(), firstNameTxt.getText().toUpperCase() + " " + surNameTxt.getText().toUpperCase(), datePickerYOB.getDate(), selectedchkbx.toUpperCase(), selectedchkbx1.toUpperCase(), ageTxt.getText().toUpperCase(), locationTxt.getText().toUpperCase(), currentResidenceTxt.getText().toUpperCase(), jTextField5.getText().toUpperCase(), jTextField5821.getText().toUpperCase(), nokNameTxt.getText().toUpperCase(), nokRelationShipCmbx.getSelectedItem().toString().toUpperCase(), jTextField20.getText().toUpperCase(), nokTelephoneTxt.getText().toUpperCase(), nokResidenceTxt.getText().toUpperCase());
-        }
+//        if (createNewFileRbtn.isSelected()) {
+//            com.afrisoftech.reports.PatientFilePdf pFile = new com.afrisoftech.reports.PatientFilePdf();
+//            pFile.PatientFilePdf(connectDB, patientNumberTxt.getText().toUpperCase(), firstNameTxt.getText().toUpperCase() + " " + surNameTxt.getText().toUpperCase(), datePickerYOB.getDate(), selectedchkbx.toUpperCase(), selectedchkbx1.toUpperCase(), ageTxt.getText().toUpperCase(), locationTxt.getText().toUpperCase(), currentResidenceTxt.getText().toUpperCase(), jTextField5.getText().toUpperCase(), jTextField5821.getText().toUpperCase(), nokNameTxt.getText().toUpperCase(), nokRelationShipCmbx.getSelectedItem().toString().toUpperCase(), jTextField20.getText().toUpperCase(), nokTelephoneTxt.getText().toUpperCase(), nokResidenceTxt.getText().toUpperCase());
+//        }
 
         try {
             java.sql.Statement stmt11 = connectDB.createStatement();
@@ -4239,6 +4296,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
             }
 
         } catch (SQLException ex) {
+            ex.printStackTrace();
             Logger.getLogger(PatientRegisterIntfr.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -4248,21 +4306,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         com.afrisoftech.reports.PatientRegFormPdf.connectDB = connectDB;
         com.afrisoftech.reports.PatientRegFormPdf regForm = new com.afrisoftech.reports.PatientRegFormPdf();
         regForm.callPdf(connectDB, patientNumberTxt.getText(), "OP");
-//        regForm.generatePdf(firstNameTxt.getText().toUpperCase() + " " + surNameTxt.getText().toUpperCase(),
-//                ageTxt.getText(), selectedStatus, nationalityCmbx.getSelectedItem().toString(),
-//                idPassportTxt.getText(), districtCmbx.getSelectedItem().toString(), occupationCmbx.getSelectedItem().toString(), selectedStatus,
-//                religionCmbx.getSelectedItem().toString(), jTextField5821.getText(), " ", currentResidenceTxt.getText(), locationTxt.getText(), countyofBirthCmbx.getSelectedItem().toString(),
-//                countyofResidenceCmbx.getSelectedItem().toString(), nokNameTxt.getText(), nokRelationShipCmbx.getSelectedItem().toString(), nokTelephoneTxt.getText(),
-//                this.referredcombo.getSelectedItem().toString(), " ", specialtyClinicCmbx.getSelectedItem().toString(), nhifStatusTxt, nhifNumberTxt.getText(),
-//                educationLevelCmbx.getSelectedItem().toString(), employerTelTxt.getText(), employerTxt.getText(), amt, receiptNo, cSheetNoTxt.getText(), " ",
-//                interviewer, com.afrisoftech.lib.ServerTime.serverTimeStamp(connectDB), specialtyClinicCmbx.getSelectedItem().toString(), oldFileNumberTxt.getText(), patientNumberTxt.getText(), "", "", "", nhifNumberTxt.getText(), datePicker2.getDate(), selectedStatusgender,
-//                typeofAccidentCmbx.getSelectedItem().toString(),modeofArrivalCmbx.getSelectedItem().toString(),
-//                                                          nameofPoliceOfficerTxt.getText(),policeForceNumberTxt.getText(),
-//                                                          policeStationTxt.getText(),accidentTimeDateSpinner.getValue().toString(),
-//                                                          driverNameTxt.getText(),accidentVehicleNumberTxt.getText(),
-//                                                          accidentDriverLicenseTxt.getText(),accidentDriverIDTxt.getText());
-//
-//        
+        
 //        // TODO add your handling code here:
 
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -4853,16 +4897,6 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
-        javax.swing.JInternalFrame dismth = new SchemeStatusIntfr(connectDB, pConnDB);
-        dismth.setVisible(true);
-        this.getParent().add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        try {
-            dismth.setSelected(true);
-        } catch (java.beans.PropertyVetoException pvt) {
-        }        // Add your handling code here:
-    }//GEN-LAST:event_jCheckBox6ActionPerformed
-
     private void dispose111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dispose111ActionPerformed
         jSearchDialog111.dispose();        // Add your handling code here:
     }//GEN-LAST:event_dispose111ActionPerformed
@@ -5079,12 +5113,6 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
         }   // Add your handling code here:
     }//GEN-LAST:event_jTextField1111CaretUpdate
-
-    private void searchButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton2ActionPerformed
-        searchButton11aClicked();        // Add your handling code here:
-
-        // Add your handling code here:
-    }//GEN-LAST:event_searchButton2ActionPerformed
     private void searchButton11aClicked() {
 
         System.out.println("Showing dialog");
@@ -5467,10 +5495,6 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
         // Add your handling code here:
     }//GEN-LAST:event_jTextField111CaretUpdate
-
-    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        searchButton11Clicked();        // Add your handling code here:
-    }//GEN-LAST:event_searchButtonActionPerformed
     private void searchButton11Clicked() {
 
         System.out.println("Showing dialog");
@@ -5609,12 +5633,14 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
             if (file != null) {
                 javax.swing.ImageIcon imgCapture = new javax.swing.ImageIcon(com.afrisoftech.lib.SaveBytea2DB.getStoredImage(connectDB, patientNumberTxt.getText()).toURL());
                 javax.swing.JButton photoButton = new javax.swing.JButton(imgCapture);
-                photoButton.setSize(webCamPanel.getSize());
+               // photoButton.setSize(webCamPanel.getSize());
                 webCamPanel.removeAll();
                 webCamPanel.add(photoButton);
-                webCamPanel.repaint();
+               // webCamPanel.repaint();
                 file.delete();
             }
+            buttonPanel.invalidate();
+            this.validateTree();
             //  com.afrisoftech.lib.SaveBytea2DB.insertBytea(connectDB, file, "JPG", "image/jpeg", patientNumberTxt.getText(), file.getName(), "OUT_PATIENT_REGISTER");
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -5918,21 +5944,6 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         //     jPanel2.setVisible(false);   // Add your handling code here:
     }//GEN-LAST:event_jPanel52ComponentShown
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        try {
-
-            java.sql.Statement stmt = connectDB.createStatement();
-            java.sql.ResultSet rset = stmt.executeQuery("select insurer from pb_creditcard_types where card_name ='" + jComboBox3.getSelectedItem() + "'");
-            while (rset.next()) {
-                jTextField7.setText(rset.getObject(1).toString());
-
-            }
-        } catch (java.sql.SQLException sqe) {
-            sqe.printStackTrace();
-            System.out.println("Insert not successful");
-        }   // Add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
-
     private void paymentModeCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentModeCmbxActionPerformed
         if (paymentModeCmbx.getSelectedItem() != null) {
             if (paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Credit Card")) {
@@ -5953,7 +5964,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                 }
             }
 
-            jButton301.setEnabled(true);
+            //jButton301.setEnabled(true);
             jButton3.setEnabled(true);
             registrationStatusLbl.setText("");
         }
@@ -6280,7 +6291,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                                                                                             java.sql.Statement stm = connectDB.createStatement();
 
-                                                                                                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                                                                                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
                                                                                                             pstmt.setString(1, patientNumberTxt.getText());
 
@@ -6346,6 +6357,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                             pstmt.setString(52, this.referredcombo.getSelectedItem().toString());
                                                                                                             pstmt.setString(53, this.cSheetNoTxt.getText());
                                                                                                             pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
+                                                                                                            pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
 
                                                                                                             pstmt.executeUpdate();
                                                                                                             javax.swing.JOptionPane.showMessageDialog(this, "Patient File Activated Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -6393,7 +6405,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                                                                                                 java.sql.Statement stm = connectDB.createStatement();
 
-                                                                                                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                                                                                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
                                                                                                                 pstmt.setString(1, patientsNo);
 
@@ -6459,6 +6471,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                                 pstmt.setString(52, this.referredcombo.getSelectedItem().toString());
                                                                                                                 pstmt.setString(53, this.cSheetNoTxt.getText());
                                                                                                                 pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
+                                                                                                                pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
 
                                                                                                                 pstmt.executeUpdate();
                                                                                                                 // javax.swing.JOptionPane.showMessageDialog(this, "Patient Registered Successfully for Pateint Number :["++"] and Name : ["++"]", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -6481,7 +6494,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                             } else {
                                                                                                                 java.sql.Statement stm = connectDB.createStatement();
 
-                                                                                                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                                                                                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
                                                                                                                 pstmt.setString(1, patientNumberTxt.getText());
 
@@ -6547,7 +6560,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                                 pstmt.setString(52, this.referredcombo.getSelectedItem().toString());
                                                                                                                 pstmt.setString(53, this.cSheetNoTxt.getText());
                                                                                                                 pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
-
+                                                                                                                pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
                                                                                                                 pstmt.executeUpdate();
 
                                                                                                                 //  this.registrationStatusLbl.setText("PATIENT REGISTRATION SUCCESSFUL");
@@ -6595,7 +6608,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                                                                                                     java.sql.Statement stm = connectDB.createStatement();
 
-                                                                                                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                                                                                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
                                                                                                                     pstmt.setString(1, patientsNo);
 
@@ -6661,6 +6674,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                                     pstmt.setString(52, this.referredcombo.getSelectedItem().toString());
                                                                                                                     pstmt.setString(53, this.cSheetNoTxt.getText());
                                                                                                                     pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
+                                                                                                                    pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
                                                                                                                     pstmt.executeUpdate();
 
                                                                                                                     //  this.registrationStatusLbl.setText("PATIENT REGISTRATION SUCCESSFUL");
@@ -6752,7 +6766,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                                                         pstmt11.executeUpdate();
                                                                                                                                         javax.swing.JOptionPane.showMessageDialog(this, "Patient Activated Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                                                                                                                                     } else {
-                                                                                                                                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                                                                                                                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
                                                                                                                                         pstmt.setString(1, patientNumberTxt.getText());
 
@@ -6818,6 +6832,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                                                         pstmt.setString(52, this.referredcombo.getSelectedItem().toString());
                                                                                                                                         pstmt.setString(53, this.cSheetNoTxt.getText());
                                                                                                                                         pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
+                                                                                                                                        pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
                                                                                                                                         pstmt.executeUpdate();
 
                                                                                                                                         // this.registrationStatusLbl.setText("PATIENT REGISTRATION SUCCESSFUL");
@@ -6865,7 +6880,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                                                                 }
                                                                                                                                             }
 
-                                                                                                                                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                                                                                                                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
                                                                                                                                             pstmt.setString(1, patientsNo);
 
@@ -6931,6 +6946,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                                                             pstmt.setString(52, this.referredcombo.getSelectedItem().toString());
                                                                                                                                             pstmt.setString(53, this.cSheetNoTxt.getText());
                                                                                                                                             pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
+                                                                                                                                            pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
 
                                                                                                                                             pstmt.executeUpdate();
 
@@ -6999,9 +7015,9 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                         + "patient_no, name, ip_no, payment, visit_no, services, quantity,"
                                                                                                         + "department, amount, test, date, result, doctor_name, user_name,"
                                                                                                         + "input_date, transaction_type, nature, time, comments, parameter,"
-                                                                                                        + "status, age, gender, marital_status,clinic, urgency)"
+                                                                                                        + "status, age, gender, marital_status,clinic, urgency, patient_disability)"
                                                                                                         + "VALUES (?, ?, ?, ?, ?, ?, ?,"
-                                                                                                        + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?)");
+                                                                                                        + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
                                                                                                 pstmt21a.setString(1, patientsNo);
                                                                                                 pstmt21a.setString(2, firstNameTxt.getText() + " " + surNameTxt.getText());
                                                                                                 pstmt21a.setString(3, "OP");
@@ -7032,6 +7048,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                 pstmt21a.setString(24, selectedchkbx1);
                                                                                                 pstmt21a.setString(25, specialtyClinicCmbx.getSelectedItem().toString());
                                                                                                 pstmt21a.setString(26, urgencyCMBX.getSelectedItem().toString());
+                                                                                                pstmt21a.setString(27, this.disabilityCmbx.getSelectedItem().toString());
                                                                                                 pstmt21a.executeUpdate();
 
                                                                                                 java.sql.Statement stm1 = connectDB.createStatement();
@@ -7128,24 +7145,67 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                 if (jButton301.getText().equalsIgnoreCase("Update")) {
 
                                                                                                     //    System.out.println("PSTMT1 : and JTEXTFIELD21 : "+jTextField21.toString());
-                                                                                                    java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("UPDATE hp_patient_register set first_name = '" + surNameTxt.getText() + "',"
-                                                                                                            + " category = '" + patientCategoryCmbx.getSelectedItem() + "',second_name = '" + firstNameTxt.getText() + "',nok = '" + nokNameTxt.getText() + "', "
-                                                                                                            + " residence = '" + residenceTxt.getText() + "',address = '" + jTextField5.getText() + "', year_of_birth = '" + dateOfBirth + "',"
-                                                                                                            + " tel_no = '" + jTextField5821.getText() + "', emails = '" + emailAddTxt.getText() + "', id_no = '" + idPassportTxt.getText() + "',nok_add = '" + jTextField20.getText() + "', "
-                                                                                                            + " pat_nationality = '" + nationalityCmbx.getSelectedItem() + "',nok_telno = '" + nokTelephoneTxt.getText() + "',nok_relationship = '" + nokRelationShipCmbx.getSelectedItem() + "', "
-                                                                                                            + " nok_residence = '" + nokResidenceTxt.getText() + "', nok_email = '" + emailAddTxt1.getText() + "', pat_marital_status = '" + selectedchkbx1 + "',"
-                                                                                                            + " tribe = '" + jTextField1.getText() + "', district = '" + districtCmbx.getSelectedItem() + "', locations = '" + locationTxt.getText() + "', sub_location = '" + currentResidenceTxt.getText() + "', chief_name = '" + jTextField25.getText() + "',"
-                                                                                                            + " sub_chief = '" + jTextField26.getText() + "', information_source = '" + informationSourceCmbx.getSelectedItem() + "', education_level = '" + educationLevelCmbx.getSelectedItem() + "', "
-                                                                                                            + " occupation = '" + occupationCmbx.getSelectedItem() + "',pat_religion = '" + religionCmbx.getSelectedItem().toString() + "',sex = '" + selectedchkbx + "', home_county = '" + countyofBirthCmbx.getSelectedItem().toString() + "', "
-                                                                                                            + "residence_county = '" + countyofResidenceCmbx.getSelectedItem().toString() + "', nhif_status = " + nhifChbx.isSelected() + ", "
-                                                                                                            + "nhif_number = '" + nhifNumberTxt.getText() + "', employer_name = '" + employerTxt.getText() + "', employer_telephone = '" + employerTelTxt.getText() + "', refer_source = '" + referredcombo.getSelectedItem().toString() + "',"
-                                                                                                            + "charge_sheet_no = '" + cSheetNoTxt.getText() + "', specialty_clinic = '" + specialtyClinicCmbx.getSelectedItem().toString() + "',patient_race = '" + oldFileNumberTxt.getText().toString() + "' WHERE patient_no = '" + patientNumberTxt.getText() + "'");
+                                                                                                    java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("UPDATE hp_patient_register set first_name = ?,"
+                                                                                                            + " category = ?,second_name = ?,nok = ?, "
+                                                                                                            + " residence = ?,address = ?, year_of_birth = ?,"
+                                                                                                            + " tel_no = ?, emails = ?, id_no = ?,nok_add = ?, "
+                                                                                                            + " pat_nationality = ?,nok_telno = ?,nok_relationship = ?, "
+                                                                                                            + " nok_residence = ?, nok_email = ?, pat_marital_status = ?,"
+                                                                                                            + " tribe = ?, district = ?, locations = ?, sub_location = ?, chief_name = ?,"
+                                                                                                            + " sub_chief = ?, information_source = ?, education_level = ?, "
+                                                                                                            + " occupation = ?,pat_religion = ?,sex = ?, home_county = ?, "
+                                                                                                            + "residence_county = ?, nhif_status = ?, "
+                                                                                                            + "nhif_number = ?, employer_name = ?, employer_telephone = ?, refer_source = ?,"
+                                                                                                            + "charge_sheet_no = ?, specialty_clinic = ?,patient_race = ? WHERE patient_no = ?");
+                                                                                                    pstmt1.setString(1, surNameTxt.getText());
+                                                                                                    pstmt1.setObject(2, patientCategoryCmbx.getSelectedItem());
+                                                                                                    pstmt1.setString(3, firstNameTxt.getText());
+                                                                                                    pstmt1.setString(4, nokNameTxt.getText());
+                                                                                                    pstmt1.setString(5, residenceTxt.getText());
+                                                                                                    pstmt1.setString(6, jTextField5.getText());
+                                                                                                    pstmt1.setDate(7, dateOfBirth);
+                                                                                                    pstmt1.setString(8, jTextField5821.getText());
+                                                                                                    pstmt1.setString(9, emailAddTxt.getText());
+                                                                                                    pstmt1.setString(10, idPassportTxt.getText());
+                                                                                                    pstmt1.setObject(11, jTextField20.getText());
+                                                                                                    pstmt1.setObject(12, nationalityCmbx.getSelectedItem());
+                                                                                                    pstmt1.setString(13, nokTelephoneTxt.getText());
+                                                                                                    pstmt1.setObject(14, nokRelationShipCmbx.getSelectedItem());
+                                                                                                    pstmt1.setString(15, nokResidenceTxt.getText());
+                                                                                                    pstmt1.setString(16, emailAddTxt1.getText());
+                                                                                                    pstmt1.setString(17, selectedchkbx1);
+                                                                                                    pstmt1.setString(18, jTextField1.getText());
+                                                                                                    pstmt1.setObject(19, districtCmbx.getSelectedItem());
+                                                                                                    pstmt1.setString(20, locationTxt.getText());
+                                                                                                    pstmt1.setString(21, currentResidenceTxt.getText());
+                                                                                                    pstmt1.setString(22, jTextField25.getText());
+                                                                                                    pstmt1.setString(23, jTextField26.getText());
+                                                                                                    pstmt1.setObject(24, informationSourceCmbx.getSelectedItem());
+                                                                                                    pstmt1.setObject(25, educationLevelCmbx.getSelectedItem());
+                                                                                                    pstmt1.setObject(26, occupationCmbx.getSelectedItem());
+                                                                                                    pstmt1.setObject(27, religionCmbx.getSelectedItem());
+                                                                                                    pstmt1.setString(28, selectedchkbx);
+                                                                                                    pstmt1.setObject(29, countyofBirthCmbx.getSelectedItem());
+                                                                                                    pstmt1.setObject(30, countyofResidenceCmbx.getSelectedItem());
+                                                                                                    pstmt1.setObject(31, nhifChbx.isSelected());
+                                                                                                    pstmt1.setString(32, nhifNumberTxt.getText());
+                                                                                                    pstmt1.setString(33, employerTxt.getText());
+                                                                                                    pstmt1.setString(34, employerTelTxt.getText());
+                                                                                                    pstmt1.setObject(35, referredcombo.getSelectedItem());
+                                                                                                    pstmt1.setString(36, cSheetNoTxt.getText());
+                                                                                                    pstmt1.setObject(37, specialtyClinicCmbx.getSelectedItem());
+                                                                                                    pstmt1.setString(38, oldFileNumberTxt.getText());
+                                                                                                    pstmt1.setString(39, patientNumberTxt.getText());
+                                                                                                    
                                                                                                     pstmt1.executeUpdate();
 
-                                                                                                    java.sql.PreparedStatement pstmn = connectDB.prepareStatement("UPDATE hp_patient_visit SET name = '" + firstNameTxt.getText() + " " + surNameTxt.getText() + "' WHERE patient_no = '" + patientNumberTxt.getText() + "'");
+                                                                                                    java.sql.PreparedStatement pstmn = connectDB.prepareStatement("UPDATE hp_patient_visit SET name = ? WHERE patient_no = ?");
+                                                                                                    pstmn.setString(1, firstNameTxt.getText() + " " + surNameTxt.getText());
+                                                                                                    pstmn.setString(2, patientNumberTxt.getText());
                                                                                                     pstmn.executeUpdate();
 
                                                                                                     java.sql.PreparedStatement pstmny = connectDB.prepareStatement("UPDATE hp_patient_visit SET  age = '" + ageTxt.getText() + "', gender = '" + selectedchkbx + "', marital_status = '" + selectedchkbx1 + "' WHERE patient_no = '" + patientNumberTxt.getText() + "' AND date = '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()) + "'");
+                                                                                                   // pstmny.
                                                                                                     pstmny.executeUpdate();
 
                                                                                                     java.sql.PreparedStatement pstmnx = connectDB.prepareStatement("UPDATE credit_acc_slip SET pat_name = '" + firstNameTxt.getText() + " " + surNameTxt.getText() + "' WHERE patient_no = '" + patientNumberTxt.getText() + "'");
@@ -7624,21 +7684,6 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ageTxtCaretUpdate
 
-    private void searchButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton3ActionPerformed
-
-        System.out.println("Showing dialog");
-
-        java.awt.Point point = this.diseaseFieldTxt.getLocationOnScreen();
-
-        diseaseDialog.setSize(450, 200);
-
-        diseaseDialog.setLocation(point);
-
-        diseaseDialog.setVisible(true);
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchButton3ActionPerformed
-
     private void diseaseSearchTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_diseaseSearchTxtFocusLost
         // TODO add your handling code here:
 }//GEN-LAST:event_diseaseSearchTxtFocusLost
@@ -7689,42 +7734,6 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 }//GEN-LAST:event_diseaseDialogComponentHidden
 
-    private void diagnosisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diagnosisBtnActionPerformed
-        java.sql.Array diseaseCodeArraySet = null;
-        // int n = 0;
-        java.util.Vector arrayVector = new java.util.Vector(1, 1);
-        for (int i = 0; i < diseaseTbl.getRowCount(); i++) {
-            if (diseaseTbl.getValueAt(i, 0) != null) {
-                arrayVector.addElement(diseaseTbl.getValueAt(i, 0));
-            }
-        }
-        java.lang.Object arraySet[] = arrayVector.toArray();
-
-        try {
-            diseaseCodeArraySet = connectDB.createArrayOf("varchar", arraySet);
-            java.sql.PreparedStatement diagnosisPstmt = connectDB.prepareStatement("UPDATE hp_patient_visist SET diagnosis = ? WHERE patient_no = ? AND visit_no = ?");
-            diagnosisPstmt.setArray(1, diseaseCodeArraySet);
-            diagnosisPstmt.setString(2, patientNumberTxt.getText());
-            //  diagnosisPstmt.setString(3, );
-
-            // TODO add your handling code here:
-        } catch (SQLException ex) {
-            Logger.getLogger(PatientRegisterIntfr.class.getName()).log(Level.SEVERE, null, ex);
-            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_diagnosisBtnActionPerformed
-
-    private void insurerDetailsPanelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_insurerDetailsPanelFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_insurerDetailsPanelFocusGained
-
-    private void billindDetailsTabbedPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_billindDetailsTabbedPaneStateChanged
-        // jComboBox1.setSelectedItem("Scheme");
-        //   System.out.println("component changed : ["+billindDetailsTabbedPane.getSelectedIndex()/*getSelectedComponent()*/+"]");
-        // TODO add your handling code here:
-    }//GEN-LAST:event_billindDetailsTabbedPaneStateChanged
-
     private void createOldFileRbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createOldFileRbtnActionPerformed
         createNewFileRbtnActionPerformed(evt);
         patientNumberTxt.setEditable(true);
@@ -7733,86 +7742,9 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 }//GEN-LAST:event_createOldFileRbtnActionPerformed
 
-    private void residenceTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_residenceTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_residenceTxtActionPerformed
-
-    private void residenceTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_residenceTxtCaretUpdate
-        if (this.ageTxt.getText().equalsIgnoreCase("")) {
-        } else {
-            double ager = java.lang.Double.valueOf(ageTxt.getText().toString());
-            if (ager < 5) {
-                patientCategoryCmbx.setSelectedItem("Under 5 Yrs".toUpperCase());
-            }
-        }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_residenceTxtCaretUpdate
-
-    private void nokNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_nokNameTxtCaretUpdate
-        if (this.ageTxt.getText().equalsIgnoreCase("")) {
-        } else {
-            double ager = java.lang.Double.valueOf(ageTxt.getText().toString());
-            if (ager < 5) {
-                patientCategoryCmbx.setSelectedItem("Under 5 Yrs".toUpperCase());
-            }
-
-        }// TODO add your handling code here:
-    }//GEN-LAST:event_nokNameTxtCaretUpdate
-
-    private void bioDataPanelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bioDataPanelFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bioDataPanelFocusGained
-
     private void patientNumberTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientNumberTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_patientNumberTxtActionPerformed
-
-    private void surNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_surNameTxtCaretUpdate
-        //  jTextField11.setEditable(false);
-//        searchbyNameChkbx.setSelected(true);
-//
-//        System.out.println("Showing dialog");
-//
-//        java.awt.Point point = this.surNameTxt.getLocationOnScreen();
-//
-//        point.setLocation(surNameTxt.getLocationOnScreen().x, surNameTxt.getLocationOnScreen().y + 20);
-//
-//        jSearchDialog4.setSize(700, 200);
-//
-//        jSearchDialog4.setLocation(point);
-//
-//        jSearchDialog4.setVisible(true);
-//
-//        if (searchbyNameChkbx.isSelected()) {
-//            if (surNameTxt.getCaretPosition() < 3) {
-//
-//                System.out.println("Nothing");
-//            } else {
-//                jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence from hp_patient_register where second_name||' '||first_name ILIKE '%" + surNameTxt.getText() + "%' order by second_name"));
-//
-//                jSearchTable4.setShowHorizontalLines(false);
-//                jSearchScrollPane4.setViewportView(jSearchTable4);
-//            }
-//            surNameTxt.requestFocusInWindow();
-//        } else if (searchbyNumberChkbx.isSelected()) {
-//            if (surNameTxt.getCaretPosition() < 3) {
-//
-//                System.out.println("Nothing");
-//            } else {
-//
-//                jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence from hp_patient_register where patient_no ILIKE '%" + surNameTxt.getText() + "%' order by patient_no"));
-//
-//                jSearchTable4.setShowHorizontalLines(false);
-//                jSearchScrollPane4.setViewportView(jSearchTable4);
-//
-//            }
-//
-//        }
-//
-//        surNameTxt.requestFocusInWindow();
-        // TODO add your handling code here:
-    }//GEN-LAST:event_surNameTxtCaretUpdate
 
     private void jTextField28CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField28CaretUpdate
         // TODO add your handling code here:
@@ -7974,54 +7906,6 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_patientCategoryCmbxActionPerformed
 
-    private void driverNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driverNameTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_driverNameTxtActionPerformed
-
-    private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_firstNameTxtCaretUpdate
-//        searchbyNameChkbx.setSelected(true);
-//
-//        System.out.println("Showing dialog");
-//
-//        java.awt.Point point = this.firstNameTxt.getLocationOnScreen();
-//
-//        point.setLocation(firstNameTxt.getLocationOnScreen().x, firstNameTxt.getLocationOnScreen().y + 20);
-//
-//        jSearchDialog4.setSize(700, 200);
-//
-//        jSearchDialog4.setLocation(point);
-//
-//        jSearchDialog4.setVisible(true);
-//
-//        if (searchbyNameChkbx.isSelected()) {
-//            if (firstNameTxt.getCaretPosition() < 3) {
-//
-//                System.out.println("Nothing");
-//            } else {
-//                jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence from hp_patient_register where second_name||' '||first_name ILIKE '%" + firstNameTxt.getText() + "%' order by second_name"));
-//
-//                jSearchTable4.setShowHorizontalLines(false);
-//                jSearchScrollPane4.setViewportView(jSearchTable4);
-//            }
-//            firstNameTxt.requestFocusInWindow();
-//        } else if (searchbyNumberChkbx.isSelected()) {
-//            if (firstNameTxt.getCaretPosition() < 3) {
-//
-//                System.out.println("Nothing");
-//            } else {
-//
-//                jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence from hp_patient_register where patient_no ILIKE '%" + firstNameTxt.getText() + "%' order by patient_no"));
-//
-//                jSearchTable4.setShowHorizontalLines(false);
-//                jSearchScrollPane4.setViewportView(jSearchTable4);
-//
-//            }
-//
-//        }
-//
-//        firstNameTxt.requestFocusInWindow();        // TODO add your handling code here:
-    }//GEN-LAST:event_firstNameTxtCaretUpdate
-
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         //jButton301.setEnabled(false);
         //jButton3.setEnabled(false);
@@ -8131,84 +8015,307 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_takeSnapBtnActionPerformed
 
+    private void billindDetailsTabbedPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_billindDetailsTabbedPaneStateChanged
+        // jComboBox1.setSelectedItem("Scheme");
+        //   System.out.println("component changed : ["+billindDetailsTabbedPane.getSelectedIndex()/*getSelectedComponent()*/+"]");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_billindDetailsTabbedPaneStateChanged
+
+    private void patientSpecialityCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientSpecialityCmbxActionPerformed
+        if (patientSpecialityCmbx.getSelectedItem().toString().contains("ALL")) {
+            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, (SELECT home_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as birth_county, (SELECT residence_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as residence_county, comments as NEW_OR_REVISIT, test as home_address, department as category, payment as pay_mode, age::int, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE date between '"+startDatePicker.getDate()+"' AND  '"+endDatePicker.getDate()+"' AND transaction_type = 'Registration' order by 2"));
+        } else {
+            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, (SELECT home_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as birth_county, (SELECT residence_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as residence_county, comments as NEW_OR_REVISIT, test as home_address, department as category, payment as pay_mode, age::int, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE date between '"+startDatePicker.getDate()+"' AND  '"+endDatePicker.getDate()+"' AND clinic ilike '"+patientSpecialityCmbx.getSelectedItem().toString()+"' AND transaction_type = 'Registration'  order by 2"));
+        }
+        reportsSpacerLbl.setForeground(Color.red);
+        reportsSpacerLbl.setText("Number of patients : ["+reportsTable.getRowCount()+"]");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_patientSpecialityCmbxActionPerformed
+
+    private void endDatePickerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_endDatePickerPropertyChange
+        if (patientSpecialityCmbx.getSelectedItem().toString().contains("ALL")) {
+            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, user_name as registar from hp_patient_visit WHERE date between '"+startDatePicker.getDate()+"' AND  '"+endDatePicker.getDate()+"'  order by name"));
+        } else {
+            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, user_name as registar from hp_patient_visit WHERE date between '"+startDatePicker.getDate()+"' AND  '"+endDatePicker.getDate()+"' AND department ilike '"+patientSpecialityCmbx.getSelectedItem().toString()+"' order by name"));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_endDatePickerPropertyChange
+
+    private void startDatePickerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_startDatePickerPropertyChange
+        if (patientSpecialityCmbx.getSelectedItem().toString().contains("ALL")) {
+            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, user_name as registar from hp_patient_visit WHERE date between '"+startDatePicker.getDate()+"' AND  '"+endDatePicker.getDate()+"'  order by 2"));
+        } else {
+            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, user_name as registar from hp_patient_visit WHERE date between '"+startDatePicker.getDate()+"' AND  '"+endDatePicker.getDate()+"' AND department ilike '"+patientSpecialityCmbx.getSelectedItem().toString()+"' order by 2"));
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startDatePickerPropertyChange
+
+    private void diagnosisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diagnosisBtnActionPerformed
+        java.sql.Array diseaseCodeArraySet = null;
+        // int n = 0;
+        java.util.Vector arrayVector = new java.util.Vector(1, 1);
+        for (int i = 0; i < diseaseTbl.getRowCount(); i++) {
+            if (diseaseTbl.getValueAt(i, 0) != null) {
+                arrayVector.addElement(diseaseTbl.getValueAt(i, 0));
+            }
+        }
+        java.lang.Object arraySet[] = arrayVector.toArray();
+
+        try {
+            diseaseCodeArraySet = connectDB.createArrayOf("varchar", arraySet);
+            java.sql.PreparedStatement diagnosisPstmt = connectDB.prepareStatement("UPDATE hp_patient_visist SET diagnosis = ? WHERE patient_no = ? AND visit_no = ?");
+            diagnosisPstmt.setArray(1, diseaseCodeArraySet);
+            diagnosisPstmt.setString(2, patientNumberTxt.getText());
+            //  diagnosisPstmt.setString(3, );
+
+            // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(PatientRegisterIntfr.class.getName()).log(Level.SEVERE, null, ex);
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_diagnosisBtnActionPerformed
+
+    private void searchButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton3ActionPerformed
+
+        System.out.println("Showing dialog");
+
+        java.awt.Point point = this.diseaseFieldTxt.getLocationOnScreen();
+
+        diseaseDialog.setSize(450, 200);
+
+        diseaseDialog.setLocation(point);
+
+        diseaseDialog.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchButton3ActionPerformed
+
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
-    private void changeDate() {
-        ageLabel.setText(com.afrisoftech.lib.PatientAge.getPatientActualAge(connectDB, this.datePickerYOB.getDate()));
-        ageTxt.setText(String.valueOf(com.afrisoftech.lib.PatientAge.getPatientAge(connectDB, this.datePickerYOB.getDate())));
 
-    }
+    private void driverNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driverNameTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_driverNameTxtActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        try {
+
+            java.sql.Statement stmt = connectDB.createStatement();
+            java.sql.ResultSet rset = stmt.executeQuery("select insurer from pb_creditcard_types where card_name ='" + jComboBox3.getSelectedItem() + "'");
+            while (rset.next()) {
+                jTextField7.setText(rset.getObject(1).toString());
+
+            }
+        } catch (java.sql.SQLException sqe) {
+            sqe.printStackTrace();
+            System.out.println("Insert not successful");
+        }   // Add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void insurerDetailsPanelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_insurerDetailsPanelFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_insurerDetailsPanelFocusGained
+
+    private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
+        javax.swing.JInternalFrame dismth = new SchemeStatusIntfr(connectDB, pConnDB);
+        dismth.setVisible(true);
+        this.getParent().add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }        // Add your handling code here:
+    }//GEN-LAST:event_jCheckBox6ActionPerformed
+
+    private void searchButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton2ActionPerformed
+        searchButton11aClicked();        // Add your handling code here:
+
+        // Add your handling code here:
+    }//GEN-LAST:event_searchButton2ActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        searchButton11Clicked();        // Add your handling code here:
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void bioDataPanelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bioDataPanelFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bioDataPanelFocusGained
+
+    private void nokNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_nokNameTxtCaretUpdate
+        if (this.ageTxt.getText().equalsIgnoreCase("")) {
+        } else {
+            double ager = java.lang.Double.valueOf(ageTxt.getText().toString());
+            if (ager < 5) {
+                patientCategoryCmbx.setSelectedItem("Under 5 Yrs".toUpperCase());
+            }
+
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_nokNameTxtCaretUpdate
+
+    private void residenceTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_residenceTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_residenceTxtActionPerformed
+
+    private void residenceTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_residenceTxtCaretUpdate
+        if (this.ageTxt.getText().equalsIgnoreCase("")) {
+        } else {
+            double ager = java.lang.Double.valueOf(ageTxt.getText().toString());
+            if (ager < 5) {
+                patientCategoryCmbx.setSelectedItem("Under 5 Yrs".toUpperCase());
+            }
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_residenceTxtCaretUpdate
+
+    private void patientSearchPanelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patientSearchPanelMouseMoved
+        //   changeDate();
+    }//GEN-LAST:event_patientSearchPanelMouseMoved
+
+    private void jPanel9MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseMoved
+        //       ageLabel.setText(com.afrisoftech.lib.PatientAge.getPatientActualAge(connectDB, this.datePickerYOB.getDate()));
+        //       ageTxt.setText(String.valueOf(com.afrisoftech.lib.PatientAge.getPatientAge(connectDB, this.datePickerYOB.getDate())));
+        //changeDate();
+        //       this.datePickerYOB.
+    }//GEN-LAST:event_jPanel9MouseMoved
+
+    private void jPanel9MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseDragged
+        // changeDate();
+    }//GEN-LAST:event_jPanel9MouseDragged
+
+    private void jPanel9MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseReleased
+
+    }//GEN-LAST:event_jPanel9MouseReleased
+
+    private void jPanel9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseExited
+        //          ageLabel.setText(com.afrisoftech.lib.PatientAge.getPatientActualAge(connectDB, this.datePickerYOB.getDate()));
+        //       ageTxt.setText(String.valueOf(com.afrisoftech.lib.PatientAge.getPatientAge(connectDB, this.datePickerYOB.getDate())));
+    }//GEN-LAST:event_jPanel9MouseExited
 
     private void datePickerYOBPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_datePickerYOBPropertyChange
         //  if(this.datePickerYOB.getCalendarButton().action(java.awt.Event.ACTION_EVENT, evt))
         {
         }
-
     }//GEN-LAST:event_datePickerYOBPropertyChange
+
+    private void datePickerYOBInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_datePickerYOBInputMethodTextChanged
+        //       ageLabel.setText(com.afrisoftech.lib.PatientAge.getPatientActualAge(connectDB, this.datePickerYOB.getDate()));
+        //       ageTxt.setText(String.valueOf(com.afrisoftech.lib.PatientAge.getPatientAge(connectDB, this.datePickerYOB.getDate())));
+    }//GEN-LAST:event_datePickerYOBInputMethodTextChanged
+
+    private void datePickerYOBMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_datePickerYOBMouseMoved
+        //changeDate();
+    }//GEN-LAST:event_datePickerYOBMouseMoved
 
     private void jTextField16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField16MouseClicked
         // ageTxt.setText(String.valueOf(com.afrisoftech.lib.PatientAge.getPatientAge(connectDB, this.datePickerYOB.getDate())));
         //      ageTxt.setText(com.afrisoftech.lib.PatientAge.getPatientActualAge(connectDB, this.datePickerYOB.getDate()));
     }//GEN-LAST:event_jTextField16MouseClicked
 
-    private void datePickerYOBInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_datePickerYOBInputMethodTextChanged
-//       ageLabel.setText(com.afrisoftech.lib.PatientAge.getPatientActualAge(connectDB, this.datePickerYOB.getDate()));
-//       ageTxt.setText(String.valueOf(com.afrisoftech.lib.PatientAge.getPatientAge(connectDB, this.datePickerYOB.getDate())));
-    }//GEN-LAST:event_datePickerYOBInputMethodTextChanged
+    private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_firstNameTxtCaretUpdate
+        //        searchbyNameChkbx.setSelected(true);
+        //
+        //        System.out.println("Showing dialog");
+        //
+        //        java.awt.Point point = this.firstNameTxt.getLocationOnScreen();
+        //
+        //        point.setLocation(firstNameTxt.getLocationOnScreen().x, firstNameTxt.getLocationOnScreen().y + 20);
+        //
+        //        jSearchDialog4.setSize(700, 200);
+        //
+        //        jSearchDialog4.setLocation(point);
+        //
+        //        jSearchDialog4.setVisible(true);
+        //
+        //        if (searchbyNameChkbx.isSelected()) {
+            //            if (firstNameTxt.getCaretPosition() < 3) {
+                //
+                //                System.out.println("Nothing");
+                //            } else {
+                //                jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence from hp_patient_register where second_name||' '||first_name ILIKE '%" + firstNameTxt.getText() + "%' order by second_name"));
+                //
+                //                jSearchTable4.setShowHorizontalLines(false);
+                //                jSearchScrollPane4.setViewportView(jSearchTable4);
+                //            }
+            //            firstNameTxt.requestFocusInWindow();
+            //        } else if (searchbyNumberChkbx.isSelected()) {
+            //            if (firstNameTxt.getCaretPosition() < 3) {
+                //
+                //                System.out.println("Nothing");
+                //            } else {
+                //
+                //                jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence from hp_patient_register where patient_no ILIKE '%" + firstNameTxt.getText() + "%' order by patient_no"));
+                //
+                //                jSearchTable4.setShowHorizontalLines(false);
+                //                jSearchScrollPane4.setViewportView(jSearchTable4);
+                //
+                //            }
+            //
+            //        }
+        //
+        //        firstNameTxt.requestFocusInWindow();        // TODO add your handling code here:
+    }//GEN-LAST:event_firstNameTxtCaretUpdate
 
-    private void jPanel9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseExited
-//          ageLabel.setText(com.afrisoftech.lib.PatientAge.getPatientActualAge(connectDB, this.datePickerYOB.getDate()));
-//       ageTxt.setText(String.valueOf(com.afrisoftech.lib.PatientAge.getPatientAge(connectDB, this.datePickerYOB.getDate())));
-    }//GEN-LAST:event_jPanel9MouseExited
-
-    private void jPanel9MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseReleased
-    }//GEN-LAST:event_jPanel9MouseReleased
-
-    private void jPanel9MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseMoved
-//       ageLabel.setText(com.afrisoftech.lib.PatientAge.getPatientActualAge(connectDB, this.datePickerYOB.getDate()));
-//       ageTxt.setText(String.valueOf(com.afrisoftech.lib.PatientAge.getPatientAge(connectDB, this.datePickerYOB.getDate())));
-//changeDate();
-        //       this.datePickerYOB.
-    }//GEN-LAST:event_jPanel9MouseMoved
-
-    private void datePickerYOBMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_datePickerYOBMouseMoved
-        //changeDate();
-    }//GEN-LAST:event_datePickerYOBMouseMoved
-
-    private void jPanel9MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseDragged
-        // changeDate();
-    }//GEN-LAST:event_jPanel9MouseDragged
-
-    private void patientSearchPanelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patientSearchPanelMouseMoved
-        //   changeDate();
-    }//GEN-LAST:event_patientSearchPanelMouseMoved
-
-    private void patientSpecialityCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientSpecialityCmbxActionPerformed
-        if (patientSpecialityCmbx.getSelectedItem().toString().contains("ALL")) {
-            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, user_name as registar from hp_patient_visit WHERE date between '"+startDatePicker.getDate()+"' AND  '"+endDatePicker.getDate()+"'  order by 2"));
-        } else {
-           reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, user_name as registar from hp_patient_visit WHERE date between '"+startDatePicker.getDate()+"' AND  '"+endDatePicker.getDate()+"' AND department ilike '"+patientSpecialityCmbx.getSelectedItem().toString()+"' order by 2"));
-        }
-// TODO add your handling code here:
-    }//GEN-LAST:event_patientSpecialityCmbxActionPerformed
-
-    private void startDatePickerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_startDatePickerPropertyChange
-        if (patientSpecialityCmbx.getSelectedItem().toString().contains("ALL")) {
-            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, user_name as registar from hp_patient_visit WHERE date between '"+startDatePicker.getDate()+"' AND  '"+endDatePicker.getDate()+"'  order by 2"));
-        } else {
-           reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, user_name as registar from hp_patient_visit WHERE date between '"+startDatePicker.getDate()+"' AND  '"+endDatePicker.getDate()+"' AND department ilike '"+patientSpecialityCmbx.getSelectedItem().toString()+"' order by 2"));
-        }
+    private void surNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_surNameTxtCaretUpdate
+        //  jTextField11.setEditable(false);
+        //        searchbyNameChkbx.setSelected(true);
+        //
+        //        System.out.println("Showing dialog");
+        //
+        //        java.awt.Point point = this.surNameTxt.getLocationOnScreen();
+        //
+        //        point.setLocation(surNameTxt.getLocationOnScreen().x, surNameTxt.getLocationOnScreen().y + 20);
+        //
+        //        jSearchDialog4.setSize(700, 200);
+        //
+        //        jSearchDialog4.setLocation(point);
+        //
+        //        jSearchDialog4.setVisible(true);
+        //
+        //        if (searchbyNameChkbx.isSelected()) {
+            //            if (surNameTxt.getCaretPosition() < 3) {
+                //
+                //                System.out.println("Nothing");
+                //            } else {
+                //                jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence from hp_patient_register where second_name||' '||first_name ILIKE '%" + surNameTxt.getText() + "%' order by second_name"));
+                //
+                //                jSearchTable4.setShowHorizontalLines(false);
+                //                jSearchScrollPane4.setViewportView(jSearchTable4);
+                //            }
+            //            surNameTxt.requestFocusInWindow();
+            //        } else if (searchbyNumberChkbx.isSelected()) {
+            //            if (surNameTxt.getCaretPosition() < 3) {
+                //
+                //                System.out.println("Nothing");
+                //            } else {
+                //
+                //                jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence from hp_patient_register where patient_no ILIKE '%" + surNameTxt.getText() + "%' order by patient_no"));
+                //
+                //                jSearchTable4.setShowHorizontalLines(false);
+                //                jSearchScrollPane4.setViewportView(jSearchTable4);
+                //
+                //            }
+            //
+            //        }
+        //
+        //        surNameTxt.requestFocusInWindow();
         // TODO add your handling code here:
-    }//GEN-LAST:event_startDatePickerPropertyChange
+    }//GEN-LAST:event_surNameTxtCaretUpdate
 
-    private void endDatePickerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_endDatePickerPropertyChange
-        if (patientSpecialityCmbx.getSelectedItem().toString().contains("ALL")) {
-            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, user_name as registar from hp_patient_visit WHERE date between '"+startDatePicker.getDate()+"' AND  '"+endDatePicker.getDate()+"'  order by name"));
-        } else {
-           reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, user_name as registar from hp_patient_visit WHERE date between '"+startDatePicker.getDate()+"' AND  '"+endDatePicker.getDate()+"' AND department ilike '"+patientSpecialityCmbx.getSelectedItem().toString()+"' order by name"));
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_endDatePickerPropertyChange
+    private void mapPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapPanel1MouseClicked
+
+       System.out.println("This is the map cordinates : Langitude - "+mapPanel1.format(mapPanel1.position2lat(mapPanel1.getCursorPosition().y,mapPanel1.getZoom()))+" , "+ this.mapPanel1.format(mapPanel1.position2lon(mapPanel1.getCursorPosition().x, mapPanel1.getZoom()))); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mapPanel1MouseClicked
+
+    private void buttonPanelHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_buttonPanelHierarchyChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonPanelHierarchyChanged
+    private void changeDate() {
+        ageLabel.setText(com.afrisoftech.lib.PatientAge.getPatientActualAge(connectDB, this.datePickerYOB.getDate()));
+        ageTxt.setText(String.valueOf(com.afrisoftech.lib.PatientAge.getPatientAge(connectDB, this.datePickerYOB.getDate())));
+
+    }
 
     /*
      * public class ComboTextField extends javax.swing.JTextField implements
@@ -8529,6 +8636,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton diagnosisBtn;
     private javax.swing.JPanel diagnosisPanel;
     private javax.swing.JPanel diagnosisTPane;
+    private javax.swing.JComboBox disabilityCmbx;
     private javax.swing.JPanel diseaseChooserPanel;
     private javax.swing.JDialog diseaseDialog;
     private javax.swing.JTextField diseaseFieldTxt;
@@ -8658,6 +8766,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel582211;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel66111;
@@ -8743,6 +8852,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField locationTxt;
     private javax.swing.JPanel mainPanel;
+    private com.roots.map.MapPanel mapPanel1;
+    private javax.swing.JPanel mapsPanel;
     private javax.swing.JComboBox modeofArrivalCmbx;
     private javax.swing.JTextField nameofPoliceOfficerTxt;
     private javax.swing.JComboBox nationalityCmbx;
