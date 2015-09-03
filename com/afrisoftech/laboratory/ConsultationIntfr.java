@@ -6021,8 +6021,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             java.sql.Statement stmtTable113 = connectDB.createStatement();
             // java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("select count(distinct lab_no) from hp_lab_results where doc_read = false  and result_shown = false AND date >='" + datePicker11.getDate().toString() + "' and lab_no !='null' and lab_no is not null ");
             java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery(""
-                    + "(select count(distinct lab_no) from hp_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'   and lab_no !='null' and lab_no is not null) "
-                    + " union (select count(distinct lab_no) from lims_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'  and lab_no !='null' and lab_no is not null) ");
+                    + "(select count(distinct lab_no) from hp_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'   and lab_no !='null' and lab_no is not null) ");
+              /////      + " union (select count(distinct lab_no) from lims_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'  and lab_no !='null' and lab_no is not null) ");
 
             // java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("select count(distinct lab_no) from hp_lab_results where doc_read = false  and result_shown = false AND date >='"+datePicker11.getDate().toString()+"' and lab_no !='null' and lab_no is not null and clinic ilike '"+jComboBox11.getSelectedItem().toString()+"'");
             while (rsetTable113.next()) {
@@ -6035,8 +6035,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
                 //java.sql.ResultSet rsetTable112 = stmtTable112.executeQuery("select distinct lab_no,patient_name from hp_lab_results where doc_read = false and result_shown = false AND date >='"+datePicker13.getDate().toString()+"' and lab_no is not null and lab_no !='null' and clinic ilike '"+jComboBox11.getSelectedItem().toString()+"' order by lab_no  ");
                 java.sql.ResultSet rsetTable112 = stmtTable112.executeQuery(""
-                        + "(select distinct lab_no,patient_name from hp_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and   lab_no is not null and lab_no !='null' ) "
-                        + " union (select distinct lab_no,patient_name from lims_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'   and lab_no is not null and lab_no !='null') order by lab_no  ");
+                        + "(select distinct lab_no,patient_name from hp_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and   lab_no is not null and lab_no !='null' ) ");
+                   ///////     + " union (select distinct lab_no,patient_name from lims_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'   and lab_no is not null and lab_no !='null') order by lab_no  ");
 
                 while (rsetTable112.next()) {
                     labNo = rsetTable112.getString(1);
@@ -6068,10 +6068,10 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             java.sql.ResultSet rsetTable1r = stmtTable1r.executeQuery(""
                     + "(select distinct date,patient_no,patient_name,lab_no,false,input_date::time from hp_lab_results "
                     + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'    "
-                    + "  order by input_date::time asc) "
-                    + " union (select distinct date,patient_no,patient_name,request_id,false,input_date::time from lims_lab_results "
-                    + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'    "
-                    + "  order by input_date::time asc);");
+                    + "  order by input_date::time asc) ");
+//                    + " union (select distinct date,patient_no,patient_name,request_id,false,input_date::time from lims_lab_results "
+//                    + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'    "
+//                    + "  order by input_date::time asc);");
 
             while (rsetTable1r.next()) {
 
@@ -10461,8 +10461,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             java.sql.Statement stmtTable113 = connectDB.createStatement();
             // java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("select count(distinct lab_no) from hp_lab_results where doc_read = false  and result_shown = false AND date >='" + datePicker11.getDate().toString() + "' and lab_no !='null' and lab_no is not null ");
             java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery(""
-                    + "(select count(distinct lab_no) from hp_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + nameNoTxt.getText() + "'  and lab_no !='null' and lab_no is not null) "
-                    + " union (select count(distinct lab_no) from lims_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + nameNoTxt.getText() + "'  and lab_no !='null' and lab_no is not null )");
+                    + "(select count(distinct lab_no) from hp_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + nameNoTxt.getText() + "'  and lab_no !='null' and lab_no is not null) ");  
+                  /////  + " union (select count(distinct lab_no) from lims_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + nameNoTxt.getText() + "'  and lab_no !='null' and lab_no is not null )");
 
             // java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("select count(distinct lab_no) from hp_lab_results where doc_read = false  and result_shown = false AND date >='"+datePicker11.getDate().toString()+"' and lab_no !='null' and lab_no is not null and clinic ilike '"+jComboBox11.getSelectedItem().toString()+"'");
             while (rsetTable113.next()) {
@@ -10474,8 +10474,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 java.sql.Statement stmtTable112 = connectDB.createStatement();
 
                 //java.sql.ResultSet rsetTable112 = stmtTable112.executeQuery("select distinct lab_no,patient_name from hp_lab_results where doc_read = false and result_shown = false AND date >='"+datePicker13.getDate().toString()+"' and lab_no is not null and lab_no !='null' and clinic ilike '"+jComboBox11.getSelectedItem().toString()+"' order by lab_no  ");
-                java.sql.ResultSet rsetTable112 = stmtTable112.executeQuery("(select distinct lab_no,patient_name from hp_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + jTextField922.getText() + "' and lab_no is not null and lab_no !='null')  "
-                        + " union (select distinct lab_no,patient_name from lims_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + jTextField922.getText() + "' and lab_no is not null and lab_no !='null' order by lab_no)  ");
+                java.sql.ResultSet rsetTable112 = stmtTable112.executeQuery("(select distinct lab_no,patient_name from hp_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + jTextField922.getText() + "' and lab_no is not null and lab_no !='null')  ");
+                  ///////      + " union (select distinct lab_no,patient_name from lims_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + jTextField922.getText() + "' and lab_no is not null and lab_no !='null' order by lab_no)  ");
 
                 while (rsetTable112.next()) {
                     labNo = rsetTable112.getString(1);
@@ -10506,11 +10506,11 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 //                    + " where patient_no = '" + jTextField922.getText() + "' ORDER BY date,lab_no");
             java.sql.ResultSet rsetTable1r = stmtTable1r.executeQuery(""
                     + "(select distinct date,patient_no,patient_name,request_id,false,input_date::time from hp_lab_results "
-                    + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + nameNoTxt.getText() + "')  "
-                    + "  "
-                    + " union (select distinct date,patient_no,patient_name,request_id,false,input_date::time from lims_lab_results "
-                    + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + nameNoTxt.getText() + "'  "
-                    + "  order by input_date::time asc);");
+                    + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + nameNoTxt.getText() + "')  ");
+                  //////  + "  "
+                  //////   + " union (select distinct date,patient_no,patient_name,request_id,false,input_date::time from lims_lab_results "
+                 //////   + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + nameNoTxt.getText() + "'  "
+                 //////   + "  order by input_date::time asc);");
 
             while (rsetTable1r.next()) {
 
@@ -10608,21 +10608,21 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                     + "         '   Doctor:-',doctor ) as Results "
                                     + "  FROM hp_lab_results where date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' "
                                     + "   and patient_no='" + labresultsTable.getValueAt(0, 1).toString() + "' "
-                                    + "    order by input_date desc) "
-                                    + "union"
-                                    + "    "
-                                    + "(SELECT date  ,"
-                                    + "  concat('Date:-',date,'   Time taken:-', time_taken,'Time Posted:-',input_date  ,"
-                                    + "   '\nRequest ID:-',request_id,'  Test Code:-',code  ,"
-                                    + "  '\nLab Test:-',typeof_test,'    Parameter:-', parameter,  "
-                                    + "       '\nResult:-',result,   "
-                                    + "         '\nLab Technologist:-', labmanager,   "
-                                    + "         '\nComments:-', '' , '\nPosted by:-',user_name,  "
-                                    + "         '   Doctor:-',doctor ) as Results "
-                                    + "    FROM lims_lab_results "
-                                    + "    where date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' "
-                                    + "   and patient_no='" + labresultsTable.getValueAt(0, 1).toString() + "' "
                                     + "    order by input_date desc) "));
+//                                    + "union"
+//                                    + "    "
+//                                    + "(SELECT date  ,"
+//                                    + "  concat('Date:-',date,'   Time taken:-', time_taken,'Time Posted:-',input_date  ,"
+//                                    + "   '\nRequest ID:-',request_id,'  Test Code:-',code  ,"
+//                                    + "  '\nLab Test:-',typeof_test,'    Parameter:-', parameter,  "
+//                                    + "       '\nResult:-',result,   "
+//                                    + "         '\nLab Technologist:-', labmanager,   "
+//                                    + "         '\nComments:-', '' , '\nPosted by:-',user_name,  "
+//                                    + "         '   Doctor:-',doctor ) as Results "
+//                                    + "    FROM lims_lab_results "
+//                                    + "    where date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' "
+//                                    + "   and patient_no='" + labresultsTable.getValueAt(0, 1).toString() + "' "
+//                                    + "    order by input_date desc) "));
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
