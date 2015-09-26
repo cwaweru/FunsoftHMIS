@@ -2,6 +2,11 @@
 //Made to test Java support for Threads.
 //Revision : Ver 1.0a
 //import java.lang.*;
+
+/**
+* @author Charles Waweru <cwaweru@systempartners.biz>
+* 
+*/
 package com.afrisoftech.reports.emr;
 
 import com.afrisoftech.records.reports.*;
@@ -9,6 +14,8 @@ import com.lowagie.text.*;
 import com.lowagie.text.pdf.*;
 import java.awt.Color;
 //import //java.awt.Desktop;
+
+
 
 public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
 
@@ -509,10 +516,10 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("1.2 Glucose", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "glucose", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "glucose", "+++", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -550,7 +557,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("1.3 Ketones", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "ketone", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -588,7 +595,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("1.4 Proteins", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "protein", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -629,7 +636,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("1.5 HCG", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "hcg", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -700,7 +707,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("7.3 Taenia spp.", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "taenia", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -711,7 +718,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("1.7 Pus cells (>5hpf)", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "pus", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -743,7 +750,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("7.4 Hymenoiepis nana.", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "hymenoiepis", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -754,7 +761,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("1.8 S. haematobium", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "haematobium", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -768,7 +775,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("3.5 Sickling test", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "sickling", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -785,7 +792,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("7.5 Hookworm", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "hookworm", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -796,7 +803,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("1.9 T. vaginalis", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "vaginalis", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -810,7 +817,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("3.6 Manual WBC counts", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "wbc", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -827,7 +834,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("7.6 Roundworms", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "roundworms", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -838,7 +845,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("1.10 Yeast cells", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "yeast", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setBackgroundColor(Color.lightGray);
                                 table.getDefaultCell().setColspan(1);
@@ -871,7 +878,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("7.7 S. Mansoni", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "mansoni", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -882,7 +889,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("1.11 Red blood cells", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "red blood cells", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -896,7 +903,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("3.8 Erythrocyte Sedimentation rate", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "erythrocyte", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -913,7 +920,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("7.8 Trichuris trichura", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "trichura", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -924,7 +931,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("1.12 Bacteria", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "bacteria", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -948,7 +955,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("7.9 E. histolytica", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "histolytica", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -959,7 +966,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("1.13 Spermatozoa", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "spermatozoa", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -983,7 +990,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("7.10 Giardia lambila", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "lambila", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1033,7 +1040,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("4.1 Total groupings done", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "grouping", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1049,7 +1056,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.1 Blood sugar", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "sugar", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1064,7 +1071,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("4.1 Total groupings done", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "grouping", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1086,7 +1093,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.2 OGTT", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "ogtt", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1112,7 +1119,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("8.1 Rapid Plasma Region", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "plasma", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1138,7 +1145,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("4.3 Transfusion reactions", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "transfusion", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1149,7 +1156,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("8.2 TPHA", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "tpha", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1160,7 +1167,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.3 Renal function tests", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "renal function", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 //to decorate
                                 table.getDefaultCell().setColspan(1);
@@ -1176,7 +1183,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("4.4 Blood cross matches", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "cross match", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1187,7 +1194,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("8.3 ASOT", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "asot", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1198,7 +1205,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.4 Creatinine", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "creatinine", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 //to decorate
                                 table.getDefaultCell().setColspan(1);
@@ -1223,7 +1230,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("8.4 HIV", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "hiv", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1234,7 +1241,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.5 Urea", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "urea", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 //to decorate
                                 table.getDefaultCell().setColspan(1);
@@ -1259,7 +1266,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("8.5 Widal", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "widal", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1269,7 +1276,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.6 Sodium", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "sodium", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 //to decorate
                                 table.getDefaultCell().setColspan(1);
@@ -1296,7 +1303,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("8.6 Brucella", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "brucella", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1306,7 +1313,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.7 Potasium", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "potasium", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 //to decorate
                                 table.getDefaultCell().setColspan(1);
@@ -1319,7 +1326,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase("5.1 Blood units collected from regional bllod transfusion centres", pFontHeader1);
+                                phrase = new Phrase("5.1 Blood units collected from regional blood transfusion centres", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1333,7 +1340,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("8.7 Rheumatoid factor", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "rheumatoid", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1344,7 +1351,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.8 Chlorides", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "chlorides", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 //to decorate
                                 table.getDefaultCell().setColspan(1);
@@ -1371,7 +1378,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("8.8 Helicobacter pylori", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "pylori", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1408,7 +1415,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("8.9 Hepatitis A test", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "hepatitis", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1418,7 +1425,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.9 Liver function tests", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "liver function", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 //to decorate
                                 table.getDefaultCell().setColspan(1);
@@ -1445,7 +1452,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("8.10 Hepatitis B test", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "hepatitis b", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1455,7 +1462,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.10 Direct Bilirubin", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "bilirubin", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 //to decorate
                                 table.getDefaultCell().setColspan(1);
@@ -1482,7 +1489,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("8.11 Hepatitis C test", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "hepatitis c", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1492,7 +1499,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.11 Total Bilirubin", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "bilirubin", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 //to decorate
                                 table.getDefaultCell().setColspan(1);
@@ -1519,7 +1526,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("8.12 Viral load", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "viral load", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1529,7 +1536,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.12 ASAT(SGOT)", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "sgot", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 //to decorate
                                 table.getDefaultCell().setColspan(1);
@@ -1560,7 +1567,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.13 ALAT(SGPT)", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "spgt", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 //to decorate
                                 table.getDefaultCell().setColspan(1);
@@ -1588,7 +1595,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.14 Serum Protein", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "serum", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 //to decorate
                                 table.getDefaultCell().setColspan(1);
@@ -1625,7 +1632,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.15 Albumin", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "albumin", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 //to decorate
                                 table.getDefaultCell().setColspan(1);
@@ -1672,7 +1679,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.16 Alkaline Phosphatase", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "alkaline", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 //to decorate
                                 table.getDefaultCell().setColspan(1);
@@ -1688,7 +1695,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.1 PAP smear", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "pap smear", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1708,7 +1715,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("9.2 Urine", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "urine", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1718,7 +1725,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.17 Gamma GT", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "gamma", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 //to decorate
                                 table.getDefaultCell().setColspan(1);
@@ -1734,7 +1741,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.2 Touch prep", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "touch", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1754,7 +1761,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("9.3 Pus swabs", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "pus swab", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1778,7 +1785,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.3 Tissue impressions", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "tissue impressions", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1798,7 +1805,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("9.4 High Vaginal Swab", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "vaginal swab", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1808,7 +1815,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.18 Lipid profile", pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "lipid", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader);
@@ -1830,7 +1837,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("9.6 Stool", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "stool", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1840,7 +1847,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.19 Total cholesterol", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "cholesterol", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1854,7 +1861,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.4 Thyroid", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "thyroid", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1874,7 +1881,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("9.8 Blood", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "blood", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1884,7 +1891,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.20 Triglycerides", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "triglycerides", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1898,7 +1905,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.5 Lymph nodes", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "lymph", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1918,7 +1925,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("9.9 CSF", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "csf", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1928,7 +1935,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.22 LDL", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "ldl", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1942,7 +1949,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.7 Breast", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "breast", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1962,7 +1969,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("9.10 Water", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "water", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2006,7 +2013,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("9.11 Food", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "food", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2016,7 +2023,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.23 CSF Chemistry", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "csf chemistry", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2080,7 +2087,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.25 Glucose", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "glucose", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2094,7 +2101,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.11 CSF", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "csf", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2139,7 +2146,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.12 Pleural fluid", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "pleural fluid", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2159,7 +2166,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("10.1 TB new suspects", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "tb new suspect", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2169,7 +2176,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.26 Body fuids", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "body fluids", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2183,7 +2190,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.13 Urine", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "urine", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2203,7 +2210,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("10.2 Followup", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "followup", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2213,7 +2220,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.27 Proteins", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "proteins", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2247,7 +2254,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("10.3 TB smears", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "tb smears", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2280,7 +2287,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("10.4 MDR TB", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "mdr tb", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2304,7 +2311,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.15 Cervix", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "cervix", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2326,7 +2333,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.29 T3", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "t3", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2340,7 +2347,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.16 Prostrate", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "prostrate", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2363,7 +2370,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.30 T4", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "t4", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2377,7 +2384,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.18 Ovary", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "ovary", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2406,7 +2413,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.31 TSH", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "tsh", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2421,7 +2428,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.19 Uterus", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "uterus", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2450,7 +2457,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("2.32 PSA", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "psa", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2465,7 +2472,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.20 Skin", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "skin", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2503,7 +2510,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.21 Head and Neck", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "head and neck", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2540,7 +2547,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.22 Dental", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "dental", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2578,7 +2585,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.23 GIT", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "git", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2616,7 +2623,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.24 Lymph nodes", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "lymph nodes", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2712,7 +2719,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 phrase = new Phrase("6.26 Trephine biopsy", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "trephine", beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
