@@ -90,7 +90,6 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="0"/>
     <SyntheticProperty name="generatePosition" type="boolean" value="true"/>
     <SyntheticProperty name="generateSize" type="boolean" value="true"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -174,7 +173,7 @@
                 <Component class="javax.swing.JButton" name="newAction">
                   <Properties>
                     <Property name="mnemonic" type="int" value="119"/>
-                    <Property name="text" type="java.lang.String" value="New"/>
+                    <Property name="text" type="java.lang.String" value="Save"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newActionActionPerformed"/>

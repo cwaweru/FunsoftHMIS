@@ -53,7 +53,7 @@ public class PostNatalIntfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Define the Post Ntal Examination Here");
+        setTitle("Define the Post Natal Examinations Here");
         setFrameIcon(null);
         try {
             setSelected(true);

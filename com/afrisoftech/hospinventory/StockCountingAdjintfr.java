@@ -80,6 +80,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         jButton5 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         jSearchDialog.setModal(true);
         jSearchDialog.setUndecorated(true);
@@ -163,7 +164,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Additional Stock");
+        setTitle("Supply Chain Management System : Stock/Inventory Reconciliation form");
         setToolTipText("Please Enter The Qty Difference You Want To update");
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -249,7 +250,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(categoryCmbx, gridBagConstraints);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Tick to list items between the preffered range"));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
         jLabel3.setText("From");
@@ -290,7 +291,9 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         jPanel4.add(range2txt, gridBagConstraints);
 
-        jCheckBox1.setText("List");
+        jCheckBox1.setText("List item balances");
+        jCheckBox1.setToolTipText("Please tick once to display list of items registered in the selected store");
+        jCheckBox1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "You MUST select to display items in the selected store", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 51, 255))); // NOI18N
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
@@ -474,7 +477,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Item Code", "Item Description", "Strength", "Units", "Balance Qty", "Saleable Qty", "Expired Qty", "Damaged Qty", "Reason"
+                "Item Code", "Item Description", "Strength", "Units", "Balance Qty", "Saleable Qty", "Expired Qty", "Damaged Qty", "Comments"
             }
         ) {
             Class[] types = new Class [] {
@@ -592,7 +595,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
         jButton1.setMnemonic('O');
-        jButton1.setText("Save");
+        jButton1.setText("Save inventory reconciliation data");
         jButton1.setToolTipText("click to store data");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -600,7 +603,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -620,7 +623,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         jPanel3.add(jButton5, gridBagConstraints);
 
         jButton3.setMnemonic('l');
-        jButton3.setText("Clear");
+        jButton3.setText("Clear form");
         jButton3.setToolTipText("click to clear fields");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -635,7 +638,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         jPanel3.add(jButton3, gridBagConstraints);
 
         jButton4.setMnemonic('C');
-        jButton4.setText("Close");
+        jButton4.setText("Close form");
         jButton4.setToolTipText("Click to close");
         jButton4.setSelected(true);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -649,6 +652,14 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jButton4, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jLabel6, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -725,26 +736,26 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
             }
             if (range1txt.getText().equalsIgnoreCase("-")) {
                 if (centralStorerbtn.isSelected()) {
-                    jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,null as balance,null as saleable, null as damaged, null as expired from stockitem WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "'  AND sub_cat_code ilike '" + categoryCmbx.getSelectedItem() + "' order by description"));
+                    jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments from stockitem WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "'  AND sub_cat_code ilike '" + categoryCmbx.getSelectedItem() + "' order by description"));
                 } else {
 
-                    jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct product_id,product,strength,units,null as balance,null as saleable, null as damaged, null as expired from st_stock_prices WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "' AND category ilike '" + categoryCmbx.getSelectedItem() + "' order by product"));
+                    jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct product_id,product,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments from st_stock_prices WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "' AND category ilike '" + categoryCmbx.getSelectedItem() + "' order by product"));
 
                 }
             } else {
                 if (centralStorerbtn.isSelected()) {
-                    jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,null as balance,null as saleable, null as damaged, null as expired from stockitem WHERE (description ILIKE '" + range1txt.getText() + "%' OR description ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "'  AND sub_cat_code ilike '" + categoryCmbx.getSelectedItem() + "'  order by description"));
+                    jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments from stockitem WHERE (description ILIKE '" + range1txt.getText() + "%' OR description ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "'  AND sub_cat_code ilike '" + categoryCmbx.getSelectedItem() + "'  order by description"));
                 } else {
-                    jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct product_id,product,strength,units,null as balance,null as saleable, null as damaged, null as expired from st_stock_prices WHERE (product ILIKE '" + range1txt.getText() + "%' OR product ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "' AND category ilike '" + categoryCmbx.getSelectedItem() + "' order by product"));
+                    jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct product_id,product,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments from st_stock_prices WHERE (product ILIKE '" + range1txt.getText() + "%' OR product ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "' AND category ilike '" + categoryCmbx.getSelectedItem() + "' order by product"));
 
                 }
             }
 
             Class[] types = new Class[]{
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, true, true, true
+                false, false, false, false, false, true, true, true, true
             };
 
             jTable1.setShowHorizontalLines(true);
@@ -760,7 +771,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                     } else {
                         //if (i == 2) {
                         column.setPreferredWidth(100);
-                    // }  else
+                        // }  else
                         //column.setPreferredWidth(50);
 
                     }
@@ -785,7 +796,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                 }
 
             } catch (java.sql.SQLException sqlExec) {
-
+                sqlExec.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
             }
 
@@ -807,7 +818,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
 
         getListThread1.start();
 
-      
+
     }//GEN-LAST:event_categoryCmbxActionPerformed
     public java.lang.Object[] getListofActivities() {
 
@@ -911,26 +922,26 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                 }
                 if (range1txt.getText().equalsIgnoreCase("-")) {
                     if (centralStorerbtn.isSelected()) {
-                        jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,null as balance,null as saleable, null as damaged, null as expired FROM stockitem WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by description"));
+                        jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments FROM stockitem WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by description"));
                     } else {
 
-                        jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct (product_id),(product),strength,units,null as balance,null as saleable, null as damaged, null as expired FROM stockprices WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by product"));
+                        jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct (product_id),(product),strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments FROM stockprices WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by product"));
 
                     }
                 } else {
                     if (centralStorerbtn.isSelected()) {
-                        jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,null as balance,null as saleable, null as damaged, null as expired FROM stockitem WHERE (description ILIKE '" + range1txt.getText() + "%' OR description ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by description"));
+                        jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments FROM stockitem WHERE (description ILIKE '" + range1txt.getText() + "%' OR description ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by description"));
                     } else {
-                        jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct product_id,product,strength,units,null as balance,null as saleable, null as damaged, null as expired FROM stockprices WHERE (product ILIKE '" + range1txt.getText() + "%' OR product ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by product"));
+                        jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct product_id,product,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments FROM stockprices WHERE (product ILIKE '" + range1txt.getText() + "%' OR product ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by product"));
 
                     }
                 }
 
                 Class[] types = new Class[]{
-                    java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                    java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class
                 };
                 boolean[] canEdit = new boolean[]{
-                    false, false, false, false, false, true, true, true
+                    false, false, false, false, false, true, true, true, true
                 };
 
                 jTable1.setShowHorizontalLines(true);
@@ -947,7 +958,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                         } else {
                             //if (i == 2) {
                             column.setPreferredWidth(100);
-                        // }  else
+                            // }  else
                             //column.setPreferredWidth(50);
 
                         }
@@ -1047,7 +1058,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
             }
         }
 
-    //    }
+        //    }
         // Add your handling code here:
     }//GEN-LAST:event_jTextField111CaretUpdate
 
@@ -1136,7 +1147,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-             java.util.Date dateToday = new java.util.Date();
+        java.util.Date dateToday = new java.util.Date();
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         java.util.Date periodFrom = null;
@@ -1428,12 +1439,14 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                 pstmtCardex.setString(10, null);
 
                                 if (balance < 0) {
-                                    pstmtCardex.setDouble(11, balance);
+                                    pstmtCardex.setDouble(11, -1 * balance); // Changed by CWW was - pstmtCardex.setDouble(11, balance);
                                     pstmtCardex.setDouble(5, 0.00);
                                     pstmtCardex.setDouble(21, -1 * balance * price);
                                     pstmtCardex.setDouble(22, 0.00);
+                                    pstmtCardex.setDouble(27, 0.00);
                                 } else if (balance >= 0) {
-                                    pstmtCardex.setDouble(11, balance);
+                                    pstmtCardex.setDouble(11, 0.00);
+                                    pstmtCardex.setDouble(27, balance); // Changed by CWWW was - pstmtCardex.setDouble(11, balance);
                                     pstmtCardex.setDouble(5, balance * price);
                                     pstmtCardex.setDouble(21, 0.00);
                                     pstmtCardex.setDouble(22, balance * price);
@@ -1453,7 +1466,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                 pstmtCardex.setString(24, "");
                                 pstmtCardex.setString(25, storeCmbx.getSelectedItem().toString());
                                 pstmtCardex.setString(26, transNo);
-                                pstmtCardex.setDouble(27, 0.00);
+                               // pstmtCardex.setDouble(27, 0.00);
                                 pstmtCardex.setString(28, user);
                                 pstmtCardex.setBoolean(29, false);
                                 pstmtCardex.setObject(30, 0.00);
@@ -1575,7 +1588,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
 
             }
 
-        } 
+        }
         //
 //        StockTakeThread stockTakeThread = new StockTakeThread();
 //        
@@ -1589,447 +1602,448 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
     }//GEN-LAST:event_range2txtActionPerformed
 
     class StockTakeThread extends java.lang.Thread {
-        public void run(){
-             java.util.Date dateToday = new java.util.Date();
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        java.util.Date periodFrom = null;
-        java.util.Date periodTo = null;
+        public void run() {
+            java.util.Date dateToday = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        if (storeCmbx.getSelectedItem() == null) {
+            java.util.Date periodFrom = null;
+            java.util.Date periodTo = null;
 
-            javax.swing.JOptionPane.showMessageDialog(null, "You have to first select the store whose stock you intend to reconcile.");
+            if (storeCmbx.getSelectedItem() == null) {
 
-        } else if (reconcileDtpckr.getDate() == null) {
+                javax.swing.JOptionPane.showMessageDialog(null, "You have to first select the store whose stock you intend to reconcile.");
 
-            javax.swing.JOptionPane.showMessageDialog(null, "You have to specify a reconciliation date.\n"
-                    + "i.e. the ACTUAL DATE when stock for this store was physically counted.");
-        } else {
+            } else if (reconcileDtpckr.getDate() == null) {
 
-            try {
-
-                java.sql.Statement stmtf = connectDB.createStatement();
-                java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + reconcileDtpckr.getDate() + "' BETWEEN period_from AND period_to");
-                while (rsetf.next()) {
-                    periodFrom = rsetf.getDate(1);
-                    periodTo = rsetf.getDate(2);
-                }
-
-            } catch (java.sql.SQLException sq) {
-                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                System.out.println(sq.getMessage());
-
-            }
-
-            if (reconcileDtpckr.getDate().before(periodFrom) || reconcileDtpckr.getDate().after(periodTo)) {
-                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
+                javax.swing.JOptionPane.showMessageDialog(null, "You have to specify a reconciliation date.\n"
+                        + "i.e. the ACTUAL DATE when stock for this store was physically counted.");
             } else {
-                if (jTable1.isEditing()) {
-                    jTable1.getCellEditor().stopCellEditing();
-                }
-                java.util.Calendar calendar = java.util.Calendar.getInstance();
-
-                long dateNow = calendar.getTimeInMillis();
-
-                java.sql.Date datenowSql = new java.sql.Date(dateNow);
-                String user = null;
-                java.sql.Savepoint registerSavePoint = null;
-
-                try {
-                    connectDB.setAutoCommit(false);
-                    registerSavePoint = connectDB.setSavepoint("registration");
-                } catch (java.sql.SQLException ex) {
-                    ex.printStackTrace();
-                }
 
                 try {
 
-                    java.sql.Statement pst2 = connectDB.createStatement();
-                    java.sql.ResultSet rs = pst2.executeQuery("select current_user");
-                    while (rs.next()) {
-                        user = rs.getObject(1).toString();
-                    }
-                    String transNo = null;
-                    String accountCoded = null;
-                    String glTyped = null;
-                    java.sql.Statement ps11 = connectDB.createStatement();
-                    java.sql.ResultSet rst = ps11.executeQuery("select nextval('transaction_no_seq'),current_user");
-                    while (rst.next()) {
-                        rst.getObject(1).toString();
-
-                        transNo = rst.getObject(1).toString();
-                        user = rst.getObject(2).toString();
+                    java.sql.Statement stmtf = connectDB.createStatement();
+                    java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + reconcileDtpckr.getDate() + "' BETWEEN period_from AND period_to");
+                    while (rsetf.next()) {
+                        periodFrom = rsetf.getDate(1);
+                        periodTo = rsetf.getDate(2);
                     }
 
-                    java.sql.Statement pstcode = connectDB.createStatement();
-                    java.sql.ResultSet rscode = pst2.executeQuery("select distinct activity from pb_activity where code ='" + storeGLtxt.getText() + "'");
-                    while (rscode.next()) {
-                        activity = rscode.getObject(1).toString();
-                        // Stock = rs.getObject(2).toString();
-                    }
-                    for (int i = 0; i < jTable1.getRowCount(); i++) {
-
-                        if (jTable1.getModel().getValueAt(i, 0) == null || jTable1.getModel().getValueAt(i, 5) == null || jTable1.getModel().getValueAt(i, 6).toString().equalsIgnoreCase("")) {
-                            //java.sql.PreparedStatement pstmt = connectDB.prepareStatement("update st_stock_item set quantity_instock = quantity_instock + '"+jTable1.getValueAt(i,2).toString()+"' where department = '"+jComboBox1.getSelectedItem().toString()+"' and description = '"+jTable1.getValueAt(i,0).toString()+"'");
-                        } else {
-                            double actual = 0.00;
-                            double diff = 0.00;
-                            double price = 0.00;
-                            String strength = null;
-                            String code = null;
-
-                            double balance = Double.parseDouble(jTable1.getModel().getValueAt(i, 4).toString());
-                            double quantity = Double.parseDouble(jTable1.getModel().getValueAt(i, 5).toString());
-                            double expired = Double.parseDouble(jTable1.getModel().getValueAt(i, 6).toString());
-                            double damaged = Double.parseDouble(jTable1.getModel().getValueAt(i, 7).toString());
-
-                            actual = quantity + expired + damaged;
-                            diff = balance - actual;
-                            double pkge = 0;
-
-                            java.sql.Statement pst21r = connectDB.createStatement();
-
-                            java.sql.ResultSet rstrs = pst21r.executeQuery("SELECT packaging FROM stockitem st WHERE st.item_code = '" + jTable1.getValueAt(i, 0).toString() + "'");
-                            while (rstrs.next()) {
-                                pkge = rstrs.getDouble(1);
-                            }
-                            java.sql.Statement pstmt6 = connectDB.createStatement();
-                            java.sql.ResultSet rs6 = pstmt6.executeQuery("select item_code,buying_price,strength FROM stockitem where item_code ilike '" + jTable1.getValueAt(i, 0) + "'");
-                            while (rs6.next()) {
-                                code = dbObject.getDBObject(rs6.getObject(1), "-");
-                                //  comp = rs6.getDouble(2);
-                                if (pkge == 1) {
-                                    price = rs6.getDouble(2);
-                                } else {
-                                    price = rs6.getDouble(2) / pkge;
-                                }
-                                strength = rs6.getString(3);
-                            }
-
-                            quantity = quantity;
-                            //system balance                     
-                            if (balance != 0.0) {
-                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into st_stock_counts values(?, ?, ?, ?, ?, "
-                                        + "                                                                                      ?, ?, ?, ?, ?, "
-                                        + "                                                                                      ?, ?, ?, ?,?)");
-                                pstmt.setObject(1, code);
-                                pstmt.setObject(2, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
-                                pstmt.setObject(3, "System Balance");
-                                pstmt.setDouble(4, balance);
-                                pstmt.setString(5, transNo);
-                                pstmt.setString(6, storeCmbx.getSelectedItem().toString());
-                                pstmt.setString(7, user);
-                                pstmt.setTime(8, new java.sql.Time(java.util.Calendar.getInstance().getTimeInMillis()));
-                                if (balance > 0) {
-                                    pstmt.setDouble(9, balance * price);
-                                    pstmt.setDouble(10, 0.00);
-                                } else {
-                                    pstmt.setDouble(9, 0.00);
-                                    pstmt.setDouble(10, -balance * price);
-                                }
-
-                                pstmt.setDouble(11, price);
-                                pstmt.setObject(12, jTable1.getValueAt(i, 3));
-                                pstmt.setObject(13, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
-                                pstmt.setString(14, "");
-                                pstmt.setObject(15, jTable1.getValueAt(i, 8));
-                                System.err.println(sdf.format(new java.util.Date()));
-                                pstmt.executeUpdate();
-
-                            }
-                            if (quantity > 0.0) {
-                                //salable 
-                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into st_stock_counts values(?, ?, ?, ?, ?, "
-                                        + "                                                                                      ?, ?, ?, ?, ?, "
-                                        + "                                                                                      ?, ?, ?, ?,?)");
-                                pstmt.setObject(1, code);
-                                pstmt.setObject(2, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
-                                pstmt.setObject(3, "Salable");
-                                pstmt.setDouble(4, quantity);
-                                pstmt.setString(5, transNo);
-                                pstmt.setString(6, storeCmbx.getSelectedItem().toString());
-                                pstmt.setString(7, user);
-                                pstmt.setTime(8, new java.sql.Time(java.util.Calendar.getInstance().getTimeInMillis()));
-                                pstmt.setDouble(9, 0.00);
-                                pstmt.setDouble(10, quantity * price);
-                                pstmt.setDouble(11, price);
-                                pstmt.setObject(12, jTable1.getValueAt(i, 3));
-                                pstmt.setObject(13, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
-                                pstmt.setString(14, "");
-                                pstmt.setObject(15, jTable1.getValueAt(i, 8));
-                                System.err.println(sdf.format(new java.util.Date()));
-                                pstmt.executeUpdate();
-
-                            }
-                            if (expired > 0.0) {
-                                //expired
-                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into st_stock_counts values(?, ?, ?, ?, ?, "
-                                        + "                                                                                      ?, ?, ?, ?, ?, "
-                                        + "                                                                                      ?, ?, ?, ?,?)");
-                                pstmt.setObject(1, code);
-                                pstmt.setObject(2, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
-                                pstmt.setObject(3, "Expired");
-                                pstmt.setDouble(4, expired);
-                                pstmt.setString(5, transNo);
-                                pstmt.setString(6, storeCmbx.getSelectedItem().toString());
-                                pstmt.setString(7, user);
-                                pstmt.setTime(8, new java.sql.Time(java.util.Calendar.getInstance().getTimeInMillis()));
-                                pstmt.setDouble(9, 0.00);
-                                pstmt.setDouble(10, expired * price);
-                                pstmt.setDouble(11, price);
-                                pstmt.setObject(12, jTable1.getValueAt(i, 3));
-                                pstmt.setObject(13, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
-                                pstmt.setString(14, "");
-                                pstmt.setObject(15, jTable1.getValueAt(i, 8));
-                                System.err.println(sdf.format(new java.util.Date()));
-                                pstmt.executeUpdate();
-
-                            }
-                            if (damaged > 0.0) {
-                                //damaged
-                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into st_stock_counts values(?, ?, ?, ?, ?, "
-                                        + "                                                                                      ?, ?, ?, ?, ?, "
-                                        + "                                                                                      ?, ?, ?, ?,?)");
-                                pstmt.setObject(1, code);
-                                pstmt.setObject(2, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
-                                pstmt.setObject(3, "Damaged");
-                                pstmt.setDouble(4, damaged);
-                                pstmt.setString(5, transNo);
-                                pstmt.setString(6, storeCmbx.getSelectedItem().toString());
-                                pstmt.setString(7, user);
-                                pstmt.setTime(8, new java.sql.Time(java.util.Calendar.getInstance().getTimeInMillis()));
-                                pstmt.setDouble(9, 0.00);
-                                pstmt.setDouble(10, damaged * price);
-                                pstmt.setDouble(11, price);
-                                pstmt.setObject(12, jTable1.getValueAt(i, 3));
-                                pstmt.setObject(13, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
-                                pstmt.setString(14, "");
-                                pstmt.setObject(15, jTable1.getValueAt(i, 8));
-                                System.err.println(sdf.format(new java.util.Date()));
-                                pstmt.executeUpdate();
-
-                            }
-//sub stores
-                            if (balance != 0.0) {
-                                java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("insert into st_sub_stores values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                                pstmt11.setString(1, storeCmbx.getSelectedItem().toString());
-                                pstmt11.setObject(2, jTable1.getValueAt(i, 1));
-                                if (balance >= 0) {
-                                    pstmt11.setDouble(4, balance);
-                                    pstmt11.setDouble(3, 0.00);
-                                } else {
-                                    if (balance < 0) {
-                                        pstmt11.setDouble(3, (balance * -1));
-                                        pstmt11.setDouble(4, 0.00);
-                                    }
-                                }
-
-                                pstmt11.setDouble(5, 0.00);
-                                pstmt11.setDouble(6, balance * price);
-                                pstmt11.setDouble(7, 0.00);
-                                pstmt11.setObject(8, transNo);
-                                pstmt11.setObject(9, null);
-                                pstmt11.setObject(10, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
-                                pstmt11.setString(11, user);
-                                pstmt11.setObject(12, jTable1.getValueAt(i, 3));
-                                pstmt11.setString(13, storeCmbx.getSelectedItem().toString());
-                                pstmt11.setObject(14, "Stock Difference");
-                                pstmt11.setDouble(15, price);
-                                pstmt11.setObject(16, code);
-                                pstmt11.setObject(17, strength);
-                                pstmt11.executeUpdate();
-                            }
-//                           
-                            java.sql.PreparedStatement pstmt11c = connectDB.prepareStatement("insert into st_sub_stores values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                            pstmt11c.setString(1, storeCmbx.getSelectedItem().toString());
-                            pstmt11c.setObject(2, jTable1.getValueAt(i, 1));
-                            pstmt11c.setDouble(3, actual);
-                            pstmt11c.setDouble(4, 0.00);
-                            pstmt11c.setDouble(5, 0.00);
-                            pstmt11c.setDouble(6, actual * price);
-                            pstmt11c.setDouble(7, 0.00);
-                            pstmt11c.setObject(8, transNo);
-                            pstmt11c.setObject(9, null);
-                            pstmt11c.setObject(10, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
-                            pstmt11c.setString(11, user);
-                            pstmt11c.setObject(12, jTable1.getValueAt(i, 3));
-                            pstmt11c.setString(13, storeCmbx.getSelectedItem().toString());
-                            pstmt11c.setObject(14, "Stock Count");
-                            pstmt11c.setDouble(15, price);
-                            pstmt11c.setObject(16, code);
-                            pstmt11c.setObject(17, strength);
-                            pstmt11c.executeUpdate();
-
-                            java.sql.Statement pst21 = connectDB.createStatement();
-                            java.sql.ResultSet rs1 = pst21.executeQuery("select code,activity from pb_activity where department='INV'");
-                            while (rs1.next()) {
-
-                                accountCoded = rs1.getObject(1).toString();
-                                glTyped = rs1.getObject(2).toString();
-                            }
-                            //nulify  
-                            if (balance != 0.0) {
-                                java.sql.PreparedStatement pstmtCardex = connectDB.prepareStatement("insert into st_stock_cardex values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
-                                pstmtCardex.setString(1, null);
-                                pstmtCardex.setObject(3, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
-                                pstmtCardex.setString(2, storeCmbx.getSelectedItem().toString());
-                                pstmtCardex.setDate(4, null);
-                                pstmtCardex.setDouble(6, price);
-                                pstmtCardex.setObject(7, jTable1.getValueAt(i, 3));
-                                pstmtCardex.setObject(8, "");
-                                pstmtCardex.setObject(9, null);
-                                pstmtCardex.setString(10, null);
-
-                                if (balance < 0) {
-                                    pstmtCardex.setDouble(11, balance);
-                                    pstmtCardex.setDouble(5, 0.00);
-                                    pstmtCardex.setDouble(21, -1 * balance * price);
-                                    pstmtCardex.setDouble(22, 0.00);
-                                } else if (balance >= 0) {
-                                    pstmtCardex.setDouble(11, balance);
-                                    pstmtCardex.setDouble(5, balance * price);
-                                    pstmtCardex.setDouble(21, 0.00);
-                                    pstmtCardex.setDouble(22, balance * price);
-                                }
-
-                                pstmtCardex.setDouble(12, 0.00);
-                                pstmtCardex.setDouble(13, 0.00);
-                                pstmtCardex.setString(14, "-");
-                                pstmtCardex.setString(15, "-");
-                                pstmtCardex.setString(16, "");
-                                pstmtCardex.setString(17, null);
-                                pstmtCardex.setDate(18, datenowSql);
-                                pstmtCardex.setString(19, storeCmbx.getSelectedItem().toString());
-                                pstmtCardex.setString(20, "Stock_System_Balance_At:" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(reconcileDtpckr.getDate()));
-                                pstmtCardex.setString(20, "Stock Count Difference");
-                                pstmtCardex.setString(23, storeGLtxt.getText());
-                                pstmtCardex.setString(24, "");
-                                pstmtCardex.setString(25, storeCmbx.getSelectedItem().toString());
-                                pstmtCardex.setString(26, transNo);
-                                pstmtCardex.setDouble(27, 0.00);
-                                pstmtCardex.setString(28, user);
-                                pstmtCardex.setBoolean(29, false);
-                                pstmtCardex.setObject(30, 0.00);
-                                pstmtCardex.setObject(31, null);
-                                pstmtCardex.setObject(32, jTable1.getValueAt(i, 0));
-                                pstmtCardex.setObject(33, "");
-                                pstmtCardex.setObject(34, "");
-                                pstmtCardex.executeUpdate();
-                            }
-                            //add new stock         
-                            java.sql.PreparedStatement pstmtCardex3 = connectDB.prepareStatement("insert into st_stock_cardex values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
-                            pstmtCardex3.setString(1, null);
-                            pstmtCardex3.setObject(3, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
-                            pstmtCardex3.setString(2, storeCmbx.getSelectedItem().toString());
-                            pstmtCardex3.setDate(4, null);
-                            pstmtCardex3.setDouble(11, actual);
-                            pstmtCardex3.setDouble(6, price);
-                            pstmtCardex3.setObject(7, jTable1.getValueAt(i, 3));
-                            pstmtCardex3.setObject(8, "");
-                            pstmtCardex3.setObject(9, null);
-                            pstmtCardex3.setString(10, null);
-                            pstmtCardex3.setDouble(5, 0.00);
-                            pstmtCardex3.setDouble(21, actual * price);
-                            pstmtCardex3.setDouble(22, 0.00);
-                            pstmtCardex3.setDouble(12, 0.00);
-                            pstmtCardex3.setDouble(13, 0.00);
-                            pstmtCardex3.setString(14, "-");
-                            pstmtCardex3.setString(15, "-");
-                            pstmtCardex3.setString(16, "");
-                            pstmtCardex3.setString(17, null);
-                            pstmtCardex3.setDate(18, datenowSql);
-                            pstmtCardex3.setString(19, storeCmbx.getSelectedItem().toString());
-                            pstmtCardex3.setString(20, "Stock_System_Balance_At:" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(reconcileDtpckr.getDate()));
-                            pstmtCardex3.setString(20, "Stock Count");
-                            pstmtCardex3.setString(23, storeGLtxt.getText());
-                            pstmtCardex3.setString(24, "");
-                            pstmtCardex3.setString(25, storeCmbx.getSelectedItem().toString());
-                            pstmtCardex3.setString(26, transNo);
-                            pstmtCardex3.setDouble(27, 0.00);
-                            pstmtCardex3.setString(28, user);
-                            pstmtCardex3.setBoolean(29, false);
-                            pstmtCardex3.setObject(30, 0.00);
-                            pstmtCardex3.setObject(31, null);
-                            pstmtCardex3.setObject(32, jTable1.getValueAt(i, 0));
-                            pstmtCardex3.setObject(33, "");
-                            pstmtCardex3.setObject(34, "");
-                            pstmtCardex3.executeUpdate();
-
-                            //+ diff is loss                               
-                            if (diff != 0.0) {
-                                java.sql.PreparedStatement pstmt1q1 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
-                                pstmt1q1.setObject(1, accountCoded);
-                                pstmt1q1.setString(2, glTyped);
-                                pstmt1q1.setString(3, jTable1.getValueAt(i, 0).toString());
-                                pstmt1q1.setString(4, jTable1.getValueAt(i, 1).toString());
-                                pstmt1q1.setString(6, String.valueOf(diff));
-                                pstmt1q1.setString(5, "Stock count diff");
-                                pstmt1q1.setString(7, "");
-                                pstmt1q1.setString(8, "");
-                                pstmt1q1.setString(9, "");
-                                pstmt1q1.setString(10, "");
-                                pstmt1q1.setString(11, "");
-                                pstmt1q1.setString(12, "");
-                                pstmt1q1.setString(13, "");
-                                pstmt1q1.setString(14, glTyped);
-                                pstmt1q1.setString(15, "stock count");
-                                if (diff > 0) { //loss
-                                    pstmt1q1.setDouble(17, 0.00);
-                                    /*debit*/ pstmt1q1.setDouble(16, price * diff);
-                                } else if (diff < 0) { //gain
-                                    pstmt1q1.setDouble(17, price * diff * -1);
-                                    pstmt1q1.setDouble(16, 0.00);
-                                }
-                                //  price*quantity
-                                pstmt1q1.setDate(18, datenowSql);
-                                pstmt1q1.setString(19, transNo);
-                                pstmt1q1.setBoolean(20, false);
-                                pstmt1q1.setBoolean(21, false);
-                                pstmt1q1.setBoolean(22, false);
-                                pstmt1q1.setString(23, user);
-                                pstmt1q1.setString(24, "");
-                                pstmt1q1.setString(25, "");
-                                pstmt1q1.setTimestamp(26, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
-                                pstmt1q1.executeUpdate();
-                            }
-
-                        }
-                    }
-
-                    connectDB.commit();
-                    connectDB.setAutoCommit(true);
-
-                    jLabel12.setForeground(java.awt.Color.blue);
-                    javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Data Saved Successfully", "Information message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-                    jButton1.setEnabled(false);
-                    range1txt.setText("-");
-                    range2txt.setText("-");
-                    // javax.swing.JOptionPane.showMessageDialog(this, "Enter quantity issued","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
-                    for (int k = 0; k < jTable1.getRowCount(); k++) {
-                        for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                            jTable1.getModel().setValueAt(null, k, r);
-                        }
-                    }
-
-                    storeCmbx.setSelectedItem(null);
-                    reconcileDtpckr.setDate(null);
-                    jButton1.setEnabled(false);
                 } catch (java.sql.SQLException sq) {
                     javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                    sq.printStackTrace();
-                    try {
-                        connectDB.rollback(registerSavePoint);
-                    } catch (java.sql.SQLException sql) {
-                        sql.printStackTrace();
-                        javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                    System.out.println(sq.getMessage());
+
+                }
+
+                if (reconcileDtpckr.getDate().before(periodFrom) || reconcileDtpckr.getDate().after(periodTo)) {
+                    javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                } else {
+                    if (jTable1.isEditing()) {
+                        jTable1.getCellEditor().stopCellEditing();
                     }
+                    java.util.Calendar calendar = java.util.Calendar.getInstance();
+
+                    long dateNow = calendar.getTimeInMillis();
+
+                    java.sql.Date datenowSql = new java.sql.Date(dateNow);
+                    String user = null;
+                    java.sql.Savepoint registerSavePoint = null;
+
+                    try {
+                        connectDB.setAutoCommit(false);
+                        registerSavePoint = connectDB.setSavepoint("registration");
+                    } catch (java.sql.SQLException ex) {
+                        ex.printStackTrace();
+                    }
+
+                    try {
+
+                        java.sql.Statement pst2 = connectDB.createStatement();
+                        java.sql.ResultSet rs = pst2.executeQuery("select current_user");
+                        while (rs.next()) {
+                            user = rs.getObject(1).toString();
+                        }
+                        String transNo = null;
+                        String accountCoded = null;
+                        String glTyped = null;
+                        java.sql.Statement ps11 = connectDB.createStatement();
+                        java.sql.ResultSet rst = ps11.executeQuery("select nextval('transaction_no_seq'),current_user");
+                        while (rst.next()) {
+                            rst.getObject(1).toString();
+
+                            transNo = rst.getObject(1).toString();
+                            user = rst.getObject(2).toString();
+                        }
+
+                        java.sql.Statement pstcode = connectDB.createStatement();
+                        java.sql.ResultSet rscode = pst2.executeQuery("select distinct activity from pb_activity where code ='" + storeGLtxt.getText() + "'");
+                        while (rscode.next()) {
+                            activity = rscode.getObject(1).toString();
+                            // Stock = rs.getObject(2).toString();
+                        }
+                        for (int i = 0; i < jTable1.getRowCount(); i++) {
+
+                            if (jTable1.getModel().getValueAt(i, 0) == null || jTable1.getModel().getValueAt(i, 5) == null || jTable1.getModel().getValueAt(i, 6).toString().equalsIgnoreCase("")) {
+                                //java.sql.PreparedStatement pstmt = connectDB.prepareStatement("update st_stock_item set quantity_instock = quantity_instock + '"+jTable1.getValueAt(i,2).toString()+"' where department = '"+jComboBox1.getSelectedItem().toString()+"' and description = '"+jTable1.getValueAt(i,0).toString()+"'");
+                            } else {
+                                double actual = 0.00;
+                                double diff = 0.00;
+                                double price = 0.00;
+                                String strength = null;
+                                String code = null;
+
+                                double balance = Double.parseDouble(jTable1.getModel().getValueAt(i, 4).toString());
+                                double quantity = Double.parseDouble(jTable1.getModel().getValueAt(i, 5).toString());
+                                double expired = Double.parseDouble(jTable1.getModel().getValueAt(i, 6).toString());
+                                double damaged = Double.parseDouble(jTable1.getModel().getValueAt(i, 7).toString());
+
+                                actual = quantity + expired + damaged;
+                                diff = balance - actual;
+                                double pkge = 0;
+
+                                java.sql.Statement pst21r = connectDB.createStatement();
+
+                                java.sql.ResultSet rstrs = pst21r.executeQuery("SELECT packaging FROM stockitem st WHERE st.item_code = '" + jTable1.getValueAt(i, 0).toString() + "'");
+                                while (rstrs.next()) {
+                                    pkge = rstrs.getDouble(1);
+                                }
+                                java.sql.Statement pstmt6 = connectDB.createStatement();
+                                java.sql.ResultSet rs6 = pstmt6.executeQuery("select item_code,buying_price,strength FROM stockitem where item_code ilike '" + jTable1.getValueAt(i, 0) + "'");
+                                while (rs6.next()) {
+                                    code = dbObject.getDBObject(rs6.getObject(1), "-");
+                                    //  comp = rs6.getDouble(2);
+                                    if (pkge == 1) {
+                                        price = rs6.getDouble(2);
+                                    } else {
+                                        price = rs6.getDouble(2) / pkge;
+                                    }
+                                    strength = rs6.getString(3);
+                                }
+
+                                quantity = quantity;
+                                //system balance                     
+                                if (balance != 0.0) {
+                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into st_stock_counts values(?, ?, ?, ?, ?, "
+                                            + "                                                                                      ?, ?, ?, ?, ?, "
+                                            + "                                                                                      ?, ?, ?, ?,?)");
+                                    pstmt.setObject(1, code);
+                                    pstmt.setObject(2, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
+                                    pstmt.setObject(3, "System Balance");
+                                    pstmt.setDouble(4, balance);
+                                    pstmt.setString(5, transNo);
+                                    pstmt.setString(6, storeCmbx.getSelectedItem().toString());
+                                    pstmt.setString(7, user);
+                                    pstmt.setTime(8, new java.sql.Time(java.util.Calendar.getInstance().getTimeInMillis()));
+                                    if (balance > 0) {
+                                        pstmt.setDouble(9, balance * price);
+                                        pstmt.setDouble(10, 0.00);
+                                    } else {
+                                        pstmt.setDouble(9, 0.00);
+                                        pstmt.setDouble(10, -balance * price);
+                                    }
+
+                                    pstmt.setDouble(11, price);
+                                    pstmt.setObject(12, jTable1.getValueAt(i, 3));
+                                    pstmt.setObject(13, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
+                                    pstmt.setString(14, "");
+                                    pstmt.setObject(15, jTable1.getValueAt(i, 8));
+                                    System.err.println(sdf.format(new java.util.Date()));
+                                    pstmt.executeUpdate();
+
+                                }
+                                if (quantity > 0.0) {
+                                    //salable 
+                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into st_stock_counts values(?, ?, ?, ?, ?, "
+                                            + "                                                                                      ?, ?, ?, ?, ?, "
+                                            + "                                                                                      ?, ?, ?, ?,?)");
+                                    pstmt.setObject(1, code);
+                                    pstmt.setObject(2, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
+                                    pstmt.setObject(3, "Salable");
+                                    pstmt.setDouble(4, quantity);
+                                    pstmt.setString(5, transNo);
+                                    pstmt.setString(6, storeCmbx.getSelectedItem().toString());
+                                    pstmt.setString(7, user);
+                                    pstmt.setTime(8, new java.sql.Time(java.util.Calendar.getInstance().getTimeInMillis()));
+                                    pstmt.setDouble(9, 0.00);
+                                    pstmt.setDouble(10, quantity * price);
+                                    pstmt.setDouble(11, price);
+                                    pstmt.setObject(12, jTable1.getValueAt(i, 3));
+                                    pstmt.setObject(13, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
+                                    pstmt.setString(14, "");
+                                    pstmt.setObject(15, jTable1.getValueAt(i, 8));
+                                    System.err.println(sdf.format(new java.util.Date()));
+                                    pstmt.executeUpdate();
+
+                                }
+                                if (expired > 0.0) {
+                                    //expired
+                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into st_stock_counts values(?, ?, ?, ?, ?, "
+                                            + "                                                                                      ?, ?, ?, ?, ?, "
+                                            + "                                                                                      ?, ?, ?, ?,?)");
+                                    pstmt.setObject(1, code);
+                                    pstmt.setObject(2, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
+                                    pstmt.setObject(3, "Expired");
+                                    pstmt.setDouble(4, expired);
+                                    pstmt.setString(5, transNo);
+                                    pstmt.setString(6, storeCmbx.getSelectedItem().toString());
+                                    pstmt.setString(7, user);
+                                    pstmt.setTime(8, new java.sql.Time(java.util.Calendar.getInstance().getTimeInMillis()));
+                                    pstmt.setDouble(9, 0.00);
+                                    pstmt.setDouble(10, expired * price);
+                                    pstmt.setDouble(11, price);
+                                    pstmt.setObject(12, jTable1.getValueAt(i, 3));
+                                    pstmt.setObject(13, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
+                                    pstmt.setString(14, "");
+                                    pstmt.setObject(15, jTable1.getValueAt(i, 8));
+                                    System.err.println(sdf.format(new java.util.Date()));
+                                    pstmt.executeUpdate();
+
+                                }
+                                if (damaged > 0.0) {
+                                    //damaged
+                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into st_stock_counts values(?, ?, ?, ?, ?, "
+                                            + "                                                                                      ?, ?, ?, ?, ?, "
+                                            + "                                                                                      ?, ?, ?, ?,?)");
+                                    pstmt.setObject(1, code);
+                                    pstmt.setObject(2, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
+                                    pstmt.setObject(3, "Damaged");
+                                    pstmt.setDouble(4, damaged);
+                                    pstmt.setString(5, transNo);
+                                    pstmt.setString(6, storeCmbx.getSelectedItem().toString());
+                                    pstmt.setString(7, user);
+                                    pstmt.setTime(8, new java.sql.Time(java.util.Calendar.getInstance().getTimeInMillis()));
+                                    pstmt.setDouble(9, 0.00);
+                                    pstmt.setDouble(10, damaged * price);
+                                    pstmt.setDouble(11, price);
+                                    pstmt.setObject(12, jTable1.getValueAt(i, 3));
+                                    pstmt.setObject(13, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
+                                    pstmt.setString(14, "");
+                                    pstmt.setObject(15, jTable1.getValueAt(i, 8));
+                                    System.err.println(sdf.format(new java.util.Date()));
+                                    pstmt.executeUpdate();
+
+                                }
+//sub stores
+                                if (balance != 0.0) {
+                                    java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("insert into st_sub_stores values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                    pstmt11.setString(1, storeCmbx.getSelectedItem().toString());
+                                    pstmt11.setObject(2, jTable1.getValueAt(i, 1));
+                                    if (balance >= 0) {
+                                        pstmt11.setDouble(4, balance);
+                                        pstmt11.setDouble(3, 0.00);
+                                    } else {
+                                        if (balance < 0) {
+                                            pstmt11.setDouble(3, (balance * -1));
+                                            pstmt11.setDouble(4, 0.00);
+                                        }
+                                    }
+
+                                    pstmt11.setDouble(5, 0.00);
+                                    pstmt11.setDouble(6, balance * price);
+                                    pstmt11.setDouble(7, 0.00);
+                                    pstmt11.setObject(8, transNo);
+                                    pstmt11.setObject(9, null);
+                                    pstmt11.setObject(10, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
+                                    pstmt11.setString(11, user);
+                                    pstmt11.setObject(12, jTable1.getValueAt(i, 3));
+                                    pstmt11.setString(13, storeCmbx.getSelectedItem().toString());
+                                    pstmt11.setObject(14, "Stock Difference");
+                                    pstmt11.setDouble(15, price);
+                                    pstmt11.setObject(16, code);
+                                    pstmt11.setObject(17, strength);
+                                    pstmt11.executeUpdate();
+                                }
+//                           
+                                java.sql.PreparedStatement pstmt11c = connectDB.prepareStatement("insert into st_sub_stores values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                pstmt11c.setString(1, storeCmbx.getSelectedItem().toString());
+                                pstmt11c.setObject(2, jTable1.getValueAt(i, 1));
+                                pstmt11c.setDouble(3, actual);
+                                pstmt11c.setDouble(4, 0.00);
+                                pstmt11c.setDouble(5, 0.00);
+                                pstmt11c.setDouble(6, actual * price);
+                                pstmt11c.setDouble(7, 0.00);
+                                pstmt11c.setObject(8, transNo);
+                                pstmt11c.setObject(9, null);
+                                pstmt11c.setObject(10, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
+                                pstmt11c.setString(11, user);
+                                pstmt11c.setObject(12, jTable1.getValueAt(i, 3));
+                                pstmt11c.setString(13, storeCmbx.getSelectedItem().toString());
+                                pstmt11c.setObject(14, "Stock Count");
+                                pstmt11c.setDouble(15, price);
+                                pstmt11c.setObject(16, code);
+                                pstmt11c.setObject(17, strength);
+                                pstmt11c.executeUpdate();
+
+                                java.sql.Statement pst21 = connectDB.createStatement();
+                                java.sql.ResultSet rs1 = pst21.executeQuery("select code,activity from pb_activity where department='INV'");
+                                while (rs1.next()) {
+
+                                    accountCoded = rs1.getObject(1).toString();
+                                    glTyped = rs1.getObject(2).toString();
+                                }
+                                //nulify  
+                                if (balance != 0.0) {
+                                    java.sql.PreparedStatement pstmtCardex = connectDB.prepareStatement("insert into st_stock_cardex values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
+                                    pstmtCardex.setString(1, null);
+                                    pstmtCardex.setObject(3, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
+                                    pstmtCardex.setString(2, storeCmbx.getSelectedItem().toString());
+                                    pstmtCardex.setDate(4, null);
+                                    pstmtCardex.setDouble(6, price);
+                                    pstmtCardex.setObject(7, jTable1.getValueAt(i, 3));
+                                    pstmtCardex.setObject(8, "");
+                                    pstmtCardex.setObject(9, null);
+                                    pstmtCardex.setString(10, null);
+
+                                    if (balance < 0) {
+                                        pstmtCardex.setDouble(11, balance);
+                                        pstmtCardex.setDouble(5, 0.00);
+                                        pstmtCardex.setDouble(21, -1 * balance * price);
+                                        pstmtCardex.setDouble(22, 0.00);
+                                    } else if (balance >= 0) {
+                                        pstmtCardex.setDouble(11, balance);
+                                        pstmtCardex.setDouble(5, balance * price);
+                                        pstmtCardex.setDouble(21, 0.00);
+                                        pstmtCardex.setDouble(22, balance * price);
+                                    }
+
+                                    pstmtCardex.setDouble(12, 0.00);
+                                    pstmtCardex.setDouble(13, 0.00);
+                                    pstmtCardex.setString(14, "-");
+                                    pstmtCardex.setString(15, "-");
+                                    pstmtCardex.setString(16, "");
+                                    pstmtCardex.setString(17, null);
+                                    pstmtCardex.setDate(18, datenowSql);
+                                    pstmtCardex.setString(19, storeCmbx.getSelectedItem().toString());
+                                    pstmtCardex.setString(20, "Stock_System_Balance_At:" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(reconcileDtpckr.getDate()));
+                                    pstmtCardex.setString(20, "Stock Count Difference");
+                                    pstmtCardex.setString(23, storeGLtxt.getText());
+                                    pstmtCardex.setString(24, "");
+                                    pstmtCardex.setString(25, storeCmbx.getSelectedItem().toString());
+                                    pstmtCardex.setString(26, transNo);
+                                    pstmtCardex.setDouble(27, 0.00);
+                                    pstmtCardex.setString(28, user);
+                                    pstmtCardex.setBoolean(29, false);
+                                    pstmtCardex.setObject(30, 0.00);
+                                    pstmtCardex.setObject(31, null);
+                                    pstmtCardex.setObject(32, jTable1.getValueAt(i, 0));
+                                    pstmtCardex.setObject(33, "");
+                                    pstmtCardex.setObject(34, "");
+                                    pstmtCardex.executeUpdate();
+                                }
+                                //add new stock         
+                                java.sql.PreparedStatement pstmtCardex3 = connectDB.prepareStatement("insert into st_stock_cardex values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
+                                pstmtCardex3.setString(1, null);
+                                pstmtCardex3.setObject(3, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
+                                pstmtCardex3.setString(2, storeCmbx.getSelectedItem().toString());
+                                pstmtCardex3.setDate(4, null);
+                                pstmtCardex3.setDouble(11, actual);
+                                pstmtCardex3.setDouble(6, price);
+                                pstmtCardex3.setObject(7, jTable1.getValueAt(i, 3));
+                                pstmtCardex3.setObject(8, "");
+                                pstmtCardex3.setObject(9, null);
+                                pstmtCardex3.setString(10, null);
+                                pstmtCardex3.setDouble(5, 0.00);
+                                pstmtCardex3.setDouble(21, actual * price);
+                                pstmtCardex3.setDouble(22, 0.00);
+                                pstmtCardex3.setDouble(12, 0.00);
+                                pstmtCardex3.setDouble(13, 0.00);
+                                pstmtCardex3.setString(14, "-");
+                                pstmtCardex3.setString(15, "-");
+                                pstmtCardex3.setString(16, "");
+                                pstmtCardex3.setString(17, null);
+                                pstmtCardex3.setDate(18, datenowSql);
+                                pstmtCardex3.setString(19, storeCmbx.getSelectedItem().toString());
+                                pstmtCardex3.setString(20, "Stock_System_Balance_At:" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(reconcileDtpckr.getDate()));
+                                pstmtCardex3.setString(20, "Stock Count");
+                                pstmtCardex3.setString(23, storeGLtxt.getText());
+                                pstmtCardex3.setString(24, "");
+                                pstmtCardex3.setString(25, storeCmbx.getSelectedItem().toString());
+                                pstmtCardex3.setString(26, transNo);
+                                pstmtCardex3.setDouble(27, 0.00);
+                                pstmtCardex3.setString(28, user);
+                                pstmtCardex3.setBoolean(29, false);
+                                pstmtCardex3.setObject(30, 0.00);
+                                pstmtCardex3.setObject(31, null);
+                                pstmtCardex3.setObject(32, jTable1.getValueAt(i, 0));
+                                pstmtCardex3.setObject(33, "");
+                                pstmtCardex3.setObject(34, "");
+                                pstmtCardex3.executeUpdate();
+
+                                //+ diff is loss                               
+                                if (diff != 0.0) {
+                                    java.sql.PreparedStatement pstmt1q1 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
+                                    pstmt1q1.setObject(1, accountCoded);
+                                    pstmt1q1.setString(2, glTyped);
+                                    pstmt1q1.setString(3, jTable1.getValueAt(i, 0).toString());
+                                    pstmt1q1.setString(4, jTable1.getValueAt(i, 1).toString());
+                                    pstmt1q1.setString(6, String.valueOf(diff));
+                                    pstmt1q1.setString(5, "Stock count diff");
+                                    pstmt1q1.setString(7, "");
+                                    pstmt1q1.setString(8, "");
+                                    pstmt1q1.setString(9, "");
+                                    pstmt1q1.setString(10, "");
+                                    pstmt1q1.setString(11, "");
+                                    pstmt1q1.setString(12, "");
+                                    pstmt1q1.setString(13, "");
+                                    pstmt1q1.setString(14, glTyped);
+                                    pstmt1q1.setString(15, "stock count");
+                                    if (diff > 0) { //loss
+                                        pstmt1q1.setDouble(17, 0.00);
+                                        /*debit*/ pstmt1q1.setDouble(16, price * diff);
+                                    } else if (diff < 0) { //gain
+                                        pstmt1q1.setDouble(17, price * diff * -1);
+                                        pstmt1q1.setDouble(16, 0.00);
+                                    }
+                                    //  price*quantity
+                                    pstmt1q1.setDate(18, datenowSql);
+                                    pstmt1q1.setString(19, transNo);
+                                    pstmt1q1.setBoolean(20, false);
+                                    pstmt1q1.setBoolean(21, false);
+                                    pstmt1q1.setBoolean(22, false);
+                                    pstmt1q1.setString(23, user);
+                                    pstmt1q1.setString(24, "");
+                                    pstmt1q1.setString(25, "");
+                                    pstmt1q1.setTimestamp(26, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+                                    pstmt1q1.executeUpdate();
+                                }
+
+                            }
+                        }
+
+                        connectDB.commit();
+                        connectDB.setAutoCommit(true);
+
+                        jLabel12.setForeground(java.awt.Color.blue);
+                        javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Data Saved Successfully", "Information message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                        jButton1.setEnabled(false);
+                        range1txt.setText("-");
+                        range2txt.setText("-");
+                        // javax.swing.JOptionPane.showMessageDialog(this, "Enter quantity issued","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
+                        for (int k = 0; k < jTable1.getRowCount(); k++) {
+                            for (int r = 0; r < jTable1.getColumnCount(); r++) {
+                                jTable1.getModel().setValueAt(null, k, r);
+                            }
+                        }
+
+                        storeCmbx.setSelectedItem(null);
+                        reconcileDtpckr.setDate(null);
+                        jButton1.setEnabled(false);
+                    } catch (java.sql.SQLException sq) {
+                        javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                        sq.printStackTrace();
+                        try {
+                            connectDB.rollback(registerSavePoint);
+                        } catch (java.sql.SQLException sql) {
+                            sql.printStackTrace();
+                            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+
                 }
 
             }
-
-        }       
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2049,6 +2063,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

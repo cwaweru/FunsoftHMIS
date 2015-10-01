@@ -1776,6 +1776,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="EMR"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emrmnActionPerformed"/>
+          </Events>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="patientregstmnit">
               <Properties>
@@ -1992,7 +1995,7 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="refferalsmnit">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Refferals"/>
+                    <Property name="text" type="java.lang.String" value="Referrals"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refferalsmnitActionPerformed"/>
@@ -2172,6 +2175,30 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="postNatalCaremnitActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="cwcRegistermnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Child Welfare Clinic Register"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cwcRegistermnitActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="immunisationmnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Immunisation Register"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="immunisationmnitActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="fpRHServicesmnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="RH - Family Planning Services "/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fpRHServicesmnitActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="rhCentreMnit">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Reproductive Health Centre"/>
@@ -2258,6 +2285,31 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mortOccupancymnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator100">
+            </MenuItem>
+            <Menu class="javax.swing.JMenu" name="communityHealthmn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Community Health Extension"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="communityHealthRegistermnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Community Health Extension Register"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="communityHealthRegistermnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="houseHoldRehistermnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="House Hold Register"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="houseHoldRehistermnitActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>
@@ -2683,6 +2735,30 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bloodGrpmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="immunisationProceduresmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Immunisation Procedures"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="immunisationProceduresmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="cwcIndicatormnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Child Welfare Clinic Indicators"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cwcIndicatormnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="fpIndicatorsSetupmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Family Planning Services Setup"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fpIndicatorsSetupmnitActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>
@@ -8177,6 +8253,16 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="useraccountsmnActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator101">
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="gisReportermnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Funsoft HealthGIS Reporter"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gisReportermnitActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

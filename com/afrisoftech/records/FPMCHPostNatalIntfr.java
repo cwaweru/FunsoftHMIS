@@ -659,7 +659,7 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             ancMotherInfoPanel.add(counsellingCmbx, gridBagConstraints);
 
-            hbLbl.setText("Pulse");
+            hbLbl.setText("Pulse Rate");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 7;
@@ -789,14 +789,14 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
             referralsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Referrals Information"));
             referralsPanel.setLayout(new java.awt.GridBagLayout());
 
-            referralINCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1-From Other Health Facility", "2-From Internal Care Unit" }));
+            referralINCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "1-From Other Health Facility", "2-From Internal Care Unit" }));
             referralINCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Referral IN"));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             referralsPanel.add(referralINCmbx, gridBagConstraints);
 
-            referralOUTCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "3-To Other Health Facility", "4-To Internal Care Unit" }));
+            referralOUTCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "3-To Other Health Facility", "4-To Internal Care Unit" }));
             referralOUTCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Referral OUT"));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.weightx = 1.0;
@@ -966,7 +966,7 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             ancMotherInfoPanel.add(jLabel9, gridBagConstraints);
 
-            modernFPMethodCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "C - Condoms", "ECP - Emergency Contraceptive Pills", "OC - Oral Contraceptive Pills", "INJ - Injectables", "IMP - Implant", "IUD - Intra-Uterine Device", "LAM - Lactational Amenorrhea Method", "D = Diaphragm/Cervical Cap", "FA = Fertility Awareness Method/Periodic Abstinence", "TL = Tubal Ligation/Female Sterilization", "V = Vasectomy (Partner’s)" }));
+            modernFPMethodCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "C - Condoms", "ECP - Emergency Contraceptive Pills", "OC - Oral Contraceptive Pills", "INJ - Injectables", "IMP - Implant", "IUD - Intra-Uterine Device", "LAM - Lactational Amenorrhea Method", "D = Diaphragm/Cervical Cap", "FA = Fertility Awareness Method/Periodic Abstinence", "TL = Tubal Ligation/Female Sterilization", "V = Vasectomy (Partner’s)" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 4;
             gridBagConstraints.gridy = 10;
@@ -1638,94 +1638,99 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
 }//GEN-LAST:event_regEditdataBtnActionPerformed
 
     private void saveMotherInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMotherInfoBtnActionPerformed
-        /*if (rhClientCardNoTxt.getText().isEmpty()) {
-         emptyNo();
-         } else {*/
-        try {
-            connectDB.setAutoCommit(false);
-            java.sql.PreparedStatement pstmtMotherInfo = connectDB.prepareStatement("INSERT INTO rh.post_natal_follow_up_register("
-                    + "            service_date, patient_no, "
-                    + "            pnc_no, full_name, village, age, telephone, date_of_delivery, "
-                    + "            place_of_delivery, mode_of_delivery, state_of_baby, temperature, "
-                    + "            pulse, blood_pressure, pallor, breast, uterus, pph, c_section_site, "
-                    + "            lochia, episiotomy, fistula, ppc_mother_1, ppc_mother_2, ppc_baby_1, "
-                    + "            ppc_baby_2, hiv_prior_status, hiv_tested_pnc, hiv_tested_pnc_2, "
-                    + "            nvp_to_baby, ctx_to_baby, ctx_to_mother, partner_hiv_counselled, "
-                    + "            partner_hiv_tested, partner_hiv_results, cancer_screening_method, "
-                    + "            cancer_screening_results, pnc_exercise_given, vitamina_supplimentation, "
-                    + "            modern_fp_method, multi_vitamin, haemantics, diagnosis, referred_from, "
-                    + "            referred_to, remarks)"
-                    + "    VALUES (?, ?, ?, ?, ?, "
-                    + "            ?, ?, ?, ?, ?, ?, "
-                    + "            ?, ?, ?, ?, "
-                    + "            ?, ?, ?, ?, ?, ?, ?, "
-                    + "            ?, ?, ?, ?, ?, ?, "
-                    + "            ?, ?, ?, ?, "
-                    + "            ?, ?, ?, ?, "
-                    + "            ?, ?, ?, "
-                    + "            ?, ?, ?, "
-                    + "            ?, ?, ?, ?)");
-            pstmtMotherInfo.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(ancVisitDatePicker.getDate()));
-            pstmtMotherInfo.setString(2, patientNumberTxt.getText());
-            pstmtMotherInfo.setString(3, ancNumberTxt.getText());
-            pstmtMotherInfo.setString(4, firstNameTxt + " " + middleNameTxt.getText() + " " + lastNameTxt.getText());
-            pstmtMotherInfo.setString(5, residenceTxt.getText());
-            pstmtMotherInfo.setDouble(6, java.lang.Double.valueOf(ageTxt.getText()));
-            pstmtMotherInfo.setString(7, telephoneTxt.getText());
-            pstmtMotherInfo.setDate(8, com.afrisoftech.lib.SQLDateFormat.getSQLDate(deliveryDatePicker.getDate()));
-            pstmtMotherInfo.setObject(9, placeofDeliveryCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(10, deliveryModeCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(11, statusAPGARScoreTxt.getText());
-            pstmtMotherInfo.setDouble(12, java.lang.Double.valueOf(temperatureTxt.getText()));
-            pstmtMotherInfo.setDouble(13, java.lang.Double.valueOf(pulseRateTxt.getText()));
-            pstmtMotherInfo.setObject(14, bloodPressureTxt.getText());
-            pstmtMotherInfo.setObject(15, pallorCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(16, breastCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(17, uterusCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(18, pphCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(19, cSectionCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(20, lochiaCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(21, episiotomyCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(22, fistulaCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(23, ppcMother2daysCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(24, ppcMother6daysCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(25, ppcBaby2daysCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(26, ppcBaby6daysCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(27, priorHIVStatusCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(28, hivPNCWithin72HrsCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(29, hivPNCOver72HrsCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(30, nvpBabyCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(31, ctxBabyCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(32, ctxMotherCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(33, coupleCounselledCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(34, partnerHIVTestedCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(35, partnerHIVResultsCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(36, cancerScreeningMethodCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(37, cancerScreeningResultCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(38, pncExerciseCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(39, vitaminaSupplimentationCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(40, modernFPMethodCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(41, multiVitaminCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(42, haematinicsCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(43, otherConditionsCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(44, referralINCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(45, referralOUTCmbx.getSelectedItem());
-            pstmtMotherInfo.setObject(46, commentsTextPaneTxt.getText());
-            pstmtMotherInfo.execute();
-            this.initComponents();
-            this.setSize(com.afrisoftech.hospital.HospitalMain.saccopn.getSize());
-            results();
+        if (ancNumberTxt.getText().isEmpty() || ageTxt.getText().isEmpty() || patientNumberTxt.getText().isEmpty() || pulseRateTxt.getText().isEmpty() || temperatureTxt.getText().isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Patient number, patient age, pulse rate, temperature and PNC number cannot be empty");
+        } else {
+            try {
+                connectDB.setAutoCommit(false);
+                java.sql.PreparedStatement pstmtMotherInfo = connectDB.prepareStatement("INSERT INTO rh.post_natal_follow_up_register("
+                        + "            service_date, patient_no, "
+                        + "            pnc_no, full_name, village, age, telephone, date_of_delivery, "
+                        + "            place_of_delivery, mode_of_delivery, state_of_baby, temperature, "
+                        + "            pulse, blood_pressure, pallor, breast, uterus, pph, c_section_site, "
+                        + "            lochia, episiotomy, fistula, ppc_mother_1, ppc_mother_2, ppc_baby_1, "
+                        + "            ppc_baby_2, hiv_prior_status, hiv_tested_pnc, hiv_tested_pnc_2, "
+                        + "            nvp_to_baby, ctx_to_baby, ctx_to_mother, partner_hiv_counselled, "
+                        + "            partner_hiv_tested, partner_hiv_results, cancer_screening_method, "
+                        + "            cancer_screening_results, pnc_exercise_given, vitamina_supplimentation, "
+                        + "            modern_fp_method, multi_vitamin, haemantics, diagnosis, referred_from, "
+                        + "            referred_to, remarks)"
+                        + "    VALUES (?, ?, ?, ?, ?, "
+                        + "            ?, ?, ?, ?, ?, ?, "
+                        + "            ?, ?, ?, ?, "
+                        + "            ?, ?, ?, ?, ?, ?, ?, "
+                        + "            ?, ?, ?, ?, ?, ?, "
+                        + "            ?, ?, ?, ?, "
+                        + "            ?, ?, ?, ?, "
+                        + "            ?, ?, ?, "
+                        + "            ?, ?, ?, "
+                        + "            ?, ?, ?, ?)");
+                pstmtMotherInfo.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(ancVisitDatePicker.getDate()));
+                pstmtMotherInfo.setString(2, patientNumberTxt.getText());
+                pstmtMotherInfo.setString(3, ancNumberTxt.getText());
+                pstmtMotherInfo.setString(4, firstNameTxt.getText() + " " + middleNameTxt.getText() + " " + lastNameTxt.getText());
+                pstmtMotherInfo.setString(5, residenceTxt.getText());
+                pstmtMotherInfo.setDouble(6, java.lang.Double.valueOf(ageTxt.getText()));
+                pstmtMotherInfo.setString(7, telephoneTxt.getText());
+                pstmtMotherInfo.setDate(8, com.afrisoftech.lib.SQLDateFormat.getSQLDate(deliveryDatePicker.getDate()));
+                pstmtMotherInfo.setObject(9, placeofDeliveryCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(10, deliveryModeCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(11, statusAPGARScoreTxt.getText());
+                pstmtMotherInfo.setDouble(12, java.lang.Double.valueOf(temperatureTxt.getText()));
+                pstmtMotherInfo.setDouble(13, java.lang.Double.valueOf(pulseRateTxt.getText()));
+                pstmtMotherInfo.setObject(14, bloodPressureTxt.getText());
+                pstmtMotherInfo.setObject(15, pallorCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(16, breastCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(17, uterusCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(18, pphCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(19, cSectionCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(20, lochiaCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(21, episiotomyCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(22, fistulaCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(23, ppcMother2daysCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(24, ppcMother6daysCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(25, ppcBaby2daysCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(26, ppcBaby6daysCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(27, priorHIVStatusCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(28, hivPNCWithin72HrsCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(29, hivPNCOver72HrsCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(30, nvpBabyCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(31, ctxBabyCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(32, ctxMotherCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(33, coupleCounselledCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(34, partnerHIVTestedCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(35, partnerHIVResultsCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(36, cancerScreeningMethodCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(37, cancerScreeningResultCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(38, pncExerciseCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(39, vitaminaSupplimentationCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(40, modernFPMethodCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(41, multiVitaminCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(42, haematinicsCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(43, otherConditionsCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(44, referralINCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(45, referralOUTCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(46, commentsTextPaneTxt.getText());
+                pstmtMotherInfo.execute();
+          //  this.initComponents();
+                //  this.setSize(com.afrisoftech.hospital.HospitalMain.saccopn.getSize());
+                results();
 
-            this.connectDB.commit();
-            connectDB.setAutoCommit(true);
-        } catch (java.sql.SQLException sqlEx) {
-            sqlEx.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(this, sqlEx.getLocalizedMessage());
+                connectDB.commit();
+                connectDB.setAutoCommit(true);
+            } catch (java.sql.SQLException sqlEx) {
+                sqlEx.printStackTrace();
+                javax.swing.JOptionPane.showMessageDialog(this, sqlEx.getLocalizedMessage());
+            }
+
         }
         //}
         // TODO add your handling code here:
 }//GEN-LAST:event_saveMotherInfoBtnActionPerformed
     public void results() {
+        this.getContentPane().removeAll();
+        this.initComponents();
+        this.setSize(com.afrisoftech.hospital.HospitalMain.saccopn.getSize());
         javax.swing.JOptionPane.showMessageDialog(this, "Data posted to database successfully. Click OK button or press ENTER key to continue");
 
     }
@@ -1738,11 +1743,11 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
             ancSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT "
                     + "patient_no,first_name,second_name,last_name FROM"
                     + " hp_patient_register WHERE (patient_no ILIKE '%" + searchANCFileTxt.getText() + "%' "
-                    + "OR first_name||' '||second_name||' '||last_name ILIKE '%" + searchANCFileTxt.getText() + "%')"
+                    + "OR first_name||' '||second_name||' '||last_name ILIKE '%" + searchANCFileTxt.getText() + "%') AND sex ilike 'female' "
                     + "UNION "
                     + "SELECT DISTINCT patient_no,first_name,second_name,last_name FROM"
                     + " hp_inpatient_register WHERE (patient_no ILIKE '%" + searchANCFileTxt.getText() + "%' "
-                    + "OR first_name||' '||second_name||' '||last_name ILIKE '%" + searchANCFileTxt.getText() + "%')"
+                    + "OR first_name||' '||second_name||' '||last_name ILIKE '%" + searchANCFileTxt.getText() + "%') AND sex ilike 'female' "
                     + " ORDER BY 1"));
             ancSearchTable.setShowHorizontalLines(false);
             ancSearchScrollPane.setViewportView(ancSearchTable);
@@ -1781,8 +1786,8 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
 }//GEN-LAST:event_searchANCFileTxtFocusLost
 
     private void ancSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ancSearchTableMouseClicked
-
         this.ancNumberTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 0).toString());
+        this.patientNumberTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 0).toString());
         this.lastNameTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 1).toString());
         middleNameTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 2).toString());
         firstNameTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 3).toString());
@@ -1794,7 +1799,7 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
             while (rset1.next()) {
 
                 otherConditionDetailsTxt.setText(rset1.getObject(1).toString());
-              //  placeofDeliveryTxt.setText(rset1.getObject(2).toString());
+                //  placeofDeliveryTxt.setText(rset1.getObject(2).toString());
                 //   jTextField25.setText(rset1.getObject(3).toString());
                 ageTxt.setText(rset1.getObject(4).toString());
                 //jTextField8.setText(rset1.getObject(5).toString());
@@ -1886,14 +1891,14 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
         otherConditionDetailsTxt.setText("");
         //  jTextField13.setText("");
         ageTxt.setText("0");
-       // bloodGroupTxt.setEditable(true);
+        // bloodGroupTxt.setEditable(true);
         middleNameTxt.setEditable(true);
         lastNameTxt.setEditable(true);
         addressTxt.setEditable(true);
         telephoneTxt.setEditable(true);
         nextTxt.setEditable(true);
         ageTxt.setEditable(true);
-       // rhesusFactorTxt.setEditable(true);
+        // rhesusFactorTxt.setEditable(true);
         residenceTxt.setEditable(true);
         ancNumberTxt.setEditable(true);
         ancCardSearchField.setEnabled(true);
@@ -1954,10 +1959,8 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
         temperatureTxt.setText("0");
 
 //        placeofDeliveryTxt.setText("");
-
 //        rhesusFactorTxt.setText("");
         //jTextField6.setEditable(false);
-
         otherConditionDetailsTxt.setText("");
 
         residenceTxt.setText("");

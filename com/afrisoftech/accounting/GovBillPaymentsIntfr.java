@@ -129,7 +129,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
         jTextField811.setText(getShiftNumber());
 
-        jButton22.setVisible(rePrints);
+        reprintReceiptBtn.setVisible(rePrints);
 
         this.setSize(com.afrisoftech.hospital.HospitalMain.saccopn.getSize());
         //        startRunning();
@@ -326,19 +326,19 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         System.out.println(sl.getMessage());
     }
 
-    jButton111 = new javax.swing.JButton();
+    postSaleDataBtn = new javax.swing.JButton();
     try {
         java.lang.Class.forName("org.postgresql.Driver");
     }catch (java.lang.ClassNotFoundException sl){
         System.out.println(sl.getMessage());
     }
 
-    jButton1112 = new javax.swing.JButton();
-    jButton22 = new javax.swing.JButton();
-    jButton611 = new javax.swing.JButton();
-    jButton311 = new javax.swing.JButton();
-    jButton411 = new javax.swing.JButton();
-    jButton511 = new javax.swing.JButton();
+    generateReceiptBtn = new javax.swing.JButton();
+    reprintReceiptBtn = new javax.swing.JButton();
+    removeRowBtn = new javax.swing.JButton();
+    clearFormBtn = new javax.swing.JButton();
+    closePosBtn = new javax.swing.JButton();
+    helpBtn = new javax.swing.JButton();
     jLabel1 = new javax.swing.JLabel();
     jPanel51 = new javax.swing.JPanel();
     jLabel121 = new javax.swing.JLabel();
@@ -1719,15 +1719,15 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel10.setLayout(new java.awt.GridBagLayout());
 
-        jButton111.setBackground(new java.awt.Color(230, 230, 230));
-        jButton111.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Folders/Folder Blue Documents.png"))); // NOI18N
-        jButton111.setMnemonic('O');
-        jButton111.setText("Post Receipt data");
-        jButton111.setToolTipText("Click here enter data");
-        jButton111.setEnabled(false);
-        jButton111.addActionListener(new java.awt.event.ActionListener() {
+        postSaleDataBtn.setBackground(new java.awt.Color(230, 230, 230));
+        postSaleDataBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Folders/Folder Blue Documents.png"))); // NOI18N
+        postSaleDataBtn.setMnemonic('O');
+        postSaleDataBtn.setText("Post Receipt data");
+        postSaleDataBtn.setToolTipText("Click here enter data");
+        postSaleDataBtn.setEnabled(false);
+        postSaleDataBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton111ActionPerformed(evt);
+                postSaleDataBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1735,16 +1735,16 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel10.add(jButton111, gridBagConstraints);
+        jPanel10.add(postSaleDataBtn, gridBagConstraints);
 
-        jButton1112.setBackground(new java.awt.Color(230, 230, 230));
-        jButton1112.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Devices & Hardware/Printer 2.png"))); // NOI18N
-        jButton1112.setMnemonic('O');
-        jButton1112.setText("Print Receipt");
-        jButton1112.setToolTipText("Click here enter data");
-        jButton1112.addActionListener(new java.awt.event.ActionListener() {
+        generateReceiptBtn.setBackground(new java.awt.Color(230, 230, 230));
+        generateReceiptBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Devices & Hardware/Printer 2.png"))); // NOI18N
+        generateReceiptBtn.setMnemonic('O');
+        generateReceiptBtn.setText("Print Receipt");
+        generateReceiptBtn.setToolTipText("Click here enter data");
+        generateReceiptBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1112ActionPerformed(evt);
+                generateReceiptBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1752,15 +1752,15 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel10.add(jButton1112, gridBagConstraints);
+        jPanel10.add(generateReceiptBtn, gridBagConstraints);
 
-        jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Devices & Hardware/Printer 3.png"))); // NOI18N
-        jButton22.setMnemonic('p');
-        jButton22.setText("Re-Print Receipt");
-        jButton22.setToolTipText("Click here to edit data");
-        jButton22.addActionListener(new java.awt.event.ActionListener() {
+        reprintReceiptBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Devices & Hardware/Printer 3.png"))); // NOI18N
+        reprintReceiptBtn.setMnemonic('p');
+        reprintReceiptBtn.setText("Re-Print Receipt");
+        reprintReceiptBtn.setToolTipText("Click here to edit data");
+        reprintReceiptBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton22ActionPerformed(evt);
+                reprintReceiptBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1768,28 +1768,28 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel10.add(jButton22, gridBagConstraints);
+        jPanel10.add(reprintReceiptBtn, gridBagConstraints);
 
-        jButton611.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Folders/Folder Blue Downloads.png"))); // NOI18N
-        jButton611.setMnemonic('r');
-        jButton611.setText("Remove Row");
-        jButton611.addActionListener(new java.awt.event.ActionListener() {
+        removeRowBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Folders/Folder Blue Downloads.png"))); // NOI18N
+        removeRowBtn.setMnemonic('r');
+        removeRowBtn.setText("Remove Row");
+        removeRowBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton611ActionPerformed(evt);
+                removeRowBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
-        jPanel10.add(jButton611, gridBagConstraints);
+        jPanel10.add(removeRowBtn, gridBagConstraints);
 
-        jButton311.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Devices & Hardware/Hard Drive Mac 2.png"))); // NOI18N
-        jButton311.setMnemonic('l');
-        jButton311.setText("Clear data");
-        jButton311.setToolTipText("Click here to clear textfields");
-        jButton311.addActionListener(new java.awt.event.ActionListener() {
+        clearFormBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Devices & Hardware/Hard Drive Mac 2.png"))); // NOI18N
+        clearFormBtn.setMnemonic('l');
+        clearFormBtn.setText("Clear data");
+        clearFormBtn.setToolTipText("Click here to clear textfields");
+        clearFormBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton311ActionPerformed(evt);
+                clearFormBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1797,15 +1797,15 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel10.add(jButton311, gridBagConstraints);
+        jPanel10.add(clearFormBtn, gridBagConstraints);
 
-        jButton411.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Devices & Hardware/Computer 1.png"))); // NOI18N
-        jButton411.setMnemonic('C');
-        jButton411.setText("Close POS");
-        jButton411.setToolTipText("Click here to close window");
-        jButton411.addActionListener(new java.awt.event.ActionListener() {
+        closePosBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Devices & Hardware/Computer 1.png"))); // NOI18N
+        closePosBtn.setMnemonic('C');
+        closePosBtn.setText("Close POS");
+        closePosBtn.setToolTipText("Click here to close window");
+        closePosBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton411ActionPerformed(evt);
+                closePosBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1813,17 +1813,17 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel10.add(jButton411, gridBagConstraints);
+        jPanel10.add(closePosBtn, gridBagConstraints);
 
-        jButton511.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Document.png"))); // NOI18N
-        jButton511.setMnemonic('h');
-        jButton511.setText("Help");
+        helpBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Document.png"))); // NOI18N
+        helpBtn.setMnemonic('h');
+        helpBtn.setText("Help");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel10.add(jButton511, gridBagConstraints);
+        jPanel10.add(helpBtn, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -2095,7 +2095,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         }         // Add your handling code here:
     }//GEN-LAST:event_amountPaidTxtCaretUpdate
 
-    private void jButton1112ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1112ActionPerformed
+    private void generateReceiptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReceiptBtnActionPerformed
         if ((Double.parseDouble(amountPaidTxt.getText()) >= Double.parseDouble(billAmountTxt.getText())) && (Double.parseDouble(billAmountTxt.getText()) > 0.00) & (patientNumberTxt.getText().toCharArray().length > 0)) {
             jTextField1113.setText(null);
             System.out.println("Printing the receipt.");
@@ -2125,7 +2125,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                     int k = 1;
                     String receiptNo1 = null;
 
-                    jButton111ActionPerformed(evt);
+                    postSaleDataBtnActionPerformed(evt);
+                    
+                    //////jButton111ActionPerformed(evt);
 
 // Auto register patient visit
 
@@ -2245,7 +2247,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         // Add your handling code here:
 
         // Add your handling code here:
-    }//GEN-LAST:event_jButton1112ActionPerformed
+    }//GEN-LAST:event_generateReceiptBtnActionPerformed
     private void searchButton111Clicked() {
 
         System.out.println("Showing dialog");
@@ -2289,7 +2291,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         this.populateTable(this.patientNumberTxt.getText());
         billAmountTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable111, 3)));
         if(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable111, 3) > 0){
-            jButton1112.setEnabled(true);
+            generateReceiptBtn.setEnabled(true);
         }
         jSearchDialog21.dispose();
         // Add your handling code here:
@@ -2674,7 +2676,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         }
 
     }
-    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+    private void reprintReceiptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reprintReceiptBtnActionPerformed
 
         java.util.Calendar calendar = java.util.Calendar.getInstance();
 
@@ -2744,7 +2746,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
         }          // Add your handling code here:
-    }//GEN-LAST:event_jButton22ActionPerformed
+    }//GEN-LAST:event_reprintReceiptBtnActionPerformed
 
     private void jTable111MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable111MouseClicked
 
@@ -2754,8 +2756,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         }
 
         //jButton111.setEnabled(true);
-        jButton1112.setEnabled(true);
-        jButton22.setEnabled(false);
+        generateReceiptBtn.setEnabled(true);
+        reprintReceiptBtn.setEnabled(false);
         jTextField112.setText("");
         // Add your handling code here:
     }//GEN-LAST:event_jTable111MouseClicked
@@ -2764,7 +2766,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         // Add your handling code here:
     }//GEN-LAST:event_jTable111ComponentShown
 
-    private void jButton611ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton611ActionPerformed
+    private void removeRowBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeRowBtnActionPerformed
 
         int rows2Delete = jTable111.getSelectedRowCount();
 
@@ -2814,9 +2816,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         amountPaidTxt.setText(java.lang.String.valueOf(totals - waiver));
 
         // Add your handling code here:
-    }//GEN-LAST:event_jButton611ActionPerformed
+    }//GEN-LAST:event_removeRowBtnActionPerformed
 
-    private void jButton311ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton311ActionPerformed
+    private void clearFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFormBtnActionPerformed
 
         jCheckBox6.setSelected(false);
         patientNameTxt.setText("");
@@ -2834,11 +2836,11 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         //       jTextField12.setText("0.00");
         changeTxt.setText("0.00");
         // Add your handling code here:
-    }//GEN-LAST:event_jButton311ActionPerformed
+    }//GEN-LAST:event_clearFormBtnActionPerformed
 
-    private void jButton411ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton411ActionPerformed
+    private void closePosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closePosBtnActionPerformed
         this.dispose();       // Add your handling code here:
-    }//GEN-LAST:event_jButton411ActionPerformed
+    }//GEN-LAST:event_closePosBtnActionPerformed
 
     private void jTable111KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable111KeyReleased
         if (jTable111.getModel().getValueAt(jTable111.getSelectedRow(), 1) != null) {
@@ -2954,7 +2956,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         }
 
     }
-    private void jButton111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton111ActionPerformed
+    private void postSaleDataBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postSaleDataBtnActionPerformed
 
         try {
             java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(status) FROM ac_shifts WHERE status ilike 'running' AND user_name = current_user");
@@ -2975,9 +2977,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 //     dispatchThread.start();
 
                 if (processReceipt) {
-                    jButton111.setEnabled(false);
+                    postSaleDataBtn.setEnabled(false);
 
-                    jButton1112.setEnabled(false);
+                    generateReceiptBtn.setEnabled(false);
                 }
             }
             rset.close();
@@ -2989,12 +2991,12 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         }
 
         // Add your handling code here:
-    }//GEN-LAST:event_jButton111ActionPerformed
+    }//GEN-LAST:event_postSaleDataBtnActionPerformed
 
     private void jComboBox111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox111ActionPerformed
-        jButton111.setEnabled(false);
-        jButton1112.setEnabled(true);
-        jButton22.setEnabled(false);
+        postSaleDataBtn.setEnabled(false);
+        generateReceiptBtn.setEnabled(true);
+        reprintReceiptBtn.setEnabled(false);
 
         try {
             java.sql.Statement ps11 = connectDB.createStatement();
@@ -3065,9 +3067,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
         }
 
-        jButton111.setEnabled(false);
-        jButton1112.setEnabled(true);
-        jButton22.setEnabled(true);
+        postSaleDataBtn.setEnabled(false);
+        generateReceiptBtn.setEnabled(true);
+        reprintReceiptBtn.setEnabled(true);
         // Add your handling code here:
     }//GEN-LAST:event_payModecmbxActionPerformed
 
@@ -4196,9 +4198,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                         connectDB.setAutoCommit(true);
                         if (processReceipt) {
                             jTextField1113.setText(receiptNo2);
-                            jButton111.setEnabled(false);
-                            jButton1112.setEnabled(false);
-                            jButton22.setEnabled(true);
+                            postSaleDataBtn.setEnabled(false);
+                            generateReceiptBtn.setEnabled(false);
+                            reprintReceiptBtn.setEnabled(true);
                         }
 
                         /*    pstmt112.close();
@@ -4300,24 +4302,21 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JTextField changeTxt;
+    private javax.swing.JButton clearFormBtn;
+    public javax.swing.JButton closePosBtn;
     private com.afrisoftech.lib.DatePicker datePicker1;
     private javax.swing.JButton dispose11;
     private javax.swing.JLabel exemptionNumberLbl;
     private javax.swing.JTextField exemptionNumberTxt;
-    private javax.swing.JButton jButton111;
+    private javax.swing.JButton generateReceiptBtn;
+    private javax.swing.JButton helpBtn;
     private javax.swing.JButton jButton1111;
-    private javax.swing.JButton jButton1112;
-    private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton252111;
     private javax.swing.JButton jButton301111;
-    private javax.swing.JButton jButton311;
-    public javax.swing.JButton jButton411;
     private javax.swing.JButton jButton42;
     private javax.swing.JButton jButton421;
-    private javax.swing.JButton jButton511;
     private javax.swing.JButton jButton52;
     private javax.swing.JButton jButton521;
-    private javax.swing.JButton jButton611;
     private javax.swing.JButton jButton9;
     private javax.swing.JButton jButton91;
     private javax.swing.JCheckBox jCheckBox3;
@@ -4430,6 +4429,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JTextField patientNumberTxt;
     private javax.swing.JTextField patientSearchTxt;
     private javax.swing.JComboBox payModecmbx;
+    private javax.swing.JButton postSaleDataBtn;
+    private javax.swing.JButton removeRowBtn;
+    private javax.swing.JButton reprintReceiptBtn;
     private javax.swing.JButton searchButton1;
     private javax.swing.JButton searchButton13;
     private javax.swing.JCheckBox searchNameChbx;

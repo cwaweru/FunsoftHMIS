@@ -898,13 +898,13 @@ public class PatientRegFormPdf implements java.lang.Runnable {
                         table.getDefaultCell().setColspan(3);
                         table.getDefaultCell().setBorder(PdfCell.RECTANGLE);
                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                        phrase = new Phrase(" Patient Number : ".toUpperCase() + dbObject.getDBObject(patientNumber.toUpperCase(), ""), pFontHeader2);
+                        phrase = new Phrase(" Patient Number : ".toUpperCase() + dbObject.getDBObject(patientNumber.toUpperCase(), ""), pFontHeader3);
                         table.addCell(phrase);
                         //   phrase = new Phrase(" ", pFontHeader);
                         //   table.addCell(phrase);
                         table.getDefaultCell().setColspan(3);
                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                        phrase = new Phrase("Unit Number : ".toUpperCase() + dbObject.getDBObject(unitNumber.toUpperCase(), ""), pFontHeader3);
+                        phrase = new Phrase("Unit Number : ".toUpperCase() + dbObject.getDBObject(unitNumber.toUpperCase(), ""), pFontHeader2);
 
                         table.addCell(phrase);
                         table.getDefaultCell().setColspan(6);

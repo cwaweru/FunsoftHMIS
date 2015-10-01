@@ -6,6 +6,9 @@
 
 package com.afrisoftech.dbadmin;
 
+import java.io.IOException;
+import org.openide.util.Exceptions;
+
 /**
  *
  * @author  root
@@ -97,7 +100,14 @@ public class PDFExport {
             System.out.println("Finished exporting and parsing file. Thank you!");
  
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Successfully exported table ["+exportTableName.toUpperCase()+"] to file ["+pdfDocFile.getAbsolutePath()+"]");        
- 
+         if (java.awt.Desktop.isDesktopSupported()) {
+            try {
+                java.awt.Desktop.getDesktop().open(pdfDocFile);
+            } catch (IOException ex) {
+                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
+                Exceptions.printStackTrace(ex);
+            }
+        }
 //            htmlDocument.close();
             
         } catch(java.lang.Exception exec) {

@@ -20,6 +20,7 @@ import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.WebcamResolution;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
@@ -8305,7 +8306,11 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     private void mapPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapPanel1MouseClicked
 
        System.out.println("This is the map cordinates : Langitude - "+mapPanel1.format(mapPanel1.position2lat(mapPanel1.getCursorPosition().y,mapPanel1.getZoom()))+" , "+ this.mapPanel1.format(mapPanel1.position2lon(mapPanel1.getCursorPosition().x, mapPanel1.getZoom()))); 
-        // TODO add your handling code here:
+       
+//       java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT into funsoft_gis_data(patient_no, latitude_axis, longitude_axis) values(?,?,?)");
+//  
+//       pstmt.execute();
+       // TODO add your handling code here:
     }//GEN-LAST:event_mapPanel1MouseClicked
 
     private void buttonPanelHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_buttonPanelHierarchyChanged

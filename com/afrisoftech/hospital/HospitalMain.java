@@ -1274,6 +1274,9 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         clinicBookingsmnit = new javax.swing.JMenuItem();
         anteNatalCaremnit = new javax.swing.JMenuItem();
         postNatalCaremnit = new javax.swing.JMenuItem();
+        cwcRegistermnit = new javax.swing.JMenuItem();
+        immunisationmnit = new javax.swing.JMenuItem();
+        fpRHServicesmnit = new javax.swing.JMenuItem();
         rhCentreMnit = new javax.swing.JMenuItem();
         gbvmnit = new javax.swing.JCheckBoxMenuItem();
         jSeparator29 = new javax.swing.JSeparator();
@@ -1286,6 +1289,10 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         bodycollectionmnit = new javax.swing.JMenuItem();
         permitcollectormnit = new javax.swing.JMenuItem();
         mortOccupancymnit = new javax.swing.JMenuItem();
+        jSeparator100 = new javax.swing.JPopupMenu.Separator();
+        communityHealthmn = new javax.swing.JMenu();
+        communityHealthRegistermnit = new javax.swing.JMenuItem();
+        houseHoldRehistermnit = new javax.swing.JMenuItem();
         nursing = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         triagemnit = new javax.swing.JMenuItem();
@@ -1341,6 +1348,9 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         hcBranchesmnit = new javax.swing.JMenuItem();
         bloodRhesusmnit = new javax.swing.JMenuItem();
         bloodGrpmnit = new javax.swing.JMenuItem();
+        immunisationProceduresmnit = new javax.swing.JMenuItem();
+        cwcIndicatormnit = new javax.swing.JMenuItem();
+        fpIndicatorsSetupmnit = new javax.swing.JMenuItem();
         nursingStoresmn = new javax.swing.JMenu();
         medicineRequisitionsmnit = new javax.swing.JMenuItem();
         suppliesDressingsrequistmnit = new javax.swing.JMenuItem();
@@ -2066,6 +2076,8 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         Aiemnit = new javax.swing.JMenuItem();
         AieRepmnit = new javax.swing.JMenuItem();
         useraccountsmn = new javax.swing.JMenuItem();
+        jSeparator101 = new javax.swing.JPopupMenu.Separator();
+        gisReportermnit = new javax.swing.JMenuItem();
         viewsmn = new javax.swing.JMenu();
         namesearchmnit = new javax.swing.JMenuItem();
         departmentmnit = new javax.swing.JMenuItem();
@@ -4204,6 +4216,11 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         jMenuBar1.add(setupmn);
 
         emrmn.setText("EMR");
+        emrmn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emrmnActionPerformed(evt);
+            }
+        });
 
         patientregstmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
         patientregstmnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Contacts 1.png"))); // NOI18N
@@ -4394,7 +4411,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         Clinical.add(opattendbydocmnit);
 
-        refferalsmnit.setText("Refferals");
+        refferalsmnit.setText("Referrals");
         refferalsmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refferalsmnitActionPerformed(evt);
@@ -4556,6 +4573,30 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         emrmn.add(postNatalCaremnit);
 
+        cwcRegistermnit.setText("Child Welfare Clinic Register");
+        cwcRegistermnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cwcRegistermnitActionPerformed(evt);
+            }
+        });
+        emrmn.add(cwcRegistermnit);
+
+        immunisationmnit.setText("Immunisation Register");
+        immunisationmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                immunisationmnitActionPerformed(evt);
+            }
+        });
+        emrmn.add(immunisationmnit);
+
+        fpRHServicesmnit.setText("RH - Family Planning Services ");
+        fpRHServicesmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fpRHServicesmnitActionPerformed(evt);
+            }
+        });
+        emrmn.add(fpRHServicesmnit);
+
         rhCentreMnit.setText("Reproductive Health Centre");
         rhCentreMnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4641,6 +4682,27 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         morturymn.add(mortOccupancymnit);
 
         emrmn.add(morturymn);
+        emrmn.add(jSeparator100);
+
+        communityHealthmn.setText("Community Health Extension");
+
+        communityHealthRegistermnit.setText("Community Health Extension Register");
+        communityHealthRegistermnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                communityHealthRegistermnitActionPerformed(evt);
+            }
+        });
+        communityHealthmn.add(communityHealthRegistermnit);
+
+        houseHoldRehistermnit.setText("House Hold Register");
+        houseHoldRehistermnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                houseHoldRehistermnitActionPerformed(evt);
+            }
+        });
+        communityHealthmn.add(houseHoldRehistermnit);
+
+        emrmn.add(communityHealthmn);
 
         jMenuBar1.add(emrmn);
 
@@ -5040,6 +5102,30 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         nursingIndicatorsmn.add(bloodGrpmnit);
+
+        immunisationProceduresmnit.setText("Immunisation Procedures");
+        immunisationProceduresmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                immunisationProceduresmnitActionPerformed(evt);
+            }
+        });
+        nursingIndicatorsmn.add(immunisationProceduresmnit);
+
+        cwcIndicatormnit.setText("Child Welfare Clinic Indicators");
+        cwcIndicatormnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cwcIndicatormnitActionPerformed(evt);
+            }
+        });
+        nursingIndicatorsmn.add(cwcIndicatormnit);
+
+        fpIndicatorsSetupmnit.setText("Family Planning Services Setup");
+        fpIndicatorsSetupmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fpIndicatorsSetupmnitActionPerformed(evt);
+            }
+        });
+        nursingIndicatorsmn.add(fpIndicatorsSetupmnit);
 
         nursing.add(nursingIndicatorsmn);
 
@@ -10051,6 +10137,15 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         reportsmn.add(useraccountsmn);
+        reportsmn.add(jSeparator101);
+
+        gisReportermnit.setText("Funsoft HealthGIS Reporter");
+        gisReportermnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gisReportermnitActionPerformed(evt);
+            }
+        });
+        reportsmn.add(gisReportermnit);
 
         jMenuBar1.add(reportsmn);
 
@@ -20583,6 +20678,111 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         }       // TODO add your handling code here:
     }//GEN-LAST:event_postNatalCaremnitActionPerformed
 
+    private void immunisationProceduresmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_immunisationProceduresmnitActionPerformed
+        com.afrisoftech.records.ImmunisationProceduresIntfr dismth = new com.afrisoftech.records.ImmunisationProceduresIntfr(connectDB, pConnDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+            
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_immunisationProceduresmnitActionPerformed
+
+    private void immunisationmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_immunisationmnitActionPerformed
+        com.afrisoftech.records.ImmunisationRecordsIntfr dismth = new com.afrisoftech.records.ImmunisationRecordsIntfr(connectDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+            
+        }       // TODO add your handling code here:
+    }//GEN-LAST:event_immunisationmnitActionPerformed
+
+    private void emrmnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emrmnActionPerformed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emrmnActionPerformed
+
+    private void cwcRegistermnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cwcRegistermnitActionPerformed
+        com.afrisoftech.records.ChildFollowUPRecordsIntfr dismth = new com.afrisoftech.records.ChildFollowUPRecordsIntfr(connectDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+            
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_cwcRegistermnitActionPerformed
+
+    private void cwcIndicatormnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cwcIndicatormnitActionPerformed
+        com.afrisoftech.records.ChildHealthIndicatorsIntfr dismth = new com.afrisoftech.records.ChildHealthIndicatorsIntfr(connectDB, pConnDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+            
+        }         // TODO add your handling code here:
+    }//GEN-LAST:event_cwcIndicatormnitActionPerformed
+
+    private void fpRHServicesmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fpRHServicesmnitActionPerformed
+        com.afrisoftech.records.MCHFamilyPlanningIntfr dismth = new com.afrisoftech.records.MCHFamilyPlanningIntfr(connectDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+            
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_fpRHServicesmnitActionPerformed
+
+    private void fpIndicatorsSetupmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fpIndicatorsSetupmnitActionPerformed
+        com.afrisoftech.records.FPProceduresIntfr dismth = new com.afrisoftech.records.FPProceduresIntfr(connectDB, pConnDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+            
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_fpIndicatorsSetupmnitActionPerformed
+
+    private void communityHealthRegistermnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_communityHealthRegistermnitActionPerformed
+        com.afrisoftech.records.CommunityHealthIndicatorsIntfr dismth = new com.afrisoftech.records.CommunityHealthIndicatorsIntfr(connectDB, pConnDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+            
+        }    // TODO add your handling code here:
+    }//GEN-LAST:event_communityHealthRegistermnitActionPerformed
+
+    private void houseHoldRehistermnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_houseHoldRehistermnitActionPerformed
+         com.afrisoftech.records.CHWHouseHoldRegisterIntfr dismth = new com.afrisoftech.records.CHWHouseHoldRegisterIntfr(connectDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+            
+        }       // TODO add your handling code here:
+    }//GEN-LAST:event_houseHoldRehistermnitActionPerformed
+
+    private void gisReportermnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gisReportermnitActionPerformed
+        com.afrisoftech.reports.emr.GISReporter dismth = new com.afrisoftech.reports.emr.GISReporter(connectDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+            
+        }       // TODO add your handling code here:
+    }//GEN-LAST:event_gisReportermnitActionPerformed
+
     /**
      * Exit the Application
      */
@@ -24203,6 +24403,8 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JPanel commBroadcastPanel;
     private javax.swing.JPanel commPanel;
     private javax.swing.JMenuItem commitmentmnit;
+    private javax.swing.JMenuItem communityHealthRegistermnit;
+    private javax.swing.JMenu communityHealthmn;
     private javax.swing.JButton compactDB;
     private javax.swing.JMenuItem compdebtorsbynamemnit;
     private javax.swing.JMenuItem compdebtorsmnit;
@@ -24237,6 +24439,8 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem creditsSummnit;
     private javax.swing.JMenuItem creditsbypayermnit;
     private javax.swing.JMenuItem credittransfmnit;
+    private javax.swing.JMenuItem cwcIndicatormnit;
+    private javax.swing.JMenuItem cwcRegistermnit;
     private javax.swing.JMenuItem dailyCashReturnsmnit;
     private javax.swing.JMenuItem dailybedreturnDetailedmnit;
     private javax.swing.JMenuItem dailybedreturnSummarymnit;
@@ -24365,7 +24569,9 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem fitnessLevelmnit;
     private javax.swing.JMenuItem fluidchartmnit;
     private javax.swing.JButton fmgrBttn;
+    private javax.swing.JMenuItem fpIndicatorsSetupmnit;
     public static javax.swing.JMenuItem fpPosmnit;
+    private javax.swing.JMenuItem fpRHServicesmnit;
     private javax.swing.JMenuItem fpclientpermnit;
     private javax.swing.JMenuItem fpclientpertypemnit;
     private javax.swing.JMenuItem fpclientsmnit;
@@ -24386,6 +24592,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem genderParamsmnit;
     public static javax.swing.JMenuItem generalmnit;
     public static final javax.swing.JMenuItem generatedVouchersitemmnit = new javax.swing.JMenuItem();
+    private javax.swing.JMenuItem gisReportermnit;
     private javax.swing.JMenuItem glaccountsmnit;
     private javax.swing.JMenuItem glaccountsmnit1;
     private javax.swing.JMenuItem glaccountsupdatemnit;
@@ -24411,10 +24618,13 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenu helpmn;
     private javax.swing.JMenuItem hlpcontmnit;
     private javax.swing.JMenuItem hosptalmnit;
+    private javax.swing.JMenuItem houseHoldRehistermnit;
     private javax.swing.JMenuBar hrMenuBar;
     private javax.swing.ButtonGroup hrPopupButtonGroup;
     private javax.swing.JPopupMenu hrmPopupMenu;
     private javax.swing.JMenuItem icuProceduresmnit;
+    private javax.swing.JMenuItem immunisationProceduresmnit;
+    private javax.swing.JMenuItem immunisationmnit;
     private javax.swing.JMenuItem impdocregmnit;
     private javax.swing.JMenuItem imprestPettyCashPaymentsmnit;
     public javax.swing.JMenuItem inReceiptsmnit;
@@ -24485,6 +24695,8 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JPanel jPanel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JPopupMenu.Separator jSeparator100;
+    private javax.swing.JPopupMenu.Separator jSeparator101;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator13;

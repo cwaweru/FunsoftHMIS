@@ -42,7 +42,7 @@ public class PaediatricIntfr extends javax.swing.JInternalFrame {
         jSearchScrollPane = new javax.swing.JScrollPane();
         jSearchTable = new com.afrisoftech.dbadmin.JTable();
         jButton9 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
+        actionPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -50,6 +50,7 @@ public class PaediatricIntfr extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jPanel20 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -320,7 +321,7 @@ public class PaediatricIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel.add(jSearchScrollPane, gridBagConstraints);
 
-        jButton9.setText("Cancel");
+        jButton9.setText("Dispose");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -344,17 +345,12 @@ public class PaediatricIntfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Paediatric Admission Record");
+        setTitle("Paediatric Admission Record - eTac Form");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/ColorPreview.gif"))); // NOI18N
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        getContentPane().add(jSeparator1, gridBagConstraints);
+
+        actionPanel.setLayout(new java.awt.GridBagLayout());
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/check.gif"))); // NOI18N
         jButton1.setMnemonic('O');
@@ -373,22 +369,23 @@ public class PaediatricIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jButton1, gridBagConstraints);
+        actionPanel.add(jButton1, gridBagConstraints);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/note[1].gif"))); // NOI18N
         jButton2.setMnemonic('E');
         jButton2.setText("Edit");
         jButton2.setToolTipText("Click here to edit");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -396,20 +393,20 @@ public class PaediatricIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jButton2, gridBagConstraints);
+        actionPanel.add(jButton2, gridBagConstraints);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/minusarm.gif"))); // NOI18N
         jButton3.setMnemonic('r');
         jButton3.setText("Remove Row");
         jButton3.setToolTipText("Click here to clear fields");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton3MouseClicked(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -417,20 +414,20 @@ public class PaediatricIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jButton3, gridBagConstraints);
+        actionPanel.add(jButton3, gridBagConstraints);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BD14755_.GIF"))); // NOI18N
         jButton4.setMnemonic('C');
         jButton4.setText("Close");
         jButton4.setToolTipText("Click here to close");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
+            }
+        });
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -438,7 +435,7 @@ public class PaediatricIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jButton4, gridBagConstraints);
+        actionPanel.add(jButton4, gridBagConstraints);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -447,20 +444,20 @@ public class PaediatricIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        getContentPane().add(jLabel3, gridBagConstraints);
+        actionPanel.add(jLabel3, gridBagConstraints);
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/minusarm.gif"))); // NOI18N
         jButton5.setMnemonic('d');
         jButton5.setText("Delete");
         jButton5.setToolTipText("Click here to clear fields");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton5MouseClicked(evt);
+            }
+        });
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -468,20 +465,20 @@ public class PaediatricIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jButton5, gridBagConstraints);
+        actionPanel.add(jButton5, gridBagConstraints);
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/minusarm.gif"))); // NOI18N
         jButton6.setMnemonic('l');
         jButton6.setText("Clear");
         jButton6.setToolTipText("Click here to clear fields");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton6MouseClicked(evt);
+            }
+        });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -489,7 +486,18 @@ public class PaediatricIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jButton6, gridBagConstraints);
+        actionPanel.add(jButton6, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        getContentPane().add(actionPanel, gridBagConstraints);
+
+        jPanel20.setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
@@ -645,7 +653,6 @@ public class PaediatricIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel2.add(jPanel5, gridBagConstraints);
@@ -734,7 +741,6 @@ public class PaediatricIntfr extends javax.swing.JInternalFrame {
         jPanel6.add(jLabel10, gridBagConstraints);
 
         jCheckBox15.setText("Y");
-        jCheckBox15.setActionCommand("Y");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -911,8 +917,8 @@ public class PaediatricIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 50.0;
         gridBagConstraints.weighty = 1.0;
         jPanel13.add(jTextField36, gridBagConstraints);
 
@@ -929,6 +935,9 @@ public class PaediatricIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         jPanel13.add(searchButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1153,7 +1162,7 @@ public class PaediatricIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanel8.add(jCheckBox39, gridBagConstraints);
 
-        jLabel21.setText("aciodic Breathing");
+        jLabel21.setText("Aciodic Breathing");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -1594,7 +1603,6 @@ public class PaediatricIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel4.add(jPanel11, gridBagConstraints);
@@ -2260,20 +2268,28 @@ public class PaediatricIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jPanel19, gridBagConstraints);
 
-        jTabbedPane1.addTab("Other History adn Examination-Include Drug History", jPanel3);
+        jTabbedPane1.addTab("Other History and Examination-Include Drug History", jPanel3);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.gridheight = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 5.0;
-        getContentPane().add(jTabbedPane1, gridBagConstraints);
+        gridBagConstraints.weighty = 1.0;
+        jPanel20.add(jTabbedPane1, gridBagConstraints);
         jTabbedPane1.getAccessibleContext().setAccessibleName("Other History adn Examination-Include Drug History");
 
-        setBounds(0, 0, 685, 593);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 10.0;
+        getContentPane().add(jPanel20, gridBagConstraints);
+
+        setBounds(0, 0, 845, 571);
     }// </editor-fold>//GEN-END:initComponents
     
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
@@ -2404,7 +2420,7 @@ private void searchButton11Clicked() {
             // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
             java.awt.Point point = this.jTextField36.getLocationOnScreen();
 
-            jSearchDialog.setSize(400, 200);
+            jSearchDialog.setSize(600, 200);
 
             jSearchDialog.setLocation(point);
             jSearchDialog.setVisible(true);
@@ -2412,7 +2428,7 @@ private void searchButton11Clicked() {
             jSearchDialog.dispose();
             java.awt.Point point = this.jTextField36.getLocationOnScreen();
 
-            jSearchDialog.setSize(400, 200);
+            jSearchDialog.setSize(600, 200);
 
             jSearchDialog.setLocation(point);
             jSearchDialog.setVisible(true);
@@ -2580,6 +2596,7 @@ private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel actionPanel;
     private com.afrisoftech.lib.DatePicker datePicker2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -2776,6 +2793,7 @@ private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -2787,7 +2805,6 @@ private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JPanel jSearchPanel;
     private javax.swing.JScrollPane jSearchScrollPane;
     private javax.swing.JTable jSearchTable;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;

@@ -3779,19 +3779,6 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                     widowedMaritalChkbx.setSelected(true);
                 }
 
-
-
-
-
-
-
-
-
-
-
-                //  locationTxt.setText(dbObject.getDBObject(rset112.getObject(11), "-"));
-                //  jTextField27.setText(dbObject.getDBObject(rset112.getObject(12), "-"));
-
             }
 
 

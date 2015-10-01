@@ -8664,6 +8664,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         if (jTextField111.getCaretPosition() < 3) {
 
             System.out.println("Nothing");
+            
         } else {
 
             jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""

@@ -2489,7 +2489,7 @@ public class FPBillingIntfr extends javax.swing.JInternalFrame {
         
         System.out.println("Showing dialog");
         java.awt.Point point = jScrollPane2.getLocationOnScreen();
-        jSearchDialog.setSize(400,200);
+        jSearchDialog.setSize(700,200);
         jSearchDialog.setLocation(point);
         jSearchDialog.setVisible(true);
     }

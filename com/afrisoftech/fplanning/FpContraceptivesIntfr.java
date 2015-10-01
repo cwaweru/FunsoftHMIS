@@ -109,7 +109,7 @@ public class FpContraceptivesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel.add(jSearchScrollPane, gridBagConstraints);
 
-        jButton9.setText("Cancel");
+        jButton9.setText("Dispose");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -159,7 +159,7 @@ public class FpContraceptivesIntfr extends javax.swing.JInternalFrame {
         actionsPanel.setLayout(new java.awt.GridBagLayout());
 
         newAction.setMnemonic('w');
-        newAction.setText("New");
+        newAction.setText("Save");
         newAction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newActionActionPerformed(evt);
@@ -604,16 +604,22 @@ public class FpContraceptivesIntfr extends javax.swing.JInternalFrame {
             for (int i = 0; i < jTable1.getRowCount(); i++){
                 if (jTable1.getModel().getValueAt(i,0) != null){
                     if(newAction.getText().equalsIgnoreCase("Update")){
-                        java.sql.PreparedStatement pstmt311 = connectDB.prepareStatement("UPDATE fp_contraceptives SET contraceptive_name = '"+jTable1.getValueAt(i,1).toString()+"',fp_cycle = '"+jTable1.getValueAt(i,2).toString()+"',cycle_qty = '"+jTable1.getValueAt(i,3).toString()+"',cp_price = '"+jTable1.getValueAt(i,4).toString()+"' WHERE contraceptive_code = '"+jTable1.getValueAt(i,0).toString()+"'");
+                        java.sql.PreparedStatement pstmt311 = connectDB.prepareStatement("UPDATE fp_contraceptives SET contraceptive_name = ?,fp_cycle = ?,cycle_qty = ?,cp_price = ? WHERE contraceptive_code = ?");
+                        pstmt311.setObject(1, jTable1.getValueAt(i,1).toString());
+                        pstmt311.setDouble(2, Double.parseDouble(jTable1.getValueAt(i,2).toString()));
+                        pstmt311.setDouble(3, Double.parseDouble(jTable1.getValueAt(i,3).toString()));
+                        pstmt311.setDouble(4, Double.parseDouble(jTable1.getValueAt(i,4).toString()));
+                        pstmt311.setObject(5, jTable1.getValueAt(i,0));
+                        
                         pstmt311.executeUpdate();
                     }else{
                         java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("insert into fp_contraceptives values(?,?,initcap(?),?,?,?,?,?)");
                         pstmt1.setObject(1,jTextField1.getText());
                         pstmt1.setObject(2,jTable1.getValueAt(i,0));
                         pstmt1.setObject(3,jTable1.getValueAt(i,1));
-                        pstmt1.setObject(4,jTable1.getValueAt(i,2));
-                        pstmt1.setObject(5,jTable1.getValueAt(i,3));
-                        pstmt1.setObject(6,jTable1.getValueAt(i,4));
+                        pstmt1.setDouble(4,Double.parseDouble(jTable1.getValueAt(i,2).toString()));
+                        pstmt1.setDouble(5,Double.parseDouble(jTable1.getValueAt(i,3).toString()));
+                        pstmt1.setDouble(6,Double.parseDouble(jTable1.getValueAt(i,4).toString()));
                         pstmt1.setObject(7,patientAcc);
                         pstmt1.setObject(8,jComboBox1.getSelectedItem());
                         pstmt1.executeUpdate();
@@ -626,9 +632,10 @@ public class FpContraceptivesIntfr extends javax.swing.JInternalFrame {
             connectDB.setAutoCommit(true);
             javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully","Comfirmation",javax.swing.JOptionPane.INFORMATION_MESSAGE);
             
-            newAction.setLabel("Save");
+            newAction.setText("Save");
             
         }   catch(java.sql.SQLException sq){
+            sq.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this,sq.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
             try {
                 connectDB.rollback();

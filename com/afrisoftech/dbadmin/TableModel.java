@@ -73,7 +73,12 @@ public class TableModel {
                     if (rsetVector.getMetaData().getColumnType(j + 1) == java.sql.Types.NUMERIC) {
 
                         childVector.addElement(new java.lang.Double(DBObject.getDBObject(rsetVector.getObject(j + 1), "0.00")));
+                    
+                    } else if(rsetVector.getMetaData().getColumnType(j + 1) == java.sql.Types.INTEGER){
+                        
+                         childVector.addElement(new java.lang.Integer(DBObject.getDBObject(rsetVector.getObject(j + 1), "0")));
 
+                        
                     } else if ((rsetVector.getMetaData().getColumnType(j + 1) == java.sql.Types.BOOLEAN) || (rsetVector.getMetaData().getColumnType(j + 1) == java.sql.Types.BIT)) {
 
                         System.out.println("We have boolean field");

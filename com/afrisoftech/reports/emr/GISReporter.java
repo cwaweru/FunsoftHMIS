@@ -7,7 +7,7 @@ package com.afrisoftech.reports.emr;
 
 /**
  *
- * @author Charles
+ * @author Charles Waweru <cwaweru@systempartners.biz>
  */
 public class GISReporter extends javax.swing.JInternalFrame {
 
@@ -32,16 +32,16 @@ public class GISReporter extends javax.swing.JInternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel10 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox();
-        datePicker3 = new com.afrisoftech.lib.DatePicker();
-        datePicker5 = new com.afrisoftech.lib.DatePicker();
-        refershGISReportBtn = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jComboBox4 = new javax.swing.JComboBox();
+        headerPanel = new javax.swing.JPanel();
+        indicatorCmbx = new javax.swing.JComboBox();
+        beginDatePicker = new com.afrisoftech.lib.DatePicker();
+        endDatePicker = new com.afrisoftech.lib.DatePicker();
+        refreshGISReportBtn = new javax.swing.JButton();
+        printReportBtn = new javax.swing.JButton();
+        saveReportBtn = new javax.swing.JButton();
+        morbidityCmbx = new javax.swing.JComboBox();
         mapInternalFrame = new javax.swing.JInternalFrame();
-        mapReportPanel1 = new com.roots.map.MapPanel();
+        mapReportPanel = new com.roots.map.MapPanel();
 
         setClosable(true);
         setIconifiable(true);
@@ -51,39 +51,39 @@ public class GISReporter extends javax.swing.JInternalFrame {
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(GISReporter.class, "GISReporter.jPanel10.border.title"))); // NOI18N
-        jPanel10.setLayout(new java.awt.GridBagLayout());
+        headerPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(GISReporter.class, "GISReporter.headerPanel.border.title"))); // NOI18N
+        headerPanel.setLayout(new java.awt.GridBagLayout());
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Attendance", "Morbidity", "Employee Distribution" }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(GISReporter.class, "GISReporter.jComboBox1.border.title"))); // NOI18N
+        indicatorCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Attendance", "Morbidity", "Employee Distribution" }));
+        indicatorCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(GISReporter.class, "GISReporter.indicatorCmbx.border.title"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 5.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel10.add(jComboBox1, gridBagConstraints);
+        headerPanel.add(indicatorCmbx, gridBagConstraints);
 
-        datePicker3.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(GISReporter.class, "GISReporter.datePicker3.border.title"))); // NOI18N
+        beginDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(GISReporter.class, "GISReporter.beginDatePicker.border.title"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel10.add(datePicker3, gridBagConstraints);
+        headerPanel.add(beginDatePicker, gridBagConstraints);
 
-        datePicker5.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(GISReporter.class, "GISReporter.datePicker5.border.title"))); // NOI18N
+        endDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(GISReporter.class, "GISReporter.endDatePicker.border.title"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel10.add(datePicker5, gridBagConstraints);
+        headerPanel.add(endDatePicker, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(refershGISReportBtn, org.openide.util.NbBundle.getMessage(GISReporter.class, "GISReporter.refershGISReportBtn.text")); // NOI18N
-        refershGISReportBtn.addActionListener(new java.awt.event.ActionListener() {
+        org.openide.awt.Mnemonics.setLocalizedText(refreshGISReportBtn, org.openide.util.NbBundle.getMessage(GISReporter.class, "GISReporter.refreshGISReportBtn.text")); // NOI18N
+        refreshGISReportBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refershGISReportBtnActionPerformed(evt);
+                refreshGISReportBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -92,51 +92,51 @@ public class GISReporter extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel10.add(refershGISReportBtn, gridBagConstraints);
+        headerPanel.add(refreshGISReportBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton10, org.openide.util.NbBundle.getMessage(GISReporter.class, "GISReporter.jButton10.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(printReportBtn, org.openide.util.NbBundle.getMessage(GISReporter.class, "GISReporter.printReportBtn.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel10.add(jButton10, gridBagConstraints);
+        headerPanel.add(printReportBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton11, org.openide.util.NbBundle.getMessage(GISReporter.class, "GISReporter.jButton11.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(saveReportBtn, org.openide.util.NbBundle.getMessage(GISReporter.class, "GISReporter.saveReportBtn.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel10.add(jButton11, gridBagConstraints);
+        headerPanel.add(saveReportBtn, gridBagConstraints);
 
-        jComboBox4.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT initcap(disease) FROM hp_patient_diagnosis")
+        morbidityCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT initcap(disease) FROM hp_patient_diagnosis")
         );
-        jComboBox4.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(GISReporter.class, "GISReporter.jComboBox4.border.title"))); // NOI18N
+        morbidityCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(GISReporter.class, "GISReporter.morbidityCmbx.border.title"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 5.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel10.add(jComboBox4, gridBagConstraints);
+        headerPanel.add(morbidityCmbx, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jPanel10, gridBagConstraints);
+        getContentPane().add(headerPanel, gridBagConstraints);
 
         mapInternalFrame.setVisible(true);
         mapInternalFrame.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        mapReportPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(GISReporter.class, "GISReporter.mapReportPanel1.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 11), new java.awt.Color(102, 102, 255))); // NOI18N
-        mapReportPanel1.setMapPosition(new java.awt.Point(9655, 8084));
-        mapReportPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        mapReportPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(GISReporter.class, "GISReporter.mapReportPanel.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 11), new java.awt.Color(102, 102, 255))); // NOI18N
+        mapReportPanel.setMapPosition(new java.awt.Point(9655, 8084));
+        mapReportPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mapReportPanel1MouseClicked(evt);
+                mapReportPanelMouseClicked(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -145,7 +145,7 @@ public class GISReporter extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 100.0;
-        mapInternalFrame.getContentPane().add(mapReportPanel1, gridBagConstraints);
+        mapInternalFrame.getContentPane().add(mapReportPanel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -158,10 +158,13 @@ public class GISReporter extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void refershGISReportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refershGISReportBtnActionPerformed
+    private void refreshGISReportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshGISReportBtnActionPerformed
         // mapFrame.set
-        final com.roots.map.overlay.DemoGlassPane glassPane = new com.roots.map.overlay.DemoGlassPane(mapReportPanel1);
-
+        //com.roots.map.MapPanel.TileServer tileServer = new com.roots.map.MapPanel.TileServer("maps.google.com/map", 8);
+        mapReportPanel.getSearchPanel().setVisible(true);
+       // mapReportPanel1.setTileServer();
+        final com.roots.map.overlay.DemoGlassPane glassPane = new com.roots.map.overlay.DemoGlassPane(mapReportPanel);
+        
         glassPane.addPointToMark(new java.awt.Point.Double(37.30957, -1.29628));
         glassPane.addPointToMark(new java.awt.Point.Double(38.70957, 1.49628));
         glassPane.addPointToMark(new java.awt.Point.Double(36.30957, -2.29628));
@@ -190,23 +193,23 @@ public class GISReporter extends javax.swing.JInternalFrame {
         this.validate();
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_refershGISReportBtnActionPerformed
+    }//GEN-LAST:event_refreshGISReportBtnActionPerformed
 
-    private void mapReportPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapReportPanel1MouseClicked
+    private void mapReportPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapReportPanelMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_mapReportPanel1MouseClicked
+    }//GEN-LAST:event_mapReportPanelMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.afrisoftech.lib.DatePicker datePicker3;
-    private com.afrisoftech.lib.DatePicker datePicker5;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox4;
-    private javax.swing.JPanel jPanel10;
+    private com.afrisoftech.lib.DatePicker beginDatePicker;
+    private com.afrisoftech.lib.DatePicker endDatePicker;
+    private javax.swing.JPanel headerPanel;
+    private javax.swing.JComboBox indicatorCmbx;
     private javax.swing.JInternalFrame mapInternalFrame;
-    private com.roots.map.MapPanel mapReportPanel1;
-    private javax.swing.JButton refershGISReportBtn;
+    private com.roots.map.MapPanel mapReportPanel;
+    private javax.swing.JComboBox morbidityCmbx;
+    private javax.swing.JButton printReportBtn;
+    private javax.swing.JButton refreshGISReportBtn;
+    private javax.swing.JButton saveReportBtn;
     // End of variables declaration//GEN-END:variables
 }

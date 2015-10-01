@@ -5,6 +5,9 @@
  */
 package com.afrisoftech.hospinventory;
 
+import java.awt.Color;
+import org.jdesktop.swingx.decorator.ColorHighlighter;
+
 /**
  *
  * @author Charles
@@ -19,6 +22,36 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
     public StoresLedgerReportsIntfr(java.sql.Connection connDB) {
         connectDB = connDB;
         initComponents();
+        
+                java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = new java.util.Vector<org.jdesktop.swingx.decorator.Highlighter>(1, 1);
+        //org.jdesktop.swingx.decorator.Highlighter tableHighlighterArray[] ;// = new org.jdesktop.swingx.decorator.Highlighter()[];
+        com.afrisoftech.dbadmin.JXTable predicateTable = (com.afrisoftech.dbadmin.JXTable) abcAnalysisTable;
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate2 = new org.jdesktop.swingx.decorator.PatternPredicate("C", 2);
+        ColorHighlighter cyan = new ColorHighlighter(patternPredicate2, Color.CYAN, null, Color.CYAN, null);
+        tableHighlighters.add(cyan);
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate3 = new org.jdesktop.swingx.decorator.PatternPredicate("B", 2);
+        ColorHighlighter orange = new ColorHighlighter(patternPredicate3, Color.ORANGE, null, Color.ORANGE, null);
+        tableHighlighters.add(orange);
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate4 = new org.jdesktop.swingx.decorator.PatternPredicate("A", 2);
+        ColorHighlighter green = new ColorHighlighter(patternPredicate4, Color.GREEN, null, Color.GREEN, null);
+        tableHighlighters.add(green);
+        ColorHighlighter tableHighlightersArray[] = new ColorHighlighter[]{cyan, green, orange};
+        predicateTable.setHighlighterPipeline(predicateTable, tableHighlightersArray);
+        
+        java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters1 = new java.util.Vector<org.jdesktop.swingx.decorator.Highlighter>(1, 1);
+        //org.jdesktop.swingx.decorator.Highlighter tableHighlighterArray[] ;// = new org.jdesktop.swingx.decorator.Highlighter()[];
+        com.afrisoftech.dbadmin.JXTable predicateTable1 = (com.afrisoftech.dbadmin.JXTable) movementAnalysisTable;
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate21 = new org.jdesktop.swingx.decorator.PatternPredicate("C", 2);
+        ColorHighlighter cyan1 = new ColorHighlighter(patternPredicate21, Color.CYAN, null, Color.CYAN, null);
+        tableHighlighters.add(cyan1);
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate31 = new org.jdesktop.swingx.decorator.PatternPredicate("B", 2);
+        ColorHighlighter orange1 = new ColorHighlighter(patternPredicate31, Color.ORANGE, null, Color.ORANGE, null);
+        tableHighlighters.add(orange1);
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate41 = new org.jdesktop.swingx.decorator.PatternPredicate("A", 2);
+        ColorHighlighter green1 = new ColorHighlighter(patternPredicate41, Color.GREEN, null, Color.GREEN, null);
+        tableHighlighters.add(green1);
+        ColorHighlighter tableHighlightersArray1[] = new ColorHighlighter[]{cyan1, green1, orange1};
+        predicateTable1.setHighlighterPipeline(predicateTable, tableHighlightersArray1);
     }
 
     /**
@@ -42,14 +75,31 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
         storeDetailedBalancesPanel = new javax.swing.JPanel();
         storeDetailedBalancesScrollPane = new javax.swing.JScrollPane();
         storeDetailedBalancesTable = new com.afrisoftech.dbadmin.JXTable();
-        jComboBox2 = new javax.swing.JComboBox();
+        storeNameCmbx = new javax.swing.JComboBox();
         stockAuditTrailPanel = new javax.swing.JPanel();
         storesAuditScrollPane = new javax.swing.JScrollPane();
         storesAuditTrailTable = new com.afrisoftech.dbadmin.JXTable();
         itemBalancesPanel = new javax.swing.JPanel();
         itemBalancesScrollPane = new javax.swing.JScrollPane();
         itemBalancesTable = new com.afrisoftech.dbadmin.JXTable();
-        jComboBox1 = new javax.swing.JComboBox();
+        stockItemNameCmbx = new javax.swing.JComboBox();
+        abcAnalysisPanel = new javax.swing.JPanel();
+        abcAnalysisJscrl = new javax.swing.JScrollPane();
+        abcAnalysisTable = new com.afrisoftech.dbadmin.JXTable();
+        abcPanel = new javax.swing.JPanel();
+        aThresholdTxt = new javax.swing.JFormattedTextField();
+        bThresholdTxt = new javax.swing.JFormattedTextField();
+        cThresholdTxt = new javax.swing.JFormattedTextField();
+        reorderLevelPanel = new javax.swing.JPanel();
+        reorderLevelJscrl = new javax.swing.JScrollPane();
+        reorderLevelTable = new com.afrisoftech.dbadmin.JXTable();
+        movementAnalysisPanel = new javax.swing.JPanel();
+        movementAnalysisJscrl = new javax.swing.JScrollPane();
+        movementAnalysisTable = new com.afrisoftech.dbadmin.JXTable();
+        abcPanel1 = new javax.swing.JPanel();
+        aThresholdTxt1 = new javax.swing.JFormattedTextField();
+        bThresholdTxt1 = new javax.swing.JFormattedTextField();
+        cThresholdTxt1 = new javax.swing.JFormattedTextField();
         buttonPanel = new javax.swing.JPanel();
         generateReportBtn = new javax.swing.JButton();
         refreshReportBtn = new javax.swing.JButton();
@@ -60,7 +110,7 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Supply Chain Management Dashboard - Stores Ledger Reports");
+        setTitle(org.openide.util.NbBundle.getMessage(StoresLedgerReportsIntfr.class, "StoresLedgerReportsIntfr.title")); // NOI18N
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -90,8 +140,6 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
 
         StoreBalancesPanel.setLayout(new java.awt.GridBagLayout());
 
-        stockValuationTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM funsoft_stock_valuation('"+endDatePicker.getDate()+"') ORDER BY 1")
-        );
         stockValuationScrollPane.setViewportView(stockValuationTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -104,7 +152,7 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
 
         storeDetailedBalancesPanel.setLayout(new java.awt.GridBagLayout());
 
-        storeDetailedBalancesTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT initcap(item) as item_name, sum(debit-quantity_ordered) FROM st_stock_cardex WHERE initcap(store) = '"+jComboBox2.getSelectedItem()+"' GROUP BY 1 ORDER BY 1")
+        storeDetailedBalancesTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT initcap(item) as item_name, sum(debit-quantity_ordered) FROM st_stock_cardex WHERE initcap(store) = '"+storeNameCmbx.getSelectedItem()+"' GROUP BY 1 ORDER BY 1")
         );
         storeDetailedBalancesScrollPane.setViewportView(storeDetailedBalancesTable);
 
@@ -116,13 +164,13 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 200.0;
         storeDetailedBalancesPanel.add(storeDetailedBalancesScrollPane, gridBagConstraints);
 
-        jComboBox2.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT initcap(store_name) FROM st_stores WHERE patient_store = false ORDER BY 1")
+        storeNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT initcap(store_name) FROM st_stores WHERE patient_store = true ORDER BY 1")
         );
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        storeDetailedBalancesPanel.add(jComboBox2, gridBagConstraints);
+        storeDetailedBalancesPanel.add(storeNameCmbx, gridBagConstraints);
 
         storeDashboardTabbedPane.addTab("Detailed Store Balances Report", storeDetailedBalancesPanel);
 
@@ -142,7 +190,7 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
 
         itemBalancesPanel.setLayout(new java.awt.GridBagLayout());
 
-        itemBalancesTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT store, sum(debit-quantity_ordered) FROM st_stock_cardex WHERE initcap(item) = '"+jComboBox1.getSelectedItem()+"' GROUP BY 1 ORDER BY 1")
+        itemBalancesTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT store, sum(debit-quantity_ordered) FROM st_stock_cardex WHERE initcap(item) = '"+stockItemNameCmbx.getSelectedItem()+"' GROUP BY 1 ORDER BY 1")
         );
         itemBalancesScrollPane.setViewportView(itemBalancesTable);
 
@@ -154,15 +202,155 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 200.0;
         itemBalancesPanel.add(itemBalancesScrollPane, gridBagConstraints);
 
-        jComboBox1.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT initcap(description) FROM st_stock_item ORDER BY 1")
+        stockItemNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT initcap(description) FROM st_stock_item ORDER BY 1")
         );
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        itemBalancesPanel.add(jComboBox1, gridBagConstraints);
+        itemBalancesPanel.add(stockItemNameCmbx, gridBagConstraints);
 
         storeDashboardTabbedPane.addTab("Stock Item Balances Per Store Report", itemBalancesPanel);
+
+        abcAnalysisPanel.setLayout(new java.awt.GridBagLayout());
+
+        abcAnalysisTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        abcAnalysisJscrl.setViewportView(abcAnalysisTable);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 200.0;
+        abcAnalysisPanel.add(abcAnalysisJscrl, gridBagConstraints);
+
+        abcPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(StoresLedgerReportsIntfr.class, "StoresLedgerReportsIntfr.abcPanel.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 51, 51))); // NOI18N
+        abcPanel.setLayout(new java.awt.GridBagLayout());
+
+        aThresholdTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(StoresLedgerReportsIntfr.class, "StoresLedgerReportsIntfr.aThresholdTxt.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
+        aThresholdTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+        aThresholdTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        abcPanel.add(aThresholdTxt, gridBagConstraints);
+
+        bThresholdTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(StoresLedgerReportsIntfr.class, "StoresLedgerReportsIntfr.bThresholdTxt.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+        bThresholdTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+        bThresholdTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        abcPanel.add(bThresholdTxt, gridBagConstraints);
+
+        cThresholdTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(StoresLedgerReportsIntfr.class, "StoresLedgerReportsIntfr.cThresholdTxt.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 255, 0))); // NOI18N
+        cThresholdTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+        cThresholdTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        abcPanel.add(cThresholdTxt, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        abcAnalysisPanel.add(abcPanel, gridBagConstraints);
+
+        storeDashboardTabbedPane.addTab(org.openide.util.NbBundle.getMessage(StoresLedgerReportsIntfr.class, "StoresLedgerReportsIntfr.abcAnalysisPanel.TabConstraints.tabTitle"), abcAnalysisPanel); // NOI18N
+
+        reorderLevelPanel.setLayout(new java.awt.GridBagLayout());
+
+        reorderLevelTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        reorderLevelJscrl.setViewportView(reorderLevelTable);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        reorderLevelPanel.add(reorderLevelJscrl, gridBagConstraints);
+
+        storeDashboardTabbedPane.addTab(org.openide.util.NbBundle.getMessage(StoresLedgerReportsIntfr.class, "StoresLedgerReportsIntfr.reorderLevelPanel.TabConstraints.tabTitle"), reorderLevelPanel); // NOI18N
+
+        movementAnalysisPanel.setLayout(new java.awt.GridBagLayout());
+
+        movementAnalysisTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        movementAnalysisJscrl.setViewportView(movementAnalysisTable);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 300.0;
+        movementAnalysisPanel.add(movementAnalysisJscrl, gridBagConstraints);
+
+        abcPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(StoresLedgerReportsIntfr.class, "StoresLedgerReportsIntfr.abcPanel1.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 51, 51))); // NOI18N
+        abcPanel1.setLayout(new java.awt.GridBagLayout());
+
+        aThresholdTxt1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(StoresLedgerReportsIntfr.class, "StoresLedgerReportsIntfr.aThresholdTxt1.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
+        aThresholdTxt1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+        aThresholdTxt1.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        abcPanel1.add(aThresholdTxt1, gridBagConstraints);
+
+        bThresholdTxt1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(StoresLedgerReportsIntfr.class, "StoresLedgerReportsIntfr.bThresholdTxt1.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+        bThresholdTxt1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+        bThresholdTxt1.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        abcPanel1.add(bThresholdTxt1, gridBagConstraints);
+
+        cThresholdTxt1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(StoresLedgerReportsIntfr.class, "StoresLedgerReportsIntfr.cThresholdTxt1.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 255, 0))); // NOI18N
+        cThresholdTxt1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+        cThresholdTxt1.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        abcPanel1.add(cThresholdTxt1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        movementAnalysisPanel.add(abcPanel1, gridBagConstraints);
+
+        storeDashboardTabbedPane.addTab(org.openide.util.NbBundle.getMessage(StoresLedgerReportsIntfr.class, "StoresLedgerReportsIntfr.movementAnalysisPanel.TabConstraints.tabTitle"), movementAnalysisPanel); // NOI18N
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -243,10 +431,21 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
 
     private void generateReportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportBtnActionPerformed
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
-        storeDetailedBalancesTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT initcap(item) as item_name, sum(debit-quantity_ordered) FROM st_stock_cardex WHERE initcap(store) = '" + jComboBox2.getSelectedItem() + "' GROUP BY 1 ORDER BY 1"));
-        storesAuditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT initcap(store) as store_name, initcap(item) as item_name, quantity_received, debit as value_received, sub_store_issuing as issued_qty, quantity_ordered as value_issued, data_capture_time, user_name FROM st_stock_cardex WHERE data_capture_time::date between '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' ORDER BY data_capture_time"));
-        itemBalancesTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT store, sum(debit-quantity_ordered) FROM st_stock_cardex WHERE initcap(item) = '" + jComboBox1.getSelectedItem() + "' GROUP BY 1 ORDER BY 1"));
-        stockValuationTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM funsoft_stock_valuation('" + endDatePicker.getDate() + "') ORDER BY 1"));
+        if (storeDashboardTabbedPane.getSelectedIndex() == 1) {
+            storeDetailedBalancesTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT initcap(trim((SELECT DISTINCT description FROM st_stock_item WHERE st_stock_item.item_code = st_stock_cardex.item_code ORDER BY 1 LIMIT 1))) as item_name, sum(quantity_received - sub_store_issuing) as qty_balance, sum(debit-quantity_ordered)::numeric(15,0) as store_balance FROM st_stock_cardex WHERE upper(store) = '" + storeNameCmbx.getSelectedItem().toString().toUpperCase() + "' AND date <= '" + endDatePicker.getDate() + "' AND store in (SELECT distinct store FROM st_stock_cardex INTERSECT SELECT DISTINCT store_name FROM st_stores WHERE patient_store = true) GROUP BY 1  HAVING sum(debit-quantity_ordered) <> 0  ORDER BY 1"));
+        } else if (storeDashboardTabbedPane.getSelectedIndex() == 2) {
+            storesAuditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT  date::date, initcap(store) as store_name, initcap(trim((SELECT DISTINCT description FROM st_stock_item WHERE st_stock_item.item_code = st_stock_cardex.item_code ORDER BY 1 LIMIT 1))) as item_name, quantity_received, debit as value_received, sub_store_issuing as issued_qty, quantity_ordered as value_issued, supplier, transaction_type, user_name FROM st_stock_cardex WHERE date::date between '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' ORDER BY date"));
+        } else if (storeDashboardTabbedPane.getSelectedIndex() == 3) {
+            itemBalancesTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT store, sum(debit-quantity_ordered) FROM st_stock_cardex WHERE initcap(item) = '" + stockItemNameCmbx.getSelectedItem() + "' GROUP BY 1 ORDER BY 1"));
+        } else if(storeDashboardTabbedPane.getSelectedIndex() == 0) {
+            stockValuationTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM funsoft_stock_valuation('" + endDatePicker.getDate() + "') ORDER BY 1"));
+        } else if (storeDashboardTabbedPane.getSelectedIndex() == 4){
+            abcAnalysisTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT initcap(trim((SELECT DISTINCT description FROM st_stock_item WHERE st_stock_item.item_code = st_stock_cardex.item_code ORDER BY 1 LIMIT 1))) as item_name,  sum(debit-quantity_ordered)::numeric(15,0) as store_balance, (CASE WHEN sum(debit-quantity_ordered) > "+Double.parseDouble(aThresholdTxt.getText().replace(",", ""))+" THEN 'A' ELSE (CASE WHEN sum(debit-quantity_ordered) < "+Double.parseDouble(cThresholdTxt.getText().replace(",", ""))+" THEN 'C' ELSE 'B' END) END) as abc_category FROM st_stock_cardex WHERE  date <= '" + endDatePicker.getDate() + "' AND initcap(store) in (SELECT distinct initcap(store) FROM st_stock_cardex INTERSECT SELECT DISTINCT initcap(store_name) FROM st_stores WHERE patient_store = true) GROUP BY 1 HAVING sum(debit-quantity_ordered) <> 0  ORDER BY 2 DESC"));
+        } else if(storeDashboardTabbedPane.getSelectedIndex() == 5){
+            reorderLevelTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT  date::date, initcap(store) as store_name, initcap(trim((SELECT DISTINCT description FROM st_stock_item st1, st_stock_cardex st2, st_stock_cardex st3 WHERE st1.item_code = st2.item_code ORDER BY 1 LIMIT 1))) as items_below_re-order_level, sum(quantity_received - sub_store_issuing) as item_balance_qty, ((SELECT sum(quantity_received - sub_store_issuing) FROM st_stock_cardex st2, st_stock_cardex st3, st_stock_item st1 WHERE st1.item_code = st2.item_code AND date between now()::date - 30)/30) FROM st_stock_cardex WHERE date::date between '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' ORDER BY date"));
+        } else {
+           movementAnalysisTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT  initcap(trim((SELECT DISTINCT description FROM st_stock_item WHERE st_stock_item.item_code = st_stock_cardex.item_code ORDER BY 1 LIMIT 1))) as item_name, sum(debit - quantity_ordered)::numeric(15,0) as movement, (CASE WHEN sum(debit-quantity_ordered) > "+Double.parseDouble(aThresholdTxt1.getText().replace(",", ""))+" THEN 'A' ELSE (CASE WHEN sum(debit-quantity_ordered) < "+Double.parseDouble(cThresholdTxt1.getText().replace(",", ""))+" THEN 'C' ELSE 'B' END) END) as abc_category FROM st_stock_cardex WHERE date::date between '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "'  AND initcap(store) in (SELECT distinct initcap(store) FROM st_stock_cardex INTERSECT SELECT DISTINCT initcap(store_name) FROM st_stores WHERE patient_store = true) GROUP BY 1 HAVING sum(debit-quantity_ordered) <> 0 ORDER BY 2 DESC"));;
+        }
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 // TODO add your handling code here:
     }//GEN-LAST:event_generateReportBtnActionPerformed
@@ -254,8 +453,19 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel StoreBalancesPanel;
+    private javax.swing.JFormattedTextField aThresholdTxt;
+    private javax.swing.JFormattedTextField aThresholdTxt1;
+    private javax.swing.JScrollPane abcAnalysisJscrl;
+    private javax.swing.JPanel abcAnalysisPanel;
+    private javax.swing.JTable abcAnalysisTable;
+    private javax.swing.JPanel abcPanel;
+    private javax.swing.JPanel abcPanel1;
+    private javax.swing.JFormattedTextField bThresholdTxt;
+    private javax.swing.JFormattedTextField bThresholdTxt1;
     private javax.swing.JPanel bodyPanel;
     private javax.swing.JPanel buttonPanel;
+    private javax.swing.JFormattedTextField cThresholdTxt;
+    private javax.swing.JFormattedTextField cThresholdTxt1;
     private javax.swing.JButton closeFormBtn;
     private com.afrisoftech.lib.DatePicker endDatePicker;
     private javax.swing.JButton generateReportBtn;
@@ -263,18 +473,24 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel itemBalancesPanel;
     private javax.swing.JScrollPane itemBalancesScrollPane;
     private javax.swing.JTable itemBalancesTable;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JScrollPane movementAnalysisJscrl;
+    private javax.swing.JPanel movementAnalysisPanel;
+    private javax.swing.JTable movementAnalysisTable;
     private javax.swing.JButton refreshReportBtn;
+    private javax.swing.JScrollPane reorderLevelJscrl;
+    private javax.swing.JPanel reorderLevelPanel;
+    private javax.swing.JTable reorderLevelTable;
     private javax.swing.JLabel spacerLabel;
     private com.afrisoftech.lib.DatePicker startDatePicker;
     private javax.swing.JPanel stockAuditTrailPanel;
+    private javax.swing.JComboBox stockItemNameCmbx;
     private javax.swing.JScrollPane stockValuationScrollPane;
     private javax.swing.JTable stockValuationTable;
     private javax.swing.JTabbedPane storeDashboardTabbedPane;
     private javax.swing.JPanel storeDetailedBalancesPanel;
     private javax.swing.JScrollPane storeDetailedBalancesScrollPane;
     private javax.swing.JTable storeDetailedBalancesTable;
+    private javax.swing.JComboBox storeNameCmbx;
     private javax.swing.JScrollPane storesAuditScrollPane;
     private javax.swing.JTable storesAuditTrailTable;
     // End of variables declaration//GEN-END:variables

@@ -783,9 +783,9 @@ public class ReportIntfr extends javax.swing.JInternalFrame implements Runnable 
     }//GEN-LAST:event_debitTotalTxtActionPerformed
     
     private void reportBodyDebtorsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportBodyDebtorsTableMouseClicked
-        
-        reportBodyDetailsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
-                "SELECT date, invoice_no, transaction_type, sum(debit-credit) FROM ac_debtors WHERE "));
+//        
+//        reportBodyDetailsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
+//                "SELECT date, invoice_no, transaction_type, sum(debit-credit) FROM ac_debtors WHERE "));
         // TODO add your handling code here:
     }//GEN-LAST:event_reportBodyDebtorsTableMouseClicked
     

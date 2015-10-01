@@ -599,7 +599,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="hbLbl">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Pulse"/>
+                <Property name="text" type="java.lang.String" value="Pulse Rate"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -793,9 +793,10 @@
                 <Component class="javax.swing.JComboBox" name="referralINCmbx">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="2">
-                        <StringItem index="0" value="1-From Other Health Facility"/>
-                        <StringItem index="1" value="2-From Internal Care Unit"/>
+                      <StringArray count="3">
+                        <StringItem index="0" value="-"/>
+                        <StringItem index="1" value="1-From Other Health Facility"/>
+                        <StringItem index="2" value="2-From Internal Care Unit"/>
                       </StringArray>
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -813,9 +814,10 @@
                 <Component class="javax.swing.JComboBox" name="referralOUTCmbx">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="2">
-                        <StringItem index="0" value="3-To Other Health Facility"/>
-                        <StringItem index="1" value="4-To Internal Care Unit"/>
+                      <StringArray count="3">
+                        <StringItem index="0" value="-"/>
+                        <StringItem index="1" value="3-To Other Health Facility"/>
+                        <StringItem index="2" value="4-To Internal Care Unit"/>
                       </StringArray>
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -1052,18 +1054,19 @@
             <Component class="javax.swing.JComboBox" name="modernFPMethodCmbx">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="11">
-                    <StringItem index="0" value="C - Condoms"/>
-                    <StringItem index="1" value="ECP - Emergency Contraceptive Pills"/>
-                    <StringItem index="2" value="OC - Oral Contraceptive Pills"/>
-                    <StringItem index="3" value="INJ - Injectables"/>
-                    <StringItem index="4" value="IMP - Implant"/>
-                    <StringItem index="5" value="IUD - Intra-Uterine Device"/>
-                    <StringItem index="6" value="LAM - Lactational Amenorrhea Method"/>
-                    <StringItem index="7" value="D = Diaphragm/Cervical Cap"/>
-                    <StringItem index="8" value="FA = Fertility Awareness Method/Periodic Abstinence"/>
-                    <StringItem index="9" value="TL = Tubal Ligation/Female Sterilization"/>
-                    <StringItem index="10" value="V = Vasectomy (Partner&#x2019;s)"/>
+                  <StringArray count="12">
+                    <StringItem index="0" value="-"/>
+                    <StringItem index="1" value="C - Condoms"/>
+                    <StringItem index="2" value="ECP - Emergency Contraceptive Pills"/>
+                    <StringItem index="3" value="OC - Oral Contraceptive Pills"/>
+                    <StringItem index="4" value="INJ - Injectables"/>
+                    <StringItem index="5" value="IMP - Implant"/>
+                    <StringItem index="6" value="IUD - Intra-Uterine Device"/>
+                    <StringItem index="7" value="LAM - Lactational Amenorrhea Method"/>
+                    <StringItem index="8" value="D = Diaphragm/Cervical Cap"/>
+                    <StringItem index="9" value="FA = Fertility Awareness Method/Periodic Abstinence"/>
+                    <StringItem index="10" value="TL = Tubal Ligation/Female Sterilization"/>
+                    <StringItem index="11" value="V = Vasectomy (Partner&#x2019;s)"/>
                   </StringArray>
                 </Property>
               </Properties>

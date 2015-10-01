@@ -220,6 +220,18 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         taskIdLbl = new javax.swing.JLabel();
         refreshTasksScheduleBtn = new javax.swing.JButton();
         tasksCloseFormBtn = new javax.swing.JButton();
+        userAdministrationAuitTrailPanel = new javax.swing.JPanel();
+        auditTrailScrollPane = new javax.swing.JScrollPane();
+        auditTrailTable = new com.afrisoftech.dbadmin.JXTable();
+        auditHeaderPanel = new javax.swing.JPanel();
+        auditTrailUserCmbx = new javax.swing.JComboBox();
+        startDatePicker = new com.afrisoftech.lib.DatePicker();
+        endDatePicker = new com.afrisoftech.lib.DatePicker();
+        auditTrailSysAdmCmbx = new javax.swing.JComboBox();
+        auditButtonPanel = new javax.swing.JPanel();
+        auditTrailBtn = new javax.swing.JButton();
+        closeBtn = new javax.swing.JButton();
+        auditSpacerLabel = new javax.swing.JLabel();
 
         crset3.setConnectionSource(pConnDB);
 
@@ -1695,6 +1707,111 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
         groupsManagerPane.addTab("List of scheduled tasks", listofScheduledTasksPanel);
 
+        userAdministrationAuitTrailPanel.setLayout(new java.awt.GridBagLayout());
+
+        auditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM account_access_control ORDER BY 3")
+        );
+        auditTrailScrollPane.setViewportView(auditTrailTable);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 200.0;
+        userAdministrationAuitTrailPanel.add(auditTrailScrollPane, gridBagConstraints);
+
+        auditHeaderPanel.setLayout(new java.awt.GridBagLayout());
+
+        auditTrailUserCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '--ALL--' UNION SELECT DISTINCT action_user FROM account_access_control ORDER BY 1")
+        );
+        auditTrailUserCmbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                auditTrailUserCmbxActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        auditHeaderPanel.add(auditTrailUserCmbx, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        auditHeaderPanel.add(startDatePicker, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        auditHeaderPanel.add(endDatePicker, gridBagConstraints);
+
+        auditTrailSysAdmCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '--ALL--' UNION SELECT DISTINCT user_account_affected FROM account_access_control ORDER BY 1"));
+        auditTrailSysAdmCmbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                auditTrailSysAdmCmbxActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        auditHeaderPanel.add(auditTrailSysAdmCmbx, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        userAdministrationAuitTrailPanel.add(auditHeaderPanel, gridBagConstraints);
+
+        auditButtonPanel.setLayout(new java.awt.GridBagLayout());
+
+        auditTrailBtn.setText("Refresh audit trail report");
+        auditTrailBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                auditTrailBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        auditButtonPanel.add(auditTrailBtn, gridBagConstraints);
+
+        closeBtn.setText("Close form");
+        closeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        auditButtonPanel.add(closeBtn, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        auditButtonPanel.add(auditSpacerLabel, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        userAdministrationAuitTrailPanel.add(auditButtonPanel, gridBagConstraints);
+
+        groupsManagerPane.addTab("User Administration Audit Trail", userAdministrationAuitTrailPanel);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.gridheight = 4;
@@ -1719,10 +1836,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
         javax.swing.DefaultListModel dfListModel = new javax.swing.DefaultListModel();
 
-
-
         try {
-
 
             java.sql.Statement stmt = connectDB.createStatement();
 
@@ -1769,7 +1883,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         }
 
         this.jList12.setModel(dfListModel);
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_targetGroupCmbxActionPerformed
@@ -1833,7 +1946,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
 //            connectDB.commit();
 //            connectDB.setAutoCommit(true);
-
             javax.swing.JOptionPane.showMessageDialog(this, "Successfuly updated access privileges for group : [ " + this.targetGroupCmbx.getSelectedItem().toString().toUpperCase() + " ]");
         } catch (java.sql.SQLException sq) {
             sq.printStackTrace();
@@ -1901,8 +2013,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void registerNewGroupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerNewGroupBtnActionPerformed
-
-
 
         java.util.Vector item2add = new java.util.Vector(5, 5);
 
@@ -2012,7 +2122,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
         }
 
-
         // TODO add your handling code here:
     }//GEN-LAST:event_registerNewGroupBtnActionPerformed
 
@@ -2023,9 +2132,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
             java.sql.PreparedStatement pstmt = connectDB.prepareStatement("DROP GROUP " + removeGroupCmbx.getSelectedItem().toString());
 
             // pstmt.setString(1,removeGroupCmbx.getSelectedItem().toString());
-
             pstmt.executeUpdate();
-
 
             java.sql.PreparedStatement pstmtChangeControl = connectDB.prepareStatement("INSERT INTO account_access_control("
                     + "           account_change_type, user_account_affected"
@@ -2051,7 +2158,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         try {
 
             java.sql.PreparedStatement pstmt = connectDB.prepareStatement("UPDATE secure_menu_access SET menu_list = (SELECT menu_list FROM secure_menu_access WHERE login_name = ? AND sys_name = 'hospital_main') WHERE login_name = ? AND sys_name = 'hospital_main'");
-
 
             pstmt.setString(1, accountNameCmbx.getSelectedItem().toString());
 
@@ -2092,9 +2198,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         javax.swing.DefaultListModel dfListModel = new javax.swing.DefaultListModel();
 
         //org.netbeans.lib.sql.models.ListModel list11Model = new org.netbeans.lib.sql.models.ListModel();
-
-
-
         //this.jList11.setModel(list11Model.);
 /*
          * try {
@@ -2108,11 +2211,9 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
          *
          * }
          */
-
         try {
 
             //          java.sql.Connection cn = java.sql.DriverManager.getConnection("jdbc:postgresql://192.168.0.100:5432/purchase","postgres", "pilsiner");
-
             java.sql.Statement stmt = connectDB.createStatement();
 
             java.sql.ResultSet rs = stmt.executeQuery("select menu_list from secure_menu_access where login_name = '" + targetAccountNameCmbx.getSelectedItem().toString() + "'");
@@ -2157,8 +2258,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
         }
 
-
-
         /*
          * try {
          *
@@ -2179,12 +2278,9 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
          *
          * //while(rsetArray.next()) {
          */
-
         this.jList11.setModel(dfListModel);
 
         //        jList11.setModel(new org.netbeans.lib.sql.models.ListModel (crset3, "item_desc", null, null, null));
-
-
         // Add your handling code here:
     }//GEN-LAST:event_targetAccountNameCmbxActionPerformed
 
@@ -2210,7 +2306,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         java.util.Date date = caled.getTime();
 
         java.lang.String strDate = date.toLocaleString();
-
 
         java.lang.Object[] access_denied = jList3.getSelectedValues();
 
@@ -2238,8 +2333,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
             this.jLabel8.setText("Access privileges updated on : " + strDate);
         }
-
-
 
         // Add your handling code here:
     }//GEN-LAST:event_revokebtnActionPerformed
@@ -2296,15 +2389,10 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         try {
             //  java.sql.Connection con = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/hospital","postgres","pilsiner");
 
-
             //    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("DROP USER " + user2del);
-
             java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("DELETE FROM secure_menu_access WHERE login_name = '" + user2del + "'");
 
             java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("DELETE FROM secure_password WHERE login_name = '" + user2del + "'");
-
-
-
 
             pstmt1.executeUpdate();
 
@@ -2315,7 +2403,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
             pstmt2.close();
 
             //              pstmt.executeUpdate();
-
             this.crset1.execute();
 
             this.crset2.execute();
@@ -2352,19 +2439,15 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
             targetAccountNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
 
-
             jComboBox4.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
 
             jComboBox42.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
-
 
         } catch (java.sql.SQLException sq) {
             javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
             System.out.println(sq.getMessage());
             // sq.printStackTrace();
         }
-
-
 
         // Add your handling code here:
     }//GEN-LAST:event_jButton3011ActionPerformed
@@ -2417,7 +2500,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
         this.jList11.setModel(newdfListModel);
 
-
         // Add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -2433,10 +2515,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
         javax.swing.DefaultListModel dfListModel = new javax.swing.DefaultListModel();
 
-
-
         try {
-
 
             java.sql.Statement stmt = connectDB.createStatement();
 
@@ -2483,7 +2562,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         }
 
         this.jList11.setModel(dfListModel);
-
 
         try {
 
@@ -2674,7 +2752,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
                 javax.swing.DefaultListModel dfListModel = new javax.swing.DefaultListModel();
 
-
                 java.util.Vector item2add = new java.util.Vector(5, 5);
 
                 javax.swing.DefaultListModel listModel = new javax.swing.DefaultListModel();
@@ -2691,8 +2768,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
                 selectedValues = item2add.toArray();
 
-
-
                 for (int k = 0; k < selectedValues.length; k++) {
 
                     System.out.print("Values : " + "\t" + selectedValues[k] + "\t");
@@ -2707,7 +2782,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
                 }
 
-
                 if (this.logonNameTxt.getText().equals("")) {
 
                     javax.swing.JOptionPane.showMessageDialog(this, "Cannot create void username");
@@ -2718,7 +2792,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
                         connectDB.setAutoCommit(false);
                         registerSavePoint = connectDB.setSavepoint("registration");
-
 
                         java.sql.Statement stmt = connectDB.createStatement();
 
@@ -2764,8 +2837,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
                         pstmt.execute();
 
-
-
                         java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO secure_menu_access(login_name, menu_list, f_name, l_name, department, sys_name, group_name) VALUES (lower(?),?,?,?,?,?,?)");
 
                         java.sql.PreparedStatement pstmt4 = connectDB.prepareStatement("INSERT INTO secure_menu_access(login_name, menu_list, f_name, l_name, department, sys_name, group_name) VALUES (lower(?),?,?,?,?,?,?)");
@@ -2777,8 +2848,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
                         java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO secure_password values(lower(?),?,?,?,?,?)");
 
                         // java.sql.PreparedStatement pstmt3 = connectDB.prepareStatement("GRANT SELECT ON secure_password TO " + jTextField582.getText());
-
-
                         pstmt1.setObject(1, logonNameTxt.getText());
                         pstmt1.setArray(2, arraySet);
                         pstmt1.setObject(3, jTextField2.getText());
@@ -2786,7 +2855,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
                         pstmt1.setObject(5, jComboBox3.getSelectedItem().toString());
                         pstmt1.setObject(6, "hospital_main");
                         pstmt1.setObject(7, removeGroupCmbx2.getSelectedItem().toString());
-
 
                         pstmt4.setObject(1, logonNameTxt.getText());
                         pstmt4.setArray(2, arraySet1);
@@ -2820,27 +2888,22 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
                         pstmt2.setBoolean(6, java.lang.Boolean.TRUE);
 
                         //    pstmt.executeUpdate();
-
                         pstmt1.executeUpdate();
 
                         pstmt2.executeUpdate();
 
                         //pstmt3.executeUpdate();
-
                         pstmt4.executeUpdate();
 
                         pstmt5.executeUpdate();
 
                         pstmt6.executeUpdate();
 
-
-
                         jComboBox2.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
 
                         accountNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
 
                         targetAccountNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
-
 
                         jComboBox4.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
 
@@ -2885,7 +2948,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "Please note that the password MUST be atleast 8 characters.");
         }
 
-
         // Add your handling code here:
     }//GEN-LAST:event_jButton301ActionPerformed
 
@@ -2896,9 +2958,9 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     private void jComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox6ActionPerformed
         try {
             //   jComboBox5.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT group_name FROM secure_menu_access"));
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT DISTINCT group_name FROM secure_menu_access WHERE login_name = '"+jComboBox6.getSelectedItem().toString()+"'");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT DISTINCT group_name FROM secure_menu_access WHERE login_name = '" + jComboBox6.getSelectedItem().toString() + "'");
             java.sql.ResultSet rset = pstmt.executeQuery();
-            while(rset.next()){
+            while (rset.next()) {
                 currentGroupTxt.setText(rset.getString(1));
             }
             // TODO add your handling code here:
@@ -2928,7 +2990,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
         javax.swing.DefaultListModel dfListModel = new javax.swing.DefaultListModel();
 
-
         java.util.Vector item2add = new java.util.Vector(5, 5);
 
         javax.swing.DefaultListModel listModel = new javax.swing.DefaultListModel();
@@ -2944,8 +3005,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         }
 
         selectedValues = item2add.toArray();
-
-
 
         for (int k = 0; k < selectedValues.length; k++) {
 
@@ -3002,7 +3061,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 //            com.afrisoftech.lib.SecuritySettings.setUserAccessControl(connectDB, logonNameTxt.getText());
 //            connectDB.commit();
 //            connectDB.setAutoCommit(true);
-
             javax.swing.JOptionPane.showMessageDialog(this, "Successfuly updated access privileges for user : [ " + this.jComboBox6.getSelectedItem().toString().toUpperCase() + " ]");
         } catch (java.sql.SQLException sq) {
             sq.printStackTrace();
@@ -3261,6 +3319,41 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tasksCloseFormBtnActionPerformed
 
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+
+        this.dispose();
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_closeBtnActionPerformed
+
+    private void auditTrailBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auditTrailBtnActionPerformed
+             auditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM account_access_control WHERE account_change_timestamp::date BETWEEN '"+startDatePicker.getDate()+"' AND '"+endDatePicker.getDate()+"' ORDER BY 3"));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_auditTrailBtnActionPerformed
+
+    private void auditTrailUserCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auditTrailUserCmbxActionPerformed
+
+        if (auditTrailUserCmbx.getSelectedItem().toString().contains("--ALL--")) {
+            auditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM account_access_control ORDER BY 3"));
+        }else {
+            auditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM account_access_control WHERE action_user ilike '"+auditTrailUserCmbx.getSelectedItem().toString()+"' ORDER BY 3"));
+
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_auditTrailUserCmbxActionPerformed
+
+    private void auditTrailSysAdmCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auditTrailSysAdmCmbxActionPerformed
+
+        if (auditTrailSysAdmCmbx.getSelectedItem().toString().contains("--ALL--")) {
+            auditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM account_access_control ORDER BY 3"));
+        }else {
+            auditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM account_access_control WHERE user_account_affected ilike '"+auditTrailSysAdmCmbx.getSelectedItem().toString()+"' ORDER BY 3"));
+
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_auditTrailSysAdmCmbxActionPerformed
+
     public String getSqlString(java.lang.Object[] arrayfromJList) {
 
         java.lang.String strToArray = arrayfromJList[0].toString();
@@ -3285,11 +3378,20 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox anyCharacterCheckBox;
     private javax.swing.JPanel assignGroupMembersPanel;
     private javax.swing.JButton assignbtn;
+    private javax.swing.JPanel auditButtonPanel;
+    private javax.swing.JPanel auditHeaderPanel;
+    private javax.swing.JLabel auditSpacerLabel;
+    private javax.swing.JButton auditTrailBtn;
+    private javax.swing.JScrollPane auditTrailScrollPane;
+    private javax.swing.JComboBox auditTrailSysAdmCmbx;
+    private javax.swing.JTable auditTrailTable;
+    private javax.swing.JComboBox auditTrailUserCmbx;
     private javax.swing.JPanel bodyPanel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JButton changeUserGroupBtn;
     private javax.swing.JButton clearFormPaaswordPolicyBrn;
+    private javax.swing.JButton closeBtn;
     private javax.swing.JButton closeFormBtn;
     private javax.swing.JButton closebtn;
     private org.netbeans.lib.sql.NBCachedRowSet crset1;
@@ -3302,6 +3404,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel dataaccessPane;
     private javax.swing.JTextField daystoExpireTxt;
     private javax.swing.JButton dropGroupBtn;
+    private com.afrisoftech.lib.DatePicker endDatePicker;
     private javax.swing.JPanel groupManagementPanel;
     private javax.swing.JTabbedPane groupsManagerPane;
     private javax.swing.JPanel headerPanel;
@@ -3418,6 +3521,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTable staffControlsTbl;
     private javax.swing.JPanel staffListingPanel;
     private javax.swing.JPanel staffOperationsButtonPanel;
+    private com.afrisoftech.lib.DatePicker startDatePicker;
     private javax.swing.JComboBox targetAccountNameCmbx;
     private javax.swing.JComboBox targetGroupCmbx;
     private javax.swing.JLabel targetGroupLbl;
@@ -3426,6 +3530,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton tasksCloseFormBtn;
     private javax.swing.JButton updateLoginAccountBtn;
     private javax.swing.JButton updateScheduleTaskBtn;
+    private javax.swing.JPanel userAdministrationAuitTrailPanel;
     private javax.swing.JPanel userRegistrationPanel;
     private javax.swing.JCheckBox warnUsersForScheduledTaskChkbx;
     private javax.swing.JCheckBox warnUsersForScheduledTaskChkbx1;

@@ -394,13 +394,13 @@ public class TrialBalanceRpt implements java.lang.Runnable {
                         }
                     }
                     
-                    table3.addCell("Total");
+                   // table3.addCell("Total");
                     
-                    table3.addCell("");
+                  //  table3.addCell("");
                     
-                    table3.addCell(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(debit)));
+                  //  table3.addCell(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(debit)));
                     
-                    table3.addCell(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(credit)));
+                  //  table3.addCell(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(credit)));
                     
                     table3.setColumnIdentifiers(columnModel1);
                     
@@ -437,6 +437,8 @@ public class TrialBalanceRpt implements java.lang.Runnable {
             }
             
         } catch(java.sql.SQLException SqlExec) {
+            
+            SqlExec.printStackTrace();
             
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
             

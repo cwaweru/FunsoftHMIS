@@ -729,7 +729,7 @@ public class ComboTasksIntfr extends javax.swing.JInternalFrame implements java.
                     }*/
                     govPos = new com.afrisoftech.accounting.GovBillPaymentsIntfr(connectDB, pConnDB);
 
-                    govPos.jButton411.addActionListener(new java.awt.event.ActionListener() {
+                    govPos.closePosBtn.addActionListener(new java.awt.event.ActionListener() {
 
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                             comboTaskPanels.removeAll();
@@ -757,7 +757,7 @@ public class ComboTasksIntfr extends javax.swing.JInternalFrame implements java.
                  */
                 govPos = new com.afrisoftech.accounting.GovBillPaymentsIntfr(connectDB, pConnDB);
 
-                govPos.jButton411.addActionListener(new java.awt.event.ActionListener() {
+                govPos.closePosBtn.addActionListener(new java.awt.event.ActionListener() {
 
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         comboTaskPanels.removeAll();

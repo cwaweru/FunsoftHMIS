@@ -153,7 +153,7 @@ public class GbvDataIntfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("GBV Data Entry Form");
+        setTitle("Gender Based Violence Register (GBVR) - MOH:365- Data Entry Form");
         setFrameIcon(null);
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());

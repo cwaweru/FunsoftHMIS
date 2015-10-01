@@ -329,7 +329,7 @@ jButton1.setLabel("Register active financial year");
             for (int i = 0; i < jTable1.getRowCount(); i++){
                 if (jTable1.getModel().getValueAt(i,0) != null){
                     if(jButton1.getText().equalsIgnoreCase("Update")){
-                        java.sql.PreparedStatement pstmt311 = connectDB.prepareStatement("UPDATE pb_financial_year SET financial_year_desc = '"+jTable1.getValueAt(i,1).toString()+"', active_year = true WHERE financial_year_code = '"+jTable1.getValueAt(i,0).toString()+"'");
+                        java.sql.PreparedStatement pstmt311 = connectDB.prepareStatement("UPDATE pb_financial_year SET financial_year_desc = '"+jTable1.getValueAt(i,1).toString()+"', active_year = "+Boolean.parseBoolean(jTable1.getValueAt(i,2).toString())+" WHERE financial_year_code = '"+jTable1.getValueAt(i,0).toString()+"'");
                         pstmt311.executeUpdate();
                     }else{
                         java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("insert into pb_financial_year values(?,initcap(?))");

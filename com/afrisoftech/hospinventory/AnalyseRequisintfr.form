@@ -14,7 +14,7 @@
     <Property name="iconifiable" type="boolean" value="true"/>
     <Property name="maximizable" type="boolean" value="true"/>
     <Property name="resizable" type="boolean" value="true"/>
-    <Property name="title" type="java.lang.String" value="Analyse Requisitions"/>
+    <Property name="title" type="java.lang.String" value="Analyse requisitions based on re-order levels"/>
     <Property name="visible" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
@@ -37,7 +37,7 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel4">
+    <Container class="javax.swing.JPanel" name="reorderMainPanel">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
           <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
@@ -46,7 +46,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanel3">
+        <Container class="javax.swing.JPanel" name="buttonPanel">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -65,14 +65,14 @@
             <Component class="javax.swing.JButton" name="postbtn">
               <Properties>
                 <Property name="mnemonic" type="int" value="115"/>
-                <Property name="text" type="java.lang.String" value="Save"/>
+                <Property name="text" type="java.lang.String" value="Save Reorder Report"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="postbtnActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                  <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+                  <GridBagConstraints gridX="1" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -85,31 +85,17 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                  <GridBagConstraints gridX="3" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+                  <GridBagConstraints gridX="4" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Component class="javax.swing.JButton" name="cancelbtn">
               <Properties>
                 <Property name="mnemonic" type="int" value="108"/>
-                <Property name="text" type="java.lang.String" value="Clear"/>
+                <Property name="text" type="java.lang.String" value="Clear form"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelbtnActionPerformed"/>
-              </Events>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                  <GridBagConstraints gridX="4" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JButton" name="exitbtn">
-              <Properties>
-                <Property name="mnemonic" type="int" value="99"/>
-                <Property name="text" type="java.lang.String" value="Close"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitbtnActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -117,35 +103,36 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel5">
+            <Component class="javax.swing.JButton" name="exitbtn">
+              <Properties>
+                <Property name="mnemonic" type="int" value="99"/>
+                <Property name="text" type="java.lang.String" value="Close form"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitbtnActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                  <GridBagConstraints gridX="6" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JLabel" name="spacerLbl">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                  <GridBagConstraints gridX="-1" gridY="-1" gridWidth="6" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
+                  <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="200.0" weightY="1.0"/>
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="printReportBtn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Print"/>
+                <Property name="text" type="java.lang.String" value="Print Reorder Report"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-              </Events>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                  <GridBagConstraints gridX="1" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Remove Row"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printReportBtnActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -153,9 +140,22 @@
                 </Constraint>
               </Constraints>
             </Component>
+            <Component class="javax.swing.JButton" name="removeRowBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Remove Row"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeRowBtnActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                  <GridBagConstraints gridX="3" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+                </Constraint>
+              </Constraints>
+            </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel2">
+        <Container class="javax.swing.JPanel" name="reorderReportPanel">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -189,7 +189,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable1">
+                <Component class="javax.swing.JTable" name="reorderReportTable">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="10" rowCount="500">
@@ -211,14 +211,14 @@
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable();"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*    try {&#xa;     &#xa;      crset2.setCommand(&quot;select description,units,stock,reorder_level,quantity,min_order AS quantity,reorder_level-stock as min_order,reorder_level-stock as min_order from analysed_requisation where reorder_level-stock &gt; 0 order by description&quot;);&#xa;    //  crset2.setCommand(&quot;select description,units,sum(quantity_in_stock) as quantity_in_stock,reorder_level,sum(quantity) as quantity,sum(reorder_level-quantity_in_stock) as min_order,sum(min_order) AS min_order from ungroup_analyse_requisation group by description,units,reorder_level&quot;);&#xa;          &#xa;        crset2.setConnectionSource(pConnDB);&#xa;        &#xa;    &#xa;            crset2.execute();&#xa;        jTable1.setModel(new org.netbeans.lib.sql.models.TableModel(crset2, new org.netbeans.lib.sql.models.TableModel.Column[] {&#xa;           &#xa;           new org.netbeans.lib.sql.models.TableModel.Column(&quot;description&quot;, &quot;Item&quot;, false),&#xa;           new org.netbeans.lib.sql.models.TableModel.Column(&quot;units&quot;, &quot;Units&quot;, false),&#xa;           new org.netbeans.lib.sql.models.TableModel.Column(&quot;stock&quot;, &quot;Qty In Stock&quot;, false),&#xa;           new org.netbeans.lib.sql.models.TableModel.Column(&quot;reorder_level&quot;, &quot;Reorder Level&quot;, false),&#xa;           new org.netbeans.lib.sql.models.TableModel.Column(&quot;quantity&quot;, &quot;Qty Ordered&quot;, false),&#xa;           new org.netbeans.lib.sql.models.TableModel.Column(&quot;min_order&quot;, &quot;Min.Order&quot;, false),&#xa;           new org.netbeans.lib.sql.models.TableModel.Column(&quot;min_order&quot;, &quot;Qty to Order&quot;, true)&#xa;        &#xa;            }));&#xa;            &#xa;      &#xa;        jScrollPane1.setViewportView(jTable1);&#xa;       } catch(java.sql.SQLException sqlex){&#xa;          javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),&quot;Error Message!&quot;,javax.swing.JOptionPane.ERROR_MESSAGE);&#xa; &#xa;        System.out.println(sqlex.getMessage());&#xa;                &#xa;        } &#xa;&#xa;       &#xa;    javax.swing.table.TableColumn column = null;&#xa;              for (int i = 0; i &lt; 7; i++) {&#xa;                  column = jTable1.getColumnModel().getColumn(i);&#xa;                  if (i == 0) {&#xa;                      &#xa;                      column.setPreferredWidth(250); //sport column is bigger&#xa;                  } else {&#xa;                      if (i == 1) {&#xa;                          column.setPreferredWidth(100);&#xa;                      } else {&#xa;                          //if (i == 2) {&#xa;                              column.setPreferredWidth(100);&#xa;                         // }  else &#xa;                      //column.setPreferredWidth(50);&#xa;                  &#xa;                      }&#xa;                  }&#xa;              }&#xa; */"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*    try {&#xa;     &#xa;      crset2.setCommand(&quot;select description,units,stock,reorder_level,quantity,min_order AS quantity,reorder_level-stock as min_order,reorder_level-stock as min_order from analysed_requisation where reorder_level-stock &gt; 0 order by description&quot;);&#xa;    //  crset2.setCommand(&quot;select description,units,sum(quantity_in_stock) as quantity_in_stock,reorder_level,sum(quantity) as quantity,sum(reorder_level-quantity_in_stock) as min_order,sum(min_order) AS min_order from ungroup_analyse_requisation group by description,units,reorder_level&quot;);&#xa;          &#xa;        crset2.setConnectionSource(pConnDB);&#xa;        &#xa;    &#xa;            crset2.execute();&#xa;        reorderReportTable.setModel(new org.netbeans.lib.sql.models.TableModel(crset2, new org.netbeans.lib.sql.models.TableModel.Column[] {&#xa;           &#xa;           new org.netbeans.lib.sql.models.TableModel.Column(&quot;description&quot;, &quot;Item&quot;, false),&#xa;           new org.netbeans.lib.sql.models.TableModel.Column(&quot;units&quot;, &quot;Units&quot;, false),&#xa;           new org.netbeans.lib.sql.models.TableModel.Column(&quot;stock&quot;, &quot;Qty In Stock&quot;, false),&#xa;           new org.netbeans.lib.sql.models.TableModel.Column(&quot;reorder_level&quot;, &quot;Reorder Level&quot;, false),&#xa;           new org.netbeans.lib.sql.models.TableModel.Column(&quot;quantity&quot;, &quot;Qty Ordered&quot;, false),&#xa;           new org.netbeans.lib.sql.models.TableModel.Column(&quot;min_order&quot;, &quot;Min.Order&quot;, false),&#xa;           new org.netbeans.lib.sql.models.TableModel.Column(&quot;min_order&quot;, &quot;Qty to Order&quot;, true)&#xa;        &#xa;            }));&#xa;            &#xa;      &#xa;        jScrollPane1.setViewportView(reorderReportTable);&#xa;       } catch(java.sql.SQLException sqlex){&#xa;          javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),&quot;Error Message!&quot;,javax.swing.JOptionPane.ERROR_MESSAGE);&#xa; &#xa;        System.out.println(sqlex.getMessage());&#xa;                &#xa;        } &#xa;&#xa;       &#xa;    javax.swing.table.TableColumn column = null;&#xa;              for (int i = 0; i &lt; 7; i++) {&#xa;                  column = reorderReportTable.getColumnModel().getColumn(i);&#xa;                  if (i == 0) {&#xa;                      &#xa;                      column.setPreferredWidth(250); //sport column is bigger&#xa;                  } else {&#xa;                      if (i == 1) {&#xa;                          column.setPreferredWidth(100);&#xa;                      } else {&#xa;                          //if (i == 2) {&#xa;                              column.setPreferredWidth(100);&#xa;                         // }  else &#xa;                      //column.setPreferredWidth(50);&#xa;                  &#xa;                      }&#xa;                  }&#xa;              }&#xa; */"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel1">
+        <Container class="javax.swing.JPanel" name="headerPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="-1" gridY="-1" gridWidth="4" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
@@ -227,7 +227,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+            <Component class="javax.swing.JCheckBox" name="analyseItemsChkbx">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroup1"/>
@@ -236,7 +236,7 @@
                 <Property name="horizontalTextPosition" type="int" value="10"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="analyseItemsChkbxActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -244,7 +244,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox2">
+            <Component class="javax.swing.JCheckBox" name="refreshReordersChkbx">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroup1"/>
@@ -253,7 +253,7 @@
                 <Property name="horizontalTextPosition" type="int" value="10"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshReordersChkbxActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -261,7 +261,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="orderStoreLbl">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ordering Store"/>
               </Properties>
@@ -271,7 +271,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox1">
+            <Component class="javax.swing.JComboBox" name="orderingStoreCmbx">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;select distinct store_name from st_stores order by store_name&quot;)" type="code"/>
@@ -283,7 +283,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+            <Component class="javax.swing.JRadioButton" name="presetReorderLevelsRdbtn">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroup2"/>
@@ -292,7 +292,7 @@
                 <Property name="horizontalTextPosition" type="int" value="10"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="presetReorderLevelsRdbtnActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -300,7 +300,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+            <Component class="javax.swing.JRadioButton" name="movingAverageReorderRdbtn">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroup2"/>
@@ -314,7 +314,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox3">
+            <Component class="javax.swing.JCheckBox" name="mainStoreChkbx">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroup3"/>
@@ -322,7 +322,7 @@
                 <Property name="text" type="java.lang.String" value="Main Store"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mainStoreChkbxActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -330,7 +330,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox4">
+            <Component class="javax.swing.JCheckBox" name="subStoreChkbx">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroup3"/>
@@ -338,7 +338,7 @@
                 <Property name="text" type="java.lang.String" value="Sub Store"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox4ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subStoreChkbxActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -346,7 +346,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JLabel" name="orderDateLbl">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Order Date"/>
               </Properties>
@@ -356,14 +356,14 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="com.afrisoftech.lib.DatePicker" name="datePicker1">
+            <Component class="com.afrisoftech.lib.DatePicker" name="orderDatePicker">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                   <GridBagConstraints gridX="4" gridY="0" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="10" anchor="10" weightX="1.0" weightY="1.0"/>
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
+            <Component class="javax.swing.JLabel" name="supplyStoreLbl">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Supplying Store"/>
               </Properties>
@@ -373,7 +373,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox2">
+            <Component class="javax.swing.JComboBox" name="supplyStoreCmbx">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;select distinct store_name from st_stores order by store_name&quot;)" type="code"/>
@@ -385,7 +385,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox5">
+            <Component class="javax.swing.JCheckBox" name="analyseBelowReorderLvelChkbx">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroup1"/>
@@ -394,7 +394,7 @@
                 <Property name="horizontalTextPosition" type="int" value="10"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox5ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="analyseBelowReorderLvelChkbxActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

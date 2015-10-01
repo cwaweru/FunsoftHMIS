@@ -31,6 +31,7 @@ public class YearlyAllocationIntFr extends javax.swing.JInternalFrame {
         connectDB = connDb;
 
         pConnDB = pconnDB;
+       
         initComponents();
 
     }
@@ -41,11 +42,7 @@ public class YearlyAllocationIntFr extends javax.swing.JInternalFrame {
         int limit_mnth = 6;
 
         try {
-            //        java.sql.Statement stmt=connectDB.createStatement();
-//        java.sql.ResultSet res=stmt.executeQuery("select current_date::date");
-//        
-//        while (res.next()){
-//        java.util.Date gets=res.getDate(1);
+
 
             Calendar now = Calendar.getInstance();
             int year = now.get(Calendar.YEAR);
@@ -212,7 +209,7 @@ public class YearlyAllocationIntFr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Yearly Allocation ");
+        setTitle("Vote Book : Yearly Allocation ");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }

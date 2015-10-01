@@ -844,7 +844,7 @@ public class HL7Messaging {
             MSH mshSegment = adt.getMSH();
             mshSegment.getSendingApplication().getNamespaceID().setValue("Funsoft I-HMIS HL7 Messaging System");
             mshSegment.getSequenceNumber().setValue(getHL7SequenceNumber(connectDB));
-
+            // mshSegment.getSendingFacility()
             // Populate the PID Segment
             PID pid = adt.getPID();
             pid.getPatientName(0).getFamilyName().getSurname().setValue(getPATIENT_FAMILY_SURNAME());
@@ -852,6 +852,7 @@ public class HL7Messaging {
             pid.getPatientIdentifierList(0).getID().setValue(getPATIENT_ID());
             pid.getCitizenship(0).getCe1_Identifier().setValue(getPATIENT_CITIZENSHIP());
 
+            //adt.insertAL1(PATIENT_AGE).
             // Now, let's encode the message and look at the output
             HapiContext context = new DefaultHapiContext();
             Parser parser = context.getPipeParser();

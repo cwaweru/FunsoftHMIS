@@ -6,6 +6,9 @@
 
 package com.afrisoftech.dbadmin;
 
+import java.io.IOException;
+import org.openide.util.Exceptions;
+
 /**
  *
  * @author  root
@@ -127,6 +130,15 @@ public class ExcelExport implements java.lang.Runnable {
         workonExcelDocument(excelOutputStream);
         
         javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Successfully exported table ["+tableName.toUpperCase()+"] to file ["+excelDocFile.getAbsolutePath()+"]");
+        
+        if(java.awt.Desktop.isDesktopSupported()){
+            try {
+                java.awt.Desktop.getDesktop().open(excelDocFile);
+            } catch (IOException ex) {
+                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
+                Exceptions.printStackTrace(ex);
+            }
+        }
         
     }
     

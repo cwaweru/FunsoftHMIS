@@ -83,14 +83,11 @@ public class MOH510ImmunisationRegisterPdf implements java.lang.Runnable {
 
             threadCheck = false;
 
-
             System.out.println("We shall be lucky to get back to start in one piece");
 
         }
 
         if (!threadCheck) {
-
-
 
             Thread.currentThread().stop();
 
@@ -261,7 +258,6 @@ public class MOH510ImmunisationRegisterPdf implements java.lang.Runnable {
 
         java.lang.String pdfDateStamp = dateStampPdf.toString();
 
-
         try {
 
             java.io.File tempFile = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
@@ -282,7 +278,6 @@ public class MOH510ImmunisationRegisterPdf implements java.lang.Runnable {
                     Image img = Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo());
 
                     //Image imgWaterMark = Image.getInstance(System.getProperty("company.watermark"));
-
                     com.lowagie.text.pdf.PdfWriter.getInstance(docPdf, new java.io.FileOutputStream(tempFile));
 
                     String compName = null;
@@ -330,10 +325,9 @@ public class MOH510ImmunisationRegisterPdf implements java.lang.Runnable {
 
                     try {
 
-
                         com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(34);
 
-                        int headerwidths[] = {5, 10, 10, 10, 10, 25, 10, 12, 12, 12, 9, 9, 9, 12, 12, 10, 10, 10, 12, 9, 9, 9, 9, 9, 9, 20, 9, 10, 10, 10, 10, 10, 25, 25};
+                        int headerwidths[] = {5, 12, 12, 12, 25, 12, 12, 12, 25, 25, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 25};
 
                         table.setWidths(headerwidths);
 
@@ -390,7 +384,6 @@ public class MOH510ImmunisationRegisterPdf implements java.lang.Runnable {
                             phrase = new Phrase("YEAR : " + yearString.toUpperCase(), pFontHeader22);
                             table.addCell(phrase);
 
-
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
 
                             table.getDefaultCell().setColspan(1);
@@ -401,10 +394,9 @@ public class MOH510ImmunisationRegisterPdf implements java.lang.Runnable {
 
                             table.getDefaultCell().setColspan(1);
 
-                            
                             phrase = new Phrase("#", pFontHeader11);
                             table.addCell(phrase);
-                            
+
                             phrase = new Phrase("Date", pFontHeader11);
                             table.addCell(phrase);
 
@@ -506,7 +498,7 @@ public class MOH510ImmunisationRegisterPdf implements java.lang.Runnable {
 
                             phrase = new Phrase(" ", pFontHeader11);
                             table.addCell(phrase);
-                            
+
                             phrase = new Phrase("A", pFontHeader11);
                             table.addCell(phrase);
 
@@ -606,7 +598,6 @@ public class MOH510ImmunisationRegisterPdf implements java.lang.Runnable {
                             phrase = new Phrase("AG", pFontHeader11);
                             table.addCell(phrase);
 
-
                         } catch (java.text.ParseException psExec) {
 
                             psExec.printStackTrace();
@@ -629,24 +620,13 @@ public class MOH510ImmunisationRegisterPdf implements java.lang.Runnable {
 
                             for (int i = 0; i < listofAct.length; i++) {
 
+                                String patientNo = listofAct[i].toString();
+
                                 java.sql.PreparedStatement stw = connectDB.prepareStatement("SELECT DISTINCT "
-                                        + " date_part('day', date) ||'-'||date_part('month', date) ||'-'||date_part('year', date), patient_no, lab_no, patient_name, age::int, initcap(gender),"
-                                        + " (SELECT pat_location FROM hp_admission WHERE hp_lab_results.patient_no = hp_admission.patient_no UNION SELECT sub_location FROM "
-                                        + " hp_patient_register WHERE hp_lab_results.patient_no = hp_patient_register.patient_no ORDER by 1 DESC LIMIT 1) as sub_location,"
-                                        + " (SELECT initcap(residence) FROM hp_inpatient_register"
-                                        + " WHERE hp_lab_results.patient_no = hp_inpatient_register.patient_no"
-                                        + " UNION SELECT initcap(residence) FROM hp_patient_register WHERE "
-                                        + " hp_lab_results.patient_no = hp_patient_register.patient_no ORDER BY 1 "
-                                        + " DESC LIMIT 1) as village, (SELECT tel FROM hp_admission WHERE hp_admission.patient_no = hp_lab_results.patient_no UNION "
-                                        + " SELECT tel_no FROM hp_patient_register WHERE hp_patient_register.patient_no = hp_lab_results.patient_no ORDER BY 1 DESC LIMIT 1) "
-                                        + " as telephone, date_part('day', date::date) ||'-'||date_part('month', date::date) ||'-'||date_part('year', date::date), "
-                                        + " date_part('day', spec_time::date) ||'-'||date_part('month', spec_time::date) ||'-'||date_part('year', spec_time::date), initcap(doctor), "
-                                        + " (SELECT diagnosis FROM pb_doctors_request WHERE pb_doctors_request.patient_no = hp_lab_results.patient_no AND"
-                                        + " pb_doctors_request.trans_date::date = hp_lab_results.date::date AND diagnosis is not null ORDER BY 1 DESC LIMIT 1) as diagnosis,(SELECT service "
-                                        + "  FROM pb_doctors_request WHERE pb_doctors_request.patient_no"
-                                        + " = hp_lab_results.patient_no AND hp_lab_results.date::date = pb_doctors_request.trans_date::date ORDER BY 1 DESC LIMIT 1) as investigations, input_date::date as analyse_date, '', type_of_specimen, "
-                                        + " specimen_condition, initcap(pathologist) as analysing_officer, pathologist_comment, comments  FROM hp_lab_results WHERE "
-                                        + " date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' "
+                                        + " date_part('day', date_of_visit) ||'-'||date_part('month', date_of_visit) ||'-'||date_part('year', date_of_visit), clinic_number, patient_no, patient_names, initcap(gender),"
+                                        + " date_part('day', date_of_birth) ||'-'||date_part('month', date_of_birth) ||'-'||date_part('year', date_of_birth), "
+                                        + " father_name, mother_name, village, telephone_no, referral_in||' '||referral_out as referrals, comments  FROM rh.immunisation_register WHERE "
+                                        + " date_of_visit::date BETWEEN '" + beginDate + "' AND '" + endDate + "' "
                                         + " AND patient_no = ?");
 
                                 stw.setObject(1, listofAct[i]);
@@ -673,123 +653,78 @@ public class MOH510ImmunisationRegisterPdf implements java.lang.Runnable {
                                     //Lab Number
                                     phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(3), ""), pFontHeader1);
                                     table.addCell(phrase);
-                                    //Revisit No
-                                    phrase = new Phrase("", pFontHeader1);
-                                    table.addCell(phrase);
-                                    //Patient names
+
                                     phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(4), ""), pFontHeader1);
                                     table.addCell(phrase);
                                     //Age
                                     phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(5), ""), pFontHeader1);
                                     table.addCell(phrase);
                                     //Gender
+                                    //Village
                                     phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(6), ""), pFontHeader1);
                                     table.addCell(phrase);
 
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(7), ""), pFontHeader1);
+                                    table.addCell(phrase);
                                     //Village
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(8), ""), pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString("father_name"), ""), pFontHeader1);
                                     table.addCell(phrase);
                                     //Telephone number
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(9), ""), pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString("mother_name"), ""), pFontHeader1);
                                     table.addCell(phrase);
                                     // Clinical diagnosis
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(13), ""), pFontHeader1);
-                                    table.addCell(phrase);
-                                    //Prior treatment
-                                    phrase = new Phrase("", pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString("village"), ""), pFontHeader1);
                                     table.addCell(phrase);
                                     // Type of specimen
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(17), ""), pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString("telephone_no"), ""), pFontHeader1);
                                     table.addCell(phrase);
                                     // Condition of specimen
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(18), ""), pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "BCG01", listofAct[i].toString()), ""), pFontHeader1);
                                     table.addCell(phrase);
-                                    //Investigation required
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(14), ""), pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "BCG2", listofAct[i].toString()), ""), pFontHeader1);
                                     table.addCell(phrase);
-                                    //Date sample taken
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(10), ""), pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "OPV0", listofAct[i].toString()), ""), pFontHeader1);
                                     table.addCell(phrase);
-                                    //Date sample received
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(11), ""), pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "OPV1", listofAct[i].toString()), ""), pFontHeader1);
                                     table.addCell(phrase);
-                                    //Clinician/Doctor
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(12), ""), pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "OPV2", listofAct[i].toString()), ""), pFontHeader1);
                                     table.addCell(phrase);
-                                    //Date sample analysed
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(15), ""), pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "OPV3", listofAct[i].toString()), ""), pFontHeader1);
                                     table.addCell(phrase);
-                                    //Results
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(20), ""), pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "DPT1", listofAct[i].toString()), ""), pFontHeader1);
                                     table.addCell(phrase);
-                                    //Date result dispatched
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(15), ""), pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "DPT2", listofAct[i].toString()), ""), pFontHeader1);
                                     table.addCell(phrase);
-                                    //Amount charged
-                                    phrase = new Phrase("", pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "DPT3", listofAct[i].toString()), ""), pFontHeader1);
                                     table.addCell(phrase);
-                                    //Receipt number
-                                    phrase = new Phrase("", pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "PCV1", listofAct[i].toString()), ""), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "PCV2", listofAct[i].toString()), ""), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "PCV3", listofAct[i].toString()), ""), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "ROTA1", listofAct[i].toString()), ""), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "ROTA2", listofAct[i].toString()), ""), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "ROTA3", listofAct[i].toString()), ""), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "Measles1", listofAct[i].toString()), ""), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "Yellow1", listofAct[i].toString()), ""), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "VITAP1", listofAct[i].toString()), ""), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "FIC", listofAct[i].toString()), ""), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(com.afrisoftech.lib.ImmunisationDates.getImmunisationDate(connectDB, "LLITN", listofAct[i].toString()), ""), pFontHeader1);
                                     table.addCell(phrase);
                                     //Referrals
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(16), ""), pFontHeader1);
-                                    table.addCell(phrase);
-                                    // Comments
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(21), ""), pFontHeader1);
-                                    table.addCell(phrase);
-                                    //Name of analysing officer/pathologist
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(19), ""), pFontHeader1);
-                                    table.addCell(phrase);
-                                    //signature
-                                    phrase = new Phrase("", pFontHeader1);
-                                    table.addCell(phrase);
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(1), ""), pFontHeader1);
-                                    table.addCell(phrase);
-                                    //Patient Number
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(2), ""), pFontHeader1);
-                                    table.addCell(phrase);
-                                    //Lab Number
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(3), ""), pFontHeader1);
-                                    table.addCell(phrase);
-                                    //Revisit No
-                                    phrase = new Phrase("", pFontHeader1);
-                                    table.addCell(phrase);
-                                    //Patient names
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(4), ""), pFontHeader1);
-                                    table.addCell(phrase);
-                                    //Age
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(5), ""), pFontHeader1);
-                                    table.addCell(phrase);
-                                    //Gender
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(6), ""), pFontHeader1);
-                                    table.addCell(phrase);
 
-                                    //Village
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(8), ""), pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString("referrals"), ""), pFontHeader1);
                                     table.addCell(phrase);
-                                    //Telephone number
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(9), ""), pFontHeader1);
-                                    table.addCell(phrase);
-                                    // Clinical diagnosis
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(13), ""), pFontHeader1);
-                                    table.addCell(phrase);
-                                    //Prior treatment
-                                    phrase = new Phrase("", pFontHeader1);
-                                    table.addCell(phrase);
-                                    // Type of specimen
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(17), ""), pFontHeader1);
-                                    table.addCell(phrase);
-                                    // Condition of specimen
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(18), ""), pFontHeader1);
-                                    table.addCell(phrase);
-                                    //Investigation required
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(14), ""), pFontHeader1);
-                                    table.addCell(phrase);
-                                    //Date sample taken
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(10), ""), pFontHeader1);
-                                    table.addCell(phrase);
-                                    //Date sample received
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(11), ""), pFontHeader1);
+                                    //Comments/Remarks
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString("comments"), ""), pFontHeader1);
                                     table.addCell(phrase);
 
                                 }
@@ -843,10 +778,9 @@ public class MOH510ImmunisationRegisterPdf implements java.lang.Runnable {
 
         java.util.Vector listStaffNoVector = new java.util.Vector(1, 1);
 
-
         try {
 
-            java.sql.PreparedStatement stmt1 = connectDB.prepareStatement("SELECT DISTINCT patient_no, patient_name FROM hp_lab_results where date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' ORDER BY patient_name ASC");
+            java.sql.PreparedStatement stmt1 = connectDB.prepareStatement("SELECT DISTINCT patient_no, patient_names FROM rh.immunisation_register where date_of_visit::date BETWEEN '" + beginDate + "' AND '" + endDate + "' ORDER BY patient_names ASC");
 
             java.sql.ResultSet rSet1 = stmt1.executeQuery();
 

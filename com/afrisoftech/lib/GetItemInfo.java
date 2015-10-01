@@ -9,6 +9,7 @@ import com.afrisoftech.hospital.HospitalMain;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -209,13 +210,14 @@ public class GetItemInfo {
     public static void updateTrail(java.lang.String activity, java.sql.Connection connectDB) {
 
         try {
+            connectDB.setAutoCommit(false);
             java.sql.PreparedStatement pst = connectDB.prepareStatement("INSERT INTO st_user_activity (activity_description) VALUES (?)");
             pst.setObject(1, activity);
 
             pst.executeUpdate();
 
             connectDB.commit();
-
+            connectDB.setAutoCommit(true);
         } catch (SQLException ex) {
             Logger.getLogger(GetItemInfo.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();

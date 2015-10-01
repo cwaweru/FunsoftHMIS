@@ -171,7 +171,7 @@ public class SupplierreGistrationintfr extends javax.swing.JInternalFrame {
         bankNameTxt = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTable2 = new com.afrisoftech.dbadmin.JXTable();
 
         jSearchDialog1.setModal(true);
         jSearchDialog1.setUndecorated(true);

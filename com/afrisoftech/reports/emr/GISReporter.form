@@ -29,12 +29,12 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel10">
+    <Container class="javax.swing.JPanel" name="headerPanel">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Select Indicator and Date Range">
-              <ResourceString PropertyName="titleX" bundle="com/afrisoftech/reports/emr/Bundle.properties" key="GISReporter.jPanel10.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString PropertyName="titleX" bundle="com/afrisoftech/reports/emr/Bundle.properties" key="GISReporter.headerPanel.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -47,7 +47,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="indicatorCmbx">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
@@ -59,7 +59,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder title="Monitored Indicator">
-                  <ResourceString PropertyName="titleX" bundle="com/afrisoftech/reports/emr/Bundle.properties" key="GISReporter.jComboBox1.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                  <ResourceString PropertyName="titleX" bundle="com/afrisoftech/reports/emr/Bundle.properties" key="GISReporter.indicatorCmbx.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </TitledBorder>
               </Border>
             </Property>
@@ -70,12 +70,12 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="com.afrisoftech.lib.DatePicker" name="datePicker3">
+        <Component class="com.afrisoftech.lib.DatePicker" name="beginDatePicker">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder title="Begin Date">
-                  <ResourceString PropertyName="titleX" bundle="com/afrisoftech/reports/emr/Bundle.properties" key="GISReporter.datePicker3.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                  <ResourceString PropertyName="titleX" bundle="com/afrisoftech/reports/emr/Bundle.properties" key="GISReporter.beginDatePicker.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </TitledBorder>
               </Border>
             </Property>
@@ -86,12 +86,12 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="com.afrisoftech.lib.DatePicker" name="datePicker5">
+        <Component class="com.afrisoftech.lib.DatePicker" name="endDatePicker">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder title="End Date">
-                  <ResourceString PropertyName="titleX" bundle="com/afrisoftech/reports/emr/Bundle.properties" key="GISReporter.datePicker5.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                  <ResourceString PropertyName="titleX" bundle="com/afrisoftech/reports/emr/Bundle.properties" key="GISReporter.endDatePicker.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </TitledBorder>
               </Border>
             </Property>
@@ -102,14 +102,14 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="refershGISReportBtn">
+        <Component class="javax.swing.JButton" name="refreshGISReportBtn">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="com/afrisoftech/reports/emr/Bundle.properties" key="GISReporter.refershGISReportBtn.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString bundle="com/afrisoftech/reports/emr/Bundle.properties" key="GISReporter.refreshGISReportBtn.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refershGISReportBtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshGISReportBtnActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -117,10 +117,10 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton10">
+        <Component class="javax.swing.JButton" name="printReportBtn">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="com/afrisoftech/reports/emr/Bundle.properties" key="GISReporter.jButton10.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString bundle="com/afrisoftech/reports/emr/Bundle.properties" key="GISReporter.printReportBtn.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
             </Property>
           </Properties>
           <Constraints>
@@ -129,10 +129,10 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton11">
+        <Component class="javax.swing.JButton" name="saveReportBtn">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="com/afrisoftech/reports/emr/Bundle.properties" key="GISReporter.jButton11.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString bundle="com/afrisoftech/reports/emr/Bundle.properties" key="GISReporter.saveReportBtn.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
             </Property>
           </Properties>
           <Constraints>
@@ -141,7 +141,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox4">
+        <Component class="javax.swing.JComboBox" name="morbidityCmbx">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT DISTINCT initcap(disease) FROM hp_patient_diagnosis&quot;)&#xd;&#xa;" type="code"/>
@@ -149,7 +149,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder title="Morbidity Indicators">
-                  <ResourceString PropertyName="titleX" bundle="com/afrisoftech/reports/emr/Bundle.properties" key="GISReporter.jComboBox4.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                  <ResourceString PropertyName="titleX" bundle="com/afrisoftech/reports/emr/Bundle.properties" key="GISReporter.morbidityCmbx.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </TitledBorder>
               </Border>
             </Property>
@@ -174,12 +174,12 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
       <SubComponents>
-        <Component class="com.roots.map.MapPanel" name="mapReportPanel1">
+        <Component class="com.roots.map.MapPanel" name="mapReportPanel">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder title="Funsoft Healthcare Geographic Information System (GIS)">
-                  <ResourceString PropertyName="titleX" bundle="com/afrisoftech/reports/emr/Bundle.properties" key="GISReporter.mapReportPanel1.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                  <ResourceString PropertyName="titleX" bundle="com/afrisoftech/reports/emr/Bundle.properties" key="GISReporter.mapReportPanel.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                   <Font PropertyName="font" name="Tahoma" size="11" style="2"/>
                   <Color PropertyName="color" blue="ff" green="66" red="66" type="rgb"/>
                 </TitledBorder>
@@ -190,7 +190,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mapReportPanel1MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mapReportPanelMouseClicked"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

@@ -1623,6 +1623,7 @@ public class AllocateInvoicesIntfr extends javax.swing.JInternalFrame {
             }
 
         } catch (java.lang.Exception ex) {
+            ex.printStackTrace();
             System.out.println(ex.getMessage());
             javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 

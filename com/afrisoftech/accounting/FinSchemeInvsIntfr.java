@@ -38,8 +38,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
         initComponents();
 
-       // System.out.println("Cashpoint : " + System.getProperty("cashpoint"));
-
+        // System.out.println("Cashpoint : " + System.getProperty("cashpoint"));
         //jTextField14.setText(getCashPoint());
         //jTextField81.setText(getShiftNumber());
     }
@@ -139,6 +138,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         schemeBalAfterUtilisationTxt = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         dmuBalanceTxt = new javax.swing.JTextField();
+        utilizeDepositChkbx = new javax.swing.JCheckBox();
         jSeparator1 = new javax.swing.JSeparator();
         totalAmountTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -1146,6 +1146,8 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 gridBagConstraints.gridx = 6;
                 gridBagConstraints.gridy = 5;
                 gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                gridBagConstraints.weightx = 1.0;
+                gridBagConstraints.weighty = 1.0;
                 jPanel2.add(tickChk, gridBagConstraints);
 
                 jLabel22.setText("Patient DMU Debt");
@@ -1300,6 +1302,16 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 gridBagConstraints.weighty = 1.0;
                 gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
                 jPanel2.add(dmuBalanceTxt, gridBagConstraints);
+
+                utilizeDepositChkbx.setText("Utilize Deposit");
+                utilizeDepositChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 5;
+                gridBagConstraints.gridy = 5;
+                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                gridBagConstraints.weightx = 1.0;
+                gridBagConstraints.weighty = 1.0;
+                jPanel2.add(utilizeDepositChkbx, gridBagConstraints);
 
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 0;
@@ -2596,7 +2608,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 jTextField71.setText(scm);
                 jTextField41.setText(payer);
 
-
             }
         } catch (java.sql.SQLException sqe) {
             sqe.printStackTrace();
@@ -2609,7 +2620,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             java.sql.ResultSet rset11 = pss1.executeQuery("select account_no from ac_schemes where scheme_name = '" + jTextField71.getText() + "' and payer_name = '" + jTextField41.getText() + "'");
             while (rset11.next()) {
                 code = dbObject.getDBObject(rset11.getObject(1), "-");
-
 
                 jTextField10.setText(code);
                 // jTextField51.setText(date);
@@ -2628,7 +2638,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 cat = dbObject.getDBObject(rset1.getObject(3), "-");
                 date = dbObject.getDBObject(rset1.getObject(2), null);
                 accno = dbObject.getDBObject(rset1.getObject(1), "-");
-
 
                 jTextField21.setText(accno);
                 jTextField51.setText(date);
@@ -2653,7 +2662,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             }
         }
         this.populateTable2(jTextField91.getText());
-
 
         jSearchDialog21.dispose();   // Add your handling code here:
     }//GEN-LAST:event_jSearchTable21MouseClicked
@@ -2706,14 +2714,11 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                  */
             }
 
-
-
         } catch (java.sql.SQLException sqlExec) {
 
             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
 
         }
-
 
     }
     private void jTextField1131CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1131CaretUpdate
@@ -2721,7 +2726,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
         jSearchScrollPane21.setViewportView(jSearchTable21);
         System.out.println("Cannot sort out");
-
 
         // Add your handling code here:
     }//GEN-LAST:event_jTextField1131CaretUpdate
@@ -2800,8 +2804,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             int exitOption = javax.swing.JOptionPane.showConfirmDialog(this, "Do you want to Finalise Invoice?", "Caution before Finalising Invoice!", javax.swing.JOptionPane.YES_NO_CANCEL_OPTION);
 
             if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
-
-
 
                 try {
                     connectDB.setAutoCommit(false);
@@ -3019,14 +3021,12 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                         }
                     }
 
-
                     connectDB.commit();
                     connectDB.setAutoCommit(true);
                     javax.swing.JOptionPane.showMessageDialog(this, "Data Inserted Successfully \n  Inv. No. is " + invoiceNo + " ", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                     com.afrisoftech.reports.FinalInPatientlnvPdf policy = new com.afrisoftech.reports.FinalInPatientlnvPdf();
                     policy.FinalInPatientInvPdf(connectDB, invoiceNo);
-
 
                     jTextField11.setText("");
                     jTextField21.setText("");
@@ -3100,14 +3100,12 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
         }
 
-
         // Add your handling code here:
     }//GEN-LAST:event_SchemeDataTableKeyReleased
     public void tableModelTableChanged() {
         System.out.println("Calculating totals for table 11 and 2.");
         //        double resFloat = 0.00;
         double resFloat = 0.00;
-
 
         for (int i = 0; i < SchemeDataTable.getRowCount(); i++) {
 
@@ -3141,7 +3139,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         totalAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
 
         // txtNetTotal.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum - totalSumDisc));
-
 // Add your handling code here:
     }//GEN-LAST:event_jSearchTableMouseClicked
 
@@ -3158,7 +3155,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
             jSearchTable.setShowHorizontalLines(false);
             jSearchScrollPane.setViewportView(jSearchTable);
-
 
         }  // Add your handling code here:
     }//GEN-LAST:event_jTextField111CaretUpdate
@@ -3225,7 +3221,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 //jTextField2.setText(rset.getObject(2).toString());
                 schemeNameTxt.setText(rset.getObject(3).toString());
 
-
             }
         } catch (java.sql.SQLException sqe) {
             sqe.printStackTrace();
@@ -3253,7 +3248,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             java.sql.ResultSet rset11 = pss1.executeQuery("select account_no,payer_name from ac_schemes where scheme_name = '" + schemeNameTxt.getText() + "'");
             while (rset11.next()) {
                 Code = dbObject.getDBObject(rset11.getObject(1), "-");
-
 
                 accountNoTxt.setText(Code);
                 schemePayerTxt.setText(rset11.getObject(2).toString());
@@ -3283,7 +3277,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             System.out.println(sqlex.getMessage());
         }
 
-
         this.populateTable1(patientNotxt.getText());
 
         // Add your handling code here:
@@ -3306,17 +3299,13 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         int i = 0;
         int j = 0;
 
-
         viewTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                 + "select distinct date::date,patient_no,scheme,sum(debit-credit)   "
                 + " FROM hp_patient_card where ip_no='OP' and scheme !='' and paid=false"
-                + " and upper(scheme) = upper('"+schemeNameTxt1.getText()+"') and date between '" + beginDate.getDate().toString() + "' and '" + endDate.getDate().toString() + "'  "
+                + " and upper(scheme) = upper('" + schemeNameTxt1.getText() + "') and date between '" + beginDate.getDate().toString() + "' and '" + endDate.getDate().toString() + "'  "
                 + "  group by 1,2,3 having sum(debit-credit)>0 order by patient_no"));
 
-
         accountNoTxt.setText("");
-
-
 
         //  this.populateTable1(jTextField9.getText());        // Add your handling code here:
     }//GEN-LAST:event_jCheckBox2ActionPerformed
@@ -3380,15 +3369,11 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
                 for (int i = 0; i < selectedRows.length; i++) {
 
-
-
                     javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) SchemeDataTable.getModel();
 
                     defTableModel.removeRow(selectedRows[i]);
 
                 }
-
-
 
             } else {
 
@@ -3434,10 +3419,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 loadPatientDateTable.setShowHorizontalLines(false);
                 jSearchScrollPane2.setViewportView(loadPatientDateTable);
 
-
-
             }
-
 
         } else {
 
@@ -3451,10 +3433,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                     loadPatientDateTable.setShowHorizontalLines(false);
                     jSearchScrollPane2.setViewportView(loadPatientDateTable);
 
-
-
                 }
-
 
             }
         }
@@ -3500,7 +3479,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
         patientDialog.dispose();
         String Code = null;
-
 
         try {
 
@@ -3581,7 +3559,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             System.out.println(sqlex.getMessage());
         }
 
-
         this.populateTable1(patientNotxt.getText());
         patientDialog.dispose();
 
@@ -3607,19 +3584,18 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 java.sql.Statement stmtTable1 = connectDB.createStatement();
 
                 totalDepositBalTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.unUtelisedDeposit.getBalanceDeposit(connectDB, patientNotxt.getText().toString().trim())));
-                this.SchemeDataTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select date::date,service as Description,sum(dosage) as Qty,sum((debit-credit)/(dosage)) as rate,"
+                this.SchemeDataTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select date::date,service as Description,sum(dosage) as Qty,(sum(debit-credit)/sum(dosage))::numeric(15,2) as rate,"
                         + "0.0 as Discount,0.0 as Total_Discount,sum(debit-credit) as amount,main_service,false as Items_Approved  "
                         + " FROM hp_patient_card where paid=false and date::date='" + todays + "'::date  and   patient_no ='" + patientNotxt.getText() + "' and transaction_type not ilike 'Receipts' "
-                        + " group by 1,2,main_service  having sum(debit-credit)>0 "));
+                        + " group by 1,2,main_service  having sum(debit-credit) > 0"));
 
             }
 
         } catch (java.sql.SQLException sqlExec) {
-
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
 
         }
-
 
     }
 
@@ -3681,8 +3657,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                     periodTo = rsetf.getDate(2);
                 }
 
-
-
                 if (beginDate.getDate().before(periodFrom) || endDate.getDate().after(periodTo)) {
                     javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
@@ -3726,7 +3700,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                     com.afrisoftech.lib.InvoiceNumbers.invoiceType = false;
 
                     double credits = java.lang.Double.parseDouble(totalNetTxt.getText());
-                     System.out.println("Started from the bottom........1");
+                    System.out.println("Started from the bottom........1");
                     java.sql.Statement stm1 = connectDB.createStatement();
 
                     invoiceNo = com.afrisoftech.lib.InvoiceNumbers.getInvoiceNumber();
@@ -3758,7 +3732,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
                     for (int i = 0; i < SchemeDataTable.getRowCount(); i++) {
 
-
                         if (SchemeDataTable.getModel().getValueAt(i, 8) != null) {
                             System.out.println("Started from the bottom........2");
 
@@ -3785,501 +3758,492 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
                         }
                     }
+                    if (utilizeDepositChkbx.isSelected()) {
+                        if (java.lang.Double.valueOf(totalDepositBalTxt.getText().toString()) > 0) {
+                            System.out.println("Started from the bottom........3");
+                            if (java.lang.Double.valueOf(totalDepositBalTxt.getText().toString()) >= java.lang.Double.valueOf(totalNetTxt.getText().toString())) {
+                                double balAfterUtilization = java.lang.Double.valueOf(totalDepositBalTxt.getText()) - java.lang.Double.valueOf(refundTxt.getText());
+                                java.sql.Statement stm1211x = connectDB.createStatement();
+                                java.sql.ResultSet rse1211x = stm1211x.executeQuery("SELECT distinct description, activity_code FROM ac_ledger WHERE patient_no = '" + patientNotxt.getText() + "' and transaction_type = 'Unutilized patient deposit'");
+                                String rnamex = null, rcodex = null;
+                                while (rse1211x.next()) {
+                                    rnamex = rse1211x.getObject(1).toString();
+                                    rcodex = rse1211x.getObject(2).toString();
+                                }
+                                if (balAfterUtilization > 0) {
+                                    System.out.println("Started from the bottom........4");
 
+                                    java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO hp_patient_card VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+                                    pstmt1.setString(1, patientNotxt.getText());
+                                    pstmt1.setObject(2, "Receipt");
+                                    pstmt1.setString(3, "");
+                                    pstmt1.setString(4, "Scheme");
+                                    pstmt1.setString(5, transNo);
+                                    pstmt1.setString(7, schemeNameTxt.getText());
+                                    pstmt1.setString(6, "");
+                                    pstmt1.setString(8, "");
+                                    pstmt1.setString(9, schemePayerTxt.getText());
+                                    pstmt1.setObject(10, null);
+                                    pstmt1.setString(11, "");
+                                    pstmt1.setDouble(13, balAfterUtilization);
+                                    pstmt1.setDouble(12, 0.00);
+                                    //pstmt1.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
+                                    pstmt1.setDate(14, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
+                                    pstmt1.setObject(15, actCode);
+                                    pstmt1.setString(16, glCode);
+                                    pstmt1.setDouble(17, 1);
+                                    pstmt1.setObject(18, memberNoTxt.getText());
+                                    pstmt1.setBoolean(19, true);
+                                    pstmt1.setString(20, "Receipts");
+                                    pstmt1.setBoolean(21, true);
+                                    pstmt1.setString(22, actNames);
+                                    pstmt1.setString(23, invoiceNo);
+                                    pstmt1.setString(24, user);
+                                    pstmt1.setString(25, "");
+                                    pstmt1.setString(26, "OP");
+                                    pstmt1.executeUpdate();
 
+                                    java.sql.PreparedStatement pstmt2v = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
+                                    pstmt2v.setString(1, rcodex);
+                                    pstmt2v.setString(2, rnamex);
+                                    pstmt2v.setString(3, patientNotxt.getText());
+                                    pstmt2v.setString(4, patientNameTxt.getText());
+                                    pstmt2v.setString(5, "Patient deposit");
+                                    pstmt2v.setString(6, cardNo);
+                                    pstmt2v.setString(7, cardName);
+                                    pstmt2v.setString(8, "OP");
+                                    pstmt2v.setString(9, isurer);
+                                    pstmt2v.setString(10, "Scheme");
+                                    pstmt2v.setString(11, "");
+                                    pstmt2v.setString(12, "");
+                                    pstmt2v.setString(13, "");
+                                    pstmt2v.setString(14, "Receipt");
+                                    pstmt2v.setString(15, "Unutilized patient deposit");
+                                    pstmt2v.setDouble(16, balAfterUtilization);
+                                    pstmt2v.setDouble(17, 0.00);
 
+                                    pstmt2v.setDate(18, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
+                                    pstmt2v.setString(19, transNo);
+                                    pstmt2v.setBoolean(20, false);
+                                    pstmt2v.setBoolean(21, false);
+                                    pstmt2v.setBoolean(22, false);
+                                    pstmt2v.setString(23, user);
+                                    pstmt2v.setString(24, "");//cash point
+                                    pstmt2v.setString(25, "");//shift
+                                    pstmt2v.setTimestamp(26, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+                                    pstmt2v.executeUpdate();
 
-                    if (java.lang.Double.valueOf(totalDepositBalTxt.getText().toString()) > 0) {
-                        System.out.println("Started from the bottom........3");
-                        if (java.lang.Double.valueOf(totalDepositBalTxt.getText().toString()) >= java.lang.Double.valueOf(totalNetTxt.getText().toString())) {
-                            double balAfterUtilization = java.lang.Double.valueOf(totalDepositBalTxt.getText()) - java.lang.Double.valueOf(refundTxt.getText());
-                            java.sql.Statement stm1211x = connectDB.createStatement();
-                            java.sql.ResultSet rse1211x = stm1211x.executeQuery("SELECT distinct description, activity_code FROM ac_ledger WHERE patient_no = '" + patientNotxt.getText() + "' and transaction_type = 'Unutilized patient deposit'");
-                            String rnamex = null, rcodex = null;
-                            while (rse1211x.next()) {
-                                rnamex = rse1211x.getObject(1).toString();
-                                rcodex = rse1211x.getObject(2).toString();
+                                } else if (balAfterUtilization < 0) {
+                                    System.out.println("Started from the bottom........6");
+                                    java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO hp_patient_card VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+                                    pstmt1.setString(1, patientNotxt.getText());
+                                    pstmt1.setObject(2, "Refund");
+                                    pstmt1.setString(3, "");
+                                    pstmt1.setString(4, "Scheme");
+                                    pstmt1.setString(5, transNo);
+                                    pstmt1.setString(7, schemeNameTxt.getText());
+                                    pstmt1.setString(6, "");
+                                    pstmt1.setString(8, "");
+                                    pstmt1.setString(9, schemePayerTxt.getText());
+                                    pstmt1.setObject(10, null);
+                                    pstmt1.setString(11, "");
+                                    pstmt1.setDouble(13, 0.00);
+                                    pstmt1.setDouble(12, -1 * balAfterUtilization);
+                                    pstmt1.setDate(14, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
+                                    pstmt1.setObject(15, actCode);
+                                    pstmt1.setString(16, glCode);
+                                    pstmt1.setDouble(17, 1);
+                                    pstmt1.setObject(18, memberNoTxt.getText());
+                                    pstmt1.setBoolean(19, true);
+                                    pstmt1.setString(20, "Receipts");
+                                    pstmt1.setBoolean(21, true);
+                                    pstmt1.setString(22, actNames);
+                                    pstmt1.setString(23, invoiceNo);
+                                    pstmt1.setString(24, user);
+                                    pstmt1.setString(25, "");
+                                    pstmt1.setString(26, "OP");
+                                    pstmt1.executeUpdate();
+
+                                    java.sql.PreparedStatement pstmt2v = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
+                                    pstmt2v.setString(1, rcodex);
+                                    pstmt2v.setString(2, rnamex);
+                                    pstmt2v.setString(3, patientNotxt.getText());
+                                    pstmt2v.setString(4, patientNameTxt.getText());
+                                    pstmt2v.setString(5, "Patient Refund");
+                                    pstmt2v.setString(6, cardNo);
+                                    pstmt2v.setString(7, cardName);
+                                    pstmt2v.setString(8, "OP");
+                                    pstmt2v.setString(9, isurer);
+                                    pstmt2v.setString(10, "Scheme");
+                                    pstmt2v.setString(11, "");
+                                    pstmt2v.setString(12, "");
+                                    pstmt2v.setString(13, "");
+                                    pstmt2v.setString(14, "Receipt");
+                                    pstmt2v.setString(15, "Unutilized patient deposit");
+                                    pstmt2v.setDouble(16, 0.00);
+                                    pstmt2v.setDouble(17, -1 * balAfterUtilization);
+                                    pstmt2v.setDate(18, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));//com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
+                                    pstmt2v.setString(19, transNo);
+                                    pstmt2v.setBoolean(20, false);
+                                    pstmt2v.setBoolean(21, false);
+                                    pstmt2v.setBoolean(22, false);
+                                    pstmt2v.setString(23, user);
+                                    pstmt2v.setString(24, "");//cash point
+                                    pstmt2v.setString(25, "");//shift
+                                    pstmt2v.setTimestamp(26, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+                                    pstmt2v.executeUpdate();
+                                }
+                                ///utilise scheme's deposit
+                            } else if (java.lang.Double.valueOf(unutilisedSchemeDepositTxt.getText().toString()) > 0.00) {
+                                double balAfterUtilization = java.lang.Double.valueOf(totalDepositBalTxt.getText()) - java.lang.Double.valueOf(refundTxt.getText());
+                                System.out.println("Started from the bottom........7");
+                                java.sql.Statement stm1211x = connectDB.createStatement();
+                                java.sql.ResultSet rse1211x = stm1211x.executeQuery("SELECT distinct description, activity_code FROM ac_ledger WHERE patient_no = '" + accountNoTxt.getText() + "' and transaction_type = 'Unutilized patient deposit'");
+                                String rnamex = null, rcodex = null;
+                                while (rse1211x.next()) {
+                                    rnamex = rse1211x.getObject(1).toString();
+                                    rcodex = rse1211x.getObject(2).toString();
+                                }
+                                if (balAfterUtilization > 0) {
+
+                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into ac_debtors values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                    pstmt.setObject(1, actCode1);
+                                    pstmt.setString(2, schemePayerTxt.getText());
+                                    pstmt.setString(3, patientNameTxt.getText());
+                                    pstmt.setString(4, patientNotxt.getText());
+                                    pstmt.setString(5, schemeNameTxt.getText());
+                                    pstmt.setString(6, "");
+                                    if (this.accountNoTxt.getText() == null || this.accountNoTxt.getText().equals("-")) {
+                                        javax.swing.JOptionPane.showMessageDialog(this, "Account NO. MISSING !!!", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                    } else {
+                                        pstmt.setString(7, accountNoTxt.getText());
+                                    }
+                                    pstmt.setString(8, "");
+                                    pstmt.setString(9, "");
+                                    pstmt.setString(10, this.cardNumberTxt.getText());
+                                    pstmt.setString(11, transNo);
+                                    pstmt.setString(12, "Raise Invoice");
+                                    if (credits > 0) {
+                                        pstmt.setDouble(13, java.lang.Double.valueOf(totalNetTxt.getText()));
+                                    } else {
+                                        pstmt.setDouble(13, credits * -1);
+                                    }
+                                    pstmt.setDouble(14, 0.00);
+                                    pstmt.setDate(15, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
+                                    pstmt.setObject(16, invoiceNo);
+                                    pstmt.setString(17, actNames1);
+                                    pstmt.setBoolean(18, false);
+                                    pstmt.setBoolean(19, false);
+                                    pstmt.setString(20, user);
+                                    pstmt.setString(21, "");
+                                    if (credits > 0) {
+                                        pstmt.setDouble(22, java.lang.Double.valueOf(totalNetTxt.getText()));
+                                    } else {
+                                        pstmt.setDouble(22, credits * -1);
+                                    }
+                                    pstmt.setBoolean(23, false);
+                                    pstmt.setDouble(24, 0.00);
+                                    pstmt.setObject(25, "");
+                                    pstmt.setObject(26, null);
+                                    pstmt.setBoolean(27, false);
+                                    pstmt.setDouble(28, 0.00);
+                                    pstmt.setObject(29, null);
+                                    pstmt.setString(30, "");
+                                    pstmt.setBoolean(31, false);
+                                    pstmt.setDouble(32, 0.00);
+                                    pstmt.setObject(33, null);
+                                    pstmt.setString(34, "");
+                                    pstmt.setString(35, memberNoTxt.getText());
+                                    pstmt.setString(36, com.afrisoftech.lib.ClaimNumberFactory.getClaimNumber(connectDB));// this.claimNumberTxt.getText());
+                                    pstmt.executeUpdate();
+
+                                    java.sql.PreparedStatement pstmt2v = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
+                                    pstmt2v.setString(1, rcodex);
+                                    pstmt2v.setString(2, rnamex);
+                                    pstmt2v.setString(3, patientNotxt.getText());
+                                    pstmt2v.setString(4, patientNameTxt.getText());
+                                    pstmt2v.setString(5, "Patient deposit");
+                                    pstmt2v.setString(6, cardNo);
+                                    pstmt2v.setString(7, cardName);
+                                    pstmt2v.setString(8, "OP");
+                                    pstmt2v.setString(9, isurer);
+                                    pstmt2v.setString(10, "Scheme");
+                                    pstmt2v.setString(11, "");
+                                    pstmt2v.setString(12, "");
+                                    pstmt2v.setString(13, "");
+                                    pstmt2v.setString(14, "Receipt");
+                                    pstmt2v.setString(15, "Unutilized patient deposit");
+                                    pstmt2v.setDouble(16, balAfterUtilization);
+                                    pstmt2v.setDouble(17, 0.00);
+                                    pstmt2v.setDate(18, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
+                                    pstmt2v.setString(19, transNo);
+                                    pstmt2v.setBoolean(20, false);
+                                    pstmt2v.setBoolean(21, false);
+                                    pstmt2v.setBoolean(22, false);
+                                    pstmt2v.setString(23, user);
+                                    pstmt2v.setString(24, "");//cash point
+                                    pstmt2v.setString(25, "");//shift
+                                    pstmt2v.setTimestamp(26, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+                                    pstmt2v.executeUpdate();
+
+                                } else if (balAfterUtilization < 0) {
+                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into ac_debtors values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                    pstmt.setObject(1, actCode1);
+                                    pstmt.setString(2, schemePayerTxt.getText());
+                                    pstmt.setString(3, patientNameTxt.getText());
+                                    pstmt.setString(4, patientNotxt.getText());
+                                    pstmt.setString(5, schemeNameTxt.getText());
+                                    pstmt.setString(6, "");
+                                    if (this.accountNoTxt.getText() == null || this.accountNoTxt.getText().equals("-")) {
+                                        javax.swing.JOptionPane.showMessageDialog(this, "Account NO. MISSING !!!", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                    } else {
+                                        pstmt.setString(7, accountNoTxt.getText());
+                                    }
+                                    pstmt.setString(8, "");
+                                    pstmt.setString(9, "");
+                                    pstmt.setString(10, this.cardNumberTxt.getText());
+                                    pstmt.setString(11, transNo);
+                                    pstmt.setString(12, "Raise Invoice");
+                                    if (credits > 0) {
+                                        pstmt.setDouble(13, java.lang.Double.valueOf(totalNetTxt.getText()));
+                                    } else {
+                                        pstmt.setDouble(13, credits * -1);
+                                    }
+                                    pstmt.setDouble(14, 0.00);
+                                    pstmt.setDate(15, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
+                                    pstmt.setObject(16, invoiceNo);
+                                    pstmt.setString(17, actNames1);
+                                    pstmt.setBoolean(18, false);
+                                    pstmt.setBoolean(19, false);
+                                    pstmt.setString(20, user);
+                                    pstmt.setString(21, "");
+                                    if (credits > 0) {
+                                        pstmt.setDouble(22, java.lang.Double.valueOf(totalNetTxt.getText()));
+                                    } else {
+                                        pstmt.setDouble(22, credits * -1);
+                                    }
+                                    pstmt.setBoolean(23, false);
+                                    pstmt.setDouble(24, 0.00);
+                                    pstmt.setObject(25, "");
+                                    pstmt.setObject(26, null);
+                                    pstmt.setBoolean(27, false);
+                                    pstmt.setDouble(28, 0.00);
+                                    pstmt.setObject(29, null);
+                                    pstmt.setString(30, "");
+                                    pstmt.setBoolean(31, false);
+                                    pstmt.setDouble(32, 0.00);
+                                    pstmt.setObject(33, null);
+                                    pstmt.setString(34, "");
+                                    pstmt.setString(35, memberNoTxt.getText());
+                                    pstmt.setString(36, com.afrisoftech.lib.ClaimNumberFactory.getClaimNumber(connectDB)); //this.claimNumberTxt.getText());
+                                    pstmt.executeUpdate();
+
+                                    java.sql.PreparedStatement pstmt2v = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
+                                    pstmt2v.setString(1, rcodex);
+                                    pstmt2v.setString(2, rnamex);
+                                    pstmt2v.setString(3, patientNotxt.getText());
+                                    pstmt2v.setString(4, patientNameTxt.getText());
+                                    pstmt2v.setString(5, "Patient Refund");
+                                    pstmt2v.setString(6, cardNo);
+                                    pstmt2v.setString(7, cardName);
+                                    pstmt2v.setString(8, "OP");
+                                    pstmt2v.setString(9, isurer);
+                                    pstmt2v.setString(10, "Scheme");
+                                    pstmt2v.setString(11, "");
+                                    pstmt2v.setString(12, "");
+                                    pstmt2v.setString(13, "");
+                                    pstmt2v.setString(14, "Receipt");
+                                    pstmt2v.setString(15, "Unutilized patient deposit");
+                                    pstmt2v.setDouble(16, 0.00);
+                                    pstmt2v.setDouble(17, -1 * balAfterUtilization);
+                                    pstmt2v.setDate(18, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
+                                    pstmt2v.setString(19, transNo);
+                                    pstmt2v.setBoolean(20, false);
+                                    pstmt2v.setBoolean(21, false);
+                                    pstmt2v.setBoolean(22, false);
+                                    pstmt2v.setString(23, user);
+                                    pstmt2v.setString(24, "");//cash point
+                                    pstmt2v.setString(25, "");//shift
+                                    pstmt2v.setTimestamp(26, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB)); //new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+                                    pstmt2v.executeUpdate();
+                                }
+
                             }
-                            if (balAfterUtilization > 0) {
-                                System.out.println("Started from the bottom........4");
-
-                                java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO hp_patient_card VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-                                pstmt1.setString(1, patientNotxt.getText());
-                                pstmt1.setObject(2, "Receipt");
-                                pstmt1.setString(3, "");
-                                pstmt1.setString(4, "Scheme");
-                                pstmt1.setString(5, transNo);
-                                pstmt1.setString(7, schemeNameTxt.getText());
-                                pstmt1.setString(6, "");
-                                pstmt1.setString(8, "");
-                                pstmt1.setString(9, schemePayerTxt.getText());
-                                pstmt1.setObject(10, null);
-                                pstmt1.setString(11, "");
-                                pstmt1.setDouble(13, balAfterUtilization);
-                                pstmt1.setDouble(12, 0.00);
-                                //pstmt1.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
-                                pstmt1.setDate(14, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
-                                pstmt1.setObject(15, actCode);
-                                pstmt1.setString(16, glCode);
-                                pstmt1.setDouble(17, 1);
-                                pstmt1.setObject(18, memberNoTxt.getText());
-                                pstmt1.setBoolean(19, true);
-                                pstmt1.setString(20, "Receipts");
-                                pstmt1.setBoolean(21, true);
-                                pstmt1.setString(22, actNames);
-                                pstmt1.setString(23, invoiceNo);
-                                pstmt1.setString(24, user);
-                                pstmt1.setString(25, "");
-                                pstmt1.setString(26, "OP");
-                                pstmt1.executeUpdate();
-
-
-                                java.sql.PreparedStatement pstmt2v = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
-                                pstmt2v.setString(1, rcodex);
-                                pstmt2v.setString(2, rnamex);
-                                pstmt2v.setString(3, patientNotxt.getText());
-                                pstmt2v.setString(4, patientNameTxt.getText());
-                                pstmt2v.setString(5, "Patient deposit");
-                                pstmt2v.setString(6, cardNo);
-                                pstmt2v.setString(7, cardName);
-                                pstmt2v.setString(8, "OP");
-                                pstmt2v.setString(9, isurer);
-                                pstmt2v.setString(10, "Scheme");
-                                pstmt2v.setString(11, "");
-                                pstmt2v.setString(12, "");
-                                pstmt2v.setString(13, "");
-                                pstmt2v.setString(14, "Receipt");
-                                pstmt2v.setString(15, "Unutilized patient deposit");
-                                pstmt2v.setDouble(16, balAfterUtilization);
-                                pstmt2v.setDouble(17, 0.00);
-
-                                pstmt2v.setDate(18, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
-                                pstmt2v.setString(19, transNo);
-                                pstmt2v.setBoolean(20, false);
-                                pstmt2v.setBoolean(21, false);
-                                pstmt2v.setBoolean(22, false);
-                                pstmt2v.setString(23, user);
-                                pstmt2v.setString(24, "");//cash point
-                                pstmt2v.setString(25, "");//shift
-                                pstmt2v.setTimestamp(26, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
-                                pstmt2v.executeUpdate();
-
-
-                            } else if (balAfterUtilization < 0) {
-                                System.out.println("Started from the bottom........6");
-                                java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO hp_patient_card VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-                                pstmt1.setString(1, patientNotxt.getText());
-                                pstmt1.setObject(2, "Refund");
-                                pstmt1.setString(3, "");
-                                pstmt1.setString(4, "Scheme");
-                                pstmt1.setString(5, transNo);
-                                pstmt1.setString(7, schemeNameTxt.getText());
-                                pstmt1.setString(6, "");
-                                pstmt1.setString(8, "");
-                                pstmt1.setString(9, schemePayerTxt.getText());
-                                pstmt1.setObject(10, null);
-                                pstmt1.setString(11, "");
-                                pstmt1.setDouble(13, 0.00);
-                                pstmt1.setDouble(12, -1 * balAfterUtilization);
-                                pstmt1.setDate(14, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
-                                pstmt1.setObject(15, actCode);
-                                pstmt1.setString(16, glCode);
-                                pstmt1.setDouble(17, 1);
-                                pstmt1.setObject(18, memberNoTxt.getText());
-                                pstmt1.setBoolean(19, true);
-                                pstmt1.setString(20, "Receipts");
-                                pstmt1.setBoolean(21, true);
-                                pstmt1.setString(22, actNames);
-                                pstmt1.setString(23, invoiceNo);
-                                pstmt1.setString(24, user);
-                                pstmt1.setString(25, "");
-                                pstmt1.setString(26, "OP");
-                                pstmt1.executeUpdate();
-
-
-                                java.sql.PreparedStatement pstmt2v = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
-                                pstmt2v.setString(1, rcodex);
-                                pstmt2v.setString(2, rnamex);
-                                pstmt2v.setString(3, patientNotxt.getText());
-                                pstmt2v.setString(4, patientNameTxt.getText());
-                                pstmt2v.setString(5, "Patient Refund");
-                                pstmt2v.setString(6, cardNo);
-                                pstmt2v.setString(7, cardName);
-                                pstmt2v.setString(8, "OP");
-                                pstmt2v.setString(9, isurer);
-                                pstmt2v.setString(10, "Scheme");
-                                pstmt2v.setString(11, "");
-                                pstmt2v.setString(12, "");
-                                pstmt2v.setString(13, "");
-                                pstmt2v.setString(14, "Receipt");
-                                pstmt2v.setString(15, "Unutilized patient deposit");
-                                pstmt2v.setDouble(16, 0.00);
-                                pstmt2v.setDouble(17, -1 * balAfterUtilization);
-                                pstmt2v.setDate(18, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));//com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
-                                pstmt2v.setString(19, transNo);
-                                pstmt2v.setBoolean(20, false);
-                                pstmt2v.setBoolean(21, false);
-                                pstmt2v.setBoolean(22, false);
-                                pstmt2v.setString(23, user);
-                                pstmt2v.setString(24, "");//cash point
-                                pstmt2v.setString(25, "");//shift
-                                pstmt2v.setTimestamp(26, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
-                                pstmt2v.executeUpdate();
-                            }
-                            ///utilise scheme's deposit
-                        } else if (java.lang.Double.valueOf(unutilisedSchemeDepositTxt.getText().toString()) > 0.00) {
-                            double balAfterUtilization = java.lang.Double.valueOf(totalDepositBalTxt.getText()) - java.lang.Double.valueOf(refundTxt.getText());
-                            System.out.println("Started from the bottom........7");
-                            java.sql.Statement stm1211x = connectDB.createStatement();
-                            java.sql.ResultSet rse1211x = stm1211x.executeQuery("SELECT distinct description, activity_code FROM ac_ledger WHERE patient_no = '" + accountNoTxt.getText() + "' and transaction_type = 'Unutilized patient deposit'");
-                            String rnamex = null, rcodex = null;
-                            while (rse1211x.next()) {
-                                rnamex = rse1211x.getObject(1).toString();
-                                rcodex = rse1211x.getObject(2).toString();
-                            }
-                            if (balAfterUtilization > 0) {
-
-                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into ac_debtors values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                                pstmt.setObject(1, actCode1);
-                                pstmt.setString(2, schemePayerTxt.getText());
-                                pstmt.setString(3, patientNameTxt.getText());
-                                pstmt.setString(4, patientNotxt.getText());
-                                pstmt.setString(5, schemeNameTxt.getText());
-                                pstmt.setString(6, "");
-                                if (this.accountNoTxt.getText() == null || this.accountNoTxt.getText().equals("-")) {
-                                    javax.swing.JOptionPane.showMessageDialog(this, "Account NO. MISSING !!!", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                                } else {
-                                    pstmt.setString(7, accountNoTxt.getText());
-                                }
-                                pstmt.setString(8, "");
-                                pstmt.setString(9, "");
-                                pstmt.setString(10, this.cardNumberTxt.getText());
-                                pstmt.setString(11, transNo);
-                                pstmt.setString(12, "Raise Invoice");
-                                if (credits > 0) {
-                                    pstmt.setDouble(13, java.lang.Double.valueOf(totalNetTxt.getText()));
-                                } else {
-                                    pstmt.setDouble(13, credits * -1);
-                                }
-                                pstmt.setDouble(14, 0.00);
-                                pstmt.setDate(15, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
-                                pstmt.setObject(16, invoiceNo);
-                                pstmt.setString(17, actNames1);
-                                pstmt.setBoolean(18, false);
-                                pstmt.setBoolean(19, false);
-                                pstmt.setString(20, user);
-                                pstmt.setString(21, "");
-                                if (credits > 0) {
-                                    pstmt.setDouble(22, java.lang.Double.valueOf(totalNetTxt.getText()));
-                                } else {
-                                    pstmt.setDouble(22, credits * -1);
-                                }
-                                pstmt.setBoolean(23, false);
-                                pstmt.setDouble(24, 0.00);
-                                pstmt.setObject(25, "");
-                                pstmt.setObject(26, null);
-                                pstmt.setBoolean(27, false);
-                                pstmt.setDouble(28, 0.00);
-                                pstmt.setObject(29, null);
-                                pstmt.setString(30, "");
-                                pstmt.setBoolean(31, false);
-                                pstmt.setDouble(32, 0.00);
-                                pstmt.setObject(33, null);
-                                pstmt.setString(34, "");
-                                pstmt.setString(35, memberNoTxt.getText());
-                                pstmt.setString(36, com.afrisoftech.lib.ClaimNumberFactory.getClaimNumber(connectDB));// this.claimNumberTxt.getText());
-                                pstmt.executeUpdate();
-
-
-                                java.sql.PreparedStatement pstmt2v = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
-                                pstmt2v.setString(1, rcodex);
-                                pstmt2v.setString(2, rnamex);
-                                pstmt2v.setString(3, patientNotxt.getText());
-                                pstmt2v.setString(4, patientNameTxt.getText());
-                                pstmt2v.setString(5, "Patient deposit");
-                                pstmt2v.setString(6, cardNo);
-                                pstmt2v.setString(7, cardName);
-                                pstmt2v.setString(8, "OP");
-                                pstmt2v.setString(9, isurer);
-                                pstmt2v.setString(10, "Scheme");
-                                pstmt2v.setString(11, "");
-                                pstmt2v.setString(12, "");
-                                pstmt2v.setString(13, "");
-                                pstmt2v.setString(14, "Receipt");
-                                pstmt2v.setString(15, "Unutilized patient deposit");
-                                pstmt2v.setDouble(16, balAfterUtilization);
-                                pstmt2v.setDouble(17, 0.00);
-                                pstmt2v.setDate(18, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
-                                pstmt2v.setString(19, transNo);
-                                pstmt2v.setBoolean(20, false);
-                                pstmt2v.setBoolean(21, false);
-                                pstmt2v.setBoolean(22, false);
-                                pstmt2v.setString(23, user);
-                                pstmt2v.setString(24, "");//cash point
-                                pstmt2v.setString(25, "");//shift
-                                pstmt2v.setTimestamp(26, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
-                                pstmt2v.executeUpdate();
-
-
-                            } else if (balAfterUtilization < 0) {
-                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into ac_debtors values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                                pstmt.setObject(1, actCode1);
-                                pstmt.setString(2, schemePayerTxt.getText());
-                                pstmt.setString(3, patientNameTxt.getText());
-                                pstmt.setString(4, patientNotxt.getText());
-                                pstmt.setString(5, schemeNameTxt.getText());
-                                pstmt.setString(6, "");
-                                if (this.accountNoTxt.getText() == null || this.accountNoTxt.getText().equals("-")) {
-                                    javax.swing.JOptionPane.showMessageDialog(this, "Account NO. MISSING !!!", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                                } else {
-                                    pstmt.setString(7, accountNoTxt.getText());
-                                }
-                                pstmt.setString(8, "");
-                                pstmt.setString(9, "");
-                                pstmt.setString(10, this.cardNumberTxt.getText());
-                                pstmt.setString(11, transNo);
-                                pstmt.setString(12, "Raise Invoice");
-                                if (credits > 0) {
-                                    pstmt.setDouble(13, java.lang.Double.valueOf(totalNetTxt.getText()));
-                                } else {
-                                    pstmt.setDouble(13, credits * -1);
-                                }
-                                pstmt.setDouble(14, 0.00);
-                                pstmt.setDate(15, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
-                                pstmt.setObject(16, invoiceNo);
-                                pstmt.setString(17, actNames1);
-                                pstmt.setBoolean(18, false);
-                                pstmt.setBoolean(19, false);
-                                pstmt.setString(20, user);
-                                pstmt.setString(21, "");
-                                if (credits > 0) {
-                                    pstmt.setDouble(22, java.lang.Double.valueOf(totalNetTxt.getText()));
-                                } else {
-                                    pstmt.setDouble(22, credits * -1);
-                                }
-                                pstmt.setBoolean(23, false);
-                                pstmt.setDouble(24, 0.00);
-                                pstmt.setObject(25, "");
-                                pstmt.setObject(26, null);
-                                pstmt.setBoolean(27, false);
-                                pstmt.setDouble(28, 0.00);
-                                pstmt.setObject(29, null);
-                                pstmt.setString(30, "");
-                                pstmt.setBoolean(31, false);
-                                pstmt.setDouble(32, 0.00);
-                                pstmt.setObject(33, null);
-                                pstmt.setString(34, "");
-                                pstmt.setString(35, memberNoTxt.getText());
-                                pstmt.setString(36, com.afrisoftech.lib.ClaimNumberFactory.getClaimNumber(connectDB)); //this.claimNumberTxt.getText());
-                                pstmt.executeUpdate();
-
-
-                                java.sql.PreparedStatement pstmt2v = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
-                                pstmt2v.setString(1, rcodex);
-                                pstmt2v.setString(2, rnamex);
-                                pstmt2v.setString(3, patientNotxt.getText());
-                                pstmt2v.setString(4, patientNameTxt.getText());
-                                pstmt2v.setString(5, "Patient Refund");
-                                pstmt2v.setString(6, cardNo);
-                                pstmt2v.setString(7, cardName);
-                                pstmt2v.setString(8, "OP");
-                                pstmt2v.setString(9, isurer);
-                                pstmt2v.setString(10, "Scheme");
-                                pstmt2v.setString(11, "");
-                                pstmt2v.setString(12, "");
-                                pstmt2v.setString(13, "");
-                                pstmt2v.setString(14, "Receipt");
-                                pstmt2v.setString(15, "Unutilized patient deposit");
-                                pstmt2v.setDouble(16, 0.00);
-                                pstmt2v.setDouble(17, -1 * balAfterUtilization);
-                                pstmt2v.setDate(18, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
-                                pstmt2v.setString(19, transNo);
-                                pstmt2v.setBoolean(20, false);
-                                pstmt2v.setBoolean(21, false);
-                                pstmt2v.setBoolean(22, false);
-                                pstmt2v.setString(23, user);
-                                pstmt2v.setString(24, "");//cash point
-                                pstmt2v.setString(25, "");//shift
-                                pstmt2v.setTimestamp(26, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
-                                pstmt2v.executeUpdate();
-                            }
-                            
                         }
+
+                    } else {
+
+                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into ac_debtors values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                        pstmt.setObject(1, actCode1);
+                        pstmt.setString(2, schemePayerTxt.getText());
+                        pstmt.setString(3, patientNameTxt.getText());
+                        pstmt.setString(4, patientNotxt.getText());
+                        pstmt.setString(5, schemeNameTxt.getText());
+                        pstmt.setString(6, "");
+                        if (this.accountNoTxt.getText() == null || this.accountNoTxt.getText().equals("-")) {
+                            javax.swing.JOptionPane.showMessageDialog(this, "Account NO. MISSING !!!", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                         } else {
+                            pstmt.setString(7, accountNoTxt.getText());
+                        }
+                        pstmt.setString(8, "");
+                        pstmt.setString(9, "");
+                        pstmt.setString(10, this.cardNumberTxt.getText());
+                        pstmt.setString(11, transNo);
+                        pstmt.setString(12, "Raise Invoice");
+                        if (credits > 0) {
+                            pstmt.setDouble(13, java.lang.Double.valueOf(totalNetTxt.getText()));
+                        } else {
+                            pstmt.setDouble(13, credits * -1);
+                        }
+                        pstmt.setDouble(14, 0.00);
+                        pstmt.setObject(15, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
+                        pstmt.setObject(16, invoiceNo);
+                        pstmt.setString(17, actNames1);
+                        pstmt.setBoolean(18, false);
+                        pstmt.setBoolean(19, false);
+                        pstmt.setString(20, user);
+                        pstmt.setString(21, "");
+                        if (credits > 0) {
+                            pstmt.setDouble(22, java.lang.Double.valueOf(totalNetTxt.getText()));
+                        } else {
+                            pstmt.setDouble(22, credits * -1);
+                        }
+                        pstmt.setBoolean(23, false);
+                        pstmt.setDouble(24, 0.00);
+                        pstmt.setObject(25, "");
+                        pstmt.setObject(26, null);
+                        pstmt.setBoolean(27, false);
+                        pstmt.setDouble(28, 0.00);
+                        pstmt.setObject(29, null);
+                        pstmt.setString(30, "");
+                        pstmt.setBoolean(31, false);
+                        pstmt.setDouble(32, 0.00);
+                        pstmt.setObject(33, null);
+                        pstmt.setString(34, "");
+                        pstmt.setString(35, memberNoTxt.getText());
+                        pstmt.setString(36, com.afrisoftech.lib.ClaimNumberFactory.getClaimNumber(connectDB)); //this.claimNumberTxt.getText());
+                        pstmt.executeUpdate();
 
-                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into ac_debtors values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                            pstmt.setObject(1, actCode1);
-                            pstmt.setString(2, schemePayerTxt.getText());
-                            pstmt.setString(3, patientNameTxt.getText());
-                            pstmt.setString(4, patientNotxt.getText());
-                            pstmt.setString(5, schemeNameTxt.getText());
-                            pstmt.setString(6, "");
-                            if (this.accountNoTxt.getText() == null || this.accountNoTxt.getText().equals("-")) {
-                                javax.swing.JOptionPane.showMessageDialog(this, "Account NO. MISSING !!!", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                            } else {
-                                pstmt.setString(7, accountNoTxt.getText());
-                            }
-                            pstmt.setString(8, "");
-                            pstmt.setString(9, "");
-                            pstmt.setString(10, this.cardNumberTxt.getText());
-                            pstmt.setString(11, transNo);
-                            pstmt.setString(12, "Raise Invoice");
-                            if (credits > 0) {
-                                pstmt.setDouble(13, java.lang.Double.valueOf(totalNetTxt.getText()));
-                            } else {
-                                pstmt.setDouble(13, credits * -1);
-                            }
-                            pstmt.setDouble(14, 0.00);
-                            pstmt.setObject(15, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
-                            pstmt.setObject(16, invoiceNo);
-                            pstmt.setString(17, actNames1);
-                            pstmt.setBoolean(18, false);
-                            pstmt.setBoolean(19, false);
-                            pstmt.setString(20, user);
-                            pstmt.setString(21, "");
-                            if (credits > 0) {
-                                pstmt.setDouble(22, java.lang.Double.valueOf(totalNetTxt.getText()));
-                            } else {
-                                pstmt.setDouble(22, credits * -1);
-                            }
-                            pstmt.setBoolean(23, false);
-                            pstmt.setDouble(24, 0.00);
-                            pstmt.setObject(25, "");
-                            pstmt.setObject(26, null);
-                            pstmt.setBoolean(27, false);
-                            pstmt.setDouble(28, 0.00);
-                            pstmt.setObject(29, null);
-                            pstmt.setString(30, "");
-                            pstmt.setBoolean(31, false);
-                            pstmt.setDouble(32, 0.00);
-                            pstmt.setObject(33, null);
-                            pstmt.setString(34, "");
-                            pstmt.setString(35, memberNoTxt.getText());
-                            pstmt.setString(36, com.afrisoftech.lib.ClaimNumberFactory.getClaimNumber(connectDB)); //this.claimNumberTxt.getText());
-                            pstmt.executeUpdate();
-
-
-                            java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO hp_patient_card VALUES(?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-                            pstmt1.setString(1, patientNotxt.getText());
-                            pstmt1.setObject(2, "Invoice");
-                            pstmt1.setString(3, "");
-                            pstmt1.setString(4, "Scheme");
-                            pstmt1.setString(5, transNo);
-                            pstmt1.setString(7, schemeNameTxt.getText());
-                            pstmt1.setString(6, "");
-                            pstmt1.setString(8, "");
-                            pstmt1.setString(9, schemePayerTxt.getText());
-                            pstmt1.setObject(10, null);
-                            pstmt1.setString(11, "");
-                            if (credits > 0) {
-                                pstmt1.setDouble(13, java.lang.Double.valueOf(totalNetTxt.getText()));
-                            } else {
-                                pstmt1.setDouble(13, credits * -1);
-
-                            }
-                            pstmt1.setDouble(12, 0.00);
-                            pstmt1.setDate(14, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
-                            pstmt1.setObject(15, actCode);
-                            pstmt1.setString(16, glCode);
-                            pstmt1.setDouble(17, 1);
-                            pstmt1.setObject(18, memberNoTxt.getText());
-                            pstmt1.setBoolean(19, true);
-                            pstmt1.setString(20, "Receipts");
-                            pstmt1.setBoolean(21, true);
-                            pstmt1.setString(22, actNames);
-                            pstmt1.setString(23, invoiceNo);
-                            pstmt1.setString(24, user);
-                            pstmt1.executeUpdate();
+                        java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO hp_patient_card VALUES(?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+                        pstmt1.setString(1, patientNotxt.getText());
+                        pstmt1.setObject(2, "Invoice");
+                        pstmt1.setString(3, "");
+                        pstmt1.setString(4, "Scheme");
+                        pstmt1.setString(5, transNo);
+                        pstmt1.setString(7, schemeNameTxt.getText());
+                        pstmt1.setString(6, "");
+                        pstmt1.setString(8, "");
+                        pstmt1.setString(9, schemePayerTxt.getText());
+                        pstmt1.setObject(10, null);
+                        pstmt1.setString(11, "");
+                        if (credits > 0) {
+                            pstmt1.setDouble(13, java.lang.Double.valueOf(totalNetTxt.getText()));
+                        } else {
+                            pstmt1.setDouble(13, credits * -1);
 
                         }
-                        double Disc = java.lang.Double.valueOf(totalDiscountTxt.getText());
-                        if (Disc > 0) {
+                        pstmt1.setDouble(12, 0.00);
+                        pstmt1.setDate(14, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
+                        pstmt1.setObject(15, actCode);
+                        pstmt1.setString(16, glCode);
+                        pstmt1.setDouble(17, 1);
+                        pstmt1.setObject(18, memberNoTxt.getText());
+                        pstmt1.setBoolean(19, true);
+                        pstmt1.setString(20, "Receipts");
+                        pstmt1.setBoolean(21, true);
+                        pstmt1.setString(22, actNames);
+                        pstmt1.setString(23, invoiceNo);
+                        pstmt1.setString(24, user);
+                        pstmt1.executeUpdate();
 
-                            java.sql.Statement stm122x = connectDB.createStatement();
-                            java.sql.ResultSet rse122x = stm122x.executeQuery("select code,activity from pb_activity where activity_category ='EDS'");
-                            while (rse122x.next()) {
-
-                                discode = rse122x.getObject(1).toString();
-                                discglAcc = rse122x.getObject(2).toString();
-                            }
-                            java.sql.PreparedStatement pstmt1f = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-                            pstmt1f.setString(1, patientNotxt.getText());
-                            pstmt1f.setObject(2, "Discount");
-                            pstmt1f.setString(3, "");
-                            pstmt1f.setString(4, "Scheme");
-                            pstmt1f.setString(5, transNo);
-                            pstmt1f.setString(7, schemeNameTxt.getText());
-                            pstmt1f.setString(6, "");
-                            pstmt1f.setString(8, "");
-                            pstmt1f.setString(9, schemePayerTxt.getText());
-                            pstmt1f.setObject(10, null);
-                            pstmt1f.setString(11, "");
-                            pstmt1f.setDouble(13, java.lang.Double.valueOf(totalDiscountTxt.getText()));
-                            pstmt1f.setDouble(12, 0.00);
-                            pstmt1f.setDate(14, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
-                            pstmt1f.setObject(15, actCode);
-                            pstmt1f.setString(16, glCode);
-                            pstmt1f.setDouble(17, 1);
-                            pstmt1f.setObject(18, memberNoTxt.getText());
-                            pstmt1f.setBoolean(19, true);
-                            pstmt1f.setString(20, "Receipts");
-                            pstmt1f.setBoolean(21, true);
-                            pstmt1f.setString(22, actNames);
-                            pstmt1f.setString(23, invoiceNo);
-                            pstmt1f.setString(24, user);
-                            pstmt1f.executeUpdate();
-
-
-                            java.sql.PreparedStatement pstmt2v = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
-                            pstmt2v.setString(1, discode);
-                            pstmt2v.setString(2, discglAcc);
-                            pstmt2v.setString(3, patientNotxt.getText());
-                            pstmt2v.setString(4, patientNameTxt.getText());
-                            pstmt2v.setString(5, "");
-                            pstmt2v.setString(6, cardNo);
-                            pstmt2v.setString(7, cardName);
-                            pstmt2v.setString(8, "OP");
-                            pstmt2v.setString(9, isurer);
-                            pstmt2v.setString(10, "Scheme");
-                            pstmt2v.setString(11, "");
-                            pstmt2v.setString(12, "");
-                            pstmt2v.setString(13, "");
-                            pstmt2v.setString(14, "Discount");
-                            pstmt2v.setString(15, "Revenue");
-                            pstmt2v.setDouble(16, java.lang.Double.valueOf(totalDiscountTxt.getText()));
-                            pstmt2v.setDouble(17, 0.00);
-                            pstmt2v.setDate(18, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));   //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
-                            pstmt2v.setString(19, transNo);
-                            pstmt2v.setBoolean(20, false);
-                            pstmt2v.setBoolean(21, false);
-                            pstmt2v.setBoolean(22, false);
-                            pstmt2v.setString(23, user);
-                            pstmt2v.executeUpdate();
-                        }
-                        connectDB.commit();
-                        connectDB.setAutoCommit(true);
-
-                        ////       biz.systempartners.claims.SendSMS.SendSMS("INVOICE NO : ["+invoiceNo+"], PATIENT NO.: ["+jTextField9.getText()+"],NAME : "+jTextField1.getText()+"]", "0733367427", "SCHEME : ["+jTextField7.getText()+"], AMOUNT(KSH) : ["+jTextField15.getText()+"]");
-
-                        com.afrisoftech.reports.FinalInvoiceByinvPdf policy = new com.afrisoftech.reports.FinalInvoiceByinvPdf();
-                        policy.FinalInvoiceByinvPdf(connectDB, invoiceNo, invoiceNo, claimNumberTxt.getText(), cardNumberTxt.getText());
-
-
-                        javax.swing.JOptionPane.showMessageDialog(this, "Data saved successfully \n Inv No. is: " + invoiceNo + "", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-                        patientNameTxt.setText("");
-                        memberNoTxt.setText("");
-                        totalAmountTxt.setText("");
-                        viewTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select trans_date AS TRANSACTION_DATE, patient_no, description AS PARTICULARS,sum(amount) as INVOICE_TOTAL FROM op_unfinalised_inv WHERE trans_date between '" + beginDate.getDate().toString() + "' and '" + endDate.getDate().toString() + "' group by trans_date,patient_no,description"));
-                        this.unutilisedSchemeDepositTxt.setText("0.00");
-                        this.dmuBalanceTxt.setText("0.00");
-                        this.refundTxt.setText("0.00");
-                        this.schemeBalAfterUtilisationTxt.setText("0.00");
-                        this.totalDepositBalTxt.setText("0.00");
-                        totalAmountTxt.setText("");
-                        invoiceNoTxt.setText("-");
-                        jCheckBox2ActionPerformed(evt);
                     }
+                    double Disc = java.lang.Double.valueOf(totalDiscountTxt.getText());
+                    if (Disc > 0) {
+
+                        java.sql.Statement stm122x = connectDB.createStatement();
+                        java.sql.ResultSet rse122x = stm122x.executeQuery("select code,activity from pb_activity where activity_category ='EDS'");
+                        while (rse122x.next()) {
+
+                            discode = rse122x.getObject(1).toString();
+                            discglAcc = rse122x.getObject(2).toString();
+                        }
+                        java.sql.PreparedStatement pstmt1f = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+                        pstmt1f.setString(1, patientNotxt.getText());
+                        pstmt1f.setObject(2, "Discount");
+                        pstmt1f.setString(3, "");
+                        pstmt1f.setString(4, "Scheme");
+                        pstmt1f.setString(5, transNo);
+                        pstmt1f.setString(7, schemeNameTxt.getText());
+                        pstmt1f.setString(6, "");
+                        pstmt1f.setString(8, "");
+                        pstmt1f.setString(9, schemePayerTxt.getText());
+                        pstmt1f.setObject(10, null);
+                        pstmt1f.setString(11, "");
+                        pstmt1f.setDouble(13, java.lang.Double.valueOf(totalDiscountTxt.getText()));
+                        pstmt1f.setDouble(12, 0.00);
+                        pstmt1f.setDate(14, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
+                        pstmt1f.setObject(15, actCode);
+                        pstmt1f.setString(16, glCode);
+                        pstmt1f.setDouble(17, 1);
+                        pstmt1f.setObject(18, memberNoTxt.getText());
+                        pstmt1f.setBoolean(19, true);
+                        pstmt1f.setString(20, "Receipts");
+                        pstmt1f.setBoolean(21, true);
+                        pstmt1f.setString(22, actNames);
+                        pstmt1f.setString(23, invoiceNo);
+                        pstmt1f.setString(24, user);
+                        pstmt1f.executeUpdate();
+
+                        java.sql.PreparedStatement pstmt2v = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
+                        pstmt2v.setString(1, discode);
+                        pstmt2v.setString(2, discglAcc);
+                        pstmt2v.setString(3, patientNotxt.getText());
+                        pstmt2v.setString(4, patientNameTxt.getText());
+                        pstmt2v.setString(5, "");
+                        pstmt2v.setString(6, cardNo);
+                        pstmt2v.setString(7, cardName);
+                        pstmt2v.setString(8, "OP");
+                        pstmt2v.setString(9, isurer);
+                        pstmt2v.setString(10, "Scheme");
+                        pstmt2v.setString(11, "");
+                        pstmt2v.setString(12, "");
+                        pstmt2v.setString(13, "");
+                        pstmt2v.setString(14, "Discount");
+                        pstmt2v.setString(15, "Revenue");
+                        pstmt2v.setDouble(16, java.lang.Double.valueOf(totalDiscountTxt.getText()));
+                        pstmt2v.setDouble(17, 0.00);
+                        pstmt2v.setDate(18, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));   //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
+                        pstmt2v.setString(19, transNo);
+                        pstmt2v.setBoolean(20, false);
+                        pstmt2v.setBoolean(21, false);
+                        pstmt2v.setBoolean(22, false);
+                        pstmt2v.setString(23, user);
+                        pstmt2v.executeUpdate();
+                    }
+                    connectDB.commit();
+                    connectDB.setAutoCommit(true);
+
+                    ////       biz.systempartners.claims.SendSMS.SendSMS("INVOICE NO : ["+invoiceNo+"], PATIENT NO.: ["+jTextField9.getText()+"],NAME : "+jTextField1.getText()+"]", "0733367427", "SCHEME : ["+jTextField7.getText()+"], AMOUNT(KSH) : ["+jTextField15.getText()+"]");
+                    com.afrisoftech.reports.FinalInvoiceByinvPdf policy = new com.afrisoftech.reports.FinalInvoiceByinvPdf();
+                    policy.FinalInvoiceByinvPdf(connectDB, invoiceNo, invoiceNo, claimNumberTxt.getText(), cardNumberTxt.getText());
+
+                    javax.swing.JOptionPane.showMessageDialog(this, "Data saved successfully \n Inv No. is: " + invoiceNo + "", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                    patientNameTxt.setText("");
+                    memberNoTxt.setText("");
+                    totalAmountTxt.setText("");
+                    viewTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select trans_date AS TRANSACTION_DATE, patient_no, description AS PARTICULARS,sum(amount) as INVOICE_TOTAL FROM op_unfinalised_inv WHERE trans_date between '" + beginDate.getDate().toString() + "' and '" + endDate.getDate().toString() + "' group by trans_date,patient_no,description"));
+                    this.unutilisedSchemeDepositTxt.setText("0.00");
+                    this.dmuBalanceTxt.setText("0.00");
+                    this.refundTxt.setText("0.00");
+                    this.schemeBalAfterUtilisationTxt.setText("0.00");
+                    this.totalDepositBalTxt.setText("0.00");
+                    totalAmountTxt.setText("");
+                    invoiceNoTxt.setText("-");
+                    utilizeDepositChkbx.setSelected(false);
+                    tickChk.setSelected(false);
+                    jCheckBox2ActionPerformed(evt);
+                }
                 //}
             } catch (java.lang.Exception sq) {
                 sq.printStackTrace();
@@ -4321,8 +4285,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             }
         }
 
-
-
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox6ActionPerformed
 
@@ -4330,8 +4292,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
         // double orig = java.lang.Double.parseDouble(jTextField3111.getText().toString());
         // double alloc = java.lang.Double.parseDouble(jTextField4.getText().toString());
-
-
         for (int k = 0; k < jTable11.getColumnCount(); k++) {
 
             for (int r = 0; r < jTable11.getRowCount(); r++) {
@@ -4339,10 +4299,8 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                     float gross = java.lang.Float.parseFloat(jTable11.getValueAt(r, 1).toString());
                     if (gross > 0) {
 
-
                         //  float qty = java.lang.Float.parseFloat(jTable11.getValueAt(r, 1).toString());
                         //  float deposit = java.lang.Float.parseFloat(this.jTextField10.getText());
-
                         // float gross = java.lang.Float.parseFloat(jTable11.getValueAt(k, 5).toString());
                         //gross = gross * qty;
                         // if (gross < balance) {
@@ -4366,10 +4324,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             }
         }
 
-
-
-
-
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox4ActionPerformed
 
@@ -4380,12 +4334,10 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             // double alloc = java.lang.Double.parseDouble(jTextField17.getText().toString());
 
             // double balance = orig - alloc;
-
             if (Boolean.valueOf(jTable11.getValueAt(jTable11.getSelectedRow(), 5).toString()) == java.lang.Boolean.TRUE) {
 
                 //float qty = java.lang.Float.parseFloat(jTable11.getValueAt(jTable11.getSelectedRow(), 1).toString());
                 // float deposit = java.lang.Float.parseFloat(this.jTextField10.getText());
-
                 float gross = java.lang.Float.parseFloat(jTable11.getValueAt(jTable11.getSelectedRow(), 1).toString());
                 //gross = gross * qty;
                 /// if (gross < balance) {
@@ -4436,11 +4388,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             }
         }
 
-
-
-
-
-
         //totalDepositBalTxt
     }
     private void tickChkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tickChkActionPerformed
@@ -4477,7 +4424,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
                 }
             }
-
 
         }
     }//GEN-LAST:event_tickChkActionPerformed
@@ -4713,9 +4659,9 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
     private void schemeSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schemeSearchTableMouseClicked
 
         schemeNameTxt1.setText(schemeSearchTable.getValueAt(schemeSearchTable.getSelectedRow(), 1).toString());
-        
+
         schemeSearchDialog.dispose();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_schemeSearchTableMouseClicked
 
@@ -4742,13 +4688,11 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         int i = 0;
         int j = 0;
 
-
         viewTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                 + "select distinct date::date,patient_no,scheme,sum(debit-credit)   "
                 + " FROM hp_patient_card where ip_no='OP' and scheme !='' and paid=false"
                 + " and date between '" + beginDate.getDate().toString() + "' and '" + endDate.getDate().toString() + "'  "
                 + "  group by 1,2,3 having sum(debit-credit)>0 order by patient_no"));
-
 
         accountNoTxt.setText("");
         // TODO add your handling code here:
@@ -4779,9 +4723,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 shift_no = rset.getString(1);
 
             }
-
-
-
 
         } catch (java.sql.SQLException sqlExec) {
 
@@ -4819,9 +4760,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 cash_no = rset.getString(1);
 
             }
-
-
-
 
         } catch (java.sql.SQLException sqlExec) {
 
@@ -4976,6 +4914,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField totalDiscountTxt;
     private javax.swing.JTextField totalNetTxt;
     private javax.swing.JTextField unutilisedSchemeDepositTxt;
+    private javax.swing.JCheckBox utilizeDepositChkbx;
     private javax.swing.JTextField utilizedepositTxt;
     private javax.swing.JCheckBox viewAllChkbx;
     private javax.swing.JTable viewTable;

@@ -288,7 +288,7 @@ public class TransByAccountPdf implements java.lang.Runnable {
             
             java.lang.String creditTotal = null;
             
-            com.lowagie.text.Document docPdf = new com.lowagie.text.Document();
+            com.lowagie.text.Document docPdf = new com.lowagie.text.Document(PageSize.A4.rotate());
             
             try {
                 
