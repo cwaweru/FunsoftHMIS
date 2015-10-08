@@ -4617,15 +4617,17 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                             }
                         }
 
-
+                        // For all the rows that are populated on the consultants table     
                         for (int y = 0; y < consultantsTable.getModel().getRowCount(); y++) {
                             if (consultantsTable.getModel().getValueAt(y, 0) != null) {
 
                                 java.sql.PreparedStatement pstmt251y = connectDB.prepareStatement("insert into ac_doctors_ledger values(?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                                 pstmt251y.setObject(1, consultantsTable.getModel().getValueAt(y, 0).toString());
                                 pstmt251y.setObject(2, consultantsTable.getModel().getValueAt(y, 2).toString());
+                                
                                 pstmt251y.setObject(3, consultantsTable.getModel().getValueAt(y, 1).toString());
 
+                                
                                 pstmt251y.setString(4, transNo);
                                 pstmt251y.setObject(5, consultantsTable.getModel().getValueAt(y, 6).toString());
                                 pstmt251y.setString(6, transactionTypeCmbx.getSelectedItem().toString());
@@ -4782,7 +4784,7 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                                 } else {
                                     pstmt2512yq.setDouble(6, java.lang.Double.valueOf(patientControlAccountTable.getModel().getValueAt(q, 3).toString()));
                                 }
-                                if (consultantsTable.getModel().getValueAt(q, 4) == null) {
+                                if (patientControlAccountTable.getModel().getValueAt(q, 4) == null) {
                                     pstmt2512yq.setDouble(7, 0.00);
                                 } else {
                                     pstmt2512yq.setDouble(7, java.lang.Double.valueOf(patientControlAccountTable.getModel().getValueAt(q, 4).toString()));
