@@ -15,6 +15,7 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox cmbox1;
     private javax.swing.JComboBox cmbox;
     
+    
     /**
      * Creates new form loanpymntintfr
      */
