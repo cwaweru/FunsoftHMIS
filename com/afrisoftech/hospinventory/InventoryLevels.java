@@ -14,30 +14,30 @@ import org.openide.util.Exceptions;
  */
 public class InventoryLevels {
 
-    private int leadOrderDays = 0;
+    private static int leadOrderDays = 0;
 
-    private int bufferStockDays = 0;
+    private static int bufferStockDays = 0;
 
-    private int averagingDays = 0;
+    private static int averagingDays = 0;
 
-    private int averageConsumption = 0;
-    
-    private int storeAverageConsumption = 0;
+    private static int averageConsumption = 0;
 
-    private int expiryDays = 0;
+    private static int storeAverageConsumption = 0;
 
-    private int stockLevel = 0;
+    private static int expiryDays = 0;
 
-    private int storeStockLevel = 0;
+    private static int stockLevel = 0;
 
-    private int consumptionNumbers = 0;
+    private static int storeStockLevel = 0;
 
-    private int storeConsumptionNumbers = 0;
+    private static int consumptionNumbers = 0;
+
+    private static int storeConsumptionNumbers = 0;
 
     /**
      * @return the leadOrderDays
      */
-    public int getLeadOrderDays() {
+    public static int getLeadOrderDays() {
         try {
             java.sql.PreparedStatement pstmt = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT lead_time FROM st_ordering_constants");
 
@@ -55,14 +55,14 @@ public class InventoryLevels {
     /**
      * @param leadOrderDays the leadOrderDays to set
      */
-    public void setLeadOrderDays(int leadOrderDays) {
-        this.leadOrderDays = leadOrderDays;
+    public static void setLeadOrderDays(int leadOrderDays) {
+        leadOrderDays = leadOrderDays;
     }
 
     /**
      * @return the bufferStockDays
      */
-    public int getBufferStockDays() {
+    public static int getBufferStockDays() {
         try {
             java.sql.PreparedStatement pstmt = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT reorder_level FROM st_ordering_constants");
 
@@ -87,7 +87,7 @@ public class InventoryLevels {
     /**
      * @return the averagingDays
      */
-    public int getAveragingDays() {
+    public static int getAveragingDays() {
         try {
             java.sql.PreparedStatement pstmt = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT average_day FROM st_ordering_constants");
 
@@ -109,24 +109,24 @@ public class InventoryLevels {
         this.averagingDays = averagingDays;
     }
 
-    public boolean getReorderStatus(String item) {
+    public static boolean getReorderStatus(String item) {
 
         boolean reorderStatus = false;
 
-        int stockLevel = this.getStockLevel(item);
-        
-        int reOrderLevel = this.getAverageConsumption(item) * (this.getLeadOrderDays() + this.bufferStockDays);
-        
-        if(stockLevel > reOrderLevel ){
-            
-           reorderStatus = false;
-           
+        int stockLevel = InventoryLevels.getStockLevel(item);
+
+        int reOrderLevel = getAverageConsumption(item) * (getLeadOrderDays() + InventoryLevels.bufferStockDays);
+
+        if (stockLevel > reOrderLevel) {
+
+            reorderStatus = false;
+
         } else {
-            
-           reorderStatus = true; 
-           
+
+            reorderStatus = true;
+
         }
-        
+
         return reorderStatus;
 
     }
@@ -134,10 +134,10 @@ public class InventoryLevels {
     /**
      * @return the averageConsumption
      */
-    public int getAverageConsumption(String item) {
-        
-        averageConsumption = getConsumptionNumbers(item)/getAveragingDays();
-        
+    public static int getAverageConsumption(String item) {
+
+        averageConsumption = getConsumptionNumbers(item) / getAveragingDays();
+
         return averageConsumption;
     }
 
@@ -151,7 +151,7 @@ public class InventoryLevels {
     /**
      * @return the expiryDays
      */
-    public int getExpiryDays() {
+    public static int getExpiryDays() {
 
         try {
             java.sql.PreparedStatement pstmt = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT expiry_days FROM st_ordering_constants");
@@ -177,7 +177,7 @@ public class InventoryLevels {
     /**
      * @return the stockLevel
      */
-    public int getStockLevel(String item) {
+    public static int getStockLevel(String item) {
         //int stockLevel = 0;
         try {
             java.sql.PreparedStatement pstmt = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT sum(quantity_received-sub_store_issuing) FROM st_stock_cardex WHERE item_code = ?");
@@ -203,7 +203,7 @@ public class InventoryLevels {
     /**
      * @return the storeStockLevel
      */
-    public int getStoreStockLevel(String storeName, String item) {
+    public static int getStoreStockLevel(String storeName, String item) {
         //int storeStockLevel = 0;
         try {
             java.sql.PreparedStatement pstmt = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT sum(quantity_received-sub_store_issuing) FROM st_stock_cardex WHERE item_code = ? AND upper(store) = upper(?)");
@@ -231,9 +231,9 @@ public class InventoryLevels {
     /**
      * @return the consumptionNumbers
      */
-    public int getConsumptionNumbers(String item) {
+    public static int getConsumptionNumbers(String item) {
         try {
-            java.sql.PreparedStatement pstmt = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT sum(sub_store_issuing) FROM st_stock_cardex WHERE item_code = ?  AND transaction_type ilike 'issuing' AND transaction_no not ilike 't%' AND date between now()::date AND now()::date - "+getAveragingDays());
+            java.sql.PreparedStatement pstmt = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT sum(sub_store_issuing) FROM st_stock_cardex WHERE item_code = ?  AND transaction_type ilike 'issuing' AND transaction_no not ilike 't%' AND date between now()::date AND now()::date - " + getAveragingDays());
             pstmt.setString(1, item);
             java.sql.ResultSet rset = pstmt.executeQuery();
             while (rset.next()) {
@@ -257,9 +257,9 @@ public class InventoryLevels {
     /**
      * @return the storeConsumptionNumbers
      */
-    public int getStoreConsumptionNumbers(String storeName, String item) {
+    public static int getStoreConsumptionNumbers(String storeName, String item) {
         try {
-            java.sql.PreparedStatement pstmt = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT sum(sub_store_issuing) FROM st_stock_cardex WHERE item_code = ? AND upper(store) = upper(?) AND transaction_type ILIKE 'issuing' AND transaction_no NOT ILIKE 't%' AND date BETWEEN now()::date AND now()::date - "+getAveragingDays());
+            java.sql.PreparedStatement pstmt = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT sum(sub_store_issuing) FROM st_stock_cardex WHERE item_code = ? AND upper(store) = upper(?) AND transaction_type ILIKE 'issuing' AND transaction_no NOT ILIKE 't%' AND date BETWEEN now()::date AND now()::date - " + getAveragingDays());
             pstmt.setString(1, item);
             pstmt.setString(2, storeName);
             java.sql.ResultSet rset = pstmt.executeQuery();
@@ -277,25 +277,25 @@ public class InventoryLevels {
     /**
      * @param storeConsumptionNumbers the storeConsumptionNumbers to set
      */
-    public void setStoreConsumptionNumbers(int storeConsumptionNumbers) {
-        this.storeConsumptionNumbers = storeConsumptionNumbers;
+    public static void setStoreConsumptionNumbers(int storeConsumptionNumbers) {
+        storeConsumptionNumbers = storeConsumptionNumbers;
     }
 
     /**
      * @return the storeAverageConsumption
      */
-    public int getStoreAverageConsumption(String storeName, String item) {
-        
-        storeAverageConsumption = getStoreConsumptionNumbers(storeName, item)/getAveragingDays();
-        
+    public static int getStoreAverageConsumption(String storeName, String item) {
+
+        storeAverageConsumption = getStoreConsumptionNumbers(storeName, item) / getAveragingDays();
+
         return storeAverageConsumption;
     }
 
     /**
      * @param storeAverageConsumption the storeAverageConsumption to set
      */
-    public void setStoreAverageConsumption(int storeAverageConsumption) {
-        this.storeAverageConsumption = storeAverageConsumption;
+    public static void setStoreAverageConsumption(int storeAverageConsumption) {
+        InventoryLevels.storeAverageConsumption = storeAverageConsumption;
     }
 
 }
