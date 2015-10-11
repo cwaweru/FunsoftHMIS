@@ -462,6 +462,7 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
         columnNamesVector.addElement("Consumption Quantity");
         columnNamesVector.addElement("Consumption Average");
         columnNamesVector.addElement("Current Stock Level");
+        columnNamesVector.addElement("Optimum Stock Level");
         columnNamesVector.addElement("Below Re-Order Level");
         columnNamesVector.addElement("Quantity To Order");
         try {
@@ -477,8 +478,9 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
                 columnDataVector.addElement(InventoryLevels.getConsumptionNumbers(rset.getString(1)));
                 columnDataVector.addElement(InventoryLevels.getAverageConsumption(rset.getString(1)));
                 columnDataVector.addElement(InventoryLevels.getStockLevel(rset.getString(1)));
+                columnDataVector.addElement(InventoryLevels.getOptimumStockLevel(rset.getString(1)));
                 columnDataVector.addElement(InventoryLevels.getReorderStatus(rset.getString(1)));
-                columnDataVector.addElement(InventoryLevels.getConsumptionNumbers(rset.getString(1)));
+                columnDataVector.addElement(InventoryLevels.getReOrderQuantity(rset.getString(1)));
                 rowDataVector.addElement(columnDataVector);
             }
         } catch (SQLException ex) {
