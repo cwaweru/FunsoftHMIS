@@ -67,12 +67,12 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jComboBox11 = new javax.swing.JComboBox();
+        recipientStoreCmbx = new javax.swing.JComboBox();
         jLabel13 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         datePicker1 = new com.afrisoftech.lib.DatePicker();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        issuingStoreCmbx = new javax.swing.JComboBox();
         jCheckBox3 = new javax.swing.JCheckBox();
         jCheckBox4 = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
@@ -144,7 +144,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel.add(jSearchScrollPane, gridBagConstraints);
 
-        jButton9.setText("Cancel");
+        jButton9.setText("Dispose");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -220,7 +220,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel1.add(jSearchScrollPane1, gridBagConstraints);
 
-        jButton91.setText("Cancel");
+        jButton91.setText("Dispose");
         jButton91.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton91ActionPerformed(evt);
@@ -301,7 +301,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel2.add(jSearchScrollPane2, gridBagConstraints);
 
-        jButton10.setText("Cancel");
+        jButton10.setText("Dispose");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -402,7 +402,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Stock Distribution - Consumbles [Expensed Direct after Transfering]");
+        setTitle("Stock Distribution - Consumbles [Expensed Directly after Transfering]");
         setToolTipText("");
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -416,9 +416,9 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jComboBox11.addActionListener(new java.awt.event.ActionListener() {
+        recipientStoreCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox11ActionPerformed(evt);
+                recipientStoreCmbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -428,9 +428,9 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPanel1.add(jComboBox11, gridBagConstraints);
+        jPanel1.add(recipientStoreCmbx, gridBagConstraints);
 
-        jLabel13.setText("Receipient");
+        jLabel13.setText("Recipient Store");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
@@ -467,9 +467,9 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 0);
         jPanel1.add(jLabel3, gridBagConstraints);
 
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        issuingStoreCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                issuingStoreCmbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -478,7 +478,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jComboBox2, gridBagConstraints);
+        jPanel1.add(issuingStoreCmbx, gridBagConstraints);
 
         buttonGroup2.add(jCheckBox3);
         jCheckBox3.setSelected(true);
@@ -792,7 +792,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel11.setLayout(new java.awt.GridBagLayout());
 
-        jLabel9.setText("Issued To");
+        jLabel9.setText("Issued To (Person receiving stock)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
@@ -854,7 +854,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         jPanel2.add(jPanel11, gridBagConstraints);
 
-        jLabel12.setFont(new java.awt.Font("Utopia", 3, 18));
+        jLabel12.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -914,7 +914,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
         jPanel3.add(jButton8, gridBagConstraints);
 
         jButton7.setMnemonic('p');
-        jButton7.setText("Ok & Print");
+        jButton7.setText("Save & Print");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -1040,9 +1040,9 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
                 if (jTable1.getModel().getValueAt(j, 0) != null) {
 
                     java.sql.Statement stmtTable11 = connectDB.createStatement();
-                    java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT sum(qty) FROM stock_balance_qty WHERE item_code ilike '" + jTable1.getValueAt(j, 0).toString() + "' AND department ILIKE '" + jComboBox2.getSelectedItem() + "' AND dates <= '" + datePicker1.getDate() + "'");
+                    java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT sum(qty) FROM stock_balance_qty WHERE item_code ilike '" + jTable1.getValueAt(j, 0).toString() + "' AND department ILIKE '" + issuingStoreCmbx.getSelectedItem() + "' AND dates <= '" + datePicker1.getDate() + "'");
                     java.sql.Statement stmtTable11x = connectDB.createStatement();
-                    java.sql.ResultSet rsetTable11x = stmtTable11x.executeQuery("SELECT sum(qty) FROM stock_balance_qty WHERE item_code ilike '" + jTable1.getValueAt(j, 0).toString() + "' AND department ILIKE '" + jComboBox11.getSelectedItem() + "' AND dates <= '" + datePicker1.getDate() + "'");
+                    java.sql.ResultSet rsetTable11x = stmtTable11x.executeQuery("SELECT sum(qty) FROM stock_balance_qty WHERE item_code ilike '" + jTable1.getValueAt(j, 0).toString() + "' AND department ILIKE '" + recipientStoreCmbx.getSelectedItem() + "' AND dates <= '" + datePicker1.getDate() + "'");
 
 
                     while (rsetTable11x.next()) {
@@ -1094,7 +1094,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
         if (this.jTextField111111.getCaretPosition() < 2) {
             System.out.print("Nothing");
         } else {
-            jSearchTable111.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct requisition_no as scheme,(date) as name from st_receive_requisation where requisition_no ILIKE '" + jTextField111111.getText().toString() + "%' AND cost_center ilike '" + this.jComboBox11.getSelectedItem().toString() + "%' AND store_name ilike '" + this.jComboBox2.getSelectedItem().toString() + "%'  and (quantity-qty_issued) >0 ORDER BY requisition_no"));
+            jSearchTable111.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct requisition_no as scheme,(date) as name from st_receive_requisation where requisition_no ILIKE '" + jTextField111111.getText().toString() + "%' AND cost_center ilike '" + this.recipientStoreCmbx.getSelectedItem().toString() + "%' AND store_name ilike '" + this.issuingStoreCmbx.getSelectedItem().toString() + "%'  and (quantity-qty_issued) >0 ORDER BY requisition_no"));
             jSearchTable111.setShowHorizontalLines(false);
             jSearchScrollPane111.setViewportView(jSearchTable111);
 
@@ -1121,9 +1121,9 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
 
 
     }
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void issuingStoreCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issuingStoreCmbxActionPerformed
 // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_issuingStoreCmbxActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         jSearchDialog2.dispose();
@@ -1131,7 +1131,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jSearchTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable2MouseClicked
-        jComboBox11.setSelectedItem(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 2).toString());
+        recipientStoreCmbx.setSelectedItem(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 2).toString());
         jTextField10.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 0).toString());
         java.text.DateFormat df = java.text.DateFormat.getDateInstance();
 
@@ -1144,7 +1144,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException pe) {
             javax.swing.JOptionPane.showMessageDialog(this, pe.getMessage());
         }
-        jComboBox2.setSelectedItem(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 1).toString());
+        issuingStoreCmbx.setSelectedItem(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 1).toString());
         jSearchDialog2.dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_jSearchTable2MouseClicked
@@ -1196,16 +1196,16 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
 
-        jComboBox2.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select store_name from st_stores ORDER BY 1"));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        issuingStoreCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select store_name from st_stores ORDER BY 1"));
+        issuingStoreCmbx.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 //   jComboBox2ActionPerformed(evt);
             }
         });
 
-        jComboBox11.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select store_name from st_stores ORDER BY 1"));
-        jComboBox11.addActionListener(new java.awt.event.ActionListener() {
+        recipientStoreCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select store_name from st_stores ORDER BY 1"));
+        recipientStoreCmbx.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 //   jComboBox2ActionPerformed(evt);
@@ -1219,8 +1219,8 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         //this.jTextField1.setVisible(true);
         //this.jCheckBox2.setVisible(false);
-        jComboBox2.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select store_name from st_main_stores ORDER BY store_name"));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        issuingStoreCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select store_name from st_main_stores ORDER BY store_name"));
+        issuingStoreCmbx.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 //  jComboBox2ActionPerformed(evt);
@@ -1229,8 +1229,8 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
 
 
 
-        jComboBox11.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select store_name from st_stores ORDER BY store_name"));
-        jComboBox11.addActionListener(new java.awt.event.ActionListener() {
+        recipientStoreCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select store_name from st_stores ORDER BY store_name"));
+        recipientStoreCmbx.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 //   jComboBox2ActionPerformed(evt);
@@ -1386,7 +1386,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
         if (this.jCheckBox1.isSelected()) {
             try {
                 java.sql.Statement pstmt1 = connectDB.createStatement();
-                java.sql.ResultSet rs1 = pstmt1.executeQuery("select sum(qty),1 from stock_balance_qty where item_code = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "' and department ilike '" + jComboBox2.getSelectedItem().toString() + "%' AND dates <= '" + datePicker1.getDate() + "'");
+                java.sql.ResultSet rs1 = pstmt1.executeQuery("select sum(qty),1 from stock_balance_qty where item_code = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "' and department ilike '" + issuingStoreCmbx.getSelectedItem().toString() + "%' AND dates <= '" + datePicker1.getDate() + "'");
                 java.sql.Statement pst = connectDB.createStatement();
                 while (rs1.next()) {
 
@@ -1399,7 +1399,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
         } else {
             try {
                 java.sql.Statement pstmt1 = connectDB.createStatement();
-                java.sql.ResultSet rs1 = pstmt1.executeQuery("select sum(qty),1 from stock_balance_qty where item_code = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "' and department ilike '" + jComboBox2.getSelectedItem().toString() + "%' AND dates <= '" + datePicker1.getDate() + "'");
+                java.sql.ResultSet rs1 = pstmt1.executeQuery("select sum(qty),1 from stock_balance_qty where item_code = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "' and department ilike '" + issuingStoreCmbx.getSelectedItem().toString() + "%' AND dates <= '" + datePicker1.getDate() + "'");
                 java.sql.Statement pst = connectDB.createStatement();
                 while (rs1.next()) {
                     jTable1.setValueAt(rs1.getObject(1), i, 4);
@@ -1412,7 +1412,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
 
         try {
             java.sql.Statement pstmt12 = connectDB.createStatement();
-            java.sql.ResultSet rs12 = pstmt12.executeQuery("select sum(qty),1 from stock_balance_qty where item_code = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "' and department ilike '" + jComboBox11.getSelectedItem().toString() + "%' AND dates <= '" + datePicker1.getDate() + "'");
+            java.sql.ResultSet rs12 = pstmt12.executeQuery("select sum(qty),1 from stock_balance_qty where item_code = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "' and department ilike '" + recipientStoreCmbx.getSelectedItem().toString() + "%' AND dates <= '" + datePicker1.getDate() + "'");
 
             while (rs12.next()) {
                 jTable1.setValueAt(rs12.getObject(1), i, 5);
@@ -1542,7 +1542,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
 
             java.sql.Statement stmtTable = connectDB.createStatement();
 
-            java.sql.ResultSet rsetTable = stmtTable.executeQuery("SELECT product,balance,requisition,units FROM st_stock_prices WHERE requisition >0 AND department = '" + jComboBox11.getSelectedItem().toString() + "'");
+            java.sql.ResultSet rsetTable = stmtTable.executeQuery("SELECT product,balance,requisition,units FROM st_stock_prices WHERE requisition >0 AND department = '" + recipientStoreCmbx.getSelectedItem().toString() + "'");
             //  java.sql.ResultSet rsetTable111 = stmtTable111.executeQuery("SELECT sum(receiving-issuing) FROM st_sub_stores WHERE store_name = '"+jTextField1.getText().equalsIgnoreCase(jTextField1.getText())+"' and item = '"+jTable1.getValueAt(k,0).toString()+"'");
 
             while (rsetTable.next()) {
@@ -1568,7 +1568,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
 
     }
 
-    private void jComboBox11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox11ActionPerformed
+    private void recipientStoreCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recipientStoreCmbxActionPerformed
         for (int k = 0; k < jTable1.getRowCount(); k++) {
             for (int r = 0; r < jTable1.getColumnCount(); r++) {
                 jTable1.getModel().setValueAt(null, k, r);
@@ -1588,7 +1588,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
 
                     // java.sql.ResultSet rsetTable111 = stmtTable111.executeQuery("SELECT sum(receiving-issuing) FROM st_sub_stores WHERE item = '"+jTable1.getValueAt(j,0).toString()+"' GROUP BY item");
                     //  java.sql.ResultSet rsetTable111 = stmtTable111.executeQuery("SELECT sum(receiving-issuing) FROM st_sub_stores WHERE store_name = '"+jTextField1.getText()+"' and item = '"+jTable1.getValueAt(j,0).toString()+"' GROUP BY item");
-                    java.sql.ResultSet rsetTable111 = stmtTable111.executeQuery("SELECT sum(quantity_instock) FROM st_stock_item WHERE department = '" + jComboBox2.getSelectedItem().toString() + "' and item_code = '" + jTable1.getValueAt(j, 0).toString() + "'");
+                    java.sql.ResultSet rsetTable111 = stmtTable111.executeQuery("SELECT sum(quantity_instock) FROM st_stock_item WHERE department = '" + issuingStoreCmbx.getSelectedItem().toString() + "' and item_code = '" + jTable1.getValueAt(j, 0).toString() + "'");
 
                     while (rsetTable111.next()) {
 
@@ -1661,7 +1661,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
 
      */
     // Add your handling code here:
-    }//GEN-LAST:event_jComboBox11ActionPerformed
+    }//GEN-LAST:event_recipientStoreCmbxActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         setVisible(false);        // Add your handling code here:
@@ -1714,8 +1714,8 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
                 jTable1.getModel().setValueAt(null, k, r);
             }
         }
-        jComboBox2.setSelectedItem(null);
-        jComboBox11.setSelectedItem(null); // Add your handling code here:
+        issuingStoreCmbx.setSelectedItem(null);
+        recipientStoreCmbx.setSelectedItem(null); // Add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1782,20 +1782,20 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
                             transNo = rs1.getObject(1).toString();
                         }
                         java.sql.Statement pst2 = connectDB.createStatement();
-                        java.sql.ResultSet rs = pst2.executeQuery("SELECT glstock_code,store_name FROM st_stores WHERE store_name ILIKE '" + jComboBox2.getSelectedItem() + "%'");
+                        java.sql.ResultSet rs = pst2.executeQuery("SELECT glstock_code,store_name FROM st_stores WHERE store_name ILIKE '" + issuingStoreCmbx.getSelectedItem() + "%'");
                         while (rs.next()) {
                             actCode = rs.getObject(1).toString();
                             Stock = rs.getObject(2).toString();
                         }
 
                         java.sql.Statement pst22 = connectDB.createStatement();
-                        java.sql.ResultSet rs2 = pst22.executeQuery("SELECT glstock_code,store_name FROM st_stores WHERE store_name ILIKE '" + jComboBox11.getSelectedItem() + "%'");
+                        java.sql.ResultSet rs2 = pst22.executeQuery("SELECT glstock_code,store_name FROM st_stores WHERE store_name ILIKE '" + recipientStoreCmbx.getSelectedItem() + "%'");
                         while (rs2.next()) {
                             actCode1 = rs2.getObject(1).toString();
                             Stock1 = rs2.getObject(2).toString();
                         }
                         java.sql.Statement pst22q = connectDB.createStatement();
-                        java.sql.ResultSet rs2q = pst22q.executeQuery("SELECT cs_code,store_name FROM st_stores WHERE store_name ILIKE '" + jComboBox11.getSelectedItem() + "%'");
+                        java.sql.ResultSet rs2q = pst22q.executeQuery("SELECT cs_code,store_name FROM st_stores WHERE store_name ILIKE '" + recipientStoreCmbx.getSelectedItem() + "%'");
                         while (rs2q.next()) {
                             glCode = rs2q.getObject(1).toString();
                             glType = rs2q.getObject(2).toString();
@@ -1830,7 +1830,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
                                     quantity = quantity * pack;
                                 }
                                 java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO st_sub_stores values(? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?)");
-                                pstmt1.setString(1, jComboBox2.getSelectedItem().toString());
+                                pstmt1.setString(1, issuingStoreCmbx.getSelectedItem().toString());
                                 pstmt1.setObject(2, jTable1.getValueAt(i, 1));
                                 pstmt1.setDouble(4, quantity);
                                 pstmt1.setDouble(3, 0.00);
@@ -1842,7 +1842,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
                                 pstmt1.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
                                 pstmt1.setString(11, userName);
                                 pstmt1.setObject(12, jTable1.getValueAt(i, 3));
-                                pstmt1.setString(13, jComboBox11.getSelectedItem().toString());
+                                pstmt1.setString(13, recipientStoreCmbx.getSelectedItem().toString());
                                 pstmt1.setString(14, jTextField9.getText());
                                 pstmt1.setDouble(15, price);
                                 
@@ -1854,7 +1854,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
                                 java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO st_stock_cardex VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, upper(?), ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                                 pstmt.setString(1, null);
                                 pstmt.setObject(3, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
-                                pstmt.setString(2, jComboBox11.getSelectedItem().toString());
+                                pstmt.setString(2, issuingStoreCmbx.getSelectedItem().toString());
                                 pstmt.setDate(4, null);
                                 pstmt.setDouble(5, java.lang.Double.valueOf(jTable1.getValueAt(i, 9).toString()));
                                 pstmt.setDouble(6, price);
@@ -1874,7 +1874,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
                                 pstmt.setString(16, "");
                                 pstmt.setString(17, null);
                                 pstmt.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                                pstmt.setString(19, jComboBox11.getSelectedItem().toString());
+                                pstmt.setString(19, recipientStoreCmbx.getSelectedItem().toString());
                                 pstmt.setString(20, "Issuing");
                                 pstmt.setDouble(21, 0.00);
                                 pstmt.setString(23, actCode);
@@ -1882,7 +1882,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
                                 pstmt.setString(24, "");
                                 pstmt.setString(25, Stock);
                                 pstmt.setString(26, transNo);
-                                pstmt.setDouble(27, 0.00);
+                                pstmt.setDouble(27, quantity);
                                 pstmt.setString(28, userName);
                                 pstmt.setBoolean(29, false);
                                 pstmt.setDouble(30, 0.00);
@@ -1896,7 +1896,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
 
                                 java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO ac_ledger values(?,?,?,upper(?),?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
                                 pstmt2.setString(1, glCode);
-                                pstmt2.setObject(2, jComboBox11.getSelectedItem());
+                                pstmt2.setObject(2, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connectDB, glCode));//jComboBox11.getSelectedItem());
                                 pstmt2.setString(3, "");
                                 pstmt2.setString(4, jTextField9.getText());
                                 pstmt2.setString(5, "");
@@ -1983,7 +1983,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
                                 }
                                  */
                                 java.sql.Statement pstBx = connectDB.createStatement();
-                                java.sql.ResultSet rsBx = pstBx.executeQuery("select count(product_id) from st_stock_prices where product_id ILIKE '" + jTable1.getValueAt(i, 0) + "' and department ILIKE '" + jComboBox11.getSelectedItem() + "%'");
+                                java.sql.ResultSet rsBx = pstBx.executeQuery("select count(product_id) from st_stock_prices where product_id ILIKE '" + jTable1.getValueAt(i, 0) + "' and department ILIKE '" + recipientStoreCmbx.getSelectedItem() + "%'");
 
                                 while (rsBx.next()) {
                                     itemInt = rsBx.getInt(1);
@@ -2001,7 +2001,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
                                     System.out.println(category);
                                     System.out.println(productId);
                                     java.sql.Statement pstBx11 = connectDB.createStatement();
-                                    java.sql.ResultSet rsBx11 = pstBx11.executeQuery("select code from pb_activity where activity ILIKE '" + jComboBox11.getSelectedItem() + "%'");
+                                    java.sql.ResultSet rsBx11 = pstBx11.executeQuery("select code from pb_activity where activity ILIKE '" + recipientStoreCmbx.getSelectedItem() + "%'");
 
                                     while (rsBx11.next()) {
                                         code = rsBx11.getString(1);
@@ -2021,7 +2021,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
                                     pstmtf.setDouble(4, price);
                                     pstmtf.setDate(5, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
                                     pstmtf.setObject(6, jTable1.getValueAt(i, 3).toString());
-                                    pstmtf.setString(7, jComboBox11.getSelectedItem().toString());
+                                    pstmtf.setString(7, recipientStoreCmbx.getSelectedItem().toString());
                                     pstmtf.setString(8, code);
                                     pstmtf.setObject(9, category);
                                     pstmtf.setDouble(10, java.lang.Double.valueOf(jTable1.getValueAt(i, 7).toString()));
@@ -2036,9 +2036,9 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
 
                     } else {
                         if (jCheckBox4.isSelected()) {
-                            java.sql.PreparedStatement pstmt3 = connectDB.prepareStatement("UPDATE st_sub_stores SET sub_store = '" + jComboBox11.getSelectedItem().toString() + "',store_name = '" + jComboBox2.getSelectedItem().toString() + "',trans_date = '" + datePicker1.getDate() + "' WHERE issuing > 0 and transaction_no = '" + jTextField10.getText() + "'");
+                            java.sql.PreparedStatement pstmt3 = connectDB.prepareStatement("UPDATE st_sub_stores SET sub_store = '" + recipientStoreCmbx.getSelectedItem().toString() + "',store_name = '" + issuingStoreCmbx.getSelectedItem().toString() + "',trans_date = '" + datePicker1.getDate() + "' WHERE issuing > 0 and transaction_no = '" + jTextField10.getText() + "'");
                             pstmt3.executeUpdate();
-                            java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE st_sub_stores SET store_name = '" + jComboBox11.getSelectedItem().toString() + "', sub_store = '" + jComboBox2.getSelectedItem().toString() + "', AND trans_date = '" + datePicker1.getDate() + "'  WHERE receiving > 0 and transaction_no = '" + jTextField10.getText() + "'");
+                            java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE st_sub_stores SET store_name = '" + recipientStoreCmbx.getSelectedItem().toString() + "', sub_store = '" + issuingStoreCmbx.getSelectedItem().toString() + "', AND trans_date = '" + datePicker1.getDate() + "'  WHERE receiving > 0 and transaction_no = '" + jTextField10.getText() + "'");
                             pstmt31.executeUpdate();
                         }
                     }
@@ -2168,6 +2168,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
     private com.afrisoftech.lib.DatePicker datePicker1;
+    private javax.swing.JComboBox issuingStoreCmbx;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton3;
@@ -2183,8 +2184,6 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JComboBox jComboBox11;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -2230,6 +2229,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField36;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JComboBox recipientStoreCmbx;
     private javax.swing.JButton searchButton;
     private javax.swing.JButton searchButton1;
     private javax.swing.JPanel spacerPanel;
