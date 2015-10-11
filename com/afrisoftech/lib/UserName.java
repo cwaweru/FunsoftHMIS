@@ -12,7 +12,8 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author funsoft
+ * @author Charles Waweru <cwaweru@systempartners.biz>
+ * 
  */
 public class UserName {
 
@@ -50,7 +51,7 @@ public class UserName {
 
             while (rsetUser.next()) {
 
-                userName = rsetUser.getString(1).toUpperCase();
+                userName = rsetUser.getString(1); //.toUpperCase();
 
             }
         } catch (SQLException ex) {
