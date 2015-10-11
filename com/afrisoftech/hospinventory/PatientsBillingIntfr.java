@@ -1036,12 +1036,12 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
                 }
             });
             mainItemstbl.addAncestorListener(new javax.swing.event.AncestorListener() {
+                public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                    mainItemstblAncestorMoved(evt);
+                }
                 public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 }
                 public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-                }
-                public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                    mainItemstblAncestorMoved(evt);
                 }
             });
             mainItemstbl.addKeyListener(new java.awt.event.KeyAdapter() {

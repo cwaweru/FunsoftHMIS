@@ -6,7 +6,9 @@
 package com.afrisoftech.hospinventory;
 
 import java.awt.Color;
+import java.sql.SQLException;
 import org.jdesktop.swingx.decorator.ColorHighlighter;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -22,8 +24,8 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
     public StoresLedgerReportsIntfr(java.sql.Connection connDB) {
         connectDB = connDB;
         initComponents();
-        
-                java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = new java.util.Vector<org.jdesktop.swingx.decorator.Highlighter>(1, 1);
+
+        java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = new java.util.Vector<org.jdesktop.swingx.decorator.Highlighter>(1, 1);
         //org.jdesktop.swingx.decorator.Highlighter tableHighlighterArray[] ;// = new org.jdesktop.swingx.decorator.Highlighter()[];
         com.afrisoftech.dbadmin.JXTable predicateTable = (com.afrisoftech.dbadmin.JXTable) abcAnalysisTable;
         org.jdesktop.swingx.decorator.PatternPredicate patternPredicate2 = new org.jdesktop.swingx.decorator.PatternPredicate("C", 2);
@@ -37,7 +39,7 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
         tableHighlighters.add(green);
         ColorHighlighter tableHighlightersArray[] = new ColorHighlighter[]{cyan, green, orange};
         predicateTable.setHighlighterPipeline(predicateTable, tableHighlightersArray);
-        
+
         java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters1 = new java.util.Vector<org.jdesktop.swingx.decorator.Highlighter>(1, 1);
         //org.jdesktop.swingx.decorator.Highlighter tableHighlighterArray[] ;// = new org.jdesktop.swingx.decorator.Highlighter()[];
         com.afrisoftech.dbadmin.JXTable predicateTable1 = (com.afrisoftech.dbadmin.JXTable) movementAnalysisTable;
@@ -437,19 +439,54 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
             storesAuditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT  date::date, initcap(store) as store_name, initcap(trim((SELECT DISTINCT description FROM st_stock_item WHERE st_stock_item.item_code = st_stock_cardex.item_code ORDER BY 1 LIMIT 1))) as item_name, quantity_received, debit as value_received, sub_store_issuing as issued_qty, quantity_ordered as value_issued, supplier, transaction_type, user_name FROM st_stock_cardex WHERE date::date between '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' ORDER BY date"));
         } else if (storeDashboardTabbedPane.getSelectedIndex() == 3) {
             itemBalancesTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT store, sum(debit-quantity_ordered) FROM st_stock_cardex WHERE initcap(item) = '" + stockItemNameCmbx.getSelectedItem() + "' GROUP BY 1 ORDER BY 1"));
-        } else if(storeDashboardTabbedPane.getSelectedIndex() == 0) {
+        } else if (storeDashboardTabbedPane.getSelectedIndex() == 0) {
             stockValuationTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM funsoft_stock_valuation('" + endDatePicker.getDate() + "') ORDER BY 1"));
-        } else if (storeDashboardTabbedPane.getSelectedIndex() == 4){
-            abcAnalysisTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT initcap(trim((SELECT DISTINCT description FROM st_stock_item WHERE st_stock_item.item_code = st_stock_cardex.item_code ORDER BY 1 LIMIT 1))) as item_name,  sum(debit-quantity_ordered)::numeric(15,0) as store_balance, (CASE WHEN sum(debit-quantity_ordered) > "+Double.parseDouble(aThresholdTxt.getText().replace(",", ""))+" THEN 'A' ELSE (CASE WHEN sum(debit-quantity_ordered) < "+Double.parseDouble(cThresholdTxt.getText().replace(",", ""))+" THEN 'C' ELSE 'B' END) END) as abc_category FROM st_stock_cardex WHERE  date <= '" + endDatePicker.getDate() + "' AND initcap(store) in (SELECT distinct initcap(store) FROM st_stock_cardex INTERSECT SELECT DISTINCT initcap(store_name) FROM st_stores WHERE patient_store = true) GROUP BY 1 HAVING sum(debit-quantity_ordered) <> 0  ORDER BY 2 DESC"));
-        } else if(storeDashboardTabbedPane.getSelectedIndex() == 5){
-            reorderLevelTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT initcap(trim((SELECT DISTINCT description FROM st_stock_item st1, st_stock_cardex st2, st_stock_cardex st3 WHERE st1.item_code = st2.item_code ORDER BY 1 LIMIT 1))) as items_below_re-order_level, sum(quantity_received - sub_store_issuing) as item_balance_qty, "+InventoryLevels.getReorderStatus("item_code")+" FROM st_stock_cardex ORDER BY 1"));
+        } else if (storeDashboardTabbedPane.getSelectedIndex() == 4) {
+            abcAnalysisTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT initcap(trim((SELECT DISTINCT description FROM st_stock_item WHERE st_stock_item.item_code = st_stock_cardex.item_code ORDER BY 1 LIMIT 1))) as item_name,  sum(debit-quantity_ordered)::numeric(15,0) as store_balance, (CASE WHEN sum(debit-quantity_ordered) > " + Double.parseDouble(aThresholdTxt.getText().replace(",", "")) + " THEN 'A' ELSE (CASE WHEN sum(debit-quantity_ordered) < " + Double.parseDouble(cThresholdTxt.getText().replace(",", "")) + " THEN 'C' ELSE 'B' END) END) as abc_category FROM st_stock_cardex WHERE  date <= '" + endDatePicker.getDate() + "' AND initcap(store) in (SELECT distinct initcap(store) FROM st_stock_cardex INTERSECT SELECT DISTINCT initcap(store_name) FROM st_stores WHERE patient_store = true) GROUP BY 1 HAVING sum(debit-quantity_ordered) <> 0  ORDER BY 2 DESC"));
+        } else if (storeDashboardTabbedPane.getSelectedIndex() == 5) {
+            reorderLevelTable.setModel(getReorderTableModel());
+            // reorderLevelTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT initcap(description) as items_below_re_order_level, item_code, "+InventoryLevels.getStockLevel("item_code")+" as item_balance_qty, "+InventoryLevels.getReorderStatus("item_code")+" as below_reorder_level, "+InventoryLevels.getConsumptionNumbers("item_code")+" as quantity_required FROM st_stock_item ORDER BY 1"));
         } else {
-           movementAnalysisTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT  initcap(trim((SELECT DISTINCT description FROM st_stock_item WHERE st_stock_item.item_code = st_stock_cardex.item_code ORDER BY 1 LIMIT 1))) as item_name, sum(debit - quantity_ordered)::numeric(15,0) as movement, (CASE WHEN sum(debit-quantity_ordered) > "+Double.parseDouble(aThresholdTxt1.getText().replace(",", ""))+" THEN 'A' ELSE (CASE WHEN sum(debit-quantity_ordered) < "+Double.parseDouble(cThresholdTxt1.getText().replace(",", ""))+" THEN 'C' ELSE 'B' END) END) as abc_category FROM st_stock_cardex WHERE date::date between '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "'  AND initcap(store) in (SELECT distinct initcap(store) FROM st_stock_cardex INTERSECT SELECT DISTINCT initcap(store_name) FROM st_stores WHERE patient_store = true) GROUP BY 1 HAVING sum(debit-quantity_ordered) <> 0 ORDER BY 2 DESC"));;
+            movementAnalysisTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT  initcap(trim((SELECT DISTINCT st_stock_item.description FROM st_stock_item WHERE st_stock_item.item_code = st_stock_cardex.item_code ORDER BY 1 LIMIT 1))) as item_name, sum(debit - quantity_ordered)::numeric(15,0) as movement, (CASE WHEN sum(debit-quantity_ordered) > " + Double.parseDouble(aThresholdTxt1.getText().replace(",", "")) + " THEN 'A' ELSE (CASE WHEN sum(debit-quantity_ordered) < " + Double.parseDouble(cThresholdTxt1.getText().replace(",", "")) + " THEN 'C' ELSE 'B' END) END) as abc_category FROM st_stock_cardex WHERE date::date between '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "'  AND initcap(store) in (SELECT distinct initcap(store) FROM st_stock_cardex INTERSECT SELECT DISTINCT initcap(store_name) FROM st_stores WHERE patient_store = true) GROUP BY 1 HAVING sum(debit-quantity_ordered) <> 0 ORDER BY 2 DESC"));;
         }
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 // TODO add your handling code here:
     }//GEN-LAST:event_generateReportBtnActionPerformed
 
+    private javax.swing.table.TableModel getReorderTableModel() {
+        java.util.Vector rowDataVector = new java.util.Vector(1, 1);
+        
+        java.util.Vector columnNamesVector = new java.util.Vector(1, 1);
+        columnNamesVector.addElement("Item Name");
+        columnNamesVector.addElement("Item Code");
+        columnNamesVector.addElement("Consumption Quantity");
+        columnNamesVector.addElement("Consumption Average");
+        columnNamesVector.addElement("Current Stock Level");
+        columnNamesVector.addElement("Below Re-Order Level");
+        columnNamesVector.addElement("Quantity To Order");
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT DISTINCT item_code, description FROM st_stock_item ORDER BY 1");
+        
+            java.sql.ResultSet rset = pstmt.executeQuery();
+            
+            while(rset.next()){
+                java.util.Vector columnDataVector = new java.util.Vector(1, 1);
+                System.out.println("Row : ["+rset.getString(1)+"]");
+                columnDataVector.addElement(rset.getString(2));
+                columnDataVector.addElement(rset.getString(1));
+                columnDataVector.addElement(InventoryLevels.getConsumptionNumbers(rset.getString(1)));
+                columnDataVector.addElement(InventoryLevels.getAverageConsumption(rset.getString(1)));
+                columnDataVector.addElement(InventoryLevels.getStockLevel(rset.getString(1)));
+                columnDataVector.addElement(InventoryLevels.getReorderStatus(rset.getString(1)));
+                columnDataVector.addElement(InventoryLevels.getConsumptionNumbers(rset.getString(1)));
+                rowDataVector.addElement(columnDataVector);
+            }
+        } catch (SQLException ex) {
+            Exceptions.printStackTrace(ex);
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        return new javax.swing.table.DefaultTableModel(rowDataVector, columnNamesVector);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel StoreBalancesPanel;

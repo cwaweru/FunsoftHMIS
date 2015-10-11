@@ -5,7 +5,8 @@
  *
  * This is the Kernel of the Funsoft HMIS system
  *
- * @author Charles Wanjema Waweru <cwaweru@systempartners.biz>
+ * @author Charles Wanjema Waweru <cwaweru@systempartners.biz> -- [Lead Developer and Chief Funsoft Software/System Architect]
+ * @author Rugendo Kego Kamakia <kamakia@systempartners.biz> -- [Chief Business Logic Architect]
  * @author Francis King'oi Waweru <francis@systempartners.biz>
  * @author Peter Ndung'u Waweru <peter.waweru@systempartners.biz>
  *

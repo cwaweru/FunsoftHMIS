@@ -287,7 +287,7 @@ public class OrderingConsIntfr extends javax.swing.JInternalFrame {
         try{
             
             java.sql.Statement pstmt1 = connectDB.createStatement();
-            java.sql.ResultSet rs1 = pstmt1.executeQuery("select average_day,read_time,reorder_level,expiry_days from st_ordering_constants"); //from orders where supplier ='"+jTable1.getValueAt(i,4).toString()+"'");
+            java.sql.ResultSet rs1 = pstmt1.executeQuery("select average_day,lead_time,reorder_level,expiry_days from st_ordering_constants"); //from orders where supplier ='"+jTable1.getValueAt(i,4).toString()+"'");
             
             while (rs1.next()){
                 jTextField1.setText(rs1.getString(1));

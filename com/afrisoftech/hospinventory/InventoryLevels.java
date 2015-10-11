@@ -20,7 +20,7 @@ public class InventoryLevels {
 
     private static int averagingDays = 0;
 
-    private static int averageConsumption = 0;
+    private static double averageConsumption = 0.0;
 
     private static int storeAverageConsumption = 0;
 
@@ -93,7 +93,7 @@ public class InventoryLevels {
 
             java.sql.ResultSet rset = pstmt.executeQuery();
             while (rset.next()) {
-                averagingDays = rset.getInt(1);
+                averagingDays = Math.round(rset.getInt(1));
             }
         } catch (SQLException ex) {
             Exceptions.printStackTrace(ex);
@@ -115,7 +115,7 @@ public class InventoryLevels {
 
         int stockLevel = InventoryLevels.getStockLevel(item);
 
-        int reOrderLevel = getAverageConsumption(item) * (getLeadOrderDays() + InventoryLevels.bufferStockDays);
+        double reOrderLevel = getAverageConsumption(item) * (getLeadOrderDays() + InventoryLevels.bufferStockDays);
 
         if (stockLevel > reOrderLevel) {
 
@@ -134,7 +134,7 @@ public class InventoryLevels {
     /**
      * @return the averageConsumption
      */
-    public static int getAverageConsumption(String item) {
+    public static double getAverageConsumption(String item) {
 
         averageConsumption = getConsumptionNumbers(item) / getAveragingDays();
 
@@ -184,7 +184,7 @@ public class InventoryLevels {
             pstmt.setString(1, item);
             java.sql.ResultSet rset = pstmt.executeQuery();
             while (rset.next()) {
-                rset.getInt(1);
+                stockLevel = rset.getInt(1);
             }
         } catch (SQLException ex) {
             Exceptions.printStackTrace(ex);
@@ -233,7 +233,7 @@ public class InventoryLevels {
      */
     public static int getConsumptionNumbers(String item) {
         try {
-            java.sql.PreparedStatement pstmt = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT sum(sub_store_issuing) FROM st_stock_cardex WHERE item_code = ?  AND transaction_type ilike 'issuing' AND transaction_no not ilike 't%' AND date between now()::date AND now()::date - " + getAveragingDays());
+            java.sql.PreparedStatement pstmt = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT sum(sub_store_issuing) FROM st_stock_cardex WHERE item_code = ?  AND transaction_type ilike 'issuing' AND transaction_no not ilike 't%' AND date between now()::date - " + getAveragingDays() +" AND now()::date");
             pstmt.setString(1, item);
             java.sql.ResultSet rset = pstmt.executeQuery();
             while (rset.next()) {
@@ -259,7 +259,7 @@ public class InventoryLevels {
      */
     public static int getStoreConsumptionNumbers(String storeName, String item) {
         try {
-            java.sql.PreparedStatement pstmt = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT sum(sub_store_issuing) FROM st_stock_cardex WHERE item_code = ? AND upper(store) = upper(?) AND transaction_type ILIKE 'issuing' AND transaction_no NOT ILIKE 't%' AND date BETWEEN now()::date AND now()::date - " + getAveragingDays());
+            java.sql.PreparedStatement pstmt = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT sum(sub_store_issuing) FROM st_stock_cardex WHERE item_code = ? AND upper(store) = upper(?) AND transaction_type ILIKE 'issuing' AND transaction_no NOT ILIKE 't%' AND date BETWEEN now()::date - " + getAveragingDays() +" AND now()::date");
             pstmt.setString(1, item);
             pstmt.setString(2, storeName);
             java.sql.ResultSet rset = pstmt.executeQuery();
