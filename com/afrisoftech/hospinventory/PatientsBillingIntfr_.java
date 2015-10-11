@@ -39,6 +39,8 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
     private int total;
     public String storeType = "bill";
     private boolean insertHpPharmacy = false;
+    
+    String userName = null;
 
     public PatientsBillingIntfr_(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
@@ -68,7 +70,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
     String Stock = null;
     String actCode = null;
     String accountCode = null;
-    String userName = null;
+    //userName = com.afrisoftech.lib.UserName.getLoginName(connectDB);
     String transNo1 = null;
     String glType = null;
     String glCode = null;
@@ -3275,7 +3277,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                                                             pstmt1a.setString(14, jTextField13.getText());
                                                         }
 
-                                                        pstmt1a.setString(15, userName);
+                                                        pstmt1a.setString(15, com.afrisoftech.lib.UserName.getLoginName(connectDB));
 
                                                         pstmt1a.setString(16, "");
                                                         pstmt1a.setString(17, null);
@@ -3592,7 +3594,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                                                         pstmt1a.setString(14, jTextField13.getText());
                                                     }
 
-                                                    pstmt1a.setString(15, userName);
+                                                    pstmt1a.setString(15, com.afrisoftech.lib.UserName.getLoginName(connectDB));
 
                                                     pstmt1a.setString(16, "");
 
@@ -3607,7 +3609,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                                                     pstmt1a.setObject(25, pharmacyCmbx.getSelectedItem().toString());
                                                     pstmt1a.setString(26, transNo);
                                                     pstmt1a.setDouble(27, qty);
-                                                    pstmt1a.setString(28, userName);
+                                                    pstmt1a.setString(28, com.afrisoftech.lib.UserName.getLoginName(connectDB));
                                                     pstmt1a.setBoolean(29, false);
                                                     pstmt1a.setDouble(30, 0.00);
                                                     pstmt1a.setDate(31, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //
@@ -3639,7 +3641,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                                                     pstmt2a.setBoolean(20, false);
                                                     pstmt2a.setBoolean(21, false);
                                                     pstmt2a.setBoolean(22, false);
-                                                    pstmt2a.setString(23, userName);
+                                                    pstmt2a.setString(23, com.afrisoftech.lib.UserName.getLoginName(connectDB));
                                                     pstmt2a.executeUpdate();
                                                     // StockCountingintfr
                                                 }
@@ -5913,7 +5915,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                                                     pstmt1a.setString(14, jTextField13.getText());
                                                 }
 
-                                                pstmt1a.setString(15, userName);
+                                                pstmt1a.setString(15, com.afrisoftech.lib.UserName.getLoginName(connectDB));
 
                                                 pstmt1a.setString(16, "");
                                                 pstmt1a.setString(17, null);
@@ -6225,7 +6227,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                                                 pstmt1a.setString(14, jTextField13.getText());
                                             }
 
-                                            pstmt1a.setString(15, userName);
+                                            pstmt1a.setString(15, com.afrisoftech.lib.UserName.getLoginName(connectDB));
 
                                             pstmt1a.setString(16, "");
 
@@ -6240,7 +6242,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                                             pstmt1a.setObject(25, pharmacyCmbx.getSelectedItem().toString());
                                             pstmt1a.setString(26, transNo);
                                             pstmt1a.setDouble(27, qty);
-                                            pstmt1a.setString(28, userName);
+                                            pstmt1a.setString(28, com.afrisoftech.lib.UserName.getLoginName(connectDB));
                                             pstmt1a.setBoolean(29, false);
                                             pstmt1a.setDouble(30, 0.00);
                                             pstmt1a.setDate(31, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
@@ -6272,7 +6274,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                                             pstmt2a.setBoolean(20, false);
                                             pstmt2a.setBoolean(21, false);
                                             pstmt2a.setBoolean(22, false);
-                                            pstmt2a.setString(23, userName);
+                                            pstmt2a.setString(23, com.afrisoftech.lib.UserName.getLoginName(connectDB));
                                             pstmt2a.executeUpdate();
                                             // StockCountingintfr
                                         }
