@@ -33,6 +33,11 @@ public class InventoryLevels {
     private static int consumptionNumbers = 0;
 
     private static int storeConsumptionNumbers = 0;
+    
+    private static long reOrderQuantity = 0;
+    
+    private static long optimumStockLevel = 0;
+    
 
     /**
      * @return the leadOrderDays
@@ -75,6 +80,34 @@ public class InventoryLevels {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         return bufferStockDays;
+    }
+
+    /**
+     * @return the reOrderQuantity
+     */
+    public static long getReOrderQuantity(String item){
+       
+        stockLevel = getStockLevel(item);
+        
+        long reOrderLevel = Math.round(getAverageConsumption(item) * (getLeadOrderDays() + InventoryLevels.bufferStockDays));
+        
+        if(reOrderLevel > stockLevel){
+            
+            reOrderQuantity = reOrderLevel - stockLevel;
+            
+        } else {
+            
+            reOrderQuantity = 0;
+        }
+                
+        return reOrderQuantity;
+    }
+
+    /**
+     * @param aReOrderQuantity the reOrderQuantity to set
+     */
+    public static void setReOrderQuantity(int aReOrderQuantity) {
+        reOrderQuantity = aReOrderQuantity;
     }
 
     /**
@@ -297,5 +330,24 @@ public class InventoryLevels {
     public static void setStoreAverageConsumption(int storeAverageConsumption) {
         InventoryLevels.storeAverageConsumption = storeAverageConsumption;
     }
+
+    /**
+     * @return the optimumStockLevel
+     */
+    public static long getOptimumStockLevel(String item) {
+        
+        optimumStockLevel = Math.round(getAverageConsumption(item) * (getLeadOrderDays() + InventoryLevels.bufferStockDays));
+        
+        return optimumStockLevel;
+    }
+
+    /**
+     * @param optimumStockLevel the optimumStockLevel to set
+     */
+    public static void setOptimumStockLevel(long optimumStockLevel) {
+        optimumStockLevel = optimumStockLevel;
+    }
+    
+    
 
 }
