@@ -11,6 +11,7 @@ package com.afrisoftech.accounting;
  */
 public class DepreciationMethodsintfr extends javax.swing.JInternalFrame {
 
+    
     java.sql.Connection connectDB = null;
     org.netbeans.lib.sql.pool.PooledConnectionSource pConnDB = null;
 

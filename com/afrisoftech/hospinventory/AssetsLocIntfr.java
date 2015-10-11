@@ -11,6 +11,7 @@ package com.afrisoftech.hospinventory;
  */
 public class AssetsLocIntfr extends javax.swing.JInternalFrame {
 
+    
     /** Creates new form countryintfr */
     java.sql.Connection connectDB = null;
     org.netbeans.lib.sql.pool.PooledConnectionSource pConnDB = null;

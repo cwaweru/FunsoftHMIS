@@ -7,7 +7,7 @@ package com.afrisoftech.accounting;
 
 /**
  *
- * @author root
+ * @author Charles Waweru <cwaweru@systempartners.biz>
  */
 public class Depreciationintfr extends javax.swing.JInternalFrame {
 

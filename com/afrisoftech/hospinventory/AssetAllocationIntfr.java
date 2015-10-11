@@ -11,6 +11,7 @@ package com.afrisoftech.hospinventory;
  */
 public class AssetAllocationIntfr extends javax.swing.JInternalFrame {
 
+   
     /** */
     private javax.swing.JComboBox cmbox;
     java.sql.Connection connectDB = null;
