@@ -11,7 +11,6 @@ package com.afrisoftech.accounting;
  */
 public class DepreciationMethodsintfr extends javax.swing.JInternalFrame {
 
-    
     java.sql.Connection connectDB = null;
     org.netbeans.lib.sql.pool.PooledConnectionSource pConnDB = null;
 
@@ -197,11 +196,11 @@ public class DepreciationMethodsintfr extends javax.swing.JInternalFrame {
         String selectedchkbx;
 
         if (this.reducingInstalmentsChkbx.isSelected()) {
+
             selectedchkbx = reducingInstalmentsChkbx.getText();
 
-
         } else {
-            // if (this.jCheckBox3.isSelected())
+
             selectedchkbx = straightLineChkbx.getText();
         }
 
@@ -210,15 +209,12 @@ public class DepreciationMethodsintfr extends javax.swing.JInternalFrame {
         if (this.yearlyRbtn.isSelected()) {
             depreciationDuration = yearlyRbtn.getText();
 
-
         } else {
             // if (this.jCheckBox3.isSelected())
             depreciationDuration = monthlyRbtn.getText();
         }
 
         System.out.println(depreciationDuration);
-
-
 
         java.util.Calendar calendar = java.util.Calendar.getInstance();
 
@@ -227,7 +223,6 @@ public class DepreciationMethodsintfr extends javax.swing.JInternalFrame {
         java.sql.Date datenowSql = new java.sql.Date(dateNow);
 
         System.out.println(datenowSql.toString());
-
 
         java.sql.Connection con;
 
@@ -269,7 +264,6 @@ public class DepreciationMethodsintfr extends javax.swing.JInternalFrame {
             javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
 
         }
-
 
         // Add your handling code here:
     }//GEN-LAST:event_registerDepreciationMethodBtnActionPerformed
