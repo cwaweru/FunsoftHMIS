@@ -82,14 +82,14 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle(org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.title")); // NOI18N
+        setTitle("Funsoft Electronic Medical Records and Health Information Dashboard - Standardised  EMR/HIS Reporting tools");
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         reportsPanel.setLayout(new java.awt.GridBagLayout());
 
         moh268Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh268Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh268Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh268Btn, "MOH 268 - Diagnostic Index");
         moh268Btn.setIconTextGap(20);
         moh268Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +106,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh268Btn, gridBagConstraints);
 
         moh204ABtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh204ABtn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh204ABtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh204ABtn, "MOH 204A - Under 5 Yrs OP Register");
         moh204ABtn.setIconTextGap(20);
         moh204ABtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +123,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh204ABtn, gridBagConstraints);
 
         moh514Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh514Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh514Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh514Btn, "MOH 514 - CHW  Household Log");
         moh514Btn.setIconTextGap(20);
         moh514Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,7 +140,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh514Btn, gridBagConstraints);
 
         moh515Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh515Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh515Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh515Btn, "MOH 515 - Community Health Ext Summ.");
         moh515Btn.setIconTextGap(20);
         moh515Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,7 +157,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh515Btn, gridBagConstraints);
 
         moh516Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh516Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh516Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh516Btn, "MOH 516 - Cummunity Health Chalk Board ");
         moh516Btn.setIconTextGap(20);
         moh516Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +174,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh516Btn, gridBagConstraints);
 
         moh510Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh510Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh510Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh510Btn, "MOH 510 - Immunization");
         moh510Btn.setIconTextGap(20);
         moh510Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,7 +191,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh510Btn, gridBagConstraints);
 
         moh705ABtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh705ABtn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh705ABtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh705ABtn, "MOH 705A - OP Under 5 YRS");
         moh705ABtn.setIconTextGap(20);
         moh705ABtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,7 +208,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh705ABtn, gridBagConstraints);
 
         moh705BBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh705BBtn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh705BBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh705BBtn, "MOH 705B - OP Over 5 YRS");
         moh705BBtn.setIconTextGap(20);
         moh705BBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,7 +225,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh705BBtn, gridBagConstraints);
 
         moh706Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh706Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh706Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh706Btn, "MOH 706 Lab report");
         moh706Btn.setIconTextGap(20);
         moh706Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,7 +242,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh706Btn, gridBagConstraints);
 
         moh708Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh708Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh708Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh708Btn, "MOH 708 - Environmental Health Services");
         moh708Btn.setIconTextGap(20);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -254,7 +254,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh708Btn, gridBagConstraints);
 
         moh710ABtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh710ABtn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh710ABtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh710ABtn, "MOH 710  - Immunization, Vit. Malaria & Opth.& EPI Sec. A");
         moh710ABtn.setIconTextGap(20);
         moh710ABtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -271,7 +271,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh710ABtn, gridBagConstraints);
 
         moh710BBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh710BBtn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh710BBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh710BBtn, "MOH 710 - Immunization, Vit. Malaria & Opth.& EPI Sec. B");
         moh710BBtn.setIconTextGap(20);
         moh710BBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -288,7 +288,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh710BBtn, gridBagConstraints);
 
         moh711Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh711Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh711Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh711Btn, "MOH 711 - RH & Child Health");
         moh711Btn.setIconTextGap(20);
         moh711Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,7 +305,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh711Btn, gridBagConstraints);
 
         moh717Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh717Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh717Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh717Btn, "MOH 717 - Monthly Workloads");
         moh717Btn.setIconTextGap(20);
         moh717Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,7 +322,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh717Btn, gridBagConstraints);
 
         moh718Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh718Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh718Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh718Btn, "Morbidity and Mortality - MOH 718");
         moh718Btn.setIconTextGap(20);
         moh718Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,7 +339,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh718Btn, gridBagConstraints);
 
         moh301Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh301Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh301Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh301Btn, "MOH 301_IN-Patient");
         moh301Btn.setIconTextGap(20);
         moh301Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,7 +356,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh301Btn, gridBagConstraints);
 
         moh204BBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh204BBtn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh204BBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh204BBtn, "MOH 204B Over 5 Yrs");
         moh204BBtn.setIconTextGap(20);
         moh204BBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -373,7 +373,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh204BBtn, gridBagConstraints);
 
         moh514CWHBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh514CWHBtn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh514CWHBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh514CWHBtn, "MOH 513 - CWH Household Register");
         moh514CWHBtn.setIconTextGap(20);
         moh514CWHBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -390,7 +390,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh514CWHBtn, gridBagConstraints);
 
         moh405Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh405Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh405Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh405Btn, "MOH 405 - Ante Natal Clinic (ANC) Register");
         moh405Btn.setIconTextGap(20);
         moh405Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -407,7 +407,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh405Btn, gridBagConstraints);
 
         TBHIVCFBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(TBHIVCFBtn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.TBHIVCFBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(TBHIVCFBtn, "TBHIVCF");
         TBHIVCFBtn.setIconTextGap(20);
         TBHIVCFBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -424,7 +424,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(TBHIVCFBtn, gridBagConstraints);
 
         CHISCommodityBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(CHISCommodityBtn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.CHISCommodityBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(CHISCommodityBtn, "CHIS Commodity Register");
         CHISCommodityBtn.setIconTextGap(20);
         CHISCommodityBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -441,7 +441,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(CHISCommodityBtn, gridBagConstraints);
 
         moh333Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh333Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh333Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh333Btn, "MOH 333 - Maternity Register");
         moh333Btn.setIconTextGap(20);
         moh333Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -458,7 +458,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh333Btn, gridBagConstraints);
 
         moh512Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh512Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh512Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh512Btn, "MOH 512 - Family Planning Register");
         moh512Btn.setIconTextGap(20);
         moh512Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -475,7 +475,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh512Btn, gridBagConstraints);
 
         moh406Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh406Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh406Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh406Btn, "MOH 406 Post Natal");
         moh406Btn.setIconTextGap(20);
         moh406Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -492,7 +492,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh406Btn, gridBagConstraints);
 
         moh240Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh240Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh240Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh240Btn, "MOH 240 - Lab register");
         moh240Btn.setIconTextGap(20);
         moh240Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -509,7 +509,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh240Btn, gridBagConstraints);
 
         moh209Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh209Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh209Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh209Btn, "MOH 209 - Radiology Register");
         moh209Btn.setIconTextGap(20);
         moh209Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -526,7 +526,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsPanel.add(moh209Btn, gridBagConstraints);
 
         moh511Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Document.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(moh511Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh511Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh511Btn, "MOH 511 - Child Welfare Clinic (CWC)");
         moh511Btn.setIconTextGap(20);
         moh511Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -542,7 +542,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
         reportsPanel.add(moh511Btn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(moh365Btn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.moh365Btn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(moh365Btn, "MOH 365 - GBV PRC Register");
         moh365Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 moh365BtnActionPerformed(evt);
@@ -569,7 +569,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         actionPanel.setLayout(new java.awt.GridBagLayout());
 
         generateReportsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Compose Email.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(generateReportsBtn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.generateReportsBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(generateReportsBtn, "Generate DHIS Reports");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -578,7 +578,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         actionPanel.add(generateReportsBtn, gridBagConstraints);
 
         uploadReportsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Email 4.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(uploadReportsBtn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.uploadReportsBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(uploadReportsBtn, "Upload data to DHIS");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -587,15 +587,13 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         actionPanel.add(uploadReportsBtn, gridBagConstraints);
 
         CloseFormBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Recycle Bin Full 2.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(CloseFormBtn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.CloseFormBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(CloseFormBtn, "Close form");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         actionPanel.add(CloseFormBtn, gridBagConstraints);
-
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.jLabel1.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -610,10 +608,10 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(actionPanel, gridBagConstraints);
 
-        reportsHeaderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.reportsHeaderPanel.border.title"))); // NOI18N
+        reportsHeaderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("")); // NOI18N
         reportsHeaderPanel.setLayout(new java.awt.GridBagLayout());
 
-        startDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.startDatePicker.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 255))); // NOI18N
+        startDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Report Start date", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 255))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
@@ -622,7 +620,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         reportsHeaderPanel.add(startDatePicker, gridBagConstraints);
 
-        endDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.endDatePicker.border.title"))); // NOI18N
+        endDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder("Report End date")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
@@ -631,11 +629,11 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         reportsHeaderPanel.add(endDatePicker, gridBagConstraints);
 
-        patientTypeSectionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.patientTypeSectionPanel.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 255))); // NOI18N
+        patientTypeSectionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gender Selection Panel", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 255))); // NOI18N
         patientTypeSectionPanel.setLayout(new java.awt.GridBagLayout());
 
         buttonGroup1.add(femaleChkbx);
-        org.openide.awt.Mnemonics.setLocalizedText(femaleChkbx, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.femaleChkbx.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(femaleChkbx, "Female");
         femaleChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -646,7 +644,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         patientTypeSectionPanel.add(femaleChkbx, gridBagConstraints);
 
         buttonGroup1.add(maleChkbx);
-        org.openide.awt.Mnemonics.setLocalizedText(maleChkbx, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.maleChkbx.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(maleChkbx, "Male");
         maleChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -656,7 +654,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
 
         buttonGroup1.add(bothGenderChkbx);
         bothGenderChkbx.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(bothGenderChkbx, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.bothGenderChkbx.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(bothGenderChkbx, "Both");
         bothGenderChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -674,11 +672,11 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         reportsHeaderPanel.add(patientTypeSectionPanel, gridBagConstraints);
 
-        genderTypeSelectionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.genderTypeSelectionPanel.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 255))); // NOI18N
+        genderTypeSelectionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patient Type Selection Panel", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 255))); // NOI18N
         genderTypeSelectionPanel.setLayout(new java.awt.GridBagLayout());
 
         buttonGroup2.add(outPatientRdbtn);
-        org.openide.awt.Mnemonics.setLocalizedText(outPatientRdbtn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.outPatientRdbtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(outPatientRdbtn, "OUT-Patient");
         outPatientRdbtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -687,7 +685,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         genderTypeSelectionPanel.add(outPatientRdbtn, gridBagConstraints);
 
         buttonGroup2.add(inPatientRdbtn);
-        org.openide.awt.Mnemonics.setLocalizedText(inPatientRdbtn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.inPatientRdbtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(inPatientRdbtn, "IN-Patient");
         inPatientRdbtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -697,7 +695,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
 
         buttonGroup2.add(bothPatientTypesRdbtn);
         bothPatientTypesRdbtn.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(bothPatientTypesRdbtn, org.openide.util.NbBundle.getMessage(EMRReportsIntfr.class, "EMRReportsIntfr.bothPatientTypesRdbtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(bothPatientTypesRdbtn, "Both");
         bothPatientTypesRdbtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
