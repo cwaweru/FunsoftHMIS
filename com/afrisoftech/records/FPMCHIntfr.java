@@ -305,7 +305,6 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             getContentPane().setLayout(new java.awt.GridBagLayout());
 
             ancMotherInfoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Mother Information"));
-            ancMotherInfoPanel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
             ancMotherInfoPanel.setLayout(new java.awt.GridBagLayout());
 
             religionLbl.setText("Religion");
@@ -614,7 +613,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             ancMotherInfoPanel.add(eddLbl, gridBagConstraints);
 
-            dobPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter date of birth or patient Age here ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 51, 153)));
+            dobPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter date of birth or patient Age here ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 51, 153))); // NOI18N
             dobPanel.setLayout(new java.awt.GridBagLayout());
 
             dobLbl.setText("Date of Birth");

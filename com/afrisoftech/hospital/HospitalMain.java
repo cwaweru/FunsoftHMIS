@@ -1281,6 +1281,10 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         rhCentreMnit = new javax.swing.JMenuItem();
         gbvmnit = new javax.swing.JCheckBoxMenuItem();
         jSeparator29 = new javax.swing.JSeparator();
+        communityHealthmn = new javax.swing.JMenu();
+        communityHealthRegistermnit = new javax.swing.JMenuItem();
+        houseHoldRehistermnit = new javax.swing.JMenuItem();
+        jSeparator100 = new javax.swing.JPopupMenu.Separator();
         morturymn = new javax.swing.JMenu();
         admissmnit = new javax.swing.JMenuItem();
         deathregistermnit = new javax.swing.JMenuItem();
@@ -1290,10 +1294,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         bodycollectionmnit = new javax.swing.JMenuItem();
         permitcollectormnit = new javax.swing.JMenuItem();
         mortOccupancymnit = new javax.swing.JMenuItem();
-        jSeparator100 = new javax.swing.JPopupMenu.Separator();
-        communityHealthmn = new javax.swing.JMenu();
-        communityHealthRegistermnit = new javax.swing.JMenuItem();
-        houseHoldRehistermnit = new javax.swing.JMenuItem();
         nursing = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         triagemnit = new javax.swing.JMenuItem();
@@ -4616,6 +4616,27 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         emrmn.add(gbvmnit);
         emrmn.add(jSeparator29);
 
+        communityHealthmn.setText("Community Health Extension");
+
+        communityHealthRegistermnit.setText("Community Health Extension Register");
+        communityHealthRegistermnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                communityHealthRegistermnitActionPerformed(evt);
+            }
+        });
+        communityHealthmn.add(communityHealthRegistermnit);
+
+        houseHoldRehistermnit.setText("House Hold Register");
+        houseHoldRehistermnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                houseHoldRehistermnitActionPerformed(evt);
+            }
+        });
+        communityHealthmn.add(houseHoldRehistermnit);
+
+        emrmn.add(communityHealthmn);
+        emrmn.add(jSeparator100);
+
         morturymn.setText("Farewell Home");
 
         admissmnit.setText("Body Registration");
@@ -4683,27 +4704,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         morturymn.add(mortOccupancymnit);
 
         emrmn.add(morturymn);
-        emrmn.add(jSeparator100);
-
-        communityHealthmn.setText("Community Health Extension");
-
-        communityHealthRegistermnit.setText("Community Health Extension Register");
-        communityHealthRegistermnit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                communityHealthRegistermnitActionPerformed(evt);
-            }
-        });
-        communityHealthmn.add(communityHealthRegistermnit);
-
-        houseHoldRehistermnit.setText("House Hold Register");
-        houseHoldRehistermnit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                houseHoldRehistermnitActionPerformed(evt);
-            }
-        });
-        communityHealthmn.add(houseHoldRehistermnit);
-
-        emrmn.add(communityHealthmn);
 
         jMenuBar1.add(emrmn);
 

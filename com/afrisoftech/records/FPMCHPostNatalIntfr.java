@@ -304,7 +304,6 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
             getContentPane().setLayout(new java.awt.GridBagLayout());
 
             ancMotherInfoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Mother Information"));
-            ancMotherInfoPanel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
             ancMotherInfoPanel.setLayout(new java.awt.GridBagLayout());
 
             religionLbl.setText("Religion");

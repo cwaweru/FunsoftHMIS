@@ -225,7 +225,6 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
             getContentPane().setLayout(new java.awt.GridBagLayout());
 
             immunisationClientInfoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Client Information"));
-            immunisationClientInfoPanel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
             immunisationClientInfoPanel.setLayout(new java.awt.GridBagLayout());
 
             religionLbl.setText("Name of Mother");

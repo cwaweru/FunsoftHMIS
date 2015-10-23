@@ -2218,6 +2218,31 @@
             </MenuItem>
             <MenuItem class="javax.swing.JSeparator" name="jSeparator29">
             </MenuItem>
+            <Menu class="javax.swing.JMenu" name="communityHealthmn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Community Health Extension"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="communityHealthRegistermnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Community Health Extension Register"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="communityHealthRegistermnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="houseHoldRehistermnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="House Hold Register"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="houseHoldRehistermnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator100">
+            </MenuItem>
             <Menu class="javax.swing.JMenu" name="morturymn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Farewell Home"/>
@@ -2285,31 +2310,6 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mortOccupancymnitActionPerformed"/>
-                  </Events>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
-            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator100">
-            </MenuItem>
-            <Menu class="javax.swing.JMenu" name="communityHealthmn">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Community Health Extension"/>
-              </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="communityHealthRegistermnit">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Community Health Extension Register"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="communityHealthRegistermnitActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="houseHoldRehistermnit">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="House Hold Register"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="houseHoldRehistermnitActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>

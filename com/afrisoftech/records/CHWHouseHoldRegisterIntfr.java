@@ -226,7 +226,6 @@ public class CHWHouseHoldRegisterIntfr extends javax.swing.JInternalFrame {
             getContentPane().setLayout(new java.awt.GridBagLayout());
 
             houseHoldInfoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Client Information"));
-            houseHoldInfoPanel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
             houseHoldInfoPanel.setLayout(new java.awt.GridBagLayout());
 
             motherLbl.setText("First Name");
