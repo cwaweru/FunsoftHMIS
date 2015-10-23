@@ -7,7 +7,7 @@ package com.afrisoftech.records;
 
 /**
  *
- * @author fwaweru
+ * @author Cheles Waweru <cwaweru@systempartners.biz>
  */
 public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
 

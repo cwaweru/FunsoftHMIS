@@ -7,7 +7,7 @@ package com.afrisoftech.records;
 
 /**
  *
- * @author root
+ * @author Charles Waweru <cwaweru@systempartners.biz>
  */
 public class CommunityHealthIndicatorsIntfr extends javax.swing.JInternalFrame {
 

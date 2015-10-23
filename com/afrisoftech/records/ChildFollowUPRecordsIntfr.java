@@ -7,7 +7,7 @@ package com.afrisoftech.records;
 
 /**
  *
- * @author fwaweru
+ * @author Charles Waweru <cwaweru@systempartners.biz>
  */
 public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
 
