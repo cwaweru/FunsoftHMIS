@@ -539,7 +539,7 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         getContentPane().add(jTextField6, gridBagConstraints);
 
         jXTitledPanel1.setTitle("Tick the invoices You want to approve for payment");
-        jXTitledPanel1.getContentContainer().setLayout(new java.awt.GridBagLayout());
+        jXTitledPanel1.setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBorder(new org.jdesktop.swingx.border.DropShadowBorder());
         jPanel1.setLayout(new java.awt.GridBagLayout());
@@ -669,7 +669,7 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 50.0;
-        jXTitledPanel1.getContentContainer().add(jPanel1, gridBagConstraints);
+        jXTitledPanel1.add(jPanel1, gridBagConstraints);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(new java.awt.GridBagLayout());
@@ -942,13 +942,13 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 250.0;
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        jXTitledPanel1.getContentContainer().add(jPanel2, gridBagConstraints);
+        jXTitledPanel1.add(jPanel2, gridBagConstraints);
 
         jLabel5.setText("Total Approvals");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 5;
-        jXTitledPanel1.getContentContainer().add(jLabel5, gridBagConstraints);
+        jXTitledPanel1.add(jLabel5, gridBagConstraints);
 
         jTextField1.setEditable(false);
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -961,7 +961,7 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jXTitledPanel1.getContentContainer().add(jTextField1, gridBagConstraints);
+        jXTitledPanel1.add(jTextField1, gridBagConstraints);
 
         jButton1.setMnemonic('r');
         jButton1.setText("Approve");
@@ -976,7 +976,7 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 9;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jXTitledPanel1.getContentContainer().add(jButton1, gridBagConstraints);
+        jXTitledPanel1.add(jButton1, gridBagConstraints);
 
         jButton2.setMnemonic('O');
         jButton2.setText("Approve & Print");
@@ -992,7 +992,7 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 9;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jXTitledPanel1.getContentContainer().add(jButton2, gridBagConstraints);
+        jXTitledPanel1.add(jButton2, gridBagConstraints);
 
         removerow.setMnemonic('R');
         removerow.setText("Remove Row");
@@ -1005,7 +1005,7 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.weightx = 1.0;
-        jXTitledPanel1.getContentContainer().add(removerow, gridBagConstraints);
+        jXTitledPanel1.add(removerow, gridBagConstraints);
 
         jButton4.setMnemonic('C');
         jButton4.setText("Close");
@@ -1020,7 +1020,7 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 9;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jXTitledPanel1.getContentContainer().add(jButton4, gridBagConstraints);
+        jXTitledPanel1.add(jButton4, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -1029,14 +1029,14 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jXTitledPanel1.getContentContainer().add(jSeparator1, gridBagConstraints);
+        jXTitledPanel1.add(jSeparator1, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 15;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 100.0;
         gridBagConstraints.weighty = 1.0;
-        jXTitledPanel1.getContentContainer().add(jLabel6, gridBagConstraints);
+        jXTitledPanel1.add(jLabel6, gridBagConstraints);
 
         jButton5.setText("Approved Vouchers");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -1049,7 +1049,7 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 9;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jXTitledPanel1.getContentContainer().add(jButton5, gridBagConstraints);
+        jXTitledPanel1.add(jButton5, gridBagConstraints);
 
         commentsTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Type comments here"));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1059,7 +1059,7 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 10.0;
         gridBagConstraints.weighty = 10.0;
-        jXTitledPanel1.getContentContainer().add(commentsTxt, gridBagConstraints);
+        jXTitledPanel1.add(commentsTxt, gridBagConstraints);
 
         jButton10.setBackground(new java.awt.Color(153, 255, 255));
         jButton10.setForeground(new java.awt.Color(0, 102, 102));
@@ -1072,7 +1072,7 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
-        jXTitledPanel1.getContentContainer().add(jButton10, gridBagConstraints);
+        jXTitledPanel1.add(jButton10, gridBagConstraints);
 
         jButton12.setBackground(new java.awt.Color(153, 255, 255));
         jButton12.setForeground(new java.awt.Color(0, 102, 102));
@@ -1085,7 +1085,7 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 7;
-        jXTitledPanel1.getContentContainer().add(jButton12, gridBagConstraints);
+        jXTitledPanel1.add(jButton12, gridBagConstraints);
 
         jButton11.setBackground(new java.awt.Color(153, 255, 255));
         jButton11.setForeground(new java.awt.Color(0, 102, 102));
@@ -1098,7 +1098,7 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 7;
-        jXTitledPanel1.getContentContainer().add(jButton11, gridBagConstraints);
+        jXTitledPanel1.add(jButton11, gridBagConstraints);
 
         jButton13.setBackground(new java.awt.Color(153, 255, 255));
         jButton13.setForeground(new java.awt.Color(0, 102, 102));
@@ -1111,7 +1111,7 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 7;
-        jXTitledPanel1.getContentContainer().add(jButton13, gridBagConstraints);
+        jXTitledPanel1.add(jButton13, gridBagConstraints);
 
         jButton3.setText("Reject");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -1122,7 +1122,7 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 9;
-        jXTitledPanel1.getContentContainer().add(jButton3, gridBagConstraints);
+        jXTitledPanel1.add(jButton3, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 6;
@@ -1131,7 +1131,7 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 5.0;
         getContentPane().add(jXTitledPanel1, gridBagConstraints);
 
-        setBounds(0, 0, 697, 390);
+        setBounds(0, 0, 924, 390);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
