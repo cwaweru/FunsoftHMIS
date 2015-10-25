@@ -449,7 +449,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "BCG01", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -469,7 +469,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Birth dose(Within 2 weeks)", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "OPV0", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -490,7 +490,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "OPV1", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -511,7 +511,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Above 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "BCG01", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -532,7 +532,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "OPV2", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -553,7 +553,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Above 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "OPV2", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -573,7 +573,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "OPV3", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -594,7 +594,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Above 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "OPV3", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -614,7 +614,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "DPT1", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -635,7 +635,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Above 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "DPT1", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -655,7 +655,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "DPT2", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -676,7 +676,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Above 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "DPT2", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -696,7 +696,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "DPT3", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -717,7 +717,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Above 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "DPT3", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -737,7 +737,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "PCV1", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -758,7 +758,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Above 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "PCV1", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -778,7 +778,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "PCV2", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -799,7 +799,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Above 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "PCV2", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -819,7 +819,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "PCV3", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -840,7 +840,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Above 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "PCV3", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -860,7 +860,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "ROTA1", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -881,7 +881,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Above 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "ROTA1", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -901,7 +901,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "ROTA2", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -922,7 +922,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Above 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "ROTA2", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -942,7 +942,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "ROTA3", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -963,7 +963,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Above 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "ROTA3", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -983,7 +983,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "Measles1", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1004,7 +1004,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Above 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "Measels1", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1024,7 +1024,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "Yellow1", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1045,7 +1045,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Above 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "Yellow1", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1065,7 +1065,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "FIC", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1086,7 +1086,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Above 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "FIC", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1106,7 +1106,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "AEFI", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1127,7 +1127,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Above 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "AEFI", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1147,7 +1147,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("1st Dose", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "TTP1", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1168,7 +1168,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("2nd Dose", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "TTP2", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1188,7 +1188,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("TT3 Plus Dose", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "TTP3", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1208,7 +1208,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year (100,000 IU)", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "VITAP1", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1229,7 +1229,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Above 1 Year (200,000 UI)", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "VITAP2", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1249,7 +1249,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Lactating mothers", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "VITAP3", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1269,7 +1269,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("0 - 5 Months (50,000 IU)", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "VITAT1", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1290,7 +1290,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("6 - 11 Months (100,000 UI)", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "VITAT2", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1310,7 +1310,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("12 - 59 Months (200,000 UI)", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "VITAT3", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1330,7 +1330,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Adults e.g. in TB clinics, CCC (200,000 UI)", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getOverImmunisationCounts(connectDB, "VITAT4", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1351,7 +1351,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "LLITN", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 
@@ -1371,7 +1371,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
                             phrase = new Phrase("Under 1 Year", pFontHeader1);
                             table.addCell(phrase);
                             for (int i = 0; i < 31; i++) {
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.ImmunisationDates.getUnderImmunisationCounts(connectDB, "SQTEYE", beginDate, i)), pFontHeader1);
                                 table.addCell(phrase);
                             }
 

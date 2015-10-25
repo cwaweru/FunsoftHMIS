@@ -6,7 +6,7 @@
  * This is the Kernel of the Funsoft HMIS system
  *
  * @author Charles Wanjema Waweru <cwaweru@systempartners.biz> -- [Lead Developer and Chief Funsoft Software/System Architect]
- * @author Rugendo Kego Kamakia <kamakia@systempartners.biz> -- [Chief Business Logic Architect]
+ * @author Rugendo Kego Kamakia <kamakia@systempartners.biz> -- [Chief Business Logic Contributor]
  * @author Francis King'oi Waweru <francis@systempartners.biz>
  * @author Peter Ndung'u Waweru <peter.waweru@systempartners.biz>
  *
@@ -47,6 +47,10 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     boolean loadingMode = false;
     static java.lang.String psWord = null;
     boolean domainsReset = false;
+
+    /**
+     *
+     */
     public static boolean allowedAccess = false;
     boolean shiftStatus = false;
     boolean stopStatus = false;
@@ -62,12 +66,32 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     private com.afrisoftech.dbadmin.TableView tableView;
     //   private javax.swing.ProgressMonitor progressMonitor;
     private com.afrisoftech.dbadmin.GraphicalView graphicalView;
+
+    /**
+     *
+     */
     public com.afrisoftech.lib.LoginToPayrollModule payrollKey = null;
     private java.lang.Object[][] tableData = null;
+
+    /**
+     *
+     */
     public java.util.Vector tableColumnsVector = null;
     static java.lang.String myAppOutFileUrl;
+
+    /**
+     *
+     */
     public static java.util.Properties appProp;
+
+    /**
+     *
+     */
     public static java.util.Properties appOutProp;
+
+    /**
+     *
+     */
     public java.awt.SystemTray systemTray = null;
     String cashPoint = null;
     String cashPointPett = null;
@@ -568,6 +592,10 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
      * }
      */
     public static java.sql.Connection connectDB = null;
+
+    /**
+     *
+     */
     public java.lang.String dbUserName = null;
     org.netbeans.lib.sql.pool.PooledConnectionSource pConnDB = null;
     java.lang.String path2Acrobat = null;
@@ -579,6 +607,10 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     // static final java.lang.String helpSetLable = "Hospital Management Information System (fUNSOFT HMIS)";
     int min;
     int max;
+
+    /**
+     *
+     */
     public java.lang.String queryString = null;
     java.lang.String homeUrl;
     java.lang.String backgrdimg;
@@ -606,9 +638,21 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     com.l2fprod.common.swing.JTaskPane reportTaskPane;
     com.l2fprod.common.swing.JTaskPane chartsTaskPane;
     com.afrisoftech.lib.ParseMenuBar1 parseMenuBar1;
+
+    /**
+     *
+     */
     public java.lang.String selectedTable;
     com.l2fprod.common.swing.JOutlookBar jOutLookBar;
+
+    /**
+     *
+     */
     public boolean isCustomQuery = false;
+
+    /**
+     *
+     */
     public static String cardSerialNo;
     private boolean viewRequisitions = true;
     ViewRequisitions viewOrders = null;
@@ -626,6 +670,13 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
      */
     /**
      * Creates new form medic
+     * @param connDB
+     * @param acrobatPath
+     * @param pconnDB
+     * @param psword
+     * @param secureStockMain
+     * @param securePayrollMain
+     * @param secureHRMain
      */
     public HospitalMain(java.sql.Connection connDB, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB, java.lang.String acrobatPath, java.lang.String psword, com.afrisoftech.hospinventory.StockMain secureStockMain, com.afrisoftech.hospayroll.PayrollMain securePayrollMain, com.afrisoftech.hr.HRMain secureHRMain) {
 
@@ -20797,6 +20848,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         //      java.util.Properties sysProp = System.getProperties();
     }
 
+    /**
+     *
+     * @return
+     */
     public static java.sql.Connection connect2DB() {
 
         java.sql.Connection connDBStock = null;
@@ -20826,6 +20881,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     * @param menuList2Disable
+     */
     public void menuItemsDisabler(java.lang.Object[] menuList2Disable) {
 
         java.lang.reflect.Field[] fieldsArray = null;
@@ -20889,6 +20948,9 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     */
     public void updateActivityDomains() {
 
         if (domainsReset) {
@@ -20969,6 +21031,11 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     * @param lnf
+     * @param themepack
+     */
     public void changeThemeByUrl(java.lang.String lnf, java.net.URL themepack) {
 
         java.lang.String themepackPath = null;
@@ -21034,6 +21101,11 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     * @param lnf
+     * @param themepack
+     */
     public void changeTheme(java.lang.String lnf, java.lang.String themepack) {
 
         java.lang.String themepackPath = null;
@@ -21099,6 +21171,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     * @return
+     */
     public static java.lang.String getCompanyName() {
 
         java.lang.String title = null;
@@ -21123,6 +21199,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         return title;
     }
 
+    /**
+     *
+     * @return
+     */
     public java.lang.String getDateLable() {
 
         java.lang.String date_label = null;
@@ -21276,6 +21356,9 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     */
     public void backupImmediate() {
 
         java.lang.Runtime rt_backup = java.lang.Runtime.getRuntime();
@@ -21318,6 +21401,9 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     */
     public void stop() {
 
         Thread.currentThread().stop();
@@ -21606,6 +21692,11 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         }
     }
 
+    /**
+     *
+     * @param instIntfrName
+     * @param intfrClass
+     */
     public void launchIntfr(java.lang.String instIntfrName, java.lang.String intfrClass) {
     }
 
@@ -21685,6 +21776,12 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
      *
      * }
      */
+
+    /**
+     *
+     * @return
+     */
+    
     public static org.netbeans.lib.sql.pool.PooledConnectionSource getPooledConnectionSource() {
 
         org.netbeans.lib.sql.pool.PooledConnectionSource pooledConnectionSource1 = new org.netbeans.lib.sql.pool.PooledConnectionSource();
@@ -21700,6 +21797,11 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         return pooledConnectionSource1;
     }
 
+    /**
+     *
+     * @param jMenuBar
+     * @return
+     */
     public javax.swing.JPopupMenu createPopupMenu(javax.swing.JMenuBar jMenuBar) {
 
         javax.swing.JPopupMenu popMenuContext = null;
@@ -21709,6 +21811,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         return popMenuContext;
     }
 
+    /**
+     *
+     * @return
+     */
     public static java.lang.String getPath2Acrobat() {
         //        java.lang.String dbServerIp = null;
         java.lang.String acroPath = null;
@@ -21887,6 +21993,9 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     */
     public static void storePreferences() {
 
         //        appProp.setProperty("defaultsplitpane", jTabbedPane1.getSelectedComponent().getName());
@@ -22071,6 +22180,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     * @return
+     */
     public java.lang.Object[] getOrderNo() {
 
         java.util.Vector memVector = new java.util.Vector(1, 1);
@@ -22101,6 +22214,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     * @return
+     */
     public java.lang.Object[] getSuppName() {
 
         java.util.Vector memVector = new java.util.Vector(1, 1);
@@ -22202,8 +22319,14 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
      * }
      */
 
+    /**
+     *
+     */
     public class OpenShiftAction extends javax.swing.AbstractAction {
 
+        /**
+         *
+         */
         public void OpenShiftAction() {
         }
 
@@ -22235,6 +22358,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public com.afrisoftech.hospital.HospitalMain getMainClass() {
 
         return this;
@@ -22364,6 +22491,9 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         }
     }
 
+    /**
+     *
+     */
     public void createTreeDBAdmin() {
 
         treeScrollPaneDBAdmin = new javax.swing.JScrollPane();
@@ -22446,6 +22576,9 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     */
     public void createTreeGraphicals() {
 
         isCustomQuery = false;
@@ -22542,12 +22675,18 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     */
     public void createOperationsPopupMenu() {
 
         parseMenuBar.parseHospitalPopupMenus(getJMenuBar(), operationsPopupMenu, reportsPopupMenu, "Operations Reports", "Operations Utilities", operationsPopupButtonGroup, reportsPopupButtonGroup);
 
     }
 
+    /**
+     *
+     */
     public void createInventoryPopupMenu() {
 
         parseMenuBar.parseHospitalPopupMenus(stockMain.getJMenuBar(), inventoryPopupMenu, reportsPopupMenu, "Pharmacy & Inventory Reports", "Inventory Utilities", inventoryPopupButtonGroup, null);
@@ -22555,6 +22694,9 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 //             parseMenuBar.parseHospitalPopupMenus(stockMain.getJMenuBar(), inventorymn, reportsPopupMenu, "Pharmacy & Inventory Reports", "Inventory Utilities", inventoryPopupButtonGroup, null);
     }
 
+    /**
+     *
+     */
     public void createPayrollPopupMenu() {
 
         parseMenuBar.parseHospitalPopupMenus(payrollMain.getJMenuBar(), payrollPopupMenu, reportsPopupMenu, "HR & Payroll Reports", "HR & Payroll Utilities", payrollPopupButtonGroup, null);
@@ -22563,6 +22705,9 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     */
     public void createHRMPopupMenu() {
 
         parseMenuBar.parseHospitalPopupMenus(hrMain.getJMenuBar(), hrmPopupMenu, reportsPopupMenu, "HRM Reports", "HRM Utilities", hrPopupButtonGroup, null);
@@ -22571,24 +22716,36 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         //       parseMenuBar.parseHospitalPopupMenus(fleetMain.getJMenuBar(), fleetmn, reportsPopupMenu, "HRM Reports", "HRM Utilities", hrPopupButtonGroup, null);
     }
 
+    /**
+     *
+     */
     public void createStockMenuBar() {
 
         parseMenuBar.parseHospitalMenuBars(stockMain.getJMenuBar(), null, null, inventoryMenuBar, reportsMenuBar, "Pharmacy & Inventory Reports", "Inventory Utilities", null, null);
 
     }
 
+    /**
+     *
+     */
     public void createPayrollMenuBar() {
 
         parseMenuBar.parseHospitalMenuBars(payrollMain.getJMenuBar(), null, null, payrollMenuBar, reportsMenuBar, "HR & Payroll Reports", "Payroll Utilities", null, null);
 
     }
 
+    /**
+     *
+     */
     public void createHRMenuBar() {
 
         parseMenuBar.parseHospitalMenuBars(hrMain.getJMenuBar(), null, null, hrMenuBar, reportsMenuBar, "HRM Reports", "HRM Utilities", null, null);
 
     }
 
+    /**
+     *
+     */
     public void createSystemMenus() {
 
         parseMenuBar.parseHospitalMenuBars(getJMenuBar(), payrollMenuBar, null, null, null, "Operations Reports", "System Utilities", payrollMenuBarButtonGroup, null);
@@ -22602,6 +22759,9 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     */
     public void updateNewComponentsUI() {
 
         this.saccopn.setOpaque(false);
@@ -22739,6 +22899,11 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     * @param tableName
+     * @return
+     */
     public java.util.Vector getTableColumns(java.lang.String tableName) {
 
         tableColumnsVector = new java.util.Vector(1, 1);
@@ -22769,6 +22934,11 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     * @param chartQuery
+     * @return
+     */
     public java.util.Vector getTableColumnsChartDefiner(java.lang.String chartQuery) {
 
         tableColumnsVector1 = new java.util.Vector(1, 1);
@@ -22801,6 +22971,11 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     * @param queryStr
+     * @return
+     */
     public java.util.Vector getTableColumnsFromQuery(java.lang.String queryStr) {
 
         tableColumnsVector = new java.util.Vector(1, 1);
@@ -22831,6 +23006,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     * @return
+     */
     public java.lang.Object[][] createTableData() {
 
         tableData = new java.lang.Object[columnCount][2];
@@ -22851,6 +23030,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     * @return
+     */
     public java.lang.Object[][] createTableDataChartDefiner() {
 
         tableData = new java.lang.Object[columnCount][2];
@@ -22871,6 +23054,9 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     */
     public void submitQueryString() {
 
         System.out.println("Selected table [" + selectedTable + "]");
@@ -22922,18 +23108,29 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     * @return
+     */
     public com.afrisoftech.hospital.HospitalMain getSelf() {
 
         return this;
 
     }
 
+    /**
+     *
+     * @param selectedTableString
+     */
     public void setSelectedTable(java.lang.String selectedTableString) {
 
         selectedTable = selectedTableString;
 
     }
 
+    /**
+     *
+     */
     public void showCustomChart() {
 
         graphicalView.showChart(queryString, selectedTable, getSelf());
@@ -22943,6 +23140,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         graphicalView.setVisible(true);
     }
 
+    /**
+     *
+     * @return
+     */
     public com.l2fprod.common.swing.JOutlookBar createOutLookBar() {
 
         createTreeDBAdmin();
@@ -23237,6 +23438,9 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         // Add your handling code here:
     }
 
+    /**
+     *
+     */
     public void createTaskPanes() {
 
         parseMenuBar = new com.afrisoftech.lib.ParseMenuBar();
@@ -23264,6 +23468,9 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     */
     public void rememberDefaultPane() {
 //
 //        if (com.afrisoftech.lib.UserName.canIApprove(connectDB, com.afrisoftech.lib.UserName.getLoginName(connectDB)).equals("NO")) {
@@ -23280,6 +23487,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         appProp.setProperty("defaultsplitpane", jOutLookBar.getTitleAt(jOutLookBar.getSelectedIndex()));
     }
 
+    /**
+     *
+     * @return
+     */
     public int getDefaultPaneByName() {
         System.out.println("default split pane [" + System.getProperty("defaultsplitpane") + "]");
         String searchString = System.getProperty("defaultsplitpane");
@@ -23296,6 +23507,11 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         return index;
     }
 
+    /**
+     *
+     * @param searchString
+     * @return
+     */
     public int getDefaultPaneByName(java.lang.String searchString) {
         System.out.println("default split pane [" + System.getProperty("defaultsplitpane") + "]");
         //  String searchString = System.getProperty("defaultsplitpane");
@@ -23518,6 +23734,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public static java.util.Date getServerCurrentDate() {
 
         java.util.Date serverCurrentDate = new java.util.Date();
@@ -23537,6 +23757,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     * @return
+     */
     public static java.util.Date getCurrentBeginDate() {
 
         java.util.Date serverCurrentDate = new java.util.Date();
@@ -23556,6 +23780,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     * @return
+     */
     public static java.util.Date getCurrentEndDate() {
 
         java.util.Date serverCurrentDate = new java.util.Date();
@@ -23614,6 +23842,11 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         }
     }
 
+    /**
+     *
+     * @param reportName
+     * @return
+     */
     public boolean checkReminderTarget(java.lang.String reportName) {
 
         boolean viewReminder = false;
@@ -23690,6 +23923,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public java.util.Vector checkMessages() {
 
         java.util.Vector messagesVector = new java.util.Vector(1, 1);
@@ -23767,6 +24004,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public com.l2fprod.common.swing.JTaskPane createChartsTaskPane() {
 
         chartsTaskPane = new com.l2fprod.common.swing.JTaskPane();
@@ -23946,8 +24187,14 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     }
 
+    /**
+     *
+     */
     public class ManagePOSShifts extends java.lang.Thread {
 
+        /**
+         *
+         */
         public void ManagePOSShifts() {
         }
 
