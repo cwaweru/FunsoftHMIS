@@ -1595,28 +1595,28 @@ public class MohReportPdf implements java.lang.Runnable {
                     } catch (com.lowagie.text.BadElementException BadElExec) {
 
                         // Bad
-
+                        BadElExec.printStackTrace();
                         javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), BadElExec.getMessage());
 
                     }
 
                 } catch (java.io.FileNotFoundException fnfExec) {
-
+                    fnfExec.printStackTrace();
                     javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), fnfExec.getMessage());
 
                 }
             } catch (com.lowagie.text.DocumentException lwDocexec) {
-
+                lwDocexec.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), lwDocexec.getMessage());
 
             }
 
             docPdf.close();
-docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
+            docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
 
         } catch (java.io.IOException IOexec) {
-
+            IOexec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), IOexec.getMessage());
 
         }
@@ -1677,7 +1677,7 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
             //System.out.println(rSet1.getObject(1).toString());
         } catch (java.sql.SQLException sqlExec) {
-
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
 
         }

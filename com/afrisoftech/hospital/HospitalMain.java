@@ -22083,7 +22083,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), IOExec.getMessage());
 
         }
-
+        
     }
 
     class ProgressThread extends java.lang.Thread {
