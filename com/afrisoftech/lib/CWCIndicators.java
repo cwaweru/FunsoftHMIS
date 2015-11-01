@@ -45,9 +45,8 @@ public class CWCIndicators {
             return "Y";
         }
     }
-    
-            
-        public static int getInfantIndicatorCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, String cwcIndicator, int lowerAgeLimit, int upperAgeLimit) {
+
+    public static int getCWCIndicatorCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, String cwcIndicator, int lowerAgeLimit, int upperAgeLimit) {
 
         int visitCount = 0;
 
@@ -59,11 +58,76 @@ public class CWCIndicators {
             pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
 
             pstmt.setString(3, cwcIndicator);
-                       
+
             pstmt.setInt(4, lowerAgeLimit);
 
             pstmt.setInt(5, upperAgeLimit);
 
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+        return visitCount;
+    }
+
+    public static int getCWCIndicatorCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, String cwcIndicator, int lowerAgeLimit, int upperAgeLimit, String gender) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.child_health_follow_up WHERE service_date BETWEEN ? and ? AND cwc_indicator ilike ? AND child_age >= ? AND child_age <= ? AND gender ilike ?");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            pstmt.setString(3, cwcIndicator);
+
+            pstmt.setInt(4, lowerAgeLimit);
+
+            pstmt.setInt(5, upperAgeLimit);
+            
+            pstmt.setString(6, gender);
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+        return visitCount;
+    }
+        public static int getCWCIndicatorNewVisitCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, int lowerAgeLimit, int upperAgeLimit, String gender) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.child_health_follow_up WHERE service_date BETWEEN ? and ? AND revisit ilike 'N' AND child_age >= ? AND child_age <= ? AND gender ilike ?");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            pstmt.setInt(3, lowerAgeLimit);
+
+            pstmt.setInt(4, upperAgeLimit);
+            
+            pstmt.setString(5, gender);
+            
             java.sql.ResultSet rset = pstmt.executeQuery();
 
             while (rset.next()) {

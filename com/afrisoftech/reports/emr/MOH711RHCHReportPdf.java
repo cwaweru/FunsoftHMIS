@@ -1154,7 +1154,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("At 6 wks - 3 Months", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getInfantIndicatorCount(connectDB, beginDate, endDate, "HVT", 0, 3)), pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "HVT", 0, 3)), pFontHeader1);
                                 table.addCell(phrase);
 
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1180,7 +1180,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("After 3 Months", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getInfantIndicatorCount(connectDB, beginDate, endDate, "HVT", 3, 60)), pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "HVT", 3, 60)), pFontHeader1);
                                 table.addCell(phrase);
 
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -1387,13 +1387,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Normal Weight for Age", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NWA", 0, 6, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NWA", 0, 6, "Male")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NWA", 0, 6, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NWA", 0, 6, "Male")), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1425,13 +1425,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Underweight", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "UW", 0, 6, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "UW", 0, 6, "Male")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "UW", 0, 6, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "UW", 0, 6, "Male")), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1463,13 +1463,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Severe Underweight", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SA", 0, 6, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SA", 0, 6, "Male")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SA", 0, 6, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SA", 0, 6, "Male")), pFontHeader11);
                                 table.addCell(phrase);
 
 
@@ -1502,13 +1502,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Overweight", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OW", 0, 6, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OW", 0, 6, "Male")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OW", 0, 6, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OW", 0, 6, "Male")), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1540,13 +1540,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Obese", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OB", 0, 6, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OB", 0, 6, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OB", 0, 6, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OB", 0, 6, "Male")), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1616,13 +1616,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Normal Weight for Age", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NWA", 6, 23, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NWA", 6, 23, "Male")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NWA", 6, 23, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NWA", 6, 23, "Male")), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1654,13 +1654,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Underweight", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "UW", 6, 23, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "UW", 6, 23, "Male")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "UW", 6, 23, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "UW", 6, 23, "Female")), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1692,13 +1692,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Severe Underweight", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SA", 6, 23, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SA", 6, 23, "Male")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SA", 6, 23, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SA", 6, 23, "Male")), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1730,13 +1730,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Overweight", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OW", 6, 23, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OW", 6, 23, "Male")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OW", 6, 23, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OW", 6, 23, "Male")), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1768,13 +1768,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Obese", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OB", 6, 23, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OB", 6, 23, "Male")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OB", 6, 23, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OB", 6, 23, "Male")), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1838,13 +1838,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Normal Weight for Age", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NWA", 24, 59, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NWA", 24, 59, "Male")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NWA", 24, 59, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NWA", 24, 59, "Male")), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1878,13 +1878,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Underweight for Age", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "UW", 24, 59, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "UW", 24, 59, "Male")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "UW", 24, 59, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "UW", 24, 59, "Male")), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1918,13 +1918,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Severe Underweight for Age", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SA", 24, 59, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SA", 24, 59, "Male")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SA", 24, 59, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SA", 24, 59, "Male")), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1958,13 +1958,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Overweight for Age", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OW", 24, 59, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OW", 24, 59, "Male")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OW", 24, 59, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OW", 24, 59, "Male")), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1998,13 +1998,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Obese", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OB", 24, 59, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OB", 24, 59, "Male")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OB", 24, 59, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "OB", 24, 59, "Male")), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -2083,13 +2083,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Normal(Green)", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "MCG", 6, 59, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "MCG", 6, 59, "Male")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "MCG", 6, 59, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "MCG", 6, 59, "Male")), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -2121,13 +2121,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Moderate(Yellow)", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "MCY", 6, 59, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "MCY", 6, 59, "Male")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "MCY", 6, 59, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "MCY", 6, 59, "Male")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -2159,13 +2159,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Severe(Red)", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "MCR", 6, 59, "Female")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "MCR", 6, 59, "Male")), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "MCR", 6, 59, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "MCR", 6, 59, "Male")), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -2250,13 +2250,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Normal Height for Age", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NHA", 0, 6, "Female")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NHA", 0, 6, "Male")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NHA", 0, 6, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NHA", 0, 6, "Female")), pFontHeader1);
                                 table.addCell(phrase);
 
 
@@ -2289,13 +2289,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Stunted", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "ST", 0, 6, "Female")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "ST", 0, 6, "Male")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "ST", 0, 6, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "ST", 0, 6, "Male")), pFontHeader1);
                                 table.addCell(phrase);
 
 
@@ -2328,13 +2328,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Severely Stunted", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SST", 0, 6, "Female")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SST", 0, 6, "Male")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SST", 0, 6, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SST", 0, 6, "Male")), pFontHeader1);
                                 table.addCell(phrase);
 
 
@@ -2395,13 +2395,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Normal Height for Age", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NHA", 6, 23, "Female")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NHA", 6, 23, "Male")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NHA", 6, 23, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NHA", 6, 23, "Male")), pFontHeader1);
                                 table.addCell(phrase);
 
 
@@ -2425,13 +2425,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Stunted", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "ST", 6, 23, "Female")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "ST", 6, 23, "Male")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "ST", 6, 23, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "ST", 6, 23, "Male")), pFontHeader1);
                                 table.addCell(phrase);
 
 
@@ -2461,13 +2461,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Severely Stunted", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SST", 6, 23, "Female")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SST", 6, 23, "Male")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SST", 6, 23, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SST", 6, 23, "Male")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -2490,19 +2490,19 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("29", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("24 - 59 months", pFontHeader1);
+                                phrase = new Phrase("6 - 23 months", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Normal Height for Age", pFontHeader1);
+                                phrase = new Phrase("Total Measured", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NHA", 6, 23, "Female")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NHA", 6, 23, "Male")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NHA", 6, 23, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NHA", 6, 23, "Male")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -2531,13 +2531,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Normal Height for Age", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NHA", 24, 59, "Female")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NHA", 24, 59, "Male")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NHA", 24, 59, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "NHA", 24, 59, "Male")), pFontHeader1);
                                 table.addCell(phrase);
 
 
@@ -2567,13 +2567,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Stunted", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "ST", 24, 59, "Female")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "ST", 24, 59, "Male")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "ST", 24, 59, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "ST", 24, 59, "Male")), pFontHeader1);
                                 table.addCell(phrase);
 
 
@@ -2603,13 +2603,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Severely Stunted", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SST", 24, 59, "Female")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SST", 24, 59, "Male")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SST", 24, 59, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "SST", 24, 59, "Male")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -2635,7 +2635,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("24 - 59 months", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Severely Stunted", pFontHeader1);
+                                phrase = new Phrase("Total Measured", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -2711,13 +2711,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("New Visits", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorNewVisitCount(connectDB, beginDate, endDate, 0, 59,"Female")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorNewVisitCount(connectDB, beginDate, endDate, 0, 59,"Male")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorNewVisitCount(connectDB, beginDate, endDate, 0, 59,"Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorNewVisitCount(connectDB, beginDate, endDate, 0, 59,"Male")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -2746,16 +2746,16 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("0 - 59 months", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("New Visits", pFontHeader1);
+                                phrase = new Phrase("Kwashiokor", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "KW", 0, 59, "Female")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "KW", 0, 59, "Male")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "KW", 0, 59, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "KW", 0, 59, "Male")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -2784,16 +2784,16 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("0 - 59 months", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Kwashiokor", pFontHeader1);
+                                phrase = new Phrase("Marasmus", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "KW", 0, 59, "Female")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "KW", 0, 59, "Male")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "KW", 0, 59, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "KW", 0, 59, "Male")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -2822,16 +2822,16 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("0 - 59 months", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Marasmus", pFontHeader1);
+                                phrase = new Phrase("Faltering Growth", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "FG", 0, 59, "Female")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "FG", 0, 59, "Male")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "FG", 0, 59, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "FG", 0, 59, "Female")), pFontHeader1);
                                 table.addCell(phrase);
 
 
@@ -2903,13 +2903,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Exclusive breast feeding", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "EBF", 0, 6, "Female")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "EBF", 0, 6, "Male")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "EBF", 0, 6, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "EBF", 0, 6, "Male")), pFontHeader1);
                                 table.addCell(phrase);
 
 
@@ -2942,13 +2942,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Dewormed", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "DW", 12, 59, "Female")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "DW", 12, 59, "Male")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "DW", 12, 59, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "DW", 12, 59, "Male")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -2980,13 +2980,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("MNPs Supplementation", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "MNP", 6, 23, "Female")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "MNP", 6, 23, "Male")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "MNP", 6, 23, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "MNP", 6, 23, "Male")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -3018,13 +3018,13 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Any Disability", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "AD", 0, 59, "Female")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "AD", 0, 59, "Male")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "AD", 0, 59, "Female") + com.afrisoftech.lib.CWCIndicators.getCWCIndicatorCount(connectDB, beginDate, endDate, "AD", 0, 59, "Male")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
