@@ -1682,7 +1682,8 @@ public class FPServiceIndicators {
 
         return visitCount;
     }
-        public static int getFPServicesCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, String fpService, String visitType) {
+
+    public static int getFPServicesCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, String fpService, String visitType) {
 
         int visitCount = 0;
 
@@ -1694,8 +1695,240 @@ public class FPServiceIndicators {
             pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
 
             pstmt.setString(3, fpService);
-            
+
             pstmt.setString(4, visitType);
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getFPNaturalMethodsCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.fp_services_register WHERE service_date BETWEEN ? and ? AND natural_fp ilike 'Y'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getFPTotalClientsCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, String visitType) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.fp_services_register WHERE service_date BETWEEN ? and ? AND revisit ilike ?");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            pstmt.setString(3, visitType);
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getFPCounselledClientsCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, String visitType) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.fp_services_register WHERE service_date BETWEEN ? and ? AND immune_counselling ilike 'Y' AND revisit ilike ?");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            pstmt.setString(3, visitType);
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getFPHIVPositiveClientsCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, String visitType) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.fp_services_register WHERE service_date BETWEEN ? and ? AND (immune_result ilike '1%' or immune_result ilike '2%') AND revisit ilike ?");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            pstmt.setString(3, visitType);
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getFPHIVTestedClientsCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, String visitType) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.fp_services_register WHERE service_date BETWEEN ? and ? AND immune_tested ilike 'Y' AND revisit ilike ?");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            pstmt.setString(3, visitType);
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getFPCervicalCancerResultsCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, String screeningMethod, String screeningResult) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.fp_services_register WHERE service_date BETWEEN ? and ? AND cervical_cancer_screening ilike '%"+screeningMethod+"%' AND cervical_cancer_screening_result ilike '%"+screeningResult+"%'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+//            pstmt.setString(3, screeningMethod);
+//
+//            pstmt.setString(4, screeningResult);
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getFPReferralsINCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, String referralType) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.fp_services_register WHERE service_date BETWEEN ? and ? AND referral_in ilike '%"+referralType+"%'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+//            pstmt.setString(3, screeningMethod);
+//
+//            pstmt.setString(4, screeningResult);
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getFPReferralsOUTCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, String referralFacilityType) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.fp_services_register WHERE service_date BETWEEN ? and ? AND referral_out ilike '%"+referralFacilityType+"%'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
 
             java.sql.ResultSet rset = pstmt.executeQuery();
 
