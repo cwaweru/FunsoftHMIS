@@ -962,7 +962,7 @@ public class MOH365PRCRegisterPdf implements java.lang.Runnable {
 
         try {
 
-            java.sql.PreparedStatement stmt1 = connectDB.prepareStatement("SELECT DISTINCT patient_no, patient_name FROM hp_maternity_register where date_admitted::date BETWEEN '" + beginDate + "' AND '" + endDate + "' ORDER BY date_admitted ASC");
+            java.sql.PreparedStatement stmt1 = connectDB.prepareStatement("SELECT DISTINCT patient_no, patient_name, date_admitted FROM hp_admission where date_admitted::date BETWEEN '" + beginDate + "' AND '" + endDate + "' ORDER BY date_admitted ASC");
 
             java.sql.ResultSet rSet1 = stmt1.executeQuery();
 

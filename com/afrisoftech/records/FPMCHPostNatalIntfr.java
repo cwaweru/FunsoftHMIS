@@ -1837,72 +1837,78 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
 }//GEN-LAST:event_ancSearchDialogComponentHidden
 
     private void regClearFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regClearFormBtnActionPerformed
-        counsellingCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Birth Plan", "Danger Signs", "FP", "HIV", "Supplemental Feeding", "Breast Care", "Infant Feeding", "ITN"}));
-        referralOUTCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Y", "N"}));
-        //   serologyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Non Reactive", "Reactive"}));
-        referralINCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "KP", "U"}));
-        //  hivResultCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "NA"}));
-        ctxMotherCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        educationLevelCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT edu_name FROM pb_education ORDER BY edu_name"));
-        educationLevelCmbx1.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Single", "Married", "Divorced", "Window", "Other"}));
-        religionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT religion_name FROM pb_religion ORDER BY religion_name"));
-        occupationCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT occupations FROM pb_occupation ORDER BY occupations"));
-        ctxBabyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        //  jComboBox8.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        //  jComboBox9.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        //  jComboBox10.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        nvpBabyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        cancerScreeningResultCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "PAP", "VIA"}));
-        otherConditionsCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Hypertension", "Diabetes", "Epilepsy", "Malaria in Pregnancy", "STIs/RTI", "Others Specify"}));
-        pallorCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        breastCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "1", "2", "3", "NA"}));
-        uterusCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "1", "2", "3", "4", "5"}));
-        pphCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        cSectionCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        episiotomyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        fistulaCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Hypertension", "Diabetes", "Epilepsy", "Malaria in Pregnacy", "STIs/RTI", "Others", " "}));
-        coupleCounselledCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        partnerHIVResultsCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "U", "KP"}));
-        // - //jComboBox23.removeAllItems();
-        //jTextField9.setText("");
-
-        // jTextField8.setText("");
-        temperatureTxt.setText("0");
-//        placeofDeliveryTxt.setText("");
-//        rhesusFactorTxt.setText("");
-        otherConditionDetailsTxt.setText("");
-        residenceTxt.setText("");
-//        placeofDeliveryTxt.setText("");
-        ancNumberTxt.setText("");
-        firstNameTxt.setText("");
-        pulseRateTxt.setText("");
-        searchANCFileTxt.setText("");
-//        bloodGroupTxt.setText("");
-        middleNameTxt.setText("");
-        lastNameTxt.setText("");
-        addressTxt.setText("");
-        telephoneTxt.setText("");
-        nextTxt.setText("");
-        bloodPressureTxt.setText("");
-        //  jTextField8.setText("");
-        //  jTextField9.setText("");
-        //  jTextField10.setText("");
-        otherConditionDetailsTxt.setText("");
-        //  jTextField13.setText("");
-        ageTxt.setText("0");
-        // bloodGroupTxt.setEditable(true);
-        middleNameTxt.setEditable(true);
-        lastNameTxt.setEditable(true);
-        addressTxt.setEditable(true);
-        telephoneTxt.setEditable(true);
-        nextTxt.setEditable(true);
-        ageTxt.setEditable(true);
-        // rhesusFactorTxt.setEditable(true);
-        residenceTxt.setEditable(true);
-        ancNumberTxt.setEditable(true);
-        ancCardSearchField.setEnabled(true);
-        firstNameTxt.setEditable(true);
-        pulseRateTxt.setEditable(true);        // TODO add your handling code here:
+        this.getContentPane().removeAll();
+        
+        this.initComponents();
+        
+        this.setSize(this.getParent().getSize());
+        
+//        counsellingCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Birth Plan", "Danger Signs", "FP", "HIV", "Supplemental Feeding", "Breast Care", "Infant Feeding", "ITN"}));
+//        referralOUTCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Y", "N"}));
+//        //   serologyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Non Reactive", "Reactive"}));
+//        referralINCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "KP", "U"}));
+//        //  hivResultCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "NA"}));
+//        ctxMotherCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
+//        educationLevelCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT edu_name FROM pb_education ORDER BY edu_name"));
+//        educationLevelCmbx1.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Single", "Married", "Divorced", "Window", "Other"}));
+//        religionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT religion_name FROM pb_religion ORDER BY religion_name"));
+//        occupationCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT occupations FROM pb_occupation ORDER BY occupations"));
+//        ctxBabyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
+//        //  jComboBox8.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
+//        //  jComboBox9.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
+//        //  jComboBox10.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
+//        nvpBabyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
+//        cancerScreeningResultCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "PAP", "VIA"}));
+//        otherConditionsCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Hypertension", "Diabetes", "Epilepsy", "Malaria in Pregnancy", "STIs/RTI", "Others Specify"}));
+//        pallorCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
+//        breastCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "1", "2", "3", "NA"}));
+//        uterusCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "1", "2", "3", "4", "5"}));
+//        pphCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
+//        cSectionCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
+//        episiotomyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
+//        fistulaCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Hypertension", "Diabetes", "Epilepsy", "Malaria in Pregnacy", "STIs/RTI", "Others", " "}));
+//        coupleCounselledCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
+//        partnerHIVResultsCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "U", "KP"}));
+//        // - //jComboBox23.removeAllItems();
+//        //jTextField9.setText("");
+//
+//        // jTextField8.setText("");
+//        temperatureTxt.setText("0");
+////        placeofDeliveryTxt.setText("");
+////        rhesusFactorTxt.setText("");
+//        otherConditionDetailsTxt.setText("");
+//        residenceTxt.setText("");
+////        placeofDeliveryTxt.setText("");
+//        ancNumberTxt.setText("");
+//        firstNameTxt.setText("");
+//        pulseRateTxt.setText("");
+//        searchANCFileTxt.setText("");
+////        bloodGroupTxt.setText("");
+//        middleNameTxt.setText("");
+//        lastNameTxt.setText("");
+//        addressTxt.setText("");
+//        telephoneTxt.setText("");
+//        nextTxt.setText("");
+//        bloodPressureTxt.setText("");
+//        //  jTextField8.setText("");
+//        //  jTextField9.setText("");
+//        //  jTextField10.setText("");
+//        otherConditionDetailsTxt.setText("");
+//        //  jTextField13.setText("");
+//        ageTxt.setText("0");
+//        // bloodGroupTxt.setEditable(true);
+//        middleNameTxt.setEditable(true);
+//        lastNameTxt.setEditable(true);
+//        addressTxt.setEditable(true);
+//        telephoneTxt.setEditable(true);
+//        nextTxt.setEditable(true);
+//        ageTxt.setEditable(true);
+//        // rhesusFactorTxt.setEditable(true);
+//        residenceTxt.setEditable(true);
+//        ancNumberTxt.setEditable(true);
+//        ancCardSearchField.setEnabled(true);
+//        firstNameTxt.setEditable(true);
+//        pulseRateTxt.setEditable(true);        // TODO add your handling code here:
     }//GEN-LAST:event_regClearFormBtnActionPerformed
 
     private void regCloseFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regCloseFormBtnActionPerformed

@@ -11,6 +11,7 @@ import org.openide.util.Exceptions;
 
 /**
  *
+ * @author Charles Waweru <cwaweru@systempartners.biz>
  * @author Francis K. Waweru <fkwaweru@gmail.com>
  */
 public class BirthsIntfr extends javax.swing.JInternalFrame {
@@ -26,7 +27,6 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
     public BirthsIntfr(java.sql.Connection connDb) {
 
         connectDB = connDb;
-
 
         initComponents();
 
@@ -326,13 +326,10 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane3 = new javax.swing.JTextPane();
         pnPathologyChkbx = new javax.swing.JCheckBox();
         pnPatholgyDetailsLbl = new javax.swing.JLabel();
         pnPatholgyDetailsTxt = new javax.swing.JTextField();
         pnSpecifyComplicationsLbl = new javax.swing.JLabel();
-        pnSpecifyComplicationsTxt = new javax.swing.JTextField();
         jLabel55 = new javax.swing.JLabel();
         jTextField21 = new javax.swing.JTextField();
         jLabel56 = new javax.swing.JLabel();
@@ -352,8 +349,11 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
         initiatedBreastFeedingChkbx = new javax.swing.JCheckBox();
         givenTetracyclineChkbx = new javax.swing.JCheckBox();
         jTextField7 = new javax.swing.JTextField();
+        deliveryComplicationsCmbx = new javax.swing.JComboBox();
+        birthDeformitiesCmbx = new javax.swing.JComboBox();
+        jComboBox2 = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox();
+        admissionOutcomeCmbx = new javax.swing.JComboBox();
         pnButtonsPanel = new javax.swing.JPanel();
         pnSaveDataBtn = new javax.swing.JButton();
         pnEditDataBtn = new javax.swing.JButton();
@@ -833,7 +833,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
             jPanel18.setBackground(new java.awt.Color(204, 255, 204));
             jPanel18.setLayout(new java.awt.GridBagLayout());
 
-            jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter date of birth or patient Age here ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 51, 153)));
+            jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter date of birth or patient Age here ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 51, 153))); // NOI18N
             jPanel15.setLayout(new java.awt.GridBagLayout());
 
             jLabel66.setText("Date of Birth");
@@ -2839,7 +2839,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             jPanel9.add(pnStateofInfantLbl, gridBagConstraints);
 
-            pnStateofInfantCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB,"SELECT delivery_status_desc FROM rh.delivery_status ORDER BY delivery_status_desc"));
+            pnStateofInfantCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB,"SELECT birth_state_desc FROM rh.birth_state ORDER BY 1"));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 1;
@@ -3257,18 +3257,6 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             jPanel7.add(jPanel3, gridBagConstraints);
 
-            jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Abnomalities"));
-            jScrollPane1.setViewportView(jTextPane3);
-
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 4;
-            gridBagConstraints.gridy = 0;
-            gridBagConstraints.gridwidth = 2;
-            gridBagConstraints.gridheight = 4;
-            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-            gridBagConstraints.weightx = 5.0;
-            jPanel7.add(jScrollPane1, gridBagConstraints);
-
             pnPathologyChkbx.setText("Pathology");
             pnPathologyChkbx.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
             pnPathologyChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
@@ -3305,18 +3293,6 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             jPanel7.add(pnSpecifyComplicationsLbl, gridBagConstraints);
-
-            pnSpecifyComplicationsTxt.setMinimumSize(new java.awt.Dimension(150, 19));
-            pnSpecifyComplicationsTxt.setPreferredSize(new java.awt.Dimension(150, 19));
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 7;
-            gridBagConstraints.gridwidth = 3;
-            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-            gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.weighty = 1.0;
-            jPanel7.add(pnSpecifyComplicationsTxt, gridBagConstraints);
 
             jLabel55.setText("Condition of Mother");
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -3570,6 +3546,35 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             jPanel7.add(jTextField7, gridBagConstraints);
 
+            deliveryComplicationsCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Ante Partum Haemorrhage", "Post Partum Haemorrhage", "Eclampsia", "Raptured Uterus", "Obstructed Labour", "Sepsis", " " }));
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 2;
+            gridBagConstraints.gridy = 7;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel7.add(deliveryComplicationsCmbx, gridBagConstraints);
+
+            birthDeformitiesCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
+            birthDeformitiesCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Birth deformities"));
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 5;
+            gridBagConstraints.gridy = 0;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel7.add(birthDeformitiesCmbx, gridBagConstraints);
+
+            jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Live", "Dead" }));
+            jComboBox2.setBorder(javax.swing.BorderFactory.createTitledBorder("Neonatal status at discharge"));
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 5;
+            gridBagConstraints.gridy = 1;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel7.add(jComboBox2, gridBagConstraints);
+
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 4;
@@ -3589,14 +3594,14 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             jPanel2.add(jLabel11, gridBagConstraints);
 
-            jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Discharge", "Transferred", "Abscond", "Died" }));
+            admissionOutcomeCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Discharge", "Transferred", "Abscond", "Died" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 7;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-            jPanel2.add(jComboBox4, gridBagConstraints);
+            jPanel2.add(admissionOutcomeCmbx, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -4273,8 +4278,9 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
                     + "service_date,type_of_birth,duration_of_preg,parity,neo_natal_status,"
                     + "admission_outcome,first_stage,second_stage,third_stage,total_time,"
                     + "visit_id, mother_condition, temperature, purlse, respiratory, fundus, pv_loss, bp,"
-                    + "score_one, score_two, score_three, placenta_status, initiated_breast_feeding, given_antibiotic, mid_wife, apgar_score_one)"
-                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    + "score_one, score_two, score_three, placenta_status, initiated_breast_feeding,"
+                            + " given_antibiotic, mid_wife, apgar_score_one, birth_deformities)"
+                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pstmtPostNatal.setObject(1, rhClientCardNoTxt.getText());
             pstmtPostNatal.setObject(2, placeofLastDeliveryTxt.getText());
             pstmtPostNatal.setString(3, birthHelp);
@@ -4282,7 +4288,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
             pstmtPostNatal.setObject(5, "Refferal");
             pstmtPostNatal.setObject(6, pnStateofInfantCmbx.getSelectedItem());
             pstmtPostNatal.setObject(7, pnOtherAssSpecifyTxt.getText());
-            pstmtPostNatal.setObject(8, pnSpecifyComplicationsTxt.getText());
+            pstmtPostNatal.setObject(8, deliveryComplicationsCmbx.getSelectedItem());
             pstmtPostNatal.setDouble(9, java.lang.Double.valueOf(pnWeightofBabyTxt.getText()));
             pstmtPostNatal.setObject(10, pnSexofBabyCmbx.getSelectedItem());
             pstmtPostNatal.setBoolean(11, false);
@@ -4297,9 +4303,9 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
             if (jRadioButton1.isSelected()) {
                 pstmtPostNatal.setObject(20, "Alive");
             } else {
-                pstmtPostNatal.setObject(20, "Died");
+                pstmtPostNatal.setObject(20, "Dead");
             }
-            pstmtPostNatal.setObject(21, jComboBox4.getSelectedItem().toString());
+            pstmtPostNatal.setObject(21, admissionOutcomeCmbx.getSelectedItem().toString());
             pstmtPostNatal.setDouble(22, java.lang.Double.valueOf(jTextField43.getText()));
             pstmtPostNatal.setDouble(23, java.lang.Double.valueOf(jTextField39.getText()));
             pstmtPostNatal.setDouble(24, java.lang.Double.valueOf(jTextField40.getText()));
@@ -4321,6 +4327,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
             pstmtPostNatal.setBoolean(39, givenTetracyclineChkbx.isSelected());
             pstmtPostNatal.setObject(40, midWifeTxt.getText());
             pstmtPostNatal.setInt(41, Integer.parseInt(apgarScoreTxt.getText()));
+            pstmtPostNatal.setObject(42, birthDeformitiesCmbx.getSelectedItem());
 
 
             pstmtPostNatal.execute();
@@ -4351,7 +4358,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
 //            pstmt1xg.setBoolean(1, false);
 //            pstmt1xg.executeUpdate();
 
-            java.sql.PreparedStatement pstmt21 = connectDB.prepareStatement("UPDATE hp_admission SET diagnosed = true, diagnosis1 = '" + pnTypeofDeliveryCmbx.getSelectedItem() + "',diagnosis2 = '" + pnSpecifyComplicationsTxt.getText() + "',diagnosis3 = '" + pnPatholgyDetailsTxt.getText() + "' WHERE patient_no ilike '" + rhClientCardNoTxt.getText() + "' AND visit_id ilike '" + visitIDTxt.getText() + "'");
+            java.sql.PreparedStatement pstmt21 = connectDB.prepareStatement("UPDATE hp_admission SET diagnosed = true, diagnosis1 = '" + pnTypeofDeliveryCmbx.getSelectedItem() + "',diagnosis2 = '" + deliveryComplicationsCmbx.getSelectedItem() + "',diagnosis3 = '" + pnPatholgyDetailsTxt.getText() + "' WHERE patient_no ilike '" + rhClientCardNoTxt.getText() + "' AND visit_id ilike '" + visitIDTxt.getText() + "'");
          //   java.sql.PreparedStatement pstmt21 = connectDB.prepareStatement("UPDATE hp_admission SET discharge = true,diagnosed = true,discharge_date = '" + datePicker3.getDate().toString() + "',discharged_by = current_user,transaction_type = '" + jComboBox4.getSelectedItem() + "', diagnosis1 = '" + pnTypeofDeliveryCmbx.getSelectedItem() + "',diagnosis2 = '" + pnSpecifyComplicationsTxt.getText() + "',diagnosis3 = '" + pnPatholgyDetailsTxt.getText() + "' WHERE patient_no ilike '" + rhClientCardNoTxt.getText() + "' AND visit_id ilike '" + visitIDTxt.getText() + "'");
 
             pstmt21.executeUpdate();
@@ -5331,10 +5338,10 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
         // try {
         // crset4.execute();
         if (this.pnSaveDataBtn.getText().equalsIgnoreCase("Update")) {
-            jComboBox4.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '" + jTextField42.getText() + "' as bed_no UNION ALL select bed_no from hp_bed_setup where ward ='" + admissionWardCmbx.getSelectedItem() + "' and occupied = false and available = 'Available' order by bed_no asc"));
+            admissionOutcomeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '" + jTextField42.getText() + "' as bed_no UNION ALL select bed_no from hp_bed_setup where ward ='" + admissionWardCmbx.getSelectedItem() + "' and occupied = false and available = 'Available' order by bed_no asc"));
 
         } else {
-            jComboBox4.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' as bed_no UNION ALL select bed_no from hp_bed_setup where ward ='" + admissionWardCmbx.getSelectedItem() + "' and occupied = false and available = 'Available' order by bed_no asc"));
+            admissionOutcomeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' as bed_no UNION ALL select bed_no from hp_bed_setup where ward ='" + admissionWardCmbx.getSelectedItem() + "' and occupied = false and available = 'Available' order by bed_no asc"));
             // jComboBox4.setModel(new org.netbeans.lib.sql.models.ComboBoxModel(crset4, "bed_no", null, null, null));
             //}catch (java.sql.SQLException sql){}
         }
@@ -5766,6 +5773,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressTxt;
+    private javax.swing.JComboBox admissionOutcomeCmbx;
     private javax.swing.JComboBox admissionWardCmbx;
     private javax.swing.JTextField ageTxt;
     private javax.swing.JLabel agelabel;
@@ -5775,6 +5783,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField apgarScoreTxt;
     private javax.swing.JComboBox bedCategoryCmbx;
     private javax.swing.JPanel bioDataPanel;
+    private javax.swing.JComboBox birthDeformitiesCmbx;
     private javax.swing.JTextField birthLengthTxt;
     private javax.swing.JTextField birthNotificationNoTxt;
     private javax.swing.JFormattedTextField birthTimeTxt;
@@ -5805,6 +5814,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
     private com.afrisoftech.lib.DatePicker datePicker3;
     private com.afrisoftech.lib.DatePicker datePicker4;
     private com.afrisoftech.lib.DatePicker datePickerYOB;
+    private javax.swing.JComboBox deliveryComplicationsCmbx;
     private javax.swing.JTextField descentofHeadTxt;
     private javax.swing.JTextField dismissalWeightTxt;
     private javax.swing.JButton dispose;
@@ -5848,8 +5858,8 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox jComboBox10;
     private javax.swing.JComboBox jComboBox11;
     private javax.swing.JComboBox jComboBox12;
+    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox4;
     private javax.swing.JComboBox jComboBox5;
     private javax.swing.JComboBox jComboBox8;
     private javax.swing.JComboBox jComboBox9;
@@ -5994,7 +6004,6 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JRadioButton jRadioButton9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTextField1;
@@ -6041,7 +6050,6 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane2;
-    private javax.swing.JTextPane jTextPane3;
     private javax.swing.JTextField liquorTxt;
     private javax.swing.JComboBox locationCmbx;
     private javax.swing.JPanel maritalNOKStatusTab;
@@ -6100,7 +6108,6 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox pnSexofBabyCmbx;
     private javax.swing.JLabel pnSexofBabyLbl;
     private javax.swing.JLabel pnSpecifyComplicationsLbl;
-    private javax.swing.JTextField pnSpecifyComplicationsTxt;
     private javax.swing.JComboBox pnStateofInfantCmbx;
     private javax.swing.JLabel pnStateofInfantLbl;
     private javax.swing.JComboBox pnTypeofDeliveryCmbx;

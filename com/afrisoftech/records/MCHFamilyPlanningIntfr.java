@@ -1128,44 +1128,50 @@ public class MCHFamilyPlanningIntfr extends javax.swing.JInternalFrame {
 }//GEN-LAST:event_ancSearchDialogComponentHidden
 
     private void regClearFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regClearFormBtnActionPerformed
-        hivCounsellingCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Birth Plan", "Danger Signs", "FP", "HIV", "Supplemental Feeding", "Breast Care", "Infant Feeding", "ITN"}));
-        referralOUTCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Y", "N"}));
-        //   serologyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Non Reactive", "Reactive"}));
-        referralINCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "KP", "U"}));
-        //  hivResultCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "NA"}));
-        //  ctxMotherCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        educationLevelCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT edu_name FROM pb_education ORDER BY edu_name"));
-        genderCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Single", "Married", "Divorced", "Window", "Other"}));
-        religionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT religion_name FROM pb_religion ORDER BY religion_name"));
-        occupationCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT occupations FROM pb_occupation ORDER BY occupations"));
-        residenceTxt.setText("");
-//        placeofDeliveryTxt.setText("");
-        fpClinicNumberTxt.setText("");
-        firstNameTxt.setText("");
-        searchANCFileTxt.setText("");
-//        bloodGroupTxt.setText("");
-        middleNameTxt.setText("");
-        lastNameTxt.setText("");
-        addressTxt.setText("");
-        telephoneTxt.setText("");
-        nextTxt.setText("");
-        //  jTextField8.setText("");
-        //  jTextField9.setText("");
-        //  jTextField10.setText("");
-        //  jTextField13.setText("");
-        ageTxt.setText("0");
-        // bloodGroupTxt.setEditable(true);
-        middleNameTxt.setEditable(true);
-        lastNameTxt.setEditable(true);
-        addressTxt.setEditable(true);
-        telephoneTxt.setEditable(true);
-        nextTxt.setEditable(true);
-        ageTxt.setEditable(true);
-        // rhesusFactorTxt.setEditable(true);
-        residenceTxt.setEditable(true);
-        fpClinicNumberTxt.setEditable(true);
-        ancCardSearchField.setEnabled(true);
-        firstNameTxt.setEditable(true);
+        this.getContentPane().removeAll();
+        
+        this.initComponents();
+        
+        this.setSize(this.getParent().getSize());
+        
+//        hivCounsellingCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Birth Plan", "Danger Signs", "FP", "HIV", "Supplemental Feeding", "Breast Care", "Infant Feeding", "ITN"}));
+//        referralOUTCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Y", "N"}));
+//        //   serologyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Non Reactive", "Reactive"}));
+//        referralINCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "KP", "U"}));
+//        //  hivResultCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "NA"}));
+//        //  ctxMotherCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
+//        educationLevelCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT edu_name FROM pb_education ORDER BY edu_name"));
+//        genderCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Single", "Married", "Divorced", "Window", "Other"}));
+//        religionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT religion_name FROM pb_religion ORDER BY religion_name"));
+//        occupationCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT occupations FROM pb_occupation ORDER BY occupations"));
+//        residenceTxt.setText("");
+////        placeofDeliveryTxt.setText("");
+//        fpClinicNumberTxt.setText("");
+//        firstNameTxt.setText("");
+//        searchANCFileTxt.setText("");
+////        bloodGroupTxt.setText("");
+//        middleNameTxt.setText("");
+//        lastNameTxt.setText("");
+//        addressTxt.setText("");
+//        telephoneTxt.setText("");
+//        nextTxt.setText("");
+//        //  jTextField8.setText("");
+//        //  jTextField9.setText("");
+//        //  jTextField10.setText("");
+//        //  jTextField13.setText("");
+//        ageTxt.setText("0");
+//        // bloodGroupTxt.setEditable(true);
+//        middleNameTxt.setEditable(true);
+//        lastNameTxt.setEditable(true);
+//        addressTxt.setEditable(true);
+//        telephoneTxt.setEditable(true);
+//        nextTxt.setEditable(true);
+//        ageTxt.setEditable(true);
+//        // rhesusFactorTxt.setEditable(true);
+//        residenceTxt.setEditable(true);
+//        fpClinicNumberTxt.setEditable(true);
+//        ancCardSearchField.setEnabled(true);
+//        firstNameTxt.setEditable(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_regClearFormBtnActionPerformed
 

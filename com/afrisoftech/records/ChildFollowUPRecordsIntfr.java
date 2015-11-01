@@ -969,32 +969,39 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
 }//GEN-LAST:event_ancSearchDialogComponentHidden
 
     private void regClearFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regClearFormBtnActionPerformed
-        referralOUTCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Y", "N"}));
-        referralINCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "KP", "U"}));
-        typeofFollowupCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT edu_name FROM pb_education ORDER BY edu_name"));
-//        genderCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Single", "Married", "Divorced", "Window", "Other"}));
-//        religionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT religion_name FROM pb_religion ORDER BY religion_name"));
-//        occupationCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT occupations FROM pb_occupation ORDER BY occupations"));
-        residenceTxt.setText("");
-        ancNumberTxt.setText("");
-        firstNameTxt.setText("");
-        searchANCFileTxt.setText("");
-        middleNameTxt.setText("");
-        lastNameTxt.setText("");
-        addressTxt.setText("");
-        telephoneTxt.setText("");
-        nameofFatherTxt.setText("");
-        ageTxt.setText("0");
-        middleNameTxt.setEditable(true);
-        lastNameTxt.setEditable(true);
-        addressTxt.setEditable(true);
-        telephoneTxt.setEditable(true);
-        nameofFatherTxt.setEditable(true);
-        ageTxt.setEditable(true);
-        residenceTxt.setEditable(true);
-        ancNumberTxt.setEditable(true);
-        ancCardSearchField.setEnabled(true);
-        firstNameTxt.setEditable(true);
+
+        this.getContentPane().removeAll();
+        
+        this.initComponents();
+        
+        this.setSize(this.getParent().getSize());
+
+//        referralOUTCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Y", "N"}));
+//        referralINCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "KP", "U"}));
+//        typeofFollowupCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT edu_name FROM pb_education ORDER BY edu_name"));
+////        genderCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Single", "Married", "Divorced", "Window", "Other"}));
+////        religionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT religion_name FROM pb_religion ORDER BY religion_name"));
+////        occupationCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT occupations FROM pb_occupation ORDER BY occupations"));
+//        residenceTxt.setText("");
+//        ancNumberTxt.setText("");
+//        firstNameTxt.setText("");
+//        searchANCFileTxt.setText("");
+//        middleNameTxt.setText("");
+//        lastNameTxt.setText("");
+//        addressTxt.setText("");
+//        telephoneTxt.setText("");
+//        nameofFatherTxt.setText("");
+//        ageTxt.setText("0");
+//        middleNameTxt.setEditable(true);
+//        lastNameTxt.setEditable(true);
+//        addressTxt.setEditable(true);
+//        telephoneTxt.setEditable(true);
+//        nameofFatherTxt.setEditable(true);
+//        ageTxt.setEditable(true);
+//        residenceTxt.setEditable(true);
+//        ancNumberTxt.setEditable(true);
+//        ancCardSearchField.setEnabled(true);
+//        firstNameTxt.setEditable(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_regClearFormBtnActionPerformed
 
