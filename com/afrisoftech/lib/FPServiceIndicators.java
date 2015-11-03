@@ -2519,7 +2519,7 @@ public class FPServiceIndicators {
         int visitCount = 0;
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM social_work_services WHERE service_date BETWEEN ? and ? AND referred_out ilike 'Y'");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM social_work_services WHERE service_date BETWEEN ? and ? AND referrals ilike 'Y'");
 
             pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
 

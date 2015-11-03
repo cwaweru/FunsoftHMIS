@@ -3212,7 +3212,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Pysco-Social Counselling", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getSocialWorkServiceCount(connectDB, beginDate, endDate, "Psycho-Social Counselling")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -3231,7 +3231,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Alcohol and Drug Abuse", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getSocialWorkServiceCount(connectDB, beginDate, endDate, "Alcohol and Drug Abuse")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -3259,7 +3259,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Mental Illness", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getSocialWorkServiceCount(connectDB, beginDate, endDate, "Mental Illness")), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader1);
@@ -3292,7 +3292,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Adolescent Issues", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getSocialWorkServiceCount(connectDB, beginDate, endDate, "Adolescent Issues")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -3326,7 +3326,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Psyco-Social Assessments (psycho, social and economic)", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getSocialWorkServiceCount(connectDB, beginDate, endDate, "Psyco-Social Assessment (psycho, social and economic)")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -3360,7 +3360,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Social Investigations (Home Visits/Follow ups)", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getSocialWorkServiceCount(connectDB, beginDate, endDate, "Social Investigations")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -3395,7 +3395,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Social rehabilitation", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getSocialWorkServiceCount(connectDB, beginDate, endDate, "Social Rehabilitation")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -3428,7 +3428,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Outreach services/Health talks)", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getSocialWorkServiceCount(connectDB, beginDate, endDate, "Outreach Sevices/Health Talks")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -3459,7 +3459,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Referrals", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getSocialWorkServiceReferralsCount(connectDB, beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -3490,7 +3490,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Number of waived patients", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getSocialWorkServiceCount(connectDB, beginDate, endDate, "Waiver appraisal")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
