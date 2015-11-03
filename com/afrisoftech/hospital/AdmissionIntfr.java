@@ -262,6 +262,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         jLabel56 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
         jLabel50 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        patientDisabilityCmbx = new javax.swing.JComboBox();
+        patientDebtTxt = new javax.swing.JTextField();
         jPanel14 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -1811,7 +1814,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             });
             jPanel18.setLayout(new java.awt.GridBagLayout());
 
-            jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter date of birth or patient Age here ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 51, 153)));
+            jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter date of birth or patient Age here ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 51, 153))); // NOI18N
             jPanel15.setLayout(new java.awt.GridBagLayout());
 
             jLabel66.setText("Date of Birth");
@@ -2149,6 +2152,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
 
             jPanel16.setBackground(new java.awt.Color(255, 255, 255));
             jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder("Admission details"));
+            jPanel16.setForeground(new java.awt.Color(255, 0, 51));
             jPanel16.setLayout(new java.awt.GridBagLayout());
 
             jLabel4.setForeground(new java.awt.Color(255, 51, 153));
@@ -2519,12 +2523,41 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             jLabel50.setText("Billing Report on previous admissions");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
-            gridBagConstraints.gridy = 16;
+            gridBagConstraints.gridy = 17;
             gridBagConstraints.gridwidth = 3;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             jPanel16.add(jLabel50, gridBagConstraints);
+
+            jLabel52.setText("Patient with disability");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 3;
+            gridBagConstraints.gridy = 16;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
+            jPanel16.add(jLabel52, gridBagConstraints);
+
+            patientDisabilityCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N", "Y" }));
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 5;
+            gridBagConstraints.gridy = 16;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel16.add(patientDisabilityCmbx, gridBagConstraints);
+
+            patientDebtTxt.setEditable(false);
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 3;
+            gridBagConstraints.gridy = 18;
+            gridBagConstraints.gridwidth = 3;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel16.add(patientDebtTxt, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 2;
@@ -2650,7 +2683,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
             jPanel2.add(nhifChbx, gridBagConstraints);
 
-            jPanel81.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patient Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 255)));
+            jPanel81.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patient Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 255))); // NOI18N
             jPanel81.setLayout(new java.awt.GridBagLayout());
 
             buttonGroup1.add(jCheckBox221);
@@ -6071,6 +6104,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57211;
     private javax.swing.JLabel jLabel58211;
@@ -6196,6 +6230,8 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
     private javax.swing.JDialog opSearchDialog;
     private javax.swing.JTextField opSearchFieldTxt;
     private javax.swing.JTable opSearchTable;
+    private javax.swing.JTextField patientDebtTxt;
+    private javax.swing.JComboBox patientDisabilityCmbx;
     private javax.swing.JTextField patientNumber;
     private javax.swing.JComboBox patientUrgencyCMBX;
     private javax.swing.JComboBox paymentModeCmbx;
@@ -8138,7 +8174,10 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
 
                         selectgender = femaleChkbx.getText();
                     }
-
+                    java.sql.PreparedStatement pstmtDisability = connectDB.prepareStatement("UPDATE hp_patient_register SET patient_disability = ?");
+                    pstmtDisability.setObject(1, this.patientDisabilityCmbx.getSelectedItem());
+                    pstmtDisability.executeUpdate();
+                    
                     com.afrisoftech.reports.PatientRegFormPdf.connectDB = connectDB;
                     com.afrisoftech.reports.PatientRegFormPdf regForm = new com.afrisoftech.reports.PatientRegFormPdf();
                     regForm.callPdf(connectDB, admissionNumber.getText(), "IP");
@@ -8191,7 +8230,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
             javax.swing.JOptionPane.showMessageDialog(this, "Patient is already admitted! You CANNOT have multiple admissions for a patient.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
         }
-
+        
     }
 
     private void resetFields() {

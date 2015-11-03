@@ -3275,14 +3275,14 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("OPD", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getPWDPhysiotherapyServicesCount(connectDB, beginDate, endDate, "OUT", "DISABLED", 0, 5)), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getPWDPhysiotherapyServicesCount(connectDB, beginDate, endDate, "OUT", "DISABLED", 5, 20)), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getPWDPhysiotherapyServicesCount(connectDB, beginDate, endDate, "OUT", "DISABLED", 20, 500)), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -3309,14 +3309,14 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("IN-Patient", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getPWDPhysiotherapyServicesCount(connectDB, beginDate, endDate, "IN", "DISABLED", 0, 5)), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getPWDPhysiotherapyServicesCount(connectDB, beginDate, endDate, "IN", "DISABLED", 5, 20)), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getPWDPhysiotherapyServicesCount(connectDB, beginDate, endDate, "IN", "DISABLED", 20, 500)), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -3343,14 +3343,14 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("OPD", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getPWDPhysiotherapyServicesCount(connectDB, beginDate, endDate, "OUT", "OTHER", 0, 5)), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getPWDPhysiotherapyServicesCount(connectDB, beginDate, endDate, "OUT", "OTHER", 5, 20)), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getPWDPhysiotherapyServicesCount(connectDB, beginDate, endDate, "OUT", "OTHER", 20, 500)), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -3377,14 +3377,14 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("IN-Patient", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getPWDPhysiotherapyServicesCount(connectDB, beginDate, endDate, "IN", "OTHER", 0, 5)), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getPWDPhysiotherapyServicesCount(connectDB, beginDate, endDate, "IN", "OTHER", 5, 20)), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getPWDPhysiotherapyServicesCount(connectDB, beginDate, endDate, "IN", "OTHER", 20, 500)), pFontHeader11);
                                 table.addCell(phrase);
 
 
@@ -3569,7 +3569,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase(" ", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.FPServiceIndicators.getFIFAmountCollected(connectDB, beginDate, endDate)), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(2);
@@ -3600,7 +3600,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase(" ", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.FPServiceIndicators.getFIFWaivedAmount(connectDB, beginDate, endDate)), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(2);
@@ -3629,7 +3629,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase(" ", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.FPServiceIndicators.getFIFExemptedAmount(connectDB, beginDate, endDate)), pFontHeader11);
                                 table.addCell(phrase);
 
                                 

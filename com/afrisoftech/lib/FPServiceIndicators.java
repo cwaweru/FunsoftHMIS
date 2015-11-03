@@ -2496,7 +2496,7 @@ public class FPServiceIndicators {
             pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
 
             pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
-            
+
             pstmt.setString(3, serviceGiven);
 
             java.sql.ResultSet rset = pstmt.executeQuery();
@@ -2514,7 +2514,8 @@ public class FPServiceIndicators {
 
         return visitCount;
     }
-        public static int getSocialWorkServiceReferralsCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+    public static int getSocialWorkServiceReferralsCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
 
         int visitCount = 0;
 
@@ -2540,6 +2541,179 @@ public class FPServiceIndicators {
 
         return visitCount;
     }
-        
-        
+
+    public static int getPWDPhysiotherapyServicesCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, String patientType, String disabledPatient, int lowerAgeLimit, int upperAgeLimit) {
+
+        int visitCount = 0;
+
+        try {
+            if (patientType == "IN") {
+                if (disabledPatient == "DISABLED") {
+                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM ( SELECT DISTINCT patient_no FROM hp_patient_card WHERE date BETWEEN ? and ? AND main_service ilike '%Physiotherapy%' AND patient_no in (SELECT DISTINCT patient_no FROM hp_admission WHERE pat_age::int >= ? AND pat_age::int < ?) AND patient_no in (SELECT patient_no FROM hp_inpatient_register WHERE patient_disability ilike 'Y')) as foo");
+
+                    pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+                    pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+                    pstmt.setInt(3, lowerAgeLimit);
+
+                    pstmt.setInt(4, upperAgeLimit);
+
+                    java.sql.ResultSet rset = pstmt.executeQuery();
+
+                    while (rset.next()) {
+
+                        visitCount = rset.getInt(1);
+
+                    }
+
+                } else {
+                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM ( SELECT DISTINCT patient_no FROM hp_patient_card WHERE date BETWEEN ? and ? AND main_service ilike '%Physiotherapy%' AND patient_no in (SELECT DISTINCT patient_no FROM hp_admission WHERE pat_age::int >= ? AND pat_age::int < ?) AND patient_no in (SELECT patient_no FROM hp_inpatient_register WHERE patient_disability ilike 'N')) as foo");
+
+                    pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+                    pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+                    pstmt.setInt(3, lowerAgeLimit);
+
+                    pstmt.setInt(4, upperAgeLimit);
+
+                    java.sql.ResultSet rset = pstmt.executeQuery();
+
+                    while (rset.next()) {
+
+                        visitCount = rset.getInt(1);
+
+                    }
+                }
+
+            } else {
+                if (disabledPatient == "DISABLED") {
+                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM ( SELECT DISTINCT patient_no FROM ac_cash_collection WHERE date BETWEEN ? and ? AND (select activity FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike '%Physiotherapy%' AND patient_no in (SELECT DISTINCT patient_no FROM hp_patient_visit WHERE age::int >= ? AND age::int < ?)  AND patient_no in (SELECT patient_no FROM hp_patient_register WHERE patient_disability ilike 'Y')) as foo");
+
+                    pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+                    pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+                    pstmt.setInt(3, lowerAgeLimit);
+
+                    pstmt.setInt(4, upperAgeLimit);
+
+                    java.sql.ResultSet rset = pstmt.executeQuery();
+
+                    while (rset.next()) {
+
+                        visitCount = rset.getInt(1);
+
+                    }
+
+                } else {
+                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM ( SELECT DISTINCT patient_no FROM ac_cash_collection WHERE date BETWEEN ? and ? AND (select activity FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike '%Physiotherapy%' AND patient_no in (SELECT DISTINCT patient_no FROM hp_patient_visit WHERE age::int >= ? AND age::int < ?)  AND patient_no in (SELECT patient_no FROM hp_patient_register WHERE patient_disability ilike 'N')) as foo");
+
+                    pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+                    pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+                    pstmt.setInt(3, lowerAgeLimit);
+
+                    pstmt.setInt(4, upperAgeLimit);
+
+                    java.sql.ResultSet rset = pstmt.executeQuery();
+
+                    while (rset.next()) {
+
+                        visitCount = rset.getInt(1);
+
+                    }
+                }
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static double getFIFAmountCollected(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        double fifAmount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT sum(debit-credit) FROM ac_cash_collection WHERE date BETWEEN ? and ? AND transaction_type not ilike 'banking'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                fifAmount = rset.getDouble(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return fifAmount;
+    }
+
+    public static double getFIFWaivedAmount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        double fifAmount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT sum(debit-credit) FROM ac_cash_collection WHERE date BETWEEN ? and ? AND description ilike 'waiver%'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                fifAmount = rset.getDouble(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return fifAmount;
+    }
+
+    public static double getFIFExemptedAmount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        double fifAmount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT sum(debit-credit) FROM ac_cash_collection WHERE date BETWEEN ? and ? AND description ilike 'exemption%'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                fifAmount = rset.getDouble(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return fifAmount;
+    }
 }
