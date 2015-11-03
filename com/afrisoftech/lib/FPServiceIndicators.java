@@ -1862,7 +1862,7 @@ public class FPServiceIndicators {
         int visitCount = 0;
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.fp_services_register WHERE service_date BETWEEN ? and ? AND cervical_cancer_screening ilike '%"+screeningMethod+"%' AND cervical_cancer_screening_result ilike '%"+screeningResult+"%'");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.fp_services_register WHERE service_date BETWEEN ? and ? AND cervical_cancer_screening ilike '%" + screeningMethod + "%' AND cervical_cancer_screening_result ilike '%" + screeningResult + "%'");
 
             pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
 
@@ -1871,7 +1871,6 @@ public class FPServiceIndicators {
 //            pstmt.setString(3, screeningMethod);
 //
 //            pstmt.setString(4, screeningResult);
-
             java.sql.ResultSet rset = pstmt.executeQuery();
 
             while (rset.next()) {
@@ -1893,7 +1892,7 @@ public class FPServiceIndicators {
         int visitCount = 0;
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.fp_services_register WHERE service_date BETWEEN ? and ? AND referral_in ilike '%"+referralType+"%'");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.fp_services_register WHERE service_date BETWEEN ? and ? AND referral_in ilike '%" + referralType + "%'");
 
             pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
 
@@ -1902,7 +1901,6 @@ public class FPServiceIndicators {
 //            pstmt.setString(3, screeningMethod);
 //
 //            pstmt.setString(4, screeningResult);
-
             java.sql.ResultSet rset = pstmt.executeQuery();
 
             while (rset.next()) {
@@ -1924,7 +1922,468 @@ public class FPServiceIndicators {
         int visitCount = 0;
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.fp_services_register WHERE service_date BETWEEN ? and ? AND referral_out ilike '%"+referralFacilityType+"%'");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.fp_services_register WHERE service_date BETWEEN ? and ? AND referral_out ilike '%" + referralFacilityType + "%'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getPNCServicesBreastExamCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.post_natal_follow_up_register WHERE service_date BETWEEN ? and ? AND breast not ilike '-'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getPNCServicesCounselledCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.post_natal_follow_up_register WHERE service_date BETWEEN ? and ? AND counselling not ilike '-'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getPNCServicesHIVTestedCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.post_natal_follow_up_register WHERE service_date BETWEEN ? and ? AND hiv_tested_pnc not ilike 'ND%'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getPNCServicesHIVPositiveCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.post_natal_follow_up_register WHERE service_date BETWEEN ? and ? AND hiv_tested_pnc ilike '%positive%'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getPNCServicesMotherPreventiveARVCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.post_natal_follow_up_register WHERE service_date BETWEEN ? and ? AND mother_preventive ilike 'Y'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getPNCServicesInfantPreventiveARVCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.post_natal_follow_up_register WHERE service_date BETWEEN ? and ? AND infant_preventive ilike 'Y'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getPNCServicesInfantsInitiatedCTXCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.post_natal_follow_up_register WHERE service_date BETWEEN ? and ? AND ctx_to_baby ilike 'Y'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getPNCServicesMothersInitiatedCTXCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.post_natal_follow_up_register WHERE service_date BETWEEN ? and ? AND ctx_to_mother ilike 'Y'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getPNCServicesFistulaCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.post_natal_follow_up_register WHERE service_date BETWEEN ? and ? AND fistula not ilike '-'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getPNCServicesPNCExerciseGivenCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.post_natal_follow_up_register WHERE service_date BETWEEN ? and ? AND pnc_exercise_given ilike 'Y'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getPNCServicesCervicalCancerScreeningCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.post_natal_follow_up_register WHERE service_date BETWEEN ? and ? AND cancer_screening_method not ilike '-'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getPNCServicesCervicalCancerScreeningResultCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, String cancerScreeningResult) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.post_natal_follow_up_register WHERE service_date BETWEEN ? and ? AND cancer_screening_results ilike ?");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            pstmt.setString(3, cancerScreeningResult);
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getPNCServicesPartnerHIVCounselledCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.post_natal_follow_up_register WHERE service_date BETWEEN ? and ? AND partner_hiv_counselled ilike 'Y'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getPNCServicesPartnerHIVTestedCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.post_natal_follow_up_register WHERE service_date BETWEEN ? and ? AND partner_hiv_tested ilike 'Y'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getPNCServicesPartnerHIVPositiveCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.post_natal_follow_up_register WHERE service_date BETWEEN ? and ? AND partner_hiv_results ilike 'P'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getPNCServicesReferralsINCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, String referralType) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.post_natal_follow_up_register WHERE service_date BETWEEN ? and ? AND referred_from ilike '%" + referralType + "%'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getPNCServicesReferralsOUTCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, String referralType) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.post_natal_follow_up_register WHERE service_date BETWEEN ? and ? AND referred_to ilike '%" + referralType + "%'");
 
             pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
 

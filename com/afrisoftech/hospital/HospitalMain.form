@@ -2231,13 +2231,26 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="communityHealthRegistermnitActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="houseHoldRehistermnit">
+                <MenuItem class="javax.swing.JMenuItem" name="houseHoldRegistermnit">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="House Hold Register"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="houseHoldRehistermnitActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="houseHoldRegistermnitActionPerformed"/>
                   </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="rehabilitationServicesmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Rehabilitation Services"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rehabilitationServicesmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="socialWorkServicesmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Social Work Services"/>
+                  </Properties>
                 </MenuItem>
               </SubComponents>
             </Menu>

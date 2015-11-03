@@ -124,6 +124,10 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
         ctxBabyCmbx = new javax.swing.JComboBox();
         jLabel28 = new javax.swing.JLabel();
         nvpBabyCmbx = new javax.swing.JComboBox();
+        jLabel10 = new javax.swing.JLabel();
+        motherPreventiveARVCmbx = new javax.swing.JComboBox();
+        jLabel11 = new javax.swing.JLabel();
+        babyPreventiveARVCmbx = new javax.swing.JComboBox();
         jPanel5 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
@@ -1081,7 +1085,7 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
             jLabel23.setText("CTX to Mother");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 1;
+            gridBagConstraints.gridy = 4;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -1091,7 +1095,7 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
             ctxMotherCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 1;
+            gridBagConstraints.gridy = 4;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -1100,7 +1104,7 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
             jLabel24.setText("CTX to Baby");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 2;
+            gridBagConstraints.gridy = 5;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -1110,7 +1114,7 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
             ctxBabyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 2;
+            gridBagConstraints.gridy = 5;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -1134,6 +1138,44 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             jPanel4.add(nvpBabyCmbx, gridBagConstraints);
+
+            jLabel10.setText("Mother issued with preventive ARV");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 0;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+            jPanel4.add(jLabel10, gridBagConstraints);
+
+            motherPreventiveARVCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Y", "N" }));
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 1;
+            gridBagConstraints.gridy = 0;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel4.add(motherPreventiveARVCmbx, gridBagConstraints);
+
+            jLabel11.setText("Infant issued with preventive ARV");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 1;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+            jPanel4.add(jLabel11, gridBagConstraints);
+
+            babyPreventiveARVCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Y", "N" }));
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 1;
+            gridBagConstraints.gridy = 1;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel4.add(babyPreventiveARVCmbx, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -1164,7 +1206,7 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             jPanel5.add(jLabel30, gridBagConstraints);
 
-            cancerScreeningResultCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "P" }));
+            cancerScreeningResultCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "P", "Suspected" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 1;
@@ -1653,7 +1695,7 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
                         + "            partner_hiv_tested, partner_hiv_results, cancer_screening_method, "
                         + "            cancer_screening_results, pnc_exercise_given, vitamina_supplimentation, "
                         + "            modern_fp_method, multi_vitamin, haemantics, diagnosis, referred_from, "
-                        + "            referred_to, remarks)"
+                        + "            referred_to, remarks, counselled, mother_preventive, infant_preventive)"
                         + "    VALUES (?, ?, ?, ?, ?, "
                         + "            ?, ?, ?, ?, ?, ?, "
                         + "            ?, ?, ?, ?, "
@@ -1663,7 +1705,7 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
                         + "            ?, ?, ?, ?, "
                         + "            ?, ?, ?, "
                         + "            ?, ?, ?, "
-                        + "            ?, ?, ?, ?)");
+                        + "            ?, ?, ?, ?, ?, ?, ?)");
                 pstmtMotherInfo.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(ancVisitDatePicker.getDate()));
                 pstmtMotherInfo.setString(2, patientNumberTxt.getText());
                 pstmtMotherInfo.setString(3, ancNumberTxt.getText());
@@ -1710,6 +1752,9 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
                 pstmtMotherInfo.setObject(44, referralINCmbx.getSelectedItem());
                 pstmtMotherInfo.setObject(45, referralOUTCmbx.getSelectedItem());
                 pstmtMotherInfo.setObject(46, commentsTextPaneTxt.getText());
+                pstmtMotherInfo.setObject(47, counsellingCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(48, motherPreventiveARVCmbx.getSelectedItem());
+                pstmtMotherInfo.setObject(49, babyPreventiveARVCmbx.getSelectedItem());
                 pstmtMotherInfo.execute();
           //  this.initComponents();
                 //  this.setSize(com.afrisoftech.hospital.HospitalMain.saccopn.getSize());
@@ -2178,6 +2223,7 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel ancVisitDateLbl;
     private javax.swing.JLabel ancVisitDateLbl1;
     private com.afrisoftech.lib.DatePicker ancVisitDatePicker;
+    private javax.swing.JComboBox babyPreventiveARVCmbx;
     private javax.swing.JComboBox bloodGoupCmbx;
     private javax.swing.JLabel bloodGroupLbl;
     private javax.swing.JLabel bloodPressureLbl;
@@ -2219,6 +2265,8 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel howclientKnewcentreLbl;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -2263,6 +2311,7 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField middleNameTxt;
     private javax.swing.JComboBox modernFPMethodCmbx;
     private javax.swing.JLabel motherLbl;
+    private javax.swing.JComboBox motherPreventiveARVCmbx;
     private javax.swing.JComboBox multiVitaminCmbx;
     private javax.swing.JTextField nextTxt;
     private javax.swing.JComboBox nvpBabyCmbx;

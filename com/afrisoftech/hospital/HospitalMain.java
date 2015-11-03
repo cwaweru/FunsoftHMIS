@@ -670,6 +670,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
      */
     /**
      * Creates new form medic
+     *
      * @param connDB
      * @param acrobatPath
      * @param pconnDB
@@ -1334,7 +1335,9 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         jSeparator29 = new javax.swing.JSeparator();
         communityHealthmn = new javax.swing.JMenu();
         communityHealthRegistermnit = new javax.swing.JMenuItem();
-        houseHoldRehistermnit = new javax.swing.JMenuItem();
+        houseHoldRegistermnit = new javax.swing.JMenuItem();
+        rehabilitationServicesmnit = new javax.swing.JMenuItem();
+        socialWorkServicesmnit = new javax.swing.JMenuItem();
         jSeparator100 = new javax.swing.JPopupMenu.Separator();
         morturymn = new javax.swing.JMenu();
         admissmnit = new javax.swing.JMenuItem();
@@ -4677,13 +4680,24 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         communityHealthmn.add(communityHealthRegistermnit);
 
-        houseHoldRehistermnit.setText("House Hold Register");
-        houseHoldRehistermnit.addActionListener(new java.awt.event.ActionListener() {
+        houseHoldRegistermnit.setText("House Hold Register");
+        houseHoldRegistermnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                houseHoldRehistermnitActionPerformed(evt);
+                houseHoldRegistermnitActionPerformed(evt);
             }
         });
-        communityHealthmn.add(houseHoldRehistermnit);
+        communityHealthmn.add(houseHoldRegistermnit);
+
+        rehabilitationServicesmnit.setText("Rehabilitation Services");
+        rehabilitationServicesmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rehabilitationServicesmnitActionPerformed(evt);
+            }
+        });
+        communityHealthmn.add(rehabilitationServicesmnit);
+
+        socialWorkServicesmnit.setText("Social Work Services");
+        communityHealthmn.add(socialWorkServicesmnit);
 
         emrmn.add(communityHealthmn);
         emrmn.add(jSeparator100);
@@ -20737,7 +20751,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         try {
             dismth.setSelected(true);
         } catch (java.beans.PropertyVetoException pvt) {
-            
+
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_immunisationProceduresmnitActionPerformed
@@ -20749,7 +20763,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         try {
             dismth.setSelected(true);
         } catch (java.beans.PropertyVetoException pvt) {
-            
+
         }       // TODO add your handling code here:
     }//GEN-LAST:event_immunisationmnitActionPerformed
 
@@ -20765,7 +20779,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         try {
             dismth.setSelected(true);
         } catch (java.beans.PropertyVetoException pvt) {
-            
+
         }        // TODO add your handling code here:
     }//GEN-LAST:event_cwcRegistermnitActionPerformed
 
@@ -20776,7 +20790,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         try {
             dismth.setSelected(true);
         } catch (java.beans.PropertyVetoException pvt) {
-            
+
         }         // TODO add your handling code here:
     }//GEN-LAST:event_cwcIndicatormnitActionPerformed
 
@@ -20787,7 +20801,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         try {
             dismth.setSelected(true);
         } catch (java.beans.PropertyVetoException pvt) {
-            
+
         }        // TODO add your handling code here:
     }//GEN-LAST:event_fpRHServicesmnitActionPerformed
 
@@ -20798,7 +20812,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         try {
             dismth.setSelected(true);
         } catch (java.beans.PropertyVetoException pvt) {
-            
+
         }        // TODO add your handling code here:
     }//GEN-LAST:event_fpIndicatorsSetupmnitActionPerformed
 
@@ -20809,20 +20823,20 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         try {
             dismth.setSelected(true);
         } catch (java.beans.PropertyVetoException pvt) {
-            
+
         }    // TODO add your handling code here:
     }//GEN-LAST:event_communityHealthRegistermnitActionPerformed
 
-    private void houseHoldRehistermnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_houseHoldRehistermnitActionPerformed
-         com.afrisoftech.records.CHWHouseHoldRegisterIntfr dismth = new com.afrisoftech.records.CHWHouseHoldRegisterIntfr(connectDB);
+    private void houseHoldRegistermnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_houseHoldRegistermnitActionPerformed
+        com.afrisoftech.records.CHWHouseHoldRegisterIntfr dismth = new com.afrisoftech.records.CHWHouseHoldRegisterIntfr(connectDB);
         saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
         dismth.setSize(saccopn.getSize());
         try {
             dismth.setSelected(true);
         } catch (java.beans.PropertyVetoException pvt) {
-            
+
         }       // TODO add your handling code here:
-    }//GEN-LAST:event_houseHoldRehistermnitActionPerformed
+    }//GEN-LAST:event_houseHoldRegistermnitActionPerformed
 
     private void gisReportermnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gisReportermnitActionPerformed
         com.afrisoftech.reports.emr.GISReporter dismth = new com.afrisoftech.reports.emr.GISReporter(connectDB);
@@ -20831,9 +20845,21 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         try {
             dismth.setSelected(true);
         } catch (java.beans.PropertyVetoException pvt) {
-            
+
         }       // TODO add your handling code here:
     }//GEN-LAST:event_gisReportermnitActionPerformed
+
+    private void rehabilitationServicesmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rehabilitationServicesmnitActionPerformed
+        com.afrisoftech.records.RehabilitationServicesIntfr dismth = new com.afrisoftech.records.RehabilitationServicesIntfr(connectDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rehabilitationServicesmnitActionPerformed
 
     /**
      * Exit the Application
@@ -21776,12 +21802,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
      *
      * }
      */
-
     /**
      *
      * @return
      */
-    
     public static org.netbeans.lib.sql.pool.PooledConnectionSource getPooledConnectionSource() {
 
         org.netbeans.lib.sql.pool.PooledConnectionSource pooledConnectionSource1 = new org.netbeans.lib.sql.pool.PooledConnectionSource();
@@ -22053,7 +22077,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                                 }
 
                             } catch (SQLException ex) {
-                               // ex.printStackTrace();
+                                // ex.printStackTrace();
                                 javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
                                 Exceptions.printStackTrace(ex);
                                 System.exit(1);
@@ -22083,7 +22107,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), IOExec.getMessage());
 
         }
-        
+
     }
 
     class ProgressThread extends java.lang.Thread {
@@ -22864,16 +22888,16 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                  */
                 createTableData(),
                 new String[]{
-            "Column Name", "Include"
-        }) {
-            Class[] types = new Class[]{
-                java.lang.Object.class, java.lang.Boolean.class
-            };
+                    "Column Name", "Include"
+                }) {
+                    Class[] types = new Class[]{
+                        java.lang.Object.class, java.lang.Boolean.class
+                    };
 
-            public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
-            }
-        });
+                    public Class getColumnClass(int columnIndex) {
+                        return types[columnIndex];
+                    }
+                });
 
     }
 
@@ -22886,16 +22910,16 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                  */
                 createTableDataChartDefiner(),
                 new String[]{
-            "Column Name", "Include"
-        }) {
-            Class[] types = new Class[]{
-                java.lang.Object.class, java.lang.Boolean.class
-            };
+                    "Column Name", "Include"
+                }) {
+                    Class[] types = new Class[]{
+                        java.lang.Object.class, java.lang.Boolean.class
+                    };
 
-            public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
-            }
-        });
+                    public Class getColumnClass(int columnIndex) {
+                        return types[columnIndex];
+                    }
+                });
 
     }
 
@@ -23352,9 +23376,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                         supp1 = Integer.valueOf(rsetTablez.getObject(1).toString());
                     }
 
-
                     JOptionPane.showMessageDialog(this, "You currently have approximately [" + supp + "] IRQs and [" + supp1 + "] PRQs to approve");
-
 
                 } catch (SQLException ex) {
                     //Exceptions.printStackTrace(ex);
@@ -23365,8 +23387,6 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         }
 
         k = 20;
-
-
 
     }
 
@@ -24866,7 +24886,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenu helpmn;
     private javax.swing.JMenuItem hlpcontmnit;
     private javax.swing.JMenuItem hosptalmnit;
-    private javax.swing.JMenuItem houseHoldRehistermnit;
+    private javax.swing.JMenuItem houseHoldRegistermnit;
     private javax.swing.JMenuBar hrMenuBar;
     private javax.swing.ButtonGroup hrPopupButtonGroup;
     private javax.swing.JPopupMenu hrmPopupMenu;
@@ -25327,6 +25347,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem refferalsmnit;
     private javax.swing.JMenuItem refundsmnit;
     private javax.swing.JMenuItem registersmnit;
+    private javax.swing.JMenuItem rehabilitationServicesmnit;
     private javax.swing.JMenuItem rehabmnitmnit;
     private javax.swing.JMenuItem releasepapermnit;
     private javax.swing.JMenuItem religionmnit;
@@ -25414,6 +25435,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JComboBox smsBroadcastTargetCmbx;
     private javax.swing.JMenuItem smsFetchSnoozePeriodmnit;
     private javax.swing.JMenuItem smsGroupsmnit;
+    private javax.swing.JMenuItem socialWorkServicesmnit;
     private javax.swing.JLabel spacerLbls;
     private javax.swing.JPanel spacerPanel;
     private javax.swing.JMenuItem specimensmnit;
