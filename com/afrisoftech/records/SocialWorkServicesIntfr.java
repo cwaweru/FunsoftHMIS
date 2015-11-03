@@ -12,14 +12,14 @@ import org.openide.util.Exceptions;
  *
  * @author Charles Waweru <cwaweru@systempartners.biz>
  */
-public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
+public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
 
     java.sql.Connection connectDB = null;
 
     /**
      * Creates new form RehabilitationServicesIntfr
      */
-    public RehabilitationServicesIntfr(java.sql.Connection connDB) {
+    public SocialWorkServicesIntfr(java.sql.Connection connDB) {
 
         connectDB = connDB;
 
@@ -69,16 +69,15 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         remarksScrollPane = new javax.swing.JScrollPane();
         remarksTxt = new javax.swing.JTextArea();
         integrationScrollPane = new javax.swing.JScrollPane();
-        integrationRemarksTxt = new javax.swing.JTextArea();
+        referralRemarksTxt = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
-        assessmentChkbx = new javax.swing.JCheckBox();
-        treatmentChkbx = new javax.swing.JCheckBox();
-        rehabilitationChkbx = new javax.swing.JCheckBox();
         referralsLbl = new javax.swing.JLabel();
         referralsCmbx = new javax.swing.JComboBox();
         serviceDatePicker = new com.afrisoftech.lib.DatePicker();
         serviceDateLbl = new javax.swing.JLabel();
         integrationChbx = new javax.swing.JCheckBox();
+        serviceGivenLbl = new javax.swing.JLabel();
+        servicesGivenCmbx = new javax.swing.JComboBox();
 
         patientSearchdlg.setUndecorated(true);
         patientSearchdlg.getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -100,7 +99,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         patientSearchPanel.add(patientSearchTxt, gridBagConstraints);
 
-        patientSearchTbl.setToolTipText(org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.patientSearchTbl.toolTipText")); // NOI18N
+        patientSearchTbl.setToolTipText(org.openide.util.NbBundle.getMessage(SocialWorkServicesIntfr.class, "RehabilitationServicesIntfr.patientSearchTbl.toolTipText")); // NOI18N
         patientSearchTbl.setShowHorizontalLines(false);
         /*javax.swing.table.TableColumn column = null;
 
@@ -135,7 +134,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         patientSearchPanel.add(patientSearchScrollPane, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(selectBtn, org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.selectBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(selectBtn, org.openide.util.NbBundle.getMessage(SocialWorkServicesIntfr.class, "RehabilitationServicesIntfr.selectBtn.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -143,7 +142,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         patientSearchPanel.add(selectBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeDialogBtn, org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.closeDialogBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(closeDialogBtn, org.openide.util.NbBundle.getMessage(SocialWorkServicesIntfr.class, "RehabilitationServicesIntfr.closeDialogBtn.text")); // NOI18N
         closeDialogBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeDialogBtnActionPerformed(evt);
@@ -168,14 +167,14 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle(org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.title")); // NOI18N
+        setTitle("Medical Social Work Services Register");
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         buttonPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         buttonPanel.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(saveBtn, org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.saveBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(saveBtn, "Save social services data");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveBtnActionPerformed(evt);
@@ -188,7 +187,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         buttonPanel.add(saveBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(clearFormBtn, org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.clearFormBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(clearFormBtn, "Clear form");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -196,7 +195,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         buttonPanel.add(clearFormBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeBtn, org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.closeBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(closeBtn, "Close form");
         closeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeBtnActionPerformed(evt);
@@ -209,7 +208,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         buttonPanel.add(closeBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.jLabel1.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(SocialWorkServicesIntfr.class, "RehabilitationServicesIntfr.jLabel1.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -228,11 +227,11 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
 
         headerPanel.setLayout(new java.awt.GridBagLayout());
 
-        jPanel42.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.jPanel42.border.title"))); // NOI18N
+        jPanel42.setBorder(javax.swing.BorderFactory.createTitledBorder("Search patient file here"));
         jPanel42.setLayout(new java.awt.GridBagLayout());
 
         patientNoTxt.setEditable(false);
-        patientNoTxt.setToolTipText(org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.patientNoTxt.toolTipText")); // NOI18N
+        patientNoTxt.setToolTipText(org.openide.util.NbBundle.getMessage(SocialWorkServicesIntfr.class, "RehabilitationServicesIntfr.patientNoTxt.toolTipText")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -242,7 +241,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         jPanel42.add(patientNoTxt, gridBagConstraints);
 
         searchButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
-        searchButton2.setToolTipText(org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.searchButton2.toolTipText")); // NOI18N
+        searchButton2.setToolTipText(org.openide.util.NbBundle.getMessage(SocialWorkServicesIntfr.class, "RehabilitationServicesIntfr.searchButton2.toolTipText")); // NOI18N
         searchButton2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         searchButton2.setMaximumSize(new java.awt.Dimension(74, 53));
         searchButton2.setMinimumSize(new java.awt.Dimension(74, 53));
@@ -265,12 +264,12 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(jPanel42, gridBagConstraints);
 
-        searchCriteria.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.searchCriteria.border.title"))); // NOI18N
+        searchCriteria.setBorder(javax.swing.BorderFactory.createTitledBorder("Search By"));
         searchCriteria.setLayout(new java.awt.GridBagLayout());
 
         buttonGroup3.add(searchByNumberChkbx);
         searchByNumberChkbx.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(searchByNumberChkbx, org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.searchByNumberChkbx.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(searchByNumberChkbx, "Search By  No.");
         searchByNumberChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -280,7 +279,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         searchCriteria.add(searchByNumberChkbx, gridBagConstraints);
 
         buttonGroup3.add(searchByNameChkbx);
-        org.openide.awt.Mnemonics.setLocalizedText(searchByNameChkbx, org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.searchByNameChkbx.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(searchByNameChkbx, "Search By Name");
         searchByNameChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -289,7 +288,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         searchCriteria.add(searchByNameChkbx, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(confirmVisitRdbtn, org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.confirmVisitRdbtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(confirmVisitRdbtn, "Confirm Visit");
         confirmVisitRdbtn.setEnabled(false);
         confirmVisitRdbtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         confirmVisitRdbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -311,12 +310,12 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         headerPanel.add(searchCriteria, gridBagConstraints);
 
-        patientCategoryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.patientCategoryPanel.border.title"))); // NOI18N
+        patientCategoryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Patient category"));
         patientCategoryPanel.setLayout(new java.awt.GridBagLayout());
 
         buttonGroup2.add(outptChkbx);
         outptChkbx.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(outptChkbx, org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.outptChkbx.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(outptChkbx, "Out Patient");
         outptChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         outptChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,7 +328,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         patientCategoryPanel.add(outptChkbx, gridBagConstraints);
 
         buttonGroup2.add(walkinPtbx);
-        org.openide.awt.Mnemonics.setLocalizedText(walkinPtbx, org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.walkinPtbx.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(walkinPtbx, "Walk In Patient");
         walkinPtbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         walkinPtbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -344,7 +343,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         patientCategoryPanel.add(walkinPtbx, gridBagConstraints);
 
         buttonGroup2.add(inPatientChkbx);
-        org.openide.awt.Mnemonics.setLocalizedText(inPatientChkbx, org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.inPatientChkbx.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(inPatientChkbx, "In Patient");
         inPatientChkbx.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         inPatientChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         inPatientChkbx.addActionListener(new java.awt.event.ActionListener() {
@@ -368,8 +367,8 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         headerPanel.add(patientCategoryPanel, gridBagConstraints);
 
         patientNameTxt.setEditable(false);
-        patientNameTxt.setText(org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.patientNameTxt.text")); // NOI18N
-        patientNameTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.patientNameTxt.border.title"))); // NOI18N
+        patientNameTxt.setText(org.openide.util.NbBundle.getMessage(SocialWorkServicesIntfr.class, "RehabilitationServicesIntfr.patientNameTxt.text")); // NOI18N
+        patientNameTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Patient Names"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -389,7 +388,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         bodyPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         bodyPanel.setLayout(new java.awt.GridBagLayout());
 
-        remarksScrollPane.setViewportBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.remarksScrollPane.viewportBorder.title"))); // NOI18N
+        remarksScrollPane.setViewportBorder(javax.swing.BorderFactory.createTitledBorder("Social Service Remarks"));
 
         remarksTxt.setColumns(20);
         remarksTxt.setRows(5);
@@ -403,11 +402,11 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         bodyPanel.add(remarksScrollPane, gridBagConstraints);
 
-        integrationScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.integrationScrollPane.border.title"))); // NOI18N
+        integrationScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Referral Remarks"));
 
-        integrationRemarksTxt.setColumns(20);
-        integrationRemarksTxt.setRows(5);
-        integrationScrollPane.setViewportView(integrationRemarksTxt);
+        referralRemarksTxt.setColumns(20);
+        referralRemarksTxt.setRows(5);
+        integrationScrollPane.setViewportView(referralRemarksTxt);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -420,40 +419,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        buttonGroup1.add(assessmentChkbx);
-        assessmentChkbx.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(assessmentChkbx, org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.assessmentChkbx.text")); // NOI18N
-        assessmentChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel1.add(assessmentChkbx, gridBagConstraints);
-
-        buttonGroup1.add(treatmentChkbx);
-        org.openide.awt.Mnemonics.setLocalizedText(treatmentChkbx, org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.treatmentChkbx.text")); // NOI18N
-        treatmentChkbx.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        treatmentChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel1.add(treatmentChkbx, gridBagConstraints);
-
-        buttonGroup1.add(rehabilitationChkbx);
-        org.openide.awt.Mnemonics.setLocalizedText(rehabilitationChkbx, org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.rehabilitationChkbx.text")); // NOI18N
-        rehabilitationChkbx.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        rehabilitationChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel1.add(rehabilitationChkbx, gridBagConstraints);
-
-        org.openide.awt.Mnemonics.setLocalizedText(referralsLbl, org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.referralsLbl.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(referralsLbl, "Referral made");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -471,7 +437,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(serviceDatePicker, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(serviceDateLbl, org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.serviceDateLbl.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(serviceDateLbl, "Service date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -479,7 +445,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(serviceDateLbl, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(integrationChbx, org.openide.util.NbBundle.getMessage(RehabilitationServicesIntfr.class, "RehabilitationServicesIntfr.integrationChbx.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(integrationChbx, "Integrated to community");
         integrationChbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         integrationChbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -492,6 +458,22 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(integrationChbx, gridBagConstraints);
+
+        org.openide.awt.Mnemonics.setLocalizedText(serviceGivenLbl, "Service given");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        jPanel1.add(serviceGivenLbl, gridBagConstraints);
+
+        servicesGivenCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Adolescent Issues", "Alcohol and Drug Abuse", "Mental Illness", "Outreach Sevices/Health Talks", "Psyco-Social Assessment (psycho, social and economic)", "Psycho-Social Counselling", "Social Investigations", "Social Rehabilitation", "Waiver appraisal", "Others (Specify in remarks section)", " ", " " }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(servicesGivenCmbx, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -638,39 +620,25 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_closeDialogBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        if(!patientNoTxt.getText().isEmpty() && !patientNameTxt.getText().isEmpty()){
-        try {
-            java.sql.PreparedStatement pstmtRehab = connectDB.prepareStatement("INSERT INTO rehabilitation_services("
-                    + "            patient_no, patient_names, service_given, remarks, "
-                    + "            service_date, referred_out, "
-                    + "            integrated_to_community, inegration_comment)"
-                    + "    VALUES (?, ?, ?, ?, ?, "
-                    + "            ?, ?, ? "
-                    + "            )");
-            pstmtRehab.setString(1, patientNoTxt.getText());
-            pstmtRehab.setString(2, patientNameTxt.getText());
-            if (assessmentChkbx.isSelected()) {
-                pstmtRehab.setString(3, "Assessment");
-            } else if (treatmentChkbx.isSelected()) {
-                pstmtRehab.setString(3, "Treated");
-            } else {
-                pstmtRehab.setString(3, "Rehabilitated");
+        if (!patientNoTxt.getText().isEmpty() && !patientNameTxt.getText().isEmpty()) {
+            try {
+                java.sql.PreparedStatement pstmtRehab = connectDB.prepareStatement("INSERT INTO social_work_services("
+                        + "            patient_no, patient_names, service_date, service_given, remarks, "
+                        + "             referrals, referral_remarks)"
+                        + "    VALUES (?, ?, ?, ?, ?, ?, ?)");
+                pstmtRehab.setString(1, patientNoTxt.getText());
+                pstmtRehab.setString(2, patientNameTxt.getText());
+                pstmtRehab.setDate(3, com.afrisoftech.lib.SQLDateFormat.getSQLDate(serviceDatePicker.getDate()));
+                pstmtRehab.setObject(4, servicesGivenCmbx.getSelectedItem());
+                pstmtRehab.setString(5, remarksTxt.getText());
+                pstmtRehab.setString(6, referralsCmbx.getSelectedItem().toString());
+                pstmtRehab.setString(7, referralRemarksTxt.getText());
+                pstmtRehab.execute();
+                javax.swing.JOptionPane.showMessageDialog(this, "Social work data registered successfully");
+            } catch (java.sql.SQLException sq) {
+                sq.printStackTrace();
+                javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage());
             }
-            pstmtRehab.setString(4, remarksTxt.getText());
-            pstmtRehab.setDate(5, com.afrisoftech.lib.SQLDateFormat.getSQLDate(serviceDatePicker.getDate()));
-            pstmtRehab.setString(6, referralsCmbx.getSelectedItem().toString());
-            if (integrationChbx.isSelected()) {
-                pstmtRehab.setString(7, "Y");
-            } else {
-                pstmtRehab.setString(7, "N");
-            }
-            pstmtRehab.setString(8, integrationRemarksTxt.getText());
-            pstmtRehab.execute();
-            javax.swing.JOptionPane.showMessageDialog(this, "Rehabilitation work data registered successfully");
-        } catch (java.sql.SQLException sq) {
-            sq.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage());
-        }
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "You MUST fill in the client number and name!");
         }
@@ -695,7 +663,6 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         patientSearchdlg.setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox assessmentChkbx;
     private javax.swing.JPanel bodyPanel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -708,7 +675,6 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel headerPanel;
     private javax.swing.JCheckBox inPatientChkbx;
     private javax.swing.JCheckBox integrationChbx;
-    private javax.swing.JTextArea integrationRemarksTxt;
     private javax.swing.JScrollPane integrationScrollPane;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -722,9 +688,9 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTable patientSearchTbl;
     private javax.swing.JTextField patientSearchTxt;
     public static javax.swing.JDialog patientSearchdlg;
+    private javax.swing.JTextArea referralRemarksTxt;
     private javax.swing.JComboBox referralsCmbx;
     private javax.swing.JLabel referralsLbl;
-    private javax.swing.JCheckBox rehabilitationChkbx;
     private javax.swing.JScrollPane remarksScrollPane;
     private javax.swing.JTextArea remarksTxt;
     private javax.swing.JButton saveBtn;
@@ -735,7 +701,8 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton selectBtn;
     private javax.swing.JLabel serviceDateLbl;
     private com.afrisoftech.lib.DatePicker serviceDatePicker;
-    private javax.swing.JCheckBox treatmentChkbx;
+    private javax.swing.JLabel serviceGivenLbl;
+    private javax.swing.JComboBox servicesGivenCmbx;
     private javax.swing.JCheckBox walkinPtbx;
     // End of variables declaration//GEN-END:variables
 }

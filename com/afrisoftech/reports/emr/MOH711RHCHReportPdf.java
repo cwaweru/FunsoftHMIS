@@ -3103,7 +3103,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Number assessed", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getRehabilitationAssessmentCount(connectDB, beginDate, endDate, "Assessed")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -3132,7 +3132,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Number Treated", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getRehabilitationAssessmentCount(connectDB, beginDate, endDate, "Treated")), pFontHeader1);
                                 table.addCell(phrase);
 
 
@@ -3162,7 +3162,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Number Rehabilitated", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getRehabilitationAssessmentCount(connectDB, beginDate, endDate, "Rehabilitated")), pFontHeader1);
                                 table.addCell(phrase);
 
 
@@ -3181,7 +3181,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Number referred for further investigations", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getRehabilitationReferralsCount(connectDB, beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(5);
@@ -3202,7 +3202,7 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Number integrated to communities", pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getRehabilitationCommunityIntegrationCount(connectDB, beginDate, endDate)), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);

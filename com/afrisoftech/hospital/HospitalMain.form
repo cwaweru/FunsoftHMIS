@@ -2251,6 +2251,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Social Work Services"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="socialWorkServicesmnitActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -6902,7 +6905,7 @@
                     </MenuItem>
                     <MenuItem class="javax.swing.JMenuItem" name="bsmvmnit">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Balance Sheet Mov&apos;nt"/>
+                        <Property name="text" type="java.lang.String" value="Balance Sheet Movnt"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bsmvmnitActionPerformed"/>

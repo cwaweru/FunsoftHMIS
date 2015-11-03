@@ -1435,7 +1435,7 @@ public class HRMain extends javax.swing.JFrame {
         });
         hrLeave1.add(hrLeaveApplicationFormmnit);
 
-        leaveApplicantListmnit.setText("Recommend Applicant's Leave");
+        leaveApplicantListmnit.setText("Recommend Applicant Leave");
         leaveApplicantListmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 leaveApplicantListmnitActionPerformed(evt);

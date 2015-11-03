@@ -2404,4 +2404,142 @@ public class FPServiceIndicators {
 
         return visitCount;
     }
+
+    public static int getRehabilitationAssessmentCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, String serviceType) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rehabilitation_services WHERE service_date BETWEEN ? and ? AND service_given ilike '%" + serviceType + "%'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getRehabilitationReferralsCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rehabilitation_services WHERE service_date BETWEEN ? and ? AND referred_out ilike '%investigations%'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getRehabilitationCommunityIntegrationCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rehabilitation_services WHERE service_date BETWEEN ? and ? AND integrated_to_community ilike 'Y'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+
+    public static int getSocialWorkServiceCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate, String serviceGiven) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM social_work_services WHERE service_date BETWEEN ? and ? AND service_given ilike ?");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+            
+            pstmt.setString(3, serviceGiven);
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+        public static int getSocialWorkServiceReferralsCount(java.sql.Connection connectDB, java.util.Date beginDate, java.util.Date endDate) {
+
+        int visitCount = 0;
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM social_work_services WHERE service_date BETWEEN ? and ? AND referred_out ilike 'Y'");
+
+            pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+            pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+
+                visitCount = rset.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+
+        return visitCount;
+    }
+        
+        
 }

@@ -4697,6 +4697,11 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         communityHealthmn.add(rehabilitationServicesmnit);
 
         socialWorkServicesmnit.setText("Social Work Services");
+        socialWorkServicesmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                socialWorkServicesmnitActionPerformed(evt);
+            }
+        });
         communityHealthmn.add(socialWorkServicesmnit);
 
         emrmn.add(communityHealthmn);
@@ -8914,7 +8919,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         balancestmn.add(lbalancesheetmnit);
 
-        bsmvmnit.setText("Balance Sheet Mov'nt");
+        bsmvmnit.setText("Balance Sheet Movnt");
         bsmvmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bsmvmnitActionPerformed(evt);
@@ -20860,6 +20865,18 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_rehabilitationServicesmnitActionPerformed
+
+    private void socialWorkServicesmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_socialWorkServicesmnitActionPerformed
+        com.afrisoftech.records.SocialWorkServicesIntfr dismth = new com.afrisoftech.records.SocialWorkServicesIntfr(connectDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_socialWorkServicesmnitActionPerformed
 
     /**
      * Exit the Application

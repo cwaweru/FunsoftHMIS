@@ -892,7 +892,7 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="leaveApplicantListmnit">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Recommend Applicant&apos;s Leave"/>
+                    <Property name="text" type="java.lang.String" value="Recommend Applicant Leave"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="leaveApplicantListmnitActionPerformed"/>
