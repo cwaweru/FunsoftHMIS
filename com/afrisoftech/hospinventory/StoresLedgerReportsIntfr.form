@@ -6,20 +6,18 @@
     <Property name="iconifiable" type="boolean" value="true"/>
     <Property name="maximizable" type="boolean" value="true"/>
     <Property name="resizable" type="boolean" value="true"/>
-    <Property name="title" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-      <ResourceString bundle="com/afrisoftech/hospinventory/Bundle.properties" key="StoresLedgerReportsIntfr.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-    </Property>
+    <Property name="title" type="java.lang.String" value="Supply Chain Management Dashboard - Stores/Inventory Ledger Reports"/>
     <Property name="visible" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
   <AuxValues>
-    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
     <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="true"/>
-    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
@@ -42,9 +40,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Start Date">
-                  <ResourceString PropertyName="titleX" bundle="com/afrisoftech/hospinventory/Bundle.properties" key="StoresLedgerReportsIntfr.startDatePicker.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </TitledBorder>
+                <TitledBorder title="Start Date"/>
               </Border>
             </Property>
           </Properties>
@@ -58,9 +54,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="End Date">
-                  <ResourceString PropertyName="titleX" bundle="com/afrisoftech/hospinventory/Bundle.properties" key="StoresLedgerReportsIntfr.endDatePicker.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </TitledBorder>
+                <TitledBorder title="End Date"/>
               </Border>
             </Property>
           </Properties>
@@ -261,9 +255,7 @@
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Inventory ABC Analysis">
-                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                      <ResourceString bundle="com/afrisoftech/hospinventory/Bundle.properties" key="StoresLedgerReportsIntfr.abcAnalysisPanel.TabConstraints.tabTitle" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                    </Property>
+                    <Property name="tabTitle" type="java.lang.String" value="Inventory ABC Analysis"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -299,7 +291,6 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title="The A  and C - Threshold figures MUST be set before the generating the report ">
-                          <ResourceString PropertyName="titleX" bundle="com/afrisoftech/hospinventory/Bundle.properties" key="StoresLedgerReportsIntfr.abcPanel.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                           <Color PropertyName="color" blue="33" green="33" red="ff" type="rgb"/>
                         </TitledBorder>
                       </Border>
@@ -318,7 +309,6 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title="A Threshold">
-                              <ResourceString PropertyName="titleX" bundle="com/afrisoftech/hospinventory/Bundle.properties" key="StoresLedgerReportsIntfr.aThresholdTxt.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                               <Color PropertyName="color" blue="33" green="0" red="ff" type="rgb"/>
                             </TitledBorder>
                           </Border>
@@ -339,7 +329,6 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title="B Threshold">
-                              <ResourceString PropertyName="titleX" bundle="com/afrisoftech/hospinventory/Bundle.properties" key="StoresLedgerReportsIntfr.bThresholdTxt.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                               <Color PropertyName="color" blue="ff" green="0" red="0" type="rgb"/>
                             </TitledBorder>
                           </Border>
@@ -360,7 +349,6 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title="C Threshold">
-                              <ResourceString PropertyName="titleX" bundle="com/afrisoftech/hospinventory/Bundle.properties" key="StoresLedgerReportsIntfr.cThresholdTxt.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                               <Color PropertyName="color" blue="0" green="ff" red="0" type="rgb"/>
                             </TitledBorder>
                           </Border>
@@ -384,9 +372,7 @@
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Items Below Re-Order Level">
-                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                      <ResourceString bundle="com/afrisoftech/hospinventory/Bundle.properties" key="StoresLedgerReportsIntfr.reorderLevelPanel.TabConstraints.tabTitle" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                    </Property>
+                    <Property name="tabTitle" type="java.lang.String" value="Items Below Re-Order Level"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -423,9 +409,7 @@
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Inventory Movement Analysis">
-                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                      <ResourceString bundle="com/afrisoftech/hospinventory/Bundle.properties" key="StoresLedgerReportsIntfr.movementAnalysisPanel.TabConstraints.tabTitle" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                    </Property>
+                    <Property name="tabTitle" type="java.lang.String" value="Inventory Movement Analysis"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -461,7 +445,6 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title="The A  and C - Threshold figures MUST be set before the generating the report ">
-                          <ResourceString PropertyName="titleX" bundle="com/afrisoftech/hospinventory/Bundle.properties" key="StoresLedgerReportsIntfr.abcPanel1.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                           <Color PropertyName="color" blue="33" green="33" red="ff" type="rgb"/>
                         </TitledBorder>
                       </Border>
@@ -480,7 +463,6 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title="A Threshold">
-                              <ResourceString PropertyName="titleX" bundle="com/afrisoftech/hospinventory/Bundle.properties" key="StoresLedgerReportsIntfr.aThresholdTxt1.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                               <Color PropertyName="color" blue="33" green="0" red="ff" type="rgb"/>
                             </TitledBorder>
                           </Border>
@@ -501,7 +483,6 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title="B Threshold">
-                              <ResourceString PropertyName="titleX" bundle="com/afrisoftech/hospinventory/Bundle.properties" key="StoresLedgerReportsIntfr.bThresholdTxt1.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                               <Color PropertyName="color" blue="ff" green="0" red="0" type="rgb"/>
                             </TitledBorder>
                           </Border>
@@ -522,7 +503,6 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title="C Threshold">
-                              <ResourceString PropertyName="titleX" bundle="com/afrisoftech/hospinventory/Bundle.properties" key="StoresLedgerReportsIntfr.cThresholdTxt1.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                               <Color PropertyName="color" blue="0" green="ff" red="0" type="rgb"/>
                             </TitledBorder>
                           </Border>
@@ -592,11 +572,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="spacerLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="com/afrisoftech/hospinventory/Bundle.properties" key="StoresLedgerReportsIntfr.spacerLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-            </Property>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="0" gridY="0" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="200.0" weightY="1.0"/>

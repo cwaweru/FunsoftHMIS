@@ -552,7 +552,7 @@ public class PatientRegReprintFormPdf implements java.lang.Runnable {
                         table.addCell(phrase);
                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                         table.getDefaultCell().setColspan(1);
-                        phrase = new Phrase("KNH 260", pFontHeader);
+                        phrase = new Phrase("FORM: 260", pFontHeader);
                         table.addCell(phrase);
 
                         table.getDefaultCell().setColspan(6);

@@ -11,7 +11,7 @@ import java.io.FileOutputStream;
 
 public class PatientRegFormPdf implements java.lang.Runnable {
 
-    com.afrisoftech.lib.DBObject dbObject;
+    com.afrisoftech.lib.DBObject dbObject = new com.afrisoftech.lib.DBObject();
     java.util.Date beginDate = null;
     java.util.Date endDate = null;
     public static java.sql.Connection connectDB = null;
@@ -334,7 +334,8 @@ public class PatientRegFormPdf implements java.lang.Runnable {
                     patientReferFrom = rse12fd.getString(49);
                     bookingDate = "";
                     specialtyClinic = rse12fd.getString(51);
-                    if (rse12fd.getString(45).startsWith("t")) {
+                    System.out.println("Interested ["+new com.afrisoftech.lib.DBObject()+"] ["+rse12fd.getString(45));
+                    if (new com.afrisoftech.lib.DBObject().getDBObject(rse12fd.getString(45), "-").startsWith("t")) {
                         statusNHIF = "YES";
                     } else {
                         statusNHIF = "NO";
@@ -346,7 +347,7 @@ public class PatientRegFormPdf implements java.lang.Runnable {
                     cSheetNo = rse12fd.getString(50);
                     unitNumber = rse12fd.getString(39);
                     gender = rse12fd.getString(7);
-                    registrationTime = rse12fd.getTimestamp("data_capture_time").toString();
+                    registrationTime = dbObject.getDBObject(rse12fd.getTimestamp("data_capture_time"), "-").toString();
 
                     paidAmount = "";
                     receiptNumber = "";
@@ -436,7 +437,7 @@ public class PatientRegFormPdf implements java.lang.Runnable {
                     patientReferFrom = "";
                     bookingDate = "";
                     specialtyClinic = "";
-                    if (rse12fd.getString(29).startsWith("t")) {
+                    if (dbObject.getDBObject(rse12fd.getString(29), "-").startsWith("t")) {
                         statusNHIF = "YES";
                     } else {
                         statusNHIF = "NO";
@@ -597,12 +598,12 @@ public class PatientRegFormPdf implements java.lang.Runnable {
                             java.sql.ResultSet rset2 = st3.executeQuery("SELECT hospital_name,district_branch,region FROM pb_hospitalprofile");
                             java.sql.ResultSet rset4 = st4.executeQuery("SELECT date('now') as Date");
                             while (rset2.next()) {
-                                compName = rset2.getObject(1).toString();
-                                District = rset2.getObject(2).toString();
-                                Region = rset2.getObject(3).toString();
+                                compName = dbObject.getDBObject(rset2.getObject(1), "");
+                                District = dbObject.getDBObject(rset2.getObject(2), "");
+                                Region = dbObject.getDBObject(rset2.getObject(3), "");
                             }
                             while (rset4.next()) {
-                                date2 = rset4.getObject(1).toString();
+                                date2 = dbObject.getDBObject(rset4.getObject(1), "");
                             }
                         } catch (java.sql.SQLException ex) {
                             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
@@ -630,7 +631,7 @@ public class PatientRegFormPdf implements java.lang.Runnable {
                         table.addCell(phrase);
                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                         table.getDefaultCell().setColspan(1);
-                        phrase = new Phrase("KNH 260", pFontHeader);
+                        phrase = new Phrase("FORM: 260", pFontHeader);
                         table.addCell(phrase);
 
                         table.getDefaultCell().setColspan(6);
@@ -898,13 +899,13 @@ public class PatientRegFormPdf implements java.lang.Runnable {
                         table.getDefaultCell().setColspan(3);
                         table.getDefaultCell().setBorder(PdfCell.RECTANGLE);
                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                        phrase = new Phrase(" Patient Number : ".toUpperCase() + dbObject.getDBObject(patientNumber.toUpperCase(), ""), pFontHeader3);
+                        phrase = new Phrase(" Patient Number : ".toUpperCase() + dbObject.getDBObject(patientNumber, "").toUpperCase(), pFontHeader3);
                         table.addCell(phrase);
                         //   phrase = new Phrase(" ", pFontHeader);
                         //   table.addCell(phrase);
                         table.getDefaultCell().setColspan(3);
                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                        phrase = new Phrase("Unit Number : ".toUpperCase() + dbObject.getDBObject(unitNumber.toUpperCase(), ""), pFontHeader2);
+                        phrase = new Phrase("Unit Number : ".toUpperCase() + dbObject.getDBObject(unitNumber, "").toUpperCase(), pFontHeader2);
 
                         table.addCell(phrase);
                         table.getDefaultCell().setColspan(6);

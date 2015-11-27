@@ -125,6 +125,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         jTextField63 = new javax.swing.JTextField();
         jSeparator13 = new javax.swing.JSeparator();
         raiserequestsButton = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
         jPanel211 = new javax.swing.JPanel();
         jScrollPane12 = new javax.swing.JScrollPane();
@@ -132,6 +133,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         jLabel71 = new javax.swing.JLabel();
         jTextField61 = new javax.swing.JTextField();
         jButton61 = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -187,6 +189,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         }
 
         jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
         jTextField82 = new javax.swing.JTextField();
         try {
@@ -213,6 +216,8 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         jLabel18 = new javax.swing.JLabel();
         jSeparator12 = new javax.swing.JSeparator();
         jTextField62 = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         jPanel221 = new javax.swing.JPanel();
         jPanel2121 = new javax.swing.JPanel();
         jScrollPane131 = new javax.swing.JScrollPane();
@@ -239,6 +244,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         jButton421 = new javax.swing.JButton();
         jSeparator121 = new javax.swing.JSeparator();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jLabel15 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jPanel31 = new javax.swing.JPanel();
         outpatientCheckBox = new javax.swing.JCheckBox();
@@ -563,7 +569,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.weighty = 1.0;
         jSearchDialog211.getContentPane().add(jSearchPanel211, gridBagConstraints);
 
-        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "External Requests", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "External Requests", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
         jPanel12.setLayout(new java.awt.GridBagLayout());
 
         jTable111.setModel(new javax.swing.table.DefaultTableModel(
@@ -652,7 +658,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Lab Tests Results");
+        setTitle("Laboratory Procedures/Tests Results");
         setFrameIcon(null);
         try {
             setSelected(true);
@@ -661,8 +667,6 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         }
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
-
-        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jPanel213.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lab Requests", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14), new java.awt.Color(0, 0, 255))); // NOI18N
         jPanel213.setLayout(new java.awt.GridBagLayout());
@@ -900,7 +904,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 10.0;
+        gridBagConstraints.weighty = 200.0;
         jPanel213.add(jScrollPane14, gridBagConstraints);
 
         jTextField63.setEditable(false);
@@ -921,24 +925,29 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.weightx = 1.0;
         jPanel213.add(jSeparator13, gridBagConstraints);
 
-        raiserequestsButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        raiserequestsButton.setText("RAISE REQUEST");
+        raiserequestsButton.setText("Submit queueing requests for payment");
         raiserequestsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 raiserequestsButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 200, 0, 200);
         jPanel213.add(raiserequestsButton, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 100.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel213.add(jLabel7, gridBagConstraints);
 
-        jTabbedPane1.addTab("Pending Requests", jPanel213);
+        jTabbedPane1.addTab("Wait-listed and pending Requests", jPanel213);
 
         jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel21.setLayout(new java.awt.GridBagLayout());
@@ -1191,7 +1200,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.gridheight = 12;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 5.0;
+        gridBagConstraints.weighty = 200.0;
         jPanel21.add(jPanel211, gridBagConstraints);
 
         jLabel71.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1213,7 +1222,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel21.add(jTextField61, gridBagConstraints);
 
-        jButton61.setText("Okay");
+        jButton61.setText("Submit procedure request for reporting results");
         jButton61.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton61MouseClicked(evt);
@@ -1225,13 +1234,23 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel21.add(jButton61, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel21.add(jLabel19, gridBagConstraints);
 
-        jTabbedPane1.addTab("Paid Requests", jPanel21);
+        jTabbedPane1.addTab("Paid up requests", jPanel21);
 
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
@@ -1713,7 +1732,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         jPanel8.setLayout(new java.awt.GridBagLayout());
 
         jButton6.setMnemonic('r');
-        jButton6.setText("Remove Row");
+        jButton6.setText("Remove row");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -1736,7 +1755,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         jPanel8.add(jButton5, gridBagConstraints);
 
         jButton4.setMnemonic('C');
-        jButton4.setText("Close");
+        jButton4.setText("Close form");
         jButton4.setToolTipText("Click here to close window");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1751,7 +1770,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         jPanel8.add(jButton4, gridBagConstraints);
 
         jButton3.setMnemonic('l');
-        jButton3.setText("Clear");
+        jButton3.setText("Clear form");
         jButton3.setToolTipText("Click here to clear textfields");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1766,22 +1785,23 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         jPanel8.add(jButton3, gridBagConstraints);
 
         jButton2.setMnemonic('E');
-        jButton2.setText("Edit");
+        jButton2.setText("Edit laboratory results");
         jButton2.setToolTipText("Click here to edit data");
+        jButton2.setEnabled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel8.add(jButton2, gridBagConstraints);
 
         jButton1.setMnemonic('O');
-        jButton1.setText("Save Results");
+        jButton1.setText("Save laboratory results");
         jButton1.setToolTipText("Click here enter data");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1789,11 +1809,18 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel8.add(jButton1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 100.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel8.add(jLabel4, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1819,7 +1846,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.weighty = 1.0;
         jPanel6.add(jTextField82, gridBagConstraints);
 
-        jTabbedPane1.addTab("Lab Results", jPanel6);
+        jTabbedPane1.addTab("Reporting Laboratory procedure results", jPanel6);
 
         jPanel22.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel22.setLayout(new java.awt.GridBagLayout());
@@ -1838,7 +1865,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 10.0;
+        gridBagConstraints.weighty = 200.0;
         jPanel212.add(jScrollPane13, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1851,7 +1878,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.weighty = 7.0;
         jPanel22.add(jPanel212, gridBagConstraints);
 
-        jLabel24.setText("Date");
+        jLabel24.setText("Start date for displayed listing of results");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -1871,7 +1898,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         jPanel22.add(datePicker11, gridBagConstraints);
 
         jButton32.setMnemonic('l');
-        jButton32.setText("Clear");
+        jButton32.setText("Clear displayed listing");
         jButton32.setToolTipText("Click here to clear textfields");
         jButton32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1879,14 +1906,15 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 14;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel22.add(jButton32, gridBagConstraints);
 
         jButton42.setMnemonic('C');
-        jButton42.setText("Close");
+        jButton42.setText("Close form");
         jButton42.setToolTipText("Click here to close window");
         jButton42.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1896,6 +1924,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 14;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel22.add(jButton42, gridBagConstraints);
@@ -1916,6 +1945,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
         gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         jPanel22.add(jSeparator12, gridBagConstraints);
 
         jTextField62.setEditable(false);
@@ -1926,8 +1956,22 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.gridy = 10;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel22.add(jTextField62, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel22.add(jLabel16, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel22.add(jLabel20, gridBagConstraints);
 
-        jTabbedPane1.addTab("Posted Results", jPanel22);
+        jTabbedPane1.addTab("List of processed results", jPanel22);
 
         jPanel221.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel221.setLayout(new java.awt.GridBagLayout());
@@ -2079,10 +2123,10 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 10.0;
+        gridBagConstraints.weighty = 200.0;
         jPanel221.add(jPanel2121, gridBagConstraints);
 
-        jLabel241.setText("Date");
+        jLabel241.setText("Start date for displayed results");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -2102,7 +2146,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         jPanel221.add(datePicker111, gridBagConstraints);
 
         jButton321.setMnemonic('l');
-        jButton321.setText("Clear");
+        jButton321.setText("Clear displayed listing");
         jButton321.setToolTipText("Click here to clear textfields");
         jButton321.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2110,14 +2154,15 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 14;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel221.add(jButton321, gridBagConstraints);
 
         jButton421.setMnemonic('C');
-        jButton421.setText("Close");
+        jButton421.setText("Close form");
         jButton421.setToolTipText("Click here to close window");
         jButton421.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2127,6 +2172,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 14;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel221.add(jButton421, gridBagConstraints);
@@ -2139,7 +2185,8 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.weightx = 1.0;
         jPanel221.add(jSeparator121, gridBagConstraints);
 
-        jCheckBox1.setText("View");
+        jCheckBox1.setText("Display results listing");
+        jCheckBox1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
@@ -2151,8 +2198,15 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel221.add(jCheckBox1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel221.add(jLabel15, gridBagConstraints);
 
-        jTabbedPane1.addTab("View Results", jPanel221);
+        jTabbedPane1.addTab("View released results", jPanel221);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -2171,7 +2225,8 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         outpatientCheckBox.setForeground(new java.awt.Color(51, 51, 255));
         outpatientCheckBox.setMnemonic('o');
         outpatientCheckBox.setSelected(true);
-        outpatientCheckBox.setText("Out Patients");
+        outpatientCheckBox.setText("OUT-Patients");
+        outpatientCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -2180,7 +2235,8 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         buttonGroup1.add(inpatientCheckBox);
         inpatientCheckBox.setForeground(new java.awt.Color(255, 0, 51));
         inpatientCheckBox.setMnemonic('i');
-        inpatientCheckBox.setText("InPatients");
+        inpatientCheckBox.setText("IN-Patients");
+        inpatientCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
@@ -2203,7 +2259,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.weighty = 1.0;
         jPanel9.add(datePicker1, gridBagConstraints);
 
-        jLabel5.setText("Date");
+        jLabel5.setText("Date of laboratory procedure");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -2217,6 +2273,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         buttonGroup2.add(jCheckBox3);
         jCheckBox3.setSelected(true);
         jCheckBox3.setText("Search By  No.");
+        jCheckBox3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -2224,6 +2281,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
 
         buttonGroup2.add(jCheckBox4);
         jCheckBox4.setText("Search By Name");
+        jCheckBox4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -2236,7 +2294,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel9.add(jPanel3, gridBagConstraints);
 
-        searchpatienttxtfld.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search patient ......", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 255))); // NOI18N
+        searchpatienttxtfld.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search patient laboratory requests (Type patient number or names)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 102, 255))); // NOI18N
         searchpatienttxtfld.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 searchpatienttxtfldCaretUpdate(evt);
@@ -2251,10 +2309,9 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         jPanel9.add(searchpatienttxtfld, gridBagConstraints);
 
         jButton31.setBackground(new java.awt.Color(153, 255, 153));
-        jButton31.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jButton31.setForeground(new java.awt.Color(255, 0, 0));
         jButton31.setMnemonic('l');
-        jButton31.setText("Refresh");
+        jButton31.setText("Refresh form for updated waiting lists");
         jButton31.setToolTipText("Click here to clear textfields");
         jButton31.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton31.addActionListener(new java.awt.event.ActionListener() {
@@ -2276,6 +2333,8 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.1;
         getContentPane().add(jPanel9, gridBagConstraints);
+
+        getAccessibleContext().setAccessibleName("Laboratory procedure/Tests Results");
 
         setBounds(0, 0, 823, 496);
     }// </editor-fold>//GEN-END:initComponents
@@ -3385,7 +3444,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                                 pstmt21.setTimestamp(14, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
                                 pstmt21.setDate(13, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
                                 pstmt21.setString(16, jTextField2.getText());
-                                pstmt21.setString(15, jTextField4.getText());
+                                pstmt21.setObject(15, 1.00);
                                 pstmt21.setString(20, user);
                                 pstmt21.setObject(17,jComboBox1.getSelectedItem().toString());
                                 pstmt21.setObject(18, jTextField82.getText());
@@ -3432,7 +3491,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                                 pstmt21.setObject(17, jComboBox1.getSelectedItem().toString());
                                 pstmt21.setTimestamp(14, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
                                 pstmt21.setString(16, jTextField2.getText());
-                              pstmt21.setString(15, jTextField4.getText());
+                                pstmt21.setObject(15, 1.0);
                                 pstmt21.setString(19, jEditorPane1.getText());
                                 pstmt21.setString(21, "");
                                 pstmt21.setBoolean(22, false);
@@ -4377,15 +4436,21 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel241;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

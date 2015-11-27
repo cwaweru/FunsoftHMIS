@@ -7737,7 +7737,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
 
                                 }
 
-// Entry of nursing fees into the hp_admission table
+// Entry of admission information into the hp_admission table
 
                                 java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_admission VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
@@ -7786,8 +7786,8 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                 pstmt.setBoolean(31, false);
                                 pstmt.setString(32, "");
                                 pstmt.setString(33, oldFileNumberTxt.getText());
-                                pstmt.setString(34, jComboBox2.getSelectedItem().toString());
-                                pstmt.setString(35, patientUrgencyCMBX.getSelectedItem().toString());
+                                pstmt.setObject(34, jComboBox2.getSelectedItem());
+                                pstmt.setObject(35, patientUrgencyCMBX.getSelectedItem());
                                 pstmt.setDouble(36, ageYrs);
                                 pstmt.setObject(37, selectedchkbx);
                                 pstmt.setObject(38, selectedStatus);

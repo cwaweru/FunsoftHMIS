@@ -31,7 +31,7 @@ public class YearlyAllocationIntFr extends javax.swing.JInternalFrame {
         connectDB = connDb;
 
         pConnDB = pconnDB;
-       
+
         initComponents();
 
     }
@@ -42,7 +42,6 @@ public class YearlyAllocationIntFr extends javax.swing.JInternalFrame {
         int limit_mnth = 6;
 
         try {
-
 
             Calendar now = Calendar.getInstance();
             int year = now.get(Calendar.YEAR);
@@ -739,7 +738,7 @@ public class YearlyAllocationIntFr extends javax.swing.JInternalFrame {
                     System.out.println(est.getMessage());
 
                 }
-         //}
+                //}
 
             } else {
                 System.out.println("do nothing");
@@ -755,7 +754,7 @@ public class YearlyAllocationIntFr extends javax.swing.JInternalFrame {
             yearlyAllocationBtn.setEnabled(true);
 
         }
-       // balance=Double.parseDouble(headAmtTxt.getText().toString())-total_amt;
+        // balance=Double.parseDouble(headAmtTxt.getText().toString())-total_amt;
 
         currentBalanceTxt.setForeground(Color.red);
         currentBalanceTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(balance));
@@ -874,7 +873,7 @@ public class YearlyAllocationIntFr extends javax.swing.JInternalFrame {
 
                         } catch (Exception edf) {
                             edf.printStackTrace();
-
+                            javax.swing.JOptionPane.showMessageDialog(null, edf.getMessage());
                         }
 
                     } else {
@@ -889,8 +888,10 @@ public class YearlyAllocationIntFr extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "The budgeted Amount Cannot Be zero", "ERROR MESSAGE", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception est) {
+
             est.printStackTrace();
             System.out.println(est);
+            javax.swing.JOptionPane.showMessageDialog(null, est.getMessage());
 
         }
 

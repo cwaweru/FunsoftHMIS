@@ -688,6 +688,8 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
 
                             } catch (java.sql.SQLException SqlExec) {
 
+                                SqlExec.printStackTrace();
+                                
                                 javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
                             }
@@ -742,7 +744,8 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
             // java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no FROM hp_patient_card WHERE date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND payment_mode = 'Scheme' AND isurer = '"+memNo+"' order by patient_no");
             //java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT payee FROM ac_debtors WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' and dealer ilike '"+memNo+"%' order by payee");
-            java.sql.ResultSet rSet1x = stmt1.executeQuery("SELECT DISTINCT lab_no FROM hp_lab_results WHERE  (lab_no  between '" + memNo + "' and '" + memNo1 + "') UNION SELECT DISTINCT request_id FROM lims_lab_results WHERE (request_id = '" + memNo + "' or request_id = '" + memNo1 + "') order by 1");
+          /////  java.sql.ResultSet rSet1x = stmt1.executeQuery("SELECT DISTINCT lab_no FROM hp_lab_results WHERE  (lab_no  between '" + memNo + "' and '" + memNo1 + "') UNION SELECT DISTINCT request_id FROM lims_lab_results WHERE (request_id = '" + memNo + "' or request_id = '" + memNo1 + "') order by 1");
+            java.sql.ResultSet rSet1x = stmt1.executeQuery("SELECT DISTINCT lab_no FROM hp_lab_results WHERE  (lab_no  between '" + memNo + "' and '" + memNo1 + "') ORDER BY 1"); //UNION SELECT DISTINCT request_id FROM lims_lab_results WHERE (request_id = '" + memNo + "' or request_id = '" + memNo1 + "') order by 1");
 
             while (rSet1x.next()) {
 

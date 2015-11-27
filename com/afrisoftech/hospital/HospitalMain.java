@@ -16,6 +16,7 @@
 //531849
 package com.afrisoftech.hospital;
 
+import static com.afrisoftech.hospinventory.StockMain.medicdspane;
 import com.afrisoftech.lib.UserName;
 import com.afrisoftech.nursing.NursingWards;
 import com.afrisoftech.reports.UserAccountsDialog;
@@ -1599,6 +1600,18 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         budgettotalmnit = new javax.swing.JMenuItem();
         budgetamendmnit = new javax.swing.JMenuItem();
         payrollmn = new javax.swing.JMenu();
+        auditingmn = new javax.swing.JMenu();
+        billingAuditmnit = new javax.swing.JMenuItem();
+        receivablesAuditmnit = new javax.swing.JMenuItem();
+        inventoryAuditmnit = new javax.swing.JMenuItem();
+        invoicingAuditmnit = new javax.swing.JMenuItem();
+        userAccessAuditmnit = new javax.swing.JMenuItem();
+        sysAdminAuditmnit = new javax.swing.JMenuItem();
+        auditTrailmnit = new javax.swing.JMenuItem();
+        payablesAuditmnit = new javax.swing.JMenuItem();
+        patientRegistrationmnit = new javax.swing.JMenuItem();
+        cashBookAuditmnit = new javax.swing.JMenuItem();
+        imprestAuditmnit = new javax.swing.JMenuItem();
         reportsmn = new javax.swing.JMenu();
         outpatmn = new javax.swing.JMenu();
         attsheetmnit = new javax.swing.JMenuItem();
@@ -6530,6 +6543,98 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         payrollmn.setText("Payroll");
         jMenuBar1.add(payrollmn);
 
+        auditingmn.setText("Auditing");
+
+        billingAuditmnit.setText("Billing Audit");
+        billingAuditmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                billingAuditmnitActionPerformed(evt);
+            }
+        });
+        auditingmn.add(billingAuditmnit);
+
+        receivablesAuditmnit.setText("Receivables Audit");
+        receivablesAuditmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                receivablesAuditmnitActionPerformed(evt);
+            }
+        });
+        auditingmn.add(receivablesAuditmnit);
+
+        inventoryAuditmnit.setText("Inventory Audit");
+        inventoryAuditmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inventoryAuditmnitActionPerformed(evt);
+            }
+        });
+        auditingmn.add(inventoryAuditmnit);
+
+        invoicingAuditmnit.setText("Invoicing Audit");
+        invoicingAuditmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                invoicingAuditmnitActionPerformed(evt);
+            }
+        });
+        auditingmn.add(invoicingAuditmnit);
+
+        userAccessAuditmnit.setText("User Access Audit");
+        userAccessAuditmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userAccessAuditmnitActionPerformed(evt);
+            }
+        });
+        auditingmn.add(userAccessAuditmnit);
+
+        sysAdminAuditmnit.setText("System Admin Audit");
+        sysAdminAuditmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sysAdminAuditmnitActionPerformed(evt);
+            }
+        });
+        auditingmn.add(sysAdminAuditmnit);
+
+        auditTrailmnit.setText("Accounts Audit Trail");
+        auditTrailmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                auditTrailmnitActionPerformed(evt);
+            }
+        });
+        auditingmn.add(auditTrailmnit);
+
+        payablesAuditmnit.setText("Payables Audit");
+        payablesAuditmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payablesAuditmnitActionPerformed(evt);
+            }
+        });
+        auditingmn.add(payablesAuditmnit);
+
+        patientRegistrationmnit.setText("Patient Attendance Trail");
+        patientRegistrationmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientRegistrationmnitActionPerformed(evt);
+            }
+        });
+        auditingmn.add(patientRegistrationmnit);
+
+        cashBookAuditmnit.setText("Treasury/Cash Book Audit");
+        cashBookAuditmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cashBookAuditmnitActionPerformed(evt);
+            }
+        });
+        auditingmn.add(cashBookAuditmnit);
+
+        imprestAuditmnit.setText("Imprest/Petty Cash Audit");
+        imprestAuditmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imprestAuditmnitActionPerformed(evt);
+            }
+        });
+        auditingmn.add(imprestAuditmnit);
+
+        jMenuBar1.add(auditingmn);
+
         reportsmn.setMnemonic('p');
         reportsmn.setText("Reports");
 
@@ -11251,6 +11356,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         try {
             comp.setSelected(true);
         } catch (java.beans.PropertyVetoException pvt) {
+        
         }// TODO add your handling code here:
     }//GEN-LAST:event_fitnessLevelmnitActionPerformed
 
@@ -15990,6 +16096,12 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
             storePreferences();
 
+            try {
+                connectDB.close();
+            } catch (SQLException ex) {
+                Exceptions.printStackTrace(ex);
+            }
+
             System.exit(0);
         }
 
@@ -19893,6 +20005,11 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
+                        try {
+                            connectDB.close();
+                        } catch (SQLException ex) {
+                            Exceptions.printStackTrace(ex);
+                        }
                         System.exit(0);
                     }
                 });
@@ -20877,6 +20994,124 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_socialWorkServicesmnitActionPerformed
+
+    private void billingAuditmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billingAuditmnitActionPerformed
+        com.afrisoftech.reports.BillAndCashCollectionRegistersIntfr comp = new com.afrisoftech.reports.BillAndCashCollectionRegistersIntfr(connectDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            comp.setSize(saccopn.getSize());
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_billingAuditmnitActionPerformed
+
+    private void receivablesAuditmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receivablesAuditmnitActionPerformed
+        com.afrisoftech.accounting.ReceivablesDashBoardIntfr comp = new com.afrisoftech.accounting.ReceivablesDashBoardIntfr(connectDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            comp.setSize(saccopn.getSize());
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_receivablesAuditmnitActionPerformed
+
+    private void inventoryAuditmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryAuditmnitActionPerformed
+        javax.swing.JInternalFrame dismth = new com.afrisoftech.hospinventory.StoresLedgerReportsIntfr(connectDB);
+        medicdspane.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            dismth.setSelected(true);
+            dismth.setSize(medicdspane.getSize());
+            dismth.setVisible(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_inventoryAuditmnitActionPerformed
+
+    private void invoicingAuditmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invoicingAuditmnitActionPerformed
+        com.afrisoftech.audit.InvoicesAuditIntfr comp = new com.afrisoftech.audit.InvoicesAuditIntfr(connectDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        comp.setSize(saccopn.getSize());
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        } 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_invoicingAuditmnitActionPerformed
+
+    private void userAccessAuditmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userAccessAuditmnitActionPerformed
+
+        biz.systempartners.reports.UserActivitesIntfr dismth = new biz.systempartners.reports.UserActivitesIntfr(connectDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            dismth.setSelected(true);
+        } catch (Exception pvt) {
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userAccessAuditmnitActionPerformed
+
+    private void sysAdminAuditmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sysAdminAuditmnitActionPerformed
+        com.afrisoftech.audit.SystemAdminAuditTrailIntfr comp = new com.afrisoftech.audit.SystemAdminAuditTrailIntfr(connectDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        comp.setSize(saccopn.getSize());
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sysAdminAuditmnitActionPerformed
+
+    private void auditTrailmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auditTrailmnitActionPerformed
+         com.afrisoftech.audit.AccountsAuditTrailIntfr comp = new com.afrisoftech.audit.AccountsAuditTrailIntfr(connectDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        comp.setSize(saccopn.getSize());
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_auditTrailmnitActionPerformed
+
+    private void payablesAuditmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payablesAuditmnitActionPerformed
+        com.afrisoftech.audit.PayablesAuditIntfr comp = new com.afrisoftech.audit.PayablesAuditIntfr(connectDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        comp.setSize(saccopn.getSize());
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_payablesAuditmnitActionPerformed
+
+    private void patientRegistrationmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientRegistrationmnitActionPerformed
+         com.afrisoftech.audit.PatientAttendanceTrailIntfr comp = new com.afrisoftech.audit.PatientAttendanceTrailIntfr(connectDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        comp.setSize(saccopn.getSize());
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_patientRegistrationmnitActionPerformed
+
+    private void cashBookAuditmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashBookAuditmnitActionPerformed
+        com.afrisoftech.reports.CashBookReportsIntfr comp = new com.afrisoftech.reports.CashBookReportsIntfr(connectDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_cashBookAuditmnitActionPerformed
+
+    private void imprestAuditmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprestAuditmnitActionPerformed
+        com.afrisoftech.audit.ImprestAuditIntfr comp = new com.afrisoftech.audit.ImprestAuditIntfr(connectDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        comp.setSize(saccopn.getSize());
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }         // TODO add your handling code here:
+    }//GEN-LAST:event_imprestAuditmnitActionPerformed
 
     /**
      * Exit the Application
@@ -22097,6 +22332,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                                 // ex.printStackTrace();
                                 javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
                                 Exceptions.printStackTrace(ex);
+                                connectDB.close();
                                 System.exit(1);
                             }
                         }
@@ -22106,6 +22342,11 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                 } catch (SQLException ex) {
                     javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
                     Exceptions.printStackTrace(ex);
+                    try {
+                        connectDB.close();
+                    } catch (SQLException ex1) {
+                        Exceptions.printStackTrace(ex1);
+                    }
                     System.exit(1);
                 }
 
@@ -24572,6 +24813,8 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem attendancepaidupmnit;
     private javax.swing.JMenuItem attsheetmnit;
     private javax.swing.JMenuItem auditAccountsmnit;
+    private javax.swing.JMenuItem auditTrailmnit;
+    private javax.swing.JMenu auditingmn;
     private javax.swing.JMenuItem autolimitsmnit;
     private javax.swing.JMenuItem automatedChargesmnit;
     private javax.swing.JMenuItem automatedwoffsmnit;
@@ -24596,6 +24839,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem bedsoremn;
     private javax.swing.JRadioButtonMenuItem beosmnit1;
     public static javax.swing.JMenuItem billadjustmentmnit;
+    private javax.swing.JMenuItem billingAuditmnit;
     private javax.swing.JMenuItem billingStationAllocationmnit;
     private javax.swing.JMenu billingmn;
     private javax.swing.JMenuItem billsummnit;
@@ -24628,6 +24872,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem cancelledchqmnit;
     private javax.swing.JMenuItem cashBkmnit;
     private javax.swing.JMenuItem cashBokmnit;
+    private javax.swing.JMenuItem cashBookAuditmnit;
     private javax.swing.JMenuItem cashBookmnit;
     private javax.swing.JMenuItem cashSalesReportmnit;
     private javax.swing.JMenuItem cashUnbalancedOpmnit;
@@ -24911,6 +25156,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem immunisationProceduresmnit;
     private javax.swing.JMenuItem immunisationmnit;
     private javax.swing.JMenuItem impdocregmnit;
+    private javax.swing.JMenuItem imprestAuditmnit;
     private javax.swing.JMenuItem imprestPettyCashPaymentsmnit;
     public javax.swing.JMenuItem inReceiptsmnit;
     private javax.swing.JMenu incidenceMenumn;
@@ -24929,12 +25175,14 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem invammendmnit;
     private javax.swing.JMenuItem invbyinvmnit;
     private javax.swing.JMenuItem inventoryACLmnit;
+    private javax.swing.JMenuItem inventoryAuditmnit;
     private javax.swing.JMenuBar inventoryMenuBar;
     private javax.swing.ButtonGroup inventoryMenuBarButtonGroup;
     private javax.swing.ButtonGroup inventoryPopupButtonGroup;
     private javax.swing.JPopupMenu inventoryPopupMenu;
     private javax.swing.JMenuItem invoicemnit;
     private javax.swing.JMenu invoicesmn;
+    private javax.swing.JMenuItem invoicingAuditmnit;
     private javax.swing.JMenu invoicingmn;
     private javax.swing.JMenuItem invpercrdmnit;
     private javax.swing.JMenuItem invpersuppliermnit;
@@ -25234,6 +25482,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem patdischmnit;
     private javax.swing.JMenuItem patdocstmtmnit;
     private javax.swing.JMenu patientCategorymn;
+    private javax.swing.JMenuItem patientRegistrationmnit;
     private javax.swing.JMenuItem patientReleasemnit;
     private javax.swing.JMenuItem patientaccmnit;
     private javax.swing.JMenuItem patientcollateralmnit;
@@ -25259,6 +25508,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem patstmtmnit;
     private javax.swing.JMenuItem patstmtsmnit;
     private javax.swing.JMenuItem patstmtsummnit;
+    private javax.swing.JMenuItem payablesAuditmnit;
     private javax.swing.JMenuItem payeepymtmnit;
     private javax.swing.JMenuItem payeractaccmnit;
     private javax.swing.JMenuItem payerageingmnit;
@@ -25357,6 +25607,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem receiptscopymnit;
     private javax.swing.JMenu receiptsmn;
     public javax.swing.JMenuItem receiptsmnit;
+    private javax.swing.JMenuItem receivablesAuditmnit;
     private javax.swing.JMenuItem receivablesDashboardmnit;
     private javax.swing.JLabel receivedMessageLbl;
     public javax.swing.JTextField receivedMessageTxt;
@@ -25488,6 +25739,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem suspschememnit;
     private javax.swing.JMenuItem suspschemepovmnit;
     private javax.swing.JCheckBoxMenuItem swinglnfmnit1;
+    private javax.swing.JMenuItem sysAdminAuditmnit;
     private javax.swing.JMenu systemn;
     private javax.swing.JPanel taskBar;
     public javax.swing.JSeparator tasksSeparator;
@@ -25533,6 +25785,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem unutilisedepositmnit;
     private javax.swing.JButton updateChartBtn;
     private javax.swing.JMenuItem updatedomainsmnit;
+    private javax.swing.JMenuItem userAccessAuditmnit;
     private javax.swing.JLabel userLabel;
     private javax.swing.JMenuItem useraccountsmn;
     private javax.swing.JMenuItem useractivities;

@@ -299,9 +299,9 @@ public class OutPatientStatementPdf implements java.lang.Runnable {
                         java.sql.ResultSet rset2 = st3.executeQuery("SELECT hospital_name,district_branch,region FROM pb_hospitalprofile");
                         java.sql.ResultSet rset4 = st4.executeQuery("SELECT date('now') as Date");
                         while(rset2.next()){
-                            compName = rset2.getObject(1).toString();
-                            District = rset2.getObject(2).toString();
-                            Region = rset2.getObject(3).toString();
+                            compName = new com.afrisoftech.lib.DBObject().getDBObject(rset2.getObject(1), "");
+                            District = new com.afrisoftech.lib.DBObject().getDBObject(rset2.getObject(2), "");
+                            Region = new com.afrisoftech.lib.DBObject().getDBObject(rset2.getObject(3), "");
                         }
                         while(rset4.next()){
                             date = rset4.getObject(1).toString();

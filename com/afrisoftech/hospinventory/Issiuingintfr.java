@@ -2249,7 +2249,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
         public void run() {
 
-            // if(){
+            if(com.afrisoftech.lib.TableTransactionCheck.checkTableEntries(issuingItemsTable, 0, 7)){
             java.util.Date dateToday = new java.util.Date();
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -2351,10 +2351,10 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
                                             for (int i = 0; i < issuingItemsTable.getRowCount(); i++) {
 
-                                                if (issuingItemsTable.getModel().getValueAt(i, 7) != null) {
+                                                if (issuingItemsTable.getValueAt(i, 7) != null) {
                                                     double price = 0;
                                                     double pack = 0;
-                                                    double quantity = Double.parseDouble(issuingItemsTable.getModel().getValueAt(i, 7).toString());
+                                                    double quantity = Double.parseDouble(issuingItemsTable.getValueAt(i, 7).toString());
 
                                                     java.sql.Statement pst21r = connectDB.createStatement();
                                                     //         java.sql.ResultSet rstr = ps11r.executeQuery("SELECT mark_up FROM st_stores WHERE store_name ILIKE '"+jComboBox2.getSelectedItem().toString()+"'");
@@ -2570,6 +2570,8 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
                                                     java.sql.PreparedStatement pstmt321 = connectDB.prepareStatement("UPDATE st_receive_requisation SET qty_issued = qty_issued + " + new java.lang.Double(quantity) + " WHERE requisition_no = '" + requisitionNumberTxt.getText() + "' and item_code = '" + issuingItemsTable.getValueAt(i, 0).toString() + "'");
                                                     pstmt321.executeUpdate();
+                                                    
+                                                    
                                                 }
                                             }
 
@@ -2648,6 +2650,10 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
                     h = issuingItemsTable.getModel().getRowCount();
                 }
+            }
+            
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(null, "Please check to ensure that all entered quantities are correct, some may be having zero value");
             }
         }
     }

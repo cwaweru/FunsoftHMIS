@@ -411,37 +411,37 @@ public class RefferalExtPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setColspan(3);
                                 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Institution Transferred To :  "+rset.getObject(5).toString(), pFontHeader1);
+                                phrase = new Phrase("Institution Transferred To :  "+new com.afrisoftech.lib.DBObject().getDBObject(rset.getObject(5),""), pFontHeader1);
                                 table.addCell(phrase);
                                  phrase = new Phrase(" ", pFontHeader);
                                 table.addCell(phrase);
                                 
                                 table.getDefaultCell().setColspan(3);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("NAME  : "+rset.getObject(2).toString(), pFontHeader1);
+                                phrase = new Phrase("NAME  : "+new com.afrisoftech.lib.DBObject().getDBObject(rset.getObject(2),""), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("No.  "+rset.getObject(1).toString(), pFontHeader);
+                                phrase = new Phrase("No.  "+new com.afrisoftech.lib.DBObject().getDBObject(rset.getObject(1),""), pFontHeader);
                                 table.addCell(phrase);
                                 
-                                phrase = new Phrase("Mode  : "+rset.getObject(3).toString(), pFontHeader);
+                                phrase = new Phrase("Mode  : "+new com.afrisoftech.lib.DBObject().getDBObject(rset.getObject(3),""), pFontHeader);
                                 table.addCell(phrase);
                                 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Category  : "+rset.getObject(4).toString(), pFontHeader);
+                                phrase = new Phrase("Category  : "+new com.afrisoftech.lib.DBObject().getDBObject(rset.getObject(4),""), pFontHeader);
                                 table.addCell(phrase);
                                 
                                 table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 
-                                phrase = new Phrase("WARD/CLINIC  : "+rset.getObject(6).toString(), pFontHeader);
+                                phrase = new Phrase("WARD/CLINIC  : "+new com.afrisoftech.lib.DBObject().getDBObject(rset.getObject(6),""), pFontHeader);
                                 table.addCell(phrase);
-                                phrase = new Phrase("Sex  : "+rset.getObject(10).toString(), pFontHeader);
+                                phrase = new Phrase("Sex  : "+new com.afrisoftech.lib.DBObject().getDBObject(rset.getObject(10),""), pFontHeader);
                                 table.addCell(phrase);
-                                phrase = new Phrase("Age  : "+rset.getObject("age").toString(), pFontHeader);
+                                phrase = new Phrase("Age  : "+new com.afrisoftech.lib.DBObject().getDBObject(rset.getObject("age"),""), pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("Prov Diag  : "+rset.getObject(7).toString(), pFontHeader);
+                                phrase = new Phrase("Prov Diag  : "+new com.afrisoftech.lib.DBObject().getDBObject(rset.getObject(7).toString(),""), pFontHeader);
                                 table.addCell(phrase);
                                 
                                 
@@ -450,16 +450,16 @@ public class RefferalExtPdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 phrase = new Phrase(" Clinical Summary ", pFontHeader1);
                                 table.addCell(phrase);
-                                phrase = new Phrase(rset.getObject(9).toString(), pFontHeader);
+                                phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rset.getObject(9),""), pFontHeader);
                                 table.addCell(phrase);
                                  phrase = new Phrase(" ", pFontHeader);
                                 table.addCell(phrase);
                                 
-                                phrase = new Phrase("Reason For Transfer  : "+rset.getObject(8).toString(), pFontHeader);
+                                phrase = new Phrase("Reason For Transfer  : "+new com.afrisoftech.lib.DBObject().getDBObject(rset.getObject(8), ""), pFontHeader);
                                 table.addCell(phrase);
                                  phrase = new Phrase("  ", pFontHeader);
                                 table.addCell(phrase);
-                                phrase = new Phrase("Transferring Clinician  : "+rset.getObject(13).toString(), pFontHeader);
+                                phrase = new Phrase("Transferring Clinician  : "+new com.afrisoftech.lib.DBObject().getDBObject(rset.getObject(13), ""), pFontHeader);
                                 table.addCell(phrase);
                                  phrase = new Phrase(" ", pFontHeader);
                                 table.addCell(phrase);
@@ -467,12 +467,12 @@ public class RefferalExtPdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                  phrase = new Phrase(" ", pFontHeader);
                                 table.addCell(phrase);
-                                phrase = new Phrase("Consultant I/C  : "+rset.getObject(11).toString(), pFontHeader);
+                                phrase = new Phrase("Consultant I/C  : "+new com.afrisoftech.lib.DBObject().getDBObject(rset.getObject(11), ""), pFontHeader);
                                 table.addCell(phrase);
                                  phrase = new Phrase(" ", pFontHeader);
                                 table.addCell(phrase);
                                 
-                                phrase = new Phrase("Escorting Nurse  : "+rset.getObject(12).toString(), pFontHeader);
+                                phrase = new Phrase("Escorting Nurse  : "+new com.afrisoftech.lib.DBObject().getDBObject(rset.getObject(12), ""), pFontHeader);
                                 table.addCell(phrase);
                                  phrase = new Phrase(" ", pFontHeader);
                                 table.addCell(phrase);

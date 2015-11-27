@@ -158,7 +158,7 @@ public class HosAttendanceDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jCheckBox4, gridBagConstraints);
 
-        jComboBox1.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT point_name  FROM records_service_points ORDER BY 1"));
+        jComboBox1.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' UNION SELECT point_name  FROM records_service_points ORDER BY 1"));
         jComboBox1.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;

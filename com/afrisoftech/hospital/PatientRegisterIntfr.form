@@ -2184,7 +2184,7 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel56">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Service Point"/>
+                            <Property name="text" type="java.lang.String" value="Registration Service Point"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -2192,14 +2192,14 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox2">
+                        <Component class="javax.swing.JComboBox" name="servicePointCmbx">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="0"/>
                             </Property>
                           </Properties>
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jComboBox2.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT point_name  FROM records_service_points ORDER BY 1&quot;));"/>
+                            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="servicePointCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT point_name  FROM records_service_points ORDER BY 1&quot;));"/>
                           </AuxValues>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

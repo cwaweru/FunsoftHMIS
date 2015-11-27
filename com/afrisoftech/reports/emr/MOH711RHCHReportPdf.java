@@ -3409,14 +3409,14 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Total Number of treatments", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getALLPhysiotherapyServicesCount(connectDB, beginDate, endDate, 0, 5)), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getALLPhysiotherapyServicesCount(connectDB, beginDate, endDate, 5, 20)), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getALLPhysiotherapyServicesCount(connectDB, beginDate, endDate, 20, 500)), pFontHeader11);
                                 table.addCell(phrase);
 
 
@@ -3442,14 +3442,14 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("PWDs assessed for registration", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getPWDServicesCount(connectDB, beginDate, endDate, 0, 5)), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getPWDServicesCount(connectDB, beginDate, endDate, 5, 20)), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getPWDServicesCount(connectDB, beginDate, endDate, 20, 500)), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -3473,14 +3473,14 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Number of clients receiving out/in reach services", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getOutInReachServicesCount(connectDB, beginDate, endDate, 0, 5)), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getOutInReachServicesCount(connectDB, beginDate, endDate, 5, 20)), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getOutInReachServicesCount(connectDB, beginDate, endDate, 20, 500)), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(1);
@@ -3510,10 +3510,10 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setBackgroundColor(Color.WHITE);
 
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getANCCounsellingServicesCount(connectDB, beginDate, endDate, 5, 20)), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getANCCounsellingServicesCount(connectDB, beginDate, endDate, 20, 500)), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(6);
@@ -3537,10 +3537,10 @@ public class MOH711RHCHReportPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setBackgroundColor(Color.WHITE);
 
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getANCPNCExerciseServicesCount(connectDB, beginDate, endDate, 5, 20)), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader11);
+                                phrase = new Phrase(String.valueOf(com.afrisoftech.lib.FPServiceIndicators.getANCPNCExerciseServicesCount(connectDB, beginDate, endDate, 20, 500)), pFontHeader11);
                                 table.addCell(phrase);
                                 
                                 table.getDefaultCell().setBackgroundColor(Color.yellow);

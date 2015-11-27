@@ -538,10 +538,10 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         getContentPane().add(jTextField6, gridBagConstraints);
 
-        jXTitledPanel1.setTitle("Tick the invoices You want to approve for payment");
+        jXTitledPanel1.setTitle("");
         jXTitledPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jPanel1.setBorder(new org.jdesktop.swingx.border.DropShadowBorder());
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tick the invoices You want to approve for payment"));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel3.setText("Supplier/Staff Name");
@@ -665,7 +665,7 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridwidth = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 50.0;
@@ -936,7 +936,7 @@ public class VoucherApprintfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridwidth = 9;
         gridBagConstraints.gridheight = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
