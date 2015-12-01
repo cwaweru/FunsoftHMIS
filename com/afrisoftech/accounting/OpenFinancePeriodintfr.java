@@ -359,8 +359,9 @@ public class OpenFinancePeriodintfr extends javax.swing.JInternalFrame {
         java.util.Date periodTo1 = datePicker1.getDate();
         try {
             
-            java.sql.Statement stmtf = connectDB.createStatement();
-            java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT count(company_name) FROM financial_period WHERE company_name = '"+jTextField1.getText()+"' AND period_status ilike 'Open%'");
+            java.sql.PreparedStatement stmtf = connectDB.prepareStatement("SELECT count(company_name) FROM financial_period WHERE company_name = ? AND period_status ilike 'Open%'");
+            stmtf.setString(1, jTextField1.getText());
+            java.sql.ResultSet rsetf = stmtf.executeQuery();
             while (rsetf.next()){
                 comp = rsetf.getInt(1);
             }

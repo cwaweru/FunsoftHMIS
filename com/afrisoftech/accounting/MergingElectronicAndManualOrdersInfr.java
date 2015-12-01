@@ -97,7 +97,7 @@ public class MergingElectronicAndManualOrdersInfr extends javax.swing.JInternalF
         gridBagConstraints.weighty = 20.0;
         jSearchPanel.add(jSearchScrollPane, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton9, org.openide.util.NbBundle.getMessage(MergingElectronicAndManualOrdersInfr.class, "MergingElectronicAndManualOrdersInfr.jButton9.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton9, "Dispose");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -152,7 +152,7 @@ public class MergingElectronicAndManualOrdersInfr extends javax.swing.JInternalF
         gridBagConstraints.weighty = 20.0;
         jSearchPanel1.add(jSearchScrollPane1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton10, org.openide.util.NbBundle.getMessage(MergingElectronicAndManualOrdersInfr.class, "MergingElectronicAndManualOrdersInfr.jButton10.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton10, "Dispose");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -175,14 +175,14 @@ public class MergingElectronicAndManualOrdersInfr extends javax.swing.JInternalF
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle(org.openide.util.NbBundle.getMessage(MergingElectronicAndManualOrdersInfr.class, "MergingElectronicAndManualOrdersInfr.title")); // NOI18N
+        setTitle("Form for merging electonically generated orders to manual orders");
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         searchOrdersPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         searchOrdersPanel.setLayout(new java.awt.GridBagLayout());
 
-        jPanel59.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(MergingElectronicAndManualOrdersInfr.class, "MergingElectronicAndManualOrdersInfr.jPanel59.border.title"))); // NOI18N
+        jPanel59.setBorder(javax.swing.BorderFactory.createTitledBorder("Committed LPO number"));
         jPanel59.setLayout(new java.awt.GridBagLayout());
 
         commitedLPONumberTxt.setEditable(false);
@@ -220,7 +220,7 @@ public class MergingElectronicAndManualOrdersInfr extends javax.swing.JInternalF
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         searchOrdersPanel.add(jPanel59, gridBagConstraints);
 
-        jPanel60.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(MergingElectronicAndManualOrdersInfr.class, "MergingElectronicAndManualOrdersInfr.jPanel60.border.title"))); // NOI18N
+        jPanel60.setBorder(javax.swing.BorderFactory.createTitledBorder("LPO Number used to generate GRN"));
         jPanel60.setLayout(new java.awt.GridBagLayout());
 
         deliveryLPOTxt.setEditable(false);
@@ -291,7 +291,7 @@ public class MergingElectronicAndManualOrdersInfr extends javax.swing.JInternalF
 
         commandsPanel.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(saveBtn, org.openide.util.NbBundle.getMessage(MergingElectronicAndManualOrdersInfr.class, "MergingElectronicAndManualOrdersInfr.saveBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(saveBtn, "Merge Order Numbers");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveBtnActionPerformed(evt);
@@ -302,7 +302,7 @@ public class MergingElectronicAndManualOrdersInfr extends javax.swing.JInternalF
         gridBagConstraints.gridy = 0;
         commandsPanel.add(saveBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeFormBtn, org.openide.util.NbBundle.getMessage(MergingElectronicAndManualOrdersInfr.class, "MergingElectronicAndManualOrdersInfr.closeFormBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(closeFormBtn, "Close form");
         closeFormBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeFormBtnActionPerformed(evt);
@@ -312,8 +312,6 @@ public class MergingElectronicAndManualOrdersInfr extends javax.swing.JInternalF
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         commandsPanel.add(closeFormBtn, gridBagConstraints);
-
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(MergingElectronicAndManualOrdersInfr.class, "MergingElectronicAndManualOrdersInfr.jLabel1.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;

@@ -121,7 +121,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         jSearchPanel5.add(jTextField112, gridBagConstraints);
 
-        jSearchTable4.setToolTipText(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jSearchTable4.toolTipText")); // NOI18N
+        jSearchTable4.setToolTipText("Click on the target row to select the patient from the search.");
         jSearchTable4.setShowHorizontalLines(false);
         /*javax.swing.table.TableColumn column = null;
 
@@ -156,7 +156,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel5.add(jSearchScrollPane5, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton45, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jButton45.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton45, "Select");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -164,7 +164,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jSearchPanel5.add(jButton45, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton54, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jButton54.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton54, "Dispose");
         jButton54.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton54ActionPerformed(evt);
@@ -211,7 +211,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         jSearchPanel6.add(jTextField113, gridBagConstraints);
 
-        jSearchTable5.setToolTipText(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jSearchTable5.toolTipText")); // NOI18N
+        jSearchTable5.setToolTipText("Click on the target row to select the patient from the search.");
         jSearchTable5.setShowHorizontalLines(false);
         /*javax.swing.table.TableColumn column = null;
 
@@ -246,7 +246,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel6.add(jSearchScrollPane6, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton46, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jButton46.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton46, "Select");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -254,7 +254,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jSearchPanel6.add(jButton46, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton55, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jButton55.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton55, "Dispose");
         jButton55.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton55ActionPerformed(evt);
@@ -279,17 +279,17 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.title")); // NOI18N
+        setTitle("Invoice Registration Form");
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         invoiceRegistrationPanel.setLayout(new java.awt.GridBagLayout());
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jPanel2.border.title"))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Select Supplier here.."));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 2, 11)); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel4, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jLabel4.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel4, "Creditor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -313,7 +313,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
 
         searchButton.setBackground(new java.awt.Color(204, 255, 204));
         searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
-        searchButton.setToolTipText(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.searchButton.toolTipText")); // NOI18N
+        searchButton.setToolTipText("Search patient name");
         searchButton.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         searchButton.setMaximumSize(new java.awt.Dimension(74, 53));
         searchButton.setMinimumSize(new java.awt.Dimension(74, 53));
@@ -338,7 +338,6 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         jPanel2.add(jPanel61, gridBagConstraints);
 
         txtcrno.setEditable(false);
-        txtcrno.setText(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.txtcrno.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
@@ -346,7 +345,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         jPanel2.add(txtcrno, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel6, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jLabel6.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel6, "CR No:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         jPanel2.add(jLabel6, gridBagConstraints);
@@ -357,7 +356,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         invoiceRegistrationPanel.add(jPanel2, gridBagConstraints);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jPanel1.border.title"))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Supplier Invoices Pending Linking.."));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jTable1.setBackground(new java.awt.Color(204, 255, 204));
@@ -385,7 +384,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 8.0;
         jPanel1.add(jScrollPane3, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel8, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jLabel8.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel8, "Total Amount:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -394,7 +393,6 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
 
         txtAmount1.setEditable(false);
         txtAmount1.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        txtAmount1.setText(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.txtAmount1.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 2;
@@ -410,10 +408,10 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 50.0;
         invoiceRegistrationPanel.add(jPanel1, gridBagConstraints);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jPanel3.border.title"))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Register New Invoice here.."));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jLabel1.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, "Invoice Date:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -421,7 +419,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jLabel1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jLabel2.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, "Date of Receiving:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -429,7 +427,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         jPanel3.add(jLabel2, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jLabel3.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, "Amount:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -437,8 +435,8 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jLabel3, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(logoBtn2, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.logoBtn2.text")); // NOI18N
-        logoBtn2.setToolTipText(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.logoBtn2.toolTipText")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(logoBtn2, "Browse Invoice");
+        logoBtn2.setToolTipText("Click to select logo");
         logoBtn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoBtn2ActionPerformed(evt);
@@ -451,23 +449,19 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(logoBtn2, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel5, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jLabel5.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel5, "Invoice No:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jLabel5, gridBagConstraints);
-
-        txtInvoiceNO.setText(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.txtInvoiceNO.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(txtInvoiceNO, gridBagConstraints);
-
-        txtAmount.setText(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.txtAmount.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -493,7 +487,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(Datepickerinvoice, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel7, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jLabel7.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel7, "Delivered by:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -501,8 +495,6 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         jPanel3.add(jLabel7, gridBagConstraints);
-
-        txtDeliveredBy.setText(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.txtDeliveredBy.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -512,7 +504,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
 
         ledger.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         ledger.setForeground(new java.awt.Color(0, 0, 255));
-        org.openide.awt.Mnemonics.setLocalizedText(ledger, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.ledger.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(ledger, "path");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
@@ -530,14 +522,14 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(jRadioButton1, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jRadioButton1.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jRadioButton1, "Invoice");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         jPanel3.add(jRadioButton1, gridBagConstraints);
 
         buttonGroup1.add(jRadioButton2);
-        org.openide.awt.Mnemonics.setLocalizedText(jRadioButton2, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jRadioButton2.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jRadioButton2, "Credit Note");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -555,8 +547,8 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/check.gif"))); // NOI18N
         jButton1.setMnemonic('O');
-        org.openide.awt.Mnemonics.setLocalizedText(jButton1, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jButton1.text")); // NOI18N
-        jButton1.setToolTipText(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jButton1.toolTipText")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton1, "Register Creditor Invoice");
+        jButton1.setToolTipText("Click here to enter data");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -575,8 +567,8 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/minusarm.gif"))); // NOI18N
         jButton6.setMnemonic('l');
-        org.openide.awt.Mnemonics.setLocalizedText(jButton6, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jButton6.text")); // NOI18N
-        jButton6.setToolTipText(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jButton6.toolTipText")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton6, "Clear form");
+        jButton6.setToolTipText("Click here to clear fields");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton6MouseClicked(evt);
@@ -595,8 +587,8 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BD14755_.GIF"))); // NOI18N
         jButton4.setMnemonic('C');
-        org.openide.awt.Mnemonics.setLocalizedText(jButton4, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jButton4.text")); // NOI18N
-        jButton4.setToolTipText(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jButton4.toolTipText")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton4, "Close form");
+        jButton4.setToolTipText("Click here to close");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
@@ -612,8 +604,6 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
         jPanel4.add(jButton4, gridBagConstraints);
-
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel10, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jLabel10.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -630,7 +620,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         invoiceRegistrationPanel.add(jPanel4, gridBagConstraints);
 
-        jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.invoiceRegistrationPanel.TabConstraints.tabTitle"), invoiceRegistrationPanel); // NOI18N
+        jTabbedPane1.addTab("Creditor Invoice Registration Form", invoiceRegistrationPanel);
 
         invoiceRegisterReportPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -648,7 +638,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
 
         buttonGroup2.add(allInvoicesChkbx);
         allInvoicesChkbx.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(allInvoicesChkbx, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.allInvoicesChkbx.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(allInvoicesChkbx, "All Invoices");
         allInvoicesChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         allInvoicesChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -663,7 +653,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         invoiceRegisterReportPanel.add(allInvoicesChkbx, gridBagConstraints);
 
         buttonGroup2.add(notlinkedChkbx);
-        org.openide.awt.Mnemonics.setLocalizedText(notlinkedChkbx, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.notlinkedChkbx.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(notlinkedChkbx, "Not/Processed/Not Linked");
         notlinkedChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         notlinkedChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -678,7 +668,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         invoiceRegisterReportPanel.add(notlinkedChkbx, gridBagConstraints);
 
         buttonGroup2.add(linkedChkbx);
-        org.openide.awt.Mnemonics.setLocalizedText(linkedChkbx, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.linkedChkbx.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(linkedChkbx, "Processed/Llinked");
         linkedChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         linkedChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -692,8 +682,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         invoiceRegisterReportPanel.add(linkedChkbx, gridBagConstraints);
 
-        invoiceSearchTxt.setText(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.invoiceSearchTxt.text")); // NOI18N
-        invoiceSearchTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.invoiceSearchTxt.border.title"))); // NOI18N
+        invoiceSearchTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Search Invoice by Number"));
         invoiceSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 invoiceSearchTxtCaretUpdate(evt);
@@ -709,7 +698,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         invoiceRegisterReportPanel.add(invoiceSearchTxt, gridBagConstraints);
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 2, 11)); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel9, org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.jLabel9.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel9, "Creditor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -735,7 +724,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
 
         searchButton1.setBackground(new java.awt.Color(204, 255, 204));
         searchButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
-        searchButton1.setToolTipText(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.searchButton1.toolTipText")); // NOI18N
+        searchButton1.setToolTipText("Search patient name");
         searchButton1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         searchButton1.setMaximumSize(new java.awt.Dimension(74, 53));
         searchButton1.setMinimumSize(new java.awt.Dimension(74, 53));
@@ -759,7 +748,7 @@ public class InvoiceRegIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         invoiceRegisterReportPanel.add(jPanel62, gridBagConstraints);
 
-        jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(InvoiceRegIntfr.class, "InvoiceRegIntfr.invoiceRegisterReportPanel.TabConstraints.tabTitle"), invoiceRegisterReportPanel); // NOI18N
+        jTabbedPane1.addTab("List of Registered Invoices", invoiceRegisterReportPanel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;

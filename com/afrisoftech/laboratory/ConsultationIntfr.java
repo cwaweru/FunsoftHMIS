@@ -7,6 +7,7 @@ package com.afrisoftech.laboratory;
 
 import biz.systempartners.claims.XMLClaimFile;
 import com.afrisoftech.hospital.VitalSignRecIntfr;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.io.InputStream;
@@ -20,7 +21,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
-
+import org.jdesktop.swingx.decorator.ColorHighlighter;
 
 /**
  *
@@ -91,14 +92,31 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 //            predicateTable0.setHighlighterPipeline(predicateTable0, new org.jdesktop.swing.decorator.PatternHighlighter[]{
 //              
 //            });
-        com.afrisoftech.dbadmin.JTable predicateTable = (com.afrisoftech.dbadmin.JTable) clerkingwaitingTable;
-        predicateTable.setHighlighterPipeline(predicateTable, new org.jdesktop.swing.decorator.PatternHighlighter[]{
-            new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.PINK, java.awt.Color.BLACK, "triage", 9, 9, 1),
-            new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.PINK, java.awt.Color.BLACK, "Cons", 9, 9, 1),
-            new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.CYAN, java.awt.Color.BLACK, "Cons", 9, 9, 2),
-            new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.ORANGE, java.awt.Color.BLACK, "Normal", 4, 4, 0),
-            new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.RED, java.awt.Color.BLACK, "Emergency", 4, 4, 0)
-        });
+        java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = new java.util.Vector<org.jdesktop.swingx.decorator.Highlighter>(1, 1);
+        //org.jdesktop.swingx.decorator.Highlighter tableHighlighterArray[] ;// = new org.jdesktop.swingx.decorator.Highlighter()[];
+        com.afrisoftech.dbadmin.JXTable predicateTable = (com.afrisoftech.dbadmin.JXTable) labresultsTable;
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate = new org.jdesktop.swingx.decorator.PatternPredicate("true", 5, 5);
+        ColorHighlighter yellow = new ColorHighlighter(patternPredicate, Color.YELLOW, null, Color.YELLOW, null);
+        tableHighlighters.addElement(yellow);
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate1 = new org.jdesktop.swingx.decorator.PatternPredicate("false", 5, 5);
+        ColorHighlighter pink = new ColorHighlighter(patternPredicate1, Color.PINK, null, Color.PINK, null);
+        tableHighlighters.add(pink);
+        // Highlighter shading = new ShadingColorHighlighter(new HighlightPredicate.ColumnHighlightPredicate(6));
+        ColorHighlighter tableHighlightersArray[] = new ColorHighlighter[]{yellow, pink};
+        predicateTable.setHighlighterPipeline(predicateTable, tableHighlightersArray);
+        
+        java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters1 = new java.util.Vector<org.jdesktop.swingx.decorator.Highlighter>(1, 1);
+        //org.jdesktop.swingx.decorator.Highlighter tableHighlighterArray[] ;// = new org.jdesktop.swingx.decorator.Highlighter()[];
+        com.afrisoftech.dbadmin.JXTable predicateTable1 = (com.afrisoftech.dbadmin.JXTable) laboratoryResultsDisplayTbl;
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate2 = new org.jdesktop.swingx.decorator.PatternPredicate("true", 5, 5);
+        ColorHighlighter red = new ColorHighlighter(patternPredicate2, Color.RED, null, Color.RED, null);
+        tableHighlighters1.addElement(red);
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate3 = new org.jdesktop.swingx.decorator.PatternPredicate("false", 5, 5);
+        ColorHighlighter green = new ColorHighlighter(patternPredicate3, Color.GREEN, null, Color.GREEN, null);
+        tableHighlighters1.add(green);
+        // Highlighter shading = new ShadingColorHighlighter(new HighlightPredicate.ColumnHighlightPredicate(6));
+        ColorHighlighter tableHighlightersArray1[] = new ColorHighlighter[]{red, green};
+        predicateTable1.setHighlighterPipeline(predicateTable1, tableHighlightersArray1);
     }
 
     private String getUser() {
@@ -284,8 +302,6 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         x_rayresultsTextField = new javax.swing.JTextField();
         labTextField = new javax.swing.JTextField();
         emergencyTextField = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jTextField6 = new javax.swing.JTextField();
         jSplitPane4 = new javax.swing.JSplitPane();
         jPanel33 = new javax.swing.JPanel();
@@ -315,6 +331,10 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         jPanel21 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         clerkingwaitingTable = new com.afrisoftech.dbadmin.JTable();
+        jPanel41 = new javax.swing.JPanel();
+        jButton4 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jSeparator11 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
@@ -452,14 +472,16 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         printxrayButton = new javax.swing.JButton();
         requestsCheckBox = new javax.swing.JCheckBox();
         jPanel26 = new javax.swing.JPanel();
+        labResultsTabbenPane = new javax.swing.JTabbedPane();
+        labResultsListingPanel = new javax.swing.JPanel();
         jPanel212 = new javax.swing.JPanel();
         jScrollPane16 = new javax.swing.JScrollPane();
-        labresultsTable = new com.afrisoftech.dbadmin.JTable(){
+        labresultsTable = new com.afrisoftech.dbadmin.JXTable(){
             Class[] types = new Class [] {
-                java.lang.Short.class, java.lang.Object.class, java.lang.Object.class,java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Short.class, java.lang.Object.class, java.lang.Object.class,java.lang.Object.class,java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -480,6 +502,28 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         currentCheckBox = new javax.swing.JCheckBox();
         allpatCheckBox = new javax.swing.JCheckBox();
         readCheckBox = new javax.swing.JCheckBox();
+        jLabel5 = new javax.swing.JLabel();
+        labResultsDisplayPanel = new javax.swing.JPanel();
+        laboratoryResultsHeaderPanel = new javax.swing.JPanel();
+        laboratoryResultsDatePicker = new com.afrisoftech.lib.DatePicker();
+        laboratoryResultsTimeLbl = new javax.swing.JLabel();
+        laboratoryResultsDateLbl = new javax.swing.JLabel();
+        laboratoryResultsTimeTxt = new javax.swing.JTextField();
+        laboratoryResultsPatientNumberTxt = new javax.swing.JTextField();
+        laboratoryResultsPatientNameLbl = new javax.swing.JLabel();
+        laboratoryResultsPatientNumberLbl = new javax.swing.JLabel();
+        laboratoryResultsPatientNameTxt = new javax.swing.JTextField();
+        labResultsDisplayDetailsJscrl = new javax.swing.JScrollPane();
+        laboratoryProcedureResultDetailsTxt = new javax.swing.JEditorPane();
+        laboratoryProcedureNameLbl = new javax.swing.JLabel();
+        laboratoryProcedureDescriptionTxt = new javax.swing.JTextField();
+        laboratoryResultsBodyPanel = new javax.swing.JPanel();
+        laboratoryDisplayJscrl = new javax.swing.JScrollPane();
+        laboratoryResultsDisplayTbl = new com.afrisoftech.dbadmin.JXTable();
+        laboratoryResultsButtonPanel = new javax.swing.JPanel();
+        back2LabListingBrn = new javax.swing.JButton();
+        spacerLabel = new javax.swing.JLabel();
+        displayLaboratoryResultsPDFBtn = new javax.swing.JButton();
         jPanel29 = new javax.swing.JPanel();
         jPanel213 = new javax.swing.JPanel();
         jScrollPane17 = new javax.swing.JScrollPane();
@@ -2096,32 +2140,6 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.weighty = 0.1;
         jPanel3.add(jPanel1, gridBagConstraints);
 
-        jButton3.setMnemonic('l');
-        jButton3.setText("Clear");
-        jButton3.setToolTipText("Click here to clear textfields");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        jPanel3.add(jButton3, gridBagConstraints);
-
-        jButton4.setMnemonic('C');
-        jButton4.setText("Close");
-        jButton4.setToolTipText("Click here to close window");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 2;
-        jPanel3.add(jButton4, gridBagConstraints);
-
         jTextField6.setEditable(false);
         jTextField6.setMinimumSize(new java.awt.Dimension(0, 0));
         jTextField6.setPreferredSize(new java.awt.Dimension(0, 0));
@@ -2146,7 +2164,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.weighty = 1.0;
         jPanel33.add(patientNametxt, gridBagConstraints);
 
-        jPanel42.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patient NO......", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 10))); // NOI18N
+        jPanel42.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patient Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 10))); // NOI18N
         jPanel42.setLayout(new java.awt.GridBagLayout());
 
         nameNoTxt.setEditable(false);
@@ -2267,11 +2285,21 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.weighty = 1.0;
         jPanel33.add(jButton1, gridBagConstraints);
 
+        jPanel12.setLayout(new java.awt.GridBagLayout());
+
         maleChkbx.setText("MALE");
-        jPanel12.add(maleChkbx);
+        maleChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel12.add(maleChkbx, gridBagConstraints);
 
         femaleChkbx.setText("FEMALE");
-        jPanel12.add(femaleChkbx);
+        femaleChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel12.add(femaleChkbx, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -2722,6 +2750,53 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jSplitPane4, gridBagConstraints);
+
+        jPanel41.setLayout(new java.awt.GridBagLayout());
+
+        jButton4.setMnemonic('C');
+        jButton4.setText("Close form");
+        jButton4.setToolTipText("Click here to close window");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        jPanel41.add(jButton4, gridBagConstraints);
+
+        jButton3.setMnemonic('l');
+        jButton3.setText("Clear and refresh form");
+        jButton3.setToolTipText("Click here to clear textfields");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel41.add(jButton3, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel41.add(jLabel4, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jPanel41, gridBagConstraints);
 
         consultationTabbedPane.addTab("Waiting List", jPanel3);
 
@@ -4340,6 +4415,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel26.setLayout(new java.awt.GridBagLayout());
 
+        labResultsListingPanel.setLayout(new java.awt.GridBagLayout());
+
         jPanel212.setLayout(new java.awt.GridBagLayout());
 
         jScrollPane16.setAutoscrolls(true);
@@ -4398,7 +4475,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 {null, null, null, null, null}
             },
             new String [] {
-                "Date", "Pat No", "Name", "No", "Read"
+                "Date of Procedure", "Patient No.", "Patient Name", "Laboratory Request No.", "Results Read"
             }
         ) {
             Class[] types = new Class [] {
@@ -4434,22 +4511,21 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 8;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 200.0;
-        jPanel26.add(jPanel212, gridBagConstraints);
+        labResultsListingPanel.add(jPanel212, gridBagConstraints);
 
-        jLabel24.setText("Date");
+        jLabel24.setText("Start date for listed laboratory results");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
-        jPanel26.add(jLabel24, gridBagConstraints);
+        labResultsListingPanel.add(jLabel24, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -4457,18 +4533,22 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPanel26.add(labdatePicker, gridBagConstraints);
+        labResultsListingPanel.add(labdatePicker, gridBagConstraints);
 
         labresultsButton.setMnemonic('l');
-        labresultsButton.setText("Refresh");
+        labresultsButton.setText("Refresh listing of laboratory results");
         labresultsButton.setToolTipText("Click here to clear textfields");
+        labresultsButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labresultsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 labresultsButtonActionPerformed(evt);
             }
         });
-        jPanel26.add(labresultsButton, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        labResultsListingPanel.add(labresultsButton, gridBagConstraints);
 
         jButton45.setMnemonic('C');
         jButton45.setText("Close form");
@@ -4479,11 +4559,12 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel26.add(jButton45, gridBagConstraints);
+        labResultsListingPanel.add(jButton45, gridBagConstraints);
 
         jTextField63.setEditable(false);
         jTextField63.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -4491,9 +4572,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel26.add(jTextField63, gridBagConstraints);
+        labResultsListingPanel.add(jTextField63, gridBagConstraints);
 
         jLabel19.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -4503,45 +4584,238 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel26.add(jLabel19, gridBagConstraints);
+        labResultsListingPanel.add(jLabel19, gridBagConstraints);
 
         reaadlabbuttonGroup.add(currentCheckBox);
         currentCheckBox.setSelected(true);
-        currentCheckBox.setText("Current Patient");
+        currentCheckBox.setText("Display list of results for the current Patient");
         currentCheckBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 currentCheckBoxItemStateChanged(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        jPanel26.add(currentCheckBox, gridBagConstraints);
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        labResultsListingPanel.add(currentCheckBox, gridBagConstraints);
 
         reaadlabbuttonGroup.add(allpatCheckBox);
-        allpatCheckBox.setText("All Patient");
+        allpatCheckBox.setText("Display listing of results for All Patient");
         allpatCheckBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 allpatCheckBoxItemStateChanged(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        jPanel26.add(allpatCheckBox, gridBagConstraints);
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        labResultsListingPanel.add(allpatCheckBox, gridBagConstraints);
 
-        readCheckBox.setText("Read All");
+        readCheckBox.setText("Read All results for selected patient");
         readCheckBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 readCheckBoxItemStateChanged(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        jPanel26.add(readCheckBox, gridBagConstraints);
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        labResultsListingPanel.add(readCheckBox, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 500.0;
+        gridBagConstraints.weighty = 1.0;
+        labResultsListingPanel.add(jLabel5, gridBagConstraints);
 
-        consultationTabbedPane.addTab("Lab Results", jPanel26);
+        labResultsTabbenPane.addTab("Listing of Laboratory Procedures that have been reported", labResultsListingPanel);
+
+        labResultsDisplayPanel.setLayout(new java.awt.GridBagLayout());
+
+        laboratoryResultsHeaderPanel.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        laboratoryResultsHeaderPanel.add(laboratoryResultsDatePicker, gridBagConstraints);
+
+        laboratoryResultsTimeLbl.setText("Time when prodecure was done");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        laboratoryResultsHeaderPanel.add(laboratoryResultsTimeLbl, gridBagConstraints);
+
+        laboratoryResultsDateLbl.setText("Laboratory Procedure Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        laboratoryResultsHeaderPanel.add(laboratoryResultsDateLbl, gridBagConstraints);
+
+        laboratoryResultsTimeTxt.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        laboratoryResultsHeaderPanel.add(laboratoryResultsTimeTxt, gridBagConstraints);
+
+        laboratoryResultsPatientNumberTxt.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        laboratoryResultsHeaderPanel.add(laboratoryResultsPatientNumberTxt, gridBagConstraints);
+
+        laboratoryResultsPatientNameLbl.setText("Patient Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        laboratoryResultsHeaderPanel.add(laboratoryResultsPatientNameLbl, gridBagConstraints);
+
+        laboratoryResultsPatientNumberLbl.setText("Patient Number");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        laboratoryResultsHeaderPanel.add(laboratoryResultsPatientNumberLbl, gridBagConstraints);
+
+        laboratoryResultsPatientNameTxt.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 3.0;
+        gridBagConstraints.weighty = 1.0;
+        laboratoryResultsHeaderPanel.add(laboratoryResultsPatientNameTxt, gridBagConstraints);
+
+        laboratoryProcedureResultDetailsTxt.setEditable(false);
+        laboratoryProcedureResultDetailsTxt.setBackground(new java.awt.Color(204, 204, 204));
+        laboratoryProcedureResultDetailsTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Details/Remarks of laboratory procedure"));
+        labResultsDisplayDetailsJscrl.setViewportView(laboratoryProcedureResultDetailsTxt);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 11;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 5.0;
+        laboratoryResultsHeaderPanel.add(labResultsDisplayDetailsJscrl, gridBagConstraints);
+
+        laboratoryProcedureNameLbl.setText("Name of Laboratory Procedure");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        laboratoryResultsHeaderPanel.add(laboratoryProcedureNameLbl, gridBagConstraints);
+
+        laboratoryProcedureDescriptionTxt.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 1;
+        gridBagConstraints.ipady = 1;
+        laboratoryResultsHeaderPanel.add(laboratoryProcedureDescriptionTxt, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 20.0;
+        labResultsDisplayPanel.add(laboratoryResultsHeaderPanel, gridBagConstraints);
+
+        laboratoryResultsBodyPanel.setLayout(new java.awt.GridBagLayout());
+
+        laboratoryDisplayJscrl.setBorder(javax.swing.BorderFactory.createTitledBorder("Deatails of laboratory procedure results"));
+
+        laboratoryResultsDisplayTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        laboratoryDisplayJscrl.setViewportView(laboratoryResultsDisplayTbl);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        laboratoryResultsBodyPanel.add(laboratoryDisplayJscrl, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 100.0;
+        labResultsDisplayPanel.add(laboratoryResultsBodyPanel, gridBagConstraints);
+
+        laboratoryResultsButtonPanel.setLayout(new java.awt.GridBagLayout());
+
+        back2LabListingBrn.setText("Back to result listings panel");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        laboratoryResultsButtonPanel.add(back2LabListingBrn, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        laboratoryResultsButtonPanel.add(spacerLabel, gridBagConstraints);
+
+        displayLaboratoryResultsPDFBtn.setText("Display results in PDF");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        laboratoryResultsButtonPanel.add(displayLaboratoryResultsPDFBtn, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        labResultsDisplayPanel.add(laboratoryResultsButtonPanel, gridBagConstraints);
+
+        labResultsTabbenPane.addTab("Display of reports for a laboratory procedure", labResultsDisplayPanel);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel26.add(labResultsTabbenPane, gridBagConstraints);
+
+        consultationTabbedPane.addTab("Laboratory Results", jPanel26);
 
         jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel29.setLayout(new java.awt.GridBagLayout());
@@ -4617,7 +4891,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.weighty = 200.0;
         jPanel29.add(jPanel213, gridBagConstraints);
 
-        jLabel27.setText("Date");
+        jLabel27.setText("Start date for displayed results");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -4693,7 +4967,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.weighty = 1.0;
         jPanel29.add(jLabel22, gridBagConstraints);
 
-        consultationTabbedPane.addTab("Xray Results", jPanel29);
+        consultationTabbedPane.addTab("Radiology and Imaging Results", jPanel29);
 
         jPanel15.setLayout(new java.awt.GridBagLayout());
 
@@ -5127,7 +5401,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.weighty = 1.0;
         jPanel15.add(jPanel17, gridBagConstraints);
 
-        consultationTabbedPane.addTab("Sick Leave", jPanel15);
+        consultationTabbedPane.addTab("Sick Off/Leave", jPanel15);
 
         jPanel19.setLayout(new java.awt.GridBagLayout());
 
@@ -5403,7 +5677,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         outpatientCheckBox.setForeground(new java.awt.Color(51, 51, 255));
         outpatientCheckBox.setMnemonic('o');
         outpatientCheckBox.setSelected(true);
-        outpatientCheckBox.setText("OUT-Patients");
+        outpatientCheckBox.setText("Display List of OUT-Patients");
         outpatientCheckBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 outpatientCheckBoxItemStateChanged(evt);
@@ -5422,7 +5696,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         buttonGroup8.add(inpatientCheckBox);
         inpatientCheckBox.setForeground(new java.awt.Color(255, 0, 51));
         inpatientCheckBox.setMnemonic('i');
-        inpatientCheckBox.setText("IN-Patients");
+        inpatientCheckBox.setText("Display List of IN-Patients");
         inpatientCheckBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 inpatientCheckBoxItemStateChanged(evt);
@@ -6043,7 +6317,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 //java.sql.ResultSet rsetTable112 = stmtTable112.executeQuery("select distinct lab_no,patient_name from hp_lab_results where doc_read = false and result_shown = false AND date >='"+datePicker13.getDate().toString()+"' and lab_no is not null and lab_no !='null' and clinic ilike '"+jComboBox11.getSelectedItem().toString()+"' order by lab_no  ");
                 java.sql.ResultSet rsetTable112 = stmtTable112.executeQuery(""
                         + "(select distinct lab_no,patient_name from hp_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and   lab_no is not null and lab_no !='null' ) ");
-                   ///////     + " union (select distinct lab_no,patient_name from lims_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'   and lab_no is not null and lab_no !='null') order by lab_no  ");
+                ///////     + " union (select distinct lab_no,patient_name from lims_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'   and lab_no is not null and lab_no !='null') order by lab_no  ");
 
                 while (rsetTable112.next()) {
                     labNo = rsetTable112.getString(1);
@@ -6079,18 +6353,20 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 //                    + " union (select distinct date,patient_no,patient_name,request_id,false,input_date::time from lims_lab_results "
 //                    + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'    "
 //                    + "  order by input_date::time asc);");
-
-            while (rsetTable1r.next()) {
-
-                labresultsTable.setValueAt(com.afrisoftech.lib.DBAllObjects.getDBObject(rsetTable1r.getObject(1), "-"), p, 0);
-                labresultsTable.setValueAt(rsetTable1r.getObject(2), p, 1);
-                labresultsTable.setValueAt(rsetTable1r.getObject(3), p, 2);
-                labresultsTable.setValueAt(rsetTable1r.getObject(4), p, 3);
-                labresultsTable.setValueAt(rsetTable1r.getObject(5), p, 4);
-
-                p++;
-
-            }
+            labresultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "(select distinct date, patient_no, patient_name, lab_no as procedure_request_no, typeof_test procedure_name, false as results_read from hp_lab_results "
+                    + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'    "
+                    + "  order by 1 asc) "));
+//            while (rsetTable1r.next()) {
+//
+//                labresultsTable.setValueAt(com.afrisoftech.lib.DBAllObjects.getDBObject(rsetTable1r.getObject(1), "-"), p, 0);
+//                labresultsTable.setValueAt(rsetTable1r.getObject(2), p, 1);
+//                labresultsTable.setValueAt(rsetTable1r.getObject(3), p, 2);
+//                labresultsTable.setValueAt(rsetTable1r.getObject(4), p, 3);
+//                labresultsTable.setValueAt(rsetTable1r.getObject(5), p, 4);
+//
+//                p++;
+//
+//            }
             stmtTable1r.close();
             rsetTable1r.close();
             //}
@@ -6318,6 +6594,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     }//GEN-LAST:event_consultationTabbedPaneMouseClicked
 
     private void labresultsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labresultsTableMouseClicked
+
+        laboratoryResultsDisplayTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT parameter, units, out_come, lower_limit, upper_limit, (CASE WHEN result::varchar ~ '^[0-9]*.?[0-9]*$' AND (result < lower_limit or result > upper_limit) THEN true  ELSE false END) AS exception from hp_lab_results WHERE lab_no = '" + labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 3).toString() + "'"));
+
         String receiptNo = null;
         //        if (jTable1.getSelectedColumn() == 2) {
         System.out.print("See receipt No3. : " + receiptNo);
@@ -8671,7 +8950,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         if (jTextField111.getCaretPosition() < 3) {
 
             System.out.println("Nothing");
-            
+
         } else {
 
             jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
@@ -8755,7 +9034,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             for (int r = 0; r < clerkingwaitingTable.getColumnCount(); r++) {
                 clerkingwaitingTable.getModel().setValueAt(null, k, r);
             }
-        } 
+        }
         loadALLpatientsbtn.doClick();
 // Add your handling code here:
     }//GEN-LAST:event_waitingclinicscmbxActionPerformed
@@ -8935,7 +9214,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
                     java.sql.Statement stmt1 = connectDB.createStatement();
                     java.sql.ResultSet rset1 = null;
-                    if(outpatientCheckBox.isSelected()){
+                    if (outpatientCheckBox.isSelected()) {
                         rset1 = stmt1.executeQuery("select gender,age::int,department from hp_patient_visit where patient_no ='" + nameNoTxt.getText() + "' ORDER BY age desc LIMIT 1 ");
                     } else {
                         rset1 = stmt1.executeQuery("select gender,pat_age::int,ward from hp_admission where patient_no ='" + nameNoTxt.getText() + "' ORDER BY date_admitted desc LIMIT 1 ");
@@ -10474,7 +10753,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             java.sql.Statement stmtTable113 = connectDB.createStatement();
             // java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("select count(distinct lab_no) from hp_lab_results where doc_read = false  and result_shown = false AND date >='" + datePicker11.getDate().toString() + "' and lab_no !='null' and lab_no is not null ");
             java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery(""
-                    + "(select count(distinct lab_no) from hp_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + nameNoTxt.getText() + "'  and lab_no !='null' and lab_no is not null) ");  
+                    + "(select count(distinct lab_no) from hp_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + nameNoTxt.getText() + "'  and lab_no !='null' and lab_no is not null) ");
                   /////  + " union (select count(distinct lab_no) from lims_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + nameNoTxt.getText() + "'  and lab_no !='null' and lab_no is not null )");
 
             // java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("select count(distinct lab_no) from hp_lab_results where doc_read = false  and result_shown = false AND date >='"+datePicker11.getDate().toString()+"' and lab_no !='null' and lab_no is not null and clinic ilike '"+jComboBox11.getSelectedItem().toString()+"'");
@@ -10488,7 +10767,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
                 //java.sql.ResultSet rsetTable112 = stmtTable112.executeQuery("select distinct lab_no,patient_name from hp_lab_results where doc_read = false and result_shown = false AND date >='"+datePicker13.getDate().toString()+"' and lab_no is not null and lab_no !='null' and clinic ilike '"+jComboBox11.getSelectedItem().toString()+"' order by lab_no  ");
                 java.sql.ResultSet rsetTable112 = stmtTable112.executeQuery("(select distinct lab_no,patient_name from hp_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + jTextField922.getText() + "' and lab_no is not null and lab_no !='null')  ");
-                  ///////      + " union (select distinct lab_no,patient_name from lims_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + jTextField922.getText() + "' and lab_no is not null and lab_no !='null' order by lab_no)  ");
+                ///////      + " union (select distinct lab_no,patient_name from lims_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + jTextField922.getText() + "' and lab_no is not null and lab_no !='null' order by lab_no)  ");
 
                 while (rsetTable112.next()) {
                     labNo = rsetTable112.getString(1);
@@ -10521,9 +10800,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                     + "(select distinct date,patient_no,patient_name,request_id,false,input_date::time from hp_lab_results "
                     + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + nameNoTxt.getText() + "')  ");
                   //////  + "  "
-                  //////   + " union (select distinct date,patient_no,patient_name,request_id,false,input_date::time from lims_lab_results "
-                 //////   + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + nameNoTxt.getText() + "'  "
-                 //////   + "  order by input_date::time asc);");
+            //////   + " union (select distinct date,patient_no,patient_name,request_id,false,input_date::time from lims_lab_results "
+            //////   + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + nameNoTxt.getText() + "'  "
+            //////   + "  order by input_date::time asc);");
 
             while (rsetTable1r.next()) {
 
@@ -10598,7 +10877,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 try {
                     java.sql.PreparedStatement pstmtVector = connectDB.prepareStatement(""
                             + "select distinct patient_no,initcap(first_name||' '||second_name) as Names,Category,residence,tel_no,last_visit "
-                            + "from hp_patient_register where patient_no = '" + labresultsTable.getValueAt(0, 1).toString() + "' ");
+                            + "from hp_patient_register where patient_no = '" + labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 1).toString() + "' ");
                     String header = null;
                     java.sql.ResultSet rsetVector = pstmtVector.executeQuery();
                     if (rsetVector.next()) {
@@ -10963,6 +11242,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JTextField ageTxt;
     private javax.swing.JCheckBox allpatCheckBox;
     private javax.swing.JCheckBox attendjCheckBox53;
+    private javax.swing.JButton back2LabListingBrn;
     private javax.swing.JRadioButton bedreRadioButton1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup10;
@@ -11002,6 +11282,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private com.afrisoftech.lib.DatePicker datePicker2;
     private javax.swing.JTable diagnosisTable;
     private javax.swing.JPanel diagnosispane;
+    private javax.swing.JButton displayLaboratoryResultsPDFBtn;
     private javax.swing.JTextField doctorsTextField81;
     private javax.swing.JCheckBox driveCheckBox82;
     private javax.swing.JTextField emergencyTextField;
@@ -11097,8 +11378,10 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel342;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
@@ -11155,6 +11438,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel40;
+    private javax.swing.JPanel jPanel41;
     private javax.swing.JPanel jPanel4111;
     private javax.swing.JPanel jPanel413;
     private javax.swing.JPanel jPanel42;
@@ -11290,9 +11574,29 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JTextField jTextField922;
     private javax.swing.JTextField jTextField93;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JScrollPane labResultsDisplayDetailsJscrl;
+    private javax.swing.JPanel labResultsDisplayPanel;
+    private javax.swing.JPanel labResultsListingPanel;
+    private javax.swing.JTabbedPane labResultsTabbenPane;
     private javax.swing.JTextField labTextField;
     private com.afrisoftech.lib.DatePicker labdatePicker;
     private javax.swing.JCheckBox lablatoryCheck;
+    private javax.swing.JScrollPane laboratoryDisplayJscrl;
+    private javax.swing.JTextField laboratoryProcedureDescriptionTxt;
+    private javax.swing.JLabel laboratoryProcedureNameLbl;
+    private javax.swing.JEditorPane laboratoryProcedureResultDetailsTxt;
+    private javax.swing.JPanel laboratoryResultsBodyPanel;
+    private javax.swing.JPanel laboratoryResultsButtonPanel;
+    private javax.swing.JLabel laboratoryResultsDateLbl;
+    private com.afrisoftech.lib.DatePicker laboratoryResultsDatePicker;
+    private javax.swing.JTable laboratoryResultsDisplayTbl;
+    private javax.swing.JPanel laboratoryResultsHeaderPanel;
+    private javax.swing.JLabel laboratoryResultsPatientNameLbl;
+    private javax.swing.JTextField laboratoryResultsPatientNameTxt;
+    private javax.swing.JLabel laboratoryResultsPatientNumberLbl;
+    private javax.swing.JTextField laboratoryResultsPatientNumberTxt;
+    private javax.swing.JLabel laboratoryResultsTimeLbl;
+    private javax.swing.JTextField laboratoryResultsTimeTxt;
     private javax.swing.JButton labresultsButton;
     private javax.swing.JTable labresultsTable;
     private javax.swing.JRadioButton lightdutiesRadioButton3;
@@ -11358,6 +11662,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JTextField searchservicesTextField;
     private javax.swing.JTextField seenTextField;
     private javax.swing.JTextField sheetjTextField101;
+    private javax.swing.JLabel spacerLabel;
     private javax.swing.JPanel spacerPanel;
     private com.afrisoftech.lib.DatePicker startdatePicker111;
     private javax.swing.JTable surgeryhistoryTable;
@@ -11719,23 +12024,23 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                     pstmt2f.setBoolean(16, false);
                                     pstmt2f.executeUpdate();
                                     /*
-                                    org.apache.commons.httpclient.methods.PostMethod postMethod = new org.apache.commons.httpclient.methods.PostMethod("");
-                                    org.apache.commons.httpclient.NameValuePair[] data = {
-                                        new org.apache.commons.httpclient.NameValuePair("patient_no", nameNoTxt.getText()),
-                                        new org.apache.commons.httpclient.NameValuePair("patient_name", patientNametxt.getText()),
-                                        new org.apache.commons.httpclient.NameValuePair("bill_no", billNo),
-                                        new org.apache.commons.httpclient.NameValuePair("service", "bloggs"),
-                                        new org.apache.commons.httpclient.NameValuePair("revenue_code", "bloggs"),
-                                        new org.apache.commons.httpclient.NameValuePair("service_fee", "bloggs")
-                                    };
-                                    postMethod.setRequestBody(data);
-                                    postMethod.execute(new org.apache.commons.httpclient.HttpState(), new org.apache.commons.httpclient.HttpConnection("54.69.234.12",8000));
-// execute method and handle any error responses.
+                                     org.apache.commons.httpclient.methods.PostMethod postMethod = new org.apache.commons.httpclient.methods.PostMethod("");
+                                     org.apache.commons.httpclient.NameValuePair[] data = {
+                                     new org.apache.commons.httpclient.NameValuePair("patient_no", nameNoTxt.getText()),
+                                     new org.apache.commons.httpclient.NameValuePair("patient_name", patientNametxt.getText()),
+                                     new org.apache.commons.httpclient.NameValuePair("bill_no", billNo),
+                                     new org.apache.commons.httpclient.NameValuePair("service", "bloggs"),
+                                     new org.apache.commons.httpclient.NameValuePair("revenue_code", "bloggs"),
+                                     new org.apache.commons.httpclient.NameValuePair("service_fee", "bloggs")
+                                     };
+                                     postMethod.setRequestBody(data);
+                                     postMethod.execute(new org.apache.commons.httpclient.HttpState(), new org.apache.commons.httpclient.HttpConnection("54.69.234.12",8000));
+                                     // execute method and handle any error responses.
                                     
-                                    InputStream in = postMethod.getResponseBodyAsStream();
-                                    String in2 = postMethod.getResponseBodyAsString();
-                                    System.out.println(in2);
-                                           */ 
+                                     InputStream in = postMethod.getResponseBodyAsStream();
+                                     String in2 = postMethod.getResponseBodyAsString();
+                                     System.out.println(in2);
+                                     */
 //                                    HttpPost httpClient = new HttpPost("");
 //                                    httpClient.setURI(null);
                                 } else if (paymentModetxt.getText().startsWith("Scheme") || inpatientCheckBox.isSelected()) {

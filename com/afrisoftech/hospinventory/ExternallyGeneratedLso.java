@@ -44,7 +44,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         datePicker1.setDate(null);
         jCheckBox1.doClick();
         jCheckBox3.doClick();
-        sectionCmbx.setSelectedItem(UserName.getUserAllocatedSection(connectDB, jTextField9.getText()).toUpperCase());
+      //  sectionCmbx.setSelectedItem(UserName.getUserAllocatedSection(connectDB, jTextField9.getText()).toUpperCase());
         String user = null;
         try {
             java.sql.Statement pst2v = connectDB.createStatement();
@@ -58,7 +58,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         } catch (Exception userex) {
             System.out.println("user error is " + userex);
         }
-
+        sectionCmbx.setSelectedItem(UserName.getUserAllocatedSection(connectDB, jTextField9.getText()).toUpperCase());
     }
 
     /**
@@ -1565,176 +1565,172 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
 
     private void postbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postbtnActionPerformed
 
-        
-        if(jTextField3.getText().length()>1){
-        int exitOption = javax.swing.JOptionPane.showConfirmDialog(this, "You Are About To Generate an " + orderCmbx.getSelectedItem() + " To " + supplietTxt.getText().toUpperCase() + "\n Yes To Continue", "Caution before Saving!", javax.swing.JOptionPane.YES_NO_CANCEL_OPTION);
+        if (jTextField3.getText().length() > 1) {
+            int exitOption = javax.swing.JOptionPane.showConfirmDialog(this, "You Are About To Generate an " + orderCmbx.getSelectedItem() + " To " + supplietTxt.getText().toUpperCase() + "\n Yes To Continue", "Caution before Saving!", javax.swing.JOptionPane.YES_NO_CANCEL_OPTION);
 
-        if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
+            if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
 
-            if (datePicker1.getDate() != (null) || sectionCmbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
-                try {
-                    connectDB.setAutoCommit(false);
-                    Boolean check_insert = false;
-                    int num_rows = 0;
-                    order_no = lpoNumberTxt.getText();
-
-                    if (supplietTxt.getText().toString().length() > 0 && lpoNumberTxt.getText().toString().length() > 0 && sectionCmbx.getSelectedItem().toString().length() > 0) {
-                        /////checking if the LPO/LSO exceeds
-                        java.sql.Statement stmtss = connectDB.createStatement();
-                        java.sql.ResultSet rsetF = stmtss.executeQuery("select count(*) from st_orders where order_no='" + lpoNumberTxt.getText() + "'  ");
-
-                        while (rsetF.next()) {
-                            num_rows = rsetF.getInt(1);
-
-                        }
-
-                        System.out.println(num_rows);
-
-                        if (num_rows == 0) {
-
-                            java.sql.Statement pstmt1s = connectDB.createStatement();
-//                            java.sql.ResultSet rs1s = pstmt1s.executeQuery("select '" + TenderNoTxt.getText() + "' || nextval('order_trans_seq'),CURRENT_DATE"); //from orders where supplier ='"+jTable1.getValueAt(i,4).toString()+"'");
-                            java.sql.ResultSet rs1s = pstmt1s.executeQuery("select current_date || nextval('order_trans_seq')::VARCHAR,CURRENT_DATE"); //from orders where supplier ='"+jTable1.getValueAt(i,4).toString()+"'");
-
-                            while (rs1s.next()) {
-                                old_order = rs1s.getObject(1).toString();
-
-                            }
-                           // old_order = com.afrisoftech.lib.DateLables.getDateLabel();
-                            System.out.println("old_order ["+old_order+"]");
-                            for (int i = 0; i < itemsTbl.getModel().getRowCount(); i++) {
-                                if (itemsTbl.getValueAt(i, 0) != null) {
-                                    System.err.println("inserting " + itemsTbl.getModel().getValueAt(i, 0).toString());
-                                    java.sql.PreparedStatement savelpo
-                                            = connectDB.prepareStatement("INSERT INTO st_orders (quotation_no, supplier, criteria, item, quantity, unit_price,"
-                                                    + " days_to_deliver, units,code,discount,discount_value,vat,vat_amount,net_value,"
-                                                    + "order_no,date_due,doc_type,item_strength,ordering_store,chief_approval ,aie_holder_approval ,sad_approval ,miu_approval,date,remarks,head,subhead,main_department)"
-                                                    + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
-
-                                    savelpo.setObject(1, TenderNoTxt.getText());
-                                    savelpo.setObject(2, supplietTxt.getText().toUpperCase());
-                                    savelpo.setObject(3, "ExternalLpo");
-                                    savelpo.setObject(4, itemsTbl.getModel().getValueAt(i, 0).toString());
-                                    savelpo.setDouble(5, Double.parseDouble(itemsTbl.getModel().getValueAt(i, 3).toString()));
-                                    savelpo.setObject(6, itemsTbl.getModel().getValueAt(i, 4));
-                                    if (itemsTbl.getModel().getValueAt(i, 10) == null) {
-                                        savelpo.setObject(7, Double.parseDouble("0"));
-                                    } else {
-                                        savelpo.setObject(7, Double.parseDouble(itemsTbl.getModel().getValueAt(i, 10).toString()));
-                                    }
-
-                                    savelpo.setObject(8, itemsTbl.getModel().getValueAt(i, 2));
-                                    savelpo.setObject(9, itemsTbl.getModel().getValueAt(i, 11));
-                                    savelpo.setObject(10, itemsTbl.getModel().getValueAt(i, 5));
-                                    savelpo.setObject(11, itemsTbl.getModel().getValueAt(i, 6));
-                                    savelpo.setObject(12, itemsTbl.getModel().getValueAt(i, 7));
-                                    savelpo.setObject(13, itemsTbl.getModel().getValueAt(i, 8));
-                                    savelpo.setObject(14, itemsTbl.getModel().getValueAt(i, 9));
-                                    if (jCheckBox3.isSelected()) {
-                                        savelpo.setObject(15, old_order);
-
-                                    } else {
-                                        savelpo.setObject(15, lpoNumberTxt.getText());
-                                    }
-                                    savelpo.setDate(16, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                                    savelpo.setObject(17, orderCmbx.getSelectedItem().toString());
-                                    savelpo.setObject(18, itemsTbl.getModel().getValueAt(i, 1));
-                                    savelpo.setObject(19, sectionCmbx.getSelectedItem().toString());
-                                    savelpo.setObject(20, false);
-                                    savelpo.setObject(21, false);
-                                    savelpo.setObject(22, false);
-                                    savelpo.setObject(23, false);
-                                    savelpo.setDate(24, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
-                                    savelpo.setObject(25, old_order);
-                                    savelpo.setObject(26, jTextField3.getText());
-                                    savelpo.setObject(27, jTextField6.getText());
-                                    savelpo.setObject(28, getMaindept(jTextField3.getText()));
-                                    savelpo.executeUpdate();
-
-                                    java.sql.PreparedStatement savelpo1 = connectDB.prepareStatement("INSERT INTO st_recommendation(supplier, quotation_no,supplier_code , discount_rate, item_code,description, unit, price, vat, date,\n"
-                                            + "  user_name, financial_year,ordered_qty)\n"
-                                            + "    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );");
-
-                                    savelpo1.setObject(1, supplietTxt.getText().toUpperCase());
-                                    savelpo1.setObject(2, TenderNoTxt.getText());
-                                    savelpo1.setObject(3, supplietTxt.getText());
-                                    savelpo1.setObject(4, Double.valueOf(itemsTbl.getValueAt(i, 5).toString()));
-                                    savelpo1.setObject(5, itemsTbl.getValueAt(i, 11));
-                                    savelpo1.setObject(6, itemsTbl.getValueAt(i, 0));
-                                    savelpo1.setObject(7, itemsTbl.getValueAt(i, 2));
-                                    savelpo1.setObject(8, itemsTbl.getValueAt(i, 4));
-                                    savelpo1.setObject(9, Double.valueOf(itemsTbl.getValueAt(i, 8).toString()));
-                                    savelpo1.setObject(10, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));
-                                    savelpo1.setObject(11, com.afrisoftech.lib.UserName.getLoginName(connectDB).toLowerCase());
-                                    savelpo1.setObject(12, com.afrisoftech.lib.FinancialYear.getActiveFinancialYear(connectDB));
-                                    //select units, item_code from stockitem where description ='AMOXICILLIN 250MG CAPSULES'
-                                    savelpo1.setObject(13, Double.valueOf(itemsTbl.getValueAt(i, 3).toString()));
-
-                                    savelpo1.executeUpdate();
-
-                                    check_insert = true;
-
-                                }
-                            }
-
-                            if (jCheckBox3.isSelected()) {
-                                pstmt1s = connectDB.createStatement();
-                                java.sql.ResultSet rs1s1 = pstmt1s.executeQuery("select nextval('order_no_seq'),CURRENT_DATE");
-                                while (rs1s1.next()) {
-                                    order_no1 = rs1s1.getObject(1).toString();
-
-                                }
-
-                                java.sql.Statement pstmt1 = connectDB.createStatement();
-
-                                java.sql.ResultSet rs1 = pstmt1.executeQuery("select  lpad('" + order_no1 + "',10,'0'),date('now')");
-
-                                while (rs1.next()) {
-                                    order_no = rs1.getObject(1).toString();
-                                }
-
-                                java.sql.PreparedStatement pstmt81212 = connectDB.prepareStatement(""
-                                        + "update st_orders set order_no='" + order_no + "' where  order_no='" + old_order + "' ");
-
-                                pstmt81212.executeUpdate();
-
-                            }
-
-                            connectDB.commit();
-                            connectDB.setAutoCommit(true);
-                            javax.swing.JOptionPane.showMessageDialog(this, "Generated Order No " + order_no + " to " + supplietTxt.getText(), "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-                            cancelbtn.doClick();
-                            
-
-                        } else {
-                            javax.swing.JOptionPane.showMessageDialog(this, "The Lpo/Lso Has Already been Entered In The System(Cannot be a Duplicate Entry)", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-
-                        }
-                    } else {
-                        javax.swing.JOptionPane.showMessageDialog(this, "Double Check your Entries(All the fields should be filled)", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-
-                    }
-
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    System.out.println(ex.getMessage());
-                    javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                if (datePicker1.getDate() != (null) || sectionCmbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
                     try {
-                        connectDB.rollback();
-                    } catch (SQLException ex1) {
-                        Exceptions.printStackTrace(ex1);
-                    }
+                        connectDB.setAutoCommit(false);
+                        Boolean check_insert = false;
+                        int num_rows = 0;
+                        order_no = lpoNumberTxt.getText();
 
+                        if (supplietTxt.getText().toString().length() > 0 && lpoNumberTxt.getText().toString().length() > 0 && sectionCmbx.getSelectedItem().toString().length() > 0) {
+                            /////checking if the LPO/LSO exceeds
+                            java.sql.Statement stmtss = connectDB.createStatement();
+                            java.sql.ResultSet rsetF = stmtss.executeQuery("select count(*) from st_orders where order_no='" + lpoNumberTxt.getText() + "'  ");
+
+                            while (rsetF.next()) {
+                                num_rows = rsetF.getInt(1);
+
+                            }
+
+                            System.out.println(num_rows);
+
+                            if (num_rows == 0) {
+
+                                java.sql.Statement pstmt1s = connectDB.createStatement();
+//                            java.sql.ResultSet rs1s = pstmt1s.executeQuery("select '" + TenderNoTxt.getText() + "' || nextval('order_trans_seq'),CURRENT_DATE"); //from orders where supplier ='"+jTable1.getValueAt(i,4).toString()+"'");
+                                java.sql.ResultSet rs1s = pstmt1s.executeQuery("select current_date || nextval('order_trans_seq')::VARCHAR,CURRENT_DATE"); //from orders where supplier ='"+jTable1.getValueAt(i,4).toString()+"'");
+
+                                while (rs1s.next()) {
+                                    old_order = rs1s.getObject(1).toString();
+
+                                }
+                                // old_order = com.afrisoftech.lib.DateLables.getDateLabel();
+                                System.out.println("old_order [" + old_order + "]");
+                                for (int i = 0; i < itemsTbl.getModel().getRowCount(); i++) {
+                                    if (itemsTbl.getValueAt(i, 0) != null) {
+                                        System.err.println("inserting " + itemsTbl.getModel().getValueAt(i, 0).toString());
+                                        java.sql.PreparedStatement savelpo
+                                                = connectDB.prepareStatement("INSERT INTO st_orders (quotation_no, supplier, criteria, item, quantity, unit_price,"
+                                                        + " days_to_deliver, units,code,discount,discount_value,vat,vat_amount,net_value,"
+                                                        + "order_no,date_due,doc_type,item_strength,ordering_store,chief_approval ,aie_holder_approval ,sad_approval ,miu_approval,date,remarks,head,subhead,main_department)"
+                                                        + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+
+                                        savelpo.setObject(1, TenderNoTxt.getText());
+                                        savelpo.setObject(2, supplietTxt.getText().toUpperCase());
+                                        savelpo.setObject(3, "ExternalLpo");
+                                        savelpo.setObject(4, itemsTbl.getModel().getValueAt(i, 0).toString());
+                                        savelpo.setDouble(5, Double.parseDouble(itemsTbl.getModel().getValueAt(i, 3).toString()));
+                                        savelpo.setObject(6, itemsTbl.getModel().getValueAt(i, 4));
+                                        if (itemsTbl.getModel().getValueAt(i, 10) == null) {
+                                            savelpo.setObject(7, Double.parseDouble("0"));
+                                        } else {
+                                            savelpo.setObject(7, Double.parseDouble(itemsTbl.getModel().getValueAt(i, 10).toString()));
+                                        }
+
+                                        savelpo.setObject(8, itemsTbl.getModel().getValueAt(i, 2));
+                                        savelpo.setObject(9, itemsTbl.getModel().getValueAt(i, 11));
+                                        savelpo.setObject(10, itemsTbl.getModel().getValueAt(i, 5));
+                                        savelpo.setObject(11, itemsTbl.getModel().getValueAt(i, 6));
+                                        savelpo.setObject(12, itemsTbl.getModel().getValueAt(i, 7));
+                                        savelpo.setObject(13, itemsTbl.getModel().getValueAt(i, 8));
+                                        savelpo.setObject(14, itemsTbl.getModel().getValueAt(i, 9));
+                                        if (jCheckBox3.isSelected()) {
+                                            savelpo.setObject(15, old_order);
+
+                                        } else {
+                                            savelpo.setObject(15, lpoNumberTxt.getText());
+                                        }
+                                        savelpo.setDate(16, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                        savelpo.setObject(17, orderCmbx.getSelectedItem().toString());
+                                        savelpo.setObject(18, itemsTbl.getModel().getValueAt(i, 1));
+                                        savelpo.setObject(19, sectionCmbx.getSelectedItem().toString());
+                                        savelpo.setObject(20, false);
+                                        savelpo.setObject(21, false);
+                                        savelpo.setObject(22, false);
+                                        savelpo.setObject(23, false);
+                                        savelpo.setDate(24, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
+                                        savelpo.setObject(25, old_order);
+                                        savelpo.setObject(26, jTextField3.getText());
+                                        savelpo.setObject(27, jTextField6.getText());
+                                        savelpo.setObject(28, getMaindept(jTextField3.getText()));
+                                        savelpo.executeUpdate();
+
+                                        java.sql.PreparedStatement savelpo1 = connectDB.prepareStatement("INSERT INTO st_recommendation(supplier, quotation_no,supplier_code , discount_rate, item_code,description, unit, price, vat, date,\n"
+                                                + "  user_name, financial_year,ordered_qty)\n"
+                                                + "    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );");
+
+                                        savelpo1.setObject(1, supplietTxt.getText().toUpperCase());
+                                        savelpo1.setObject(2, TenderNoTxt.getText());
+                                        savelpo1.setObject(3, supplietTxt.getText());
+                                        savelpo1.setObject(4, Double.valueOf(itemsTbl.getValueAt(i, 5).toString()));
+                                        savelpo1.setObject(5, itemsTbl.getValueAt(i, 11));
+                                        savelpo1.setObject(6, itemsTbl.getValueAt(i, 0));
+                                        savelpo1.setObject(7, itemsTbl.getValueAt(i, 2));
+                                        savelpo1.setObject(8, itemsTbl.getValueAt(i, 4));
+                                        savelpo1.setObject(9, Double.valueOf(itemsTbl.getValueAt(i, 8).toString()));
+                                        savelpo1.setObject(10, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));
+                                        savelpo1.setObject(11, com.afrisoftech.lib.UserName.getLoginName(connectDB).toLowerCase());
+                                        savelpo1.setObject(12, com.afrisoftech.lib.FinancialYear.getActiveFinancialYear(connectDB));
+                                        //select units, item_code from stockitem where description ='AMOXICILLIN 250MG CAPSULES'
+                                        savelpo1.setObject(13, Double.valueOf(itemsTbl.getValueAt(i, 3).toString()));
+
+                                        savelpo1.executeUpdate();
+
+                                        check_insert = true;
+
+                                    }
+                                }
+
+                                if (jCheckBox3.isSelected()) {
+                                    pstmt1s = connectDB.createStatement();
+                                    java.sql.ResultSet rs1s1 = pstmt1s.executeQuery("select nextval('order_no_seq'),CURRENT_DATE");
+                                    while (rs1s1.next()) {
+                                        order_no1 = rs1s1.getObject(1).toString();
+
+                                    }
+
+                                    java.sql.Statement pstmt1 = connectDB.createStatement();
+
+                                    java.sql.ResultSet rs1 = pstmt1.executeQuery("select  lpad('" + order_no1 + "',10,'0'),date('now')");
+
+                                    while (rs1.next()) {
+                                        order_no = rs1.getObject(1).toString();
+                                    }
+
+                                    java.sql.PreparedStatement pstmt81212 = connectDB.prepareStatement(""
+                                            + "update st_orders set order_no='" + order_no + "' where  order_no='" + old_order + "' ");
+
+                                    pstmt81212.executeUpdate();
+
+                                }
+
+                                connectDB.commit();
+                                connectDB.setAutoCommit(true);
+                                javax.swing.JOptionPane.showMessageDialog(this, "Generated Order No " + order_no + " to " + supplietTxt.getText(), "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                                cancelbtn.doClick();
+
+                            } else {
+                                javax.swing.JOptionPane.showMessageDialog(this, "The Lpo/Lso Has Already been Entered In The System(Cannot be a Duplicate Entry)", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+                            }
+                        } else {
+                            javax.swing.JOptionPane.showMessageDialog(this, "Double Check your Entries(All the fields should be filled)", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+                        }
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        System.out.println(ex.getMessage());
+                        javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                        try {
+                            connectDB.rollback();
+                        } catch (SQLException ex1) {
+                            Exceptions.printStackTrace(ex1);
+                        }
+
+                    }
                 }
+                javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check empty fields before saving.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
             }
-            javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check empty fields before saving.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-        }
-        //datePicker1.setDate(null);
-        }
-        
-        else{
-           javax.swing.JOptionPane.showMessageDialog(this, "Please fill votebook information first", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+            //datePicker1.setDate(null);
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please fill votebook information first", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
         datePicker1.setDate(null);
         // Add your handling code here:

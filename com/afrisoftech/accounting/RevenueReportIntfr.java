@@ -41,7 +41,7 @@ public class RevenueReportIntfr extends javax.swing.JInternalFrame {
         tableHighlighters.add(cyan);
         org.jdesktop.swingx.decorator.PatternPredicate patternPredicate3 = new org.jdesktop.swingx.decorator.PatternPredicate("true", 13, 13);
         ColorHighlighter orange = new ColorHighlighter(patternPredicate3, Color.ORANGE, null, Color.ORANGE, null);
-        tableHighlighters.add(cyan);
+        tableHighlighters.add(orange);
         org.jdesktop.swingx.decorator.PatternPredicate patternPredicate4 = new org.jdesktop.swingx.decorator.PatternPredicate("true", 14, 14);
         ColorHighlighter green = new ColorHighlighter(patternPredicate4, Color.GREEN, null, Color.GREEN, null);
         tableHighlighters.add(green);
@@ -83,7 +83,7 @@ public class RevenueReportIntfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle(org.openide.util.NbBundle.getMessage(RevenueReportIntfr.class, "RevenueReportIntfr.title")); // NOI18N
+        setTitle("A/C Receivables Dashboard");
         try {
             setSelected(true);
         } catch (java.beans.PropertyVetoException e1) {
@@ -95,7 +95,7 @@ public class RevenueReportIntfr extends javax.swing.JInternalFrame {
         dashBoardHeaderPanel.setLayout(new java.awt.GridBagLayout());
 
         debtorAccountCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-All-' UNION SELECT scheme_name FROM ac_schemes WHERE scheme_name != '' and scheme_name is not null ORDER BY 1"));
-        debtorAccountCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(RevenueReportIntfr.class, "RevenueReportIntfr.debtorAccountCmbx.border.title"))); // NOI18N
+        debtorAccountCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Scheme/Debtor Account"));
         debtorAccountCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 debtorAccountCmbxActionPerformed(evt);
@@ -108,7 +108,7 @@ public class RevenueReportIntfr extends javax.swing.JInternalFrame {
         dashBoardHeaderPanel.add(debtorAccountCmbx, gridBagConstraints);
 
         payerAcccountCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-All-' UNION SELECT DISTINCT payer_name FROM ac_schemes WHERE payer_name is not null and payer_name != '' ORDER BY 1"));
-        payerAcccountCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(RevenueReportIntfr.class, "RevenueReportIntfr.payerAcccountCmbx.border.title"))); // NOI18N
+        payerAcccountCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Payer Account"));
         payerAcccountCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 payerAcccountCmbxActionPerformed(evt);
@@ -120,7 +120,7 @@ public class RevenueReportIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         dashBoardHeaderPanel.add(payerAcccountCmbx, gridBagConstraints);
 
-        startDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(RevenueReportIntfr.class, "RevenueReportIntfr.startDatePicker.border.title"))); // NOI18N
+        startDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder("Start Date"));
 
         this.startDatePicker.getDateEditor().addPropertyChangeListener(new java.beans.PropertyChangeListener() {
 
@@ -149,7 +149,7 @@ public class RevenueReportIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         dashBoardHeaderPanel.add(startDatePicker, gridBagConstraints);
 
-        endDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(RevenueReportIntfr.class, "RevenueReportIntfr.endDatePicker.border.title"))); // NOI18N
+        endDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder("End Date"));
 
         this.endDatePicker.getDateEditor().addPropertyChangeListener(new java.beans.PropertyChangeListener() {
 
@@ -205,7 +205,7 @@ public class RevenueReportIntfr extends javax.swing.JInternalFrame {
 
         dashBoardButtonPanel.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(refreshBtn, org.openide.util.NbBundle.getMessage(RevenueReportIntfr.class, "RevenueReportIntfr.refreshBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(refreshBtn, "Refresh listing");
         refreshBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshBtnActionPerformed(evt);
@@ -216,7 +216,7 @@ public class RevenueReportIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         dashBoardButtonPanel.add(refreshBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(editBtn, org.openide.util.NbBundle.getMessage(RevenueReportIntfr.class, "RevenueReportIntfr.editBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(editBtn, "Edit information");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -224,7 +224,7 @@ public class RevenueReportIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         dashBoardButtonPanel.add(editBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(clearBtn, org.openide.util.NbBundle.getMessage(RevenueReportIntfr.class, "RevenueReportIntfr.clearBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(clearBtn, "Clear form");
         clearBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearBtnActionPerformed(evt);
@@ -237,7 +237,7 @@ public class RevenueReportIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         dashBoardButtonPanel.add(clearBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeBtn, org.openide.util.NbBundle.getMessage(RevenueReportIntfr.class, "RevenueReportIntfr.closeBtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(closeBtn, "Close form");
         closeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeBtnActionPerformed(evt);
@@ -249,8 +249,6 @@ public class RevenueReportIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         dashBoardButtonPanel.add(closeBtn, gridBagConstraints);
-
-        org.openide.awt.Mnemonics.setLocalizedText(spacerLbl, org.openide.util.NbBundle.getMessage(RevenueReportIntfr.class, "RevenueReportIntfr.spacerLbl.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
