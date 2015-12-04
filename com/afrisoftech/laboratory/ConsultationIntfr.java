@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
@@ -22,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
 import org.jdesktop.swingx.decorator.ColorHighlighter;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -517,6 +519,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         laboratoryProcedureResultDetailsTxt = new javax.swing.JEditorPane();
         laboratoryProcedureNameLbl = new javax.swing.JLabel();
         laboratoryProcedureDescriptionTxt = new javax.swing.JTextField();
+        ageGenderTxt = new javax.swing.JTextField();
+        ageGenderLbl = new javax.swing.JLabel();
         laboratoryResultsBodyPanel = new javax.swing.JPanel();
         laboratoryDisplayJscrl = new javax.swing.JScrollPane();
         laboratoryResultsDisplayTbl = new com.afrisoftech.dbadmin.JXTable();
@@ -527,7 +531,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         jPanel29 = new javax.swing.JPanel();
         jPanel213 = new javax.swing.JPanel();
         jScrollPane17 = new javax.swing.JScrollPane();
-        jTable16 = new com.afrisoftech.dbadmin.JTable(){
+        radilogyResultsTbl = new com.afrisoftech.dbadmin.JTable(){
             Class[] types = new Class [] {
                 java.lang.Short.class, java.lang.Object.class, java.lang.Object.class,java.lang.Object.class, java.lang.Boolean.class
             };
@@ -545,7 +549,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         };
 
         jLabel27 = new javax.swing.JLabel();
-        datePicker15 = new com.afrisoftech.lib.DatePicker();
+        radiologyResultsDatePicker = new com.afrisoftech.lib.DatePicker();
         jButton38 = new javax.swing.JButton();
         jButton47 = new javax.swing.JButton();
         jSeparator16 = new javax.swing.JSeparator();
@@ -4415,6 +4419,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel26.setLayout(new java.awt.GridBagLayout());
 
+        labResultsTabbenPane.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
         labResultsListingPanel.setLayout(new java.awt.GridBagLayout());
 
         jPanel212.setLayout(new java.awt.GridBagLayout());
@@ -4725,19 +4731,36 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         laboratoryProcedureNameLbl.setText("Name of Laboratory Procedure");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 1;
         laboratoryResultsHeaderPanel.add(laboratoryProcedureNameLbl, gridBagConstraints);
 
         laboratoryProcedureDescriptionTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 1;
         gridBagConstraints.ipady = 1;
         laboratoryResultsHeaderPanel.add(laboratoryProcedureDescriptionTxt, gridBagConstraints);
+
+        ageGenderTxt.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        laboratoryResultsHeaderPanel.add(ageGenderTxt, gridBagConstraints);
+
+        ageGenderLbl.setText("Age and Gender");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        laboratoryResultsHeaderPanel.add(ageGenderLbl, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -4775,7 +4798,13 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         laboratoryResultsButtonPanel.setLayout(new java.awt.GridBagLayout());
 
-        back2LabListingBrn.setText("Back to result listings panel");
+        back2LabListingBrn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        back2LabListingBrn.setText("<<Back to result listings panel");
+        back2LabListingBrn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back2LabListingBrnActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -4791,6 +4820,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.weighty = 1.0;
         laboratoryResultsButtonPanel.add(spacerLabel, gridBagConstraints);
 
+        displayLaboratoryResultsPDFBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         displayLaboratoryResultsPDFBtn.setText("Display results in PDF");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
@@ -4824,7 +4854,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         jScrollPane17.setAutoscrolls(true);
 
-        jTable16.setModel(new javax.swing.table.DefaultTableModel(
+        radilogyResultsTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -4866,14 +4896,14 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 return canEdit [columnIndex];
             }
         });
-        jTable16.setRowHeight(20);
+        radilogyResultsTbl.setRowHeight(20);
 
-        jTable16.addMouseListener(new java.awt.event.MouseAdapter() {
+        radilogyResultsTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable16MouseClicked(evt);
+                radilogyResultsTblMouseClicked(evt);
             }
         });
-        jScrollPane17.setViewportView(jTable16);
+        jScrollPane17.setViewportView(radilogyResultsTbl);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -4908,7 +4938,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPanel29.add(datePicker15, gridBagConstraints);
+        jPanel29.add(radiologyResultsDatePicker, gridBagConstraints);
 
         jButton38.setMnemonic('l');
         jButton38.setText("Refresh results listing");
@@ -6595,8 +6625,36 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
     private void labresultsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labresultsTableMouseClicked
 
-        laboratoryResultsDisplayTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT parameter, units, out_come, lower_limit, upper_limit, (CASE WHEN result::varchar ~ '^[0-9]*.?[0-9]*$' AND (result < lower_limit or result > upper_limit) THEN true  ELSE false END) AS exception from hp_lab_results WHERE lab_no = '" + labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 3).toString() + "'"));
+        labResultsTabbenPane.setSelectedIndex(1);
+        
+        
+        
+        try {
+            java.sql.PreparedStatement pstmtResults = connectDB.prepareStatement("SELECT patient_no, initcap(patient_name), upper(typeof_test), age::int, upper(gender), input_date, comments||' '||pathologist_comment as comments FROM hp_lab_results WHERE lab_no = ?");
+        
+            pstmtResults.setObject(1, labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 3));
+            
+            java.sql.ResultSet rsetResults = pstmtResults.executeQuery();
+            
+            while(rsetResults.next()){
+                
+                laboratoryResultsPatientNumberTxt.setText(rsetResults.getString(1));
+                laboratoryResultsPatientNameTxt.setText(rsetResults.getString(2));
+                laboratoryProcedureDescriptionTxt.setText(rsetResults.getString(3));
+                laboratoryResultsTimeTxt.setText(rsetResults.getTimestamp(6).toString());
+                ageGenderTxt.setText("Age : "+rsetResults.getString(4)+" Yrs and Gender : "+rsetResults.getString(5));
+                laboratoryProcedureResultDetailsTxt.setText(rsetResults.getString(7));
+            }
+            
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
+        
+        
+        laboratoryResultsDisplayTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT parameter, units, out_come, lower_limit, upper_limit, (CASE WHEN result::varchar ~ '^[0-9]*.?[0-9]*$' AND (result < lower_limit or result > upper_limit) THEN true  ELSE false END) AS exceptional_results from hp_lab_results WHERE lab_no = '" + labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 3) + "'"));
 
+        
         String receiptNo = null;
         //        if (jTable1.getSelectedColumn() == 2) {
         System.out.print("See receipt No3. : " + receiptNo);
@@ -6605,7 +6663,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
                 try {
 
-                    java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE hp_lab_results SET doc_read = true where lab_no = '" + labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 3).toString() + "'");
+                    java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE hp_lab_results SET doc_read = true where lab_no = '" + labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 3) + "'");
 
                     pstmt46.executeUpdate();
 
@@ -9492,103 +9550,106 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton37ActionPerformed
 
-    private void jTable16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable16MouseClicked
+    private void radilogyResultsTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radilogyResultsTblMouseClicked
         String receiptNo = null;
-        if (Boolean.valueOf(jTable16.getModel().getValueAt(jTable16.getSelectedRow(), 4).toString()) == java.lang.Boolean.TRUE) {
-            receiptNo = jTable16.getValueAt(jTable16.getSelectedRow(), 3).toString();
+        if (Boolean.valueOf(radilogyResultsTbl.getModel().getValueAt(radilogyResultsTbl.getSelectedRow(), 4).toString()) == java.lang.Boolean.TRUE) {
+            receiptNo = radilogyResultsTbl.getValueAt(radilogyResultsTbl.getSelectedRow(), 3).toString();
             com.afrisoftech.records.reports.XrayResultPdf policy = new com.afrisoftech.records.reports.XrayResultPdf();
 
             policy.XrayResultPdf(connectDB, receiptNo);
 
         }        // TODO add your handling code here:
-    }//GEN-LAST:event_jTable16MouseClicked
+    }//GEN-LAST:event_radilogyResultsTblMouseClicked
 
     private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
-        for (int k = 0; k < jTable16.getRowCount(); k++) {
-            for (int r = 0; r < jTable16.getColumnCount(); r++) {
-                jTable16.getModel().setValueAt(null, k, r);
+        for (int k = 0; k < radilogyResultsTbl.getRowCount(); k++) {
+            for (int r = 0; r < radilogyResultsTbl.getColumnCount(); r++) {
+                radilogyResultsTbl.getModel().setValueAt(null, k, r);
             }
         }
-        String labNo = null;
-        String patientNo = null;
-        int p = 0;
-        int q = 0;
-        //  int r = 0;
-        int patNo1 = 0;
-        int Total1 = 0;
-        int Total = 0;
-        int labNo1 = 0;
-        try {
-            java.sql.Statement stmtTable113 = connectDB.createStatement();
-            // java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("select count(distinct lab_no) from hp_lab_results where doc_read = false  and result_shown = false AND date >='" + datePicker11.getDate().toString() + "' and lab_no !='null' and lab_no is not null ");
-            java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("select count(distinct xray_no) from hp_xray_results where patient_no = '" + nameNoTxt.getText() + "' and xray_no !='null' and xray_no is not null ");
+        radilogyResultsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct date,patient_no,patient_name,xray_no,false as read_results from hp_xray_results where date >= '" + radiologyResultsDatePicker.getDate() + "' ORDER BY date,xray_no"));
 
-            // java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("select count(distinct lab_no) from hp_lab_results where doc_read = false  and result_shown = false AND date >='"+datePicker11.getDate().toString()+"' and lab_no !='null' and lab_no is not null and clinic ilike '"+jComboBox11.getSelectedItem().toString()+"'");
-            while (rsetTable113.next()) {
-                labNo1 = rsetTable113.getInt(1);
-                System.out.println("Lab no is " + labNo1);
-            }
-
-            if (labNo1 > 0) {
-                java.sql.Statement stmtTable112 = connectDB.createStatement();
-
-                //java.sql.ResultSet rsetTable112 = stmtTable112.executeQuery("select distinct lab_no,patient_name from hp_lab_results where doc_read = false and result_shown = false AND date >='"+datePicker13.getDate().toString()+"' and lab_no is not null and lab_no !='null' and clinic ilike '"+jComboBox11.getSelectedItem().toString()+"' order by lab_no  ");
-                java.sql.ResultSet rsetTable112 = stmtTable112.executeQuery("select distinct xray_no,patient_name from hp_xray_results where patient_no = '" + nameNoTxt.getText() + "' and xray_no is not null and xray_no !='null' order by xray_no  ");
-
-                while (rsetTable112.next()) {
-                    labNo = rsetTable112.getString(1);
-                    patientNo = rsetTable112.getString(2);
-                    System.out.println("Lab no2 is " + patientNo);
-                }
-
-                stmtTable112.close();
-                rsetTable112.close();
-
-            } else {
-            }
-
-            // for (int l = 0; l < listofDays.length; l++) {
-            java.sql.Statement stmtTable11 = connectDB.createStatement();
-
-            java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("select count(distinct xray_no) from hp_xray_results where patient_no = '" + nameNoTxt.getText() + "'");
-
-            while (rsetTable11.next()) {
-                patNo1 = rsetTable11.getInt(1);
-
-            }
-
-            //   jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select distinct date,patient_no,patient_name,lab_no,doc_read from hp_lab_results where doc_read = false AND date >='"+datePicker1.getDate().toString()+"'  ORDER BY date,lab_no"));
-            java.sql.Statement stmtTable1r = connectDB.createStatement();
-
-            java.sql.ResultSet rsetTable1r = stmtTable1r.executeQuery("select distinct date,patient_no,patient_name,xray_no,false from hp_xray_results where patient_no = '" + nameNoTxt.getText() + "' ORDER BY date,xray_no");
-
-            while (rsetTable1r.next()) {
-
-                jTable16.setValueAt(rsetTable1r.getObject(1), p, 0);
-                jTable16.setValueAt(rsetTable1r.getObject(2), p, 1);
-                jTable16.setValueAt(rsetTable1r.getObject(3), p, 2);
-                jTable16.setValueAt(rsetTable1r.getObject(4), p, 3);
-                jTable16.setValueAt(rsetTable1r.getObject(5), p, 4);
-
-                p++;
-
-            }
-            stmtTable1r.close();
-            rsetTable1r.close();
-            //}
-            stmtTable113.close();
-            rsetTable113.close();
-
-            stmtTable11.close();
-            rsetTable11.close();
-
-        } catch (java.sql.SQLException sqlExec) {
-
-            sqlExec.printStackTrace();
-
-            javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
-
-        }
+//        String labNo = null;
+//        String patientNo = null;
+//        int p = 0;
+//        int q = 0;
+//        //  int r = 0;
+//        int patNo1 = 0;
+//        int Total1 = 0;
+//        int Total = 0;
+//        int labNo1 = 0;
+//        try {
+//            java.sql.Statement stmtTable113 = connectDB.createStatement();
+//            // java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("select count(distinct lab_no) from hp_lab_results where doc_read = false  and result_shown = false AND date >='" + datePicker11.getDate().toString() + "' and lab_no !='null' and lab_no is not null ");
+//            java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("select count(distinct xray_no) from hp_xray_results where patient_no = '" + nameNoTxt.getText() + "' and xray_no !='null' and xray_no is not null ");
+//
+//            // java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("select count(distinct lab_no) from hp_lab_results where doc_read = false  and result_shown = false AND date >='"+datePicker11.getDate().toString()+"' and lab_no !='null' and lab_no is not null and clinic ilike '"+jComboBox11.getSelectedItem().toString()+"'");
+//            while (rsetTable113.next()) {
+//                labNo1 = rsetTable113.getInt(1);
+//                System.out.println("Lab no is " + labNo1);
+//            }
+//
+//            if (labNo1 > 0) {
+//                java.sql.Statement stmtTable112 = connectDB.createStatement();
+//
+//                //java.sql.ResultSet rsetTable112 = stmtTable112.executeQuery("select distinct lab_no,patient_name from hp_lab_results where doc_read = false and result_shown = false AND date >='"+datePicker13.getDate().toString()+"' and lab_no is not null and lab_no !='null' and clinic ilike '"+jComboBox11.getSelectedItem().toString()+"' order by lab_no  ");
+//                java.sql.ResultSet rsetTable112 = stmtTable112.executeQuery("select distinct xray_no,patient_name from hp_xray_results where patient_no = '" + nameNoTxt.getText() + "' and xray_no is not null and xray_no !='null' order by xray_no  ");
+//
+//                while (rsetTable112.next()) {
+//                    labNo = rsetTable112.getString(1);
+//                    patientNo = rsetTable112.getString(2);
+//                    System.out.println("Lab no2 is " + patientNo);
+//                }
+//
+//                stmtTable112.close();
+//                rsetTable112.close();
+//
+//            } else {
+//            }
+//
+//            // for (int l = 0; l < listofDays.length; l++) {
+//            java.sql.Statement stmtTable11 = connectDB.createStatement();
+//
+//            java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("select count(distinct xray_no) from hp_xray_results where patient_no = '" + nameNoTxt.getText() + "'");
+//
+//            while (rsetTable11.next()) {
+//                patNo1 = rsetTable11.getInt(1);
+//
+//            }
+//
+//            //   jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select distinct date,patient_no,patient_name,lab_no,doc_read from hp_lab_results where doc_read = false AND date >='"+datePicker1.getDate().toString()+"'  ORDER BY date,lab_no"));
+//            java.sql.Statement stmtTable1r = connectDB.createStatement();
+//
+//            java.sql.ResultSet rsetTable1r = stmtTable1r.executeQuery("select distinct date,patient_no,patient_name,xray_no,false from hp_xray_results where patient_no = '" + nameNoTxt.getText() + "' ORDER BY date,xray_no");
+//
+//            while (rsetTable1r.next()) {
+//
+//                radilogyResultsTbl.setValueAt(rsetTable1r.getObject(1), p, 0);
+//                radilogyResultsTbl.setValueAt(rsetTable1r.getObject(2), p, 1);
+//                radilogyResultsTbl.setValueAt(rsetTable1r.getObject(3), p, 2);
+//                radilogyResultsTbl.setValueAt(rsetTable1r.getObject(4), p, 3);
+//                radilogyResultsTbl.setValueAt(rsetTable1r.getObject(5), p, 4);
+//
+//                p++;
+//
+//            }
+//            radilogyResultsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct date,patient_no,patient_name,xray_no,false from hp_xray_results where date >= '" + radiologyResultsDatePicker.getDate() + "' ORDER BY date,xray_no"));
+//            stmtTable1r.close();
+//            rsetTable1r.close();
+//            //}
+//            stmtTable113.close();
+//            rsetTable113.close();
+//
+//            stmtTable11.close();
+//            rsetTable11.close();
+//
+//        } catch (java.sql.SQLException sqlExec) {
+//
+//            sqlExec.printStackTrace();
+//
+//            javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
+//
+//        }
 
 
         /* if (patNo1 > 5) {
@@ -10922,6 +10983,10 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         }
     }//GEN-LAST:event_readCheckBoxItemStateChanged
 
+    private void back2LabListingBrnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back2LabListingBrnActionPerformed
+      labResultsTabbenPane.setSelectedIndex(0);        // TODO add your handling code here:
+    }//GEN-LAST:event_back2LabListingBrnActionPerformed
+
     private void populateTable1(java.lang.String patient_no) {
     }
 
@@ -11097,11 +11162,11 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
             while (rsetTable1r.next()) {
 
-                jTable16.setValueAt(rsetTable1r.getObject(1), p, 0);
-                jTable16.setValueAt(rsetTable1r.getObject(2), p, 1);
-                jTable16.setValueAt(rsetTable1r.getObject(3), p, 2);
-                jTable16.setValueAt(rsetTable1r.getObject(4), p, 3);
-                jTable16.setValueAt(rsetTable1r.getObject(5), p, 4);
+                radilogyResultsTbl.setValueAt(rsetTable1r.getObject(1), p, 0);
+                radilogyResultsTbl.setValueAt(rsetTable1r.getObject(2), p, 1);
+                radilogyResultsTbl.setValueAt(rsetTable1r.getObject(3), p, 2);
+                radilogyResultsTbl.setValueAt(rsetTable1r.getObject(4), p, 3);
+                radilogyResultsTbl.setValueAt(rsetTable1r.getObject(5), p, 4);
 
                 p++;
 
@@ -11239,6 +11304,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox ICD10CheckBox;
     private javax.swing.JTextField accTextField114;
+    private javax.swing.JLabel ageGenderLbl;
+    private javax.swing.JTextField ageGenderTxt;
     private javax.swing.JTextField ageTxt;
     private javax.swing.JCheckBox allpatCheckBox;
     private javax.swing.JCheckBox attendjCheckBox53;
@@ -11278,7 +11345,6 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JCheckBox currentCheckBox;
     private com.afrisoftech.lib.DatePicker datePicker12;
     private com.afrisoftech.lib.DatePicker datePicker14;
-    private com.afrisoftech.lib.DatePicker datePicker15;
     private com.afrisoftech.lib.DatePicker datePicker2;
     private javax.swing.JTable diagnosisTable;
     private javax.swing.JPanel diagnosispane;
@@ -11541,7 +11607,6 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JTable jTable111;
     private javax.swing.JTable jTable13;
     private javax.swing.JTable jTable14;
-    private javax.swing.JTable jTable16;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField111;
     private javax.swing.JTextField jTextField1111;
@@ -11634,7 +11699,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JButton printxrayButton;
     private javax.swing.JTextField provisiodiagjTextField12111;
     private javax.swing.JTextField provisionalDiagnosistxt;
+    private javax.swing.JTable radilogyResultsTbl;
     private javax.swing.JCheckBox radiologyCheck;
+    private com.afrisoftech.lib.DatePicker radiologyResultsDatePicker;
     private javax.swing.ButtonGroup reaadlabbuttonGroup;
     private javax.swing.JCheckBox readCheckBox;
     private javax.swing.JCheckBox referalCheckbox;
