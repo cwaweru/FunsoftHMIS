@@ -478,13 +478,13 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
                                 String diagnosis = "-";
                                 System.out.println("item" + listofAct[i]);
                                 if (patCat.equalsIgnoreCase("All")) {
-                                    st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name) FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no ORDER BY pb.date::date DESC limit 1");
+                                    st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                 } else {
                                     if (patCat.equalsIgnoreCase("New")) {
-                                        st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name) FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'New' ORDER BY pb.date::date DESC limit 1");
+                                        st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                     } else {
                                         if (patCat.equalsIgnoreCase("Old")) {
-                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name) FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'Old'  ORDER BY pb.date::date DESC limit 1");
+                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                         }
                                     }
                                 }
@@ -648,24 +648,24 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
             java.sql.ResultSet rSet1 = null;
             if(servicepnt.equalsIgnoreCase("-")){
             if (patCat.equalsIgnoreCase("All")) {
-                rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date::date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  order by 2 ASC");
+                rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  order by 2 ASC");
             } else {
                 if (patCat.equalsIgnoreCase("New")) {
-                    rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date::date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'New' order by 2 ASC");
+                    rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'New' order by 2 ASC");
                 } else {
                     if (patCat.equalsIgnoreCase("Old")) {
-                        rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date::date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'Old' order by 2 ASC");
+                        rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'Old' order by 2 ASC");
                     }
                 }
             }}else{
                 if (patCat.equalsIgnoreCase("All")) {
-                rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date::date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "' and parameter='"+servicepnt+"' order by 2 ASC");
+                rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "' and parameter='"+servicepnt+"' order by 2 ASC");
             } else {
                 if (patCat.equalsIgnoreCase("New")) {
-                    rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date::date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'New' and parameter='"+servicepnt+"' order by 2 ASC");
+                    rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'New' and parameter='"+servicepnt+"' order by 2 ASC");
                 } else {
                     if (patCat.equalsIgnoreCase("Old")) {
-                        rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date::date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'Old' and parameter='"+servicepnt+"' order by 2 ASC");
+                        rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'Old' and parameter='"+servicepnt+"' order by 2 ASC");
                     }
                 }
             }

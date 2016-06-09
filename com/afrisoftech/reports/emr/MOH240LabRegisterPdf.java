@@ -306,7 +306,7 @@ public class MOH240LabRegisterPdf implements java.lang.Runnable {
                         while (rset4.next()) {
                             date = rset4.getObject(1).toString();
                         }
-                        com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase("MINISTRY OF HEALTH : " + compName.toUpperCase()), false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
+                        com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase("FACILITY NAME : " + compName.toUpperCase()), false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
 
                         headerFoter.setAlignment(com.lowagie.text.HeaderFooter.ALIGN_CENTER);
 
@@ -597,14 +597,14 @@ public class MOH240LabRegisterPdf implements java.lang.Runnable {
                                         + " DESC LIMIT 1) as village, (SELECT tel FROM hp_admission WHERE hp_admission.patient_no = hp_lab_results.patient_no UNION "
                                         + " SELECT tel_no FROM hp_patient_register WHERE hp_patient_register.patient_no = hp_lab_results.patient_no ORDER BY 1 DESC LIMIT 1) "
                                         + " as telephone, date_part('day', date::date) ||'-'||date_part('month', date::date) ||'-'||date_part('year', date::date), "
-                                        + " date_part('day', spec_time::date) ||'-'||date_part('month', spec_time::date) ||'-'||date_part('year', spec_time::date), initcap(doctor), "
+                                        + " date_part('day', date::date) ||'-'||date_part('month', date::date) ||'-'||date_part('year', date::date), initcap(doctor), "
                                         + " (SELECT diagnosis FROM pb_doctors_request WHERE pb_doctors_request.patient_no = hp_lab_results.patient_no AND"
                                         + " pb_doctors_request.trans_date::date = hp_lab_results.date::date AND diagnosis is not null ORDER BY 1 DESC LIMIT 1) as diagnosis,(SELECT service "
                                         + "  FROM pb_doctors_request WHERE pb_doctors_request.patient_no"
                                         + " = hp_lab_results.patient_no AND hp_lab_results.date::date = pb_doctors_request.trans_date::date ORDER BY 1 DESC LIMIT 1) as investigations, input_date::date as analyse_date, '', type_of_specimen, "
                                         + " specimen_condition, initcap(pathologist) as analysing_officer, pathologist_comment, comments  FROM hp_lab_results WHERE "
                                         + " date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' "
-                                        + " AND patient_no = ?");
+                                        + " AND patient_no = ? ORDER BY 3");
 
                                 stw.setObject(1, listofAct[i]);
 

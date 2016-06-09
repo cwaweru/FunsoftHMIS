@@ -159,26 +159,25 @@
         <Component class="javax.swing.JComboBox" name="storeCmbx">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;select stores from store_allocation where user_name = current_user&quot;)" type="code"/>
+              <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;select DISTINCT store_name from st_stores ORDER BY 1&quot;)" type="code"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="storeCmbxActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="1" gridY="1" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="5.0" weightY="1.0"/>
+              <GridBagConstraints gridX="1" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="17" weightX="5.0" weightY="1.0"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Date"/>
+            <Property name="text" type="java.lang.String" value="Reconciliation Date"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="2" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="0.0"/>
+              <GridBagConstraints gridX="2" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="30" insetsBottom="0" insetsRight="0" anchor="17" weightX="1.0" weightY="0.0"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -213,7 +212,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="1" gridY="3" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+              <GridBagConstraints gridX="1" gridY="3" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="17" weightX="1.0" weightY="1.0"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -235,7 +234,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="From"/>
+                <Property name="text" type="java.lang.String" value="Search start phrase"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -255,7 +254,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="To"/>
+                <Property name="text" type="java.lang.String" value="Search end phrase"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -278,7 +277,13 @@
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBox1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="List item balances"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="0" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="List item balances to Reset Balances"/>
                 <Property name="toolTipText" type="java.lang.String" value="Please tick once to display list of items registered in the selected store"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -311,7 +316,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="0" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="40" insetsBottom="0" insetsRight="0" anchor="17" weightX="1.0" weightY="0.0"/>
+              <GridBagConstraints gridX="0" gridY="0" gridWidth="2" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="40" insetsBottom="0" insetsRight="0" anchor="17" weightX="1.0" weightY="0.0"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -327,13 +332,13 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="1" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="30" insetsBottom="0" insetsRight="0" anchor="17" weightX="1.0" weightY="0.0"/>
+              <GridBagConstraints gridX="2" gridY="0" gridWidth="2" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="30" insetsBottom="0" insetsRight="0" anchor="17" weightX="1.0" weightY="0.0"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="inventoryCodeLbl">
           <Properties>
-            <Property name="text" type="java.lang.String" value="INVENTORY CODE"/>
+            <Property name="text" type="java.lang.String" value="Inventory Code"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -352,13 +357,13 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="1" gridY="2" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="1.0"/>
+              <GridBagConstraints gridX="1" gridY="2" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="17" weightX="0.0" weightY="1.0"/>
             </Constraint>
           </Constraints>
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel2">
+    <Container class="javax.swing.JPanel" name="stockCountBodyPanel">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -374,7 +379,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+        <Container class="javax.swing.JScrollPane" name="stockCountScrollPane">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="0" gridY="4" gridWidth="6" gridHeight="3" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="5.0"/>
@@ -383,7 +388,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="stockCountTable">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="9" rowCount="100">
@@ -448,13 +453,13 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseClicked"/>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTable1KeyReleased"/>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTable1KeyTyped"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="stockCountTableMouseClicked"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="stockCountTableKeyReleased"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="stockCountTableKeyTyped"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable()"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="// java.lang.Object[] strCmb = {&quot;Payable&quot;,&quot;Receivable&quot;,&quot;Both&quot;};&#xa;&#xa;//javax.swing.JComboBox cmBox = new javax.swing.JComboBox(strCmb);&#xa; &#xa; /*  javax.swing.SpinnerDateModel spinerDate = new javax.swing.SpinnerDateModel();&#xa;        dateSpinner = new javax.swing.JSpinner(spinerDate);&#xa;        &#xa;      &#xa;      &#xa;       javax.swing.table.TableColumn teditor = this.jTable1.getColumn(&quot;Expiry Date&quot;);&#xa;            &#xa;                teditor.setCellEditor(new javax.swing.DefaultCellEditor(dateSpinner));&#xa; &#xa;*/&#xa;&#xa;/*&#xa;cmbox2 = new javax.swing.JComboBox();&#xa;  &#xa;try {&#xa;  &#xa;            &#xa;              crset1.setConnectionSource(pConnDB);&#xa;              crset1.execute(&quot;select description from stock_item ORDER BY description&quot;);&#xa;&#xa;            cmbox2.setModel(new org.netbeans.lib.sql.models.ComboBoxModel(crset1, &quot;description&quot;, null, null,null));&#xa;           &#xa;            javax.swing.table.TableColumn seditor = this.jTable1.getColumn(&quot;Item Description&quot;);&#xa;            &#xa;            seditor.setCellEditor(new javax.swing.DefaultCellEditor(cmbox2));&#xa;            &#xa;          /*  cmbox2.addActionListener(new java.awt.event.ActionListener() {&#xa;                &#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;                &#xa;                cmbox2ActionPerformed(evt);&#xa;            }&#xa;        });&#xa;        *&#xa;        } catch(java.sql.SQLException sqlExec) {&#xa;            &#xa;            javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());&#xa;            &#xa;        }&#xa;        */&#xa;&#xa;       &#xa;javax.swing.table.TableColumn column = null;&#xa;              for (int i = 0; i &lt; 8; i++) {&#xa;                  column = jTable1.getColumnModel().getColumn(i);&#xa;                  if (i == 0) {&#xa;                      &#xa;                      column.setPreferredWidth(300); //sport column is bigger&#xa;                  } else {&#xa;                      if (i == 1) {&#xa;                          column.setPreferredWidth(100);&#xa;                      } else {&#xa;                          //if (i == 2) {&#xa;                              column.setPreferredWidth(100);&#xa;                         // }  else &#xa;                      //column.setPreferredWidth(50);&#xa;                  &#xa;                      }&#xa;                  }&#xa;              }"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="// java.lang.Object[] strCmb = {&quot;Payable&quot;,&quot;Receivable&quot;,&quot;Both&quot;};&#xa;&#xa;//javax.swing.JComboBox cmBox = new javax.swing.JComboBox(strCmb);&#xa; &#xa; /*  javax.swing.SpinnerDateModel spinerDate = new javax.swing.SpinnerDateModel();&#xa;        dateSpinner = new javax.swing.JSpinner(spinerDate);&#xa;        &#xa;      &#xa;      &#xa;       javax.swing.table.TableColumn teditor = this.jTable1.getColumn(&quot;Expiry Date&quot;);&#xa;            &#xa;                teditor.setCellEditor(new javax.swing.DefaultCellEditor(dateSpinner));&#xa; &#xa;*/&#xa;&#xa;/*&#xa;cmbox2 = new javax.swing.JComboBox();&#xa;  &#xa;try {&#xa;  &#xa;            &#xa;              crset1.setConnectionSource(pConnDB);&#xa;              crset1.execute(&quot;select description from stock_item ORDER BY description&quot;);&#xa;&#xa;            cmbox2.setModel(new org.netbeans.lib.sql.models.ComboBoxModel(crset1, &quot;description&quot;, null, null,null));&#xa;           &#xa;            javax.swing.table.TableColumn seditor = this.jTable1.getColumn(&quot;Item Description&quot;);&#xa;            &#xa;            seditor.setCellEditor(new javax.swing.DefaultCellEditor(cmbox2));&#xa;            &#xa;          /*  cmbox2.addActionListener(new java.awt.event.ActionListener() {&#xa;                &#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;                &#xa;                cmbox2ActionPerformed(evt);&#xa;            }&#xa;        });&#xa;        *&#xa;        } catch(java.sql.SQLException sqlExec) {&#xa;            &#xa;            javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());&#xa;            &#xa;        }&#xa;        */&#xa;&#xa;       &#xa;javax.swing.table.TableColumn column = null;&#xa;              for (int i = 0; i &lt; 8; i++) {&#xa;                  column = stockCountTable.getColumnModel().getColumn(i);&#xa;                  if (i == 0) {&#xa;                      &#xa;                      column.setPreferredWidth(300); //sport column is bigger&#xa;                  } else {&#xa;                      if (i == 1) {&#xa;                          column.setPreferredWidth(100);&#xa;                      } else {&#xa;                          //if (i == 2) {&#xa;                              column.setPreferredWidth(100);&#xa;                         // }  else &#xa;                      //column.setPreferredWidth(50);&#xa;                  &#xa;                      }&#xa;                  }&#xa;              }"/>
               </AuxValues>
             </Component>
           </SubComponents>
@@ -477,14 +482,14 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="reconcileInventoryBtn">
           <Properties>
             <Property name="mnemonic" type="int" value="79"/>
             <Property name="text" type="java.lang.String" value="Save inventory reconciliation data"/>
             <Property name="toolTipText" type="java.lang.String" value="click to store data"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reconcileInventoryBtnActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -492,13 +497,13 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton5">
+        <Component class="javax.swing.JButton" name="removeRowBtn">
           <Properties>
             <Property name="mnemonic" type="int" value="114"/>
             <Property name="text" type="java.lang.String" value="Remove Row"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeRowBtnActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -506,14 +511,14 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="clearFormBtn">
           <Properties>
             <Property name="mnemonic" type="int" value="108"/>
             <Property name="text" type="java.lang.String" value="Clear form"/>
             <Property name="toolTipText" type="java.lang.String" value="click to clear fields"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearFormBtnActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -521,7 +526,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton4">
+        <Component class="javax.swing.JButton" name="closeFormBtn">
           <Properties>
             <Property name="mnemonic" type="int" value="67"/>
             <Property name="text" type="java.lang.String" value="Close form"/>
@@ -529,7 +534,7 @@
             <Property name="selected" type="boolean" value="true"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="closeFormBtnActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -537,7 +542,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
+        <Component class="javax.swing.JLabel" name="spacerLbl">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="0" gridY="6" gridWidth="2" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="200.0" weightY="1.0"/>

@@ -63,6 +63,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private String Sex;
     private String Age;
     private javax.swing.JComboBox cmBoxspecimen = new javax.swing.JComboBox();
+    private String labNo;
 
     public ConsultationIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB, com.afrisoftech.hospital.HospitalMain parentHospitalFrame) {
 
@@ -81,6 +82,16 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 ////lims integration details
 
         ////
+        drawingPanel.removeAll();
+
+        java.awt.GridBagConstraints gridBagConstraints;
+        drawingPanel.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        drawingPanel.add(new com.afrisoftech.lib.BasicPaint().getGui(), gridBagConstraints);
+
         parentHospitalFrame.mainSplitPane.setDividerLocation(0);
 
         this.setSize(parentHospitalFrame.saccopn.getSize());
@@ -106,7 +117,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         // Highlighter shading = new ShadingColorHighlighter(new HighlightPredicate.ColumnHighlightPredicate(6));
         ColorHighlighter tableHighlightersArray[] = new ColorHighlighter[]{yellow, pink};
         predicateTable.setHighlighterPipeline(predicateTable, tableHighlightersArray);
-        
+
         java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters1 = new java.util.Vector<org.jdesktop.swingx.decorator.Highlighter>(1, 1);
         //org.jdesktop.swingx.decorator.Highlighter tableHighlighterArray[] ;// = new org.jdesktop.swingx.decorator.Highlighter()[];
         com.afrisoftech.dbadmin.JXTable predicateTable1 = (com.afrisoftech.dbadmin.JXTable) laboratoryResultsDisplayTbl;
@@ -148,11 +159,11 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jSearchDialog1 = new javax.swing.JDialog();
-        jSearchPanel1 = new javax.swing.JPanel();
-        jTextField111 = new javax.swing.JTextField();
-        jSearchScrollPane1 = new javax.swing.JScrollPane();
-        jSearchTable1 = new com.afrisoftech.dbadmin.JTable();
+        pharmacySearchDialog = new javax.swing.JDialog();
+        pharmacySearchPanel = new javax.swing.JPanel();
+        pharmacySearchTxt = new javax.swing.JTextField();
+        pharmacySearchScrollPane = new javax.swing.JScrollPane();
+        pharmacySearchTable = new com.afrisoftech.dbadmin.JTable();
         jButton911 = new javax.swing.JButton();
         jSearchDialog = new javax.swing.JDialog();
         jSearchPanel = new javax.swing.JPanel();
@@ -210,19 +221,19 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         buttonGroup13 = new javax.swing.ButtonGroup();
         jScrollPane4 = new javax.swing.JScrollPane();
         jEditorPane2 = new javax.swing.JEditorPane();
-        jSearchDialog3 = new javax.swing.JDialog();
+        icd10SearchDialog = new javax.swing.JDialog();
         jSearchPanel3 = new javax.swing.JPanel();
-        jTextField1112 = new javax.swing.JTextField();
+        icd10SearchTxt = new javax.swing.JTextField();
         jSearchScrollPane3 = new javax.swing.JScrollPane();
-        jSearchTable3 = new com.afrisoftech.dbadmin.JTable();
+        icd10SearchTable = new com.afrisoftech.dbadmin.JTable();
         jButton93 = new javax.swing.JButton();
         buttonGroup14 = new javax.swing.ButtonGroup();
         complainsDialog = new javax.swing.JDialog();
-        jSearchPanel4 = new javax.swing.JPanel();
+        diseasesSearchPanel = new javax.swing.JPanel();
         jSearchScrollPane4 = new javax.swing.JScrollPane();
         complainsdialogtable = new com.afrisoftech.dbadmin.JTable();
         jButton912 = new javax.swing.JButton();
-        jTextField14 = new javax.swing.JTextField();
+        searchDiseasesTxt = new javax.swing.JTextField();
         buttonGroup15 = new javax.swing.ButtonGroup();
         jSearchTable = new com.afrisoftech.dbadmin.JTable();
         jPanel422 = new javax.swing.JPanel();
@@ -329,6 +340,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         jPanel25 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         clinicComboBox = new javax.swing.JComboBox();
+        schemeNameTxt = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -425,12 +437,6 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         requestspanel = new javax.swing.JPanel();
         jSplitPane3 = new javax.swing.JSplitPane();
         examinationpane = new javax.swing.JPanel();
-        jPanel34 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable13 = new com.afrisoftech.dbadmin.JTable();
-        jPanel72 = new javax.swing.JPanel();
-        jScrollPane14 = new javax.swing.JScrollPane();
-        jTable111 = new com.afrisoftech.dbadmin.JTable();
         jLabel53 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jPanel28 = new javax.swing.JPanel();
@@ -441,9 +447,16 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         pharmacyCheckBox = new javax.swing.JCheckBox();
         radiologyCheck = new javax.swing.JCheckBox();
         notesTextField = new javax.swing.JTextField();
+        searchServicesMainPanel = new javax.swing.JPanel();
         jPanel40 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         jTable14 = new com.afrisoftech.dbadmin.JTable();
+        pharmacyRequestsPanel = new javax.swing.JPanel();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        pharmacyTable = new com.afrisoftech.dbadmin.JTable();
+        jPanel34 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable13 = new com.afrisoftech.dbadmin.JTable();
         jPanel20 = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTable1 = new com.afrisoftech.dbadmin.JTable();
@@ -473,6 +486,10 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         printprescriptionsButton = new javax.swing.JButton();
         printxrayButton = new javax.swing.JButton();
         requestsCheckBox = new javax.swing.JCheckBox();
+        illustrationPanel = new javax.swing.JPanel();
+        drawingPanel = new javax.swing.JPanel();
+        jPanel44 = new javax.swing.JPanel();
+        illustrationButtonPanel = new javax.swing.JPanel();
         jPanel26 = new javax.swing.JPanel();
         labResultsTabbenPane = new javax.swing.JTabbedPane();
         labResultsListingPanel = new javax.swing.JPanel();
@@ -649,21 +666,21 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         searchnamecheckbx = new javax.swing.JCheckBox();
         transdatePicker = new com.afrisoftech.lib.DatePicker();
 
-        jSearchDialog1.setModal(true);
-        jSearchDialog1.setUndecorated(true);
-        jSearchDialog1.getContentPane().setLayout(new java.awt.GridBagLayout());
+        pharmacySearchDialog.setModal(true);
+        pharmacySearchDialog.setUndecorated(true);
+        pharmacySearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jSearchPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jSearchPanel1.setLayout(new java.awt.GridBagLayout());
+        pharmacySearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        pharmacySearchPanel.setLayout(new java.awt.GridBagLayout());
 
-        jTextField111.addCaretListener(new javax.swing.event.CaretListener() {
+        pharmacySearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField111CaretUpdate(evt);
+                pharmacySearchTxtCaretUpdate(evt);
             }
         });
-        jTextField111.addActionListener(new java.awt.event.ActionListener() {
+        pharmacySearchTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField111ActionPerformed(evt);
+                pharmacySearchTxtActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -673,12 +690,12 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.weightx = 10.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
-        jSearchPanel1.add(jTextField111, gridBagConstraints);
+        pharmacySearchPanel.add(pharmacySearchTxt, gridBagConstraints);
 
-        jSearchScrollPane1.setDoubleBuffered(true);
+        pharmacySearchScrollPane.setDoubleBuffered(true);
 
-        jSearchTable1.setDoubleBuffered(true);
-        jSearchTable1.setShowHorizontalLines(false);
+        pharmacySearchTable.setDoubleBuffered(true);
+        pharmacySearchTable.setShowHorizontalLines(false);
         /*    try {
             searchRowSet.setCommand("select product,selling_price,gl_code FROM st_stock_prices WHERE department = 'Pharmacy' order by product");
             searchRowSet.setConnectionSource(pConnDB);
@@ -700,12 +717,12 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             System.out.println(sqlex.getMessage());
         }
         */
-        jSearchTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        pharmacySearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSearchTable1MouseClicked(evt);
+                pharmacySearchTableMouseClicked(evt);
             }
         });
-        jSearchScrollPane1.setViewportView(jSearchTable1);
+        pharmacySearchScrollPane.setViewportView(pharmacySearchTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -714,7 +731,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
-        jSearchPanel1.add(jSearchScrollPane1, gridBagConstraints);
+        pharmacySearchPanel.add(pharmacySearchScrollPane, gridBagConstraints);
 
         jButton911.setText("Dispose");
         jButton911.addActionListener(new java.awt.event.ActionListener() {
@@ -727,7 +744,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchPanel1.add(jButton911, gridBagConstraints);
+        pharmacySearchPanel.add(jButton911, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -735,7 +752,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchDialog1.getContentPane().add(jSearchPanel1, gridBagConstraints);
+        pharmacySearchDialog.getContentPane().add(pharmacySearchPanel, gridBagConstraints);
 
         jSearchDialog.setMinimumSize(new java.awt.Dimension(600, 200));
         jSearchDialog.setModal(true);
@@ -1252,29 +1269,34 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         jEditorPane2.setAutoscrolls(false);
         jScrollPane4.setViewportView(jEditorPane2);
 
-        jSearchDialog3.setMinimumSize(new java.awt.Dimension(300, 50));
-        jSearchDialog3.setModal(true);
-        jSearchDialog3.setUndecorated(true);
-        jSearchDialog3.getContentPane().setLayout(new java.awt.GridBagLayout());
+        icd10SearchDialog.setMinimumSize(new java.awt.Dimension(300, 50));
+        icd10SearchDialog.setModal(true);
+        icd10SearchDialog.setUndecorated(true);
+        icd10SearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jSearchPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jSearchPanel3.setLayout(new java.awt.GridBagLayout());
 
-        jTextField1112.addCaretListener(new javax.swing.event.CaretListener() {
+        icd10SearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField1112CaretUpdate(evt);
+                icd10SearchTxtCaretUpdate(evt);
+            }
+        });
+        icd10SearchTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                icd10SearchTxtActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 10.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
-        jSearchPanel3.add(jTextField1112, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jSearchPanel3.add(icd10SearchTxt, gridBagConstraints);
 
-        jSearchTable3.setShowHorizontalLines(false);
+        icd10SearchTable.setShowHorizontalLines(false);
         /*    try {
             searchRowSet.setCommand("select product,selling_price,gl_code FROM st_stock_prices WHERE department = 'Pharmacy' order by product");
             searchRowSet.setConnectionSource(pConnDB);
@@ -1296,15 +1318,15 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             System.out.println(sqlex.getMessage());
         }
         */
-        jSearchTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+        icd10SearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSearchTable3MouseClicked(evt);
+                icd10SearchTableMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jSearchTable3MouseEntered(evt);
+                icd10SearchTableMouseEntered(evt);
             }
         });
-        jSearchScrollPane3.setViewportView(jSearchTable3);
+        jSearchScrollPane3.setViewportView(icd10SearchTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1315,15 +1337,16 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.weighty = 20.0;
         jSearchPanel3.add(jSearchScrollPane3, gridBagConstraints);
 
-        jButton93.setText("Exit");
+        jButton93.setText("Dispose");
         jButton93.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton93ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jSearchPanel3.add(jButton93, gridBagConstraints);
@@ -1334,12 +1357,12 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchDialog3.getContentPane().add(jSearchPanel3, gridBagConstraints);
+        icd10SearchDialog.getContentPane().add(jSearchPanel3, gridBagConstraints);
 
         complainsDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jSearchPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jSearchPanel4.setLayout(new java.awt.GridBagLayout());
+        diseasesSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        diseasesSearchPanel.setLayout(new java.awt.GridBagLayout());
 
         jSearchScrollPane4.setDoubleBuffered(true);
 
@@ -1380,7 +1403,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
-        jSearchPanel4.add(jSearchScrollPane4, gridBagConstraints);
+        diseasesSearchPanel.add(jSearchScrollPane4, gridBagConstraints);
 
         jButton912.setText("Dispose");
         jButton912.addActionListener(new java.awt.event.ActionListener() {
@@ -1391,11 +1414,11 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        jSearchPanel4.add(jButton912, gridBagConstraints);
+        diseasesSearchPanel.add(jButton912, gridBagConstraints);
 
-        jTextField14.addCaretListener(new javax.swing.event.CaretListener() {
+        searchDiseasesTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField14CaretUpdate(evt);
+                searchDiseasesTxtCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1405,7 +1428,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchPanel4.add(jTextField14, gridBagConstraints);
+        diseasesSearchPanel.add(searchDiseasesTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1413,7 +1436,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        complainsDialog.getContentPane().add(jSearchPanel4, gridBagConstraints);
+        complainsDialog.getContentPane().add(diseasesSearchPanel, gridBagConstraints);
 
         jSearchTable.setDoubleBuffered(true);
         jSearchTable.setShowHorizontalLines(false);
@@ -1963,7 +1986,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         });
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        waitingclinicscmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT distinct clinics FROM pb_clinics ORDER BY clinics asc"));
+        waitingclinicscmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '--ALL--' as clinics UNION SELECT distinct clinics FROM pb_clinics ORDER BY 1 asc"));
+        waitingclinicscmbx.setSelectedItem("--ALL--");
 
         waitingclinicscmbx.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -2241,7 +2265,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
@@ -2255,7 +2279,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -2269,7 +2293,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -2283,7 +2307,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -2402,6 +2426,15 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 3.0;
         jPanel33.add(jPanel25, gridBagConstraints);
+
+        schemeNameTxt.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel33.add(schemeNameTxt, gridBagConstraints);
 
         jSplitPane4.setLeftComponent(jPanel33);
 
@@ -2913,7 +2946,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 {null, null, null, null}
             },
             new String [] {
-                "Symptom", "Severity", "Duration(days)", "Description"
+                "Symptom", "Severity", "Duration of illness", "Description"
             }
         ));
         symptomsTable.setRowHeight(22);
@@ -3125,13 +3158,10 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         firstpageHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane13.setViewportView(firstpageHistoryTable);
@@ -3150,13 +3180,10 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         neurohistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane18.setViewportView(neurohistoryTable);
@@ -3175,13 +3202,10 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         gynaehistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane19.setViewportView(gynaehistoryTable);
@@ -3200,13 +3224,10 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         endocrinehistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane20.setViewportView(endocrinehistoryTable);
@@ -3225,13 +3246,10 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         surgeryhistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane21.setViewportView(surgeryhistoryTable);
@@ -3264,6 +3282,11 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 "Drug Name", "Strength", "Tablets per Day", "Number at Each Time"
             }
         ));
+        medicationhistoryTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                medicationhistoryTableMouseClicked(evt);
+            }
+        });
         jScrollPane22.setViewportView(medicationhistoryTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -3493,17 +3516,12 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder("Patient Details"));
         jPanel23.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane7.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 51, 255)));
-
         vitalsignstable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         vitalsignstable.setRowHeight(20);
@@ -3560,12 +3578,12 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         jSplitPane1.setDividerLocation(100);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        clinicalExamineditor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clinical Examination", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        clinicalExamineditor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Physical Examination/Findings", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jScrollPane131.setViewportView(clinicalExamineditor);
 
         jSplitPane1.setLeftComponent(jScrollPane131);
 
-        provisionalDiagnosistxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Provisional Diagnosis", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(204, 0, 0))); // NOI18N
+        provisionalDiagnosistxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Working/Provisional Diagnosis", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(204, 0, 0))); // NOI18N
         provisionalDiagnosistxt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 provisionalDiagnosistxtFocusGained(evt);
@@ -3587,7 +3605,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         jScrollPane6.setBorder(null);
 
-        complainsTextPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Complains/Symptoms"));
+        complainsTextPane.setBorder(javax.swing.BorderFactory.createTitledBorder("History of presenting illness"));
         complainsTextPane.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         complainsTextPane.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -3645,216 +3663,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         examinationpane.setLayout(new java.awt.GridBagLayout());
 
-        jPanel34.setLayout(new java.awt.GridBagLayout());
-
-        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder("RX Plan"));
-
-        jTable13.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Service", "Quantity", "Price", "Amount", "GL"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable13.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jTable13.setDragEnabled(true);
-        jTable13.setGridColor(new java.awt.Color(204, 204, 255));
-        jTable13.setRowHeight(24);
-        javax.swing.table.TableColumn column = null;
-        for (int i = 0; i < 5; i++) {
-            column = jTable13.getColumnModel().getColumn(i);
-            if (i == 0) {
-
-                column.setPreferredWidth(500); //sport column is bigger
-            } else {
-                if(i == 1){
-                    column.setPreferredWidth(50);
-                }else{
-                    if(i == 5){
-                        column.setPreferredWidth(250);
-                    }else{
-                        //if (i == 2) {
-                            column.setPreferredWidth(100);
-                            // }  else
-                        //column.setPreferredWidth(50);
-                    }
-                }
-            }
-        }
-        jTable13.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable13MouseClicked(evt);
-            }
-        });
-        jTable13.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTable13KeyReleased(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTable13);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 100;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 5.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
-        jPanel34.add(jScrollPane2, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 5.0;
-        gridBagConstraints.weighty = 1.0;
-        examinationpane.add(jPanel34, gridBagConstraints);
-
-        jPanel72.setLayout(new java.awt.GridBagLayout());
-
-        jScrollPane14.setBorder(javax.swing.BorderFactory.createTitledBorder("RX Plan"));
-
-        jTable111.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Drug", "Qty ", "Cost", "Route", "Freqcy", "No.of Days", "Dosage", "Gl Code", "Code", "Pharmacy Balances"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, false, true, true, true, true, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable111.setGridColor(new java.awt.Color(204, 204, 255));
-        jTable111.setRowHeight(24);
-        javax.swing.table.TableColumn column1 = null;
-        for (int i = 0; i < 9; i++) {
-            column1 = jTable111.getColumnModel().getColumn(i);
-            if (i == 0) {
-
-                column1.setPreferredWidth(200); //sport column is bigger
-            } else {
-                if (i == 1) {
-                    column1.setPreferredWidth(50);
-                } else {
-                    if (i == 6) {
-                        column1.setPreferredWidth(100);
-                    } else {
-                        //if (i == 2) {
-                            column1.setPreferredWidth(50);
-                            // }  else
-                        //column.setPreferredWidth(50);
-                    }
-                }
-            }
-        }
-
-        java.lang.Object[] strCmb2 = {"Oral", "I.M", "I.V", "Intramuscular", "Topical", "Vaginal", "Rectal", "Sublingual", "Subcutaneuos", "Intrathical", "Intradermal","Nebulization"};
-
-        javax.swing.JComboBox cmBox2 = new javax.swing.JComboBox(strCmb2);
-
-        javax.swing.table.TableColumn teditor2 = this.jTable111.getColumn("Route");
-
-        teditor2.setCellEditor(new javax.swing.DefaultCellEditor(cmBox2));
-
-        java.lang.Object[] strCmb1 = {"OD", "BD", "TID", "QID", "Stat", "Mane", "Nocte", "Prn"};
-
-        javax.swing.JComboBox cmBox1 = new javax.swing.JComboBox(strCmb1);
-
-        javax.swing.table.TableColumn teditor1 = this.jTable111.getColumn("Freqcy");
-
-        teditor1.setCellEditor(new javax.swing.DefaultCellEditor(cmBox1));
-
-        java.lang.Object[] strCmb3 = {"Once", "1", "3", "5", "7", "10", "14", "30", "90"};
-
-        javax.swing.JComboBox cmBox3 = new javax.swing.JComboBox(strCmb3);
-        cmBox3.setEditable(true);
-        javax.swing.table.TableColumn teditor3 = this.jTable111.getColumn("No.of Days");
-
-        teditor3.setCellEditor(new javax.swing.DefaultCellEditor(cmBox3));
-
-        java.lang.Object[] strCmb4 = {"I", "II", "III", "IV", "2ml", "5ml", "10ml", "15ml", "20"};
-
-        javax.swing.JComboBox cmBox4 = new javax.swing.JComboBox(strCmb4);
-        cmBox4.setEditable(true);
-        javax.swing.table.TableColumn teditor4 = this.jTable111.getColumn("Dosage");
-
-        teditor4.setCellEditor(new javax.swing.DefaultCellEditor(cmBox4));
-        jTable111.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable111MouseClicked(evt);
-            }
-        });
-        jTable111.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTable111KeyReleased(evt);
-            }
-        });
-        jScrollPane14.setViewportView(jTable111);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 100;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel72.add(jScrollPane14, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        examinationpane.add(jPanel72, gridBagConstraints);
-
-        jLabel53.setText("Amount KShs.");
+        jLabel53.setText("Billed Total Amount");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 6;
@@ -3956,10 +3765,12 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         examinationpane.add(jPanel28, gridBagConstraints);
+
+        searchServicesMainPanel.setLayout(new java.awt.GridBagLayout());
 
         jPanel40.setLayout(new java.awt.GridBagLayout());
 
@@ -4045,7 +3856,225 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 5.0;
         gridBagConstraints.weighty = 1.0;
-        examinationpane.add(jPanel40, gridBagConstraints);
+        searchServicesMainPanel.add(jPanel40, gridBagConstraints);
+
+        pharmacyRequestsPanel.setLayout(new java.awt.GridBagLayout());
+
+        jScrollPane14.setBorder(javax.swing.BorderFactory.createTitledBorder("RX Plan"));
+
+        pharmacyTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Drug", "Qty ", "Cost", "Route", "Freqcy", "No.of Days", "Dosage", "Gl Code", "Code", "Pharmacy Balances"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, true, true, true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        pharmacyTable.setGridColor(new java.awt.Color(204, 204, 255));
+        pharmacyTable.setRowHeight(24);
+        javax.swing.table.TableColumn column1 = null;
+        for (int i = 0; i < 9; i++) {
+            column1 = pharmacyTable.getColumnModel().getColumn(i);
+            if (i == 0) {
+
+                column1.setPreferredWidth(200); //sport column is bigger
+            } else {
+                if (i == 1) {
+                    column1.setPreferredWidth(50);
+                } else {
+                    if (i == 6) {
+                        column1.setPreferredWidth(100);
+                    } else {
+                        //if (i == 2) {
+                            column1.setPreferredWidth(50);
+                            // }  else
+                        //column.setPreferredWidth(50);
+                    }
+                }
+            }
+        }
+
+        //   java.lang.Object[] strCmb2 = {"Oral", "I.M", "I.V", "Intramuscular", "Topical", "Vaginal", "Rectal", "Sublingual", "Subcutaneuos", "Intrathical", "Intradermal","Nebulization"};
+
+        javax.swing.JComboBox cmBox2 = new javax.swing.JComboBox(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT admin_mode FROM st_admin_mode ORDER BY 1"));
+
+        javax.swing.table.TableColumn teditor2 = this.pharmacyTable.getColumn("Route");
+
+        teditor2.setCellEditor(new javax.swing.DefaultCellEditor(cmBox2));
+
+        java.lang.Object[] strCmb1 = {"OD", "BD", "TID", "QID", "Stat", "Mane", "Nocte", "Prn"};
+
+        javax.swing.JComboBox cmBox1 = new javax.swing.JComboBox(strCmb1);
+
+        javax.swing.table.TableColumn teditor1 = this.pharmacyTable.getColumn("Freqcy");
+
+        teditor1.setCellEditor(new javax.swing.DefaultCellEditor(cmBox1));
+
+        java.lang.Object[] strCmb3 = {"Once", "1", "3", "5", "7", "10", "14", "30", "90"};
+
+        javax.swing.JComboBox cmBox3 = new javax.swing.JComboBox(strCmb3);
+        cmBox3.setEditable(true);
+        javax.swing.table.TableColumn teditor3 = this.pharmacyTable.getColumn("No.of Days");
+
+        teditor3.setCellEditor(new javax.swing.DefaultCellEditor(cmBox3));
+
+        java.lang.Object[] strCmb4 = {"I", "II", "III", "IV", "2ml", "5ml", "10ml", "15ml", "20"};
+
+        javax.swing.JComboBox cmBox4 = new javax.swing.JComboBox(strCmb4);
+        cmBox4.setEditable(true);
+        javax.swing.table.TableColumn teditor4 = this.pharmacyTable.getColumn("Dosage");
+
+        teditor4.setCellEditor(new javax.swing.DefaultCellEditor(cmBox4));
+        pharmacyTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pharmacyTableMouseClicked(evt);
+            }
+        });
+        pharmacyTable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pharmacyTableKeyReleased(evt);
+            }
+        });
+        jScrollPane14.setViewportView(pharmacyTable);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipady = 100;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        pharmacyRequestsPanel.add(jScrollPane14, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        searchServicesMainPanel.add(pharmacyRequestsPanel, gridBagConstraints);
+
+        jPanel34.setLayout(new java.awt.GridBagLayout());
+
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder("RX Plan"));
+
+        jTable13.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Service", "Quantity", "Price", "Amount", "GL"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable13.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTable13.setDragEnabled(true);
+        jTable13.setGridColor(new java.awt.Color(204, 204, 255));
+        jTable13.setRowHeight(24);
+        javax.swing.table.TableColumn column = null;
+        for (int i = 0; i < 5; i++) {
+            column = jTable13.getColumnModel().getColumn(i);
+            if (i == 0) {
+
+                column.setPreferredWidth(500); //sport column is bigger
+            } else {
+                if(i == 1){
+                    column.setPreferredWidth(50);
+                }else{
+                    if(i == 5){
+                        column.setPreferredWidth(250);
+                    }else{
+                        //if (i == 2) {
+                            column.setPreferredWidth(100);
+                            // }  else
+                        //column.setPreferredWidth(50);
+                    }
+                }
+            }
+        }
+        jTable13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable13MouseClicked(evt);
+            }
+        });
+        jTable13.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTable13KeyReleased(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable13);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipady = 100;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 5.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        jPanel34.add(jScrollPane2, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.weighty = 1.0;
+        searchServicesMainPanel.add(jPanel34, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 50.0;
+        examinationpane.add(searchServicesMainPanel, gridBagConstraints);
 
         jSplitPane3.setRightComponent(examinationpane);
 
@@ -4153,6 +4182,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         buttonGroup16.add(ICD10CheckBox);
         ICD10CheckBox.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         ICD10CheckBox.setForeground(new java.awt.Color(204, 0, 0));
+        ICD10CheckBox.setSelected(true);
         ICD10CheckBox.setText("ICD10");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -4162,7 +4192,6 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         buttonGroup16.add(noICD10CheckBox);
         noICD10CheckBox.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         noICD10CheckBox.setForeground(new java.awt.Color(204, 0, 0));
-        noICD10CheckBox.setSelected(true);
         noICD10CheckBox.setText("NO ICD10");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -4406,6 +4435,32 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         clerkingTabbedPane.addTab("Print Requests", jPanel6);
 
+        illustrationPanel.setLayout(new java.awt.GridBagLayout());
+
+        drawingPanel.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        drawingPanel.add(jPanel44, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 200.0;
+        illustrationPanel.add(drawingPanel, gridBagConstraints);
+
+        illustrationButtonPanel.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        illustrationPanel.add(illustrationButtonPanel, gridBagConstraints);
+
+        clerkingTabbedPane.addTab("Graphical Illustration ", illustrationPanel);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -4595,9 +4650,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         reaadlabbuttonGroup.add(currentCheckBox);
         currentCheckBox.setSelected(true);
         currentCheckBox.setText("Display list of results for the current Patient");
-        currentCheckBox.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                currentCheckBoxItemStateChanged(evt);
+        currentCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                currentCheckBoxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -4608,7 +4663,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         labResultsListingPanel.add(currentCheckBox, gridBagConstraints);
 
         reaadlabbuttonGroup.add(allpatCheckBox);
-        allpatCheckBox.setText("Display listing of results for All Patient");
+        allpatCheckBox.setText("Display listing of results for All Patients");
         allpatCheckBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 allpatCheckBoxItemStateChanged(evt);
@@ -4822,6 +4877,11 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         displayLaboratoryResultsPDFBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         displayLaboratoryResultsPDFBtn.setText("Display results in PDF");
+        displayLaboratoryResultsPDFBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayLaboratoryResultsPDFBtnActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
@@ -5757,7 +5817,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         jPanel32.add(searchnamecheckbx, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
@@ -5927,12 +5987,12 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             java.sql.Statement stmt1 = connectDB.createStatement();
             java.sql.ResultSet rset1 = stmt1.executeQuery("select service,amount,requisition_no,bed_no,time_due,dosage from pb_doctors_request where inv_no = '" + nameNoTxt.getText() + "'");
             while (rset1.next()) {
-                jTable111.setValueAt(rset1.getObject(1), i, 0);
-                jTable111.setValueAt(rset1.getObject(2), i, 2);
-                jTable111.setValueAt(rset1.getObject(3), i, 3);
-                jTable111.setValueAt(rset1.getObject(4), i, 4);
-                jTable111.setValueAt(rset1.getObject(5), i, 5);
-                jTable111.setValueAt(rset1.getObject(6), i, 6);
+                pharmacyTable.setValueAt(rset1.getObject(1), i, 0);
+                pharmacyTable.setValueAt(rset1.getObject(2), i, 2);
+                pharmacyTable.setValueAt(rset1.getObject(3), i, 3);
+                pharmacyTable.setValueAt(rset1.getObject(4), i, 4);
+                pharmacyTable.setValueAt(rset1.getObject(5), i, 5);
+                pharmacyTable.setValueAt(rset1.getObject(6), i, 6);
                 i++;
             }
 
@@ -6113,9 +6173,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 }
             }
 
-            for (int i = 0; i < jTable111.getRowCount(); i++) {
-                if (jTable111.getValueAt(i, 0) != null) {
-                    this.jTable111.setCellSelectionEnabled(false);
+            for (int i = 0; i < pharmacyTable.getRowCount(); i++) {
+                if (pharmacyTable.getValueAt(i, 0) != null) {
+                    this.pharmacyTable.setCellSelectionEnabled(false);
 
                     //this.jTextField922.setHighlighter().;
                     //this.jTextField922.setOpaque(true);
@@ -6145,9 +6205,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                         //  pstmt2.setString(2,jTextField1.getText());
                         //  pstmt2.setString(3,paymentModetxt.getText());
                         // pstmt2.setString(4,jTextField8.getText());
-                        pstmt2.setString(5, jTable111.getValueAt(i, 0).toString());
+                        pstmt2.setString(5, pharmacyTable.getValueAt(i, 0).toString());
                         pstmt2.setDouble(6, 1);
-                        pstmt2.setString(7, jTable111.getValueAt(i, 2).toString());
+                        pstmt2.setString(7, pharmacyTable.getValueAt(i, 2).toString());
                         pstmt2.setString(8, jTextField10.getText());
                         pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(datePicker12.getDate().toString())));
                         pstmt2.setString(10, billNo);
@@ -6160,15 +6220,15 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                         pstmt2.setString(11, user);
                         pstmt2.setString(13, glAcc);
                         pstmt2.setString(14, billNo);
-                        pstmt2.setString(15, jTable111.getValueAt(i, 3).toString());
+                        pstmt2.setString(15, pharmacyTable.getValueAt(i, 3).toString());
 
                         pstmt2.setBoolean(17, false);
-                        pstmt2.setObject(18, jTable111.getValueAt(i, 4).toString());
-                        pstmt2.setString(19, jTable111.getValueAt(i, 5).toString());
+                        pstmt2.setObject(18, pharmacyTable.getValueAt(i, 4).toString());
+                        pstmt2.setString(19, pharmacyTable.getValueAt(i, 5).toString());
                         pstmt2.setBoolean(16, false);
                         pstmt2.setTimestamp(20, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
 
-                        pstmt2.setObject(21, jTable111.getValueAt(i, 6).toString());
+                        pstmt2.setObject(21, pharmacyTable.getValueAt(i, 6).toString());
                         pstmt2.setString(22, rank);
                         pstmt2.setString(23, ageTxt.getText().toString());
                         pstmt2.setString(24, clinicalExamineditor.getText().toString());
@@ -6193,9 +6253,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                     jTable13.setValueAt(null, k, r);
                 }
             }
-            for (int k = 0; k < jTable111.getRowCount(); k++) {
-                for (int r = 0; r < jTable111.getColumnCount(); r++) {
-                    jTable111.setValueAt(null, k, r);
+            for (int k = 0; k < pharmacyTable.getRowCount(); k++) {
+                for (int r = 0; r < pharmacyTable.getColumnCount(); r++) {
+                    pharmacyTable.setValueAt(null, k, r);
                 }
             }
         } catch (java.sql.SQLException sq) {
@@ -6330,12 +6390,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         int labNo1 = 0;
         try {
             java.sql.Statement stmtTable113 = connectDB.createStatement();
-            // java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("select count(distinct lab_no) from hp_lab_results where doc_read = false  and result_shown = false AND date >='" + datePicker11.getDate().toString() + "' and lab_no !='null' and lab_no is not null ");
+
             java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery(""
                     + "(select count(distinct lab_no) from hp_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'   and lab_no !='null' and lab_no is not null) ");
-              /////      + " union (select count(distinct lab_no) from lims_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'  and lab_no !='null' and lab_no is not null) ");
-
-            // java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("select count(distinct lab_no) from hp_lab_results where doc_read = false  and result_shown = false AND date >='"+datePicker11.getDate().toString()+"' and lab_no !='null' and lab_no is not null and clinic ilike '"+jComboBox11.getSelectedItem().toString()+"'");
             while (rsetTable113.next()) {
                 labNo1 = rsetTable113.getInt(1);
                 System.out.println("Lab no is " + labNo1);
@@ -6343,12 +6400,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
             if (labNo1 > 0) {
                 java.sql.Statement stmtTable112 = connectDB.createStatement();
-
-                //java.sql.ResultSet rsetTable112 = stmtTable112.executeQuery("select distinct lab_no,patient_name from hp_lab_results where doc_read = false and result_shown = false AND date >='"+datePicker13.getDate().toString()+"' and lab_no is not null and lab_no !='null' and clinic ilike '"+jComboBox11.getSelectedItem().toString()+"' order by lab_no  ");
                 java.sql.ResultSet rsetTable112 = stmtTable112.executeQuery(""
                         + "(select distinct lab_no,patient_name from hp_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and   lab_no is not null and lab_no !='null' ) ");
-                ///////     + " union (select distinct lab_no,patient_name from lims_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'   and lab_no is not null and lab_no !='null') order by lab_no  ");
-
                 while (rsetTable112.next()) {
                     labNo = rsetTable112.getString(1);
                     patientNo = rsetTable112.getString(2);
@@ -6361,50 +6414,11 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             } else {
             }
 
-            // for (int l = 0; l < listofDays.length; l++) {
-//            java.sql.Statement stmtTable11 = connectDB.createStatement();
-//
-//            java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("select count(distinct lab_no) from hp_lab_results where patient_no = '" + nameNoTxt.getText() + "'");
-//
-//            while (rsetTable11.next()) {
-//                patNo1 = rsetTable11.getInt(1);
-//
-//            }
-            //   jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select distinct date,patient_no,patient_name,lab_no,doc_read from hp_lab_results where doc_read = false AND date >='"+datePicker1.getDate().toString()+"'  ORDER BY date,lab_no"));
-            java.sql.Statement stmtTable1r = connectDB.createStatement();
-
-//            java.sql.ResultSet rsetTable1r = stmtTable1r.executeQuery(""
-//                    + "select distinct date,patient_no,patient_name,lab_no,false from hp_lab_results"
-//                    + " where patient_no = '" + jTextField922.getText() + "' ORDER BY date,lab_no");
-            java.sql.ResultSet rsetTable1r = stmtTable1r.executeQuery(""
-                    + "(select distinct date,patient_no,patient_name,lab_no,false,input_date::DATE from hp_lab_results "
-                    + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'    "
-                    + "  order by input_date::date asc) ");
-//                    + " union (select distinct date,patient_no,patient_name,request_id,false,input_date::time from lims_lab_results "
-//                    + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'    "
-//                    + "  order by input_date::time asc);");
             labresultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "(select distinct date, patient_no, patient_name, lab_no as procedure_request_no, typeof_test procedure_name, false as results_read from hp_lab_results "
                     + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'    "
                     + "  order by 1 asc) "));
-//            while (rsetTable1r.next()) {
-//
-//                labresultsTable.setValueAt(com.afrisoftech.lib.DBAllObjects.getDBObject(rsetTable1r.getObject(1), "-"), p, 0);
-//                labresultsTable.setValueAt(rsetTable1r.getObject(2), p, 1);
-//                labresultsTable.setValueAt(rsetTable1r.getObject(3), p, 2);
-//                labresultsTable.setValueAt(rsetTable1r.getObject(4), p, 3);
-//                labresultsTable.setValueAt(rsetTable1r.getObject(5), p, 4);
-//
-//                p++;
-//
-//            }
-            stmtTable1r.close();
-            rsetTable1r.close();
-            //}
             stmtTable113.close();
             rsetTable113.close();
-//
-//            stmtTable11.close();
-//            rsetTable11.close();
 
         } catch (java.sql.SQLException sqlExec) {
 
@@ -6423,7 +6437,6 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             this.jLabel19.setForeground(new java.awt.Color(51, 51, 255));
         }
 
-        // Add your handling code here:
     }//GEN-LAST:event_labresultsButtonActionPerformed
 
     private void symptomsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_symptomsTableMouseClicked
@@ -6618,43 +6631,41 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         } else {
             //    waitingPatientsThread.stop();
         }
-        this.jPanel72.setVisible(false);
+        this.pharmacyRequestsPanel.setVisible(false);
         this.jPanel34.setVisible(false);
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_consultationTabbedPaneMouseClicked
 
     private void labresultsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labresultsTableMouseClicked
 
+        labNo = labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 3).toString();
+
         labResultsTabbenPane.setSelectedIndex(1);
-        
-        
-        
+
         try {
             java.sql.PreparedStatement pstmtResults = connectDB.prepareStatement("SELECT patient_no, initcap(patient_name), upper(typeof_test), age::int, upper(gender), input_date, comments||' '||pathologist_comment as comments FROM hp_lab_results WHERE lab_no = ?");
-        
+
             pstmtResults.setObject(1, labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 3));
-            
+
             java.sql.ResultSet rsetResults = pstmtResults.executeQuery();
-            
-            while(rsetResults.next()){
-                
+
+            while (rsetResults.next()) {
+
                 laboratoryResultsPatientNumberTxt.setText(rsetResults.getString(1));
                 laboratoryResultsPatientNameTxt.setText(rsetResults.getString(2));
                 laboratoryProcedureDescriptionTxt.setText(rsetResults.getString(3));
                 laboratoryResultsTimeTxt.setText(rsetResults.getTimestamp(6).toString());
-                ageGenderTxt.setText("Age : "+rsetResults.getString(4)+" Yrs and Gender : "+rsetResults.getString(5));
+                ageGenderTxt.setText("Age : " + rsetResults.getString(4) + " Yrs and Gender : " + rsetResults.getString(5));
                 laboratoryProcedureResultDetailsTxt.setText(rsetResults.getString(7));
             }
-            
+
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
             Exceptions.printStackTrace(ex);
         }
-        
-        
+
         laboratoryResultsDisplayTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT parameter, units, out_come, lower_limit, upper_limit, (CASE WHEN result::varchar ~ '^[0-9]*.?[0-9]*$' AND (result < lower_limit or result > upper_limit) THEN true  ELSE false END) AS exceptional_results from hp_lab_results WHERE lab_no = '" + labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 3) + "'"));
 
-        
         String receiptNo = null;
         //        if (jTable1.getSelectedColumn() == 2) {
         System.out.print("See receipt No3. : " + receiptNo);
@@ -6676,19 +6687,13 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 }
             }
         }
-        if (Boolean.valueOf(labresultsTable.getModel().getValueAt(labresultsTable.getSelectedRow(), 4).toString()) == java.lang.Boolean.TRUE) {
-            receiptNo = labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 3).toString();
-            com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
+        //    if (Boolean.valueOf(labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 4).toString())) {
+        // receiptNo = labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 3).toString();
+        com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
-            policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo);
+        policy.PatientLabResultsPdf(connectDB, labNo, labNo);
 
-        }
-
-        /*for (int k = 0; k < jTable15.getRowCount(); k++) {
-         for (int r = 0; r < jTable15.getColumnCount(); r++) {
-         jTable15.getModel().setValueAt(null, k, r);
-         }
-         }*/
+        //    }
         // Add your handling code here:
     }//GEN-LAST:event_labresultsTableMouseClicked
     private void searchButtonClicked211h() {
@@ -6698,7 +6703,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
         java.awt.Point point = this.jTextField9111.getLocationOnScreen();
 
-        jSearchDialog211.setSize(400, 200);
+        jSearchDialog211.setSize(600, 200);
 
         jSearchDialog211.setLocation(point);
 
@@ -7194,6 +7199,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
     }
     private void outpatientCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outpatientCheckBoxActionPerformed
+
+        clerkingTabbedPane.setSelectedIndex(0);
         // Add your handling code here:
     }//GEN-LAST:event_outpatientCheckBoxActionPerformed
 
@@ -7763,9 +7770,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             + " marital_status, sex_hist, contraceptive, "
                             + "            cont_method, illness,drug_allergy, illness_method,  medicine, "
                             + "            alcohol, smoking, hist_heading,narration, symptom, result, duration, description, "
-                            + "            user_name, trans_date)"
+                            + "            user_name, trans_date, clinical_duration)"
                             + "    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,  ?, ?, ?, ?, ?,?,  ?::numeric,  ?,"
-                            + "current_user, current_timestamp);");
+                            + "current_user, current_timestamp, ?);");
 
                     pstmt21.setString(1, jTextField922.getText());
                     pstmt21.setString(2, patientNametxt.getText());
@@ -7790,8 +7797,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                     pstmt21.setObject(16, dbObject.getDBObject(rxplanTable.getValueAt(i, 10), ""));
                     pstmt21.setObject(17, symptomsTable.getValueAt(i, 0));
                     pstmt21.setObject(18, symptomsTable.getValueAt(i, 1));
-                    pstmt21.setObject(19, symptomsTable.getValueAt(i, 2));
+                    pstmt21.setObject(19, "1");
                     pstmt21.setObject(20, symptomsTable.getValueAt(i, 3));
+                    pstmt21.setObject(21, symptomsTable.getValueAt(i, 2));
 
                     pstmt21.executeUpdate();
                 }
@@ -7841,9 +7849,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 jTable13.setValueAt(null, k, r);
             }
         }
-        for (int k = 0; k < jTable111.getRowCount(); k++) {
-            for (int r = 0; r < jTable111.getColumnCount(); r++) {
-                jTable111.setValueAt(null, k, r);
+        for (int k = 0; k < pharmacyTable.getRowCount(); k++) {
+            for (int r = 0; r < pharmacyTable.getColumnCount(); r++) {
+                pharmacyTable.setValueAt(null, k, r);
             }
         } // Add your handling code here:
     }//GEN-LAST:event_jButton33ActionPerformed
@@ -7883,9 +7891,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             tableModelTableChanged();
         } else {
 
-            int rows2Delete = jTable111.getSelectedRowCount();
+            int rows2Delete = pharmacyTable.getSelectedRowCount();
 
-            int[] selectedRows = jTable111.getSelectedRows();
+            int[] selectedRows = pharmacyTable.getSelectedRows();
 
             if (rows2Delete < 1) {
 
@@ -7899,7 +7907,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
                     for (int i = 0; i < selectedRows.length; i++) {
 
-                        javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable111.getModel();
+                        javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) pharmacyTable.getModel();
 
                         defTableModel.removeRow(selectedRows[i]);
 
@@ -7907,9 +7915,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
                 } else {
 
-                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable111.getModel();
+                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) pharmacyTable.getModel();
 
-                    defTableModel.removeRow(jTable111.getSelectedRow());
+                    defTableModel.removeRow(pharmacyTable.getSelectedRow());
                 }
             }
 
@@ -8033,64 +8041,63 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         }    // Add your handling code here:
     }//GEN-LAST:event_jButton121ActionPerformed
 
-    private void jSearchTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable1MouseClicked
+    private void pharmacySearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pharmacySearchTableMouseClicked
         float Qty = 0;
         int j = 0;
-        jTable111.setValueAt(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 0), jTable111.getSelectedRow(), 0);
-        // jTable11.setValueAt(1,jTable11.getSelectedRow(), 4);
-        // jTable11.setValueAt(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(),2),jTable11.getSelectedRow(), 5);
-        jTable111.setValueAt(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 1), jTable111.getSelectedRow(), 2);
-        jTable111.setValueAt(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 2), jTable111.getSelectedRow(), 7);
-        jTable111.setValueAt(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 3), jTable111.getSelectedRow(), 8);
+        pharmacyTable.setValueAt(pharmacySearchTable.getValueAt(pharmacySearchTable.getSelectedRow(), 0), pharmacyTable.getSelectedRow(), 0);
+        pharmacyTable.setValueAt("1", pharmacyTable.getSelectedRow(), 1);
+        pharmacyTable.setValueAt(pharmacySearchTable.getValueAt(pharmacySearchTable.getSelectedRow(), 1), pharmacyTable.getSelectedRow(), 2);
+        pharmacyTable.setValueAt(pharmacySearchTable.getValueAt(pharmacySearchTable.getSelectedRow(), 2), pharmacyTable.getSelectedRow(), 7);
+        pharmacyTable.setValueAt(pharmacySearchTable.getValueAt(pharmacySearchTable.getSelectedRow(), 3), pharmacyTable.getSelectedRow(), 8);
 
-        jTextField10.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 3).toString());
+        jTextField10.setText(pharmacySearchTable.getValueAt(pharmacySearchTable.getSelectedRow(), 3).toString());
 
-        jSearchDialog1.dispose();
-        int i = jTable111.getSelectedRow();
+        pharmacySearchDialog.dispose();
+        int i = pharmacyTable.getSelectedRow();
         try {
 
             java.sql.Statement stmt1 = connectDB.createStatement();
-            java.sql.ResultSet rset1 = stmt1.executeQuery("select distinct admin_mode,genre,days,strength from st_stock_item where item_code = '" + jTable111.getValueAt(jTable111.getSelectedRow(), 8) + "'");
+            java.sql.ResultSet rset1 = stmt1.executeQuery("select distinct admin_mode,genre,days,strength from st_stock_item where item_code = '" + pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 8) + "'");
             while (rset1.next()) {
-                jTable111.setValueAt(rset1.getObject(1), i, 3);
-                jTable111.setValueAt(rset1.getObject(2), i, 4);
-                jTable111.setValueAt(rset1.getObject(3), i, 5);
-                jTable111.setValueAt(rset1.getObject(4), i, 6);
+                pharmacyTable.setValueAt(rset1.getObject(1), i, 3);
+                pharmacyTable.setValueAt(rset1.getObject(2), i, 4);
+                pharmacyTable.setValueAt(rset1.getObject(3), i, 5);
+                pharmacyTable.setValueAt(rset1.getObject(4), i, 6);
             }
 
             java.sql.Statement pstmt = connectDB.createStatement();
             java.sql.Statement pstmt1 = connectDB.createStatement();
             java.sql.Statement pstmt1x = connectDB.createStatement();
 
-            java.sql.ResultSet rs1 = pstmt1.executeQuery("select count(product) from stockprices sc where product_id = '" + jTable111.getValueAt(jTable111.getSelectedRow(), 8) + "' and department ilike 'Pharma%'");
+            java.sql.ResultSet rs1 = pstmt1.executeQuery("select count(product) from stockprices sc where product_id = '" + pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 8) + "' and department ilike '%Pharma%'");
             while (rs1.next()) {
                 j = rs1.getInt(1);
             }
             if (j > 0) {
-                java.sql.ResultSet rs = pstmt.executeQuery("select sum(qty) from stock_balance_qty where item_code = '" + jTable111.getValueAt(jTable111.getSelectedRow(), 8) + "' and department ilike 'Pharma%' AND dates <= '" + transdatePicker.getDate() + "'");
+                java.sql.ResultSet rs = pstmt.executeQuery("select sum(qty) from stock_balance_qty where item_code = '" + pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 8) + "'  AND dates::date <= '" + transdatePicker.getDate() + "'");
 
                 while (rs.next()) {
 
                     Qty = rs.getFloat(1);
-                    jTable111.setValueAt(Qty, jTable111.getSelectedRow(), 9);
+                    pharmacyTable.setValueAt(Qty, pharmacyTable.getSelectedRow(), 9);
 
                 }
             } else {
-                jTable111.setValueAt("0.00", jTable111.getSelectedRow(), 9);
+                pharmacyTable.setValueAt("0.00", pharmacyTable.getSelectedRow(), 9);
             }
         } catch (java.sql.SQLException sqe) {
             sqe.printStackTrace();
             //  System.out.println("Insert not successful");
         }
 
-        for (int k = 0; k < jSearchTable1.getRowCount(); k++) {
-            for (int r = 0; r < jSearchTable1.getColumnCount(); r++) {
-                jSearchTable1.setValueAt(null, k, r);
+        for (int k = 0; k < pharmacySearchTable.getRowCount(); k++) {
+            for (int r = 0; r < pharmacySearchTable.getColumnCount(); r++) {
+                pharmacySearchTable.setValueAt(null, k, r);
             }
         }
 
-        jTextField111.setText("");  // Add your handling code here:
-    }//GEN-LAST:event_jSearchTable1MouseClicked
+        pharmacySearchTxt.setText("");  // Add your handling code here:
+    }//GEN-LAST:event_pharmacySearchTableMouseClicked
 
     private void jSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTableMouseClicked
         if (lablatoryCheck.isSelected() == true || radiologyCheck.isSelected() == true) {
@@ -8323,7 +8330,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private void cmboxMouseClicked() {
 
         System.out.println("Showing dialog");
-        java.awt.Point point = generalCheckBox.getLocationOnScreen();
+        java.awt.Point point = searchServicesMainPanel.getLocationOnScreen();
         jSearchDialog.setSize(600, 200);
         jSearchDialog.setLocation(point);
         jSearchDialog.setVisible(true);
@@ -8375,8 +8382,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             jTable14.getCellEditor().stopCellEditing();
         }
 
-        if (jTable111.isEditing()) {
-            jTable111.getCellEditor().stopCellEditing();
+        if (pharmacyTable.isEditing()) {
+            pharmacyTable.getCellEditor().stopCellEditing();
         }
         //        this.jTable11.getModel().setValueAt("",10,5);
 
@@ -8445,15 +8452,15 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             if (pharmacyCheckBox.isSelected() == Boolean.TRUE) {
                 System.out.println("Inserting pharmacy items ..11.11");
                 ///jtable111 operations
-                for (int n = 0; n < jTable111.getRowCount(); n++) {
+                for (int n = 0; n < pharmacyTable.getRowCount(); n++) {
                     System.out.println("Inserting pharmacy items ...11");
-                    if (jTable111.getValueAt(n, 0) != null) {
+                    if (pharmacyTable.getValueAt(n, 0) != null) {
                         System.out.println("Inserting pharmacy items ...");
                     // this.jTable111.setCellSelectionEnabled(false);
 
                         //this.jTextField922.setHighlighter().;
                         //this.jTextField922.setOpaque(true);
-                        rse121 = stm121q.executeQuery("select activity from pb_activity where code ='" + jTable111.getValueAt(n, 7).toString().trim() + "'");
+                        rse121 = stm121q.executeQuery("select activity from pb_activity where code ='" + pharmacyTable.getValueAt(n, 7).toString().trim() + "'");
 
                         while (rse121.next()) {
 
@@ -8474,9 +8481,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
                                 pstmt2.setString(4, jTextField8.getText());
                             }
-                            pstmt2.setString(5, jTable111.getValueAt(n, 0).toString());
+                            pstmt2.setString(5, pharmacyTable.getValueAt(n, 0).toString());
                             pstmt2.setDouble(6, 1);
-                            pstmt2.setDouble(7, java.lang.Double.valueOf(jTable111.getValueAt(n, 2).toString()));
+                            pstmt2.setDouble(7, java.lang.Double.valueOf(pharmacyTable.getValueAt(n, 2).toString()));
                             pstmt2.setString(8, jTextField10.getText());
                             pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker12.getDate()));
                             pstmt2.setString(10, billNo);
@@ -8488,13 +8495,13 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             }
                             pstmt2.setString(13, glAcc);
                             pstmt2.setString(14, billNo);
-                            pstmt2.setString(15, jTable111.getValueAt(n, 3).toString());
+                            pstmt2.setString(15, pharmacyTable.getValueAt(n, 3).toString());
                             pstmt2.setBoolean(16, false);
                             pstmt2.setBoolean(17, false);
-                            pstmt2.setObject(18, jTable111.getValueAt(n, 4).toString());
-                            pstmt2.setString(19, jTable111.getValueAt(n, 5).toString());
+                            pstmt2.setObject(18, pharmacyTable.getValueAt(n, 4).toString());
+                            pstmt2.setString(19, pharmacyTable.getValueAt(n, 5).toString());
                             pstmt2.setTimestamp(20, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
-                            pstmt2.setObject(21, jTable111.getValueAt(n, 6).toString());
+                            pstmt2.setObject(21, pharmacyTable.getValueAt(n, 6).toString());
                             pstmt2.setString(22, rank);
                             pstmt2.setString(23, ageTxt.getText().toString());
                             pstmt2.setString(24, clinicalExamineditor.getText().toString());
@@ -8504,29 +8511,30 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
                             pstmt2.execute();
 
-                            rsB = pstB.executeQuery("SELECT transfer_price,units,department,product_id FROM st_stock_prices WHERE product_id = '" + jTable111.getValueAt(n, 8) + "' and gl_code =  '" + jTable111.getValueAt(n, 7) + "'");
-
+                            rsB = pstB.executeQuery("SELECT transfer_price,units,department,product_id,  (SELECT strength FROM st_stock_item WHERE st_stock_item.item_code = st_stock_prices.product_id ORDER BY 1 DESC LIMIT 1) AS strength FROM st_stock_prices WHERE product_id = '" + pharmacyTable.getValueAt(n, 8) + "' and gl_code =  '" + pharmacyTable.getValueAt(n, 7) + "'");
+                            String strength = "-";
                             while (rsB.next()) {
                                 price = rsB.getDouble(1);
                                 units = rsB.getString(2);
                                 Store = rsB.getString(3);
                                 productId = rsB.getString(4);
+                                strength = rsB.getString(5);
 
                             }
                             pstmt1 = connectDB.prepareStatement("INSERT INTO hp_pharmacy VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                             pstmt1.setString(1, nameNoTxt.getText());
                             pstmt1.setString(2, patientNametxt.getText());
-                            pstmt1.setDouble(4, java.lang.Double.valueOf(jTable111.getValueAt(n, 2).toString()));
+                            pstmt1.setDouble(4, java.lang.Double.valueOf(pharmacyTable.getValueAt(n, 2).toString()));
                             pstmt1.setDouble(3, 1);
-                            pstmt1.setObject(5, jTable111.getValueAt(n, 0).toString());
+                            pstmt1.setObject(5, pharmacyTable.getValueAt(n, 0).toString());
                             if (paymentModetxt.getText().startsWith("Scheme")) {
                                 pstmt1.setBoolean(6, true);
                             } else {
                                 pstmt1.setBoolean(6, false);
                             }
 
-                            pstmt1.setDouble(7, java.lang.Double.valueOf(jTable111.getValueAt(n, 2).toString()));
-                            pstmt1.setObject(8, jTable111.getValueAt(n, 7).toString());
+                            pstmt1.setDouble(7, java.lang.Double.valueOf(pharmacyTable.getValueAt(n, 2).toString()));
+                            pstmt1.setObject(8, pharmacyTable.getValueAt(n, 7).toString());
                             pstmt1.setString(9, "" + transNo);
                             pstmt1.setObject(10, jTextField8.getText());
                             pstmt1.setBoolean(11, false);
@@ -8535,13 +8543,13 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             pstmt1.setObject(14, Store);
                             pstmt1.setString(15, "");
                             pstmt1.setString(16, paymentModetxt.getText());
-                            pstmt1.setObject(17, jTable111.getValueAt(n, 8).toString());
+                            pstmt1.setObject(17, pharmacyTable.getValueAt(n, 8).toString());
                             pstmt1.setDouble(18, 0.00);
                             pstmt1.setString(19, user);
                             pstmt1.setObject(20, jTextField9111.getText());
                             pstmt1.setObject(21, "");
                             pstmt1.setString(22, productId);
-                            pstmt1.setObject(23, "");
+                            pstmt1.setObject(23, strength);
                             pstmt1.execute();
                         }
                         pstmtdrug = connectDB.prepareStatement("INSERT INTO nursing.medication_administration"
@@ -8557,12 +8565,12 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             pstmtdrug.setObject(2, "");
                         }
                         pstmtdrug.setObject(3, com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()));
-                        pstmtdrug.setObject(4, jTable111.getValueAt(n, 8).toString());
-                        pstmtdrug.setObject(5, jTable111.getValueAt(n, 0).toString());
-                        pstmtdrug.setObject(6, jTable111.getValueAt(n, 6).toString());
-                        pstmtdrug.setObject(7, jTable111.getValueAt(n, 3).toString());
-                        pstmtdrug.setObject(8, jTable111.getValueAt(n, 4).toString());
-                        pstmtdrug.setObject(9, jTable111.getValueAt(n, 5).toString());
+                        pstmtdrug.setObject(4, pharmacyTable.getValueAt(n, 8).toString());
+                        pstmtdrug.setObject(5, pharmacyTable.getValueAt(n, 0).toString());
+                        pstmtdrug.setObject(6, pharmacyTable.getValueAt(n, 6).toString());
+                        pstmtdrug.setObject(7, pharmacyTable.getValueAt(n, 3).toString());
+                        pstmtdrug.setObject(8, pharmacyTable.getValueAt(n, 4).toString());
+                        pstmtdrug.setObject(9, pharmacyTable.getValueAt(n, 5).toString());
                         pstmtdrug.setObject(10, jTextField9111.getText());
                         pstmtdrug.setBoolean(11, false);
                         pstmtdrug.setBoolean(12, false);
@@ -8981,9 +8989,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                     jTable13.setValueAt(null, k, r);
                 }
             }
-            for (int k = 0; k < jTable111.getRowCount(); k++) {
-                for (int r = 0; r < jTable111.getColumnCount(); r++) {
-                    jTable111.setValueAt(null, k, r);
+            for (int k = 0; k < pharmacyTable.getRowCount(); k++) {
+                for (int r = 0; r < pharmacyTable.getColumnCount(); r++) {
+                    pharmacyTable.setValueAt(null, k, r);
                 }
             }
 
@@ -9000,21 +9008,21 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     }//GEN-LAST:event_requestbtnActionPerformed
 
     private void jButton911ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton911ActionPerformed
-        jSearchDialog1.dispose();  // Add your handling code here:
+        pharmacySearchDialog.dispose();  // Add your handling code here:
     }//GEN-LAST:event_jButton911ActionPerformed
 
-    private void jTextField111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField111CaretUpdate
+    private void pharmacySearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_pharmacySearchTxtCaretUpdate
 
-        if (jTextField111.getCaretPosition() < 3) {
+        if (pharmacySearchTxt.getCaretPosition() < 3) {
 
             System.out.println("Nothing");
 
         } else {
 
-            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                    + "select distinct product||' '||st_stock_prices.strength as Drug_Prescribing,selling_price as price,gl_code,product_id FROM st_stock_prices,st_stock_item WHERE product||' '||st_stock_prices.strength ILIKE '%" + jTextField111.getText() + "%' and opd = true AND product_id = item_code AND (st_stock_prices.department ilike '%pharmacy%' or st_stock_prices.department ilike '%nutrition%') ORDER BY 1"));
+            pharmacySearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+                    + "select distinct product||' '||st_stock_prices.strength as Drug_Prescribing,selling_price as price,gl_code,product_id FROM st_stock_prices,st_stock_item WHERE product||' '||st_stock_prices.strength ILIKE '%" + pharmacySearchTxt.getText() + "%' and opd = true AND product_id = item_code AND (st_stock_prices.department ilike '%pharmacy%' or st_stock_prices.department ilike '%nutrition%') ORDER BY 1"));
 
-            jSearchScrollPane1.setViewportView(jSearchTable1);
+            pharmacySearchScrollPane.setViewportView(pharmacySearchTable);
             System.out.println("Cannot sort out");
 
         }
@@ -9077,14 +9085,14 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 //            }
 //        }
         /// Add your handling code here:
-    }//GEN-LAST:event_jTextField111CaretUpdate
+    }//GEN-LAST:event_pharmacySearchTxtCaretUpdate
     private void cmboxMouseClickedd() {
 
         System.out.println("Showing dialog");
-        java.awt.Point point = generalCheckBox.getLocationOnScreen();
-        jSearchDialog1.setSize(600, 200);
-        jSearchDialog1.setLocation(point);
-        jSearchDialog1.setVisible(true);
+        java.awt.Point point = searchServicesMainPanel.getLocationOnScreen();
+        pharmacySearchDialog.setSize(600, 200);
+        pharmacySearchDialog.setLocation(point);
+        pharmacySearchDialog.setVisible(true);
     }
     private void waitingclinicscmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_waitingclinicscmbxActionPerformed
         clinicComboBox.setSelectedItem(waitingclinicscmbx.getSelectedItem());
@@ -9131,25 +9139,43 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                         + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
                         + "from  hp_patient_visit hpv  where   hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'    "
                         + "and hpv.clinic ='" + this.waitingclinicscmbx.getSelectedItem().toString() + "'  ORDER BY hpv.input_date::time(0)");
+                if (waitingclinicscmbx.getSelectedItem().toString().equalsIgnoreCase("--ALL--")) {
+                    this.clerkingwaitingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
+                            "select distinct "
+                            + "hpv.patient_no,hpv.input_date::time(0) as Visit_time,"
+                            + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
+                            + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
+                            + ",hpv.nature as Seen from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'    "
+                            + "  ORDER BY hpv.input_date::time(0)"));
+                } else {
+                    this.clerkingwaitingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
+                            "select distinct "
+                            + "hpv.patient_no,hpv.input_date::time(0) as Visit_time,"
+                            + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
+                            + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
+                            + ",hpv.nature as Seen from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'    "
+                            + "and hpv.clinic ='" + this.waitingclinicscmbx.getSelectedItem().toString() + "'  ORDER BY hpv.input_date::time(0)"));
 
-                this.clerkingwaitingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
-                        "select distinct "
-                        + "hpv.patient_no,hpv.input_date::time(0) as Visit_time,"
-                        + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
-                        + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
-                        + ",hpv.nature as Seen from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'    "
-                        + "and hpv.clinic ='" + this.waitingclinicscmbx.getSelectedItem().toString() + "'  ORDER BY hpv.input_date::time(0)"));
+                }
             }
             if (this.inpatientCheckBox.isSelected() == true) {
+                if (waitingclinicscmbx.getSelectedItem().toString().equalsIgnoreCase("--ALL--")) {
+                    System.out.println("SELECT patient_no, patient_name, bed_no, wing, date_admitted, admission_no,mode_of_payment,(SELECT count(patient_no) from hp_admission "
+                            + "where patient_no=patient_no)as Visits,visit_id FROM hp_admission  where discharge=false and"
+                            + " ward='" + this.waitingclinicscmbx.getSelectedItem().toString() + "' and check_out=false;");
+                    this.clerkingwaitingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+                            + "SELECT patient_no, patient_name, bed_no, wing, date_admitted, admission_no,mode_of_payment,(SELECT count(patient_no) from hp_admission "
+                            + "where patient_no=patient_no)as Visits,visit_id FROM hp_admission  where discharge=false and"
+                            + " check_out=false;"));
+                } else {
+                    this.clerkingwaitingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+                            + "SELECT patient_no, patient_name, bed_no, wing, date_admitted, admission_no,mode_of_payment,(SELECT count(patient_no) from hp_admission "
+                            + "where patient_no=patient_no)as Visits,visit_id FROM hp_admission  where discharge=false and"
+                            + " ward='" + this.waitingclinicscmbx.getSelectedItem().toString() + "' and check_out=false;"));
 
-                System.out.println("SELECT patient_no, patient_name, bed_no, wing, date_admitted, admission_no,mode_of_payment,(SELECT count(patient_no) from hp_admission "
-                        + "where patient_no=patient_no)as Visits,visit_id FROM hp_admission  where discharge=false and"
-                        + " ward='" + this.waitingclinicscmbx.getSelectedItem().toString() + "' and check_out=false;");
-                this.clerkingwaitingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                        + "SELECT patient_no, patient_name, bed_no, wing, date_admitted, admission_no,mode_of_payment,(SELECT count(patient_no) from hp_admission "
-                        + "where patient_no=patient_no)as Visits,visit_id FROM hp_admission  where discharge=false and"
-                        + " ward='" + this.waitingclinicscmbx.getSelectedItem().toString() + "' and check_out=false;"));
+                }
             }
+
             coluorTable();
         } catch (Exception sqlExec) {
 
@@ -9161,6 +9187,24 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         // Add your handling code here:
     }//GEN-LAST:event_loadALLpatientsbtnActionPerformed
     private java.lang.Boolean checkPayment(String patientNo, String paymentMode, String patType, String urgency) {
+
+        int gracePariodDays = 2;
+
+        try {
+            java.sql.PreparedStatement pstmtPayment = connectDB.prepareStatement("SELECT review_grace_period::int FROM pb_patient_names");
+
+            java.sql.ResultSet rsetPayment = pstmtPayment.executeQuery();
+
+            while (rsetPayment.next()) {
+
+                gracePariodDays = rsetPayment.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+            Exceptions.printStackTrace(ex);
+        }
         Boolean patientPaid = false;
         switch (patType.toLowerCase().trim()) {
             case "ip": {
@@ -9188,7 +9232,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                 try {
                                     java.sql.PreparedStatement pstmtVector = connectDB.prepareStatement(""
                                             + "SELECT COUNT(patient_no) FROM ac_cash_collection WHERE patient_no ='" + patientNo + "' "
-                                            + " and receipt_time::date >= (select current_timestamp(0)::date -1) ");
+                                            + " and receipt_time::date >= (select current_timestamp(0)::date - " + gracePariodDays + ") ");
 
                                     java.sql.ResultSet rsetVector = pstmtVector.executeQuery();
 
@@ -9408,7 +9452,12 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                 + dbObject.getDBObject(rset.getObject(9), "-") + " " + dbObject.getDBObject(rset.getObject(10), "-") + " ");
 
                     }
-
+                    java.sql.PreparedStatement pstmtScheme = connectDB.prepareStatement("SELECT scheme FROM credit_acc_slip WHERE patient_no = ? AND (date = current_date OR date = current_date - 1)");
+                    pstmtScheme.setString(1, nameNoTxt.getText());
+                    java.sql.ResultSet rsetScheme = pstmtScheme.executeQuery();
+                    while (rsetScheme.next()) {
+                        schemeNameTxt.setText(rsetScheme.getString(1));
+                    }
                     connectDB.commit();
                     connectDB.setAutoCommit(true);
 
@@ -9458,49 +9507,51 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         System.out.println("Showing dialog");
         java.awt.Point point = diagnosisTable.getLocationOnScreen();
-        jSearchDialog3.setSize(600, 200);
-        jSearchDialog3.setLocation(point);
-        jSearchDialog3.setVisible(true);
+        icd10SearchDialog.setSize(600, 200);
+        icd10SearchDialog.setLocation(point);
+        icd10SearchDialog.setVisible(true);
     }
 
-    private void jTextField1112CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1112CaretUpdate
+    private void icd10SearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_icd10SearchTxtCaretUpdate
+        if (icd10SearchTxt.getText().length() > 2) {
+            if (icd10table = true) {
+                icd10SearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT (upper(disease_name)) as name,code from hp_diseases where  (disease_name ILIKE '%" + icd10SearchTxt.getText() + "%' OR code ILIKE '%" + icd10SearchTxt.getText() + "%')  ORDER BY code,1   "));
 
-        if (icd10table = true) {
-            jSearchTable3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT (upper(disease_name)) as name,code from hp_diseases where  (disease_name ILIKE '" + jTextField1112.getText() + "%' OR code ILIKE '" + jTextField1112.getText() + "%')  ORDER BY code,1   "));
+                System.out.println("SELECT (upper(disease_name)) as name,code from hp_diseases where code='" + icdCode + "' and  disease_name ILIKE '%" + icd10SearchTxt.getText() + "%' ORDER BY code,1  LIMIT 50");
+            }
+            if (provisinal = true) {
+                icd10SearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT (upper(disease_name)) as name,code from hp_diseases where (disease_name ILIKE '%" + icd10SearchTxt.getText() + "%' OR code ILIKE '%" + icd10SearchTxt.getText() + "%') ORDER BY code,1   "));
 
-            System.out.println("SELECT (upper(disease_name)) as name,code from hp_diseases where code='" + icdCode + "' and  disease_name ILIKE '" + jTextField1112.getText() + "%' ORDER BY code,1  LIMIT 50");
+                System.out.println("SELECT (upper(disease_name)) as name,code from hp_diseases where (disease_name ILIKE '%" + icd10SearchTxt.getText() + "%' OR code ILIKE '%" + icd10SearchTxt.getText() + "%') ORDER BY code,1  LIMIT 50");
+            }
+
         }
+}//GEN-LAST:event_icd10SearchTxtCaretUpdate
+
+    private void icd10SearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icd10SearchTableMouseClicked
         if (provisinal = true) {
-            jSearchTable3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT (upper(disease_name)) as name,code from hp_diseases where (disease_name ILIKE '" + jTextField1112.getText() + "%' OR code ILIKE '" + jTextField1112.getText() + "%') ORDER BY code,1   "));
+            provisionalDiagnosistxt.setText(icd10SearchTable.getValueAt(icd10SearchTable.getSelectedRow(), 1).toString().trim() + ":-" + icd10SearchTable.getValueAt(icd10SearchTable.getSelectedRow(), 0).toString().trim());
 
-            System.out.println("SELECT (upper(disease_name)) as name,code from hp_diseases where (disease_name ILIKE '" + jTextField1112.getText() + "%' OR code ILIKE '" + jTextField1112.getText() + "%') ORDER BY code,1  LIMIT 50");
-        }
-}//GEN-LAST:event_jTextField1112CaretUpdate
-
-    private void jSearchTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable3MouseClicked
-        if (provisinal = true) {
-            provisionalDiagnosistxt.setText(jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 1).toString().trim() + ":-" + jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 0).toString().trim());
-
-            icdCode = jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 1).toString().trim();
+            icdCode = icd10SearchTable.getValueAt(icd10SearchTable.getSelectedRow(), 1).toString().trim();
             System.out.println("\n\n\n\n\nthe icd10 code is " + icdCode);
         }
 
         if (icd10table = true) {
-            diagnosisTable.setValueAt(jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 0), diagnosisTable.getSelectedRow(), 1);
-            diagnosisTable.setValueAt(jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 1), diagnosisTable.getSelectedRow(), 0);
-            jSearchDialog3.dispose();
-            jTextField1112.setText("");
+            diagnosisTable.setValueAt(icd10SearchTable.getValueAt(icd10SearchTable.getSelectedRow(), 0), diagnosisTable.getSelectedRow(), 1);
+            diagnosisTable.setValueAt(icd10SearchTable.getValueAt(icd10SearchTable.getSelectedRow(), 1), diagnosisTable.getSelectedRow(), 0);
+            icd10SearchDialog.dispose();
+            icd10SearchTxt.setText("");
 
         }
 
-}//GEN-LAST:event_jSearchTable3MouseClicked
+}//GEN-LAST:event_icd10SearchTableMouseClicked
 
-    private void jSearchTable3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable3MouseEntered
+    private void icd10SearchTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icd10SearchTableMouseEntered
         // TODO add your handling code here:
-}//GEN-LAST:event_jSearchTable3MouseEntered
+}//GEN-LAST:event_icd10SearchTableMouseEntered
 
     private void jButton93ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton93ActionPerformed
-        jSearchDialog3.dispose();  // Add your handling code here:
+        icd10SearchDialog.dispose();  // Add your handling code here:
 }//GEN-LAST:event_jButton93ActionPerformed
 
     private void jComboBox12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox12ActionPerformed
@@ -9537,7 +9588,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         }
         com.afrisoftech.lib.ClearTable.clearthisTable(jTable13);
         com.afrisoftech.lib.ClearTable.clearthisTable(jTable14);
-        com.afrisoftech.lib.ClearTable.clearthisTable(jTable111);
+        com.afrisoftech.lib.ClearTable.clearthisTable(pharmacyTable);
         com.afrisoftech.lib.ClearTable.clearthisTable(symptomsTable);
         com.afrisoftech.lib.ClearTable.clearthisTable(rxplanTable);
         com.afrisoftech.lib.ClearTable.clearthisTable(diagnosisTable);
@@ -9650,8 +9701,6 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 //            javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
 //
 //        }
-
-
         /* if (patNo1 > 5) {
         
          this.jLabel19.setText("You Have '" + patNo1 + "' Results  Unread");
@@ -9669,19 +9718,21 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton47ActionPerformed
 
-    private void jTextField111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField111ActionPerformed
+    private void pharmacySearchTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pharmacySearchTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField111ActionPerformed
+    }//GEN-LAST:event_pharmacySearchTxtActionPerformed
 
     private void outpatientCheckBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_outpatientCheckBoxItemStateChanged
-        this.waitingclinicscmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "(select '0select-') union   (SELECT distinct Clinics FROM pb_clinics) ORDER BY 1 asc"));
-        this.clinicComboBox.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "(select '0select-') union   (SELECT distinct Clinics FROM pb_clinics) ORDER BY 1 asc"));
+        clerkingTabbedPane.setSelectedIndex(0);
+        this.waitingclinicscmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "(select '--ALL--') UNION   (SELECT distinct Clinics FROM pb_clinics) ORDER BY 1 asc"));
+        this.clinicComboBox.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "(select '--ALL--') UNION   (SELECT distinct Clinics FROM pb_clinics) ORDER BY 1 asc"));
 
     }//GEN-LAST:event_outpatientCheckBoxItemStateChanged
 
     private void inpatientCheckBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_inpatientCheckBoxItemStateChanged
-        this.waitingclinicscmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "(select '0select-') union (select distinct ward_name  from hp_wards)   ORDER BY 1 asc"));
-        this.clinicComboBox.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "(select '0select-') union (select distinct ward_name  from hp_wards)   ORDER BY 1 asc"));
+        clerkingTabbedPane.setSelectedIndex(0);
+        this.waitingclinicscmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "(select '--ALL--') union (select distinct ward_name  from hp_wards)   ORDER BY 1 asc"));
+        this.clinicComboBox.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "(select '--ALL--') union (select distinct ward_name  from hp_wards)   ORDER BY 1 asc"));
 
     }//GEN-LAST:event_inpatientCheckBoxItemStateChanged
 
@@ -9692,24 +9743,23 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     }//GEN-LAST:event_waitingclinicscmbxItemStateChanged
 
     private void complainsdialogtableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_complainsdialogtableMouseClicked
-
-        complainstxt.setText(this.complainsdialogtable.getValueAt(complainsdialogtable.getSelectedRow(), 0).toString().trim());
+        String textpane = provisionalDiagnosistxt.getText();
+        provisionalDiagnosistxt.setText(this.complainsdialogtable.getValueAt(complainsdialogtable.getSelectedRow(), 0).toString().trim());
         this.complainsDialog.dispose();
-        String textpane = complainsTextPane.getText();
-        textpane = textpane + "" + this.complainstxt.getText().trim() + ".";
-        complainsTextPane.setText(textpane);
+        textpane = textpane + " " + this.provisionalDiagnosistxt.getText().trim() + ".";
+        provisionalDiagnosistxt.setText(textpane);
     }//GEN-LAST:event_complainsdialogtableMouseClicked
 
     private void jButton912ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton912ActionPerformed
         this.complainsDialog.dispose();
     }//GEN-LAST:event_jButton912ActionPerformed
 
-    private void jTextField14CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField14CaretUpdate
-        if (jTextField14.getText().length() >= 1) {
+    private void searchDiseasesTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchDiseasesTxtCaretUpdate
+        if (searchDiseasesTxt.getText().length() >= 1) {
             this.complainsdialogtable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
-                    "SELECT (upper(disease_name)) as name,code from hp_diseases where disease_name ilike '" + jTextField14.getText().toString().trim() + "%' order by 1"));
+                    "SELECT (upper(disease_name)) as name,code from hp_diseases where disease_name ilike '%" + searchDiseasesTxt.getText().toString().trim() + "%' order by 1"));
         }
-    }//GEN-LAST:event_jTextField14CaretUpdate
+    }//GEN-LAST:event_searchDiseasesTxtCaretUpdate
 
     private void urgencyComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_urgencyComboBoxItemStateChanged
         if (this.outpatientCheckBox.isSelected() == true) {
@@ -9750,104 +9800,106 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     }//GEN-LAST:event_searchButton111ActionPerformed
 
     private void jButton72ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton72ActionPerformed
-//        String receiptNo = null;
-//        receiptNo = this.nameNoTxt.getText().toString();
-//
-//        com.afrisoftech.laboratory.PatientClinicalPdf policy = new com.afrisoftech.laboratory.PatientClinicalPdf();
-//
-//        policy.PatientClinicalPdf(connectDB, receiptNo);  // Add your handling code here:
-        String header = null;
-        try {
-            java.sql.PreparedStatement pstmtVector = connectDB.prepareStatement(""
-                    + "select distinct patient_no,initcap(first_name||' '||second_name) as Names,Category,residence,tel_no,last_visit "
-                    + "from hp_patient_register where patient_no = '" + this.nameNoTxt.getText().toString() + "' ");
+        if (nameNoTxt.getText().length() > 0) {
+            String header = null;
+            try {
+                java.sql.PreparedStatement pstmtVector = connectDB.prepareStatement(""
+                        + "select distinct patient_no,initcap(first_name||' '||second_name) as Names,Category,residence,tel_no,last_visit "
+                        + "from hp_patient_register where patient_no = '" + this.nameNoTxt.getText().toString() + "' ");
 
-            java.sql.ResultSet rsetVector = pstmtVector.executeQuery();
-            if (rsetVector.next()) {
-                header = "                Patient History "
-                        + "Patient NO :-" + rsetVector.getString(1) + "        Names:-" + rsetVector.getString(2) + ""
-                        + "Patient Category:-" + rsetVector.getString(3) + "        Last Visit:-" + rsetVector.getString(6) + ""
-                        + "Residence:-" + rsetVector.getString(4) + "       Tel No:-" + rsetVector.getString(5) + "";
+                java.sql.ResultSet rsetVector = pstmtVector.executeQuery();
+                if (rsetVector.next()) {
+                    header = "                Patient History "
+                            + "Patient NO :-" + rsetVector.getString(1) + "        Names:-" + rsetVector.getString(2) + ""
+                            + "Patient Category:-" + rsetVector.getString(3) + "        Last Visit:-" + rsetVector.getString(6) + ""
+                            + "Residence:-" + rsetVector.getString(4) + "       Tel No:-" + rsetVector.getString(5) + "";
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
 
-        java.util.ArrayList queryVector = new ArrayList();
-        queryVector.add("SELECT   date, marital_status, sex_hist, contraceptive, "
-                + "       cont_method, illness as Chronic_illness, drug_allergy as Allergic, illness_method as  Allergy_Type,   "
-                + "       alcohol, smoking, hist_heading as X_RAy , narration as XRay_type, "
-                + "       user_name,  doctor"
-                + "  FROM hp_patients_hist "
-                + "   where patient_no ='" + this.nameNoTxt.getText().toString() + "' "
-                + "  AND date::date <="
-                + " '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "' "
-                + " order by  date asc");
-        queryVector.add(" select  date,symptom,result as Severity,duration,description,doctor from hp_patients_hist where"
-                + " patient_no='" + this.nameNoTxt.getText().toString() + "' "
-                + "  AND date::date <="
-                + " '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "' "
-                + " order by  date asc");
-        com.afrisoftech.lib.FunsoftCustomPdf pdf = new com.afrisoftech.lib.FunsoftCustomPdf();
-        pdf.FunsoftCustomPdf(connectDB, header, com.afrisoftech.lib.EditorTextSetUp.editorGetText(connectDB, ""
-                + "(select  date,concat('symptom:-',symptom,' Severity:-',result,'\n duration:-',duration,' description:-',description) as details,doctor from hp_patients_hist "
-                + "where patient_no='" + this.nameNoTxt.getText().toString() + "'   AND date::date <= '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "' "
-                + " order by  date asc) "
-                + "union "
-                + "  (SELECT   date,concat( 'marital:-',marital_status, ' Sex:-',sex_hist, '\n Contraceptive:-',contraceptive,  "
-                + "       '  Method:-',cont_method, ' Illness:-',illness  ,'\n Allergic:-', drug_allergy ,' Type:-', illness_method , "
-                + "       '\n Alcoho:-',alcohol,' Smoking:-', smoking,'\n X_Ray:-', hist_heading   , ' Type:-', narration  ) as details,  "
-                + "          doctor"
-                + "  FROM hp_patients_hist  "
-                + "   where patient_no ='" + this.nameNoTxt.getText().toString() + "'   AND date::date <= '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "' "
-                + " order by  date asc)"));
+            java.util.ArrayList queryVector = new ArrayList();
+            queryVector.add("SELECT   date, marital_status, sex_hist, contraceptive, "
+                    + "       cont_method, illness as Chronic_illness, drug_allergy as Allergic, illness_method as  Allergy_Type,   "
+                    + "       alcohol, smoking, hist_heading as X_RAy , narration as XRay_type, "
+                    + "       user_name,  doctor"
+                    + "  FROM hp_patients_hist "
+                    + "   where patient_no ='" + this.nameNoTxt.getText().toString() + "' "
+                    + "  AND date::date <="
+                    + " '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "' "
+                    + " order by  date asc");
+            queryVector.add(" select  date,symptom,result as Severity,duration,description,doctor from hp_patients_hist where"
+                    + " patient_no='" + this.nameNoTxt.getText().toString() + "' "
+                    + "  AND date::date <="
+                    + " '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "' "
+                    + " order by  date asc");
+            com.afrisoftech.lib.FunsoftCustomPdf pdf = new com.afrisoftech.lib.FunsoftCustomPdf();
+            pdf.FunsoftCustomPdf(connectDB, header, com.afrisoftech.lib.EditorTextSetUp.editorGetText(connectDB, ""
+                    + "(select  date,concat('symptom:-',symptom,' Severity:-',result,'\n duration:-',duration,' description:-',description) as details,doctor from hp_patients_hist "
+                    + "where patient_no='" + this.nameNoTxt.getText().toString() + "'   AND date::date <= '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "' "
+                    + " order by  date asc) "
+                    + "union "
+                    + "  (SELECT   date,concat( 'marital:-',marital_status, ' Sex:-',sex_hist, '\n Contraceptive:-',contraceptive,  "
+                    + "       '  Method:-',cont_method, ' Illness:-',illness  ,'\n Allergic:-', drug_allergy ,' Type:-', illness_method , "
+                    + "       '\n Alcoho:-',alcohol,' Smoking:-', smoking,'\n X_Ray:-', hist_heading   , ' Type:-', narration  ) as details,  "
+                    + "          doctor"
+                    + "  FROM hp_patients_hist  "
+                    + "   where patient_no ='" + this.nameNoTxt.getText().toString() + "'   AND date::date <= '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "' "
+                    + " order by  date asc)"));
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a patient file to view the history");
+        }
     }//GEN-LAST:event_jButton72ActionPerformed
 
     private void jButton82ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton82ActionPerformed
-//        String receiptNo = null;
-//        receiptNo = this.nameNoTxt.getText().toString();
-//
-//        com.afrisoftech.laboratory.PatientClinicalComprehPdf policy = new com.afrisoftech.laboratory.PatientClinicalComprehPdf();
-//
-//        policy.PatientClinicalComprehPdf(connectDB, receiptNo);     // Add your handling code here:
-        String header = null;
-        try {
-            java.sql.PreparedStatement pstmtVector = connectDB.prepareStatement(""
-                    + "select distinct patient_no,initcap(first_name||' '||second_name) as Names,Category,residence,tel_no,last_visit "
-                    + "from hp_patient_register where patient_no = '" + this.nameNoTxt.getText().toString() + "' ");
+        if (nameNoTxt.getText().length() > 0) {
+            String header = null;
+            try {
+                java.sql.PreparedStatement pstmtVector = connectDB.prepareStatement(""
+                        + "select distinct patient_no,initcap(first_name||' '||second_name) as Names,Category,residence,tel_no,last_visit "
+                        + "from hp_patient_register where patient_no = '" + this.nameNoTxt.getText().toString() + "' ");
 
-            java.sql.ResultSet rsetVector = pstmtVector.executeQuery();
-            if (rsetVector.next()) {
-                header = "                Patient Examination "
-                        + "Patient NO :-" + rsetVector.getString(1) + "        Names:-" + rsetVector.getString(2) + ""
-                        + "Patient Category:-" + rsetVector.getString(3) + "        Last Visit:-" + rsetVector.getString(6) + ""
-                        + "Residence:-" + rsetVector.getString(4) + "       Tel No:-" + rsetVector.getString(5) + "";
+                java.sql.ResultSet rsetVector = pstmtVector.executeQuery();
+                if (rsetVector.next()) {
+                    header = "                Patient Examination "
+                            + "Patient NO :-" + rsetVector.getString(1) + "        Names:-" + rsetVector.getString(2) + ""
+                            + "Patient Category:-" + rsetVector.getString(3) + "        Last Visit:-" + rsetVector.getString(6) + ""
+                            + "Residence:-" + rsetVector.getString(4) + "       Tel No:-" + rsetVector.getString(5) + "";
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.println("select distinct typeof_test as Examination,comments as Symptoms, description as Prov_Diag,doctor,input_date as Date "
+                    + "from hp_clinical_results where patient_no = '" + this.nameNoTxt.getText().toString() + "' "
+                    + "  AND input_date::date <='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "' "
+                    + " order by input_date asc");
+            com.afrisoftech.lib.FunsoftCustomPdf pdf = new com.afrisoftech.lib.FunsoftCustomPdf();
+            pdf.FunsoftCustomPdf(connectDB, header,
+                    com.afrisoftech.lib.EditorTextSetUp.editorGetText(connectDB, ""
+                            + "select distinct typeof_test as Examination,comments as Symptoms, description as Prov_Diag,doctor,input_date as Date "
+                            + "from hp_clinical_results where patient_no = '" + this.nameNoTxt.getText().toString() + "' "
+                            + "  AND input_date::date <='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "' "
+                            + " order by input_date asc"));
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a patient file to view the history");
         }
-        System.out.println("select distinct typeof_test as Examination,comments as Symptoms, description as Prov_Diag,doctor,input_date as Date "
-                + "from hp_clinical_results where patient_no = '" + this.nameNoTxt.getText().toString() + "' "
-                + "  AND input_date::date <='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "' "
-                + " order by input_date asc");
-        com.afrisoftech.lib.FunsoftCustomPdf pdf = new com.afrisoftech.lib.FunsoftCustomPdf();
-        pdf.FunsoftCustomPdf(connectDB, header,
-                com.afrisoftech.lib.EditorTextSetUp.editorGetText(connectDB, ""
-                        + "select distinct typeof_test as Examination,comments as Symptoms, description as Prov_Diag,doctor,input_date as Date "
-                        + "from hp_clinical_results where patient_no = '" + this.nameNoTxt.getText().toString() + "' "
-                        + "  AND input_date::date <='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "' "
-                        + " order by input_date asc"));
     }//GEN-LAST:event_jButton82ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        com.afrisoftech.reports.emr.MOHPatientCardPdf policy = new com.afrisoftech.reports.emr.MOHPatientCardPdf();
-
-        policy.MOHPatientCardPdf(connectDB, transdatePicker.getDate(), transdatePicker.getDate(), nameNoTxt.getText());
-
-//        com.afrisoftech.laboratory.PatientcardPdf policy = new com.afrisoftech.laboratory.PatientcardPdf();
+        if (nameNoTxt.getText().length() > 0) {
+//            com.afrisoftech.reports.emr.MOHPatientCardPdf policy = new com.afrisoftech.reports.emr.MOHPatientCardPdf();
+//            if (outpatientCheckBox.isSelected()) {
+//                policy.MOHPatientCardPdf(connectDB, transdatePicker.getDate(), transdatePicker.getDate(), nameNoTxt.getText(), "OP");
+//            } else {
+//                policy.MOHPatientCardPdf(connectDB, transdatePicker.getDate(), transdatePicker.getDate(), nameNoTxt.getText(), "OP");
+//            }
+            com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
 //
-//        policy.PatientcardPdf(connectDB, transdatePicker.getDate(), transdatePicker.getDate(), nameNoTxt.getText());
-        // Add your handling code here:
+            policyReport.PatientCardPdf(connectDB, transdatePicker.getDate(), transdatePicker.getDate(), nameNoTxt.getText());
+
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a patient file in order to view the card");
+        }// Add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void clinicComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clinicComboBoxActionPerformed
@@ -9919,34 +9971,24 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable13KeyReleased
 
-    private void jTable111MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable111MouseClicked
+    private void pharmacyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pharmacyTableMouseClicked
         if (radiologyCheck.isSelected() == false || lablatoryCheck.isSelected() == false) {
-            if (jTable111.getSelectedColumn() == 0) {
+            if (pharmacyTable.getSelectedColumn() == 0) {
 
                 this.cmboxMouseClickedd();
             }
         }// Add your handling code here:
-    }//GEN-LAST:event_jTable111MouseClicked
+    }//GEN-LAST:event_pharmacyTableMouseClicked
 
-    private void jTable111KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable111KeyReleased
-        if (jTable111.getModel().getValueAt(jTable111.getSelectedRow(), 2) != null) {
-            if (jTable111.getSelectedColumn() == jTable111.getSelectedColumn()) {
-                float qty = java.lang.Float.parseFloat(jTable111.getValueAt(jTable111.getSelectedRow(), 1).toString().trim().replace(",", ""));;
-                float price = java.lang.Float.parseFloat(jTable111.getValueAt(jTable111.getSelectedRow(), 2).toString().trim().replace(",", ""));
-                float total = qty * price;
-                //jTable111.setValueAt(total, jTable111.getSelectedRow(), 3);
-                double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable111, 2);
-                jTextField3.setText(java.lang.String.valueOf(totalSum));
-            }
-
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_jTable111KeyReleased
+    private void pharmacyTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pharmacyTableKeyReleased
+        computeTotals();        // TODO add your handling code here:
+    }//GEN-LAST:event_pharmacyTableKeyReleased
 
     private void generalCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generalCheckBoxActionPerformed
         this.searchservicesTextField.setEditable(false);
         this.jPanel34.setVisible(false);
         this.jPanel40.setVisible(true);
-        this.jPanel72.setVisible(false);
+        this.pharmacyRequestsPanel.setVisible(false);
         this.jPanel82.setVisible(true);
         this.jScrollPane2.setVisible(true);
         this.jScrollPane3.setVisible(false);
@@ -9963,9 +10005,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             }
         }
 
-        for (int k = 0; k < jTable111.getRowCount(); k++) {
-            for (int r = 0; r < jTable111.getColumnCount(); r++) {
-                jTable111.setValueAt(null, k, r);
+        for (int k = 0; k < pharmacyTable.getRowCount(); k++) {
+            for (int r = 0; r < pharmacyTable.getColumnCount(); r++) {
+                pharmacyTable.setValueAt(null, k, r);
             }
         }
         // Add your handling code here:
@@ -9976,15 +10018,15 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         query = "Laboratory";
         this.jPanel40.setVisible(false);
         this.jPanel34.setVisible(true);
-        this.jPanel72.setVisible(false);
+        this.pharmacyRequestsPanel.setVisible(false);
         this.jPanel82.setVisible(true);
         this.jScrollPane2.setVisible(true);
         this.jScrollPane3.setVisible(false);
         this.jLabel16.setVisible(false);
         jComboBox2.setVisible(false);
-        for (int k = 0; k < jTable111.getRowCount(); k++) {
-            for (int r = 0; r < jTable111.getColumnCount(); r++) {
-                jTable111.setValueAt(null, k, r);
+        for (int k = 0; k < pharmacyTable.getRowCount(); k++) {
+            for (int r = 0; r < pharmacyTable.getColumnCount(); r++) {
+                pharmacyTable.setValueAt(null, k, r);
             }
         }
 
@@ -9995,7 +10037,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
     private void pharmacyCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pharmacyCheckBoxActionPerformed
         this.jPanel40.setVisible(false);
-        this.jPanel72.setVisible(true);
+        this.pharmacyRequestsPanel.setVisible(true);
         this.jPanel34.setVisible(false);
         this.jPanel82.setVisible(true);
         for (int k = 0; k < jTable13.getRowCount(); k++) {
@@ -10017,13 +10059,13 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         this.jScrollPane3.setVisible(false);
         this.jLabel16.setVisible(false);
         jComboBox2.setVisible(false);
-        for (int k = 0; k < jTable111.getRowCount(); k++) {
-            for (int r = 0; r < jTable111.getColumnCount(); r++) {
-                jTable111.setValueAt(null, k, r);
+        for (int k = 0; k < pharmacyTable.getRowCount(); k++) {
+            for (int r = 0; r < pharmacyTable.getColumnCount(); r++) {
+                pharmacyTable.setValueAt(null, k, r);
             }
         }
 
-        jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select request_code::int,request_name FROM clerking_requests_category where trim(department) ilike 'X-Ray' or trim(department) ilike 'XRay' or trim(department) ilike 'radiology' or trim(department) ilike 'imaging' order by 1 asc"));
+        jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select request_code,request_name FROM clerking_requests_category where trim(department) ilike 'X-Ray' or trim(department) ilike 'XRay' or trim(department) ilike 'x-ray' or trim(department) ilike 'radiology' or trim(department) ilike 'imaging' order by 1 asc"));
 
         // Add your handling code here:
     }//GEN-LAST:event_radiologyCheckActionPerformed
@@ -10088,6 +10130,11 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         provisinal = false;
         provisinal = true;
         icd10table = false;
+        System.out.println("Showing dialog");
+        java.awt.Point point = provisionalDiagnosistxt.getLocationOnScreen();
+        complainsDialog.setSize(600, 200);
+        complainsDialog.setLocation(point);
+        complainsDialog.setVisible(true);
 
         // this.cmbox1MouseClicked();
     }//GEN-LAST:event_provisionalDiagnosistxtMouseClicked
@@ -10137,16 +10184,16 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
     private void referalCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_referalCheckboxActionPerformed
         this.jPanel34.setVisible(true);
-        this.jPanel72.setVisible(false);
+        this.pharmacyRequestsPanel.setVisible(false);
         this.jPanel82.setVisible(true);
         this.jScrollPane2.setVisible(false);
         this.jScrollPane3.setVisible(true);
         this.jLabel16.setVisible(true);
         jComboBox2.setVisible(true);
 
-        for (int k = 0; k < jTable111.getRowCount(); k++) {
-            for (int r = 0; r < jTable111.getColumnCount(); r++) {
-                jTable111.setValueAt(null, k, r);
+        for (int k = 0; k < pharmacyTable.getRowCount(); k++) {
+            for (int r = 0; r < pharmacyTable.getColumnCount(); r++) {
+                pharmacyTable.setValueAt(null, k, r);
             }
         }        // TODO add your handling code here:
     }//GEN-LAST:event_referalCheckboxActionPerformed
@@ -10227,9 +10274,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     }//GEN-LAST:event_jTabbedPane2MouseClicked
 
     private void searchpatienttxtfldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchpatienttxtfldCaretUpdate
-        if (!searchpatienttxtfld.getText().equalsIgnoreCase(" ") && searchpatienttxtfld.getText().length() >= 5) {
-            if (searchnocheckbx.isSelected() == true) {
-                if (outpatientCheckBox.isSelected() == true) {
+        if (!searchpatienttxtfld.getText().equalsIgnoreCase(" ") && searchpatienttxtfld.getText().length() >= 3) {
+            if (searchnocheckbx.isSelected()) {
+                if (outpatientCheckBox.isSelected()) {
                     System.out.println(" select distinct "
                             + "hpv.patient_no,hpv.input_date::time(0) as Visit_time,"
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
@@ -10242,27 +10289,27 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             + "hpv.patient_no,hpv.input_date::time(0) as Visit_time,"
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
-                            + ",hpv.nature as Seen from  hp_patient_visit hpv  where hpv.patient_no ilike '" + searchpatienttxtfld.getText() + "%'  "
+                            + ",hpv.nature as Seen from  hp_patient_visit hpv  where (hpv.patient_no ilike '%" + searchpatienttxtfld.getText() + "%' OR hpv.name ilike '%" + searchpatienttxtfld.getText() + "%') "
                             + "and hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'    "
                             + "   ORDER BY hpv.input_date::time(0) "));
-                } else if (inpatientCheckBox.isSelected() == true) {
+                } else if (inpatientCheckBox.isSelected()) {
                     this.clerkingwaitingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
                             "SELECT patient_no, patient_name, bed_no, wing, date_admitted, admission_no,mode_of_payment,"
                             + "(SELECT count(patient_no) from hp_admission where patient_no=patient_no)as Visits "
                             + "FROM"
                             + " hp_admission  where "
-                            + " patient_no  ilike '" + searchpatienttxtfld.getText() + "%' and"
+                            + " (patient_no  ilike '%" + searchpatienttxtfld.getText() + "%' OR patient_name ilike '%" + searchpatienttxtfld.getText() + "%') and"
                             + " discharge=false and ward='" + this.waitingclinicscmbx.getSelectedItem().toString() + "' and check_out=false;"));
                 }
-            } else if (searchnamecheckbx.isSelected() == true) {
-                if (outpatientCheckBox.isSelected() == true) {
+            } else if (searchnamecheckbx.isSelected()) {
+                if (outpatientCheckBox.isSelected()) {
                     this.clerkingwaitingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
                             "select distinct "
                             + "hpv.patient_no,hpv.input_date::time(0) as Visit_time,"
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
                             + ",hpv.nature as Seen from  hp_patient_visit hpv  where  "
-                            + "   hpv.name ilike '" + searchpatienttxtfld.getText() + "%' "
+                            + "   (hpv.name ilike '%" + searchpatienttxtfld.getText() + "%' OR hpv.patient_no ilike '%" + searchpatienttxtfld.getText() + "%') "
                             + "and hpv.input_date::date='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'   "
                             + "and hpv.clinic ='" + this.waitingclinicscmbx.getSelectedItem().toString() + "'  ORDER BY hpv.input_date::time(0)  "));
                 } else if (inpatientCheckBox.isSelected() == true) {
@@ -10271,7 +10318,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             + "(SELECT count(patient_no) from hp_admission where patient_no=patient_no)as Visits "
                             + "FROM"
                             + " hp_admission  where "
-                            + "  patient_name ilike '" + searchpatienttxtfld.getText() + "%' and "
+                            + "  (patient_name ilike '%" + searchpatienttxtfld.getText() + "%' OR patient_no ilike '%" + searchpatienttxtfld.getText() + "%') and "
                             + " discharge=false and ward='" + this.waitingclinicscmbx.getSelectedItem().toString() + "' and check_out=false; "));
                 }
             }
@@ -10397,8 +10444,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 if (jTable13.isEditing()) {
                     jTable13.getCellEditor().stopCellEditing();
                 }
-                if (jTable111.isEditing()) {
-                    jTable111.getCellEditor().stopCellEditing();
+                if (pharmacyTable.isEditing()) {
+                    pharmacyTable.getCellEditor().stopCellEditing();
                 }
                 saverequest(Sex);
 
@@ -10425,17 +10472,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             }
             connectDB.commit();
             connectDB.setAutoCommit(true);
-//            if (this.pharmacyCheckBox.isSelected()) {
-//                com.afrisoftech.reports.OutPatPrescPdf pol = new com.afrisoftech.reports.OutPatPrescPdf();
-//                pol.OutPatPrescPdf(connectDB, nameNoTxt.getText());
-//            } else if (this.radiologyCheck.isSelected()) {
-//                com.afrisoftech.reports.XrayReqSlipPdf pol = new com.afrisoftech.reports.XrayReqSlipPdf();
-//                pol.XrayReqSlipPdf(connectDB, nameNoTxt.getText());
-//
-//            } else {
-//                com.afrisoftech.reports.ProcedureSlipPdf pol = new com.afrisoftech.reports.ProcedureSlipPdf();
-//                pol.ProcedureSlipPdf(connectDB, nameNoTxt.getText());
-//            }
+
             this.jButton37.doClick();
         } catch (java.sql.SQLException sq) {
             sq.printStackTrace();
@@ -10786,113 +10823,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     }//GEN-LAST:event_loadTRIAGEDpatientsbtnActionPerformed
 
     private void complainsTextPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_complainsTextPaneMouseClicked
-        System.out.println("Showing dialog");
-        java.awt.Point point = complainsTextPane.getLocationOnScreen();
-        complainsDialog.setSize(600, 200);
-        complainsDialog.setLocation(point);
-        complainsDialog.setVisible(true);
+
     }//GEN-LAST:event_complainsTextPaneMouseClicked
-
-    private void currentCheckBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_currentCheckBoxItemStateChanged
-        for (int k = 0; k < labresultsTable.getRowCount(); k++) {
-            for (int r = 0; r < labresultsTable.getColumnCount(); r++) {
-                labresultsTable.getModel().setValueAt(null, k, r);
-            }
-        }
-        readCheckBox.setEnabled(true);
-        readCheckBox.setSelected(false);
-        String labNo = null;
-        String patientNo = null;
-        int p = 0;
-        int q = 0;
-        //  int r = 0;
-        int patNo1 = 0;
-        int Total1 = 0;
-        int Total = 0;
-        int labNo1 = 0;
-        try {
-            java.sql.Statement stmtTable113 = connectDB.createStatement();
-            // java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("select count(distinct lab_no) from hp_lab_results where doc_read = false  and result_shown = false AND date >='" + datePicker11.getDate().toString() + "' and lab_no !='null' and lab_no is not null ");
-            java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery(""
-                    + "(select count(distinct lab_no) from hp_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + nameNoTxt.getText() + "'  and lab_no !='null' and lab_no is not null) ");
-                  /////  + " union (select count(distinct lab_no) from lims_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + nameNoTxt.getText() + "'  and lab_no !='null' and lab_no is not null )");
-
-            // java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("select count(distinct lab_no) from hp_lab_results where doc_read = false  and result_shown = false AND date >='"+datePicker11.getDate().toString()+"' and lab_no !='null' and lab_no is not null and clinic ilike '"+jComboBox11.getSelectedItem().toString()+"'");
-            while (rsetTable113.next()) {
-                labNo1 = rsetTable113.getInt(1);
-                System.out.println("Lab no is " + labNo1);
-            }
-
-            if (labNo1 > 0) {
-                java.sql.Statement stmtTable112 = connectDB.createStatement();
-
-                //java.sql.ResultSet rsetTable112 = stmtTable112.executeQuery("select distinct lab_no,patient_name from hp_lab_results where doc_read = false and result_shown = false AND date >='"+datePicker13.getDate().toString()+"' and lab_no is not null and lab_no !='null' and clinic ilike '"+jComboBox11.getSelectedItem().toString()+"' order by lab_no  ");
-                java.sql.ResultSet rsetTable112 = stmtTable112.executeQuery("(select distinct lab_no,patient_name from hp_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + jTextField922.getText() + "' and lab_no is not null and lab_no !='null')  ");
-                ///////      + " union (select distinct lab_no,patient_name from lims_lab_results where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + jTextField922.getText() + "' and lab_no is not null and lab_no !='null' order by lab_no)  ");
-
-                while (rsetTable112.next()) {
-                    labNo = rsetTable112.getString(1);
-                    patientNo = rsetTable112.getString(2);
-                    System.out.println("Lab no2 is " + patientNo);
-                }
-
-                stmtTable112.close();
-                rsetTable112.close();
-
-            } else {
-            }
-
-            // for (int l = 0; l < listofDays.length; l++) {
-//            java.sql.Statement stmtTable11 = connectDB.createStatement();
-//
-//            java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("select count(distinct lab_no) from hp_lab_results where patient_no = '" + nameNoTxt.getText() + "'");
-//
-//            while (rsetTable11.next()) {
-//                patNo1 = rsetTable11.getInt(1);
-//
-//            }
-            //   jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select distinct date,patient_no,patient_name,lab_no,doc_read from hp_lab_results where doc_read = false AND date >='"+datePicker1.getDate().toString()+"'  ORDER BY date,lab_no"));
-            java.sql.Statement stmtTable1r = connectDB.createStatement();
-
-//            java.sql.ResultSet rsetTable1r = stmtTable1r.executeQuery(""
-//                    + "select distinct date,patient_no,patient_name,lab_no,false from hp_lab_results"
-//                    + " where patient_no = '" + jTextField922.getText() + "' ORDER BY date,lab_no");
-            java.sql.ResultSet rsetTable1r = stmtTable1r.executeQuery(""
-                    + "(select distinct date,patient_no,patient_name,request_id,false,input_date::time from hp_lab_results "
-                    + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + nameNoTxt.getText() + "')  ");
-                  //////  + "  "
-            //////   + " union (select distinct date,patient_no,patient_name,request_id,false,input_date::time from lims_lab_results "
-            //////   + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "' and patient_no = '" + nameNoTxt.getText() + "'  "
-            //////   + "  order by input_date::time asc);");
-
-            while (rsetTable1r.next()) {
-
-                labresultsTable.setValueAt(rsetTable1r.getObject(1), p, 0);
-                labresultsTable.setValueAt(rsetTable1r.getObject(2), p, 1);
-                labresultsTable.setValueAt(rsetTable1r.getObject(3), p, 2);
-                labresultsTable.setValueAt(rsetTable1r.getObject(4), p, 3);
-                labresultsTable.setValueAt(rsetTable1r.getObject(5), p, 4);
-
-                p++;
-
-            }
-            stmtTable1r.close();
-            rsetTable1r.close();
-            //}
-            stmtTable113.close();
-            rsetTable113.close();
-//
-//            stmtTable11.close();
-//            rsetTable11.close();
-
-        } catch (java.sql.SQLException sqlExec) {
-
-            sqlExec.printStackTrace();
-
-            javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
-
-        }
-    }//GEN-LAST:event_currentCheckBoxItemStateChanged
 
     private void allpatCheckBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_allpatCheckBoxItemStateChanged
         if (allpatCheckBox.isSelected() == Boolean.TRUE) {
@@ -10984,8 +10916,33 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     }//GEN-LAST:event_readCheckBoxItemStateChanged
 
     private void back2LabListingBrnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back2LabListingBrnActionPerformed
-      labResultsTabbenPane.setSelectedIndex(0);        // TODO add your handling code here:
+        labResultsTabbenPane.setSelectedIndex(0);        // TODO add your handling code here:
     }//GEN-LAST:event_back2LabListingBrnActionPerformed
+
+    private void displayLaboratoryResultsPDFBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayLaboratoryResultsPDFBtnActionPerformed
+
+        com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
+
+        policy.PatientLabResultsPdf(connectDB, labNo, labNo);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_displayLaboratoryResultsPDFBtnActionPerformed
+
+    private void icd10SearchTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_icd10SearchTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_icd10SearchTxtActionPerformed
+
+    private void medicationhistoryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_medicationhistoryTableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_medicationhistoryTableMouseClicked
+
+    private void currentCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentCheckBoxActionPerformed
+       
+            labresultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "(select distinct date, patient_no, patient_name, lab_no as procedure_request_no, typeof_test procedure_name, false as results_read from hp_lab_results "
+                    + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(labdatePicker.getDate()) + "'  and patient_no = '" + nameNoTxt.getText() + "' "
+                    + "  order by 1 asc) "));
+// TODO add your handling code here:
+    }//GEN-LAST:event_currentCheckBoxActionPerformed
 
     private void populateTable1(java.lang.String patient_no) {
     }
@@ -11348,8 +11305,10 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private com.afrisoftech.lib.DatePicker datePicker2;
     private javax.swing.JTable diagnosisTable;
     private javax.swing.JPanel diagnosispane;
+    private javax.swing.JPanel diseasesSearchPanel;
     private javax.swing.JButton displayLaboratoryResultsPDFBtn;
     private javax.swing.JTextField doctorsTextField81;
+    private javax.swing.JPanel drawingPanel;
     private javax.swing.JCheckBox driveCheckBox82;
     private javax.swing.JTextField emergencyTextField;
     private javax.swing.JTable endocrinehistoryTable;
@@ -11362,6 +11321,11 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     public static javax.swing.JPanel globalpane;
     private javax.swing.JTable gynaehistoryTable;
     private javax.swing.JCheckBox heavymanCheckBox72;
+    private javax.swing.JDialog icd10SearchDialog;
+    private javax.swing.JTable icd10SearchTable;
+    private javax.swing.JTextField icd10SearchTxt;
+    private javax.swing.JPanel illustrationButtonPanel;
+    private javax.swing.JPanel illustrationPanel;
     private javax.swing.JCheckBox inpatientCheckBox;
     private javax.swing.JTextField insttransjTextField1711;
     private javax.swing.JButton jButton1;
@@ -11512,13 +11476,13 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JPanel jPanel422;
     private javax.swing.JPanel jPanel423;
     private javax.swing.JPanel jPanel43;
+    private javax.swing.JPanel jPanel44;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel52;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel60;
     private javax.swing.JPanel jPanel61;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel72;
     private javax.swing.JPanel jPanel73;
     private javax.swing.JPanel jPanel74;
     private javax.swing.JPanel jPanel79;
@@ -11555,16 +11519,13 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JDialog jSearchDialog;
-    private javax.swing.JDialog jSearchDialog1;
     private javax.swing.JDialog jSearchDialog11;
     private javax.swing.JDialog jSearchDialog2;
     private javax.swing.JDialog jSearchDialog211;
     private javax.swing.JDialog jSearchDialog212;
     private javax.swing.JDialog jSearchDialog213;
     private javax.swing.JDialog jSearchDialog214;
-    private javax.swing.JDialog jSearchDialog3;
     private javax.swing.JPanel jSearchPanel;
-    private javax.swing.JPanel jSearchPanel1;
     private javax.swing.JPanel jSearchPanel11;
     private javax.swing.JPanel jSearchPanel2;
     private javax.swing.JPanel jSearchPanel211;
@@ -11572,9 +11533,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JPanel jSearchPanel213;
     private javax.swing.JPanel jSearchPanel214;
     private javax.swing.JPanel jSearchPanel3;
-    private javax.swing.JPanel jSearchPanel4;
     private javax.swing.JScrollPane jSearchScrollPane;
-    private javax.swing.JScrollPane jSearchScrollPane1;
     private javax.swing.JScrollPane jSearchScrollPane11;
     private javax.swing.JScrollPane jSearchScrollPane2;
     private javax.swing.JScrollPane jSearchScrollPane211;
@@ -11584,14 +11543,12 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JScrollPane jSearchScrollPane3;
     private javax.swing.JScrollPane jSearchScrollPane4;
     private javax.swing.JTable jSearchTable;
-    private javax.swing.JTable jSearchTable1;
     private javax.swing.JTable jSearchTable11;
     private javax.swing.JTable jSearchTable2;
     private javax.swing.JTable jSearchTable211;
     private javax.swing.JTable jSearchTable212;
     private javax.swing.JTable jSearchTable213;
     private javax.swing.JTable jSearchTable214;
-    private javax.swing.JTable jSearchTable3;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator13;
@@ -11604,13 +11561,10 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JSplitPane jSplitPane5;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable111;
     private javax.swing.JTable jTable13;
     private javax.swing.JTable jTable14;
     private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField111;
     private javax.swing.JTextField jTextField1111;
-    private javax.swing.JTextField jTextField1112;
     private javax.swing.JTextField jTextField112;
     private javax.swing.JTextField jTextField113;
     private javax.swing.JTextField jTextField11311;
@@ -11618,7 +11572,6 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JTextField jTextField11313;
     private javax.swing.JTextField jTextField11314;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField22;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -11689,6 +11642,13 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JTextField paymentModetxt;
     private javax.swing.JTextField paymentjTextField20;
     private javax.swing.JCheckBox pharmacyCheckBox;
+    private javax.swing.JPanel pharmacyRequestsPanel;
+    private javax.swing.JDialog pharmacySearchDialog;
+    private javax.swing.JPanel pharmacySearchPanel;
+    private javax.swing.JScrollPane pharmacySearchScrollPane;
+    private javax.swing.JTable pharmacySearchTable;
+    private javax.swing.JTextField pharmacySearchTxt;
+    private javax.swing.JTable pharmacyTable;
     private javax.swing.JButton printgeneralButton;
     private javax.swing.JCheckBox printgeneralCheckBox;
     private javax.swing.JButton printlabButton;
@@ -11712,6 +11672,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private com.afrisoftech.lib.DatePicker resumptiondatePicker121;
     private javax.swing.JTable rxplanTable;
     private javax.swing.JButton saveButton;
+    private javax.swing.JTextField schemeNameTxt;
     private javax.swing.JCheckBox schooljCheckBox62;
     private javax.swing.JButton searchButton111;
     private javax.swing.JButton searchButton12;
@@ -11723,6 +11684,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JButton searchButton4;
     private javax.swing.JCheckBox searchCheckBox42;
     private javax.swing.JCheckBox searchCheckBox51;
+    private javax.swing.JTextField searchDiseasesTxt;
+    private javax.swing.JPanel searchServicesMainPanel;
     private javax.swing.JCheckBox searchnamecheckbx;
     private javax.swing.JCheckBox searchnocheckbx;
     private javax.swing.JTextField searchpatienttxtfld;
@@ -11885,7 +11848,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                     //in patient and outpatient scheme
                                     ////************************************
                                     ////************************************
-////not sure it should insert to patient billing
+////insert to patient card
 
                                     String payMode = null;
                                     String patientAcc = null;
@@ -11923,7 +11886,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                     pstmt.setString(3, jTextField22.getText());
                                     pstmt.setString(4, paymentModetxt.getText());
                                     pstmt.setString(5, String.valueOf(transNo));
-                                    pstmt.setString(7, scheme);
+                                    pstmt.setString(7, schemeNameTxt.getText());
                                     pstmt.setString(6, cardNo);
                                     pstmt.setString(8, cardName);
                                     pstmt.setString(9, isurer);
@@ -11991,7 +11954,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                         }
 
                     }
-                    //end of genral services
+                    //end of general services
                 } else if (lablatoryCheck.isSelected() || radiologyCheck.isSelected()) {
                     if (jTable13.getValueAt(i, 0) == Boolean.TRUE) {
                         rse121 = stm121q.executeQuery("select activity from pb_activity where code ='" + jTable13.getValueAt(i, 5).toString() + "'");
@@ -12151,7 +12114,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                     pstmt.setString(3, jTextField22.getText());
                                     pstmt.setString(4, paymentModetxt.getText());
                                     pstmt.setString(5, String.valueOf(transNo));
-                                    pstmt.setString(7, scheme);
+                                    pstmt.setString(7, schemeNameTxt.getText());
                                     pstmt.setString(6, cardNo);
                                     pstmt.setString(8, cardName);
                                     pstmt.setString(9, isurer);
@@ -12230,10 +12193,10 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             java.sql.PreparedStatement pstmt2f = null;
             String glAcc = null;
             if (pharmacyCheckBox.isSelected() == Boolean.TRUE) {
-                for (int n = 0; n < jTable111.getRowCount(); n++) {
-                    if (jTable111.getValueAt(n, 0) != null) {
+                for (int n = 0; n < pharmacyTable.getRowCount(); n++) {
+                    if (pharmacyTable.getValueAt(n, 0) != null) {
 
-                        rse121 = stm121q.executeQuery("select activity from pb_activity where code = '" + jTable111.getValueAt(n, 7).toString().trim() + "'");
+                        rse121 = stm121q.executeQuery("select activity from pb_activity where code = '" + pharmacyTable.getValueAt(n, 7).toString().trim() + "'");
                         //rse121 = stm121q.executeQuery("select code from pb_activity where activity ilike '%Pharmacy fee%'");
                         while (rse121.next()) {
                             glAcc = rse121.getObject(1).toString();
@@ -12253,9 +12216,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
                                 pstmt2.setString(4, jTextField8.getText());
                             }
-                            pstmt2.setString(5, jTable111.getValueAt(n, 0).toString());
+                            pstmt2.setString(5, pharmacyTable.getValueAt(n, 0).toString());
                             pstmt2.setDouble(6, 1);
-                            pstmt2.setDouble(7, java.lang.Double.valueOf(jTable111.getValueAt(n, 2).toString()));
+                            pstmt2.setDouble(7, java.lang.Double.valueOf(pharmacyTable.getValueAt(n, 2).toString()));
                             pstmt2.setString(8, jTextField10.getText());
                             pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker12.getDate()));
                             pstmt2.setString(10, billNo);
@@ -12267,13 +12230,13 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             }
                             pstmt2.setString(13, glAcc);
                             pstmt2.setString(14, visitID);
-                            pstmt2.setString(15, jTable111.getValueAt(n, 3).toString());
+                            pstmt2.setString(15, pharmacyTable.getValueAt(n, 3).toString());
                             pstmt2.setBoolean(16, false);
                             pstmt2.setBoolean(17, false);
-                            pstmt2.setObject(18, jTable111.getValueAt(n, 4).toString());
-                            pstmt2.setString(19, jTable111.getValueAt(n, 5).toString());
+                            pstmt2.setObject(18, pharmacyTable.getValueAt(n, 4).toString());
+                            pstmt2.setString(19, pharmacyTable.getValueAt(n, 5).toString());
                             pstmt2.setTimestamp(20, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
-                            pstmt2.setObject(21, jTable111.getValueAt(n, 6).toString());
+                            pstmt2.setObject(21, pharmacyTable.getValueAt(n, 6).toString());
                             pstmt2.setString(22, rank);
                             pstmt2.setString(23, ageTxt.getText().toString());
                             pstmt2.setString(24, notesTextField.getText()); //clinicalExamineditor.getText().toString());
@@ -12284,30 +12247,32 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             pstmt2.setString(29, billNo + "-" + n);
                             pstmt2.executeUpdate();
 
-                            rsB = pstB.executeQuery("SELECT transfer_price,units,department,product_id FROM st_stock_prices WHERE product_id = '" + jTable111.getValueAt(n, 8) + "' and gl_code =  '" + jTable111.getValueAt(n, 7) + "'");
+                            rsB = pstB.executeQuery("SELECT transfer_price,units,department,product_id, (SELECT strength FROM st_stock_item WHERE st_stock_item.item_code = st_stock_prices.product_id ORDER BY 1 DESC LIMIT 1) AS strength FROM st_stock_prices WHERE product_id = '" + pharmacyTable.getValueAt(n, 8) + "' and gl_code =  '" + pharmacyTable.getValueAt(n, 7) + "'");
                             double price = 0;
                             String units = null, Store = null, productId = null;
+                            String strength = "-";
                             while (rsB.next()) {
                                 price = rsB.getDouble(1);
                                 units = rsB.getString(2);
                                 Store = rsB.getString(3);
                                 productId = rsB.getString(4);
+                                strength = rsB.getString(5);
 
                             }
                             PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO hp_pharmacy VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                             pstmt1.setString(1, nameNoTxt.getText());
                             pstmt1.setString(2, patientNametxt.getText());
-                            pstmt1.setDouble(4, java.lang.Double.valueOf(jTable111.getValueAt(n, 2).toString().replace(",", "")));
-                            pstmt1.setDouble(3, java.lang.Double.valueOf(jTable111.getValueAt(n, 1).toString()));
-                            pstmt1.setObject(5, jTable111.getValueAt(n, 0).toString());
+                            pstmt1.setDouble(4, java.lang.Double.valueOf(pharmacyTable.getValueAt(n, 2).toString().replace(",", "")));
+                            pstmt1.setDouble(3, java.lang.Double.valueOf(pharmacyTable.getValueAt(n, 1).toString()));
+                            pstmt1.setObject(5, pharmacyTable.getValueAt(n, 0).toString());
                             if (!paymentModetxt.getText().startsWith("Cash") || this.inpatientCheckBox.isSelected() == Boolean.TRUE) {
                                 pstmt1.setBoolean(6, true);
                             } else {
                                 pstmt1.setBoolean(6, false);
                             }
 
-                            pstmt1.setDouble(7, java.lang.Double.valueOf(jTable111.getValueAt(n, 2).toString()));
-                            pstmt1.setObject(8, jTable111.getValueAt(n, 7).toString());
+                            pstmt1.setDouble(7, java.lang.Double.valueOf(pharmacyTable.getValueAt(n, 2).toString()));
+                            pstmt1.setObject(8, pharmacyTable.getValueAt(n, 7).toString());
                             pstmt1.setString(9, "" + transNo);
                             pstmt1.setObject(10, jTextField8.getText());
                             pstmt1.setBoolean(11, false);
@@ -12316,13 +12281,13 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             pstmt1.setObject(14, Store);
                             pstmt1.setString(15, "");
                             pstmt1.setString(16, paymentModetxt.getText());
-                            pstmt1.setObject(17, jTable111.getValueAt(n, 8).toString());
+                            pstmt1.setObject(17, pharmacyTable.getValueAt(n, 8).toString());
                             pstmt1.setDouble(18, 0.00);
                             pstmt1.setString(19, user);
                             pstmt1.setObject(20, visitID);
                             pstmt1.setObject(21, "");
                             pstmt1.setString(22, productId);
-                            pstmt1.setObject(23, "");
+                            pstmt1.setObject(23, strength);
                             pstmt1.executeUpdate();
                         }
 
@@ -12337,17 +12302,17 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             pstmtdrug.setObject(1, nameNoTxt.getText());
                             pstmtdrug.setObject(2, visitID);
                             pstmtdrug.setObject(3, com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()));
-                            pstmtdrug.setObject(4, jTable111.getValueAt(n, 8).toString());
-                            pstmtdrug.setObject(5, jTable111.getValueAt(n, 0).toString());
-                            pstmtdrug.setObject(6, jTable111.getValueAt(n, 6).toString());
-                            pstmtdrug.setObject(7, jTable111.getValueAt(n, 3).toString());
-                            pstmtdrug.setObject(8, jTable111.getValueAt(n, 4).toString());
-                            pstmtdrug.setObject(9, jTable111.getValueAt(n, 5).toString());
+                            pstmtdrug.setObject(4, pharmacyTable.getValueAt(n, 8).toString());
+                            pstmtdrug.setObject(5, pharmacyTable.getValueAt(n, 0).toString());
+                            pstmtdrug.setObject(6, pharmacyTable.getValueAt(n, 6).toString());
+                            pstmtdrug.setObject(7, pharmacyTable.getValueAt(n, 3).toString());
+                            pstmtdrug.setObject(8, pharmacyTable.getValueAt(n, 4).toString());
+                            pstmtdrug.setObject(9, pharmacyTable.getValueAt(n, 5).toString());
                             pstmtdrug.setObject(10, jTextField9111.getText());
                             pstmtdrug.setBoolean(11, false);
                             pstmtdrug.setBoolean(12, false);
                             pstmtdrug.setString(13, "" + transNo);
-                            pstmtdrug.setDouble(14, java.lang.Double.valueOf(jTable111.getValueAt(n, 1).toString()));
+                            pstmtdrug.setDouble(14, java.lang.Double.valueOf(pharmacyTable.getValueAt(n, 1).toString()));
                             pstmtdrug.executeUpdate();
 
                         }
@@ -12464,6 +12429,21 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             req.printStackTrace();
 
         }
+    }
+
+    private void computeTotals() {
+        if (pharmacyTable.getModel().getValueAt(pharmacyTable.getSelectedRow(), 2) != null) {
+            if (pharmacyTable.getSelectedColumn() == pharmacyTable.getSelectedColumn()) {
+                float qty = java.lang.Float.parseFloat(pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 1).toString().trim().replace(",", ""));;
+                float price = java.lang.Float.parseFloat(pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 2).toString().trim().replace(",", ""));
+                float total = qty * price;
+                //jTable111.setValueAt(total, jTable111.getSelectedRow(), 3);
+                double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(pharmacyTable, 2);
+                jTextField3.setText(java.lang.String.valueOf(totalSum));
+            }
+
+        }
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 //    class WaitingPatientsThread extends Thread {

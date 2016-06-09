@@ -96,12 +96,14 @@ public class StockItemFactory {
      */
     public static String getItemCode(java.sql.Connection connDB, String itemdescription) {
         try {
-            java.sql.PreparedStatement pstmt = connDB.prepareStatement("SELECT DISTINCT item_code FROM st_stock_item WHERE description ||' '||strength ilike ?");
+            java.sql.PreparedStatement pstmt = connDB.prepareStatement("SELECT DISTINCT item_code FROM st_stock_item WHERE description ||' '||strength ilike ? or description ilike ?");
             pstmt.setString(1, itemdescription);
+            pstmt.setString(2, itemdescription);
             java.sql.ResultSet rset = pstmt.executeQuery();
             while (rset.next()) {
                 itemCode = rset.getString(1);
             }
+            System.out.println("Item code seleted is : ["+itemCode+"]");
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());

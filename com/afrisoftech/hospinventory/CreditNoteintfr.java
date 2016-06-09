@@ -6,7 +6,9 @@
 package com.afrisoftech.hospinventory;
 
 import com.afrisoftech.lib.GetItemInfo;
+import java.sql.SQLException;
 import java.util.Vector;
+import org.openide.util.Exceptions;
 import org.postgresql.core.Logger;
 
 /**
@@ -52,45 +54,45 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         dnoteSearchdialog = new javax.swing.JDialog();
         jSearchPanel21 = new javax.swing.JPanel();
-        jTextField1131 = new javax.swing.JTextField();
-        jSearchScrollPane21 = new javax.swing.JScrollPane();
-        jSearchTable21 = new com.afrisoftech.dbadmin.JTable();
+        searchDnoteTxt = new javax.swing.JTextField();
+        dnoteSearchScrollPane = new javax.swing.JScrollPane();
+        dnoteSearchTable = new com.afrisoftech.dbadmin.JTable();
         jButton521 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new com.afrisoftech.dbadmin.JTable();
+        grnDetailsTable = new com.afrisoftech.dbadmin.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        totalDiscountTxt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        vatAmountTxt = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        netValueTxt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        grossValueTxt = new javax.swing.JTextField();
+        reversalReasonTxt = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        receivedFromTxt = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        invoiceDateTxt = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        originalInvoiceTxt = new javax.swing.JTextField();
         datePicker1 = new com.afrisoftech.lib.DatePicker();
         jLabel4 = new javax.swing.JLabel();
-        storeNamechkbx = new javax.swing.JComboBox();
+        storeNameCmbx = new javax.swing.JComboBox();
         jPanel421 = new javax.swing.JPanel();
         DnoteNoTxt = new javax.swing.JTextField();
         searchButton1 = new javax.swing.JButton();
         LPONO = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        s13txfld = new javax.swing.JTextField();
+        S13NumberTxt = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         postbtn = new javax.swing.JButton();
         resetbtn = new javax.swing.JButton();
@@ -100,6 +102,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jTextField61 = new javax.swing.JTextField();
@@ -235,9 +238,9 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         jSearchPanel21.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jSearchPanel21.setLayout(new java.awt.GridBagLayout());
 
-        jTextField1131.addCaretListener(new javax.swing.event.CaretListener() {
+        searchDnoteTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField1131CaretUpdate(evt);
+                searchDnoteTxtCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -247,17 +250,17 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 300.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-        jSearchPanel21.add(jTextField1131, gridBagConstraints);
+        jSearchPanel21.add(searchDnoteTxt, gridBagConstraints);
 
-        jSearchTable21.setToolTipText("Click on the target row to select the patient from the search.");
-        jSearchTable21.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jSearchTable21.setShowHorizontalLines(false);
-        jSearchTable21.addMouseListener(new java.awt.event.MouseAdapter() {
+        dnoteSearchTable.setToolTipText("Click on the target row to select the patient from the search.");
+        dnoteSearchTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        dnoteSearchTable.setShowHorizontalLines(false);
+        dnoteSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSearchTable21MouseClicked(evt);
+                dnoteSearchTableMouseClicked(evt);
             }
         });
-        jSearchScrollPane21.setViewportView(jSearchTable21);
+        dnoteSearchScrollPane.setViewportView(dnoteSearchTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -266,7 +269,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
-        jSearchPanel21.add(jSearchScrollPane21, gridBagConstraints);
+        jSearchPanel21.add(dnoteSearchScrollPane, gridBagConstraints);
 
         jButton521.setText("Close");
         jButton521.addActionListener(new java.awt.event.ActionListener() {
@@ -293,7 +296,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("GRN Reversal");
+        setTitle("Reversing Goods Receipt Note (GRN Reversal)");
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -308,7 +311,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        grnDetailsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -430,7 +433,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setShowHorizontalLines(false);
+        grnDetailsTable.setShowHorizontalLines(false);
         cmbox = new javax.swing.JComboBox();
         //try{
             /*      crset2.setConnectionSource(pConnDB);
@@ -452,7 +455,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         */
         javax.swing.table.TableColumn column = null;
         for (int i = 0; i < 12; i++) {
-            column = jTable1.getColumnModel().getColumn(i);
+            column = grnDetailsTable.getColumnModel().getColumn(i);
             if (i == 0) {
 
                 column.setPreferredWidth(500); //sport column is bigger
@@ -465,20 +468,20 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
             }
         }
 
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        grnDetailsTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                grnDetailsTableMouseClicked(evt);
             }
         });
-        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+        grnDetailsTable.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTable1KeyPressed(evt);
+                grnDetailsTableKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTable1KeyReleased(evt);
+                grnDetailsTableKeyReleased(evt);
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(grnDetailsTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -504,9 +507,9 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel4.add(jLabel6, gridBagConstraints);
 
-        jTextField4.setEditable(false);
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField4.setText("0.00");
+        totalDiscountTxt.setEditable(false);
+        totalDiscountTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        totalDiscountTxt.setText("0.00");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
@@ -515,7 +518,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPanel4.add(jTextField4, gridBagConstraints);
+        jPanel4.add(totalDiscountTxt, gridBagConstraints);
 
         jLabel7.setText("VAT Amount");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -527,16 +530,16 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel4.add(jLabel7, gridBagConstraints);
 
-        jTextField1.setEditable(false);
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField1.setText("0.00");
+        vatAmountTxt.setEditable(false);
+        vatAmountTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        vatAmountTxt.setText("0.00");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPanel4.add(jTextField1, gridBagConstraints);
+        jPanel4.add(vatAmountTxt, gridBagConstraints);
 
         jLabel8.setText("Net Value");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -547,15 +550,15 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel4.add(jLabel8, gridBagConstraints);
 
-        jTextField5.setEditable(false);
-        jTextField5.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField5.setText("0.00");
+        netValueTxt.setEditable(false);
+        netValueTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        netValueTxt.setText("0.00");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPanel4.add(jTextField5, gridBagConstraints);
+        jPanel4.add(netValueTxt, gridBagConstraints);
 
         jLabel1.setText("Gross Value");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -567,9 +570,9 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel4.add(jLabel1, gridBagConstraints);
 
-        jTextField2.setEditable(false);
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField2.setText("0.00");
+        grossValueTxt.setEditable(false);
+        grossValueTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        grossValueTxt.setText("0.00");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 6;
@@ -577,16 +580,17 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPanel4.add(jTextField2, gridBagConstraints);
+        jPanel4.add(grossValueTxt, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 5.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jTextField8, gridBagConstraints);
+        jPanel4.add(reversalReasonTxt, gridBagConstraints);
 
-        jLabel11.setText("Reason for Reversal");
+        jLabel11.setText("Reason for reversal of GRN");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -610,7 +614,6 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 100.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         jPanel5.add(jPanel2, gridBagConstraints);
 
         /*        javax.swing.SpinnerDateModel spinerDate = new javax.swing.SpinnerDateModel();
@@ -638,7 +641,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         jPanel1.add(jLabel9, gridBagConstraints);
 
-        jLabel10.setText("Delivery Note NO");
+        jLabel10.setText("Delivery Note No.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -648,15 +651,15 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         jPanel1.add(jLabel10, gridBagConstraints);
 
-        jTextField7.setEditable(false);
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
+        receivedFromTxt.setEditable(false);
+        receivedFromTxt.setBackground(new java.awt.Color(255, 255, 255));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jTextField7, gridBagConstraints);
+        jPanel1.add(receivedFromTxt, gridBagConstraints);
 
         jLabel12.setText("Invoice Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -668,8 +671,8 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         jPanel1.add(jLabel12, gridBagConstraints);
 
-        jTextField9.setEditable(false);
-        jTextField9.setBackground(new java.awt.Color(255, 255, 255));
+        invoiceDateTxt.setEditable(false);
+        invoiceDateTxt.setBackground(new java.awt.Color(255, 255, 255));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
@@ -677,7 +680,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        jPanel1.add(jTextField9, gridBagConstraints);
+        jPanel1.add(invoiceDateTxt, gridBagConstraints);
 
         jLabel13.setText("Store Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -699,8 +702,8 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         jPanel1.add(jLabel2, gridBagConstraints);
 
-        jTextField3.setEditable(false);
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
+        originalInvoiceTxt.setEditable(false);
+        originalInvoiceTxt.setBackground(new java.awt.Color(255, 255, 255));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -708,7 +711,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        jPanel1.add(jTextField3, gridBagConstraints);
+        jPanel1.add(originalInvoiceTxt, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
@@ -729,17 +732,17 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         jPanel1.add(jLabel4, gridBagConstraints);
 
-        storeNamechkbx.addMouseListener(new java.awt.event.MouseAdapter() {
+        storeNameCmbx.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                storeNamechkbxMouseClicked(evt);
+                storeNameCmbxMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                storeNamechkbxMouseEntered(evt);
+                storeNameCmbxMouseEntered(evt);
             }
         });
-        storeNamechkbx.addActionListener(new java.awt.event.ActionListener() {
+        storeNameCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                storeNamechkbxActionPerformed(evt);
+                storeNameCmbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -749,7 +752,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        jPanel1.add(storeNamechkbx, gridBagConstraints);
+        jPanel1.add(storeNameCmbx, gridBagConstraints);
 
         jPanel421.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel421.setLayout(new java.awt.GridBagLayout());
@@ -799,10 +802,14 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         jPanel1.add(LPONO, gridBagConstraints);
 
-        jLabel15.setText("LPO NO");
+        jLabel15.setText("LPO No.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         jPanel1.add(jLabel15, gridBagConstraints);
 
         jLabel16.setText("S13 NO");
@@ -810,9 +817,6 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 4;
         jPanel1.add(jLabel16, gridBagConstraints);
-
-        s13txfld.setEditable(false);
-        s13txfld.setBackground(new java.awt.Color(255, 255, 255));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 4;
@@ -820,7 +824,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        jPanel1.add(s13txfld, gridBagConstraints);
+        jPanel1.add(S13NumberTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -838,7 +842,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
 
         postbtn.setBackground(new java.awt.Color(204, 255, 255));
         postbtn.setMnemonic('o');
-        postbtn.setText("Save");
+        postbtn.setText("Save and reverse GRN");
         postbtn.setPreferredSize(new java.awt.Dimension(123, 25));
         postbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -846,7 +850,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -854,7 +858,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
 
         resetbtn.setBackground(new java.awt.Color(204, 255, 255));
         resetbtn.setMnemonic('p');
-        resetbtn.setText("Save & Print");
+        resetbtn.setText("Save and Revere GRN & Print");
         resetbtn.setPreferredSize(new java.awt.Dimension(123, 25));
         resetbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -862,7 +866,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -870,7 +874,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
 
         cancelbtn.setBackground(new java.awt.Color(204, 255, 255));
         cancelbtn.setMnemonic('l');
-        cancelbtn.setText("Clear");
+        cancelbtn.setText("Clear form");
         cancelbtn.setPreferredSize(new java.awt.Dimension(123, 25));
         cancelbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -878,7 +882,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -886,7 +890,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
 
         exitbtn.setBackground(new java.awt.Color(204, 255, 255));
         exitbtn.setMnemonic('c');
-        exitbtn.setText("Close");
+        exitbtn.setText("Close form");
         exitbtn.setPreferredSize(new java.awt.Dimension(123, 25));
         exitbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -894,7 +898,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -908,14 +912,14 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
 
         jButton1.setBackground(new java.awt.Color(204, 255, 255));
         jButton1.setMnemonic('r');
-        jButton1.setText("Remove Row");
+        jButton1.setText("Remove row");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -926,7 +930,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         jButton2.setText("Help");
         jButton2.setPreferredSize(new java.awt.Dimension(123, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -939,6 +943,13 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel3.add(jLabel3, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jLabel25, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -947,7 +958,6 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 0, 10);
         jPanel5.add(jPanel3, gridBagConstraints);
 
         buttonGroup1.add(jCheckBox1);
@@ -1164,7 +1174,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         */
         javax.swing.table.TableColumn column1 = null;
         for (int i = 0; i < 12; i++) {
-            column1 = jTable1.getColumnModel().getColumn(i);
+            column1 = grnDetailsTable.getColumnModel().getColumn(i);
             if (i == 1) {
 
                 column1.setPreferredWidth(500); //sport column is bigger
@@ -1635,77 +1645,98 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox3ActionPerformed
 
-    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+    private void grnDetailsTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_grnDetailsTableKeyPressed
 // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1KeyPressed
+    }//GEN-LAST:event_grnDetailsTableKeyPressed
 
-    private void jSearchTable21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable21MouseClicked
+    private void dnoteSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dnoteSearchTableMouseClicked
 
         java.text.DateFormat df = java.text.DateFormat.getDateInstance();
 
         java.text.SimpleDateFormat sdf = (java.text.SimpleDateFormat) df;
 
-        jTextField2.setText("00");
-        jTextField4.setText("00");
-        jTextField1.setText("00");
-        jTextField5.setText("00");
+        boolean deliveryStatus = false;
 
-        DnoteNoTxt.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 0).toString());
-        jTextField7.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 1).toString());
-        jTextField9.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 2).toString());
-        jTextField3.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 3).toString());
-        LPONO.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 4).toString());
-        s13txfld.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 5).toString());
+        grossValueTxt.setText("00");
+        totalDiscountTxt.setText("00");
+        vatAmountTxt.setText("00");
+        netValueTxt.setText("00");
 
-        for (int k = 0; k < jTable1.getRowCount(); k++) {
-            for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                jTable1.getModel().setValueAt(null, k, r);
+        DnoteNoTxt.setText(dnoteSearchTable.getValueAt(dnoteSearchTable.getSelectedRow(), 0).toString());
+        receivedFromTxt.setText(dnoteSearchTable.getValueAt(dnoteSearchTable.getSelectedRow(), 1).toString());
+        invoiceDateTxt.setText(dnoteSearchTable.getValueAt(dnoteSearchTable.getSelectedRow(), 2).toString());
+        originalInvoiceTxt.setText(dnoteSearchTable.getValueAt(dnoteSearchTable.getSelectedRow(), 3).toString());
+        LPONO.setText(dnoteSearchTable.getValueAt(dnoteSearchTable.getSelectedRow(), 4).toString());
+        S13NumberTxt.setText(dnoteSearchTable.getValueAt(dnoteSearchTable.getSelectedRow(), 5).toString());
+
+        for (int k = 0; k < grnDetailsTable.getRowCount(); k++) {
+            for (int r = 0; r < grnDetailsTable.getColumnCount(); r++) {
+                grnDetailsTable.getModel().setValueAt(null, k, r);
             }
         }
 
         System.out.println("select item,quantity_received,PRICE_PER_ITEM ,debit ,item_code,order_no,oid "
                 + "                                     FROM st_stock_cardex  WHERE "
                 + "order_no='" + LPONO.getText() + "' and approved=false AND "
-                + "grn_no='" + s13txfld.getText() + "' AND "
-                + "store ilike '%" + storeNamechkbx.getSelectedItem().toString() + "%'  and "
+                + "grn_no='" + S13NumberTxt.getText() + "' AND "
+                + "store ilike '%" + storeNameCmbx.getSelectedItem().toString() + "%'  and "
                 + "delivery_note_no='" + DnoteNoTxt.getText() + "' and invoice_no='" + DnoteNoTxt.getText() + "' ");
-
         try {
-
-            java.sql.Statement pstmt1 = connectDB.createStatement();
-
-            java.sql.ResultSet rs12 = pstmt1.executeQuery("select item,quantity_received,PRICE_PER_ITEM ,debit ,item_code,order_no,oid "
-                    + "                                     FROM st_stock_cardex WHERE "
-                    + "order_no='" + LPONO.getText() + "' and approved=false AND "
-                    + "grn_no='" + s13txfld.getText() + "' AND "
-                    + "store ilike '" + storeNamechkbx.getSelectedItem().toString() + "'  and "
-                    + "delivery_note_no='" + DnoteNoTxt.getText() + "' and invoice_no='" + DnoteNoTxt.getText() + "' ");
-            int k = 0;
-
-            while (rs12.next()) {
-                System.out.println("k is " + k);
-                jTable1.setValueAt(rs12.getObject(1), k, 0);
-                jTable1.setValueAt(rs12.getObject(2), k, 3);
-                jTable1.setValueAt(rs12.getObject(3), k, 4);
-                jTable1.setValueAt(rs12.getObject(4), k, 9);
-                jTable1.setValueAt(rs12.getObject(5), k, 12);
-                jTable1.setValueAt(new java.lang.Double(0), k, 5);
-                jTable1.setValueAt(new java.lang.Double(0), k, 6);
-                jTable1.setValueAt(new java.lang.Double(0), k, 7);
-                jTable1.setValueAt(new java.lang.Double(0), k, 8);
-                jTable1.setValueAt("-", k, 1);
-                jTable1.setValueAt("1", k, 2);
-                LPONO.setText(rs12.getObject("order_no").toString());
-                if (!oid.contains(rs12.getObject("oid"))) {
-                    oid.addElement(rs12.getObject("oid"));
-                    System.out.println("oid is " + oid);
+            java.sql.PreparedStatement pstmtc = connectDB.prepareStatement("SELECT sum(debit-quantity_ordered) FROM st_stock_cardex WHERE grn_no = ? AND store = ?");
+            pstmtc.setObject(1, S13NumberTxt.getText());
+            pstmtc.setObject(2, storeNameCmbx.getSelectedItem());
+            java.sql.ResultSet rsetc = pstmtc.executeQuery();
+            while (rsetc.next()) {
+                if (rsetc.getDouble(1) > 0) {
+                    deliveryStatus = true;
                 }
-                k = k + 1;
+            }
+        } catch (SQLException ex) {
+            Exceptions.printStackTrace(ex);
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        if (deliveryStatus) {
 
+            try {
+
+                java.sql.Statement pstmt1 = connectDB.createStatement();
+
+                java.sql.ResultSet rs12 = pstmt1.executeQuery("select item,quantity_received,PRICE_PER_ITEM ,debit ,item_code,order_no,oid "
+                        + "                                     FROM st_stock_cardex WHERE "
+                        + "order_no='" + LPONO.getText() + "' and approved=false AND "
+                        + "grn_no='" + S13NumberTxt.getText() + "' AND "
+                        + "store ilike '" + storeNameCmbx.getSelectedItem().toString() + "'  and "
+                        + "delivery_note_no='" + DnoteNoTxt.getText() + "' and invoice_no='" + DnoteNoTxt.getText() + "' ");
+                int k = 0;
+
+                while (rs12.next()) {
+                    System.out.println("k is " + k);
+                    grnDetailsTable.setValueAt(rs12.getObject(1), k, 0);
+                    grnDetailsTable.setValueAt(rs12.getObject(2), k, 3);
+                    grnDetailsTable.setValueAt(rs12.getObject(3), k, 4);
+                    grnDetailsTable.setValueAt(rs12.getObject(4), k, 9);
+                    grnDetailsTable.setValueAt(rs12.getObject(5), k, 12);
+                    grnDetailsTable.setValueAt(new java.lang.Double(0), k, 5);
+                    grnDetailsTable.setValueAt(new java.lang.Double(0), k, 6);
+                    grnDetailsTable.setValueAt(new java.lang.Double(0), k, 7);
+                    grnDetailsTable.setValueAt(new java.lang.Double(0), k, 8);
+                    grnDetailsTable.setValueAt("-", k, 1);
+                    grnDetailsTable.setValueAt("1", k, 2);
+                    LPONO.setText(rs12.getObject("order_no").toString());
+                    if (!oid.contains(rs12.getObject("oid"))) {
+                        oid.addElement(rs12.getObject("oid"));
+                        System.out.println("oid is " + oid);
+                    }
+                    k = k + 1;
+
+                }
+
+            } catch (Exception r) {
+                r.printStackTrace();
             }
 
-        } catch (Exception r) {
-            r.printStackTrace();
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please check to verify that this GRN has not been reversed!");
         }
 
 //   
@@ -1718,7 +1749,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         this.postbtn.setEnabled(true);
 
         this.dnoteSearchdialog.dispose();        // Add your handling code here:
-    }//GEN-LAST:event_jSearchTable21MouseClicked
+    }//GEN-LAST:event_dnoteSearchTableMouseClicked
     private void populateTable11(java.lang.String patient_no) {
         int i = 0;
         double net = 0.00;
@@ -1771,67 +1802,32 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jButton521ActionPerformed
 
-    private void jTextField1131CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1131CaretUpdate
-        jTextField2.setText("00");
-        jTextField4.setText("00");
-        jTextField1.setText("00");
-        jTextField5.setText("00");
+    private void searchDnoteTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchDnoteTxtCaretUpdate
+        grossValueTxt.setText("00");
+        totalDiscountTxt.setText("00");
+        vatAmountTxt.setText("00");
+        netValueTxt.setText("00");
 
-        if (this.jTextField1131.getCaretPosition() < 3) {
+        if (this.searchDnoteTxt.getCaretPosition() < 3) {
             System.out.print("Nothing");
         } else {
-            //if(this.jCheckBox1.isSelected()){
-            // jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select distinct invoice_no,dealer,date from ac_accounts_payable where invoice_no ILIKE '"+jTextField1131.getText()+"%' and transaction_type ILIKE 'Stock%' and balance > 0 order by invoice_no"));
-            //           jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select distinct invoice_no,supplier,date,SUM(debit-quantity_ordered) as value from st_stock_cardex where invoice_no ILIKE '"+jTextField1131.getText()+"%' and transaction_type ILIKE 'Receiving' and debit > 0 GROUP BY INVOICE_NO,SUPPLIER,DATE order by invoice_no"));
-            //jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct VOUCHER_no,DEALER,date,SUM(CREDIT-DEBIT) as value from AC_LEDGER where VOUCHER_no ILIKE '" + jTextField1131.getText() + "%' and transaction_type ILIKE 'Stock Delivery' and reconciled = false GROUP BY voucher_NO,dealer,DATE order by voucher_no"));
-            jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+            dnoteSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                     + "select distinct  invoice_no as DNOTE_NO,supplier,date,sum(debit-quantity_ordered) as amt,order_no as LPO_NO,grn_no as S13_NO from st_stock_cardex"
-                    + " where invoice_no ILIKE '%" + jTextField1131.getText() + "%' and approved=false and transaction_type ILIKE 'Receiving%' and store ilike '" + storeNamechkbx.getSelectedItem() + "%' "
+                    + " where invoice_no ILIKE '%" + searchDnoteTxt.getText() + "%' and approved=false and transaction_type ILIKE 'Receiving%' and store ilike '" + storeNameCmbx.getSelectedItem() + "%' "
                     + "GROUP BY grn_no,invoice_no,supplier,date,order_no having sum(debit-quantity_ordered)>=0 ORDER BY invoice_no"));
 
-            /*
-             * try { searchRowSet21.execute("select distinct
-             * invoice_no,dealer,date from ac_accounts_payable where invoice_no
-             * ILIKE '"+jTextField1131.getText()+"%' and transaction_type ILIKE
-             * 'Stock%' and balance > 0 order by invoice_no"); //
-             * searchRowSet2.execute("select code,supplier_name as name from
-             * st_suppliers where supplier_name ILIKE
-             * '"+jTextField113.getText()+"%' order by supplier_name");
-             *
-             * jSearchTable21.setModel(new
-             * org.netbeans.lib.sql.models.TableModel(searchRowSet21, new
-             * org.netbeans.lib.sql.models.TableModel.Column[] { // new
-             * org.netbeans.lib.sql.models.TableModel.Column("code", "Acc.No",
-             * false), new
-             * org.netbeans.lib.sql.models.TableModel.Column("invoice_no",
-             * "Invoice No", false), new
-             * org.netbeans.lib.sql.models.TableModel.Column("dealer", "Supplier
-             * Name", false), new
-             * org.netbeans.lib.sql.models.TableModel.Column("date", "Invoice
-             * Date", false) }));
-             */
-            jSearchScrollPane21.setViewportView(jSearchTable21);
+            dnoteSearchScrollPane.setViewportView(dnoteSearchTable);
             System.out.println("Cannot sort out");
-            /*
-             * } catch(java.sql.SQLException sqlExec) {
-             *
-             * javax.swing.JOptionPane.showMessageDialog(this,
-             * sqlExec.getMessage());
-             *
-             * }
-             */
-            //}
-
         }
         // Add your handling code here:
-    }//GEN-LAST:event_jTextField1131CaretUpdate
+    }//GEN-LAST:event_searchDnoteTxtCaretUpdate
 
     private void searchButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton1ActionPerformed
         searchButton21Clicked();         // Add your handling code here:
     }//GEN-LAST:event_searchButton1ActionPerformed
     private void searchButton21Clicked() {
 
-        if ((storeNamechkbx.getSelectedItem() == null) || (((String) storeNamechkbx.getSelectedItem()).equalsIgnoreCase("-"))) {
+        if ((storeNameCmbx.getSelectedItem() == null) || (((String) storeNameCmbx.getSelectedItem()).equalsIgnoreCase("-"))) {
             javax.swing.JOptionPane.showMessageDialog(null, "Please first select a store.");
         } else {
             System.out.println("Showing dialog");
@@ -1854,16 +1850,16 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         //   crset3.setCommand("select store_name from st_stores");
         //   crset3.setConnectionSource(pConnDB);
         //  jComboBox1.setM
-        storeNamechkbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' union all select store_name from st_stores"));
+        storeNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' union all select store_name from st_stores"));
 
         //      jComboBox2.setModel(new org.netbeans.lib.sql.models.ComboBoxModel(crset3, "store_name", null, null, null));
         // javax.swing.table.TableColumn s = this.jTable1.getColumn("Service");
         //  s.setCellEditor(new javax.swing.DefaultCellEditor(cmbox));
-        storeNamechkbx.addActionListener(new java.awt.event.ActionListener() {
+        storeNameCmbx.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
-                storeNamechkbxActionPerformed(evt);
+                storeNameCmbxActionPerformed(evt);
             }
         });
 
@@ -1871,7 +1867,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jCheckBox2ActionPerformed
 
-    private void storeNamechkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeNamechkbxActionPerformed
+    private void storeNameCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeNameCmbxActionPerformed
         // Add your handling code here:
 
         /*
@@ -1900,7 +1896,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         try {
             java.sql.Statement pstmt = connectDB.createStatement();
 
-            java.sql.ResultSet rs = pstmt.executeQuery("select glstock_code from st_stores  where store_name ilike '" + storeNamechkbx.getSelectedItem().toString() + "%'");
+            java.sql.ResultSet rs = pstmt.executeQuery("select glstock_code from st_stores  where store_name ilike '" + storeNameCmbx.getSelectedItem().toString() + "%'");
             while (rs.next()) {
 
                 this.jTextField6.setText(rs.getObject(1).toString());
@@ -1909,7 +1905,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
             System.out.println(sqlex.getMessage());
         }
 
-    }//GEN-LAST:event_storeNamechkbxActionPerformed
+    }//GEN-LAST:event_storeNameCmbxActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         //   com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select distinct store_name from st_stores order by store_name")
@@ -1920,21 +1916,21 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         //     crset3.setConnectionSource(pConnDB);
         //  jComboBox1.setM
         //   jComboBox2.setModel(new org.netbeans.lib.sql.models.ComboBoxModel(crset3, "store_name", null, null, null));
-        storeNamechkbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' as store_name union all select store_name from st_main_stores"));
-        storeNamechkbx.addActionListener(new java.awt.event.ActionListener() {
+        storeNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' as store_name union all select store_name from st_main_stores"));
+        storeNameCmbx.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                storeNamechkbxActionPerformed(evt);
+                storeNameCmbxActionPerformed(evt);
             }
         });
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void grnDetailsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grnDetailsTableMouseClicked
 //        if (jTable1.getSelectedColumn() == 0) {
 //
 //            this.cmboxMouseClicked();
 //        }         // Add your handling code here:
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_grnDetailsTableMouseClicked
     private void cmboxMouseClicked() {
 
         System.out.println("Showing dialog");
@@ -1956,15 +1952,15 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
                     + "select item,PRICE_PER_ITEM AS PRICE,item_code,order_no,quantity_received,oid as Qty FROM st_stock_cardex WHERE "
                     + "order_no='" + LPONO.getText() + "' and approved=false AND "
                     + "item ilike '%" + jTextField111.getText() + "%' AND "
-                    + "store ilike '%" + storeNamechkbx.getSelectedItem().toString() + "%'  and"
+                    + "store ilike '%" + storeNameCmbx.getSelectedItem().toString() + "%'  and"
                     + " invoice_no='" + DnoteNoTxt.getText() + "' "));
-                // + "group by item,PRICE_PER_ITEM ,item_code,order_no having sum(debit-quantity_ordered)>0 order by ITEM"
+            // + "group by item,PRICE_PER_ITEM ,item_code,order_no having sum(debit-quantity_ordered)>0 order by ITEM"
 
             jSearchScrollPane.setViewportView(jSearchTable);
             System.out.println("Cannot sort out  select item,PRICE_PER_ITEM AS PRICE,item_code,order_no FROM st_stock_cardex WHERE "
                     + "order_no='" + LPONO.getText() + "' and approved=false AND "
                     + "item ilike '%" + jTextField111.getText() + "%' AND "
-                    + "store ilike '%" + storeNamechkbx.getSelectedItem().toString() + "%'  and"
+                    + "store ilike '%" + storeNameCmbx.getSelectedItem().toString() + "%'  and"
                     + " invoice_no='" + DnoteNoTxt.getText() + "' ");
 
         }
@@ -2071,7 +2067,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
                 creditNote = rstcr.getObject(1).toString();
             }
             com.afrisoftech.reports.GRTPdf policy = new com.afrisoftech.reports.GRTPdf();
-            policy.GRTPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker1.getDate().toLocaleString(), this.jTextField7.getText().toString(), creditNote);
+            policy.GRTPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker1.getDate().toLocaleString(), this.receivedFromTxt.getText().toString(), creditNote);
 
             //  javax.swing.JOptionPane.showMessageDialog(this, "Enter quantity received","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
         } catch (java.sql.SQLException sq) {
@@ -2088,7 +2084,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_resetbtnActionPerformed
 
-    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
+    private void grnDetailsTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_grnDetailsTableKeyReleased
 //        double resFloat = 0.00;
 //        double resVal = 0.00;
 //        double total = 0.00;
@@ -2182,7 +2178,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         //       total = (((floatCol2 * floatCol3) + ((floatCol2 * floatCol3)*vat/100)) - ((floatCol2 * floatCol3)*discount1/100));
         // }
         // Add your handling code here:
-    }//GEN-LAST:event_jTable1KeyReleased
+    }//GEN-LAST:event_grnDetailsTableKeyReleased
 
     private void exitbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitbtnActionPerformed
         this.setVisible(false);        // Add your handling code here:
@@ -2223,30 +2219,30 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
 //            }
 //        }
         // Add your handling code here:
-        for (int k = 0; k < jTable1.getRowCount(); k++) {
-            for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                jTable1.getModel().setValueAt(null, k, r);
+        for (int k = 0; k < grnDetailsTable.getRowCount(); k++) {
+            for (int r = 0; r < grnDetailsTable.getColumnCount(); r++) {
+                grnDetailsTable.getModel().setValueAt(null, k, r);
             }
         }
         oid.removeAllElements();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbtnActionPerformed
-        jTextField8.setText("");
+        reversalReasonTxt.setText("");
         jTextField111.setText("");
-        jTextField7.setText("");
+        receivedFromTxt.setText("");
         DnoteNoTxt.setText("");
-        jTextField3.setText("");
-        jTextField2.setText("00");
-        jTextField4.setText("00");
-        jTextField1.setText("00");
-        jTextField5.setText("00");
+        originalInvoiceTxt.setText("");
+        grossValueTxt.setText("00");
+        totalDiscountTxt.setText("00");
+        vatAmountTxt.setText("00");
+        netValueTxt.setText("00");
         LPONO.setText(" ");
         oid.removeAllElements();
 
-        for (int k = 0; k < jTable1.getRowCount(); k++) {
-            for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                jTable1.getModel().setValueAt(null, k, r);
+        for (int k = 0; k < grnDetailsTable.getRowCount(); k++) {
+            for (int r = 0; r < grnDetailsTable.getColumnCount(); r++) {
+                grnDetailsTable.getModel().setValueAt(null, k, r);
             }
         }
 
@@ -2256,9 +2252,9 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
             }
         }
 
-        for (int k = 0; k < jSearchTable21.getRowCount(); k++) {
-            for (int r = 0; r < jSearchTable21.getColumnCount(); r++) {
-                jSearchTable21.getModel().setValueAt(null, k, r);
+        for (int k = 0; k < dnoteSearchTable.getRowCount(); k++) {
+            for (int r = 0; r < dnoteSearchTable.getColumnCount(); r++) {
+                dnoteSearchTable.getModel().setValueAt(null, k, r);
             }
         }
 
@@ -2266,7 +2262,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cancelbtnActionPerformed
     private void cmboxActionPerformed(java.awt.event.ActionEvent evt) {
         java.lang.Object selectedGuaran = cmbox.getSelectedItem();
-        int i = jTable1.getSelectedRow();
+        int i = grnDetailsTable.getSelectedRow();
 
         if (selectedGuaran != null) {
 
@@ -2278,7 +2274,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
                 java.sql.ResultSet rs = pstmt.executeQuery("select units from st_stock_item where description = '" + selectedGuaran + "'");
                 while (rs.next()) {
 
-                    jTable1.setValueAt(rs.getObject(1), i, 1);
+                    grnDetailsTable.setValueAt(rs.getObject(1), i, 1);
 
                 }
             } catch (java.sql.SQLException sqlex) {
@@ -2297,7 +2293,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         if (jTextField6.getText().toString().equalsIgnoreCase("") | jTextField6.getText().toString().equalsIgnoreCase(" ") | jTextField6.getText().toString().equalsIgnoreCase("  ") | jTextField6.getText().toString().equalsIgnoreCase("   ") | jTextField6.getText().toString().equalsIgnoreCase("    ")) {
             javax.swing.JOptionPane.showMessageDialog(this, "Cannot have blank Gl Acc No.\nSelect store name again to populate the field.".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
-        } else if ((jTextField8.getText().equals(null)) || (jTextField8.getText().length() < 3)) {
+        } else if ((reversalReasonTxt.getText().equals(null)) || (reversalReasonTxt.getText().length() < 3)) {
             javax.swing.JOptionPane.showMessageDialog(null, "Please specify a valid reason for reversing.");
         } else {
             java.util.Date periodFrom = null;
@@ -2383,7 +2379,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
                             transNo = rst.getObject(1).toString();
                         }
 
-                        java.sql.ResultSet rstr = ps11r.executeQuery("SELECT mark_up FROM st_stores WHERE store_name ILIKE '" + storeNamechkbx.getSelectedItem().toString() + "'");
+                        java.sql.ResultSet rstr = ps11r.executeQuery("SELECT mark_up FROM st_stores WHERE store_name ILIKE '" + storeNameCmbx.getSelectedItem().toString() + "'");
                         while (rstr.next()) {
                             rates = rstr.getDouble(1);
                         }
@@ -2396,58 +2392,57 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
                         java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert "
                                 + "into st_stock_cardex values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?,"
                                 + " ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
-                        for (int i = 0; i < jTable1.getRowCount(); i++) {
+                        for (int i = 0; i < grnDetailsTable.getRowCount(); i++) {
                             // if (jTable1.getModel().getValueAt(i, 0).toString().length()>0) 
 
-                            if (jTable1.getModel().getValueAt(i, 9) != null) {
-                                
-                                
-                                pkge = Double.parseDouble(jTable1.getModel().getValueAt(i, 2).toString());
-                                qty = Double.parseDouble(jTable1.getModel().getValueAt(i, 3).toString());
-                                uprice = Double.parseDouble(jTable1.getModel().getValueAt(i, 4).toString());
+                            if (grnDetailsTable.getModel().getValueAt(i, 9) != null) {
+
+                                pkge = Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 2).toString());
+                                qty = Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 3).toString());
+                                uprice = Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 4).toString());
 
                                 quantity = qty;
 
                                 price = uprice / pkge;
 
                                 pstmt.setString(1, LPONO.getText());
-                                pstmt.setString(2, storeNamechkbx.getSelectedItem().toString());
-                                pstmt.setObject(3, jTable1.getValueAt(i, 0));
+                                pstmt.setString(2, storeNameCmbx.getSelectedItem().toString());
+                                pstmt.setObject(3, grnDetailsTable.getValueAt(i, 0));
                                 pstmt.setDate(4, null);
-                                pstmt.setDouble(5, java.lang.Double.valueOf(jTable1.getValueAt(i, 9).toString()));
+                                pstmt.setDouble(5, java.lang.Double.valueOf(grnDetailsTable.getValueAt(i, 9).toString()));
                                 pstmt.setDouble(6, price);
-                                pstmt.setObject(7, jTable1.getValueAt(i, 1));
+                                pstmt.setObject(7, grnDetailsTable.getValueAt(i, 1));
                                 pstmt.setString(8, user);
                                 pstmt.setString(9, "Reversal");
                                 pstmt.setString(10, StocktransNo);
                                 pstmt.setDouble(12, 0.00);
-                                pstmt.setDouble(11, quantity * -1);
+                                pstmt.setDouble(11, 0.00);
                                 pstmt.setDouble(13, 0.00);
                                 pstmt.setString(14, "Wrong Receiving");
                                 pstmt.setString(15, user);
-                                pstmt.setString(16, jTextField7.getText());
+                                pstmt.setString(16, receivedFromTxt.getText());
                                 pstmt.setString(17, StocktransNo);
                                 pstmt.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
 
                                 System.err.println("This is the date from datePicker " + datePicker1.getDate());
-                                pstmt.setString(19, storeNamechkbx.getSelectedItem().toString());
+                                pstmt.setString(19, storeNameCmbx.getSelectedItem().toString());
                                 pstmt.setString(20, "Stock Returns");
                                 pstmt.setDouble(21, 0.00);
-                                pstmt.setObject(22, java.lang.Double.valueOf(jTable1.getValueAt(i, 6).toString()));
+                                pstmt.setObject(22, java.lang.Double.valueOf(grnDetailsTable.getValueAt(i, 6).toString()));
                                 pstmt.setString(23, jTextField6.getText());
                                 pstmt.setString(24, DnoteNoTxt.getText());
-                                pstmt.setString(25, storeNamechkbx.getSelectedItem().toString());
+                                pstmt.setString(25, storeNameCmbx.getSelectedItem().toString());
                                 pstmt.setString(26, transNo);
-                                pstmt.setDouble(27, 0.00);
+                                pstmt.setDouble(27, quantity);
                                 pstmt.setString(28, user);
                                 pstmt.setBoolean(29, true);
-                                pstmt.setDouble(30, java.lang.Double.valueOf(jTable1.getValueAt(i, 7).toString()));
+                                pstmt.setDouble(30, java.lang.Double.valueOf(grnDetailsTable.getValueAt(i, 7).toString()));
                                 pstmt.setDate(31, null);
 
-                                pstmt.setObject(32, jTable1.getValueAt(i, 12));
+                                pstmt.setObject(32, grnDetailsTable.getValueAt(i, 12));
 
                                 pstmt.setObject(33, "");
-                                pstmt.setObject(34, s13txfld.getText());
+                                pstmt.setObject(34, S13NumberTxt.getText());
 
                                 pstmt.executeUpdate();
 
@@ -2460,41 +2455,39 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
 
                                 java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("insert into "
                                         + "st_sub_stores values(?,? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
-                                pstmt11.setString(1, storeNamechkbx.getSelectedItem().toString());
-                                pstmt11.setObject(2, jTable1.getValueAt(i, 0));
+                                pstmt11.setString(1, storeNameCmbx.getSelectedItem().toString());
+                                pstmt11.setObject(2, grnDetailsTable.getValueAt(i, 0));
                                 pstmt11.setDouble(4, quantity);
                                 pstmt11.setDouble(3, 0.00);
                                 pstmt11.setDouble(5, price);
-                                pstmt11.setDouble(6, java.lang.Double.valueOf(jTable1.getValueAt(i, 9).toString()));
+                                pstmt11.setDouble(6, java.lang.Double.valueOf(grnDetailsTable.getValueAt(i, 9).toString()));
                                 pstmt11.setDouble(7, 0.00);
                                 pstmt11.setObject(8, transNo + "- Reversal of GRN No. " + DnoteNoTxt.getText());
                                 pstmt11.setObject(9, null);
                                 pstmt11.setObject(10, java.sql.Timestamp.valueOf(timestampDate.format(dateToday)));
                                 pstmt11.setString(11, user);
-                                pstmt11.setObject(12, jTable1.getValueAt(i, 1));
-                                pstmt11.setObject(13, storeNamechkbx.getSelectedItem().toString());
-                                pstmt11.setObject(14, jTextField8.getText());
-                                pstmt11.setObject(15, jTable1.getValueAt(i, 4));
-                                pstmt11.setObject(16, jTable1.getValueAt(i, 12));
+                                pstmt11.setObject(12, grnDetailsTable.getValueAt(i, 1));
+                                pstmt11.setObject(13, storeNameCmbx.getSelectedItem().toString());
+                                pstmt11.setObject(14, reversalReasonTxt.getText());
+                                pstmt11.setObject(15, grnDetailsTable.getValueAt(i, 4));
+                                pstmt11.setObject(16, grnDetailsTable.getValueAt(i, 12));
                                 pstmt11.setObject(17, "");
                                 //pstmt11.setObject(18, "");
 
                                 pstmt11.executeUpdate();
-                                
-                                
+
                                 pstmt11 = connectDB.prepareStatement("DELETE FROM st_orders_delivery WHERE code= ? AND order_no= ? AND invoice_no= ?");
-                                pstmt11.setObject(1, jTable1.getValueAt(i, 12));
+                                pstmt11.setObject(1, grnDetailsTable.getValueAt(i, 12));
                                 pstmt11.setObject(2, LPONO.getText());
                                 pstmt11.setObject(3, DnoteNoTxt.getText());
                                 pstmt11.executeUpdate();
-                                
 
                             }
 
                         }
 
                         java.sql.Statement pst1d1 = connectDB.createStatement();
-                        java.sql.ResultSet rs1d1 = pst1d1.executeQuery("select cost_of_sale from pb_departments where department_name ILIKE '" + storeNamechkbx.getSelectedItem() + "%'");
+                        java.sql.ResultSet rs1d1 = pst1d1.executeQuery("select cost_of_sale from pb_departments where department_name ILIKE '" + storeNameCmbx.getSelectedItem() + "%'");
                         while (rs1d1.next()) {
                             supCode = rs1d1.getObject(1).toString();
                         }
@@ -2515,9 +2508,9 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
                         pstmt1q1.setObject(1, cosCode);
                         pstmt1q1.setString(2, CostofSale);
                         pstmt1q1.setString(3, "");
-                        pstmt1q1.setString(4, jTextField7.getText());
+                        pstmt1q1.setString(4, receivedFromTxt.getText());
                         pstmt1q1.setString(6, DnoteNoTxt.getText());
-                        pstmt1q1.setString(5, jTextField8.getText());
+                        pstmt1q1.setString(5, reversalReasonTxt.getText());
                         pstmt1q1.setString(7, "");
                         pstmt1q1.setString(8, "");
                         pstmt1q1.setString(9, "");
@@ -2529,7 +2522,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
                         pstmt1q1.setString(15, "Stock Delivery GRN Adj");
                         //pstmt1q1.setString(15,jTextField8.getText());
                         pstmt1q1.setDouble(17, 0.00);
-                        pstmt1q1.setDouble(16, com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 9));
+                        pstmt1q1.setDouble(16, com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(grnDetailsTable, 9));
                         pstmt1q1.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
                         pstmt1q1.setString(19, transNo);
                         pstmt1q1.setBoolean(20, false);
@@ -2545,16 +2538,16 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
                         connectDB.commit();
                         connectDB.setAutoCommit(true);
                         javax.swing.JOptionPane.showMessageDialog(this, "Data Inserted Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                        for (int k = 0; k < jTable1.getRowCount(); k++) {
-                            for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                                jTable1.getModel().setValueAt(null, k, r);
+                        for (int k = 0; k < grnDetailsTable.getRowCount(); k++) {
+                            for (int r = 0; r < grnDetailsTable.getColumnCount(); r++) {
+                                grnDetailsTable.getModel().setValueAt(null, k, r);
                             }
                         }
 
-                        jTextField2.setText("00");
-                        jTextField4.setText("00");
-                        jTextField1.setText("00");
-                        jTextField5.setText("00");
+                        grossValueTxt.setText("00");
+                        totalDiscountTxt.setText("00");
+                        vatAmountTxt.setText("00");
+                        netValueTxt.setText("00");
 
                         //  javax.swing.JOptionPane.showMessageDialog(this, "Enter quantity received","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
                     } catch (java.sql.SQLException sq) {
@@ -2591,18 +2584,18 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField111ActionPerformed
 
-    private void storeNamechkbxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_storeNamechkbxMouseClicked
+    private void storeNameCmbxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_storeNameCmbxMouseClicked
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_storeNamechkbxMouseClicked
+    }//GEN-LAST:event_storeNameCmbxMouseClicked
 
-    private void storeNamechkbxMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_storeNamechkbxMouseEntered
+    private void storeNameCmbxMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_storeNameCmbxMouseEntered
         // TODO add your handling code here:
         if (!jCheckBox1.isSelected()) {
             javax.swing.JOptionPane.showMessageDialog(null, "Please tick the checkbox labelled \"Central Store\" to\n"
                     + "populate this drop-down list with various stores.");
         }
-    }//GEN-LAST:event_storeNamechkbxMouseEntered
+    }//GEN-LAST:event_storeNameCmbxMouseEntered
 
     private void journalItemsTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_journalItemsTblMouseClicked
         // TODO add your handling code here:
@@ -2638,9 +2631,9 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
         // TODO add your handling code here:
-        if (jTabbedPane1.getSelectedIndex() == 1 && storeNamechkbx.getSelectedItem() == null) {
+        if (jTabbedPane1.getSelectedIndex() == 1 && storeNameCmbx.getSelectedItem() == null) {
 
-            storeNamechkbxMouseEntered(evt);
+            storeNameCmbxMouseEntered(evt);
             jTabbedPane1.setSelectedIndex(0);
         }
     }//GEN-LAST:event_jTabbedPane1MouseClicked
@@ -2649,17 +2642,17 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         System.out.println("Calculating totals for table 11 and 2.");
         //        double resFloat = 0.00;
         double resFloat = 0.00;
-        double Gross = Double.parseDouble(this.jTextField2.getText());
-        double Disc = Double.parseDouble(this.jTextField1.getText());
-        double Vat = Double.parseDouble(this.jTextField4.getText());
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+        double Gross = Double.parseDouble(this.grossValueTxt.getText());
+        double Disc = Double.parseDouble(this.vatAmountTxt.getText());
+        double Vat = Double.parseDouble(this.totalDiscountTxt.getText());
+        for (int i = 0; i < grnDetailsTable.getRowCount(); i++) {
 
-            if (jTable1.getModel().getValueAt(i, 0) != null) {
+            if (grnDetailsTable.getModel().getValueAt(i, 0) != null) {
 
                 //                if (jTable1.getSelectedColumn() == 2) {
-                resFloat = resFloat + Double.parseDouble(jTable1.getModel().getValueAt(i, 9).toString());
-                jTextField2.setText(java.lang.String.valueOf(resFloat));
-                jTextField5.setText(java.lang.String.valueOf(resFloat - Disc - Vat));
+                resFloat = resFloat + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 9).toString());
+                grossValueTxt.setText(java.lang.String.valueOf(resFloat));
+                netValueTxt.setText(java.lang.String.valueOf(resFloat - Disc - Vat));
                 //                }else{
 
                 //  resFloat = resFloat + Double.parseDouble(jTable1.getModel().getValueAt(i, 7).toString());
@@ -2672,21 +2665,21 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
     }
 
     public void tableModelTableChanged(javax.swing.event.TableModelEvent evt) {
-        double Gross = Double.parseDouble(this.jTextField2.getText());
-        double Disc = Double.parseDouble(this.jTextField1.getText());
-        double Vat = Double.parseDouble(this.jTextField4.getText());
+        double Gross = Double.parseDouble(this.grossValueTxt.getText());
+        double Disc = Double.parseDouble(this.vatAmountTxt.getText());
+        double Vat = Double.parseDouble(this.totalDiscountTxt.getText());
         //        double resFloat = 0.00;
         double resFloat = 0.00;
 
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+        for (int i = 0; i < grnDetailsTable.getRowCount(); i++) {
 
-            if (jTable1.getModel().getValueAt(i, 0) != null) {
+            if (grnDetailsTable.getModel().getValueAt(i, 0) != null) {
 
                 //   if (jTable1.getSelectedColumn() == 3) {
-                resFloat = resFloat + Double.parseDouble(jTable1.getModel().getValueAt(i, 9).toString());
+                resFloat = resFloat + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 9).toString());
 
-                jTextField2.setText(java.lang.String.valueOf(resFloat));
-                jTextField5.setText(java.lang.String.valueOf(resFloat - Disc - Vat));
+                grossValueTxt.setText(java.lang.String.valueOf(resFloat));
+                netValueTxt.setText(java.lang.String.valueOf(resFloat - Disc - Vat));
 
                 //  }else{
                 //      resFloat = resFloat + Double.parseDouble(jTable1.getModel().getValueAt(i, 7).toString());
@@ -2700,26 +2693,26 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
 
     public void tableModelTableChanged1() {
         System.out.println("Calculating totals for table 12 and 21.");
-        double Gross = Double.parseDouble(this.jTextField2.getText());
-        double Disc = Double.parseDouble(this.jTextField1.getText());
-        double Vat = Double.parseDouble(this.jTextField4.getText());
+        double Gross = Double.parseDouble(this.grossValueTxt.getText());
+        double Disc = Double.parseDouble(this.vatAmountTxt.getText());
+        double Vat = Double.parseDouble(this.totalDiscountTxt.getText());
         double resFloat1 = 0.00;
 
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+        for (int i = 0; i < grnDetailsTable.getRowCount(); i++) {
 
-            if (jTable1.getModel().getValueAt(i, 5) != null) {
+            if (grnDetailsTable.getModel().getValueAt(i, 5) != null) {
 
-                if (jTable1.getSelectedColumn() == 5) {
+                if (grnDetailsTable.getSelectedColumn() == 5) {
 
-                    resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 6).toString());
-                    jTextField4.setText(java.lang.String.valueOf(resFloat1));
-                    jTextField5.setText(java.lang.String.valueOf(Gross - Disc - Vat));
+                    resFloat1 = resFloat1 + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 6).toString());
+                    totalDiscountTxt.setText(java.lang.String.valueOf(resFloat1));
+                    netValueTxt.setText(java.lang.String.valueOf(Gross - Disc - Vat));
 
                 }
 
-                resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 6).toString());
-                jTextField4.setText(java.lang.String.valueOf(resFloat1));
-                jTextField5.setText(java.lang.String.valueOf(Gross - Disc - Vat));
+                resFloat1 = resFloat1 + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 6).toString());
+                totalDiscountTxt.setText(java.lang.String.valueOf(resFloat1));
+                netValueTxt.setText(java.lang.String.valueOf(Gross - Disc - Vat));
                 //   else{
                 //       javax.swing.JOptionPane.showMessageDialog(this,"Disc. % cannot be null","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
                 //   }
@@ -2730,26 +2723,26 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
 
     public void tableModelTableChanged1(javax.swing.event.TableModelEvent evt) {
 
-        double Gross = Double.parseDouble(this.jTextField2.getText());
-        double Disc = Double.parseDouble(this.jTextField1.getText());
-        double Vat = Double.parseDouble(this.jTextField4.getText());
+        double Gross = Double.parseDouble(this.grossValueTxt.getText());
+        double Disc = Double.parseDouble(this.vatAmountTxt.getText());
+        double Vat = Double.parseDouble(this.totalDiscountTxt.getText());
         double resFloat1 = 0.00;
 
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+        for (int i = 0; i < grnDetailsTable.getRowCount(); i++) {
 
-            if (jTable1.getModel().getValueAt(i, 5) != null) {
+            if (grnDetailsTable.getModel().getValueAt(i, 5) != null) {
 
-                if (jTable1.getSelectedColumn() == 5) {
+                if (grnDetailsTable.getSelectedColumn() == 5) {
 
-                    resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 6).toString());
-                    jTextField4.setText(java.lang.String.valueOf(resFloat1));
-                    jTextField5.setText(java.lang.String.valueOf(Gross - Disc - Vat));
+                    resFloat1 = resFloat1 + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 6).toString());
+                    totalDiscountTxt.setText(java.lang.String.valueOf(resFloat1));
+                    netValueTxt.setText(java.lang.String.valueOf(Gross - Disc - Vat));
 
                 } else {
 
-                    resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 6).toString());
-                    jTextField4.setText(java.lang.String.valueOf(resFloat1));
-                    jTextField5.setText(java.lang.String.valueOf(Gross - Disc - Vat));
+                    resFloat1 = resFloat1 + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 6).toString());
+                    totalDiscountTxt.setText(java.lang.String.valueOf(resFloat1));
+                    netValueTxt.setText(java.lang.String.valueOf(Gross - Disc - Vat));
 
                     // else{
                     // javax.swing.JOptionPane.showMessageDialog(this,"Disc. % cannot be null","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -2763,24 +2756,24 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         System.out.println("Calculating totals for table 12 and 21.");
         //        double resFloat = 0.00;
         double resFloat1 = 0.00;
-        double Gross = Double.parseDouble(this.jTextField2.getText());
-        double Disc = Double.parseDouble(this.jTextField1.getText());
-        double Vat = Double.parseDouble(this.jTextField4.getText());
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+        double Gross = Double.parseDouble(this.grossValueTxt.getText());
+        double Disc = Double.parseDouble(this.vatAmountTxt.getText());
+        double Vat = Double.parseDouble(this.totalDiscountTxt.getText());
+        for (int i = 0; i < grnDetailsTable.getRowCount(); i++) {
 
-            if (jTable1.getModel().getValueAt(i, 0) != null) {
+            if (grnDetailsTable.getModel().getValueAt(i, 0) != null) {
 
-                if (jTable1.getSelectedColumn() == 7) {
+                if (grnDetailsTable.getSelectedColumn() == 7) {
 
-                    resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 8).toString());
-                    jTextField1.setText(java.lang.String.valueOf(resFloat1));
-                    jTextField5.setText(java.lang.String.valueOf(Gross - Disc - Vat));
+                    resFloat1 = resFloat1 + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 8).toString());
+                    vatAmountTxt.setText(java.lang.String.valueOf(resFloat1));
+                    netValueTxt.setText(java.lang.String.valueOf(Gross - Disc - Vat));
 
                 } else {
 
-                    resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 8).toString());
-                    jTextField1.setText(java.lang.String.valueOf(resFloat1));
-                    jTextField5.setText(java.lang.String.valueOf(Gross - Disc - Vat));
+                    resFloat1 = resFloat1 + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 8).toString());
+                    vatAmountTxt.setText(java.lang.String.valueOf(resFloat1));
+                    netValueTxt.setText(java.lang.String.valueOf(Gross - Disc - Vat));
 
                     //   javax.swing.JOptionPane.showMessageDialog(this,"Vat % cannot be null","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
                 }
@@ -2792,26 +2785,26 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
 
     public void tableModelTableChanged2(javax.swing.event.TableModelEvent evt) {
 
-        double Gross = Double.parseDouble(this.jTextField2.getText());
-        double Disc = Double.parseDouble(this.jTextField1.getText());
-        double Vat = Double.parseDouble(this.jTextField4.getText());
+        double Gross = Double.parseDouble(this.grossValueTxt.getText());
+        double Disc = Double.parseDouble(this.vatAmountTxt.getText());
+        double Vat = Double.parseDouble(this.totalDiscountTxt.getText());
         double resFloat1 = 0.00;
 
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+        for (int i = 0; i < grnDetailsTable.getRowCount(); i++) {
 
-            if (jTable1.getModel().getValueAt(i, 7) != null) {
+            if (grnDetailsTable.getModel().getValueAt(i, 7) != null) {
 
-                if (jTable1.getSelectedColumn() == 7) {
+                if (grnDetailsTable.getSelectedColumn() == 7) {
 
-                    resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 7).toString());
-                    jTextField1.setText(java.lang.String.valueOf(resFloat1));
-                    jTextField5.setText(java.lang.String.valueOf(Gross - Disc - Vat));
+                    resFloat1 = resFloat1 + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 7).toString());
+                    vatAmountTxt.setText(java.lang.String.valueOf(resFloat1));
+                    netValueTxt.setText(java.lang.String.valueOf(Gross - Disc - Vat));
 
                 } else {
 
-                    resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 7).toString());
-                    jTextField1.setText(java.lang.String.valueOf(resFloat1));
-                    jTextField5.setText(java.lang.String.valueOf(Gross - Disc - Vat));
+                    resFloat1 = resFloat1 + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 7).toString());
+                    vatAmountTxt.setText(java.lang.String.valueOf(resFloat1));
+                    netValueTxt.setText(java.lang.String.valueOf(Gross - Disc - Vat));
                     //    javax.swing.JOptionPane.showMessageDialog(this,"Vat % cannot be null","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
 
                 }
@@ -2823,14 +2816,20 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField DnoteNoTxt;
     private javax.swing.JTextField LPONO;
     private javax.swing.JTextField LPONO1;
+    private javax.swing.JTextField S13NumberTxt;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelbtn;
     private javax.swing.JButton cancelbtn1;
     private com.afrisoftech.lib.DatePicker datePicker1;
     private com.afrisoftech.lib.DatePicker datePicker2;
+    private javax.swing.JScrollPane dnoteSearchScrollPane;
+    private javax.swing.JTable dnoteSearchTable;
     private javax.swing.JDialog dnoteSearchdialog;
     private javax.swing.JButton exitbtn;
     private javax.swing.JButton exitbtn1;
+    private javax.swing.JTable grnDetailsTable;
+    private javax.swing.JTextField grossValueTxt;
+    private javax.swing.JTextField invoiceDateTxt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -2857,6 +2856,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
@@ -2888,40 +2888,34 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jSearchPanel;
     private javax.swing.JPanel jSearchPanel21;
     private javax.swing.JScrollPane jSearchScrollPane;
-    private javax.swing.JScrollPane jSearchScrollPane21;
     private javax.swing.JTable jSearchTable;
-    private javax.swing.JTable jSearchTable21;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField111;
-    private javax.swing.JTextField jTextField1131;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField61;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField jTextField92;
     private javax.swing.JTable journalItemsTbl;
+    private javax.swing.JTextField netValueTxt;
+    private javax.swing.JTextField originalInvoiceTxt;
     private javax.swing.JButton postbtn;
     private javax.swing.JButton postbtn1;
+    private javax.swing.JTextField receivedFromTxt;
     private javax.swing.JButton resetbtn;
-    private javax.swing.JTextField s13txfld;
+    private javax.swing.JTextField reversalReasonTxt;
     private javax.swing.JTextField s13txfld1;
     private javax.swing.JButton searchButton1;
     private javax.swing.JButton searchButton2;
-    private javax.swing.JComboBox storeNamechkbx;
+    private javax.swing.JTextField searchDnoteTxt;
+    private javax.swing.JComboBox storeNameCmbx;
+    private javax.swing.JTextField totalDiscountTxt;
+    private javax.swing.JTextField vatAmountTxt;
     // End of variables declaration//GEN-END:variables
 }

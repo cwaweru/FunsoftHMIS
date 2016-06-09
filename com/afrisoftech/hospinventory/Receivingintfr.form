@@ -509,7 +509,7 @@
                     <Column editable="false" title="Strength" type="java.lang.Object"/>
                     <Column editable="false" title="Qty Ordered" type="java.lang.Double"/>
                     <Column editable="false" title="Undelivered Qty" type="java.lang.Double"/>
-                    <Column editable="true" title="Unit Pack" type="java.lang.Object"/>
+                    <Column editable="true" title="Units/Pack" type="java.lang.Double"/>
                     <Column editable="true" title="Qty Received" type="java.lang.Double"/>
                     <Column editable="true" title="Unit Price" type="java.lang.Double"/>
                     <Column editable="true" title="Disc %" type="java.lang.Double"/>

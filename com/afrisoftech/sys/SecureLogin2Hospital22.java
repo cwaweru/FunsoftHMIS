@@ -547,7 +547,7 @@ public class SecureLogin2Hospital22 extends javax.swing.JDialog {
                 }
                 System.out.println("Created statement");
                 
-                java.sql.ResultSet reSet = resStatement.executeQuery("select menu_item from secure_password where access_priv ='t' AND login_name ='"+userName+"'");
+                java.sql.ResultSet reSet = resStatement.executeQuery("select menu_item from secure_passwd where access_priv ='t' AND login_name ='"+userName+"'");
                 
                 System.out.println("selected");
                 

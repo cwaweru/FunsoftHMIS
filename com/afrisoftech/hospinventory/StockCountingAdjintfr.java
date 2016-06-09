@@ -70,17 +70,17 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         jCheckBox1 = new javax.swing.JCheckBox();
         centralStorerbtn = new javax.swing.JRadioButton();
         subStorebtn = new javax.swing.JRadioButton();
-        jLabel5 = new javax.swing.JLabel();
+        inventoryCodeLbl = new javax.swing.JLabel();
         storeGLtxt = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new com.afrisoftech.dbadmin.JTable();
+        stockCountBodyPanel = new javax.swing.JPanel();
+        stockCountScrollPane = new javax.swing.JScrollPane();
+        stockCountTable = new com.afrisoftech.dbadmin.JTable();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        reconcileInventoryBtn = new javax.swing.JButton();
+        removeRowBtn = new javax.swing.JButton();
+        clearFormBtn = new javax.swing.JButton();
+        closeFormBtn = new javax.swing.JButton();
+        spacerLbl = new javax.swing.JLabel();
 
         jSearchDialog.setModal(true);
         jSearchDialog.setUndecorated(true);
@@ -195,8 +195,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 0);
         jPanel1.add(jLabel1, gridBagConstraints);
 
-        storeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select stores from store_allocation where user_name = current_user"));
-        storeCmbx.setEnabled(false);
+        storeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select DISTINCT store_name from st_stores ORDER BY 1"));
         storeCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 storeCmbxActionPerformed(evt);
@@ -205,16 +204,18 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 5.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(storeCmbx, gridBagConstraints);
 
-        jLabel2.setText("Date");
+        jLabel2.setText("Reconciliation Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         jPanel1.add(jLabel2, gridBagConstraints);
 
         reconcileDtpckr.setDate(null);
@@ -245,7 +246,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(categoryCmbx, gridBagConstraints);
@@ -253,7 +254,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        jLabel3.setText("From");
+        jLabel3.setText("Search start phrase");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -268,7 +269,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         gridBagConstraints.weightx = 2.0;
         jPanel4.add(range1txt, gridBagConstraints);
 
-        jLabel4.setText("To");
+        jLabel4.setText("Search end phrase");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -291,7 +292,9 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         jPanel4.add(range2txt, gridBagConstraints);
 
-        jCheckBox1.setText("List item balances");
+        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(255, 0, 51));
+        jCheckBox1.setText("List item balances to Reset Balances");
         jCheckBox1.setToolTipText("Please tick once to display list of items registered in the selected store");
         jCheckBox1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "You MUST select to display items in the selected store", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 51, 255))); // NOI18N
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -324,6 +327,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 0);
@@ -337,28 +341,29 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         jPanel1.add(subStorebtn, gridBagConstraints);
 
-        jLabel5.setText("INVENTORY CODE");
+        inventoryCodeLbl.setText("Inventory Code");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 0);
-        jPanel1.add(jLabel5, gridBagConstraints);
+        jPanel1.add(inventoryCodeLbl, gridBagConstraints);
 
         storeGLtxt.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         storeGLtxt.setText(com.afrisoftech.lib.GetItemInfo.getStoreMainGL(storeCmbx.getSelectedItem().toString(), connectDB));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(storeGLtxt, gridBagConstraints);
 
@@ -370,10 +375,10 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
         getContentPane().add(jPanel1, gridBagConstraints);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter items & their balances"));
-        jPanel2.setLayout(new java.awt.GridBagLayout());
+        stockCountBodyPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter items & their balances"));
+        stockCountBodyPanel.setLayout(new java.awt.GridBagLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        stockCountTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -495,7 +500,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setShowHorizontalLines(false);
+        stockCountTable.setShowHorizontalLines(false);
         // java.lang.Object[] strCmb = {"Payable","Receivable","Both"};
 
         //javax.swing.JComboBox cmBox = new javax.swing.JComboBox(strCmb);
@@ -540,7 +545,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
 
         javax.swing.table.TableColumn column = null;
         for (int i = 0; i < 8; i++) {
-            column = jTable1.getColumnModel().getColumn(i);
+            column = stockCountTable.getColumnModel().getColumn(i);
             if (i == 0) {
 
                 column.setPreferredWidth(300); //sport column is bigger
@@ -556,20 +561,20 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                 }
             }
         }
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        stockCountTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                stockCountTableMouseClicked(evt);
             }
         });
-        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+        stockCountTable.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTable1KeyReleased(evt);
+                stockCountTableKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTable1KeyTyped(evt);
+                stockCountTableKeyTyped(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        stockCountScrollPane.setViewportView(stockCountTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -579,7 +584,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 5.0;
-        jPanel2.add(jScrollPane1, gridBagConstraints);
+        stockCountBodyPanel.add(stockCountScrollPane, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -589,17 +594,17 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 100.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
-        getContentPane().add(jPanel2, gridBagConstraints);
+        getContentPane().add(stockCountBodyPanel, gridBagConstraints);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setMnemonic('O');
-        jButton1.setText("Save inventory reconciliation data");
-        jButton1.setToolTipText("click to store data");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        reconcileInventoryBtn.setMnemonic('O');
+        reconcileInventoryBtn.setText("Save inventory reconciliation data");
+        reconcileInventoryBtn.setToolTipText("click to store data");
+        reconcileInventoryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                reconcileInventoryBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -607,27 +612,27 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jButton1, gridBagConstraints);
+        jPanel3.add(reconcileInventoryBtn, gridBagConstraints);
 
-        jButton5.setMnemonic('r');
-        jButton5.setText("Remove Row");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        removeRowBtn.setMnemonic('r');
+        removeRowBtn.setText("Remove Row");
+        removeRowBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                removeRowBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
-        jPanel3.add(jButton5, gridBagConstraints);
+        jPanel3.add(removeRowBtn, gridBagConstraints);
 
-        jButton3.setMnemonic('l');
-        jButton3.setText("Clear form");
-        jButton3.setToolTipText("click to clear fields");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        clearFormBtn.setMnemonic('l');
+        clearFormBtn.setText("Clear form");
+        clearFormBtn.setToolTipText("click to clear fields");
+        clearFormBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                clearFormBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -635,15 +640,15 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jButton3, gridBagConstraints);
+        jPanel3.add(clearFormBtn, gridBagConstraints);
 
-        jButton4.setMnemonic('C');
-        jButton4.setText("Close form");
-        jButton4.setToolTipText("Click to close");
-        jButton4.setSelected(true);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        closeFormBtn.setMnemonic('C');
+        closeFormBtn.setText("Close form");
+        closeFormBtn.setToolTipText("Click to close");
+        closeFormBtn.setSelected(true);
+        closeFormBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                closeFormBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -651,7 +656,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jButton4, gridBagConstraints);
+        jPanel3.add(closeFormBtn, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -659,7 +664,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 200.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jLabel6, gridBagConstraints);
+        jPanel3.add(spacerLbl, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -672,14 +677,11 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
     }// </editor-fold>//GEN-END:initComponents
 
     private void subStorebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subStorebtnActionPerformed
-        if (!jButton1.isEnabled()) {
-            jButton1.setEnabled(true);
+        if (!reconcileInventoryBtn.isEnabled()) {
+            reconcileInventoryBtn.setEnabled(true);
         }
+        storeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select DISTINCT store_name from st_stores ORDER BY 1"));
 
-        storeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select stores from store_allocation where user_name = current_user"));
-
-        //jComboBox1.setSelectedIndex(1);
-        // com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select stores from store_allocation where user_name = current_user")
         storeCmbx.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -691,11 +693,11 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
     private void centralStorerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_centralStorerbtnActionPerformed
 //  jComboBox1.setM
 
-        if (!jButton1.isEnabled()) {
-            jButton1.setEnabled(true);
+        if (!reconcileInventoryBtn.isEnabled()) {
+            reconcileInventoryBtn.setEnabled(true);
         }
+        storeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select DISTINCT store_name from st_stores ORDER BY 1"));
 
-        storeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select stores from store_allocation where user_name = current_user and type ilike '%reconcil%' "));
         storeCmbx.setSelectedIndex(0);
         storeCmbx.addActionListener(new java.awt.event.ActionListener() {
 
@@ -706,19 +708,16 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         // Add your handling code here:
     }//GEN-LAST:event_centralStorerbtnActionPerformed
 
-    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
-        if (jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 5) != null) {
-            //if (jTable1.getSelectedColumn() == jTable1.getSelectedColumn()) {
-            // jTable1.setValueAt(0, jTable1.getSelectedRow(), 6);
-            // jTable1.setValueAt(0, jTable1.getSelectedRow(), 7);
-            //}
+    private void stockCountTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_stockCountTableKeyReleased
+        if (stockCountTable.getModel().getValueAt(stockCountTable.getSelectedRow(), 5) != null) {
+
 
         }// TODO add your handling code here:
-    }//GEN-LAST:event_jTable1KeyReleased
+    }//GEN-LAST:event_stockCountTableKeyReleased
 
-    private void jTable1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyTyped
+    private void stockCountTableKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_stockCountTableKeyTyped
 // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1KeyTyped
+    }//GEN-LAST:event_stockCountTableKeyTyped
 
     //runGetListThread1() runs when the comboBox labelled category is selected
     public void runGetListThread1() {
@@ -729,24 +728,25 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
 
         } else {
 
-            for (int k = 0; k < jTable1.getRowCount(); k++) {
-                for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                    jTable1.getModel().setValueAt(null, k, r);
+            for (int k = 0; k < stockCountTable.getRowCount(); k++) {
+                for (int r = 0; r < stockCountTable.getColumnCount(); r++) {
+                    stockCountTable.getModel().setValueAt(null, k, r);
                 }
             }
             if (range1txt.getText().equalsIgnoreCase("-")) {
                 if (centralStorerbtn.isSelected()) {
-                    jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments from stockitem WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "'  AND sub_cat_code ilike '" + categoryCmbx.getSelectedItem() + "' order by description"));
+                    stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments from stockitem WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "'  AND sub_cat_code ilike '" + categoryCmbx.getSelectedItem() + "' order by description"));
+//                    stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,item, null as strength, null as units,null as balance,null as saleable, null as damaged, null as expired, null as comments from st_stock_cardex  WHERE store ilike '" + storeCmbx.getSelectedItem().toString() + "' order by 2"));
                 } else {
 
-                    jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct product_id,product,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments from st_stock_prices WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "' AND category ilike '" + categoryCmbx.getSelectedItem() + "' order by product"));
+                    stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct product_id,product,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments from st_stock_prices WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "' AND category ilike '" + categoryCmbx.getSelectedItem() + "' order by product"));
 
                 }
             } else {
                 if (centralStorerbtn.isSelected()) {
-                    jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments from stockitem WHERE (description ILIKE '" + range1txt.getText() + "%' OR description ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "'  AND sub_cat_code ilike '" + categoryCmbx.getSelectedItem() + "'  order by description"));
+                    stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments from stockitem WHERE (description ILIKE '" + range1txt.getText() + "%' OR description ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "'  AND sub_cat_code ilike '" + categoryCmbx.getSelectedItem() + "'  order by description"));
                 } else {
-                    jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct product_id,product,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments from st_stock_prices WHERE (product ILIKE '" + range1txt.getText() + "%' OR product ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "' AND category ilike '" + categoryCmbx.getSelectedItem() + "' order by product"));
+                    stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct product_id,product,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments from st_stock_prices WHERE (product ILIKE '" + range1txt.getText() + "%' OR product ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "' AND category ilike '" + categoryCmbx.getSelectedItem() + "' order by product"));
 
                 }
             }
@@ -758,10 +758,10 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                 false, false, false, false, false, true, true, true, true
             };
 
-            jTable1.setShowHorizontalLines(true);
+            stockCountTable.setShowHorizontalLines(true);
             javax.swing.table.TableColumn column = null;
             for (int i = 0; i < 7; i++) {
-                column = jTable1.getColumnModel().getColumn(i);
+                column = stockCountTable.getColumnModel().getColumn(i);
                 if (i == 1) {
 
                     column.setPreferredWidth(300); //sport column is bigger
@@ -779,22 +779,30 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
             }
             try {
 
-                for (int i = 0; i < jTable1.getRowCount(); i++) {
+                for (int i = 0; i < stockCountTable.getRowCount(); i++) {
                     Object qty = 0.00;
                     //  float qty = 0;
                     java.sql.Statement stmt1 = connectDB.createStatement();
-                    java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT sum(qty) FROM stock_balance_qty  WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "' AND item_code ilike '" + jTable1.getValueAt(i, 0) + "' AND dates <= '" + reconcileDtpckr.getDate() + "'");
+                    java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT sum(qty) FROM stock_balance_qty  WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "' AND item_code ilike '" + stockCountTable.getValueAt(i, 0) + "' AND dates::date <= '" + reconcileDtpckr.getDate() + "'");
                     while (rSet1.next()) {
                         // qty = rSet1.getObject(1);
                         qty = dbObject.getDBObject(rSet1.getObject(1), "0.00");
-                        if (qty.equals("-")) {
-                            jTable1.setValueAt(0.00, i, 4);
+                        if (qty.equals("0.00")) {
+                            stockCountTable.setValueAt(0.00, i, 4);
+                            stockCountTable.setValueAt(0.00, i, 5);
+                            stockCountTable.setValueAt(0.00, i, 5);
+                            stockCountTable.setValueAt(0.00, i, 7);
+                            stockCountTable.setValueAt("RESET BALANCE", i, 8);
                         } else {
-                            jTable1.setValueAt(qty, i, 4);
+                            stockCountTable.setValueAt(qty, i, 4);
+                            stockCountTable.setValueAt(0.00, i, 5);
+                            stockCountTable.setValueAt(0.00, i, 5);
+                            stockCountTable.setValueAt(0.00, i, 7);
+                            stockCountTable.setValueAt("RESET BALANCE", i, 8);
                         }
                     }
                 }
-
+                javax.swing.JOptionPane.showMessageDialog(null, "Finished listing items");
             } catch (java.sql.SQLException sqlExec) {
                 sqlExec.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
@@ -806,9 +814,10 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
 
     private void categoryCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryCmbxActionPerformed
         //if (jCheckBox1.isSelected()){
-        for (int k = 0; k < jTable1.getRowCount(); k++) {
-            for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                jTable1.getModel().setValueAt(null, k, r);
+        reconcileInventoryBtn.setEnabled(true);
+        for (int k = 0; k < stockCountTable.getRowCount(); k++) {
+            for (int r = 0; r < stockCountTable.getColumnCount(); r++) {
+                stockCountTable.getModel().setValueAt(null, k, r);
             }
         }
 
@@ -915,24 +924,27 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
             javax.swing.JOptionPane.showMessageDialog(null, "You need to first select the date on which the physical count took place");
         } else {
             if (jCheckBox1.isSelected()) {
-                for (int k = 0; k < jTable1.getRowCount(); k++) {
-                    for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                        jTable1.getModel().setValueAt(null, k, r);
+                for (int k = 0; k < stockCountTable.getRowCount(); k++) {
+                    for (int r = 0; r < stockCountTable.getColumnCount(); r++) {
+                        stockCountTable.getModel().setValueAt(null, k, r);
                     }
                 }
                 if (range1txt.getText().equalsIgnoreCase("-")) {
                     if (centralStorerbtn.isSelected()) {
-                        jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments FROM stockitem WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by description"));
+                        stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments FROM stockitem WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by description"));
+                  // stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,item, null as strength, null as units,null as balance,null as saleable, null as damaged, null as expired, null as comments from st_stock_cardex  WHERE store ilike '" + storeCmbx.getSelectedItem().toString() + "' order by 2"));
+
                     } else {
 
-                        jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct (product_id),(product),strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments FROM stockprices WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by product"));
+                      stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct (product_id), (product),strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments FROM stockprices WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by product"));
+                  //      stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct (item_code),null as product, null as strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments FROM st_stock_cardex WHERE store ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by item_code"));
 
                     }
                 } else {
                     if (centralStorerbtn.isSelected()) {
-                        jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments FROM stockitem WHERE (description ILIKE '" + range1txt.getText() + "%' OR description ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by description"));
+                        stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments FROM stockitem WHERE (description ILIKE '" + range1txt.getText() + "%' OR description ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by description"));
                     } else {
-                        jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct product_id,product,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments FROM stockprices WHERE (product ILIKE '" + range1txt.getText() + "%' OR product ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by product"));
+                        stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct product_id,product,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments FROM stockprices WHERE (product ILIKE '" + range1txt.getText() + "%' OR product ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by product"));
 
                     }
                 }
@@ -944,11 +956,11 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                     false, false, false, false, false, true, true, true, true
                 };
 
-                jTable1.setShowHorizontalLines(true);
+                stockCountTable.setShowHorizontalLines(true);
 
                 javax.swing.table.TableColumn column = null;
                 for (int i = 0; i < 7; i++) {
-                    column = jTable1.getColumnModel().getColumn(i);
+                    column = stockCountTable.getColumnModel().getColumn(i);
                     if (i == 1) {
 
                         column.setPreferredWidth(300); //sport column is bigger
@@ -965,24 +977,32 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                     }
                 }
                 try {
-                    for (int i = 0; i < jTable1.getRowCount(); i++) {
+                    for (int i = 0; i < stockCountTable.getRowCount(); i++) {
                         Object qty = 0.00;
                         //  float qty = 0;
                         java.sql.Statement stmt1 = connectDB.createStatement();
-                        java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT sum(qty) FROM stock_balance_qty  WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "' AND item_code ilike '" + jTable1.getValueAt(i, 0) + "' AND dates <= '" + reconcileDtpckr.getDate() + "'");
+                        java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT sum(qty) FROM stock_balance_qty  WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "' AND item_code ilike '" + stockCountTable.getValueAt(i, 0) + "' AND dates <= '" + reconcileDtpckr.getDate() + "'");
                         while (rSet1.next()) {
                             // qty = rSet1.getObject(1);
                             qty = dbObject.getDBObject(rSet1.getObject(1), "0.00");
-                            if (qty.equals("-")) {
-                                jTable1.setValueAt(0.00, i, 4);
+                            if (qty.equals("0.00")) {
+                                stockCountTable.setValueAt(0.00, i, 4);
+                                stockCountTable.setValueAt(0.00, i, 5);
+                                stockCountTable.setValueAt(0.00, i, 6);
+                                stockCountTable.setValueAt(0.00, i, 7);
+                                stockCountTable.setValueAt("RESET BALANCE", i, 8);
                             } else {
-                                jTable1.setValueAt(qty, i, 4);
+                                stockCountTable.setValueAt(qty, i, 4);
+                                stockCountTable.setValueAt(0.00, i, 5);
+                                stockCountTable.setValueAt(0.00, i, 6);
+                                stockCountTable.setValueAt(0.00, i, 7);
+                                stockCountTable.setValueAt("RESET BALANCE", i, 8);
                             }
                         }
                     }
-
+                    javax.swing.JOptionPane.showMessageDialog(null, "Finished listing items");
                 } catch (java.sql.SQLException sqlExec) {
-
+                    sqlExec.printStackTrace();
                     javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
                 }
 
@@ -1004,10 +1024,10 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
 
         } else {
 
-            jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0), jTable1.getSelectedRow(), 0);
-            jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 1), jTable1.getSelectedRow(), 1);
-            jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 2), jTable1.getSelectedRow(), 2);
-            jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 3), jTable1.getSelectedRow(), 3);
+            stockCountTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0), stockCountTable.getSelectedRow(), 0);
+            stockCountTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 1), stockCountTable.getSelectedRow(), 1);
+            stockCountTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 2), stockCountTable.getSelectedRow(), 2);
+            stockCountTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 3), stockCountTable.getSelectedRow(), 3);
 
             this.jSearchDialog.dispose();
 
@@ -1016,20 +1036,20 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                 double qty = 0.00;
                 //  float qty = 0;
                 java.sql.Statement stmt1 = connectDB.createStatement();
-                java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT sum(qty) FROM stock_balance_qty  WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "' AND item_code ilike '" + jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "' AND dates <= '" + reconcileDtpckr.getDate() + "'");
+                java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT sum(qty) FROM stock_balance_qty  WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "' AND item_code ilike '" + stockCountTable.getValueAt(stockCountTable.getSelectedRow(), 0) + "' AND dates::date <= '" + reconcileDtpckr.getDate() + "'");
                 while (rSet1.next()) {
-                    // qty = rSet1.getObject(1);
+
                     qty = rSet1.getDouble(1);
                     if (qty == 0) {
-                        jTable1.setValueAt(0.00, jTable1.getSelectedRow(), 4);
+                        stockCountTable.setValueAt(0.00, stockCountTable.getSelectedRow(), 4);
                     } else {
-                        jTable1.setValueAt(qty, jTable1.getSelectedRow(), 4);
+                        stockCountTable.setValueAt(qty, stockCountTable.getSelectedRow(), 4);
                     }
-                    // }
+
                 }
 
             } catch (java.sql.SQLException sqlExec) {
-
+                sqlExec.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
             }
 
@@ -1062,31 +1082,31 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         // Add your handling code here:
     }//GEN-LAST:event_jTextField111CaretUpdate
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void stockCountTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stockCountTableMouseClicked
         if (storeCmbx.getSelectedItem() == null) {
             javax.swing.JOptionPane.showMessageDialog(null, "Please confirm if your account has been allocated a store.");
-        } else if (jTable1.getSelectedColumn() == 0) {
+        } else if (stockCountTable.getSelectedColumn() == 0) {
 
             this.cmbox1MouseClicked();
         }         // Add your handling code here:
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_stockCountTableMouseClicked
     private void cmbox1MouseClicked() {
 
         System.out.println("Showing dialog");
-        java.awt.Point point = jScrollPane1.getLocationOnScreen();
+        java.awt.Point point = stockCountScrollPane.getLocationOnScreen();
         jSearchDialog.setSize(600, 200);
         jSearchDialog.setLocation(point);
         jSearchDialog.setVisible(true);
     }
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void closeFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeFormBtnActionPerformed
         this.setVisible(false);        // Add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_closeFormBtnActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void removeRowBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeRowBtnActionPerformed
 
-        int rows2Delete = jTable1.getSelectedRowCount();
+        int rows2Delete = stockCountTable.getSelectedRowCount();
 
-        int[] selectedRows = jTable1.getSelectedRows();
+        int[] selectedRows = stockCountTable.getSelectedRows();
 
         if (rows2Delete < 1) {
 
@@ -1100,7 +1120,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
 
                 for (int i = 0; i < selectedRows.length; i++) {
 
-                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) stockCountTable.getModel();
 
                     defTableModel.removeRow(selectedRows[i]);
 
@@ -1108,494 +1128,43 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
 
             } else {
 
-                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) stockCountTable.getModel();
 
-                defTableModel.removeRow(jTable1.getSelectedRow());
+                defTableModel.removeRow(stockCountTable.getSelectedRow());
 
             }
         }        // Add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_removeRowBtnActionPerformed
 
     private void storeCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeCmbxActionPerformed
 
-        jButton1.setEnabled(true);
-        /*    crset1.setCommand("select distinct item_description FROM receive_requisation WHERE cost_center = '"+jComboBox1.getSelectedItem()+"' AND issiued = false");
-         crset1.setConnectionSource(pConnDB);
+        reconcileInventoryBtn.setEnabled(true);
 
-         cmbox.setModel(new org.netbeans.lib.sql.models.ComboBoxModel (crset1, "item_description", null, null, null));
-         javax.swing.table.TableColumn s = this.jTable1.getColumn("Item description");
-         s.setCellEditor(new javax.swing.DefaultCellEditor(cmbox));
-         cmbox.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-         cmboxActionPerformed(evt);
-         }
-         });
-
-         */
         // Add your handling code here:
     }//GEN-LAST:event_storeCmbxActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        for (int k = 0; k < jTable1.getRowCount(); k++) {
-            for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                jTable1.getModel().setValueAt(null, k, r);
+    private void clearFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFormBtnActionPerformed
+        for (int k = 0; k < stockCountTable.getRowCount(); k++) {
+            for (int r = 0; r < stockCountTable.getColumnCount(); r++) {
+                stockCountTable.getModel().setValueAt(null, k, r);
             }
         }
 
         this.storeCmbx.setSelectedItem(null);
         //  jComboBox11.setSelectedItem(null); // Add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_clearFormBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        java.util.Date dateToday = new java.util.Date();
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private void reconcileInventoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reconcileInventoryBtnActionPerformed
 
-        java.util.Date periodFrom = null;
-        java.util.Date periodTo = null;
-
-        if (storeCmbx.getSelectedItem() == null) {
-
-            javax.swing.JOptionPane.showMessageDialog(null, "You have to first select the store whose stock you intend to reconcile.");
-
-        } else if (reconcileDtpckr.getDate() == null) {
-
-            javax.swing.JOptionPane.showMessageDialog(null, "You have to specify a reconciliation date.\n"
-                    + "i.e. the ACTUAL DATE when stock for this store was physically counted.");
-        } else {
-
-            try {
-
-                java.sql.Statement stmtf = connectDB.createStatement();
-                java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + reconcileDtpckr.getDate() + "' BETWEEN period_from AND period_to");
-                while (rsetf.next()) {
-                    periodFrom = rsetf.getDate(1);
-                    periodTo = rsetf.getDate(2);
-                }
-
-            } catch (java.sql.SQLException sq) {
-                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                System.out.println(sq.getMessage());
-
-            }
-
-            if (reconcileDtpckr.getDate().before(periodFrom) || reconcileDtpckr.getDate().after(periodTo)) {
-                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-            } else {
-                if (jTable1.isEditing()) {
-                    jTable1.getCellEditor().stopCellEditing();
-                }
-                java.util.Calendar calendar = java.util.Calendar.getInstance();
-
-                long dateNow = calendar.getTimeInMillis();
-
-                java.sql.Date datenowSql = new java.sql.Date(dateNow);
-                String user = null;
-                java.sql.Savepoint registerSavePoint = null;
-
-                try {
-                    connectDB.setAutoCommit(false);
-                    registerSavePoint = connectDB.setSavepoint("registration");
-                } catch (java.sql.SQLException ex) {
-                    ex.printStackTrace();
-                }
-
-                try {
-
-                    java.sql.Statement pst2 = connectDB.createStatement();
-                    java.sql.ResultSet rs = pst2.executeQuery("select current_user");
-                    while (rs.next()) {
-                        user = rs.getObject(1).toString();
-                    }
-                    String transNo = null;
-                    String accountCoded = null;
-                    String glTyped = null;
-                    java.sql.Statement ps11 = connectDB.createStatement();
-                    java.sql.ResultSet rst = ps11.executeQuery("select nextval('transaction_no_seq'),current_user");
-                    while (rst.next()) {
-                        rst.getObject(1).toString();
-
-                        transNo = rst.getObject(1).toString();
-                        user = rst.getObject(2).toString();
-                    }
-
-                    java.sql.Statement pstcode = connectDB.createStatement();
-                    java.sql.ResultSet rscode = pst2.executeQuery("select distinct activity from pb_activity where code ='" + storeGLtxt.getText() + "'");
-                    while (rscode.next()) {
-                        activity = rscode.getObject(1).toString();
-                        // Stock = rs.getObject(2).toString();
-                    }
-                    for (int i = 0; i < jTable1.getRowCount(); i++) {
-
-                        if (jTable1.getModel().getValueAt(i, 0) == null || jTable1.getModel().getValueAt(i, 5) == null || jTable1.getModel().getValueAt(i, 6).toString().equalsIgnoreCase("")) {
-                            //java.sql.PreparedStatement pstmt = connectDB.prepareStatement("update st_stock_item set quantity_instock = quantity_instock + '"+jTable1.getValueAt(i,2).toString()+"' where department = '"+jComboBox1.getSelectedItem().toString()+"' and description = '"+jTable1.getValueAt(i,0).toString()+"'");
-                        } else {
-                            double actual = 0.00;
-                            double diff = 0.00;
-                            double price = 0.00;
-                            String strength = null;
-                            String code = null;
-
-                            double balance = Double.parseDouble(jTable1.getModel().getValueAt(i, 4).toString());
-                            double quantity = Double.parseDouble(jTable1.getModel().getValueAt(i, 5).toString());
-                            double expired = Double.parseDouble(jTable1.getModel().getValueAt(i, 6).toString());
-                            double damaged = Double.parseDouble(jTable1.getModel().getValueAt(i, 7).toString());
-
-                            actual = quantity + expired + damaged;
-                            diff = balance - actual;
-                            double pkge = 0;
-
-                            java.sql.Statement pst21r = connectDB.createStatement();
-
-                            java.sql.ResultSet rstrs = pst21r.executeQuery("SELECT packaging FROM stockitem st WHERE st.item_code = '" + jTable1.getValueAt(i, 0).toString() + "'");
-                            while (rstrs.next()) {
-                                pkge = rstrs.getDouble(1);
-                            }
-                            java.sql.Statement pstmt6 = connectDB.createStatement();
-                            java.sql.ResultSet rs6 = pstmt6.executeQuery("select item_code,buying_price,strength FROM stockitem where item_code ilike '" + jTable1.getValueAt(i, 0) + "'");
-                            while (rs6.next()) {
-                                code = dbObject.getDBObject(rs6.getObject(1), "-");
-                                //  comp = rs6.getDouble(2);
-                                if (pkge == 1) {
-                                    price = rs6.getDouble(2);
-                                } else {
-                                    price = rs6.getDouble(2) / pkge;
-                                }
-                                strength = rs6.getString(3);
-                            }
-
-                            quantity = quantity;
-                            //system balance                     
-                            if (balance != 0.0) {
-                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into st_stock_counts values(?, ?, ?, ?, ?, "
-                                        + "                                                                                      ?, ?, ?, ?, ?, "
-                                        + "                                                                                      ?, ?, ?, ?,?)");
-                                pstmt.setObject(1, code);
-                                pstmt.setObject(2, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
-                                pstmt.setObject(3, "System Balance");
-                                pstmt.setDouble(4, balance);
-                                pstmt.setString(5, transNo);
-                                pstmt.setString(6, storeCmbx.getSelectedItem().toString());
-                                pstmt.setString(7, user);
-                                pstmt.setTime(8, new java.sql.Time(java.util.Calendar.getInstance().getTimeInMillis()));
-                                if (balance > 0) {
-                                    pstmt.setDouble(9, balance * price);
-                                    pstmt.setDouble(10, 0.00);
-                                } else {
-                                    pstmt.setDouble(9, 0.00);
-                                    pstmt.setDouble(10, -balance * price);
-                                }
-
-                                pstmt.setDouble(11, price);
-                                pstmt.setObject(12, jTable1.getValueAt(i, 3));
-                                pstmt.setObject(13, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
-                                pstmt.setString(14, "");
-                                pstmt.setObject(15, jTable1.getValueAt(i, 8));
-                                System.err.println(sdf.format(new java.util.Date()));
-                                pstmt.executeUpdate();
-
-                            }
-                            if (quantity > 0.0) {
-                                //salable 
-                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into st_stock_counts values(?, ?, ?, ?, ?, "
-                                        + "                                                                                      ?, ?, ?, ?, ?, "
-                                        + "                                                                                      ?, ?, ?, ?,?)");
-                                pstmt.setObject(1, code);
-                                pstmt.setObject(2, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
-                                pstmt.setObject(3, "Salable");
-                                pstmt.setDouble(4, quantity);
-                                pstmt.setString(5, transNo);
-                                pstmt.setString(6, storeCmbx.getSelectedItem().toString());
-                                pstmt.setString(7, user);
-                                pstmt.setTime(8, new java.sql.Time(java.util.Calendar.getInstance().getTimeInMillis()));
-                                pstmt.setDouble(9, 0.00);
-                                pstmt.setDouble(10, quantity * price);
-                                pstmt.setDouble(11, price);
-                                pstmt.setObject(12, jTable1.getValueAt(i, 3));
-                                pstmt.setObject(13, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
-                                pstmt.setString(14, "");
-                                pstmt.setObject(15, jTable1.getValueAt(i, 8));
-                                System.err.println(sdf.format(new java.util.Date()));
-                                pstmt.executeUpdate();
-
-                            }
-                            if (expired > 0.0) {
-                                //expired
-                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into st_stock_counts values(?, ?, ?, ?, ?, "
-                                        + "                                                                                      ?, ?, ?, ?, ?, "
-                                        + "                                                                                      ?, ?, ?, ?,?)");
-                                pstmt.setObject(1, code);
-                                pstmt.setObject(2, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
-                                pstmt.setObject(3, "Expired");
-                                pstmt.setDouble(4, expired);
-                                pstmt.setString(5, transNo);
-                                pstmt.setString(6, storeCmbx.getSelectedItem().toString());
-                                pstmt.setString(7, user);
-                                pstmt.setTime(8, new java.sql.Time(java.util.Calendar.getInstance().getTimeInMillis()));
-                                pstmt.setDouble(9, 0.00);
-                                pstmt.setDouble(10, expired * price);
-                                pstmt.setDouble(11, price);
-                                pstmt.setObject(12, jTable1.getValueAt(i, 3));
-                                pstmt.setObject(13, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
-                                pstmt.setString(14, "");
-                                pstmt.setObject(15, jTable1.getValueAt(i, 8));
-                                System.err.println(sdf.format(new java.util.Date()));
-                                pstmt.executeUpdate();
-
-                            }
-                            if (damaged > 0.0) {
-                                //damaged
-                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into st_stock_counts values(?, ?, ?, ?, ?, "
-                                        + "                                                                                      ?, ?, ?, ?, ?, "
-                                        + "                                                                                      ?, ?, ?, ?,?)");
-                                pstmt.setObject(1, code);
-                                pstmt.setObject(2, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
-                                pstmt.setObject(3, "Damaged");
-                                pstmt.setDouble(4, damaged);
-                                pstmt.setString(5, transNo);
-                                pstmt.setString(6, storeCmbx.getSelectedItem().toString());
-                                pstmt.setString(7, user);
-                                pstmt.setTime(8, new java.sql.Time(java.util.Calendar.getInstance().getTimeInMillis()));
-                                pstmt.setDouble(9, 0.00);
-                                pstmt.setDouble(10, damaged * price);
-                                pstmt.setDouble(11, price);
-                                pstmt.setObject(12, jTable1.getValueAt(i, 3));
-                                pstmt.setObject(13, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
-                                pstmt.setString(14, "");
-                                pstmt.setObject(15, jTable1.getValueAt(i, 8));
-                                System.err.println(sdf.format(new java.util.Date()));
-                                pstmt.executeUpdate();
-
-                            }
-//sub stores
-                            if (balance != 0.0) {
-                                java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("insert into st_sub_stores values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                                pstmt11.setString(1, storeCmbx.getSelectedItem().toString());
-                                pstmt11.setObject(2, jTable1.getValueAt(i, 1));
-                                if (balance >= 0) {
-                                    pstmt11.setDouble(4, balance);
-                                    pstmt11.setDouble(3, 0.00);
-                                } else {
-                                    if (balance < 0) {
-                                        pstmt11.setDouble(3, (balance * -1));
-                                        pstmt11.setDouble(4, 0.00);
-                                    }
-                                }
-
-                                pstmt11.setDouble(5, 0.00);
-                                pstmt11.setDouble(6, balance * price);
-                                pstmt11.setDouble(7, 0.00);
-                                pstmt11.setObject(8, transNo);
-                                pstmt11.setObject(9, null);
-                                pstmt11.setObject(10, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
-                                pstmt11.setString(11, user);
-                                pstmt11.setObject(12, jTable1.getValueAt(i, 3));
-                                pstmt11.setString(13, storeCmbx.getSelectedItem().toString());
-                                pstmt11.setObject(14, "Stock Difference");
-                                pstmt11.setDouble(15, price);
-                                pstmt11.setObject(16, code);
-                                pstmt11.setObject(17, strength);
-                                pstmt11.executeUpdate();
-                            }
-//                           
-                            java.sql.PreparedStatement pstmt11c = connectDB.prepareStatement("insert into st_sub_stores values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                            pstmt11c.setString(1, storeCmbx.getSelectedItem().toString());
-                            pstmt11c.setObject(2, jTable1.getValueAt(i, 1));
-                            pstmt11c.setDouble(3, actual);
-                            pstmt11c.setDouble(4, 0.00);
-                            pstmt11c.setDouble(5, 0.00);
-                            pstmt11c.setDouble(6, actual * price);
-                            pstmt11c.setDouble(7, 0.00);
-                            pstmt11c.setObject(8, transNo);
-                            pstmt11c.setObject(9, null);
-                            pstmt11c.setObject(10, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
-                            pstmt11c.setString(11, user);
-                            pstmt11c.setObject(12, jTable1.getValueAt(i, 3));
-                            pstmt11c.setString(13, storeCmbx.getSelectedItem().toString());
-                            pstmt11c.setObject(14, "Stock Count");
-                            pstmt11c.setDouble(15, price);
-                            pstmt11c.setObject(16, code);
-                            pstmt11c.setObject(17, strength);
-                            pstmt11c.executeUpdate();
-
-                            java.sql.Statement pst21 = connectDB.createStatement();
-                            java.sql.ResultSet rs1 = pst21.executeQuery("select code,activity from pb_activity where department='INV'");
-                            while (rs1.next()) {
-
-                                accountCoded = rs1.getObject(1).toString();
-                                glTyped = rs1.getObject(2).toString();
-                            }
-                            //nulify  
-                            if (balance != 0.0) {
-                                java.sql.PreparedStatement pstmtCardex = connectDB.prepareStatement("insert into st_stock_cardex values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
-                                pstmtCardex.setString(1, null);
-                                pstmtCardex.setObject(3, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
-                                pstmtCardex.setString(2, storeCmbx.getSelectedItem().toString());
-                                pstmtCardex.setDate(4, null);
-                                pstmtCardex.setDouble(6, price);
-                                pstmtCardex.setObject(7, jTable1.getValueAt(i, 3));
-                                pstmtCardex.setObject(8, "");
-                                pstmtCardex.setObject(9, null);
-                                pstmtCardex.setString(10, null);
-
-                                if (balance < 0) {
-                                    pstmtCardex.setDouble(11, -1 * balance); // Changed by CWW was - pstmtCardex.setDouble(11, balance);
-                                    pstmtCardex.setDouble(5, 0.00);
-                                    pstmtCardex.setDouble(21, -1 * balance * price);
-                                    pstmtCardex.setDouble(22, 0.00);
-                                    pstmtCardex.setDouble(27, 0.00);
-                                } else if (balance >= 0) {
-                                    pstmtCardex.setDouble(11, 0.00);
-                                    pstmtCardex.setDouble(27, balance); // Changed by CWWW was - pstmtCardex.setDouble(11, balance);
-                                    pstmtCardex.setDouble(5, balance * price);
-                                    pstmtCardex.setDouble(21, 0.00);
-                                    pstmtCardex.setDouble(22, balance * price);
-                                }
-
-                                pstmtCardex.setDouble(12, 0.00);
-                                pstmtCardex.setDouble(13, 0.00);
-                                pstmtCardex.setString(14, "-");
-                                pstmtCardex.setString(15, "-");
-                                pstmtCardex.setString(16, "");
-                                pstmtCardex.setString(17, null);
-                                pstmtCardex.setDate(18, datenowSql);
-                                pstmtCardex.setString(19, storeCmbx.getSelectedItem().toString());
-                                pstmtCardex.setString(20, "Stock_System_Balance_At:" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(reconcileDtpckr.getDate()));
-                                pstmtCardex.setString(20, "Stock Count Difference");
-                                pstmtCardex.setString(23, storeGLtxt.getText());
-                                pstmtCardex.setString(24, "");
-                                pstmtCardex.setString(25, storeCmbx.getSelectedItem().toString());
-                                pstmtCardex.setString(26, transNo);
-                               // pstmtCardex.setDouble(27, 0.00);
-                                pstmtCardex.setString(28, user);
-                                pstmtCardex.setBoolean(29, false);
-                                pstmtCardex.setObject(30, 0.00);
-                                pstmtCardex.setObject(31, null);
-                                pstmtCardex.setObject(32, jTable1.getValueAt(i, 0));
-                                pstmtCardex.setObject(33, "");
-                                pstmtCardex.setObject(34, "");
-                                pstmtCardex.executeUpdate();
-                            }
-                            //add new stock         
-                            java.sql.PreparedStatement pstmtCardex3 = connectDB.prepareStatement("insert into st_stock_cardex values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
-                            pstmtCardex3.setString(1, null);
-                            pstmtCardex3.setObject(3, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
-                            pstmtCardex3.setString(2, storeCmbx.getSelectedItem().toString());
-                            pstmtCardex3.setDate(4, null);
-                            pstmtCardex3.setDouble(11, actual);
-                            pstmtCardex3.setDouble(6, price);
-                            pstmtCardex3.setObject(7, jTable1.getValueAt(i, 3));
-                            pstmtCardex3.setObject(8, "");
-                            pstmtCardex3.setObject(9, null);
-                            pstmtCardex3.setString(10, null);
-                            pstmtCardex3.setDouble(5, 0.00);
-                            pstmtCardex3.setDouble(21, actual * price);
-                            pstmtCardex3.setDouble(22, 0.00);
-                            pstmtCardex3.setDouble(12, 0.00);
-                            pstmtCardex3.setDouble(13, 0.00);
-                            pstmtCardex3.setString(14, "-");
-                            pstmtCardex3.setString(15, "-");
-                            pstmtCardex3.setString(16, "");
-                            pstmtCardex3.setString(17, null);
-                            pstmtCardex3.setDate(18, datenowSql);
-                            pstmtCardex3.setString(19, storeCmbx.getSelectedItem().toString());
-                            pstmtCardex3.setString(20, "Stock_System_Balance_At:" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(reconcileDtpckr.getDate()));
-                            pstmtCardex3.setString(20, "Stock Count");
-                            pstmtCardex3.setString(23, storeGLtxt.getText());
-                            pstmtCardex3.setString(24, "");
-                            pstmtCardex3.setString(25, storeCmbx.getSelectedItem().toString());
-                            pstmtCardex3.setString(26, transNo);
-                            pstmtCardex3.setDouble(27, 0.00);
-                            pstmtCardex3.setString(28, user);
-                            pstmtCardex3.setBoolean(29, false);
-                            pstmtCardex3.setObject(30, 0.00);
-                            pstmtCardex3.setObject(31, null);
-                            pstmtCardex3.setObject(32, jTable1.getValueAt(i, 0));
-                            pstmtCardex3.setObject(33, "");
-                            pstmtCardex3.setObject(34, "");
-                            pstmtCardex3.executeUpdate();
-
-                            //+ diff is loss                               
-                            if (diff != 0.0) {
-                                java.sql.PreparedStatement pstmt1q1 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
-                                pstmt1q1.setObject(1, accountCoded);
-                                pstmt1q1.setString(2, glTyped);
-                                pstmt1q1.setString(3, jTable1.getValueAt(i, 0).toString());
-                                pstmt1q1.setString(4, jTable1.getValueAt(i, 1).toString());
-                                pstmt1q1.setString(6, String.valueOf(diff));
-                                pstmt1q1.setString(5, "Stock count diff");
-                                pstmt1q1.setString(7, "");
-                                pstmt1q1.setString(8, "");
-                                pstmt1q1.setString(9, "");
-                                pstmt1q1.setString(10, "");
-                                pstmt1q1.setString(11, "");
-                                pstmt1q1.setString(12, "");
-                                pstmt1q1.setString(13, "");
-                                pstmt1q1.setString(14, glTyped);
-                                pstmt1q1.setString(15, "stock count");
-                                if (diff > 0) { //loss
-                                    pstmt1q1.setDouble(17, 0.00);
-                                    /*debit*/ pstmt1q1.setDouble(16, price * diff);
-                                } else if (diff < 0) { //gain
-                                    pstmt1q1.setDouble(17, price * diff * -1);
-                                    pstmt1q1.setDouble(16, 0.00);
-                                }
-                                //  price*quantity
-                                pstmt1q1.setDate(18, datenowSql);
-                                pstmt1q1.setString(19, transNo);
-                                pstmt1q1.setBoolean(20, false);
-                                pstmt1q1.setBoolean(21, false);
-                                pstmt1q1.setBoolean(22, false);
-                                pstmt1q1.setString(23, user);
-                                pstmt1q1.setString(24, "");
-                                pstmt1q1.setString(25, "");
-                                pstmt1q1.setTimestamp(26, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
-                                pstmt1q1.executeUpdate();
-                            }
-
-                        }
-                    }
-
-                    connectDB.commit();
-                    connectDB.setAutoCommit(true);
-
-                    jLabel12.setForeground(java.awt.Color.blue);
-                    javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Data Saved Successfully", "Information message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-                    jButton1.setEnabled(false);
-                    range1txt.setText("-");
-                    range2txt.setText("-");
-                    // javax.swing.JOptionPane.showMessageDialog(this, "Enter quantity issued","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
-                    for (int k = 0; k < jTable1.getRowCount(); k++) {
-                        for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                            jTable1.getModel().setValueAt(null, k, r);
-                        }
-                    }
-
-                    storeCmbx.setSelectedItem(null);
-                    reconcileDtpckr.setDate(null);
-                    jButton1.setEnabled(false);
-                } catch (java.sql.SQLException sq) {
-                    javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                    sq.printStackTrace();
-                    try {
-                        connectDB.rollback(registerSavePoint);
-                    } catch (java.sql.SQLException sql) {
-                        sql.printStackTrace();
-                        javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-
-            }
-
-        }
         //
-//        StockTakeThread stockTakeThread = new StockTakeThread();
-//        
-//        stockTakeThread.start();
+        StockTakeThread stockTakeThread = new StockTakeThread();
+
+        stockTakeThread.start();
+
+        reconcileInventoryBtn.setEnabled(false);
 
         // Add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_reconcileInventoryBtnActionPerformed
 
     private void range2txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_range2txtActionPerformed
         // TODO add your handling code here:
@@ -1639,8 +1208,8 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                     javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
-                    if (jTable1.isEditing()) {
-                        jTable1.getCellEditor().stopCellEditing();
+                    if (stockCountTable.isEditing()) {
+                        stockCountTable.getCellEditor().stopCellEditing();
                     }
                     java.util.Calendar calendar = java.util.Calendar.getInstance();
 
@@ -1682,9 +1251,9 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                             activity = rscode.getObject(1).toString();
                             // Stock = rs.getObject(2).toString();
                         }
-                        for (int i = 0; i < jTable1.getRowCount(); i++) {
+                        for (int i = 0; i < stockCountTable.getRowCount(); i++) {
 
-                            if (jTable1.getModel().getValueAt(i, 0) == null || jTable1.getModel().getValueAt(i, 5) == null || jTable1.getModel().getValueAt(i, 6).toString().equalsIgnoreCase("")) {
+                            if (stockCountTable.getModel().getValueAt(i, 0) == null || stockCountTable.getModel().getValueAt(i, 5) == null || stockCountTable.getModel().getValueAt(i, 6).toString().equalsIgnoreCase("")) {
                                 //java.sql.PreparedStatement pstmt = connectDB.prepareStatement("update st_stock_item set quantity_instock = quantity_instock + '"+jTable1.getValueAt(i,2).toString()+"' where department = '"+jComboBox1.getSelectedItem().toString()+"' and description = '"+jTable1.getValueAt(i,0).toString()+"'");
                             } else {
                                 double actual = 0.00;
@@ -1693,10 +1262,10 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                 String strength = null;
                                 String code = null;
 
-                                double balance = Double.parseDouble(jTable1.getModel().getValueAt(i, 4).toString());
-                                double quantity = Double.parseDouble(jTable1.getModel().getValueAt(i, 5).toString());
-                                double expired = Double.parseDouble(jTable1.getModel().getValueAt(i, 6).toString());
-                                double damaged = Double.parseDouble(jTable1.getModel().getValueAt(i, 7).toString());
+                                double balance = Double.parseDouble(stockCountTable.getModel().getValueAt(i, 4).toString());
+                                double quantity = Double.parseDouble(stockCountTable.getModel().getValueAt(i, 5).toString());
+                                double expired = Double.parseDouble(stockCountTable.getModel().getValueAt(i, 6).toString());
+                                double damaged = Double.parseDouble(stockCountTable.getModel().getValueAt(i, 7).toString());
 
                                 actual = quantity + expired + damaged;
                                 diff = balance - actual;
@@ -1704,12 +1273,12 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
 
                                 java.sql.Statement pst21r = connectDB.createStatement();
 
-                                java.sql.ResultSet rstrs = pst21r.executeQuery("SELECT packaging FROM stockitem st WHERE st.item_code = '" + jTable1.getValueAt(i, 0).toString() + "'");
+                                java.sql.ResultSet rstrs = pst21r.executeQuery("SELECT packaging FROM stockitem st WHERE st.item_code = '" + stockCountTable.getValueAt(i, 0).toString() + "'");
                                 while (rstrs.next()) {
                                     pkge = rstrs.getDouble(1);
                                 }
                                 java.sql.Statement pstmt6 = connectDB.createStatement();
-                                java.sql.ResultSet rs6 = pstmt6.executeQuery("select item_code,buying_price,strength FROM stockitem where item_code ilike '" + jTable1.getValueAt(i, 0) + "'");
+                                java.sql.ResultSet rs6 = pstmt6.executeQuery("select item_code,buying_price,strength FROM stockitem where item_code ilike '" + stockCountTable.getValueAt(i, 0) + "'");
                                 while (rs6.next()) {
                                     code = dbObject.getDBObject(rs6.getObject(1), "-");
                                     //  comp = rs6.getDouble(2);
@@ -1721,14 +1290,54 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                     strength = rs6.getString(3);
                                 }
 
+                                double stCardexBalance = 0.00;
+                                java.sql.PreparedStatement pstmtStCardexBalance = connectDB.prepareStatement("SELECT sum(quantity_received - sub_store_issuing) FROM st_stock_cardex WHERE item_code = ? AND UPPER(store) = UPPER(?) AND date::date <= ?");
+                                pstmtStCardexBalance.setObject(1, stockCountTable.getValueAt(i, 0));
+                                pstmtStCardexBalance.setObject(2, storeCmbx.getSelectedItem());
+                                pstmtStCardexBalance.setDate(3, com.afrisoftech.lib.SQLDateFormat.getSQLDate(reconcileDtpckr.getDate()));
+                                java.sql.ResultSet rsetStCardexBalance = pstmtStCardexBalance.executeQuery();
+                                while (rsetStCardexBalance.next()) {
+                                    stCardexBalance = rsetStCardexBalance.getDouble(1);
+                                }
+                                System.out.println("Stock cardex balance for [" + stockCountTable.getValueAt(i, 0) + "] is [" + stCardexBalance + "]");
+                                System.out.println("Sub store balance for [" + stockCountTable.getValueAt(i, 0) + "] is [" + balance + "]");
+                                diff = stCardexBalance - actual;
+
+                                double stCardexBalanceValue = 0.00;
+                                double stCardexActualBalance = 0.00;
+                                java.sql.PreparedStatement pstmtStCardexActualBalance = connectDB.prepareStatement("SELECT sum(quantity_received - sub_store_issuing) * (SELECT buying_price FROM st_stock_item WHERE st_stock_item.item_code = ? ORDER BY date DESC LIMIT 1) FROM st_stock_cardex WHERE item_code = ? AND UPPER(store) = UPPER(?) AND date::date <= ?");
+                                pstmtStCardexActualBalance.setObject(1, stockCountTable.getValueAt(i, 0));
+                                pstmtStCardexActualBalance.setObject(2, stockCountTable.getValueAt(i, 0));
+                                pstmtStCardexActualBalance.setObject(3, storeCmbx.getSelectedItem());
+                                pstmtStCardexActualBalance.setDate(4, com.afrisoftech.lib.SQLDateFormat.getSQLDate(reconcileDtpckr.getDate()));
+                                java.sql.ResultSet rsetStCardexActualBalance = pstmtStCardexActualBalance.executeQuery();
+                                while (rsetStCardexActualBalance.next()) {
+                                    stCardexActualBalance = rsetStCardexActualBalance.getDouble(1);
+                                }
+
+                                java.sql.PreparedStatement pstmtStCardexBalanceValue = connectDB.prepareStatement("SELECT sum(debit - quantity_ordered) FROM st_stock_cardex WHERE item_code = ? AND UPPER(store) = UPPER(?) AND date::date <= ?");
+                                pstmtStCardexBalanceValue.setObject(1, stockCountTable.getValueAt(i, 0));
+                                pstmtStCardexBalanceValue.setObject(2, storeCmbx.getSelectedItem());
+                                pstmtStCardexBalanceValue.setDate(3, com.afrisoftech.lib.SQLDateFormat.getSQLDate(reconcileDtpckr.getDate()));
+                                java.sql.ResultSet rsetStCardexBalanceValue = pstmtStCardexBalanceValue.executeQuery();
+                                while (rsetStCardexBalanceValue.next()) {
+                                    stCardexBalanceValue = rsetStCardexBalanceValue.getDouble(1);
+                                }
+                                System.out.println("Stock cardex balance for [" + stockCountTable.getValueAt(i, 0) + "] is [" + stCardexBalanceValue + "]");
+                                //      System.out.println("Sub store balance for [" + stockCountTable.getValueAt(i, 0) + "] is [" + balance + "]");
+                                stCardexActualBalance = quantity * price;
+
+                                diff = stCardexActualBalance - stCardexBalanceValue;
+
                                 quantity = quantity;
+
                                 //system balance                     
                                 if (balance != 0.0) {
                                     java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into st_stock_counts values(?, ?, ?, ?, ?, "
                                             + "                                                                                      ?, ?, ?, ?, ?, "
                                             + "                                                                                      ?, ?, ?, ?,?)");
                                     pstmt.setObject(1, code);
-                                    pstmt.setObject(2, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
+                                    pstmt.setObject(2, stockCountTable.getValueAt(i, 1) + " " + stockCountTable.getValueAt(i, 2));
                                     pstmt.setObject(3, "System Balance");
                                     pstmt.setDouble(4, balance);
                                     pstmt.setString(5, transNo);
@@ -1744,10 +1353,10 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                     }
 
                                     pstmt.setDouble(11, price);
-                                    pstmt.setObject(12, jTable1.getValueAt(i, 3));
+                                    pstmt.setObject(12, stockCountTable.getValueAt(i, 3));
                                     pstmt.setObject(13, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
                                     pstmt.setString(14, "");
-                                    pstmt.setObject(15, jTable1.getValueAt(i, 8));
+                                    pstmt.setObject(15, stockCountTable.getValueAt(i, 8));
                                     System.err.println(sdf.format(new java.util.Date()));
                                     pstmt.executeUpdate();
 
@@ -1758,7 +1367,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                             + "                                                                                      ?, ?, ?, ?, ?, "
                                             + "                                                                                      ?, ?, ?, ?,?)");
                                     pstmt.setObject(1, code);
-                                    pstmt.setObject(2, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
+                                    pstmt.setObject(2, stockCountTable.getValueAt(i, 1) + " " + stockCountTable.getValueAt(i, 2));
                                     pstmt.setObject(3, "Salable");
                                     pstmt.setDouble(4, quantity);
                                     pstmt.setString(5, transNo);
@@ -1768,10 +1377,10 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                     pstmt.setDouble(9, 0.00);
                                     pstmt.setDouble(10, quantity * price);
                                     pstmt.setDouble(11, price);
-                                    pstmt.setObject(12, jTable1.getValueAt(i, 3));
+                                    pstmt.setObject(12, stockCountTable.getValueAt(i, 3));
                                     pstmt.setObject(13, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
                                     pstmt.setString(14, "");
-                                    pstmt.setObject(15, jTable1.getValueAt(i, 8));
+                                    pstmt.setObject(15, stockCountTable.getValueAt(i, 8));
                                     System.err.println(sdf.format(new java.util.Date()));
                                     pstmt.executeUpdate();
 
@@ -1782,7 +1391,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                             + "                                                                                      ?, ?, ?, ?, ?, "
                                             + "                                                                                      ?, ?, ?, ?,?)");
                                     pstmt.setObject(1, code);
-                                    pstmt.setObject(2, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
+                                    pstmt.setObject(2, stockCountTable.getValueAt(i, 1) + " " + stockCountTable.getValueAt(i, 2));
                                     pstmt.setObject(3, "Expired");
                                     pstmt.setDouble(4, expired);
                                     pstmt.setString(5, transNo);
@@ -1792,10 +1401,10 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                     pstmt.setDouble(9, 0.00);
                                     pstmt.setDouble(10, expired * price);
                                     pstmt.setDouble(11, price);
-                                    pstmt.setObject(12, jTable1.getValueAt(i, 3));
+                                    pstmt.setObject(12, stockCountTable.getValueAt(i, 3));
                                     pstmt.setObject(13, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
                                     pstmt.setString(14, "");
-                                    pstmt.setObject(15, jTable1.getValueAt(i, 8));
+                                    pstmt.setObject(15, stockCountTable.getValueAt(i, 8));
                                     System.err.println(sdf.format(new java.util.Date()));
                                     pstmt.executeUpdate();
 
@@ -1806,7 +1415,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                             + "                                                                                      ?, ?, ?, ?, ?, "
                                             + "                                                                                      ?, ?, ?, ?,?)");
                                     pstmt.setObject(1, code);
-                                    pstmt.setObject(2, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
+                                    pstmt.setObject(2, stockCountTable.getValueAt(i, 1) + " " + stockCountTable.getValueAt(i, 2));
                                     pstmt.setObject(3, "Damaged");
                                     pstmt.setDouble(4, damaged);
                                     pstmt.setString(5, transNo);
@@ -1816,10 +1425,10 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                     pstmt.setDouble(9, 0.00);
                                     pstmt.setDouble(10, damaged * price);
                                     pstmt.setDouble(11, price);
-                                    pstmt.setObject(12, jTable1.getValueAt(i, 3));
+                                    pstmt.setObject(12, stockCountTable.getValueAt(i, 3));
                                     pstmt.setObject(13, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
                                     pstmt.setString(14, "");
-                                    pstmt.setObject(15, jTable1.getValueAt(i, 8));
+                                    pstmt.setObject(15, stockCountTable.getValueAt(i, 8));
                                     System.err.println(sdf.format(new java.util.Date()));
                                     pstmt.executeUpdate();
 
@@ -1828,7 +1437,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                 if (balance != 0.0) {
                                     java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("insert into st_sub_stores values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                                     pstmt11.setString(1, storeCmbx.getSelectedItem().toString());
-                                    pstmt11.setObject(2, jTable1.getValueAt(i, 1));
+                                    pstmt11.setObject(2, stockCountTable.getValueAt(i, 1));
                                     if (balance >= 0) {
                                         pstmt11.setDouble(4, balance);
                                         pstmt11.setDouble(3, 0.00);
@@ -1846,7 +1455,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                     pstmt11.setObject(9, null);
                                     pstmt11.setObject(10, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
                                     pstmt11.setString(11, user);
-                                    pstmt11.setObject(12, jTable1.getValueAt(i, 3));
+                                    pstmt11.setObject(12, stockCountTable.getValueAt(i, 3));
                                     pstmt11.setString(13, storeCmbx.getSelectedItem().toString());
                                     pstmt11.setObject(14, "Stock Difference");
                                     pstmt11.setDouble(15, price);
@@ -1857,7 +1466,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
 //                           
                                 java.sql.PreparedStatement pstmt11c = connectDB.prepareStatement("insert into st_sub_stores values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                                 pstmt11c.setString(1, storeCmbx.getSelectedItem().toString());
-                                pstmt11c.setObject(2, jTable1.getValueAt(i, 1));
+                                pstmt11c.setObject(2, stockCountTable.getValueAt(i, 1));
                                 pstmt11c.setDouble(3, actual);
                                 pstmt11c.setDouble(4, 0.00);
                                 pstmt11c.setDouble(5, 0.00);
@@ -1867,7 +1476,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                 pstmt11c.setObject(9, null);
                                 pstmt11c.setObject(10, Timestamp.valueOf(sdf.format(reconcileDtpckr.getDate())));
                                 pstmt11c.setString(11, user);
-                                pstmt11c.setObject(12, jTable1.getValueAt(i, 3));
+                                pstmt11c.setObject(12, stockCountTable.getValueAt(i, 3));
                                 pstmt11c.setString(13, storeCmbx.getSelectedItem().toString());
                                 pstmt11c.setObject(14, "Stock Count");
                                 pstmt11c.setDouble(15, price);
@@ -1882,31 +1491,35 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                     accountCoded = rs1.getObject(1).toString();
                                     glTyped = rs1.getObject(2).toString();
                                 }
-                                //nulify  
-                                if (balance != 0.0) {
+                                //nulify value in stock cardex 
+                                if (stCardexBalance != 0.0) {
                                     java.sql.PreparedStatement pstmtCardex = connectDB.prepareStatement("insert into st_stock_cardex values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
                                     pstmtCardex.setString(1, null);
-                                    pstmtCardex.setObject(3, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
+                                    pstmtCardex.setObject(3, stockCountTable.getValueAt(i, 1) + " " + stockCountTable.getValueAt(i, 2));
                                     pstmtCardex.setString(2, storeCmbx.getSelectedItem().toString());
                                     pstmtCardex.setDate(4, null);
                                     pstmtCardex.setDouble(6, price);
-                                    pstmtCardex.setObject(7, jTable1.getValueAt(i, 3));
+                                    pstmtCardex.setObject(7, stockCountTable.getValueAt(i, 3));
                                     pstmtCardex.setObject(8, "");
                                     pstmtCardex.setObject(9, null);
                                     pstmtCardex.setString(10, null);
 
-                                    if (balance < 0) {
-                                        pstmtCardex.setDouble(11, balance);
-                                        pstmtCardex.setDouble(5, 0.00);
-                                        pstmtCardex.setDouble(21, -1 * balance * price);
-                                        pstmtCardex.setDouble(22, 0.00);
-                                    } else if (balance >= 0) {
-                                        pstmtCardex.setDouble(11, balance);
-                                        pstmtCardex.setDouble(5, balance * price);
-                                        pstmtCardex.setDouble(21, 0.00);
-                                        pstmtCardex.setDouble(22, balance * price);
+                                    if (stCardexBalance < 0) {
+                                        pstmtCardex.setDouble(11, -1 * stCardexBalance); // Changed by CWW was - pstmtCardex.setDouble(11, balance);
+                                        pstmtCardex.setDouble(27, 0.00);
+                                    } else {
+                                        pstmtCardex.setDouble(27, stCardexBalance);
+                                        pstmtCardex.setDouble(11, 0.00);
                                     }
-
+                                    if (stCardexBalanceValue < 0.00) {
+                                        pstmtCardex.setDouble(21, -1 * stCardexBalanceValue);
+                                        pstmtCardex.setDouble(22, 0.00);
+                                        pstmtCardex.setDouble(5, 0.00);
+                                    } else {
+                                        pstmtCardex.setDouble(21, 0.00);
+                                        pstmtCardex.setDouble(22, 0.00);
+                                        pstmtCardex.setDouble(5, stCardexBalanceValue);
+                                    }
                                     pstmtCardex.setDouble(12, 0.00);
                                     pstmtCardex.setDouble(13, 0.00);
                                     pstmtCardex.setString(14, "-");
@@ -1921,25 +1534,25 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                     pstmtCardex.setString(24, "");
                                     pstmtCardex.setString(25, storeCmbx.getSelectedItem().toString());
                                     pstmtCardex.setString(26, transNo);
-                                    pstmtCardex.setDouble(27, 0.00);
                                     pstmtCardex.setString(28, user);
                                     pstmtCardex.setBoolean(29, false);
                                     pstmtCardex.setObject(30, 0.00);
                                     pstmtCardex.setObject(31, null);
-                                    pstmtCardex.setObject(32, jTable1.getValueAt(i, 0));
+                                    pstmtCardex.setObject(32, stockCountTable.getValueAt(i, 0));
                                     pstmtCardex.setObject(33, "");
                                     pstmtCardex.setObject(34, "");
                                     pstmtCardex.executeUpdate();
                                 }
+
                                 //add new stock         
                                 java.sql.PreparedStatement pstmtCardex3 = connectDB.prepareStatement("insert into st_stock_cardex values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
                                 pstmtCardex3.setString(1, null);
-                                pstmtCardex3.setObject(3, jTable1.getValueAt(i, 1) + " " + jTable1.getValueAt(i, 2));
+                                pstmtCardex3.setObject(3, stockCountTable.getValueAt(i, 1) + " " + stockCountTable.getValueAt(i, 2));
                                 pstmtCardex3.setString(2, storeCmbx.getSelectedItem().toString());
                                 pstmtCardex3.setDate(4, null);
                                 pstmtCardex3.setDouble(11, actual);
                                 pstmtCardex3.setDouble(6, price);
-                                pstmtCardex3.setObject(7, jTable1.getValueAt(i, 3));
+                                pstmtCardex3.setObject(7, stockCountTable.getValueAt(i, 3));
                                 pstmtCardex3.setObject(8, "");
                                 pstmtCardex3.setObject(9, null);
                                 pstmtCardex3.setString(10, null);
@@ -1965,7 +1578,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                 pstmtCardex3.setBoolean(29, false);
                                 pstmtCardex3.setObject(30, 0.00);
                                 pstmtCardex3.setObject(31, null);
-                                pstmtCardex3.setObject(32, jTable1.getValueAt(i, 0));
+                                pstmtCardex3.setObject(32, stockCountTable.getValueAt(i, 0));
                                 pstmtCardex3.setObject(33, "");
                                 pstmtCardex3.setObject(34, "");
                                 pstmtCardex3.executeUpdate();
@@ -1975,8 +1588,8 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                     java.sql.PreparedStatement pstmt1q1 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
                                     pstmt1q1.setObject(1, accountCoded);
                                     pstmt1q1.setString(2, glTyped);
-                                    pstmt1q1.setString(3, jTable1.getValueAt(i, 0).toString());
-                                    pstmt1q1.setString(4, jTable1.getValueAt(i, 1).toString());
+                                    pstmt1q1.setString(3, stockCountTable.getValueAt(i, 0).toString());
+                                    pstmt1q1.setString(4, stockCountTable.getValueAt(i, 1).toString());
                                     pstmt1q1.setString(6, String.valueOf(diff));
                                     pstmt1q1.setString(5, "Stock count diff");
                                     pstmt1q1.setString(7, "");
@@ -1989,13 +1602,12 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                                     pstmt1q1.setString(14, glTyped);
                                     pstmt1q1.setString(15, "stock count");
                                     if (diff > 0) { //loss
-                                        pstmt1q1.setDouble(17, 0.00);
-                                        /*debit*/ pstmt1q1.setDouble(16, price * diff);
-                                    } else if (diff < 0) { //gain
-                                        pstmt1q1.setDouble(17, price * diff * -1);
                                         pstmt1q1.setDouble(16, 0.00);
+                                        pstmt1q1.setDouble(17, diff);
+                                    } else if (diff < 0) { //gain
+                                        pstmt1q1.setDouble(16, -1 * diff);
+                                        pstmt1q1.setDouble(17, 0.00);
                                     }
-                                    //  price*quantity
                                     pstmt1q1.setDate(18, datenowSql);
                                     pstmt1q1.setString(19, transNo);
                                     pstmt1q1.setBoolean(20, false);
@@ -2017,19 +1629,19 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                         jLabel12.setForeground(java.awt.Color.blue);
                         javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Data Saved Successfully", "Information message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
-                        jButton1.setEnabled(false);
+                        reconcileInventoryBtn.setEnabled(false);
                         range1txt.setText("-");
                         range2txt.setText("-");
                         // javax.swing.JOptionPane.showMessageDialog(this, "Enter quantity issued","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
-                        for (int k = 0; k < jTable1.getRowCount(); k++) {
-                            for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                                jTable1.getModel().setValueAt(null, k, r);
+                        for (int k = 0; k < stockCountTable.getRowCount(); k++) {
+                            for (int r = 0; r < stockCountTable.getColumnCount(); r++) {
+                                stockCountTable.getModel().setValueAt(null, k, r);
                             }
                         }
 
                         storeCmbx.setSelectedItem(null);
                         reconcileDtpckr.setDate(null);
-                        jButton1.setEnabled(false);
+                        reconcileInventoryBtn.setEnabled(false);
                     } catch (java.sql.SQLException sq) {
                         javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
                         sq.printStackTrace();
@@ -2042,7 +1654,6 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                     }
 
                 }
-
             }
         }
     }
@@ -2050,10 +1661,9 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox categoryCmbx;
     private javax.swing.JRadioButton centralStorerbtn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton clearFormBtn;
+    private javax.swing.JButton closeFormBtn;
+    private javax.swing.JLabel inventoryCodeLbl;
     private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
@@ -2062,22 +1672,23 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JDialog jSearchDialog;
     private javax.swing.JPanel jSearchPanel;
     private javax.swing.JScrollPane jSearchScrollPane;
     private javax.swing.JTable jSearchTable;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField111;
     private javax.swing.JTextField range1txt;
     private javax.swing.JTextField range2txt;
     private com.afrisoftech.lib.DatePicker reconcileDtpckr;
+    private javax.swing.JButton reconcileInventoryBtn;
+    private javax.swing.JButton removeRowBtn;
+    private javax.swing.JLabel spacerLbl;
+    private javax.swing.JPanel stockCountBodyPanel;
+    private javax.swing.JScrollPane stockCountScrollPane;
+    private javax.swing.JTable stockCountTable;
     private javax.swing.JComboBox storeCmbx;
     private javax.swing.JTextField storeGLtxt;
     private javax.swing.JRadioButton subStorebtn;

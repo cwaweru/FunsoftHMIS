@@ -441,7 +441,7 @@ public class OutPatientBillPdf implements java.lang.Runnable {
                             
                             //  java.sql.ResultSet rset = st.executeQuery("select DISTINCT member_code, member_name,date from shares_transactions order by member_code");
                             java.sql.ResultSet rset = st.executeQuery("select patient_no,initcap(first_name||' '||second_name||' '||last_name),address,residence,tel_no from hp_patient_register where patient_no = '"+memNo+"'");
-                            java.sql.ResultSet rset1 = st1.executeQuery("select date_prescribed::date,initcap(description) as service,quantity,gl_code,amount from patient_bill where patient_no = '"+memNo+"' and date_prescribed BETWEEN '"+beginDate+"' AND '"+endDate+"' order by date_prescribed::date");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
+                            java.sql.ResultSet rset1 = st1.executeQuery("select date_prescribed::date,initcap(description) as service,quantity,gl_code,amount from patient_bill_scheme where patient_no = '"+memNo+"' and date_prescribed BETWEEN '"+beginDate+"' AND '"+endDate+"' order by date_prescribed::date");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
                             // java.sql.ResultSet rsetTotals = st2.executeQuery("select sum(amount) from patient_bill where patient_no = '"+memNo+"'");
                             
                             

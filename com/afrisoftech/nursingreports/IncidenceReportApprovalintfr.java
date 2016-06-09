@@ -191,7 +191,7 @@ public class IncidenceReportApprovalintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         getContentPane().add(jPanel2, gridBagConstraints);
 
-        reportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT oid as ReportNo,date, invoves, invoveswho,reportedby incidence_detailactiontaken, reportedto,reportinguser,  approved, approved_on, approved_by  FROM incidence where reportedto=current_user order by date desc"));
+        reportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT oid as ReportNo,date, involves, involveswho,reportedby incidence_detailactiontaken, reportedto,reportinguser,  approved, approved_on, approved_by  FROM incidence where reportedto=current_user order by date desc"));
         reportTable.setRowHeight(23);
         reportTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -299,16 +299,16 @@ public class IncidenceReportApprovalintfr extends javax.swing.JInternalFrame {
     private void patientComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_patientComboBoxItemStateChanged
 
         involvesWho = patientComboBox.getSelectedItem();
-        reportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT oid as ReportNo,date, invoves, invoveswho,reportedby incidence_detailactiontaken, reportedto,reportinguser,  approved, approved_on, approved_by  "
-                + "FROM incidence where reportedto=current_user and invoveswho='" + involvesWho + "' order by date desc"));
+        reportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT oid as ReportNo,date, involves, involveswho,reportedby incidence_detailactiontaken, reportedto,reportinguser,  approved, approved_on, approved_by  "
+                + "FROM incidence where reportedto=current_user and involveswho='" + involvesWho + "' order by date desc"));
 
     }//GEN-LAST:event_patientComboBoxItemStateChanged
 
     private void staffComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_staffComboBoxItemStateChanged
 
         involvesWho = staffComboBox.getSelectedItem();
-        reportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT oid as ReportNo,date, invoves, invoveswho,reportedby incidence_detailactiontaken, reportedto,reportinguser,  approved, approved_on, approved_by  "
-                + "FROM incidence where reportedto=current_user and invoveswho='" + involvesWho + "' order by date desc"));
+        reportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT oid as ReportNo,date, involves, involveswho,reportedby incidence_detailactiontaken, reportedto,reportinguser,  approved, approved_on, approved_by  "
+                + "FROM incidence where reportedto=current_user and involveswho='" + involvesWho + "' order by date desc"));
 
     }//GEN-LAST:event_staffComboBoxItemStateChanged
 
@@ -317,9 +317,9 @@ public class IncidenceReportApprovalintfr extends javax.swing.JInternalFrame {
 
             involves = staffCheckBox.getActionCommand();
             staffComboBox.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, ""
-                    + "SELECT distinct invoveswho  FROM incidence where invoves='" + involves + "' order by 1 asc"));
-            reportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT oid as ReportNo,date, invoves, invoveswho,reportedby incidence_detailactiontaken, reportedto,reportinguser,  approved, approved_on, approved_by  "
-                    + "FROM incidence where reportedto=current_user and invoves='" + involves + "' order by date desc"));
+                    + "SELECT distinct involveswho  FROM incidence where involves='" + involves + "' order by 1 asc"));
+            reportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT oid as ReportNo,date, involves, involveswho,reportedby incidence_detailactiontaken, reportedto,reportinguser,  approved, approved_on, approved_by  "
+                    + "FROM incidence where reportedto=current_user and involves='" + involves + "' order by date desc"));
 
         }
     }//GEN-LAST:event_staffCheckBoxItemStateChanged
@@ -329,15 +329,15 @@ public class IncidenceReportApprovalintfr extends javax.swing.JInternalFrame {
 
             involves = patCheckBox.getActionCommand();
             patientComboBox.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, ""
-                    + "SELECT distinct invoveswho  FROM incidence where invoves='" + involves + "' order by 1 asc"));
-            reportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT oid as ReportNo,date, invoves, invoveswho,reportedby incidence_detailactiontaken, reportedto,reportinguser,  approved, approved_on, approved_by  "
-                    + "FROM incidence where reportedto=current_user and invoves='" + involves + "' order by date desc"));
+                    + "SELECT distinct involveswho  FROM incidence where involves='" + involves + "' order by 1 asc"));
+            reportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT oid as ReportNo,date, involves, involveswho,reportedby incidence_detailactiontaken, reportedto,reportinguser,  approved, approved_on, approved_by  "
+                    + "FROM incidence where reportedto=current_user and involves='" + involves + "' order by date desc"));
 
         }
     }//GEN-LAST:event_patCheckBoxItemStateChanged
 
     private void departmentComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_departmentComboBoxItemStateChanged
-        reportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT oid as ReportNo,date, invoves, invoveswho,reportedby incidence_detailactiontaken, reportedto,reportinguser,  approved, approved_on, approved_by  "
+        reportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT oid as ReportNo,date, involves, involveswho,reportedby incidence_detailactiontaken, reportedto,reportinguser,  approved, approved_on, approved_by  "
                 + "FROM incidence where reportedto=current_user and department='" + departmentComboBox.getSelectedItem() + "' order by date desc"));
 
     }//GEN-LAST:event_departmentComboBoxItemStateChanged
@@ -346,7 +346,7 @@ public class IncidenceReportApprovalintfr extends javax.swing.JInternalFrame {
         String textAreaData = null;
         try {
 
-            java.sql.PreparedStatement pstmtVector = connectDB.prepareStatement("SELECT  invoveswho, \n"
+            java.sql.PreparedStatement pstmtVector = connectDB.prepareStatement("SELECT  involveswho, \n"
                     + "concat(victims,'  \n', vicperonalno,'  \n', vicunit,'  \n', victel,'  \n',  vicdate_time) asVictims, \n"
                     + "concat(reportedby, '  ',peronalno,'  \n', unit,'  ', tel,'  ', date_time)as Reported_By, \n"
                     + "incidence_detail, \n"

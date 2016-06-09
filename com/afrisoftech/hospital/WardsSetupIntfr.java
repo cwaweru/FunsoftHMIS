@@ -817,8 +817,8 @@ public class WardsSetupIntfr extends javax.swing.JInternalFrame {
         int i = 0;
         jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select "
                 + "ward_code,ward_name,wing,max_beds,deposit,exp_period,revdesc as bed_revdesc,revcode as bed_revcode, "
-                + "nursing_revdesc, nursing_revcode, admission_revdesc, admission_revcode from hp_wards ORDER BY ward_name"));
-        jButton1.setLabel("Update");        // Add your handling code here:
+                + "nursing_revdesc, nursing_revcode, admission_revdesc, admission_revcode, gender, auto_bill, ward_type from hp_wards ORDER BY ward_name"));
+        jButton1.setText("Update");        // Add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -831,7 +831,7 @@ public class WardsSetupIntfr extends javax.swing.JInternalFrame {
         System.out.println(datenowSql.toString());
         // java.lang.Object name = "false";
         try {
-            connectDB.setAutoCommit(false);
+      //      connectDB.setAutoCommit(false);
 
 
             for (int i = 0; i < jTable1.getRowCount(); i++) {
@@ -851,14 +851,18 @@ public class WardsSetupIntfr extends javax.swing.JInternalFrame {
                                 + "nursing_revdesc = '" + jTable1.getValueAt(i, 8).toString() + "',"
                                 + "nursing_revcode = '" + jTable1.getValueAt(i, 9).toString() + "', "
                                 + "admission_revdesc = '" + jTable1.getValueAt(i, 10).toString() + "',"
-                                + "admission_revcode = '" + jTable1.getValueAt(i, 11).toString() + "' "
+                                + "admission_revcode = '" + jTable1.getValueAt(i, 11).toString() + "', "
+                                + "gender = '" + jTable1.getValueAt(i, 12).toString() + "', "
+                                + "auto_bill  = '" + Boolean.parseBoolean(jTable1.getValueAt(i, 13).toString()) + "', "
+                                + "ward_type = '" + jTable1.getValueAt(i, 14).toString() + "' "
                                 + "WHERE ward_code = '" + jTable1.getValueAt(i, 0).toString() + "'");
+                        
                         pstmt311.executeUpdate();
 //                        javax.swing.JOptionPane.showMessageDialog(this, "Update Successful", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                     } else {
 
-                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into hp_wards values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into hp_wards values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
                         pstmt.setObject(1, jTable1.getValueAt(i, 0).toString());
                         //  pstmt.setDate(4, datenowSql);
@@ -884,12 +888,15 @@ public class WardsSetupIntfr extends javax.swing.JInternalFrame {
                         pstmt.setObject(13, jTable1.getValueAt(i, 9).toString());
                         pstmt.setObject(14, jTable1.getValueAt(i, 10).toString());
                         pstmt.setObject(15, jTable1.getValueAt(i, 11).toString());
+                        pstmt.setObject(16, jTable1.getValueAt(i, 12).toString());
+                        pstmt.setBoolean(17, Boolean.parseBoolean(jTable1.getValueAt(i, 13).toString()));
+                        pstmt.setObject(18, jTable1.getValueAt(i, 14).toString());
                         pstmt.executeUpdate();
                     }
                 }
             }
-            connectDB.commit();
-            connectDB.setAutoCommit(true);
+//            connectDB.commit();
+//            connectDB.setAutoCommit(true);
             javax.swing.JOptionPane.showMessageDialog(this, "Insert/Update Successful", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
             // jLabel4.setForeground(java.awt.Color.blue);

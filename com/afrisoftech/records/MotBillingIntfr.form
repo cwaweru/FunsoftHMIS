@@ -353,7 +353,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable1">
+                <Component class="javax.swing.JTable" name="mortBillingTable">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="5" rowCount="101">
@@ -374,12 +374,12 @@
                     </Property>
                   </AccessibilityProperties>
                   <Events>
-                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTable1KeyReleased"/>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseClicked"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mortBillingTableKeyReleased"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mortBillingTableMouseClicked"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable(){&#xa;    Class[] types = new Class [] {&#xa;                java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class&#xa;            };&#xa;            boolean[] canEdit = new boolean [] {&#xa;                false, true, true, false, false&#xa;            };&#xa;&#xa;            public Class getColumnClass(int columnIndex) {&#xa;                return types [columnIndex];&#xa;            }&#xa;&#xa;            public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;                return canEdit [columnIndex];&#xa;            }&#xa;        };"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="javax.swing.table.TableColumn column = null;&#xa;for (int i = 0; i &lt; 5; i++) {&#xa;    column = jTable1.getColumnModel().getColumn(i);&#xa;    if (i == 0) {&#xa;        &#xa;        column.setPreferredWidth(500); //sport column is bigger&#xa;    } else {&#xa;        if(i == 1){&#xa;            column.setPreferredWidth(50);&#xa;        }else{&#xa;            if(i == 5){&#xa;                column.setPreferredWidth(250);&#xa;            }else{&#xa;                //if (i == 2) {&#xa;                column.setPreferredWidth(100);&#xa;                // }  else&#xa;                //column.setPreferredWidth(50);&#xa;            }&#xa;        }&#xa;    }&#xa;}"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="javax.swing.table.TableColumn column = null;&#xa;for (int i = 0; i &lt; 5; i++) {&#xa;    column = mortBillingTable.getColumnModel().getColumn(i);&#xa;    if (i == 0) {&#xa;        &#xa;        column.setPreferredWidth(500); //sport column is bigger&#xa;    } else {&#xa;        if(i == 1){&#xa;            column.setPreferredWidth(50);&#xa;        }else{&#xa;            if(i == 5){&#xa;                column.setPreferredWidth(250);&#xa;            }else{&#xa;                //if (i == 2) {&#xa;                column.setPreferredWidth(100);&#xa;                // }  else&#xa;                //column.setPreferredWidth(50);&#xa;            }&#xa;        }&#xa;    }&#xa;}"/>
                   </AuxValues>
                 </Component>
               </SubComponents>

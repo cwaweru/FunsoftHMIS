@@ -313,7 +313,7 @@ public class IncidenceReportintfr extends javax.swing.JInternalFrame {
                     connectDB.setAutoCommit(false);
                     java.sql.PreparedStatement pstmt = connectDB.prepareStatement(
                             "INSERT INTO incidence(\n"
-                            + "  invoves, invoveswho,"
+                            + "  involves, involveswho,"
                             + " victims, vicperonalno, vicunit, victel, vicdate_time, "
                             + "reportedby, peronalno, unit, tel, date_time,"
                             + " incidence_detail, \n"

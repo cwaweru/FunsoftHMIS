@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.2" maxVersion="1.2" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="patientSearchbtnGrp">
     </Component>
@@ -1507,7 +1507,7 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Container class="javax.swing.JPanel" name="jPanel4113">
+                        <Container class="javax.swing.JPanel" name="maritalStatusesPanel">
                           <Properties>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -1595,7 +1595,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Component class="javax.swing.JLabel" name="jLabel22">
+                        <Component class="javax.swing.JLabel" name="dateofLastVisitLbl">
                           <Properties>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="0" red="0" type="rgb"/>
@@ -1608,7 +1608,7 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField16">
+                        <Component class="javax.swing.JTextField" name="dateofLastVisitTxt">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1616,7 +1616,7 @@
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTextField16MouseClicked"/>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="dateofLastVisitTxtMouseClicked"/>
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -1637,7 +1637,7 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel50">
+                        <Component class="javax.swing.JLabel" name="specialtyClinicLbl">
                           <Properties>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="99" green="33" red="ff" type="rgb"/>
@@ -1746,12 +1746,12 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Container class="javax.swing.JPanel" name="jPanel9">
+                        <Container class="javax.swing.JPanel" name="dateofBirthPanel">
                           <Events>
-                            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel9MouseExited"/>
-                            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel9MouseReleased"/>
-                            <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jPanel9MouseDragged"/>
-                            <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jPanel9MouseMoved"/>
+                            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="dateofBirthPanelMouseExited"/>
+                            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="dateofBirthPanelMouseReleased"/>
+                            <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="dateofBirthPanelMouseDragged"/>
+                            <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="dateofBirthPanelMouseMoved"/>
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -1785,7 +1785,32 @@
                               </AuxValues>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                  <GridBagConstraints gridX="1" gridY="0" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="30" anchor="10" weightX="1.0" weightY="1.0"/>
+                                  <GridBagConstraints gridX="1" gridY="0" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel3">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Age (YRS)"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                  <GridBagConstraints gridX="2" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="javax.swing.JFormattedTextField" name="ageYrsTxt">
+                              <Properties>
+                                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+                                  <Format format="#0" subtype="-1" type="0"/>
+                                </Property>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="ageYrsTxtCaretUpdate"/>
+                              </Events>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                  <GridBagConstraints gridX="3" gridY="0" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -1847,7 +1872,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JLabel" name="jLabel3">
+                        <Component class="javax.swing.JLabel" name="physicalResidenceLbl">
                           <Properties>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="99" green="33" red="ff" type="rgb"/>
@@ -1861,9 +1886,6 @@
                           </Constraints>
                         </Component>
                         <Component class="javax.swing.JTextField" name="residenceTxt">
-                          <Properties>
-                            <Property name="editable" type="boolean" value="false"/>
-                          </Properties>
                           <Events>
                             <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="residenceTxtCaretUpdate"/>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="residenceTxtActionPerformed"/>
@@ -2062,7 +2084,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Component class="javax.swing.JLabel" name="jLabel39">
+                        <Component class="javax.swing.JLabel" name="referredFromLbl">
                           <Properties>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="99" green="33" red="ff" type="rgb"/>
@@ -2075,7 +2097,7 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel40">
+                        <Component class="javax.swing.JLabel" name="unitNumberLbl">
                           <Properties>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="99" green="33" red="ff" type="rgb"/>
@@ -2105,7 +2127,7 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel45">
+                        <Component class="javax.swing.JLabel" name="residenceCountyLbl">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="County of Residence"/>
                           </Properties>
@@ -2162,7 +2184,7 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel55">
+                        <Component class="javax.swing.JLabel" name="clinicNumberLbl">
                           <Properties>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="99" green="33" red="ff" type="rgb"/>
@@ -2175,14 +2197,14 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField1">
+                        <Component class="javax.swing.JTextField" name="clinicNumberTxt">
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                               <GridBagConstraints gridX="1" gridY="6" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel56">
+                        <Component class="javax.swing.JLabel" name="registrationPointLbl">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Registration Service Point"/>
                           </Properties>
@@ -2207,7 +2229,7 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel59">
+                        <Component class="javax.swing.JLabel" name="placeofBirthLbl">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Place of Birth"/>
                           </Properties>
@@ -3750,7 +3772,7 @@
                             <Component class="javax.swing.JTable" name="reportsTable">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                                  <Connection code="com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, &quot;SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE date = current_date order by 1&quot;)&#xd;&#xa;" type="code"/>
+                                  <Connection code="com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, &quot;SELECT DISTINCT patient_no, initcap(name) as patient_name, input_date::time(0) as registration_time, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE date = current_date order by 3&quot;)&#xd;&#xa;" type="code"/>
                                 </Property>
                               </Properties>
                               <AuxValues>
@@ -4323,7 +4345,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                  <GridBagConstraints gridX="0" gridY="5" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="2.0" weightY="20.0"/>
+                  <GridBagConstraints gridX="0" gridY="5" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="2.0" weightY="10.0"/>
                 </Constraint>
               </Constraints>
 

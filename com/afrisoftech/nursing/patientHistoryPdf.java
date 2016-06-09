@@ -451,7 +451,7 @@ public class patientHistoryPdf implements java.lang.Runnable {
 
                                 table.getDefaultCell().setColspan(3);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Patient No.  " +   dbObject.getDBObject(rsetp.getObject(1).toString(),"-"), pFontHeader11);
+                                phrase = new Phrase("Patient No.  " +   dbObject.getDBObject(rsetp.getObject(1),"-"), pFontHeader11);
                                 table.addCell(phrase);
 
 
@@ -472,14 +472,14 @@ public class patientHistoryPdf implements java.lang.Runnable {
                                 
                                 table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase(dbObject.getDBObject(rsetp.getObject(2).toString(),""), pFontHeader11);
+                                phrase = new Phrase(dbObject.getDBObject(rsetp.getObject(2),""), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(6);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Accident Type:   "+rsetp.getObject(3).toString()+",  mode of arrival:   "+rsetp.getObject(4).toString()
-                                         +",  status: "+rsetp.getObject(5).toString() +",  patient at risk:   "+rsetp.getObject(6).toString() +",  medication_taken: "+rsetp.getObject(7).toString()
-                                        +",  patient_valuables: "+rsetp.getObject(8).toString()+", serious illness: "+rsetp.getObject(9).toString() 
+                                phrase = new Phrase("Accident Type:   "+rsetp.getObject(3)+",  mode of arrival:   "+rsetp.getObject(4)
+                                         +",  status: "+rsetp.getObject(5) +",  patient at risk:   "+rsetp.getObject(6) +",  medication_taken: "+rsetp.getObject(7)
+                                        +",  patient_valuables: "+rsetp.getObject(8)+", serious illness: "+rsetp.getObject(9) 
                                         , pFontHeader11);
 
                                 table.addCell(phrase);
@@ -504,16 +504,16 @@ public class patientHistoryPdf implements java.lang.Runnable {
                                 
                                 table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase(  dbObject.getDBObject(rsetj.getObject(2).toString(),"-"), pFontHeader11);
+                                phrase = new Phrase(  dbObject.getDBObject(rsetj.getObject(2),"-"), pFontHeader11);
                                 table.addCell(phrase); 
                                 
 
                                 
                                 table.getDefaultCell().setColspan(6);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("suffers stroke:   "+  dbObject.getDBObject(rsetj.getObject(4).toString(),"-")+",  stroke effect:   "+  dbObject.getDBObject(rsetj.getObject(5).toString(),"-")
-                                         +",  stroke effect: "+  dbObject.getDBObject(rsetj.getObject(6).toString(),"-") +",  epileptic:   "+  dbObject.getDBObject(rsetj.getObject(7).toString(),"-") +", epilepsy description: "+  dbObject.getDBObject(rsetj.getObject(8).toString(),"-")
-                                        +",  when epilepsy started: "+  dbObject.getDBObject(rsetj.getObject(9).toString(),"-")+", suffers depression: "+  dbObject.getDBObject(rsetj.getObject(10).toString(),"-") 
+                                phrase = new Phrase("suffers stroke:   "+  dbObject.getDBObject(rsetj.getObject(4),"-")+",  stroke effect:   "+  dbObject.getDBObject(rsetj.getObject(5),"-")
+                                         +",  stroke effect: "+  dbObject.getDBObject(rsetj.getObject(6),"-") +",  epileptic:   "+  dbObject.getDBObject(rsetj.getObject(7),"-") +", epilepsy description: "+  dbObject.getDBObject(rsetj.getObject(8),"-")
+                                        +",  when epilepsy started: "+  dbObject.getDBObject(rsetj.getObject(9),"-")+", suffers depression: "+  dbObject.getDBObject(rsetj.getObject(10),"-") 
                                         , pFontHeader11);
                                 table.addCell(phrase); 
                                 
@@ -546,16 +546,16 @@ public class patientHistoryPdf implements java.lang.Runnable {
                                 
                                 table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase(dbObject.getDBObject(rsetg.getObject(2).toString(),""), pFontHeader11);
+                                phrase = new Phrase(dbObject.getDBObject(rsetg.getObject(2),""), pFontHeader11);
                                 table.addCell(phrase); 
                                 
 
                                 
                                 table.getDefaultCell().setColspan(6);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("kidney disorder:   "+  dbObject.getDBObject(rsetg.getObject(4).toString(),"-")+",  disorder type:   "+  dbObject.getDBObject(rsetg.getObject(5).toString(),"-")
-                                         +",  disorder_time: "+  dbObject.getDBObject(rsetg.getObject(6).toString(),"-") +",  gastric_reflux:   "+  dbObject.getDBObject(rsetg.getObject(7).toString(),"-") +", specify_gastric: "+  dbObject.getDBObject(rsetg.getObject(8).toString(),"-")
-                                        +",  gastric_when: "+  dbObject.getDBObject(rsetg.getObject(9).toString(),"-")+", menstrual_period: "+  dbObject.getDBObject(rsetg.getObject(10).toString(),"-") , pFontHeader11);
+                                phrase = new Phrase("kidney disorder:   "+  dbObject.getDBObject(rsetg.getObject(4),"-")+",  disorder type:   "+  dbObject.getDBObject(rsetg.getObject(5),"-")
+                                         +",  disorder_time: "+  dbObject.getDBObject(rsetg.getObject(6),"-") +",  gastric_reflux:   "+  dbObject.getDBObject(rsetg.getObject(7),"-") +", specify_gastric: "+  dbObject.getDBObject(rsetg.getObject(8),"-")
+                                        +",  gastric_when: "+  dbObject.getDBObject(rsetg.getObject(9),"-")+", menstrual_period: "+  dbObject.getDBObject(rsetg.getObject(10),"-") , pFontHeader11);
                                 table.addCell(phrase); 
                                 
 //                                SELECT patient_no, server_date, action_date, kidney_disorder, 
@@ -588,16 +588,16 @@ public class patientHistoryPdf implements java.lang.Runnable {
                                 
                                 table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase(dbObject.getDBObject(rsetm.getObject(2).toString(),""), pFontHeader11);
+                                phrase = new Phrase(dbObject.getDBObject(rsetm.getObject(2),""), pFontHeader11);
                                 table.addCell(phrase); 
                                 
 
                                 
                                 table.getDefaultCell().setColspan(6);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Artificial joints:   "+  dbObject.getDBObject(rsetm.getObject(4).toString(),"-")+",  joint specify:   "+  dbObject.getDBObject(rsetm.getObject(5).toString(),"-")
-                                         +",  injuries:"+  dbObject.getDBObject(rsetm.getObject(6).toString(),"-") +",  explain injury:   "+  dbObject.getDBObject(rsetm.getObject(7).toString(),"-") +", diabetic: "+  dbObject.getDBObject(rsetm.getObject(8).toString(),"-")
-                                        +",  controlled_by: "+  dbObject.getDBObject(rsetm.getObject(9).toString(),"-")+", hepatitis: "+  dbObject.getDBObject(rsetm.getObject(10).toString(),"-") 
+                                phrase = new Phrase("Artificial joints:   "+  dbObject.getDBObject(rsetm.getObject(4),"-")+",  joint specify:   "+  dbObject.getDBObject(rsetm.getObject(5),"-")
+                                         +",  injuries:"+  dbObject.getDBObject(rsetm.getObject(6),"-") +",  explain injury:   "+  dbObject.getDBObject(rsetm.getObject(7),"-") +", diabetic: "+  dbObject.getDBObject(rsetm.getObject(8),"-")
+                                        +",  controlled_by: "+  dbObject.getDBObject(rsetm.getObject(9),"-")+", hepatitis: "+  dbObject.getDBObject(rsetm.getObject(10),"-") 
                                         , pFontHeader11);
                                 table.addCell(phrase); 
                                 
@@ -631,16 +631,16 @@ public class patientHistoryPdf implements java.lang.Runnable {
                                 
                                 table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase(  dbObject.getDBObject(rsetb.getObject(2).toString(),"-"), pFontHeader11);
+                                phrase = new Phrase(  dbObject.getDBObject(rsetb.getObject(2),"-"), pFontHeader11);
                                 table.addCell(phrase); 
                                 
 
                                 
                                 table.getDefaultCell().setColspan(6);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("blood_disorder:   "+  dbObject.getDBObject(rsetb.getObject(4).toString(),"-")+",  specify_disorder:   "+  dbObject.getDBObject(rsetb.getObject(5).toString(),"-")
-                                         +", disorder_time:"+  dbObject.getDBObject(rsetb.getObject(6).toString(),"-") +",  blood_transfusion:   "+  dbObject.getDBObject(rsetb.getObject(7).toString(),"-") +", specify_transfussion: "+  dbObject.getDBObject(rsetb.getObject(8).toString(),"-")
-                                        +",  blood_clot: "+  dbObject.getDBObject(rsetb.getObject(9).toString(),"-")+", specify_clot: "+  dbObject.getDBObject(rsetb.getObject(10).toString(),"-") 
+                                phrase = new Phrase("blood_disorder:   "+  dbObject.getDBObject(rsetb.getObject(4),"-")+",  specify_disorder:   "+  dbObject.getDBObject(rsetb.getObject(5),"-")
+                                         +", disorder_time:"+  dbObject.getDBObject(rsetb.getObject(6),"-") +",  blood_transfusion:   "+  dbObject.getDBObject(rsetb.getObject(7),"-") +", specify_transfussion: "+  dbObject.getDBObject(rsetb.getObject(8),"-")
+                                        +",  blood_clot: "+  dbObject.getDBObject(rsetb.getObject(9),"-")+", specify_clot: "+  dbObject.getDBObject(rsetb.getObject(10),"-") 
                                         , pFontHeader11);
                                 table.addCell(phrase); 
                                 
@@ -676,15 +676,15 @@ public class patientHistoryPdf implements java.lang.Runnable {
                                 
                                 table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase(  dbObject.getDBObject(rsetcm.getObject(2).toString(),"-"), pFontHeader11);
+                                phrase = new Phrase(  dbObject.getDBObject(rsetcm.getObject(2),"-"), pFontHeader11);
                                 table.addCell(phrase); 
                                 
 
                                 
                                 table.getDefaultCell().setColspan(6);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Drug Name:   "+  dbObject.getDBObject(rsetcm.getObject(4).toString(),"-")+",  strength:   "+  dbObject.getDBObject(rsetcm.getObject(5).toString(),"-")
-                                         +", Tablets per day:"+  dbObject.getDBObject(rsetcm.getObject(6).toString(),"-") +",  Number at each time:   "+  dbObject.getDBObject(rsetcm.getObject(7).toString(),"-") +", History done by: "+  dbObject.getDBObject(rsetcm.getObject(8).toString(),"-"), pFontHeader11);
+                                phrase = new Phrase("Drug Name:   "+  dbObject.getDBObject(rsetcm.getObject(4),"-")+",  strength:   "+  dbObject.getDBObject(rsetcm.getObject(5),"-")
+                                         +", Tablets per day:"+  dbObject.getDBObject(rsetcm.getObject(6),"-") +",  Number at each time:   "+  dbObject.getDBObject(rsetcm.getObject(7),"-") +", History done by: "+  dbObject.getDBObject(rsetcm.getObject(8),"-"), pFontHeader11);
                                 table.addCell(phrase); 
  
 
@@ -1126,7 +1126,7 @@ public class patientHistoryPdf implements java.lang.Runnable {
                                         Test = rset121.getObject(1).toString();
                                         testName = rset121.getObject(2).toString();
                                         TimesD = rset121.getObject(3).toString();;
-                                        Tech = "LabTech: " + rset121.getObject(4).toString() + "\n Conf By: " + rset121.getObject(5).toString();;
+                                        Tech = "LabTech: " + rset121.getObject(4) + "\n Conf By: " + rset121.getObject(5);;
                                         // Confermer = "";
 
                                         if (Tech.equalsIgnoreCase("")) {
@@ -1737,7 +1737,7 @@ public class patientHistoryPdf implements java.lang.Runnable {
                             docPdf.add(table);
 
                         } catch (java.sql.SQLException SqlExec) {
-
+                               SqlExec.printStackTrace();
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
                         }

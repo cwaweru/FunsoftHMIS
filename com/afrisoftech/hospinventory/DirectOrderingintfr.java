@@ -517,7 +517,7 @@ public class DirectOrderingintfr extends javax.swing.JInternalFrame {
         jPanel1.add(jTextField9, gridBagConstraints);
 
         jLabel13.setForeground(new java.awt.Color(255, 0, 102));
-        jLabel13.setText("Receiving store");
+        jLabel13.setText("Ordering store");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
@@ -528,7 +528,6 @@ public class DirectOrderingintfr extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel13, gridBagConstraints);
 
         supplierCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT supplier_name FROM st_suppliers ORDER BY supplier_name"));
-        supplierCmbx.setEnabled(false);
         supplierCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 supplierCmbxActionPerformed(evt);
@@ -562,7 +561,6 @@ public class DirectOrderingintfr extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel4, gridBagConstraints);
 
         receivingStore.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT store_name FROM st_main_stores ORDER BY store_name"));
-        receivingStore.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
@@ -755,7 +753,7 @@ public class DirectOrderingintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel1.add(orderCmbx, gridBagConstraints);
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Votebook Details(compulsory)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, java.awt.Color.red));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Votebook Details(compulsory)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
         jLabel16.setText("Vote name");
@@ -1461,11 +1459,11 @@ public class DirectOrderingintfr extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Stock Code", "Item", "Strength", "Balance", "Unit Pack", "Qty", "Unit price", "Gross Value", "Discount", "Disc. Value", "Net Value", "Order ?"
+                "Stock Code", "Item", "Strength", "Balance", "Units/Pack", "Qty", "Unit price", "Gross Value", "Discount", "Disc. Value", "Net Value", "Order ?"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, true, true, true, false, true, true, false, true
@@ -1650,7 +1648,7 @@ public class DirectOrderingintfr extends javax.swing.JInternalFrame {
             java.sql.ResultSet rsetTable = stmtTable.executeQuery("SELECT item_code,item_description,strength,balance,units,"
                     + "quantity,price,(quantity*price)::numeric(15,2) FROM st_receive_requisation"
                     + " WHERE requisition_no ilike '" + reqNotxt.getText() + "'  "
-                    + "and item_code NOT IN(SELECT DISTINCT code FROM st_orders WHERE quotation_no ilike '%"+reqNotxt.getText()+"'  )"
+                    + "and item_code NOT IN(SELECT DISTINCT code FROM st_orders WHERE quotation_no ilike '%" + reqNotxt.getText() + "'  )"
                     + "order by item_description");
             //  java.sql.ResultSet rsetTable111 = stmtTable111.executeQuery("SELECT sum(receiving-issuing) FROM st_sub_stores WHERE store_name = '"+jTextField1.getText().equalsIgnoreCase(jTextField1.getText())+"' and item = '"+jTable1.getValueAt(k,0).toString()+"'");
 
@@ -1670,9 +1668,9 @@ public class DirectOrderingintfr extends javax.swing.JInternalFrame {
                 i++;
 
             }
-            
-            if(i<1){
-               javax.swing.JOptionPane.showMessageDialog(this, "Items completely ordered"); 
+
+            if (i < 1) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Items completely ordered");
             }
 
             java.sql.Statement stmtTablez = connectDB.createStatement();
@@ -1688,7 +1686,7 @@ public class DirectOrderingintfr extends javax.swing.JInternalFrame {
             }
 
         } catch (java.sql.SQLException sqlExec) {
-
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
 
         }
@@ -1794,7 +1792,7 @@ public class DirectOrderingintfr extends javax.swing.JInternalFrame {
         toPopulate.dispose();
         java.awt.Point point = this.reqNotxt.getLocationOnScreen();
 
-        toPopulate.setSize(400, 200);
+        toPopulate.setSize(600, 200);
 
         toPopulate.setLocation(point);
         toPopulate.setVisible(true);
@@ -1908,7 +1906,7 @@ public class DirectOrderingintfr extends javax.swing.JInternalFrame {
 
         System.out.println("Showing dialog");
         java.awt.Point point = jScrollPane2.getLocationOnScreen();
-        jSearchDialog.setSize(400, 200);
+        jSearchDialog.setSize(600, 200);
         jSearchDialog.setLocation(point);
         jSearchDialog.setVisible(true);
     }
@@ -1920,7 +1918,7 @@ public class DirectOrderingintfr extends javax.swing.JInternalFrame {
         if (this.jTextField111.getCaretPosition() < 1) {
             System.out.print("Nothing");
         } else {
-            jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select item_code,description,strength,units,buying_price as price FROM st_stock_item WHERE description ILIKE '" + jTextField111.getText() + "%' AND department ilike '" + receivingStore.getSelectedItem().toString() + "%' ORDER BY description"));
+            jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select item_code,description,strength,packaging,buying_price as price FROM st_stock_item WHERE description ILIKE '%" + jTextField111.getText() + "%' AND department ilike '" + receivingStore.getSelectedItem().toString() + "%' ORDER BY description"));
 
             jSearchScrollPane.setViewportView(jSearchTable);
             System.out.println("Cannot sort out");
@@ -2259,14 +2257,16 @@ public class DirectOrderingintfr extends javax.swing.JInternalFrame {
                     System.out.println(datenowSql.toString());
 
                     java.sql.Savepoint registerSavePoint = null;
-                    try {
-                        connectDB.setAutoCommit(false);
-                        registerSavePoint = connectDB.setSavepoint("registration");
-                    } catch (java.sql.SQLException ex) {
-                        ex.printStackTrace();
-                    }
+//                    try {
+//                        
+//                        registerSavePoint = connectDB.setSavepoint("registration");
+//                    } catch (java.sql.SQLException ex) {
+//                        ex.printStackTrace();
+//                    }
 
                     try {
+//                        connectDB.setAutoCommit(false);
+//                        registerSavePoint = connectDB.setSavepoint("registration");
                         String order_no1 = null;
                         java.sql.Statement pstmt1s = connectDB.createStatement();
                         java.sql.ResultSet rs1s = pstmt1s.executeQuery("select nextval('order_no_seq')"); //from orders where supplier ='"+jTable1.getValueAt(i,4).toString()+"'");
@@ -2327,15 +2327,11 @@ public class DirectOrderingintfr extends javax.swing.JInternalFrame {
                             }
                         }
 
-                        //  java.sql.PreparedStatement 
                         OrdersPdf policy = new OrdersPdf();
                         policy.OrdersPdf(connectDB, supplierCmbx.getSelectedItem().toString(), oder_no);
 
-                        //     java.sql.PreparedStatement pstmt4 = connectDB.prepareStatement("UPDATE st_orders SET ordered ='true' WHERE item = '"+this.jComboBox1.getSelectedItem().toString()+"'");
-                        //     pstmt4.executeUpdate();
                         com.afrisoftech.lib.GetItemInfo.updateTrail("Generated a Direct Purchase Order " + oder_no + " to" + supplierCmbx.getSelectedItem(), connectDB);
-                        connectDB.commit();
-                        connectDB.setAutoCommit(true);
+
 
                         javax.swing.JOptionPane.showMessageDialog(this, "Generated a Direct Purchase Order " + oder_no + " to " + supplierCmbx.getSelectedItem(), "Comfirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
@@ -2347,14 +2343,15 @@ public class DirectOrderingintfr extends javax.swing.JInternalFrame {
 
                         this.postbtn.setEnabled(false);
                     } catch (java.sql.SQLException sq) {
+                        sq.printStackTrace();
                         javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
 
                         jLabel7.setForeground(java.awt.Color.red);
-                        try {
-                            connectDB.rollback(registerSavePoint);
-                        } catch (java.sql.SQLException sql) {
-                            javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                        }
+//                        try {
+//                            connectDB.rollback(registerSavePoint);
+//                        } catch (java.sql.SQLException sql) {
+//                            javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+//                        }
                         System.out.println(sq.getMessage());
 
                     }

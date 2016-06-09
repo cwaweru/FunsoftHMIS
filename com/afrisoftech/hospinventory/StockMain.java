@@ -1434,6 +1434,11 @@ public class StockMain extends javax.swing.JFrame {
         stock1mn.add(grtmnit);
 
         generateLPOmnit.setText("Generate / View LPO");
+        generateLPOmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateLPOmnitActionPerformed(evt);
+            }
+        });
         stock1mn.add(generateLPOmnit);
 
         inspectionmn.setText("Inspection And Acceptance ");
@@ -3124,7 +3129,7 @@ public class StockMain extends javax.swing.JFrame {
     }//GEN-LAST:event_pricelistmnitActionPerformed
 
     private void invoiceperSuppmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invoiceperSuppmnitActionPerformed
-        com.afrisoftech.lib.HosCreditorsDatePanel dates = new com.afrisoftech.lib.HosCreditorsDatePanel(this, pConnDB, true, SuppCreditorsInv, connectDB);
+        com.afrisoftech.lib.HosGRNDatePanel dates = new com.afrisoftech.lib.HosGRNDatePanel(this, pConnDB, true, SuppCreditorsInv, connectDB);
 
         dates.setVisible(true);          // Add your handling code here:
     }//GEN-LAST:event_invoiceperSuppmnitActionPerformed
@@ -5477,6 +5482,10 @@ public class StockMain extends javax.swing.JFrame {
         } catch (java.beans.PropertyVetoException pvt) {
         }    // TODO add your handling code here:
     }//GEN-LAST:event_storesLedgerReportsmnitActionPerformed
+
+    private void generateLPOmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateLPOmnitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_generateLPOmnitActionPerformed
 
     /**
      * @param args the command line arguments

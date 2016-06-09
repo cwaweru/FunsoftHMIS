@@ -369,7 +369,7 @@ public class MOH718DiagnosisAnalysisPdf implements java.lang.Runnable {
                             table.getDefaultCell().setColspan(20);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
 
-                            phrase = new Phrase("MINISTRY OF HEALTH - " + country.toString().toUpperCase(), pFontHeader2);
+                            phrase = new Phrase("FACILITY NAME - " + country.toString().toUpperCase(), pFontHeader2);
 
                             table.addCell(phrase);
 

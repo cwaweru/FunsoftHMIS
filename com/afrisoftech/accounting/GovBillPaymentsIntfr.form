@@ -644,7 +644,7 @@
     <Property name="iconifiable" type="boolean" value="true"/>
     <Property name="maximizable" type="boolean" value="true"/>
     <Property name="resizable" type="boolean" value="true"/>
-    <Property name="title" type="java.lang.String" value="Cash Sales (CASH REGISTER)"/>
+    <Property name="title" type="java.lang.String" value="POINT OF SALE : Cash Sales (CASH REGISTER/POS)"/>
     <Property name="frameIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
       <Image iconType="0" name="null"/>
     </Property>
@@ -688,8 +688,8 @@
         <Container class="javax.swing.JPanel" name="jPanel8">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Walk In Patients">
-                <Property name="tabTitle" type="java.lang.String" value="Walk In Patients"/>
+              <JTabbedPaneConstraints tabName="OUT-Patient Cash payments">
+                <Property name="tabTitle" type="java.lang.String" value="OUT-Patient Cash payments"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -931,16 +931,15 @@
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchNameChbxActionPerformed"/>
                               </Events>
                             </Component>
-                            <Component class="javax.swing.JCheckBox" name="jCheckBox3">
+                            <Component class="javax.swing.JCheckBox" name="walkINChkbx">
                               <Properties>
                                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                   <ComponentRef name="buttonGroup1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Walk In"/>
-                                <Property name="enabled" type="boolean" value="false"/>
                               </Properties>
                               <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox3ActionPerformed"/>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="walkINChkbxActionPerformed"/>
                               </Events>
                             </Component>
                           </SubComponents>
@@ -1067,6 +1066,19 @@
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                               <GridBagConstraints gridX="4" gridY="4" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="10" anchor="10" weightX="1.0" weightY="1.0"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                        <Component class="javax.swing.JCheckBox" name="mchfpChbx">
+                          <Properties>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="buttonGroup1"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="MCH/FP"/>
+                          </Properties>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                              <GridBagConstraints gridX="3" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1618,7 +1630,6 @@
                             <Property name="mnemonic" type="int" value="79"/>
                             <Property name="text" type="java.lang.String" value="Post Receipt data"/>
                             <Property name="toolTipText" type="java.lang.String" value="Click here enter data"/>
-                            <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="postSaleDataBtnActionPerformed"/>
@@ -1807,7 +1818,7 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField82">
+                        <Component class="javax.swing.JTextField" name="glAccountTxt">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                           </Properties>
@@ -1844,7 +1855,7 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField141">
+                        <Component class="javax.swing.JTextField" name="cashPointTxt">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                           </Properties>
@@ -1864,7 +1875,7 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField811">
+                        <Component class="javax.swing.JTextField" name="shiftNoTxt">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                           </Properties>

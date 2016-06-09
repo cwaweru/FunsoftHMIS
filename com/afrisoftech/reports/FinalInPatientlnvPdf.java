@@ -7,8 +7,10 @@
 //import java.lang.*;
 
 package com.afrisoftech.reports;
+import static com.afrisoftech.reports.PatientBillPdf.connectDB;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.*;
+import java.awt.Color;
 
 
 public class FinalInPatientlnvPdf implements java.lang.Runnable {
@@ -323,7 +325,44 @@ public class FinalInPatientlnvPdf implements java.lang.Runnable {
                         
                     }
                     docPdf.open();
-                    
+                    try {
+                        com.lowagie.text.pdf.PdfPTable headertable = new com.lowagie.text.pdf.PdfPTable(6);
+                        
+                        int headerwidthstable[] = {15, 7, 25, 7, 8, 18};
+                        
+                        headertable.setWidths(headerwidthstable);
+                        
+                        headertable.setWidthPercentage((100));
+                        
+                        // table.getDefaultCell().setBorder(Rectangle.BOTTOM);
+                        headertable.getDefaultCell().setColspan(6);
+                        
+                        Phrase headerphrase = new Phrase();
+                        
+                        headertable.getDefaultCell().setBorder(Rectangle.BOX);
+                        headertable.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
+                        headertable.getDefaultCell().setColspan(2);
+                        headertable.getDefaultCell().setFixedHeight(70);
+                        headertable.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                        headertable.addCell(Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo()));
+                        java.sql.Statement st4 = connectDB.createStatement();
+                        java.sql.Statement st3 = connectDB.createStatement();
+                        java.sql.ResultSet rset3 = st3.executeQuery("select header_name from pb_header");
+                        java.sql.ResultSet rset4 = st4.executeQuery("SELECT TO_CHAR(current_timestamp(0),'FMDay FMDD/ MM/ YY HH12::MI')");
+                        
+                        while (rset3.next()) {
+                            headertable.getDefaultCell().setColspan(4);
+                            
+                            headertable.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                            headertable.getDefaultCell().setBorderColor(Color.BLACK);
+                            headertable.getDefaultCell().setBorder(Rectangle.BOX);
+                            headerphrase = new Phrase("\n\n" + rset3.getObject(1).toString(), pFontHeader11);
+                            headertable.addCell(headerphrase);
+                        }
+                        docPdf.add(headertable);
+                    } catch (Exception sy) {
+                        sy.printStackTrace();
+                    }                    
                     
                     
                     try {
@@ -394,13 +433,7 @@ public class FinalInPatientlnvPdf implements java.lang.Runnable {
                                 ks = rset2x.getObject(1).toString();
                             }
                             java.sql.ResultSet rset3 = st321.executeQuery("select header_name from pb_header");
-                            while (rset3.next()){
-                                table1.getDefaultCell().setColspan(6);
-                            
-                            table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                            phrase = new Phrase(rset3.getObject(1).toString(), pFontHeader11);
-                            table1.addCell(phrase);
-                            }
+
                             String visitId = "";
                              java.sql.ResultSet rset311 = st22.executeQuery("SELECT DISTINCT visit_id FROM hp_patient_card WHERE invoice_no = '"+memNo+"'");
                                  while (rset311.next()){
@@ -420,14 +453,11 @@ public class FinalInPatientlnvPdf implements java.lang.Runnable {
                             
                             java.sql.ResultSet rset22 = st22.executeQuery("SELECT DISTINCT pr.patient_no,pr.patient_name FROM hp_admission pr WHERE pr.invoice_no = '"+memNo+"' "
                                     + "UNION ALL SELECT DISTINCT pr.patient_no,pr.patient_name FROM hp_mortuary pr WHERE pr.invoice_no = '"+memNo+"'");
-                            
-                                
-                            
-                            
-                            table1.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
+
+                            table1.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
                             table1.getDefaultCell().setColspan(6);
                             table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                            phrase = new Phrase("Final Invoice", pFontHeader1);
+                            phrase = new Phrase("Final Invoice".toUpperCase(), pFontHeader11);
                             table1.addCell(phrase);
                             table1.getDefaultCell().setBorder(Rectangle.BOTTOM);
                             table1.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
@@ -454,18 +484,14 @@ public class FinalInPatientlnvPdf implements java.lang.Runnable {
                                 phrase3 = new Phrase("Patient Name: "+dbObject.getDBObject(rset.getObject(2), "-"), pFontHeader1);
                                 //table1.addCell(phrase);
                             }
-                            
-                            
-                            
+
                             while (rseta.next()){
                                 table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase = new Phrase("Invoice No.: "+memNo, pFontHeader1);
                                 table1.addCell(phrase);
                                 table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase4 = new Phrase("Member Name: " , pFontHeader1);
-                                //table1.addCell(phrase);
-                                
-                                // while (rseta.next())
+
                                 table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase5 = new Phrase("Ward: "+dbObject.getDBObject(rseta.getObject(1), "-"), pFontHeader1);
                                 //table1.addCell(phrase);
@@ -593,10 +619,10 @@ public class FinalInPatientlnvPdf implements java.lang.Runnable {
                             java.sql.Statement st2 = connectDB.createStatement();
                             //  }
                             //  (service != 'N.H.I.F' OR service not ilike 'Receipt%' OR service not ilike 'Receipt Adj' OR service not ilike 'Discou%' OR service != 'Invoice')  AND main_service != 'Receipt' order by date::date");
-                            java.sql.ResultSet rset1 = st1.executeQuery(" select date::date,initcap(service) as service,dosage::int,reference,debit-credit from hp_patient_card where invoice_no = '"+memNo+"' and paid = 'true' and service != 'N.H.I.F' AND service not ilike 'Receipt%' AND service not ilike 'Receipt Adj' AND service not ilike 'Discou%' AND service != 'Invoice' order by date::date");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
+                            java.sql.ResultSet rset1 = st1.executeQuery(" select date::date,initcap(service) as service,dosage::int,reference,debit-credit from hp_patient_card where invoice_no = '"+memNo+"'  and service != 'N.H.I.F' AND service not ilike 'Receipt%' AND service not ilike 'Receipt Adj' AND service not ilike 'Discou%' AND service != 'Invoice' order by date::date");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
                             java.sql.ResultSet rsetTotals = st2.executeQuery("select sum(debit - credit) from hp_patient_card where invoice_no = '"+memNo+"' and service != 'N.H.I.F' AND service not ilike 'Receipt' AND service not ilike 'Receipt Adj' AND service not ilike 'Discou%' AND service != 'Invoice' and paid = 'true'");
                             
-                            java.sql.ResultSet rset11 = st11.executeQuery(" select date::date,initcap(service) as service,dosage::int,CASE WHEN (service = 'Receipt') THEN requisition_no ELSE reference END AS reference,credit-debit from hp_patient_card where invoice_no = '"+memNo+"' AND (service = 'N.H.I.F' OR service ilike 'Receipt%' OR service ilike 'Receipt Adj' OR service ilike 'Discou%') order by date::date");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
+                            java.sql.ResultSet rset11 = st11.executeQuery(" select date::date,initcap(CASE WHEN service ILIKE '%receipt%' AND (requisition_no is not null or payment_mode ilike 'Cash') THEN service || ' ' || scheme ELSE 'Invoice. : '||scheme END) as service, dosage::int, (CASE WHEN service = 'Receipt' THEN requisition_no ELSE reference END) AS reference,credit-debit from hp_patient_card where invoice_no = '"+memNo+"' AND (service = 'N.H.I.F' OR (service ilike 'Receipt%' AND main_service ilike 'N.H.I.F') OR (service ilike 'Receipt%' AND payment_mode ilike 'Cash') OR service ilike 'Receipt Adj' OR service ilike 'Discou%' or (requisition_no is not null AND main_service not ilike 'waiver%' AND requisition_no != '')) order by date::date");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
                             java.sql.ResultSet rsetTotals1 = st21.executeQuery("select sum(credit) from hp_patient_card where invoice_no = '"+memNo+"' AND (service = 'N.H.I.F' OR service ilike 'Receipt' OR service ilike 'Receipt Adj' OR service ilike 'Discou%')");
                             
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -646,13 +672,11 @@ public class FinalInPatientlnvPdf implements java.lang.Runnable {
                                 dos = rset1.getInt(3);
                                 
                                 phrase = new Phrase(java.lang.String.valueOf(dos), pFontHeader);
-                                //table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                //phrase = new Phrase(dbObject.getDBObject(rset1.getObject(3), "-"), pFontHeader);
                                 
                                 table.addCell(phrase);
                                 
                                 table.getDefaultCell().setColspan(1);
-                                //table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+
                                 phrase = new Phrase(dbObject.getDBObject(rset1.getObject(4), "-"), pFontHeader);
                                 
                                 table.addCell(phrase);
@@ -667,7 +691,6 @@ public class FinalInPatientlnvPdf implements java.lang.Runnable {
                                 osBalance = osBalance + rset1.getDouble(5);
                                 
                                 phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance)), pFontHeader);
-                                //   current = current + osBalance;
                                 
                                 table.addCell(phrase);
                                 
@@ -683,7 +706,7 @@ public class FinalInPatientlnvPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setColspan(3);
                                 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Invoice Amount", pFontHeader1);
+                                phrase = new Phrase("Billed Amount", pFontHeader1);
                                 
                                 table.addCell(phrase);
                                 
@@ -693,14 +716,10 @@ public class FinalInPatientlnvPdf implements java.lang.Runnable {
                                 
                                 phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetTotals.getString(1)),pFontHeader);
                                 
-                                // table.addCell(phrase);
                                 phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance)), pFontHeader1);
                                 
                                 table.addCell(phrase);
-                                
-                                //phrase = new Phrase(" ");
-                                
-                                
+                                           
                                 
                             }
                             
@@ -740,7 +759,6 @@ public class FinalInPatientlnvPdf implements java.lang.Runnable {
                                 osBalance1 = osBalance1 + rset11.getDouble(5);
                                 
                                 phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance1)), pFontHeader);
-                                //   current = current + osBalance;
                                 
                                 table.addCell(phrase);
                                 
@@ -750,15 +768,10 @@ public class FinalInPatientlnvPdf implements java.lang.Runnable {
                             table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
                             
                             table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP);
+                            
                             while (rsetTotals1.next()) {
-                                
-                                table.getDefaultCell().setColspan(2);
-                                
-                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase(" ", pFontHeader);
-                                
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(2);
+
+                                table.getDefaultCell().setColspan(4);
                                 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase = new Phrase("Total Receipts", pFontHeader1);
@@ -772,31 +785,20 @@ public class FinalInPatientlnvPdf implements java.lang.Runnable {
                                 
                                 phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetTotals1.getString(1)),pFontHeader);
                                 
-                                //table.addCell(phrase);
                                 phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance1)), pFontHeader1);
                                 
                                 table.addCell(phrase);
                                 
-                                //phrase = new Phrase(" ");
-                                
-                                
-                                
                             }
                             
-                            //  while (rsetTotals.next()) {
                             table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
                             
                             table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP);
-                            table.getDefaultCell().setColspan(2);
+
+                            table.getDefaultCell().setColspan(4);
                             
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase(" ", pFontHeader);
-                            
-                            table.addCell(phrase);
-                            table.getDefaultCell().setColspan(2);
-                            
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase("Net Amount", pFontHeader1);
+                            phrase = new Phrase("Net Invoice Amount", pFontHeader1);
                             
                             table.addCell(phrase);
                             
@@ -804,22 +806,14 @@ public class FinalInPatientlnvPdf implements java.lang.Runnable {
                             
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                             
-                            //  phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetTotals.getString(1)),pFontHeader);
-                            
-                            // table.addCell(phrase);
                             phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance - osBalance1)), pFontHeader1);
                             
                             table.addCell(phrase);
                             
-                            //phrase = new Phrase(" ");
-                            
-                            
-                            
-                            // }
                             docPdf.add(table);
                             
                         } catch(java.sql.SQLException SqlExec) {
-                            
+                            SqlExec.printStackTrace();
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
                             
                         }

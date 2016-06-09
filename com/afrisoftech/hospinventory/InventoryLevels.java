@@ -33,11 +33,10 @@ public class InventoryLevels {
     private static int consumptionNumbers = 0;
 
     private static int storeConsumptionNumbers = 0;
-    
+
     private static long reOrderQuantity = 0;
-    
+
     private static long optimumStockLevel = 0;
-    
 
     /**
      * @return the leadOrderDays
@@ -85,21 +84,21 @@ public class InventoryLevels {
     /**
      * @return the reOrderQuantity
      */
-    public static long getReOrderQuantity(String item){
-       
+    public static long getReOrderQuantity(String item) {
+
         stockLevel = getStockLevel(item);
-        
-        long reOrderLevel = Math.round(getAverageConsumption(item) * (getLeadOrderDays() + InventoryLevels.bufferStockDays));
-        
-        if(reOrderLevel > stockLevel){
-            
+
+        long reOrderLevel = Math.round(getAverageConsumption(item) * (getLeadOrderDays() + getBufferStockDays()));
+
+        if (reOrderLevel > stockLevel) {
+
             reOrderQuantity = reOrderLevel - stockLevel;
-            
+
         } else {
-            
+
             reOrderQuantity = 0;
         }
-                
+
         return reOrderQuantity;
     }
 
@@ -197,6 +196,7 @@ public class InventoryLevels {
             Exceptions.printStackTrace(ex);
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+
         return expiryDays;
     }
 
@@ -266,7 +266,7 @@ public class InventoryLevels {
      */
     public static int getConsumptionNumbers(String item) {
         try {
-            java.sql.PreparedStatement pstmt = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT sum(sub_store_issuing) FROM st_stock_cardex WHERE item_code = ?  AND transaction_type ilike 'issuing' AND transaction_no not ilike 't%' AND date between now()::date - " + getAveragingDays() +" AND now()::date");
+            java.sql.PreparedStatement pstmt = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT sum(sub_store_issuing) FROM st_stock_cardex WHERE item_code = ?  AND transaction_type ilike 'issuing' AND transaction_no not ilike 't%' AND date between now()::date - " + getAveragingDays() + " AND now()::date");
             pstmt.setString(1, item);
             java.sql.ResultSet rset = pstmt.executeQuery();
             while (rset.next()) {
@@ -292,7 +292,7 @@ public class InventoryLevels {
      */
     public static int getStoreConsumptionNumbers(String storeName, String item) {
         try {
-            java.sql.PreparedStatement pstmt = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT sum(sub_store_issuing) FROM st_stock_cardex WHERE item_code = ? AND upper(store) = upper(?) AND transaction_type ILIKE 'issuing' AND transaction_no NOT ILIKE 't%' AND date BETWEEN now()::date - " + getAveragingDays() +" AND now()::date");
+            java.sql.PreparedStatement pstmt = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT sum(sub_store_issuing) FROM st_stock_cardex WHERE item_code = ? AND upper(store) = upper(?) AND transaction_type ILIKE 'issuing' AND transaction_no NOT ILIKE 't%' AND date BETWEEN now()::date - " + getAveragingDays() + " AND now()::date");
             pstmt.setString(1, item);
             pstmt.setString(2, storeName);
             java.sql.ResultSet rset = pstmt.executeQuery();
@@ -335,9 +335,9 @@ public class InventoryLevels {
      * @return the optimumStockLevel
      */
     public static long getOptimumStockLevel(String item) {
-        
+
         optimumStockLevel = Math.round(getAverageConsumption(item) * (getLeadOrderDays() + InventoryLevels.bufferStockDays));
-        
+
         return optimumStockLevel;
     }
 
@@ -347,7 +347,25 @@ public class InventoryLevels {
     public static void setOptimumStockLevel(long optimumStockLevel) {
         optimumStockLevel = optimumStockLevel;
     }
-    
-    
+
+    public static boolean getExpiryStatus(String expiryDate) {
+
+        boolean expiryStatus = false;
+
+        try {
+
+            java.sql.PreparedStatement pstmtExpiry = com.afrisoftech.hospital.HospitalMain.connectDB.prepareStatement("SELECT '" + expiryDate + "'::date - current_date  >= (SELECT expiry_days FROM st_ordering_constants)");
+
+            java.sql.ResultSet rsetExpiry = pstmtExpiry.executeQuery();
+
+            while (rsetExpiry.next()) {
+                    expiryStatus = rsetExpiry.getBoolean(1);
+            }
+
+        } catch (SQLException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+        return expiryStatus;
+    }
 
 }

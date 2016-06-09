@@ -707,11 +707,11 @@ public class Receivingintfr extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Desc", "Strength", "Qty Ordered", "Undelivered Qty", "Unit Pack", "Qty Received", "Unit Price", "Disc %", "Disc Total", "Vat %", "Vat Total", "Value", "Batch No.", "Expiry Date", "Item Code", "Units of Issue", "Cummulative qty"
+                "Desc", "Strength", "Qty Ordered", "Undelivered Qty", "Units/Pack", "Qty Received", "Unit Price", "Disc %", "Disc Total", "Vat %", "Vat Total", "Value", "Batch No.", "Expiry Date", "Item Code", "Units of Issue", "Cummulative qty"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
                 true, false, false, false, true, true, true, true, false, true, false, true, true, true, false, false, false
@@ -987,10 +987,10 @@ public class Receivingintfr extends javax.swing.JInternalFrame {
         orderNotxt.setText("");
 
         jTextField8.setText("");
-        totalAmountTxt.setText("00");
-        jTextField4.setText("00");
-        jTextField1.setText("00");
-        jTextField51.setText("00");
+        totalAmountTxt.setText("0.00");
+        jTextField4.setText("0.00");
+        jTextField1.setText("0.00");
+        jTextField51.setText("0.00");
 
         for (int k = 0; k < grnDetailsTable.getRowCount(); k++) {
             for (int r = 0; r < grnDetailsTable.getColumnCount(); r++) {
@@ -1011,7 +1011,7 @@ public class Receivingintfr extends javax.swing.JInternalFrame {
             java.sql.Statement stmtTable11 = connectDB.createStatement();
             //java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("select distinct sum(quantity_undelivered),item_code from stock_receiving_view where order_no ilike '" + this.jTextField91.getText() + "%' group by item_code");
 
-            java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery(" SELECT CODE,ITEM,UNITS,sum(quantity) FROM orders_balances_fn('" + this.orderNotxt.getText() + "%') group by 1,2,3");
+            java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery(" SELECT trim(CODE),trim(ITEM),UNITS::numeric(10,2),sum(quantity) FROM orders_balances_fn('" + this.orderNotxt.getText() + "%') group by 1,2,3");
 
             while (rsetTable11.next()) {
                 // j = rsetTable11.getInt(1);
@@ -1030,32 +1030,18 @@ public class Receivingintfr extends javax.swing.JInternalFrame {
                         grnDetailsTable.setValueAt(rsetTable1.getString(3), i, 1);
                         grnDetailsTable.setValueAt(rsetTable1.getDouble(4), i, 2);
                         grnDetailsTable.setValueAt(rsetTable11.getObject(4), i, 3);
-                        grnDetailsTable.setValueAt(rsetTable11.getObject(3), i, 4);
+                        grnDetailsTable.setValueAt(rsetTable1.getDouble(6), i, 4);
                         grnDetailsTable.setValueAt(rsetTable1.getDouble(5), i, 6);
-//                    jTable1.setValueAt(rsetTable1.getObject(6), i, 9);
+                        grnDetailsTable.setValueAt(0.00, i, 7);
+                        grnDetailsTable.setValueAt(0.00, i, 8);
+                        grnDetailsTable.setValueAt(0.00, i, 9);
+                        grnDetailsTable.setValueAt(0.00, i, 10);
                         grnDetailsTable.setValueAt(rsetTable11.getObject(1), i, 14);
 
-//                        for (int m = 0; m < jTable1.getRowCount(); m++) {
-//                            if (jTable1.getModel().getValueAt(m, 0) != null) {
-//                                if (rsetTable1.getObject(2) == null) {
-//                                    java.sql.Statement stmtTable11x = connectDB.createStatement();
-//                                    java.sql.ResultSet rsetTable11x = stmtTable11x.executeQuery("select item_strength,quantity,unit_price,units from st_orders WHERE code ilike '" + jTable1.getValueAt(m, 14).toString() + "%' AND order_no = '" + this.jTextField91.getText() + "'");// AND paid = false UNION SELECT service, quantity,(amount/quantity)::numeric(10,2),amount,gl_code  FROM hp_patient_billing WHERE patient_name = '"+patient_no+"' AND paid = false");
-//
-//                                    while (rsetTable11x.next()) {
-//                                        
-//                                        System.out.println("Working at table row " + i);
-//                                        jTable1.setValueAt(rsetTable11x.getObject(1), i, 1);
-//                                        jTable1.setValueAt(rsetTable11x.getObject(2), i, 2);
-//                                        jTable1.setValueAt(rsetTable11x.getObject(3), i, 6);
-//                                        jTable1.setValueAt(rsetTable11x.getObject(4), i, 4);
-//                                        
-//                                    }
-//                                }
                     }
-                    //}
+
                     i++;
 
-                    // }
                 }
             }
             if (i < 1) {
@@ -1133,6 +1119,12 @@ public class Receivingintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void grnDetailsTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_grnDetailsTableKeyReleased
+        if (grnDetailsTable.getValueAt(grnDetailsTable.getSelectedRow(), 13) != null) {
+            if (!com.afrisoftech.hospinventory.InventoryLevels.getExpiryStatus(grnDetailsTable.getValueAt(grnDetailsTable.getSelectedRow(), 13).toString())) {
+                javax.swing.JOptionPane.showMessageDialog(this, "This item does not meet the threashold for quality assurance in terms of expiry date.");
+                grnDetailsTable.setValueAt(null, grnDetailsTable.getSelectedRow(), 13);
+            }
+        }
         double resFloat = 0.00;
         double resVal = 0.00;
         double total = 0.00;
@@ -1221,6 +1213,7 @@ public class Receivingintfr extends javax.swing.JInternalFrame {
             grnDetailsTable.setValueAt(issuingUnits, grnDetailsTable.getSelectedRow(), 15);
             grnDetailsTable.setValueAt(new java.lang.Float(qty), grnDetailsTable.getSelectedRow(), 16);
         }
+
 
     }//GEN-LAST:event_grnDetailsTableKeyReleased
 
@@ -1405,17 +1398,17 @@ public class Receivingintfr extends javax.swing.JInternalFrame {
                                          * 4).toString()); }else{ pkge = 1; }
                                          */
 
-//                                        pkge = Double.parseDouble(jTable1.getValueAt(i, 4).toString());
+                                        pkge = Double.parseDouble(grnDetailsTable.getValueAt(i, 4).toString());
                                         System.out.println("Package is : [" + pkge + "]");
 
                                         qty = Double.parseDouble(grnDetailsTable.getValueAt(i, 5).toString());
                                         uprice = Double.parseDouble(grnDetailsTable.getValueAt(i, 6).toString());
 
-                                        //quantity = qty * pkge;
-                                        quantity = Double.parseDouble(grnDetailsTable.getValueAt(i, 16).toString());
+                                        quantity = qty * pkge;
+                                        // quantity = Double.parseDouble(grnDetailsTable.getValueAt(i, 16).toString());
 
-                                        // price = uprice / pkge;
-                                        price = uprice;
+                                        price = uprice / pkge;
+                                        // price = uprice;
                                         java.sql.Date expiryDate = null;
 
 //
@@ -1506,11 +1499,10 @@ public class Receivingintfr extends javax.swing.JInternalFrame {
                                         pstmt11.setDouble(5, Double.valueOf(grnDetailsTable.getValueAt(i, 6).toString()));
                                         pstmt11.setObject(6, orderNotxt.getText());
                                         pstmt11.setObject(7, grnDetailsTable.getValueAt(i, 14).toString());
-                                        
+
                                         pstmt11.setObject(8, UserName.getLoginName(connectDB).toLowerCase());
                                         pstmt11.setObject(9, jTextField9.getText());
                                         pstmt11.executeUpdate();
-                                        
 
                                         if (updatePriceCheck) {
                                             java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE st_stock_item SET buying_price = " + new java.lang.Double(uprice) + "  WHERE item_code ILIKE '" + grnDetailsTable.getValueAt(i, 14).toString() + "' AND department ILIKE '" + jComboBox2.getSelectedItem().toString() + "'");
@@ -1542,7 +1534,7 @@ public class Receivingintfr extends javax.swing.JInternalFrame {
                         }
 
                     }
-                    
+
                     // Capture the GRN for the delivery
                     java.sql.PreparedStatement pstmt1q1 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
                     pstmt1q1.setObject(1, accountCoded);
@@ -1735,36 +1727,7 @@ public class Receivingintfr extends javax.swing.JInternalFrame {
             }
         }
     }
-    /*
-     * public void tableModelTableChanged1(javax.swing.event.TableModelEvent
-     * evt) {
-     *
-     * double Gross = Double.parseDouble(this.jTextField2.getText()); double
-     * Disc = Double.parseDouble(this.jTextField1.getText()); double Vat =
-     * Double.parseDouble(this.jTextField4.getText()); double resFloat1 = 0.00;
-     *
-     * for (int i = 0; i < jTable1.getRowCount(); i++) {
-     *
-     * if (jTable1.getModel().getValueAt(i, 5) != null) {
-     *
-     * if (jTable1.getSelectedColumn() == 7) {
-     *
-     * resFloat1 = resFloat1 +
-     * Double.parseDouble(jTable1.getModel().getValueAt(i, 8).toString());
-     * jTextField4.setText(java.lang.String.valueOf(resFloat1));
-     * jTextField51.setText(java.lang.String.valueOf(Gross-Disc-Vat));
-     *
-     * }else{ resFloat1 = resFloat1 +
-     * Double.parseDouble(jTable1.getModel().getValueAt(i, 8).toString());
-     * jTextField4.setText(java.lang.String.valueOf(resFloat1));
-     * jTextField51.setText(java.lang.String.valueOf(Gross-Disc-Vat));
-     *
-     *
-     * }
-     * }
-     * }
-     * // jTextField31.setText(java.lang.String.valueOf(resFloat)); }
-     */
+
 
     public void tableModelTableChanged2() {
         System.out.println("Calculating totals for table 12 and 21.");
@@ -1821,55 +1784,9 @@ public class Receivingintfr extends javax.swing.JInternalFrame {
                 }
             }
         }
-        //               jTextField31.setText(java.lang.String.valueOf(resFloat));
+
     }
-    /*
-     * public void tableModelTableChanged() { System.out.println("Calculating
-     * totals for table 11 and 2."); // double resFloat = 0.00; double resFloat
-     * = 0.00;
-     *
-     *
-     * for (int i = 0; i < jTable1.getRowCount(); i++) {
-     *
-     * if (jTable1.getModel().getValueAt(i, 0) != null) {
-     *
-     * // if (jTable11.getSelectedColumn() == 1) {
-     *
-     * resFloat = resFloat + Double.parseDouble(jTable1.getModel().getValueAt(i,
-     * 6).toString());
-     *
-     * // }
-     *
-     * jTextField2.setText(java.lang.String.valueOf(resFloat));
-     *
-     * }
-     * }
-     *
-     * // jTextField31.setText(java.lang.String.valueOf(resFloat)); }
-     *
-     * public void tableModelTableChanged(javax.swing.event.TableModelEvent evt)
-     * {
-     *
-     * // double resFloat = 0.00; double resFloat = 0.00;
-     *
-     * for (int i = 0; i < jTable1.getRowCount(); i++) {
-     *
-     * if (jTable1.getModel().getValueAt(i, 0) != null) {
-     *
-     * // if (jTable11.getSelectedColumn() == 1) {
-     *
-     * resFloat = resFloat + Double.parseDouble(jTable1.getModel().getValueAt(i,
-     * 6).toString());
-     *
-     * // }
-     *
-     * jTextField2.setText(java.lang.String.valueOf(resFloat));
-     *
-     * }
-     * }
-     *
-     * // jTextField31.setText(java.lang.String.valueOf(resFloat)); }
-     */
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox assets;
     private javax.swing.ButtonGroup buttonGroup1;

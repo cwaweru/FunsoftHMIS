@@ -91,7 +91,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
         jTextField2 = new javax.swing.JTextField();
         jCheckBox6 = new javax.swing.JCheckBox();
         jPanel6 = new javax.swing.JPanel();
-        jTextField36 = new javax.swing.JTextField();
+        patientNumberTxt = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -203,11 +203,13 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
             System.out.println(sl.getMessage());
         }
 
-        jButton1 = new javax.swing.JButton();
+        saveDataBtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton31 = new javax.swing.JButton();
         jButton63 = new javax.swing.JButton();
         jButton41 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
@@ -315,7 +317,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
         gridBagConstraints.weighty = 20.0;
         jSearchPanel.add(jSearchScrollPane, gridBagConstraints);
 
-        jButton9.setText("Cancel");
+        jButton9.setText("Dispose");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -391,7 +393,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
         gridBagConstraints.weighty = 20.0;
         jSearchPanel1.add(jSearchScrollPane1, gridBagConstraints);
 
-        jButton91.setText("Cancel");
+        jButton91.setText("Dispose");
         jButton91.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton91ActionPerformed(evt);
@@ -469,7 +471,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
         gridBagConstraints.weighty = 20.0;
         jSearchPanel2.add(jSearchScrollPane2, gridBagConstraints);
 
-        jButton92.setText("Cancel");
+        jButton92.setText("Dispose");
         jButton92.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton92ActionPerformed(evt);
@@ -550,7 +552,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
         gridBagConstraints.weighty = 20.0;
         jSearchPanel3.add(jSearchScrollPane3, gridBagConstraints);
 
-        jButton93.setText("Cancel");
+        jButton93.setText("Dispose");
         jButton93.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton93ActionPerformed(evt);
@@ -631,7 +633,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
         gridBagConstraints.weighty = 20.0;
         jSearchPanel4.add(jSearchScrollPane4, gridBagConstraints);
 
-        jButton911.setText("Cancel");
+        jButton911.setText("Dispose");
         jButton911.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton911ActionPerformed(evt);
@@ -657,7 +659,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Dental Requests");
+        setTitle("Dental Requests and Procedure Reporting Form");
         setFrameIcon(null);
         try {
             setSelected(true);
@@ -746,10 +748,10 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
         jPanel6.setMinimumSize(new java.awt.Dimension(82, 37));
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
-        jTextField36.setEditable(false);
-        jTextField36.addActionListener(new java.awt.event.ActionListener() {
+        patientNumberTxt.setEditable(false);
+        patientNumberTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField36ActionPerformed(evt);
+                patientNumberTxtActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -758,7 +760,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel6.add(jTextField36, gridBagConstraints);
+        jPanel6.add(patientNumberTxt, gridBagConstraints);
 
         searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
         searchButton.setToolTipText("Search");
@@ -1166,7 +1168,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
         buttonGroup4.add(jCheckBox15);
         jCheckBox15.setForeground(new java.awt.Color(0, 0, 255));
         jCheckBox15.setSelected(true);
-        jCheckBox15.setText("General");
+        jCheckBox15.setText("General Requests");
         jCheckBox15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox15ActionPerformed(evt);
@@ -1181,7 +1183,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
 
         buttonGroup4.add(jCheckBox212);
         jCheckBox212.setForeground(new java.awt.Color(0, 0, 255));
-        jCheckBox212.setText("Laboratory");
+        jCheckBox212.setText("Laboratory Diagnostics");
         jCheckBox212.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox212ActionPerformed(evt);
@@ -1196,7 +1198,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
 
         buttonGroup4.add(jCheckBox22);
         jCheckBox22.setForeground(new java.awt.Color(0, 0, 255));
-        jCheckBox22.setText("Pharmacy");
+        jCheckBox22.setText("Pharmacy/Prescriptions");
         jCheckBox22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox22ActionPerformed(evt);
@@ -1211,7 +1213,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
 
         buttonGroup4.add(jCheckBox61);
         jCheckBox61.setForeground(new java.awt.Color(51, 0, 255));
-        jCheckBox61.setText("Radiological");
+        jCheckBox61.setText("Radiology and Imaging");
         jCheckBox61.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox61ActionPerformed(evt);
@@ -1595,20 +1597,20 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
 
         jPanel8.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setMnemonic('O');
-        jButton1.setText("Save Data");
-        jButton1.setToolTipText("Click here enter data");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        saveDataBtn.setMnemonic('O');
+        saveDataBtn.setText("Save Data");
+        saveDataBtn.setToolTipText("Click here enter data");
+        saveDataBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                saveDataBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel8.add(jButton1, gridBagConstraints);
+        jPanel8.add(saveDataBtn, gridBagConstraints);
 
         jButton2.setText("Reprint");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -1617,7 +1619,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.weightx = 1.0;
         jPanel8.add(jButton2, gridBagConstraints);
@@ -1631,7 +1633,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -1645,7 +1647,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -1660,11 +1662,31 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel8.add(jButton41, gridBagConstraints);
+
+        jButton8.setText("View Patient Card");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel8.add(jButton8, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel8.add(jLabel10, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -2300,13 +2322,13 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
         setBounds(0, 0, 864, 552);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField36ActionPerformed
+    private void patientNumberTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientNumberTxtActionPerformed
         // Add your handling code here:
-    }//GEN-LAST:event_jTextField36ActionPerformed
+    }//GEN-LAST:event_patientNumberTxtActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         String receiptNo = null;
-        receiptNo = this.jTextField36.getText().toString();
+        receiptNo = this.patientNumberTxt.getText().toString();
 
         com.afrisoftech.reports.DentalResPdf policy = new com.afrisoftech.reports.DentalResPdf();
 
@@ -2410,7 +2432,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
         pol.DentalResSlipPdf(connectDB, billNo);   // Add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void saveDataBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveDataBtnActionPerformed
 
         java.util.Calendar calendar = java.util.Calendar.getInstance();
 
@@ -2506,7 +2528,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
         try {
             java.sql.Statement stm12 = connectDB.createStatement();
 
-            java.sql.ResultSet rse12 = stm12.executeQuery("select comments,date from hp_patient_visit where patient_no ='" + jTextField36.getText() + "' ORDER BY date DESC LIMIT 1");
+            java.sql.ResultSet rse12 = stm12.executeQuery("select comments,date from hp_patient_visit where patient_no ='" + patientNumberTxt.getText() + "' ORDER BY date DESC LIMIT 1");
 
             while (rse12.next()) {
                 rank = rse12.getString(1);
@@ -2524,7 +2546,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
 
             java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_xray_results values(?,?,?,?,?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-            pstmt.setString(1, jTextField36.getText());
+            pstmt.setString(1, patientNumberTxt.getText());
             if (jTextField1.getText().equals("")) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Patient Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
             } else {
@@ -2576,7 +2598,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
                     }
                     java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO pb_doctors_request VALUES(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?), ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
 
-                    pstmt2.setString(1, jTextField36.getText());
+                    pstmt2.setString(1, patientNumberTxt.getText());
 
                     if (jTextField1.getText().equals("")) {
                         javax.swing.JOptionPane.showMessageDialog(this, "Patient Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -2625,7 +2647,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
 
                     java.sql.PreparedStatement pstmt2f = connectDB.prepareStatement("insert into hp_patient_billing values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?),?)");
 
-                    pstmt2f.setString(1, jTextField36.getText());
+                    pstmt2f.setString(1, patientNumberTxt.getText());
                     pstmt2f.setString(2, jTextField1.getText());
                     pstmt2f.setString(3, jTextField2.getText());
                     pstmt2f.setString(4, jTextField5.getText());
@@ -2669,8 +2691,8 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
 
                         glAcc = rse121.getObject(1).toString();
 
-                        java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO pb_doctors_request VALUES(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?),?, ?, ?, ?,?,?,?,?,?,?,?,?)");
-                        pstmt2.setString(1, jTextField36.getText());
+                        java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO pb_doctors_request VALUES(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?),?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?)");
+                        pstmt2.setString(1, patientNumberTxt.getText());
                         if (jTextField1.getText().equals("")) {
                             javax.swing.JOptionPane.showMessageDialog(this, "Patient Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                         } else {
@@ -2711,6 +2733,8 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
                         pstmt2.setString(25, "DENTAL");
                         pstmt2.setString(26, Diagnosis);
                         pstmt2.setString(27, Gender);
+                        pstmt2.setString(28, "DENTAL POSTING");
+                        pstmt2.setString(29, billNo);
                         pstmt2.executeUpdate();
 
 
@@ -2723,7 +2747,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
                             Store = rsB.getString(3);
                         }
                         java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO hp_pharmacy VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                        pstmt1.setString(1, jTextField36.getText());
+                        pstmt1.setString(1, patientNumberTxt.getText());
                         pstmt1.setString(2, jTextField1.getText());
                         pstmt1.setDouble(4, java.lang.Double.valueOf(jTable111.getValueAt(i, 1).toString()));
                         pstmt1.setDouble(3, 1);
@@ -2765,7 +2789,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
                 if (jTable2.getModel().getValueAt(i, 1) != null) {
                     java.sql.Statement stm121b = connectDB.createStatement();
 
-                    java.sql.ResultSet rset24bx = stm121b.executeQuery("SELECT COUNT(main_service) FROM hp_patient_diagnosis WHERE patient_no = '" + jTextField36.getText() + "' AND main_service = '" + jTable2.getValueAt(i, 0).toString() + "' AND date_recorded = '" + datePicker11.getDate() + "'");
+                    java.sql.ResultSet rset24bx = stm121b.executeQuery("SELECT COUNT(main_service) FROM hp_patient_diagnosis WHERE patient_no = '" + patientNumberTxt.getText() + "' AND main_service = '" + jTable2.getValueAt(i, 0).toString() + "' AND date_recorded = '" + datePicker11.getDate() + "'");
                     while (rset24bx.next()) {
                         diagnosed = rset24bx.getFloat(1);
                     }
@@ -2784,7 +2808,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
                             categ = rss.getString(1);
                         }
                         java.sql.PreparedStatement pstmth = connectDB.prepareStatement("INSERT INTO hp_patient_diagnosis VALUES(?,?,?,?,?, ?,?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?)");
-                        pstmth.setString(1, jTextField36.getText());
+                        pstmth.setString(1, patientNumberTxt.getText());
                         pstmth.setString(2, jTextField1.getText());
                         pstmth.setObject(3, jTable2.getValueAt(i, 0).toString());
                         pstmth.setObject(4, jTable2.getValueAt(i, 1).toString());
@@ -2828,9 +2852,9 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
             }
             }
             }*/
-            connectDB.commit();
-            connectDB.setAutoCommit(true);
-            this.jButton1.setEnabled(false);
+//            connectDB.commit();
+//            connectDB.setAutoCommit(true);
+            this.saveDataBtn.setEnabled(false);
             javax.swing.JOptionPane.showMessageDialog(this, "Data Inserted Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
             /*  com.afrisoftech.reports.DentalResSlipPdf pol = new com.afrisoftech.reports.DentalResSlipPdf();
@@ -2838,7 +2862,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
              */
 
 
-            this.jButton1.setEnabled(true);
+            this.saveDataBtn.setEnabled(true);
             jTextPane1.setText("");
             jTextField121.setText("");
 
@@ -2869,17 +2893,17 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
             this.jTextPane121.setText("");
             //  jComboBox2.setSelectedItem(null);
         } catch (java.sql.SQLException sq) {
-
-            try {
-                connectDB.rollback();
-            } catch (java.sql.SQLException sql) {
-                javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-            }
+            sq.printStackTrace();
+//            try {
+//                connectDB.rollback();
+//            } catch (java.sql.SQLException sql) {
+//                javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+//            }
             System.out.println(sq.getMessage());
             javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
         }        // Add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_saveDataBtnActionPerformed
 
     private void jSearchTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable2MouseClicked
         jTable13.setValueAt(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 0), jTable13.getSelectedRow(), 0);
@@ -3102,22 +3126,22 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
         this.jTextPane16.setText("");
         this.jTextPane18.setText("");
         jTextField1.setText("");
-        jTextField36.setText("");
+        patientNumberTxt.setText("");
         //   this.jTextPane1.setText("");
-        this.jButton1.setVisible(true);
+        this.saveDataBtn.setVisible(true);
         //  this.jComboBox131.setSelectedItem(null);
         jLabel7.setText("");
         // jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(),0),jTable1.getSelectedRow(), 0);
         //jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(),1),jTable1.getSelectedRow(), 1);
         this.jSearchDialog.dispose();
         //if(this.jCheckBox1.isSelected()){
-        jTextField36.setText(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0).toString());
+        patientNumberTxt.setText(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0).toString());
         jTextField1.setText(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 1).toString());
         if (this.jCheckBox1.isSelected()) {
             try {
 
                 java.sql.Statement stmt1 = connectDB.createStatement();
-                java.sql.ResultSet rset1 = stmt1.executeQuery("select category,pay_mode from hp_patient_register where patient_no ='" + jTextField36.getText() + "'");
+                java.sql.ResultSet rset1 = stmt1.executeQuery("select category,pay_mode from hp_patient_register where patient_no ='" + patientNumberTxt.getText() + "'");
                 while (rset1.next()) {
                     jTextField5.setText(rset1.getObject(1).toString());
                     jTextField2.setText(rset1.getObject(2).toString());
@@ -3126,7 +3150,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
                 String Sex = null;
 
                 java.sql.Statement stmt11 = connectDB.createStatement();
-                java.sql.ResultSet rset11 = stmt11.executeQuery("select gender,age,department from hp_patient_visit where patient_no ='" + jTextField36.getText() + "' ORDER BY age desc LIMIT 1 ");
+                java.sql.ResultSet rset11 = stmt11.executeQuery("select gender,age,department from hp_patient_visit where patient_no ='" + patientNumberTxt.getText() + "' ORDER BY age desc LIMIT 1 ");
                 while (rset11.next()) {
 
                     jTextField3.setText(rset11.getObject(2).toString());
@@ -3156,7 +3180,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
                 try {
                     // if(this.jCheckBox1.isSelected()){
                     java.sql.Statement stmt1 = connectDB.createStatement();
-                    java.sql.ResultSet rset1 = stmt1.executeQuery("select pay_mode,category from hp_inpatient_register where patient_no ='" + jTextField36.getText() + "'");
+                    java.sql.ResultSet rset1 = stmt1.executeQuery("select pay_mode,category from hp_inpatient_register where patient_no ='" + patientNumberTxt.getText() + "'");
                     while (rset1.next()) {
                         jTextField2.setText(rset1.getObject(1).toString());
                         jTextField5.setText(rset1.getObject(2).toString());
@@ -3165,7 +3189,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
 
                     String Sex = null;
                     java.sql.Statement stmt11 = connectDB.createStatement();
-                    java.sql.ResultSet rset11 = stmt11.executeQuery("select gender,pat_age,'IP' from hp_admission where patient_no ='" + jTextField36.getText() + "' ORDER BY age desc LIMIT 1 ");
+                    java.sql.ResultSet rset11 = stmt11.executeQuery("select gender,pat_age,'IP' from hp_admission where patient_no ='" + patientNumberTxt.getText() + "' ORDER BY age desc LIMIT 1 ");
                     while (rset11.next()) {
 
                         jTextField3.setText(rset11.getObject(2).toString());
@@ -3290,7 +3314,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
         System.out.println("Showing dialog");
         if (jCheckBox1.isSelected()) {
             // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
-            java.awt.Point point = this.jTextField36.getLocationOnScreen();
+            java.awt.Point point = this.patientNumberTxt.getLocationOnScreen();
 
             jSearchDialog.setSize(400, 200);
 
@@ -3298,7 +3322,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
             jSearchDialog.setVisible(true);
         } else if (jCheckBox2.isSelected()) {
             jSearchDialog.dispose();
-            java.awt.Point point = this.jTextField36.getLocationOnScreen();
+            java.awt.Point point = this.patientNumberTxt.getLocationOnScreen();
 
             jSearchDialog.setSize(400, 200);
 
@@ -3705,7 +3729,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
         java.util.Date adDate = null;
         String opvisitid = "-";
         String Xrayed = null;
-        jTextField36.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+        patientNumberTxt.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
         jTextField1.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
         // jTextField16.setText(jTable1.getValueAt(jTable1.getSelectedRow(),4).toString());
         // jTextField2.setText(jTable11.getValueAt(jTable11.getSelectedRow(),3).toString());
@@ -3720,7 +3744,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
         try {
 
             java.sql.Statement stmt1 = connectDB.createStatement();
-            java.sql.ResultSet rset1 = stmt1.executeQuery("select category,department,sex from hp_patient_register where patient_no ='" + jTextField36.getText() + "'");
+            java.sql.ResultSet rset1 = stmt1.executeQuery("select category,department,sex from hp_patient_register where patient_no ='" + patientNumberTxt.getText() + "'");
             while (rset1.next()) {
                 jTextField5.setText(rset1.getObject(1).toString());
                 jTextField2.setText(rset1.getObject(2).toString());
@@ -3742,7 +3766,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
             //  System.out.println("Insert not successful");
         }
         try {
-            connectDB.setAutoCommit(false);
+//            connectDB.setAutoCommit(false);
             java.sql.Statement stm12t = connectDB.createStatement();
 
             java.sql.Statement stm12 = connectDB.createStatement();
@@ -4023,8 +4047,8 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
             javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
             //}
-            connectDB.commit();
-            connectDB.setAutoCommit(true);
+//            connectDB.commit();
+//            connectDB.setAutoCommit(true);
 
             for (int k = 0; k < jTable1.getRowCount(); k++) {
                 for (int r = 0; r < jTable1.getColumnCount(); r++) {
@@ -4033,12 +4057,12 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
             }
 
         } catch (java.sql.SQLException sq) {
-
-            try {
-                connectDB.rollback();
-            } catch (java.sql.SQLException sql) {
-                javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-            }
+                sq.printStackTrace();
+//            try {
+//                connectDB.rollback();
+//            } catch (java.sql.SQLException sql) {
+//                javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+//            }
             System.out.println(sq.getMessage());
             javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
@@ -4472,12 +4496,24 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
     }//GEN-LAST:event_jComboBox1KeyReleased
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        com.afrisoftech.laboratory.PatientcardPdf policy = new com.afrisoftech.laboratory.PatientcardPdf();
 
-        policy.PatientcardPdf(connectDB, datePicker11.getDate(), datePicker11.getDate(), jTextField36.getText());
+        jButton8.doClick();
+//        com.afrisoftech.laboratory.PatientcardPdf policy = new com.afrisoftech.laboratory.PatientcardPdf();
+//
+//        policy.PatientcardPdf(connectDB, datePicker11.getDate(), datePicker11.getDate(), patientNumberTxt.getText());
 
         // Add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        if(patientNumberTxt.getText().length() > 2){   
+        com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
+//
+            policyReport.PatientCardPdf(connectDB, datePicker1.getDate(), datePicker1.getDate(),patientNumberTxt.getText()); 
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a patient file in order to view the patient card");
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
     public void tableModelTableChanged(javax.swing.event.TableModelEvent evt) {
         /*
         // double totals = 0.00;
@@ -4614,7 +4650,6 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
     private com.afrisoftech.lib.DatePicker datePicker11;
     private com.afrisoftech.lib.DatePicker datePicker111;
     private com.afrisoftech.lib.DatePicker datePicker2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton31;
@@ -4626,6 +4661,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton63;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JButton jButton91;
     private javax.swing.JButton jButton911;
@@ -4649,6 +4685,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel113;
     private javax.swing.JLabel jLabel12;
@@ -4733,7 +4770,6 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField36;
     private javax.swing.JTextField jTextField362;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
@@ -4746,6 +4782,8 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
     private javax.swing.JTextPane jTextPane14;
     private javax.swing.JTextPane jTextPane16;
     private javax.swing.JTextPane jTextPane18;
+    private javax.swing.JTextField patientNumberTxt;
+    private javax.swing.JButton saveDataBtn;
     private javax.swing.JButton searchButton;
     private javax.swing.JButton searchButton2;
     // End of variables declaration//GEN-END:variables

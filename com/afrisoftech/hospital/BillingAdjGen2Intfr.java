@@ -53,7 +53,7 @@ public class BillingAdjGen2Intfr extends javax.swing.JInternalFrame {
         jButton52 = new javax.swing.JButton();
         jSearchDialog = new javax.swing.JDialog();
         jSearchPanel = new javax.swing.JPanel();
-        jTextField11 = new javax.swing.JTextField();
+        serviceSearchFieldTxt = new javax.swing.JTextField();
         jSearchScrollPane = new javax.swing.JScrollPane();
         jSearchTable = new com.afrisoftech.dbadmin.JTable();
         jButton9 = new javax.swing.JButton();
@@ -360,9 +360,9 @@ public class BillingAdjGen2Intfr extends javax.swing.JInternalFrame {
         jSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jSearchPanel.setLayout(new java.awt.GridBagLayout());
 
-        jTextField11.addCaretListener(new javax.swing.event.CaretListener() {
+        serviceSearchFieldTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField11CaretUpdate(evt);
+                serviceSearchFieldTxtCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -370,7 +370,7 @@ public class BillingAdjGen2Intfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 10.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
-        jSearchPanel.add(jTextField11, gridBagConstraints);
+        jSearchPanel.add(serviceSearchFieldTxt, gridBagConstraints);
 
         jSearchTable.setShowHorizontalLines(false);
         /*    try {
@@ -3241,7 +3241,7 @@ public class BillingAdjGen2Intfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton41ActionPerformed
     
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
-        jTextField11.setText("");
+        serviceSearchFieldTxt.setText("");
         jTextField21.setText("");
         jTextField71.setText("");
         for (int k = 0; k < jTable11.getRowCount(); k++ ) {
@@ -3391,7 +3391,7 @@ public class BillingAdjGen2Intfr extends javax.swing.JInternalFrame {
                             pstmt2.setString(1,jTextField91.getText());
                             
                             
-                            pstmt2.setString(2,jTextField11.getText());
+                            pstmt2.setString(2,serviceSearchFieldTxt.getText());
                             pstmt2.setString(3,jTextField41.getText());
                             pstmt2.setString(4,jTextField21.getText());
                             pstmt2.setString(5,jTable11.getValueAt(i,0).toString());
@@ -3479,7 +3479,7 @@ public class BillingAdjGen2Intfr extends javax.swing.JInternalFrame {
                     connectDB.setAutoCommit(true);
                     jLabel71.setForeground(java.awt.Color.blue);
                     jLabel71.setText("Insert successful");
-                    jTextField11.setText("");
+                    serviceSearchFieldTxt.setText("");
                     jTextField21.setText("");
                     jTextField71.setText("");
                     for (int k = 0; k < jTable11.getRowCount(); k++ ) {
@@ -3837,32 +3837,13 @@ public class BillingAdjGen2Intfr extends javax.swing.JInternalFrame {
         jSearchDialog.dispose();         // Add your handling code here:
     }//GEN-LAST:event_jSearchTableMouseClicked
     
-    private void jTextField11CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField11CaretUpdate
-    /*    if(jCheckBox21.isSelected()){
-            if(jRadioButton1.isSelected()){
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select DISTINCT po.service_type,po.rate as price,'"+jTextField16.getText()+"' as gl_code FROM pb_operating_parameters po,hp_patient_card pc WHERE po.service_type ILIKE '"+jTextField11.getText()+"%' AND po.sub_code ilike '"+jTextField22.getText()+"%' and pc.patient_no = '"+jTextField9.getText()+"' AND pc.service = po.service_type UNION ALL select po.product,po.selling_price,'"+jTextField16.getText()+"' FROM st_stock_prices po, hp_patient_card pc WHERE po.product ILIKE '"+jTextField11.getText()+"%' AND po.sub_code ilike  '"+jTextField22.getText()+"'   AND pc.patient_no = '"+jTextField9.getText()+"' AND pc.service = po.product  UNION ALL select DISTINCT po.service_type,po.rate as price,'"+jTextField16.getText()+"' as gl_code FROM pb_operating_parameters po WHERE po.service_type ILIKE '"+jTextField11.getText()+"%' AND po.sub_code ilike '"+jTextField22.getText()+"' AND po.main_service ilike '%Disc%'"));
-            }else{
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select DISTINCT po.service_type,po.anaesthetist_rate as price,'"+jTextField16.getText()+"' as gl_code FROM pb_operating_parameters po,hp_patient_card pc WHERE po.service_type ILIKE '"+jTextField11.getText()+"%' AND po.sub_code ilike '"+jTextField22.getText()+"'  AND pc.patient_no = '"+jTextField9.getText()+"' AND pc.service = po.service_type  UNION ALL select po.product,po.selling_price,'"+jTextField16.getText()+"' FROM st_stock_prices po, hp_patient_card pc WHERE po.product ILIKE '"+jTextField11.getText()+"%' AND po.sub_code ilike  '"+jTextField22.getText()+"'  AND pc.patient_no = '"+jTextField9.getText()+"' AND pc.service = po.product  UNION ALL select DISTINCT po.service_type,po.rate as price,'"+jTextField16.getText()+"' as gl_code FROM pb_operating_parameters po WHERE po.service_type ILIKE '"+jTextField11.getText()+"%' AND po.sub_codeilike '"+jTextField22.getText()+"' AND po.main_service ilike '%Disc%'"));
-                
-            }
-            jSearchScrollPane.setViewportView(jSearchTable);
-            System.out.println("Cannot sort out");
-        }else{
-            
-            if(jRadioButton1.isSelected()){
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select DISTINCT po.service_type,po.rate as price,'"+jTextField16.getText()+"' as gl_code FROM pb_operating_parameters po,patient_bill pc WHERE po.service_type ILIKE '"+jTextField11.getText()+"%' AND po.sub_code ilike '"+jTextField22.getText()+"' and pc.patient_no = '"+jTextField9.getText()+"' AND pc.description = po.service_type UNION ALL select po.product,po.selling_price,'"+jTextField16.getText()+"' FROM st_stock_prices po, patient_bill pc WHERE po.product ILIKE '"+jTextField11.getText()+"%' AND po.sub_code ilike '"+jTextField22.getText()+"'   AND pc.patient_no = '"+jTextField9.getText()+"' AND pc.description = po.product  UNION ALL select DISTINCT po.service_type,po.rate as price,'"+jTextField16.getText()+"' as gl_code FROM pb_operating_parameters po WHERE po.service_type ILIKE '"+jTextField11.getText()+"%' AND po.sub_code ilike '"+jTextField22.getText()+"' AND po.main_service ilike '%Disc%'"));
-            }else{
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select DISTINCT po.service_type,po.anaesthetist_rate as price,'"+jTextField16.getText()+"' as gl_code FROM pb_operating_parameters po,patient_bill pc WHERE po.service_type ILIKE '"+jTextField11.getText()+"%' AND po.sub_code ilike '"+jTextField22.getText()+"'  AND pc.patient_no = '"+jTextField9.getText()+"' AND pc.description = po.service_type UNION ALL select po.product,po.selling_price,'"+jTextField16.getText()+"' FROM st_stock_prices po, patient_bill pc WHERE po.product ILIKE '"+jTextField11.getText()+"%' AND po.sub_code ilike '"+jTextField22.getText()+"'  AND pc.patient_no = '"+jTextField9.getText()+"' AND pc.description = po.product  UNION ALL select DISTINCT po.service_type,po.rate as price,'"+jTextField16.getText()+"' as gl_code FROM pb_operating_parameters po WHERE po.service_type ILIKE '"+jTextField11.getText()+"%' AND po.sub_code ilike '"+jTextField22.getText()+"' AND po.main_service ilike '%Disc%'"));
-                
-            }
-            jSearchScrollPane.setViewportView(jSearchTable);
-            System.out.println("Cannot sort out");
-        }*/
+    private void serviceSearchFieldTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_serviceSearchFieldTxtCaretUpdate
+
         if(inPatientChk.isSelected()){
             if(normalRateRdi.isSelected()){
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select DISTINCT po.service_type,po.rate as price, po.gl_account FROM pb_operating_parameters po,hp_patient_card pc WHERE po.service_type ILIKE '"+jTextField11.getText()+"%' AND po.gl_account ilike '"+accountCodeTxt.getText()+"%' and pc.patient_no = '"+patientNoTxt.getText()+"' AND pc.service ILIKE po.service_type UNION ALL select po.product,po.selling_price,'"+accountCodeTxt.getText()+"' FROM stockprices po, hp_patient_card pc WHERE po.product ILIKE '"+jTextField11.getText()+"%' AND po.gl_code ilike '"+accountCodeTxt.getText()+"%'   AND pc.patient_no = '"+patientNoTxt.getText()+"' AND pc.service = po.product  UNION ALL select DISTINCT po.service_type,po.rate as price,'"+accountCodeTxt.getText()+"' as gl_code FROM pb_operating_parameters po WHERE po.service_type ILIKE '"+jTextField11.getText()+"%' AND po.gl_account ilike '"+accountCodeTxt.getText()+"%' AND (po.main_service ilike '%Wai%' OR po.main_service ilike '%Exem%')"));
+                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select DISTINCT po.service_type,po.rate as price, po.gl_account FROM pb_operating_parameters po,hp_patient_card pc WHERE po.service_type ILIKE '%"+serviceSearchFieldTxt.getText()+"%' AND po.gl_account ilike '"+accountCodeTxt.getText()+"%' and pc.patient_no = '"+patientNoTxt.getText()+"' AND pc.service ILIKE po.service_type UNION ALL select po.product,po.selling_price,'"+accountCodeTxt.getText()+"' FROM stockprices po, hp_patient_card pc WHERE po.product ILIKE '%"+serviceSearchFieldTxt.getText()+"%' AND po.gl_code ilike '"+accountCodeTxt.getText()+"%'   AND pc.patient_no = '"+patientNoTxt.getText()+"' AND pc.service = po.product  UNION ALL select DISTINCT po.service_type,po.rate as price,'"+accountCodeTxt.getText()+"' as gl_code FROM pb_operating_parameters po WHERE po.service_type ILIKE '%"+serviceSearchFieldTxt.getText()+"%' AND po.gl_account ilike '"+accountCodeTxt.getText()+"%' AND (po.main_service ilike '%Wai%' OR po.main_service ilike '%Exem%')"));
             }else{
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select DISTINCT po.service_type,po.anaesthetist_rate as price,po.gl_account FROM pb_operating_parameters po,hp_patient_card pc WHERE po.service_type ILIKE '"+jTextField11.getText()+"%' AND po.gl_account ilike '"+accountCodeTxt.getText()+"%'  AND pc.patient_no = '"+patientNoTxt.getText()+"' AND pc.service ILIKE po.service_type  UNION ALL select po.product,po.selling_price,'"+accountCodeTxt.getText()+"' FROM stockprices po, hp_patient_card pc WHERE po.product ILIKE '"+jTextField11.getText()+"%' AND po.gl_code ilike '"+accountCodeTxt.getText()+"%'  AND pc.patient_no = '"+patientNoTxt.getText()+"' AND pc.service = po.product  UNION ALL select DISTINCT po.service_type,po.rate as price,'"+accountCodeTxt.getText()+"' as gl_code FROM pb_operating_parameters po WHERE po.service_type ILIKE '"+jTextField11.getText()+"%' AND po.gl_account ilike '"+accountCodeTxt.getText()+"%' AND (po.main_service ilike '%Wai%' OR po.main_service ilike '%Exem%')"));
+                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select DISTINCT po.service_type,po.anaesthetist_rate as price,po.gl_account FROM pb_operating_parameters po,hp_patient_card pc WHERE po.service_type ILIKE '%"+serviceSearchFieldTxt.getText()+"%' AND po.gl_account ilike '"+accountCodeTxt.getText()+"%'  AND pc.patient_no = '"+patientNoTxt.getText()+"' AND pc.service ILIKE po.service_type  UNION ALL select po.product,po.selling_price,'"+accountCodeTxt.getText()+"' FROM stockprices po, hp_patient_card pc WHERE po.product ILIKE '%"+serviceSearchFieldTxt.getText()+"%' AND po.gl_code ilike '"+accountCodeTxt.getText()+"%'  AND pc.patient_no = '"+patientNoTxt.getText()+"' AND pc.service = po.product  UNION ALL select DISTINCT po.service_type,po.rate as price,'"+accountCodeTxt.getText()+"' as gl_code FROM pb_operating_parameters po WHERE po.service_type ILIKE '%"+serviceSearchFieldTxt.getText()+"%' AND po.gl_account ilike '"+accountCodeTxt.getText()+"%' AND (po.main_service ilike '%Wai%' OR po.main_service ilike '%Exem%')"));
                 
             }
             jSearchScrollPane.setViewportView(jSearchTable);
@@ -3870,16 +3851,16 @@ public class BillingAdjGen2Intfr extends javax.swing.JInternalFrame {
         }else{
             
             if(normalRateRdi.isSelected()){
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select DISTINCT po.service_type,po.rate as price,gl_code FROM pb_operating_parameters po,patient_bill pc WHERE po.service_type ILIKE '"+jTextField11.getText()+"%' AND po.gl_account ilike '"+accountCodeTxt.getText()+"%' and pc.patient_no = '"+patientNoTxt.getText()+"' AND pc.description ILIKE po.service_type UNION ALL select po.product,po.selling_price,'"+accountCodeTxt.getText()+"' FROM stockprices po, patient_bill pc WHERE po.product ILIKE '"+jTextField11.getText()+"%' AND po.gl_code ilike '"+accountCodeTxt.getText()+"%'   AND pc.patient_no = '"+patientNoTxt.getText()+"' AND pc.description = po.product  UNION ALL select DISTINCT po.service_type,po.rate as price,'"+accountCodeTxt.getText()+"' as gl_code FROM pb_operating_parameters po WHERE po.service_type ILIKE '"+jTextField11.getText()+"%' AND po.gl_account ilike '"+accountCodeTxt.getText()+"%' AND (po.main_service ilike '%Wai%' OR po.main_service ilike '%Exem%')"));
+                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select DISTINCT po.service_type,po.rate as price,gl_code FROM pb_operating_parameters po,patient_bill pc WHERE po.service_type ILIKE '%"+serviceSearchFieldTxt.getText()+"%' AND po.gl_account ilike '"+accountCodeTxt.getText()+"%' and pc.patient_no = '"+patientNoTxt.getText()+"' AND pc.description ILIKE po.service_type UNION ALL select po.product,po.selling_price,'"+accountCodeTxt.getText()+"' FROM stockprices po, patient_bill pc WHERE po.product ILIKE '%"+serviceSearchFieldTxt.getText()+"%' AND po.gl_code ilike '"+accountCodeTxt.getText()+"%'   AND pc.patient_no = '"+patientNoTxt.getText()+"' AND pc.description = po.product  UNION ALL select DISTINCT po.service_type,po.rate as price,'"+accountCodeTxt.getText()+"' as gl_code FROM pb_operating_parameters po WHERE po.service_type ILIKE '%"+serviceSearchFieldTxt.getText()+"%' AND po.gl_account ilike '"+accountCodeTxt.getText()+"%' AND (po.main_service ilike '%Wai%' OR po.main_service ilike '%Exem%')"));
             }else{
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select DISTINCT po.service_type,po.anaesthetist_rate as price,gl_code FROM pb_operating_parameters po,patient_bill pc WHERE po.service_type ILIKE '"+jTextField11.getText()+"%' AND po.gl_account ilike '"+accountCodeTxt.getText()+"%'  AND pc.patient_no = '"+patientNoTxt.getText()+"' AND pc.description ILIKE po.service_type UNION ALL select po.product,po.selling_price,'"+accountCodeTxt.getText()+"' FROM stockprices po, patient_bill pc WHERE po.product ILIKE '"+jTextField11.getText()+"%' AND po.gl_code ilike '"+accountCodeTxt.getText()+"%'  AND pc.patient_no = '"+patientNoTxt.getText()+"' AND pc.description = po.product  UNION ALL select DISTINCT po.service_type,po.rate as price,'"+accountCodeTxt.getText()+"' as gl_code FROM pb_operating_parameters po WHERE po.service_type ILIKE '"+jTextField11.getText()+"%' AND po.gl_account ilike '"+accountCodeTxt.getText()+"%' AND (po.main_service ilike '%Wai%' OR po.main_service ilike '%Exem%')"));
+                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select DISTINCT po.service_type,po.anaesthetist_rate as price,gl_code FROM pb_operating_parameters po,patient_bill pc WHERE po.service_type ILIKE '%"+serviceSearchFieldTxt.getText()+"%' AND po.gl_account ilike '"+accountCodeTxt.getText()+"%'  AND pc.patient_no = '"+patientNoTxt.getText()+"' AND pc.description ILIKE po.service_type UNION ALL select po.product,po.selling_price,'"+accountCodeTxt.getText()+"' FROM stockprices po, patient_bill pc WHERE po.product ILIKE '%"+serviceSearchFieldTxt.getText()+"%' AND po.gl_code ilike '"+accountCodeTxt.getText()+"%'  AND pc.patient_no = '"+patientNoTxt.getText()+"' AND pc.description = po.product  UNION ALL select DISTINCT po.service_type,po.rate as price,'"+accountCodeTxt.getText()+"' as gl_code FROM pb_operating_parameters po WHERE po.service_type ILIKE '%"+serviceSearchFieldTxt.getText()+"%' AND po.gl_account ilike '"+accountCodeTxt.getText()+"%' AND (po.main_service ilike '%Wai%' OR po.main_service ilike '%Exem%')"));
                 
             }
             jSearchScrollPane.setViewportView(jSearchTable);
             System.out.println("Cannot sort out");
         }
         // Add your handling code here:
-    }//GEN-LAST:event_jTextField11CaretUpdate
+    }//GEN-LAST:event_serviceSearchFieldTxtCaretUpdate
     
     private void adjustMentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adjustMentTableMouseClicked
         
@@ -5154,7 +5135,6 @@ revenueDeptCmb.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectD
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable11;
     private javax.swing.JTable jTable111;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField111;
     private javax.swing.JTextField jTextField1111;
     private javax.swing.JTextField jTextField11111;
@@ -5194,6 +5174,7 @@ revenueDeptCmb.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectD
     private javax.swing.JButton searchButton11;
     private javax.swing.JButton searchButton2;
     private javax.swing.JTextField searchNameTxt;
+    private javax.swing.JTextField serviceSearchFieldTxt;
     private javax.swing.JPanel spacerPanel;
     private javax.swing.JRadioButton specialRateRdi;
     private javax.swing.JCheckBox viewInsertChk;

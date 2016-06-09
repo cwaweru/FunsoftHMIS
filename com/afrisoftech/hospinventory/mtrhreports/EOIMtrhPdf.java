@@ -468,7 +468,7 @@ public class EOIMtrhPdf implements java.lang.Runnable {
 
                               table1.getDefaultCell().setColspan(10);
                               table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                              phrase = new Phrase("Interested bidders may obtain the further information and inspect document by dowloading them free of charge from  MINISTRY OF HEALTH website www.erc.go.ke. or by visiting the Supply Chain Department Office, KNH, Nairobi", pFontHeader5);
+                              phrase = new Phrase("Interested bidders may obtain the further information and inspect document by dowloading them free of charge from  FACILITY NAME website www.erc.go.ke. or by visiting the Supply Chain Department Office, KNH, Nairobi", pFontHeader5);
                               table1.addCell(phrase);
 //
                             table1.getDefaultCell().setColspan(10);

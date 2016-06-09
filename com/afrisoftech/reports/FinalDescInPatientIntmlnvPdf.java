@@ -8,8 +8,9 @@ import static com.afrisoftech.reports.NHIFDispPdf.connectDB;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.*;
 
-public class FinalDescInPatientIntmlnvPdf implements java.lang.Runnable {
 
+public class FinalDescInPatientIntmlnvPdf implements java.lang.Runnable {
+    private java.io.File fileName = null;
     java.lang.String MNo = null;
     com.afrisoftech.lib.DBObject dbObject;
     java.util.Date beginDate = null;
@@ -280,6 +281,8 @@ public class FinalDescInPatientIntmlnvPdf implements java.lang.Runnable {
         try {
 
             java.io.File tempFile = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
+            
+            setFileName(tempFile);
 
             tempFile.deleteOnExit();
 
@@ -1177,5 +1180,19 @@ public class FinalDescInPatientIntmlnvPdf implements java.lang.Runnable {
         listofStaffNos = listStaffNoVector.toArray();
         System.out.println("Done list of Staff Nos ...");
         return listofStaffNos;
+    }
+
+    /**
+     * @return the fileName
+     */
+    public java.io.File getFileName() {
+        return fileName;
+    }
+
+    /**
+     * @param fileName the fileName to set
+     */
+    public void setFileName(java.io.File fileName) {
+        this.fileName = fileName;
     }
 }

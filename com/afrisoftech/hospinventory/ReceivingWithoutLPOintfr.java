@@ -725,6 +725,8 @@ public class ReceivingWithoutLPOintfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         jPanel1.add(jLabel10, gridBagConstraints);
 
         jPanel6.setLayout(new java.awt.GridBagLayout());
@@ -1029,11 +1031,11 @@ public class ReceivingWithoutLPOintfr extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Item", "Strength", "Unit Pack", "Qty", "Unit Price", "Disc %", "Disc. Total", "Vat %", "Vat Amt.", "Value", "Batch No.", "Exp. Date", "Item Code", "Issuing Units", "Issuing Qty"
+                "Item", "Strength", "Units/Pack", "Qty", "Unit Price", "Disc %", "Disc. Total", "Vat %", "Vat Amt.", "Value", "Batch No.", "Expiry Date", "Item Code", "Issuing Units", "Issuing Qty"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, true, true, true, true, false, true, false, true, true, true, false, true, true
@@ -1081,6 +1083,15 @@ public class ReceivingWithoutLPOintfr extends javax.swing.JInternalFrame {
 
             }
         }
+
+        javax.swing.table.TableColumn dateEditor = grnItemsTable.getColumnModel().getColumn(11);
+        //com.afrisoftech.lib.DateCellEditor dateCellEditor = new com.afrisoftech.lib.DateCellEditor(new org.jdesktop.swingx.JXDatePicker(), grnDetailsTable);
+        com.afrisoftech.lib.DateCellEditor dateCellEditor = new com.afrisoftech.lib.DateCellEditor(new com.afrisoftech.lib.DatePicker(), grnItemsTable);
+        dateEditor.setCellEditor(dateCellEditor);
+        //jTable1.setRowHeight(30);
+        javax.swing.table.DefaultTableCellRenderer cellRenderer = new javax.swing.table.DefaultTableCellRenderer();
+        cellRenderer.setHorizontalAlignment(cellRenderer.TRAILING);
+        dateEditor.setCellRenderer(cellRenderer);
 
         grnItemsTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1212,7 +1223,7 @@ public class ReceivingWithoutLPOintfr extends javax.swing.JInternalFrame {
         getContentPane().add(jPanel2, gridBagConstraints);
 
         buttonGroup1.add(jCheckBox1);
-        jCheckBox1.setText("CENTRAL STORES");
+        jCheckBox1.setText("Central Stores");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
@@ -1318,31 +1329,32 @@ public class ReceivingWithoutLPOintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCheckBox2ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-//        if (this.jCheckBox1.isSelected()) {
-//            try {
-//                java.sql.Statement pstmt = connectDB.createStatement();
-//
-//                java.sql.ResultSet rs = pstmt.executeQuery("select glstock_code from st_stores  where store_name ilike '" + jComboBox2.getSelectedItem().toString() + "%'");
-//                while (rs.next()) {
-//
-//                    this.jTextField6.setText(rs.getObject(1).toString());
-//                }
-//            } catch (java.sql.SQLException sqlex) {
-//                System.out.println(sqlex.getMessage());
-//            }
-//        } else {
-//            try {
-//                java.sql.Statement pstmt = connectDB.createStatement();
-//
-//                java.sql.ResultSet rs = pstmt.executeQuery("select glstock_code from st_stores  where store_name ilike '" + jComboBox2.getSelectedItem().toString() + "%'");
-//                while (rs.next()) {
-//
-//                    this.jTextField6.setText(rs.getObject(1).toString());
-//                }
-//            } catch (java.sql.SQLException sqlex) {
-//                System.out.println(sqlex.getMessage());
-//            }
-//        }
+        if (this.jCheckBox1.isSelected()) {
+            try {
+                java.sql.Statement pstmt = connectDB.createStatement();
+
+                java.sql.ResultSet rs = pstmt.executeQuery("select glstock_code from st_stores  where store_name ilike '" + jComboBox2.getSelectedItem().toString() + "%'");
+                while (rs.next()) {
+
+                    this.jTextField6.setText(rs.getObject(1).toString());
+                }
+            } catch (java.sql.SQLException sqlex) {
+                System.out.println(sqlex.getMessage());
+            }
+        } else {
+            try {
+                java.sql.Statement pstmt = connectDB.createStatement();
+
+                java.sql.ResultSet rs = pstmt.executeQuery("select glstock_code from st_stores  where store_name ilike '" + jComboBox2.getSelectedItem().toString() + "%'");
+                while (rs.next()) {
+
+                    this.jTextField6.setText(rs.getObject(1).toString());
+                }
+            } catch (java.sql.SQLException sqlex) {
+                sqlex.printStackTrace();
+                System.out.println(sqlex.getMessage());
+            }
+        }
 
         // Add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
@@ -1364,14 +1376,14 @@ public class ReceivingWithoutLPOintfr extends javax.swing.JInternalFrame {
 
             this.cmboxMouseClicked();
         }
-        else if (grnItemsTable.getSelectedColumn() == 2) {
-            
-            java.awt.Point p = jScrollPane2.getLocationOnScreen();
-            searchUnits.setLocation(p);
-            searchUnits.setSize(jScrollPane2.getWidth() * 3 / 4, 200);
-            searchUnits.setVisible(true);
-        }
-        
+//        else if (grnItemsTable.getSelectedColumn() == 2) {
+//            
+//            java.awt.Point p = jScrollPane2.getLocationOnScreen();
+//            searchUnits.setLocation(p);
+//            searchUnits.setSize(jScrollPane2.getWidth() * 3 / 4, 200);
+//            searchUnits.setVisible(true);
+//        }
+
         // Add your handling code here:
     }//GEN-LAST:event_grnItemsTableMouseClicked
     private void cmboxMouseClicked() {
@@ -1438,7 +1450,7 @@ public class ReceivingWithoutLPOintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jSearchTableMouseClicked
 
     private void resetbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetbtnActionPerformed
-                  double quantity = 0.00;
+        double quantity = 0.00;
         double price = 0.00;
         double pkge = 0.00;
         double qty = 0.00;
@@ -1501,7 +1513,7 @@ public class ReceivingWithoutLPOintfr extends javax.swing.JInternalFrame {
             } catch (java.sql.SQLException sql) {
                 javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
             }
-        }  
+        }
         //
 //        GRNThread grnThread = new GRNThread();
 //        
@@ -1524,6 +1536,13 @@ public class ReceivingWithoutLPOintfr extends javax.swing.JInternalFrame {
         double VatAmt = 0.00;
         double qty = 0.00;
         double floatCol3 = 0.00;
+
+        if (grnItemsTable.getValueAt(grnItemsTable.getSelectedRow(), 11) != null) {
+            if (!com.afrisoftech.hospinventory.InventoryLevels.getExpiryStatus(grnItemsTable.getValueAt(grnItemsTable.getSelectedRow(), 11).toString())) {
+                javax.swing.JOptionPane.showMessageDialog(this, "This item does not meet the threashold for quality assurance in terms of expiry date.");
+                grnItemsTable.setValueAt(null, grnItemsTable.getSelectedRow(), 11);
+            }
+        }
         //  double totalSum = 0.00;
         if (grnItemsTable.getValueAt(grnItemsTable.getSelectedRow(), grnItemsTable.getSelectedColumn()) != null) {
 
@@ -1851,18 +1870,18 @@ public class ReceivingWithoutLPOintfr extends javax.swing.JInternalFrame {
                                     }
                                 }
 
-                                //pkge = Double.parseDouble(grnItemsTable.getValueAt(i, 2).toString());
+                                pkge = Double.parseDouble(grnItemsTable.getValueAt(i, 2).toString());
 
-                                qty = Double.parseDouble(grnItemsTable.getValueAt(i, 14).toString());
+                                qty = Double.parseDouble(grnItemsTable.getValueAt(i, 3).toString());
 
                                 uprice = Double.parseDouble(grnItemsTable.getValueAt(i, 4).toString());
 
-                                quantity = qty ;
+                                quantity = qty * pkge;
 
-                                //price = uprice / pkge;
-                                
-                                price = uprice ;
+                                price = uprice / pkge;
 
+                                // price = uprice ;
+                                java.sql.Date expiryDate = null;
                                 java.sql.PreparedStatement pstmt = connectDB.prepareStatement(""
                                         + "insert into st_stock_cardex "
                                         + "values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
@@ -1870,7 +1889,17 @@ public class ReceivingWithoutLPOintfr extends javax.swing.JInternalFrame {
                                 pstmt.setString(1, lpoNumberTxt.getText());
                                 pstmt.setString(2, jComboBox2.getSelectedItem().toString());
                                 pstmt.setObject(3, grnItemsTable.getValueAt(i, 0) + " " + grnItemsTable.getValueAt(i, 1));
-                                pstmt.setDate(4, null);
+                                if (grnItemsTable.getValueAt(i, 11) != null) {
+                                    java.sql.Statement pst22 = connectDB.createStatement();
+                                    java.sql.ResultSet rs22 = pst22.executeQuery("select '" + grnItemsTable.getValueAt(i, 11).toString() + "'::date");
+                                    while (rs22.next()) {
+                                        expiryDate = rs22.getDate(1);
+
+                                    }
+                                    pstmt.setDate(4, expiryDate);
+                                } else {
+                                    pstmt.setDate(4, null);
+                                }
                                 pstmt.setDouble(5, 0.00);
                                 pstmt.setDouble(6, price);
                                 pstmt.setObject(7, units);
@@ -1905,7 +1934,7 @@ public class ReceivingWithoutLPOintfr extends javax.swing.JInternalFrame {
                                 pstmt.setObject(31, null);
                                 pstmt.setObject(32, grnItemsTable.getValueAt(i, 12));
                                 pstmt.setObject(33, grnItemsTable.getValueAt(i, 1));
-                                pstmt.setObject(34, GRNtransNo);
+                                pstmt.setObject(34, StocktransNo);
                                 pstmt.executeUpdate();
 
                                 java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("insert into st_sub_stores"
@@ -2166,7 +2195,7 @@ public class ReceivingWithoutLPOintfr extends javax.swing.JInternalFrame {
 
     private void unitsTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unitsTblMouseClicked
         // TODO add your handling code here:
-       grnItemsTable.setValueAt(unitsTbl.getValueAt(unitsTbl.getSelectedRow(), 0), grnItemsTable.getSelectedRow(), 2);
+        grnItemsTable.setValueAt(unitsTbl.getValueAt(unitsTbl.getSelectedRow(), 0), grnItemsTable.getSelectedRow(), 2);
         closebtn5.doClick();
     }//GEN-LAST:event_unitsTblMouseClicked
 
@@ -2349,73 +2378,74 @@ public class ReceivingWithoutLPOintfr extends javax.swing.JInternalFrame {
         }
         //               jTextField31.setText(java.lang.String.valueOf(resFloat));
     }
-    
+
     class GRNThread extends java.lang.Thread {
-        public void run(){
-                  double quantity = 0.00;
-        double price = 0.00;
-        double pkge = 0.00;
-        double qty = 0.00;
-        double uprice = 0.00;
-        double rates = 0.00;
 
-        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        public void run() {
+            double quantity = 0.00;
+            double price = 0.00;
+            double pkge = 0.00;
+            double qty = 0.00;
+            double uprice = 0.00;
+            double rates = 0.00;
 
-        long dateNow = calendar.getTimeInMillis();
+            java.util.Calendar calendar = java.util.Calendar.getInstance();
 
-        java.sql.Date datenowSql = new java.sql.Date(dateNow);
+            long dateNow = calendar.getTimeInMillis();
 
-        String Stock = null;
-        String actCode = null;
-        String accountCode = null;
-        String transNo = null;
-        String glType = null;
-        String VouchNo = null;
-        String StocktransNo = null;
+            java.sql.Date datenowSql = new java.sql.Date(dateNow);
 
-        int invoices = 0;
-        try {
+            String Stock = null;
+            String actCode = null;
+            String accountCode = null;
+            String transNo = null;
+            String glType = null;
+            String VouchNo = null;
+            String StocktransNo = null;
 
-            postbtn.doClick(); //ActionPerformed(evt);
-            //  connectDB.setAutoCommit(false);
-            //   if(this.jComboBox2.getSelectedItem().toString().equalsIgnoreCase("main store")){
-            java.sql.Statement pst2 = connectDB.createStatement();
-            java.sql.ResultSet rs = pst2.executeQuery("select code,activity from pb_activity where code ilike '" + jTextField6.getText() + "%'");
-            while (rs.next()) {
-                actCode = rs.getObject(1).toString();
-                Stock = rs.getObject(2).toString();
-            }
-            java.sql.Statement pst1 = connectDB.createStatement();
-            java.sql.ResultSet rs1 = pst1.executeQuery("select code,activity from pb_activity where activity_category = 'CP'");
-            while (rs1.next()) {
-                accountCode = rs1.getObject(1).toString();
-                glType = rs1.getObject(2).toString();
+            int invoices = 0;
+            try {
 
-            }
+                postbtn.doClick(); //ActionPerformed(evt);
+                //  connectDB.setAutoCommit(false);
+                //   if(this.jComboBox2.getSelectedItem().toString().equalsIgnoreCase("main store")){
+                java.sql.Statement pst2 = connectDB.createStatement();
+                java.sql.ResultSet rs = pst2.executeQuery("select code,activity from pb_activity where code ilike '" + jTextField6.getText() + "%'");
+                while (rs.next()) {
+                    actCode = rs.getObject(1).toString();
+                    Stock = rs.getObject(2).toString();
+                }
+                java.sql.Statement pst1 = connectDB.createStatement();
+                java.sql.ResultSet rs1 = pst1.executeQuery("select code,activity from pb_activity where activity_category = 'CP'");
+                while (rs1.next()) {
+                    accountCode = rs1.getObject(1).toString();
+                    glType = rs1.getObject(2).toString();
+
+                }
             // com.afrisoftech.reports.DiscCreditorsInvoicesPdf policy = new com.afrisoftech.reports.DiscCreditorsInvoicesPdf();
-            // policy.DiscCreditorsInvoicesPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker1.getDate().toLocaleString(), jTextField91.getText().toString(), this.jTextField7.getText().toString());
+                // policy.DiscCreditorsInvoicesPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker1.getDate().toLocaleString(), jTextField91.getText().toString(), this.jTextField7.getText().toString());
 //            com.afrisoftech.hospinventory.mtrhreports.SthirteenPdf policy = new com.afrisoftech.hospinventory.mtrhreports.SthirteenPdf();
 //            policy.SthirteenPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker1.getDate().toLocaleString(), jTextField91.getText().toString(), this.deliveryNoteNumberTxt.getText().toString());
 
-            //       jTextField7.setText("");
-            deliveredBytxt.setText("");
-            jTextField2.setText("00");
-            jTextField4.setText("00");
-            jTextField1.setText("00");
-            jTextField5.setText("00");
+                //       jTextField7.setText("");
+                deliveredBytxt.setText("");
+                jTextField2.setText("00");
+                jTextField4.setText("00");
+                jTextField1.setText("00");
+                jTextField5.setText("00");
 
-            //  javax.swing.JOptionPane.showMessageDialog(this, "Enter quantity received","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
-        } catch (java.sql.SQLException sq) {
-            sq.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                //  javax.swing.JOptionPane.showMessageDialog(this, "Enter quantity received","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
+            } catch (java.sql.SQLException sq) {
+                sq.printStackTrace();
+                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
 
-            System.out.println(sq.getMessage());
-            try {
-                connectDB.rollback();
-            } catch (java.sql.SQLException sql) {
-                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                System.out.println(sq.getMessage());
+                try {
+                    connectDB.rollback();
+                } catch (java.sql.SQLException sql) {
+                    javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                }
             }
-        }  
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

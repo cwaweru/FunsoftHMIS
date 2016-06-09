@@ -695,19 +695,19 @@ public class PatientcardPdf implements java.lang.Runnable {
 
                                     // java.sql.ResultSet rset4111 = st22.executeQuery("select distinct pathologist,doctor from hp_lab_results where lab_no ilike '" + listofStaffNos1[l] + "' AND date  = '" + listofStaffNos[j] + "'");
                                     System.out.println("(SELECT distinct initcap(code),typeof_test,input_date::DATE||' '||input_date::TIME(0),pathologist,doctor "
-                                            + "from hp_lab_results where  request_id = '" + listofStaffNos1[l].toString() + "' AND date  = '" + listofStaffNos[j] + "') "
-                                            + " union "
-                                            + "(SELECT  code,typeof_test,input_date,pathologist,doctor from lims_lab_results"
-                                            + " where  request_id = '" + listofStaffNos1[l].toString() + "' AND date  = '" + listofStaffNos[j] + "') "
-                                            + " ORDER BY 3");
+                                            + "from hp_lab_results where  request_id = '" + listofStaffNos1[l] + "' AND date  = '" + listofStaffNos[j] + "') ");
+//                                            + " union "
+//                                            + "(SELECT  code,typeof_test,input_date,pathologist,doctor from lims_lab_results"
+//                                            + " where  request_id = '" + listofStaffNos1[l].toString() + "' AND date  = '" + listofStaffNos[j] + "') "
+//                                            + " ORDER BY 3");
 
                                     java.sql.ResultSet rset121 = st32.executeQuery(
                                             "(SELECT distinct initcap(code),typeof_test,input_date::DATE||' '||input_date::TIME(0),pathologist,doctor "
-                                            + "from hp_lab_results where  request_id = '" + listofStaffNos1[l].toString() + "' AND date  = '" + listofStaffNos[j] + "') "
-                                            + " union "
-                                            + "(SELECT  code,typeof_test,input_date::text,pathologist,doctor from lims_lab_results"
-                                            + " where  request_id = '" + listofStaffNos1[l].toString() + "' AND date  = '" + listofStaffNos[j] + "') "
-                                            + " ORDER BY 3");
+                                            + "from hp_lab_results where  request_id = '" + listofStaffNos1[l] + "' AND date  = '" + listofStaffNos[j] + "') ORDER BY 3 ");
+//                                            + " union "
+//                                            + "(SELECT  code,typeof_test,input_date::text,pathologist,doctor from lims_lab_results"
+//                                            + " where  request_id = '" + listofStaffNos1[l].toString() + "' AND date  = '" + listofStaffNos[j] + "') "
+//                                            + " ORDER BY 3");
 
                                     while (rset121.next()) {
                                         // table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
@@ -1096,7 +1096,7 @@ public class PatientcardPdf implements java.lang.Runnable {
 
             while (rSet1.next()) {
 
-                listStaffNoVector.addElement(rSet1.getObject(1).toString());
+                listStaffNoVector.addElement(rSet1.getObject(1));
 
             }
 
@@ -1125,14 +1125,14 @@ public class PatientcardPdf implements java.lang.Runnable {
             // java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no FROM hp_patient_card WHERE date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND payment_mode = 'Scheme' AND isurer = '"+memNo+"' order by patient_no");
             //java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT payee FROM ac_debtors WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' and dealer ilike '"+memNo+"%' order by payee");
             java.sql.ResultSet rSet1x = stmt1.executeQuery(""
-                    + "(SELECT DISTINCT request_id FROM hp_lab_results WHERE patient_no = '" + MNo + "') "
-                    + " union "
-                    + "(SELECT distinct request_id  FROM lims_lab_results where patient_no ='" + MNo + "' )"
-                    + "order by 1 ");
+                    + "(SELECT DISTINCT request_id FROM hp_lab_results WHERE patient_no = '" + MNo + "') ORDER BY 1");
+//                    + " union "
+//                    + "(SELECT distinct request_id  FROM lims_lab_results where patient_no ='" + MNo + "' )"
+//                    + "order by 1 ");
 
             while (rSet1x.next()) {
 
-                listStaffNoVector.addElement(rSet1x.getObject(1).toString());
+                listStaffNoVector.addElement(rSet1x.getObject(1));
 
             }
 

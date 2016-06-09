@@ -101,7 +101,6 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="0"/>
     <SyntheticProperty name="generatePosition" type="boolean" value="true"/>
     <SyntheticProperty name="generateSize" type="boolean" value="true"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -187,7 +186,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton1111">
+            <Component class="javax.swing.JButton" name="copayCashCollectionBtn">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="e6" green="e6" red="e6" type="rgb"/>
@@ -197,7 +196,7 @@
                 <Property name="toolTipText" type="java.lang.String" value="Click here enter data"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1111ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="copayCashCollectionBtnActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value=" try {&#xa;            java.lang.Class.forName(&quot;org.postgresql.Driver&quot;);&#xa;        }catch (java.lang.ClassNotFoundException sl){&#xa;            System.out.println(sl.getMessage());&#xa;        }&#xa;     "/>
@@ -480,14 +479,14 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox411">
+            <Component class="javax.swing.JComboBox" name="paymentModeCmbx">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;select DISTINCT initcap(payment_mode) as payment_mode from pb_paymentmodes order by payment_mode&quot;)" type="code"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox411ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="paymentModeCmbxActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -505,7 +504,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField821">
+            <Component class="javax.swing.JTextField" name="glAccountTxt">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
@@ -525,7 +524,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField14">
+            <Component class="javax.swing.JTextField" name="cashPointTxt">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
@@ -545,7 +544,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField81">
+            <Component class="javax.swing.JTextField" name="shiftNoTxt">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
@@ -613,7 +612,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField20">
+            <Component class="javax.swing.JTextField" name="patientNameTxt">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
@@ -643,7 +642,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField25">
+            <Component class="javax.swing.JTextField" name="patientCategoryTxt">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
@@ -710,7 +709,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField17">
+            <Component class="javax.swing.JTextField" name="amountPaidTxt">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
               </Properties>
@@ -739,7 +738,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="jTextField9">
+                <Component class="javax.swing.JTextField" name="patientNoTxt">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>
@@ -796,6 +795,7 @@
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
+                    <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="Patient No."/>
                   </Properties>
                   <Constraints>
@@ -852,14 +852,14 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox412">
+            <Component class="javax.swing.JComboBox" name="revenueDepartmentCmbx">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;select distinct upper(main_service)  as main_service from pb_operating_parameters  order by main_service&quot;)" type="code"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox412ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="revenueDepartmentCmbxActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

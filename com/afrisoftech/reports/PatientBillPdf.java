@@ -7,11 +7,14 @@
 //import java.lang.*;
 
 package com.afrisoftech.reports;
+import static com.afrisoftech.laboratory.PatientcardPdf.connectDB;
 import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
+import com.lowagie.text.Image;
 import com.lowagie.text.Phrase;
 import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.PdfCell;
+import java.awt.Color;
 
 
 public class PatientBillPdf implements java.lang.Runnable {
@@ -363,6 +366,44 @@ public class PatientBillPdf implements java.lang.Runnable {
                     
                     
                     docPdf.open();
+                    try {
+                        com.lowagie.text.pdf.PdfPTable headertable = new com.lowagie.text.pdf.PdfPTable(6);
+                        
+                        int headerwidthstable[] = {15, 7, 25, 7, 8, 18};
+                        
+                        headertable.setWidths(headerwidthstable);
+                        
+                        headertable.setWidthPercentage((100));
+                        
+                        // table.getDefaultCell().setBorder(Rectangle.BOTTOM);
+                        headertable.getDefaultCell().setColspan(6);
+                        
+                        Phrase headerphrase = new Phrase();
+                        
+                        headertable.getDefaultCell().setBorder(Rectangle.BOX);
+                        headertable.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
+                        headertable.getDefaultCell().setColspan(2);
+                        headertable.getDefaultCell().setFixedHeight(70);
+                        headertable.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                        headertable.addCell(Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo()));
+                        java.sql.Statement st4 = connectDB.createStatement();
+                        java.sql.Statement st3 = connectDB.createStatement();
+                        java.sql.ResultSet rset3 = st3.executeQuery("select header_name from pb_header");
+                        java.sql.ResultSet rset4 = st4.executeQuery("SELECT TO_CHAR(current_timestamp(0),'FMDay FMDD/ MM/ YY HH12::MI')");
+                        
+                        while (rset3.next()) {
+                            headertable.getDefaultCell().setColspan(4);
+                            
+                            headertable.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                            headertable.getDefaultCell().setBorderColor(Color.BLACK);
+                            headertable.getDefaultCell().setBorder(Rectangle.BOX);
+                            headerphrase = new Phrase("\n\n" + rset3.getObject(1).toString(), pFontHeader11);
+                            headertable.addCell(headerphrase);
+                        }
+                        docPdf.add(headertable);
+                    } catch (Exception sy) {
+                        sy.printStackTrace();
+                    }
                     
                     
                     try {
@@ -377,7 +418,7 @@ public class PatientBillPdf implements java.lang.Runnable {
                         table.setWidthPercentage((100));
                         // table.setHeaderRows(1);
                         
-                        table.getDefaultCell().setBorder(Rectangle.BOTTOM);
+                        table.getDefaultCell().setBorder(Rectangle.TOP |Rectangle.BOTTOM);
                         
                         table.getDefaultCell().setColspan(6);
                         
@@ -387,7 +428,7 @@ public class PatientBillPdf implements java.lang.Runnable {
                         
                         table.getDefaultCell().setColspan(1);
                         table.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
-                        table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
+                        table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
                         
                         try {
                             java.sql.Statement stc = connectDB.createStatement();
@@ -427,19 +468,20 @@ public class PatientBillPdf implements java.lang.Runnable {
                             java.sql.ResultSet rset11 = st11.executeQuery(" select date::date,initcap(service) as service,dosage::int4,requisition_no,sum(credit-debit) from hp_patient_card where patient_no = '"+memNo+"'  AND visit_id = '"+VisitId+"' AND"
                                     + " (service = 'N.H.I.F' OR service ilike 'Receipt' OR service ilike 'Receipt Adj' OR service ilike 'Discou%') AND invoice_no NOT LIKE 'I%' GROUP BY date::date,initcap(service),dosage,requisition_no order by date::date");
                             java.sql.ResultSet rsetTotals1 = st21.executeQuery("select sum(credit-debit) from hp_patient_card where patient_no = '"+memNo+"'  AND visit_id = '"+VisitId+"' and service = 'N.H.I.F' AND service ilike 'Receipt' AND service ilike 'Receipt Adj'  AND service ilike 'Discou%' AND invoice_no NOT LIKE 'I%'");
+                           
+                            // CWW :substituted header with a image bound header
                             
-                            
-                            while (rset22.next()){
-                                table.getDefaultCell().setColspan(6);
-                                
-                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                                phrase = new Phrase(dbObject.getDBObject(rset22.getObject(1), "-"), pFontHeader1);
-                                table.addCell(phrase);
-                                
-                            }
+//                            while (rset22.next()){
+//                                table.getDefaultCell().setColspan(6);
+//                                
+//                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+//                                phrase = new Phrase(dbObject.getDBObject(rset22.getObject(1), "-"), pFontHeader1);
+//                                table.addCell(phrase);
+//                                
+//                            }
                             table.getDefaultCell().setColspan(6);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                            phrase = new Phrase("Interim Invoice", pFontHeader1);
+                            phrase = new Phrase("Interim Invoice".toUpperCase(), pFontHeader11);
                             table.addCell(phrase);
                             table.getDefaultCell().setBorder(Rectangle.BOTTOM);
                             table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);

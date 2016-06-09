@@ -75,7 +75,7 @@ public class StockMngtIntfr extends javax.swing.JInternalFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/check.gif"))); // NOI18N
         jButton1.setMnemonic('O');
-        jButton1.setText("Ok");
+        jButton1.setText("Save inventory control constants");
         jButton1.setToolTipText("Click here to enter data");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -166,8 +166,7 @@ public class StockMngtIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         getContentPane().add(jLabel3, gridBagConstraints);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Set stock control parameters", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Courier", 2, 12), new java.awt.Color(0, 0, 0))); // NOI18N
-        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Set stock control parameters", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Courier", 2, 12))); // NOI18N
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Tick whether negatives sales are allowed"));
@@ -351,6 +350,7 @@ public class StockMngtIntfr extends javax.swing.JInternalFrame {
             jLabel3.setForeground(java.awt.Color.blue);
             jLabel3.setText("Insert successful");
         }   catch(java.sql.SQLException sq){
+            sq.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
             
             System.out.println(sq.getMessage());

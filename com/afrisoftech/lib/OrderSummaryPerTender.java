@@ -6,6 +6,7 @@
 
 package com.afrisoftech.lib;
 
+import com.afrisoftech.hospinventory.OrdersPdf;
 import com.afrisoftech.hospinventory.ShowTenderedItemsDialog;
 import com.afrisoftech.hospinventory.TenderFinancialReportPDF;
 import com.afrisoftech.hospinventory.mtrhreports.TendersReceivedMtrhPdf;
@@ -200,6 +201,11 @@ public class OrderSummaryPerTender extends javax.swing.JDialog {
         bidderSearchText.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 bidderSearchTextCaretUpdate(evt);
+            }
+        });
+        bidderSearchText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bidderSearchTextActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -486,16 +492,18 @@ public class OrderSummaryPerTender extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(tenderNotxt.getText().length()<1){
-            javax.swing.JOptionPane.showMessageDialog(null, "Please select the Tender before you attempt to produce the report.");
+        if(orderNotxt.getText().length()<1){
+            javax.swing.JOptionPane.showMessageDialog(null, "Please select the Order before trying to generate the copy of the order");
+        } else {
+                                 OrdersPdf policy = new OrdersPdf();
+                        policy.OrdersPdf(connectDB, supplierTxt.getText(), orderNotxt.getText());   
         }
       
-        
-        
-        else{
-            
-            this.getReport(reportName);
-        }
+//       
+//        else{
+//            
+//            this.getReport(reportName);
+//        }
         
         // Add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -604,13 +612,14 @@ public class OrderSummaryPerTender extends javax.swing.JDialog {
     private void bidderSearchTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_bidderSearchTextCaretUpdate
         // TODO add your handling code here:
        // bidderSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct supplier from st_floated_quotations where quotation_no='"+tenderNotxt.getText()+"' and supplier ilike '"+bidderSearchText.getText()+"%'  and unit_price>0"));
-        bidderSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct order_no from st_orders where quotation_no='"+tenderNotxt.getText()+"' and order_no ilike '"+bidderSearchText.getText()+"%' and unit_price>0 and order_no is not null"));
+        bidderSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct order_no, supplier from st_orders where (quotation_no='%"+tenderNotxt.getText()+"' and order_no ilike '%"+bidderSearchText.getText()+"%') OR order_no ilike '%"+bidderSearchText.getText()+"%' and unit_price>0 and order_no is not null"));
     }//GEN-LAST:event_bidderSearchTextCaretUpdate
 
     private void bidderSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bidderSearchTableMouseClicked
         // TODO add your handling code here:
         orderNotxt.setText(bidderSearchTable.getValueAt(bidderSearchTable.getSelectedRow(), 0).toString());
-        supplierTxt.setText(com.afrisoftech.lib.GetItemInfo.getSupp(orderNotxt.getText(),tenderNotxt.getText(), connectDB));
+        supplierTxt.setText(bidderSearchTable.getValueAt(bidderSearchTable.getSelectedRow(), 1).toString());
+      //  supplierTxt.setText(com.afrisoftech.lib.GetItemInfo.getSupp(orderNotxt.getText(),tenderNotxt.getText(), connectDB));
         bidderSearch.dispose();
         
     }//GEN-LAST:event_bidderSearchTableMouseClicked
@@ -633,6 +642,10 @@ public class OrderSummaryPerTender extends javax.swing.JDialog {
         bidderSearchbtn.setEnabled(true);
         reportName= 2016;
     }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    private void bidderSearchTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bidderSearchTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bidderSearchTextActionPerformed
     
     /**
      * @param args the command line arguments

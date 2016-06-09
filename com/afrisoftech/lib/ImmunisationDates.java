@@ -14,6 +14,7 @@ import org.openide.util.Exceptions;
  */
 public class ImmunisationDates {
 
+    // Get immunisation dates for particular a procedure for particular a patient
     public static String getImmunisationDate(java.sql.Connection connectDB, String immunisationProcedureCode, String patientNo) {
         String dateofImmunisation = null;
 

@@ -634,7 +634,7 @@ public class ReportIntfr extends javax.swing.JInternalFrame implements Runnable 
             reportBodyGRNTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
                     "SELECT description, "
                     + "        sum(debit-credit) as balance "
-                    + "  FROM transaction_list_view WHERE activity_code = '300-70700-30002'"
+                    + "  FROM transaction_list_view WHERE activity_code  in (SELECT code FROM pb_activity WHERE activity_category ILIKE 'GRN')"
                     + " AND activity_code != '' and activity_code is not null"
                     + "  AND date between '" + beginDatePicker.getDate() + "' and '" + endDatePicker.getDate() + "'"
                     + " group by 1 order by 1"));
@@ -651,7 +651,7 @@ public class ReportIntfr extends javax.swing.JInternalFrame implements Runnable 
                     + " (SELECT activity FROM pb_activity WHERE"
                     + " transaction_list_view.activity_code = pb_activity.code) as description,  "
                     + "     sum(debit-credit) as balance "
-                    + "  FROM transaction_list_view WHERE activity_code ilike '255%' AND activity_code != '' "
+                    + "  FROM transaction_list_view WHERE activity_code  in (SELECT code FROM pb_activity WHERE activity_category ILIKE 'BNK') AND activity_code != '' "
                     + " and activity_code is not null  AND date between '" + beginDatePicker.getDate() + "' "
                     + " and '" + endDatePicker.getDate() + "' group by 1 order by 2"));
             //  debitTotalTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyDetailsTable, 4)));
@@ -664,7 +664,7 @@ public class ReportIntfr extends javax.swing.JInternalFrame implements Runnable 
             this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
             reportBodyInventoryTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
                     "SELECT  upper(description),  sum(debit-credit) as balance "
-                    + "  FROM transaction_list_view WHERE activity_code ilike '210%'"
+                    + "  FROM transaction_list_view WHERE activity_code  in (SELECT code FROM pb_activity WHERE activity_category ILIKE 'ST')"
                     + " AND activity_code != '' and activity_code is not null"
                     + " AND date between '" + beginDatePicker.getDate() + "' AND"
                     + " '" + endDatePicker.getDate() + "'"
@@ -682,7 +682,7 @@ public class ReportIntfr extends javax.swing.JInternalFrame implements Runnable 
                     + " (SELECT activity FROM pb_activity WHERE"
                     + " transaction_list_view.activity_code = pb_activity.code) as description, "
                     + " sum(debit-credit) as balance "
-                    + "  FROM transaction_list_view WHERE activity_code ilike '8%' "
+                    + "  FROM transaction_list_view WHERE activity_code  in (SELECT code FROM pb_activity WHERE activity_category ILIKE 'E') "
                     + "AND activity_code != '' and activity_code is not null "
                     + "AND date between '" + beginDatePicker.getDate() + "' and '" + endDatePicker.getDate() + "'"
                     + " group by 1 order by 2"));
@@ -699,7 +699,7 @@ public class ReportIntfr extends javax.swing.JInternalFrame implements Runnable 
                     + " (SELECT activity FROM pb_activity "
                     + "WHERE transaction_list_view.activity_code = pb_activity.code) as description,"
                     + "  sum(debit-credit) as balance "
-                    + "  FROM transaction_list_view WHERE activity_code ilike '6%' AND activity_code != ''"
+                    + "  FROM transaction_list_view WHERE activity_code  in (SELECT code FROM pb_activity WHERE activity_category ILIKE 'I') AND activity_code != ''"
                     + " and activity_code is not null  AND date between '" + beginDatePicker.getDate() + "'"
                     + " and '" + endDatePicker.getDate() + "' group by 1 order by 2"));
             //  debitTotalTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyDetailsTable, 4)));
@@ -713,12 +713,12 @@ public class ReportIntfr extends javax.swing.JInternalFrame implements Runnable 
             reportBodyPnLTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
                     "SELECT 'Income' as description, "
                     + "        sum(debit-credit) as balance "
-                    + "  FROM transaction_list_view WHERE activity_code ilike '6%' AND activity_code != ''"
+                    + "  FROM transaction_list_view WHERE activity_code in (SELECT code FROM pb_activity WHERE activity_category ILIKE 'I') AND activity_code != ''"
                     + " and activity_code is not null AND date between '" + beginDatePicker.getDate() + "'"
                     + " and '" + endDatePicker.getDate() + "'"
                     + " UNION SELECT 'Expenses' as decription, "
                     + "        sum(debit-credit) as balance "
-                    + "  FROM transaction_list_view WHERE activity_code ilike '8%' "
+                    + "  FROM transaction_list_view WHERE activity_code  in (SELECT code FROM pb_activity WHERE activity_category ILIKE 'E') "
                     + "AND activity_code != '' and activity_code is not null AND date between '" + beginDatePicker.getDate() + "'"
                     + " and '" + endDatePicker.getDate() + "' group by 1 order by 1 DESC"));
             //  debitTotalTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyDetailsTable, 4)));
@@ -762,7 +762,7 @@ public class ReportIntfr extends javax.swing.JInternalFrame implements Runnable 
                 + "       invoice_no as transaction_id, debit , credit, debit-credit as balance "
                 + "  FROM transaction_list_view WHERE"
                 + " activity_code = '" + reportBodyTable.getValueAt(reportBodyTable.getSelectedRow(), 0) + "'"
-                + " AND date between '" + beginDatePicker.getDate() + "' and '" + endDatePicker.getDate() + "' "));
+                + " AND date between '" + beginDatePicker.getDate() + "' and '" + endDatePicker.getDate() + "' ORDER BY 1"));
         debitTotalTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyDetailsTable, 4)));
         creditTotalTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyDetailsTable, 5)));
         balanceTotalTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyDetailsTable, 6)));

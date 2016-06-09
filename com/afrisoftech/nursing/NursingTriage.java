@@ -1664,7 +1664,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
         jSplitPane4.setDividerLocation(50);
         jSplitPane4.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search User", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 153, 204))); // NOI18N
+        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search User", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 204))); // NOI18N
         jTextField1.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 jTextField1CaretUpdate(evt);
@@ -3539,7 +3539,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
         jPanel28.setPreferredSize(new java.awt.Dimension(576, 386));
         jPanel28.setLayout(new java.awt.GridBagLayout());
 
-        jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Integrity", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Integrity", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel29.setLayout(new java.awt.GridBagLayout());
 
         lessionschk.setText("Lessions");
@@ -3632,7 +3632,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel29.add(pressuresorechk, gridBagConstraints);
 
-        jPanel30.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Notes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel30.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Notes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel30.setLayout(new java.awt.GridBagLayout());
 
         notestxtarea.setColumns(20);
@@ -3682,7 +3682,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel28.add(jPanel29, gridBagConstraints);
 
-        jPanel32.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Appearance", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel32.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Appearance", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel32.setLayout(new java.awt.GridBagLayout());
 
         jLabel13.setText("Color");
@@ -3744,7 +3744,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel28.add(jPanel32, gridBagConstraints);
 
-        jPanel33.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Actions", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel33.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Actions", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel33.setLayout(new java.awt.GridBagLayout());
 
         jButton1.setText("Save Patient Data");
@@ -3790,7 +3790,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
 
         turningChart.setLayout(new java.awt.GridBagLayout());
 
-        turningchart.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 255), 2, true), "Turning Chart", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 0, 255))); // NOI18N
+        turningchart.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 255), 2, true), "Turning Chart", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 0, 255))); // NOI18N
         turningchart.setLayout(new java.awt.GridBagLayout());
 
         jLabel102.setText("Position");
@@ -4529,7 +4529,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         header.add(jPanel17, gridBagConstraints);
 
-        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patients Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 204))); // NOI18N
+        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patients Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 204))); // NOI18N
         jPanel18.setForeground(new java.awt.Color(0, 0, 204));
         jPanel18.setLayout(new java.awt.GridBagLayout());
 
@@ -4568,7 +4568,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jButton2, gridBagConstraints);
 
-        jButton4.setText("PATIENT'S CARD");
+        jButton4.setText("PATIENT CARD");
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -6270,7 +6270,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
         jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Others", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 11), new java.awt.Color(0, 0, 204))); // NOI18N
         jPanel21.setLayout(new java.awt.GridBagLayout());
 
-        jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 153, 153))); // NOI18N
+        jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 153, 153))); // NOI18N
         jPanel23.setLayout(new java.awt.GridBagLayout());
 
         jLabel5.setText("Stool");
@@ -6293,7 +6293,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel21.add(jPanel23, gridBagConstraints);
 
-        jPanel24.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Urine", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 153, 153))); // NOI18N
+        jPanel24.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Urine", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 153, 153))); // NOI18N
         jPanel24.setLayout(new java.awt.GridBagLayout());
 
         jLabel21.setText("Wet Bed");
@@ -6341,7 +6341,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel21.add(jPanel24, gridBagConstraints);
 
-        jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Current Intravenous Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 153, 153))); // NOI18N
+        jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Current Intravenous Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 153, 153))); // NOI18N
         jPanel26.setLayout(new java.awt.GridBagLayout());
         jPanel26.add(jProgressBar1, new java.awt.GridBagConstraints());
 
@@ -6765,7 +6765,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
     jPanel37.setLayout(new java.awt.GridBagLayout());
 
     bloodTransfusionUpper.setBackground(new java.awt.Color(243, 240, 240));
-    bloodTransfusionUpper.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Transfusion Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 51, 255))); // NOI18N
+    bloodTransfusionUpper.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Transfusion Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 255))); // NOI18N
     bloodTransfusionUpper.setForeground(new java.awt.Color(0, 0, 204));
     bloodTransfusionUpper.setLayout(new java.awt.GridBagLayout());
 
@@ -6829,7 +6829,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
     gridBagConstraints.weighty = 1.0;
     jPanel37.add(bloodTransfusionUpper, gridBagConstraints);
 
-    jPanel38.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "**********", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 51, 255))); // NOI18N
+    jPanel38.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "**********", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 51, 255))); // NOI18N
     jPanel38.setLayout(new java.awt.GridBagLayout());
 
     jLabel42.setText("Transfusion Started By");
@@ -7128,7 +7128,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
     nursingCare1.setPreferredSize(new java.awt.Dimension(385, 250));
     nursingCare1.setLayout(new java.awt.GridBagLayout());
 
-    nursingcareplan.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 255), 2, true), "Enter Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 0, 255))); // NOI18N
+    nursingcareplan.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 255), 2, true), "Enter Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 0, 255))); // NOI18N
     nursingcareplan.setLayout(new java.awt.GridBagLayout());
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
@@ -8861,9 +8861,11 @@ public class NursingTriage extends javax.swing.JInternalFrame {
         return total;
     }
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        com.afrisoftech.reports.emr.MOHPatientCardPdf policy = new com.afrisoftech.reports.emr.MOHPatientCardPdf();
+        policy.MOHPatientCardPdf(connectDB, headerDatePicker.getDate(), headerDatePicker.getDate(), nameNoTxt.getText(), "OP");
 
-        com.afrisoftech.laboratory.PatientcardPdf policy = new com.afrisoftech.laboratory.PatientcardPdf();
-        policy.PatientcardPdf(connectDB, headerDatePicker.getDate(), headerDatePicker.getDate(), nameNoTxt.getText().trim());
+        com.afrisoftech.reports.PatientCardPdf policy1 = new com.afrisoftech.reports.PatientCardPdf();
+        policy1.PatientCardPdf(connectDB, headerDatePicker.getDate(), headerDatePicker.getDate(), nameNoTxt.getText().trim());
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -8925,7 +8927,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
             connectDB.setAutoCommit(false);
             //getting age
             java.sql.Statement stm123 = connectDB.createStatement();
-            java.sql.ResultSet rse123 = stm123.executeQuery("select year_of_birth::date from hp_patient_register where patient_no ilike '%" + patient_num + "%'");
+            java.sql.ResultSet rse123 = stm123.executeQuery("select age(year_of_birth::date) from hp_patient_register where patient_no ilike '%" + patient_num + "%'");
             while (rse123.next()) {
                 ///getting the user
                 age = rse123.getObject(1).toString();
@@ -8942,14 +8944,14 @@ public class NursingTriage extends javax.swing.JInternalFrame {
             while (rse12.next()) {
                 ///getting the user
                 System.out.println("\n\nam executing the user\n\n");
-                int year = Integer.parseInt(age.substring(0, 4));
-                int month = Integer.parseInt(age.substring(5, 7));
-                int day = Integer.parseInt(age.substring(8, 10));
+//                int year = Integer.parseInt(age.substring(0, 4));
+//                int month = Integer.parseInt(age.substring(5, 7));
+//                int day = Integer.parseInt(age.substring(8, 10));
 
                 dateAdmitted = rse12.getObject(5).toString();
 
                 text = "Names:-" + rse12.getObject(2).toString() + "    Age: ".
-                        concat(getAge(year, month, day) + "\n Gender: ".
+                        concat(age + "\n Gender: ".
                                 concat(rse12.getObject(3).toString() + "     Marital Status: ".
                                         concat(rse12.getObject(4).toString() + "\n Clinic : ".
                                                 concat(rse12.getObject(6).toString() + "    Date of Visit: ".
@@ -9730,7 +9732,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
         this.packTable.setValueAt(userTable.getValueAt(userTable.getSelectedRow(), 0), this.packTable.getSelectedRow(), 2);
         this.usersSearchdialog.dispose();
     }//GEN-LAST:event_userTableMouseClicked
-       private java.lang.Boolean checkPayment(String patientNo, String paymentMode, String patType, String urgency) {
+    private java.lang.Boolean checkPayment(String patientNo, String paymentMode, String patType, String urgency) {
         Boolean patientPaid = false;
         switch (patType.toLowerCase().trim()) {
             case "ip": {
@@ -9739,48 +9741,49 @@ public class NursingTriage extends javax.swing.JInternalFrame {
             break;
             case "op": {
                 switch (paymentMode.toLowerCase().trim()) {
-                    
+
                     case "scheme": {
                         patientPaid = true;
                     }
                     break;
                     case "cash": {
-                        switch(urgency.toLowerCase().trim()){
-                        case"urgent":{
-                             patientPaid = true;
-                        }
-                        break;
-                            case"emergency":{
-                             patientPaid = true;
-                        }
-                        break;
-                        case"normal":{
+                        switch (urgency.toLowerCase().trim()) {
+                            case "urgent": {
+                                patientPaid = true;
+                            }
+                            break;
+                            case "emergency": {
+                                patientPaid = true;
+                            }
+                            break;
+                            case "normal": {
                                 try {
-                            java.sql.PreparedStatement pstmtVector = connectDB.prepareStatement(""
-                                    + "SELECT COUNT(patient_no) FROM ac_cash_collection WHERE patient_no ='" + patientNo + "' "
-                                    + " and receipt_time::date >= (select current_timestamp(0)::date -1) ");
+                                    java.sql.PreparedStatement pstmtVector = connectDB.prepareStatement(""
+                                            + "SELECT COUNT(patient_no) FROM ac_cash_collection WHERE patient_no ='" + patientNo + "' "
+                                            + " and receipt_time::date >= (select current_timestamp(0)::date -1) ");
 
-                            java.sql.ResultSet rsetVector = pstmtVector.executeQuery();
+                                    java.sql.ResultSet rsetVector = pstmtVector.executeQuery();
 
-                            if (rsetVector.next()) {
-                                if (rsetVector.getInt(1) > 0) {
-                                    patientPaid = true;
-                                } else if (rsetVector.getInt(1) <= 0){
+                                    if (rsetVector.next()) {
+                                        if (rsetVector.getInt(1) > 0) {
+                                            patientPaid = true;
+                                        } else if (rsetVector.getInt(1) <= 0) {
+                                            patientPaid = false;
+                                            javax.swing.JOptionPane.showMessageDialog(this, "The patient has not paid for this service", "Information Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                                        }
+                                    }
+                                } catch (Exception ex) {
                                     patientPaid = false;
                                     javax.swing.JOptionPane.showMessageDialog(this, "The patient has not paid for this service", "Information Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
+                                    Logger.getLogger(NursingTriage.class.getName()).log(Level.SEVERE, null, ex);
                                 }
+
                             }
-                        } catch (Exception ex) {
-                            patientPaid = false;
-                            javax.swing.JOptionPane.showMessageDialog(this, "The patient has not paid for this service", "Information Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-                            Logger.getLogger(NursingTriage.class.getName()).log(Level.SEVERE, null, ex);
+                            break;
                         }
 
-                        }
-                        break;}
-                    
                     }
                 }
             }
@@ -9789,51 +9792,51 @@ public class NursingTriage extends javax.swing.JInternalFrame {
         return patientPaid;
     }
     private void occupancytableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_occupancytableMouseClicked
- this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
-      if (evt.getClickCount() == 1) {
- if (Objects.equals(checkPayment(occupancytable.getValueAt(occupancytable.getSelectedRow(), 0).toString(), occupancytable.getValueAt(occupancytable.getSelectedRow(), 8).toString(), "op",occupancytable.getValueAt(occupancytable.getSelectedRow(), 5).toString()), Boolean.TRUE)) {
-            if (theatreChbx.isSelected() == true) {
-                bookingNo = null;
-                bookingNo = occupancytable.getModel().getValueAt(occupancytable.getSelectedRow(), 1).toString().trim();
-                operationstxt.setText(occupancytable.getModel().getValueAt(occupancytable.getSelectedRow(), 4).toString().trim());
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+        if (evt.getClickCount() == 1) {
+            if (Objects.equals(checkPayment(occupancytable.getValueAt(occupancytable.getSelectedRow(), 0).toString(), occupancytable.getValueAt(occupancytable.getSelectedRow(), 8).toString(), "op", occupancytable.getValueAt(occupancytable.getSelectedRow(), 5).toString()), Boolean.TRUE)) {
+                if (theatreChbx.isSelected() == true) {
+                    bookingNo = null;
+                    bookingNo = occupancytable.getModel().getValueAt(occupancytable.getSelectedRow(), 1).toString().trim();
+                    operationstxt.setText(occupancytable.getModel().getValueAt(occupancytable.getSelectedRow(), 4).toString().trim());
+                }
+
+                try {
+                    nameNoTxt.setText(occupancytable.getModel().getValueAt(occupancytable.getSelectedRow(), 0).toString().trim());
+                    patientDetailsTextArea.setText(populateBioData(nameNoTxt.getText().trim()));
+                    String title = ward + "                           (" + occupancytable.getValueAt(occupancytable.getSelectedRow(), 0).toString().concat("    ").
+                            concat(occupancytable.getValueAt(occupancytable.getSelectedRow(), 1).toString()).concat(")");
+                    java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement(""
+                            + "UPDATE hp_patient_visit SET nature = 'triage' "
+                            + "where nature != 'Cons' and patient_no = '" + occupancytable.getValueAt(occupancytable.getSelectedRow(), 0).toString() + "' "
+                            + " AND "
+                            + " date::date ='" + occupancytable.getValueAt(occupancytable.getSelectedRow(), 7) + "'::date");
+                    pstmt46.executeUpdate();
+                    this.setTitle(title);
+                    fluidChartReload3();
+                    fluidChartReload();
+
+                } catch (Exception thea) {
+
+                    System.out.println("eror ya thatre label  area ni ");
+                    thea.printStackTrace();
+                }
+                System.out.println("SELECT trans_date::date as date,  service, quantity, \n"
+                        + "       amount,  \n"
+                        + "       visit_id,doctor,false as Administer"
+                        + "  FROM pb_doctors_request  where  paid=true and collected=false and  requisition_no='GENERAL'"
+                        + " and patient_no='" + this.nameNoTxt.getText() + "' "
+                        + "and trans_date::date='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(headerDatePicker.getDate()) + "' ");
+                this.requestsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
+                        "SELECT trans_date::date as date,  service, quantity, \n"
+                        + "       amount,  \n"
+                        + "       visit_id,doctor,false as Administer"
+                        + "  FROM pb_doctors_request  where  paid=true and collected=false and  requisition_no='GENERAL'"
+                        + " and patient_no='" + this.nameNoTxt.getText() + "' "
+                        + "and trans_date::date='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(headerDatePicker.getDate()) + "' "));
             }
-
-            try {
-                nameNoTxt.setText(occupancytable.getModel().getValueAt(occupancytable.getSelectedRow(), 0).toString().trim());
-                patientDetailsTextArea.setText(populateBioData(nameNoTxt.getText().trim()));
-                String title = ward + "                           (" + occupancytable.getValueAt(occupancytable.getSelectedRow(), 0).toString().concat("    ").
-                        concat(occupancytable.getValueAt(occupancytable.getSelectedRow(), 1).toString()).concat(")");
-                java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement(""
-                        + "UPDATE hp_patient_visit SET nature = 'triage' "
-                        + "where nature != 'Cons' and patient_no = '" + occupancytable.getValueAt(occupancytable.getSelectedRow(), 0).toString() + "' "
-                        + " AND "
-                        + " date::date ='" + occupancytable.getValueAt(occupancytable.getSelectedRow(), 7) + "'::date");
-                pstmt46.executeUpdate();
-                this.setTitle(title);
-                fluidChartReload3();
-                fluidChartReload();
-
-            } catch (Exception thea) {
-
-                System.out.println("eror ya thatre label  area ni ");
-                thea.printStackTrace();
-            }
-            System.out.println("SELECT trans_date::date as date,  service, quantity, \n"
-                    + "       amount,  \n"
-                    + "       visit_id,doctor,false as Administer"
-                    + "  FROM pb_doctors_request  where  paid=true and collected=false and  requisition_no='GENERAL'"
-                    + " and patient_no='" + this.nameNoTxt.getText() + "' "
-                    + "and trans_date::date='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(headerDatePicker.getDate()) + "' ");
-            this.requestsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
-                    "SELECT trans_date::date as date,  service, quantity, \n"
-                    + "       amount,  \n"
-                    + "       visit_id,doctor,false as Administer"
-                    + "  FROM pb_doctors_request  where  paid=true and collected=false and  requisition_no='GENERAL'"
-                    + " and patient_no='" + this.nameNoTxt.getText() + "' "
-                    + "and trans_date::date='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(headerDatePicker.getDate()) + "' "));
         }
-      }
-         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_occupancytableMouseClicked
 
     private void currentOccupRbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_currentOccupRbtnMouseClicked
@@ -9842,7 +9845,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_currentOccupRbtnMouseClicked
 
     private void currentOccupRbtnItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_currentOccupRbtnItemStateChanged
-        if (currentOccupRbtn.isSelected() ==Boolean.TRUE) {
+        if (currentOccupRbtn.isSelected() == Boolean.TRUE) {
 
             occupancytable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                     + "SELECT patient_no AS Patient_No, name AS Name,comments as Patient_Visist,age,gender,urgency,nature,date::date,payment\n"
@@ -10257,7 +10260,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void nursingTabbedPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nursingTabbedPaneMouseClicked
- this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         if (nursingTabbedPane.getSelectedIndex() == 6) {
             doctorMed.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                     + "SELECT false as Receive, date_prescribed, drug_code, drug, dosage, route, frequency, no_of_days, doctor"
@@ -10293,7 +10296,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
                     + " and patient_no='" + this.nameNoTxt.getText() + "' "
                     + "and trans_date::date='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(headerDatePicker.getDate()) + "' "));
         }
-         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_nursingTabbedPaneMouseClicked
 
     private void nursingTabbedPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_nursingTabbedPaneStateChanged
@@ -11903,7 +11906,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTabbedPane2MouseClicked
 
     private void fluidChartTabbedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fluidChartTabbedMouseClicked
- this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         if (nameNoTxt.getText().isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Please Select Patient NO First", "Error Message!second", javax.swing.JOptionPane.ERROR_MESSAGE);
             fluidChartTabbed.setEnabled(false);
@@ -11979,7 +11982,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
 
             }
         }
-         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_fluidChartTabbedMouseClicked
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed

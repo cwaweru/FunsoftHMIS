@@ -412,8 +412,8 @@ public class DailyRevenueRepPdf implements java.lang.Runnable {
                             // for (int i = 0; i < listofAct.length; i++) {
 
                             System.out.println("Statements Created ...");
-                            java.sql.ResultSet rset = st.executeQuery("select pb.code,initcap(pb.activity),sum(ac.credit-ac.debit) from ac_ledger ac,pb_activity pb where pb.code = ac.activity_code and  (pb.activity_category ilike 'i%' or pb.activity_category ilike 'cf%') and ac.date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND ac.activity_code ilike '6%'  group by pb.code,pb.activity order by pb.activity");
-
+//                            java.sql.ResultSet rset = st.executeQuery("select pb.code,initcap(pb.activity),sum(ac.credit-ac.debit) from ac_ledger ac,pb_activity pb where pb.code = ac.activity_code and  (pb.activity_category ilike 'i%' or pb.activity_category ilike 'cf%') and ac.date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND ac.activity_code ilike '6%'  group by pb.code,pb.activity order by pb.activity");
+                            java.sql.ResultSet rset = st.executeQuery("select pb.code,initcap(pb.activity),sum(ac.credit-ac.debit) from ac_ledger ac,pb_activity pb where pb.code = ac.activity_code and  (pb.activity_category ilike 'i%' or pb.activity_category ilike 'cf%') and ac.date BETWEEN '" + beginDate + "' AND '" + endDate + "' group by pb.code,pb.activity order by pb.activity");
                             //  java.sql.ResultSet rsetTotals = st.executeQuery("select initcap(activity) from pb_activity where code ilike '"+listofAct[i]+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
                             System.out.println("Select A done ...");
                             //  java.sql.ResultSet rset = st2.executeQuery("SELECT SUM(credit-debit) from ac_ledger where activity_code ilike '"+listofAct[i].toString()+"' AND date BETWEEN '"+beginDate+"' AND '"+endDate+"'");

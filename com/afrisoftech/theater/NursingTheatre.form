@@ -4544,7 +4544,7 @@
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton4">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="PATIENT&apos;S CARD"/>
+                            <Property name="text" type="java.lang.String" value="PATIENT CARD"/>
                             <Property name="horizontalTextPosition" type="int" value="0"/>
                           </Properties>
                           <Events>

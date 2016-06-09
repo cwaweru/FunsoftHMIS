@@ -5,6 +5,9 @@
  */
 package com.afrisoftech.records;
 
+import java.sql.SQLException;
+import org.openide.util.Exceptions;
+
 /**
  *
  * @author Cheles Waweru <cwaweru@systempartners.biz>
@@ -20,6 +23,7 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
 
         //  pConnDB = pconnDB;
         initComponents();
+        occupationCmbx.setSelectedItem("Baby");
     }
 
     /**
@@ -309,7 +313,7 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             immunisationClientInfoPanel.add(occupationLbl, gridBagConstraints);
 
-            occupationCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB,"SELECT occupations FROM pb_occupation ORDER BY occupations"));
+            occupationCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB,"SELECT '-' as occupations UNION SELECT occupations FROM pb_occupation ORDER BY 1"));
             occupationCmbx.setMinimumSize(new java.awt.Dimension(100, 18));
             occupationCmbx.setPreferredSize(new java.awt.Dimension(150, 20));
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -447,11 +451,6 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
             ageTxt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
             ageTxt.setMinimumSize(new java.awt.Dimension(50, 18));
             ageTxt.setPreferredSize(new java.awt.Dimension(50, 18));
-            ageTxt.addCaretListener(new javax.swing.event.CaretListener() {
-                public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                    ageTxtCaretUpdate(evt);
-                }
-            });
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 1;
@@ -460,7 +459,7 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             dobPanel.add(ageTxt, gridBagConstraints);
 
-            ageLbl.setText("Age(Years)");
+            ageLbl.setText("Age(Months)");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 2;
             gridBagConstraints.gridy = 1;
@@ -519,6 +518,7 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
             buttonGroup1.add(createNewCardRdbtn);
             createNewCardRdbtn.setSelected(true);
             createNewCardRdbtn.setText("Create New Card");
+            createNewCardRdbtn.setEnabled(false);
             createNewCardRdbtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
             createNewCardRdbtn.setIconTextGap(1);
             createNewCardRdbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -552,6 +552,7 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
             buttonGroup1.add(createExistingCardRdbtn);
             createExistingCardRdbtn.setForeground(new java.awt.Color(51, 51, 255));
             createExistingCardRdbtn.setText("Create Existing Card");
+            createExistingCardRdbtn.setEnabled(false);
             createExistingCardRdbtn.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
             createExistingCardRdbtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
             createExistingCardRdbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -732,7 +733,7 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
             buttonPanel.setPreferredSize(new java.awt.Dimension(224, 20));
             buttonPanel.setLayout(new java.awt.GridBagLayout());
 
-            saveMotherInfoBtn.setText("Save data for Post Natal visit");
+            saveMotherInfoBtn.setText("Save data for Immunisation visit");
             saveMotherInfoBtn.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     saveMotherInfoBtnActionPerformed(evt);
@@ -812,6 +813,21 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
 }//GEN-LAST:event_regEditdataBtnActionPerformed
 
     private void saveMotherInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMotherInfoBtnActionPerformed
+
+        String cwcNumber = null;
+        try {
+            java.sql.PreparedStatement pstmtCWC = connectDB.prepareStatement("SELECT lpad(nextval('imz_no_seq')::text,8,0::text)");
+            java.sql.ResultSet rsetCWC = pstmtCWC.executeQuery();
+            while (rsetCWC.next()) {
+                cwcNumber = rsetCWC.getString(1);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Exceptions.printStackTrace(ex);
+        }
+        if (ancNumberTxt.getText().isEmpty()) {
+            ancNumberTxt.setText(cwcNumber);
+        }
         if (ancNumberTxt.getText().isEmpty() || ageTxt.getText().isEmpty() || patientNumberTxt.getText().isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Client Identification number, client age and clinic number cannot be empty");
         } else {
@@ -823,9 +839,9 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
                                 + "            date_of_visit, patient_no, clinic_number, "
                                 + "            patient_names, village, age, telephone_no, "
                                 + "            immunisation_procedure, referral_in, "
-                                + "            referral_out, mother_name, father_name, gender, date_of_birth, comments)"
+                                + "            referral_out, mother_name, father_name, gender, date_of_birth, comments, real_age)"
                                 + "    VALUES (?, ?, ?, ?, ?, "
-                                + "            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                + "            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                         pstmtImmunisationInfo.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(ancVisitDatePicker.getDate()));
                         pstmtImmunisationInfo.setString(2, patientNumberTxt.getText());
                         pstmtImmunisationInfo.setString(3, ancNumberTxt.getText());
@@ -841,12 +857,13 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
                         pstmtImmunisationInfo.setObject(13, genderCmbx.getSelectedItem());
                         pstmtImmunisationInfo.setObject(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePickerYOB.getDate()));
                         pstmtImmunisationInfo.setObject(15, commentsTxt.getText());
+                        pstmtImmunisationInfo.setObject(16, ageTxt.getText());
                         pstmtImmunisationInfo.execute();
 
                     }
                 }
                 results();
-                javax.swing.JOptionPane.showMessageDialog(this, "Immunisation procedure(s) regsitered successfully");
+                javax.swing.JOptionPane.showMessageDialog(this, "Immunisation procedure(s) registered successfully");
                 connectDB.commit();
                 connectDB.setAutoCommit(true);
             } catch (java.sql.SQLException sqlEx) {
@@ -867,19 +884,16 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
     }
     private void searchANCFileTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchANCFileTxtCaretUpdate
         //        if(jCheckBox7.isSelected()){
+        //        if(jCheckBox7.isSelected()){
         if (searchANCFileTxt.getCaretPosition() < 6) {
 
             System.out.println("Nothing");
         } else {
             ancSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT "
-                    + "patient_no,first_name,second_name,last_name FROM"
-                    + " hp_patient_register WHERE (patient_no ILIKE '%" + searchANCFileTxt.getText() + "%' "
-                    + "OR first_name||' '||second_name||' '||last_name ILIKE '%" + searchANCFileTxt.getText() + "%') AND sex ilike 'female' "
-                    + "UNION "
-                    + "SELECT DISTINCT patient_no,first_name,second_name,last_name FROM"
-                    + " hp_inpatient_register WHERE (patient_no ILIKE '%" + searchANCFileTxt.getText() + "%' "
-                    + "OR first_name||' '||second_name||' '||last_name ILIKE '%" + searchANCFileTxt.getText() + "%') AND sex ilike 'female' "
-                    + " ORDER BY 1"));
+                    + "child_serial_no, full_names FROM"
+                    + " rh.child_health_follow_up WHERE (child_serial_no ILIKE '%" + searchANCFileTxt.getText() + "%' "
+                    + "OR full_names ILIKE '%" + searchANCFileTxt.getText() + "%') ORDER BY 2 "
+            ));
             ancSearchTable.setShowHorizontalLines(false);
             ancSearchScrollPane.setViewportView(ancSearchTable);
 
@@ -893,42 +907,25 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
 }//GEN-LAST:event_searchANCFileTxtFocusLost
 
     private void ancSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ancSearchTableMouseClicked
+        java.util.StringTokenizer tokenizer = new java.util.StringTokenizer(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 1).toString());
+
         this.ancNumberTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 0).toString());
         this.patientNumberTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 0).toString());
-        this.lastNameTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 1).toString());
-        middleNameTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 2).toString());
-        firstNameTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 3).toString());
-//        ageTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 4).toString());
-
-        try {
-            java.sql.Statement stmt1 = connectDB.createStatement();
-            java.sql.ResultSet rset1 = stmt1.executeQuery("SELECT file_no,surname,other_names,pat_age,nok,relationship,residence,date_admitted FROM hp_patient_register WHERE file_no ='" + ancNumberTxt.getText() + "' ORDER By date_admitted DESC LIMIT 1");
-            while (rset1.next()) {
-
-                //otherConditionDetailsTxt.setText(rset1.getObject(1).toString());
-                //  placeofDeliveryTxt.setText(rset1.getObject(2).toString());
-                //   jTextField25.setText(rset1.getObject(3).toString());
-                ageTxt.setText(rset1.getObject(4).toString());
-                //jTextField8.setText(rset1.getObject(5).toString());
-                // this.nokRelationShipCmbx.setSelectedItem(rset1.getObject(6).toString());
-                residenceTxt.setText(rset1.getObject(7).toString());
-            }
-
-            java.sql.Statement stmt12 = connectDB.createStatement();
-            java.sql.ResultSet rset12 = stmt12.executeQuery("SELECT address,pat_district,pat_location,chief_name,sub_chief FROM hp_admission WHERE patient_no ='" + ancNumberTxt.getText() + "'  ");
-            while (rset12.next()) {
-
-                java.text.DateFormat df = java.text.DateFormat.getDateInstance();
-                java.text.SimpleDateFormat sdf = (java.text.SimpleDateFormat) df;
-
-                sdf.applyPattern("yyyy-MM-dd");
-            }
-
-        } catch (java.sql.SQLException sqe) {
-            sqe.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(this, sqe.getMessage());
-            //  System.out.println("Insert not successful");
+        
+        this.firstNameTxt.setText(null);
+        this.middleNameTxt.setText(null);
+        this.lastNameTxt.setText(null);
+        
+        if (tokenizer.hasMoreTokens()) {
+            lastNameTxt.setText(tokenizer.nextToken());
         }
+        if (tokenizer.hasMoreTokens()) {
+            middleNameTxt.setText(tokenizer.nextToken());
+        }
+        if (tokenizer.hasMoreTokens()) {
+            firstNameTxt.setText(tokenizer.nextToken());
+        }
+
         ancSearchDialog.dispose();
 
         // Add your handling code here:
@@ -946,37 +943,11 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
 
     private void regClearFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regClearFormBtnActionPerformed
         this.getContentPane().removeAll();
-        
+
         this.initComponents();
-        
+
         this.setSize(this.getParent().getSize());
-        
-//        referralOUTCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Y", "N"}));
-//        referralINCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "KP", "U"}));
-//        educationLevelCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT edu_name FROM pb_education ORDER BY edu_name"));
-////        genderCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Single", "Married", "Divorced", "Window", "Other"}));
-////        religionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT religion_name FROM pb_religion ORDER BY religion_name"));
-//        occupationCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT occupations FROM pb_occupation ORDER BY occupations"));
-//        residenceTxt.setText("");
-//        ancNumberTxt.setText("");
-//        firstNameTxt.setText("");
-//        searchANCFileTxt.setText("");
-//        middleNameTxt.setText("");
-//        lastNameTxt.setText("");
-//        addressTxt.setText("");
-//        telephoneTxt.setText("");
-//        nameofFatherTxt.setText("");
-//        ageTxt.setText("0");
-//        middleNameTxt.setEditable(true);
-//        lastNameTxt.setEditable(true);
-//        addressTxt.setEditable(true);
-//        telephoneTxt.setEditable(true);
-//        nameofFatherTxt.setEditable(true);
-//        ageTxt.setEditable(true);
-//        residenceTxt.setEditable(true);
-//        ancNumberTxt.setEditable(true);
-//        ancCardSearchField.setEnabled(true);
-//        firstNameTxt.setEditable(true);
+
         // TODO add your handling code here:
     }//GEN-LAST:event_regClearFormBtnActionPerformed
 
@@ -988,8 +959,8 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
     private void ancCardSearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ancCardSearchFieldActionPerformed
 
         searchButtonClicked();
-        
-        immunisationProceduresTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT procedure_code, procedure_description, comments, false as given_this_visit FROM rh.immunisation_procedures WHERE procedure_code in (SELECT distinct procedure_code FROM rh.immunisation_procedures EXCEPT SELECT DISTINCT immunisation_procedure FROM rh.immunisation_register) ORDER BY 2"));
+
+//        immunisationProceduresTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT procedure_code, procedure_description, comments, false as given_this_visit FROM rh.immunisation_procedures WHERE procedure_code in (SELECT distinct procedure_code FROM rh.immunisation_procedures EXCEPT SELECT DISTINCT immunisation_procedure FROM rh.immunisation_register) ORDER BY 2"));
 
         // Add your handling code here:
     }//GEN-LAST:event_ancCardSearchFieldActionPerformed
@@ -1003,113 +974,15 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_createExistingCardRdbtnActionPerformed
 
     private void revisitRdbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_revisitRdbtnActionPerformed
-        educationLevelCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT edu_name FROM pb_education ORDER BY edu_name"));
-//        genderCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Single", "Married", "Divorced", "Window", "Other"}));
-//        religionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT religion_name FROM pb_religion ORDER BY religion_name"));
-        occupationCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT occupations FROM pb_occupation ORDER BY occupations"));
-        residenceTxt.setText("");
-        ancNumberTxt.setText("");
-        firstNameTxt.setText("");
-        searchANCFileTxt.setText("");
-        middleNameTxt.setText("");
-        lastNameTxt.setText("");
-        addressTxt.setText("");
-        telephoneTxt.setText("");
-        nameofFatherTxt.setText("");
-        ageTxt.setText("0");
-        middleNameTxt.setEditable(false);
-        lastNameTxt.setEditable(false);
-        addressTxt.setEditable(false);
-        telephoneTxt.setEditable(false);
-        nameofFatherTxt.setEditable(false);
-        ageTxt.setEditable(false);
-        residenceTxt.setEditable(false);
-        ancNumberTxt.setEditable(false);
-        ancCardSearchField.setEnabled(true);
-        firstNameTxt.setEditable(false);
+
+  //      this.regClearFormBtn.doClick();
         // Add your handling code here:
     }//GEN-LAST:event_revisitRdbtnActionPerformed
 
     private void createNewCardRdbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewCardRdbtnActionPerformed
-        referralOUTCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Y", "N"}));
-        referralINCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "KP", "U"}));
-        educationLevelCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT edu_name FROM pb_education ORDER BY edu_name"));
-//        genderCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Single", "Married", "Divorced", "Window", "Other"}));
-//        religionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT religion_name FROM pb_religion ORDER BY religion_name"));
-        occupationCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT occupations FROM pb_occupation ORDER BY occupations"));
-        residenceTxt.setText("");
-        ancNumberTxt.setText("");
-        firstNameTxt.setText("");
-        searchANCFileTxt.setText("");
-        middleNameTxt.setText("");
-        lastNameTxt.setText("");
-        addressTxt.setText("");
-        telephoneTxt.setText("");
-        nameofFatherTxt.setText("");
-        ageTxt.setText("0");
-        middleNameTxt.setEditable(true);
-        lastNameTxt.setEditable(true);
-        addressTxt.setEditable(true);
-        telephoneTxt.setEditable(true);
-        nameofFatherTxt.setEditable(true);
-        ageTxt.setEditable(true);
-        residenceTxt.setEditable(true);
-        ancNumberTxt.setEditable(true);
-        ancCardSearchField.setEnabled(true);
-        firstNameTxt.setEditable(true);
-        String useonenumber = null;
-        try {
-            java.sql.Statement stmtx = connectDB.createStatement();
-            java.sql.ResultSet rsetx = stmtx.executeQuery("select ip_numbering,use_one_number from pb_patient_names");
-            while (rsetx.next()) {
-                //  autonumber = rsetx.getBoolean(1);
-                useonenumber = rsetx.getString(2);
-                java.sql.Statement pss1 = connectDB.createStatement();
-                java.sql.ResultSet rss1 = pss1.executeQuery("select file_no from hp_maternity_register ORDER BY OID desc LIMIT 1");
-                while (rss1.next()) {
-
-                }
-            }
-            rsetx.close();
-            stmtx.close();
-
-        } catch (java.sql.SQLException sqe) {
-            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sqe.getMessage());
-            sqe.printStackTrace();
-            System.out.println("selection not successful");
-        }
+        this.regClearFormBtn.doClick();
         // Add your handling code here:
     }//GEN-LAST:event_createNewCardRdbtnActionPerformed
-
-    private void ageTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_ageTxtCaretUpdate
-        if (ageTxt.getText().equalsIgnoreCase("")) {
-        } else {
-            float ages = java.lang.Float.valueOf(ageTxt.getText());
-            int ageYrs = java.lang.Math.round(ages);
-            try {
-                java.sql.Statement stmnza = connectDB.createStatement();
-                java.sql.ResultSet rsnza = stmnza.executeQuery("select (CURRENT_DATE::DATE - ('" + ageYrs + "'*365))");
-                while (rsnza.next()) {
-                    java.text.DateFormat df = java.text.DateFormat.getDateInstance();
-                    java.text.SimpleDateFormat sdf = (java.text.SimpleDateFormat) df;
-
-                    sdf.applyPattern("yyyy-MM-dd");
-                    try {
-                        this.datePickerYOB.setDate(sdf.parse(rsnza.getString(1)));
-
-                    } catch (java.text.ParseException pe) {
-                        javax.swing.JOptionPane.showMessageDialog(this, pe.getMessage());
-                    }
-                }
-            } catch (java.sql.SQLException sq) {
-                sq.printStackTrace();
-                System.out.println(sq.getMessage());
-                javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-
-            }
-        }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ageTxtCaretUpdate
 
     private void ancNumberTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ancNumberTxtActionPerformed
         // TODO add your handling code here:

@@ -118,13 +118,7 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
 
 
 
-
-        System.out.println("Cashpoint : " + System.getProperty("cashpoint"));
-
-        //        System.out.println("Shift No. : "+getShiftMunber());
-
-
-        jTextField141.setText(System.getProperty("cashpoint"));
+        cashPointTxt.setText(this.getCashPoint());
 
         jTextField811.setText(getShiftNumber());
 
@@ -346,7 +340,7 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
     datePicker1 = new com.afrisoftech.lib.DatePicker();
     jLabel8 = new javax.swing.JLabel();
     jLabel101 = new javax.swing.JLabel();
-    jTextField141 = new javax.swing.JTextField();
+    cashPointTxt = new javax.swing.JTextField();
     jLabel1311 = new javax.swing.JLabel();
     jTextField811 = new javax.swing.JTextField();
 
@@ -990,20 +984,20 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
             }
         });
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameClosed(evt);
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -1420,7 +1414,7 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel9.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane211.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cash Sale Particulars - Select item/service (by clicking once on the ITEM/SERVICE column) and specify the quantity. Remember to press the TAB key to validate your entries.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 153, 255)));
+        jScrollPane211.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cash Sale Particulars - Select item/service (by clicking once on the ITEM/SERVICE column) and specify the quantity. Remember to press the TAB key to validate your entries.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 153, 255))); // NOI18N
 
         jTable111.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTable111.setModel(new javax.swing.table.DefaultTableModel(
@@ -1888,12 +1882,12 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         jPanel51.add(jLabel101, gridBagConstraints);
 
-        jTextField141.setEditable(false);
+        cashPointTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 2.5;
         gridBagConstraints.weighty = 1.0;
-        jPanel51.add(jTextField141, gridBagConstraints);
+        jPanel51.add(cashPointTxt, gridBagConstraints);
 
         jLabel1311.setText("Shift No.");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -3058,8 +3052,8 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
         //               jTextField31.setText(java.lang.String.valueOf(resFloat));
     }
 
-    public java.lang.String getShiftNumber() {
-
+    public java.lang.String getCashPoint() {
+        String cashPoint = null;
         try {
 
             java.sql.Statement stmtf = connectDB.createStatement();
@@ -3067,62 +3061,53 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
             while (rsetf.next()) {
                 cashPoint = rsetf.getObject(1).toString();
             }
+           
             rsetf.close();
+           
             stmtf.close();
+            
         } catch (java.sql.SQLException sqe) {
+           
             sqe.printStackTrace();
+           
             System.out.println("select not successful");
+            
         }
 
-        try {
 
-            java.sql.Statement stmt = connectDB.createStatement();
-
-            // java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE cash_point = '"+System.getProperty("cashpoint")+"' AND user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
-            java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
-
-            while (rset.next()) {
-
-                shift_no = rset.getString(1);
-
-            }
-            stmt.close();
-            rset.close();
-        } catch (java.sql.SQLException sqlExec) {
-
-            javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
-
-        }
-
-        return shift_no;
+        return cashPoint;
 
     }
 
-    public java.lang.String getCashPoint() {
-
+    public java.lang.String getShiftNumber() {
+        
+        String shiftNo = null;
+       
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
 
-            // java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE cash_point = '"+System.getProperty("cashpoint")+"' AND user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
-            java.sql.ResultSet rset = stmt.executeQuery("SELECT cash_point FROM ac_shifts WHERE user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
-
+             java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE cash_point = '"+getCashPoint()+"' AND user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
+ 
             while (rset.next()) {
 
-                cash_no = rset.getString(1);
-                jTextField141.setText(cash_no);
+                shiftNo = rset.getString(1);
 
             }
+           
             rset.close();
+           
             stmt.close();
 
         } catch (java.sql.SQLException sqlExec) {
 
+            sqlExec.printStackTrace();
+            
             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
 
         }
 
-        return cash_no;
+        return shiftNo;
 
     }
 
@@ -3249,7 +3234,7 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
 //select current_timestamp
                         rse12fx = stm12fx.executeQuery("select cash_point,start_date::DATE from ac_shifts WHERE shift_no = '" + jTextField811.getText() + "'");
                         while (rse12fx.next()) {
-                            jTextField141.setText(rse12fx.getString(1));
+                            cashPointTxt.setText(rse12fx.getString(1));
                             dates = rse12fx.getDate(2);
                         }
 
@@ -3349,7 +3334,7 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
                                     pstmt212.setBoolean(21, false);
                                     pstmt212.setBoolean(22, false);
                                     pstmt212.setString(23, user);
-                                    pstmt212.setString(24, jTextField141.getText());
+                                    pstmt212.setString(24, cashPointTxt.getText());
                                     pstmt212.setString(25, jTextField811.getText());
                                     pstmt212.executeUpdate();
                                     pstmt212.close();
@@ -3386,7 +3371,7 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
                                         pstmt25.setBoolean(21, false);
                                         pstmt25.setBoolean(22, false);
                                         pstmt25.setString(23, user);
-                                        pstmt25.setString(24, jTextField141.getText());
+                                        pstmt25.setString(24, cashPointTxt.getText());
                                         pstmt25.setString(25, jTextField811.getText());
                                         pstmt25.setDate(26, null);
                                         pstmt25.setDouble(27, java.lang.Double.valueOf(jTable111.getValueAt(i, 1).toString()));
@@ -3482,7 +3467,7 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
                             psr.setDate(3, dates); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
                             psr.setDouble(4, java.lang.Double.valueOf(jTextField311.getText()));
                             psr.setInt(5, java.lang.Integer.valueOf(jTextField811.getText()));
-                            psr.setString(6, jTextField141.getText());
+                            psr.setString(6, cashPointTxt.getText());
                             psr.setString(7, receiptNo1);
                             psr.setString(8, user);
                             psr.executeUpdate();
@@ -3634,6 +3619,7 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JTextField cashPointTxt;
     private com.afrisoftech.lib.DatePicker datePicker1;
     private javax.swing.JButton dispose11;
     private javax.swing.JLabel exemptionNumberLbl;
@@ -3748,7 +3734,6 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
     private javax.swing.JTextField jTextField121;
     private javax.swing.JTextField jTextField1211;
     private javax.swing.JTextField jTextField131;
-    private javax.swing.JTextField jTextField141;
     private javax.swing.JTextField jTextField14111;
     private javax.swing.JTextField jTextField151;
     private javax.swing.JTextField jTextField1611;

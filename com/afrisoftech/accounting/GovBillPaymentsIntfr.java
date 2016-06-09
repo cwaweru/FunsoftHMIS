@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -117,17 +118,13 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
         }
 
-
-
-
         System.out.println("Cashpoint : " + System.getProperty("cashpoint"));
 
         //        System.out.println("Shift No. : "+getShiftMunber());
+        //cashPointTxt.setText(System.getProperty("cashpoint"));
+        cashPointTxt.setText(this.getCashPoint());
 
-
-        jTextField141.setText(System.getProperty("cashpoint"));
-
-        jTextField811.setText(getShiftNumber());
+        shiftNoTxt.setText(getShiftNumber());
 
         reprintReceiptBtn.setVisible(rePrints);
 
@@ -250,7 +247,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     jPanel14 = new javax.swing.JPanel();
     searchNoChbx = new javax.swing.JCheckBox();
     searchNameChbx = new javax.swing.JCheckBox();
-    jCheckBox3 = new javax.swing.JCheckBox();
+    walkINChkbx = new javax.swing.JCheckBox();
     jLabel112 = new javax.swing.JLabel();
     patientNumberTxt = new javax.swing.JTextField();
     exemptionNumberLbl = new javax.swing.JLabel();
@@ -262,6 +259,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     jTextField1 = new javax.swing.JTextField();
     jLabel4 = new javax.swing.JLabel();
     unitNumberTxt = new javax.swing.JTextField();
+    mchfpChbx = new javax.swing.JCheckBox();
     jSeparator111 = new javax.swing.JSeparator();
     jPanel32 = new javax.swing.JPanel();
     jPanel32.setVisible(false);
@@ -344,13 +342,13 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     jLabel121 = new javax.swing.JLabel();
     payModecmbx = new javax.swing.JComboBox();
     jLabel132 = new javax.swing.JLabel();
-    jTextField82 = new javax.swing.JTextField();
+    glAccountTxt = new javax.swing.JTextField();
     datePicker1 = new com.afrisoftech.lib.DatePicker();
     jLabel8 = new javax.swing.JLabel();
     jLabel101 = new javax.swing.JLabel();
-    jTextField141 = new javax.swing.JTextField();
+    cashPointTxt = new javax.swing.JTextField();
     jLabel1311 = new javax.swing.JLabel();
-    jTextField811 = new javax.swing.JTextField();
+    shiftNoTxt = new javax.swing.JTextField();
     jLabel113 = new javax.swing.JLabel();
     jTextField1113 = new javax.swing.JTextField();
 
@@ -981,7 +979,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Cash Sales (CASH REGISTER)");
+        setTitle("POINT OF SALE : Cash Sales (CASH REGISTER/POS)");
         setFrameIcon(null);
         try {
             setSelected(true);
@@ -1157,15 +1155,14 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         });
         jPanel14.add(searchNameChbx);
 
-        buttonGroup1.add(jCheckBox3);
-        jCheckBox3.setText("Walk In");
-        jCheckBox3.setEnabled(false);
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(walkINChkbx);
+        walkINChkbx.setText("Walk In");
+        walkINChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
+                walkINChkbxActionPerformed(evt);
             }
         });
-        jPanel14.add(jCheckBox3);
+        jPanel14.add(walkINChkbx);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -1295,6 +1292,15 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel211.add(unitNumberTxt, gridBagConstraints);
+
+        buttonGroup1.add(mchfpChbx);
+        mchfpChbx.setText("MCH/FP");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel211.add(mchfpChbx, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1724,7 +1730,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         postSaleDataBtn.setMnemonic('O');
         postSaleDataBtn.setText("Post Receipt data");
         postSaleDataBtn.setToolTipText("Click here enter data");
-        postSaleDataBtn.setEnabled(false);
         postSaleDataBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 postSaleDataBtnActionPerformed(evt);
@@ -1879,7 +1884,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         jPanel51.add(jLabel132, gridBagConstraints);
 
-        jTextField82.setEditable(false);
+        glAccountTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -1887,7 +1892,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.weightx = 3.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        jPanel51.add(jTextField82, gridBagConstraints);
+        jPanel51.add(glAccountTxt, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -1918,7 +1923,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         jPanel51.add(jLabel101, gridBagConstraints);
 
-        jTextField141.setEditable(false);
+        cashPointTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -1926,7 +1931,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.weightx = 2.5;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        jPanel51.add(jTextField141, gridBagConstraints);
+        jPanel51.add(cashPointTxt, gridBagConstraints);
 
         jLabel1311.setText("Shift No.");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1938,7 +1943,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         jPanel51.add(jLabel1311, gridBagConstraints);
 
-        jTextField811.setEditable(false);
+        shiftNoTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -1946,7 +1951,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        jPanel51.add(jTextField811, gridBagConstraints);
+        jPanel51.add(shiftNoTxt, gridBagConstraints);
 
         jLabel113.setText("Receipt No");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1992,7 +1997,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.weighty = 1.0;
         jPanel8.add(jPanel71, gridBagConstraints);
 
-        jTabbedPane1.addTab("Walk In Patients", jPanel8);
+        jTabbedPane1.addTab("OUT-Patient Cash payments", jPanel8);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -2096,7 +2101,25 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     }//GEN-LAST:event_amountPaidTxtCaretUpdate
 
     private void generateReceiptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReceiptBtnActionPerformed
-        if ((Double.parseDouble(amountPaidTxt.getText()) >= Double.parseDouble(billAmountTxt.getText())) && (Double.parseDouble(billAmountTxt.getText()) > 0.00) & (patientNumberTxt.getText().toCharArray().length > 0)) {
+
+        if (walkINChkbx.isSelected()) {
+            try {
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT 'WLKN'||lpad(nextval('walkin_no_seq')::varchar,7,'0')");
+
+                java.sql.ResultSet rset = pstmt.executeQuery();
+
+                while (rset.next()) {
+                    patientNumberTxt.setText(rset.getString(1));
+                }
+
+            } catch (SQLException ex) {
+                Exceptions.printStackTrace(ex);
+                javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
+        }
+        /////          if ((Double.parseDouble(amountPaidTxt.getText()) >= Double.parseDouble(billAmountTxt.getText())) && (Double.parseDouble(billAmountTxt.getText()) > 0.00) & (patientNumberTxt.getText().toCharArray().length > 0)) {
+
+        if ((Double.parseDouble(amountPaidTxt.getText()) >= Double.parseDouble(billAmountTxt.getText())) && (patientNumberTxt.getText().toCharArray().length > 0)) {
             jTextField1113.setText(null);
             System.out.println("Printing the receipt.");
             try {
@@ -2126,57 +2149,49 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                     String receiptNo1 = null;
 
                     postSaleDataBtnActionPerformed(evt);
-                    
+
                     //////jButton111ActionPerformed(evt);
-
 // Auto register patient visit
-
-
-                    java.sql.PreparedStatement pstmt21a = connectDB.prepareStatement("INSERT INTO hp_patient_visit("
-                            + "patient_no, name, ip_no, payment, visit_no, services, quantity,"
-                            + "department, amount, test, date, result, doctor_name, user_name,"
-                            + "input_date, transaction_type, nature, time, comments, parameter,"
-                            + "status, age, gender, marital_status)"
-                            + "VALUES (?, ?, ?, ?, ?, ?, ?,"
-                            + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-                    pstmt21a.setString(1, patientNumberTxt.getText());
-                    pstmt21a.setString(2, patientNameTxt.getText());
-                    pstmt21a.setString(3, "OP");
-                    pstmt21a.setString(4, "Cash");
-                    pstmt21a.setInt(5, 999999999);
-                    pstmt21a.setString(6, "Clinic");
-                    pstmt21a.setDouble(7, 1);
-                    pstmt21a.setString(8, "General");
-                    pstmt21a.setDouble(9, 0.00);
-                    pstmt21a.setString(10, "");
-                    pstmt21a.setDate(11, ServerTime.getSQLDate(connectDB));
-                    pstmt21a.setDouble(12, 0.00);
-                    pstmt21a.setString(13, "");
-                    pstmt21a.setString(14, user);
-                    pstmt21a.setTimestamp(15, datenowSql);
-                    pstmt21a.setString(16, "Revisit");
-                    pstmt21a.setString(17, "1");
-                    pstmt21a.setInt(18, Integer.parseInt("0"));
-                    pstmt21a.setString(19, "Old");
-                    pstmt21a.setString(20, "");
-                    pstmt21a.setBoolean(21, false);
-                    pstmt21a.setDouble(22, Double.parseDouble("1"));
-                    pstmt21a.setString(23, "");
-                    pstmt21a.setString(24, "");
-                    pstmt21a.executeUpdate();
-
-
+//                    java.sql.PreparedStatement pstmt21a = connectDB.prepareStatement("INSERT INTO hp_patient_visit("
+//                            + "patient_no, name, ip_no, payment, visit_no, services, quantity,"
+//                            + "department, amount, test, date, result, doctor_name, user_name,"
+//                            + "input_date, transaction_type, nature, time, comments, parameter,"
+//                            + "status, age, gender, marital_status)"
+//                            + "VALUES (?, ?, ?, ?, ?, ?, ?,"
+//                            + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+//                    pstmt21a.setString(1, patientNumberTxt.getText());
+//                    pstmt21a.setString(2, patientNameTxt.getText());
+//                    pstmt21a.setString(3, "OP");
+//                    pstmt21a.setString(4, "Cash");
+//                    pstmt21a.setInt(5, 999999999);
+//                    pstmt21a.setString(6, "Clinic");
+//                    pstmt21a.setDouble(7, 1);
+//                    pstmt21a.setString(8, "General");
+//                    pstmt21a.setDouble(9, 0.00);
+//                    pstmt21a.setString(10, "");
+//                    pstmt21a.setDate(11, ServerTime.getSQLDate(connectDB));
+//                    pstmt21a.setDouble(12, 0.00);
+//                    pstmt21a.setString(13, "");
+//                    pstmt21a.setString(14, user);
+//                    pstmt21a.setTimestamp(15, datenowSql);
+//                    pstmt21a.setString(16, "Revisit");
+//                    pstmt21a.setString(17, "1");
+//                    pstmt21a.setInt(18, Integer.parseInt("0"));
+//                    pstmt21a.setString(19, "Old");
+//                    pstmt21a.setString(20, "");
+//                    pstmt21a.setBoolean(21, false);
+//                    pstmt21a.setDouble(22, Double.parseDouble("1"));
+//                    pstmt21a.setString(23, "");
+//                    pstmt21a.setString(24, "");
+//                    pstmt21a.executeUpdate();
                     System.out.println("PROCESS RECEIPT BOOLEAN [" + processReceipt + "]");
 
                     if (processReceipt) {
 
-
                         try {
-
 
 //try {
                             connectDB.setAutoCommit(false);
-
 
                             System.out.println("This is the receipt no " + receiptNo2);
 
@@ -2193,7 +2208,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                     com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
                                     policy.ReceiptsPdf(connectDB, receiptNo2);
                                 } else {
-                                    com.afrisoftech.txtreports.GokReceiptsTxt policy = new com.afrisoftech.txtreports.GokReceiptsTxt(connectDB, patientNameTxt.getText(), billAmountTxt.getText(), receiptNo2, this.payModecmbx.getSelectedItem().toString(), amountPaidTxt.getText(), changeTxt.getText(), jTextField811.getText(), unitNumberTxt.getText());
+                                    com.afrisoftech.txtreports.GokReceiptsTxt policy = new com.afrisoftech.txtreports.GokReceiptsTxt(connectDB, patientNameTxt.getText(), billAmountTxt.getText(), receiptNo2, this.payModecmbx.getSelectedItem().toString(), amountPaidTxt.getText(), changeTxt.getText(), shiftNoTxt.getText(), unitNumberTxt.getText());
 
                                 }
                                 // jTextField1211.setText("0.00");
@@ -2260,7 +2275,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         jSearchDialog2.setLocation(point);
         jSearchDialog2.setVisible(true);
 
-
     }
     private void jSearchTable21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable21MouseClicked
         patientNumberTxt.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 0).toString());
@@ -2286,12 +2300,15 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             rsx1.close();
 
         } catch (java.sql.SQLException sq) {
+            sq.printStackTrace();
         }
 
         this.populateTable(this.patientNumberTxt.getText());
         billAmountTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable111, 3)));
-        if(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable111, 3) > 0){
+        if (com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable111, 3) > 0) {
             generateReceiptBtn.setEnabled(true);
+            this.postSaleDataBtn.setEnabled(true);
+            this.reprintReceiptBtn.setEnabled(true);
         }
         jSearchDialog21.dispose();
         // Add your handling code here:
@@ -2318,69 +2335,71 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     }//GEN-LAST:event_jButton521ActionPerformed
 
     private void patientSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_patientSearchTxtCaretUpdate
-
-        if (this.searchNoChbx.isSelected()) {
-            if (patientSearchTxt.getCaretPosition() > 6) {
-
-                System.out.println("SELECT "
-                        + " DISTINCT patient_no,(second_name||' '||first_name) as patient_name, patient_race as unit_number FROM hp_patient_register "
-                        + "WHERE patient_no ILIKE '%" + patientSearchTxt.getText() + "%' or patient_race ILIKE '%" + patientSearchTxt.getText() + "%' AND last_visit >= (current_date - 3) "
-                        + " UNION ALL SELECT "
-                        + " DISTINCT patient_no, patient_name, '' as unit_number from patient_bill WHERE patient_no ILIKE '" + patientSearchTxt.getText() + "%' "
-                        + " AND date_prescribed >= (current_date - 3)"
-                        + " UNION ALL SELECT patient_no,patient_name, sub_chief as unit_number FROM hp_admission WHERE "
-                        + " patient_no ILIKE '%" + patientSearchTxt.getText() + "%' or sub_chief ilike '%" + patientSearchTxt.getText() + "%'  AND  "
-                        + " discharge_date::DATE = ('now'::text)::date ORDER BY patient_no");
-//            } else {
-
-                jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT "
-                        + " DISTINCT patient_no,(second_name||' '||first_name) as patient_name, patient_race as unit_number FROM hp_patient_register "
-                        + "WHERE patient_no ILIKE '%" + patientSearchTxt.getText() + "%' or patient_race ILIKE '%" + patientSearchTxt.getText() + "%' AND last_visit >= (current_date - 3) "
-                        + " UNION ALL SELECT "
-                        + " DISTINCT patient_no, patient_name, '' as unit_number from patient_bill WHERE patient_no ILIKE '" + patientSearchTxt.getText() + "%' "
-                        + " AND date_prescribed >= (current_date - 3)  and  patient_no ILIKE 'WK%' "
-                        + " UNION ALL SELECT patient_no,patient_name, sub_chief as unit_number FROM hp_admission WHERE "
-                        + " patient_no ILIKE '%" + patientSearchTxt.getText() + "%' or sub_chief ilike '%" + patientSearchTxt.getText() + "%'  AND  "
-                        + " discharge_date::DATE = ('now'::text)::date ORDER BY patient_no"));
-
-
-
-                jSearchTable21.setShowHorizontalLines(false);
-
-                jSearchScrollPane21.setViewportView(jSearchTable21);
-
+        if (this.mchfpChbx.isSelected()) {
+            if (patientSearchTxt.getCaretPosition() > 3) {
+                jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT anc as anc_no, first_name||' '||middle_name||' '||last_name, telephone from rh.mother_details where anc ILIKE '%" + patientSearchTxt.getText() + "%' or first_name||' '||middle_name||' '||last_name  ILIKE '%" + patientSearchTxt.getText() + "%' "
+                        + " UNION SELECT DISTINCT fp_clinic_no as anc_no, full_name, telephone_no from rh.fp_services_register where fp_clinic_no ILIKE '%" + patientSearchTxt.getText() + "%' or full_name  ILIKE '%" + patientSearchTxt.getText() + "%'"
+                        + " UNION SELECT DISTINCT pnc_no as anc_no, full_name, telephone from rh.post_natal_follow_up_register where pnc_no ILIKE '%" + patientSearchTxt.getText() + "%' or full_name  ILIKE '%" + patientSearchTxt.getText() + "%' ORDER BY 2"));
             }
-
         } else {
+            if (this.searchNoChbx.isSelected()) {
+                if (patientSearchTxt.getCaretPosition() > 3) {
 
-            if (patientSearchTxt.getCaretPosition() > 2) {
-
-                System.out.println("SELECT "
-                        + "distinct patient_no, (second_name||' '||first_name)  as patient_name, patient_race as unit_number FROM hp_patient_register"
-                        + " WHERE second_name||' '||first_name ILIKE '%" + patientSearchTxt.getText() + "%' and "
-                        + "last_visit >= (current_date - 3) UNION ALL select DISTINCT patient_no,patient_name, '' as unit_number from hp_pharmacy "
-                        + "where date_prescribed >= (current_date - 3) and patient_no ilike 'wk%' and patient_name "
-                        + "ILIKE '%" + patientSearchTxt.getText() + "%'  AND paid = false UNION ALL SELECT DISTINCT patient_no,"
-                        + "patient_name, sub_chief as unit_number FROM hp_admission WHERE patient_name ILIKE '%" + patientSearchTxt.getText() + "%' or sub_chief ilike '%" + patientSearchTxt.getText() + "%'  "
-                        + "AND discharge_date::DATE = now() order by patient_name");
+                    System.out.println("SELECT "
+                            + " DISTINCT patient_no,(second_name||' '||first_name) as patient_name, patient_race as unit_number FROM hp_patient_register "
+                            + "WHERE patient_no ILIKE '%" + patientSearchTxt.getText() + "%' or patient_race ILIKE '%" + patientSearchTxt.getText() + "%' AND last_visit >= (current_date - 3) "
+                            + " UNION ALL SELECT "
+                            + " DISTINCT patient_no, patient_name, '' as unit_number from patient_bill WHERE patient_no ILIKE '" + patientSearchTxt.getText() + "%' "
+                            + " AND date_prescribed >= (current_date - 3)"
+                            + " UNION ALL SELECT patient_no,patient_name, sub_chief as unit_number FROM hp_admission WHERE "
+                            + " patient_no ILIKE '%" + patientSearchTxt.getText() + "%' or sub_chief ilike '%" + patientSearchTxt.getText() + "%'  AND  "
+                            + " discharge_date::DATE = ('now'::text)::date ORDER BY patient_no");
 //            } else {
-                // try {
-                jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT "
-                        + "distinct patient_no, (second_name||' '||first_name)  as patient_name, patient_race as unit_number FROM hp_patient_register"
-                        + " WHERE second_name||' '||first_name ILIKE '%" + patientSearchTxt.getText() + "%' and "
-                        + "last_visit >= (current_date - 3) UNION ALL select DISTINCT patient_no,patient_name, '' as unit_number from hp_pharmacy "
-                        + "where date_prescribed >= (current_date - 3) and patient_no ilike 'wk%' and patient_name "
-                        + "ILIKE '%" + patientSearchTxt.getText() + "%'  AND paid = false UNION ALL SELECT DISTINCT patient_no,"
-                        + "patient_name, sub_chief as unit_number FROM hp_admission WHERE patient_name ILIKE '%" + patientSearchTxt.getText() + "%' or sub_chief ilike '%" + patientSearchTxt.getText() + "%'  "
-                        + "AND discharge_date::DATE = now() order by patient_name"));
 
+                    jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT "
+                            + " DISTINCT patient_no,(second_name||' '||first_name) as patient_name, patient_race as unit_number FROM hp_patient_register "
+                            + "WHERE patient_no ILIKE '%" + patientSearchTxt.getText() + "%' or patient_race ILIKE '%" + patientSearchTxt.getText() + "%' AND last_visit >= (current_date - 3) "
+                            + " UNION ALL SELECT "
+                            + " DISTINCT patient_no, patient_name, '' as unit_number from patient_bill WHERE patient_no ILIKE '" + patientSearchTxt.getText() + "%' "
+                            + " AND date_prescribed >= (current_date - 3)  and  patient_no ILIKE 'WK%' "
+                            + " UNION ALL SELECT patient_no,patient_name, sub_chief as unit_number FROM hp_admission WHERE "
+                            + " patient_no ILIKE '%" + patientSearchTxt.getText() + "%' or sub_chief ilike '%" + patientSearchTxt.getText() + "%'  AND  "
+                            + " discharge_date::DATE = ('now'::text)::date ORDER BY patient_no"));
 
-                jSearchTable21.setShowHorizontalLines(false);
-                jSearchScrollPane21.setViewportView(jSearchTable21);
+                    jSearchTable21.setShowHorizontalLines(false);
 
+                    jSearchScrollPane21.setViewportView(jSearchTable21);
 
+                }
+
+            } else {
+
+                if (patientSearchTxt.getCaretPosition() > 2) {
+
+                    System.out.println("SELECT "
+                            + "distinct patient_no, (second_name||' '||first_name)  as patient_name, patient_race as unit_number FROM hp_patient_register"
+                            + " WHERE second_name||' '||first_name ILIKE '%" + patientSearchTxt.getText() + "%' and "
+                            + "last_visit >= (current_date - 3) UNION ALL select DISTINCT patient_no,patient_name, '' as unit_number from hp_pharmacy "
+                            + "where date_prescribed >= (current_date - 3) and patient_no ilike 'wk%' and patient_name "
+                            + "ILIKE '%" + patientSearchTxt.getText() + "%'  AND paid = false UNION ALL SELECT DISTINCT patient_no,"
+                            + "patient_name, sub_chief as unit_number FROM hp_admission WHERE patient_name ILIKE '%" + patientSearchTxt.getText() + "%' or sub_chief ilike '%" + patientSearchTxt.getText() + "%'  "
+                            + "AND discharge_date::DATE = now() order by patient_name");
+//            } else {
+                    // try {
+                    jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT "
+                            + "distinct patient_no, (second_name||' '||first_name)  as patient_name, patient_race as unit_number FROM hp_patient_register"
+                            + " WHERE second_name||' '||first_name ILIKE '%" + patientSearchTxt.getText() + "%' and "
+                            + "last_visit >= (current_date - 3) UNION ALL select DISTINCT patient_no,patient_name, '' as unit_number from hp_pharmacy "
+                            + "where date_prescribed >= (current_date - 3) and patient_no ilike 'wk%' and patient_name "
+                            + "ILIKE '%" + patientSearchTxt.getText() + "%'  AND paid = false UNION ALL SELECT DISTINCT patient_no,"
+                            + "patient_name, sub_chief as unit_number FROM hp_admission WHERE patient_name ILIKE '%" + patientSearchTxt.getText() + "%' or sub_chief ilike '%" + patientSearchTxt.getText() + "%'  "
+                            + "AND discharge_date::DATE = now() order by patient_name"));
+
+                    jSearchTable21.setShowHorizontalLines(false);
+                    jSearchScrollPane21.setViewportView(jSearchTable21);
+
+                }
             }
-
         }      // Add your handling code here:
     }//GEN-LAST:event_patientSearchTxtCaretUpdate
 
@@ -2390,17 +2409,12 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
             initComponents();
 
-
-
         }
 
         void initComponents() {
 
             // oldComboBox1311Model = jComboBox1311.getModel();
-
             // comboTextField = new javax.swing.JTextField();
-
-
             comboTextField.addKeyListener(new java.awt.event.KeyAdapter() {
                 public void keyTyped(java.awt.event.KeyEvent e) {
 
@@ -2433,23 +2447,17 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
         public void changeComboBoxModel(java.lang.String typedLetters) {
 
-
-
             javax.swing.DefaultComboBoxModel newComboBox1311Model = new javax.swing.DefaultComboBoxModel();
 
             System.out.println("ComboBox Item No. " + oldComboBox1311Model.getSize());
 
-
-
             for (int i = 0; i < oldComboBox1311Model.getSize(); i++) {
-
 
                 if (oldComboBox1311Model.getElementAt(i).toString().startsWith(typedLetters)) {
 
                     newComboBox1311Model.addElement(oldComboBox1311Model.getElementAt(i));
 
                     //                    jComboBox1311.setModel(newComboBox1311Model);
-
                 }
 
             }
@@ -2491,7 +2499,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         jSearchDialog1.setLocation(point);
         jSearchDialog1.setVisible(true);
 
-
     }
     private void jButton91ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton91ActionPerformed
         this.jSearchDialog1.dispose();        // Add your handling code here:
@@ -2503,7 +2510,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
          * if (jTable3.isEditing()) { jTable3.getCellEditor().stopCellEditing();
          * }
          */
-
         searchButton2122Clicked();
         // Add your handling code here:
     }//GEN-LAST:event_jTextField112CaretUpdate
@@ -2578,10 +2584,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             int k = jSearchTable1.getColumnCount();
 
             jSearchTable1.editCellAt(-1, -1);
-            /*
-             * if (jSearchTable1.isCellEditable(i, k)) {
-             * jSearchTable1.getCellEditor().stopCellEditing(); }
-             */
+
         } catch (java.sql.SQLException sqlExec) {
 
             sqlExec.printStackTrace();
@@ -2599,9 +2602,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         try {
             java.sql.Statement stmtTable11 = connectDB.createStatement();
 
-           // java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT count(patient_no) FROM patient_bill WHERE "
-           //         + "patient_no = '" + patient_no + "'");
-             java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("select count(*) from funsoft_outpatient_bills('"+datePicker1.getDate()+"', '"+patientNumberTxt.getText()+"')");
+            // java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT count(patient_no) FROM patient_bill WHERE "
+            //         + "patient_no = '" + patient_no + "'");
+            java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("select count(*) from funsoft_outpatient_bills('" + datePicker1.getDate() + "', '" + patientNumberTxt.getText() + "')");
             while (rsetTable11.next()) {
                 j = rsetTable11.getInt(1);
             }
@@ -2633,7 +2636,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 //  java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery(""
                 //          + "SELECT description, quantity,price,amount,gl_code,true,item_code  FROM patient_bill "
                 //          + "WHERE patient_no = '" + patient_no + "'");
-                java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select * from funsoft_outpatient_bills('"+datePicker1.getDate()+"', '"+patientNumberTxt.getText()+"')");
+                java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select * from funsoft_outpatient_bills('" + datePicker1.getDate() + "', '" + patientNumberTxt.getText() + "')");
 
                 while (rsetTable1.next()) {
 
@@ -2690,7 +2693,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
         System.out.println(datenowSql.toString());
 
-
         try {
             connectDB.setAutoCommit(false);
 
@@ -2713,7 +2715,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             pstmtReprint.setString(1, jTextField1113.getText());
             java.sql.ResultSet rsetReprint = pstmtReprint.executeQuery();
 
-
             while (rsetReprint.next()) {
                 clientReceipt = rsetReprint.getString(1);
             }
@@ -2728,7 +2729,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
                 policy.ReceiptsPdf(connectDB, receiptNo1);
             } else {
-                com.afrisoftech.txtreports.GokReceiptsRTxt policy = new com.afrisoftech.txtreports.GokReceiptsRTxt(connectDB, clientReceipt, billAmountTxt.getText(), receiptNo1, this.payModecmbx.getSelectedItem().toString(), amountPaidTxt.getText(), changeTxt.getText(), jTextField811.getText());
+                com.afrisoftech.txtreports.GokReceiptsRTxt policy = new com.afrisoftech.txtreports.GokReceiptsRTxt(connectDB, clientReceipt, billAmountTxt.getText(), receiptNo1, this.payModecmbx.getSelectedItem().toString(), amountPaidTxt.getText(), changeTxt.getText(), shiftNoTxt.getText());
 
             }
             rsetReprint.close();
@@ -2784,8 +2785,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
                 for (int i = 0; i
                         < selectedRows.length; i++) {
-
-
 
                     javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable111.getModel();
 
@@ -2856,8 +2855,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             }
 
         }
-
-
 
         /*
          * double resFloat = 0.00; // double totalSum = 0.00; double floatTotal
@@ -2930,7 +2927,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
          * }
          * jTextField311.setText(java.lang.String.valueOf(resFloat)); }
          */
-
         // Add your handling code here:
     }//GEN-LAST:event_jTable111KeyReleased
     private void cmbox21ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -2975,7 +2971,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 //      dispatchThread = new DispatchThread();
 
                 //     dispatchThread.start();
-
                 if (processReceipt) {
                     postSaleDataBtn.setEnabled(false);
 
@@ -2994,9 +2989,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     }//GEN-LAST:event_postSaleDataBtnActionPerformed
 
     private void jComboBox111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox111ActionPerformed
-        postSaleDataBtn.setEnabled(false);
+        postSaleDataBtn.setEnabled(true);
         generateReceiptBtn.setEnabled(true);
-        reprintReceiptBtn.setEnabled(false);
+        reprintReceiptBtn.setEnabled(true);
 
         try {
             java.sql.Statement ps11 = connectDB.createStatement();
@@ -3014,7 +3009,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             System.out.println("Select not successful");
         }
 
-
         // Add your handling code here:
     }//GEN-LAST:event_jComboBox111ActionPerformed
 
@@ -3023,7 +3017,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             java.sql.Statement stmt1 = connectDB.createStatement();
             java.sql.ResultSet rset1 = stmt1.executeQuery("select code from pb_activity where activity_category   ILIKE 'RC'");
             while (rset1.next()) {
-                jTextField82.setText(rset1.getObject(1).toString());
+                glAccountTxt.setText(rset1.getObject(1).toString());
             }
 
             stmt1.close();
@@ -3036,7 +3030,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         if (payModecmbx.getSelectedItem().equals("Credit Card")) {
             // jDialog3.setVisible(true);
             // int resOptt =  javax.swing.JOptionPane.showOptionDialog(this, "Select Account Type", "Select Account Type Here", javax.swing.JOptionPane.YES_NO_CANCEL_OPTION, javax.swing.JOptionPane.QUESTION_MESSAGE, null, new java.lang.String[]{"Credit Card", "Scheme", "Cancel"}, "");
-
 
             //  if (resOptt == javax.swing.JOptionPane.YES_OPTION) {
             jPanel32.setVisible(false);
@@ -3067,7 +3060,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
         }
 
-        postSaleDataBtn.setEnabled(false);
+        postSaleDataBtn.setEnabled(true);
         generateReceiptBtn.setEnabled(true);
         reprintReceiptBtn.setEnabled(true);
         // Add your handling code here:
@@ -3090,10 +3083,10 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         // Add your handling code here:
     }//GEN-LAST:event_formInternalFrameClosed
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+    private void walkINChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_walkINChkbxActionPerformed
         patientNameTxt.setEditable(true);
 // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
+    }//GEN-LAST:event_walkINChkbxActionPerformed
 
     private void searchNoChbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchNoChbxActionPerformed
         patientNameTxt.setEditable(false);        // TODO add your handling code here:
@@ -3122,7 +3115,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 }
             }
         }
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jSearchTable1KeyReleased
@@ -3172,7 +3164,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     }//GEN-LAST:event_jTextField1111CaretUpdate
 
     private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
-        com.afrisoftech.accounting.CopayReceiptsIntfr other = new CopayReceiptsIntfr(connectDB, pConnDB, billAmountTxt.getText());
+        com.afrisoftech.accounting.CopayReceiptsIntfr other = new com.afrisoftech.accounting.CopayReceiptsIntfr(connectDB, pConnDB, billAmountTxt.getText(), this.shiftNoTxt.getText(), this.glAccountTxt.getText(), this.patientNumberTxt.getText(), this.patientNameTxt.getText(), this.cashPointTxt.getText());
         this.getParent().add(other, javax.swing.JLayeredPane.DEFAULT_LAYER);
         try {
             other.setSelected(true);
@@ -3185,8 +3177,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         System.out.println("Calculating totals for table 11 and 2.");
         //        double resFloat = 0.00;
         double resFloat = 0.00;
-
-
 
         for (int i = 0; i < jTable111.getRowCount(); i++) {
 
@@ -3213,7 +3203,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
         //        double resFloat = 0.00;
         double resFloat = 0.00;
-
 
         for (int i = 0; i
                 < jTable111.getRowCount(); i++) {
@@ -3257,8 +3246,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
-
-            // java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE cash_point = '"+System.getProperty("cashpoint")+"' AND user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
             java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
 
             while (rset.next()) {
@@ -3269,7 +3256,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             stmt.close();
             rset.close();
         } catch (java.sql.SQLException sqlExec) {
-
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
 
         }
@@ -3280,17 +3267,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
     public java.lang.String getCashPoint() {
 
-        /*
-         * try {
-         *
-         * java.sql.Statement stmtf = connectDB.createStatement();
-         * java.sql.ResultSet rsetf = stmtf.executeQuery("select code from
-         * ac_cash_points_setup where description = current_user"); while
-         * (rsetf.next()) { // cashPoint = rsetf.getObject(1).toString(); }
-         *
-         * } catch (java.sql.SQLException sqe) { sqe.printStackTrace();
-         * System.out.println("select not successful"); }
-         */
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
@@ -3301,7 +3277,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             while (rset.next()) {
 
                 cash_no = rset.getString(1);
-                jTextField141.setText(cash_no);
+                cashPointTxt.setText(cash_no);
 
             }
             rset.close();
@@ -3341,7 +3317,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 javax.swing.JOptionPane.showMessageDialog(this, "You cannot save without the name", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
             } else {
-                if (jTextField811.getText().equalsIgnoreCase("")) {
+                if (shiftNoTxt.getText().equalsIgnoreCase("")) {
                     javax.swing.JOptionPane.showMessageDialog(this, "You cannot save without the shift No \n enquire if you are created as a shift operator", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
@@ -3389,8 +3365,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                     java.sql.Savepoint registerSavePoint = null;
                     try {
                         connectDB.setAutoCommit(false);
-                        registerSavePoint =
-                                connectDB.setSavepoint("registration");
+                        registerSavePoint
+                                = connectDB.setSavepoint("registration");
                     } catch (java.sql.SQLException ex) {
                         ex.printStackTrace();
                     }
@@ -3432,11 +3408,10 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                         java.sql.ResultSet rsts = null;
                         java.sql.ResultSet rss = null;
 
-
 //select current_timestamp
-                        rse12fx = stm12fx.executeQuery("select cash_point,start_date::DATE from ac_shifts WHERE shift_no = '" + jTextField811.getText() + "'");
+                        rse12fx = stm12fx.executeQuery("select cash_point,start_date::DATE from ac_shifts WHERE shift_no = '" + shiftNoTxt.getText() + "'");
                         while (rse12fx.next()) {
-                            jTextField141.setText(rse12fx.getString(1));
+                            cashPointTxt.setText(rse12fx.getString(1));
                             dates = rse12fx.getDate(2);
                         }
                         dates = com.afrisoftech.lib.ServerTime.getSQLDate(connectDB);
@@ -3452,7 +3427,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                             AccDesc = rse12.getObject(2).toString();
                             user = rse12.getObject(3).toString();
                         }
-
 
                         rse1211 = stm1211.executeQuery("select activity,code from pb_activity where activity_category ='RC'");
                         while (rse1211.next()) {
@@ -3505,11 +3479,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                     }
                                 }
 
-
                                 if (waived > 0) {
                                     if (jTable111.getValueAt(i, 0).toString().equalsIgnoreCase("NHIF PAYMENTS") || jTable111.getValueAt(i, 0).toString().equalsIgnoreCase("OTHER DEBTORS PAYMENTS")) {
                                     } else {
-
 
                                         System.out.println("Bill No 4" + billNo);
                                         pstmt212 = connectDB.prepareStatement("INSERT INTO ac_ledger values(?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
@@ -3541,13 +3513,12 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                         pstmt212.setBoolean(21, false);
                                         pstmt212.setBoolean(22, false);
                                         pstmt212.setString(23, user);
-                                        pstmt212.setString(24, jTextField141.getText());
-                                        pstmt212.setString(25, jTextField811.getText());
+                                        pstmt212.setString(24, cashPointTxt.getText());
+                                        pstmt212.setString(25, shiftNoTxt.getText());
                                         pstmt212.executeUpdate();
                                         pstmt212.close();
                                         //}
                                     }
-
 
                                     pstmt25 = connectDB.prepareStatement("INSERT INTO "
                                             + "ac_cash_collection values(?,?,?,?,?,?,?,?, "
@@ -3581,8 +3552,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                     pstmt25.setBoolean(21, false);
                                     pstmt25.setBoolean(22, false);
                                     pstmt25.setString(23, user);
-                                    pstmt25.setString(24, jTextField141.getText());
-                                    pstmt25.setString(25, jTextField811.getText());
+                                    pstmt25.setString(24, cashPointTxt.getText());
+                                    pstmt25.setString(25, shiftNoTxt.getText());
                                     pstmt25.setDate(26, null);
                                     pstmt25.setDouble(27, java.lang.Double.valueOf(jTable111.getValueAt(i, 1).toString()));
                                     pstmt25.setDate(28, null);
@@ -3602,8 +3573,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 //
 //                                    pstmt411 = connectDB.prepareStatement("UPDATE hp_patient_billing SET paid = true, collected = false WHERE patient_no = '" + patientNumberTxt.getText() + "' AND service = '" + jTable111.getValueAt(i, 0) + "' AND trans_date > current_date - 2");
 //                                    pstmt411.executeUpdate();
-
-
 
                                     if (jTable111.getValueAt(i, 0).toString().equalsIgnoreCase("NHIF PAYMENTS")) {
                                         pstmt25e = connectDB.prepareStatement("INSERT INTO ac_debtors values(?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
@@ -3676,11 +3645,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
                                 }
 
-
-
                             }
-
-
 
                         }
                         double waiver = 0.00;
@@ -3708,7 +3673,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
                             if (exemptionNumberTxt.getText().toCharArray().length < 1) {
                                 ps = connectDB.createStatement();
-                                rst = ps.executeQuery("select 'E'||lpad(nextval('exemption')::text, 5, 0::text)");
+                                rst = ps.executeQuery("select 'E'||lpad(nextval('exemption')::text, 7, 0::text)");
                                 while (rst.next()) {
                                     exemptionNumberTxt.setText(rst.getString(1));
                                 }
@@ -3722,7 +3687,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                     double waived = java.lang.Double.valueOf(jTable111.getValueAt(k, 3).toString());
                                     if (jRadioButton1.isSelected()) {
                                         if (waived < 0) {
-
 
                                             rse121s = stm121s.executeQuery("SELECT prov_code FROM st_stock_item WHERE item_code = '" + jTable111.getModel().getValueAt(k, 6).toString() + "'");
                                             while (rse121s.next()) {
@@ -3759,11 +3723,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                             pstmt212.setBoolean(21, false);
                                             pstmt212.setBoolean(22, false);
                                             pstmt212.setString(23, user);
-                                            pstmt212.setString(24, jTextField141.getText());
-                                            pstmt212.setString(25, jTextField811.getText());
+                                            pstmt212.setString(24, cashPointTxt.getText());
+                                            pstmt212.setString(25, shiftNoTxt.getText());
                                             pstmt212.executeUpdate();
-
-
 
                                             pstmt25 = connectDB.prepareStatement("INSERT INTO ac_cash_collection values(?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?)");
 
@@ -3795,8 +3757,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                             pstmt25.setBoolean(21, false);
                                             pstmt25.setBoolean(22, false);
                                             pstmt25.setString(23, user);
-                                            pstmt25.setString(24, jTextField141.getText());
-                                            pstmt25.setString(25, jTextField811.getText());
+                                            pstmt25.setString(24, cashPointTxt.getText());
+                                            pstmt25.setString(25, shiftNoTxt.getText());
                                             pstmt25.setDate(26, null);
                                             pstmt25.setDouble(27, 1);
                                             pstmt25.setDate(28, null);
@@ -3809,7 +3771,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
                                             pstmt25.executeUpdate();
 
-
                                         }
                                     } else {
                                         //if (waived < 0) {
@@ -3821,15 +3782,11 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                             mdepartment = rse121w.getObject(3).toString();
                                         }
 
-
-
-
                                         rse121r = stm121r.executeQuery("select activity,code from pb_activity where activity_category ILIKE 'RC'");
                                         while (rse121r.next()) {
                                             glAcc21 = rse121r.getObject(2).toString();
                                             glAcc11 = rse121r.getObject(1).toString();
                                         }
-
 
                                         System.out.println("Bill No 4" + billNo);
 
@@ -3857,11 +3814,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                         pstmt212.setBoolean(21, false);
                                         pstmt212.setBoolean(22, false);
                                         pstmt212.setString(23, user);
-                                        pstmt212.setString(24, jTextField141.getText());
-                                        pstmt212.setString(25, jTextField811.getText());
+                                        pstmt212.setString(24, cashPointTxt.getText());
+                                        pstmt212.setString(25, shiftNoTxt.getText());
                                         pstmt212.executeUpdate();
-
-
 
                                         pstmt25 = connectDB.prepareStatement("INSERT INTO ac_cash_collection values(?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
 
@@ -3893,8 +3848,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                         pstmt25.setBoolean(21, false);
                                         pstmt25.setBoolean(22, false);
                                         pstmt25.setString(23, user);
-                                        pstmt25.setString(24, jTextField141.getText());
-                                        pstmt25.setString(25, jTextField811.getText());
+                                        pstmt25.setString(24, cashPointTxt.getText());
+                                        pstmt25.setString(25, shiftNoTxt.getText());
                                         pstmt25.setDate(26, null);
                                         pstmt25.setDouble(27, 1);
                                         pstmt25.setDate(28, null);
@@ -3906,7 +3861,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                         pstmt25.setDouble(34, java.lang.Double.valueOf(jTable111.getValueAt(k, 2).toString()));
 
                                         pstmt25.executeUpdate();
-
 
                                         //}
                                     }
@@ -3922,10 +3876,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                         exemptionNumberTxt.setText(rst.getString(1));
                                     }
 
-
                                 }
-
-
 
                                 rse121w = stm121w.executeQuery("select activity,code,department from pb_activity where activity_category ILIKE 'IEDS'");
                                 while (rse121w.next()) {
@@ -3959,9 +3910,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                             //            javax.swing.JOptionPane.showMessageDialog(this,  "You MUST provide the reference number for the exemption or waiver.", "WARNING: EXEMPTION NUMBER!", javax.swing.JOptionPane.WARNING_MESSAGE);
                                             //        } else {
 
-
                                             double waived = java.lang.Double.valueOf(jTable111.getValueAt(k, 3).toString());
-
 
                                             if (waived < 0) {
 
@@ -3991,11 +3940,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                                 pstmt212.setBoolean(21, false);
                                                 pstmt212.setBoolean(22, false);
                                                 pstmt212.setString(23, user);
-                                                pstmt212.setString(24, jTextField141.getText());
-                                                pstmt212.setString(25, jTextField811.getText());
+                                                pstmt212.setString(24, cashPointTxt.getText());
+                                                pstmt212.setString(25, shiftNoTxt.getText());
                                                 pstmt212.executeUpdate();
-
-
 
                                                 pstmt25 = connectDB.prepareStatement("INSERT INTO ac_cash_collection values(?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
                                                 pstmt25.setObject(1, glAcc1q);
@@ -4026,8 +3973,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                                 pstmt25.setBoolean(21, false);
                                                 pstmt25.setBoolean(22, false);
                                                 pstmt25.setString(23, user);
-                                                pstmt25.setString(24, jTextField141.getText());
-                                                pstmt25.setString(25, jTextField811.getText());
+                                                pstmt25.setString(24, cashPointTxt.getText());
+                                                pstmt25.setString(25, shiftNoTxt.getText());
                                                 pstmt25.setDate(26, null);
                                                 pstmt25.setDouble(27, 1);
                                                 pstmt25.setDate(28, null);
@@ -4037,7 +3984,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                                 pstmt25.setObject(32, priceCategory);
                                                 pstmt25.setObject(33, jTable111.getValueAt(k, 6).toString());
                                                 pstmt25.setDouble(34, java.lang.Double.valueOf(jTable111.getValueAt(k, 2).toString()));
-
 
                                                 pstmt25.executeUpdate();
                                                 pstmt25.close();
@@ -4074,12 +4020,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                     pstmt212.setBoolean(21, false);
                                     pstmt212.setBoolean(22, false);
                                     pstmt212.setString(23, user);
-                                    pstmt212.setString(24, jTextField141.getText());
-                                    pstmt212.setString(25, jTextField811.getText());
+                                    pstmt212.setString(24, cashPointTxt.getText());
+                                    pstmt212.setString(25, shiftNoTxt.getText());
                                     pstmt212.executeUpdate();
-
-
-
 
                                     pstmt25 = connectDB.prepareStatement("INSERT INTO ac_cash_collection values(?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
                                     pstmt25.setObject(1, glAcc1q);
@@ -4110,8 +4053,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                     pstmt25.setBoolean(21, false);
                                     pstmt25.setBoolean(22, false);
                                     pstmt25.setString(23, user);
-                                    pstmt25.setString(24, jTextField141.getText());
-                                    pstmt25.setString(25, jTextField811.getText());
+                                    pstmt25.setString(24, cashPointTxt.getText());
+                                    pstmt25.setString(25, shiftNoTxt.getText());
                                     pstmt25.setDate(26, null);
                                     pstmt25.setDouble(27, 1);
                                     pstmt25.setDate(28, null);
@@ -4119,7 +4062,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                     pstmt25.setString(30, mdepartment);
                                     // pstmt25.executeUpdate();
                                     pstmt25.executeUpdate();
-
 
                                 }
                             }
@@ -4140,7 +4082,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                          psr.setString(8, user);
                          psr.executeUpdate();
                          */
-
                         psr = connectDB.prepareStatement("INSERT INTO ac_receipts_no("
                                 + "account_no, account_name, date, amount, shift_no, "
                                 + "cash_point, reference) VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -4148,21 +4089,16 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                         psr.setString(2, patientNameTxt.getText());
                         psr.setDate(3, dates); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
                         psr.setDouble(4, java.lang.Double.valueOf(billAmountTxt.getText()));
-                        psr.setInt(5, java.lang.Integer.valueOf(jTextField811.getText()));
-                        psr.setString(6, jTextField141.getText());
+                        psr.setInt(5, java.lang.Integer.valueOf(shiftNoTxt.getText()));
+                        psr.setString(6, cashPointTxt.getText());
                         psr.setString(7, receiptNo1);
                         // psr.setString(8, user);
                         psr.executeUpdate();
-
-
-
 
                         rst1q = ps1q.executeQuery("SELECT LPAD(receipt_no::TEXT,8,'0'::TEXT) FROM ac_receipts_no WHERE reference = '" + receiptNo1 + "'");
                         while (rst1q.next()) {
                             receiptNo2 = rst1q.getObject(1).toString();
                         }
-
-
 
                         pstmt112 = connectDB.prepareStatement("UPDATE ac_cash_collection SET receipt_no = '" + receiptNo2 + "' WHERE receipt_no = '" + receiptNo1 + "'");
                         pstmt112.executeUpdate();
@@ -4184,15 +4120,13 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                             if (jTable111.getValueAt(i, 0) != null) {
                                 pstmt41d = connectDB.prepareStatement("UPDATE pb_doctors_request SET paid = true WHERE patient_no = '" + patientNumberTxt.getText() + "' AND service = '" + jTable111.getValueAt(i, 0) + "' AND trans_date >= current_date - 1");
                                 pstmt41d.executeUpdate();
-                                pstmt41 = connectDB.prepareStatement("UPDATE hp_pharmacy SET manual_pr='" + receiptNo2 + "', paid = true, collected = false WHERE collected = true and patient_no = '" + patientNumberTxt.getText() + "' AND description = '" + jTable111.getValueAt(i, 0) + "' AND date_prescribed > current_date - 2");
+                                pstmt41 = connectDB.prepareStatement("UPDATE hp_pharmacy SET manual_pr='" + receiptNo2 + "', paid = true, collected = false WHERE collected = true and patient_no = '" + patientNumberTxt.getText() + "' AND description = '" + jTable111.getValueAt(i, 0) + "' AND date_prescribed > current_date - 2 AND paid = false AND collected = true");
                                 pstmt41.executeUpdate();
 
                                 pstmt411 = connectDB.prepareStatement("UPDATE hp_patient_billing SET doctor='" + receiptNo2 + "', paid = true, collected = false WHERE patient_no = '" + patientNumberTxt.getText() + "' AND service = '" + jTable111.getValueAt(i, 0) + "' AND trans_date > current_date - 2");
                                 pstmt411.executeUpdate();
                             }
                         }
-
-
 
                         connectDB.commit();
                         connectDB.setAutoCommit(true);
@@ -4301,6 +4235,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JTextField billAmountTxt;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JTextField cashPointTxt;
     private javax.swing.JTextField changeTxt;
     private javax.swing.JButton clearFormBtn;
     public javax.swing.JButton closePosBtn;
@@ -4309,6 +4244,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JLabel exemptionNumberLbl;
     private javax.swing.JTextField exemptionNumberTxt;
     private javax.swing.JButton generateReceiptBtn;
+    private javax.swing.JTextField glAccountTxt;
     private javax.swing.JButton helpBtn;
     private javax.swing.JButton jButton1111;
     private javax.swing.JButton jButton252111;
@@ -4319,7 +4255,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JButton jButton521;
     private javax.swing.JButton jButton9;
     private javax.swing.JButton jButton91;
-    private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JCheckBox jCheckBox6;
@@ -4408,7 +4343,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JTextField jTextField113;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField1211;
-    private javax.swing.JTextField jTextField141;
     private javax.swing.JTextField jTextField14111;
     private javax.swing.JTextField jTextField151;
     private javax.swing.JTextField jTextField1611;
@@ -4423,8 +4357,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JTextField jTextField521;
     private javax.swing.JTextField jTextField61;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField811;
-    private javax.swing.JTextField jTextField82;
+    private javax.swing.JCheckBox mchfpChbx;
     private javax.swing.JTextField patientNameTxt;
     private javax.swing.JTextField patientNumberTxt;
     private javax.swing.JTextField patientSearchTxt;
@@ -4436,6 +4369,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JButton searchButton13;
     private javax.swing.JCheckBox searchNameChbx;
     private javax.swing.JCheckBox searchNoChbx;
+    private javax.swing.JTextField shiftNoTxt;
     private javax.swing.JTextField unitNumberTxt;
+    private javax.swing.JCheckBox walkINChkbx;
     // End of variables declaration//GEN-END:variables
 }

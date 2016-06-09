@@ -458,7 +458,7 @@ public class AllRevenueDetailedReportPdf implements java.lang.Runnable {
                                         + endDate + "' AND upper(hp_patient_card.main_service) ="
                                         + " upper('"+com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connectDB, listofAct[i].toString())+"')) as foo),"
                                         + " sum(credit-debit) from ac_ledger where date BETWEEN '" + beginDate + "' AND '" + endDate + "'"
-                                        + " AND activity_code = '" + listofAct[i].toString() + "'  group by service_type, ac_ledger.date order by service_type");
+                                        + " AND activity_code = '" + listofAct[i].toString() + "'  group by service_type order by service_type");
 
 
                                 java.sql.ResultSet rset = st5.executeQuery();
@@ -596,7 +596,7 @@ public class AllRevenueDetailedReportPdf implements java.lang.Runnable {
                                     table.getDefaultCell().setBorder(Rectangle.TOP | Rectangle.BOTTOM);
 
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase(" Total", pFontHeader);
+                                    phrase = new Phrase(" Sub Total", pFontHeader);
 
                                     table.addCell(phrase);
 
@@ -755,7 +755,7 @@ public class AllRevenueDetailedReportPdf implements java.lang.Runnable {
 
             java.sql.Statement stmt1 = connectDB.createStatement();
 
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT activity_code FROM ac_ledger where date BETWEEN '" + beginDate + "' AND '" + endDate + "'   AND activity_code ilike '6%' ORDER BY activity_code");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT activity_code FROM ac_ledger where date BETWEEN '" + beginDate + "' AND '" + endDate + "'   AND activity_code in (SELECT code FROM pb_activity WHERE activity_category ilike 'I') ORDER BY activity_code");
 
             while (rSet1.next()) {
 

@@ -157,9 +157,9 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
 
                 System.setProperty("defaultlnf", appProp.getProperty("defaultlnf", "com.l2fprod.gui.plaf.skin.SkinLookAndFeel"));
 
-                //    backgrdimg = appProp.getProperty("backgrdimg", "c:/Tests/clouds.jpg");
+                backgrdimg = appProp.getProperty("backgrdimg", "c:/Tests/clouds.jpg");
 
-                cashpoint = appProp.getProperty("cashpoint");
+               // cashpoint = appProp.getProperty("cashpoint");
 
                 docsdir = appProp.getProperty("docsdir");
 
@@ -221,7 +221,7 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
 
                 System.setProperty("acrobatpath", path2Acrobat);
 
-                System.setProperty("cashpoint", cashpoint);
+              //  System.setProperty("cashpoint", cashpoint);
 
                 System.setProperty("activedatabase", "MEDIC");
 

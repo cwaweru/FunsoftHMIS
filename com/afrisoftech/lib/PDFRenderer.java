@@ -13,6 +13,8 @@ import static com.afrisoftech.hospital.HospitalMain.saccopn;
  */
 public class PDFRenderer {
 
+    public static javax.swing.JPanel viewerComponentPanel;
+
     public static void renderPDF(java.io.File fileName) {
 
         org.icepdf.ri.common.SwingController controller = new org.icepdf.ri.common.SwingController();
@@ -22,12 +24,11 @@ public class PDFRenderer {
         javax.swing.JPanel viewerComponentPanel = factory.buildViewerPanel();
 
         //  viewerComponentPanel.setSize(com.afrisoftech.hospital.HospitalMain.saccopn.getParent().getSize());
-
         org.icepdf.ri.common.ComponentKeyBinding.install(controller, viewerComponentPanel);
 
         controller.getDocumentViewController().setAnnotationCallback(
                 new org.icepdf.ri.common.MyAnnotationCallback(
-                controller.getDocumentViewController()));
+                        controller.getDocumentViewController()));
 
         com.afrisoftech.lib.PDFReportViewer pdfViewer = new com.afrisoftech.lib.PDFReportViewer();
 
@@ -58,7 +59,25 @@ public class PDFRenderer {
         } catch (java.beans.PropertyVetoException pvt) {
         }
 
+    }
 
+    public static void renderPDF(java.io.File fileName, java.awt.Component component) {
+
+        org.icepdf.ri.common.SwingController controller = new org.icepdf.ri.common.SwingController();
+
+        org.icepdf.ri.common.SwingViewBuilder factory = new org.icepdf.ri.common.SwingViewBuilder(controller);
+
+        component = factory.buildViewerPanel();
+
+        org.icepdf.ri.common.ComponentKeyBinding.install(controller, viewerComponentPanel);
+
+        controller.getDocumentViewController().setAnnotationCallback(
+                new org.icepdf.ri.common.MyAnnotationCallback(
+                        controller.getDocumentViewController()));
+
+        controller.openDocument(fileName.getPath());
+
+      //  return viewerComponentPanel;
 
     }
 }

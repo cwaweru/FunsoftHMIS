@@ -69,6 +69,7 @@ public class ReceivablesDashBoardIntfr extends javax.swing.JInternalFrame {
         payerAcccountCmbx = new javax.swing.JComboBox();
         startDatePicker = new com.afrisoftech.lib.DatePicker();
         endDatePicker = new com.afrisoftech.lib.DatePicker();
+        dispatchNoTxt = new javax.swing.JTextField();
         dashBoardBodyPanel = new javax.swing.JPanel();
         dashBoardScrollPane = new javax.swing.JScrollPane();
         receivablesDashboardTable = new com.afrisoftech.dbadmin.JXTable();
@@ -142,7 +143,7 @@ public class ReceivablesDashBoardIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -159,12 +160,26 @@ public class ReceivablesDashBoardIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         dashBoardHeaderPanel.add(endDatePicker, gridBagConstraints);
+
+        dispatchNoTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Dispatch No."));
+        dispatchNoTxt.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                dispatchNoTxtCaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        dashBoardHeaderPanel.add(dispatchNoTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -187,6 +202,11 @@ public class ReceivablesDashBoardIntfr extends javax.swing.JInternalFrame {
         });
         receivablesDashboardTable.setAutoCreateRowSorter(true);
         receivablesDashboardTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, invoice_no, admission_no as patient_no, (SELECT DISTINCT claim_no FROM hp_patient_discharge WHERE hp_patient_discharge.inv_no = ac_debtors.invoice_no ORDER BY 1 DESC LIMIT 1) as claim_no, user_name as originator, upper(dealer) as payer, upper(payee) as debtor, upper(account_no) as debtor_acc_no, upper(item) as client_name, sum(debit-credit) invoice_balance, dispatch_no, false as vetted, sent as dispatched, approved as confirmed, paid as settled FROM ac_debtors WHERE date between '"+startDatePicker.getDate()+"' and '"+endDatePicker.getDate()+"' GROUP BY 1,2,3,4,5,6,7,8,9,11,12,13,14,15 ORDER by 1"));
+        receivablesDashboardTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                receivablesDashboardTableMouseClicked(evt);
+            }
+        });
         dashBoardScrollPane.setViewportView(receivablesDashboardTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -313,7 +333,7 @@ public class ReceivablesDashBoardIntfr extends javax.swing.JInternalFrame {
         } else {
             this.receivablesDashboardTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, invoice_no,  admission_no as patient_no, (SELECT DISTINCT claim_no FROM hp_patient_discharge WHERE hp_patient_discharge.inv_no = ac_debtors.invoice_no ORDER BY 1 DESC LIMIT 1) as claim_no, user_name as originator, upper(dealer) as payer, upper(payee) as debtor, upper(account_no) as debtor_acc_no, upper(item) as client_name, sum(debit-credit) invoice_balance, dispatch_no, false as vetted, sent as dispatched, approved as confirmed, paid as settled FROM ac_debtors WHERE dealer ilike '" + debtorAccountCmbx.getSelectedItem().toString() + "' AND date between '" + startDatePicker.getDate() + "' and '" + endDatePicker.getDate() + "' GROUP BY 1,2,3,4,5,6,7,8,9,11,12,13,14,15 ORDER by 1"));
         }
-                spacerLbl.setForeground(Color.BLUE);
+        spacerLbl.setForeground(Color.BLUE);
         spacerLbl.setText("Total Value of Invoices : [" + com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(receivablesDashboardTable, 9)) + "]");
         // TODO add your handling code here:
     }//GEN-LAST:event_debtorAccountCmbxActionPerformed
@@ -334,11 +354,36 @@ public class ReceivablesDashBoardIntfr extends javax.swing.JInternalFrame {
             this.receivablesDashboardTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, invoice_no,  admission_no as patient_no, (SELECT DISTINCT claim_no FROM hp_patient_discharge WHERE hp_patient_discharge.inv_no = ac_debtors.invoice_no ORDER BY 1 DESC LIMIT 1) as claim_no, user_name as originator, upper(dealer) as payer, upper(payee) as debtor, upper(account_no) as debtor_acc_no, upper(item) as client_name, sum(debit-credit) invoice_balance, dispatch_no,  false as vetted, sent as dispatched, approved as confirmed, paid as settled FROM ac_debtors WHERE date between '" + startDatePicker.getDate() + "' and '" + endDatePicker.getDate() + "' GROUP BY 1,2,3,4,5,6,7,8,9,11,12,13,14,15 ORDER by 1"));
         } else {
             this.receivablesDashboardTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, invoice_no,  admission_no as patient_no, (SELECT DISTINCT claim_no FROM hp_patient_discharge WHERE hp_patient_discharge.inv_no = ac_debtors.invoice_no ORDER BY 1 DESC LIMIT 1) as claim_no, user_name as originator, upper(dealer) as payer, upper(payee) as debtor, upper(account_no) as debtor_acc_no, upper(item) as client_name, sum(debit-credit) invoice_balance, dispatch_no, false as vetted, sent as dispatched, approved as confirmed, paid as settled FROM ac_debtors WHERE dealer ilike '" + debtorAccountCmbx.getSelectedItem().toString() + "' AND date between '" + startDatePicker.getDate() + "' and '" + endDatePicker.getDate() + "' GROUP BY 1,2,3,4,5,6,7,8,9,11,12,13,14,15 ORDER by 1"));
-        } 
-                spacerLbl.setForeground(Color.BLUE);
+        }
+        spacerLbl.setForeground(Color.BLUE);
         spacerLbl.setText("Total Value of Invoices : [" + com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(receivablesDashboardTable, 9)) + "]");
         // TODO add your handling code here:
     }//GEN-LAST:event_startDatePickerInputMethodTextChanged
+
+    private void dispatchNoTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_dispatchNoTxtCaretUpdate
+
+        if (dispatchNoTxt.getText().length() > 0) {
+            this.receivablesDashboardTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, invoice_no,  admission_no as patient_no, (SELECT DISTINCT claim_no FROM hp_patient_discharge WHERE hp_patient_discharge.inv_no = ac_debtors.invoice_no ORDER BY 1 DESC LIMIT 1) as claim_no, user_name as originator, upper(dealer) as payer, upper(payee) as debtor, upper(account_no) as debtor_acc_no, upper(item) as client_name, sum(debit-credit) invoice_balance, dispatch_no, false as vetted, sent as dispatched, approved as confirmed, paid as settled FROM ac_debtors WHERE dispatch_no ilike '" + dispatchNoTxt.getText() + "' GROUP BY 1,2,3,4,5,6,7,8,9,11,12,13,14,15 ORDER by 1"));
+        }
+        spacerLbl.setText("Total Value of Invoices : [" + com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(receivablesDashboardTable, 9)) + "]");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dispatchNoTxtCaretUpdate
+
+    private void receivablesDashboardTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_receivablesDashboardTableMouseClicked
+        if (receivablesDashboardTable.getValueAt(receivablesDashboardTable.getSelectedRow(), 1).toString().startsWith("O")) {
+            
+            com.afrisoftech.reports.FinalInvoiceByinvPdf policy = new com.afrisoftech.reports.FinalInvoiceByinvPdf();
+
+            policy.FinalInvoiceByinvPdf(connectDB, receivablesDashboardTable.getValueAt(receivablesDashboardTable.getSelectedRow(), 1).toString(), receivablesDashboardTable.getValueAt(receivablesDashboardTable.getSelectedRow(), 1).toString());
+        
+        } else {
+                com.afrisoftech.reports.FinalInPatientlnvPdf policy = new com.afrisoftech.reports.FinalInPatientlnvPdf();
+                
+                policy.FinalInPatientInvPdf(connectDB, receivablesDashboardTable.getValueAt(receivablesDashboardTable.getSelectedRow(), 1).toString());
+            
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_receivablesDashboardTableMouseClicked
     void changeDate() {
         if (debtorAccountCmbx.getSelectedItem().toString().equalsIgnoreCase("-All-")) {
             this.receivablesDashboardTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, invoice_no,  admission_no as patient_no, (SELECT DISTINCT claim_no FROM hp_patient_discharge WHERE hp_patient_discharge.inv_no = ac_debtors.invoice_no ORDER BY 1 DESC LIMIT 1) as claim_no, user_name as originator, upper(dealer) as payer, upper(payee) as debtor, upper(account_no) as debtor_acc_no, upper(item) as client_name, sum(debit-credit) invoice_balance, dispatch_no, false as vetted, sent as dispatched, approved as confirmed, paid as settled FROM ac_debtors WHERE date between '" + startDatePicker.getDate() + "' and '" + endDatePicker.getDate() + "' GROUP BY 1,2,3,4,5,6,7,8,9,11,12,13,14,15 ORDER by 1"));
@@ -361,6 +406,7 @@ public class ReceivablesDashBoardIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel dashBoardHeaderPanel;
     private javax.swing.JScrollPane dashBoardScrollPane;
     private javax.swing.JComboBox debtorAccountCmbx;
+    private javax.swing.JTextField dispatchNoTxt;
     private javax.swing.JButton editBtn;
     private com.afrisoftech.lib.DatePicker endDatePicker;
     private javax.swing.JComboBox payerAcccountCmbx;

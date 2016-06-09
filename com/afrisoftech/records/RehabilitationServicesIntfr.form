@@ -49,9 +49,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="patientSearchTbl">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                      <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.patientSearchTbl.toolTipText" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Click on the target row to select the patient from the search."/>
                     <Property name="showHorizontalLines" type="boolean" value="false"/>
                   </Properties>
                   <Events>
@@ -67,9 +65,7 @@
             </Container>
             <Component class="javax.swing.JButton" name="selectBtn">
               <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.selectBtn.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Select"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -79,9 +75,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="closeDialogBtn">
               <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.closeDialogBtn.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Close"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="closeDialogBtnActionPerformed"/>
@@ -108,20 +102,18 @@
     <Property name="iconifiable" type="boolean" value="true"/>
     <Property name="maximizable" type="boolean" value="true"/>
     <Property name="resizable" type="boolean" value="true"/>
-    <Property name="title" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-      <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-    </Property>
+    <Property name="title" type="java.lang.String" value="Rehabilitation Services Register"/>
     <Property name="visible" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
   <AuxValues>
-    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
     <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="true"/>
-    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
@@ -149,9 +141,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="saveBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.saveBtn.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="Save rehabilitation services data"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveBtnActionPerformed"/>
@@ -164,9 +154,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="clearFormBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.clearFormBtn.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="Clear form"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -176,9 +164,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="closeBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.closeBtn.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="Close form"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="closeBtnActionPerformed"/>
@@ -190,11 +176,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
-          <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.jLabel1.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-            </Property>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="0" gridY="0" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="200.0" weightY="1.0"/>
@@ -216,9 +197,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Search patient file here">
-                  <ResourceString PropertyName="titleX" bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.jPanel42.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </TitledBorder>
+                <TitledBorder title="Search patient file here"/>
               </Border>
             </Property>
           </Properties>
@@ -233,9 +212,7 @@
             <Component class="javax.swing.JTextField" name="patientNoTxt">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.patientNoTxt.toolTipText" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Click one on the ellipses on the right to select select a patient file"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -251,9 +228,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/kiwi/images/date.gif"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.searchButton2.toolTipText" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Search"/>
                 <Property name="horizontalAlignment" type="int" value="11"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[74, 53]"/>
@@ -278,9 +253,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Search By">
-                  <ResourceString PropertyName="titleX" bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.searchCriteria.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </TitledBorder>
+                <TitledBorder title="Search By"/>
               </Border>
             </Property>
           </Properties>
@@ -298,9 +271,7 @@
                   <ComponentRef name="buttonGroup3"/>
                 </Property>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.searchByNumberChkbx.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Search By  No."/>
                 <Property name="horizontalTextPosition" type="int" value="10"/>
               </Properties>
               <Constraints>
@@ -314,9 +285,7 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroup3"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.searchByNameChkbx.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Search By Name"/>
                 <Property name="horizontalTextPosition" type="int" value="10"/>
               </Properties>
               <Constraints>
@@ -327,9 +296,7 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="confirmVisitRdbtn">
               <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.confirmVisitRdbtn.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Confirm Visit"/>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="10"/>
               </Properties>
@@ -348,9 +315,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Patient category">
-                  <ResourceString PropertyName="titleX" bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.patientCategoryPanel.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </TitledBorder>
+                <TitledBorder title="Patient category"/>
               </Border>
             </Property>
           </Properties>
@@ -368,9 +333,7 @@
                   <ComponentRef name="buttonGroup2"/>
                 </Property>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.outptChkbx.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Out Patient"/>
                 <Property name="horizontalTextPosition" type="int" value="10"/>
               </Properties>
               <Events>
@@ -387,9 +350,7 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroup2"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.walkinPtbx.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Walk In Patient"/>
                 <Property name="horizontalTextPosition" type="int" value="10"/>
               </Properties>
               <Events>
@@ -406,9 +367,7 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroup2"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.inPatientChkbx.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="In Patient"/>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="horizontalTextPosition" type="int" value="10"/>
               </Properties>
@@ -426,14 +385,9 @@
         <Component class="javax.swing.JTextField" name="patientNameTxt">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.patientNameTxt.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-            </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Patient Names">
-                  <ResourceString PropertyName="titleX" bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.patientNameTxt.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </TitledBorder>
+                <TitledBorder title="Patient Names"/>
               </Border>
             </Property>
           </Properties>
@@ -465,9 +419,7 @@
           <Properties>
             <Property name="viewportBorder" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Treatment Remarks">
-                  <ResourceString PropertyName="titleX" bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.remarksScrollPane.viewportBorder.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </TitledBorder>
+                <TitledBorder title="Treatment Remarks"/>
               </Border>
             </Property>
           </Properties>
@@ -494,9 +446,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Rehabilitation Remarks">
-                  <ResourceString PropertyName="titleX" bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.integrationScrollPane.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </TitledBorder>
+                <TitledBorder title="Rehabilitation Remarks"/>
               </Border>
             </Property>
           </Properties>
@@ -541,9 +491,7 @@
                   <ComponentRef name="buttonGroup1"/>
                 </Property>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.assessmentChkbx.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Assessment done"/>
                 <Property name="horizontalTextPosition" type="int" value="10"/>
               </Properties>
               <Constraints>
@@ -557,9 +505,7 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroup1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.treatmentChkbx.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Treated"/>
                 <Property name="horizontalAlignment" type="int" value="11"/>
                 <Property name="horizontalTextPosition" type="int" value="10"/>
               </Properties>
@@ -574,9 +520,7 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroup1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.rehabilitationChkbx.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Rehabilitated"/>
                 <Property name="horizontalAlignment" type="int" value="11"/>
                 <Property name="horizontalTextPosition" type="int" value="10"/>
               </Properties>
@@ -588,9 +532,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="referralsLbl">
               <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.referralsLbl.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Referral made"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -627,9 +569,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="serviceDateLbl">
               <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.serviceDateLbl.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Service date"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -639,9 +579,7 @@
             </Component>
             <Component class="javax.swing.JCheckBox" name="integrationChbx">
               <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="com/afrisoftech/records/Bundle.properties" key="RehabilitationServicesIntfr.integrationChbx.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Integrated to community"/>
                 <Property name="horizontalTextPosition" type="int" value="10"/>
               </Properties>
               <Events>

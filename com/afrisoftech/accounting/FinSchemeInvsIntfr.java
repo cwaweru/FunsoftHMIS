@@ -27,6 +27,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
     private java.lang.String cash_no = null;
     private String discode;
     private String discglAcc;
+    double copaymentsTotal = 0.00;
 
     public FinSchemeInvsIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
@@ -139,16 +140,18 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         jLabel26 = new javax.swing.JLabel();
         dmuBalanceTxt = new javax.swing.JTextField();
         utilizeDepositChkbx = new javax.swing.JCheckBox();
+        jLabel16 = new javax.swing.JLabel();
+        coPaymentsTxt = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         totalAmountTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane12 = new javax.swing.JScrollPane();
         viewTable = new com.afrisoftech.dbadmin.JTable(){
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, false, false
+                false, true, false, false,false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -171,13 +174,13 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         } catch(java.lang.ClassNotFoundException cnf){
             System.out.println("driver not found");
         }
-        jButton1 = new javax.swing.JButton();
+        finalizeInvoiceBtn = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        utlizeDepositBtn = new javax.swing.JButton();
         utilizedepositTxt = new javax.swing.JTextField();
         totalDiscountTxt = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -1313,6 +1316,28 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 gridBagConstraints.weighty = 1.0;
                 jPanel2.add(utilizeDepositChkbx, gridBagConstraints);
 
+                jLabel16.setText("Co-Payments");
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 3;
+                gridBagConstraints.gridy = 5;
+                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                gridBagConstraints.weightx = 1.0;
+                gridBagConstraints.weighty = 1.0;
+                gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+                jPanel2.add(jLabel16, gridBagConstraints);
+
+                coPaymentsTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+                coPaymentsTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+                coPaymentsTxt.setText("0.00");
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 4;
+                gridBagConstraints.gridy = 5;
+                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                gridBagConstraints.weightx = 1.0;
+                gridBagConstraints.weighty = 1.0;
+                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+                jPanel2.add(coPaymentsTxt, gridBagConstraints);
+
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 0;
                 gridBagConstraints.gridy = 3;
@@ -1330,6 +1355,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 gridBagConstraints.weightx = 1.0;
                 jPanel1.add(jSeparator1, gridBagConstraints);
 
+                totalAmountTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
                 totalAmountTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
                 totalAmountTxt.setText("0.00");
                 gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1565,7 +1591,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 });
                 viewTable.setShowHorizontalLines(false);
                 javax.swing.table.TableColumn column12 = null;
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 4; i++) {
                     column12 = viewTable.getColumnModel().getColumn(i);
                     if (i == 0) {
 
@@ -1648,12 +1674,12 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("For Deposit utilization,type the amount to be utilized and click \"Utilize Patient Deposit/Print Final Invoice\""));
                 jPanel3.setLayout(new java.awt.GridBagLayout());
 
-                jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-                jButton1.setMnemonic('O');
-                jButton1.setText("Finalise Invoice");
-                jButton1.addActionListener(new java.awt.event.ActionListener() {
+                finalizeInvoiceBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+                finalizeInvoiceBtn.setMnemonic('O');
+                finalizeInvoiceBtn.setText("Finalise Invoice");
+                finalizeInvoiceBtn.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        jButton1ActionPerformed(evt);
+                        finalizeInvoiceBtnActionPerformed(evt);
                     }
                 });
                 gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1661,7 +1687,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 gridBagConstraints.gridy = 6;
                 gridBagConstraints.weightx = 1.0;
                 gridBagConstraints.weighty = 1.0;
-                jPanel3.add(jButton1, gridBagConstraints);
+                jPanel3.add(finalizeInvoiceBtn, gridBagConstraints);
 
                 jButton3.setMnemonic('R');
                 jButton3.setText("Refresh");
@@ -1720,16 +1746,16 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 gridBagConstraints.weighty = 1.0;
                 jPanel3.add(jLabel18, gridBagConstraints);
 
-                jButton2.setText("Utilize Patient Deposit/Print Final Invoice");
-                jButton2.addActionListener(new java.awt.event.ActionListener() {
+                utlizeDepositBtn.setText("Utilize Patient Deposit/Print Final Invoice");
+                utlizeDepositBtn.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        jButton2ActionPerformed(evt);
+                        utlizeDepositBtnActionPerformed(evt);
                     }
                 });
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 1;
                 gridBagConstraints.gridy = 6;
-                jPanel3.add(jButton2, gridBagConstraints);
+                jPanel3.add(utlizeDepositBtn, gridBagConstraints);
 
                 utilizedepositTxt.setForeground(new java.awt.Color(255, 0, 0));
                 utilizedepositTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -1772,6 +1798,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 gridBagConstraints.weightx = 1.0;
                 jPanel1.add(jLabel12, gridBagConstraints);
 
+                totalNetTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
                 totalNetTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
                 totalNetTxt.setText("0.00");
                 gridBagConstraints = new java.awt.GridBagConstraints();
@@ -3197,6 +3224,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         jSearchDialog.setVisible(true);
     }
     private void viewTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewTableMouseClicked
+        copaymentsTotal = 0.00;
         todays = viewTable.getValueAt(viewTable.getSelectedRow(), 0).toString();
         this.totalDiscountTxt.setText("0.00");
         //  this.jTextField5.setText("0.00");
@@ -3206,6 +3234,8 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         this.schemeBalAfterUtilisationTxt.setText("0.00");
         this.totalDepositBalTxt.setText("0.00");
         this.totalNetTxt.setText("0.00");
+        this.coPaymentsTxt.setText("0.00");
+        Object serviceDate = viewTable.getValueAt(viewTable.getSelectedRow(), 0);
 
         String receiptNo = null;
         receiptNo = viewTable.getValueAt(viewTable.getSelectedRow(), 1).toString();
@@ -3226,21 +3256,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             sqe.printStackTrace();
             System.out.println("Select not successful");
         }
-        /*
-         * try {
-         *
-         * java.sql.Statement stmt = connectDB.createStatement();
-         * java.sql.ResultSet rset = stmt.executeQuery("select payer from
-         * hp_patient_register where patient_no ='"+jTextField9.getText()+"'");
-         * while (rset.next()){ //
-         * jComboBox6.setSelectedItem(rset.getObject(1).toString());
-         * jTextField4.setText(rset.getObject(1).toString());
-         *
-         *
-         * }
-         * } catch (java.sql.SQLException sqe) { sqe.printStackTrace();
-         * System.out.println("Select not successful"); }
-         */
+
         String Code = null;
         try {
 
@@ -3270,6 +3286,18 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 totalAmountTxt.setText(String.valueOf(rss11.getDouble(1)));
                 // txtNetTotal.setText(rss11.getObject(1).toString());
             }
+
+            //Calculate total of all payments (Co-Pay)
+            java.sql.PreparedStatement pstmtCopay = connectDB.prepareStatement("SELECT sum(credit-debit) FROM hp_patient_card WHERE patient_no = ? AND (service ilike 'copay%' OR service ilike 'co-pay%') AND date::date = ?::date");
+            pstmtCopay.setString(1, patientNotxt.getText());
+            pstmtCopay.setObject(2, serviceDate);
+            
+            java.sql.ResultSet rsetCopay = pstmtCopay.executeQuery();
+
+            while (rsetCopay.next()) {
+                copaymentsTotal = rsetCopay.getDouble(1);
+            }
+            coPaymentsTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(copaymentsTotal));
         } catch (java.sql.SQLException sqlex) {
             sqlex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sqlex.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -3575,7 +3603,8 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         try {
             java.sql.Statement stmt = connectDB.createStatement();
 
-            java.sql.ResultSet rset = stmt.executeQuery("SELECT count(patient_name) FROM patient_bill_scheme WHERE patient_no = '" + patient_no + "'");
+//            java.sql.ResultSet rset = stmt.executeQuery("SELECT count(patient_name) FROM patient_bill_scheme WHERE patient_no = '" + patient_no + "'");
+            java.sql.ResultSet rset = stmt.executeQuery("SELECT count(patient_no) FROM hp_patient_card WHERE patient_no = '" + patient_no + "' AND paid = false AND payment_mode ilike 'scheme'");
 
             while (rset.next()) {
                 j = rset.getInt(1);
@@ -3631,7 +3660,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         setVisible(false); // Add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void finalizeInvoiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizeInvoiceBtnActionPerformed
         if (Double.parseDouble(totalNetTxt.getText()) == 0.0) {
             javax.swing.JOptionPane.showMessageDialog(this, "You cannot save unless you tick all".toUpperCase(), "Caution Message", javax.swing.JOptionPane.ERROR_MESSAGE);
         } else if (Double.parseDouble(totalNetTxt.getText()) > 0.0) {
@@ -3642,13 +3671,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             try {
                 connectDB.setAutoCommit(false);
                 registerSavePoint = connectDB.setSavepoint("registration");
-//        } catch (java.sql.SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//
-//
-//
-//        try {
 
                 java.sql.Statement stmtf = connectDB.createStatement();
                 java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + endDate.getDate() + "' BETWEEN period_from AND period_to");
@@ -3702,7 +3724,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                     double credits = java.lang.Double.parseDouble(totalNetTxt.getText());
                     System.out.println("Started from the bottom........1");
                     java.sql.Statement stm1 = connectDB.createStatement();
-
+                    // com.afrisoftech.lib.InvoiceNumbers.invoiceType = false;
                     invoiceNo = com.afrisoftech.lib.InvoiceNumbers.getInvoiceNumber();
 
                     java.sql.Statement pss12 = connectDB.createStatement();
@@ -3746,8 +3768,10 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
                             if (Boolean.valueOf(SchemeDataTable.getValueAt(i, 8).toString()) == java.lang.Boolean.TRUE && amts != 0) {
 
-                                java.sql.PreparedStatement pstmt22a = connectDB.prepareStatement("UPDATE hp_patient_card set paid = true,invoice_no = '" + invoiceNo + "' WHERE patient_no = '" + patientNotxt.getText() + "' and date::date = '" + SchemeDataTable.getValueAt(i, 0).toString() + "' and service = '" + SchemeDataTable.getValueAt(i, 1).toString() + "'");
+                                java.sql.PreparedStatement pstmt22a = connectDB.prepareStatement("UPDATE hp_patient_card set paid = true,invoice_no = '" + invoiceNo + "' WHERE patient_no = '" + patientNotxt.getText() + "' and date::date = '" + SchemeDataTable.getValueAt(i, 0).toString() + "' and service = '" + SchemeDataTable.getValueAt(i, 1).toString() + "' AND paid = false");
                                 pstmt22a.executeUpdate();
+                                java.sql.PreparedStatement pstmt222a = connectDB.prepareStatement("UPDATE hp_patient_card set paid = true,invoice_no = '" + invoiceNo + "' WHERE patient_no = '" + patientNotxt.getText() + "' and date::date = '" + SchemeDataTable.getValueAt(i, 0).toString() + "' and (service ilike '%copay%' OR service ilike '%co-pay%') AND invoice_no = '' AND paid = false");
+                                pstmt222a.executeUpdate();
                                 java.sql.PreparedStatement pstmt22 = connectDB.prepareStatement("UPDATE hp_patient_billing set paid = true WHERE patient_no = '" + patientNotxt.getText() + "' and trans_date = '" + SchemeDataTable.getValueAt(i, 0).toString() + "' and service = '" + SchemeDataTable.getValueAt(i, 1).toString() + "'");
                                 pstmt22.executeUpdate();
                                 java.sql.PreparedStatement pstmt21 = connectDB.prepareStatement("UPDATE hp_pharmacy set paid = true WHERE patient_no = '" + patientNotxt.getText() + "'  and date_prescribed = '" + SchemeDataTable.getValueAt(i, 0).toString() + "' and description = '" + SchemeDataTable.getValueAt(i, 1).toString() + "'");
@@ -4258,7 +4282,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             }
         }
         // }// Add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_finalizeInvoiceBtnActionPerformed
 
     private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
         for (int k = 0; k < jTable11.getColumnCount(); k++) {
@@ -4392,7 +4416,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
     }
     private void tickChkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tickChkActionPerformed
         double total = 0.0;
-
+        double totalSum = 0.0;
         if (tickChk.isSelected()) {
             for (int k = 0; k < SchemeDataTable.getRowCount(); k++) {
                 if (SchemeDataTable.getValueAt(k, 0) != null) {
@@ -4404,7 +4428,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                         SchemeDataTable.getCellEditor().stopCellEditing();
                     }
 
-                    double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(SchemeDataTable, 6);
+                    totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(SchemeDataTable, 6);
                     this.totalNetTxt.setText(java.lang.String.valueOf(totalSum));
                     SchemeDataTable.setValueAt(true, k, 8);
 
@@ -4418,7 +4442,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             for (int k = 0; k < SchemeDataTable.getRowCount(); k++) {
                 if (SchemeDataTable.getValueAt(k, 0) != null) {
                     SchemeDataTable.setValueAt(0, k, 6);
-                    double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(SchemeDataTable, 6);
+                    totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(SchemeDataTable, 6);
                     this.totalNetTxt.setText(java.lang.String.valueOf(totalSum));
                     SchemeDataTable.setValueAt(false, k, 8);
 
@@ -4426,9 +4450,11 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             }
 
         }
+        this.totalAmountTxt.setText(java.lang.String.valueOf(totalSum));
+        totalNetTxt.setText(String.valueOf(Double.parseDouble(totalNetTxt.getText()) - copaymentsTotal));
     }//GEN-LAST:event_tickChkActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void utlizeDepositBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utlizeDepositBtnActionPerformed
 //        // TODO add your handling code here:
 //         if (java.lang.Double.valueOf(totalDepositBalTxt.getText().toString()) >= java.lang.Double.valueOf(totalNetTxt.getText().toString())) {
 //                String receiptNo = null;
@@ -4629,7 +4655,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(this, "Not yet implemented");
         //   utilizedepositTxt.setText("0.00") ;
         //}
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_utlizeDepositBtnActionPerformed
 
     private void searchButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton3ActionPerformed
 
@@ -4689,8 +4715,8 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         int j = 0;
 
         viewTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                + "select distinct date::date,patient_no,scheme,sum(debit-credit)   "
-                + " FROM hp_patient_card where ip_no='OP' and scheme !='' and paid=false"
+                + "select distinct date::date,patient_no,scheme, sum(debit-credit), upper(funsoft_get_patient_name(patient_no))   "
+                + " FROM hp_patient_card where (ip_no='OP' or ip_no = '') and scheme !='' and paid=false"
                 + " and date between '" + beginDate.getDate().toString() + "' and '" + endDate.getDate().toString() + "'  "
                 + "  group by 1,2,3 having sum(debit-credit)>0 order by patient_no"));
 
@@ -4778,16 +4804,16 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JTextField cardNumberTxt;
     private javax.swing.JTextField claimNumberTxt;
+    private javax.swing.JTextField coPaymentsTxt;
     private com.afrisoftech.lib.DatePicker datePicker11;
     private com.afrisoftech.lib.DatePicker datePicker12;
     private javax.swing.JButton dispose11;
     private javax.swing.JButton dispose12;
     private javax.swing.JTextField dmuBalanceTxt;
     private com.afrisoftech.lib.DatePicker endDate;
+    public static javax.swing.JButton finalizeInvoiceBtn;
     private javax.swing.JTextField invoiceNoTxt;
-    public static javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton31;
     public static javax.swing.JButton jButton4;
@@ -4810,6 +4836,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -4916,6 +4943,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField unutilisedSchemeDepositTxt;
     private javax.swing.JCheckBox utilizeDepositChkbx;
     private javax.swing.JTextField utilizedepositTxt;
+    private javax.swing.JButton utlizeDepositBtn;
     private javax.swing.JCheckBox viewAllChkbx;
     private javax.swing.JTable viewTable;
     // End of variables declaration//GEN-END:variables

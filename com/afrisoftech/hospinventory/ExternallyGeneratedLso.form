@@ -943,7 +943,7 @@
                   <Table columnCount="13" rowCount="100">
                     <Column editable="false" title="Item" type="java.lang.Object"/>
                     <Column editable="false" title="Strength" type="java.lang.Object"/>
-                    <Column editable="false" title="Unit Pack" type="java.lang.Object"/>
+                    <Column editable="false" title="Units/Pack" type="java.lang.Object"/>
                     <Column editable="true" title="Qty" type="java.lang.Double"/>
                     <Column editable="false" title="Unit Price" type="java.lang.Double"/>
                     <Column editable="true" title="Disc %" type="java.lang.Double"/>

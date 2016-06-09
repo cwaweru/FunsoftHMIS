@@ -159,7 +159,7 @@ public class FO58INFR extends javax.swing.JDialog {
         jPanel1.add(jLabel1, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setText("MINISTRY OF HEALTH");
+        jLabel2.setText("FACILITY NAME");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;

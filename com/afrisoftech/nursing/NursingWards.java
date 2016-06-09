@@ -37,7 +37,7 @@ public class NursingWards extends javax.swing.JDialog {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jSearchPanel3 = new javax.swing.JPanel();
-        jButton524 = new javax.swing.JButton();
+        disposeBtn = new javax.swing.JButton();
         occupancywardCMB = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -47,10 +47,10 @@ public class NursingWards extends javax.swing.JDialog {
         jSearchPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("IN-PATIENTS"));
         jSearchPanel3.setLayout(new java.awt.GridBagLayout());
 
-        jButton524.setText("Dispose");
-        jButton524.addActionListener(new java.awt.event.ActionListener() {
+        disposeBtn.setText("Dispose");
+        disposeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton524ActionPerformed(evt);
+                disposeBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -58,7 +58,7 @@ public class NursingWards extends javax.swing.JDialog {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchPanel3.add(jButton524, gridBagConstraints);
+        jSearchPanel3.add(disposeBtn, gridBagConstraints);
 
         occupancywardCMB.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, " (select '0SELECT' UNION SELECT distinct ward  FROM nurse_allocation where status=true and ward in (select distinct ward_name FROM hp_wards) and name=(select current_user)) ORDER BY 1 asc"));
         occupancywardCMB.addItemListener(new java.awt.event.ItemListener() {
@@ -88,9 +88,9 @@ public class NursingWards extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton524ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton524ActionPerformed
+    private void disposeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disposeBtnActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton524ActionPerformed
+    }//GEN-LAST:event_disposeBtnActionPerformed
 
     private void occupancywardCMBItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_occupancywardCMBItemStateChanged
 
@@ -107,6 +107,7 @@ public class NursingWards extends javax.swing.JDialog {
             dismt.setSelected(true);
         } catch (java.beans.PropertyVetoException pvt) {
         }  
+        disposeBtn.doClick();
         
     }//GEN-LAST:event_occupancywardCMBActionPerformed
 
@@ -148,7 +149,7 @@ public class NursingWards extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton524;
+    private javax.swing.JButton disposeBtn;
     private javax.swing.JPanel jSearchPanel3;
     private javax.swing.JComboBox occupancywardCMB;
     // End of variables declaration//GEN-END:variables

@@ -33,9 +33,9 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         pConnDB = pconnDB;
 
         initComponents();
-        System.out.println("Cashpoint : " + System.getProperty("cashpoint"));
+      //  System.out.println("Cashpoint : " + System.getProperty("cashpoint"));
         paymodCmbx.setSelectedItem("Cash");
-        cashPointTxt.setText(System.getProperty("cashpoint"));//getCashPoint());
+        cashPointTxt.setText(getCashPoint());
         shiftNoTxt.setText(getShiftNumber());
         // jTextField14.setText(com.afrisoftech.hospital.HospitalMain.);
     }
@@ -998,7 +998,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 
     private void jTextField111111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField111111CaretUpdate
 
-        jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select activity as scheme,code from pb_activity where activity ILIKE '" + jTextField111111.getText().toString() + "%' order by activity"));
+        jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select activity as scheme,code from pb_activity where activity ILIKE '" + jTextField111111.getText().toString() + "%' AND category_class ilike 'plid' AND activity not ilike '%exemption%' AND activity not ilike '%abscond%'  AND  activity not ilike '%waiver%' order by activity"));
 
         jSearchTable11.setShowHorizontalLines(false);
         jSearchScrollPane11.setViewportView(jSearchTable11);
@@ -1150,8 +1150,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                 jSearchScrollPane1.setViewportView(jSearchTable1);
             }
 
-
-
         } else if (this.surrenderChk.isSelected()) {
             if (jTextField11111.getCaretPosition() > 1) {
 
@@ -1166,8 +1164,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                 jSearchTable1.setShowHorizontalLines(false);
                 jSearchScrollPane1.setViewportView(jSearchTable1);
             }
-
-
 
         } else {
             if (this.creditorChk.isSelected()) {
@@ -1192,11 +1188,8 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 
                         jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select (lender_name) as scheme,loan_no from pb_loan where lender_name ILIKE '" + jTextField11111.getText().toString() + "%'"));
 
-
                         jSearchTable1.setShowHorizontalLines(false);
                         jSearchScrollPane1.setViewportView(jSearchTable1);
-
-
 
                     }
                 } else {
@@ -1242,7 +1235,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
     }
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
 
-
         java.util.Calendar calendar = java.util.Calendar.getInstance();
 
         long dateNow = calendar.getTimeInMillis();
@@ -1250,7 +1242,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         java.sql.Date datenowSql = new java.sql.Date(dateNow);
 
         System.out.println(datenowSql.toString());
-
 
         java.sql.Connection con;
         //  try{
@@ -1286,8 +1277,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                 periodFrom = rsetf.getDate(1);
                 periodTo = rsetf.getDate(2);
             }
-
-
 
             if (datePicker1.getDate().before(periodFrom) || datePicker1.getDate().after(periodTo)) {
                 javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -1336,7 +1325,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                             "            checked_surrender)"
                             + "    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
 
-
                     pstSurrender.setObject(1, glActvtyCode);
                     pstSurrender.setString(2, receiptActivity);
                     pstSurrender.setObject(3, payeeName);
@@ -1366,7 +1354,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                     pstSurrender.setBoolean(27, true);
                     pstSurrender.setBoolean(28, true);
                     pstSurrender.executeUpdate();
-
 
                     if (java.lang.Double.valueOf(amountTxt.getText().toString()) >= unsurrenderedAmount) {
                         System.out.println("Amount in the field" + java.lang.Double.valueOf(amountTxt.getText().toString()));
@@ -1545,7 +1532,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                     pstmt2a.setDouble(27, 1);
                     pstmt2a.executeUpdate();
 
-
                     java.sql.Statement ps1 = connectDB.createStatement();
 
                     java.sql.PreparedStatement psr = connectDB.prepareStatement("INSERT INTO ac_receipts_no("
@@ -1597,9 +1583,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
             connectDB.commit();
             connectDB.setAutoCommit(true);
 
-
-
-
         } catch (java.sql.SQLException sq) {
             sq.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -1630,7 +1613,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
             while (rst11.next()) {
                 nodetails = rst11.getObject(1).toString();
             }
-
 
             java.sql.Statement ps112 = connectDB.createStatement();
             java.sql.ResultSet rst112 = ps112.executeQuery("select rct_format from receipt_pref");
@@ -1733,7 +1715,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 
         System.out.println(datenowSql.toString());
 
-
         java.sql.Connection con;
         String glCode = null;
         String bankAcc = null;
@@ -1746,7 +1727,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         String rct = null;
         jButton11ActionPerformed(evt);
         // jButton5ActionPerformed(evt);
-
 
         try {
 
@@ -1809,7 +1789,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 //
 //                com.afrisoftech.reports.OtherReceiptsBPdf policy = new com.afrisoftech.reports.OtherReceiptsBPdf();
 //                policy.OtherReceiptsBPdf(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), amountTxt.getText(), receiptNo, paymodCmbx.getSelectedItem().toString(), jTextField2.getText());
-
                 jTextField9.setText("");
                 receivedFromTxt.setText("");
                 otherReceiptTxt.setText("");
@@ -1822,7 +1801,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                 paymodCmbx.setSelectedItem(null);
                 jButton1.setEnabled(false);
                 jButton11.setEnabled(false);
-
 
                 javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Data Inserted Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             }
@@ -1848,8 +1826,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 //        jButton1.setEnabled(false);
 //        
 //        jButton1.setEnabled(false);
-
-
         // Add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1899,7 +1875,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 
     private void jSearchTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable2MouseClicked
 
-
         otherReceiptTxt.setEditable(false);
         if (this.surrenderChk.isSelected()) {
             searchTxt.setText(jSearchTable2.getModel().getValueAt(jSearchTable2.getSelectedRow(), 2).toString());
@@ -1945,7 +1920,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         }
 
         //searchButton2.setEnabled(false);
-
         jSearchDialog2.dispose();
     }//GEN-LAST:event_jSearchTable2MouseClicked
 
@@ -2002,7 +1976,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
             java.sql.Statement stmtf = connectDB.createStatement();
             java.sql.ResultSet rsetf = stmtf.executeQuery("select code from ac_cash_points_setup where description = current_user");
             while (rsetf.next()) {
-                // cashPoint = rsetf.getObject(1).toString();
+                 cashPoint = rsetf.getObject(1).toString();
             }
             rsetf.close();
             stmtf.close();
@@ -2015,8 +1989,8 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 
             java.sql.Statement stmt = connectDB.createStatement();
 
-            // java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE cash_point = '"+System.getProperty("cashpoint")+"' AND user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
-            java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
+             java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE cash_point = '"+getCashPoint()+"' AND user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
+            //java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
 
             while (rset.next()) {
 
@@ -2037,42 +2011,20 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 
     public java.lang.String getCashPoint() {
 
-        /* try {
-        
-         java.sql.Statement stmtf = connectDB.createStatement();
-         java.sql.ResultSet rsetf = stmtf.executeQuery("select code from ac_cash_points_setup where description = current_user");
-         while (rsetf.next()) {
-         // cashPoint = rsetf.getObject(1).toString();
-         }
-        
-         } catch (java.sql.SQLException sqe) {
-         sqe.printStackTrace();
-         System.out.println("select not successful");
-         }
-         */
         try {
 
-            java.sql.Statement stmt = connectDB.createStatement();
-
-            // java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE cash_point = '"+System.getProperty("cashpoint")+"' AND user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
-            java.sql.ResultSet rset = stmt.executeQuery("SELECT cash_point FROM ac_shifts WHERE user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
-
-            while (rset.next()) {
-
-                cash_no = rset.getString(1);
-                shiftNoTxt.setText(cash_no);
-
+            java.sql.Statement stmtf = connectDB.createStatement();
+            java.sql.ResultSet rsetf = stmtf.executeQuery("select code from ac_cash_points_setup where description = current_user");
+            while (rsetf.next()) {
+                cashPoint = rsetf.getObject(1).toString();
             }
-            rset.close();
-            stmt.close();
 
-        } catch (java.sql.SQLException sqlExec) {
-
-            javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
-
+        } catch (java.sql.SQLException sqe) {
+            sqe.printStackTrace();
+            System.out.println("select not successful");
         }
 
-        return cash_no;
+        return cashPoint;
 
     }
 
@@ -2087,7 +2039,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 
             System.out.println(datenowSql.toString());
 
-
             java.sql.Connection con;
             String glCode = null;
             String bankAcc = null;
@@ -2100,7 +2051,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
             String rct = null;
             jButton11.doClick(); //ActionPerformed(evt);
             jButton5.doClick(); //ActionPerformed(evt);
-
 
             try {
 
@@ -2159,7 +2109,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                     }
                 }
 
-
                 com.afrisoftech.reports.OtherReceiptsBPdf policy = new com.afrisoftech.reports.OtherReceiptsBPdf();
                 policy.OtherReceiptsBPdf(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), amountTxt.getText(), receiptNo, paymodCmbx.getSelectedItem().toString(), jTextField2.getText());
 
@@ -2175,7 +2124,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                 paymodCmbx.setSelectedItem(null);
                 jButton1.setEnabled(false);
                 jButton11.setEnabled(false);
-
 
                 javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Data Inserted Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 

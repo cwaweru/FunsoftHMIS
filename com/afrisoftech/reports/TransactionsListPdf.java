@@ -276,7 +276,7 @@ public class TransactionsListPdf implements java.lang.Runnable {
             
             java.lang.String creditTotal = null;
             
-            com.lowagie.text.Document docPdf = new com.lowagie.text.Document();
+            com.lowagie.text.Document docPdf = new com.lowagie.text.Document(PageSize.A4.rotate());
             
             try {
                 
@@ -430,7 +430,7 @@ public class TransactionsListPdf implements java.lang.Runnable {
                             
                             
                             
-                            java.sql.ResultSet rset = st.executeQuery("select date,CASE WHEN (activity_code IS NULL) THEN '-' ELSE activity_code END AS activity_code ,CASE WHEN (transaction_no IS NULL) THEN '-' ELSE transaction_no END AS transaction_no,initcap(description),initcap(transaction_type),sum(debit),sum(credit) from transaction_list_view WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' GROUP BY date,activity_code,description,transaction_no,transaction_type ORDER BY transaction_no ASC");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                            java.sql.ResultSet rset = st.executeQuery("select date,CASE WHEN (activity_code IS NULL) THEN '-' ELSE activity_code END AS activity_code ,CASE WHEN (transaction_no IS NULL) THEN '-' ELSE transaction_no END AS transaction_no,initcap(description),initcap(transaction_type),sum(debit),sum(credit) from transaction_list_view WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' GROUP BY date,activity_code,description,transaction_no,transaction_type ORDER BY 1,3 ASC");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
                             
                             java.sql.ResultSet rsetTotals = st2.executeQuery("SELECT SUM(debit),SUM(credit) from transaction_list_view WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"'");
                             

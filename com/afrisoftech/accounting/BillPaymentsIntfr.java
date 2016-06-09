@@ -2070,13 +2070,13 @@ public class BillPaymentsIntfr extends javax.swing.JInternalFrame {
         jSearchDialog22.setVisible(true);
     }
     private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
-        com.afrisoftech.accounting.CopayReceiptsIntfr other = new CopayReceiptsIntfr(connectDB, pConnDB, jTextField31.getText());
-        this.getParent().add(other, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        try {
-            other.setSelected(true);
-        } catch (java.beans.PropertyVetoException pvt) {
-        }
-        other.setVisible(true);         // Add your handling code here:
+//        com.afrisoftech.accounting.CopayReceiptsIntfr other = new CopayReceiptsIntfr(connectDB, pConnDB, jTextField31.getText());
+//        this.getParent().add(other, javax.swing.JLayeredPane.DEFAULT_LAYER);
+//        try {
+//            other.setSelected(true);
+//        } catch (java.beans.PropertyVetoException pvt) {
+//        }
+//        other.setVisible(true);         // Add your handling code here:
     }//GEN-LAST:event_jCheckBox3ActionPerformed
     private void searchButton111Clicked() {
 

@@ -561,22 +561,20 @@ public class TenderContractsIntfr extends javax.swing.JInternalFrame {
        
     }//GEN-LAST:event_editBtnActionPerformed
     private void refreshTable(){
-    try {
+   
+        try {
              PreparedStatement getTenders = connectDB.prepareStatement("SELECT DISTINCT quotation_no, SUM(quantity*price),supplier"
                      + " FROM st_recommendation WHERE quotation_no NOT IN (SELECT DISTINCT tender_no FROM st_contract_mgt) or supplier NOT IN (SELECT DISTINCT supplier FROM st_contract_mgt) AND ordered_qty=0.0  GROUP BY 1,3 order by 1");
-             
              
              ResultSet gettinTenders = getTenders.executeQuery();
              int i =0;
              while(gettinTenders.next()){
-             
              
              tenderItemstbl.setValueAt(gettinTenders.getObject(1), i, 0);
 
              tenderItemstbl.setValueAt(CurrencyFormatter.getFormattedDouble(gettinTenders.getDouble(2)), i, 1);
              
              tenderItemstbl.setValueAt(com.afrisoftech.lib.GetItemInfo.getITenderDesc(tenderItemstbl.getValueAt(i, 0).toString(), connectDB), i, 2);
-             
              
              tenderItemstbl.setValueAt(gettinTenders.getObject(3), i, 3);
              
@@ -585,35 +583,14 @@ public class TenderContractsIntfr extends javax.swing.JInternalFrame {
              tenderItemstbl.setValueAt(false, i, 6);
              
              i++;
-             
-             
-             
+
              }
-             
-             
-             
-             
-             
-             
+
          } catch (SQLException ex) {
+             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
              Logger.getLogger(TenderContractsIntfr.class.getName()).log(Level.SEVERE, null, ex);
          }
       
-      
-      
-      
-      
-      
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     }
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:

@@ -301,7 +301,7 @@ public class MOH511CWCRegisterPdf implements java.lang.Runnable {
                         while (rset4.next()) {
                             date = rset4.getObject(1).toString();
                         }
-                        com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase("MINISTRY OF HEALTH : " + compName.toUpperCase()), false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
+                        com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase("FACILITY NAME : " + compName.toUpperCase()), false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
 
                         headerFoter.setAlignment(com.lowagie.text.HeaderFooter.ALIGN_CENTER);
 
@@ -574,7 +574,7 @@ public class MOH511CWCRegisterPdf implements java.lang.Runnable {
                             for (int i = 0; i < listofAct.length; i++) {
 
                                 java.sql.PreparedStatement stw = connectDB.prepareStatement("SELECT DISTINCT "
-                                        + " date_part('day', service_date) ||'-'||date_part('month', service_date) ||'-'||date_part('year', service_date), patient_no, revisit, child_serial_no, full_names, child_age, initcap(gender),"
+                                        + " date_part('day', service_date) ||'-'||date_part('month', service_date) ||'-'||date_part('year', service_date), patient_no, revisit, child_serial_no, full_names, age, initcap(gender),"
                                         + " sub_location, village, telephone_no, weight, height, type_of_followup, referrals_in||' '||referrals_out as referrals, remarks  FROM rh.child_health_follow_up WHERE "
                                         + " service_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' "
                                         + " AND patient_no = ?");
@@ -719,7 +719,7 @@ public class MOH511CWCRegisterPdf implements java.lang.Runnable {
 
         try {
 
-            java.sql.PreparedStatement stmt1 = connectDB.prepareStatement("SELECT DISTINCT patient_no, full_names FROM rh.child_health_follow_up where service_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' ORDER BY full_names ASC");
+            java.sql.PreparedStatement stmt1 = connectDB.prepareStatement("SELECT DISTINCT patient_no, full_names FROM rh.child_health_follow_up where service_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' ORDER BY 1 ASC");
 
             java.sql.ResultSet rSet1 = stmt1.executeQuery();
 

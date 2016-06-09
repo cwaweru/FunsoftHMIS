@@ -34,7 +34,7 @@ public class InvoiceNumbers {
 
             java.sql.Statement pss1 = com.afrisoftech.hospital.HospitalMain.connectDB.createStatement();
 
-            java.sql.ResultSet rss1 = pss1.executeQuery("select '" + invoiceInitial + "'||(nextval('ipinvoice_no_seq'))");
+            java.sql.ResultSet rss1 = pss1.executeQuery("select '" + invoiceInitial + "'||(nextval('pinvoice_no_seq'))");
             while (rss1.next()) {
                 invoiceNo = rss1.getObject(1).toString();
             }

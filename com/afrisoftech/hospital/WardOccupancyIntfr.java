@@ -30,25 +30,33 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
         com.afrisoftech.dbadmin.JXTable predicateTable = (com.afrisoftech.dbadmin.JXTable) occupationTable;
         java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = new java.util.Vector<org.jdesktop.swingx.decorator.Highlighter>(1, 1);
         org.jdesktop.swingx.decorator.PatternPredicate patternPredicate = new org.jdesktop.swingx.decorator.PatternPredicate("HDU", 4, 4);
-        ColorHighlighter magenta = new ColorHighlighter(patternPredicate, Color.YELLOW, null, Color.YELLOW, null);
-        tableHighlighters.addElement(magenta);
+        ColorHighlighter yellow = new ColorHighlighter(patternPredicate, Color.YELLOW, null, Color.YELLOW, null);
+        tableHighlighters.addElement(yellow);
         org.jdesktop.swingx.decorator.PatternPredicate patternPredicate1 = new org.jdesktop.swingx.decorator.PatternPredicate("ACUTE ROOM", 4, 4);
-        ColorHighlighter pink = new ColorHighlighter(patternPredicate1, Color.RED, null, Color.RED, null);
-        tableHighlighters.add(pink);
+        ColorHighlighter red = new ColorHighlighter(patternPredicate1, Color.RED, null, Color.RED, null);
+        tableHighlighters.add(red);
         org.jdesktop.swingx.decorator.PatternPredicate patternPredicate2 = new org.jdesktop.swingx.decorator.PatternPredicate("General Bed", 4, 4);
-        ColorHighlighter cyan = new ColorHighlighter(patternPredicate2, Color.GREEN, null, Color.GREEN, null);
-        tableHighlighters.add(cyan);
-        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate3 = new org.jdesktop.swingx.decorator.PatternPredicate("ICU", 4, 4);
-        ColorHighlighter orange = new ColorHighlighter(patternPredicate3, Color.PINK, null, Color.PINK, null);
-        tableHighlighters.add(cyan);
-        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate4 = new org.jdesktop.swingx.decorator.PatternPredicate("E WARD", 4, 4);
-        ColorHighlighter green = new ColorHighlighter(patternPredicate4, Color.GREEN, null, Color.GREEN, null);
+        ColorHighlighter green = new ColorHighlighter(patternPredicate2, Color.GREEN, null, Color.GREEN, null);
         tableHighlighters.add(green);
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate3 = new org.jdesktop.swingx.decorator.PatternPredicate("ICU", 4, 4);
+        ColorHighlighter pink = new ColorHighlighter(patternPredicate3, Color.PINK, null, Color.PINK, null);
+        tableHighlighters.add(pink);
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate4 = new org.jdesktop.swingx.decorator.PatternPredicate("E WARD", 4, 4);
+        ColorHighlighter magenta = new ColorHighlighter(patternPredicate4, Color.MAGENTA, null, Color.MAGENTA, null);
+        tableHighlighters.add(magenta);
+        
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate5 = new org.jdesktop.swingx.decorator.PatternPredicate("LONG_STAY", 10, 10);
+        ColorHighlighter orange = new ColorHighlighter(patternPredicate5, Color.ORANGE, null, Color.ORANGE, null);
+        tableHighlighters.add(orange);
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate6 = new org.jdesktop.swingx.decorator.PatternPredicate("NORMAL_STAY", 10, 10);
+        ColorHighlighter cyan = new ColorHighlighter(patternPredicate6, Color.CYAN, null, Color.CYAN, null);
+        tableHighlighters.add(cyan);
+        
 //        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate5 = new org.jdesktop.swingx.decorator.PatternPredicate("CANCELLED INV", 7);
 //        ColorHighlighter cancelled = new ColorHighlighter(patternPredicate5, Color.RED, null, Color.RED, null);
 //        tableHighlighters.add(cancelled);
         // Highlighter shading = new ShadingColorHighlighter(new HighlightPredicate.ColumnHighlightPredicate(6));
-        ColorHighlighter tableHighlightersArray[] = new ColorHighlighter[]{magenta, cyan, green, pink, orange};
+        ColorHighlighter tableHighlightersArray[] = new ColorHighlighter[]{magenta, cyan, green, pink, orange, red, yellow};
         predicateTable.setHighlighterPipeline(predicateTable, tableHighlightersArray);
     }
 
@@ -66,9 +74,9 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
         dischargesPanel = new javax.swing.JPanel();
         occupationsHeaderTable = new javax.swing.JPanel();
         wardNameCmbx = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
         patientNumber = new javax.swing.JTextField();
         searchFileBtn = new javax.swing.JButton();
+        longStayThresholdTxt = new javax.swing.JTextField();
         occupationButtonPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -231,7 +239,8 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
         occupationsHeaderTable.setBorder(javax.swing.BorderFactory.createTitledBorder("Select the ward name here to generate occupancy report"));
         occupationsHeaderTable.setLayout(new java.awt.GridBagLayout());
 
-        wardNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT ward_name FROM hp_wards order by ward_name"));
+        wardNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '--ALL--' as ward_name UNION SELECT ward_name FROM hp_wards order by ward_name"));
+        wardNameCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Select Ward"));
         wardNameCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 wardNameCmbxActionPerformed(evt);
@@ -240,19 +249,10 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         occupationsHeaderTable.add(wardNameCmbx, gridBagConstraints);
-
-        jLabel1.setText("Ward Name");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        occupationsHeaderTable.add(jLabel1, gridBagConstraints);
 
         patientNumber.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patient Number/Unit Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Agency FB", 0, 10), new java.awt.Color(51, 51, 255))); // NOI18N
         patientNumber.addCaretListener(new javax.swing.event.CaretListener() {
@@ -266,7 +266,7 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -280,9 +280,24 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         occupationsHeaderTable.add(searchFileBtn, gridBagConstraints);
+
+        longStayThresholdTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        longStayThresholdTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        longStayThresholdTxt.setText("60");
+        longStayThresholdTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Set Long Stay Threshold"));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        occupationsHeaderTable.add(longStayThresholdTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -1075,7 +1090,6 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
                     pstmtTotal.executeUpdate();
 
                     // connectDB.commit();
-
                 }
 
             }
@@ -1101,14 +1115,31 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void wardNameCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wardNameCmbxActionPerformed
+      
+        if (wardNameCmbx.getSelectedItem().toString().contains("--ALL--")) {
 
-        this.occupationTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, visit_id, sub_chief as unit_number, patient_name, wing, date_admitted, false as discharge, 'DISCHARGE_BED_RECONCILIATION' as comments, (SELECT sum(debit-credit)::numeric(30,2) FROM hp_patient_card WHERE hp_patient_card.patient_no = hp_admission.patient_no) as BILL_AMOUNT FROM hp_admission WHERE ward = '" + this.wardNameCmbx.getSelectedItem().toString() + "' and check_out = false order by 4"));
+            this.occupationTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, visit_id, sub_chief as unit_number, patient_name, wing, date_admitted, false as discharge, 'DISCHARGE_BED_RECONCILIATION' as comments, ward as ward_name, (SELECT sum(debit-credit)::numeric(30,2) FROM hp_patient_card WHERE hp_patient_card.patient_no = hp_admission.patient_no) as BILL_AMOUNT, (CASE WHEN (now()::date-date_admitted) > '"+Integer.parseInt(longStayThresholdTxt.getText())+"' THEN 'LONG_STAY' ELSE 'NORMAL_STAY' END) AS DURATION_OF_STAY FROM hp_admission WHERE check_out = false order by 4"));
 
+        } else {
+
+            this.occupationTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, visit_id, sub_chief as unit_number, patient_name, wing, date_admitted, false as discharge, 'DISCHARGE_BED_RECONCILIATION' as comments, (SELECT sum(debit-credit)::numeric(30,2) FROM hp_patient_card WHERE hp_patient_card.patient_no = hp_admission.patient_no) as BILL_AMOUNT FROM hp_admission WHERE ward = '" + this.wardNameCmbx.getSelectedItem().toString() + "' and check_out = false order by 4"));
+
+        }
         int patientTotal = 0;
 
         try {
 
-            java.sql.PreparedStatement pstmtTotal = connectDB.prepareStatement("SELECT  count(*) FROM hp_admission WHERE ward = '" + this.wardNameCmbx.getSelectedItem().toString() + "' and check_out = false");
+            java.sql.PreparedStatement pstmtTotal;
+
+            if (wardNameCmbx.getSelectedItem().toString().contains("--ALL--")) {
+
+                pstmtTotal = connectDB.prepareStatement("SELECT  count(*) FROM hp_admission WHERE check_out = false");
+
+            } else {
+
+                pstmtTotal = connectDB.prepareStatement("SELECT  count(*) FROM hp_admission WHERE ward = '" + this.wardNameCmbx.getSelectedItem().toString() + "' and check_out = false");
+
+            }
 
             java.sql.ResultSet rsetTotal = pstmtTotal.executeQuery();
 
@@ -1117,7 +1148,6 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
                 patientTotal = rsetTotal.getInt(1);
 
             }
-
 
         } catch (SQLException ex) {
 
@@ -1129,7 +1159,7 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
 
         }
 
-        this.totalsLabel.setText("Number Admitted in the Ward: " + patientTotal);
+        this.totalsLabel.setText("Number Admitted in the Ward(s): " + patientTotal);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_wardNameCmbxActionPerformed
@@ -1181,7 +1211,6 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
                     pstmtTotal.executeUpdate();
 
                     // connectDB.commit();
-
                 }
 
             }
@@ -1207,7 +1236,7 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
 
     private void patientNumberCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_patientNumberCaretUpdate
         if (patientNumber.getText().length() > 3) {
-        this.occupationTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, visit_id, sub_chief as unit_number, patient_name, wing, date_admitted, false as discharge, 'DISCHARGE_BED_RECONCILIATION' as comments, (SELECT sum(debit-credit)::numeric(30,2) FROM hp_patient_card WHERE hp_patient_card.patient_no = hp_admission.patient_no) as BILL_AMOUNT FROM hp_admission WHERE (patient_no ilike '%" + patientNumber.getText() + "%' or patient_name ilike '%" + patientNumber.getText() + "%' or sub_chief ilike '%" + patientNumber.getText() + "%') AND ward = '" + this.wardNameCmbx.getSelectedItem().toString() + "' and check_out = false order by 4"));
+            this.occupationTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, visit_id, sub_chief as unit_number, patient_name, wing, date_admitted, false as discharge, 'DISCHARGE_BED_RECONCILIATION' as comments, (SELECT sum(debit-credit)::numeric(30,2) FROM hp_patient_card WHERE hp_patient_card.patient_no = hp_admission.patient_no) as BILL_AMOUNT FROM hp_admission WHERE (patient_no ilike '%" + patientNumber.getText() + "%' or patient_name ilike '%" + patientNumber.getText() + "%' or sub_chief ilike '%" + patientNumber.getText() + "%') AND ward = '" + this.wardNameCmbx.getSelectedItem().toString() + "' and check_out = false order by 4"));
         }     // TODO add your handling code here:
     }//GEN-LAST:event_patientNumberCaretUpdate
 
@@ -1239,7 +1268,6 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
                     pstmtTotal.executeUpdate();
 
                     // connectDB.commit();
-
                 }
 
             }
@@ -1275,7 +1303,6 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
                 patientTotal = rsetTotal.getInt(1);
 
             }
-
 
         } catch (SQLException ex) {
 
@@ -1327,7 +1354,6 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
 
             }
 
-
         } catch (SQLException ex) {
 
             ex.printStackTrace();
@@ -1375,7 +1401,6 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
                 patientTotal = rsetTotal.getInt(1);
 
             }
-
 
         } catch (SQLException ex) {
 
@@ -1433,12 +1458,12 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField longStayThresholdTxt;
     private javax.swing.JPanel occupationButtonPanel;
     private javax.swing.JPanel occupationButtonPanel1;
     private javax.swing.JPanel occupationButtonPanel2;

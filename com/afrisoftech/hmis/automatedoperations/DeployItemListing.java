@@ -68,7 +68,7 @@ public class DeployItemListing implements Runnable {
 
         try {
 
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT DISTINCT glstock_code FROM st_stores WHERE store_name = '"+pharmacyName+"'");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT DISTINCT sales_code FROM st_stores WHERE store_name = '"+pharmacyName+"'");
 
             java.sql.ResultSet rset = pstmt.executeQuery();
 

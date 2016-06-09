@@ -13,11 +13,11 @@ public class MtrhSthirteenPdf implements java.lang.Runnable {
     //java.lang.String beginDate = null;
     //java.lang.String endDate = null;
     java.lang.String lpo = null;
-    String cert_no= null,remarkz= null,checked_by= null,time_date;
+    String cert_no = null, remarkz = null, checked_by = null, time_date;
     java.lang.String GRNno = null;
     java.lang.String ministry = null;
-   java.lang.String suppName = null;
-    java.lang.String dNote = null,received_by=null,dates=null,posted_by=null;
+    java.lang.String suppName = null;
+    java.lang.String dNote = null, received_by = null, dates = null, posted_by = null;
     String compName = null;
     String date = null;
     String ks;
@@ -32,14 +32,14 @@ public class MtrhSthirteenPdf implements java.lang.Runnable {
     com.lowagie.text.Font pFontHeader = FontFactory.getFont(FontFactory.TIMES, 10, Font.BOLD);
     com.lowagie.text.Font pFontHeader1 = FontFactory.getFont(FontFactory.TIMES, 9, Font.NORMAL);
     com.lowagie.text.Font pFontHeader4 = FontFactory.getFont(FontFactory.TIMES, 16, Font.BOLD);
-    
-    com.lowagie.text.Font pFontHeaders = FontFactory.getFont(FontFactory.TIMES,9, Font.BOLD);
+
+    com.lowagie.text.Font pFontHeaders = FontFactory.getFont(FontFactory.TIMES, 9, Font.BOLD);
     //   com.lowagie.text.ParagraphFont pgraph = Paragraph();
     java.lang.Runtime rtThreadSample = java.lang.Runtime.getRuntime();
     java.lang.Process prThread;
     java.lang.String grnNumber = "";
 
-    public void MtrhSthirteenPdf(java.sql.Connection connDb,java.lang.String lpono,java.lang.String supp,java.lang.String gr) {
+    public void MtrhSthirteenPdf(java.sql.Connection connDb, java.lang.String lpono, java.lang.String supp, java.lang.String gr) {
         //public void OrderedItemsPdf(java.sql.Connection connDb) {
         //
 
@@ -47,12 +47,10 @@ public class MtrhSthirteenPdf implements java.lang.Runnable {
 
         connectDB = connDb;
 
-      //  beginDate = begindate;
-
-     //   endDate = endate;
-
-       suppName = supp;
-       GRNno =gr;
+        //  beginDate = begindate;
+        //   endDate = endate;
+        suppName = supp;
+        GRNno = gr;
         lpo = lpono;
 
         threadSample = new java.lang.Thread(this, "SampleThread");
@@ -63,7 +61,6 @@ public class MtrhSthirteenPdf implements java.lang.Runnable {
 
         System.out.println("threadSample fired");
 
-        
     }
 
     public static void main(java.lang.String[] args) {
@@ -96,14 +93,11 @@ public class MtrhSthirteenPdf implements java.lang.Runnable {
 
             threadCheck = false;
 
-
             System.out.println("We shall be lucky to get back to start in one piece");
 
         }
 
         if (!threadCheck) {
-
-
 
             Thread.currentThread().stop();
 
@@ -273,7 +267,6 @@ public class MtrhSthirteenPdf implements java.lang.Runnable {
 
         java.lang.String pdfDateStamp = dateStampPdf.toString();
 
-
         try {
 
             java.io.File tempFile = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
@@ -294,8 +287,6 @@ public class MtrhSthirteenPdf implements java.lang.Runnable {
 
                     com.lowagie.text.pdf.PdfWriter.getInstance(docPdf, new java.io.FileOutputStream(tempFile));
 
-
-
                     try {
 
                         java.lang.Class.forName("org.postgresql.Driver");
@@ -306,44 +297,9 @@ public class MtrhSthirteenPdf implements java.lang.Runnable {
 
                     }
 
-
-
-                    /*
-                     * try {
-                     *
-                     *
-                     * //com.lowagie.text.HeaderFooter headerFoter = new
-                     * com.lowagie.text.HeaderFooter(new Phrase("" + compName +
-                     * " Printed On: " + date + "", pFontHeader), false);//
-                     * FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA,
-                     * 14, Font.BOLDITALIC,java.awt.Color.blue)));
-                     *
-                     * // com.lowagie.text.HeaderFooter headerFoter = new
-                     * com.lowagie.text.HeaderFooter(new
-                     * Phrase(""+compName+""),false);//
-                     * FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA,
-                     * 14, Font.BOLDITALIC,java.awt.Color.blue))); //
-                     * headerFoter.setRight(5); ///
-                     * docPdf.setHeader(headerFoter);
-                     *
-                     * } catch (java.sql.SQLException SqlExec) {
-                     *
-                     * javax.swing.JOptionPane.showMessageDialog(new
-                     * javax.swing.JFrame(), SqlExec.getMessage());
-                     *
-                     * }
-                     */
-
-                    //com.lowagie.text.HeaderFooter footer = new com.lowagie.text.HeaderFooter(new Phrase("Creditors List - Page: ", pFontHeader), true);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 12, Font.BOLDITALIC,java.awt.Color.blue));
-
-                    //docPdf.setFooter(footer);
-
-
                     docPdf.open();
 
-
                     try {
-
 
                         com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(6);
 
@@ -353,8 +309,6 @@ public class MtrhSthirteenPdf implements java.lang.Runnable {
 
                         table.setWidthPercentage((100));
 
-                       
-
                         table.setHeaderRows(2);
 
                         table.getDefaultCell().setColspan(2);
@@ -362,15 +316,7 @@ public class MtrhSthirteenPdf implements java.lang.Runnable {
                         table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
 
                         Phrase phrase = new Phrase("Form S.13", pFontHeader);
-                        /*
-                         * table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                         * Phrase phrase = new Phrase("Form S 13", pFontHeader);
-                         * table.addCell(phrase); phrase = new Phrase("",
-                         * pFontHeader); table.addCell(phrase);
-                         * table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                         * phrase = new Phrase("ORIGINAL", pFontHeader);
-                         * table.addCell(phrase);
-                         */
+
                         try {
 
                             table.getDefaultCell().setColspan(6);
@@ -397,227 +343,216 @@ public class MtrhSthirteenPdf implements java.lang.Runnable {
                                 table.addCell(phrase);
 
                             }
-                            
 
                             //headers
-                                table.getDefaultCell().setColspan(1);
-                                table.getDefaultCell().setFixedHeight(25);
-                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("GRN No.: " + GRNno, pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(5);
-                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("GOODS RECEIPT NOTE ", pFontHeader4);
+                            table.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
+                            table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
+                            table.getDefaultCell().setBorder(Rectangle.TOP | Rectangle.BOTTOM);
+                            table.getDefaultCell().setColspan(6);
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                            phrase = new Phrase("GOODS RECEIPT NOTE ", pFontHeader4);
+                            table.addCell(phrase);
+                            table.getDefaultCell().setBorder(Rectangle.BOX);
+                            table.getDefaultCell().setColspan(6);
+                            table.getDefaultCell().setFixedHeight(25);
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                            phrase = new Phrase("GRN No.: " + GRNno, pFontHeader);
+                            table.addCell(phrase);
 
-                                table.addCell(phrase);
+                            table.getDefaultCell().setColspan(3);
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                            phrase = new Phrase("Supplier : " + suppName, pFontHeader);
+                            table.addCell(phrase);
 
-                                table.getDefaultCell().setColspan(3);
-                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Supplier : " + suppName, pFontHeader);
-                                table.addCell(phrase);
-   
-                                table.getDefaultCell().setColspan(3);
-                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("L.P.O/L.S.O No. " +lpo, pFontHeader);
-                                table.addCell(phrase);
-                           
-                                docPdf.add(table);
-                              java.sql.Statement pstmtSuppliers = connectDB.createStatement();
+                            table.getDefaultCell().setColspan(3);
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                            phrase = new Phrase("L.P.O/L.S.O No. " + lpo, pFontHeader);
+                            table.addCell(phrase);
 
-                            java.sql.ResultSet rsetSuppliers = pstmtSuppliers.executeQuery("select distinct delivery_note_no,received_by,date,user_name from st_stock_cardex where order_no='"+lpo+"' and supplier='"+suppName+"' and grn_no='"+GRNno+"'");
+                            docPdf.add(table);
+                            java.sql.Statement pstmtSuppliers = connectDB.createStatement();
+
+                            java.sql.ResultSet rsetSuppliers = pstmtSuppliers.executeQuery("select distinct delivery_note_no,received_by,date,user_name from st_stock_cardex where order_no='" + lpo + "' and supplier='" + suppName + "' and grn_no='" + GRNno + "'");
                             while (rsetSuppliers.next()) {
-                               dNote=rsetSuppliers.getString(1);
-                              received_by=rsetSuppliers.getString(2);
-                              dates=rsetSuppliers.getString(3);
-                              posted_by=rsetSuppliers.getString(4);
+                                dNote = rsetSuppliers.getString(1);
+                                received_by = rsetSuppliers.getString(2);
+                                dates = rsetSuppliers.getString(3);
+                                posted_by = rsetSuppliers.getString(4);
                             }
-  
-                           com.lowagie.text.pdf.PdfPTable table3 = new com.lowagie.text.pdf.PdfPTable(6);
-                 int headerwidths3[] = {50, 10, 10, 10, 15, 15};
-                table3.setWidths(headerwidths3);
-                table3.setWidthPercentage((100));
-                              
-                                table3.getDefaultCell().setColspan(4);
-                                table3.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Delivery Note No. " + dNote +"   Received by."+received_by, pFontHeader);
-                                table3.addCell(phrase);
-                                
-                                table3.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("Date: "+dates, pFontHeader);
-                                table3.addCell(phrase);
-                                
-                                //prepare again
-                                    table3.getDefaultCell().setColspan(1);
 
-                                    table3.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
-                                    table3.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
+                            com.lowagie.text.pdf.PdfPTable table3 = new com.lowagie.text.pdf.PdfPTable(6);
+                            int headerwidths3[] = {50, 10, 10, 10, 15, 15};
+                            table3.setWidths(headerwidths3);
+                            table3.setWidthPercentage((100));
 
-                                    phrase = new Phrase("Item Description", pFontHeaders);
-                                    table3.addCell(phrase);
-                                    phrase = new Phrase("Qty Ordered", pFontHeaders);
-                                    table3.addCell(phrase);
+                            table3.getDefaultCell().setColspan(4);
+                            table3.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                            phrase = new Phrase("Delivery Note No. " + dNote + "   Received by." + received_by, pFontHeader);
+                            table3.addCell(phrase);
 
-                                    table3.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                            table3.getDefaultCell().setColspan(2);
+                            phrase = new Phrase("Date: " + dates, pFontHeader);
+                            table3.addCell(phrase);
 
-                                    phrase = new Phrase("Qty Received", pFontHeaders);
-                                    table3.addCell(phrase);
+                            //prepare again
+                            table3.getDefaultCell().setColspan(1);
 
-                                    phrase = new Phrase("Unit Cost", pFontHeaders);
-                                    table3.addCell(phrase);
+                            table3.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
+                            table3.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
 
-                                    phrase = new Phrase("Total", pFontHeaders);
-                                    table3.addCell(phrase);
+                            phrase = new Phrase("Item Description", pFontHeaders);
+                            table3.addCell(phrase);
+                            phrase = new Phrase("Qty Ordered", pFontHeaders);
+                            table3.addCell(phrase);
 
-                                    phrase = new Phrase("Remarks", pFontHeaders);
-                                    table3.addCell(phrase);
+                            table3.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-                               docPdf.add(table3);
-   
-    
-                           
-                            
+                            phrase = new Phrase("Qty Received", pFontHeaders);
+                            table3.addCell(phrase);
+
+                            phrase = new Phrase("Unit Cost", pFontHeaders);
+                            table3.addCell(phrase);
+
+                            phrase = new Phrase("Total", pFontHeaders);
+                            table3.addCell(phrase);
+
+                            phrase = new Phrase("Remarks", pFontHeaders);
+                            table3.addCell(phrase);
+
+                            docPdf.add(table3);
+
                             com.lowagie.text.pdf.PdfPTable table4 = new com.lowagie.text.pdf.PdfPTable(6);
 
-                        int headerwidths4[] = {50, 10, 10, 10, 15, 15};
+                            int headerwidths4[] = {50, 10, 10, 10, 15, 15};
 
-                        table4.setWidths(headerwidths4);
+                            table4.setWidths(headerwidths4);
 
-                        table4.setWidthPercentage((100));
-             java.sql.Statement pstmtSupplier = connectDB.createStatement();
-             java.sql.ResultSet rsetSupplier = pstmtSupplier.executeQuery("select * from st_stock_cardex where order_no='"+lpo+"' and supplier='"+suppName+"' and grn_no='"+GRNno+"'");              
-              while (rsetSupplier.next()) {
-                  String quantity=null;
-                            java.sql.Statement pstmtSupplierq = connectDB.createStatement();
-                            java.sql.ResultSet rsetSupplierq = pstmtSupplierq.executeQuery("select * from st_orders where order_no='"+lpo+"' and supplier='"+suppName+"' and item='"+rsetSupplier.getString("item")+"'");
+                            table4.setWidthPercentage((100));
+                            java.sql.Statement pstmtSupplier = connectDB.createStatement();
+                            java.sql.ResultSet rsetSupplier = pstmtSupplier.executeQuery("select * from st_stock_cardex where order_no='" + lpo + "' and supplier='" + suppName + "' and grn_no='" + GRNno + "'");
+                            while (rsetSupplier.next()) {
+                                String quantity = null;
+                                java.sql.Statement pstmtSupplierq = connectDB.createStatement();
+                                java.sql.ResultSet rsetSupplierq = pstmtSupplierq.executeQuery("select * from st_orders where order_no='" + lpo + "' and supplier='" + suppName + "' and item='" + rsetSupplier.getString("item") + "'");
                                 while (rsetSupplierq.next()) {
-                                    quantity=rsetSupplierq.getString("quantity");
+                                    quantity = rsetSupplierq.getString("quantity");
                                 }
-                                checked_by=rsetSupplier.getString("received_by");
-                                cert_no=rsetSupplier.getString("certficate_no");
-                                time_date=rsetSupplier.getString("chairperson_date");
-                                remarkz=rsetSupplier.getString("item");
-                        
-                                            table4.getDefaultCell().setColspan(1);
-                                            table4.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                            phrase = new Phrase(dbObject.getDBObject(rsetSupplier.getString("item"), "-"), pFontHeader1);
-                                            table4.addCell(phrase);
-                                            table4.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(quantity), pFontHeader1);
-                                            table4.addCell(phrase);
+                                checked_by = rsetSupplier.getString("received_by");
+                                cert_no = rsetSupplier.getString("certficate_no");
+                                time_date = rsetSupplier.getString("chairperson_date");
+                                remarkz = rsetSupplier.getString("item");
 
-                                            table4.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetSupplier.getString("quantity_received")), pFontHeader1);
-                                            table4.addCell(phrase);
+                                table4.getDefaultCell().setColspan(1);
+                                table4.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                phrase = new Phrase(dbObject.getDBObject(rsetSupplier.getString("item"), "-"), pFontHeader1);
+                                table4.addCell(phrase);
+                                table4.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(quantity), pFontHeader1);
+                                table4.addCell(phrase);
 
-                                            table4.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetSupplier.getString("price_per_item")), pFontHeader1);
-                                            table4.addCell(phrase);
+                                table4.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetSupplier.getString("quantity_received")), pFontHeader1);
+                                table4.addCell(phrase);
 
-                                            table4.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetSupplier.getString("debit")), pFontHeader1);
-                                            table4.addCell(phrase);
-                                            amountReceived=amountReceived+Double.valueOf(rsetSupplier.getString("debit"));
-                                           
+                                table4.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetSupplier.getString("price_per_item")), pFontHeader1);
+                                table4.addCell(phrase);
 
-                                            phrase = new Phrase("", pFontHeader1);
-                                            table4.addCell(phrase);
-                                            
-                                       
-                             
-                              
-                               }
-                       
-                                            
-docPdf.add(table4);
+                                table4.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetSupplier.getString("debit")), pFontHeader1);
+                                table4.addCell(phrase);
+                                amountReceived = amountReceived + Double.valueOf(rsetSupplier.getString("debit"));
+
+                                phrase = new Phrase("", pFontHeader1);
+                                table4.addCell(phrase);
+
+                            }
+
+                            docPdf.add(table4);
 
                         } catch (java.sql.SQLException SqlExec) {
 
                             SqlExec.printStackTrace();
-                            
+
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
                         }
 //total
                         com.lowagie.text.pdf.PdfPTable table5 = new com.lowagie.text.pdf.PdfPTable(6);
-                                int headerwidths5[] = {50, 10, 10, 10, 15, 15};
-                                             table5.setWidths(headerwidths5);
-                                             table5.setWidthPercentage((100));            
-                                table5.getDefaultCell().setColspan(4);
-                                table5.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Total", pFontHeader);
+                        int headerwidths5[] = {50, 10, 10, 10, 15, 15};
+                        table5.setWidths(headerwidths5);
+                        table5.setWidthPercentage((100));
+                        table5.getDefaultCell().setColspan(4);
+                        table5.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        phrase = new Phrase("Total", pFontHeader);
 
-                                table5.addCell(phrase);
-                                table5.getDefaultCell().setColspan(1);
-                                table5.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                        table5.addCell(phrase);
+                        table5.getDefaultCell().setColspan(1);
+                        table5.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
 
-                                table5.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(amountReceived)), pFontHeader);
-                                table5.addCell(phrase);
-                                phrase = new Phrase("", pFontHeader);
-                                table5.addCell(phrase);
-                                docPdf.add(table5); 
-                                
-                                  //space
-                                com.lowagie.text.pdf.PdfPTable table4 = new com.lowagie.text.pdf.PdfPTable(6);
-                                             int headerwidths4[] = {50, 10, 10, 10, 15, 15};
-                                             table4.setWidths(headerwidths4);
-                                             table4.setWidthPercentage((100));
+                        table5.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                        phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(amountReceived)), pFontHeader);
+                        table5.addCell(phrase);
+                        phrase = new Phrase("", pFontHeader);
+                        table5.addCell(phrase);
+                        docPdf.add(table5);
 
-                                              table4.getDefaultCell().setColspan(6);
-                                                     table4.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table4.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("");
-                                                     table4.addCell(phrase);
-                                                     
-                                                     table4.getDefaultCell().setColspan(6);
-                                                     table4.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table4.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("");
-                                                     table4.addCell(phrase);
-                                                     
-                                                     docPdf.add(table4);
-                            
-                        
+                        //space
+                        com.lowagie.text.pdf.PdfPTable table4 = new com.lowagie.text.pdf.PdfPTable(6);
+                        int headerwidths4[] = {50, 10, 10, 10, 15, 15};
+                        table4.setWidths(headerwidths4);
+                        table4.setWidthPercentage((100));
+
+                        table4.getDefaultCell().setColspan(6);
+                        table4.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table4.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("");
+                        table4.addCell(phrase);
+
+                        table4.getDefaultCell().setColspan(6);
+                        table4.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table4.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("");
+                        table4.addCell(phrase);
+
+                        docPdf.add(table4);
+
 //grand totals
-                          com.lowagie.text.pdf.PdfPTable table6 = new com.lowagie.text.pdf.PdfPTable(6);
-                                             int headerwidths6[] = {50, 10, 10, 10, 15, 15};
-                                             table6.setWidths(headerwidths6);
-                                             table6.setWidthPercentage((100));     
-                            table6.getDefaultCell().setColspan(4);
+                        com.lowagie.text.pdf.PdfPTable table6 = new com.lowagie.text.pdf.PdfPTable(6);
+                        int headerwidths6[] = {50, 10, 10, 10, 15, 15};
+                        table6.setWidths(headerwidths6);
+                        table6.setWidthPercentage((100));
+                        table6.getDefaultCell().setColspan(4);
 
-                                table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Grand Total", pFontHeader);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        phrase = new Phrase("Grand Total", pFontHeader);
 
-                                table6.addCell(phrase);
+                        table6.addCell(phrase);
 
-                                table6.getDefaultCell().setColspan(1);
+                        table6.getDefaultCell().setColspan(1);
 
-                                table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
 
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
 
+                        //phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetTotals.getString(2)), pFontHeader);
+                        phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(amountReceived)), pFontHeader);
 
-                                table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                        table6.addCell(phrase);
 
-                                //phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetTotals.getString(2)), pFontHeader);
+                        phrase = new Phrase("", pFontHeader);
 
-                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(amountReceived)), pFontHeader);
+                        table6.addCell(phrase);
+                        //adding signatories
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
+                        table6.getDefaultCell().setBorder(Rectangle.TOP);
+                        phrase = new Phrase(" ", pFontHeader1);
+                        table6.addCell(phrase);
 
-                                table6.addCell(phrase);
-
-                                phrase = new Phrase("", pFontHeader);
-
-                                table6.addCell(phrase);
-        //adding signatories
-                                          table6.getDefaultCell().setColspan(6);
-                            table6.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
-                            table6.getDefaultCell().setBorder(Rectangle.TOP);
-                            phrase = new Phrase(" ", pFontHeader1);
-                            table6.addCell(phrase);
-
-                            table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            table6.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
-                            table6.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
-
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
+                        table6.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
 
 //                            table6.getDefaultCell().setColspan(2);
 //                            phrase = new Phrase("Goods Received by: " , pFontHeader1);
@@ -628,7 +563,6 @@ docPdf.add(table4);
 //                            table6.getDefaultCell().setColspan(2);
 //                            phrase = new Phrase("Date...........................................", pFontHeader1);
 //                            table6.addCell(phrase);
-
 //                            table6.getDefaultCell().setColspan(2);
 //                            phrase = new Phrase("Goods Posted by:.............................. ", pFontHeader1);
 //                            table6.addCell(phrase);
@@ -638,190 +572,168 @@ docPdf.add(table4);
 //                            table6.getDefaultCell().setColspan(2);
 //                            phrase = new Phrase("Date...........................................", pFontHeader1);
 //                            table6.addCell(phrase);
-                            try{      
+                        try {
                             java.sql.Statement pstmtSuppliert = connectDB.createStatement();
 
-                            java.sql.ResultSet rsetSuppliert = pstmtSuppliert.executeQuery("select * from st_certificate where lpo='"+lpo+"' and cert_no='"+cert_no+"'");
-                                    
-                            
-              while (rsetSuppliert.next()) {
-                  checked_by=rsetSuppliert.getString("checked_by");
-                  time_date=rsetSuppliert.getString("time_date");
-                  remarkz=rsetSuppliert.getString("remarks");
-              }
-                            }catch(Exception t){
-                                t.printStackTrace();
-                            }    
-                            
-                            table6.getDefaultCell().setColspan(2);
-                            phrase = new Phrase(" ", pFontHeader1);
-                            table6.addCell(phrase);
-                            table6.getDefaultCell().setColspan(2);
-                            phrase = new Phrase("Cert No:  "+cert_no, pFontHeader1);
-                            table6.addCell(phrase);
-                            table6.getDefaultCell().setColspan(2);
-                            phrase = new Phrase("Date."+time_date, pFontHeader1);
-                            table6.addCell(phrase);
-                            
-                                                              //space
-                                                      table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("");
-                                                     table6.addCell(phrase);
-                                                     
-                                                     table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("");
-                                                     table6.addCell(phrase);
-                                                    
-                                                     
-                       //end space
-                                                     table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("Received by", pFontHeader);
-                                                     table6.addCell(phrase);
-                                                     
-                                                               //space
-                                                      table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("");
-                                                     table6.addCell(phrase);
-                                                     
-                                                     table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("");
-                                                     table6.addCell(phrase);
-                                                    
-                                                     
-                       //end space
-                                                     
-                                                     table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("Name :"+received_by+"         Sign :...................................         Date :..............................", pFontHeader1);
-                                                     table6.addCell(phrase);
-                                                               //space
-                                                      table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("");
-                                                     table6.addCell(phrase);
-                                                     
-                                                     table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("");
-                                                     table6.addCell(phrase);
-                                                    
-                                                     
-                       //end space
-                                                     
-                                                     table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("Posted by", pFontHeader);
-                                                     table6.addCell(phrase);
-                                                               //space
-                                                      table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("");
-                                                     table6.addCell(phrase);
-                                                     
-                                                     table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("");
-                                                     table6.addCell(phrase);
-                                                    
-                                                     
-                       //end space
-                                                     table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("Name :"+posted_by+"     Sign :....................................         Date :...............................", pFontHeader1);
-                                                     table6.addCell(phrase);
-                                                               //space
-                                                      table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("");
-                                                     table6.addCell(phrase);
-                                                     
-                                                     table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("");
-                                                     table6.addCell(phrase);
-                                                    
-                                                     
-                       //end space
-                                                     table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("Certified for Payment by", pFontHeader);
-                                                     table6.addCell(phrase);
-                                                     
-                                                               //space
-                                                      table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("");
-                                                     table6.addCell(phrase);
-                                                     
-                                                     table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("");
-                                                     table6.addCell(phrase);
-                                                    
-                                                     
-                       //end space
-                                                     
-                                                     table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                     phrase = new Phrase("Name : "+checked_by +"        Sign :.....................................        Date :.......................................", pFontHeader1);
-                                                     table6.addCell(phrase);
-                            
-                            
-                            
-                            table6.getDefaultCell().setColspan(6);
-                            table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                            phrase = new Phrase("Remarks   :", pFontHeader1);
-                            table6.addCell(phrase);
-                            
-                            table6.getDefaultCell().setColspan(1);
+                            java.sql.ResultSet rsetSuppliert = pstmtSuppliert.executeQuery("select * from st_certificate where lpo='" + lpo + "' and cert_no='" + cert_no + "'");
 
-                            //table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
-                            // table.getDefaultCell().setBorder(Rectangle.TOP);
-                            table6.getDefaultCell().setColspan(6);
-                            table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                            phrase = new Phrase("Head of Department", pFontHeader1);
-                            table6.addCell(phrase);
-                            
-                             table6.getDefaultCell().setColspan(6);
-                                                     table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                     table6.getDefaultCell().setBorder(0);
-                                                      phrase = new Phrase("Distribution of Copies\n 1. Accounts 2. Store 3. Department copy 4. Book Copy", pFontHeader);
-                                                     table6.addCell(phrase);
+                            while (rsetSuppliert.next()) {
+                                checked_by = rsetSuppliert.getString("checked_by");
+                                time_date = rsetSuppliert.getString("time_date");
+                                remarkz = rsetSuppliert.getString("remarks");
+                            }
+                        } catch (Exception t) {
+                            t.printStackTrace();
+                        }
 
+                        table6.getDefaultCell().setColspan(2);
+                        phrase = new Phrase(" ", pFontHeader1);
+                        table6.addCell(phrase);
+                        table6.getDefaultCell().setColspan(2);
+                        phrase = new Phrase("Cert No:  " + cert_no, pFontHeader1);
+                        table6.addCell(phrase);
+                        table6.getDefaultCell().setColspan(2);
+                        phrase = new Phrase("Date." + time_date, pFontHeader1);
+                        table6.addCell(phrase);
 
+                        //space
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("");
+                        table6.addCell(phrase);
 
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("");
+                        table6.addCell(phrase);
 
+                        //end space
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("Received by", pFontHeader);
+                        table6.addCell(phrase);
 
+                        //space
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("");
+                        table6.addCell(phrase);
 
-                            docPdf.add(table6);
-                                
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("");
+                        table6.addCell(phrase);
 
+                        //end space
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("Name :" + received_by + "         Sign :...................................         Date :..............................", pFontHeader1);
+                        table6.addCell(phrase);
+                        //space
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("");
+                        table6.addCell(phrase);
 
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("");
+                        table6.addCell(phrase);
 
-                       
+                        //end space
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("Posted by", pFontHeader);
+                        table6.addCell(phrase);
+                        //space
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("");
+                        table6.addCell(phrase);
+
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("");
+                        table6.addCell(phrase);
+
+                        //end space
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("Name :" + posted_by + "     Sign :....................................         Date :...............................", pFontHeader1);
+                        table6.addCell(phrase);
+                        //space
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("");
+                        table6.addCell(phrase);
+
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("");
+                        table6.addCell(phrase);
+
+                        //end space
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("Certified for Payment by", pFontHeader);
+                        table6.addCell(phrase);
+
+                        //space
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("");
+                        table6.addCell(phrase);
+
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("");
+                        table6.addCell(phrase);
+
+                        //end space
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("Name : " + checked_by + "        Sign :.....................................        Date :.......................................", pFontHeader1);
+                        table6.addCell(phrase);
+
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                        phrase = new Phrase("Remarks   :", pFontHeader1);
+                        table6.addCell(phrase);
+
+                        table6.getDefaultCell().setColspan(1);
+
+                        //table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
+                        // table.getDefaultCell().setBorder(Rectangle.TOP);
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                        phrase = new Phrase("Head of Department", pFontHeader1);
+                        table6.addCell(phrase);
+
+                        table6.getDefaultCell().setColspan(6);
+                        table6.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        table6.getDefaultCell().setBorder(0);
+                        phrase = new Phrase("Distribution of Copies\n 1. Accounts 2. Store 3. Department copy 4. Book Copy", pFontHeader);
+                        table6.addCell(phrase);
+
+                        docPdf.add(table6);
 
                     } catch (com.lowagie.text.BadElementException BadElExec) {
 
@@ -840,18 +752,14 @@ docPdf.add(table4);
 
             }
 
-             
-docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
-
-
+            docPdf.close();
+            com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
         } catch (java.io.IOException IOexec) {
 
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), IOexec.getMessage());
 
         }
-
-
 
     }
 }

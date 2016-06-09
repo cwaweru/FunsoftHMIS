@@ -515,7 +515,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
                 
                 backgrdimg = appProp.getProperty("backgrdimg", "c:/Tests/clouds.jpg");
                 
-                cashpoint = appProp.getProperty("cashpoint");
+             //   cashpoint = appProp.getProperty("cashpoint");
                 
                 docsdir = appProp.getProperty("docsdir");
                 
@@ -737,7 +737,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
                     }
                     System.out.println("Created statement");
                     
-                    java.sql.ResultSet reSet = resStatement.executeQuery("select menu_item from secure_password where access_priv ='t' AND login_name ='" + userName + "'");
+                    java.sql.ResultSet reSet = resStatement.executeQuery("select menu_item from secure_passwd where access_priv ='t' AND login_name ='" + userName + "'");
                     
                     System.out.println("selected");
                     
@@ -788,7 +788,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
                         //    System.out.println(reSet.getString(1));
                     }
                     
-                    this.getCashPoint();
+//                    this.getCashPoint();
 
                     /*
                      * hospitalInst.createTreeComponents();
@@ -895,52 +895,52 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
         }
     }
     
-    public void getCashPoint() {
-        
-        java.lang.String myAppFileUrl = null;
-        
-        myAppFileUrl = System.getProperty("user.dir")
-                + System.getProperty("file.separator")
-                + "hosprop.properties";
-        
-        try {
-            
-            java.io.FileInputStream propInFile = new java.io.FileInputStream(myAppFileUrl);
-
-            //       java.io.FileOutputStream propOutFile = new java.io.FileOutputStream("myapp.properties");
-            java.util.Properties appProp = new java.util.Properties();
-            
-            try {
-                
-                appProp.load(propInFile);
-                
-                cashpoint = appProp.getProperty("cashpoint", System.getProperty("cashpoint", "CASHPOINT"));
-                
-                System.setProperty("cashpoint", cashpoint);
-                
-                System.out.println("Cash Point " + System.getProperty("cashpoint"));
-                
-                propInFile.close();
-
-                //  return dbServerIp;
-            } catch (java.io.IOException ioExec) {
-                
-                ioExec.printStackTrace();
-                
-                System.out.println(ioExec.getMessage());
-                
-            }
-
-            // return dbServerIp;
-        } catch (java.lang.Exception exc) {
-            
-            exc.printStackTrace();
-            
-            System.out.println(exc.getMessage());
-
-            //    javax.swing.JOptionPane.showMessageDialog(this, "Properties file not found!");
-        }
-    }
+//    public void getCashPoint() {
+//        
+//        java.lang.String myAppFileUrl = null;
+//        
+//        myAppFileUrl = System.getProperty("user.dir")
+//                + System.getProperty("file.separator")
+//                + "hosprop.properties";
+//        
+//        try {
+//            
+//            java.io.FileInputStream propInFile = new java.io.FileInputStream(myAppFileUrl);
+//
+//            //       java.io.FileOutputStream propOutFile = new java.io.FileOutputStream("myapp.properties");
+//            java.util.Properties appProp = new java.util.Properties();
+//            
+//            try {
+//                
+//                appProp.load(propInFile);
+//                
+//                cashpoint = appProp.getProperty("cashpoint", System.getProperty("cashpoint", "CASHPOINT"));
+//                
+//                System.setProperty("cashpoint", cashpoint);
+//                
+//                System.out.println("Cash Point " + System.getProperty("cashpoint"));
+//                
+//                propInFile.close();
+//
+//                //  return dbServerIp;
+//            } catch (java.io.IOException ioExec) {
+//                
+//                ioExec.printStackTrace();
+//                
+//                System.out.println(ioExec.getMessage());
+//                
+//            }
+//
+//            // return dbServerIp;
+//        } catch (java.lang.Exception exc) {
+//            
+//            exc.printStackTrace();
+//            
+//            System.out.println(exc.getMessage());
+//
+//            //    javax.swing.JOptionPane.showMessageDialog(this, "Properties file not found!");
+//        }
+//    }
     
     public java.lang.String[] getMenuItems2Enable(java.lang.String logiName) {
         

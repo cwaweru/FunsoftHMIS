@@ -55,6 +55,7 @@ public class BillAndCashCollectionRegistersIntfr extends javax.swing.JInternalFr
         startDatePicker = new com.afrisoftech.lib.DatePicker();
         endDatePicker = new com.afrisoftech.lib.DatePicker();
         staffAccountCmbx = new javax.swing.JComboBox();
+        transactionNoSearchTxt = new javax.swing.JTextField();
         bodyPanel = new javax.swing.JPanel();
         reportScrollPane = new javax.swing.JScrollPane();
         reportTable = new com.afrisoftech.dbadmin.JXTable();
@@ -85,7 +86,7 @@ public class BillAndCashCollectionRegistersIntfr extends javax.swing.JInternalFr
 
         startDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(BillAndCashCollectionRegistersIntfr.class, "BillAndCashCollectionRegistersIntfr.startDatePicker.border.title"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -94,7 +95,7 @@ public class BillAndCashCollectionRegistersIntfr extends javax.swing.JInternalFr
 
         endDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(BillAndCashCollectionRegistersIntfr.class, "BillAndCashCollectionRegistersIntfr.endDatePicker.border.title"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -110,6 +111,21 @@ public class BillAndCashCollectionRegistersIntfr extends javax.swing.JInternalFr
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(staffAccountCmbx, gridBagConstraints);
+
+        transactionNoSearchTxt.setText(org.openide.util.NbBundle.getMessage(BillAndCashCollectionRegistersIntfr.class, "BillAndCashCollectionRegistersIntfr.transactionNoSearchTxt.text")); // NOI18N
+        transactionNoSearchTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(BillAndCashCollectionRegistersIntfr.class, "BillAndCashCollectionRegistersIntfr.transactionNoSearchTxt.border.title"))); // NOI18N
+        transactionNoSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                transactionNoSearchTxtCaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        headerPanel.add(transactionNoSearchTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -230,6 +246,21 @@ public class BillAndCashCollectionRegistersIntfr extends javax.swing.JInternalFr
         this.setCursor(java.awt.Cursor.getDefaultCursor());
         // TODO add your handling code here:
     }//GEN-LAST:event_getReportBtnActionPerformed
+
+    private void transactionNoSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_transactionNoSearchTxtCaretUpdate
+
+        if(transactionNoSearchTxt.getText().length() > 2){
+                   this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+        this.reportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
+                "SELECT * FROM funsoft_billing_registers('" + this.startDatePicker.getDate() + "',"
+                + "'" + this.endDatePicker.getDate() + "','" + this.DepartmentCmbx.getSelectedItem().toString() + "',"
+                + " '" + this.staffAccountCmbx.getSelectedItem().toString() + "') WHERE transaction_no ilike '"+transactionNoSearchTxt.getText()+"' ORDER BY 1"));
+        spacerLbl.setForeground(Color.BLUE);
+        spacerLbl.setText("Total Value of Bills : [" + com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportTable, 11)) + "]");
+        this.setCursor(java.awt.Cursor.getDefaultCursor()); 
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transactionNoSearchTxtCaretUpdate
     public void tableModelTableChanged(javax.swing.event.TableModelEvent evt) {
         spacerLbl.setForeground(Color.BLUE);
         spacerLbl.setText("Total Value of Bills : [" + com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportTable, 11)) + "]");
@@ -248,5 +279,6 @@ public class BillAndCashCollectionRegistersIntfr extends javax.swing.JInternalFr
     private javax.swing.JLabel spacerLbl;
     private javax.swing.JComboBox staffAccountCmbx;
     private com.afrisoftech.lib.DatePicker startDatePicker;
+    private javax.swing.JTextField transactionNoSearchTxt;
     // End of variables declaration//GEN-END:variables
 }

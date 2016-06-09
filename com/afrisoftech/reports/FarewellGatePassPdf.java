@@ -399,7 +399,7 @@ public class FarewellGatePassPdf implements java.lang.Runnable {
 
                             table.getDefaultCell().setColspan(2);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase("Form No : KNH 501".toUpperCase(), pFontHeader2);
+                            phrase = new Phrase("Form No : MOH 501".toUpperCase(), pFontHeader2);
 
                             table.addCell(phrase);
                            // while (rsetheader.next()) {

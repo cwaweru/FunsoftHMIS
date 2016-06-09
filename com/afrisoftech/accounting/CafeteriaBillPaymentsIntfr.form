@@ -1799,7 +1799,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField141">
+                    <Component class="javax.swing.JTextField" name="cashPointTxt">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                       </Properties>

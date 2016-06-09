@@ -689,7 +689,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 4;
         jPanel1.add(jCheckBox3, gridBagConstraints);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Votebook Details(compulsory)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, java.awt.Color.red));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Votebook Details(compulsory)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
         jLabel16.setText("Vote name");
@@ -1026,7 +1026,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Item", "Strength", "Unit Pack", "Qty", "Unit Price", "Disc %", "Disc. Total", "Vat %", "Vat Amt.", "Value", "Day to Deliver", "Item Code", "Tender Balance"
+                "Item", "Strength", "Units/Pack", "Qty", "Unit Price", "Disc %", "Disc. Total", "Vat %", "Vat Amt.", "Value", "Day to Deliver", "Item Code", "Tender Balance"
             }
         ) {
             Class[] types = new Class [] {

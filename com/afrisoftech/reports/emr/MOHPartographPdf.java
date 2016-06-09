@@ -320,7 +320,7 @@ public class MOHPartographPdf implements java.lang.Runnable {
                     while (rset4.next()) {
                         date = rset4.getObject(1).toString();
                     }
-                    com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase("MINISTRY OF HEALTH : " + compName.toUpperCase()), false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
+                    com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase("FACILITY NAME : " + compName.toUpperCase()), false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
 
                     headerFoter.setAlignment(com.lowagie.text.HeaderFooter.ALIGN_CENTER);
 

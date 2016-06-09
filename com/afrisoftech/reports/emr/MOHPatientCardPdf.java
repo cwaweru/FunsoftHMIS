@@ -50,7 +50,9 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
     java.lang.Process prThread;
     static java.lang.String patientNumber;
 
-    public void MOHPatientCardPdf(java.sql.Connection connDb, java.util.Date startDate, java.util.Date lastDate, String patientNo) {
+    String patientType = null;
+
+    public void MOHPatientCardPdf(java.sql.Connection connDb, java.util.Date startDate, java.util.Date lastDate, String patientNo, String patientTypes) {
 
         dbObject = new com.afrisoftech.lib.DBObject();
 
@@ -62,9 +64,10 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
 
         patientNumber = patientNo;
 
+        patientType = patientTypes;
         com.afrisoftech.lib.PatientFile.setConnectDB(connectDB);
 
-        com.afrisoftech.lib.PatientFile.setPatientFileData(patientNo);
+        com.afrisoftech.lib.PatientFile.setPatientFileData(patientNo, patientType);
 
         threadSample = new java.lang.Thread(this, "SampleThread");
 
@@ -106,14 +109,11 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
 
             threadCheck = false;
 
-
             System.out.println("We shall be lucky to get back to start in one piece");
 
         }
 
         if (!threadCheck) {
-
-
 
             Thread.currentThread().stop();
 
@@ -284,7 +284,6 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
 
         java.lang.String pdfDateStamp = dateStampPdf.toString();
 
-
         try {
 
             java.io.File tempFile = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
@@ -303,7 +302,6 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
                 Image img = Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo());
 
                 //Image imgWaterMark = Image.getInstance(System.getProperty("company.watermark"));
-
                 PdfWriter writer = com.lowagie.text.pdf.PdfWriter.getInstance(docPdf, new java.io.FileOutputStream(tempFile));
 
                 String compName = null;
@@ -327,7 +325,7 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
                     while (rset4.next()) {
                         date = rset4.getObject(1).toString();
                     }
-                    com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase("MINISTRY OF HEALTH : " + compName.toUpperCase()), false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
+                    com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase(compName.toUpperCase()), false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
 
                     headerFoter.setAlignment(com.lowagie.text.HeaderFooter.ALIGN_CENTER);
 
@@ -343,7 +341,7 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
 
                 }
 
-                com.lowagie.text.HeaderFooter footer = new com.lowagie.text.HeaderFooter(new Phrase("MOH : Patient Card : Page: "), true);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 12, Font.BOLDITALIC,java.awt.Color.blue));
+                com.lowagie.text.HeaderFooter footer = new com.lowagie.text.HeaderFooter(new Phrase("Patient Card : Page: "), true);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 12, Font.BOLDITALIC,java.awt.Color.blue));
 
                 docPdf.setFooter(footer);
 
@@ -362,6 +360,8 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
                     table.getDefaultCell().setColspan(6);
 
                     Phrase phrase = new Phrase("", pFontHeader);
+
+                    com.afrisoftech.lib.PatientFile.setPatientFileData(patientNumber, patientType);
 
                     try {
                         try {
@@ -396,7 +396,7 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
 
                             phrase = new Phrase("PATIENT CLINICAL DOCUMENTATION", pFontHeader22);
                             table.addCell(phrase);
-                            phrase = new Phrase("MOH PATIENT CARD", pFontHeader22);
+                            phrase = new Phrase("PATIENT CARD", pFontHeader22);
 
                             table.addCell(phrase);
 
@@ -409,13 +409,12 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
 //                            table.getDefaultCell().setColspan(8);
 //                            phrase = new Phrase("CONSTITUENCY: ", pFontHeader);
 //                            table.addCell(phrase);
-
                             table.getDefaultCell().setColspan(10);
                             phrase = new Phrase("SUB-COUNTY : ", pFontHeader);
                             table.addCell(phrase);
 
                             table.getDefaultCell().setColspan(8);
-                            phrase = new Phrase("COUNTY : "+com.afrisoftech.lib.PatientFile.getPatientNationality(), pFontHeader);
+                            phrase = new Phrase("COUNTY : " + com.afrisoftech.lib.PatientFile.getPatientNationality(), pFontHeader);
                             table.addCell(phrase);
 
                             table.getDefaultCell().setColspan(8);
@@ -425,17 +424,17 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
                             table.getDefaultCell().setColspan(14);
                             phrase = new Phrase("YEAR : " + yearString.toUpperCase(), pFontHeader);
                             table.addCell(phrase);
-                            
+
                             table.getDefaultCell().setColspan(12);
-                            phrase = new Phrase("Client Name: " + com.afrisoftech.lib.PatientFile.getPatientFullName().toUpperCase(), pFontHeader);
+                            phrase = new Phrase("Client Name: " + com.afrisoftech.lib.PatientFile.getPatientFullName(), pFontHeader);
                             table.addCell(phrase);
-                            
+
                             table.getDefaultCell().setColspan(8);
                             phrase = new Phrase("Client No. : " + patientNumber, pFontHeader);
                             table.addCell(phrase);
 
                             table.getDefaultCell().setColspan(12);
-                            phrase = new Phrase("Age : "+com.afrisoftech.lib.PatientAge.getPatientActualAge(connectDB, com.afrisoftech.lib.PatientFile.getPatientDateofBith()), pFontHeader);
+                            phrase = new Phrase("Age : " + com.afrisoftech.lib.PatientAge.getPatientActualAge(connectDB, com.afrisoftech.lib.PatientFile.getPatientDateofBith()), pFontHeader);
                             table.addCell(phrase);
 
                             table.getDefaultCell().setColspan(12);
@@ -443,7 +442,7 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
                             table.addCell(phrase);
 
                             table.getDefaultCell().setColspan(8);
-                            phrase = new Phrase("Visit ID : "+com.afrisoftech.lib.PatientFile.getVisitNumber(), pFontHeader);
+                            phrase = new Phrase("Visit ID : " + com.afrisoftech.lib.PatientFile.getVisitNumber(), pFontHeader);
                             table.addCell(phrase);
 
                             table.getDefaultCell().setColspan(8);
@@ -473,8 +472,6 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
                             table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
 
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.LEFT);
-
-
 
                             java.sql.PreparedStatement pstmt = connectDB.prepareStatement("");
 
@@ -1010,7 +1007,6 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
                             table.addCell(phrase);
 
                             // Summary of labour
-
                             table.getDefaultCell().setColspan(1);
                             phrase = new Phrase(" ", pFontHeader11);
                             table.addCell(phrase);
@@ -1025,7 +1021,6 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
                             table.getDefaultCell().setColspan(3);
                             phrase = new Phrase(" ", pFontHeader11);
                             table.addCell(phrase);
-
 
                             table.getDefaultCell().setColspan(1);
                             phrase = new Phrase(" ", pFontHeader11);
@@ -1088,10 +1083,10 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
                             phrase = new Phrase(" ", pFontHeader11);
                             table.addCell(phrase);
                             table.getDefaultCell().setColspan(24);
-                            phrase = new Phrase("Printed by: ["+com.afrisoftech.lib.UserName.getUserName(connectDB).toUpperCase()+"]", pFontHeader11);
+                            phrase = new Phrase("Printed by: [" + com.afrisoftech.lib.UserName.getUserName(connectDB).toUpperCase() + "]", pFontHeader11);
                             table.addCell(phrase);
                             table.getDefaultCell().setColspan(24);
-                            phrase = new Phrase("Printed on (Date/Time): ["+com.afrisoftech.lib.ServerTime.serverDate(connectDB)+"]", pFontHeader11);
+                            phrase = new Phrase("Printed on (Date/Time): [" + com.afrisoftech.lib.ServerTime.serverDate(connectDB) + "]", pFontHeader11);
                             table.addCell(phrase);
                             table.getDefaultCell().setColspan(3);
                             phrase = new Phrase(" ", pFontHeader11);
@@ -1144,7 +1139,7 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
      */
     public static JFreeChart getPartoChart() throws SQLException, IOException {
         java.sql.Statement stm = connectDB.createStatement();
-        java.sql.ResultSet rs = stm.executeQuery("SELECT date_part('hour', input_date), pulse, temp, pulse_oximetry, blood_glucose, weight, height, systolic, diastolic,bmi from hp_signs_record WHERE patient_no = '" + patientNumber + "' ORDER BY 1");
+        java.sql.ResultSet rs = stm.executeQuery("SELECT date_part('hour', input_date), pulse, temp, pulse_oximetry, blood_glucose, weight, height, systolic, diastolic, bmi from hp_signs_record WHERE patient_no = '" + patientNumber + "' ORDER BY 1");
         org.jfree.data.DefaultTableXYDataset dataset = new org.jfree.data.DefaultTableXYDataset();
         // final org.jfree.data.JDBCXYDataset data = new org.jfree.data.JDBCXYDataset(connectDB, "SELECT date_part('hour', input_date), pulse, temp, blood_glucose as glucose, pulse_oximetry as oximetry from hp_signs_record WHERE patient_no = '0356346' ORDER BY 1");
         XYSeries series1 = new XYSeries("Pulse");
@@ -1200,6 +1195,7 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
                 true,
                 false);
 
-        return chart; //ChartFactory.createXYLineChart(director, director, director, dataset, director, director, director, director); //createPieChart("Movies / directors", dataset, true, true, false);
+        return chart;
+//ChartFactory.createXYLineChart(director, director, director, dataset, director, director, director, director); //createPieChart("Movies / directors", dataset, true, true, false);
     }
 }

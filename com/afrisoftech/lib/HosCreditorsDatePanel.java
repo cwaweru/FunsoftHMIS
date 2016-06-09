@@ -575,7 +575,7 @@ public class HosCreditorsDatePanel extends javax.swing.JDialog {
     private void jTextField11111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField11111CaretUpdate
         {
             jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                    + "select distinct trim(invoice_no) as scheme,date as name, requisition_no as transaction_no from st_stock_cardex"
+                    + "select distinct trim(invoice_no) as scheme,date as name, requisition_no as transaction_no,  from st_stock_cardex"
                     + " where invoice_no ILIKE '%" + jTextField11111.getText().toString() + "%' and supplier = '" + this.supplierTxt.getText() + "' and date between '" + this.datePicker1.getDate() + "' and '" + this.datePicker2.getDate() + "' ORDER BY date"));
             jSearchTable11.setShowHorizontalLines(false);
             jSearchScrollPane11.setViewportView(jSearchTable11);
@@ -685,16 +685,9 @@ public class HosCreditorsDatePanel extends javax.swing.JDialog {
 
             case 36: {
 
-
                 com.afrisoftech.hospinventory.mtrhreports.SthirteenPdf policy = new com.afrisoftech.hospinventory.mtrhreports.SthirteenPdf();
                 policy.SthirteenPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker1.getDate().toLocaleString(), supplierTxt.getText().toString(), this.deliveryNoteNumberTxt.getText().toString(), transactionNo);
 
-                // com.afrisoftech.reports.DiscCreditorsInvoicesPdf policy = new com.afrisoftech.reports.DiscCreditorsInvoicesPdf();
-
-                // policy.DiscCreditorsInvoicesPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(), jTextField9.getText().toString(), this.jTextField361.getText(), lpoNo);
-
-                //     com.afrisoftech.txtreports.GRNTxtReport policy = new com.afrisoftech.txtreports.GRNTxtReport(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),jTextField9.getText().toString(),this.jTextField361.getText(), printState);
-                //   this.dispose();
             }
             break;
 

@@ -5,6 +5,9 @@
  */
 package com.afrisoftech.laboratory;
 
+import java.sql.SQLException;
+import org.openide.util.Exceptions;
+
 /**
  *
  * @author root
@@ -20,7 +23,6 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         connectDB = connDb;
 
         pConnDB = pconnDB;
-
 
         initComponents();
     }
@@ -54,66 +56,80 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         jSearchScrollPane = new javax.swing.JScrollPane();
         jSearchTable = new com.afrisoftech.dbadmin.JTable();
         jButton92 = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new com.afrisoftech.dbadmin.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jPanel11 = new javax.swing.JPanel();
-        jButton11 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
-        jButton31 = new javax.swing.JButton();
-        jButton41 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        labProceduresHierarchyTabbedPane = new javax.swing.JTabbedPane();
+        mainCategoryPanel = new javax.swing.JPanel();
+        saveMainCategoryBtn = new javax.swing.JButton();
+        editMainCategoryBtn = new javax.swing.JButton();
+        clearMainCategoryBtn = new javax.swing.JButton();
+        closeMainFormBtn = new javax.swing.JButton();
+        mainCategoryScrollPane = new javax.swing.JScrollPane();
+        mainCategoryTable = new com.afrisoftech.dbadmin.JTable();
+        removeRowMainBtn = new javax.swing.JButton();
+        helpMainBtn = new javax.swing.JButton();
+        mainCategorySpacerLbl = new javax.swing.JLabel();
+        deleteDataMainCmbx = new javax.swing.JButton();
+        groupingsPanel = new javax.swing.JPanel();
+        saveGroupingBtn = new javax.swing.JButton();
+        editGroupingBtn = new javax.swing.JButton();
+        clearGroupingBtn = new javax.swing.JButton();
+        closeGroupingBtn = new javax.swing.JButton();
+        groupingSpacerLbl = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        labCategoryCmbx = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        labCategoryCodeTxt = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new com.afrisoftech.dbadmin.JTable();
-        jButton91 = new javax.swing.JButton();
+        labProcedureGrooupingTable = new com.afrisoftech.dbadmin.JTable();
+        parametersHelpBtn = new javax.swing.JButton();
+        parametersSpacerLabel = new javax.swing.JLabel();
+        deleteGroupingBtn = new javax.swing.JButton();
         jPanel111 = new javax.swing.JPanel();
-        jButton111 = new javax.swing.JButton();
-        jButton211 = new javax.swing.JButton();
-        jButton311 = new javax.swing.JButton();
-        jButton411 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel111 = new javax.swing.JLabel();
-        jLabel51 = new javax.swing.JLabel();
-        jTextField21 = new javax.swing.JTextField();
-        jPanel6 = new javax.swing.JPanel();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jPanel7 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jPanel41 = new javax.swing.JPanel();
-        jTextField9 = new javax.swing.JTextField();
-        searchButton = new javax.swing.JButton();
-        jPanel411 = new javax.swing.JPanel();
-        jTextField91 = new javax.swing.JTextField();
+        saveParametersBtn = new javax.swing.JButton();
+        editParametersBtn = new javax.swing.JButton();
+        clearParametersFormBtn = new javax.swing.JButton();
+        closeParametersFormBtn = new javax.swing.JButton();
+        parametersSapacerLbl = new javax.swing.JLabel();
+        parametersHeaderPanel = new javax.swing.JPanel();
+        specimenNameLbl = new javax.swing.JLabel();
+        specimenCodeLbl = new javax.swing.JLabel();
+        specimentCodeTxt = new javax.swing.JTextField();
+        testDescriptionLbl = new javax.swing.JLabel();
+        testCodeLbl = new javax.swing.JLabel();
+        procedureGroupTxt = new javax.swing.JTextField();
+        genderPanel = new javax.swing.JPanel();
+        femaleRdbtn = new javax.swing.JRadioButton();
+        maleRdbtn = new javax.swing.JRadioButton();
+        otherGenderRdbtn = new javax.swing.JRadioButton();
+        parameterTypePanel = new javax.swing.JPanel();
+        siParametersChkbx = new javax.swing.JCheckBox();
+        booleanParametersChkbx = new javax.swing.JCheckBox();
+        phraseParametersChkbx = new javax.swing.JCheckBox();
+        testDescriptionSearchPanel = new javax.swing.JPanel();
+        labProcedureNameTxt = new javax.swing.JTextField();
+        testDescriptionSeacrhBtn = new javax.swing.JButton();
+        specimenNameSeacrhPanel = new javax.swing.JPanel();
+        specimenNameTxt = new javax.swing.JTextField();
         searchButton1 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane21 = new javax.swing.JScrollPane();
-        jTable11 = new com.afrisoftech.dbadmin.JTable();
-        jTable3 = new javax.swing.JTable();
-        jButton5 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        labProcedureCodeTxt = new javax.swing.JTextField();
+        parametersPanel = new javax.swing.JPanel();
+        parametersScrollPane = new javax.swing.JScrollPane();
+        siParametersTable = new com.afrisoftech.dbadmin.JTable();
+        phraseParametersTable = new javax.swing.JTable();
+        removeRowParametersBtn = new javax.swing.JButton();
+        helpParametersBtn = new javax.swing.JButton();
+        deleteParametersBtn = new javax.swing.JButton();
+        reportPanel = new javax.swing.JPanel();
+        reportBodyPanel = new javax.swing.JPanel();
+        parametersReportScrollPane = new javax.swing.JScrollPane();
+        parametersReportTable = new com.afrisoftech.dbadmin.JXTable();
+        buttonPanel = new javax.swing.JPanel();
+        refreshBtn = new javax.swing.JButton();
+        closeBtn = new javax.swing.JButton();
+        spacerLbl = new javax.swing.JLabel();
 
         jSearchDialog2.setModal(true);
         jSearchDialog2.setUndecorated(true);
@@ -171,7 +187,7 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel2.add(jSearchScrollPane2, gridBagConstraints);
 
-        jButton52.setText("Cancel");
+        jButton52.setText("Dispose");
         jButton52.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton52ActionPerformed(evt);
@@ -248,7 +264,7 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel21.add(jSearchScrollPane21, gridBagConstraints);
 
-        jButton521.setText("Cancel");
+        jButton521.setText("Dispose");
         jButton521.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton521ActionPerformed(evt);
@@ -326,7 +342,7 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel.add(jSearchScrollPane, gridBagConstraints);
 
-        jButton92.setText("Cancel");
+        jButton92.setText("Dispose");
         jButton92.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton92ActionPerformed(evt);
@@ -350,7 +366,7 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Laboratory Test Setup");
+        setTitle("Laboratory Parameters Hierarchy Setup");
         setFont(new java.awt.Font("SansSerif", 0, 10)); // NOI18N
         try {
             setSelected(true);
@@ -360,32 +376,18 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
-        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        labProceduresHierarchyTabbedPane.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        labProceduresHierarchyTabbedPane.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        labProceduresHierarchyTabbedPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter Test Category"));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        mainCategoryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter Test Category"));
+        mainCategoryPanel.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setMnemonic('o');
-        jButton1.setText("Save data");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        saveMainCategoryBtn.setMnemonic('o');
+        saveMainCategoryBtn.setText("Save data");
+        saveMainCategoryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jButton1, gridBagConstraints);
-
-        jButton2.setMnemonic('e');
-        jButton2.setText("Edit");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                saveMainCategoryBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -393,38 +395,52 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jButton2, gridBagConstraints);
+        mainCategoryPanel.add(saveMainCategoryBtn, gridBagConstraints);
 
-        jButton3.setMnemonic('l');
-        jButton3.setText("Clear");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        editMainCategoryBtn.setMnemonic('e');
+        editMainCategoryBtn.setText("Edit existing data");
+        editMainCategoryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                editMainCategoryBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jButton3, gridBagConstraints);
+        mainCategoryPanel.add(editMainCategoryBtn, gridBagConstraints);
 
-        jButton4.setMnemonic('c');
-        jButton4.setText("Close");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        clearMainCategoryBtn.setMnemonic('l');
+        clearMainCategoryBtn.setText("Clear form");
+        clearMainCategoryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                clearMainCategoryBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jButton4, gridBagConstraints);
+        mainCategoryPanel.add(clearMainCategoryBtn, gridBagConstraints);
 
-        jTable1.setAutoCreateRowSorter(true);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        closeMainFormBtn.setMnemonic('c');
+        closeMainFormBtn.setText("Close form");
+        closeMainFormBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeMainFormBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        mainCategoryPanel.add(closeMainFormBtn, gridBagConstraints);
+
+        mainCategoryTable.setAutoCreateRowSorter(true);
+        mainCategoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -731,68 +747,69 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
                 "Code", "Main Dategory"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        mainCategoryScrollPane.setViewportView(mainCategoryTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 5.0;
+        gridBagConstraints.weighty = 500.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel1.add(jScrollPane1, gridBagConstraints);
+        mainCategoryPanel.add(mainCategoryScrollPane, gridBagConstraints);
+
+        removeRowMainBtn.setMnemonic('r');
+        removeRowMainBtn.setText("Remove row");
+        removeRowMainBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeRowMainBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weightx = 1.0;
+        mainCategoryPanel.add(removeRowMainBtn, gridBagConstraints);
+
+        helpMainBtn.setText("Help");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        mainCategoryPanel.add(helpMainBtn, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel1.add(jLabel2, gridBagConstraints);
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        mainCategoryPanel.add(mainCategorySpacerLbl, gridBagConstraints);
 
-        jButton7.setMnemonic('r');
-        jButton7.setText("Remove Row");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        deleteDataMainCmbx.setText("Delete data");
+        deleteDataMainCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                deleteDataMainCmbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.weightx = 1.0;
-        jPanel1.add(jButton7, gridBagConstraints);
-
-        jButton9.setText("Help");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jButton9, gridBagConstraints);
+        mainCategoryPanel.add(deleteDataMainCmbx, gridBagConstraints);
 
-        jTabbedPane1.addTab("Main Category", jPanel1);
+        labProceduresHierarchyTabbedPane.addTab("Main Category", mainCategoryPanel);
 
-        jPanel11.setLayout(new java.awt.GridBagLayout());
+        groupingsPanel.setLayout(new java.awt.GridBagLayout());
 
-        jButton11.setMnemonic('o');
-        jButton11.setText("Save data");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        saveGroupingBtn.setMnemonic('o');
+        saveGroupingBtn.setText("Save data");
+        saveGroupingBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel11.add(jButton11, gridBagConstraints);
-
-        jButton21.setMnemonic('e');
-        jButton21.setText("Edit");
-        jButton21.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton21ActionPerformed(evt);
+                saveGroupingBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -800,41 +817,55 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel11.add(jButton21, gridBagConstraints);
+        groupingsPanel.add(saveGroupingBtn, gridBagConstraints);
 
-        jButton31.setMnemonic('l');
-        jButton31.setText("Clear");
-        jButton31.addActionListener(new java.awt.event.ActionListener() {
+        editGroupingBtn.setMnemonic('e');
+        editGroupingBtn.setText("Edit grouping");
+        editGroupingBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton31ActionPerformed(evt);
+                editGroupingBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel11.add(jButton31, gridBagConstraints);
+        groupingsPanel.add(editGroupingBtn, gridBagConstraints);
 
-        jButton41.setMnemonic('c');
-        jButton41.setText("Close");
-        jButton41.addActionListener(new java.awt.event.ActionListener() {
+        clearGroupingBtn.setMnemonic('l');
+        clearGroupingBtn.setText("Clear");
+        clearGroupingBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton41ActionPerformed(evt);
+                clearGroupingBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel11.add(jButton41, gridBagConstraints);
+        groupingsPanel.add(clearGroupingBtn, gridBagConstraints);
+
+        closeGroupingBtn.setMnemonic('c');
+        closeGroupingBtn.setText("Close");
+        closeGroupingBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeGroupingBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        groupingsPanel.add(closeGroupingBtn, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel11.add(jLabel3, gridBagConstraints);
+        groupingsPanel.add(groupingSpacerLbl, gridBagConstraints);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Select Main Category"));
         jPanel2.setLayout(new java.awt.GridBagLayout());
@@ -846,10 +877,10 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         jPanel2.add(jLabel1, gridBagConstraints);
 
-        jComboBox1.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select  category_description from pb_lab_maincategory ORDER BY category_description "));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        labCategoryCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select  category_description from pb_lab_maincategory ORDER BY category_description "));
+        labCategoryCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                labCategoryCmbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -858,7 +889,7 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel2.add(jComboBox1, gridBagConstraints);
+        jPanel2.add(labCategoryCmbx, gridBagConstraints);
 
         jLabel6.setText("Main Category Code");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -867,22 +898,24 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         jPanel2.add(jLabel6, gridBagConstraints);
 
-        jTextField1.setEditable(false);
+        labCategoryCodeTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel2.add(jTextField1, gridBagConstraints);
+        jPanel2.add(labCategoryCodeTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel11.add(jPanel2, gridBagConstraints);
+        groupingsPanel.add(jPanel2, gridBagConstraints);
 
         jButton6.setMnemonic('r');
         jButton6.setText("Remove Row");
@@ -892,16 +925,16 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
-        jPanel11.add(jButton6, gridBagConstraints);
+        groupingsPanel.add(jButton6, gridBagConstraints);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter lab test here"));
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
-        jTable2.setAutoCreateRowSorter(true);
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        labProcedureGrooupingTable.setAutoCreateRowSorter(true);
+        labProcedureGrooupingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -1016,12 +1049,12 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+        labProcedureGrooupingTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
+                labProcedureGrooupingTableMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(labProcedureGrooupingTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1029,81 +1062,40 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 5.0;
+        gridBagConstraints.weighty = 500.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         jPanel5.add(jScrollPane2, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 8;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 10.0;
+        gridBagConstraints.weighty = 500.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel11.add(jPanel5, gridBagConstraints);
+        groupingsPanel.add(jPanel5, gridBagConstraints);
 
-        jButton91.setText("Help");
+        parametersHelpBtn.setText("Help");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel11.add(jButton91, gridBagConstraints);
-
-        jTabbedPane1.addTab("Lab Tests", jPanel11);
-
-        jPanel111.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        jPanel111.setLayout(new java.awt.GridBagLayout());
-
-        jButton111.setMnemonic('o');
-        jButton111.setText("Save data");
-        jButton111.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton111ActionPerformed(evt);
-            }
-        });
+        groupingsPanel.add(parametersHelpBtn, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel111.add(jButton111, gridBagConstraints);
+        groupingsPanel.add(parametersSpacerLabel, gridBagConstraints);
 
-        jButton211.setMnemonic('e');
-        jButton211.setText("Edit");
-        jButton211.addActionListener(new java.awt.event.ActionListener() {
+        deleteGroupingBtn.setText("Delete from group");
+        deleteGroupingBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton211ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel111.add(jButton211, gridBagConstraints);
-
-        jButton311.setMnemonic('l');
-        jButton311.setText("Clear");
-        jButton311.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton311ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel111.add(jButton311, gridBagConstraints);
-
-        jButton411.setMnemonic('c');
-        jButton411.setText("Close");
-        jButton411.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton411ActionPerformed(evt);
+                deleteGroupingBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1111,70 +1103,131 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel111.add(jButton411, gridBagConstraints);
+        groupingsPanel.add(deleteGroupingBtn, gridBagConstraints);
+
+        labProceduresHierarchyTabbedPane.addTab("Lab Tests", groupingsPanel);
+
+        jPanel111.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        jPanel111.setLayout(new java.awt.GridBagLayout());
+
+        saveParametersBtn.setMnemonic('o');
+        saveParametersBtn.setText("Save data");
+        saveParametersBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveParametersBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel111.add(saveParametersBtn, gridBagConstraints);
+
+        editParametersBtn.setMnemonic('e');
+        editParametersBtn.setText("Edit parameters");
+        editParametersBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editParametersBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel111.add(editParametersBtn, gridBagConstraints);
+
+        clearParametersFormBtn.setMnemonic('l');
+        clearParametersFormBtn.setText("Clear");
+        clearParametersFormBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearParametersFormBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel111.add(clearParametersFormBtn, gridBagConstraints);
+
+        closeParametersFormBtn.setMnemonic('c');
+        closeParametersFormBtn.setText("Close");
+        closeParametersFormBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeParametersFormBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel111.add(closeParametersFormBtn, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel111.add(jLabel4, gridBagConstraints);
+        jPanel111.add(parametersSapacerLbl, gridBagConstraints);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel3.setLayout(new java.awt.GridBagLayout());
+        parametersHeaderPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        parametersHeaderPanel.setLayout(new java.awt.GridBagLayout());
 
-        jLabel11.setText("Specimen Name");
+        specimenNameLbl.setText("Specimen Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
-        jPanel3.add(jLabel11, gridBagConstraints);
+        parametersHeaderPanel.add(specimenNameLbl, gridBagConstraints);
 
-        jLabel5.setText("Specimen Code");
+        specimenCodeLbl.setText("Specimen Code");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
-        jPanel3.add(jLabel5, gridBagConstraints);
+        parametersHeaderPanel.add(specimenCodeLbl, gridBagConstraints);
 
-        jTextField2.setEditable(false);
+        specimentCodeTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 2.0;
-        jPanel3.add(jTextField2, gridBagConstraints);
+        parametersHeaderPanel.add(specimentCodeTxt, gridBagConstraints);
 
-        jLabel111.setText("Test Description");
+        testDescriptionLbl.setText("Test Description");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
-        jPanel3.add(jLabel111, gridBagConstraints);
+        parametersHeaderPanel.add(testDescriptionLbl, gridBagConstraints);
 
-        jLabel51.setText("Test Code");
+        testCodeLbl.setText("Procedure Group");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
-        jPanel3.add(jLabel51, gridBagConstraints);
+        parametersHeaderPanel.add(testCodeLbl, gridBagConstraints);
 
-        jTextField21.setEditable(false);
+        procedureGroupTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 2.0;
-        jPanel3.add(jTextField21, gridBagConstraints);
+        parametersHeaderPanel.add(procedureGroupTxt, gridBagConstraints);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Tick where applicable"));
-        jPanel6.setLayout(new java.awt.GridBagLayout());
+        genderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Tick where applicable"));
+        genderPanel.setLayout(new java.awt.GridBagLayout());
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Female");
+        buttonGroup1.add(femaleRdbtn);
+        femaleRdbtn.setText("Female");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -1182,100 +1235,100 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel6.add(jRadioButton2, gridBagConstraints);
+        genderPanel.add(femaleRdbtn, gridBagConstraints);
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Male");
+        buttonGroup1.add(maleRdbtn);
+        maleRdbtn.setText("Male");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel6.add(jRadioButton1, gridBagConstraints);
+        genderPanel.add(maleRdbtn, gridBagConstraints);
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setSelected(true);
-        jRadioButton3.setText("Either");
+        buttonGroup1.add(otherGenderRdbtn);
+        otherGenderRdbtn.setSelected(true);
+        otherGenderRdbtn.setText("Either");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel6.add(jRadioButton3, gridBagConstraints);
+        genderPanel.add(otherGenderRdbtn, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel3.add(jPanel6, gridBagConstraints);
+        parametersHeaderPanel.add(genderPanel, gridBagConstraints);
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Tick mode of Results"));
-        jPanel7.setLayout(new java.awt.GridBagLayout());
+        parameterTypePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Tick mode of Results"));
+        parameterTypePanel.setLayout(new java.awt.GridBagLayout());
 
-        buttonGroup2.add(jCheckBox1);
-        jCheckBox1.setSelected(true);
-        jCheckBox1.setText("Has SI values");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup2.add(siParametersChkbx);
+        siParametersChkbx.setSelected(true);
+        siParametersChkbx.setText("Has SI values");
+        siParametersChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                siParametersChkbxActionPerformed(evt);
             }
         });
-        jPanel7.add(jCheckBox1, new java.awt.GridBagConstraints());
+        parameterTypePanel.add(siParametersChkbx, new java.awt.GridBagConstraints());
 
-        buttonGroup2.add(jCheckBox2);
-        jCheckBox2.setText("Result Positive or Negative");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup2.add(booleanParametersChkbx);
+        booleanParametersChkbx.setText("Result Positive or Negative");
+        booleanParametersChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                booleanParametersChkbxActionPerformed(evt);
             }
         });
-        jPanel7.add(jCheckBox2, new java.awt.GridBagConstraints());
+        parameterTypePanel.add(booleanParametersChkbx, new java.awt.GridBagConstraints());
 
-        buttonGroup2.add(jCheckBox3);
-        jCheckBox3.setText("Phrase");
-        jCheckBox3.addMouseListener(new java.awt.event.MouseAdapter() {
+        buttonGroup2.add(phraseParametersChkbx);
+        phraseParametersChkbx.setText("Phrase");
+        phraseParametersChkbx.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jCheckBox3MouseClicked(evt);
+                phraseParametersChkbxMouseClicked(evt);
             }
         });
-        jPanel7.add(jCheckBox3, new java.awt.GridBagConstraints());
+        parameterTypePanel.add(phraseParametersChkbx, new java.awt.GridBagConstraints());
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        jPanel3.add(jPanel7, gridBagConstraints);
+        parametersHeaderPanel.add(parameterTypePanel, gridBagConstraints);
 
-        jPanel41.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel41.setLayout(new java.awt.GridBagLayout());
+        testDescriptionSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        testDescriptionSearchPanel.setLayout(new java.awt.GridBagLayout());
 
-        jTextField9.setEditable(false);
+        labProcedureNameTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel41.add(jTextField9, gridBagConstraints);
+        testDescriptionSearchPanel.add(labProcedureNameTxt, gridBagConstraints);
 
-        searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
-        searchButton.setToolTipText("Search");
-        searchButton.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        searchButton.setMaximumSize(new java.awt.Dimension(74, 53));
-        searchButton.setMinimumSize(new java.awt.Dimension(74, 53));
-        searchButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        searchButton.addActionListener(new java.awt.event.ActionListener() {
+        testDescriptionSeacrhBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
+        testDescriptionSeacrhBtn.setToolTipText("Search");
+        testDescriptionSeacrhBtn.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        testDescriptionSeacrhBtn.setMaximumSize(new java.awt.Dimension(74, 53));
+        testDescriptionSeacrhBtn.setMinimumSize(new java.awt.Dimension(74, 53));
+        testDescriptionSeacrhBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        testDescriptionSeacrhBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchButtonActionPerformed(evt);
+                testDescriptionSeacrhBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
-        jPanel41.add(searchButton, gridBagConstraints);
+        testDescriptionSearchPanel.add(testDescriptionSeacrhBtn, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -1283,19 +1336,19 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jPanel41, gridBagConstraints);
+        parametersHeaderPanel.add(testDescriptionSearchPanel, gridBagConstraints);
 
-        jPanel411.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel411.setLayout(new java.awt.GridBagLayout());
+        specimenNameSeacrhPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        specimenNameSeacrhPanel.setLayout(new java.awt.GridBagLayout());
 
-        jTextField91.setEditable(false);
+        specimenNameTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel411.add(jTextField91, gridBagConstraints);
+        specimenNameSeacrhPanel.add(specimenNameTxt, gridBagConstraints);
 
         searchButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
         searchButton1.setToolTipText("Search");
@@ -1311,7 +1364,7 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
-        jPanel411.add(searchButton1, gridBagConstraints);
+        specimenNameSeacrhPanel.add(searchButton1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -1319,20 +1372,39 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jPanel411, gridBagConstraints);
+        parametersHeaderPanel.add(specimenNameSeacrhPanel, gridBagConstraints);
+
+        jLabel7.setText("Laboratory Procedure Code");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        parametersHeaderPanel.add(jLabel7, gridBagConstraints);
+
+        labProcedureCodeTxt.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        parametersHeaderPanel.add(labProcedureCodeTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 10.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel111.add(jPanel3, gridBagConstraints);
+        jPanel111.add(parametersHeaderPanel, gridBagConstraints);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Set SI standards here"));
-        jPanel4.setLayout(new java.awt.GridBagLayout());
+        parametersPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Set SI standards here"));
+        parametersPanel.setLayout(new java.awt.GridBagLayout());
 
-        jTable11.setModel(new javax.swing.table.DefaultTableModel(
+        siParametersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -1397,11 +1469,11 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jTable11.setGridColor(new java.awt.Color(204, 204, 255));
+        siParametersTable.setGridColor(new java.awt.Color(204, 204, 255));
 
-        jScrollPane21.setViewportView(jTable11);
+        parametersScrollPane.setViewportView(siParametersTable);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        phraseParametersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -1458,7 +1530,7 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
                 "Parameter", "Expected Phrase", "Standard", "Comments"
             }
         ));
-        jScrollPane21.setViewportView(jTable3);
+        parametersScrollPane.setViewportView(phraseParametersTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1468,53 +1540,132 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 5.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
-        jPanel4.add(jScrollPane21, gridBagConstraints);
+        parametersPanel.add(parametersScrollPane, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 7;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 100.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel111.add(jPanel4, gridBagConstraints);
+        jPanel111.add(parametersPanel, gridBagConstraints);
 
-        jButton5.setMnemonic('R');
-        jButton5.setText("Remove Row");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        removeRowParametersBtn.setMnemonic('R');
+        removeRowParametersBtn.setText("Remove Row");
+        removeRowParametersBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                removeRowParametersBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
-        jPanel111.add(jButton5, gridBagConstraints);
+        jPanel111.add(removeRowParametersBtn, gridBagConstraints);
 
-        jButton8.setMnemonic('H');
-        jButton8.setText("Help");
+        helpParametersBtn.setMnemonic('H');
+        helpParametersBtn.setText("Help");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel111.add(jButton8, gridBagConstraints);
+        jPanel111.add(helpParametersBtn, gridBagConstraints);
 
-        jTabbedPane1.addTab("Specimen", jPanel111);
-
+        deleteParametersBtn.setText("Delete parameters");
+        deleteParametersBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteParametersBtnActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.gridheight = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        getContentPane().add(jTabbedPane1, gridBagConstraints);
+        jPanel111.add(deleteParametersBtn, gridBagConstraints);
 
-        setBounds(0, 0, 750, 450);
+        labProceduresHierarchyTabbedPane.addTab("Specimen", jPanel111);
+
+        reportPanel.setLayout(new java.awt.GridBagLayout());
+
+        reportBodyPanel.setLayout(new java.awt.GridBagLayout());
+
+        parametersReportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT typeof_test, lower_limit, upper_limit, units, date, specimen, \n" +
+            "       status, test, notes, code, specimen_source, \"paramater_ID\", parameter_order\n" +
+            "  FROM pb_lab_standards"));
+    parametersReportScrollPane.setViewportView(parametersReportTable);
+
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+    gridBagConstraints.weightx = 1.0;
+    gridBagConstraints.weighty = 1.0;
+    reportBodyPanel.add(parametersReportScrollPane, gridBagConstraints);
+
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+    gridBagConstraints.weightx = 1.0;
+    gridBagConstraints.weighty = 200.0;
+    reportPanel.add(reportBodyPanel, gridBagConstraints);
+
+    buttonPanel.setLayout(new java.awt.GridBagLayout());
+
+    refreshBtn.setText("Refresh report");
+    refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            refreshBtnActionPerformed(evt);
+        }
+    });
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.weightx = 1.0;
+    gridBagConstraints.weighty = 1.0;
+    buttonPanel.add(refreshBtn, gridBagConstraints);
+
+    closeBtn.setText("Close form");
+    closeBtn.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            closeBtnActionPerformed(evt);
+        }
+    });
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 3;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.weightx = 1.0;
+    gridBagConstraints.weighty = 1.0;
+    buttonPanel.add(closeBtn, gridBagConstraints);
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+    gridBagConstraints.weightx = 200.0;
+    gridBagConstraints.weighty = 1.0;
+    buttonPanel.add(spacerLbl, gridBagConstraints);
+
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 1;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+    gridBagConstraints.weightx = 1.0;
+    gridBagConstraints.weighty = 1.0;
+    reportPanel.add(buttonPanel, gridBagConstraints);
+
+    labProceduresHierarchyTabbedPane.addTab("Registered Parameters Report", reportPanel);
+
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridwidth = 5;
+    gridBagConstraints.gridheight = 4;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+    gridBagConstraints.weightx = 1.0;
+    gridBagConstraints.weighty = 1.0;
+    gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+    getContentPane().add(labProceduresHierarchyTabbedPane, gridBagConstraints);
+
+    setBounds(0, 0, 750, 450);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton92ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton92ActionPerformed
@@ -1522,9 +1673,9 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton92ActionPerformed
 
     private void jSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTableMouseClicked
-        jTable2.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0), jTable2.getSelectedRow(), 0);
-        jTable2.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 1), jTable2.getSelectedRow(), 1);
-        jTable2.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 2), jTable2.getSelectedRow(), 2);
+        labProcedureGrooupingTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0), labProcedureGrooupingTable.getSelectedRow(), 0);
+        labProcedureGrooupingTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 1), labProcedureGrooupingTable.getSelectedRow(), 1);
+        labProcedureGrooupingTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 2), labProcedureGrooupingTable.getSelectedRow(), 2);
 
         jSearchDialog.dispose();        // Add your handling code here:
     }//GEN-LAST:event_jSearchTableMouseClicked
@@ -1532,47 +1683,46 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
     private void jTextField111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField111CaretUpdate
         jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select code,service_type,rate as price FROM pb_operating_parameters WHERE service_type ILIKE '" + jTextField111.getText() + "%' AND main_service ilike 'Lab%' order by service_type"));
 
-
         jSearchScrollPane.setViewportView(jSearchTable);
         System.out.println("Cannot sort out");   // Add your handling code here:
     }//GEN-LAST:event_jTextField111CaretUpdate
 
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-        if (jTable2.getSelectedColumn() == 0) {
+    private void labProcedureGrooupingTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labProcedureGrooupingTableMouseClicked
+        if (labProcedureGrooupingTable.getSelectedColumn() == 0) {
 
             this.cmboxMouseClicked2();
         }         // Add your handling code here:
-    }//GEN-LAST:event_jTable2MouseClicked
+    }//GEN-LAST:event_labProcedureGrooupingTableMouseClicked
     private void cmboxMouseClicked2() {
 
         System.out.println("Showing dialog");
-        java.awt.Point point = jTable2.getLocationOnScreen();
+        java.awt.Point point = labProcedureGrooupingTable.getLocationOnScreen();
         jSearchDialog.setSize(400, 200);
         jSearchDialog.setLocation(point);
         jSearchDialog.setVisible(true);
     }
-    private void jCheckBox3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox3MouseClicked
+    private void phraseParametersChkbxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phraseParametersChkbxMouseClicked
 
-        jPanel4.setVisible(true);
+        parametersPanel.setVisible(true);
         this.invalidate();
-        jTable3.grabFocus();
-        this.jTable11.setVisible(true);
-        this.jScrollPane21.setViewportView(jTable3);
+        phraseParametersTable.grabFocus();
+        this.siParametersTable.setVisible(true);
+        this.parametersScrollPane.setViewportView(phraseParametersTable);
         this.validate();
         /*
          * jPanel4.setVisible(true); jTable11.setVisible(false);
          * jTable3.setVisible(true);
          */
         // Add your handling code here:
-    }//GEN-LAST:event_jCheckBox3MouseClicked
+    }//GEN-LAST:event_phraseParametersChkbxMouseClicked
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-        jPanel4.setVisible(false);          // Add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    private void booleanParametersChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_booleanParametersChkbxActionPerformed
+        parametersPanel.setVisible(false);          // Add your handling code here:
+    }//GEN-LAST:event_booleanParametersChkbxActionPerformed
 
     private void jSearchTable21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable21MouseClicked
-        jTextField2.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 0).toString());
-        jTextField91.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 1).toString());
+        specimentCodeTxt.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 0).toString());
+        specimenNameTxt.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 1).toString());
         jSearchDialog21.dispose();
         // Add your handling code here:
     }//GEN-LAST:event_jSearchTable21MouseClicked
@@ -1599,9 +1749,9 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         System.out.println("Showing dialog");
 
         // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
-        java.awt.Point point = this.jTextField91.getLocationOnScreen();
+        java.awt.Point point = this.specimenNameTxt.getLocationOnScreen();
 
-        jSearchDialog21.setSize(400, 200);
+        jSearchDialog21.setSize(700, 200);
 
         jSearchDialog21.setLocation(point);
 
@@ -1609,9 +1759,10 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
 
     }
     private void jSearchTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable2MouseClicked
-        jTextField21.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 1).toString());
-        jTextField9.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 0).toString());
-        labProcedureCode = jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 2).toString();
+        procedureGroupTxt.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 1).toString());
+        labProcedureNameTxt.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 0).toString());
+        labProcedureCode = jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 3).toString();
+        labProcedureCodeTxt.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 3).toString());
         jSearchDialog2.dispose();    // Add your handling code here:
     }//GEN-LAST:event_jSearchTable2MouseClicked
 
@@ -1622,7 +1773,7 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
     private void jTextField113CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField113CaretUpdate
         //  if(this.jCheckBox1.isSelected()){
 
-        jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT typeof_test,specimen,units from pb_lab_test where typeof_test ILIKE '" + jTextField113.getText() + "%' order by typeof_test"));
+        jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT typeof_test,specimen,units,lab_procedure_code from pb_lab_test where typeof_test ILIKE '" + jTextField113.getText() + "%' order by typeof_test"));
 
         jSearchTable2.setShowHorizontalLines(false);
         jSearchScrollPane2.setViewportView(jSearchTable2);
@@ -1630,59 +1781,59 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jTextField113CaretUpdate
 
-    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+    private void testDescriptionSeacrhBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testDescriptionSeacrhBtnActionPerformed
         searchButtonClicked2();         // Add your handling code here:
-    }//GEN-LAST:event_searchButtonActionPerformed
+    }//GEN-LAST:event_testDescriptionSeacrhBtnActionPerformed
     private void searchButtonClicked2() {
 
         System.out.println("Showing dialog");
 
         // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
-        java.awt.Point point = this.jTextField9.getLocationOnScreen();
+        java.awt.Point point = this.labProcedureNameTxt.getLocationOnScreen();
 
-        jSearchDialog2.setSize(400, 200);
+        jSearchDialog2.setSize(700, 200);
 
         jSearchDialog2.setLocation(point);
 
         jSearchDialog2.setVisible(true);
 
     }
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        jPanel4.setVisible(true);
+    private void siParametersChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siParametersChkbxActionPerformed
+        parametersPanel.setVisible(true);
         this.invalidate();
-        jTable11.grabFocus();
-        this.jTable11.setVisible(true);
-        this.jScrollPane21.setViewportView(jTable11);
+        siParametersTable.grabFocus();
+        this.siParametersTable.setVisible(true);
+        this.parametersScrollPane.setViewportView(siParametersTable);
         this.validate();
         // jTable3.setVisible(false);
 
         // Add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_siParametersChkbxActionPerformed
 
-    private void jButton411ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton411ActionPerformed
+    private void closeParametersFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeParametersFormBtnActionPerformed
         this.setVisible(false);
         dispose();
 
         // Add your handling code here:
-    }//GEN-LAST:event_jButton411ActionPerformed
+    }//GEN-LAST:event_closeParametersFormBtnActionPerformed
 
-    private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
+    private void closeGroupingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeGroupingBtnActionPerformed
         this.setVisible(false);
         dispose();
 
         // Add your handling code here:
-    }//GEN-LAST:event_jButton41ActionPerformed
+    }//GEN-LAST:event_closeGroupingBtnActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void closeMainFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeMainFormBtnActionPerformed
         this.setVisible(false);
         dispose();// Add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_closeMainFormBtnActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void removeRowMainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeRowMainBtnActionPerformed
 
-        int rows2Delete = jTable1.getSelectedRowCount();
+        int rows2Delete = mainCategoryTable.getSelectedRowCount();
 
-        int[] selectedRows = jTable1.getSelectedRows();
+        int[] selectedRows = mainCategoryTable.getSelectedRows();
 
         if (rows2Delete < 1) {
 
@@ -1696,32 +1847,28 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
 
                 for (int i = 0; i < selectedRows.length; i++) {
 
-
-
-                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) mainCategoryTable.getModel();
 
                     defTableModel.removeRow(selectedRows[i]);
 
                 }
 
-
-
             } else {
 
-                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) mainCategoryTable.getModel();
 
-                defTableModel.removeRow(jTable1.getSelectedRow());
+                defTableModel.removeRow(mainCategoryTable.getSelectedRow());
             }
         }
 
         // Add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_removeRowMainBtnActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 
-        int rows2Delete = jTable2.getSelectedRowCount();
+        int rows2Delete = labProcedureGrooupingTable.getSelectedRowCount();
 
-        int[] selectedRows = jTable2.getSelectedRows();
+        int[] selectedRows = labProcedureGrooupingTable.getSelectedRows();
 
         if (rows2Delete < 1) {
 
@@ -1735,32 +1882,28 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
 
                 for (int i = 0; i < selectedRows.length; i++) {
 
-
-
-                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable2.getModel();
+                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) labProcedureGrooupingTable.getModel();
 
                     defTableModel.removeRow(selectedRows[i]);
 
                 }
 
-
-
             } else {
 
-                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable2.getModel();
+                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) labProcedureGrooupingTable.getModel();
 
-                defTableModel.removeRow(jTable2.getSelectedRow());
+                defTableModel.removeRow(labProcedureGrooupingTable.getSelectedRow());
             }
         }
 
         // Add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void removeRowParametersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeRowParametersBtnActionPerformed
 
-        int rows2Delete = jTable11.getSelectedRowCount();
+        int rows2Delete = siParametersTable.getSelectedRowCount();
 
-        int[] selectedRows = jTable11.getSelectedRows();
+        int[] selectedRows = siParametersTable.getSelectedRows();
 
         if (rows2Delete < 1) {
 
@@ -1774,74 +1917,101 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
 
                 for (int i = 0; i < selectedRows.length; i++) {
 
-
-
-                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable11.getModel();
+                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) siParametersTable.getModel();
 
                     defTableModel.removeRow(selectedRows[i]);
 
                 }
 
-
-
             } else {
 
-                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable11.getModel();
+                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) siParametersTable.getModel();
 
-                defTableModel.removeRow(jTable11.getSelectedRow());
+                defTableModel.removeRow(siParametersTable.getSelectedRow());
             }
         }
 
         // Add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_removeRowParametersBtnActionPerformed
 
-    private void jButton311ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton311ActionPerformed
-        for (int k = 0; k < jTable11.getRowCount(); k++) {
-            for (int r = 0; r < jTable11.getColumnCount(); r++) {
-                jTable11.getModel().setValueAt(null, k, r);
+    private void clearParametersFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearParametersFormBtnActionPerformed
+        for (int k = 0; k < siParametersTable.getRowCount(); k++) {
+            for (int r = 0; r < siParametersTable.getColumnCount(); r++) {
+                siParametersTable.getModel().setValueAt(null, k, r);
             }
         }
 
-        jTextField2.setText("");
-        // Add your handling code here:
-    }//GEN-LAST:event_jButton311ActionPerformed
+        specimentCodeTxt.setText("");
 
-    private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
-        for (int k = 0; k < jTable2.getRowCount(); k++) {
-            for (int r = 0; r < jTable2.getColumnCount(); r++) {
-                jTable2.getModel().setValueAt(null, k, r);
+        this.clearForm();
+        this.labProceduresHierarchyTabbedPane.setSelectedIndex(2);
+        // Add your handling code here:
+    }//GEN-LAST:event_clearParametersFormBtnActionPerformed
+
+    private void clearGroupingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearGroupingBtnActionPerformed
+        for (int k = 0; k < labProcedureGrooupingTable.getRowCount(); k++) {
+            for (int r = 0; r < labProcedureGrooupingTable.getColumnCount(); r++) {
+                labProcedureGrooupingTable.getModel().setValueAt(null, k, r);
             }
         }
-        jComboBox1.setSelectedItem(null);
-        jTextField1.setText("");
+        labCategoryCmbx.setSelectedItem(null);
+        labCategoryCodeTxt.setText("");
+        this.clearForm();
+        this.labProceduresHierarchyTabbedPane.setSelectedIndex(1);
         // Add your handling code here:
-    }//GEN-LAST:event_jButton31ActionPerformed
+    }//GEN-LAST:event_clearGroupingBtnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        for (int k = 0; k < jTable1.getRowCount(); k++) {
-            for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                jTable1.getModel().setValueAt(null, k, r);
+    private void clearMainCategoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearMainCategoryBtnActionPerformed
+        for (int k = 0; k < mainCategoryTable.getRowCount(); k++) {
+            for (int r = 0; r < mainCategoryTable.getColumnCount(); r++) {
+                mainCategoryTable.getModel().setValueAt(null, k, r);
             }
         }
         // Add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_clearMainCategoryBtnActionPerformed
 
-    private void jButton211ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton211ActionPerformed
+    private void editParametersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editParametersBtnActionPerformed
+        if (procedureGroupTxt.getText().length() > 0) {
+            siParametersTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT typeof_test, lower_limit, upper_limit, units, date, specimen, "
+                    + "       status, notes, code, specimen_source, \"paramater_ID\""
+                    + "  FROM pb_lab_standards WHERE code = '" + labProcedureCodeTxt.getText() + "' ORDER BY 1"));
+            javax.swing.JComboBox cmBox1 = new javax.swing.JComboBox(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT initcap(specimen) as specimen FROM pb_lab_specimen ORDER BY 1"));
+
+            javax.swing.table.TableColumn teditor1 = this.siParametersTable.getColumn("SPECIMEN_SOURCE");
+
+            teditor1.setCellEditor(new javax.swing.DefaultCellEditor(cmBox1));
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please select a procedure to edit.");
+        }
+        parametersPanel.setVisible(true);
+        this.invalidate();
+        siParametersTable.grabFocus();
+        this.siParametersTable.setVisible(true);
+        this.parametersScrollPane.setViewportView(siParametersTable);
+        this.validate();
+        saveParametersBtn.setText("Update");
         //   javax.swing.JFrame lpay = new Activities(connectDB, pConnDB, jTextField2.getText().toString());
         // lpay.setVisible(true); // Add your handling code here:
-    }//GEN-LAST:event_jButton211ActionPerformed
+    }//GEN-LAST:event_editParametersBtnActionPerformed
 
-    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        //        javax.swing.JFrame lpay = new SubActivities(connectDB, pConnDB, jTextField1.getText().toString());
-        //        lpay.setVisible(true); // Add your handling code here:
-    }//GEN-LAST:event_jButton21ActionPerformed
+    private void editGroupingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editGroupingBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //        javax.swing.JFrame lpay = new MainActivity(connectDB, pConnDB);
-        //        lpay.setVisible(true); // Add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        labProcedureGrooupingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT typeof_test, status, date, lower_limit, upper_limit, "
+                + "       lab_procedure_code, units"
+                + "  FROM pb_lab_test WHERE specimen ilike '" + labCategoryCmbx.getSelectedItem() + "'"));
 
-    private void jButton111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton111ActionPerformed
+// Add your handling code here:
+    }//GEN-LAST:event_editGroupingBtnActionPerformed
+
+    private void editMainCategoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMainCategoryBtnActionPerformed
+
+        mainCategoryTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT category_code, category_description, department\n"
+                + "  FROM pb_lab_maincategory ORDER BY 2"));
+
+        saveMainCategoryBtn.setText("Update");
+    }//GEN-LAST:event_editMainCategoryBtnActionPerformed
+
+    private void saveParametersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveParametersBtnActionPerformed
         java.util.Calendar calendar = java.util.Calendar.getInstance();
 
         long dateNow = calendar.getTimeInMillis();
@@ -1850,92 +2020,115 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
 
         System.out.println(datenowSql.toString());
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into pb_lab_standards values(?,?,?,?,?,?,?,?,?,?,?)");
+            if (saveParametersBtn.getText().contains("Save data")) {
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into pb_lab_standards values(?,?,?,?,?,?,?,?,?,?,?)");
 
-            if (jCheckBox1.isSelected()) {
-                for (int i = 0; i < jTable11.getRowCount(); i++) {
-                    if (jTable11.getModel().getValueAt(i, 0) != null) {
-                        pstmt.setObject(1, jTable11.getValueAt(i, 0).toString());
-                        pstmt.setDouble(2, java.lang.Double.parseDouble(jTable11.getValueAt(i, 1).toString()));
-                        pstmt.setDouble(3, java.lang.Double.parseDouble(jTable11.getValueAt(i, 2).toString()));
-                        pstmt.setString(4, jTable11.getValueAt(i, 4).toString());
-                        pstmt.setDate(5, new java.sql.Date(java.util.Calendar.getInstance().getTimeInMillis()));
-                        pstmt.setObject(6, jTextField21.getText());
-                        pstmt.setBoolean(7, false);
-                        pstmt.setObject(8, jTextField9.getText());
-                        pstmt.setString(9, jTable11.getValueAt(i, 5).toString());
-                        pstmt.setString(10, labProcedureCode);
-                        pstmt.setString(11, jTable11.getValueAt(i, 3).toString());
-                        pstmt.execute();
-                    }
-                }
-            } else {
-                if (jCheckBox2.isSelected()) {
-                    pstmt.setObject(1, jTextField9.getText());
-                    pstmt.setDouble(2, java.lang.Double.parseDouble("0.00"));
-                    pstmt.setDouble(3, java.lang.Double.parseDouble("0.00"));
-                    pstmt.setString(4, "-");
-                    pstmt.setDate(5, new java.sql.Date(java.util.Calendar.getInstance().getTimeInMillis()));
-                    pstmt.setObject(6, jTextField21.getText());
-                    pstmt.setBoolean(7, false);
-                    pstmt.setObject(8, jTextField9.getText());
-                    pstmt.setString(9, "Positive or Negative");
-                    pstmt.setString(10, labProcedureCode);
-                    pstmt.setString(11, "Negative");
-                    pstmt.execute();
-                } else {
-                    if (jCheckBox3.isSelected()) {
-                        for (int i = 0; i < jTable3.getRowCount(); i++) {
-                            if (jTable3.getModel().getValueAt(i, 0) != null) {
-
-                                pstmt.setObject(1, jTable3.getValueAt(i, 0).toString());
-                                pstmt.setDouble(2, java.lang.Double.parseDouble("0.00"));
-                                pstmt.setDouble(3, java.lang.Double.parseDouble("0.00"));
-                                pstmt.setObject(4, jTable3.getValueAt(i, 1).toString());
-                                pstmt.setDate(5, new java.sql.Date(java.util.Calendar.getInstance().getTimeInMillis()));
-                                pstmt.setObject(6, jTextField21.getText());
+                if (siParametersChkbx.isSelected()) {
+                    for (int i = 0; i < siParametersTable.getRowCount(); i++) {
+                        if (siParametersTable.getModel().getValueAt(i, 0) != null) {
+                            pstmt.setObject(1, siParametersTable.getValueAt(i, 0).toString());
+                            pstmt.setDouble(2, java.lang.Double.parseDouble(siParametersTable.getValueAt(i, 1).toString()));
+                            pstmt.setDouble(3, java.lang.Double.parseDouble(siParametersTable.getValueAt(i, 2).toString()));
+                            pstmt.setString(4, siParametersTable.getValueAt(i, 4).toString());
+                            pstmt.setDate(5, new java.sql.Date(java.util.Calendar.getInstance().getTimeInMillis()));
+                            pstmt.setObject(6, procedureGroupTxt.getText());
+                            if (siParametersChkbx.isSelected()) {
+                                pstmt.setBoolean(7, true);
+                            } else {
                                 pstmt.setBoolean(7, false);
-                                pstmt.setObject(8, jTextField9.getText());
-                                pstmt.setString(9, jTable3.getValueAt(i, 3).toString());
-                                pstmt.setString(10, labProcedureCode);
-                                pstmt.setString(11, jTable3.getValueAt(i, 2).toString());
-                                pstmt.execute();
+                            }
+                            pstmt.setObject(8, labProcedureNameTxt.getText());
+                            pstmt.setObject(9, siParametersTable.getValueAt(i, 5));
+                            pstmt.setString(10, labProcedureCodeTxt.getText());
+                            pstmt.setString(11, this.specimenNameTxt.getText());
+                            pstmt.execute();
+                        }
+                    }
+                } else {
+                    if (booleanParametersChkbx.isSelected()) {
+                        pstmt.setObject(1, labProcedureNameTxt.getText());
+                        pstmt.setDouble(2, java.lang.Double.parseDouble("0.00"));
+                        pstmt.setDouble(3, java.lang.Double.parseDouble("0.00"));
+                        pstmt.setString(4, "-");
+                        pstmt.setDate(5, new java.sql.Date(java.util.Calendar.getInstance().getTimeInMillis()));
+                        pstmt.setObject(6, procedureGroupTxt.getText());
+                        pstmt.setBoolean(7, false);
+                        pstmt.setObject(8, labProcedureNameTxt.getText());
+                        pstmt.setString(9, "Positive or Negative");
+                        pstmt.setString(10, labProcedureCode);
+                        pstmt.setString(11, "Negative");
+                        pstmt.execute();
+                    } else {
+                        if (phraseParametersChkbx.isSelected()) {
+                            for (int i = 0; i < phraseParametersTable.getRowCount(); i++) {
+                                if (phraseParametersTable.getModel().getValueAt(i, 0) != null) {
+
+                                    pstmt.setObject(1, phraseParametersTable.getValueAt(i, 0).toString());
+                                    pstmt.setDouble(2, java.lang.Double.parseDouble("0.00"));
+                                    pstmt.setDouble(3, java.lang.Double.parseDouble("0.00"));
+                                    pstmt.setObject(4, phraseParametersTable.getValueAt(i, 1).toString());
+                                    pstmt.setDate(5, new java.sql.Date(java.util.Calendar.getInstance().getTimeInMillis()));
+                                    pstmt.setObject(6, procedureGroupTxt.getText());
+                                    pstmt.setBoolean(7, false);
+                                    pstmt.setObject(8, labProcedureNameTxt.getText());
+                                    pstmt.setString(9, phraseParametersTable.getValueAt(i, 3).toString());
+                                    pstmt.setString(10, labProcedureCode);
+                                    pstmt.setString(11, phraseParametersTable.getValueAt(i, 2).toString());
+                                    pstmt.execute();
+                                }
                             }
                         }
                     }
                 }
-            }
 
-          //  pstmt.executeUpdate();
+                //  pstmt.executeUpdate();
+                javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully", "Comfirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
-
-            javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully", "Comfirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-
-            for (int k = 0; k < jTable11.getRowCount(); k++) {
-                for (int r = 0; r < jTable11.getColumnCount(); r++) {
-                    jTable11.getModel().setValueAt(null, k, r);
+                for (int k = 0; k < siParametersTable.getRowCount(); k++) {
+                    for (int r = 0; r < siParametersTable.getColumnCount(); r++) {
+                        siParametersTable.getModel().setValueAt(null, k, r);
+                    }
+                }
+                specimentCodeTxt.setText("");
+            } else {
+                for (int j = 0; j < siParametersTable.getRowCount(); j++) {
+                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("UPDATE pb_lab_standards"
+                            + "   SET typeof_test=?, lower_limit=?, upper_limit=?, units=?, "
+                            + "       specimen=?, status=?, notes=?, specimen_source=? "
+                            + " WHERE \"paramater_ID\"= ? ");
+                    pstmt.setObject(1, siParametersTable.getValueAt(j, 0));
+                    pstmt.setObject(2, siParametersTable.getValueAt(j, 1));
+                    pstmt.setObject(3, siParametersTable.getValueAt(j, 2));
+                    pstmt.setObject(4, siParametersTable.getValueAt(j, 3));
+                    // pstmt.setDate(5, com.afrisoftech.lib.SQLDateFormat.getSQLDate(new java.util.Date(siParametersTable.getValueAt(j, 4).toString())));
+                    pstmt.setObject(5, procedureGroupTxt.getText());
+                    pstmt.setObject(6, siParametersTable.getValueAt(j, 6));
+                    pstmt.setObject(7, siParametersTable.getValueAt(j, 7));
+                    pstmt.setObject(8, specimenNameTxt.getText());
+                    pstmt.setObject(9, siParametersTable.getValueAt(j, 10));
+                    pstmt.executeUpdate();
                 }
             }
-            jTextField2.setText("");
+            this.clearForm();
+            this.labProceduresHierarchyTabbedPane.setSelectedIndex(2);
         } catch (java.sql.SQLException sq) {
             sq.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, "ERROR: " + sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
             System.out.println(sq.getMessage());
-            jLabel4.setForeground(java.awt.Color.red);
+            parametersSapacerLbl.setForeground(java.awt.Color.red);
             //  jLabel4.setText("Sorry. Another Code already exists");
         }
 
         // Add your handling code here:
-    }//GEN-LAST:event_jButton111ActionPerformed
+    }//GEN-LAST:event_saveParametersBtnActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void labCategoryCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labCategoryCmbxActionPerformed
 
         try {
             java.sql.Statement stmt = connectDB.createStatement();
-            java.sql.ResultSet rset = stmt.executeQuery("select category_code from pb_lab_maincategory where category_description ='" + jComboBox1.getSelectedItem() + "'");
+            java.sql.ResultSet rset = stmt.executeQuery("select category_code from pb_lab_maincategory where category_description ='" + labCategoryCmbx.getSelectedItem() + "'");
             while (rset.next()) {
-                jTextField1.setText(rset.getObject(1).toString());
+                labCategoryCodeTxt.setText(rset.getObject(1).toString());
             }
 
         } catch (java.sql.SQLException sqe) {
@@ -1944,52 +2137,82 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         }
 
         // Add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_labCategoryCmbxActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jTable1.getModel().getValueAt(0, 0) != null) {
-
+    private void saveMainCategoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMainCategoryBtnActionPerformed
+        if (mainCategoryTable.getModel().getValueAt(0, 0) != null) {
 
             try {
-                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into pb_lab_maincategory values( ?, initcap(?))");
-                for (int i = 0; i < jTable1.getRowCount(); i++) {
-                    if (jTable1.getModel().getValueAt(i, 0) != null) {
+                if (saveMainCategoryBtn.getText().contains("Save data")) {
+                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into pb_lab_maincategory values( ?, initcap(?))");
 
-                        pstmt.setObject(1, jTable1.getValueAt(i, 0).toString());
-                        if (jTable1.getModel().getValueAt(i, 1) != null) {
-                            pstmt.setObject(2, jTable1.getValueAt(i, 1).toString());
-                        } else {
-                            javax.swing.JOptionPane.showMessageDialog(this, "You must enter Main account name", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                    for (int i = 0; i < mainCategoryTable.getRowCount(); i++) {
+                        if (mainCategoryTable.getModel().getValueAt(i, 0) != null) {
+
+                            pstmt.setObject(1, mainCategoryTable.getValueAt(i, 0).toString());
+                            if (mainCategoryTable.getModel().getValueAt(i, 1) != null) {
+                                pstmt.setObject(2, mainCategoryTable.getValueAt(i, 1).toString());
+                            } else {
+                                javax.swing.JOptionPane.showMessageDialog(this, "You must enter Main account name", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                            }
+                            //  pstmt.setObject(2,jTable1.getValueAt(i,1).toString());
+
+                            pstmt.executeUpdate();
                         }
-                        //  pstmt.setObject(2,jTable1.getValueAt(i,1).toString());
-
-
-                        pstmt.executeUpdate();
                     }
-                }
-                // pstmt.executeUpdate();
-                javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully", "Confirmation", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    // pstmt.executeUpdate();
+                    javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully", "Confirmation", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
 //                crset1.execute();
-                for (int k = 0; k < jTable1.getRowCount(); k++) {
-                    for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                        jTable1.getModel().setValueAt(null, k, r);
+                    for (int k = 0; k < mainCategoryTable.getRowCount(); k++) {
+                        for (int r = 0; r < mainCategoryTable.getColumnCount(); r++) {
+                            mainCategoryTable.getModel().setValueAt(null, k, r);
+                        }
+                    }
+                } else {
+                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("UPDATE pb_lab_maincategory set category_description = initcap(?) WHERE category_code = ?");
+
+                    for (int i = 0; i < mainCategoryTable.getRowCount(); i++) {
+                        if (mainCategoryTable.getModel().getValueAt(i, 0) != null) {
+
+                            pstmt.setObject(1, mainCategoryTable.getValueAt(i, 1).toString());
+                            if (mainCategoryTable.getModel().getValueAt(i, 1) != null) {
+                                pstmt.setObject(2, mainCategoryTable.getValueAt(i, 0).toString());
+                            } else {
+                                javax.swing.JOptionPane.showMessageDialog(this, "You must enter Main account name", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                            }
+                            //  pstmt.setObject(2,jTable1.getValueAt(i,1).toString());
+
+                            pstmt.executeUpdate();
+                        }
+                    }
+                    // pstmt.executeUpdate();
+                    javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully", "Confirmation", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+//                crset1.execute();
+                    for (int k = 0; k < mainCategoryTable.getRowCount(); k++) {
+                        for (int r = 0; r < mainCategoryTable.getColumnCount(); r++) {
+                            mainCategoryTable.getModel().setValueAt(null, k, r);
+                        }
                     }
                 }
+                this.saveMainCategoryBtn.setText("Save data");
             } catch (java.sql.SQLException sq) {
-                javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage() + " : " + "Sorry. Another Code already exists", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
                 System.out.println(sq.getMessage());
-                jLabel2.setForeground(java.awt.Color.red);
-                jLabel2.setText("Sorry. Another Code already exists");
+                // jLabel2.setForeground(java.awt.Color.red);
+                // jLabel2.setText("Sorry. Another Code already exists");
             }
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Insert Not Successful!  Check Your Entries", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, "Insert not successful!  Check Your Entries", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
 
         }
+        this.clearForm();
+        this.labProceduresHierarchyTabbedPane.setSelectedIndex(0);
         // Add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_saveMainCategoryBtnActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void saveGroupingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveGroupingBtnActionPerformed
         java.util.Calendar calendar = java.util.Calendar.getInstance();
 
         long dateNow = calendar.getTimeInMillis();
@@ -1997,101 +2220,154 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         java.sql.Date datenowSql = new java.sql.Date(dateNow);
 
         System.out.println(datenowSql.toString());
-        if (jTable2.getModel().getValueAt(0, 0) != null) {
-
+        if (labProcedureGrooupingTable.getModel().getValueAt(0, 0) != null) {
 
             try {
-                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into pb_lab_test values( initcap(?), ?, ?,?,?,?,?)");
-                for (int i = 0; i < jTable2.getRowCount(); i++) {
-                    if (jTable2.getModel().getValueAt(i, 0) != null) {
-                        pstmt.setObject(1, jTable2.getValueAt(i, 1).toString());
-                        pstmt.setString(2, jComboBox1.getSelectedItem().toString());
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into pb_lab_test values( initcap(?), ?, ?,?,?,?,?,?)");
+                for (int i = 0; i < labProcedureGrooupingTable.getRowCount(); i++) {
+                    if (labProcedureGrooupingTable.getModel().getValueAt(i, 0) != null) {
+                        pstmt.setObject(1, labProcedureGrooupingTable.getValueAt(i, 1).toString());
+                        pstmt.setString(2, labCategoryCmbx.getSelectedItem().toString());
                         pstmt.setBoolean(3, false);
                         pstmt.setDate(4, new java.sql.Date(java.util.Calendar.getInstance().getTimeInMillis()));
                         pstmt.setDouble(5, 0.00);
                         pstmt.setDouble(6, 0.00);
-                        pstmt.setString(7, jTable2.getValueAt(i, 0).toString());
+                        pstmt.setString(7, "");
+                        pstmt.setString(8, labProcedureGrooupingTable.getValueAt(i, 0).toString());
                         pstmt.executeUpdate();
                     }
                 }
                 javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully", "Comfirmation", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
 //                crset11.execute();
-                for (int k = 0; k < jTable2.getRowCount(); k++) {
-                    for (int r = 0; r < jTable2.getColumnCount(); r++) {
-                        jTable2.getModel().setValueAt(null, k, r);
+                for (int k = 0; k < labProcedureGrooupingTable.getRowCount(); k++) {
+                    for (int r = 0; r < labProcedureGrooupingTable.getColumnCount(); r++) {
+                        labProcedureGrooupingTable.getModel().setValueAt(null, k, r);
                     }
                 }
-                jComboBox1.setSelectedItem(null);
-                jTextField1.setText("");
+                labCategoryCmbx.setSelectedItem(null);
+                labCategoryCodeTxt.setText("");
             } catch (java.sql.SQLException sq) {
                 sq.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(this, "ERROR: " + sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
                 System.out.println(sq.getMessage());
-                jLabel3.setForeground(java.awt.Color.red);
+                groupingSpacerLbl.setForeground(java.awt.Color.red);
                 //  jLabel4.setText("Sorry. Another Code already exists");
             }
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Insert Not Successful!  Check Your Entries", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
 
         }
+        this.clearForm();
+        this.labProceduresHierarchyTabbedPane.setSelectedIndex(2);
         // Add your handling code here:
-        
-    }//GEN-LAST:event_jButton11ActionPerformed
+
+    }//GEN-LAST:event_saveGroupingBtnActionPerformed
+
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+
+        this.dispose();
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_closeBtnActionPerformed
+
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+
+        this.parametersReportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT typeof_test, lower_limit, upper_limit, units, date, specimen, \n"
+                + "       status, test, notes, code, specimen_source, \"paramater_ID\", parameter_order\n"
+                + "  FROM pb_lab_standards"));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refreshBtnActionPerformed
+
+    private void deleteDataMainCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteDataMainCmbxActionPerformed
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("DELETE FROM pb_lab_maincategory WHERE category_code = ?");
+            pstmt.setObject(1, mainCategoryTable.getValueAt(mainCategoryTable.getSelectedRow(), 0));
+            pstmt.executeUpdate();
+        } catch (java.sql.SQLException sq) {
+            sq.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage());
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteDataMainCmbxActionPerformed
+
+    private void deleteGroupingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteGroupingBtnActionPerformed
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("DELETE FROM pb_lab_test WHERE lab_procedure_code ilike ? AND specimen ilike ?");
+            pstmt.setObject(1, labProcedureGrooupingTable.getValueAt(labProcedureGrooupingTable.getSelectedRow(), 5));
+            pstmt.setObject(2, labCategoryCmbx.getSelectedItem());
+            pstmt.executeUpdate();
+        } catch (java.sql.SQLException sq) {
+            sq.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage());
+        }
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_deleteGroupingBtnActionPerformed
+
+    private void deleteParametersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteParametersBtnActionPerformed
+
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("DELETE FROM pb_lab_standards WHERE \"paramater_ID\" = ?");
+            pstmt.setInt(1, Integer.parseInt(siParametersTable.getValueAt(siParametersTable.getSelectedRow(), 10).toString()));
+            pstmt.executeUpdate();
+            javax.swing.JOptionPane.showMessageDialog(this, "Parameters adjusted successfully.");
+        } catch (java.sql.SQLException sq) {
+            sq.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage());
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteParametersBtnActionPerformed
+
+    void clearForm() {
+        this.getContentPane().removeAll();
+        this.initComponents();
+        this.validate();
+        saveParametersBtn.setText("Save data");
+        saveGroupingBtn.setText("Save data");
+        saveMainCategoryBtn.setText("Save data");
+        this.setSize(this.getParent().getSize());
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox booleanParametersChkbx;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton111;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton211;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton31;
-    private javax.swing.JButton jButton311;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton41;
-    private javax.swing.JButton jButton411;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JPanel buttonPanel;
+    private javax.swing.JButton clearGroupingBtn;
+    private javax.swing.JButton clearMainCategoryBtn;
+    private javax.swing.JButton clearParametersFormBtn;
+    private javax.swing.JButton closeBtn;
+    private javax.swing.JButton closeGroupingBtn;
+    private javax.swing.JButton closeMainFormBtn;
+    private javax.swing.JButton closeParametersFormBtn;
+    private javax.swing.JButton deleteDataMainCmbx;
+    private javax.swing.JButton deleteGroupingBtn;
+    private javax.swing.JButton deleteParametersBtn;
+    private javax.swing.JButton editGroupingBtn;
+    private javax.swing.JButton editMainCategoryBtn;
+    private javax.swing.JButton editParametersBtn;
+    private javax.swing.JRadioButton femaleRdbtn;
+    private javax.swing.JPanel genderPanel;
+    private javax.swing.JLabel groupingSpacerLbl;
+    private javax.swing.JPanel groupingsPanel;
+    private javax.swing.JButton helpMainBtn;
+    private javax.swing.JButton helpParametersBtn;
     private javax.swing.JButton jButton52;
     private javax.swing.JButton jButton521;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JButton jButton91;
     private javax.swing.JButton jButton92;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel111;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel11;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel111;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel41;
-    private javax.swing.JPanel jPanel411;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane21;
     private javax.swing.JDialog jSearchDialog;
     private javax.swing.JDialog jSearchDialog2;
     private javax.swing.JDialog jSearchDialog21;
@@ -2104,20 +2380,53 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTable jSearchTable;
     private javax.swing.JTable jSearchTable2;
     private javax.swing.JTable jSearchTable21;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable11;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField111;
     private javax.swing.JTextField jTextField113;
     private javax.swing.JTextField jTextField1131;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField9;
-    private javax.swing.JTextField jTextField91;
-    private javax.swing.JButton searchButton;
+    private javax.swing.JComboBox labCategoryCmbx;
+    private javax.swing.JTextField labCategoryCodeTxt;
+    private javax.swing.JTextField labProcedureCodeTxt;
+    private javax.swing.JTable labProcedureGrooupingTable;
+    private javax.swing.JTextField labProcedureNameTxt;
+    private javax.swing.JTabbedPane labProceduresHierarchyTabbedPane;
+    private javax.swing.JPanel mainCategoryPanel;
+    private javax.swing.JScrollPane mainCategoryScrollPane;
+    private javax.swing.JLabel mainCategorySpacerLbl;
+    private javax.swing.JTable mainCategoryTable;
+    private javax.swing.JRadioButton maleRdbtn;
+    private javax.swing.JRadioButton otherGenderRdbtn;
+    private javax.swing.JPanel parameterTypePanel;
+    private javax.swing.JPanel parametersHeaderPanel;
+    private javax.swing.JButton parametersHelpBtn;
+    private javax.swing.JPanel parametersPanel;
+    private javax.swing.JScrollPane parametersReportScrollPane;
+    private javax.swing.JTable parametersReportTable;
+    private javax.swing.JLabel parametersSapacerLbl;
+    private javax.swing.JScrollPane parametersScrollPane;
+    private javax.swing.JLabel parametersSpacerLabel;
+    private javax.swing.JCheckBox phraseParametersChkbx;
+    private javax.swing.JTable phraseParametersTable;
+    private javax.swing.JTextField procedureGroupTxt;
+    private javax.swing.JButton refreshBtn;
+    private javax.swing.JButton removeRowMainBtn;
+    private javax.swing.JButton removeRowParametersBtn;
+    private javax.swing.JPanel reportBodyPanel;
+    private javax.swing.JPanel reportPanel;
+    private javax.swing.JButton saveGroupingBtn;
+    private javax.swing.JButton saveMainCategoryBtn;
+    private javax.swing.JButton saveParametersBtn;
     private javax.swing.JButton searchButton1;
+    private javax.swing.JCheckBox siParametersChkbx;
+    private javax.swing.JTable siParametersTable;
+    private javax.swing.JLabel spacerLbl;
+    private javax.swing.JLabel specimenCodeLbl;
+    private javax.swing.JLabel specimenNameLbl;
+    private javax.swing.JPanel specimenNameSeacrhPanel;
+    private javax.swing.JTextField specimenNameTxt;
+    private javax.swing.JTextField specimentCodeTxt;
+    private javax.swing.JLabel testCodeLbl;
+    private javax.swing.JLabel testDescriptionLbl;
+    private javax.swing.JButton testDescriptionSeacrhBtn;
+    private javax.swing.JPanel testDescriptionSearchPanel;
     // End of variables declaration//GEN-END:variables
 }

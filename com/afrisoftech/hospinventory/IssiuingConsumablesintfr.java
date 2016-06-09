@@ -915,6 +915,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
 
         jButton7.setMnemonic('p');
         jButton7.setText("Save & Print");
+        jButton7.setEnabled(false);
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -1732,6 +1733,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
             }
 
         } catch (java.sql.SQLException sq) {
+            sq.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
             System.out.println(sq.getMessage());
 
@@ -2063,6 +2065,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
                 // javax.swing.JOptionPane.showMessageDialog(this, "Enter quantity issued","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
 
                 } catch (java.sql.SQLException sq) {
+                    sq.printStackTrace();
                     javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
 
                     try {
@@ -2075,6 +2078,7 @@ public class IssiuingConsumablesintfr extends javax.swing.JInternalFrame {
                 }
 
             } catch (java.lang.Exception ex) {
+                ex.printStackTrace();
                 System.out.println(ex.getMessage());
                 javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 

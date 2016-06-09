@@ -1030,6 +1030,12 @@ public class BodyCollectionIntfr extends javax.swing.JInternalFrame {
 
                 if (!this.nokIDNumberTxt.getText().isEmpty() && !nokNameTxt.getText().isEmpty() && !this.nokTelephoneTxt.getText().isEmpty()) {
 
+                    if(tagNumberTxt.getText().length() < 2){
+                        
+                        tagNumberTxt.setText(bodyNumberTxt.getText());
+                        
+                    }
+                    
                     java.util.Calendar calendar = java.util.Calendar.getInstance();
 
                     long dateNow = calendar.getTimeInMillis();

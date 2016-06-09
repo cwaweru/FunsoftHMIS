@@ -415,7 +415,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="0" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Receiving store"/>
+            <Property name="text" type="java.lang.String" value="Ordering store"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -428,7 +428,6 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT supplier_name FROM st_suppliers ORDER BY supplier_name&quot;)" type="code"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="supplierCmbxActionPerformed"/>
@@ -461,7 +460,6 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT store_name FROM st_main_stores ORDER BY store_name&quot;)" type="code"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -1000,7 +998,7 @@
                     <Column editable="false" title="Item" type="java.lang.Object"/>
                     <Column editable="false" title="Strength" type="java.lang.Object"/>
                     <Column editable="false" title="Balance" type="java.lang.Double"/>
-                    <Column editable="true" title="Unit Pack" type="java.lang.Object"/>
+                    <Column editable="true" title="Units/Pack" type="java.lang.Double"/>
                     <Column editable="true" title="Qty" type="java.lang.Double"/>
                     <Column editable="true" title="Unit price" type="java.lang.Double"/>
                     <Column editable="false" title="Gross Value" type="java.lang.Double"/>

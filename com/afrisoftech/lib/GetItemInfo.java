@@ -246,7 +246,9 @@ public class GetItemInfo {
         String code = null;
         com.afrisoftech.lib.DBObject DBObject = new com.afrisoftech.lib.DBObject();
         try {
-            java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT DISTINCT upper(code) from st_main_stores where store_name ilike '" + store_name + "' UNION  SELECT  DISTINCT  income_account from pb_departments WHERE department_name  ilike '" + store_name + "'  ORDER BY 1 limit 1");
+                        java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT DISTINCT upper(code) from st_main_stores where store_name ilike '" + store_name + "' UNION  SELECT  DISTINCT  sales_code from st_stores WHERE store_name  ilike '" + store_name + "'  ORDER BY 1 limit 1");
+
+          //  java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT DISTINCT upper(code) from st_main_stores where store_name ilike '" + store_name + "' UNION  SELECT  DISTINCT  income_account from pb_departments WHERE department_name  ilike '" + store_name + "'  ORDER BY 1 limit 1");
             //java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT DISTINCT upper(status) from st_main_stores where store_name ilike '"+store_name+"' union  select  distinct  upper(cs_code) as status from st_stores where store_name ilike '"+store_name+"' ORDER BY 1 limit 1");
             java.sql.ResultSet rsetdesc = pst.executeQuery();
             while (rsetdesc.next()) {
@@ -255,6 +257,7 @@ public class GetItemInfo {
 
             }
         } catch (SQLException ex) {
+            
             Logger.getLogger(GetItemInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
 

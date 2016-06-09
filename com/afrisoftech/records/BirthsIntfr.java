@@ -669,7 +669,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
             jPanel17.add(jLabel51, gridBagConstraints);
 
-            admissionWardCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select ward_name from hp_wards WHERE ward_code ILIKE '%mat%' order by ward_name"));
+            admissionWardCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select ward_name from hp_wards WHERE ward_type ILIKE '%mat%' order by ward_name"));
             admissionWardCmbx.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     admissionWardCmbxMouseClicked(evt);
@@ -4279,7 +4279,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
                     + "admission_outcome,first_stage,second_stage,third_stage,total_time,"
                     + "visit_id, mother_condition, temperature, purlse, respiratory, fundus, pv_loss, bp,"
                     + "score_one, score_two, score_three, placenta_status, initiated_breast_feeding,"
-                            + " given_antibiotic, mid_wife, apgar_score_one, birth_deformities)"
+                    + " given_antibiotic, mid_wife, apgar_score_one, birth_deformities)"
                     + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pstmtPostNatal.setObject(1, rhClientCardNoTxt.getText());
             pstmtPostNatal.setObject(2, placeofLastDeliveryTxt.getText());
@@ -4310,7 +4310,6 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
             pstmtPostNatal.setDouble(23, java.lang.Double.valueOf(jTextField39.getText()));
             pstmtPostNatal.setDouble(24, java.lang.Double.valueOf(jTextField40.getText()));
             pstmtPostNatal.setDouble(25, java.lang.Double.valueOf(jTextField41.getText()));
-
             pstmtPostNatal.setObject(26, visitIDTxt.getText());
             pstmtPostNatal.setObject(27, jTextField21.getText());
             pstmtPostNatal.setDouble(28, java.lang.Double.valueOf(jTextField44.getText()));
@@ -4329,75 +4328,24 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
             pstmtPostNatal.setInt(41, Integer.parseInt(apgarScoreTxt.getText()));
             pstmtPostNatal.setObject(42, birthDeformitiesCmbx.getSelectedItem());
 
-
             pstmtPostNatal.execute();
 
-
-            //for (int j = 0; j < jTable1.getRowCount(); j++) {
-            //  if (jTable1.getValueAt(j, 0) != null) {
             String categ = "-";
+            
             java.sql.Statement stm12X = connectDB.createStatement();
 
-            /* java.sql.ResultSet rse12X = stm12X.executeQuery("SELECT condition_category FROM rh.condition_in_newborn WHERE condition_name = '" + jTable1.getValueAt(j, 0) + "'");
-             while (rse12X.next()) {
-             categ = rse12X.getObject(1).toString();
-             }*/
-
-//            java.sql.PreparedStatement pstmt = connectDB.prepareStatement(
-//                    "INSERT INTO rh.newborn_conditions_registered("
-//                    + "condition_found, condition_category, mother_no, date_registered) VALUES(?, ?, ?, ?)");
-//            pstmt.setObject(1, jTextPane3.getText());
-//            pstmt.setObject(2, "-");
-//            pstmt.setObject(3, rhClientCardNoTxt.getText());
-//            pstmt.setDate(4, com.afrisoftech.lib.SQLDateFormat.getSQLDate(rhVisitDatePicker.getDate()));
-//            pstmt.execute();
-            //   }
-            // }
-
-//            java.sql.PreparedStatement pstmt1xg = connectDB.prepareStatement("UPDATE hp_bed_setup SET occupied = ? where bed_no ilike '" + bedNo + "' and ward ilike '" + Ward + "'");
-//            pstmt1xg.setBoolean(1, false);
-//            pstmt1xg.executeUpdate();
-
             java.sql.PreparedStatement pstmt21 = connectDB.prepareStatement("UPDATE hp_admission SET diagnosed = true, diagnosis1 = '" + pnTypeofDeliveryCmbx.getSelectedItem() + "',diagnosis2 = '" + deliveryComplicationsCmbx.getSelectedItem() + "',diagnosis3 = '" + pnPatholgyDetailsTxt.getText() + "' WHERE patient_no ilike '" + rhClientCardNoTxt.getText() + "' AND visit_id ilike '" + visitIDTxt.getText() + "'");
-         //   java.sql.PreparedStatement pstmt21 = connectDB.prepareStatement("UPDATE hp_admission SET discharge = true,diagnosed = true,discharge_date = '" + datePicker3.getDate().toString() + "',discharged_by = current_user,transaction_type = '" + jComboBox4.getSelectedItem() + "', diagnosis1 = '" + pnTypeofDeliveryCmbx.getSelectedItem() + "',diagnosis2 = '" + pnSpecifyComplicationsTxt.getText() + "',diagnosis3 = '" + pnPatholgyDetailsTxt.getText() + "' WHERE patient_no ilike '" + rhClientCardNoTxt.getText() + "' AND visit_id ilike '" + visitIDTxt.getText() + "'");
 
             pstmt21.executeUpdate();
-            // if(jComboBox6.getSelectedItem() == null){
+
             java.sql.PreparedStatement pstmt23 = connectDB.prepareStatement("UPDATE hp_inpatient_register SET discharge_date = '" + datePicker3.getDate().toString() + "' WHERE patient_no ilike '" + rhClientCardNoTxt.getText() + "'");
 
-          //  pstmt23.executeUpdate();
-            // } else {
-            //     java.sql.PreparedStatement pstmt23 = connectDB.prepareStatement("UPDATE hp_inpatient_register set discharge_date = '"+datePicker3.getDate().toString()+"',file_location = '"+jComboBox6.getSelectedItem()+"' WHERE patient_no ilike '"+rhClientCardNoTxt.getText()+"'");
-
-            //      pstmt23.executeUpdate();
-
-            //     java.sql.PreparedStatement pstmt211x = connectDB.prepareStatement("UPDATE rh.hp_records_archive SET stored_files = stored_files+1 WHERE shelve_code = '"+jComboBox6.getSelectedItem()+"' AND department_name = '"+jComboBox5.getSelectedItem()+"'");
-
-            //     pstmt211x.executeUpdate();
-            // }
-           /* java.sql.PreparedStatement pstmtPostNatalFollowup = connectDB.prepareStatement("INSERT INTO rh.post_natal_exams(" +
-             "mother_serial_no, service_date, examination, result, remarks)" +
-             "VALUES (?, ?, ?, ?, ?)");
-
-             for (int j = 0; j < pnFollowUpTable.getRowCount(); j++) {
-             if (pnFollowUpTable.getValueAt(j, 0) != null) {
-             pstmtPostNatalFollowup.setObject(1, rhClientCardNoTxt.getText());
-             pstmtPostNatalFollowup.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(rhVisitDatePicker.getDate()));
-             pstmtPostNatalFollowup.setObject(3, pnFollowUpTable.getValueAt(j, 0));
-             pstmtPostNatalFollowup.setObject(4, pnFollowUpTable.getValueAt(j, 2));
-             pstmtPostNatalFollowup.setObject(5, pnFollowUpTable.getValueAt(j, 3));
-             pstmtPostNatalFollowup.execute();
-             // pstmtPostNatalFollowup.setObject(6,);
-
-             }
-             }*/
             results();
         } catch (java.sql.SQLException sqlEx) {
             sqlEx.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sqlEx.getLocalizedMessage());
         }
-        //  }
-        //}
+
 
 // TODO add your handling code here:
     }//GEN-LAST:event_pnSaveDataBtnActionPerformed
@@ -4420,7 +4368,6 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
     private void patientSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patientSearchTableMouseClicked
 
         // this.serialNoTxt.setText(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0).toString());
-
         this.rhClientCardNoTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 0).toString());
         //retrievedNoTxt.setText(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 1).toString()+" "+jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 2).toString());
         retrievedNoTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 1).toString());
@@ -4586,7 +4533,6 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
         try {
 
             // Date parser
-
             java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yy");
             com.afrisoftech.lib.DateFormatter dateFormatter = new com.afrisoftech.lib.DateFormatter(dateFormat.parse(rhVisitDatePicker.getDate().toString().trim()), "yy");
 
@@ -4595,7 +4541,6 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
             yrs = monthString;
 
             // Catch java.text.parse exception.
-
         } catch (java.text.ParseException prs) {
             prs.printStackTrace();
         }
@@ -4687,10 +4632,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
                      }
                      */
 
-
-
                     selectedchkbx = "Female";
-
 
                     if (this.jCheckBox2113.isSelected()) {
                         selectedStatus = jCheckBox2113.getText();
@@ -4713,7 +4655,6 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
                         ageYrs = rsnza.getDouble(1);
                     }
 
-
                     java.sql.Statement stmtDq = connectDB.createStatement();
                     java.sql.ResultSet rsetDq = stmtDq.executeQuery("select revdesc,revcode from hp_wards where ward_name = '" + admissionWardCmbx.getSelectedItem() + "'");
                     while (rsetDq.next()) {
@@ -4723,7 +4664,6 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
                         //    Type = rsetD.getObject(3).toString();
                         Main = rsetDq.getObject(1).toString();
                     }
-
 
                     java.sql.Statement stm1 = connectDB.createStatement();
                     java.sql.ResultSet rse1 = stm1.executeQuery("select code,activity,user from pb_activity where activity_category ='PR'");
@@ -4797,9 +4737,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
                          }*/
                     }
 
-
                     if (jRadioButton3.isSelected() || jRadioButton5.isSelected()) {
-
 
                         if (this.jTextField12.getText().equalsIgnoreCase(patientNo)) {
                             jLabel33.setForeground(java.awt.Color.red);
@@ -4853,8 +4791,6 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
 
                         String patNos = null;
 
-
-
                         java.sql.Statement pss1x = connectDB.createStatement();
                         java.sql.ResultSet rss1x = pss1x.executeQuery("select nextval('mat_no_seq')");
                         while (rss1x.next()) {
@@ -4875,13 +4811,10 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
                             jTextField12.setText(rss1.getObject(1).toString());
                         }
 
-
                         java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("UPDATE hp_inpatient_register SET patient_no = '" + jTextField12.getText() + "'  WHERE patient_no = '" + patientsNo2 + "'");
                         pstmt11.executeUpdate();
 
                     }
-
-
 
                     if (jTextField12.getText().equalsIgnoreCase(name)) {
                         javax.swing.JOptionPane.showMessageDialog(this, " Patient with patient no '" + name + "' already admitted ", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -4975,7 +4908,6 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
                         pstmt.setString(57, cSheetNoTxt.getText());
                         pstmt.executeUpdate();
 
-
                         java.sql.PreparedStatement pstmtf = connectDB.prepareStatement("INSERT INTO hp_maternity_register("
                                 + "file_no, surname, other_names, pat_age, marital_status, nok, "
                                 + "relationship, residence, para, gravida, gestation_period, clinic,"
@@ -5006,7 +4938,6 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
                         }
                         pstmtf.executeUpdate();
 
-
                         java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("UPDATE hp_inpatient_register set pay_mode = 'Cash',category = 'General',adm_date = '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(this.rhVisitDatePicker.getDate()) + "',payer = '" + nokNameTxt.getText() + "'  WHERE patient_no = '" + jTextField12.getText() + "'");
                         pstmt11.executeUpdate();
 
@@ -5018,9 +4949,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
                         visitIDTxt.setText(visitid);
                     }
 
-
                     //   javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully", "Comfirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
                 }
                 connectDB.commit();
                 connectDB.setAutoCommit(true);
@@ -5068,13 +4997,10 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
 //                    bedCategoryCmbx.getSelectedItem().toString(), nhifNumberTxt.getText());
 
             // this.jButton1.setVisible(true);
-
-
         } catch (java.lang.Exception ex) {
             ex.printStackTrace();
             System.out.println(ex.getMessage());
             javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : " + ex.toString(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-
 
         }
         // TODO add your handling code here:
@@ -5365,7 +5291,6 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
 
     private void pnSaveDataBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pnSaveDataBtn2ActionPerformed
 
-
         java.sql.Savepoint registerSavePoint = null;
         String dateOfBirth = null;
         try {
@@ -5376,7 +5301,6 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
         }
         try {
             try {
-
 
                 java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE hp_maternity_register SET fundus_height = ?,"
                         + " urine = ?, vaginal_discharge = ?, presentation = ?,"
@@ -5470,7 +5394,6 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
             ex.printStackTrace();
             System.out.println(ex.getMessage());
             javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : " + ex.toString(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-
 
         }
         // TODO add your handling code here:

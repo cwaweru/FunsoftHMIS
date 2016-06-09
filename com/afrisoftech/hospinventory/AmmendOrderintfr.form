@@ -26,9 +26,9 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="jTextField111">
+            <Component class="javax.swing.JTextField" name="searchItemTxt">
               <Events>
-                <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="jTextField111CaretUpdate"/>
+                <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="searchItemTxtCaretUpdate"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -36,7 +36,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jSearchScrollPane">
+            <Container class="javax.swing.JScrollPane" name="searchScrollPane">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                   <GridBagConstraints gridX="0" gridY="1" gridWidth="2" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="20.0"/>
@@ -45,27 +45,27 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jSearchTable">
+                <Component class="javax.swing.JTable" name="searchItemTable">
                   <Properties>
                     <Property name="showHorizontalLines" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jSearchTableMouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="searchItemTableMouseClicked"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable();"/>
                     <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value=""/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="   /*    try {&#xa;            searchRowSet.setCommand(&quot;select product,selling_price,gl_code FROM st_stock_prices WHERE department = &apos;Pharmacy&apos; order by product&quot;);&#xa;            searchRowSet.setConnectionSource(pConnDB);&#xa;            &#xa;            searchRowSet.execute();&#xa;            &#xa;            // crset2.setExecuteOnLoad(true);&#xa;            jSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {&#xa;                new org.netbeans.lib.sql.models.TableModel.Column(&quot;product&quot;, &quot;Description&quot;, false),&#xa;                new org.netbeans.lib.sql.models.TableModel.Column(&quot;selling_price&quot;, &quot;Amount&quot;, false),&#xa;                new org.netbeans.lib.sql.models.TableModel.Column(&quot;gl_code&quot;, &quot;Gl_code&quot;, false)&#xa;                &#xa;                &#xa;            }));&#xa;           // jSearchScrollPane.setViewportView(jSearchTable);&#xa;            &#xa;        } catch(java.sql.SQLException sqlex){&#xa;            javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),&quot;Error Message!&quot;,javax.swing.JOptionPane.ERROR_MESSAGE);&#xa;            &#xa;            System.out.println(sqlex.getMessage());&#xa;        }&#xa;    */"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="   /*    try {&#xa;            searchRowSet.setCommand(&quot;select product,selling_price,gl_code FROM st_stock_prices WHERE department = &apos;Pharmacy&apos; order by product&quot;);&#xa;            searchRowSet.setConnectionSource(pConnDB);&#xa;            &#xa;            searchRowSet.execute();&#xa;            &#xa;            // crset2.setExecuteOnLoad(true);&#xa;            searchItemTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {&#xa;                new org.netbeans.lib.sql.models.TableModel.Column(&quot;product&quot;, &quot;Description&quot;, false),&#xa;                new org.netbeans.lib.sql.models.TableModel.Column(&quot;selling_price&quot;, &quot;Amount&quot;, false),&#xa;                new org.netbeans.lib.sql.models.TableModel.Column(&quot;gl_code&quot;, &quot;Gl_code&quot;, false)&#xa;                &#xa;                &#xa;            }));&#xa;           // searchScrollPane.setViewportView(searchItemTable);&#xa;            &#xa;        } catch(java.sql.SQLException sqlex){&#xa;            javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),&quot;Error Message!&quot;,javax.swing.JOptionPane.ERROR_MESSAGE);&#xa;            &#xa;            System.out.println(sqlex.getMessage());&#xa;        }&#xa;    */"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButton9">
+            <Component class="javax.swing.JButton" name="searchDisposeBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Dispose"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchDisposeBtnActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -131,7 +131,7 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable();"/>
                     <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value=""/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*javax.swing.table.TableColumn column = null;&#xa;&#xa;              for (int i = 0; i &lt; 4; i++) {&#xa;                  &#xa;                  column = jSearchTable.getColumnModel().getColumn(i);&#xa;                  &#xa;                  if (i == 1) {&#xa;                      &#xa;                      column.setPreferredWidth(400);&#xa;                      //sport column is bigger&#xa;                  } else {&#xa;                      &#xa;                      column.setPreferredWidth(200);&#xa;                      &#xa;                  } &#xa;              }&#xa; */"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*javax.swing.table.TableColumn column = null;&#xa;&#xa;              for (int i = 0; i &lt; 4; i++) {&#xa;                  &#xa;                  column = searchItemTable.getColumnModel().getColumn(i);&#xa;                  &#xa;                  if (i == 1) {&#xa;                      &#xa;                      column.setPreferredWidth(400);&#xa;                      //sport column is bigger&#xa;                  } else {&#xa;                      &#xa;                      column.setPreferredWidth(200);&#xa;                      &#xa;                  } &#xa;              }&#xa; */"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
@@ -207,7 +207,7 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable();"/>
                     <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value=""/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*javax.swing.table.TableColumn column = null;&#xa;&#xa;              for (int i = 0; i &lt; 4; i++) {&#xa;                  &#xa;                  column = jSearchTable.getColumnModel().getColumn(i);&#xa;                  &#xa;                  if (i == 1) {&#xa;                      &#xa;                      column.setPreferredWidth(400);&#xa;                      //sport column is bigger&#xa;                  } else {&#xa;                      &#xa;                      column.setPreferredWidth(200);&#xa;                      &#xa;                  } &#xa;              }&#xa; */"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*javax.swing.table.TableColumn column = null;&#xa;&#xa;              for (int i = 0; i &lt; 4; i++) {&#xa;                  &#xa;                  column = searchItemTable.getColumnModel().getColumn(i);&#xa;                  &#xa;                  if (i == 1) {&#xa;                      &#xa;                      column.setPreferredWidth(400);&#xa;                      //sport column is bigger&#xa;                  } else {&#xa;                      &#xa;                      column.setPreferredWidth(200);&#xa;                      &#xa;                  } &#xa;              }&#xa; */"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
@@ -282,7 +282,7 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable();"/>
                     <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value=""/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="   /*    try {&#xa;            searchRowSet.setCommand(&quot;select product,selling_price,gl_code FROM st_stock_prices WHERE department = &apos;Pharmacy&apos; order by product&quot;);&#xa;            searchRowSet.setConnectionSource(pConnDB);&#xa;            &#xa;            searchRowSet.execute();&#xa;            &#xa;            // crset2.setExecuteOnLoad(true);&#xa;            jSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {&#xa;                new org.netbeans.lib.sql.models.TableModel.Column(&quot;product&quot;, &quot;Description&quot;, false),&#xa;                new org.netbeans.lib.sql.models.TableModel.Column(&quot;selling_price&quot;, &quot;Amount&quot;, false),&#xa;                new org.netbeans.lib.sql.models.TableModel.Column(&quot;gl_code&quot;, &quot;Gl_code&quot;, false)&#xa;                &#xa;                &#xa;            }));&#xa;           // jSearchScrollPane.setViewportView(jSearchTable);&#xa;            &#xa;        } catch(java.sql.SQLException sqlex){&#xa;            javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),&quot;Error Message!&quot;,javax.swing.JOptionPane.ERROR_MESSAGE);&#xa;            &#xa;            System.out.println(sqlex.getMessage());&#xa;        }&#xa;    */"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="   /*    try {&#xa;            searchRowSet.setCommand(&quot;select product,selling_price,gl_code FROM st_stock_prices WHERE department = &apos;Pharmacy&apos; order by product&quot;);&#xa;            searchRowSet.setConnectionSource(pConnDB);&#xa;            &#xa;            searchRowSet.execute();&#xa;            &#xa;            // crset2.setExecuteOnLoad(true);&#xa;            searchItemTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {&#xa;                new org.netbeans.lib.sql.models.TableModel.Column(&quot;product&quot;, &quot;Description&quot;, false),&#xa;                new org.netbeans.lib.sql.models.TableModel.Column(&quot;selling_price&quot;, &quot;Amount&quot;, false),&#xa;                new org.netbeans.lib.sql.models.TableModel.Column(&quot;gl_code&quot;, &quot;Gl_code&quot;, false)&#xa;                &#xa;                &#xa;            }));&#xa;           // searchScrollPane.setViewportView(searchItemTable);&#xa;            &#xa;        } catch(java.sql.SQLException sqlex){&#xa;            javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),&quot;Error Message!&quot;,javax.swing.JOptionPane.ERROR_MESSAGE);&#xa;            &#xa;            System.out.println(sqlex.getMessage());&#xa;        }&#xa;    */"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
@@ -870,13 +870,13 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="amemndOrderTable">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="6" rowCount="200">
                     <Column editable="false" title="Item Code" type="java.lang.Object"/>
                     <Column editable="false" title="Description" type="java.lang.Object"/>
-                    <Column editable="false" title="Units" type="java.lang.Object"/>
+                    <Column editable="false" title="Units" type="java.lang.Double"/>
                     <Column editable="true" title="Qty" type="java.lang.Double"/>
                     <Column editable="true" title="Unit Price" type="java.lang.Double"/>
                     <Column editable="true" title="Value" type="java.lang.Double"/>
@@ -885,13 +885,13 @@
                 <Property name="showHorizontalLines" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseClicked"/>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTable1KeyReleased"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="amemndOrderTableMouseClicked"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="amemndOrderTableKeyReleased"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable();"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value=""/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cmbox = new javax.swing.JComboBox();&#xa;//try{&#xa;  /*      crset2.setConnectionSource(pConnDB);&#xa;        crset2.setCommand(&quot;select distinct description FROM st_stock_item order by description&quot;);&#xa;   &#xa;   &#xa;        cmbox.setModel(new org.netbeans.lib.sql.models.ComboBoxModel(crset2, &quot;description&quot;, null, null, null));&#xa;        javax.swing.table.TableColumn s = this.jTable1.getColumn(&quot;Item&quot;);&#xa;        s.setCellEditor(new javax.swing.DefaultCellEditor(cmbox));&#xa;        cmbox.addActionListener(new java.awt.event.ActionListener() {&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;                cmboxActionPerformed(evt);&#xa;            }&#xa;        });&#xa;   //      } catch(java.sql.SQLException sqlExec) {&#xa;   &#xa;    //        javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());&#xa;   &#xa;    //   }&#xa;   */&#xa;javax.swing.table.TableColumn column = null;&#xa;for (int i = 0; i &lt; 6; i++) {&#xa;    column = jTable1.getColumnModel().getColumn(i);&#xa;    if (i == 0) {&#xa;        &#xa;        column.setPreferredWidth(80); //sport column is bigger&#xa;    } else {&#xa;        if (i == 1) {&#xa;            column.setPreferredWidth(400);&#xa;        }else{&#xa;        column.setPreferredWidth(200);&#xa;        // }  else&#xa;        //column.setPreferredWidth(50);&#xa;        &#xa;    }&#xa;}&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cmbox = new javax.swing.JComboBox();&#xa;//try{&#xa;  /*      crset2.setConnectionSource(pConnDB);&#xa;        crset2.setCommand(&quot;select distinct description FROM st_stock_item order by description&quot;);&#xa;   &#xa;   &#xa;        cmbox.setModel(new org.netbeans.lib.sql.models.ComboBoxModel(crset2, &quot;description&quot;, null, null, null));&#xa;        javax.swing.table.TableColumn s = this.jTable1.getColumn(&quot;Item&quot;);&#xa;        s.setCellEditor(new javax.swing.DefaultCellEditor(cmbox));&#xa;        cmbox.addActionListener(new java.awt.event.ActionListener() {&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;                cmboxActionPerformed(evt);&#xa;            }&#xa;        });&#xa;   //      } catch(java.sql.SQLException sqlExec) {&#xa;   &#xa;    //        javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());&#xa;   &#xa;    //   }&#xa;   */&#xa;javax.swing.table.TableColumn column = null;&#xa;for (int i = 0; i &lt; 6; i++) {&#xa;    column = amemndOrderTable.getColumnModel().getColumn(i);&#xa;    if (i == 0) {&#xa;        &#xa;        column.setPreferredWidth(80); //sport column is bigger&#xa;    } else {&#xa;        if (i == 1) {&#xa;            column.setPreferredWidth(400);&#xa;        }else{&#xa;        column.setPreferredWidth(200);&#xa;        // }  else&#xa;        //column.setPreferredWidth(50);&#xa;        &#xa;    }&#xa;}&#xa;}"/>
               </AuxValues>
             </Component>
           </SubComponents>

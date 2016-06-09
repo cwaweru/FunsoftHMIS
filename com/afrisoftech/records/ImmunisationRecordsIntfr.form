@@ -243,7 +243,7 @@
             <Component class="javax.swing.JComboBox" name="occupationCmbx">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB,&quot;SELECT occupations FROM pb_occupation ORDER BY occupations&quot;)" type="code"/>
+                  <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB,&quot;SELECT &apos;-&apos; as occupations UNION SELECT occupations FROM pb_occupation ORDER BY 1&quot;)" type="code"/>
                 </Property>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[100, 18]"/>
@@ -430,9 +430,6 @@
                       <Dimension value="[50, 18]"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="ageTxtCaretUpdate"/>
-                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                       <GridBagConstraints gridX="3" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="13" weightX="1.0" weightY="1.0"/>
@@ -441,7 +438,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="ageLbl">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Age(Years)"/>
+                    <Property name="text" type="java.lang.String" value="Age(Months)"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -528,6 +525,7 @@
                     </Property>
                     <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="Create New Card"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                     <Property name="horizontalTextPosition" type="int" value="10"/>
                     <Property name="iconTextGap" type="int" value="1"/>
                   </Properties>
@@ -573,6 +571,7 @@
                       <Color blue="ff" green="33" red="33" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Create Existing Card"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="4"/>
                     <Property name="horizontalTextPosition" type="int" value="10"/>
                   </Properties>
@@ -847,7 +846,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="saveMotherInfoBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Save data for Post Natal visit"/>
+            <Property name="text" type="java.lang.String" value="Save data for Immunisation visit"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveMotherInfoBtnActionPerformed"/>

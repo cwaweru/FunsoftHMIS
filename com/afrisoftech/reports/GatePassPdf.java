@@ -402,7 +402,7 @@ public class GatePassPdf implements java.lang.Runnable {
 
                             table.getDefaultCell().setColspan(2);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase("Form No : KNH 501".toUpperCase(), pFontHeader2);
+                            phrase = new Phrase("Form No : 501".toUpperCase(), pFontHeader2);
 
                             table.addCell(phrase);
                             while (rsetheader.next()) {

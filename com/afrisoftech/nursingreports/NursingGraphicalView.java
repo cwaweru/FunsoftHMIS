@@ -367,7 +367,8 @@ public class NursingGraphicalView extends javax.swing.JInternalFrame implements 
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jSplitPane1.setDividerSize(20);
+        jSplitPane1.setDividerLocation(200);
+        jSplitPane1.setDividerSize(10);
         jSplitPane1.setOneTouchExpandable(true);
 
         chartTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT chart_description  FROM nursing_charts order by 1 asc;"));
@@ -625,7 +626,7 @@ public class NursingGraphicalView extends javax.swing.JInternalFrame implements 
             }
             
         } catch(java.sql.SQLException sqlExec) {
-            
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sqlExec.getMessage());
             
         }
@@ -884,7 +885,7 @@ public class NursingGraphicalView extends javax.swing.JInternalFrame implements 
             }
             
         } catch(java.sql.SQLException sqlExec) {
-            
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sqlExec.getMessage());
             
         }
@@ -981,7 +982,7 @@ public class NursingGraphicalView extends javax.swing.JInternalFrame implements 
         org.jfree.data.JDBCPieDataset jdbcPIEDataset = null;
         
         try {
-            
+            System.out.println("Chart String : ["+chartQueryString+"]");
             jdbcPIEDataset =  new org.jfree.data.JDBCPieDataset(connectDB, chartQueryString);//"SELECT * FROM "+tableName);
             
         } catch (java.sql.SQLException sqlExec) {
@@ -1063,7 +1064,7 @@ public class NursingGraphicalView extends javax.swing.JInternalFrame implements 
     
     public void showChart(java.lang.String chartqueryString, java.lang.String selectedTableName) {
         
-      
+        System.out.println("Chart Query String ["+chartqueryString+"]");
         
         chartQueryString = chartqueryString;
         
@@ -1244,7 +1245,7 @@ public class NursingGraphicalView extends javax.swing.JInternalFrame implements 
         try {
 
             java.sql.PreparedStatement pstmtChart = connectDB.prepareStatement("SELECT chart_view, chart_type, "
-                    + "chart_header, x_axis, y_axis FROM charts_graphs WHERE chart_description = ?");
+                    + "chart_header, x_axis, y_axis FROM nursing_charts WHERE chart_description = ?");
 
             pstmtChart.setString(1, chartDescription);
 
@@ -1304,7 +1305,8 @@ public class NursingGraphicalView extends javax.swing.JInternalFrame implements 
         try {
 
 
-            this.showChart(chartDefinitionView +"'"+nameNoTxt.getText()+"' ", chartTitle);
+            this.showChart(chartDefinitionView, chartTitle);
+          /////  this.showChart(chartDefinitionView +"'"+nameNoTxt.getText()+"' ", chartTitle);
 
          
 

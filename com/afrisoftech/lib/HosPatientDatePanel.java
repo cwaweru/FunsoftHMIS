@@ -764,14 +764,9 @@ public class HosPatientDatePanel extends javax.swing.JDialog {
 
 
             case 5267: {
-                com.afrisoftech.laboratory.PatientcardPerDatePdf policy = new com.afrisoftech.laboratory.PatientcardPerDatePdf();
+                com.afrisoftech.reports.PatientCardPdf policy = new com.afrisoftech.reports.PatientCardPdf();
 
-                policy.PatientcardPerDatePdf(connectDB, datePicker1.getDate(), datePicker2.getDate(), jTextField36.getText());
-
-
-                //com.afrisoftech.reports.DetailedDiagPerPatDatePdf policy = new com.afrisoftech.reports.DetailedDiagPerPatDatePdf();
-
-                //policy.DetailedDiagPerPatDatePdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(), this.jTextField36.getText(), jTextField11.getText());
+                policy.PatientCardPdf(connectDB, datePicker1.getDate(), datePicker2.getDate(), jTextField36.getText());
 
                 this.dispose();
 

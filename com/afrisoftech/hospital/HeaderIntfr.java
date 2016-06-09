@@ -225,6 +225,7 @@ public class HeaderIntfr extends javax.swing.JInternalFrame {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
+            connectDB.setAutoCommit(false);
             java.sql.PreparedStatement stmt = connectDB.prepareStatement("delete from pb_header");
             // java.sql.ResultSet rset = stmt.executeQuery("delete from pb_header");
             stmt.executeUpdate();
@@ -251,7 +252,8 @@ public class HeaderIntfr extends javax.swing.JInternalFrame {
             
             pstmt1.executeUpdate();
             
-            
+            connectDB.commit();
+            connectDB.setAutoCommit(true);
             
             jLabel3.setForeground(java.awt.Color.blue);
             jLabel3.setText("Insert successful");

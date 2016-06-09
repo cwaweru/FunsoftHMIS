@@ -307,7 +307,7 @@ public class NhifRebeatIntfr extends javax.swing.JInternalFrame {
                 jTextField3.setText(rs.getObject(2).toString());
 
             }
-            jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT name as description,rate,compute_days::boolean, package_amount,rebate_code FROM pb_nssf_rebeats"));
+            jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT name as description,rate,compute_days::boolean, package_amount,code FROM pb_nssf_rebeats"));
             jButton1.setText("Update");
         } catch (java.sql.SQLException sqlex) {
             System.out.println(sqlex.getMessage());

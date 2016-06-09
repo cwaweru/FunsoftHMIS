@@ -74,7 +74,7 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new com.afrisoftech.dbadmin.JTable(){
+        mortBillingTable = new com.afrisoftech.dbadmin.JTable(){
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class
             };
@@ -430,7 +430,7 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        mortBillingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -553,10 +553,10 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setGridColor(new java.awt.Color(204, 204, 255));
+        mortBillingTable.setGridColor(new java.awt.Color(204, 204, 255));
         javax.swing.table.TableColumn column = null;
         for (int i = 0; i < 5; i++) {
-            column = jTable1.getColumnModel().getColumn(i);
+            column = mortBillingTable.getColumnModel().getColumn(i);
             if (i == 0) {
 
                 column.setPreferredWidth(500); //sport column is bigger
@@ -575,18 +575,18 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
                 }
             }
         }
-        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+        mortBillingTable.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTable1KeyReleased(evt);
+                mortBillingTableKeyReleased(evt);
             }
         });
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        mortBillingTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                mortBillingTableMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTable1);
-        jTable1.getAccessibleContext().setAccessibleParent(jScrollPane2);
+        jScrollPane2.setViewportView(mortBillingTable);
+        mortBillingTable.getAccessibleContext().setAccessibleParent(jScrollPane2);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1167,14 +1167,14 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
         setBounds(0, 0, 697, 446);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
-        if (jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 1) != null) {
-            if (jTable1.getSelectedColumn() == jTable1.getSelectedColumn()) {
-                float qty = java.lang.Float.parseFloat(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
-                float price = java.lang.Float.parseFloat(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+    private void mortBillingTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mortBillingTableKeyReleased
+        if (mortBillingTable.getModel().getValueAt(mortBillingTable.getSelectedRow(), 1) != null) {
+            if (mortBillingTable.getSelectedColumn() == mortBillingTable.getSelectedColumn()) {
+                float qty = java.lang.Float.parseFloat(mortBillingTable.getValueAt(mortBillingTable.getSelectedRow(), 1).toString());
+                float price = java.lang.Float.parseFloat(mortBillingTable.getValueAt(mortBillingTable.getSelectedRow(), 2).toString());
                 float total = qty * price;
-                jTable1.setValueAt(total, jTable1.getSelectedRow(), 3);
-                double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 3);
+                mortBillingTable.setValueAt(total, mortBillingTable.getSelectedRow(), 3);
+                double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(mortBillingTable, 3);
                 billTotalTxt.setText(java.lang.String.valueOf(totalSum));
             }
 
@@ -1210,14 +1210,14 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
          //}
          */
         // Add your handling code here:
-    }//GEN-LAST:event_jTable1KeyReleased
+    }//GEN-LAST:event_mortBillingTableKeyReleased
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        if (jTable1.getSelectedColumn() == 0) {
+    private void mortBillingTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mortBillingTableMouseClicked
+        if (mortBillingTable.getSelectedColumn() == 0) {
 
             this.cmboxMouseClicked();
         }          // Add your handling code here:
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_mortBillingTableMouseClicked
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
 
@@ -1242,8 +1242,6 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
         jSearchDialog31.setLocation(point);
 
         jSearchDialog31.setVisible(true);
-
-
 
     }
     private void jSearchTable31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable31MouseClicked
@@ -1277,15 +1275,12 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
             //                jSearchTable31.setShowHorizontalLines(false);
             jSearchScrollPane31.setViewportView(jSearchTable31);
 
-
         }        // Add your handling code here:
     }//GEN-LAST:event_jTextField1121CaretUpdate
     public void tableModelTableChanged1() {
         System.out.println("Calculating totals for table 11 and 2.");
         //        double resFloat = 0.00;
         double resFloat = 0.00;
-
-
 
         //               jTextField31.setText(java.lang.String.valueOf(resFloat));
     }
@@ -1295,22 +1290,21 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTableMouseClicked
-        jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0), jTable1.getSelectedRow(), 0);
-        jTable1.setValueAt(1, jTable1.getSelectedRow(), 1);
-        jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 1), jTable1.getSelectedRow(), 2);
-        jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 2), jTable1.getSelectedRow(), 4);
+        mortBillingTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0), mortBillingTable.getSelectedRow(), 0);
+        mortBillingTable.setValueAt(1, mortBillingTable.getSelectedRow(), 1);
+        mortBillingTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 1), mortBillingTable.getSelectedRow(), 2);
+        mortBillingTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 2), mortBillingTable.getSelectedRow(), 4);
         jTextField11.setText("");
-        double floatCol2 = java.lang.Double.parseDouble(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+        double floatCol2 = java.lang.Double.parseDouble(mortBillingTable.getValueAt(mortBillingTable.getSelectedRow(), 1).toString());
 
-        double floatCol3 = java.lang.Double.parseDouble(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+        double floatCol3 = java.lang.Double.parseDouble(mortBillingTable.getValueAt(mortBillingTable.getSelectedRow(), 2).toString());
 
         double resVal = floatCol2 * floatCol3;
 
-
-        jTable1.setValueAt(new java.lang.Float(resVal), jTable1.getSelectedRow(), 3);
+        mortBillingTable.setValueAt(new java.lang.Float(resVal), mortBillingTable.getSelectedRow(), 3);
 
         jSearchDialog.dispose();
-        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 3);
+        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(mortBillingTable, 3);
         billTotalTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
 
         // Add your handling code here:
@@ -1350,7 +1344,6 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
             }
         }
 
-
         // Add your handling code here:
     }//GEN-LAST:event_jTextField11CaretUpdate
     private void cmboxMouseClicked() {
@@ -1375,7 +1368,11 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
         serialNumberTxt.setText(bodySearchTable.getValueAt(bodySearchTable.getSelectedRow(), 0).toString());
         paymentModeTxt.setText(bodySearchTable.getValueAt(bodySearchTable.getSelectedRow(), 2).toString());
         jTextField2.setText(bodySearchTable.getValueAt(bodySearchTable.getSelectedRow(), 3).toString());
-        tagNumberTxt.setText(bodySearchTable.getValueAt(bodySearchTable.getSelectedRow(), 4).toString());
+        if (bodySearchTable.getValueAt(bodySearchTable.getSelectedRow(), 4) != null) {
+            tagNumberTxt.setText(bodySearchTable.getValueAt(bodySearchTable.getSelectedRow(), 4).toString());
+        } else {
+            tagNumberTxt.setText(bodySearchTable.getValueAt(bodySearchTable.getSelectedRow(), 0).toString());
+        }
 
         bodySearchDialog.dispose();
         java.text.DateFormat df = java.text.DateFormat.getDateInstance();
@@ -1465,11 +1462,9 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
          javax.swing.JOptionPane.showMessageDialog(this, "Patient not in ward", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
          }*/
-
         //        this.populateTable1(this.jTextField9.getText());
         //jTextField113.setText("");
         //jSearchDialog2.dispose();
-
         // Add your handling code here:
     }//GEN-LAST:event_bodySearchTableMouseClicked
 
@@ -1478,7 +1473,6 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
 
             if (bodySearchTxt.getCaretPosition() < 3) {
                 System.out.println("Nothing");
-
 
             } else {
 
@@ -1494,8 +1488,6 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
                     jSearchScrollPane2.setViewportView(bodySearchTable);
                 }
 
-
-
             }
         } else {
 
@@ -1504,10 +1496,7 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
             bodySearchTable.setShowHorizontalLines(false);
             jSearchScrollPane2.setViewportView(bodySearchTable);
 
-
-
         }
-
 
         // Add your handling code here:
     }//GEN-LAST:event_bodySearchTxtCaretUpdate
@@ -1532,10 +1521,6 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
 
         bodySearchDialog.setVisible(true);
 
-
-
-
-
     }
 
     /*
@@ -1545,40 +1530,30 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
             java.sql.Statement ps11 = connectDB.createStatement();
             java.sql.ResultSet rst11 = ps11.executeQuery("select code,sub_code from pb_activity WHERE activity ilike '" + revenueDeptCmbx.getSelectedItem() + "'");
 
-
             while (rst11.next()) {
 
                 jTextField12.setText(rst11.getString(1));
                 jTextField22.setText(rst11.getString(2));
-
-
 
             }
         } catch (java.sql.SQLException sqe) {
             sqe.printStackTrace();
             System.out.println("Select not successful");
 
-
         } // Add your handling code here:
     }//GEN-LAST:event_revenueDeptCmbxActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 
-        int rows2Delete = jTable1.getSelectedRowCount();
+        int rows2Delete = mortBillingTable.getSelectedRowCount();
 
-
-
-        int[] selectedRows = jTable1.getSelectedRows();
-
-
+        int[] selectedRows = mortBillingTable.getSelectedRows();
 
         if (rows2Delete < 1) {
 
             java.awt.Toolkit.getDefaultToolkit().beep();
 
             javax.swing.JOptionPane.showMessageDialog(this, "There are no selected rows to delete!");
-
-
 
         } else {
 
@@ -1587,28 +1562,21 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
                 for (int i = 0; i
                         < selectedRows.length; i++) {
 
-
-
-                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) mortBillingTable.getModel();
 
                     defTableModel.removeRow(selectedRows[i]);
 
-
-
                 }
-
-
 
             } else {
 
-                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) mortBillingTable.getModel();
 
-                defTableModel.removeRow(jTable1.getSelectedRow());
-
+                defTableModel.removeRow(mortBillingTable.getSelectedRow());
 
             }
         }
-        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 3);
+        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(mortBillingTable, 3);
         billTotalTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
 
         // Add your handling code here:
@@ -1618,17 +1586,16 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
         //        double resFloat = 0.00;
         double resFloat = 0.00;
 
+        for (int i = 0; i < mortBillingTable.getRowCount(); i++) {
 
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            if (mortBillingTable.getValueAt(i, 3) != null) {
 
-            if (jTable1.getValueAt(i, 3) != null) {
-
-                resFloat = resFloat + Double.parseDouble(jTable1.getValueAt(i, 3).toString());
+                resFloat = resFloat + Double.parseDouble(mortBillingTable.getValueAt(i, 3).toString());
 
                 billTotalTxt.setText(java.lang.String.valueOf(resFloat));
 
             } else {
-                resFloat = resFloat + Double.parseDouble(jTable1.getValueAt(i, 3).toString());
+                resFloat = resFloat + Double.parseDouble(mortBillingTable.getValueAt(i, 3).toString());
 
                 billTotalTxt.setText(java.lang.String.valueOf(resFloat));
 
@@ -1642,23 +1609,20 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
         //        double resFloat = 0.00;
         double resFloat = 0.00;
 
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+        for (int i = 0; i < mortBillingTable.getRowCount(); i++) {
 
-            if (jTable1.getValueAt(i, 3) != null) {
+            if (mortBillingTable.getValueAt(i, 3) != null) {
 
                 //   if (jTable11.getSelectedColumn() == 1) {
-
-                resFloat = resFloat + Double.parseDouble(jTable1.getValueAt(i, 3).toString());
+                resFloat = resFloat + Double.parseDouble(mortBillingTable.getValueAt(i, 3).toString());
 
                 //   }
-
                 billTotalTxt.setText(java.lang.String.valueOf(resFloat));
 
             } else {
-                resFloat = resFloat + Double.parseDouble(jTable1.getValueAt(i, 3).toString());
+                resFloat = resFloat + Double.parseDouble(mortBillingTable.getValueAt(i, 3).toString());
 
                 //   }
-
                 billTotalTxt.setText(java.lang.String.valueOf(resFloat));
             }
 
@@ -1720,7 +1684,7 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
     private void cmboxActionPerformed(java.awt.event.ActionEvent evt) {
         java.lang.Object selectedGuaran = cmbox.getSelectedItem();
-        int i = jTable1.getSelectedRow();
+        int i = mortBillingTable.getSelectedRow();
 
         if (selectedGuaran != null) {
 
@@ -1732,8 +1696,8 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
                 //java.sql.ResultSet rs = pstmt.executeQuery("select rate,gl_account from pb_operating_parameters where service_type = '"+selectedGuaran+"' UNION ALL select sp.selling_price,ac.code from st_stock_prices sp,pb_activity ac where ac.activity ='Stock' AND product = '"+selectedGuaran+"'");
                 while (rs.next()) {
                     //jTextField4.setText(rs.getObject(1).toString());
-                    jTable1.setValueAt(rs.getObject(1), i, 2);
-                    jTable1.setValueAt(rs.getObject(2), i, 4);
+                    mortBillingTable.setValueAt(rs.getObject(1), i, 2);
+                    mortBillingTable.setValueAt(rs.getObject(2), i, 4);
                 }
             } catch (java.sql.SQLException sqlex) {
                 System.out.println(sqlex.getMessage());
@@ -1747,9 +1711,9 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
         jTextField2.setText("");
         billTotalTxt.setText("");
         serialNumberTxt.setText("");
-        for (int k = 0; k < jTable1.getRowCount(); k++) {
-            for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                jTable1.setValueAt(null, k, r);
+        for (int k = 0; k < mortBillingTable.getRowCount(); k++) {
+            for (int r = 0; r < mortBillingTable.getColumnCount(); r++) {
+                mortBillingTable.setValueAt(null, k, r);
             }
         }
 
@@ -1761,8 +1725,10 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         if (serialNumberTxt.getText().length() > 1 && revenueDeptCmbx.getSelectedItem() != null
-                && jTextField12.getText().length() > 1 && billTotalTxt.getText() != "0.00"
-                && tagNumberTxt.getText().length() > 0){
+                && jTextField12.getText().length() > 1 && billTotalTxt.getText() != "0.00") {
+            if(tagNumberTxt.getText().length() < 2){
+                tagNumberTxt.setText(serialNumberTxt.getText());
+            }
             java.util.Date periodFrom = null;
             java.util.Date periodTo = null;
 
@@ -1785,8 +1751,8 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
                 javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
             } else {
-                if (jTable1.isEditing()) {
-                    jTable1.getCellEditor().stopCellEditing();
+                if (mortBillingTable.isEditing()) {
+                    mortBillingTable.getCellEditor().stopCellEditing();
                 }        //        tableModelTableChanged();
                 if (deceasedNameTxt.getText().equalsIgnoreCase("")) {
                     javax.swing.JOptionPane.showMessageDialog(this, "You cannot save without the name", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -1862,7 +1828,6 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
                         java.sql.Statement ps = connectDB.createStatement();
                         java.sql.ResultSet rst = ps.executeQuery("select nextval('transaction_no_seq')");
 
-
                         while (rst.next()) {
                             rst.getObject(1).toString();
 
@@ -1893,70 +1858,68 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
                             glAcc = rse121s.getObject(1).toString();
                             glCode = rse121s.getObject(2).toString();
                         }
-                        java.sql.PreparedStatement pstmts = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
-                        pstmts.setString(1, serialNumberTxt.getText());
-                        pstmts.setObject(2, accDesc1);
-                        pstmts.setString(3, jTextField2.getText());
-                        pstmts.setString(4, paymentModeTxt.getText());
-                        pstmts.setString(5, transNo);
-                        pstmts.setString(7, scheme);
-                        pstmts.setString(6, cardNo);
-                        pstmts.setString(8, cardName);
-                        pstmts.setString(9, isurer);
-                        pstmts.setDate(10, null);//java.sql.Date.valueOf(expDate.toString()));
-                        pstmts.setString(11, "");
-                        pstmts.setDouble(12, qty * price);
-                        pstmts.setDouble(13, 0.00);
-                        pstmts.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                        pstmts.setObject(15, patientAcc);
-                        pstmts.setString(16, glAcc);
-                        pstmts.setDouble(17, qty);
-                        pstmts.setObject(18, staffNo);
-                        pstmts.setBoolean(19, false);
-                        pstmts.setString(20, "Billing");
-                        pstmts.setBoolean(21, false);
-                        pstmts.setString(22, AccDesc);
-                        pstmts.setString(23, visitid);
-                        pstmts.setString(24, user);
-                        pstmts.setString(25, billNo);
-                        pstmts.setString(26, "MOT");
-                        pstmts.setTimestamp(27, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));//com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.util.Calendar.getInstance().getTime()));
-                        pstmts.setString(28, visitid);
-                        pstmts.executeUpdate();
-                        //     pstmt.setString(27,"'now'");
+//                        java.sql.PreparedStatement pstmts = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
+//                        pstmts.setString(1, serialNumberTxt.getText());
+//                        pstmts.setObject(2, accDesc1);
+//                        pstmts.setString(3, jTextField2.getText());
+//                        pstmts.setString(4, paymentModeTxt.getText());
+//                        pstmts.setString(5, transNo);
+//                        pstmts.setString(7, scheme);
+//                        pstmts.setString(6, cardNo);
+//                        pstmts.setString(8, cardName);
+//                        pstmts.setString(9, isurer);
+//                        pstmts.setDate(10, null);//java.sql.Date.valueOf(expDate.toString()));
+//                        pstmts.setString(11, "");
+//                        pstmts.setDouble(12, qty * price);
+//                        pstmts.setDouble(13, 0.00);
+//                        pstmts.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+//                        pstmts.setObject(15, patientAcc);
+//                        pstmts.setString(16, glAcc);
+//                        pstmts.setDouble(17, qty);
+//                        pstmts.setObject(18, staffNo);
+//                        pstmts.setBoolean(19, false);
+//                        pstmts.setString(20, "Billing");
+//                        pstmts.setBoolean(21, false);
+//                        pstmts.setString(22, AccDesc);
+//                        pstmts.setString(23, visitid);
+//                        pstmts.setString(24, user);
+//                        pstmts.setString(25, billNo);
+//                        pstmts.setString(26, "MOT");
+//                        pstmts.setTimestamp(27, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));//com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.util.Calendar.getInstance().getTime()));
+//                        pstmts.setString(28, visitid);
+//                        pstmts.executeUpdate();
+//                        //     pstmt.setString(27,"'now'");
+//
+//                        java.sql.PreparedStatement pstmt241 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+//                        pstmt241.setObject(1, glCode);
+//                        pstmt241.setString(2, glAcc);
+//                        pstmt241.setString(3, serialNumberTxt.getText());
+//                        pstmt241.setString(4, deceasedNameTxt.getText());
+//                        pstmt241.setString(5, "");
+//                        pstmt241.setString(6, cardNo);
+//                        pstmt241.setString(7, cardName);
+//                        pstmt241.setString(8, "OP");
+//                        pstmt241.setString(9, jTextField8.getText());
+//                        pstmt241.setString(10, paymentModeTxt.getText());
+//                        pstmt241.setString(11, "");
+//                        pstmt241.setString(12, "");
+//                        pstmt241.setString(13, "");
+//                        pstmt241.setString(14, accDesc1);
+//                        pstmt241.setString(15, "Revenue");
+//                        pstmt241.setDouble(16, 0.00);
+//                        pstmt241.setDouble(17, qty * price);
+//                        pstmt241.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+//                        pstmt241.setString(19, transNo);
+//                        pstmt241.setBoolean(20, false);
+//                        pstmt241.setBoolean(21, false);
+//                        pstmt241.setBoolean(22, false);
+//                        pstmt241.setString(23, user);
+//                        pstmt241.executeUpdate();
 
-
-
-                        java.sql.PreparedStatement pstmt241 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-                        pstmt241.setObject(1, glCode);
-                        pstmt241.setString(2, glAcc);
-                        pstmt241.setString(3, serialNumberTxt.getText());
-                        pstmt241.setString(4, deceasedNameTxt.getText());
-                        pstmt241.setString(5, "");
-                        pstmt241.setString(6, cardNo);
-                        pstmt241.setString(7, cardName);
-                        pstmt241.setString(8, "OP");
-                        pstmt241.setString(9, jTextField8.getText());
-                        pstmt241.setString(10, paymentModeTxt.getText());
-                        pstmt241.setString(11, "");
-                        pstmt241.setString(12, "");
-                        pstmt241.setString(13, "");
-                        pstmt241.setString(14, accDesc1);
-                        pstmt241.setString(15, "Revenue");
-                        pstmt241.setDouble(16, 0.00);
-                        pstmt241.setDouble(17, qty * price);
-                        pstmt241.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                        pstmt241.setString(19, transNo);
-                        pstmt241.setBoolean(20, false);
-                        pstmt241.setBoolean(21, false);
-                        pstmt241.setBoolean(22, false);
-                        pstmt241.setString(23, user);
-                        pstmt241.executeUpdate();
-
-                        for (int i = 0; i < jTable1.getRowCount(); i++) {
-                            if (jTable1.getValueAt(i, 0) != null) {
+                        for (int i = 0; i < mortBillingTable.getRowCount(); i++) {
+                            if (mortBillingTable.getValueAt(i, 0) != null) {
                                 java.sql.Statement stm121q = connectDB.createStatement();
-                                java.sql.ResultSet rse121 = stm121q.executeQuery("select activity,code from pb_activity where code ='" + jTable1.getValueAt(i, 4).toString() + "'");
+                                java.sql.ResultSet rse121 = stm121q.executeQuery("select activity,code from pb_activity where code ='" + mortBillingTable.getValueAt(i, 4).toString() + "'");
 
                                 while (rse121.next()) {
 
@@ -1964,11 +1927,9 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
                                     glCode = rse121.getObject(2).toString();
                                 }
 
-
-
                                 java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
                                 pstmt.setString(1, serialNumberTxt.getText());
-                                pstmt.setObject(2, jTable1.getValueAt(i, 0).toString());
+                                pstmt.setObject(2, mortBillingTable.getValueAt(i, 0).toString());
                                 pstmt.setString(3, jTextField2.getText());
                                 pstmt.setString(4, paymentModeTxt.getText());
                                 pstmt.setString(5, transNo);
@@ -1978,12 +1939,12 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
                                 pstmt.setString(9, isurer);
                                 pstmt.setDate(10, null);//java.sql.Date.valueOf(expDate.toString()));
                                 pstmt.setString(11, "");
-                                pstmt.setDouble(12, java.lang.Double.valueOf(jTable1.getValueAt(i, 3).toString()));
+                                pstmt.setDouble(12, java.lang.Double.valueOf(mortBillingTable.getValueAt(i, 3).toString()));
                                 pstmt.setDouble(13, 0.00);
                                 pstmt.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
                                 pstmt.setObject(15, patientAcc);
                                 pstmt.setString(16, glAcc);
-                                pstmt.setDouble(17, java.lang.Double.valueOf(jTable1.getValueAt(i, 1).toString()));
+                                pstmt.setDouble(17, java.lang.Double.valueOf(mortBillingTable.getValueAt(i, 1).toString()));
                                 pstmt.setObject(18, staffNo);
                                 pstmt.setBoolean(19, false);
                                 pstmt.setString(20, "Billing");
@@ -1998,10 +1959,8 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
                                 pstmt.executeUpdate();
                                 //     pstmt.setString(27,"'now'");
 
-
-
                                 java.sql.PreparedStatement pstmt24 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-                                pstmt24.setObject(1, jTable1.getValueAt(i, 4).toString());
+                                pstmt24.setObject(1, mortBillingTable.getValueAt(i, 4).toString());
                                 pstmt24.setString(2, glAcc);
                                 pstmt24.setString(3, serialNumberTxt.getText());
                                 pstmt24.setString(4, deceasedNameTxt.getText());
@@ -2014,10 +1973,10 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
                                 pstmt24.setString(11, "");
                                 pstmt24.setString(12, "");
                                 pstmt24.setString(13, "");
-                                pstmt24.setString(14, jTable1.getValueAt(i, 0).toString());
+                                pstmt24.setString(14, mortBillingTable.getValueAt(i, 0).toString());
                                 pstmt24.setString(15, "Revenue");
                                 pstmt24.setDouble(16, 0.00);
-                                pstmt24.setDouble(17, java.lang.Double.valueOf(jTable1.getValueAt(i, 3).toString()));
+                                pstmt24.setDouble(17, java.lang.Double.valueOf(mortBillingTable.getValueAt(i, 3).toString()));
                                 pstmt24.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
                                 pstmt24.setString(19, transNo);
                                 pstmt24.setBoolean(20, false);
@@ -2026,13 +1985,11 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
                                 pstmt24.setString(23, user);
                                 pstmt24.executeUpdate();
 
-
                             }
                         }
 
                         connectDB.commit();
                         connectDB.setAutoCommit(true);
-
 
                         // jLabel7.setForeground(java.awt.Color.blue);
                         // jLabel7.setText("Insert successful");
@@ -2041,9 +1998,9 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
                         jTextField2.setText("");
                         billTotalTxt.setText("0.00");
                         serialNumberTxt.setText("");
-                        for (int k = 0; k < jTable1.getRowCount(); k++) {
-                            for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                                jTable1.setValueAt(null, k, r);
+                        for (int k = 0; k < mortBillingTable.getRowCount(); k++) {
+                            for (int r = 0; r < mortBillingTable.getColumnCount(); r++) {
+                                mortBillingTable.setValueAt(null, k, r);
                             }
                         }
                         billTotalTxt.setText("0.00");
@@ -2066,12 +2023,12 @@ public class MotBillingIntfr extends javax.swing.JInternalFrame {
             }
 
         } else {
-                        javax.swing.JOptionPane.showMessageDialog(this, "Please double check your entries. Make sure that all highlighted fields in RED have been filled.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, "Please double check your entries. Make sure that all highlighted fields in RED have been filled.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
-    }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
     private void jTextField92ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField92ActionPerformed
-java.text.DateFormat df = java.text.DateFormat.getDateInstance();
+        java.text.DateFormat df = java.text.DateFormat.getDateInstance();
 
         java.text.SimpleDateFormat sdf = (java.text.SimpleDateFormat) df;
 
@@ -2085,87 +2042,87 @@ java.text.DateFormat df = java.text.DateFormat.getDateInstance();
             }
         } catch (java.sql.SQLException sqe) {
             sqe.printStackTrace();
-        
 
-}        // TODO add your handling code here:
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_jTextField92ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-                
+
         com.afrisoftech.reports.FinalDescInPatientIntmlnvPdf policy = new com.afrisoftech.reports.FinalDescInPatientIntmlnvPdf();
-                
-        policy.FinalDescInPatientIntmlnvPdf(connectDB,"",serialNumberTxt.getText());
-       // ShowBill()
+
+        policy.FinalDescInPatientIntmlnvPdf(connectDB, "", serialNumberTxt.getText());
+        // ShowBill()
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private class SearchThread extends java.lang.Thread {
 
-    public void SearchThread() {
+        public void SearchThread() {
+        }
+
+        public void run() {
+
+            searchNames();
+
+        }
     }
 
-    public void run() {
+    private class SearchServicesThread extends java.lang.Thread {
 
-        searchNames();
+        public void SearchServicesThread() {
+        }
 
+        public void run() {
+
+            searchServices();
+
+        }
     }
-}
 
-private class SearchServicesThread extends java.lang.Thread {
-
-    public void SearchServicesThread() {
-    }
-
-    public void run() {
-
-        searchServices();
-
-    }
-}
-public void searchNames() {
+    public void searchNames() {
         int j = 0;
         int i = 0;
 
         /* if(jTextField113.getCaretPosition() < 3){
-        System.out.println("Nothing");
-        }else{
-        try {
-        System.out.println("Starting select clause");
-        /*  java.sql.Statement stmtTable11 = connectDB.createStatement();
+         System.out.println("Nothing");
+         }else{
+         try {
+         System.out.println("Starting select clause");
+         /*  java.sql.Statement stmtTable11 = connectDB.createStatement();
 
-        java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT count(patient_name)  FROM hp_pharmacy WHERE patient_name = '"+patient_no+"' AND paid = false UNION SELECT count(patient_name)  FROM hp_patient_billing WHERE patient_name = '"+patient_no+"' AND paid = false");
+         java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT count(patient_name)  FROM hp_pharmacy WHERE patient_name = '"+patient_no+"' AND paid = false UNION SELECT count(patient_name)  FROM hp_patient_billing WHERE patient_name = '"+patient_no+"' AND paid = false");
 
-        while (rsetTable11.next()) {
-        j = rsetTable11.getInt(1);
-        }
-        if (j > 0) {*/
+         while (rsetTable11.next()) {
+         j = rsetTable11.getInt(1);
+         }
+         if (j > 0) {*/
         /*     java.sql.Statement stmtTable1 = connectDB.createStatement();
 
-        // java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where patient_no ILIKE '"+jTextField113.getText()+"%' and last_visit > current_date - 20 order by second_name");// AND paid = false UNION SELECT service, quantity,(amount/quantity)::numeric(10,2),amount,gl_code  FROM hp_patient_billing WHERE patient_name = '"+patient_no+"' AND paid = false");
-        java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where second_name||' '||first_name||' '||last_name ILIKE '"+jTextField113.getText()+"%' order by second_name");
-        while (rsetTable1.next()) {
+         // java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where patient_no ILIKE '"+jTextField113.getText()+"%' and last_visit > current_date - 20 order by second_name");// AND paid = false UNION SELECT service, quantity,(amount/quantity)::numeric(10,2),amount,gl_code  FROM hp_patient_billing WHERE patient_name = '"+patient_no+"' AND paid = false");
+         java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where second_name||' '||first_name||' '||last_name ILIKE '"+jTextField113.getText()+"%' order by second_name");
+         while (rsetTable1.next()) {
 
-        System.out.println("Working at table row "+i);
-        jSearchTable2.setValueAt(rsetTable1.getObject(1), i, 0);
-        jSearchTable2.setValueAt(rsetTable1.getObject(2), i, 1);
-        // jTable111.setValueAt(rsetTable1.getObject(3), i, 2);
-        // jTable111.setValueAt(rsetTable1.getObject(4), i, 3);
-        // jTable111.setValueAt(rsetTable1.getObject(5), i, 4);
-        // jTable1.setValueAt(rsetTable1.getObject(6), i, 6);
+         System.out.println("Working at table row "+i);
+         jSearchTable2.setValueAt(rsetTable1.getObject(1), i, 0);
+         jSearchTable2.setValueAt(rsetTable1.getObject(2), i, 1);
+         // jTable111.setValueAt(rsetTable1.getObject(3), i, 2);
+         // jTable111.setValueAt(rsetTable1.getObject(4), i, 3);
+         // jTable111.setValueAt(rsetTable1.getObject(5), i, 4);
+         // jTable1.setValueAt(rsetTable1.getObject(6), i, 6);
 
-        i++;
+         i++;
 
-        }
+         }
 
 
-        //}
+         //}
 
-        } catch(java.sql.SQLException sqlExec) {
+         } catch(java.sql.SQLException sqlExec) {
 
-        javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
+         javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
 
-        }
-        }
+         }
+         }
          */
     }
 
@@ -2235,7 +2192,6 @@ public void searchNames() {
     private javax.swing.JTable jSearchTable31;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField1121;
     private javax.swing.JTextField jTextField12;
@@ -2245,6 +2201,7 @@ public void searchNames() {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField92;
+    private javax.swing.JTable mortBillingTable;
     private javax.swing.JTextField paymentModeTxt;
     private javax.swing.JComboBox revenueDeptCmbx;
     private javax.swing.JTextField schemeTxt;

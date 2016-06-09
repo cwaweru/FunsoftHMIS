@@ -5,6 +5,9 @@
  */
 package com.afrisoftech.records;
 
+import java.sql.SQLException;
+import org.openide.util.Exceptions;
+
 /**
  *
  * @author Charles Waweru <cwaweru@systempartners.biz>
@@ -441,6 +444,7 @@ public class MCHFamilyPlanningIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             ancMotherInfoPanel.add(ancNumberLbl, gridBagConstraints);
 
+            fpClinicNumberTxt.setEditable(false);
             fpClinicNumberTxt.setPreferredSize(new java.awt.Dimension(150, 20));
             fpClinicNumberTxt.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -818,7 +822,7 @@ public class MCHFamilyPlanningIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             ancMotherInfoPanel.add(hivTestResultsCmbx, gridBagConstraints);
 
-            cancerTestingCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "1 - VIA", "2 - VILI", "3 - HPV VILI", "4 - HPV", "5 - Pap Smear" }));
+            cancerTestingCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "1 - VIA/VILI", "2 - VILI", "3 - HPV VILI", "4 - HPV", "5 - Pap Smear", " " }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 4;
             gridBagConstraints.gridy = 10;
@@ -872,7 +876,7 @@ public class MCHFamilyPlanningIntfr extends javax.swing.JInternalFrame {
             buttonPanel.setPreferredSize(new java.awt.Dimension(224, 20));
             buttonPanel.setLayout(new java.awt.GridBagLayout());
 
-            saveMotherInfoBtn.setText("Save data for Post Natal visit");
+            saveMotherInfoBtn.setText("Save data for FP visit");
             saveMotherInfoBtn.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     saveMotherInfoBtnActionPerformed(evt);
@@ -951,7 +955,22 @@ public class MCHFamilyPlanningIntfr extends javax.swing.JInternalFrame {
 }//GEN-LAST:event_regEditdataBtnActionPerformed
 
     private void saveMotherInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMotherInfoBtnActionPerformed
-        if (fpClinicNumberTxt.getText().isEmpty() || ageTxt.getText().isEmpty() || patientNumberTxt.getText().isEmpty()) {
+
+        String fpNumber = null;
+        try {
+            java.sql.PreparedStatement pstmtFP = connectDB.prepareStatement("SELECT 'FP'||lpad(nextval('fp_no_seq')::text,8,0::text)");
+            java.sql.ResultSet rsetFP = pstmtFP.executeQuery();
+            while (rsetFP.next()) {
+                fpNumber = rsetFP.getString(1);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Exceptions.printStackTrace(ex);
+        }
+        if (fpClinicNumberTxt.getText().isEmpty()) {
+            fpClinicNumberTxt.setText(fpNumber);
+        }
+        if (fpClinicNumberTxt.getText().isEmpty() || ageTxt.getText().isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Patient number, patient age, Clinic number cannot be empty");
         } else {
             try {
@@ -1026,19 +1045,15 @@ public class MCHFamilyPlanningIntfr extends javax.swing.JInternalFrame {
     }
     private void searchANCFileTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchANCFileTxtCaretUpdate
         //        if(jCheckBox7.isSelected()){
-        if (searchANCFileTxt.getCaretPosition() < 6) {
+        if (searchANCFileTxt.getCaretPosition() < 4) {
 
             System.out.println("Nothing");
         } else {
             ancSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT "
-                    + "patient_no,first_name,second_name,last_name FROM"
-                    + " hp_patient_register WHERE (patient_no ILIKE '%" + searchANCFileTxt.getText() + "%' "
-                    + "OR first_name||' '||second_name||' '||last_name ILIKE '%" + searchANCFileTxt.getText() + "%') AND sex ilike 'female' "
-                    + "UNION "
-                    + "SELECT DISTINCT patient_no,first_name,second_name,last_name FROM"
-                    + " hp_inpatient_register WHERE (patient_no ILIKE '%" + searchANCFileTxt.getText() + "%' "
-                    + "OR first_name||' '||second_name||' '||last_name ILIKE '%" + searchANCFileTxt.getText() + "%') AND sex ilike 'female' "
-                    + " ORDER BY 1"));
+                    + "fp_clinic_no,full_name FROM"
+                    + " rh.fp_services_register WHERE (fp_clinic_no ILIKE '%" + searchANCFileTxt.getText() + "%' "
+                    + "OR full_name ILIKE '%" + searchANCFileTxt.getText() + "%') "
+                    + " ORDER BY 2"));
             ancSearchTable.setShowHorizontalLines(false);
             ancSearchScrollPane.setViewportView(ancSearchTable);
 
@@ -1076,42 +1091,20 @@ public class MCHFamilyPlanningIntfr extends javax.swing.JInternalFrame {
 }//GEN-LAST:event_searchANCFileTxtFocusLost
 
     private void ancSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ancSearchTableMouseClicked
+        java.util.StringTokenizer tokenizer = new java.util.StringTokenizer(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 1).toString());
+
         this.fpClinicNumberTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 0).toString());
         this.patientNumberTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 0).toString());
-        this.lastNameTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 1).toString());
-        middleNameTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 2).toString());
-        firstNameTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 3).toString());
+        for (int i = 0; i < tokenizer.countTokens(); i++) {
+            if (i == 0) {
+                firstNameTxt.setText(tokenizer.nextToken());
+                middleNameTxt.setText(tokenizer.nextToken());
+                lastNameTxt.setText(tokenizer.nextToken());
+            }
+
+        }
 //        ageTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 4).toString());
 
-        try {
-            java.sql.Statement stmt1 = connectDB.createStatement();
-            java.sql.ResultSet rset1 = stmt1.executeQuery("SELECT file_no,surname,other_names,pat_age,nok,relationship,residence,date_admitted FROM hp_maternity_register WHERE file_no ='" + fpClinicNumberTxt.getText() + "' ORDER By date_admitted DESC LIMIT 1");
-            while (rset1.next()) {
-
-                commentsTxt.setText(rset1.getObject(1).toString());
-                //  placeofDeliveryTxt.setText(rset1.getObject(2).toString());
-                //   jTextField25.setText(rset1.getObject(3).toString());
-                ageTxt.setText(rset1.getObject(4).toString());
-                //jTextField8.setText(rset1.getObject(5).toString());
-                // this.nokRelationShipCmbx.setSelectedItem(rset1.getObject(6).toString());
-                residenceTxt.setText(rset1.getObject(7).toString());
-            }
-
-            java.sql.Statement stmt12 = connectDB.createStatement();
-            java.sql.ResultSet rset12 = stmt12.executeQuery("SELECT address,pat_district,pat_location,chief_name,sub_chief FROM hp_admission WHERE patient_no ='" + fpClinicNumberTxt.getText() + "'  ");
-            while (rset12.next()) {
-
-                java.text.DateFormat df = java.text.DateFormat.getDateInstance();
-                java.text.SimpleDateFormat sdf = (java.text.SimpleDateFormat) df;
-
-                sdf.applyPattern("yyyy-MM-dd");
-            }
-
-        } catch (java.sql.SQLException sqe) {
-            sqe.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(this, sqe.getMessage());
-            //  System.out.println("Insert not successful");
-        }
         ancSearchDialog.dispose();
 
         // Add your handling code here:
@@ -1129,11 +1122,11 @@ public class MCHFamilyPlanningIntfr extends javax.swing.JInternalFrame {
 
     private void regClearFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regClearFormBtnActionPerformed
         this.getContentPane().removeAll();
-        
+
         this.initComponents();
-        
+
         this.setSize(this.getParent().getSize());
-        
+
 //        hivCounsellingCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Birth Plan", "Danger Signs", "FP", "HIV", "Supplemental Feeding", "Breast Care", "Infant Feeding", "ITN"}));
 //        referralOUTCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Y", "N"}));
 //        //   serologyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Non Reactive", "Reactive"}));
@@ -1196,91 +1189,18 @@ public class MCHFamilyPlanningIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_createExistingCardRdbtnActionPerformed
 
     private void revisitRdbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_revisitRdbtnActionPerformed
-        hivCounsellingCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Birth Plan", "Danger Signs", "FP", "HIV", "Supplemental Feeding", "Breast Care", "Infant Feeding", "ITN"}));
-        genderCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Single", "Married", "Divorced", "Window", "Other"}));
-        religionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT religion_name FROM pb_religion ORDER BY religion_name"));
-        occupationCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT occupations FROM pb_occupation ORDER BY occupations"));
-        residenceTxt.setText("");
-        fpClinicNumberTxt.setText("");
-        firstNameTxt.setText("");
-        searchANCFileTxt.setText("");
-        middleNameTxt.setText("");
-        lastNameTxt.setText("");
-        addressTxt.setText("");
-        telephoneTxt.setText("");
-        nextTxt.setText("");
-        ageTxt.setText("0");
-        middleNameTxt.setEditable(false);
-        lastNameTxt.setEditable(false);
-        addressTxt.setEditable(false);
-        telephoneTxt.setEditable(false);
-        nextTxt.setEditable(false);
-        ageTxt.setEditable(false);
-        residenceTxt.setEditable(false);
-        fpClinicNumberTxt.setEditable(false);
-        ancCardSearchField.setEnabled(true);
-        firstNameTxt.setEditable(false);
+    
+       //  this.regClearFormBtn.doClick();
+         
+       //  revisitRdbtn.setEnabled(true);
+        
         // Add your handling code here:
     }//GEN-LAST:event_revisitRdbtnActionPerformed
 
     private void createNewCardRdbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewCardRdbtnActionPerformed
-        hivCounsellingCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Birth Plan", "Danger Signs", "FP", "HIV", "Supplemental Feeding", "Breast Care", "Infant Feeding", "ITN"}));
-        referralOUTCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Y", "N"}));
-        //  serologyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Non Reactive", "Reactive"}));
-        referralINCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "KP", "U"}));
-//        hivResultCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "NA"}));
-        educationLevelCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT edu_name FROM pb_education ORDER BY edu_name"));
-        genderCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Single", "Married", "Divorced", "Window", "Other"}));
-        religionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT religion_name FROM pb_religion ORDER BY religion_name"));
-        occupationCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT occupations FROM pb_occupation ORDER BY occupations"));
-        residenceTxt.setText("");
-//        placeofDeliveryTxt.setText("");
-        fpClinicNumberTxt.setText("");
-        firstNameTxt.setText("");
-        searchANCFileTxt.setText("");
-//        bloodGroupTxt.setText("");
-        middleNameTxt.setText("");
-        lastNameTxt.setText("");
-        addressTxt.setText("");
-        telephoneTxt.setText("");
-        nextTxt.setText("");
-        ageTxt.setText("0");
-//        bloodGroupTxt.setEditable(true);
-        middleNameTxt.setEditable(true);
-        lastNameTxt.setEditable(true);
-        addressTxt.setEditable(true);
-        telephoneTxt.setEditable(true);
-        nextTxt.setEditable(true);
-        // parityTxt.setEditable(true);
-        //  gravidaTxt.setEditable(true);
-        ageTxt.setEditable(true);
-//        rhesusFactorTxt.setEditable(true);
-        residenceTxt.setEditable(true);
-        fpClinicNumberTxt.setEditable(true);
-        ancCardSearchField.setEnabled(true);
-        firstNameTxt.setEditable(true);
-        String useonenumber = null;
-        try {
-            java.sql.Statement stmtx = connectDB.createStatement();
-            java.sql.ResultSet rsetx = stmtx.executeQuery("select ip_numbering,use_one_number from pb_patient_names");
-            while (rsetx.next()) {
-                //  autonumber = rsetx.getBoolean(1);
-                useonenumber = rsetx.getString(2);
-                java.sql.Statement pss1 = connectDB.createStatement();
-                java.sql.ResultSet rss1 = pss1.executeQuery("select file_no from hp_maternity_register ORDER BY OID desc LIMIT 1");
-                while (rss1.next()) {
-                    // patientsNo = rss1.getObject(1).toString();
-                    //   jTextField24.setText(rss1.getObject(1).toString());
-                }
-            }
-            rsetx.close();
-            stmtx.close();
 
-        } catch (java.sql.SQLException sqe) {
-            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sqe.getMessage());
-            sqe.printStackTrace();
-            System.out.println("selection not successful");
-        }
+        this.regClearFormBtn.doClick();
+        
         // Add your handling code here:
     }//GEN-LAST:event_createNewCardRdbtnActionPerformed
 

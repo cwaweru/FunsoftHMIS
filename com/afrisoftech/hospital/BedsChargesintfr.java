@@ -39,15 +39,15 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
 
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel21 = new javax.swing.JPanel();
+        wardChargesMainPanel = new javax.swing.JPanel();
+        wardChargesPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new com.afrisoftech.dbadmin.JTable();
-        datePicker1 = new com.afrisoftech.lib.DatePicker();
+        bedChargesDatePicker = new com.afrisoftech.lib.DatePicker();
         jLabel1 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        viewAllPatientChkbx = new javax.swing.JCheckBox();
+        wardNameLbl = new javax.swing.JLabel();
+        wardCmbx = new javax.swing.JComboBox();
         try {
             java.lang.Class.forName("org.postgresql.Driver");
         }catch (java.lang.ClassNotFoundException sl){
@@ -87,11 +87,11 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         getContentPane().add(jLabel4, gridBagConstraints);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel2.setLayout(new java.awt.GridBagLayout());
+        wardChargesMainPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        wardChargesMainPanel.setLayout(new java.awt.GridBagLayout());
 
-        jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel21.setLayout(new java.awt.GridBagLayout());
+        wardChargesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        wardChargesPanel.setLayout(new java.awt.GridBagLayout());
 
         tableModel = jTable1.getModel();
 
@@ -1132,7 +1132,7 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel21.add(jScrollPane1, gridBagConstraints);
+        wardChargesPanel.add(jScrollPane1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1143,13 +1143,13 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 10.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
-        jPanel2.add(jPanel21, gridBagConstraints);
+        wardChargesMainPanel.add(wardChargesPanel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel2.add(datePicker1, gridBagConstraints);
+        wardChargesMainPanel.add(bedChargesDatePicker, gridBagConstraints);
 
         jLabel1.setText("Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1159,34 +1159,34 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel2.add(jLabel1, gridBagConstraints);
+        wardChargesMainPanel.add(jLabel1, gridBagConstraints);
 
-        jCheckBox1.setText("View all IN-Patients");
-        jCheckBox1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        viewAllPatientChkbx.setText("View all IN-Patients");
+        viewAllPatientChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        viewAllPatientChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                viewAllPatientChkbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
-        jPanel2.add(jCheckBox1, gridBagConstraints);
+        wardChargesMainPanel.add(viewAllPatientChkbx, gridBagConstraints);
 
-        jLabel2.setText("View IN-Patients by ward (select ward name)");
+        wardNameLbl.setText("View IN-Patients by ward (select ward name)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-        jPanel2.add(jLabel2, gridBagConstraints);
+        wardChargesMainPanel.add(wardNameLbl, gridBagConstraints);
 
-        jComboBox1.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT ward_name FROM hp_wards ORDER BY 1"));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        wardCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT ward_name FROM hp_wards ORDER BY 1"));
+        wardCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                wardCmbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1195,7 +1195,7 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel2.add(jComboBox1, gridBagConstraints);
+        wardChargesMainPanel.add(wardCmbx, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1206,7 +1206,7 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 50.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 2, 2, 2);
-        getContentPane().add(jPanel2, gridBagConstraints);
+        getContentPane().add(wardChargesMainPanel, gridBagConstraints);
 
         jButton1.setMnemonic('O');
         jButton1.setText("Post Bed/Nursing Charges");
@@ -1361,7 +1361,7 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
 
 
                 java.sql.Statement stmtf = connectDB.createStatement();
-                java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + datePicker1.getDate() + "' BETWEEN period_from AND period_to");
+                java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + bedChargesDatePicker.getDate() + "' BETWEEN period_from AND period_to");
                 while (rsetf.next()) {
                     periodFrom = rsetf.getDate(1);
                     periodTo = rsetf.getDate(2);
@@ -1369,7 +1369,7 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
 
 
 
-                if (datePicker1.getDate().before(periodFrom) || datePicker1.getDate().after(periodTo)) {
+                if (bedChargesDatePicker.getDate().before(periodFrom) || bedChargesDatePicker.getDate().after(periodTo)) {
                     javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
@@ -1408,13 +1408,13 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
                             }
                             if (jTable1.getModel().getValueAt(i, 0) != null) {
                                 java.sql.Statement stm12q = connectDB.createStatement();
-                                java.sql.ResultSet rse12q = stm12q.executeQuery("select count(description) from hp_patient_card where date::date = '" + datePicker1.getDate().toString() + "' AND service ilike 'DAILY BED CHARGES%' AND patient_no =  '" + jTable1.getValueAt(i, 0).toString() + "'");
+                                java.sql.ResultSet rse12q = stm12q.executeQuery("select count(description) from hp_patient_card where date::date = '" + bedChargesDatePicker.getDate().toString() + "' AND service ilike 'DAILY BED CHARGES%' AND patient_no =  '" + jTable1.getValueAt(i, 0).toString() + "'");
                                 while (rse12q.next()) {
                                     patno = rse12q.getInt(1);
                                 }
 
                                 if (patno > 0) {
-                                    javax.swing.JOptionPane.showMessageDialog(this, "Beds have been Charged for '" + datePicker1.getDate().toString() + "'", "Comfirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                    javax.swing.JOptionPane.showMessageDialog(this, "Beds have been Charged for '" + bedChargesDatePicker.getDate().toString() + "'", "Comfirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                                 } else {
                                     // java.sql.Statement stmtz = connectDB.createStatement();
@@ -1463,7 +1463,7 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
                                     pstmt.setString(11, "");
                                     pstmt.setDouble(12, java.lang.Double.valueOf(jTable1.getValueAt(i, 5).toString()));
                                     pstmt.setDouble(13, 0.00);
-                                    pstmt.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                    pstmt.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(bedChargesDatePicker.getDate()));
                                     pstmt.setObject(15, patientAcc);
                                     pstmt.setString(16, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connectDB, com.afrisoftech.lib.WardGLAccountsFactory.getBedChargesGLAccount(connectDB, jTable1.getValueAt(i, 2).toString())));//mainAcc);
                                     pstmt.setDouble(17, java.lang.Double.valueOf(jTable1.getValueAt(i, 4).toString()));
@@ -1499,7 +1499,7 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
                                     pstmt2.setString(15, "Billing");
                                     pstmt2.setDouble(16, 0.00);
                                     pstmt2.setDouble(17, java.lang.Double.valueOf(jTable1.getValueAt(i, 5).toString()));
-                                    pstmt2.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                    pstmt2.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(bedChargesDatePicker.getDate()));
                                     pstmt2.setString(19, transNo);
                                     pstmt2.setBoolean(20, false);
                                     pstmt2.setBoolean(21, false);
@@ -1522,7 +1522,7 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
                                         pstmtr.setString(11, "");
                                         pstmtr.setDouble(12, Double.parseDouble(jTable1.getValueAt(i, 6).toString()));
                                         pstmtr.setDouble(13, 0.00);
-                                        pstmtr.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                        pstmtr.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(bedChargesDatePicker.getDate()));
                                         pstmtr.setObject(15, patientAcc);
                                         pstmtr.setString(16, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connectDB, com.afrisoftech.lib.WardGLAccountsFactory.getNursingChargesGLAccount(connectDB, jTable1.getValueAt(i, 2).toString())));
                                         pstmtr.setDouble(17, Double.parseDouble(jTable1.getValueAt(i, 4).toString()));
@@ -1558,7 +1558,7 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
                                         pstmt2r.setString(15, "Billing");
                                         pstmt2r.setDouble(16, 0.00);
                                         pstmt2r.setDouble(17, Double.parseDouble(jTable1.getValueAt(i, 6).toString()));
-                                        pstmt2r.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                        pstmt2r.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(bedChargesDatePicker.getDate()));
                                         pstmt2r.setString(19, transNo);
                                         pstmt2r.setBoolean(20, false);
                                         pstmt2r.setBoolean(21, false);
@@ -1610,7 +1610,7 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void viewAllPatientChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAllPatientChkbxActionPerformed
 
         java.util.Vector bedsRowVector = new java.util.Vector(1, 1);
         java.util.Vector bedsHeaderRowVector = new java.util.Vector(1, 1);
@@ -1663,7 +1663,7 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
 
                 java.sql.Statement pss1111 = connectDB.createStatement();
                 java.sql.ResultSet rss1111 = pss1111.executeQuery("SELECT SUM(dosage) FROM hp_patient_card"
-                        + " WHERE  visit_id = '" + rsetTable1.getString(7) + "' AND service ILIKE '%bed%' AND debit > 0");
+                        + " WHERE  visit_id = '" + rsetTable1.getString(7) + "' AND service ILIKE '%bed%' AND date = '"+bedChargesDatePicker.getDate()+"' AND debit > 0");
                 while (rss1111.next()) {
                     bedCharged = rss1111.getFloat(1);
 
@@ -1672,7 +1672,7 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
                          * (noofDays - bedCharged)
                          */ 1 * amount;
                 // jTextField23.setText(java.lang.String.valueOf(totalAmt));
-                if (totalAmt > 0) {
+                if (bedCharged < 1) {
                     java.util.Vector columnDataVector = new java.util.Vector(1, 1);
                     System.out.println("Working at table row " + i);
                     columnDataVector.addElement(rsetTable1.getObject(1));
@@ -1685,19 +1685,7 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
                     columnDataVector.addElement(totalAmt);
                     columnDataVector.addElement(rsetTable1.getObject(6));
                     columnDataVector.addElement(rsetTable1.getObject(7));
-                    /*
-                     System.out.println("Working at table row " + i);
-                     jTable1.setValueAt(rsetTable1.getObject(1), i, 0);
-                     jTable1.setValueAt(rsetTable1.getObject(2), i, 1);
-                     jTable1.setValueAt(rsetTable1.getObject(3), i, 2);
-                     jTable1.setValueAt(rsetTable1.getObject(4), i, 3);
-                     jTable1.setValueAt(/*
-                     * (noofDays - bedCharged)
-                     *//*1, i, 4);
-                     jTable1.setValueAt(totalAmt, i, 5);
-                     jTable1.setValueAt(rsetTable1.getObject(6), i, 6);
-                     jTable1.setValueAt(rsetTable1.getObject(7), i, 7);
-                     */
+
                     i++;
                     bedsRowVector.addElement(columnDataVector);
 
@@ -1709,15 +1697,15 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
 
             jTable1.setModel(bedsTableModel);
         } catch (java.sql.SQLException sqlExec) {
-
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
 
         }
 
         // Add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_viewAllPatientChkbxActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void wardCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wardCmbxActionPerformed
         int j = 0;
         int i = 0;
 
@@ -1743,7 +1731,7 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
             java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT"
                     + " patient_no,upper(patient_name) as name ,ward,bed_no,deposit,nursing,visit_id "
                     + "FROM hp_admission WHERE discharge = false AND ward "
-                    + "ILIKE '" + jComboBox1.getSelectedItem() + "' ORDER BY visit_id");
+                    + "ILIKE '" + wardCmbx.getSelectedItem() + "' ORDER BY visit_id");
 
             while (rsetTable1.next()) {
 
@@ -1761,13 +1749,14 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
 
                 java.sql.Statement pss1111 = connectDB.createStatement();
                 java.sql.ResultSet rss1111 = pss1111.executeQuery("SELECT SUM(dosage) FROM hp_patient_card"
-                        + " WHERE  visit_id = '" + rsetTable1.getString(7) + "' AND service ILIKE '%bed%' AND debit > 0");
+                        + " WHERE  visit_id = '" + rsetTable1.getString(7) + "' AND  date = '"+bedChargesDatePicker.getDate()+"' AND service ILIKE '%bed%' AND debit > 0");
                 while (rss1111.next()) {
+                    
                     bedCharged = rss1111.getFloat(1);
 
                 }
                 totalAmt = /*(noofDays - bedCharged) **/ amount;
-                if (totalAmt > 0) {
+                if (bedCharged < 1) {
                     // jTextField23.setText(java.lang.String.valueOf(totalAmt));
 
                     System.out.println("Working at table row " + i);
@@ -1788,11 +1777,11 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
 
 
         } catch (java.sql.SQLException sqlExec) {
-
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
 
         }        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_wardCmbxActionPerformed
     private void cmboxActionPerformed(java.awt.event.ActionEvent evt) {
         int i = jTable1.getSelectedRow();
 
@@ -1814,21 +1803,21 @@ public class BedsChargesintfr extends javax.swing.JInternalFrame {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.afrisoftech.lib.DatePicker datePicker1;
+    private com.afrisoftech.lib.DatePicker bedChargesDatePicker;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     public javax.swing.JButton jButton4;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel21;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JCheckBox viewAllPatientChkbx;
+    private javax.swing.JPanel wardChargesMainPanel;
+    private javax.swing.JPanel wardChargesPanel;
+    private javax.swing.JComboBox wardCmbx;
+    private javax.swing.JLabel wardNameLbl;
     // End of variables declaration//GEN-END:variables
 }

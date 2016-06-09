@@ -5,6 +5,9 @@
  */
 package com.afrisoftech.records;
 
+import java.sql.SQLException;
+import org.openide.util.Exceptions;
+
 /**
  *
  * @author Charles Waweru <cwaweru@systempartners.biz>
@@ -1663,9 +1666,19 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
 }//GEN-LAST:event_regEditdataBtnActionPerformed
 
     private void saveMotherInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMotherInfoBtnActionPerformed
-        /* if (rhClientCardNoTxt.getText().isEmpty()) {
-         emptyNo();
-         } else {*/
+        
+        String ancNumber = null;
+        try {
+            java.sql.PreparedStatement pstmtANC = connectDB.prepareStatement("SELECT 'ANC'||lpad(nextval('anc_no_seq')::text,8,0::text)");
+            java.sql.ResultSet rsetANC = pstmtANC.executeQuery();
+            while(rsetANC.next()){
+                ancNumber = rsetANC.getString(1);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Exceptions.printStackTrace(ex);
+        }
+        ancNumberTxt.setText(ancNumber);
         try {
             connectDB.setAutoCommit(false);
             java.sql.PreparedStatement pstmtMotherInfo = connectDB.prepareStatement("INSERT INTO rh.mother_details("
@@ -1801,191 +1814,13 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
 }//GEN-LAST:event_ageTxtCaretUpdate
 
     private void createNewCardRdbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewCardRdbtnActionPerformed
-        counsellingCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Birth Plan", "Danger Signs", "FP", "HIV", "Supplemental Feeding", "Breast Care", "Infant Feeding", "ITN"}));
-        hivRetestCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Y", "N"}));
-        serologyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Non Reactive", "Reactive"}));
-        hivInitialCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "KP", "U"}));
-        hivResultCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "NA"}));
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        educationLevelCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT edu_name FROM pb_education ORDER BY edu_name"));
-        educationLevelCmbx1.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Single", "Married", "Divorced", "Window", "Other"}));
-        religionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT religion_name FROM pb_religion ORDER BY religion_name"));
-        occupationCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT occupations FROM pb_occupation ORDER BY occupations"));
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox12.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "PAP", "VIA"}));
-        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Hypertension", "Diabetes", "Epilepsy", "Malaria in Pregnancy", "STIs/RTI", "Others Specify"}));
-        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox15.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "1", "2", "3", "NA"}));
-        jComboBox16.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "1", "2", "3", "4", "5"}));
-        jComboBox17.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox18.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox19.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox20.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Hypertension", "Diabetes", "Epilepsy", "Malaria in Pregnacy", "STIs/RTI", "Others", " "}));
-        jComboBox21.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox22.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "U", "KP"}));
-        // - //jComboBox23.removeAllItems();
-        jTextField9.setText("");
-        jTextField8.setText("");
-        weightTxt.setText("0");
-        gestationPeriodTxt.setText("");
-        rhesusFactorTxt.setText("");
-        jTextField12.setText("");
-        residenceTxt.setText("");
-        gestationPeriodTxt.setText("");
-        ancNumberTxt.setText("");
-        firstNameTxt.setText("");
-        hbTxt.setText("");
-        searchANCFileTxt.setText("");
-        bloodGroupTxt.setText("");
-        middleNameTxt.setText("");
-        lastnameTxt.setText("");
-        addressTxt.setText("");
-        telephoneTxt.setText("");
-        nextTxt.setText("");
-        parityTxt.setText("");
-        gravidaTxt.setText("");
-        heightTxt.setText("");
-        jTextField8.setText("");
-        jTextField9.setText("");
-        jTextField10.setText("");
-        jTextField12.setText("");
-        jTextField13.setText("");
-        ageTxt.setText("0");
-        bloodGroupTxt.setEditable(true);
-        middleNameTxt.setEditable(true);
-        lastnameTxt.setEditable(true);
-        addressTxt.setEditable(true);
-        telephoneTxt.setEditable(true);
-        nextTxt.setEditable(true);
-        parityTxt.setEditable(true);
-        gravidaTxt.setEditable(true);
-        ageTxt.setEditable(true);
-        rhesusFactorTxt.setEditable(true);
-        residenceTxt.setEditable(true);
-        ancNumberTxt.setEditable(true);
-        ancCardSearchField.setEnabled(true);
-        firstNameTxt.setEditable(true);
-        hbTxt.setEditable(true);
-        String useonenumber = null;
-        try {
-            java.sql.Statement stmtx = connectDB.createStatement();
-            java.sql.ResultSet rsetx = stmtx.executeQuery("select ip_numbering,use_one_number from pb_patient_names");
-            while (rsetx.next()) {
-                //  autonumber = rsetx.getBoolean(1);
-                useonenumber = rsetx.getString(2);
-                java.sql.Statement pss1 = connectDB.createStatement();
-                java.sql.ResultSet rss1 = pss1.executeQuery("select file_no from hp_maternity_register ORDER BY OID desc LIMIT 1");
-                while (rss1.next()) {
-                    // patientsNo = rss1.getObject(1).toString();
-                    //   jTextField24.setText(rss1.getObject(1).toString());
-                }
-            }
-            rsetx.close();
-            stmtx.close();
-            // if (autonumber) {
-            jTextField12.setEditable(false);
 
-            // } else {
-            jTextField12.setEditable(true);
-            // }
-
-        } catch (java.sql.SQLException sqe) {
-            sqe.printStackTrace();
-            System.out.println("selection not successful");
-        }
+        this.regClearFormBtn.doClick();
         // Add your handling code here:
 }//GEN-LAST:event_createNewCardRdbtnActionPerformed
 
     private void revisitRdbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_revisitRdbtnActionPerformed
-        counsellingCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Birth Plan", "Danger Signs", "FP", "HIV", "Supplemental Feeding", "Breast Care", "Infant Feeding", "ITN"}));
-        hivRetestCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Y", "N"}));
-        serologyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Non Reactive", "Reactive"}));
-        hivInitialCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "KP", "U"}));
-        hivResultCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "NA"}));
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        educationLevelCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT edu_name FROM pb_education ORDER BY edu_name"));
-        educationLevelCmbx1.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Single", "Married", "Divorced", "Window", "Other"}));
-        religionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT religion_name FROM pb_religion ORDER BY religion_name"));
-        occupationCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT occupations FROM pb_occupation ORDER BY occupations"));
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox12.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "PAP", "VIA"}));
-        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Hypertension", "Diabetes", "Epilepsy", "Malaria in Pregnancy", "STIs/RTI", "Others Specify"}));
-        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox15.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "1", "2", "3", "NA"}));
-        jComboBox16.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "1", "2", "3", "4", "5"}));
-        jComboBox17.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox18.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox19.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox20.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Hypertension", "Diabetes", "Epilepsy", "Malaria in Pregnacy", "STIs/RTI", "Others", " "}));
-        jComboBox21.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-        jComboBox22.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "U", "KP"}));
 
-        jTextField9.setText("");
-
-        jTextField8.setText("");
-
-        weightTxt.setText("0");
-
-        gestationPeriodTxt.setText("");
-
-        rhesusFactorTxt.setText("");
-        //jTextField6.setEditable(false);
-
-        jTextField12.setText("");
-
-        residenceTxt.setText("");
-        gestationPeriodTxt.setText("");
-
-        ancNumberTxt.setText("");
-
-        firstNameTxt.setText("");
-
-        hbTxt.setText("");
-
-        searchANCFileTxt.setText("");
-        bloodGroupTxt.setText("");
-        middleNameTxt.setText("");
-        lastnameTxt.setText("");
-        addressTxt.setText("");
-        telephoneTxt.setText("");
-        nextTxt.setText("");
-        parityTxt.setText("");
-        gravidaTxt.setText("");
-        heightTxt.setText("");
-        jTextField8.setText("");
-        jTextField9.setText("");
-        jTextField10.setText("");
-        jTextField12.setText("");
-        jTextField13.setText("");
-        ageTxt.setText("0");
-        bloodGroupTxt.setEditable(false);
-        middleNameTxt.setEditable(false);
-        lastnameTxt.setEditable(false);
-        addressTxt.setEditable(false);
-        telephoneTxt.setEditable(false);
-        nextTxt.setEditable(false);
-        parityTxt.setEditable(false);
-        gravidaTxt.setEditable(false);
-        // heightTxt.setEditable(false);
-        // jTextField9.setEditable(false);
-        // jTextField8.setEditable(false);
-        ageTxt.setEditable(false);
-        //  jTextField4.setEditable(false);
-        rhesusFactorTxt.setEditable(false);
-        //  jTextField12.setEditable(false);
-        residenceTxt.setEditable(false);
-        ancNumberTxt.setEditable(false);
-        ancCardSearchField.setEnabled(true);
-        firstNameTxt.setEditable(false);
-        hbTxt.setEditable(false);
         // Add your handling code here:
 }//GEN-LAST:event_revisitRdbtnActionPerformed
 
@@ -2122,76 +1957,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
         
         this.setSize(this.getParent().getSize());
         
-//        counsellingCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Birth Plan", "Danger Signs", "FP", "HIV", "Supplemental Feeding", "Breast Care", "Infant Feeding", "ITN"}));
-//        hivRetestCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Y", "N"}));
-//        serologyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Non Reactive", "Reactive"}));
-//        hivInitialCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "KP", "U"}));
-//        hivResultCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "NA"}));
-//        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-//        educationLevelCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT edu_name FROM pb_education ORDER BY edu_name"));
-//        educationLevelCmbx1.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Single", "Married", "Divorced", "Window", "Other"}));
-//        religionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT religion_name FROM pb_religion ORDER BY religion_name"));
-//        occupationCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT occupations FROM pb_occupation ORDER BY occupations"));
-//        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-//        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-//        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-//        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-//        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-//        jComboBox12.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "PAP", "VIA"}));
-//        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Hypertension", "Diabetes", "Epilepsy", "Malaria in Pregnancy", "STIs/RTI", "Others Specify"}));
-//        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-//        jComboBox15.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "1", "2", "3", "NA"}));
-//        jComboBox16.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "1", "2", "3", "4", "5"}));
-//        jComboBox17.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-//        jComboBox18.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-//        jComboBox19.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-//        jComboBox20.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "Hypertension", "Diabetes", "Epilepsy", "Malaria in Pregnacy", "STIs/RTI", "Others", " "}));
-//        jComboBox21.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "N", "Y"}));
-//        jComboBox22.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"-", "P", "N", "U", "KP"}));
-//        // - //jComboBox23.removeAllItems();
-//        jTextField9.setText("");
-//
-//        jTextField8.setText("");
-//        weightTxt.setText("0");
-//        gestationPeriodTxt.setText("");
-//        rhesusFactorTxt.setText("");
-//        jTextField12.setText("");
-//        residenceTxt.setText("");
-//        gestationPeriodTxt.setText("");
-//        ancNumberTxt.setText("");
-//        firstNameTxt.setText("");
-//        hbTxt.setText("");
-//        searchANCFileTxt.setText("");
-//        bloodGroupTxt.setText("");
-//        middleNameTxt.setText("");
-//        lastnameTxt.setText("");
-//        addressTxt.setText("");
-//        telephoneTxt.setText("");
-//        nextTxt.setText("");
-//        parityTxt.setText("");
-//        gravidaTxt.setText("");
-//        heightTxt.setText("");
-//        jTextField8.setText("");
-//        jTextField9.setText("");
-//        jTextField10.setText("");
-//        jTextField12.setText("");
-//        jTextField13.setText("");
-//        ageTxt.setText("0");
-//        bloodGroupTxt.setEditable(true);
-//        middleNameTxt.setEditable(true);
-//        lastnameTxt.setEditable(true);
-//        addressTxt.setEditable(true);
-//        telephoneTxt.setEditable(true);
-//        nextTxt.setEditable(true);
-//        parityTxt.setEditable(true);
-//        gravidaTxt.setEditable(true);
-//        ageTxt.setEditable(true);
-//        rhesusFactorTxt.setEditable(true);
-//        residenceTxt.setEditable(true);
-//        ancNumberTxt.setEditable(true);
-//        ancCardSearchField.setEnabled(true);
-//        firstNameTxt.setEditable(true);
-//        hbTxt.setEditable(true);        // TODO add your handling code here:
+       // TODO add your handling code here:
     }//GEN-LAST:event_regClearFormBtnActionPerformed
 
     private void regCloseFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regCloseFormBtnActionPerformed

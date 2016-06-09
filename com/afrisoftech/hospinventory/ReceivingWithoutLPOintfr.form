@@ -676,7 +676,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="2" gridY="2" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
+              <GridBagConstraints gridX="2" gridY="2" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="30" insetsBottom="0" insetsRight="0" anchor="17" weightX="0.0" weightY="0.0"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -928,7 +928,7 @@
                   <Table columnCount="15" rowCount="100">
                     <Column editable="false" title="Item" type="java.lang.Object"/>
                     <Column editable="false" title="Strength" type="java.lang.Object"/>
-                    <Column editable="true" title="Unit Pack" type="java.lang.Object"/>
+                    <Column editable="true" title="Units/Pack" type="java.lang.Double"/>
                     <Column editable="true" title="Qty" type="java.lang.Double"/>
                     <Column editable="true" title="Unit Price" type="java.lang.Double"/>
                     <Column editable="true" title="Disc %" type="java.lang.Double"/>
@@ -937,7 +937,7 @@
                     <Column editable="false" title="Vat Amt." type="java.lang.Double"/>
                     <Column editable="true" title="Value" type="java.lang.Double"/>
                     <Column editable="true" title="Batch No." type="java.lang.Object"/>
-                    <Column editable="true" title="Exp. Date" type="java.lang.Object"/>
+                    <Column editable="true" title="Expiry Date" type="java.lang.Object"/>
                     <Column editable="false" title="Item Code" type="java.lang.Object"/>
                     <Column editable="true" title="Issuing Units" type="java.lang.Object"/>
                     <Column editable="true" title="Issuing Qty" type="java.lang.Object"/>
@@ -1036,7 +1036,7 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable();"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value=""/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value=" cmbox = new javax.swing.JComboBox();&#xa;//try{&#xa;  /*      crset2.setConnectionSource(pConnDB);&#xa;        crset2.setCommand(&quot;select distinct description FROM st_stock_item order by description&quot;);&#xa;     &#xa;        &#xa;        cmbox.setModel(new org.netbeans.lib.sql.models.ComboBoxModel(crset2, &quot;description&quot;, null, null, null));&#xa;        javax.swing.table.TableColumn s = this.jTable1.getColumn(&quot;Item&quot;);&#xa;        s.setCellEditor(new javax.swing.DefaultCellEditor(cmbox));&#xa;        cmbox.addActionListener(new java.awt.event.ActionListener() {&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;                cmboxActionPerformed(evt);&#xa;            }&#xa;        });&#xa;   //      } catch(java.sql.SQLException sqlExec) {&#xa;            &#xa;    //        javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());&#xa;            &#xa;    //   }&#xa; */&#xa;javax.swing.table.TableColumn column = null;&#xa;              for (int i = 0; i &lt; 13; i++) {&#xa;                  column = grnItemsTable.getColumnModel().getColumn(i);&#xa;                  if (i == 0) {&#xa;                      &#xa;                      column.setPreferredWidth(500); //sport column is bigger&#xa;                  } else {&#xa;                          //if (i == 2) {&#xa;                              column.setPreferredWidth(200);&#xa;                         // }  else &#xa;                      //column.setPreferredWidth(50);&#xa;                  &#xa;                      }&#xa;                  }&#xa;             "/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value=" cmbox = new javax.swing.JComboBox();&#xa;//try{&#xa;  /*      crset2.setConnectionSource(pConnDB);&#xa;        crset2.setCommand(&quot;select distinct description FROM st_stock_item order by description&quot;);&#xa;     &#xa;        &#xa;        cmbox.setModel(new org.netbeans.lib.sql.models.ComboBoxModel(crset2, &quot;description&quot;, null, null, null));&#xa;        javax.swing.table.TableColumn s = this.jTable1.getColumn(&quot;Item&quot;);&#xa;        s.setCellEditor(new javax.swing.DefaultCellEditor(cmbox));&#xa;        cmbox.addActionListener(new java.awt.event.ActionListener() {&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;                cmboxActionPerformed(evt);&#xa;            }&#xa;        });&#xa;   //      } catch(java.sql.SQLException sqlExec) {&#xa;            &#xa;    //        javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());&#xa;            &#xa;    //   }&#xa; */&#xa;javax.swing.table.TableColumn column = null;&#xa;              for (int i = 0; i &lt; 13; i++) {&#xa;                  column = grnItemsTable.getColumnModel().getColumn(i);&#xa;                  if (i == 0) {&#xa;                      &#xa;                      column.setPreferredWidth(500); //sport column is bigger&#xa;                  } else {&#xa;                          //if (i == 2) {&#xa;                              column.setPreferredWidth(200);&#xa;                         // }  else &#xa;                      //column.setPreferredWidth(50);&#xa;                  &#xa;                      }&#xa;                  }&#xa;&#xa;javax.swing.table.TableColumn dateEditor = grnItemsTable.getColumnModel().getColumn(11);&#xa;//com.afrisoftech.lib.DateCellEditor dateCellEditor = new com.afrisoftech.lib.DateCellEditor(new org.jdesktop.swingx.JXDatePicker(), grnDetailsTable);&#xa;com.afrisoftech.lib.DateCellEditor dateCellEditor = new com.afrisoftech.lib.DateCellEditor(new com.afrisoftech.lib.DatePicker(), grnItemsTable);&#xa;dateEditor.setCellEditor(dateCellEditor);&#xa;//jTable1.setRowHeight(30);&#xa;javax.swing.table.DefaultTableCellRenderer cellRenderer = new javax.swing.table.DefaultTableCellRenderer();&#xa;cellRenderer.setHorizontalAlignment(cellRenderer.TRAILING);&#xa;dateEditor.setCellRenderer(cellRenderer);&#xa;             "/>
               </AuxValues>
             </Component>
           </SubComponents>
@@ -1154,7 +1154,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="CENTRAL STORES"/>
+        <Property name="text" type="java.lang.String" value="Central Stores"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox1ActionPerformed"/>

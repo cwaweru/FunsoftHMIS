@@ -1920,7 +1920,7 @@ public class AwardApprovalsIntfr extends javax.swing.JPanel {
                 if (PurchaseItemsTbl1.getValueAt(i, 7) == Boolean.TRUE) {
                     java.sql.PreparedStatement pstmt7 = connectDB.prepareStatement("UPDATE st_receive_requisation  SET approval_status =true , mode_of_purchase_approved=true   WHERE requisition_no='" + prqNotxt.getText() + "' and agenda_no ilike '" + agNotxt1txt.getText() + "' ");
                     pstmt7.executeUpdate();
-                    connectDB.commit();
+           //         connectDB.commit();
                 }
             }
             ClearTable.clearthisTable(PurchaseItemsTbl1);
@@ -1928,13 +1928,15 @@ public class AwardApprovalsIntfr extends javax.swing.JPanel {
             tenderNotxt.setText(null);
             refreshTable2();
         } catch (SQLException ex) {
-            try {
-                connectDB.rollback();
-                ex.printStackTrace();
-            } catch (SQLException ex1) {
-                ex1.printStackTrace();
-                Logger.getLogger(PROperationpnl.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            ex.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+//            try {
+//                connectDB.rollback();
+//                ex.printStackTrace();
+//            } catch (SQLException ex1) {
+//                ex1.printStackTrace();
+//                Logger.getLogger(PROperationpnl.class.getName()).log(Level.SEVERE, null, ex1);
+//            }
             Logger.getLogger(RequisitionApprovalIntFr.class.getName()).log(Level.SEVERE, null, ex);
         }
 

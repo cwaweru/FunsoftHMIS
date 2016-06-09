@@ -2,6 +2,7 @@
  * Members.java
  *
  * Created on August 13, 2002, 3:36 PM
+ *
  */
 
 package com.afrisoftech.accounting;
@@ -39,20 +40,20 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        coaTabbedPane = new javax.swing.JTabbedPane();
+        mainCOAPanel = new javax.swing.JPanel();
+        mainCOASaveDataBtn = new javax.swing.JButton();
+        mainCOAEditBtn = new javax.swing.JButton();
+        mainCOAClearBtn = new javax.swing.JButton();
+        mainCOACloseBtn = new javax.swing.JButton();
+        mainCOAAccountsScrollPane = new javax.swing.JScrollPane();
+        mainCOAAccountsTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        mainCOARemoveRowBtn = new javax.swing.JButton();
+        mainCOAHelpBtn = new javax.swing.JButton();
+        mainCOADeleteBtn = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
+        subCOAAccountsPanel = new javax.swing.JPanel();
         jButton11 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
         jButton31 = new javax.swing.JButton();
@@ -72,7 +73,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         jButton91 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jPanel111 = new javax.swing.JPanel();
+        accountsCOAPanel = new javax.swing.JPanel();
         jButton111 = new javax.swing.JButton();
         jButton211 = new javax.swing.JButton();
         jButton311 = new javax.swing.JButton();
@@ -80,17 +81,17 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jComboBox11 = new javax.swing.JComboBox();
+        subCOAAccountCmbx = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        subActivityCodeTxt = new javax.swing.JTextField();
         jCheckBox11 = new javax.swing.JCheckBox();
         jCheckBox21 = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        mainCOACodeTxt = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jComboBox12 = new javax.swing.JComboBox();
+        branchNameCmbx = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        branchCodeTxt = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane21 = new javax.swing.JScrollPane();
         jTable21 = new javax.swing.JTable();
@@ -114,17 +115,17 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        coaTabbedPane.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        coaTabbedPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter Main Activities"));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        mainCOAPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter Main Activities"));
+        mainCOAPanel.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setMnemonic('o');
-        jButton1.setText("Save data");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        mainCOASaveDataBtn.setMnemonic('o');
+        mainCOASaveDataBtn.setText("Save data");
+        mainCOASaveDataBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                mainCOASaveDataBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -132,13 +133,13 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jButton1, gridBagConstraints);
+        mainCOAPanel.add(mainCOASaveDataBtn, gridBagConstraints);
 
-        jButton2.setMnemonic('e');
-        jButton2.setText("Edit");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        mainCOAEditBtn.setMnemonic('e');
+        mainCOAEditBtn.setText("Edit");
+        mainCOAEditBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                mainCOAEditBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -146,13 +147,13 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jButton2, gridBagConstraints);
+        mainCOAPanel.add(mainCOAEditBtn, gridBagConstraints);
 
-        jButton3.setMnemonic('l');
-        jButton3.setText("Clear");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        mainCOAClearBtn.setMnemonic('l');
+        mainCOAClearBtn.setText("Clear");
+        mainCOAClearBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                mainCOAClearBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -160,13 +161,13 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jButton3, gridBagConstraints);
+        mainCOAPanel.add(mainCOAClearBtn, gridBagConstraints);
 
-        jButton4.setMnemonic('c');
-        jButton4.setText("Close");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        mainCOACloseBtn.setMnemonic('c');
+        mainCOACloseBtn.setText("Close");
+        mainCOACloseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                mainCOACloseBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -174,10 +175,10 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jButton4, gridBagConstraints);
+        mainCOAPanel.add(mainCOACloseBtn, gridBagConstraints);
 
-        jTable1.setAutoCreateRowSorter(true);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        mainCOAAccountsTable.setAutoCreateRowSorter(true);
+        mainCOAAccountsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -204,8 +205,8 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
                 "Main Code", "Description", "Account Category"
             }
         ));
-        jTable1.setShowHorizontalLines(false);
-        jScrollPane1.setViewportView(jTable1);
+        mainCOAAccountsTable.setShowHorizontalLines(false);
+        mainCOAAccountsScrollPane.setViewportView(mainCOAAccountsTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -216,56 +217,56 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1000.0;
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        jPanel1.add(jScrollPane1, gridBagConstraints);
+        mainCOAPanel.add(mainCOAAccountsScrollPane, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel1.add(jLabel2, gridBagConstraints);
+        mainCOAPanel.add(jLabel2, gridBagConstraints);
 
-        jButton7.setMnemonic('r');
-        jButton7.setText("Remove Row");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        mainCOARemoveRowBtn.setMnemonic('r');
+        mainCOARemoveRowBtn.setText("Remove Row");
+        mainCOARemoveRowBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                mainCOARemoveRowBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
-        jPanel1.add(jButton7, gridBagConstraints);
+        mainCOAPanel.add(mainCOARemoveRowBtn, gridBagConstraints);
 
-        jButton9.setText("Help");
+        mainCOAHelpBtn.setText("Help");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jButton9, gridBagConstraints);
+        mainCOAPanel.add(mainCOAHelpBtn, gridBagConstraints);
 
-        jButton10.setText("Delete");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        mainCOADeleteBtn.setText("Delete");
+        mainCOADeleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                mainCOADeleteBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
-        jPanel1.add(jButton10, gridBagConstraints);
+        mainCOAPanel.add(mainCOADeleteBtn, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1000.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jLabel13, gridBagConstraints);
+        mainCOAPanel.add(jLabel13, gridBagConstraints);
 
-        jTabbedPane1.addTab("Main Account", jPanel1);
+        coaTabbedPane.addTab("Main Account", mainCOAPanel);
 
-        jPanel11.setLayout(new java.awt.GridBagLayout());
+        subCOAAccountsPanel.setLayout(new java.awt.GridBagLayout());
 
         jButton11.setMnemonic('o');
         jButton11.setText("Save data");
@@ -279,7 +280,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel11.add(jButton11, gridBagConstraints);
+        subCOAAccountsPanel.add(jButton11, gridBagConstraints);
 
         jButton21.setMnemonic('e');
         jButton21.setText("Edit");
@@ -293,7 +294,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel11.add(jButton21, gridBagConstraints);
+        subCOAAccountsPanel.add(jButton21, gridBagConstraints);
 
         jButton31.setMnemonic('l');
         jButton31.setText("Clear");
@@ -307,7 +308,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel11.add(jButton31, gridBagConstraints);
+        subCOAAccountsPanel.add(jButton31, gridBagConstraints);
 
         jButton41.setMnemonic('c');
         jButton41.setText("Close");
@@ -321,7 +322,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel11.add(jButton41, gridBagConstraints);
+        subCOAAccountsPanel.add(jButton41, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -329,7 +330,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel11.add(jLabel3, gridBagConstraints);
+        subCOAAccountsPanel.add(jLabel3, gridBagConstraints);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Select Main Activity"));
         jPanel2.setLayout(new java.awt.GridBagLayout());
@@ -392,7 +393,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        jPanel11.add(jPanel2, gridBagConstraints);
+        subCOAAccountsPanel.add(jPanel2, gridBagConstraints);
 
         jButton6.setMnemonic('r');
         jButton6.setText("Remove Row");
@@ -405,7 +406,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
-        jPanel11.add(jButton6, gridBagConstraints);
+        subCOAAccountsPanel.add(jButton6, gridBagConstraints);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter Sub_Activities"));
         jPanel5.setLayout(new java.awt.GridBagLayout());
@@ -640,7 +641,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1000.0;
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        jPanel11.add(jPanel5, gridBagConstraints);
+        subCOAAccountsPanel.add(jPanel5, gridBagConstraints);
 
         jButton91.setText("Help");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -648,7 +649,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel11.add(jButton91, gridBagConstraints);
+        subCOAAccountsPanel.add(jButton91, gridBagConstraints);
 
         jButton12.setMnemonic('d');
         jButton12.setText("Delete");
@@ -661,18 +662,18 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
-        jPanel11.add(jButton12, gridBagConstraints);
+        subCOAAccountsPanel.add(jButton12, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1000.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel11.add(jLabel10, gridBagConstraints);
+        subCOAAccountsPanel.add(jLabel10, gridBagConstraints);
 
-        jTabbedPane1.addTab("Sub Account", jPanel11);
+        coaTabbedPane.addTab("Sub Account", subCOAAccountsPanel);
 
-        jPanel111.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        jPanel111.setLayout(new java.awt.GridBagLayout());
+        accountsCOAPanel.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        accountsCOAPanel.setLayout(new java.awt.GridBagLayout());
 
         jButton111.setMnemonic('o');
         jButton111.setText("Save data");
@@ -686,7 +687,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel111.add(jButton111, gridBagConstraints);
+        accountsCOAPanel.add(jButton111, gridBagConstraints);
 
         jButton211.setMnemonic('e');
         jButton211.setText("Edit");
@@ -700,7 +701,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel111.add(jButton211, gridBagConstraints);
+        accountsCOAPanel.add(jButton211, gridBagConstraints);
 
         jButton311.setMnemonic('l');
         jButton311.setText("Clear");
@@ -714,7 +715,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel111.add(jButton311, gridBagConstraints);
+        accountsCOAPanel.add(jButton311, gridBagConstraints);
 
         jButton411.setMnemonic('c');
         jButton411.setText("Close");
@@ -728,13 +729,13 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel111.add(jButton411, gridBagConstraints);
+        accountsCOAPanel.add(jButton411, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel111.add(jLabel4, gridBagConstraints);
+        accountsCOAPanel.add(jLabel4, gridBagConstraints);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Select Sub_Activity here"));
         jPanel3.setLayout(new java.awt.GridBagLayout());
@@ -748,10 +749,10 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel3.add(jLabel11, gridBagConstraints);
 
-        jComboBox11.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select  description from pb_sub_activities ORDER BY description"));
-        jComboBox11.addActionListener(new java.awt.event.ActionListener() {
+        subCOAAccountCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select  description from pb_sub_activities ORDER BY description"));
+        subCOAAccountCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox11ActionPerformed(evt);
+                subCOAAccountCmbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -760,7 +761,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jComboBox11, gridBagConstraints);
+        jPanel3.add(subCOAAccountCmbx, gridBagConstraints);
 
         jLabel5.setText("Sub Code");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -771,14 +772,14 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         jPanel3.add(jLabel5, gridBagConstraints);
 
-        jTextField2.setEditable(false);
+        subActivityCodeTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jTextField2, gridBagConstraints);
+        jPanel3.add(subActivityCodeTxt, gridBagConstraints);
 
         buttonGroup2.add(jCheckBox11);
         jCheckBox11.setSelected(true);
@@ -806,13 +807,13 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         jPanel3.add(jLabel7, gridBagConstraints);
 
-        jTextField3.setEditable(false);
+        mainCOACodeTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel3.add(jTextField3, gridBagConstraints);
+        jPanel3.add(mainCOACodeTxt, gridBagConstraints);
 
         jLabel12.setText("Branch");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -823,10 +824,10 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel3.add(jLabel12, gridBagConstraints);
 
-        jComboBox12.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT INITCAP(donor) AS BRANCH FROM ac_branch ORDER BY donor"));
-        jComboBox12.addActionListener(new java.awt.event.ActionListener() {
+        branchNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT INITCAP(donor) AS BRANCH FROM ac_branch ORDER BY donor"));
+        branchNameCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox12ActionPerformed(evt);
+                branchNameCmbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -835,7 +836,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jComboBox12, gridBagConstraints);
+        jPanel3.add(branchNameCmbx, gridBagConstraints);
 
         jLabel8.setText("Branch Code");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -846,13 +847,13 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         jPanel3.add(jLabel8, gridBagConstraints);
 
-        jTextField4.setEditable(false);
+        branchCodeTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel3.add(jTextField4, gridBagConstraints);
+        jPanel3.add(branchCodeTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 8;
@@ -860,7 +861,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        jPanel111.add(jPanel3, gridBagConstraints);
+        accountsCOAPanel.add(jPanel3, gridBagConstraints);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter activities here"));
         jPanel4.setLayout(new java.awt.GridBagLayout());
@@ -1111,16 +1112,16 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 String branch = null;
                 try {
-                    //  for (int i = 0; i < jTable1.getRowCount(); i++){
-                        //      if (jTable1.getModel().getValueAt(jTable1.getSelectedRow(),6) != null){
+                    //  for (int i = 0; i < mainCOAAccountsTable.getRowCount(); i++){
+                        //      if (mainCOAAccountsTable.getModel().getValueAt(mainCOAAccountsTable.getSelectedRow(),6) != null){
                             java.sql.Statement stmt = connectDB.createStatement();
-                            //java.sql.ResultSet rset = stmt.executeQuery("select branch_code from ac_project WHERE code ilike '"+jTable1.getModel().getValueAt(jTable1.getSelectedRow(),6)+"'");
+                            //java.sql.ResultSet rset = stmt.executeQuery("select branch_code from ac_project WHERE code ilike '"+mainCOAAccountsTable.getModel().getValueAt(mainCOAAccountsTable.getSelectedRow(),6)+"'");
                             java.sql.ResultSet rset = stmt.executeQuery("SELECT department_code FROM pb_main_department WHERE depart_name ilike '"+cmBox1.getSelectedItem()+"'");
                             while (rset.next()){
                                 branch = rset.getObject(1).toString();
                                 jTable21.setValueAt(branch,jTable21.getSelectedRow(), 5);
                             }
-                            //jTable1.setValueAt(branch,jTable1.getSelectedRow(), 7);
+                            //jTable1.setValueAt(branch,mainCOAAccountsTable.getSelectedRow(), 7);
                             // i++;
 
                             rset.close();
@@ -1157,7 +1158,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1000.0;
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        jPanel111.add(jPanel4, gridBagConstraints);
+        accountsCOAPanel.add(jPanel4, gridBagConstraints);
 
         jButton5.setMnemonic('R');
         jButton5.setText("Remove Row");
@@ -1170,7 +1171,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
-        jPanel111.add(jButton5, gridBagConstraints);
+        accountsCOAPanel.add(jButton5, gridBagConstraints);
 
         jButton8.setMnemonic('H');
         jButton8.setText("Help");
@@ -1179,7 +1180,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel111.add(jButton8, gridBagConstraints);
+        accountsCOAPanel.add(jButton8, gridBagConstraints);
 
         jButton13.setMnemonic('D');
         jButton13.setText("Delete");
@@ -1192,16 +1193,16 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
-        jPanel111.add(jButton13, gridBagConstraints);
+        accountsCOAPanel.add(jButton13, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1000.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel111.add(jLabel9, gridBagConstraints);
+        accountsCOAPanel.add(jLabel9, gridBagConstraints);
 
-        jTabbedPane1.addTab("Accounts", jPanel111);
+        coaTabbedPane.addTab("Accounts", accountsCOAPanel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 5;
@@ -1210,17 +1211,17 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        getContentPane().add(jTabbedPane1, gridBagConstraints);
+        getContentPane().add(coaTabbedPane, gridBagConstraints);
 
         setBounds(0, 0, 1045, 450);
     }// </editor-fold>//GEN-END:initComponents
     
-    private void jComboBox12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox12ActionPerformed
+    private void branchNameCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_branchNameCmbxActionPerformed
         try {
             java.sql.Statement stmt = connectDB.createStatement();
-            java.sql.ResultSet rset = stmt.executeQuery("SELECT code FROM ac_branch WHERE donor ='"+jComboBox12.getSelectedItem()+"'");
+            java.sql.ResultSet rset = stmt.executeQuery("SELECT code FROM ac_branch WHERE donor ='"+branchNameCmbx.getSelectedItem()+"'");
             while (rset.next()){
-                jTextField4.setText(rset.getObject(1).toString());
+                branchCodeTxt.setText(rset.getObject(1).toString());
                 
             }
             rset.close();
@@ -1232,7 +1233,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
             sqe.printStackTrace();
             System.out.println("Insert not successful");
         }// TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox12ActionPerformed
+    }//GEN-LAST:event_branchNameCmbxActionPerformed
     
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         try{
@@ -1243,6 +1244,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
             connectDB.setAutoCommit(true);
             
         }catch(java.sql.SQLException sq){
+            sq.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
             try {
                 connectDB.rollback();
@@ -1263,6 +1265,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
             connectDB.setAutoCommit(true);
             
         }   catch(java.sql.SQLException sq){
+            sq.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
             try {
                 connectDB.rollback();
@@ -1275,15 +1278,16 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
     
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void mainCOADeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainCOADeleteBtnActionPerformed
         try{
             connectDB.setAutoCommit(false);
-            java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("DELETE from pb_accounts_setup WHERE main_code = '"+jTable1.getModel().getValueAt(jTable1.getSelectedRow(),0).toString()+"'");
+            java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("DELETE from pb_accounts_setup WHERE main_code = '"+mainCOAAccountsTable.getModel().getValueAt(mainCOAAccountsTable.getSelectedRow(),0).toString()+"'");
             pstmt31.executeUpdate();
             connectDB.commit();
             connectDB.setAutoCommit(true);
             
         }   catch(java.sql.SQLException sq){
+            sq.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
             try {
                 connectDB.rollback();
@@ -1292,9 +1296,9 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
             }
             
         }
-        jButton2ActionPerformed(evt);
+        mainCOAEditBtnActionPerformed(evt);
         // Add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_mainCOADeleteBtnActionPerformed
     
     private void jButton411ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton411ActionPerformed
         this.setVisible(false);
@@ -1310,16 +1314,16 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jButton41ActionPerformed
     
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void mainCOACloseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainCOACloseBtnActionPerformed
         this.setVisible(false);
         dispose();// Add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_mainCOACloseBtnActionPerformed
     
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void mainCOARemoveRowBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainCOARemoveRowBtnActionPerformed
         
-        int rows2Delete = jTable1.getSelectedRowCount();
+        int rows2Delete = mainCOAAccountsTable.getSelectedRowCount();
         
-        int[] selectedRows = jTable1.getSelectedRows();
+        int[] selectedRows = mainCOAAccountsTable.getSelectedRows();
         
         if (rows2Delete < 1) {
             
@@ -1335,7 +1339,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
                     
                     
                     
-                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel)jTable1.getModel();
+                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel)mainCOAAccountsTable.getModel();
                     
                     defTableModel.removeRow(selectedRows[i]);
                     
@@ -1345,14 +1349,14 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
                 
             } else {
                 
-                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel)jTable1.getModel();
+                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel)mainCOAAccountsTable.getModel();
                 
-                defTableModel.removeRow(jTable1.getSelectedRow());
+                defTableModel.removeRow(mainCOAAccountsTable.getSelectedRow());
             }
         }
         
         // Add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_mainCOARemoveRowBtnActionPerformed
     
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         
@@ -1438,8 +1442,8 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
                 jTable21.getModel().setValueAt(null,k,r);
             }
         }
-        jComboBox11.setSelectedItem(null);
-        jTextField2.setText("");
+        subCOAAccountCmbx.setSelectedItem(null);
+        subActivityCodeTxt.setText("");
         // Add your handling code here:
     }//GEN-LAST:event_jButton311ActionPerformed
     
@@ -1454,14 +1458,14 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jButton31ActionPerformed
     
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        for (int k = 0; k < jTable1.getRowCount(); k++ ) {
-            for (int r = 0; r < jTable1.getColumnCount(); r++ ) {
-                jTable1.getModel().setValueAt(null,k,r);
+    private void mainCOAClearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainCOAClearBtnActionPerformed
+        for (int k = 0; k < mainCOAAccountsTable.getRowCount(); k++ ) {
+            for (int r = 0; r < mainCOAAccountsTable.getColumnCount(); r++ ) {
+                mainCOAAccountsTable.getModel().setValueAt(null,k,r);
             }
         }
         // Add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_mainCOAClearBtnActionPerformed
     
     private void jButton211ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton211ActionPerformed
         for (int k = 0; k < jTable21.getRowCount(); k++ ) {
@@ -1475,7 +1479,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
             
             java.sql.Statement stmtTable1 = connectDB.createStatement();
             
-            java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT code,activity,payment_modes,activity_category,branch,country_name,department FROM pb_activity WHERE sub_code = '"+jTextField2.getText()+"'  order by code");
+            java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT code,activity,payment_modes,activity_category,branch,country_name,department FROM pb_activity WHERE sub_code = '"+subActivityCodeTxt.getText()+"'  order by code");
             
             while (rsetTable1.next()) {
                 
@@ -1494,7 +1498,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
             
             
         } catch(java.sql.SQLException sqlExec) {
-            
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
             
         } // Add your handling code here:
@@ -1528,17 +1532,17 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
             
             
         } catch(java.sql.SQLException sqlExec) {
-            
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
             
         } // Add your handling code here:
     }//GEN-LAST:event_jButton21ActionPerformed
     
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void mainCOAEditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainCOAEditBtnActionPerformed
         
-        for (int k = 0; k < jTable1.getRowCount(); k++ ) {
-            for (int r = 0; r < jTable1.getColumnCount(); r++ ) {
-                jTable1.getModel().setValueAt(null,k,r);
+        for (int k = 0; k < mainCOAAccountsTable.getRowCount(); k++ ) {
+            for (int r = 0; r < mainCOAAccountsTable.getColumnCount(); r++ ) {
+                mainCOAAccountsTable.getModel().setValueAt(null,k,r);
             }
         }
         int i = 0;
@@ -1553,9 +1557,9 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
             while (rsetTable1.next()) {
                 
                 System.out.println("Working at table row "+i);
-                jTable1.setValueAt(rsetTable1.getObject(1), i, 0);
-                jTable1.setValueAt(rsetTable1.getObject(2), i, 1);
-                jTable1.setValueAt(rsetTable1.getObject(3), i, 2);
+                mainCOAAccountsTable.setValueAt(rsetTable1.getObject(1), i, 0);
+                mainCOAAccountsTable.setValueAt(rsetTable1.getObject(2), i, 1);
+                mainCOAAccountsTable.setValueAt(rsetTable1.getObject(3), i, 2);
                 
                 i++;
                 
@@ -1563,12 +1567,12 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
             
             
         } catch(java.sql.SQLException sqlExec) {
-            
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
             
         }
         // Add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_mainCOAEditBtnActionPerformed
     
     private void jButton111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton111ActionPerformed
         String mainCode = null;
@@ -1609,14 +1613,14 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
                     
                     if (j <= 0) {
                         java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into pb_activity (sub_code,code,activity,payment_mode,date,payment_modes,activity_category,branch,department,country_name) values(?,?,initcap(?),?,?,initcap(?),upper(?),?,?,?)");
-                        pstmt.setObject(1,jTextField2.getText());
+                        pstmt.setObject(1,subActivityCodeTxt.getText());
                         if(jCheckBox11.isSelected()){
-                            pstmt.setObject(2,jTextField2.getText()+"-"+jTextField4.getText()+""+jTable21.getValueAt(i,5).toString()+"-"+jTable21.getValueAt(i,0).toString());
+                            pstmt.setObject(2,subActivityCodeTxt.getText()+"-"+branchCodeTxt.getText()+""+jTable21.getValueAt(i,5).toString()+"-"+jTable21.getValueAt(i,0).toString());
                              //pstmt.setObject(2,jTextField2.getText()+"-"+jTable21.getValueAt(i,0).toString());
 
                         }else{
                             if(jCheckBox21.isSelected()){
-                                pstmt.setObject(2,jTextField2.getText()+""+jTable21.getValueAt(i,0).toString());
+                                pstmt.setObject(2,subActivityCodeTxt.getText()+""+jTable21.getValueAt(i,0).toString());
                             }
                         }
                         if (jTable21.getModel().getValueAt(i,1) != null){
@@ -1629,14 +1633,14 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
                         pstmt.setDate(5,datenowSql);
                         pstmt.setObject(6,jTable21.getValueAt(i,2).toString());
                         pstmt.setObject(7,jTable21.getValueAt(i,3).toString());
-                        pstmt.setObject(8,jTextField4.getText());
+                        pstmt.setObject(8,branchCodeTxt.getText());
                         pstmt.setObject(9,jTable21.getValueAt(i,6).toString());
                         pstmt.setObject(10,jTable21.getValueAt(i,5).toString());
                         pstmt.executeUpdate();
                         
                         
                     }else{
-                        java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE pb_activity SET activity = '"+jTable21.getModel().getValueAt(i,1).toString()+"',payment_modes = '"+jTable21.getModel().getValueAt(i,2).toString()+"',activity_category = '"+jTable21.getModel().getValueAt(i,3).toString()+"',branch = '"+jTextField4.getText()+"',department = '"+jTable21.getValueAt(i,6).toString()+"',country_name = '"+jTable21.getValueAt(i,5).toString()+"' WHERE code ILIKE '"+jTable21.getModel().getValueAt(i,0).toString()+"'");
+                        java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE pb_activity SET activity = '"+jTable21.getModel().getValueAt(i,1).toString()+"',payment_modes = '"+jTable21.getModel().getValueAt(i,2).toString()+"',activity_category = '"+jTable21.getModel().getValueAt(i,3).toString()+"',branch = '"+branchCodeTxt.getText()+"',department = '"+jTable21.getValueAt(i,6).toString()+"',country_name = '"+jTable21.getValueAt(i,5).toString()+"' WHERE code ILIKE '"+jTable21.getModel().getValueAt(i,0).toString()+"'");
                         pstmt31.executeUpdate();
                     }
                     
@@ -1645,7 +1649,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
             
             java.sql.Statement stmtTable11x = connectDB.createStatement();
             
-            java.sql.ResultSet rsetTable11x = stmtTable11x.executeQuery("SELECT main_code,description,class  FROM pb_accounts_setup WHERE main_code = '"+jTextField3.getText()+"'");
+            java.sql.ResultSet rsetTable11x = stmtTable11x.executeQuery("SELECT main_code,description,class  FROM pb_accounts_setup WHERE main_code = '"+mainCOACodeTxt.getText()+"'");
             
             while (rsetTable11x.next()) {
                 mainCode = rsetTable11x.getString(1);
@@ -1655,15 +1659,15 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
             
             java.sql.Statement stmtTable11xx = connectDB.createStatement();
             
-            java.sql.ResultSet rsetTable11xx = stmtTable11xx.executeQuery("SELECT description  FROM pb_sub_activities WHERE sub_code =  '"+jTextField2.getText()+"'");
+            java.sql.ResultSet rsetTable11xx = stmtTable11xx.executeQuery("SELECT description  FROM pb_sub_activities WHERE sub_code =  '"+subActivityCodeTxt.getText()+"'");
             
             while (rsetTable11xx.next()) {
                 subCategory = rsetTable11xx.getString(1);
                 
             }
-            java.sql.PreparedStatement pstmt31m = connectDB.prepareStatement("UPDATE pb_activity SET main_code = '"+mainCode+"',main_category = '"+mainCategory+"',category_class = '"+categoryClass+"'  WHERE sub_code ILIKE '"+jTextField2.getText()+"'");
+            java.sql.PreparedStatement pstmt31m = connectDB.prepareStatement("UPDATE pb_activity SET main_code = '"+mainCode+"',main_category = '"+mainCategory+"',category_class = '"+categoryClass+"'  WHERE sub_code ILIKE '"+subActivityCodeTxt.getText()+"'");
             pstmt31m.executeUpdate();
-            java.sql.PreparedStatement pstmt31x = connectDB.prepareStatement("UPDATE pb_activity SET sub_category = '"+subCategory+"'  WHERE sub_code ILIKE '"+jTextField2.getText()+"'");
+            java.sql.PreparedStatement pstmt31x = connectDB.prepareStatement("UPDATE pb_activity SET sub_category = '"+subCategory+"'  WHERE sub_code ILIKE '"+subActivityCodeTxt.getText()+"'");
             pstmt31x.executeUpdate();
             
             connectDB.commit();
@@ -1676,9 +1680,10 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
                     jTable21.getModel().setValueAt(null,k,r);
                 }
             }
-            jComboBox11.setSelectedItem(null);
+            subCOAAccountCmbx.setSelectedItem(null);
             // jTextField2.setText("");
         }   catch(java.sql.SQLException sq){
+            sq.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this,"ERROR: "+ sq.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
             System.out.println(sq.getMessage());
             jLabel4.setForeground(java.awt.Color.red);
@@ -1697,14 +1702,14 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jButton111ActionPerformed
     
-    private void jComboBox11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox11ActionPerformed
+    private void subCOAAccountCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subCOAAccountCmbxActionPerformed
         
         try {
             java.sql.Statement stmt = connectDB.createStatement();
-            java.sql.ResultSet rset = stmt.executeQuery("select sub_code,main_code from pb_sub_activities where description ='"+jComboBox11.getSelectedItem()+"'");
+            java.sql.ResultSet rset = stmt.executeQuery("select sub_code,main_code from pb_sub_activities where description ='"+subCOAAccountCmbx.getSelectedItem()+"'");
             while (rset.next()){
-                jTextField2.setText(rset.getObject(1).toString());
-                jTextField3.setText(rset.getObject(2).toString());
+                subActivityCodeTxt.setText(rset.getObject(1).toString());
+                mainCOACodeTxt.setText(rset.getObject(2).toString());
             }
             rset.close();
             stmt.close();
@@ -1713,12 +1718,13 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
             
         } catch (java.sql.SQLException sqe) {
             sqe.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, sqe.getMessage());
             System.out.println("Insert not successful");
         }
         
         
         // Add your handling code here:
-    }//GEN-LAST:event_jComboBox11ActionPerformed
+    }//GEN-LAST:event_subCOAAccountCmbxActionPerformed
     
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         
@@ -1730,58 +1736,58 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
             
             rset.close();
             stmt.close();
-            //  conn.close();
-            
-            
+
         } catch (java.sql.SQLException sqe) {
             sqe.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, sqe.getMessage());
             System.out.println("Insert not successful");
         }
         
         // Add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jTable1.getModel().getValueAt(0,0) != null){
+    private void mainCOASaveDataBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainCOASaveDataBtnActionPerformed
+        if (mainCOAAccountsTable.getModel().getValueAt(0,0) != null){
             int j = 0;
             try {
                 
-                for (int i = 0; i < jTable1.getRowCount(); i++){
-                    if (jTable1.getModel().getValueAt(i,0) != null){
+                for (int i = 0; i < mainCOAAccountsTable.getRowCount(); i++){
+                    if (mainCOAAccountsTable.getModel().getValueAt(i,0) != null){
                         
                         java.sql.Statement stmtTable11 = connectDB.createStatement();
-                        java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT count(main_code)  FROM pb_accounts_setup WHERE main_code ilike  '"+jTable1.getValueAt(i,0).toString()+"'");
+                        java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT count(main_code)  FROM pb_accounts_setup WHERE main_code ilike  '"+mainCOAAccountsTable.getValueAt(i,0).toString()+"'");
                         
                         while (rsetTable11.next()) {
                             j = rsetTable11.getInt(1);
                         }
                         if (j <= 0) {
                             java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into pb_accounts_setup values( ?, initcap(?),initcap(?))");
-                            pstmt.setObject(1,jTable1.getValueAt(i,0).toString());
-                            if (jTable1.getModel().getValueAt(i,1) != null){
-                                pstmt.setObject(2,jTable1.getValueAt(i,1).toString());
+                            pstmt.setObject(1,mainCOAAccountsTable.getValueAt(i,0).toString());
+                            if (mainCOAAccountsTable.getModel().getValueAt(i,1) != null){
+                                pstmt.setObject(2,mainCOAAccountsTable.getValueAt(i,1).toString());
                             }else {
                                 javax.swing.JOptionPane.showMessageDialog(this,"You must enter Main account name","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
                             }
                             
-                            pstmt.setObject(3,jTable1.getValueAt(i,2).toString());
+                            pstmt.setObject(3,mainCOAAccountsTable.getValueAt(i,2).toString());
                             pstmt.executeUpdate();
                             
                         }else{
                             
-                            java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE pb_accounts_setup SET description = '"+jTable1.getModel().getValueAt(i,1).toString()+"',class = '"+jTable1.getModel().getValueAt(i,2).toString()+"'  WHERE main_code ILIKE '"+jTable1.getModel().getValueAt(i,0).toString()+"'");
+                            java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE pb_accounts_setup SET description = '"+mainCOAAccountsTable.getModel().getValueAt(i,1).toString()+"',class = '"+mainCOAAccountsTable.getModel().getValueAt(i,2).toString()+"'  WHERE main_code ILIKE '"+mainCOAAccountsTable.getModel().getValueAt(i,0).toString()+"'");
                             pstmt31.executeUpdate();
                         }
                     }
                 }
                 javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully","Confirmation",javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                for (int k = 0; k < jTable1.getRowCount(); k++ ) {
-                    for (int r = 0; r < jTable1.getColumnCount(); r++ ) {
-                        jTable1.getModel().setValueAt(null,k,r);
+                for (int k = 0; k < mainCOAAccountsTable.getRowCount(); k++ ) {
+                    for (int r = 0; r < mainCOAAccountsTable.getColumnCount(); r++ ) {
+                        mainCOAAccountsTable.getModel().setValueAt(null,k,r);
                     }
                 }
                 
             }catch(java.sql.SQLException sq){
+                sq.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
                 System.out.println(sq.getMessage());
                 jLabel2.setForeground(java.awt.Color.red);
@@ -1792,7 +1798,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
             
         }
         // Add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_mainCOASaveDataBtnActionPerformed
     
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         java.util.Calendar calendar = java.util.Calendar.getInstance();
@@ -1863,6 +1869,7 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
                 jComboBox1.setSelectedItem(null);
                 jTextField1.setText("");
             }   catch(java.sql.SQLException sq){
+                sq.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(this,"ERROR: "+ sq.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
                 System.out.println(sq.getMessage());
                 jLabel3.setForeground(java.awt.Color.red);
@@ -1885,36 +1892,31 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel accountsCOAPanel;
+    private javax.swing.JTextField branchCodeTxt;
+    private javax.swing.JComboBox branchNameCmbx;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
+    private javax.swing.JTabbedPane coaTabbedPane;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton111;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton211;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton31;
     private javax.swing.JButton jButton311;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton41;
     private javax.swing.JButton jButton411;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JButton jButton91;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox11;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox21;
     private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox11;
-    private javax.swing.JComboBox jComboBox12;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1928,24 +1930,29 @@ public class ActivitiesEntIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel111;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane21;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable21;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JScrollPane mainCOAAccountsScrollPane;
+    private javax.swing.JTable mainCOAAccountsTable;
+    private javax.swing.JButton mainCOAClearBtn;
+    private javax.swing.JButton mainCOACloseBtn;
+    private javax.swing.JTextField mainCOACodeTxt;
+    private javax.swing.JButton mainCOADeleteBtn;
+    private javax.swing.JButton mainCOAEditBtn;
+    private javax.swing.JButton mainCOAHelpBtn;
+    private javax.swing.JPanel mainCOAPanel;
+    private javax.swing.JButton mainCOARemoveRowBtn;
+    private javax.swing.JButton mainCOASaveDataBtn;
+    private javax.swing.JTextField subActivityCodeTxt;
+    private javax.swing.JComboBox subCOAAccountCmbx;
+    private javax.swing.JPanel subCOAAccountsPanel;
     // End of variables declaration//GEN-END:variables
     
 }

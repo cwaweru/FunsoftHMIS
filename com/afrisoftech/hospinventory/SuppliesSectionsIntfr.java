@@ -344,12 +344,12 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.title")); // NOI18N
+        setTitle("Purchasing Sections Setup/ Allocation of users");
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jPanel13.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255))); // NOI18N
+        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select user to set in selected section", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
         jPanel13.setLayout(new java.awt.GridBagLayout());
 
         moduleTbl.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -717,9 +717,11 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane23.setViewportView(moduleTbl);
-        moduleTbl.getColumnModel().getColumn(0).setHeaderValue(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.moduleTbl.columnModel.title0")); // NOI18N
-        moduleTbl.getColumnModel().getColumn(1).setHeaderValue(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.moduleTbl.columnModel.title2")); // NOI18N
-        moduleTbl.getColumnModel().getColumn(2).setHeaderValue(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.moduleTbl.columnModel.title1")); // NOI18N
+        if (moduleTbl.getColumnModel().getColumnCount() > 0) {
+            moduleTbl.getColumnModel().getColumn(0).setHeaderValue("Funsoft Login name");
+            moduleTbl.getColumnModel().getColumn(1).setHeaderValue(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.moduleTbl.columnModel.title2")); // NOI18N
+            moduleTbl.getColumnModel().getColumn(2).setHeaderValue(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.moduleTbl.columnModel.title1")); // NOI18N
+        }
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -743,8 +745,8 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
 
         jButton13.setBackground(new java.awt.Color(0, 255, 204));
         jButton13.setMnemonic('O');
-        org.openide.awt.Mnemonics.setLocalizedText(jButton13, org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jButton13.text")); // NOI18N
-        jButton13.setToolTipText(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jButton13.toolTipText")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton13, "Allocate staff to section");
+        jButton13.setToolTipText("Click here enter data");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
@@ -759,7 +761,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
 
         jButton63.setBackground(new java.awt.Color(0, 255, 204));
         jButton63.setMnemonic('r');
-        org.openide.awt.Mnemonics.setLocalizedText(jButton63, org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jButton63.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton63, "Edit");
         jButton63.setPreferredSize(new java.awt.Dimension(189, 25));
         jButton63.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -774,7 +776,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
 
         jButton53.setBackground(new java.awt.Color(0, 255, 204));
         jButton53.setMnemonic('d');
-        org.openide.awt.Mnemonics.setLocalizedText(jButton53, org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jButton53.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton53, "Clear Form");
         jButton53.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton53ActionPerformed(evt);
@@ -794,7 +796,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel13.add(jLabel4, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton1, org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jButton1.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton1, "Delete Entries");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -816,7 +818,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jLabel3.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, "Purchasing Section");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         jPanel2.add(jLabel3, gridBagConstraints);
@@ -857,7 +859,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel2.add(jPanel59, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(superUserCmbx, org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.superUserCmbx.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(superUserCmbx, "SuperUser?");
         superUserCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 superUserCmbxActionPerformed(evt);
@@ -878,13 +880,13 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jPanel2, gridBagConstraints);
 
-        jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jPanel1.TabConstraints.tabTitle"), jPanel1); // NOI18N
+        jTabbedPane1.addTab(" Section Allocation ", jPanel1);
 
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
-        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jPanel14.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255))); // NOI18N
+        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select user to set in selected section", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
         jPanel14.setLayout(new java.awt.GridBagLayout());
 
         moduleTbl1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -1252,9 +1254,11 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane24.setViewportView(moduleTbl1);
-        moduleTbl1.getColumnModel().getColumn(0).setHeaderValue(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.moduleTbl.columnModel.title0")); // NOI18N
-        moduleTbl1.getColumnModel().getColumn(1).setHeaderValue(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.moduleTbl.columnModel.title2")); // NOI18N
-        moduleTbl1.getColumnModel().getColumn(2).setHeaderValue(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.moduleTbl.columnModel.title1")); // NOI18N
+        if (moduleTbl1.getColumnModel().getColumnCount() > 0) {
+            moduleTbl1.getColumnModel().getColumn(0).setHeaderValue(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.moduleTbl.columnModel.title0")); // NOI18N
+            moduleTbl1.getColumnModel().getColumn(1).setHeaderValue(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.moduleTbl.columnModel.title2")); // NOI18N
+            moduleTbl1.getColumnModel().getColumn(2).setHeaderValue(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.moduleTbl.columnModel.title1")); // NOI18N
+        }
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1278,8 +1282,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
 
         jButton14.setBackground(new java.awt.Color(0, 255, 204));
         jButton14.setMnemonic('O');
-        org.openide.awt.Mnemonics.setLocalizedText(jButton14, org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jButton14.text_1")); // NOI18N
-        jButton14.setToolTipText(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jButton14.toolTipText")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton14, "    Allocate    ");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
@@ -1314,7 +1317,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel14.add(jLabel6, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton2, org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jButton2.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton2, "Close Form");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -1372,13 +1375,13 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel5.add(jPanel6, gridBagConstraints);
 
-        jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jPanel5.TabConstraints.tabTitle"), jPanel5); // NOI18N
+        jTabbedPane1.addTab("AIE Holder Sections for approval", jPanel5);
 
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel5, org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jLabel5.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel5, "Username");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         jPanel4.add(jLabel5, gridBagConstraints);
@@ -1419,7 +1422,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel4.add(jPanel60, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jLabel1.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, "Module");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -1440,8 +1443,6 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel4.add(moduleCmbx, gridBagConstraints);
-
-        jPasswordField4.setText(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jPasswordField4.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -1450,7 +1451,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel4.add(jPasswordField4, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jLabel2.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, "Password");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -1458,7 +1459,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel4.add(jLabel2, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(setpwdbtn, org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.setpwdbtn.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(setpwdbtn, "Set Password");
         setpwdbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 setpwdbtnActionPerformed(evt);
@@ -1478,14 +1479,14 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jPanel4, gridBagConstraints);
 
-        jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jPanel3.TabConstraints.tabTitle"), jPanel3); // NOI18N
+        jTabbedPane1.addTab("Set User Action-Passwords", jPanel3);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jTabbedPane1, gridBagConstraints);
-        jTabbedPane1.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.jTabbedPane1.AccessibleContext.accessibleName")); // NOI18N
+        jTabbedPane1.getAccessibleContext().setAccessibleName("null");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -1681,7 +1681,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
             jPanel17.add(jTextField27, gridBagConstraints);
 
-            jLabel42.setForeground(new java.awt.Color(255, 0, 51));
+            jLabel42.setForeground(new java.awt.Color(255, 51, 153));
             jLabel42.setText("Old File Number(Unit Number)");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -1704,6 +1704,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
             jPanel17.add(unitNumberTxt, gridBagConstraints);
 
+            jLabel17.setForeground(new java.awt.Color(255, 51, 153));
             jLabel17.setText("Nationality");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -1743,7 +1744,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
             jPanel17.add(occupationCmbx, gridBagConstraints);
 
-            jLabel30.setForeground(new java.awt.Color(255, 0, 51));
+            jLabel30.setForeground(new java.awt.Color(255, 51, 153));
             jLabel30.setText("ID No / Passport No");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -1917,6 +1918,8 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
             jPanel3.setPreferredSize(new java.awt.Dimension(48, 24));
             jPanel3.setLayout(new java.awt.GridBagLayout());
+
+            admissionNumber.setEditable(false);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 0;
@@ -2253,7 +2256,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
             jPanel16.add(bedCategoryCmbx, gridBagConstraints);
 
-            jLabel20.setForeground(new java.awt.Color(255, 102, 102));
+            jLabel20.setForeground(new java.awt.Color(255, 51, 153));
             jLabel20.setText("Bed Rate");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
@@ -2778,7 +2781,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             jPanel2.add(datePicker2, gridBagConstraints);
 
             jLabel29.setBackground(new java.awt.Color(255, 204, 255));
-            jLabel29.setForeground(new java.awt.Color(255, 51, 51));
+            jLabel29.setForeground(new java.awt.Color(255, 51, 153));
             jLabel29.setText("Relationship");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -2877,7 +2880,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
             jPanel2.add(jLabel43, gridBagConstraints);
 
-            countyofBirthCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT county_name FROM pb_county ORDER BY county_name"));
+            countyofBirthCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' UNION SELECT DISTINCT county_name FROM pb_county ORDER BY 1"));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 5;
@@ -2886,7 +2889,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
             jPanel2.add(countyofBirthCmbx, gridBagConstraints);
 
-            countyofResidenceCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT county_name FROM pb_county order by 1"));
+            countyofResidenceCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' UNION SELECT DISTINCT county_name FROM pb_county order by 1"));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 4;
             gridBagConstraints.gridy = 5;
@@ -2940,7 +2943,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             jPanel2.add(employerTelTxt, gridBagConstraints);
 
-            jLabel46.setForeground(new java.awt.Color(255, 0, 51));
+            jLabel46.setForeground(new java.awt.Color(255, 51, 153));
             jLabel46.setText("C-Sheet No.");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
@@ -5611,16 +5614,16 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
             admitPrintBtn.setEnabled(false);
 
         } else {
-
-
-            if (unitNumberTxt.getText().length() > 1) {
-                if (cSheetNoTxt.getText().length() > 1) {
+            
+            if(nationalityCmbx.getSelectedItem() != null){
+//            if (unitNumberTxt.getText().length() > 1) {
+//                if (cSheetNoTxt.getText().length() > 1) {
                     if (surNameTxt.getText().length() > 1) {
                         if (firstNameTxt.getText().length() > 1) {
                             if (currentResidence.getText().length() > 1) {
                                 if (admissionWardCmbx.getSelectedItem() != null) {
                                     if (bedCategoryCmbx.getSelectedItem() != null) {
-                                        if (specialtyClinicCmbx.getSelectedItem() != null || specialtyClinicCmbx.getSelectedItem() == null) {
+                                        if (specialtyClinicCmbx.getSelectedItem() != null ) {
                                             if (!paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
                                                 if (bedNumberCmbx.getSelectedItem() != null) {
                                                     if (bedRateTxt.getText().length() > 0) {
@@ -5637,23 +5640,23 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                                                         boolean status = true;
                                                                         if (newAdimissionRbtn.isSelected()) {
 
-                                                                            try {
-                                                                                java.sql.Statement stmtx = connectDB.createStatement();
-                                                                                java.sql.ResultSet rsetx = stmtx.executeQuery("SELECT count(*) FROM hp_admission WHERE sub_chief ='" + unitNumberTxt.getText() + "'");
-                                                                                while (rsetx.next()) {
-                                                                                    unitNo = rsetx.getInt(1);
-                                                                                }
-
-                                                                                if (unitNo > 0) {
-                                                                                    //  jLabel33.setForeground(java.awt.Color.red);
-                                                                                    //  jLabel33.setText("PATIENT No. Already On File");
-                                                                                    status = false;
-                                                                                    javax.swing.JOptionPane.showMessageDialog(this, "The Unit Number is already in use", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                                                                }
-                                                                            } catch (java.sql.SQLException sql) {
-                                                                                sql.printStackTrace();
-                                                                                javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                                                            }
+//                                                                            try {
+//                                                                                java.sql.Statement stmtx = connectDB.createStatement();
+//                                                                                java.sql.ResultSet rsetx = stmtx.executeQuery("SELECT count(*) FROM hp_admission WHERE sub_chief ='" + unitNumberTxt.getText() + "'");
+//                                                                                while (rsetx.next()) {
+//                                                                                    unitNo = rsetx.getInt(1);
+//                                                                                }
+//
+//                                                                                if (unitNo > 0) {
+//                                                                                    //  jLabel33.setForeground(java.awt.Color.red);
+//                                                                                    //  jLabel33.setText("PATIENT No. Already On File");
+//                                                                                    status = false;
+//                                                                                    javax.swing.JOptionPane.showMessageDialog(this, "The Unit Number is already in use", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+//                                                                                }
+//                                                                            } catch (java.sql.SQLException sql) {
+//                                                                                sql.printStackTrace();
+//                                                                                javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+//                                                                            }
                                                                         }
 
 
@@ -5730,17 +5733,22 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
 
                     }
 
-                } else {
-                    javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS :  Charge Sheet Number is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+//                } else {
+//                    javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS :  Charge Sheet Number is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+//
+//                }
 
-                }
+//            } else {
+//                javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS :  Unit Number is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+//
+//            }
+             } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS :  Nationality field is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
-            } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS :  Unit Number is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-
-            }
+            }                   
 
         }
+            
 
         //jButton3.doClick();
         searchbyPatientNumberChkbx.setSelected(true);
@@ -7815,9 +7823,9 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                     nhifStatus = false;
                                 }
                                 pstmt.setBoolean(53, nhifStatus);
-                                pstmt.setString(54, countyofBirthCmbx.getSelectedItem().toString());
-                                pstmt.setString(55, countyofResidenceCmbx.getSelectedItem().toString());
-                                pstmt.setString(56, educationLevelCmbx.getSelectedItem().toString());
+                                pstmt.setObject(54, countyofBirthCmbx.getSelectedItem());
+                                pstmt.setObject(55, countyofResidenceCmbx.getSelectedItem());
+                                pstmt.setObject(56, educationLevelCmbx.getSelectedItem());
                                 pstmt.setString(57, cSheetNoTxt.getText());
 
                                 pstmt.executeUpdate();

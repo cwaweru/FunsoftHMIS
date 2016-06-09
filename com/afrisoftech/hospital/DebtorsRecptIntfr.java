@@ -26,8 +26,8 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         initComponents();
         System.out.println("Cashpoint : " + System.getProperty("cashpoint"));
         paymentModeCmb.setSelectedItem("Cash");
-        jTextField81.setText(System.getProperty("cashpoint"));//getCashPoint());
-        jTextField14.setText(getShiftNumber());
+        cashPointTxt.setText(getCashPoint());
+        shiftNoTxt.setText(getShiftNumber());
     }
 
     /**
@@ -91,6 +91,8 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         patientSelectionCriteriaPanel = new javax.swing.JPanel();
         outPatientChkbx = new javax.swing.JCheckBox();
         inPatientChkbx = new javax.swing.JCheckBox();
+        jLabel13 = new javax.swing.JLabel();
+        debtorBalanceTxt = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -101,8 +103,8 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         drawerBankTxt = new javax.swing.JTextField();
         jLabel53 = new javax.swing.JLabel();
         amountTxt = new javax.swing.JTextField();
-        jTextField81 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
+        cashPointTxt = new javax.swing.JTextField();
+        shiftNoTxt = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         datePicker1 = new com.afrisoftech.lib.DatePicker();
@@ -706,6 +708,30 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPanel1.add(patientSelectionCriteriaPanel, gridBagConstraints);
 
+        jLabel13.setText("Debtor Balance");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
+        jPanel1.add(jLabel13, gridBagConstraints);
+
+        debtorBalanceTxt.setEditable(false);
+        debtorBalanceTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+        debtorBalanceTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        debtorBalanceTxt.setText("0.00");
+        debtorBalanceTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        jPanel1.add(debtorBalanceTxt, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -815,16 +841,16 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
         getContentPane().add(jPanel2, gridBagConstraints);
 
-        jTextField81.setEditable(false);
+        cashPointTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jTextField81, gridBagConstraints);
+        getContentPane().add(cashPointTxt, gridBagConstraints);
 
-        jTextField14.setEditable(false);
+        shiftNoTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -832,7 +858,7 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        getContentPane().add(jTextField14, gridBagConstraints);
+        getContentPane().add(shiftNoTxt, gridBagConstraints);
 
         jLabel10.setText("Shift No.");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -900,7 +926,7 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         jPanel4.add(jButton6, gridBagConstraints);
 
         jButton3.setMnemonic('l');
-        jButton3.setText("Clear");
+        jButton3.setText("Clear form");
         jButton3.setToolTipText("Click here to clear textfields");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -915,7 +941,7 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         jPanel4.add(jButton3, gridBagConstraints);
 
         jButton4.setMnemonic('C');
-        jButton4.setText("Close");
+        jButton4.setText("Close form");
         jButton4.setToolTipText("Click here to close window");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1011,17 +1037,6 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
 
         } else {
 
-            /* java.util.Calendar calendar = java.util.Calendar.getInstance();
-            
-             long dateNow = calendar.getTimeInMillis();
-            
-             java.sql.Date datenowSql= new java.sql.Date(dateNow);
-            
-             System.out.println(datenowSql.toString());
-             * */
-            // */
-
-            //try{
             java.sql.Connection con;
             String glCode = null;
             String bankAcc = null;
@@ -1036,10 +1051,10 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
             try {
                 connectDB.setAutoCommit(false);
                 java.sql.Statement stm121xx = connectDB.createStatement();
-                java.sql.ResultSet rse121xx = stm121xx.executeQuery("select shift_no from ac_shifts WHERE user_name = current_user and status = 'Running' AND cash_point = '" + jTextField81.getText() + "'");
+                java.sql.ResultSet rse121xx = stm121xx.executeQuery("select shift_no from ac_shifts WHERE user_name = current_user and status = 'Running' AND cash_point = '" + cashPointTxt.getText() + "'");
                 while (rse121xx.next()) {
 
-                    jTextField14.setText(rse121xx.getString(1));
+                    shiftNoTxt.setText(rse121xx.getString(1));
 
                 }
 
@@ -1089,7 +1104,6 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
                  }
                  */
 
-
                 if (this.createNewAccChk.isSelected()) {
 
                     java.sql.Statement psst = connectDB.createStatement();
@@ -1113,9 +1127,6 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
                     pstmtg.executeUpdate();
                     System.out.println(accNo);
                 }
-
-
-
 
                 java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into ac_cash_collection values(?,?,?,initcap(?),?,?, ?, initcap(?), initcap(?), ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?)");
                 pstmt2.setObject(1, glCode);
@@ -1142,15 +1153,14 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
                 pstmt2.setBoolean(21, false);
                 pstmt2.setObject(26, null);
                 pstmt2.setString(23, User1);
-                pstmt2.setString(24, jTextField81.getText());
-                pstmt2.setString(25, jTextField14.getText());
+                pstmt2.setString(24, cashPointTxt.getText());
+                pstmt2.setString(25, shiftNoTxt.getText());
                 pstmt2.setDate(26, null);
                 pstmt2.setDouble(27, 1);
                 pstmt2.setDate(28, null);
                 pstmt2.setTimestamp(29, datenowSql);
                 pstmt2.setString(30, mdepartment);
                 pstmt2.executeUpdate();
-
 
                 java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into ac_debtors values(?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?)");
                 pstmt.setString(1, glCode);
@@ -1186,8 +1196,8 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
                 psr.setString(2, schemeNameTxt.getText());
                 psr.setDate(3, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
                 psr.setDouble(4, java.lang.Double.valueOf(amountTxt.getText()));
-                psr.setInt(5, java.lang.Integer.valueOf(jTextField14.getText()));
-                psr.setString(6, jTextField81.getText());
+                psr.setInt(5, java.lang.Integer.valueOf(shiftNoTxt.getText()));
+                psr.setString(6, cashPointTxt.getText());
                 psr.setString(7, receiptNo);
                 psr.setString(8, User1);
                 psr.executeUpdate();
@@ -1205,9 +1215,6 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
                 pstmt112x.executeUpdate();
 
                 javax.swing.JOptionPane.showMessageDialog(this, "Data Inserted Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-
-
 
                 receiptTxt.setText(receiptNo2);
 
@@ -1245,11 +1252,8 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         try {
             connectDB.setAutoCommit(false);
 
-
-
             // java.sql.Statement ps1 = connectDB.createStatement();
             // java.sql.ResultSet rst1 = ps1.executeQuery("select currval('receipt_no_seq')");
-
             //   java.sql.ResultSet rst1 = ps1.executeQuery("select currval('receipt_no_seq')");
             //while (rst1.next()){
             receiptNo = receiptTxt.getText();
@@ -1261,38 +1265,34 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
                 nodetails = rst11.getObject(1).toString();
             }
 
-
-
             String rct = null;
-            if(receiptNo != null){
-            java.sql.Statement ps112 = connectDB.createStatement();
-            java.sql.ResultSet rst112 = ps112.executeQuery("select rct_format from receipt_pref");
-            while (rst112.next()) {
-                rct = rst112.getObject(1).toString();
-            }
-            if (nodetails.equalsIgnoreCase("NoDetails")) {
-
-                com.afrisoftech.txtreports.IPDebtorsReceiptsTxt policy = new com.afrisoftech.txtreports.IPDebtorsReceiptsTxt(connectDB, otherDetailsTxt.getText(), actualPayerTxt.getText().toString(), schemeNameTxt.getText().toString(), amountTxt.getText(), receiptNo, paymentModeCmb.getSelectedItem().toString(), chequeNoTxt.getText());
-            } else {
-                if (nodetails.equalsIgnoreCase("Prints") && rct.equalsIgnoreCase("Pdf")) {
-                    com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
-                    policy.ReceiptsPdf(connectDB, receiptNo);
-                    //  com.afrisoftech.accounting.OtherReceiptsPdf policy = new com.afrisoftech.accounting.OtherReceiptsPdf();
-                    //  policy.OtherReceiptsPdf(connectDB,jTextField111.getText(), jTextField4.getText(),jTextField3.getText(),receiptNo,jComboBox11.getSelectedItem().toString(),jTextField2.getText());
-
-                } else {
-                    //   com.afrisoftech.txtreports.InpatientReceiptsTxt policy = new com.afrisoftech.txtreports.InpatientReceiptsTxt(connectDB, jTextField9.getText(),jTextField20.getText(),jTextField17.getText(),receiptNo1,this.jComboBox411.getSelectedItem().toString(),jTextField221.getText(),this.jTextField1.getText());
-                    com.afrisoftech.txtreports.DebtorsReceiptsTxt policy = new com.afrisoftech.txtreports.DebtorsReceiptsTxt(connectDB, otherDetailsTxt.getText(), actualPayerTxt.getText().toString(), schemeNameTxt.getText().toString(), amountTxt.getText(), receiptNo, paymentModeCmb.getSelectedItem().toString(), chequeNoTxt.getText());
+            if (receiptNo != null) {
+                java.sql.Statement ps112 = connectDB.createStatement();
+                java.sql.ResultSet rst112 = ps112.executeQuery("select rct_format from receipt_pref");
+                while (rst112.next()) {
+                    rct = rst112.getObject(1).toString();
                 }
-            }
+                if (nodetails.equalsIgnoreCase("NoDetails")) {
+
+                    com.afrisoftech.txtreports.IPDebtorsReceiptsTxt policy = new com.afrisoftech.txtreports.IPDebtorsReceiptsTxt(connectDB, otherDetailsTxt.getText(), actualPayerTxt.getText().toString(), schemeNameTxt.getText().toString(), amountTxt.getText(), receiptNo, paymentModeCmb.getSelectedItem().toString(), chequeNoTxt.getText());
+                } else {
+                    if (nodetails.equalsIgnoreCase("Prints") && rct.equalsIgnoreCase("Pdf")) {
+                        com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
+                        policy.ReceiptsPdf(connectDB, receiptNo);
+                        //  com.afrisoftech.accounting.OtherReceiptsPdf policy = new com.afrisoftech.accounting.OtherReceiptsPdf();
+                        //  policy.OtherReceiptsPdf(connectDB,jTextField111.getText(), jTextField4.getText(),jTextField3.getText(),receiptNo,jComboBox11.getSelectedItem().toString(),jTextField2.getText());
+
+                    } else {
+                        //   com.afrisoftech.txtreports.InpatientReceiptsTxt policy = new com.afrisoftech.txtreports.InpatientReceiptsTxt(connectDB, jTextField9.getText(),jTextField20.getText(),jTextField17.getText(),receiptNo1,this.jComboBox411.getSelectedItem().toString(),jTextField221.getText(),this.jTextField1.getText());
+                        com.afrisoftech.txtreports.DebtorsReceiptsTxt policy = new com.afrisoftech.txtreports.DebtorsReceiptsTxt(connectDB, otherDetailsTxt.getText(), actualPayerTxt.getText().toString(), schemeNameTxt.getText().toString(), amountTxt.getText(), receiptNo, paymentModeCmb.getSelectedItem().toString(), chequeNoTxt.getText());
+                    }
+                }
 
             // com.afrisoftech.txtreports.DebtorsReceiptsTxt policy = new com.afrisoftech.txtreports.DebtorsReceiptsTxt(connectDB,jTextField111.getText(), jTextField4.getText().toString(), jTextField361.getText().toString(),jTextField3.getText(),receiptNo,jComboBox11.getSelectedItem().toString(),jTextField2.getText());
-
-            //com.afrisoftech.accounting.OtherReceiptsPdf policy = new com.afrisoftech.accounting.OtherReceiptsPdf();
-            //policy.OtherReceiptsPdf(connectDB,jTextField111.getText(), jTextField4.getText(),jTextField3.getText(),receiptNo,jComboBox11.getSelectedItem().toString(),jTextField2.getText());
-            // com.afrisoftech.reports.DebtorsReceiptsPdf policy = new com.afrisoftech.reports.DebtorsReceiptsPdf();
-            // policy.DebtorsReceiptsPdf(connectDB,jTextField361.getText(), jTextField4.getText(),jTextField3.getText(),receiptNo,jComboBox11.getSelectedItem().toString(),jTextField2.getText());
-
+                //com.afrisoftech.accounting.OtherReceiptsPdf policy = new com.afrisoftech.accounting.OtherReceiptsPdf();
+                //policy.OtherReceiptsPdf(connectDB,jTextField111.getText(), jTextField4.getText(),jTextField3.getText(),receiptNo,jComboBox11.getSelectedItem().toString(),jTextField2.getText());
+                // com.afrisoftech.reports.DebtorsReceiptsPdf policy = new com.afrisoftech.reports.DebtorsReceiptsPdf();
+                // policy.DebtorsReceiptsPdf(connectDB,jTextField361.getText(), jTextField4.getText(),jTextField3.getText(),receiptNo,jComboBox11.getSelectedItem().toString(),jTextField2.getText());
             }
 
         } catch (java.sql.SQLException sq) {
@@ -1344,6 +1344,12 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
             java.sql.ResultSet rset = stmt.executeQuery("select payer_name from ac_schemes where account_no ='" + jTextField8.getText() + "'");
             while (rset.next()) {
                 payerCategoryTxt.setText(rset.getObject(1).toString());
+            }
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT sum(debit-credit) FROM ac_debtors WHERE account_no = ?");
+            pstmt.setString(1, jTextField8.getText());
+            java.sql.ResultSet rsets = pstmt.executeQuery();
+            while (rsets.next()) {
+                debtorBalanceTxt.setValue(rsets.getDouble(1));
             }
         } catch (java.sql.SQLException sqe) {
             sqe.printStackTrace();
@@ -1412,8 +1418,6 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
             jSearchTable.setShowHorizontalLines(false);
             jSearchScrollPane.setViewportView(jSearchTable);
 
-
-
         }          // Add your handling code here:
     }//GEN-LAST:event_jTextField1111CaretUpdate
     private void searchButtonClicked() {
@@ -1452,21 +1456,17 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        //  jTextField7.setText("");
-        //       jTextField10.setText("");
-        drawerBankTxt.setText("");
-        //        jTextField5.setText("");
-        //        jTextField12.setText("");
-        //        jTextField4.setText("");
-        //   jTextField11.setText("");
-        //        jTextField31.setText("");
-        //       jTextField5.setText("");
-        amountTxt.setText("");
-        drawerNameTxt.setText("");
-        chequeNoTxt.setText("");
-        //  jComboBox131.setSelectedItem(null);
-        paymentModeCmb.setSelectedItem(null);
-        // Add your handling code here:
+        this.getContentPane().removeAll();
+        this.initComponents();
+        this.setSize(this.getParent().getSize());
+//        drawerBankTxt.setText("");
+//
+//        amountTxt.setText("");
+//        drawerNameTxt.setText("");
+//        chequeNoTxt.setText("");
+//
+//        paymentModeCmb.setSelectedItem(null);
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1479,12 +1479,8 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         // java.util.Calendar calendar = java.util.Calendar.getInstance();
 
         // long dateNow = calendar.getTimeInMillis();
-
         // java.sql.Date datenowSql= new java.sql.Date(dateNow);
-
         // System.out.println(datenowSql.toString());
-
-
         java.sql.Connection con;
         String glCode = null;
         String bankAcc = null;
@@ -1498,13 +1494,10 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         jButton11ActionPerformed(evt);
         jButton6ActionPerformed(evt);
 
-
-
         // Add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void patientSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientSearchButtonActionPerformed
-
 
         System.out.println("Showing dialog");
 
@@ -1549,12 +1542,11 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_patientSearchCloseButonActionPerformed
     public java.lang.String getShiftNumber() {
 
-
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
 
-            java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE cash_point = '" + System.getProperty("cashpoint") + "' AND user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
+            java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE cash_point = '" + getCashPoint() + "' AND user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
             //java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE cash_point = '" + cashPoint + "' AND user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
 
             while (rset.next()) {
@@ -1563,10 +1555,9 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
 
             }
 
-
-
-
         } catch (java.sql.SQLException sqlExec) {
+
+            sqlExec.printStackTrace();
 
             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
 
@@ -1578,41 +1569,21 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
 
     public java.lang.String getCashPoint() {
 
-        /*try {
-
-         java.sql.Statement stmtf = connectDB.createStatement();
-         java.sql.ResultSet rsetf = stmtf.executeQuery("select code from ac_cash_points_setup where description = current_user");
-         while (rsetf.next()) {
-         cashPoint = rsetf.getObject(1).toString();
-
-         }
-         } catch (java.sql.SQLException sqe) {
-         sqe.printStackTrace();
-         System.out.println("select not successful");
-         }*/
         try {
 
-            java.sql.Statement stmt = connectDB.createStatement();
-
-            java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE cash_point = '" + System.getProperty("cashpoint") + "' AND user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
-            //java.sql.ResultSet rset = stmt.executeQuery("SELECT cash_point FROM ac_shifts WHERE user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
-
-            while (rset.next()) {
-
-                cash_no = rset.getString(1);
-
+            java.sql.Statement stmtf = connectDB.createStatement();
+            java.sql.ResultSet rsetf = stmtf.executeQuery("select code from ac_cash_points_setup where description = current_user");
+            while (rsetf.next()) {
+               
+                cashPoint = rsetf.getObject(1).toString();
+                cashPointTxt.setText(cashPoint);
             }
-
-
-
-
-        } catch (java.sql.SQLException sqlExec) {
-
-            javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
-
+        } catch (java.sql.SQLException sqe) {
+            sqe.printStackTrace();
+            System.out.println("select not successful");
         }
 
-        return cash_no;
+        return cashPoint;
 
     }
 
@@ -1638,9 +1609,11 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField amountTxt;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JTextField cashPointTxt;
     private javax.swing.JTextField chequeNoTxt;
     private javax.swing.JCheckBox createNewAccChk;
     private com.afrisoftech.lib.DatePicker datePicker1;
+    private javax.swing.JFormattedTextField debtorBalanceTxt;
     private javax.swing.JTextField drawerBankTxt;
     private javax.swing.JTextField drawerNameTxt;
     private javax.swing.JCheckBox inPatientChkbx;
@@ -1656,6 +1629,7 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1685,10 +1659,8 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1111;
     private javax.swing.JTextField jTextField11111;
-    private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField81;
     private javax.swing.JTextField otherDetailsTxt;
     private javax.swing.JCheckBox outPatientChkbx;
     private javax.swing.JLabel patientNameLbl;
@@ -1710,5 +1682,6 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField schemeNameTxt;
     private javax.swing.JButton searchButton1;
     private javax.swing.JButton searchButton2;
+    private javax.swing.JTextField shiftNoTxt;
     // End of variables declaration//GEN-END:variables
 }

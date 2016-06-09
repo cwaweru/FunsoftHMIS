@@ -91,11 +91,11 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(DocumentationIntfr.class, "DocumentationIntfr.jPanel29.border.title"))); // NOI18N
+        jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder("Bidders' Documentation"));
         jPanel29.setLayout(new java.awt.GridBagLayout());
 
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/pdf1.jpg"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(jButton13, org.openide.util.NbBundle.getMessage(DocumentationIntfr.class, "DocumentationIntfr.jButton13.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton13, "Upload pdf to database");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
@@ -109,7 +109,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         jPanel29.add(jButton13, gridBagConstraints);
 
         jLabel30.setForeground(new java.awt.Color(255, 0, 0));
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel30, org.openide.util.NbBundle.getMessage(DocumentationIntfr.class, "DocumentationIntfr.jLabel30.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel30, "Doc Description (e.g Purchase order to 'ABC Company')");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -118,7 +118,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         jPanel29.add(jLabel30, gridBagConstraints);
 
         jLabel32.setForeground(new java.awt.Color(255, 0, 0));
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel32, org.openide.util.NbBundle.getMessage(DocumentationIntfr.class, "DocumentationIntfr.jLabel32.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel32, "Doc Ref_No (e.g PC/23)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -128,7 +128,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
 
         detailsPane.setColumns(20);
         detailsPane.setRows(5);
-        detailsPane.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(DocumentationIntfr.class, "DocumentationIntfr.detailsPane.border.title"))); // NOI18N
+        detailsPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Comment  on Documentation"));
         jScrollPane15.setViewportView(detailsPane);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -156,7 +156,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel29.add(refNotxt, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton34, org.openide.util.NbBundle.getMessage(DocumentationIntfr.class, "DocumentationIntfr.jButton34.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton34, "Preview Document ");
         jButton34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton34ActionPerformed(evt);
@@ -167,7 +167,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 6;
         jPanel29.add(jButton34, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(DocumentationIntfr.class, "DocumentationIntfr.jLabel1.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, "File Path");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -176,7 +176,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
         pathTofile.setEditable(false);
-        pathTofile.setText(org.openide.util.NbBundle.getMessage(DocumentationIntfr.class, "DocumentationIntfr.pathTofile.text")); // NOI18N
+        pathTofile.setText("pathtofile/file.pdf");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -185,7 +185,6 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel4.add(pathTofile, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton1, org.openide.util.NbBundle.getMessage(DocumentationIntfr.class, "DocumentationIntfr.jButton1.text")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -212,7 +211,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel2.add(jPanel29, gridBagConstraints);
 
-        jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(DocumentationIntfr.class, "DocumentationIntfr.jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
+        jTabbedPane1.addTab("Data Upload", jPanel2);
 
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
@@ -246,10 +245,10 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jScrollPane1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(DocumentationIntfr.class, "DocumentationIntfr.jLabel2.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, "Search Key(Ref No or Doc Name)");
         jPanel3.add(jLabel2, new java.awt.GridBagConstraints());
 
-        keySearch.setText(org.openide.util.NbBundle.getMessage(DocumentationIntfr.class, "DocumentationIntfr.keySearch.text")); // NOI18N
+        keySearch.setText("Type ref_no here and press enter...");
         keySearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 keySearchMouseClicked(evt);
@@ -271,10 +270,10 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel3.add(keySearch, gridBagConstraints);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(DocumentationIntfr.class, "DocumentationIntfr.jPanel5.border.title"))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Apply a date filter to view multiple uploads"));
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, org.openide.util.NbBundle.getMessage(DocumentationIntfr.class, "DocumentationIntfr.jLabel3.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, "Begin Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -297,7 +296,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel5.add(endPckr, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel4, org.openide.util.NbBundle.getMessage(DocumentationIntfr.class, "DocumentationIntfr.jLabel4.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel4, "End Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -306,7 +305,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel5.add(jLabel4, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jRadioButton1, org.openide.util.NbBundle.getMessage(DocumentationIntfr.class, "DocumentationIntfr.jRadioButton1.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jRadioButton1, null);
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
@@ -319,7 +318,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         jPanel3.add(jPanel5, gridBagConstraints);
 
-        jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(DocumentationIntfr.class, "DocumentationIntfr.jPanel3.TabConstraints.tabTitle"), jPanel3); // NOI18N
+        jTabbedPane1.addTab("Search Docs", jPanel3);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -362,11 +361,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             Exceptions.printStackTrace(ex);
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            try {
-                connectDB.rollback();
-            } catch (SQLException ex1) {
-                Exceptions.printStackTrace(ex1);
-            }
+
         }
 
 

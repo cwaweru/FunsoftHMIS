@@ -9,6 +9,7 @@ package com.afrisoftech.hospital;
 import java.awt.event.MouseEvent;
 import org.jfree.xml.factory.objects.JavaBaseClassFactory;
 import java.awt.event.*;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,6 +39,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     public static String transNo = null;
     boolean priceEdit = false;
     boolean rePrints = false;
+    private String age;
 
     public GeneralBillingIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
@@ -153,6 +155,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         packagesCancelBtn = new javax.swing.JButton();
         buttonGroup5 = new javax.swing.ButtonGroup();
         jCheckBox5 = new javax.swing.JCheckBox();
+        genderButtonGroup = new javax.swing.ButtonGroup();
         jLabel7 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         billingPanel = new javax.swing.JTabbedPane();
@@ -241,6 +244,9 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         wardNameTxt = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         billingStationTxt = new javax.swing.JTextField();
+        maleChkbx = new javax.swing.JCheckBox();
+        femaleChkbx = new javax.swing.JCheckBox();
+        jLabel27 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
         billTotalTxt = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
@@ -284,6 +290,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         opdChkbx = new javax.swing.JCheckBox();
         ipdChkbx = new javax.swing.JCheckBox();
         walkinChkbx = new javax.swing.JCheckBox();
+        mchfpChkbx = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
         datePicker1 = new com.afrisoftech.lib.DatePicker();
         packageAmountTxt = new javax.swing.JTextField();
@@ -442,11 +449,11 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         }
         */
         patientSearchTbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                patientSearchTblMouseEntered(evt);
-            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 patientSearchTblMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                patientSearchTblMouseEntered(evt);
             }
         });
         patientSearchJscrl.setViewportView(patientSearchTbl);
@@ -2829,6 +2836,11 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             jPanel42.setLayout(new java.awt.GridBagLayout());
 
             doctorAcctNumberTxt.setEditable(false);
+            doctorAcctNumberTxt.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    doctorAcctNumberTxtActionPerformed(evt);
+                }
+            });
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 2;
@@ -3007,7 +3019,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
             patientParticularsPanel.add(jLabel14, gridBagConstraints);
 
-            jLabel18.setText("Unit Number");
+            jLabel18.setText("Unit/Tel. Number");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 2;
@@ -3165,6 +3177,43 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
             patientParticularsPanel.add(billingStationTxt, gridBagConstraints);
+
+            genderButtonGroup.add(maleChkbx);
+            maleChkbx.setText("Male");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 1;
+            gridBagConstraints.gridy = 9;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+            patientParticularsPanel.add(maleChkbx, gridBagConstraints);
+
+            genderButtonGroup.add(femaleChkbx);
+            femaleChkbx.setText("Female");
+            femaleChkbx.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    femaleChkbxActionPerformed(evt);
+                }
+            });
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 3;
+            gridBagConstraints.gridy = 9;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+            patientParticularsPanel.add(femaleChkbx, gridBagConstraints);
+
+            jLabel27.setText("Indicate Gender");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 9;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+            patientParticularsPanel.add(jLabel27, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -3585,7 +3634,21 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                     walkinChkbxActionPerformed(evt);
                 }
             });
-            patientCheckBoxPanel.add(walkinChkbx, new java.awt.GridBagConstraints());
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 3;
+            gridBagConstraints.gridy = 0;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            patientCheckBoxPanel.add(walkinChkbx, gridBagConstraints);
+
+            buttonGroup1.add(mchfpChkbx);
+            mchfpChkbx.setText("MCH/FP");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 2;
+            gridBagConstraints.gridy = 0;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            patientCheckBoxPanel.add(mchfpChkbx, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
@@ -4526,9 +4589,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
         java.io.File xmlDocFile = null;
 
-
         xmlDocFile = new java.io.File(System.getProperty("docsdir"), "ForwardedCardData.xml");
-
 
         biz.systempartners.claims.XMLClaimFile claimFile = new biz.systempartners.claims.XMLClaimFile();
 
@@ -4556,7 +4617,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                     payerNameTxt.setText(rsetTable1.getString(3));
                 }
                 savebillBtn.setEnabled(true);
-              //  saveAndPrintBillBtn.setEnabled(true);
+                //  saveAndPrintBillBtn.setEnabled(true);
                 rePrintBillBtn.setEnabled(false);
                 readSmartCardBtn.setEnabled(false);
                 //javax.swing.JOptionPane.showMessageDialog(this,"You must retrieve from smart link","Information Message",javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -4567,7 +4628,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             }
         }
-
 
 // TODO add your handling code here:
     }//GEN-LAST:event_readSmartCardBtnActionPerformed
@@ -4611,7 +4671,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
         this.billingTablesJscrl.setViewportView(packagesTbl);
         this.validate();
-
 
 // TODO add your handling code here:
     }//GEN-LAST:event_packageBillingChkbxActionPerformed
@@ -4662,7 +4721,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 packagesSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT package_code, package, package_amt as price, department, glcode FROM pb_packages_setup WHERE package_code ILIKE '%" + packagesSearchTxt.getText().toString() + "%'"));
 
                 //  System.out.println("");
-
             }
         } else {
 
@@ -4709,15 +4767,11 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
                 for (int i = 0; i < selectedRows.length; i++) {
 
-
-
                     javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) discreetServicesTbl.getModel();
 
                     defTableModel.removeRow(selectedRows[i]);
 
                 }
-
-
 
             } else {
 
@@ -4729,7 +4783,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(discreetServicesTbl, 3);
         packageAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));        //System.out.println("This date is todays date");
         //     System.out.print("This date is todays date");
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_removePackageBtnActionPerformed
@@ -4788,7 +4841,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             jSearchTable13.setShowHorizontalLines(false);
             jSearchScrollPane13.setViewportView(jSearchTable13);
-
 
         }         // Add your handling code here:
     }//GEN-LAST:event_jTextField1113CaretUpdate
@@ -4868,7 +4920,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                         // jButton7.setEnabled(false);
                     } else {
                         savebillBtn.setEnabled(true);
-                      //  saveAndPrintBillBtn.setEnabled(true);
+                        //  saveAndPrintBillBtn.setEnabled(true);
                         rePrintBillBtn.setEnabled(true);
                     }
                 }
@@ -4885,7 +4937,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                             // jButton7.setEnabled(false);
                         } else {
                             savebillBtn.setEnabled(true);
-                           // saveAndPrintBillBtn.setEnabled(true);
+                            // saveAndPrintBillBtn.setEnabled(true);
                             rePrintBillBtn.setEnabled(true);
                         }
                     }
@@ -4936,8 +4988,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
         generalBillingDoctorSearchDialog.setVisible(true);
 
-
-
     }
     private void jSearchTable31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable31MouseClicked
         doctorAcctNumberTxt.setText(jSearchTable31.getValueAt(jSearchTable31.getSelectedRow(), 0).toString());
@@ -4980,7 +5030,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             //                jSearchTable31.setShowHorizontalLines(false);
             jSearchScrollPane31.setViewportView(jSearchTable31);
 
-
         }        // Add your handling code here:
     }//GEN-LAST:event_jTextField1121CaretUpdate
 
@@ -5003,7 +5052,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             //wait(10000);
             while (k != 0) {
-
 
                 if (transNo != null) {
                     k = 0;
@@ -5032,7 +5080,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 policy.RequestPdf(connectDB, patientNumberTxt.getText(), patientNameTxt.getText(), billTotalTxt.getText(), receiptNo, this.schemeNameTxt.getText());
 
             }
-
 
         } catch (java.sql.SQLException sq) {
 
@@ -5099,9 +5146,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         patientNameTxt.setText(jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 1).toString());
         patientNumberTxt.setText(jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 0).toString());
 
-
         try {
-
 
             java.sql.Statement stmt1 = connectDB.createStatement();
             java.sql.ResultSet rset1 = stmt1.executeQuery("select category,pay_mode from hp_patient_register where patient_no  ='" + consultantBillingPatientNoTxt.getText() + "'");
@@ -5143,8 +5188,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         jSearchDialog3.setLocation(point);
 
         jSearchDialog3.setVisible(true);
-
-
 
     }
     private void jTable111KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable111KeyReleased
@@ -5197,7 +5240,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
              */
             jSearchTable111.setShowHorizontalLines(false);
             jSearchScrollPane111.setViewportView(jSearchTable111);
-
 
         }          // Add your handling code here:
     }//GEN-LAST:event_jTextField11111CaretUpdate
@@ -5263,15 +5305,11 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
                 for (int i = 0; i < selectedRows.length; i++) {
 
-
-
                     javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable111.getModel();
 
                     defTableModel.removeRow(selectedRows[i]);
 
                 }
-
-
 
             } else {
 
@@ -5475,7 +5513,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                         pstmt21.setDouble(18, java.lang.Double.valueOf(jTable111.getValueAt(i, 3).toString()));
                         pstmt21.executeUpdate();
 
-
                         java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
 
                         pstmt.setString(1, jTextField911.getText());
@@ -5535,7 +5572,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                     }
                 }
 
-
                 connectDB.commit();
                 connectDB.setAutoCommit(true);
                 javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -5586,7 +5622,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         double rect = 0.00;
         try {
 
-
             java.sql.Statement stmt11 = connectDB.createStatement();
             java.sql.ResultSet rset11 = stmt11.executeQuery("select iplimit from hp_inpatient_register where patient_no  ='" + jTextField911.getText() + "'");
             while (rset11.next()) {
@@ -5619,7 +5654,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             this.jButton111.setEnabled(true);
 
             try {
-
 
                 java.sql.Statement stmt1 = connectDB.createStatement();
                 java.sql.ResultSet rset1 = stmt1.executeQuery("select category,pay_mode from hp_inpatient_register where patient_no  ='" + jTextField911.getText() + "'");
@@ -5669,7 +5703,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 jSearchTable211.setShowHorizontalLines(false);
                 jSearchScrollPane211.setViewportView(jSearchTable211);
 
-
             }
         } else {
             if (this.jCheckBox2.isSelected() && jCheckBox41.isSelected()) {
@@ -5681,7 +5714,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
                     jSearchTable211.setShowHorizontalLines(false);
                     jSearchScrollPane211.setViewportView(jSearchTable211);
-
 
                 }
             }
@@ -5700,8 +5732,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         inpatientRegisterSearchDialog.setLocation(point);
 
         inpatientRegisterSearchDialog.setVisible(true);
-
-
 
     }
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
@@ -5745,15 +5775,11 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
                 for (int i = 0; i < selectedRows.length; i++) {
 
-
-
                     javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) consultantBillingTable.getModel();
 
                     defTableModel.removeRow(selectedRows[i]);
 
                 }
-
-
 
             } else {
 
@@ -5833,7 +5859,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 String AccDesc1 = null;
                 try {
                     connectDB.setAutoCommit(false);
-
 
                     java.sql.Statement stm12 = connectDB.createStatement();
                     java.sql.ResultSet rse12 = stm12.executeQuery("select code,activity from pb_activity where activity_category ='PR'");
@@ -5941,7 +5966,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                             pstmt211.setDouble(18, Double.parseDouble(consultantBillingTable.getValueAt(i, 3).toString()));
                             pstmt211.executeUpdate();
 
-
                             java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?)");
 
                             pstmt.setString(1, consultantBillingPatientNoTxt.getText());
@@ -6026,7 +6050,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         String status = null;
         try {
 
-
             java.sql.Statement stmt1 = connectDB.createStatement();
             java.sql.ResultSet rset1 = stmt1.executeQuery("select status from pb_doctors_list where staff_no  ='" + this.jSearchTable11.getValueAt(jSearchTable11.getSelectedRow(), 0) + "'");
             while (rset1.next()) {
@@ -6060,7 +6083,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             jSearchScrollPane11.setViewportView(jSearchTable11);
 
-
         }        // Add your handling code here:
     }//GEN-LAST:event_jTextField1111CaretUpdate
 
@@ -6077,7 +6099,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             double resVal = floatCol2 * floatCol3;
 
-
             //float total = qty * price;
             consultantBillingTable.setValueAt(resVal, consultantBillingTable.getSelectedRow(), 3);
             double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(consultantBillingTable, 3);
@@ -6092,7 +6113,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         System.out.println("Calculating totals for table 11 and 2.");
         //        double resFloat = 0.00;
         double resFloat = 0.00;
-
 
         for (int i = 0; i < consultantBillingTable.getRowCount(); i++) {
 
@@ -6183,9 +6203,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         consultantBillingPatientNameTxt.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 1).toString());
         consultantBillingPatientNoTxt.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 0).toString());
 
-
         try {
-
 
             java.sql.Statement stmt1 = connectDB.createStatement();
             java.sql.ResultSet rset1 = stmt1.executeQuery("select category,pay_mode from hp_patient_register where patient_no  ='" + consultantBillingPatientNoTxt.getText() + "'");
@@ -6214,8 +6232,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 jSearchTable21.setShowHorizontalLines(false);
                 jSearchScrollPane21.setViewportView(jSearchTable21);
 
-
-
             }
         } else {
             if (this.jCheckBox1.isSelected() && this.jCheckBox41.isSelected()) {
@@ -6226,11 +6242,8 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 } else {
                     jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where second_name||' '||first_name||' '||last_name ILIKE '" + jTextField1131.getText() + "%' and last_visit > current_date - 15 order by second_name"));
 
-
                     jSearchTable21.setShowHorizontalLines(false);
                     jSearchScrollPane21.setViewportView(jSearchTable21);
-
-
 
                 }
 
@@ -6274,8 +6287,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         patientSearchDialog.setLocation(point);
 
         patientSearchDialog.setVisible(true);
-
-
 
     }
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -6332,11 +6343,10 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 // jButton7.setEnabled(false);
             } else {
                 savebillBtn.setEnabled(true);
-               // saveAndPrintBillBtn.setEnabled(true);
+                // saveAndPrintBillBtn.setEnabled(true);
                 rePrintBillBtn.setEnabled(true);
             }
         }
-
 
         // Add your handling code here:
     }//GEN-LAST:event_serviceorcodeSearchTableMouseClicked
@@ -6375,7 +6385,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                         serviceorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT service_type,anaesthetist_rate as price,'" + glcodeTxt.getText() + "' as glcode, code, main_service FROM pb_operating_parameters WHERE code ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%' AND  service_type NOT ILIKE '%bed%' order by 1")); // UNION ALL select DISTINCT product,selling_price,'" + glcodeTxt.getText() + "' as service_type,product_id, department as main_service FROM stockprices WHERE product ILIKE '%" + serviceorcodeSearchTxt.getText() + "%'"));
 
                     }
-
 
                     jSearchScrollPane.setViewportView(serviceorcodeSearchTable);
                 }
@@ -6574,17 +6583,19 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         boolean smartcard = false;
         String memberno = null;
         cardBalanceTxt.setText("0.00");
-      //  saveAndPrintBillBtn.setEnabled(true);
+        //  saveAndPrintBillBtn.setEnabled(true);
         savebillBtn.setEnabled(true);
         rePrintBillBtn.setEnabled(false);
         bedAmountTxt.setText("0.00");
         patientNameTxt.setText(patientSearchTbl.getValueAt(patientSearchTbl.getSelectedRow(), 1).toString());
         patientNumberTxt.setText(patientSearchTbl.getValueAt(patientSearchTbl.getSelectedRow(), 0).toString());
+        if (mchfpChkbx.isSelected()) {
+            age = patientSearchTbl.getValueAt(patientSearchTbl.getSelectedRow(), 4).toString();
+        }
         // generalBillingPatientSearchDialog.dispose();
         String adm = null;
 
         try {
-
 
             java.sql.Statement stmt1 = connectDB.createStatement();
             java.sql.ResultSet rset1 = stmt1.executeQuery("select discharge from hp_admission where patient_no  ='" + patientNumberTxt.getText() + "' and discharge = false order by date_admitted desc limit 1");
@@ -6602,7 +6613,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             wardNameTxt.setText("");
             try {
 
-
                 java.sql.Statement stmt1 = connectDB.createStatement();
                 java.sql.ResultSet rset1 = stmt1.executeQuery("select category,pay_mode,description,card_no from hp_patient_register where patient_no  ='" + patientNumberTxt.getText() + "'");
                 while (rset1.next()) {
@@ -6611,6 +6621,10 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                     schemeNameTxt.setText(dbObject.getDBObject(rset1.getObject(3), "-").toString());
                     memberno = dbObject.getDBObject(rset1.getObject(4), "-").toString();
                     System.out.println(memberno);
+                }
+                if (mchfpChkbx.isSelected()) {
+                    patientCategoryTxt.setText("MCH");
+                    paymentModeCmbx.setSelectedItem("CASH");
                 }
                 if (paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
 
@@ -6685,11 +6699,10 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             }
         } else {
-            if (this.ipdChkbx.isSelected()) {
+            if (this.ipdChkbx.isSelected() || this.mchfpChkbx.isSelected()) {
                 unitNumberTxt.setText(patientSearchTbl.getValueAt(patientSearchTbl.getSelectedRow(), 2).toString());
                 wardNameTxt.setText(patientSearchTbl.getValueAt(patientSearchTbl.getSelectedRow(), 3).toString());
                 try {
-
 
                     java.sql.Statement stmt11 = connectDB.createStatement();
                     java.sql.ResultSet rset11 = stmt11.executeQuery("select iplimit from hp_inpatient_register where patient_no  ='" + patientNumberTxt.getText() + "'");
@@ -6710,7 +6723,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
                     }
 
-
                 } catch (java.sql.SQLException sqe) {
                     sqe.printStackTrace();
                     //  System.out.println("Insert not successful");
@@ -6721,7 +6733,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 } else {
                     this.savebillBtn.setEnabled(true);
                     try {
-
 
                         java.sql.Statement stmt1 = connectDB.createStatement();
                         java.sql.ResultSet rset1 = stmt1.executeQuery("select category,pay_mode,description,member_no from hp_inpatient_register where patient_no  ='" + patientNumberTxt.getText() + "'");
@@ -6855,7 +6866,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 patientSearchTbl.setShowHorizontalLines(false);
                 patientSearchJscrl.setViewportView(patientSearchTbl);
 
-
             }
         } else {
             if (this.opdChkbx.isSelected() && this.byNameChkbx.isSelected()) {
@@ -6865,16 +6875,29 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
                     patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT patient_no, name, year_of_birth, residence, unit_number from patient_select where name ILIKE '%" + patientSearchFieldTxt.getText() + "%' order by name"));
 
-
                     patientSearchTbl.setShowHorizontalLines(false);
                     patientSearchJscrl.setViewportView(patientSearchTbl);
 
                 }
             }
         }
-
-
-
+//
+//        if (mchfpChkbx.isSelected()) {
+//            patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT anc as anc_no, first_name||' '||middle_name||' '||last_name, telephone, next_of_kin, age from rh.mother_details where anc ILIKE '%" + patientSearchFieldTxt.getText() + "%' or first_name||' '||middle_name||' '||last_name  ILIKE '%" + patientSearchFieldTxt.getText() + "%' order by 2"));
+//
+//            patientSearchTbl.setShowHorizontalLines(false);
+//            patientSearchJscrl.setViewportView(patientSearchTbl);
+//        }
+        if (this.mchfpChkbx.isSelected()) {
+            if (patientSearchFieldTxt.getCaretPosition() > 3) {
+                patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT anc as anc_no, first_name||' '||middle_name||' '||last_name, telephone, next_of_kin, age::int as age from rh.mother_details where anc ILIKE '%" + patientSearchFieldTxt.getText() + "%' or first_name||' '||middle_name||' '||last_name  ILIKE '%" + patientSearchFieldTxt.getText() + "%' "
+                        + " UNION SELECT DISTINCT fp_clinic_no as anc_no, full_name, telephone_no as telephone, '' as next_of_kin, age::int as age from rh.fp_services_register where fp_clinic_no ILIKE '%" + patientSearchFieldTxt.getText() + "%' or full_name  ILIKE '%" + patientSearchFieldTxt.getText() + "%'"
+                        + " UNION SELECT DISTINCT pnc_no as anc_no, full_name, telephone, '' as next_of_kin, age::int as age from rh.post_natal_follow_up_register where pnc_no ILIKE '%" + patientSearchFieldTxt.getText() + "%' or full_name  ILIKE '%" + patientSearchFieldTxt.getText() + "%' ORDER BY 2"));
+           
+            patientSearchTbl.setShowHorizontalLines(false);
+            patientSearchJscrl.setViewportView(patientSearchTbl);
+            }
+        }
         if (this.ipdChkbx.isSelected() && this.byNumberChkbx.isSelected()) {
 
             if (patientSearchFieldTxt.getCaretPosition() < 5) {
@@ -6917,8 +6940,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
         generalBillingPatientSearchDialog.setVisible(true);
 
-
-
     }
 
     /*
@@ -6941,7 +6962,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_revenueDepartmentCmbxActionPerformed
 
     private void removeRowBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeRowBtnActionPerformed
-        double bedAmt = 0.00 ;//java.lang.Double.valueOf(bedAmountTxt.getText());
+        double bedAmt = 0.00;//java.lang.Double.valueOf(bedAmountTxt.getText());
         if (back2ServicesTableChkbx.isSelected() || applyPackagesBillingChkbx.isSelected()) {
 
             int rows2Delete = discreetServicesTbl.getSelectedRowCount();
@@ -6965,8 +6986,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                         defTableModel.removeRow(selectedRows[i]);
 
                     }
-
-
 
                 } else {
 
@@ -6998,8 +7017,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
                     }
 
-
-
                 } else {
 
                     javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) packagesTbl.getModel();
@@ -7015,15 +7032,12 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
         billTotalTxt.setText(java.lang.String.valueOf(totalSum));
 
-
-
         // Add your handling code here:
     }//GEN-LAST:event_removeRowBtnActionPerformed
     public void tableModelTableChanged() {
         System.out.println("Calculating totals for table 11 and 2.");
         //        double resFloat = 0.00;
         double resFloat = 0.00;
-
 
         for (int i = 0; i < discreetServicesTbl.getRowCount(); i++) {
 
@@ -7053,18 +7067,15 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             if (discreetServicesTbl.getValueAt(i, 3) != null) {
 
                 //   if (jTable11.getSelectedColumn() == 1) {
-
                 resFloat = resFloat + Double.parseDouble(discreetServicesTbl.getValueAt(i, 3).toString());
 
                 //   }
-
                 billTotalTxt.setText(java.lang.String.valueOf(resFloat));
 
             } else {
                 resFloat = resFloat + Double.parseDouble(discreetServicesTbl.getValueAt(i, 3).toString());
 
                 //   }
-
                 billTotalTxt.setText(java.lang.String.valueOf(resFloat));
             }
 
@@ -7125,8 +7136,8 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 discreetServicesTbl.setValueAt(null, k, r);
             }
         }
-        
-                for (int k = 0; k < packagesTbl.getRowCount(); k++) {
+
+        for (int k = 0; k < packagesTbl.getRowCount(); k++) {
             for (int r = 0; r < packagesTbl.getColumnCount(); r++) {
                 packagesTbl.setValueAt(null, k, r);
             }
@@ -7151,9 +7162,8 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                     // jButton7.setEnabled(false);
                 } else {
                     savebillBtn.setEnabled(true);
-                   // saveAndPrintBillBtn.setEnabled(true);
+                    // saveAndPrintBillBtn.setEnabled(true);
                     rePrintBillBtn.setEnabled(true);
-
 
                     if (java.lang.Double.valueOf(billTotalTxt.getText()) > 0.00 && patientNumberTxt.getText().toCharArray().length > 0) {
                         double bill = java.lang.Double.valueOf(billTotalTxt.getText());
@@ -7322,7 +7332,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                     // jButton7.setEnabled(false);
                 } else {
                     savebillBtn.setEnabled(true);
-                   // saveAndPrintBillBtn.setEnabled(true);
+                    // saveAndPrintBillBtn.setEnabled(true);
                     rePrintBillBtn.setEnabled(true);
                 }
             }
@@ -7341,7 +7351,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                         // jButton7.setEnabled(false);
                     } else {
                         savebillBtn.setEnabled(true);
-                      //  saveAndPrintBillBtn.setEnabled(true);
+                        //  saveAndPrintBillBtn.setEnabled(true);
                         rePrintBillBtn.setEnabled(true);
                     }
                 }
@@ -7366,7 +7376,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             this.cmboxMouseClicked2();
         }
 
-
 // TODO add your handling code here:
     }//GEN-LAST:event_packagesTblMouseClicked
 
@@ -7377,10 +7386,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             searchButton.doClick();
 
-
-
         } else {
-
 
             com.afrisoftech.reports.FinalInterimPatientlnvSummPdf policy = new com.afrisoftech.reports.FinalInterimPatientlnvSummPdf();
 
@@ -7423,6 +7429,14 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_mergeOpBillBtnActionPerformed
 
+    private void doctorAcctNumberTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorAcctNumberTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_doctorAcctNumberTxtActionPerformed
+
+    private void femaleChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleChkbxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_femaleChkbxActionPerformed
+
     private void packagesBilling() {
 
         System.out.println("Showing dialog");
@@ -7434,42 +7448,42 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     }
 
     private void populateDiscreetServicesTable() {
-        if(packageBillingChkbx.isSelected()){
+        if (packageBillingChkbx.isSelected()) {
             for (int m = 0; m < discreetServicesTbl.getRowCount(); m++) {
-            for (int n = 0; n < discreetServicesTbl.getColumnCount(); n++) {
-                discreetServicesTbl.setValueAt(null, m, n);
-            }
-        }
-        int rowIndex = 0;
-        for (int i = 0; i < packagesTbl.getRowCount(); i++) {
-            if (packagesTbl.getValueAt(i, 0) != null) {
-                try {
-                    java.sql.PreparedStatement pstmtDiscreetServices = connectDB.prepareStatement("SELECT item_service, qty, price, glcode FROM packages WHERE package = ?"); // AND glcode = ?");
-                    pstmtDiscreetServices.setString(1, packagesTbl.getValueAt(i, 0).toString());
-                    //  pstmtDiscreetServices.setString(2, packagesTbl.getValueAt(i, 4).toString());
-                    java.sql.ResultSet rsetDiscreetServices = pstmtDiscreetServices.executeQuery();
-                    while (rsetDiscreetServices.next()) {
-                        System.out.println("Billing packages items : [" + rsetDiscreetServices.getString(1) + "]");
-                        discreetServicesTbl.setValueAt(rsetDiscreetServices.getString(1), rowIndex, 0);
-                        discreetServicesTbl.setValueAt(Float.parseFloat(packagesTbl.getValueAt(i, 1).toString()) * rsetDiscreetServices.getInt(2), rowIndex, 1);
-                        discreetServicesTbl.setValueAt(rsetDiscreetServices.getInt(3), rowIndex, 2);
-                        discreetServicesTbl.setValueAt(Float.parseFloat(packagesTbl.getValueAt(i, 1).toString()) * rsetDiscreetServices.getInt(2) * rsetDiscreetServices.getInt(3), rowIndex, 3);
-                        discreetServicesTbl.setValueAt(rsetDiscreetServices.getString(4), rowIndex, 4);
-                        rowIndex++;
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                    javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                    Logger.getLogger(GeneralBillingIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                for (int n = 0; n < discreetServicesTbl.getColumnCount(); n++) {
+                    discreetServicesTbl.setValueAt(null, m, n);
                 }
             }
+            int rowIndex = 0;
+            for (int i = 0; i < packagesTbl.getRowCount(); i++) {
+                if (packagesTbl.getValueAt(i, 0) != null) {
+                    try {
+                        java.sql.PreparedStatement pstmtDiscreetServices = connectDB.prepareStatement("SELECT item_service, qty, price, glcode FROM packages WHERE package = ?"); // AND glcode = ?");
+                        pstmtDiscreetServices.setString(1, packagesTbl.getValueAt(i, 0).toString());
+                        //  pstmtDiscreetServices.setString(2, packagesTbl.getValueAt(i, 4).toString());
+                        java.sql.ResultSet rsetDiscreetServices = pstmtDiscreetServices.executeQuery();
+                        while (rsetDiscreetServices.next()) {
+                            System.out.println("Billing packages items : [" + rsetDiscreetServices.getString(1) + "]");
+                            discreetServicesTbl.setValueAt(rsetDiscreetServices.getString(1), rowIndex, 0);
+                            discreetServicesTbl.setValueAt(Float.parseFloat(packagesTbl.getValueAt(i, 1).toString()) * rsetDiscreetServices.getInt(2), rowIndex, 1);
+                            discreetServicesTbl.setValueAt(rsetDiscreetServices.getInt(3), rowIndex, 2);
+                            discreetServicesTbl.setValueAt(Float.parseFloat(packagesTbl.getValueAt(i, 1).toString()) * rsetDiscreetServices.getInt(2) * rsetDiscreetServices.getInt(3), rowIndex, 3);
+                            discreetServicesTbl.setValueAt(rsetDiscreetServices.getString(4), rowIndex, 4);
+                            rowIndex++;
+                        }
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                        javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+                        Logger.getLogger(GeneralBillingIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+
+            billTotalTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(discreetServicesTbl, 3)));
+            //To change body of generated methods, choose Tools | Templates.
         }
-        
-        billTotalTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(discreetServicesTbl, 3)));
-        //To change body of generated methods, choose Tools | Templates.
+
     }
-    
-}
 
     private class SearchThread extends java.lang.Thread {
 
@@ -7530,7 +7544,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                     ex.printStackTrace();
                 }
 
-
                 java.util.Calendar calendar = java.util.Calendar.getInstance();
 
                 long dateNow = calendar.getTimeInMillis();
@@ -7550,7 +7563,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 java.sql.Date billDate = new java.sql.Date(receiptDate);
 
                 //receiptDate = datePicker1.getDate();
-
                 System.out.println("This date is todays date " + billDate);
 
                 String billNo = null;
@@ -7594,7 +7606,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 double pRice = 0.00;
                 double tTotal = 0.00;
 
-                if (opdChkbx.isSelected()) {
+                if (opdChkbx.isSelected() || mchfpChkbx.isSelected()) {
                     chbox = "OP";
                 } else {
                     if (walkinChkbx.isSelected()) {
@@ -7609,7 +7621,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 //    connectDB.setAutoCommit(false);
                 java.sql.Statement ps = connectDB.createStatement();
                 java.sql.ResultSet rst = ps.executeQuery("select nextval('transaction_no_seq')");
-
 
                 while (rst.next()) {
                     rst.getObject(1).toString();
@@ -7674,7 +7685,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                     java.sql.Statement stm1q = connectDB.createStatement();
                     java.sql.ResultSet rse1 = stm1q.executeQuery("select pay_mode,account_no,description,payer,payer,expiry_date,account_no,member_name from hp_patient_register where patient_no ='" + patientNumberTxt.getText() + "'");
 
-
                     while (rse1.next()) {
 
                         payMode = dbObject.getDBObject(rse1.getObject(1), "-");
@@ -7692,7 +7702,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                     }
 
                 }
-                if (this.opdChkbx.isSelected() || walkinChkbx.isSelected()) {
+                if (this.opdChkbx.isSelected() || walkinChkbx.isSelected() || this.mchfpChkbx.isSelected()) {
                     if (this.paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
                         if (walkinChkbx.isSelected()) {
 
@@ -7736,9 +7746,9 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                     pstmt.setString(1, patientNumberTxt.getText());
                                     pstmt.setObject(2, discreetServicesTbl.getValueAt(i, 0).toString());
                                     pstmt.setString(3, patientCategoryTxt.getText());
-                                    pstmt.setString(4, schemeNameTxt.getText());
+                                    pstmt.setObject(4, paymentModeCmbx.getSelectedItem());
                                     pstmt.setString(5, transNo);
-                                    pstmt.setString(7, scheme);
+                                    pstmt.setString(7, schemeNameTxt.getText());
                                     pstmt.setString(6, cardNo);
                                     pstmt.setString(8, cardName);
                                     pstmt.setString(9, isurer);
@@ -7762,7 +7772,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                     pstmt.setTimestamp(27, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));//com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.util.Calendar.getInstance().getTime()));
                                     pstmt.setInt(28, visitid);
                                     pstmt.executeUpdate();
-
 
                                     java.sql.PreparedStatement pstmt24 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
                                     pstmt24.setObject(1, discreetServicesTbl.getValueAt(i, 4).toString());
@@ -7813,9 +7822,9 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                     pstmt.setString(1, patientNumberTxt.getText());
                                     pstmt.setObject(2, discreetServicesTbl.getValueAt(i, 0).toString());
                                     pstmt.setString(3, patientCategoryTxt.getText());
-                                    pstmt.setString(4, schemeNameTxt.getText());
+                                    pstmt.setObject(4, paymentModeCmbx.getSelectedItem());
                                     pstmt.setString(5, transNo);
-                                    pstmt.setString(7, scheme);
+                                    pstmt.setString(7, schemeNameTxt.getText());
                                     pstmt.setString(6, cardNo);
                                     pstmt.setString(8, cardName);
                                     pstmt.setString(9, isurer);
@@ -7868,7 +7877,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                 }
                             } else {
                                 if (DirectRev) {
-                                    if (walkinChkbx.isSelected()) {
+                                    if (walkinChkbx.isSelected() || mchfpChkbx.isSelected()) {
                                         java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into hp_patient_billing values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?))");
                                         pstmt2.setString(1, patientNumberTxt.getText());
                                         pstmt2.setString(10, transNo);
@@ -7909,9 +7918,9 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                     pstmt.setString(1, patientNumberTxt.getText());
                                     pstmt.setObject(2, discreetServicesTbl.getValueAt(i, 0).toString());
                                     pstmt.setString(3, patientCategoryTxt.getText());
-                                    pstmt.setString(4, schemeNameTxt.getText());
+                                    pstmt.setObject(4, paymentModeCmbx.getSelectedItem());
                                     pstmt.setString(5, transNo);
-                                    pstmt.setString(7, scheme);
+                                    pstmt.setString(7, schemeNameTxt.getText());
                                     pstmt.setString(6, cardNo);
                                     pstmt.setString(8, cardName);
                                     pstmt.setString(9, isurer);
@@ -7935,9 +7944,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                     pstmt.setTimestamp(27, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));//com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.util.Calendar.getInstance().getTime()));
                                     pstmt.setInt(28, visitid);
                                     pstmt.executeUpdate();
-
-
-
 
                                     java.sql.PreparedStatement pstmt24 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
                                     pstmt24.setObject(1, discreetServicesTbl.getValueAt(i, 4).toString());
@@ -7984,7 +7990,94 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                     pstmt2.setString(15, doctorNameTxt.getText().toString());
                                     pstmt2.executeUpdate();
                                 }
+                                //  }
                             }
+
+                            if (this.mchfpChkbx.isSelected()) {
+                                System.out.println("Doing MCH requests");
+                                PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO pb_doctors_request VALUES(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?), ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?)");
+
+                                pstmt2.setString(1, patientNumberTxt.getText());
+                                pstmt2.setString(2, patientNameTxt.getText());
+                                pstmt2.setString(3, "Cash");
+                                pstmt2.setString(4, com.afrisoftech.lib.UserName.getLoginName(connectDB));
+                                pstmt2.setString(5, discreetServicesTbl.getValueAt(i, 0).toString());
+                                pstmt2.setDouble(6, java.lang.Double.valueOf(discreetServicesTbl.getValueAt(i, 1).toString()));
+                                pstmt2.setDouble(7, java.lang.Double.valueOf(discreetServicesTbl.getValueAt(i, 2).toString()));
+                                pstmt2.setObject(8, discreetServicesTbl.getValueAt(i, 4).toString());
+                                pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                pstmt2.setString(10, billNo);
+                                pstmt2.setBoolean(12, false);
+                                pstmt2.setString(11, user);
+                                pstmt2.setString(13, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connectDB, discreetServicesTbl.getValueAt(i, 4).toString()));
+                                pstmt2.setString(18, billNo);
+                                if (com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connectDB, discreetServicesTbl.getValueAt(i, 4).toString()).contains("Lab")) {
+                                    pstmt2.setString(15, "LAB");
+                                } else {
+                                    pstmt2.setString(15, "X-RAY");
+                                }
+                                pstmt2.setBoolean(16, false);
+                                pstmt2.setBoolean(17, false);
+                                pstmt2.setString(14, "01");
+                                pstmt2.setString(19, datePicker1.getDate().toString());
+                                pstmt2.setTimestamp(20, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+                                pstmt2.setString(21, "MCH");
+                                pstmt2.setString(22, "01");
+                                pstmt2.setString(23, age);
+                                pstmt2.setString(24, "MCH/FP Laboratory Investigations");
+                                pstmt2.setString(25, "MCH");
+                                pstmt2.setString(26, "");
+                                pstmt2.setString(27, "Female");
+                                pstmt2.setString(28, "DOC POSTING");
+                                pstmt2.setString(29, billNo + "-" + i);
+                                pstmt2.executeUpdate();
+
+                            }
+                            if (this.walkinChkbx.isSelected()) {
+                                System.out.println("Walk-IN requests");
+                                PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO pb_doctors_request VALUES(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?), ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?)");
+
+                                pstmt2.setString(1, patientNumberTxt.getText());
+                                pstmt2.setString(2, patientNameTxt.getText());
+                                pstmt2.setString(3, "Cash");
+                                pstmt2.setString(4, com.afrisoftech.lib.UserName.getLoginName(connectDB));
+                                pstmt2.setString(5, discreetServicesTbl.getValueAt(i, 0).toString());
+                                pstmt2.setDouble(6, java.lang.Double.valueOf(discreetServicesTbl.getValueAt(i, 1).toString()));
+                                pstmt2.setDouble(7, java.lang.Double.valueOf(discreetServicesTbl.getValueAt(i, 2).toString()));
+                                pstmt2.setObject(8, discreetServicesTbl.getValueAt(i, 5).toString());
+                                pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                pstmt2.setString(10, billNo);
+                                pstmt2.setBoolean(12, false);
+                                pstmt2.setString(11, user);
+                                pstmt2.setString(13, glAcc);
+                                pstmt2.setString(18, billNo);
+                                if (com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connectDB, discreetServicesTbl.getValueAt(i, 4).toString()).contains("Lab")) {
+                                    pstmt2.setString(15, "LAB");
+                                } else {
+                                    pstmt2.setString(15, "X-RAY");
+                                }
+                                pstmt2.setBoolean(16, false);
+                                pstmt2.setBoolean(17, false);
+                                pstmt2.setString(14, "01");
+                                pstmt2.setString(19, datePicker1.getDate().toString());
+                                pstmt2.setTimestamp(20, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+                                pstmt2.setString(21, "");
+                                pstmt2.setString(22, "01");
+                                pstmt2.setString(23, age);
+                                pstmt2.setString(24, "Walk-IN Investigations");
+                                pstmt2.setString(25, "");
+                                pstmt2.setString(26, "");
+                                if (this.maleChkbx.isSelected()) {
+                                    pstmt2.setString(27, "Male");
+                                } else {
+                                    pstmt2.setString(27, "Female");
+                                }
+                                pstmt2.setString(28, "DOC POSTING");
+                                pstmt2.setString(29, billNo + "-" + i);
+                                pstmt2.executeUpdate();
+
+                            }
+
                         }
                     }
 
@@ -8032,8 +8125,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                             pstmt.setString(35, "");
                             pstmt.executeUpdate();
 
-
-
                             java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
                             pstmt1.setString(1, patientNumberTxt.getText());
                             pstmt1.setObject(2, "Invoice");
@@ -8065,8 +8156,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                             policy.FinalInvoiceByinvPdf(connectDB, invoiceNo, invoiceNo);
                         }
                     }
-
-
 
                 } else {
                     if (this.ipdChkbx.isSelected()) {
@@ -8166,7 +8255,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                         pstmt.setInt(28, visitid);
                                         pstmt.executeUpdate();
 
-
                                         java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
                                         pstmt2.setObject(1, discreetServicesTbl.getValueAt(i, 4).toString());
                                         pstmt2.setString(2, glAcc);
@@ -8193,7 +8281,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                         pstmt2.setString(23, user);
                                         pstmt2.executeUpdate();
 
-
                                     }
                                 }
                             }
@@ -8201,10 +8288,8 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                     }
                 }
 
-
                 for (int i = 0; i < discreetServicesTbl.getRowCount(); i++) {
                     if (discreetServicesTbl.getValueAt(i, 0) != null) {
-
 
                         java.sql.Statement pstBx = connectDB.createStatement();
                         java.sql.ResultSet rsBx = pstBx.executeQuery("select count(product) from stockprices where product = '" + discreetServicesTbl.getValueAt(i, 0) + "' and gl_code =  '" + discreetServicesTbl.getValueAt(i, 4) + "'");
@@ -8226,8 +8311,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                 }
                             }
 
-
-
                             java.sql.Statement pst211 = connectDB.createStatement();
                             java.sql.ResultSet rs111 = pst211.executeQuery("select cost_of_sale,stock_code from pb_departments where income_account = '" + discreetServicesTbl.getValueAt(i, 4) + "'");
                             while (rs111.next()) {
@@ -8238,8 +8321,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                             qty = java.lang.Double.parseDouble(discreetServicesTbl.getValueAt(i, 1).toString());
                             sellPrice = java.lang.Double.parseDouble(discreetServicesTbl.getValueAt(i, 2).toString());
                             amount = price * qty;
-
-
 
                             java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("insert into hp_pharmacy values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                             pstmt1.setString(1, patientNumberTxt.getText());
@@ -8295,7 +8376,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                             pstmt1a.setString(28, user);
                             pstmt1a.executeUpdate();
 
-
                             java.sql.PreparedStatement pstmt2a = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
                             pstmt2a.setObject(1, glCode);
                             pstmt2a.setObject(2, revenueDepartmentCmbx.getSelectedItem());
@@ -8321,7 +8401,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                             pstmt2a.setBoolean(22, false);
                             pstmt2a.setString(23, user);
                             pstmt2a.executeUpdate();
-
 
                             java.sql.PreparedStatement pstmt33 = connectDB.prepareStatement("insert into st_sub_stores values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                             pstmt33.setObject(1, Store);
@@ -8364,12 +8443,10 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 }
                 billTotalTxt.setText("0.00");
 
-
                 connectDB.commit();
                 connectDB.setAutoCommit(true);
 
                 javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful.Bill No. " + transNo + "", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
 
                 patientNameTxt.setText("");
                 patientCategoryTxt.setText("");
@@ -8444,6 +8521,8 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField doctorNameTxt;
     private javax.swing.JDialog doctorSearchDialog;
     private javax.swing.JDialog doctorsSearchDialog;
+    private javax.swing.JCheckBox femaleChkbx;
+    private javax.swing.ButtonGroup genderButtonGroup;
     private javax.swing.JDialog generalBillingDoctorSearchDialog;
     private javax.swing.JPanel generalBillingPanel;
     private javax.swing.JDialog generalBillingPatientSearchDialog;
@@ -8501,6 +8580,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel311;
@@ -8587,6 +8667,8 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField711;
     private javax.swing.JTextField jTextField911;
+    private javax.swing.JCheckBox maleChkbx;
+    private javax.swing.JCheckBox mchfpChkbx;
     private javax.swing.JButton mergeOpBillBtn;
     private javax.swing.JRadioButton normalRateRbtn;
     private com.afrisoftech.lib.DatePicker oldOPVisitDatePicker;

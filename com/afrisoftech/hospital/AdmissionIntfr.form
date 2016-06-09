@@ -1562,7 +1562,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel42">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="33" green="0" red="ff" type="rgb"/>
+                          <Color blue="99" green="33" red="ff" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Old File Number(Unit Number)"/>
                       </Properties>
@@ -1584,6 +1584,9 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel17">
                       <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="99" green="33" red="ff" type="rgb"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Nationality"/>
                       </Properties>
                       <Constraints>
@@ -1629,7 +1632,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel30">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="33" green="0" red="ff" type="rgb"/>
+                          <Color blue="99" green="33" red="ff" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="ID No / Passport No"/>
                       </Properties>
@@ -1847,6 +1850,9 @@
                       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
                       <SubComponents>
                         <Component class="javax.swing.JTextField" name="admissionNumber">
+                          <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
+                          </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                               <GridBagConstraints gridX="1" gridY="0" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
@@ -2225,7 +2231,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel20">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="66" green="66" red="ff" type="rgb"/>
+                      <Color blue="99" green="33" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Bed Rate"/>
                   </Properties>
@@ -2861,7 +2867,7 @@
                       <Color blue="ff" green="cc" red="ff" type="rgb"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="33" green="33" red="ff" type="rgb"/>
+                      <Color blue="99" green="33" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Relationship"/>
                   </Properties>
@@ -2958,7 +2964,7 @@
                 <Component class="javax.swing.JComboBox" name="countyofBirthCmbx">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT county_name FROM pb_county ORDER BY county_name&quot;)" type="code"/>
+                      <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT &apos;-&apos; UNION SELECT DISTINCT county_name FROM pb_county ORDER BY 1&quot;)" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -2970,7 +2976,7 @@
                 <Component class="javax.swing.JComboBox" name="countyofResidenceCmbx">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT county_name FROM pb_county order by 1&quot;)" type="code"/>
+                      <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT &apos;-&apos; UNION SELECT DISTINCT county_name FROM pb_county order by 1&quot;)" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -3019,7 +3025,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel46">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="33" green="0" red="ff" type="rgb"/>
+                      <Color blue="99" green="33" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="C-Sheet No."/>
                   </Properties>

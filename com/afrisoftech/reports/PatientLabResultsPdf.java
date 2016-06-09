@@ -457,50 +457,21 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
 
                                 System.out.println("No 3");
 
-                                /*
-                                table.getDefaultCell().setColspan(3);
-                                table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
-                                table.getDefaultCell().setBorderWidth(Rectangle.TOP);
-                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Specimen Date : "+dbObject.getDBObject(rset4.getObject(4), "-"), pFontHeader1);
-                                table.addCell(phrase);
-                                
-
-                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("Reference Range",pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("Test",pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Result",pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Lower",pFontHeader1);
-                                table.addCell(phrase);
-                                // table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Upper",pFontHeader1);
-                                table.addCell(phrase);
-                                phrase = new Phrase(" ",pFontHeader1);
-                                table.addCell(phrase);
-                                 */
                                 String Notice = "-";
                                 String Status = null;
                                 //   java.lang.Object listofStaffNos[] = this.getListofStaffNos();
                                 //  for (int j = 0; j < listofStaffNos.length; j++) {
 
+                                System.out.println("From list : ["+listofStaffNos[j].toString()+"]");
                                 java.sql.ResultSet rset12 = st12.executeQuery("SELECT DISTINCT initcap(code),typeof_test FROM hp_lab_results WHERE  lab_no ilike '" + listofStaffNos[j].toString() + "' or request_id ilike '" + listofStaffNos[j].toString() + "'");
+  //                              java.sql.ResultSet rset12 = st12.executeQuery("SELECT DISTINCT initcap(code),typeof_test FROM hp_lab_results WHERE  lab_no ilike '" + listofStaffNos[j].toString() + "' or request_id ilike '" + listofStaffNos[j].toString() + "'");
 
 
                                 while (rset12.next()) {
                                     // table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                                     Test = rset12.getObject(1).toString();
+                                    System.out.println("From list : ["+Test+"]");
                                     testName = rset12.getObject(2).toString();
                                     java.sql.ResultSet rset4c = stc.executeQuery("SELECT DISTINCT status,notes FROM pb_lab_standards WHERE  code ilike '" + Test + "'");
                                     while (rset4c.next()) {
@@ -714,8 +685,9 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
 
             }
 
-            docPdf.close();
-docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
+          
+            docPdf.close(); 
+            com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
 
 

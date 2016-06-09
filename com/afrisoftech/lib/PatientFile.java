@@ -14,7 +14,7 @@ import org.openide.util.Exceptions;
  */
 public class PatientFile {
 
-    private static java.sql.Connection connectDB = null;
+    private static java.sql.Connection connectDB = com.afrisoftech.hospital.HospitalMain.connectDB;
     private static String patientNumber = null;
     private static String surName = null;
     private static String firstName = null;
@@ -982,39 +982,51 @@ public class PatientFile {
         patientAdmissionDate = aPatientAdmissionDate;
     }
 
-    static public void setPatientFileData(String patientNo) {
+    static public void setPatientFileData(String patientNo, String patientType) {
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT (CASE WHEN patient_name is null THEN (SELECT name FROM hp_patient_visit WHERE hp_patient_visit.patient_no = ? ORDER BY 1 DESC LIMIT 1) ELSE patient_name END) as patient_names,"
-                    + "(SELECT date_admitted FROM hp_admission WHERE hp_admission.patient_no = ? AND check_out = false ORDER BY 1 DESC LIMIT 1),"
-                    + "(SELECT visit_id FROM hp_admission WHERE hp_admission.patient_no = ? AND check_out = false ORDER BY 1 DESC LIMIT 1) as visitid,"
-                    + "(CASE WHEN (SELECT year_of_birth::date FROM hp_inpatient_register WHERE hp_inpatient_register.patient_no = ? ORDER BY 1 DESC LIMIT 1) "
-                    + "is null THEN (SELECT year_of_birth::date FROM hp_patient_register WHERE patient_no = ? ORDER BY 1 DESC LIMIT 1) ELSE "
-                    + "(SELECT year_of_birth::date FROM hp_inpatient_register WHERE hp_inpatient_register.patient_no = ? ORDER BY 1 DESC LIMIT 1) END) as date_of_birth"
-                    + " FROM hp_admission WHERE patient_no = ?");
+            if (patientType == "IP") {
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT patient_name as patient_names,"
+                        + " date_admitted, visit_id,"
+                        + "(SELECT year_of_birth::date FROM hp_inpatient_register WHERE hp_inpatient_register.patient_no = ? ORDER BY 1 DESC LIMIT 1) as date_of_birth"
+                        + " FROM hp_admission WHERE patient_no = ?");
+                pstmt.setString(1, patientNo);
+                pstmt.setString(2, patientNo);
+                java.sql.ResultSet rset = pstmt.executeQuery();
 
-            pstmt.setString(1, patientNo);
-            pstmt.setString(2, patientNo);
-            pstmt.setString(3, patientNo);
-            pstmt.setString(4, patientNo);
-            pstmt.setString(5, patientNo);
-            pstmt.setString(6, patientNo);
-            pstmt.setString(7, patientNo);
-            java.sql.ResultSet rset = pstmt.executeQuery();
+                while (rset.next()) {
 
-            while (rset.next()) {
+                    setPatientFullName(rset.getString(1));
 
-                setPatientFullName(rset.getString(1));
+                    setPatientAdmissionDate(new com.afrisoftech.lib.DBObject().getDBObject(rset.getString(2), "-"));
 
-                setPatientAdmissionDate(new com.afrisoftech.lib.DBObject().getDBObject(rset.getString(2), "-"));
+                    setVisitNumber(new com.afrisoftech.lib.DBObject().getDBObject(rset.getString(3), "3"));
 
-                setVisitNumber(new com.afrisoftech.lib.DBObject().getDBObject(rset.getString(3), "-"));
+                    setPatientDateofBith(rset.getDate(4));
 
-                setPatientDateofBith(rset.getDate(4));
+                }
 
+            } else {
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT name as patient_names,"
+                        + " date, '',"
+                        + "(SELECT year_of_birth::date FROM hp_patient_register WHERE hp_patient_register.patient_no = ? ORDER BY 1 DESC LIMIT 1) as date_of_birth"
+                        + " FROM hp_patient_visit WHERE patient_no = ?");
+                pstmt.setString(1, patientNo);
+                pstmt.setString(2, patientNo);
+                java.sql.ResultSet rset = pstmt.executeQuery();
+
+                while (rset.next()) {
+
+                    setPatientFullName(rset.getString(1));
+
+                    setPatientAdmissionDate(new com.afrisoftech.lib.DBObject().getDBObject(rset.getString(2), "-"));
+
+                    setVisitNumber(new com.afrisoftech.lib.DBObject().getDBObject(rset.getString(3), "3"));
+
+                    setPatientDateofBith(rset.getDate(4));
+
+                }
             }
-
-
 
         } catch (SQLException ex) {
             ex.printStackTrace();

@@ -790,16 +790,10 @@ public class PROperationpnl extends javax.swing.JPanel {
 
                 System.out.println("Purchase Memo " + selectedPR + "Progress inserted successfully");
 
-                connectDB.commit();
+      //          connectDB.commit();
 
             } catch (SQLException ex) {
-                try {
-                    connectDB.rollback();
-                    ex.printStackTrace();
-                } catch (SQLException ex1) {
-                    ex1.printStackTrace();
-                    Logger.getLogger(PROperationpnl.class.getName()).log(Level.SEVERE, null, ex1);
-                }
+                ex.printStackTrace();
                 Logger.getLogger(RequisitionApprovalIntFr.class.getName()).log(Level.SEVERE, null, ex);
             }
 

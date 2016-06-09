@@ -88,6 +88,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         jTable111 = new com.afrisoftech.dbadmin.JTable();
         jLabel211 = new javax.swing.JLabel();
         jButton5111 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
@@ -154,7 +155,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "The is where to register broad stock and and inventory categories like Pharmaceuticals, Foods, Building Materials, Surgicals etc", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "The is where to register broad stock and and inventory categories like Pharmaceuticals, Foods, Building Materials, Surgicals etc", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
         broadMainPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -400,7 +401,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jButton4, gridBagConstraints);
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter main classification here e.g.  the broadest grouping of the stock i.e Antibiotics", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 102)));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter main classification here e.g.  the broadest grouping of the stock i.e Antibiotics", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 102))); // NOI18N
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -569,7 +570,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel11.add(jButton41, gridBagConstraints);
 
-        jScrollPane11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter sub classification here e.g.  paracetamol,", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 102)));
+        jScrollPane11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter sub classification here e.g.  paracetamol,", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 102))); // NOI18N
 
         jTable11.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -672,24 +673,10 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         jPanel112.setLayout(new java.awt.GridBagLayout());
 
         jButton112.setMnemonic('O');
-        jButton112.setText("Ok");
+        jButton112.setText("Save administration modes");
         jButton112.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton112ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel112.add(jButton112, gridBagConstraints);
-
-        jButton212.setMnemonic('E');
-        jButton212.setText("Edit");
-        jButton212.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton212ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -697,33 +684,47 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
+        jPanel112.add(jButton112, gridBagConstraints);
+
+        jButton212.setMnemonic('E');
+        jButton212.setText("Edit existing modes of administration");
+        jButton212.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton212ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         jPanel112.add(jButton212, gridBagConstraints);
 
         jButton312.setBackground(new java.awt.Color(204, 204, 204));
         jButton312.setMnemonic('l');
-        jButton312.setText("Clear");
+        jButton312.setText("Clear form");
         jButton312.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton312ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel112.add(jButton312, gridBagConstraints);
 
         jButton412.setMnemonic('C');
-        jButton412.setText("Close");
+        jButton412.setText("Close form");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel112.add(jButton412, gridBagConstraints);
 
-        jScrollPane111.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter administration mode here e.g.  tablets,injection etc", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 102)));
+        jScrollPane111.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter administration mode here e.g.  tablets,injection etc", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 102))); // NOI18N
 
         jTable111.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -788,10 +789,10 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 5.0;
+        gridBagConstraints.weighty = 200.0;
         jPanel112.add(jScrollPane111, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -801,17 +802,24 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         jPanel112.add(jLabel211, gridBagConstraints);
 
         jButton5111.setMnemonic('R');
-        jButton5111.setText("RemoveRow");
+        jButton5111.setText("Remove row");
         jButton5111.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5111ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         jPanel112.add(jButton5111, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel112.add(jLabel9, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -879,7 +887,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel5.add(jButton10, gridBagConstraints);
 
-        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Set price classification here", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 102)));
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Set price classification here", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 102))); // NOI18N
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2125,7 +2133,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         categoryCmbx.setBackground(new java.awt.Color(204, 255, 204));
         categoryCmbx.setForeground(new java.awt.Color(0, 0, 255));
         categoryCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' union select distinct  description as description from st_main_category order by 1"));
-        categoryCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select Category to drop item list", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 51, 0)));
+        categoryCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select Category to drop item list", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 51, 0))); // NOI18N
         categoryCmbx.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 categoryCmbxItemStateChanged(evt);
@@ -2534,6 +2542,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
                 }
             }
         } catch (java.sql.SQLException sq) {
+            sq.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
             System.out.println(sq.getMessage());
             //  jLabel4.setText("Sorry. Another Code already exists");
@@ -3514,6 +3523,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel111;

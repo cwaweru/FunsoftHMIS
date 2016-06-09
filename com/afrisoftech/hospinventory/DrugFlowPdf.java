@@ -280,7 +280,7 @@ public class DrugFlowPdf implements java.lang.Runnable {
 
             java.lang.String creditTotal = null;
 
-            com.lowagie.text.Document docPdf = new com.lowagie.text.Document();
+            com.lowagie.text.Document docPdf = new com.lowagie.text.Document(PageSize.A4.rotate());
             double osBalanceAmt = 0.00;
             double osBalanceQty = 0.00;
             double osBalanceQtybf = 0.00;
@@ -452,7 +452,7 @@ public class DrugFlowPdf implements java.lang.Runnable {
                             //java.sql.ResultSet rset1 = st1.executeQuery("select trans_date::date,'' ,CASE WHEN (transaction_no ilike 'T%')THEN initcap(sub_store) ELSE initcap(issiued_to) END as issiued_to,receiving,issuing,price,total,user_name from st_sub_stores where item_code ilike '" + memNo1 + "' and store_name ilike '" + memNo + "' AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' order by trans_date");
 
                             //java.sql.ResultSet rset1 = st1.executeQuery("select trans_date,'' ,CASE WHEN (transaction_no ilike 'T%')THEN initcap(sub_store) ELSE initcap(issiued_to) END as issiued_to,receiving,issuing,price,total,user_name from st_sub_stores where item_code ilike '" + memNo1 + "' and store_name ilike '" + memNo + "' AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' order by 1");
-                            java.sql.ResultSet rset1 = st1.executeQuery("select trans_date,'' ,CASE WHEN (transaction_no ilike 'T%')THEN initcap(sub_store) ELSE initcap(issiued_to) END as issiued_to,receiving,issuing,price,total,user_name,CASE WHEN (transaction_no NOT LIKE 'Stock%')THEN upper(transaction_no) ELSE '-' END as transaction_no,CASE WHEN (manual_transfer_no IS NOT NULL)THEN upper(manual_transfer_no) ELSE '-' END as manual_transfer_no from st_sub_stores where item_code ilike '" + memNo1 + "' and store_name ilike '" + memNo + "' AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' order by 1");
+                            java.sql.ResultSet rset1 = st1.executeQuery("select trans_date::date,'' ,CASE WHEN (transaction_no ilike 'T%')THEN initcap(sub_store) ELSE initcap(issiued_to) END as issiued_to,receiving,issuing,price,total,user_name,CASE WHEN (transaction_no NOT LIKE 'Stock%')THEN upper(transaction_no) ELSE '-' END as transaction_no,CASE WHEN (manual_transfer_no IS NOT NULL)THEN upper(manual_transfer_no) ELSE '-' END as manual_transfer_no from st_sub_stores where item_code ilike '" + memNo1 + "' and store_name ilike '" + memNo + "' AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' order by 1");
                             java.sql.ResultSet rset1q = st1q.executeQuery("select sum(receiving) from st_sub_stores where item_code ilike '" + memNo1 + "' and store_name ilike '" + memNo + "' AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "'");
                             java.sql.ResultSet rset4 = st4.executeQuery("select buying_price/packaging from st_stock_item where item_code ilike '" + memNo1 + "'");
                             java.sql.ResultSet rset11 = st11.executeQuery("select sum(receiving-issuing) from st_sub_stores where item_code ilike '" + memNo1 + "' and store_name ilike '" + memNo + "' AND trans_date::date < '" + beginDate + "'");
@@ -578,10 +578,6 @@ public class DrugFlowPdf implements java.lang.Runnable {
                                 phrase = new Phrase(dbObject.getDBObject(rset1.getObject(1), "-"), pFontHeader);
                                 table.addCell(phrase);
 
-//                                table.getDefaultCell().setColspan(1);
-//                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-//                                phrase = new Phrase(dbObject.getDBObject(rset1.getObject(2), "-")+" \n["+rset1.getObject(9)+"/"+ rset1.getObject(10)+"]", pFontHeader);
-                                //  table.addCell(phrase);
                                 table.getDefaultCell().setColspan(2);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase = new Phrase(dbObject.getDBObject(rset1.getObject(3), "-") + " \n[" + rset1.getObject(9) + "/" + rset1.getObject(10) + "]", pFontHeader);
@@ -684,7 +680,7 @@ public class DrugFlowPdf implements java.lang.Runnable {
                             docPdf.add(table);
 
                         } catch (java.sql.SQLException SqlExec) {
-
+                            SqlExec.printStackTrace();
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
                         }

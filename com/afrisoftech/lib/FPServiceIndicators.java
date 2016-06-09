@@ -197,7 +197,7 @@ public class FPServiceIndicators {
         int visitCount = 0;
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.mother_details WHERE visit_date BETWEEN ? and ? AND hb::int < 11 AND hb is not null AND hb != ''");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(*) FROM rh.mother_details WHERE visit_date BETWEEN ? and ? AND hb::numeric < 11.0 AND hb is not null AND hb != ''");
 
             pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
 

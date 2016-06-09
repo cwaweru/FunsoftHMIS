@@ -1157,7 +1157,7 @@ public class DirectProcurementpnl extends javax.swing.JPanel {
 
         try {
 
-            connectDB.setAutoCommit(false);
+//            connectDB.setAutoCommit(false);
             java.sql.Statement ps = connectDB.createStatement();
 
             java.sql.ResultSet rs2 = ps.executeQuery("select 'DPRQ'||lpad(nextval('proc_req_no_seq')::text,6,0::TEXT)");
@@ -1294,8 +1294,8 @@ public class DirectProcurementpnl extends javax.swing.JPanel {
             javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully Requisition No. is '" + transNo + "'", "Comfirmation", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             ClearTable.clearthisTable(itemsTbl);
             com.afrisoftech.lib.GetItemInfo.updateTrail("Generated Direct Procurement Request " + transNo, connectDB);
-            connectDB.commit();
-            connectDB.setAutoCommit(true);
+//            connectDB.commit();
+//            connectDB.setAutoCommit(true);
 
             
 
@@ -1303,11 +1303,11 @@ public class DirectProcurementpnl extends javax.swing.JPanel {
             javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
             System.out.println(sq.getMessage());
             sq.printStackTrace();
-            try {
-                connectDB.rollback();
-            } catch (java.sql.SQLException sql) {
-                javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-            }
+//            try {
+//                connectDB.rollback();
+//            } catch (java.sql.SQLException sql) {
+//                javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+//            }
         }
 
     }//GEN-LAST:event_Save1ActionPerformed

@@ -8,7 +8,7 @@ package com.afrisoftech.hospayroll;
 
 /**
  *
- * @author  root
+ * @author  Charles Waweru <cwaweru@systempartners.biz>
  */
 public class ApprovingPayroll {
     
@@ -154,7 +154,7 @@ public class ApprovingPayroll {
                 userName = rs2.getObject(2).toString();
             }
             java.sql.Statement pst2 = connectDB.createStatement();
-            java.sql.ResultSet rs = pst2.executeQuery("select 'IN'||lpad(nextval('invoice_no_seq')::text,5,0::text)");
+            java.sql.ResultSet rs = pst2.executeQuery("select 'IN'||lpad(nextval('invoice_no_seq')::text,7,0::text)");
             while (rs.next()){
                 invoiceNo = rs.getObject(1).toString();
             }
@@ -680,7 +680,7 @@ public class ApprovingPayroll {
             }
             
         }catch (java.sql.SQLException sqlExec) {
-            
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
             
         }
@@ -713,7 +713,7 @@ public class ApprovingPayroll {
             }
             
         }catch (java.sql.SQLException sqlExec) {
-            
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
             
         }
@@ -745,7 +745,7 @@ public class ApprovingPayroll {
             }
             
         }catch (java.sql.SQLException sqlExec) {
-            
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
             
         }
@@ -777,7 +777,7 @@ public class ApprovingPayroll {
             }
             
         }catch (java.sql.SQLException sqlExec) {
-            
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
             
         }
@@ -810,7 +810,7 @@ public class ApprovingPayroll {
             }
             
         }catch (java.sql.SQLException sqlExec) {
-            
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
             
         }
@@ -843,7 +843,7 @@ public class ApprovingPayroll {
             }
             
         }catch (java.sql.SQLException sqlExec) {
-            
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
             
         }
@@ -876,7 +876,7 @@ public class ApprovingPayroll {
             }
             
         }catch (java.sql.SQLException sqlExec) {
-            
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
             
         }
@@ -909,7 +909,7 @@ public class ApprovingPayroll {
             }
             
         }catch (java.sql.SQLException sqlExec) {
-            
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
             
         }
@@ -941,7 +941,7 @@ public class ApprovingPayroll {
             }
             
         }catch (java.sql.SQLException sqlExec) {
-            
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
             
         }

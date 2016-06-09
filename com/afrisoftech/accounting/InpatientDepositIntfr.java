@@ -2094,11 +2094,12 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
                                 java.sql.PreparedStatement pstmt1q1 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
                                 pstmt1q1.setObject(1, rcodexs);
                                 pstmt1q1.setString(2, rnamexs);
-                                if (deceasedWardNumber != null) {
-                                    pstmt1q1.setString(3, patientNumberTxt.getText());
-                                } else {
-                                    pstmt1q1.setString(3, deceasedWardNumber);
-                                }
+//                                if (deceasedWardNumber != null) {
+//                                    pstmt1q1.setString(3, patientNumberTxt.getText());
+//                                } else {
+//                                    pstmt1q1.setString(3, deceasedWardNumber);
+//                                }
+                                pstmt1q1.setString(3, patientNumberTxt.getText());
                                 pstmt1q1.setString(4, patientNameTxt.getText());
                                 pstmt1q1.setObject(6, visitIDTxt.getText());
                                 pstmt1q1.setString(5, "Patient deposit");

@@ -70,7 +70,7 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
         initComponents();
 
                 
-                        com.afrisoftech.dbadmin.JTable predicateTable = (com.afrisoftech.dbadmin.JTable) occupancytable;
+        com.afrisoftech.dbadmin.JTable predicateTable = (com.afrisoftech.dbadmin.JTable) occupancytable;
         predicateTable.setHighlighterPipeline(predicateTable, new org.jdesktop.swing.decorator.PatternHighlighter[]{
             new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.YELLOW, java.awt.Color.BLACK, "HDU", 3, 3),
             new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.RED, java.awt.Color.BLACK, "ACUTE ROOM", 3, 3),
@@ -2734,7 +2734,7 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
         jPanel28.setPreferredSize(new java.awt.Dimension(576, 386));
         jPanel28.setLayout(new java.awt.GridBagLayout());
 
-        jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Integrity", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Integrity", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel29.setLayout(new java.awt.GridBagLayout());
 
         lessionschk.setText("Lessions");
@@ -2827,7 +2827,7 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel29.add(pressuresorechk, gridBagConstraints);
 
-        jPanel30.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Notes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel30.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Notes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel30.setLayout(new java.awt.GridBagLayout());
 
         notestxtarea.setColumns(20);
@@ -2877,7 +2877,7 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel28.add(jPanel29, gridBagConstraints);
 
-        jPanel32.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Appearance", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel32.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Appearance", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel32.setLayout(new java.awt.GridBagLayout());
 
         jLabel13.setText("Color");
@@ -2939,7 +2939,7 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel28.add(jPanel32, gridBagConstraints);
 
-        jPanel33.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Actions", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel33.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Actions", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel33.setLayout(new java.awt.GridBagLayout());
 
         jButton1.setText("Save Patient Data");
@@ -3132,7 +3132,7 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
 
         turningChart.setLayout(new java.awt.GridBagLayout());
 
-        turningchart.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 255), 2, true), "Turning Chart", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 0, 255))); // NOI18N
+        turningchart.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 255), 2, true), "Turning Chart", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 0, 255))); // NOI18N
         turningchart.setLayout(new java.awt.GridBagLayout());
 
         jLabel102.setText("Position");
@@ -3342,7 +3342,7 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
         jSplitPane4.setDividerLocation(50);
         jSplitPane4.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search User", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 153, 204))); // NOI18N
+        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search User", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 204))); // NOI18N
         jTextField1.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 jTextField1CaretUpdate(evt);
@@ -4513,7 +4513,7 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         header.add(jPanel17, gridBagConstraints);
 
-        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patients Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 204))); // NOI18N
+        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patients Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 204))); // NOI18N
         jPanel18.setForeground(new java.awt.Color(0, 0, 204));
         jPanel18.setLayout(new java.awt.GridBagLayout());
 
@@ -4550,7 +4550,7 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 1;
         jPanel1.add(jButton2, gridBagConstraints);
 
-        jButton4.setText("PATIENT'S CARD");
+        jButton4.setText("PATIENT CARD");
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -6117,7 +6117,7 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
         jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Others", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 11), new java.awt.Color(0, 0, 204))); // NOI18N
         jPanel21.setLayout(new java.awt.GridBagLayout());
 
-        jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 153, 153))); // NOI18N
+        jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 153, 153))); // NOI18N
         jPanel23.setLayout(new java.awt.GridBagLayout());
 
         jLabel5.setText("Stool");
@@ -6140,7 +6140,7 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel21.add(jPanel23, gridBagConstraints);
 
-        jPanel24.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Urine", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 153, 153))); // NOI18N
+        jPanel24.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Urine", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 153, 153))); // NOI18N
         jPanel24.setLayout(new java.awt.GridBagLayout());
 
         jLabel21.setText("Wet Bed");
@@ -6188,7 +6188,7 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel21.add(jPanel24, gridBagConstraints);
 
-        jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Current Intravenous Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 153, 153))); // NOI18N
+        jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Current Intravenous Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 153, 153))); // NOI18N
         jPanel26.setLayout(new java.awt.GridBagLayout());
         jPanel26.add(jProgressBar1, new java.awt.GridBagConstraints());
 
@@ -6612,7 +6612,7 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
     jPanel37.setLayout(new java.awt.GridBagLayout());
 
     bloodTransfusionUpper.setBackground(new java.awt.Color(243, 240, 240));
-    bloodTransfusionUpper.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Transfusion Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 51, 255))); // NOI18N
+    bloodTransfusionUpper.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Transfusion Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 255))); // NOI18N
     bloodTransfusionUpper.setForeground(new java.awt.Color(0, 0, 204));
     bloodTransfusionUpper.setLayout(new java.awt.GridBagLayout());
 
@@ -6676,7 +6676,7 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
     gridBagConstraints.weighty = 1.0;
     jPanel37.add(bloodTransfusionUpper, gridBagConstraints);
 
-    jPanel38.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "**********", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 51, 255))); // NOI18N
+    jPanel38.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "**********", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 51, 255))); // NOI18N
     jPanel38.setLayout(new java.awt.GridBagLayout());
 
     jLabel42.setText("Transfusion Started By");
@@ -6975,7 +6975,7 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
     nursingCare1.setPreferredSize(new java.awt.Dimension(385, 250));
     nursingCare1.setLayout(new java.awt.GridBagLayout());
 
-    nursingcareplan.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 255), 2, true), "Enter Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 0, 255))); // NOI18N
+    nursingcareplan.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 255), 2, true), "Enter Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 0, 255))); // NOI18N
     nursingcareplan.setLayout(new java.awt.GridBagLayout());
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
@@ -9525,9 +9525,11 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_seizureactivityItemStateChanged
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        com.afrisoftech.reports.emr.MOHPatientCardPdf policy = new com.afrisoftech.reports.emr.MOHPatientCardPdf();
+        policy.MOHPatientCardPdf(connectDB, headerDatePicker.getDate(), headerDatePicker.getDate(), nameNoTxt.getText(), "IP");
        
-       com.afrisoftech.laboratory.PatientcardPdf policy = new com.afrisoftech.laboratory.PatientcardPdf();
-        policy.PatientcardPdf(connectDB, headerDatePicker.getDate(), headerDatePicker.getDate(), nameNoTxt.getText().trim());
+       com.afrisoftech.reports.PatientCardPdf policy1 = new com.afrisoftech.reports.PatientCardPdf();
+        policy1.PatientCardPdf(connectDB, headerDatePicker.getDate(), headerDatePicker.getDate(), nameNoTxt.getText().trim());
 
     }//GEN-LAST:event_jButton4ActionPerformed
     private String getUser() {
@@ -9593,7 +9595,7 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
             connectDB.setAutoCommit(false);
             //getting age
             java.sql.Statement stm123 = connectDB.createStatement();
-            java.sql.ResultSet rse123 = stm123.executeQuery("select year_of_birth from hp_inpatient_register where patient_no='" + patient_num + "'");
+            java.sql.ResultSet rse123 = stm123.executeQuery("select age(year_of_birth::date) from hp_inpatient_register where patient_no='" + patient_num + "'");
             while (rse123.next()) {
                 ///getting the user
                 age = rse123.getObject(1).toString();
@@ -9605,13 +9607,13 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
             while (rse12.next()) {
                 ///getting the user
 
-                int year = Integer.parseInt(age.substring(0, 4));
-                int month = Integer.parseInt(age.substring(5, 7));
-                int day = Integer.parseInt(age.substring(8, 10));
+//                int year = Integer.parseInt(age.substring(0, 4));
+//                int month = Integer.parseInt(age.substring(5, 7));
+//                int day = Integer.parseInt(age.substring(8, 10));
                 dateAdmitted = rse12.getObject("date_admitted").toString();
 
                 text = rse12.getObject(2).toString() + "    Age: ".
-                        concat(getAge(year, month, day) + "\n Gender: ".
+                        concat(age + "\n Gender: ".
                                 concat(rse12.getObject(3).toString() + "     Marital Status: ".
                                         concat(rse12.getObject(4).toString() + "\n Residence: ".
                                                 concat(rse12.getObject(5).toString() + "     Next of Kin: ".

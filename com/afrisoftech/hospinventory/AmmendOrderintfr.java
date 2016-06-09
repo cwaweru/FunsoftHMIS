@@ -46,10 +46,10 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
 
         jSearchDialog = new javax.swing.JDialog();
         jSearchPanel = new javax.swing.JPanel();
-        jTextField111 = new javax.swing.JTextField();
-        jSearchScrollPane = new javax.swing.JScrollPane();
-        jSearchTable = new com.afrisoftech.dbadmin.JTable();
-        jButton9 = new javax.swing.JButton();
+        searchItemTxt = new javax.swing.JTextField();
+        searchScrollPane = new javax.swing.JScrollPane();
+        searchItemTable = new com.afrisoftech.dbadmin.JTable();
+        searchDisposeBtn = new javax.swing.JButton();
         lpoSearch = new javax.swing.JDialog();
         jSearchPanel1 = new javax.swing.JPanel();
         jTextField1111 = new javax.swing.JTextField();
@@ -107,7 +107,7 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new com.afrisoftech.dbadmin.JTable();
+        amemndOrderTable = new com.afrisoftech.dbadmin.JTable();
         jLabel1 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -122,9 +122,9 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         jSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jSearchPanel.setLayout(new java.awt.GridBagLayout());
 
-        jTextField111.addCaretListener(new javax.swing.event.CaretListener() {
+        searchItemTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField111CaretUpdate(evt);
+                searchItemTxtCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -132,9 +132,9 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 10.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
-        jSearchPanel.add(jTextField111, gridBagConstraints);
+        jSearchPanel.add(searchItemTxt, gridBagConstraints);
 
-        jSearchTable.setShowHorizontalLines(false);
+        searchItemTable.setShowHorizontalLines(false);
         /*    try {
             searchRowSet.setCommand("select product,selling_price,gl_code FROM st_stock_prices WHERE department = 'Pharmacy' order by product");
             searchRowSet.setConnectionSource(pConnDB);
@@ -142,13 +142,13 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
             searchRowSet.execute();
 
             // crset2.setExecuteOnLoad(true);
-            jSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
+            searchItemTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
                 new org.netbeans.lib.sql.models.TableModel.Column("product", "Description", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("selling_price", "Amount", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("gl_code", "Gl_code", false)
 
             }));
-            // jSearchScrollPane.setViewportView(jSearchTable);
+            // searchScrollPane.setViewportView(searchItemTable);
 
         } catch(java.sql.SQLException sqlex){
             javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -156,12 +156,12 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
             System.out.println(sqlex.getMessage());
         }
         */
-        jSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        searchItemTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSearchTableMouseClicked(evt);
+                searchItemTableMouseClicked(evt);
             }
         });
-        jSearchScrollPane.setViewportView(jSearchTable);
+        searchScrollPane.setViewportView(searchItemTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -170,18 +170,18 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
-        jSearchPanel.add(jSearchScrollPane, gridBagConstraints);
+        jSearchPanel.add(searchScrollPane, gridBagConstraints);
 
-        jButton9.setText("Dispose");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        searchDisposeBtn.setText("Dispose");
+        searchDisposeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                searchDisposeBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchPanel.add(jButton9, gridBagConstraints);
+        jSearchPanel.add(searchDisposeBtn, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -218,7 +218,7 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
 
         for (int i = 0; i < 4; i++) {
 
-            column = jSearchTable.getColumnModel().getColumn(i);
+            column = searchItemTable.getColumnModel().getColumn(i);
 
             if (i == 1) {
 
@@ -295,7 +295,7 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
 
         for (int i = 0; i < 4; i++) {
 
-            column = jSearchTable.getColumnModel().getColumn(i);
+            column = searchItemTable.getColumnModel().getColumn(i);
 
             if (i == 1) {
 
@@ -371,13 +371,13 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
             searchRowSet.execute();
 
             // crset2.setExecuteOnLoad(true);
-            jSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
+            searchItemTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
                 new org.netbeans.lib.sql.models.TableModel.Column("product", "Description", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("selling_price", "Amount", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("gl_code", "Gl_code", false)
 
             }));
-            // jSearchScrollPane.setViewportView(jSearchTable);
+            // searchScrollPane.setViewportView(searchItemTable);
 
         } catch(java.sql.SQLException sqlex){
             javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -628,7 +628,7 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         jPanel1.add(jTextField5, gridBagConstraints);
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Votebook Details(compulsory)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, java.awt.Color.red));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Votebook Details(compulsory)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
         jLabel16.setText("Vote name");
@@ -844,7 +844,7 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        amemndOrderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -1052,7 +1052,7 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, true, true, true
@@ -1066,7 +1066,7 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setShowHorizontalLines(false);
+        amemndOrderTable.setShowHorizontalLines(false);
         cmbox = new javax.swing.JComboBox();
         //try{
             /*      crset2.setConnectionSource(pConnDB);
@@ -1088,7 +1088,7 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         */
         javax.swing.table.TableColumn column = null;
         for (int i = 0; i < 6; i++) {
-            column = jTable1.getColumnModel().getColumn(i);
+            column = amemndOrderTable.getColumnModel().getColumn(i);
             if (i == 0) {
 
                 column.setPreferredWidth(80); //sport column is bigger
@@ -1103,17 +1103,17 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
             }
         }
     }
-    jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+    amemndOrderTable.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mouseClicked(java.awt.event.MouseEvent evt) {
-            jTable1MouseClicked(evt);
+            amemndOrderTableMouseClicked(evt);
         }
     });
-    jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+    amemndOrderTable.addKeyListener(new java.awt.event.KeyAdapter() {
         public void keyReleased(java.awt.event.KeyEvent evt) {
-            jTable1KeyReleased(evt);
+            amemndOrderTableKeyReleased(evt);
         }
     });
-    jScrollPane2.setViewportView(jTable1);
+    jScrollPane2.setViewportView(amemndOrderTable);
 
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
@@ -1227,32 +1227,15 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         } else {
             jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select code,supplier_name as Supplier from st_suppliers where supplier_name ILIKE '" + jTextField1112.getText() + "%' order by supplier_name"));
 
-            /* try {
-             // searchRowSet2.execute("select distinct pr.patient_no as pat_no,pr.first_name||' '||pr.second_name||' '||last_name as name,pr.account_no AS staff_no,description from hp_patient_register pr where pr.description ='"+jComboBox1.getSelectedItem()+"' AND pr.first_name||' '||pr.second_name||' '||last_name ILIKE '"+jTextField113.getText()+"%' AND pr.pay_mode = 'Scheme' order by name");
-             searchRowSet2.execute("select code,supplier_name as name from st_suppliers where supplier_name ILIKE '"+jTextField1112.getText()+"%' order by supplier_name");
-            
-             jSearchTable2.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet2, new org.netbeans.lib.sql.models.TableModel.Column[] {
-             new org.netbeans.lib.sql.models.TableModel.Column("code", "Acc.No", false),
-             new org.netbeans.lib.sql.models.TableModel.Column("name", "Name", false)
-             //  new org.netbeans.lib.sql.models.TableModel.Column("staff_no", "Member No.", false),
-             // new org.netbeans.lib.sql.models.TableModel.Column("description", "Scheme", false)
-             }));
-             */
             jSearchScrollPane2.setViewportView(jSearchTable2);
             System.out.println("Cannot sort out");
-            /* } catch(java.sql.SQLException sqlExec) {
 
-             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
-
-             }
-             */
         }           // Add your handling code here:
     }//GEN-LAST:event_jTextField1112CaretUpdate
     private void searchButton2Clicked() {
 
         System.out.println("Showing dialog");
 
-        // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
         java.awt.Point point = this.jTextField361.getLocationOnScreen();
 
         jSearchDialog2.setSize(400, 200);
@@ -1278,12 +1261,12 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
 
             while (rsetTable.next()) {
 
-                jTable1.setValueAt(rsetTable.getObject(1), i, 0);
-                jTable1.setValueAt(rsetTable.getObject(2), i, 1);
-                jTable1.setValueAt(rsetTable.getObject(3), i, 2);
-                jTable1.setValueAt(rsetTable.getObject(4), i, 3);
-                jTable1.setValueAt(rsetTable.getObject(5), i, 4);
-                jTable1.setValueAt(rsetTable.getObject(6), i, 5);
+                amemndOrderTable.setValueAt(rsetTable.getObject(1), i, 0);
+                amemndOrderTable.setValueAt(rsetTable.getObject(2), i, 1);
+                amemndOrderTable.setValueAt(rsetTable.getObject(3), i, 2);
+                amemndOrderTable.setValueAt(rsetTable.getObject(4), i, 3);
+                amemndOrderTable.setValueAt(rsetTable.getObject(5), i, 4);
+                amemndOrderTable.setValueAt(rsetTable.getObject(6), i, 5);
 
                 i++;
 
@@ -1307,10 +1290,8 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
                 }
             }
 
-            //   }
-            // }
         } catch (java.sql.SQLException sqlExec) {
-
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
 
         }
@@ -1353,9 +1334,9 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         jTextField361.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 1).toString());
         jTextField5.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 2).toString());
         lpoSearch.dispose();
-        for (int k = 0; k < jTable1.getRowCount(); k++) {
-            for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                jTable1.getModel().setValueAt(null, k, r);
+        for (int k = 0; k < amemndOrderTable.getRowCount(); k++) {
+            for (int r = 0; r < amemndOrderTable.getColumnCount(); r++) {
+                amemndOrderTable.getModel().setValueAt(null, k, r);
             }
         }
 
@@ -1413,12 +1394,12 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         lpoSearch.setVisible(true);
 
     }
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        if (jTable1.getSelectedColumn() == 0) {
+    private void amemndOrderTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_amemndOrderTableMouseClicked
+        if (amemndOrderTable.getSelectedColumn() == 0) {
 
             this.cmboxMouseClicked();
         }         // Add your handling code here:
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_amemndOrderTableMouseClicked
     private void cmboxMouseClicked() {
 
         System.out.println("Showing dialog");
@@ -1427,97 +1408,28 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         jSearchDialog.setLocation(point);
         jSearchDialog.setVisible(true);
     }
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void searchDisposeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDisposeBtnActionPerformed
         jSearchDialog.dispose();         // Add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_searchDisposeBtnActionPerformed
 
-    private void jTextField111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField111CaretUpdate
-        jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,units,buying_price as price FROM st_stock_item WHERE description ILIKE '%" + jTextField111.getText() + "%' ORDER BY description"));
+    private void searchItemTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchItemTxtCaretUpdate
+        searchItemTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,packaging,buying_price as price FROM st_stock_item WHERE description ILIKE '%" + searchItemTxt.getText() + "%' ORDER BY description"));
 
-        /* try {
-         //  searchRowSet.execute("select description,unit,price FROM st_product_list WHERE description ILIKE '"+jTextField111.getText()+"%' AND supplier = '"+jTextField361.getText()+"' order by description");
-         searchRowSet.execute("select distinct product as description,units,transfer_price as price FROM st_stock_prices WHERE product ILIKE '"+jTextField111.getText()+"%' order by product");// AND supplier = '"+jTextField361.getText()+"' order by description");
-        
-         jSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
-         new org.netbeans.lib.sql.models.TableModel.Column("description", "Desc.", false),
-         new org.netbeans.lib.sql.models.TableModel.Column("units", "Units", false),
-         new org.netbeans.lib.sql.models.TableModel.Column("price", "Price", false)
-        
-         //  new org.netbeans.lib.sql.models.TableModel.Column("gl_code", "Gl code", false)
-         }));
-         */
-        jSearchScrollPane.setViewportView(jSearchTable);
+        searchScrollPane.setViewportView(searchItemTable);
         System.out.println("Cannot sort out");
 
         // Add your handling code here:
-    }//GEN-LAST:event_jTextField111CaretUpdate
+    }//GEN-LAST:event_searchItemTxtCaretUpdate
 
-    private void jSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTableMouseClicked
-        jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0), jTable1.getSelectedRow(), 0);
-        jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 1), jTable1.getSelectedRow(), 1);
-        jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 2), jTable1.getSelectedRow(), 2);
-        jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 3), jTable1.getSelectedRow(), 4);
+    private void searchItemTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchItemTableMouseClicked
+        amemndOrderTable.setValueAt(searchItemTable.getValueAt(searchItemTable.getSelectedRow(), 0), amemndOrderTable.getSelectedRow(), 0);
+        amemndOrderTable.setValueAt(searchItemTable.getValueAt(searchItemTable.getSelectedRow(), 1), amemndOrderTable.getSelectedRow(), 1);
+        amemndOrderTable.setValueAt(searchItemTable.getValueAt(searchItemTable.getSelectedRow(), 2), amemndOrderTable.getSelectedRow(), 2);
+        amemndOrderTable.setValueAt(searchItemTable.getValueAt(searchItemTable.getSelectedRow(), 3), amemndOrderTable.getSelectedRow(), 4);
         int j = 0;
 
-
-        /*     try {
-         java.sql.Statement pstmt = connectDB.createStatement();
-         java.sql.Statement pstmt1 = connectDB.createStatement();
-
-         java.sql.ResultSet rs1 = pstmt1.executeQuery("select count(description) from st_product_list where description = '"+jSearchTable.getValueAt(jSearchTable.getSelectedRow(),0)+"' and supplier = '"+this.jComboBox1.getSelectedItem()+"'");
-         while (rs1.next())
-         j = rs1.getInt(1);
-         if (j > 0){
-
-         java.sql.ResultSet rs = pstmt.executeQuery("select sum(price)::numeric from st_product_list where description = '"+jSearchTable.getValueAt(jSearchTable.getSelectedRow(),0)+"' and supplier = '"+this.jComboBox1.getSelectedItem()+"'");
-         while (rs.next()){
-
-         //     jTable1.setValueAt(,jTable1.getSelectedRow(), 6);
-         jTable1.setValueAt(rs.getObject(1),jTable1.getSelectedRow(),3);
-
-         }
-         } else {
-         jTable1.setValueAt("0.00",jTable1.getSelectedRow(),2);
-         }
-         java.sql.Statement pstmt11 = connectDB.createStatement();
-         java.sql.ResultSet rs11 = pstmt1.executeQuery("select count(description) from st_product_list where description = '"+jSearchTable.getValueAt(jSearchTable.getSelectedRow(),0)+"' and supplier = '"+this.jComboBox1.getSelectedItem()+"'");
-         while (rs11.next())
-         j = rs11.getInt(1);
-         if (j > 0){
-
-         java.sql.ResultSet rs = pstmt.executeQuery("select sum(discount_rate) from st_product_list where description = '"+jSearchTable.getValueAt(jSearchTable.getSelectedRow(),0)+"' and supplier = '"+this.jComboBox1.getSelectedItem()+"'");
-         while (rs.next()){
-
-         //     jTable1.setValueAt(,jTable1.getSelectedRow(), 6);
-
-         jTable1.setValueAt(rs.getObject(1),jTable1.getSelectedRow(),4);
-
-         }
-         } else {
-         jTable1.setValueAt("0.00",jTable1.getSelectedRow(),4);
-         }
-         java.sql.Statement pstmt111 = connectDB.createStatement();
-         java.sql.ResultSet rs111 = pstmt111.executeQuery("select count(description) from st_product_list where description = '"+jSearchTable.getValueAt(jSearchTable.getSelectedRow(),0)+"' and supplier = '"+this.jComboBox1.getSelectedItem()+"'");
-         while (rs111.next())
-         j = rs111.getInt(1);
-         if (j > 0){
-
-         java.sql.ResultSet rs = pstmt.executeQuery("select sum(vat) from st_product_list where description = '"+jSearchTable.getValueAt(jSearchTable.getSelectedRow(),0)+"' and supplier = '"+this.jComboBox1.getSelectedItem()+"'");
-         while (rs.next()){
-
-         //     jTable1.setValueAt(,jTable1.getSelectedRow(), 6);
-
-         jTable1.setValueAt(rs.getObject(1),jTable1.getSelectedRow(),6);
-         }
-         } else {
-         jTable1.setValueAt("0.00",jTable1.getSelectedRow(),6);
-         }
-         } catch(java.sql.SQLException sqlex){
-         System.out.println(sqlex.getMessage());
-         }
-         */
         jSearchDialog.dispose();        // Add your handling code here:
-    }//GEN-LAST:event_jSearchTableMouseClicked
+    }//GEN-LAST:event_searchItemTableMouseClicked
 
     private void resetbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetbtnActionPerformed
         javax.swing.JFrame bank = new ReceivedItems(connectDB, pConnDB);
@@ -1555,30 +1467,30 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         System.out.println("Done list of activities ...");
         return listofActivities;
     }
-    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
-        if (jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 3) != null) {
-            if (jTable1.getSelectedColumn() == jTable1.getSelectedColumn()) {
-                float qty = java.lang.Float.parseFloat(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
-                float price = java.lang.Float.parseFloat(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString());
+    private void amemndOrderTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amemndOrderTableKeyReleased
+        if (amemndOrderTable.getModel().getValueAt(amemndOrderTable.getSelectedRow(), 3) != null) {
+            if (amemndOrderTable.getSelectedColumn() == amemndOrderTable.getSelectedColumn()) {
+                float qty = java.lang.Float.parseFloat(amemndOrderTable.getValueAt(amemndOrderTable.getSelectedRow(), 3).toString());
+                float price = java.lang.Float.parseFloat(amemndOrderTable.getValueAt(amemndOrderTable.getSelectedRow(), 4).toString());
                 float total = qty * price;
-                jTable1.setValueAt(total, jTable1.getSelectedRow(), 5);
-                double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 5);
+                amemndOrderTable.setValueAt(total, amemndOrderTable.getSelectedRow(), 5);
+                double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(amemndOrderTable, 5);
                 jTextField2.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
             }
 
         }
 
         // Add your handling code here:
-    }//GEN-LAST:event_jTable1KeyReleased
+    }//GEN-LAST:event_amemndOrderTableKeyReleased
 
     private void exitbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitbtnActionPerformed
         this.setVisible(false);        // Add your handling code here:
     }//GEN-LAST:event_exitbtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int rows2Delete = jTable1.getSelectedRowCount();
+        int rows2Delete = amemndOrderTable.getSelectedRowCount();
 
-        int[] selectedRows = jTable1.getSelectedRows();
+        int[] selectedRows = amemndOrderTable.getSelectedRows();
 
         if (rows2Delete < 1) {
 
@@ -1592,7 +1504,7 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
 
                 for (int i = 0; i < selectedRows.length; i++) {
 
-                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) amemndOrderTable.getModel();
 
                     defTableModel.removeRow(selectedRows[i]);
 
@@ -1600,12 +1512,12 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
 
             } else {
 
-                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) amemndOrderTable.getModel();
 
-                defTableModel.removeRow(jTable1.getSelectedRow());
+                defTableModel.removeRow(amemndOrderTable.getSelectedRow());
             }
         }
-        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 4);
+        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(amemndOrderTable, 4);
         jTextField2.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
 
         // Add your handling code here:
@@ -1616,9 +1528,9 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         //   jTextField3.setText("");
         //   jTextField7.setText("");
         //        jTextField9.setText("");
-        for (int k = 0; k < jTable1.getRowCount(); k++) {
-            for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                jTable1.getModel().setValueAt(null, k, r);
+        for (int k = 0; k < amemndOrderTable.getRowCount(); k++) {
+            for (int r = 0; r < amemndOrderTable.getColumnCount(); r++) {
+                amemndOrderTable.getModel().setValueAt(null, k, r);
             }
         }
 
@@ -1627,7 +1539,7 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cancelbtnActionPerformed
     private void cmboxActionPerformed(java.awt.event.ActionEvent evt) {
         java.lang.Object selectedGuaran = cmbox.getSelectedItem();
-        int i = jTable1.getSelectedRow();
+        int i = amemndOrderTable.getSelectedRow();
 
         if (selectedGuaran != null) {
 
@@ -1639,7 +1551,7 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
                 java.sql.ResultSet rs = pstmt.executeQuery("select units from st_stock_item where description = '" + selectedGuaran + "'");
                 while (rs.next()) {
 
-                    jTable1.setValueAt(rs.getObject(1), i, 1);
+                    amemndOrderTable.setValueAt(rs.getObject(1), i, 1);
 
                 }
             } catch (java.sql.SQLException sqlex) {
@@ -1686,31 +1598,31 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
 
                 }
 
-                for (int i = 0; i < jTable1.getRowCount(); i++) {
-                    if (jTable1.getModel().getValueAt(i, 0) != null) {
+                for (int i = 0; i < amemndOrderTable.getRowCount(); i++) {
+                    if (amemndOrderTable.getModel().getValueAt(i, 0) != null) {
                         java.sql.Statement pstmt6 = connectDB.createStatement();
-                        java.sql.ResultSet rs6 = pstmt6.executeQuery("SELECT DISTINCT CASE WHEN strength is null or strength ='' THEN trim('-') ELSE trim(strength) END AS strength FROM st_stock_item WHERE item_code = '" + jTable1.getValueAt(i, 0) + "'");
+                        java.sql.ResultSet rs6 = pstmt6.executeQuery("SELECT DISTINCT CASE WHEN strength is null or strength ='' THEN trim('-') ELSE trim(strength) END AS strength FROM st_stock_item WHERE item_code = '" + amemndOrderTable.getValueAt(i, 0) + "'");
                         while (rs6.next()) {
                             strength = rs6.getString(1);
                         }
                         java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into st_orders values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?)");
                         pstmt2.setObject(1, jTextField361.getText());
-                        pstmt2.setObject(2, jTable1.getValueAt(i, 1));
-                        pstmt2.setObject(3, jTable1.getValueAt(i, 2));
-                        pstmt2.setDouble(4, java.lang.Double.valueOf(jTable1.getValueAt(i, 3).toString()));
-                        pstmt2.setDouble(5, java.lang.Double.valueOf(jTable1.getValueAt(i, 4).toString()));
-                        pstmt2.setDouble(6, java.lang.Double.valueOf(jTable1.getValueAt(i, 5).toString()));
+                        pstmt2.setObject(2, amemndOrderTable.getValueAt(i, 1));
+                        pstmt2.setObject(3, amemndOrderTable.getValueAt(i, 2));
+                        pstmt2.setDouble(4, java.lang.Double.valueOf(amemndOrderTable.getValueAt(i, 3).toString()));
+                        pstmt2.setDouble(5, java.lang.Double.valueOf(amemndOrderTable.getValueAt(i, 4).toString()));
+                        pstmt2.setDouble(6, java.lang.Double.valueOf(amemndOrderTable.getValueAt(i, 5).toString()));
                         pstmt2.setDouble(7, 0.00);
                         pstmt2.setDouble(8, 0.00);
                         pstmt2.setDouble(9, 0.00);
-                        pstmt2.setDouble(10, java.lang.Double.valueOf(jTable1.getValueAt(i, 5).toString()));
+                        pstmt2.setDouble(10, java.lang.Double.valueOf(amemndOrderTable.getValueAt(i, 5).toString()));
                         pstmt2.setBoolean(11, false);
                         pstmt2.setDouble(12, 0.00);
                         pstmt2.setObject(13, orderTxt.getText());
                         pstmt2.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker2.getDate()));
                         pstmt2.setDate(15, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
                         pstmt2.setBoolean(16, false);
-                        pstmt2.setObject(17, jTable1.getValueAt(i, 0));
+                        pstmt2.setObject(17, amemndOrderTable.getValueAt(i, 0));
 
                         pstmt2.setDouble(18, 0.00);
                         pstmt2.setDouble(19, 0.00);
@@ -1723,7 +1635,7 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
                         //pstmt2.setObject(23, jTextField5.getText());
                         pstmt2.executeUpdate();
 
-                        java.sql.PreparedStatement pstmt3 = connectDB.prepareStatement("UPDATE st_analyse_requisation SET ordered ='true' WHERE item_description = '" + jTable1.getValueAt(i, 1).toString() + "' and quantity_to_order > 0");
+                        java.sql.PreparedStatement pstmt3 = connectDB.prepareStatement("UPDATE st_analyse_requisation SET ordered ='true' WHERE item_description = '" + amemndOrderTable.getValueAt(i, 1).toString() + "' and quantity_to_order > 0");
                         pstmt3.executeUpdate();
 
                     }
@@ -1742,9 +1654,9 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
                 connectDB.commit();
                 connectDB.setAutoCommit(true);
 
-                for (int k = 0; k < jTable1.getRowCount(); k++) {
-                    for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                        jTable1.getModel().setValueAt(null, k, r);
+                for (int k = 0; k < amemndOrderTable.getRowCount(); k++) {
+                    for (int r = 0; r < amemndOrderTable.getColumnCount(); r++) {
+                        amemndOrderTable.getModel().setValueAt(null, k, r);
                     }
                 }
                 this.postbtn.setEnabled(false);
@@ -1810,13 +1722,13 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         //        double resFloat = 0.00;
         double resFloat = 0.00;
 
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+        for (int i = 0; i < amemndOrderTable.getRowCount(); i++) {
 
-            if (jTable1.getModel().getValueAt(i, 0) != null) {
+            if (amemndOrderTable.getModel().getValueAt(i, 0) != null) {
 
-                if (jTable1.getSelectedColumn() == 2) {
+                if (amemndOrderTable.getSelectedColumn() == 2) {
 
-                    resFloat = resFloat + Double.parseDouble(jTable1.getModel().getValueAt(i, 4).toString());
+                    resFloat = resFloat + Double.parseDouble(amemndOrderTable.getModel().getValueAt(i, 4).toString());
 
                 }
 
@@ -1833,13 +1745,13 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         //        double resFloat = 0.00;
         double resFloat = 0.00;
 
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+        for (int i = 0; i < amemndOrderTable.getRowCount(); i++) {
 
-            if (jTable1.getModel().getValueAt(i, 0) != null) {
+            if (amemndOrderTable.getModel().getValueAt(i, 0) != null) {
 
-                if (jTable1.getSelectedColumn() == 2) {
+                if (amemndOrderTable.getSelectedColumn() == 2) {
 
-                    resFloat = resFloat + Double.parseDouble(jTable1.getModel().getValueAt(i, 4).toString());
+                    resFloat = resFloat + Double.parseDouble(amemndOrderTable.getModel().getValueAt(i, 4).toString());
 
                 }
 
@@ -1856,13 +1768,13 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         //        double resFloat = 0.00;
         double resFloat1 = 0.00;
 
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+        for (int i = 0; i < amemndOrderTable.getRowCount(); i++) {
 
-            if (jTable1.getModel().getValueAt(i, 0) != null) {
+            if (amemndOrderTable.getModel().getValueAt(i, 0) != null) {
 
-                if (jTable1.getSelectedColumn() == 2) {
+                if (amemndOrderTable.getSelectedColumn() == 2) {
 
-                    resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 3).toString());
+                    resFloat1 = resFloat1 + Double.parseDouble(amemndOrderTable.getModel().getValueAt(i, 3).toString());
 
                 }
 
@@ -1879,13 +1791,13 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         //        double resFloat = 0.00;
         double resFloat1 = 0.00;
 
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+        for (int i = 0; i < amemndOrderTable.getRowCount(); i++) {
 
-            if (jTable1.getModel().getValueAt(i, 0) != null) {
+            if (amemndOrderTable.getModel().getValueAt(i, 0) != null) {
 
-                if (jTable1.getSelectedColumn() == 3) {
+                if (amemndOrderTable.getSelectedColumn() == 3) {
 
-                    resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 4).toString());
+                    resFloat1 = resFloat1 + Double.parseDouble(amemndOrderTable.getModel().getValueAt(i, 4).toString());
 
                 }
 
@@ -1902,13 +1814,13 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         //        double resFloat = 0.00;
         double resFloat1 = 0.00;
 
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+        for (int i = 0; i < amemndOrderTable.getRowCount(); i++) {
 
-            if (jTable1.getModel().getValueAt(i, 0) != null) {
+            if (amemndOrderTable.getModel().getValueAt(i, 0) != null) {
 
-                if (jTable1.getSelectedColumn() == 3) {
+                if (amemndOrderTable.getSelectedColumn() == 3) {
 
-                    resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 4).toString());
+                    resFloat1 = resFloat1 + Double.parseDouble(amemndOrderTable.getModel().getValueAt(i, 4).toString());
 
                 }
 
@@ -1925,13 +1837,13 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
         //        double resFloat = 0.00;
         double resFloat1 = 0.00;
 
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+        for (int i = 0; i < amemndOrderTable.getRowCount(); i++) {
 
-            if (jTable1.getModel().getValueAt(i, 0) != null) {
+            if (amemndOrderTable.getModel().getValueAt(i, 0) != null) {
 
-                if (jTable1.getSelectedColumn() == 3) {
+                if (amemndOrderTable.getSelectedColumn() == 3) {
 
-                    resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 3).toString());
+                    resFloat1 = resFloat1 + Double.parseDouble(amemndOrderTable.getModel().getValueAt(i, 3).toString());
 
                 }
 
@@ -1945,6 +1857,7 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TenderNoTxt;
     private javax.swing.JTextField TenderNoTxt1;
+    private javax.swing.JTable amemndOrderTable;
     private javax.swing.JButton cancelbtn;
     private com.afrisoftech.lib.DatePicker datePicker1;
     private com.afrisoftech.lib.DatePicker datePicker2;
@@ -1954,7 +1867,6 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton51;
     private javax.swing.JButton jButton511;
-    private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
@@ -1984,16 +1896,12 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jSearchPanel1;
     private javax.swing.JPanel jSearchPanel2;
     private javax.swing.JPanel jSearchPanel4;
-    private javax.swing.JScrollPane jSearchScrollPane;
     private javax.swing.JScrollPane jSearchScrollPane1;
     private javax.swing.JScrollPane jSearchScrollPane2;
     private javax.swing.JScrollPane jSearchScrollPane3;
-    private javax.swing.JTable jSearchTable;
     private javax.swing.JTable jSearchTable1;
     private javax.swing.JTable jSearchTable2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField111;
     private javax.swing.JTextField jTextField1111;
     private javax.swing.JTextField jTextField1112;
     private javax.swing.JTextField jTextField2;
@@ -2009,6 +1917,10 @@ public class AmmendOrderintfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton resetbtn;
     private javax.swing.JButton searchButton;
     private javax.swing.JButton searchButton1;
+    private javax.swing.JButton searchDisposeBtn;
+    private javax.swing.JTable searchItemTable;
+    private javax.swing.JTextField searchItemTxt;
+    private javax.swing.JScrollPane searchScrollPane;
     private javax.swing.JDialog searchVote;
     private javax.swing.JTextField searchtlpo1;
     private javax.swing.JButton tenderSearchbtn1;

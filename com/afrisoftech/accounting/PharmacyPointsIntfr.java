@@ -2725,7 +2725,7 @@ public class PharmacyPointsIntfr extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
             Logger.getLogger(PharmacyPointsIntfr.class.getName()).log(Level.SEVERE, null, ex);
-            javax.swing.JOptionPane.showMessageDialog(this, "Transaction Error,Recheck Your Entries", "Error", JOptionPane.ERROR_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
             try {
                 connectDB.rollback();
@@ -2878,7 +2878,7 @@ public class PharmacyPointsIntfr extends javax.swing.JInternalFrame {
             }
 
         } else {
-            java.lang.Object[] strCmb1 = {"Bill", "Raise Requisitions", "Approve IRQ", "Stock Reconciliation"};
+            java.lang.Object[] strCmb1 = {"Approve IRQ", "Bill", "Direct Purchasing", "Issuing Stockable Items", "Raise Requisitions", "Stock Reconciliation"};
             for (int i = 0; i < strCmb1.length; i++) {
 
                 moduleTbl.setValueAt(strCmb1[i], i, 0);

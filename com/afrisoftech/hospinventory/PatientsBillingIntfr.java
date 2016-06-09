@@ -728,6 +728,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridwidth = 2;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
             jPanel3.add(jPanel6, gridBagConstraints);
 
             jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Search By"));
@@ -752,6 +753,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridy = 1;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
             jPanel7.add(jCheckBox4, gridBagConstraints);
 
             jRadioButton1.setText("Confirm Visit");
@@ -766,6 +768,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridy = 1;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
             gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
             jPanel7.add(jRadioButton1, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -773,6 +776,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridy = 0;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
             jPanel3.add(jPanel7, gridBagConstraints);
 
             jPanel8.setLayout(new java.awt.GridBagLayout());
@@ -818,6 +822,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridy = 0;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 3.0;
+            gridBagConstraints.weighty = 1.0;
             jPanel8.add(jPanel413, gridBagConstraints);
 
             buttonGroup3.add(jCheckBox5);
@@ -870,6 +875,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridy = 0;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
             jPanel8.add(jTextField42, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 6;
@@ -890,6 +896,8 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
             jPanel8.add(PrescriptionCheckBox, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -898,6 +906,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridwidth = 3;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
             jPanel3.add(jPanel8, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -922,7 +931,6 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             jPanel13.setLayout(new java.awt.GridBagLayout());
 
             jScrollPane22.setBorder(javax.swing.BorderFactory.createTitledBorder("Select items to bill for credit sales by clicking once on the first column on an empty row"));
-            jScrollPane22.setPreferredSize(new java.awt.Dimension(700, 403));
 
             mainItemstbl.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
@@ -1058,7 +1066,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridheight = 2;
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.weighty = 20.0;
+            gridBagConstraints.weighty = 200.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 2, 0, 2);
             jPanel13.add(jScrollPane22, gridBagConstraints);
 
@@ -1079,6 +1087,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridy = 2;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
             jPanel23.add(jLabel13, gridBagConstraints);
 
@@ -1108,6 +1117,8 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 3;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
             jPanel23.add(jLabel32, gridBagConstraints);
 
@@ -1138,6 +1149,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridy = 4;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
             jPanel23.add(jLabel61, gridBagConstraints);
 
@@ -1176,6 +1188,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridy = 2;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 3.0;
+            gridBagConstraints.weighty = 1.0;
             jPanel23.add(jPanel42, gridBagConstraints);
 
             jComboBox2.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select first_name||' '||middle_name as name from pb_doctors_list  where status ilike 'acti%' order by name"));
@@ -1352,6 +1365,8 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 9;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
             jPanel23.add(jCheckBox7, gridBagConstraints);
 
             buttonGroup4.add(jCheckBox8);
@@ -1368,6 +1383,8 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridx = 4;
             gridBagConstraints.gridy = 9;
             gridBagConstraints.gridwidth = 2;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
             jPanel23.add(jCheckBox8, gridBagConstraints);
 
             jTextField5.setEditable(false);
@@ -1418,6 +1435,8 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 2;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
             jPanel23.add(PatientCheckBox, gridBagConstraints);
 
             jButton1.setBackground(new java.awt.Color(204, 204, 255));
@@ -1432,6 +1451,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 10;
+            gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             jPanel23.add(jButton1, gridBagConstraints);
 
@@ -1441,6 +1461,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridwidth = 10;
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
             jPanel13.add(jPanel23, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -1559,7 +1580,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridheight = 3;
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.weightx = 20.0;
-            gridBagConstraints.weighty = 1.0;
+            gridBagConstraints.weighty = 50.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
             jPanel5.add(jPanel13, gridBagConstraints);
 
@@ -1709,7 +1730,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             getContentPane().add(jTabbedPane1, gridBagConstraints);
 
-            setBounds(0, 0, 1061, 829);
+            setBounds(0, 0, 1046, 783);
         }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed

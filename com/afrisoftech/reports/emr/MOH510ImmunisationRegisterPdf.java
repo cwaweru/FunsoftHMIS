@@ -301,7 +301,7 @@ public class MOH510ImmunisationRegisterPdf implements java.lang.Runnable {
                         while (rset4.next()) {
                             date = rset4.getObject(1).toString();
                         }
-                        com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase("MINISTRY OF HEALTH : " + compName.toUpperCase()), false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
+                        com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase("FACILITY NAME : " + compName.toUpperCase()), false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
 
                         headerFoter.setAlignment(com.lowagie.text.HeaderFooter.ALIGN_CENTER);
 
@@ -780,7 +780,7 @@ public class MOH510ImmunisationRegisterPdf implements java.lang.Runnable {
 
         try {
 
-            java.sql.PreparedStatement stmt1 = connectDB.prepareStatement("SELECT DISTINCT patient_no, patient_names FROM rh.immunisation_register where date_of_visit::date BETWEEN '" + beginDate + "' AND '" + endDate + "' ORDER BY patient_names ASC");
+            java.sql.PreparedStatement stmt1 = connectDB.prepareStatement("SELECT DISTINCT patient_no, patient_names FROM rh.immunisation_register where date_of_visit::date BETWEEN '" + beginDate + "' AND '" + endDate + "' ORDER BY 1 ASC");
 
             java.sql.ResultSet rSet1 = stmt1.executeQuery();
 

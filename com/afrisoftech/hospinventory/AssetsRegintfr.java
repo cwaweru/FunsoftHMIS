@@ -5,7 +5,7 @@
  */
 package com.afrisoftech.hospinventory;
 
-import static com.afrisoftech.hospinventory.PatientsBillingIntfr_.jTextField13;
+import static com.afrisoftech.hospinventory.PatientsBillingIntfr_.patientNameTxt;
 import static com.afrisoftech.hospinventory.PatientsBillingIntfr_.mainItemstbl;
 import static com.afrisoftech.hospinventory.PatientsBillingIntfr_.patientNumberTxt;
 import static com.afrisoftech.hospinventory.PatientsBillingIntfr_.transNo;

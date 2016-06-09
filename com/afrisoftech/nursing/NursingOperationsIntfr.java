@@ -968,7 +968,7 @@ public class NursingOperationsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             bloodTransfusionPanel.add(jLabel84, gridBagConstraints);
 
-            transfusionStartedbyCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT login_name FROM secure_password order by login_name"));
+            transfusionStartedbyCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT login_name FROM secure_passwd order by login_name"));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 2;
@@ -986,7 +986,7 @@ public class NursingOperationsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             bloodTransfusionPanel.add(jLabel85, gridBagConstraints);
 
-            counterCheckedbyCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT login_name FROM secure_password order by login_name"));
+            counterCheckedbyCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT login_name FROM secure_passwd order by login_name"));
             counterCheckedbyCmbx.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     counterCheckedbyCmbxActionPerformed(evt);
@@ -1228,7 +1228,7 @@ public class NursingOperationsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             bloodTransfusionPanel.add(jLabel93, gridBagConstraints);
 
-            nurseDoctorCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT login_name FROM secure_password order by login_name"));
+            nurseDoctorCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT login_name FROM secure_passwd order by login_name"));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 6;
@@ -1699,7 +1699,7 @@ public class NursingOperationsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridy = 1;
             renalHaemodialysisPanel.add(jLabel135, gridBagConstraints);
 
-            jComboBox27.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT login_name FROM secure_password order by login_name"));
+            jComboBox27.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT login_name FROM secure_passwd order by login_name"));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 1;
@@ -2020,7 +2020,7 @@ public class NursingOperationsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             renalHaemodialysisPanel.add(jLabel155, gridBagConstraints);
 
-            jComboBox33.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT login_name FROM secure_password order by login_name"));
+            jComboBox33.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT login_name FROM secure_passwd order by login_name"));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 6;
@@ -2041,7 +2041,7 @@ public class NursingOperationsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridy = 8;
             renalHaemodialysisPanel.add(jLabel157, gridBagConstraints);
 
-            jComboBox34.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT login_name FROM secure_password order by login_name"));
+            jComboBox34.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT login_name FROM secure_passwd order by login_name"));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 7;
@@ -2050,7 +2050,7 @@ public class NursingOperationsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             renalHaemodialysisPanel.add(jComboBox34, gridBagConstraints);
 
-            jComboBox35.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT login_name FROM secure_password order by login_name"));
+            jComboBox35.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT login_name FROM secure_passwd order by login_name"));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 8;

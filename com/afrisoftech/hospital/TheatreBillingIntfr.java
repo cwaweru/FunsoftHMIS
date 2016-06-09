@@ -4077,7 +4077,7 @@ public class TheatreBillingIntfr extends javax.swing.JInternalFrame {
 
                                 }
 
-                                java.sql.PreparedStatement pstmt2at1 = connectDB.prepareStatement("insert into hp_theatre_procedures values(?,?,?,?,?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?, ?, ?,?,?,?,?,?,?)");
+                        java.sql.PreparedStatement pstmt2at1 = connectDB.prepareStatement("insert into hp_theatre_procedures values(?,?,?,?,?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?, ?, ?,?,?,?,?,?,?)");
                         pstmt2at1.setObject(1, jTextField9.getText());
                         pstmt2at1.setObject(2, jTextField1.getText());
                         pstmt2at1.setString(3, jTextField5.getText());

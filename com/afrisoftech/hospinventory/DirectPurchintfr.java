@@ -5,6 +5,8 @@
  */
 package com.afrisoftech.hospinventory;
 
+import java.sql.Date;
+
 /**
  *
  * @author root
@@ -19,6 +21,7 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
     org.netbeans.lib.sql.pool.PooledConnectionSource pConnDB = null;
     javax.swing.table.TableModel tableModel;
     private boolean uprices;
+    private Date expiryDate;
 
     public DirectPurchintfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
@@ -83,7 +86,7 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new com.afrisoftech.dbadmin.JTable();
+        grnDetailsTable = new com.afrisoftech.dbadmin.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
@@ -154,7 +157,7 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel.add(jSearchScrollPane, gridBagConstraints);
 
-        jButton9.setText("Cancel");
+        jButton9.setText("Dispose");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -427,7 +430,6 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
         buttonGroup2.add(jRadioButton1);
-        jRadioButton1.setSelected(true);
         jRadioButton1.setText("Payable");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -436,6 +438,7 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         jPanel5.add(jRadioButton1, gridBagConstraints);
 
         buttonGroup2.add(jRadioButton3);
+        jRadioButton3.setSelected(true);
         jRadioButton3.setText("Cash Purchases");
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -584,7 +587,7 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        grnDetailsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -706,7 +709,7 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setGridColor(new java.awt.Color(204, 204, 255));
+        grnDetailsTable.setGridColor(new java.awt.Color(204, 204, 255));
         cmbox = new javax.swing.JComboBox();
         //try{
             /*      crset2.setConnectionSource(pConnDB);
@@ -728,7 +731,7 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         */
         javax.swing.table.TableColumn column = null;
         for (int i = 0; i < 13; i++) {
-            column = jTable1.getColumnModel().getColumn(i);
+            column = grnDetailsTable.getColumnModel().getColumn(i);
             if (i == 0) {
 
                 column.setPreferredWidth(500); //sport column is bigger
@@ -741,17 +744,25 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
             }
         }
 
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        javax.swing.table.TableColumn dateEditor = grnDetailsTable.getColumnModel().getColumn(11);
+        //com.afrisoftech.lib.DateCellEditor dateCellEditor = new com.afrisoftech.lib.DateCellEditor(new org.jdesktop.swingx.JXDatePicker(), grnDetailsTable);
+        com.afrisoftech.lib.DateCellEditor dateCellEditor = new com.afrisoftech.lib.DateCellEditor(new com.afrisoftech.lib.DatePicker(), grnDetailsTable);
+        dateEditor.setCellEditor(dateCellEditor);
+        //jTable1.setRowHeight(30);
+        javax.swing.table.DefaultTableCellRenderer cellRenderer = new javax.swing.table.DefaultTableCellRenderer();
+        cellRenderer.setHorizontalAlignment(cellRenderer.TRAILING);
+        dateEditor.setCellRenderer(cellRenderer);
+        grnDetailsTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                grnDetailsTableMouseClicked(evt);
             }
         });
-        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+        grnDetailsTable.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTable1KeyReleased(evt);
+                grnDetailsTableKeyReleased(evt);
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(grnDetailsTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -870,6 +881,7 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         getContentPane().add(jPanel2, gridBagConstraints);
 
         buttonGroup1.add(jCheckBox1);
+        jCheckBox1.setSelected(true);
         jCheckBox1.setText("Main Store");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -931,8 +943,6 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
             jSearchTable2.setShowHorizontalLines(false);
             jSearchScrollPane2.setViewportView(jSearchTable2);
 
-
-
         }         // Add your handling code here:
     }//GEN-LAST:event_jTextField113CaretUpdate
     private void searchButtonClicked() {
@@ -947,8 +957,6 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         jSearchDialog2.setLocation(point);
 
         jSearchDialog2.setVisible(true);
-
-
 
     }
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
@@ -1038,12 +1046,12 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        if (jTable1.getSelectedColumn() == 0) {
+    private void grnDetailsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grnDetailsTableMouseClicked
+        if (grnDetailsTable.getSelectedColumn() == 0) {
 
             this.cmboxMouseClicked();
         }         // Add your handling code here:
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_grnDetailsTableMouseClicked
     private void cmboxMouseClicked() {
 
         System.out.println("Showing dialog");
@@ -1095,19 +1103,18 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField111CaretUpdate
 
     private void jSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTableMouseClicked
-        jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0), jTable1.getSelectedRow(), 0);
-        jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 1), jTable1.getSelectedRow(), 1);
-        jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 2), jTable1.getSelectedRow(), 2);
-        jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 3), jTable1.getSelectedRow(), 4);
-        jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 4), jTable1.getSelectedRow(), 12);
+        grnDetailsTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0), grnDetailsTable.getSelectedRow(), 0);
+        grnDetailsTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 1), grnDetailsTable.getSelectedRow(), 1);
+        grnDetailsTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 2), grnDetailsTable.getSelectedRow(), 2);
+        grnDetailsTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 3), grnDetailsTable.getSelectedRow(), 4);
+        grnDetailsTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 4), grnDetailsTable.getSelectedRow(), 12);
 
-        jTable1.setValueAt(new java.lang.Double(0), jTable1.getSelectedRow(), 5);
-        jTable1.setValueAt(new java.lang.Double(0), jTable1.getSelectedRow(), 7);
-        jTable1.setValueAt(new java.lang.Double(0), jTable1.getSelectedRow(), 6);
-        jTable1.setValueAt(new java.lang.Double(0), jTable1.getSelectedRow(), 9);
+        grnDetailsTable.setValueAt(new java.lang.Double(0), grnDetailsTable.getSelectedRow(), 5);
+        grnDetailsTable.setValueAt(new java.lang.Double(0), grnDetailsTable.getSelectedRow(), 7);
+        grnDetailsTable.setValueAt(new java.lang.Double(0), grnDetailsTable.getSelectedRow(), 6);
+        grnDetailsTable.setValueAt(new java.lang.Double(0), grnDetailsTable.getSelectedRow(), 9);
         //  jTable1.setValueAt(new java.lang.Double(1), jTable1.getSelectedRow(), 2);
         int j = 0;
-
 
         try {
             java.sql.Statement pstmt = connectDB.createStatement();
@@ -1121,10 +1128,8 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
 
             //   java.sql.ResultSet rs = pstmt.executeQuery("select sum(transfer_price)::numeric from st_stock_prices sc where product = '"+jSearchTable.getValueAt(jSearchTable.getSelectedRow(),0)+"'");
             //   while (rs.next()){
-
             //     jTable1.setValueAt(,jTable1.getSelectedRow(), 6);
             //   jTable1.setValueAt(rs.getObject(1),jTable1.getSelectedRow(),3);
-
             //  }
             // } else {
             //   jTable1.setValueAt("0.00",jTable1.getSelectedRow(),2);
@@ -1132,7 +1137,6 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         } catch (java.sql.SQLException sqlex) {
             System.out.println(sqlex.getMessage());
         }
-
 
         jSearchDialog.dispose();
         jTextField111.setText("");
@@ -1183,7 +1187,7 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
             // policy.DiscCreditorsInvoicesPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker1.getDate().toLocaleString(),jTextField91.getText().toString(),this.jTextField7.getText().toString());
 
             com.afrisoftech.hospinventory.mtrhreports.SthirteenPdf policy = new com.afrisoftech.hospinventory.mtrhreports.SthirteenPdf();
-            policy.SthirteenPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker1.getDate().toLocaleString(), jTextField91.getText().toString(), this.jTextField7.getText().toString(),transNo);
+            policy.SthirteenPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker1.getDate().toLocaleString(), jTextField91.getText().toString(), this.jTextField7.getText().toString(), transNo);
 
             //       jTextField7.setText("");
             jTextField3.setText("");
@@ -1193,7 +1197,6 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
             jTextField5.setText("00");
 
             //  javax.swing.JOptionPane.showMessageDialog(this, "Enter quantity received","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
-
         } catch (java.sql.SQLException sq) {
             javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
 
@@ -1208,7 +1211,7 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_resetbtnActionPerformed
 
-    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
+    private void grnDetailsTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_grnDetailsTableKeyReleased
         double resFloat = 0.00;
         double resVal = 0.00;
         double total = 0.00;
@@ -1219,74 +1222,69 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         double floatCol2 = 0.00;
         double floatCol3 = 0.00;
         //  double totalSum = 0.00;
-        if (jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn()) != null) {
+        if (grnDetailsTable.getValueAt(grnDetailsTable.getSelectedRow(), grnDetailsTable.getSelectedColumn()) != null) {
 
+            floatCol2 = java.lang.Double.parseDouble(grnDetailsTable.getValueAt(grnDetailsTable.getSelectedRow(), 3).toString());
 
-            floatCol2 = java.lang.Double.parseDouble(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
-
-            floatCol3 = java.lang.Double.parseDouble(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString());
+            floatCol3 = java.lang.Double.parseDouble(grnDetailsTable.getValueAt(grnDetailsTable.getSelectedRow(), 4).toString());
 
             //            if (jTable1.getValueAt(jTable1.getSelectedRow(), 3) != null) {
             total = floatCol2 * floatCol3;
             //                jTable1.setValueAt(new java.lang.Float(total), jTable1.getSelectedRow(), 7);
 
-
-            if (jTable1.getValueAt(jTable1.getSelectedRow(), 5) != null) {
-                discount1 = java.lang.Double.parseDouble(jTable1.getValueAt(jTable1.getSelectedRow(), 5).toString());
+            if (grnDetailsTable.getValueAt(grnDetailsTable.getSelectedRow(), 5) != null) {
+                discount1 = java.lang.Double.parseDouble(grnDetailsTable.getValueAt(grnDetailsTable.getSelectedRow(), 5).toString());
 
                 resVal = total * discount1 / 100;
                 // total = ((floatCol2 * floatCol3) - ((floatCol2 * floatCol3)*discount1/100));
                 // resVal = (floatCol2 * floatCol3)*discount1/100;
-                jTable1.setValueAt(new java.lang.Float(resVal), jTable1.getSelectedRow(), 6);
-                jTable1.setValueAt(new java.lang.Float(total - resVal), jTable1.getSelectedRow(), 9);
+                grnDetailsTable.setValueAt(new java.lang.Float(resVal), grnDetailsTable.getSelectedRow(), 6);
+                grnDetailsTable.setValueAt(new java.lang.Float(total - resVal), grnDetailsTable.getSelectedRow(), 9);
 
                 this.tableModelTableChanged1();
 
-                if (jTable1.getValueAt(jTable1.getSelectedRow(), 7) != null) {
-                    vat = java.lang.Double.parseDouble(jTable1.getValueAt(jTable1.getSelectedRow(), 7).toString());
+                if (grnDetailsTable.getValueAt(grnDetailsTable.getSelectedRow(), 7) != null) {
+                    vat = java.lang.Double.parseDouble(grnDetailsTable.getValueAt(grnDetailsTable.getSelectedRow(), 7).toString());
                     // total = (((total) + ((floatCol2 * floatCol3)*vat/100)) - ((floatCol2 * floatCol3)*discount1/100));
 
                     VatAmt = (total - resVal) * vat / 100;
-                    jTable1.setValueAt(new java.lang.Float(VatAmt), jTable1.getSelectedRow(), 8);
-                    jTable1.setValueAt(new java.lang.Float(resVal), jTable1.getSelectedRow(), 6);
-                    jTable1.setValueAt(new java.lang.Float((total - resVal) + VatAmt), jTable1.getSelectedRow(), 9);
+                    grnDetailsTable.setValueAt(new java.lang.Float(VatAmt), grnDetailsTable.getSelectedRow(), 8);
+                    grnDetailsTable.setValueAt(new java.lang.Float(resVal), grnDetailsTable.getSelectedRow(), 6);
+                    grnDetailsTable.setValueAt(new java.lang.Float((total - resVal) + VatAmt), grnDetailsTable.getSelectedRow(), 9);
 
                     this.tableModelTableChanged2();
                     //jTable1.setValueAt(new java.lang.Float(resVal), jTable1.getSelectedRow(), 5);
                 }
 
-            } else if (jTable1.getValueAt(jTable1.getSelectedRow(), 7) != null) {
-                vat = java.lang.Double.parseDouble(jTable1.getValueAt(jTable1.getSelectedRow(), 7).toString());
+            } else if (grnDetailsTable.getValueAt(grnDetailsTable.getSelectedRow(), 7) != null) {
+                vat = java.lang.Double.parseDouble(grnDetailsTable.getValueAt(grnDetailsTable.getSelectedRow(), 7).toString());
 
                 total1 = ((floatCol2 * floatCol3));
 
                 total = ((floatCol2 * floatCol3) + ((floatCol2 * floatCol3) * vat / 100));
                 VatAmt = ((floatCol2 * floatCol3) * vat / 100);
-                jTable1.setValueAt(new java.lang.Float(VatAmt), jTable1.getSelectedRow(), 8);
+                grnDetailsTable.setValueAt(new java.lang.Float(VatAmt), grnDetailsTable.getSelectedRow(), 8);
 
                 //this.jTextField1.setText(java.lang.String.valueOf(VatAmt));
-                jTable1.setValueAt(new java.lang.Float(total), jTable1.getSelectedRow(), 9);
+                grnDetailsTable.setValueAt(new java.lang.Float(total), grnDetailsTable.getSelectedRow(), 9);
                 this.tableModelTableChanged2();
 
             } else //  }else
-            if (jTable1.getValueAt(jTable1.getSelectedRow(), 7) != null) {
-                jTable1.setValueAt(new java.lang.Float(total), jTable1.getSelectedRow(), 9);
+            if (grnDetailsTable.getValueAt(grnDetailsTable.getSelectedRow(), 7) != null) {
+                grnDetailsTable.setValueAt(new java.lang.Float(total), grnDetailsTable.getSelectedRow(), 9);
             }
             this.tableModelTableChanged();
 
+            for (int i = 0; i < grnDetailsTable.getRowCount(); i++) {
 
-            for (int i = 0; i < jTable1.getRowCount(); i++) {
+                if (grnDetailsTable.getModel().getValueAt(i, 0) != null) {//toString().compareToIgnoreCase(null) {
 
-                if (jTable1.getModel().getValueAt(i, 0) != null) {//toString().compareToIgnoreCase(null) {
-
-                    resFloat = resFloat + Double.parseDouble(jTable1.getValueAt(i, 9).toString());
-
+                    resFloat = resFloat + Double.parseDouble(grnDetailsTable.getValueAt(i, 9).toString());
 
                 }
             }
 
             //  this.tableModelTableChanged();
-
         }
         double net = Double.parseDouble(this.jTextField2.getText());
         double vats = Double.parseDouble(this.jTextField1.getText());
@@ -1296,19 +1294,17 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
 
         //       total = (((floatCol2 * floatCol3) + ((floatCol2 * floatCol3)*vat/100)) - ((floatCol2 * floatCol3)*discount1/100));
         // }
-
-
         // Add your handling code here:
-    }//GEN-LAST:event_jTable1KeyReleased
+    }//GEN-LAST:event_grnDetailsTableKeyReleased
 
     private void exitbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitbtnActionPerformed
         this.setVisible(false);        // Add your handling code here:
     }//GEN-LAST:event_exitbtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int rows2Delete = jTable1.getSelectedRowCount();
+        int rows2Delete = grnDetailsTable.getSelectedRowCount();
 
-        int[] selectedRows = jTable1.getSelectedRows();
+        int[] selectedRows = grnDetailsTable.getSelectedRows();
 
         if (rows2Delete < 1) {
 
@@ -1322,21 +1318,17 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
 
                 for (int i = 0; i < selectedRows.length; i++) {
 
-
-
-                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) grnDetailsTable.getModel();
 
                     defTableModel.removeRow(selectedRows[i]);
 
                 }
 
-
-
             } else {
 
-                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) grnDetailsTable.getModel();
 
-                defTableModel.removeRow(jTable1.getSelectedRow());
+                defTableModel.removeRow(grnDetailsTable.getSelectedRow());
             }
         }
         tableModelTableChanged();
@@ -1355,9 +1347,9 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         jTextField4.setText("00");
         jTextField1.setText("00");
         jTextField5.setText("00");
-        for (int k = 0; k < jTable1.getRowCount(); k++) {
-            for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                jTable1.getModel().setValueAt(null, k, r);
+        for (int k = 0; k < grnDetailsTable.getRowCount(); k++) {
+            for (int r = 0; r < grnDetailsTable.getColumnCount(); r++) {
+                grnDetailsTable.getModel().setValueAt(null, k, r);
             }
         }
 
@@ -1366,7 +1358,7 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cancelbtnActionPerformed
     private void cmboxActionPerformed(java.awt.event.ActionEvent evt) {
         java.lang.Object selectedGuaran = cmbox.getSelectedItem();
-        int i = jTable1.getSelectedRow();
+        int i = grnDetailsTable.getSelectedRow();
 
         if (selectedGuaran != null) {
 
@@ -1378,7 +1370,7 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
                 java.sql.ResultSet rs = pstmt.executeQuery("select units from stockitem where description = '" + selectedGuaran + "'");
                 while (rs.next()) {
 
-                    jTable1.setValueAt(rs.getObject(1), i, 1);
+                    grnDetailsTable.setValueAt(rs.getObject(1), i, 1);
 
                 }
             } catch (java.sql.SQLException sqlex) {
@@ -1413,10 +1405,10 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
         } else {
-            if (jTable1.isEditing()) {
-                jTable1.getCellEditor().stopCellEditing();
+            if (grnDetailsTable.isEditing()) {
+                grnDetailsTable.getCellEditor().stopCellEditing();
             }
-            jTable1.setEditingRow(-1);
+            grnDetailsTable.setEditingRow(-1);
 
             tableModelTableChanged();
             tableModelTableChanged1();
@@ -1490,7 +1482,6 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
                         transNo = rst.getObject(1).toString();
                     }
 
-
                     java.sql.Statement pst21 = connectDB.createStatement();
                     java.sql.ResultSet rs111 = pst21.executeQuery("select nextval('stock_delivery_seq')");
                     while (rs111.next()) {
@@ -1504,16 +1495,16 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
 
                         uprices = rs1t.getBoolean(1);
                     }
-                    for (int i = 0; i < jTable1.getRowCount(); i++) {
-                        if (jTable1.getValueAt(i, 9) != null) {
+                    for (int i = 0; i < grnDetailsTable.getRowCount(); i++) {
+                        if (grnDetailsTable.getValueAt(i, 9) != null) {
                             java.sql.Statement pst21r = connectDB.createStatement();
                             //         java.sql.ResultSet rstr = ps11r.executeQuery("SELECT mark_up FROM st_stores WHERE store_name ILIKE '"+jComboBox2.getSelectedItem().toString()+"'");
-                            java.sql.ResultSet rstrs = pst21r.executeQuery("SELECT units FROM stockitem st WHERE st.item_code = '" + jTable1.getValueAt(i, 12).toString() + "'");
+                            java.sql.ResultSet rstrs = pst21r.executeQuery("SELECT units FROM stockitem st WHERE st.item_code = '" + grnDetailsTable.getValueAt(i, 12).toString() + "'");
                             while (rstrs.next()) {
                                 units = rstrs.getString(1);
                             }
 
-                            java.sql.ResultSet rstr = ps11r.executeQuery("SELECT mc.markups FROM  st_main_category mc,stockitem st WHERE st.department ILIKE '" + jComboBox2.getSelectedItem().toString() + "' AND mc.description = st.sub_cat_code AND st.item_code = '" + jTable1.getValueAt(i, 12).toString() + "'");
+                            java.sql.ResultSet rstr = ps11r.executeQuery("SELECT mc.markups FROM  st_main_category mc,stockitem st WHERE st.department ILIKE '" + jComboBox2.getSelectedItem().toString() + "' AND mc.description = st.sub_cat_code AND st.item_code = '" + grnDetailsTable.getValueAt(i, 12).toString() + "'");
                             while (rstr.next()) {
                                 if (rstr.getDouble(1) > 0) {
                                     rates = rstr.getDouble(1);
@@ -1522,12 +1513,11 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
                                 }
                             }
 
+                            pkge = Double.parseDouble(grnDetailsTable.getValueAt(i, 2).toString());
 
-                            pkge = Double.parseDouble(jTable1.getValueAt(i, 2).toString());
+                            qty = Double.parseDouble(grnDetailsTable.getValueAt(i, 3).toString());
 
-                            qty = Double.parseDouble(jTable1.getValueAt(i, 3).toString());
-
-                            uprice = Double.parseDouble(jTable1.getValueAt(i, 4).toString());
+                            uprice = Double.parseDouble(grnDetailsTable.getValueAt(i, 4).toString());
 
                             quantity = qty * pkge;
 
@@ -1539,8 +1529,18 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
 
                             pstmt.setString(1, "");
                             pstmt.setString(2, jComboBox2.getSelectedItem().toString());
-                            pstmt.setObject(3, jTable1.getValueAt(i, 0) + " " + jTable1.getValueAt(i, 1));
-                            pstmt.setDate(4, null);
+                            pstmt.setObject(3, grnDetailsTable.getValueAt(i, 0) + " " + grnDetailsTable.getValueAt(i, 1));
+                            if (grnDetailsTable.getValueAt(i, 11) != null) {
+                                java.sql.Statement pst22 = connectDB.createStatement();
+                                java.sql.ResultSet rs22 = pst22.executeQuery("select '" + grnDetailsTable.getValueAt(i, 11).toString() + "'::date");
+                                while (rs22.next()) {
+                                    expiryDate = rs22.getDate(1);
+
+                                }
+                                pstmt.setDate(4, expiryDate);
+                            } else {
+                                pstmt.setDate(4, null);
+                            }
                             pstmt.setDouble(5, 0.00);
                             pstmt.setDouble(6, price);
                             pstmt.setObject(7, units);
@@ -1549,7 +1549,7 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
                             pstmt.setString(10, "");
                             pstmt.setDouble(11, quantity);
                             pstmt.setDouble(12, 0.00);
-                            pstmt.setDouble(13, java.lang.Double.valueOf(jTable1.getValueAt(i, 6).toString()));
+                            pstmt.setDouble(13, java.lang.Double.valueOf(grnDetailsTable.getValueAt(i, 6).toString()));
                             pstmt.setString(14, "");
                             pstmt.setString(15, "");
                             pstmt.setObject(16, jTextField91.getText());
@@ -1557,8 +1557,8 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
                             pstmt.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
                             pstmt.setString(19, "");
                             pstmt.setString(20, "Receiving");
-                            pstmt.setDouble(21, java.lang.Double.valueOf(jTable1.getValueAt(i, 9).toString()));
-                            pstmt.setDouble(22, java.lang.Double.valueOf(jTable1.getValueAt(i, 6).toString()));
+                            pstmt.setDouble(21, java.lang.Double.valueOf(grnDetailsTable.getValueAt(i, 9).toString()));
+                            pstmt.setDouble(22, java.lang.Double.valueOf(grnDetailsTable.getValueAt(i, 6).toString()));
                             pstmt.setString(23, jTextField6.getText());
                             if (jTextField7.getText().equals("")) {
                                 javax.swing.JOptionPane.showMessageDialog(this, "Invoice_no Missing", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -1571,20 +1571,19 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
                             pstmt.setDouble(27, 0.00);
                             pstmt.setString(28, jTextField9.getText());
                             pstmt.setBoolean(29, false);
-                            pstmt.setDouble(30, java.lang.Double.valueOf(jTable1.getValueAt(i, 7).toString()));
+                            pstmt.setDouble(30, java.lang.Double.valueOf(grnDetailsTable.getValueAt(i, 7).toString()));
                             pstmt.setObject(31, null);
-                            pstmt.setObject(32, jTable1.getValueAt(i, 12));
-                            pstmt.setObject(33, jTable1.getValueAt(i, 1));
+                            pstmt.setObject(32, grnDetailsTable.getValueAt(i, 12));
+                            pstmt.setObject(33, grnDetailsTable.getValueAt(i, 1));
                             pstmt.executeUpdate();
-
 
                             java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("insert into st_sub_stores values(? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?)");
                             pstmt11.setString(1, jComboBox2.getSelectedItem().toString());
-                            pstmt11.setObject(2, jTable1.getValueAt(i, 0).toString());
+                            pstmt11.setObject(2, grnDetailsTable.getValueAt(i, 0).toString());
                             pstmt11.setDouble(3, quantity);
                             pstmt11.setDouble(4, 0.00);
                             pstmt11.setDouble(5, 0.00);
-                            pstmt11.setDouble(6, java.lang.Double.valueOf(jTable1.getValueAt(i, 9).toString()));
+                            pstmt11.setDouble(6, java.lang.Double.valueOf(grnDetailsTable.getValueAt(i, 9).toString()));
                             pstmt11.setDouble(7, 0.00);
                             pstmt11.setObject(8, StocktransNo);
                             pstmt11.setString(9, "-");
@@ -1594,27 +1593,26 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
                             pstmt11.setObject(13, jTextField91.getText());
                             pstmt11.setObject(14, jTextField91.getText());
                             pstmt11.setDouble(15, price);
-                            pstmt11.setObject(16, jTable1.getValueAt(i, 12));
-                            pstmt11.setObject(17, jTable1.getValueAt(i, 1));
+                            pstmt11.setObject(16, grnDetailsTable.getValueAt(i, 12));
+                            pstmt11.setObject(17, grnDetailsTable.getValueAt(i, 1));
 
                             pstmt11.executeUpdate();
-
 
                             if (jRadioButton1.isSelected() || jRadioButton3.isSelected()) {
 
                                 if (uprices) {
-                                    java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE st_stock_item SET buying_price = '" + jTable1.getValueAt(i, 4).toString() + "',units = '" + jTable1.getValueAt(i, 2).toString() + "'  WHERE item_code ILIKE '" + jTable1.getValueAt(i, 12).toString() + "' AND department ILIKE '" + jComboBox2.getSelectedItem().toString() + "%'");
+                                    java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE st_stock_item SET buying_price = '" + grnDetailsTable.getValueAt(i, 4).toString() + "',units = '" + grnDetailsTable.getValueAt(i, 2).toString() + "'  WHERE item_code ILIKE '" + grnDetailsTable.getValueAt(i, 12).toString() + "' AND department ILIKE '" + jComboBox2.getSelectedItem().toString() + "%'");
                                     pstmt31.executeUpdate();
-                                    java.sql.PreparedStatement pstmt32c = connectDB.prepareStatement("UPDATE st_stock_prices SET transfer_price = round(" + new java.lang.Double(price * rates) + "), selling_price = round('" + (price * 1.33) + "')  WHERE product_id ILIKE '" + jTable1.getValueAt(i, 12).toString() + "'");//  AND department ILIKE '"+jComboBox2.getSelectedItem().toString()+"%'");
+                                    java.sql.PreparedStatement pstmt32c = connectDB.prepareStatement("UPDATE st_stock_prices SET transfer_price = round(" + new java.lang.Double(price * rates) + "), selling_price = round('" + (price * 1.33) + "')  WHERE product_id ILIKE '" + grnDetailsTable.getValueAt(i, 12).toString() + "'");//  AND department ILIKE '"+jComboBox2.getSelectedItem().toString()+"%'");
                                     pstmt32c.executeUpdate();
                                     System.out.println("Setting price list 1");
 
                                     System.out.println("Setting price list 2");
                                     if (rates > 1) {
-                                        java.sql.PreparedStatement pstmt32 = connectDB.prepareStatement("UPDATE st_stock_prices SET transfer_price = round(" + new java.lang.Double(price * rates) + "),selling_price = round('" + (price * 1.33) + "')  WHERE product_id ILIKE '" + jTable1.getValueAt(i, 12).toString() + "'");//  //AND department ILIKE '"+jComboBox2.getSelectedItem().toString()+"%'");
+                                        java.sql.PreparedStatement pstmt32 = connectDB.prepareStatement("UPDATE st_stock_prices SET transfer_price = round(" + new java.lang.Double(price * rates) + "),selling_price = round('" + (price * 1.33) + "')  WHERE product_id ILIKE '" + grnDetailsTable.getValueAt(i, 12).toString() + "'");//  //AND department ILIKE '"+jComboBox2.getSelectedItem().toString()+"%'");
                                         pstmt32.executeUpdate();
                                     } else {
-                                        java.sql.PreparedStatement pstmt32 = connectDB.prepareStatement("UPDATE st_stock_prices SET transfer_price = round(" + new java.lang.Double(price * rates) + "), selling_price = round('" + (price * 1.33) + "') WHERE product_id ILIKE '" + jTable1.getValueAt(i, 12).toString() + "'");//  AND department ILIKE '"+jComboBox2.getSelectedItem().toString()+"%'");
+                                        java.sql.PreparedStatement pstmt32 = connectDB.prepareStatement("UPDATE st_stock_prices SET transfer_price = round(" + new java.lang.Double(price * rates) + "), selling_price = round('" + (price * 1.33) + "') WHERE product_id ILIKE '" + grnDetailsTable.getValueAt(i, 12).toString() + "'");//  AND department ILIKE '"+jComboBox2.getSelectedItem().toString()+"%'");
                                         pstmt32.executeUpdate();
                                     }
                                 }
@@ -1661,9 +1659,9 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
                     connectDB.setAutoCommit(true);
 
                     javax.swing.JOptionPane.showMessageDialog(this, "Data Inserted Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                    for (int k = 0; k < jTable1.getRowCount(); k++) {
-                        for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                            jTable1.getModel().setValueAt(null, k, r);
+                    for (int k = 0; k < grnDetailsTable.getRowCount(); k++) {
+                        for (int r = 0; r < grnDetailsTable.getColumnCount(); r++) {
+                            grnDetailsTable.getModel().setValueAt(null, k, r);
                         }
                     }
 
@@ -1674,7 +1672,6 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
                     jTextField5.setText("00");
 
                     //  javax.swing.JOptionPane.showMessageDialog(this, "Enter quantity received","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
-
                 } catch (java.sql.SQLException sq) {
                     javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
 
@@ -1690,7 +1687,6 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
                 System.out.println(ex.getMessage());
                 javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
-
             }
         }
         // Add your handling code here:
@@ -1703,21 +1699,18 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         double Gross = Double.parseDouble(this.jTextField2.getText());
         double Disc = Double.parseDouble(this.jTextField1.getText());
         double Vat = Double.parseDouble(this.jTextField4.getText());
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+        for (int i = 0; i < grnDetailsTable.getRowCount(); i++) {
 
-            if (jTable1.getValueAt(i, 0) != null) {
-
+            if (grnDetailsTable.getValueAt(i, 0) != null) {
 
                 //                if (jTable1.getSelectedColumn() == 2) {
-
-                resFloat = resFloat + Double.parseDouble(jTable1.getModel().getValueAt(i, 9).toString());
+                resFloat = resFloat + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 9).toString());
                 jTextField2.setText(java.lang.String.valueOf(resFloat));
                 jTextField5.setText(java.lang.String.valueOf(resFloat - Disc - Vat));
                 //                }else{
 
                 //  resFloat = resFloat + Double.parseDouble(jTable1.getModel().getValueAt(i, 7).toString());
                 //   jTextField2.setText(java.lang.String.valueOf(resFloat));
-
                 //  }
             }
 
@@ -1732,25 +1725,19 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         //        double resFloat = 0.00;
         double resFloat = 0.00;
 
+        for (int i = 0; i < grnDetailsTable.getRowCount(); i++) {
 
-
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
-
-            if (jTable1.getValueAt(i, 0) != null) {
+            if (grnDetailsTable.getValueAt(i, 0) != null) {
 
                 //   if (jTable1.getSelectedColumn() == 3) {
-
-                resFloat = resFloat + Double.parseDouble(jTable1.getModel().getValueAt(i, 9).toString());
+                resFloat = resFloat + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 9).toString());
 
                 jTextField2.setText(java.lang.String.valueOf(resFloat));
                 jTextField5.setText(java.lang.String.valueOf(resFloat - Disc - Vat));
 
-
                 //  }else{
                 //      resFloat = resFloat + Double.parseDouble(jTable1.getModel().getValueAt(i, 7).toString());
-
                 //      jTextField2.setText(java.lang.String.valueOf(resFloat));
-
                 //}
             }
         }
@@ -1765,19 +1752,19 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         double Vat = Double.parseDouble(this.jTextField4.getText());
         double resFloat1 = 0.00;
 
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+        for (int i = 0; i < grnDetailsTable.getRowCount(); i++) {
 
-            if (jTable1.getValueAt(i, 5) != null) {
+            if (grnDetailsTable.getValueAt(i, 5) != null) {
 
-                if (jTable1.getSelectedColumn() == 5) {
+                if (grnDetailsTable.getSelectedColumn() == 5) {
 
-                    resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 6).toString());
+                    resFloat1 = resFloat1 + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 6).toString());
                     jTextField4.setText(java.lang.String.valueOf(resFloat1));
                     jTextField5.setText(java.lang.String.valueOf(Gross - Disc - Vat));
 
                 }
 
-                resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 6).toString());
+                resFloat1 = resFloat1 + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 6).toString());
                 jTextField4.setText(java.lang.String.valueOf(resFloat1));
                 jTextField5.setText(java.lang.String.valueOf(Gross - Disc - Vat));
                 //   else{
@@ -1795,27 +1782,24 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         double Vat = Double.parseDouble(this.jTextField4.getText());
         double resFloat1 = 0.00;
 
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+        for (int i = 0; i < grnDetailsTable.getRowCount(); i++) {
 
-            if (jTable1.getValueAt(i, 5) != null) {
+            if (grnDetailsTable.getValueAt(i, 5) != null) {
 
-                if (jTable1.getSelectedColumn() == 5) {
+                if (grnDetailsTable.getSelectedColumn() == 5) {
 
-                    resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 6).toString());
+                    resFloat1 = resFloat1 + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 6).toString());
                     jTextField4.setText(java.lang.String.valueOf(resFloat1));
                     jTextField5.setText(java.lang.String.valueOf(Gross - Disc - Vat));
 
                 } else {
 
-
-                    resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 6).toString());
+                    resFloat1 = resFloat1 + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 6).toString());
                     jTextField4.setText(java.lang.String.valueOf(resFloat1));
                     jTextField5.setText(java.lang.String.valueOf(Gross - Disc - Vat));
 
-
                     // else{
                     // javax.swing.JOptionPane.showMessageDialog(this,"Disc. % cannot be null","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
-
                 }
             }
         }
@@ -1829,22 +1813,21 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         double Gross = Double.parseDouble(this.jTextField2.getText());
         double Disc = Double.parseDouble(this.jTextField1.getText());
         double Vat = Double.parseDouble(this.jTextField4.getText());
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+        for (int i = 0; i < grnDetailsTable.getRowCount(); i++) {
 
-            if (jTable1.getValueAt(i, 0) != null) {
+            if (grnDetailsTable.getValueAt(i, 0) != null) {
 
-                if (jTable1.getSelectedColumn() == 7) {
+                if (grnDetailsTable.getSelectedColumn() == 7) {
 
-                    resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 8).toString());
+                    resFloat1 = resFloat1 + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 8).toString());
                     jTextField1.setText(java.lang.String.valueOf(resFloat1));
                     jTextField5.setText(java.lang.String.valueOf(Gross - Disc - Vat));
 
                 } else {
 
-                    resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 8).toString());
+                    resFloat1 = resFloat1 + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 8).toString());
                     jTextField1.setText(java.lang.String.valueOf(resFloat1));
                     jTextField5.setText(java.lang.String.valueOf(Gross - Disc - Vat));
-
 
                     //   javax.swing.JOptionPane.showMessageDialog(this,"Vat % cannot be null","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
                 }
@@ -1861,19 +1844,19 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         double Vat = Double.parseDouble(this.jTextField4.getText());
         double resFloat1 = 0.00;
 
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+        for (int i = 0; i < grnDetailsTable.getRowCount(); i++) {
 
-            if (jTable1.getValueAt(i, 7) != null) {
+            if (grnDetailsTable.getValueAt(i, 7) != null) {
 
-                if (jTable1.getSelectedColumn() == 7) {
+                if (grnDetailsTable.getSelectedColumn() == 7) {
 
-                    resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 7).toString());
+                    resFloat1 = resFloat1 + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 7).toString());
                     jTextField1.setText(java.lang.String.valueOf(resFloat1));
                     jTextField5.setText(java.lang.String.valueOf(Gross - Disc - Vat));
 
                 } else {
 
-                    resFloat1 = resFloat1 + Double.parseDouble(jTable1.getModel().getValueAt(i, 7).toString());
+                    resFloat1 = resFloat1 + Double.parseDouble(grnDetailsTable.getModel().getValueAt(i, 7).toString());
                     jTextField1.setText(java.lang.String.valueOf(resFloat1));
                     jTextField5.setText(java.lang.String.valueOf(Gross - Disc - Vat));
                     //    javax.swing.JOptionPane.showMessageDialog(this,"Vat % cannot be null","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -1889,6 +1872,7 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton cancelbtn;
     private com.afrisoftech.lib.DatePicker datePicker1;
     public javax.swing.JButton exitbtn;
+    private javax.swing.JTable grnDetailsTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton42;
@@ -1927,7 +1911,6 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jSearchScrollPane2;
     private javax.swing.JTable jSearchTable;
     private javax.swing.JTable jSearchTable2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField111;
     private javax.swing.JTextField jTextField113;
