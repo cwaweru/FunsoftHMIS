@@ -389,7 +389,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="tagNumberLbl">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Tag No"/>
+                    <Property name="text" type="java.lang.String" value="Tag No:"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -409,7 +409,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="modelNumberLbl">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Model No"/>
+                    <Property name="text" type="java.lang.String" value="Model No:"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -426,7 +426,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="serialNumberLbl">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Serial No"/>
+                    <Property name="text" type="java.lang.String" value="Serial No:"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

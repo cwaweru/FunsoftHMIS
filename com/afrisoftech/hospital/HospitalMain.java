@@ -10,7 +10,6 @@
  * @author Francis King'oi Waweru <francis@systempartners.biz>
  * @author Peter Ndung'u Waweru <peter.waweru@systempartners.biz>
  *
- *saleem update line 22657-22692 ViewMesages Thread April 24, 2014, 11:41 AM
  */
 //43359
 //531849

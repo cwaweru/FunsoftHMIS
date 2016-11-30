@@ -442,10 +442,10 @@ public class WaiversExmpPdf implements java.lang.Runnable {
                             java.sql.Statement st21 = connectDB.createStatement();
 
                             if (paType.equalsIgnoreCase("OP")) {
-                                java.sql.ResultSet rset = st.executeQuery("select receipt_time::date,receipt_no,dealer,user_name,journal_no,sum(debit),sum(credit) from ac_cash_collection WHERE receipt_time::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND transaction_type ILIKE '" + Activity + "%' GROUP BY receipt_time::date,receipt_no,dealer,user_name,journal_no ORDER BY 1 ASC");
-
+                                java.sql.ResultSet rset = st.executeQuery("select transaction_time::date,receipt_no,dealer,user_name,journal_no,sum(debit),sum(credit), transaction_no from ac_ledger WHERE  drawer ilike 'OP' AND transaction_time::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND (transaction_type ILIKE '" + Activity + "%' or reason ILIKE '" + Activity + "%') GROUP BY transaction_time::date,receipt_no, transaction_no, dealer,user_name,journal_no ORDER BY 1 ASC");
+                             //   java.sql.ResultSet rset = st.executeQuery("select receipt_time::date,receipt_no,dealer,user_name,journal_no,sum(debit),sum(credit) from ac_ledger WHERE receipt_time::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND transaction_type ILIKE '" + Activity + "%' GROUP BY receipt_time::date,receipt_no,dealer,user_name,journal_no ORDER BY 1 ASC");
                                 while (rset.next()) {
-                                    java.sql.ResultSet rsetss = st21.executeQuery("select sum(debit) from ac_cash_collection WHERE receipt_no = '" + rset.getObject(2) + "'");
+                                    java.sql.ResultSet rsetss = st21.executeQuery("select sum(debit) from ac_ledger WHERE transaction_no = '" + rset.getObject(8) + "'");
                                     while (rsetss.next()) {
                                         table.getDefaultCell().setColspan(1);
                                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -496,9 +496,9 @@ public class WaiversExmpPdf implements java.lang.Runnable {
                                 }
                             } else {
                                 if (paType.equalsIgnoreCase("IP")) {
-                                    java.sql.ResultSet rset = st.executeQuery("select receipt_time::date,receipt_no,dealer,user_name,journal_no,sum(debit),sum(credit) from ac_cash_collection WHERE receipt_time::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND transaction_type ILIKE '" + Activity + "%' GROUP BY receipt_time::date,receipt_no,dealer,user_name,journal_no ORDER BY 1 ASC");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                                    java.sql.ResultSet rset = st.executeQuery("select transaction_time::date,receipt_no,dealer,user_name,journal_no,sum(debit),sum(credit), transaction_no from ac_ledger WHERE drawer ilike 'IP' AND transaction_time::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND (transaction_type ILIKE '" + Activity + "%' or reason ILIKE '" + Activity + "%') GROUP BY transaction_time::date,receipt_no, transaction_no,dealer,user_name,journal_no ORDER BY 1 ASC");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
                                     while (rset.next()) {
-                                        java.sql.ResultSet rsetss = st21.executeQuery("select sum(debit) from ac_cash_collection WHERE receipt_no = '" + rset.getObject(2) + "'");
+                                        java.sql.ResultSet rsetss = st21.executeQuery("select sum(debit) from ac_ledger WHERE transaction_no = '" + rset.getObject(8) + "'");
                                         while (rsetss.next()) {
                                             table.getDefaultCell().setColspan(1);
                                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -550,7 +550,7 @@ public class WaiversExmpPdf implements java.lang.Runnable {
                                 } else {
                                     // java.sql.ResultSet rset21 = st21.executeQuery("select sum(tl.debit-tl.credit) from transaction_list_view tl,pb_activity pb WHERE tl.date < '"+beginDate+"' AND tl.activity_code = '"+bank+"' AND tl.activity_code = pb.code AND pb.category_class ilike 'b%'");
 
-                                    java.sql.ResultSet rset = st.executeQuery("select date,receipt_no,dealer,user_name,journal_no,sum(debit),sum(credit) from ac_cash_collection WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND transaction_type ILIKE '" + Activity + "%' GROUP BY date,receipt_no,dealer,user_name,journal_no ORDER BY 1 ASC");
+                                    java.sql.ResultSet rset = st.executeQuery("select date,receipt_no,dealer,user_name,journal_no,sum(debit),sum(credit), transaction_no from ac_ledger WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND (transaction_type ILIKE '" + Activity + "%' or reason ILIKE '" + Activity + "%') GROUP BY date,receipt_no, transaction_no, dealer,user_name,journal_no ORDER BY 1 ASC");
                                     /*  while (rset21.next()) {
                                     table.getDefaultCell().setColspan(7);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -565,7 +565,7 @@ public class WaiversExmpPdf implements java.lang.Runnable {
                                     // table.addCell(phrase);
                                     }*/
                                     while (rset.next()) {
-                                        java.sql.ResultSet rsetss = st21.executeQuery("select sum(debit) from ac_cash_collection WHERE receipt_no = '" + rset.getObject(2) + "'");
+                                        java.sql.ResultSet rsetss = st21.executeQuery("select sum(debit) from ac_ledger WHERE transaction_no = '" + rset.getObject(8) + "'");
                                         while (rsetss.next()) {
                                             table.getDefaultCell().setColspan(1);
                                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);

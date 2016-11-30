@@ -34,12 +34,13 @@ public class FinalInterimPatientlnvSummPdf implements java.lang.Runnable {
     com.lowagie.text.Font pFontHeaderX = FontFactory.getFont(FontFactory.HELVETICA, 14, Font.BOLD);
     java.lang.Runtime rtThreadSample = java.lang.Runtime.getRuntime();
     java.lang.Process prThread;
-    private String patientNo;
+    String patientNo;
 
-    public void FinalInterimPatientlnvSummPdf(java.sql.Connection connDb, java.lang.String combox) {
+    public void FinalInterimPatientlnvSummPdf(java.sql.Connection connDb, java.lang.String combox, String patNo) {
         MNo = combox;
 
-        //beginDate = begindate;
+        patientNo = patNo;
+
         connectDB = connDb;
 
         dbObject = new com.afrisoftech.lib.DBObject();
@@ -372,7 +373,7 @@ public class FinalInterimPatientlnvSummPdf implements java.lang.Runnable {
                             table1.getDefaultCell().setColspan(2);
                             table1.getDefaultCell().setFixedHeight(70);
                             table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                            table1.addCell(Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo()));
+                            table1.addCell(Image.getInstance(System.getProperty("company.logo")));
                             table1.getDefaultCell().setFixedHeight(16);
                             java.sql.ResultSet rset3 = st321.executeQuery("select header_name from pb_header");
                             table1.getDefaultCell().setBorder(Rectangle.BOX);
@@ -395,7 +396,8 @@ public class FinalInterimPatientlnvSummPdf implements java.lang.Runnable {
 
                             java.sql.ResultSet rseta = sta.executeQuery("select distinct initcap(ad.ward),initcap(ad.bed_no),initcap(ad.doctor) from hp_admission ad,hp_patient_card pr where pr.visit_id = '" + memNo + "' and pr.patient_no = ad.patient_no");
 
-                            java.sql.ResultSet rset = st.executeQuery("select distinct pr.patient_no,initcap(pr.first_name||' '||pr.second_name||' '||pr.last_name),pr.address,pr.residence,pr.tel_no,pr.payer,pr.description,pr.category from hp_inpatient_register pr,hp_patient_card ac where ac.visit_id = '" + memNo + "' and ac.patient_no = pr.patient_no");
+                            java.sql.ResultSet rset = st.executeQuery("SELECT DISTINCT patient_no,initcap(second_name||' '||first_name||' '||last_name),address,residence,tel_no,payer,description,category FROM hp_inpatient_register where patient_no = '" + patientNo + "'");
+                           // java.sql.ResultSet rset = st.executeQuery("select distinct pr.patient_no,initcap(pr.first_name||' '||pr.second_name||' '||pr.last_name),pr.address,pr.residence,pr.tel_no,pr.payer,pr.description,pr.category from hp_inpatient_register pr,hp_patient_card ac where ac.visit_id = '" + memNo + "' and ac.patient_no = pr.patient_no");
 
                             table1.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
                             table1.getDefaultCell().setBorder(Rectangle.BOX);
@@ -418,7 +420,6 @@ public class FinalInterimPatientlnvSummPdf implements java.lang.Runnable {
                                 table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase1 = new Phrase("Scheme Name : ".toUpperCase() + dbObject.getDBObject(rset.getObject(7), "-").toUpperCase(), pFontHeader1);
                                 //table1.addCell(phrase);
-                                patientNo = rset.getString(1);
 
                                 table1.getDefaultCell().setColspan(3);
                                 table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -696,7 +697,7 @@ public class FinalInterimPatientlnvSummPdf implements java.lang.Runnable {
                             table.getDefaultCell().setBorder(Rectangle.BOX);
                             while (rsetTotals1.next()) {
 
-                                // table.getDefaultCell().setColspan(2);
+                               // table.getDefaultCell().setColspan(2);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase = new Phrase(" ", pFontHeader);
 
@@ -742,40 +743,13 @@ public class FinalInterimPatientlnvSummPdf implements java.lang.Runnable {
                             table.getDefaultCell().setColspan(2);
 
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+
+                            //  phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetTotals.getString(1)),pFontHeader);
+                            // table.addCell(phrase);
                             phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance - osBalance1)), pFontHeader1);
 
                             table.addCell(phrase);
 
-                            table.getDefaultCell().setColspan(6);
-
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase(" ".toUpperCase(), pFontHeader1);
-
-                            table.addCell(phrase);
-                            //un utilized deposit
-                            table.getDefaultCell().setColspan(4);
-                            table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
-
-                            table.getDefaultCell().setBorder(Rectangle.TOP);
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase("Total Un-utilised Deposit".toUpperCase(), pFontHeader1);
-
-                            table.addCell(phrase);
-
-                            table.getDefaultCell().setColspan(2);
-
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(com.afrisoftech.lib.unUtelisedDeposit.getBalanceDeposit(connectDB, patientNo))), pFontHeader1);
-
-                            table.addCell(phrase);
-
-                              table.getDefaultCell().setColspan(6);
-
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                            phrase = new Phrase("Please Note this is an ESTIMATE BILL and is Due to change" , pFontHeader1);
-
-                            table.addCell(phrase);
-                            
                             //phrase = new Phrase(" ");
                             // }
                             table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);

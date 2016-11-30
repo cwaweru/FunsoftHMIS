@@ -539,7 +539,7 @@ public class AssetsRegintfr extends javax.swing.JInternalFrame implements java.l
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         assetDetailsPanel.add(countryofOriginLbl, gridBagConstraints);
 
-        tagNumberLbl.setText("Tag No");
+        tagNumberLbl.setText("Tag No:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -563,7 +563,7 @@ public class AssetsRegintfr extends javax.swing.JInternalFrame implements java.l
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         assetDetailsPanel.add(tagNumberTxt, gridBagConstraints);
 
-        modelNumberLbl.setText("Model No");
+        modelNumberLbl.setText("Model No:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -581,7 +581,7 @@ public class AssetsRegintfr extends javax.swing.JInternalFrame implements java.l
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         assetDetailsPanel.add(modelNumberTxt, gridBagConstraints);
 
-        serialNumberLbl.setText("Serial No");
+        serialNumberLbl.setText("Serial No:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;

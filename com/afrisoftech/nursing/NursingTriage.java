@@ -86,8 +86,13 @@ public class NursingTriage extends javax.swing.JInternalFrame {
         occupancytable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                 + "SELECT patient_no AS Patient_No, name AS Name,comments as Patient_Visist,age,gender,urgency,nature,date::date,payment\n"
                 + " From  hp_patient_visit   \n"
-                + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(headerDatePicker.getDate()) + "'  and hp_patient_visit.clinic='" + ward + "'   AND discharge is null ORDER BY 1"
+                + " where date::date >= now()::date - 2 AND discharge is null ORDER BY 1"
         ));
+//                occupancytable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+//                + "SELECT patient_no AS Patient_No, name AS Name,comments as Patient_Visist,age,gender,urgency,nature,date::date,payment\n"
+//                + " From  hp_patient_visit   \n"
+//                + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(headerDatePicker.getDate()) + "'  and hp_patient_visit.clinic='" + ward + "'   AND discharge is null ORDER BY 1"
+//        ));
         occupyno.setText("No of Patients in " + ward + " is :" + occupancytable.getRowCount());
 
         coluorTable();
@@ -8902,14 +8907,14 @@ public class NursingTriage extends javax.swing.JInternalFrame {
 
     }
     private void jTextField113CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField113CaretUpdate
-        if (jTextField113.getText().length() > 5) {
+        if (jTextField113.getText().length() > 3) {
             patientDetailsTextArea.setText("");
 
             jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
                     "SELECT v.patient_no AS Patient_No, v.name AS Name     From  hp_patient_visit v "
-                    + "  where v.date::date>= '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(headerDatePicker.getDate()) + "'  and v.clinic='" + ward + "'"
+                    + "  where v.date::date>= '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(headerDatePicker.getDate()) + "' "
                     + "  AND "
-                    + " (v.patient_no ILIKE '%" + jTextField113.getText() + "%' OR v.name ILIKE '%" + jTextField113.getText() + "%') AND v.discharge is null ORDER BY 1"));
+                    + " (v.patient_no ILIKE '%" + jTextField113.getText() + "%' OR v.name ILIKE '%" + jTextField113.getText() + "%') AND v.discharge is null AND input_date::date > now()::date - 3 ORDER BY 1"));
             jSearchTable2.setShowHorizontalLines(false);
 
             jSearchTable2.getColumnModel().getColumn(0).setPreferredWidth(350);

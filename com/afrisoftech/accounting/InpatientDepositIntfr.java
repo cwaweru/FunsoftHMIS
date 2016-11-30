@@ -1969,7 +1969,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
 
                 com.afrisoftech.reports.FinalInterimPatientlnvSummPdf policy1 = new com.afrisoftech.reports.FinalInterimPatientlnvSummPdf();
 
-                policy1.FinalInterimPatientlnvSummPdf(connectDB, visitIDTxt.getText());
+                policy1.FinalInterimPatientlnvSummPdf(connectDB, visitIDTxt.getText(), patientNumberTxt.getText());
             }
 
         }

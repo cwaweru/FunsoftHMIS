@@ -374,7 +374,7 @@ public class FinalDescInvoiceByinvPdf implements java.lang.Runnable {
                         
                         
                     } catch(java.sql.SQLException SqlExec) {
-                        
+                        SqlExec.printStackTrace();
                         javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
                         
                     }
@@ -397,7 +397,7 @@ public class FinalDescInvoiceByinvPdf implements java.lang.Runnable {
                         }
                         
                     } catch(java.sql.SQLException SqlExec) {
-                        
+                        SqlExec.printStackTrace();
                         javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
                         
                     }

@@ -7390,7 +7390,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             com.afrisoftech.reports.FinalInterimPatientlnvSummPdf policy = new com.afrisoftech.reports.FinalInterimPatientlnvSummPdf();
 
-            policy.FinalInterimPatientlnvSummPdf(connectDB, schemeMemberNumberTxt.getText());
+            policy.FinalInterimPatientlnvSummPdf(connectDB, schemeMemberNumberTxt.getText(), patientNumberTxt.getText());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

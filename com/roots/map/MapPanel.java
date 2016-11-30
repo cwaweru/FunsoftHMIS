@@ -264,8 +264,8 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
 //        }
 
         searchPanel = new SearchPanel();
-        checkTileServers();
-        checkActiveTileServer();
+     ////   checkTileServers();     Map tile server commented by Charles
+     ////   checkActiveTileServer();
     }
 
     private void checkTileServers() {

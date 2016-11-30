@@ -3434,7 +3434,7 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                         policy.FinalInPatientInvSummPdf(connectDB, invoiceNoTxt.getText());
                         
                         com.afrisoftech.reports.GatePassPdf policy2 = new com.afrisoftech.reports.GatePassPdf();
-                        policy2.GatePassPdf(connectDB, disno, invoiceNoTxt.getText());
+                        policy2.GatePassPdf(connectDB, disno, invoiceNoTxt.getText(), patientNumberTxt.getText());
                         
                         java.sql.PreparedStatement pstmtNHIF = connectDB.prepareStatement("SELECT count(*) FROM hp_patient_card where patient_no = ? and visit_id = ? and main_service ilike '%nhif%'");
                         pstmtNHIF.setString(1, patientNumberTxt.getText());

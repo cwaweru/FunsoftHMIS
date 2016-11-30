@@ -2119,7 +2119,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         }
         /////          if ((Double.parseDouble(amountPaidTxt.getText()) >= Double.parseDouble(billAmountTxt.getText())) && (Double.parseDouble(billAmountTxt.getText()) > 0.00) & (patientNumberTxt.getText().toCharArray().length > 0)) {
 
-        if ((Double.parseDouble(amountPaidTxt.getText()) >= Double.parseDouble(billAmountTxt.getText())) && (patientNumberTxt.getText().toCharArray().length > 0)) {
+        if ((Double.parseDouble(amountPaidTxt.getText()) >= Double.parseDouble(billAmountTxt.getText()) || jCheckBox6.isSelected()) && (patientNumberTxt.getText().toCharArray().length > 0)) {
             jTextField1113.setText(null);
             System.out.println("Printing the receipt.");
             try {
@@ -2337,7 +2337,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private void patientSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_patientSearchTxtCaretUpdate
         if (this.mchfpChbx.isSelected()) {
             if (patientSearchTxt.getCaretPosition() > 3) {
-                jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT anc as anc_no, first_name||' '||middle_name||' '||last_name, telephone from rh.mother_details where anc ILIKE '%" + patientSearchTxt.getText() + "%' or first_name||' '||middle_name||' '||last_name  ILIKE '%" + patientSearchTxt.getText() + "%' "
+                jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT anc as anc_no, first_name||' '||middle_name||' '||last_name, telephone from rh.mother_details where anc ILIKE '%" + patientSearchTxt.getText() + "%' or first_name||' '||middle_name||' '||last_name  ILIKE '%" + patientSearchTxt.getText() + "%' "
                         + " UNION SELECT DISTINCT fp_clinic_no as anc_no, full_name, telephone_no from rh.fp_services_register where fp_clinic_no ILIKE '%" + patientSearchTxt.getText() + "%' or full_name  ILIKE '%" + patientSearchTxt.getText() + "%'"
                         + " UNION SELECT DISTINCT pnc_no as anc_no, full_name, telephone from rh.post_natal_follow_up_register where pnc_no ILIKE '%" + patientSearchTxt.getText() + "%' or full_name  ILIKE '%" + patientSearchTxt.getText() + "%' ORDER BY 2"));
             }
@@ -2356,7 +2356,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                             + " discharge_date::DATE = ('now'::text)::date ORDER BY patient_no");
 //            } else {
 
-                    jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT "
+                    jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT "
                             + " DISTINCT patient_no,(second_name||' '||first_name) as patient_name, patient_race as unit_number FROM hp_patient_register "
                             + "WHERE patient_no ILIKE '%" + patientSearchTxt.getText() + "%' or patient_race ILIKE '%" + patientSearchTxt.getText() + "%' AND last_visit >= (current_date - 3) "
                             + " UNION ALL SELECT "
@@ -2386,7 +2386,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                             + "AND discharge_date::DATE = now() order by patient_name");
 //            } else {
                     // try {
-                    jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT "
+                    jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT "
                             + "distinct patient_no, (second_name||' '||first_name)  as patient_name, patient_race as unit_number FROM hp_patient_register"
                             + " WHERE second_name||' '||first_name ILIKE '%" + patientSearchTxt.getText() + "%' and "
                             + "last_visit >= (current_date - 3) UNION ALL select DISTINCT patient_no,patient_name, '' as unit_number from hp_pharmacy "

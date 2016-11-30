@@ -8,7 +8,7 @@ import com.lowagie.text.*;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfWriter;
 import com.lowagie.text.pdf.*;
-////import //java.awt.Desktop;
+import java.awt.Desktop;
 import java.io.FileOutputStream;
 //import com.lowagie.text.pdf.PdfWriter;
 
@@ -16,7 +16,7 @@ public class GatePassPdf implements java.lang.Runnable {
 
     java.lang.String MNo = null;
     java.lang.String beginDate = null;
-//    ////java.awt.Desktop deskTop = Desktop.getDesktop();
+    java.awt.Desktop deskTop = Desktop.getDesktop();
     java.lang.String endDate = null;
     public static java.sql.Connection connectDB = null;
     public java.lang.String dbUserName = null;
@@ -33,10 +33,16 @@ public class GatePassPdf implements java.lang.Runnable {
     private Object writer;
     String invoiceNo = null;
     private String patientName;
+    private String patientNo;
+    private String dischargeNo;
 
     // public void ReceiptsPdf(java.sql.Connection connDb, java.lang.String begindate, java.lang.String endate, java.lang.String combox) {
-    public void GatePassPdf(java.sql.Connection connDb, java.lang.String combox, String invNo) {
-
+    public void GatePassPdf(java.sql.Connection connDb, java.lang.String combox, String invNo, String patientNumber) {
+        
+        dischargeNo = combox;
+        
+        patientNo = patientNumber;
+        
         invoiceNo = invNo;
 
         MNo = combox;
@@ -310,7 +316,7 @@ public class GatePassPdf implements java.lang.Runnable {
 
             com.lowagie.text.Font pFontHeader = FontFactory.getFont(FontFactory.HELVETICA, bodyFont, Font.NORMAL);
             com.lowagie.text.Font pFontHeader1 = FontFactory.getFont(FontFactory.HELVETICA, titleFont, Font.BOLD);
-            com.lowagie.text.Font pFontHeader11 = FontFactory.getFont(FontFactory.TIMES_ITALIC, 8, Font.BOLD);
+            com.lowagie.text.Font pFontHeader11 = FontFactory.getFont(FontFactory.TIMES_ITALIC, titleFont, Font.BOLD);
 
 
             // com.lowagie.text.Document docPdf = new com.lowagie.text.Document(new Rectangle(java.lang.Float.parseFloat(System.getProperty("papersize_width")), java.lang.Float.parseFloat(System.getProperty("papersize_legnth"))),java.lang.Float.parseFloat(System.getProperty("receiptPageMargin")),java.lang.Float.parseFloat(System.getProperty("receiptPageMargin")),java.lang.Float.parseFloat(System.getProperty("receiptPageMargin")),java.lang.Float.parseFloat(System.getProperty("receiptPageMargin")));
@@ -340,16 +346,12 @@ public class GatePassPdf implements java.lang.Runnable {
 
                         com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(6);
 
-                        int headerwidths[] = {15, 15, 15, 15, 15, 15};
+                        int headerwidths[] = {15, 1, 10, 30, 15, 10};
 
                         table.setWidths(headerwidths);
 
                         table.setWidthPercentage((100));
-                        table.getDefaultCell().setColspan(6);
-                        table.getDefaultCell().setFixedHeight(55);
-                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                        table.addCell(Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo()));
-                        table.getDefaultCell().setFixedHeight(16);
+
                         Phrase phrase = new Phrase("");
 
                         // table.addCell(phrase);
@@ -371,7 +373,7 @@ public class GatePassPdf implements java.lang.Runnable {
                             java.sql.Statement st3 = connectDB.createStatement();
                             java.sql.ResultSet rset3 = st3.executeQuery("select hospital_name,box_no,main_telno,main_faxno from pb_hospitalprofile");
 
-                            java.sql.ResultSet rs = st.executeQuery("select patient_no,patient_name,discharge_no,discharge_date,doctor, date_part('hour', discharge_time::time) ||':' || date_part('min', discharge_time::time) ||':'||round(date_part('sec', discharge_time::time)),admission_date,user_name,ward from hp_patient_discharge cb where inv_no = '" + invoiceNo + "'");
+                            java.sql.ResultSet rs = st.executeQuery("select patient_no,patient_name,discharge_no,discharge_date,doctor,discharge_time::time(0),admission_date,user_name,ward from hp_patient_discharge cb where inv_no = '" + invoiceNo + "' AND patient_no = '"+patientNo+"' AND discharge_no = '"+dischargeNo+"'");
 
                             System.out.println(MNo);
 
@@ -393,175 +395,116 @@ public class GatePassPdf implements java.lang.Runnable {
                             //  table.getDefaultCell().setBorderWidth(Rectangle.TOP);
 
                             table.getDefaultCell().setColspan(6);
-                            phrase = new Phrase("PATIENT RELEASE FORM", pFontHeader1);
+                            phrase = new Phrase("PATIENT RELEASE PAPER/GATE PASS", pFontHeader1);
 
                             table.addCell(phrase);
-
-                            java.sql.PreparedStatement pstmtHeader = connectDB.prepareStatement("SELECT nextval('release_seq_no'), current_user");
-                            java.sql.ResultSet rsetheader = pstmtHeader.executeQuery();
-
-                            table.getDefaultCell().setColspan(2);
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase("Form No : 501".toUpperCase(), pFontHeader2);
-
-                            table.addCell(phrase);
-                            while (rsetheader.next()) {
-                                table.getDefaultCell().setColspan(2);
-                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Serial No : ".toUpperCase() + rsetheader.getInt(1), pFontHeader2);
-
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("Printed by : ".toUpperCase() + rsetheader.getString(2).toUpperCase(), pFontHeader2);
-
-                                table.addCell(phrase);
-
-                            }
-
-                            table.getDefaultCell().setColspan(2);
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                           // phrase = new Phrase("Internal Claim No : ".toUpperCase(), pFontHeader);
-
-                            //  table.addCell(phrase);
-
-                            java.sql.PreparedStatement pstmtClaimNo = connectDB.prepareStatement("SELECT claim_no FROM hp_patient_discharge WHERE patient_no = ?");
-
-                            pstmtClaimNo.setString(1, MNo);
-
-                            java.sql.ResultSet rsetClaimNo = pstmtClaimNo.executeQuery();
-
-                            table.getDefaultCell().setColspan(2);
-
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            
-  
-
-                        //    while (rsetClaimNo.next()) {
-
-                        //        phrase = new Phrase("Internal Claim No : " + invoiceNo, pFontHeader);
-
-                        //    }
-
-                          //  table.addCell(phrase);
-
-                            table.getDefaultCell().setColspan(2);
-                            String claimNumber = "";
-                            while (rsetClaimNo.next()) {
-                                claimNumber = rsetClaimNo.getString(1).toUpperCase();/* + rsheader.getString(6)*/
-                            }
-                                                      System.out.println("Printing claim number : ["+claimNumber+"]");
-                            phrase = new Phrase("NHIF Claim Number : ".toUpperCase() + claimNumber.toUpperCase(), pFontHeader);
-                            table.addCell(phrase);
-
-
 
                             while (rs.next()) {
 
 
-                                table.getDefaultCell().setColspan(2);
+                                table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Discharge No : ".toUpperCase() + rs.getString(3).toUpperCase(), pFontHeader);
+                                phrase = new Phrase("Paper No : " + rs.getString(3), pFontHeader);
 
                                 table.addCell(phrase);
 
-                                table.getDefaultCell().setColspan(2);
+                                table.getDefaultCell().setColspan(3);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Date : ".toUpperCase() + rs.getObject(4).toString().toUpperCase(), pFontHeader);
+                                phrase = new Phrase("Date : " + rs.getObject(4).toString(), pFontHeader);
 
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("TIME : ".toUpperCase() + rs.getString(6).toUpperCase(), pFontHeader);
+                                phrase = new Phrase("TIME : " + rs.getString(6), pFontHeader);
 
                                 table.addCell(phrase);
 
 
                                 patNo = rs.getString(1);
 
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("Patient No : ".toUpperCase() + patNo.toUpperCase(), pFontHeader);
+                                table.getDefaultCell().setColspan(1);
+                                phrase = new Phrase("Patient No : " + patNo, pFontHeader);
 
                                 table.addCell(phrase);
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("Patient Name : ".toUpperCase() + rs.getObject(2).toString().toUpperCase(), pFontHeader);
+                                table.getDefaultCell().setColspan(3);
+                                phrase = new Phrase("Patient Name : " + rs.getObject(2).toString(), pFontHeader);
                                 patientName = rs.getObject(2).toString();
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(2);
                                 java.sql.ResultSet rsw = st1.executeQuery("SELECT ('now'::date-year_of_birth::date)/365 FROM hp_inpatient_register WHERE patient_no =  '" + rs.getString(1) + "'");
                                 while (rsw.next()) {
-                                    phrase = new Phrase("Age: ".toUpperCase() + rsw.getObject(1).toString().toUpperCase(), pFontHeader);
+                                    phrase = new Phrase("Age: " + rsw.getObject(1).toString(), pFontHeader);
 
                                     table.addCell(phrase);
                                 }
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("Admission Date : ".toUpperCase() + rs.getString(7).toUpperCase(), pFontHeader);
+                                table.getDefaultCell().setColspan(1);
+                                phrase = new Phrase("Admission Date : " + rs.getString(7), pFontHeader);
 
                                 table.addCell(phrase);
 
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("Discharge Date : ".toUpperCase() + rs.getObject(4).toString().toUpperCase(), pFontHeader);
+                                table.getDefaultCell().setColspan(3);
+                                phrase = new Phrase("Discharge Date : " + rs.getObject(4).toString(), pFontHeader);
 
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("Ward : ".toUpperCase() + rs.getObject(9).toString().toUpperCase(), pFontHeader);
+                                phrase = new Phrase("Ward : " + rs.getObject(9).toString(), pFontHeader);
 
                                 table.addCell(phrase);
+
+
+                                // phrase = new Phrase("Discharged By : " + rs.getString(8), pFontHeader);
+
+                                // table.addCell(phrase);
 
                             }
                             table.getDefaultCell().setColspan(6);
                             phrase = new Phrase("  ", pFontHeader);
 
                             table.addCell(phrase);
-                            phrase = new Phrase("Method of Payment(Tick where appropriate)", pFontHeader11);
+                            phrase = new Phrase("Method of Payment(Tick where approprite)", pFontHeader11);
 
                             table.addCell(phrase);
 
 
-                            phrase = new Phrase("Cash [   ] / Cheque [   ] / N.H.I.F [   ] / CO-OP [   ] / M.R.M [   ] / OTHERS.......................................................... Final Invoice No : " + invoiceNo.toUpperCase(), pFontHeader2);
-
-                            table.addCell(phrase);
-
-                            table.getDefaultCell().setColspan(6);
-                            phrase = new Phrase(" ", pFontHeader);
-                            table.addCell(phrase);
-                            table.getDefaultCell().setColspan(2);
-                            phrase = new Phrase("Finance Clearance : ____________________".toUpperCase(), pFontHeader);
-                            table.addCell(phrase);
-
-                            phrase = new Phrase("Sign/Stamp: ______________________".toUpperCase(), pFontHeader);
-                            table.addCell(phrase);
-                            phrase = new Phrase("Check-Out Date and Time: _____________________".toUpperCase(), pFontHeader);
+                            phrase = new Phrase("Cash [   ] / Cheque [   ] / N.H.I.F [   ] / CO-OP [   ] / M.R.M [   ] / OTHERS.......................... Final Invoice No : " + invoiceNo.toUpperCase(), pFontHeader2);
 
                             table.addCell(phrase);
 
                             table.getDefaultCell().setColspan(6);
-                            phrase = new Phrase(" ", pFontHeader);
-                            table.addCell(phrase);
-                            table.getDefaultCell().setColspan(2);
-                            phrase = new Phrase("Nurse Clearance : _______________________".toUpperCase(), pFontHeader);
-                            table.addCell(phrase);
 
-                            phrase = new Phrase("Sign/Stamp: ______________________".toUpperCase(), pFontHeader);
-                            table.addCell(phrase);
-                            phrase = new Phrase("Check-Out Date and Time: ______________________".toUpperCase(), pFontHeader);
+
+                            phrase = new Phrase("  ", pFontHeader);
 
                             table.addCell(phrase);
-                            table.getDefaultCell().setColspan(6);
-                            phrase = new Phrase(" ", pFontHeader);
-                            table.addCell(phrase);
-                            table.getDefaultCell().setColspan(2);
-                            phrase = new Phrase("Security Clearance: ___________________".toUpperCase(), pFontHeader);
-                            table.addCell(phrase);
-
-                            phrase = new Phrase("Sign/Stamp: ___________________".toUpperCase(), pFontHeader);
-                            table.addCell(phrase);
-                            phrase = new Phrase("Check-Out Date and Time: ____________________".toUpperCase(), pFontHeader);
+                            phrase = new Phrase("Accountant Incharge : .....................................Sign/Stamp:................................Check-Out Date..............................", pFontHeader);
 
                             table.addCell(phrase);
-                            table.getDefaultCell().setColspan(6);
 
-                            //  table.addCell(phrase);
-                            table.getDefaultCell().setColspan(6);
-                            phrase = new Phrase(" ", pFontHeader);
+                            phrase = new Phrase("  ", pFontHeader);
+
+                            table.addCell(phrase);
+                            phrase = new Phrase("Nurse Manager : .........................................Sign/Stamp:...................................Check-Out Date...............................", pFontHeader);
+
+                            table.addCell(phrase);
+                            phrase = new Phrase("  ", pFontHeader);
+
+                            table.addCell(phrase);
+                            phrase = new Phrase("Records Officer : .........................................Sign/Stamp:...................................Check-Out Date...............................", pFontHeader);
+
+                            table.addCell(phrase);
+                            phrase = new Phrase("  ", pFontHeader);
+
+                            table.addCell(phrase);
+                            phrase = new Phrase("Security Guard I/C : ........................................Sign/Stamp:..................................Check-Out Date................................", pFontHeader);
+
+                            table.addCell(phrase);
+                            phrase = new Phrase("  ", pFontHeader);
+                            
+                             table.addCell(phrase);
+                            phrase = new Phrase("\nAccompanied By : ........................................Sign:..........................................Check-Out Date................................", pFontHeader);
+
+                            table.addCell(phrase);
+                            phrase = new Phrase("  ", pFontHeader);
+
                             table.addCell(phrase);
                             phrase = new Phrase("NB This form should be filled in duplicate, one copy to be retained in the ward and the other one be left at the Main Gate. PLEASE NOTE THAT CHECK-OUT DATE MUST BE THE DATE THE PATIENT LEAVES THE HOSPITAL", pFontHeader11);
 
@@ -569,7 +512,7 @@ public class GatePassPdf implements java.lang.Runnable {
                             phrase = new Phrase(" ");
                             table.addCell(phrase);
                             Barcode128 code128 = new Barcode128();
-                            code128.setCode(patNo + " " + patientName + " " + invoiceNo);
+                            code128.setCode(patNo+" "+patientName +" "+invoiceNo);
                             code128.setBarHeight(20);
 
                             code128.setTextAlignment(Element.ALIGN_CENTER);
@@ -581,8 +524,6 @@ public class GatePassPdf implements java.lang.Runnable {
                             docPdf.add(code128.createImageWithBarcode(cb, null, null));
 
                         } catch (java.sql.SQLException SqlExec) {
-
-                            SqlExec.printStackTrace();
 
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
@@ -607,10 +548,10 @@ public class GatePassPdf implements java.lang.Runnable {
 
             }
 
-
             docPdf.close();
-            com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
+           // deskTop.open(tempFile);
+            com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
 
         } catch (java.io.IOException IOexec) {

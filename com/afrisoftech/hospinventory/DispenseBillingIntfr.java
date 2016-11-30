@@ -4313,12 +4313,12 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
                     notpaid = rstb.getInt(1);
                 }
                 if (paid > 0) {
-                    //      com.afrisoftech.txtreports.PrescriptionTakenTxt policy = new com.afrisoftech.txtreports.PrescriptionTakenTxt(connectDB, jTextField9.getText(), jTextField1.getText(), prescNo, jTextField5.getText());
+                    com.afrisoftech.txtreports.PrescriptionTakenTxt policy = new com.afrisoftech.txtreports.PrescriptionTakenTxt(connectDB, jTextField9.getText(), jTextField1.getText(), prescNo, paymentModeTxt.getText());
                 }
                 if (notpaid > 0) {
                     com.afrisoftech.txtreports.PrescriptionTxt policy = new com.afrisoftech.txtreports.PrescriptionTxt(connectDB, jTextField9.getText(), jTextField1.getText(), prescNo, paymentModeTxt.getText());
                 }
-                // java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request SET paid = true,collected = false where patient_no = '" + jTextField9.getText() + "' and revenue_code ilike 'pharm%' and trans_date='" + datePicker1.getDate().toString() + "'");
+                 java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request SET paid = true,collected = false where patient_no = '" + jTextField9.getText() + "' and revenue_code ilike 'pharm%' and trans_date='" + datePicker1.getDate().toString() + "'");
                 // pstmt46.executeUpdate();
                 connectDB.commit();
                 connectDB.setAutoCommit(true);
@@ -7800,7 +7800,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
                         }
                     }
                 }
-                //    com.afrisoftech.txtreports.PrescriptionTxt policy = new com.afrisoftech.txtreports.PrescriptionTxt(connectDB, jTextField9.getText(), jTextField1.getText(), prescNo, jTextField5.getText());
+                    com.afrisoftech.txtreports.PrescriptionTxt policy = new com.afrisoftech.txtreports.PrescriptionTxt(connectDB, jTextField9.getText(), jTextField1.getText(), prescNo, paymentModeTxt.getText());
 
                 // java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request SET paid = true,collected = false where patient_no = '" + jTextField9.getText() + "' and revenue_code ilike 'pharm%' and trans_date='" + datePicker1.getDate().toString() + "'");
                 // pstmt46.executeUpdate();

@@ -63,20 +63,21 @@ public class HosInPatientRPaperDatePanel extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jTextField36 = new javax.swing.JTextField();
+        patientNumberTxt = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        datePicker1 = new com.afrisoftech.lib.DatePicker();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        patientNameTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        releasePaperNoTxt = new javax.swing.JTextField();
+        datePicker1 = new com.afrisoftech.lib.DatePicker();
 
         jSearchDialog1.setModal(true);
         jSearchDialog1.setUndecorated(true);
@@ -163,7 +164,7 @@ public class HosInPatientRPaperDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         jSearchDialog1.getContentPane().add(jSearchPanel1, gridBagConstraints);
 
-        setTitle("Reporting data filter dialog");
+        setTitle("Begin & End Date");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -188,14 +189,14 @@ public class HosInPatientRPaperDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jButton2, gridBagConstraints);
 
-        jButton1.setText("Preview");
+        jButton1.setText("Clear form");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -209,11 +210,18 @@ public class HosInPatientRPaperDatePanel extends javax.swing.JDialog {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jButton11, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 100.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jLabel5, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -224,7 +232,7 @@ public class HosInPatientRPaperDatePanel extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
         getContentPane().add(jPanel3, gridBagConstraints);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select inpatient no. here", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select inpatient no. here", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
         jLabel4.setText("I/P No.");
@@ -240,14 +248,14 @@ public class HosInPatientRPaperDatePanel extends javax.swing.JDialog {
         jPanel6.setMinimumSize(new java.awt.Dimension(82, 37));
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
-        jTextField36.setEditable(false);
+        patientNumberTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel6.add(jTextField36, gridBagConstraints);
+        jPanel6.add(patientNumberTxt, gridBagConstraints);
 
         searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
         searchButton.setToolTipText("Search");
@@ -285,13 +293,6 @@ public class HosInPatientRPaperDatePanel extends javax.swing.JDialog {
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 3);
-        jPanel1.add(datePicker1, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -325,7 +326,7 @@ public class HosInPatientRPaperDatePanel extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 0);
         jPanel4.add(jLabel2, gridBagConstraints);
 
-        jTextField1.setEditable(false);
+        patientNameTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -334,7 +335,7 @@ public class HosInPatientRPaperDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 3);
-        jPanel4.add(jTextField1, gridBagConstraints);
+        jPanel4.add(patientNameTxt, gridBagConstraints);
 
         jLabel3.setText("Release No");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -344,7 +345,7 @@ public class HosInPatientRPaperDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         jPanel4.add(jLabel3, gridBagConstraints);
 
-        jTextField2.setEditable(false);
+        releasePaperNoTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -352,19 +353,27 @@ public class HosInPatientRPaperDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        jPanel4.add(jTextField2, gridBagConstraints);
+        jPanel4.add(releasePaperNoTxt, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel4.add(datePicker1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.weighty = 100.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
         getContentPane().add(jPanel4, gridBagConstraints);
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-464)/2, (screenSize.height-272)/2, 464, 272);
+        setSize(new java.awt.Dimension(464, 272));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -383,9 +392,9 @@ public class HosInPatientRPaperDatePanel extends javax.swing.JDialog {
         
         sdf.applyPattern("yyyy-MM-dd");
         
-        jTextField36.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 0).toString());
-        jTextField1.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 1).toString());
-        jTextField2.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 3).toString());
+        patientNumberTxt.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 0).toString());
+        patientNameTxt.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 1).toString());
+        releasePaperNoTxt.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 3).toString());
         invoiceNumber = jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 4).toString();
         
         try {
@@ -469,11 +478,11 @@ public class HosInPatientRPaperDatePanel extends javax.swing.JDialog {
         
         jSearchDialog1.dispose();
         if(this.jCheckBox1.isSelected()){
-            java.awt.Point point = this.jTextField36.getLocationOnScreen();
+            java.awt.Point point = this.patientNumberTxt.getLocationOnScreen();
             jSearchDialog1.setLocation(point);
         }else{
             
-            java.awt.Point point = this.jTextField1.getLocationOnScreen();
+            java.awt.Point point = this.patientNameTxt.getLocationOnScreen();
             jSearchDialog1.setLocation(point);
         }
         jSearchDialog1.setSize(400,200);
@@ -489,7 +498,9 @@ public class HosInPatientRPaperDatePanel extends javax.swing.JDialog {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        this.getReport(reportName, false);
+        this.patientNameTxt.setText(null);
+        this.releasePaperNoTxt.setText(null);
+        this.patientNumberTxt.setText(null);
         
         // Add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -499,6 +510,10 @@ public class HosInPatientRPaperDatePanel extends javax.swing.JDialog {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_closeDialog
+
+    private void jTextField36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField36ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField36ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -530,7 +545,7 @@ public class HosInPatientRPaperDatePanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.reports.GatePassPdf policy = new com.afrisoftech.reports.GatePassPdf();
                 
-                policy.GatePassPdf(connectDB,jTextField2.getText(), invoiceNumber);
+                policy.GatePassPdf(connectDB,releasePaperNoTxt.getText(), invoiceNumber, patientNumberTxt.getText());
                 
                 
                 this.dispose();
@@ -558,6 +573,7 @@ public class HosInPatientRPaperDatePanel extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -566,10 +582,10 @@ public class HosInPatientRPaperDatePanel extends javax.swing.JDialog {
     private javax.swing.JPanel jSearchPanel1;
     private javax.swing.JScrollPane jSearchScrollPane1;
     private javax.swing.JTable jSearchTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField1111;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField36;
+    private javax.swing.JTextField patientNameTxt;
+    private javax.swing.JTextField patientNumberTxt;
+    private javax.swing.JTextField releasePaperNoTxt;
     private javax.swing.JButton searchButton;
     // End of variables declaration//GEN-END:variables
     

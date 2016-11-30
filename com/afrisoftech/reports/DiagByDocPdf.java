@@ -72,14 +72,11 @@ public class DiagByDocPdf implements java.lang.Runnable {
 
             threadCheck = false;
 
-
             System.out.println("We shall be lucky to get back to start in one piece");
 
         }
 
         if (!threadCheck) {
-
-
 
             Thread.currentThread().stop();
 
@@ -250,7 +247,6 @@ public class DiagByDocPdf implements java.lang.Runnable {
 
         java.lang.String pdfDateStamp = dateStampPdf.toString();
 
-
         try {
 
             java.io.File tempFile = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
@@ -271,13 +267,11 @@ public class DiagByDocPdf implements java.lang.Runnable {
 
                     com.lowagie.text.pdf.PdfWriter.getInstance(docPdf, new java.io.FileOutputStream(tempFile));
 
-
                     String compName = null;
                     String date = null;
                     try {
 
                         // java.sql.Connection conDb = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-
                         java.sql.Statement st3 = connectDB.createStatement();
                         java.sql.Statement st4 = connectDB.createStatement();
 
@@ -306,12 +300,9 @@ public class DiagByDocPdf implements java.lang.Runnable {
 
                     docPdf.setFooter(footer);
 
-
                     docPdf.open();
 
-
                     try {
-
 
                         com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(5);
 
@@ -321,18 +312,13 @@ public class DiagByDocPdf implements java.lang.Runnable {
                         table.setHeaderRows(2);
                         table.setWidthPercentage((100));
 
-
                         table.getDefaultCell().setBorder(Rectangle.BOTTOM);
 
                         // table.getDefaultCell().setColspan(5);
-
-
                         Phrase phrase = new Phrase("", pFontHeader);
-
 
                         try {
                             java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);//MEDIUM);
-
 
                             java.util.Date endDate1 = dateFormat.parse(endDate.toLocaleString());//dateInstance.toLocaleString());
                             java.util.Date endDate11 = dateFormat.parse(beginDate.toLocaleString());//dateInstance.toLocaleString());
@@ -380,26 +366,33 @@ public class DiagByDocPdf implements java.lang.Runnable {
                         phrase = new Phrase("Comments", pFontHeader);
                         table.addCell(phrase);
 
-
                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
 
                         // table.addCell("Amount KShs.");
-
                         table.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
                         table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
 
                         try {
 
-                            java.sql.Statement st = connectDB.createStatement();
+                            java.sql.PreparedStatement st = connectDB.prepareStatement("select DISTINCT ON (patient_no) patient_no,trans_date,initcap(name),initcap(diagnosis),initcap(notes) from doc_diagnosis WHERE trans_date BETWEEN ? AND ? and doctor ilike ? order by 1");
 
+                            st.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
 
-                            java.sql.ResultSet rset = st.executeQuery("select DISTINCT ON (patient_no) patient_no,trans_date,initcap(name),initcap(diagnosis),initcap(notes) from doc_diagnosis WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' and doctor ilike '" + memNo + "' order by 1");
+                            st.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
 
-                            java.sql.Statement st1 = connectDB.createStatement();
+                            st.setObject(3, memNo);
 
+                            java.sql.ResultSet rset = st.executeQuery();
 
-                            java.sql.ResultSet rset1 = st1.executeQuery("select COUNT ( DISTINCT patient_no) from doc_diagnosis WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' and doctor ilike '" + memNo + "'");
+                            java.sql.PreparedStatement st1 = connectDB.prepareStatement("select COUNT ( DISTINCT patient_no) from doc_diagnosis WHERE trans_date BETWEEN ? AND ? and doctor ilike ?");
 
+                            st1.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+                            st1.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+                            st1.setObject(3, memNo);
+
+                            java.sql.ResultSet rset1 = st1.executeQuery();
 
                             while (rset.next()) {
 
@@ -433,8 +426,6 @@ public class DiagByDocPdf implements java.lang.Runnable {
 
                                 table.addCell(phrase);
 
-
-
                             }
 
                             table.getDefaultCell().setColspan(5);
@@ -454,6 +445,8 @@ public class DiagByDocPdf implements java.lang.Runnable {
 
                         } catch (java.sql.SQLException SqlExec) {
 
+                            SqlExec.printStackTrace();
+                            
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
                         }
@@ -477,18 +470,14 @@ public class DiagByDocPdf implements java.lang.Runnable {
 
             }
 
-             
-docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
-
-
+            docPdf.close();
+            com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
         } catch (java.io.IOException IOexec) {
 
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), IOexec.getMessage());
 
         }
-
-
 
     }
 }

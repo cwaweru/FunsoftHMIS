@@ -623,7 +623,6 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         jButton221.setMnemonic('p');
         jButton221.setText("RePrint Receipt");
         jButton221.setToolTipText("Click here to edit data");
-        jButton221.setEnabled(false);
         jButton221.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton221ActionPerformed(evt);

@@ -136,7 +136,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
         jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Login Dialog [Funsoft  I-HMIS Version 7.0 Rel. 4.0] ");
+        setTitle("Login Dialog [Funsoft ERP/ I-HMIS Version 7.0 Rel. 4.1] ");
         setFont(new java.awt.Font("Lucida Sans", 1, 10)); // NOI18N
         setModal(true);
         setName("syslogindlg"); // NOI18N
@@ -970,7 +970,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
             
             sqlExec.printStackTrace();
             
-            javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getLocalizedMessage());
+            javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
             
         }
         

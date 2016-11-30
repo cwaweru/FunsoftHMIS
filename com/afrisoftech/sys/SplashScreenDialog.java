@@ -369,7 +369,7 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
 
         jLabel1.setText("jLabel1");
 
-        setTitle("Funsoft Hospital Management Information System (Funsoft I-HMIS Ver 7.0 Release 4.0)");
+        setTitle("Funsoft Hospital Management Information System (Funsoft ERP/I-HMIS Ver 7.0 Release 4.1)");
         setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         setUndecorated(true);
         addMouseListener(new java.awt.event.MouseAdapter() {

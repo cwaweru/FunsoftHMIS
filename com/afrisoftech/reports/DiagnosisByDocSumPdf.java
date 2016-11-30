@@ -438,7 +438,7 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
 
 
                             java.sql.Statement st212 = connectDB.createStatement();
-                            java.sql.Statement st2 = connectDB.createStatement();
+                        //    java.sql.Statement st2 = connectDB.createStatement();
                             java.sql.ResultSet rset1 = null;
 
 
@@ -466,8 +466,11 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
                             for (int k = 0; k < listofAct1.length; k++) {
                                 // java.sql.Statement st21 = connectDB.createStatement();
                                 //java.sql.Statement st211 = connectDB.createStatement();
-
-                                rset1 = st2.executeQuery("SELECT  COUNT (DISTINCT patient_no) from doctors_diag WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND doctor ilike '" + listofAct1[k].toString() + "'");
+                                java.sql.PreparedStatement st2 = connectDB.prepareStatement("SELECT  COUNT (DISTINCT patient_no) from doctors_diag WHERE trans_date BETWEEN ? AND ? AND doctor ilike ?");
+                                st2.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+                                st2.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+                                st2.setObject(3, listofAct1[k].toString());
+                                rset1 = st2.executeQuery(); //"SELECT  COUNT (DISTINCT patient_no) from doctors_diag WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND doctor ilike '" + listofAct1[k].toString() + "'");
 
 
                                 while (rset1.next()) {
@@ -522,7 +525,7 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
                             docPdf.add(table);
                             rset11.close();
                             st212.close();
-                            st2.close();
+//                            st2.close();
 
                             rset1.close();
 

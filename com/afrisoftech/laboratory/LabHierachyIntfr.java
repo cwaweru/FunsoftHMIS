@@ -1595,7 +1595,7 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         reportBodyPanel.setLayout(new java.awt.GridBagLayout());
 
         parametersReportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT typeof_test, lower_limit, upper_limit, units, date, specimen, \n" +
-            "       status, test, notes, code, specimen_source, \"paramater_ID\", parameter_order\n" +
+            "       status, test, notes, code, specimen_source, \"parameter_ID\", parameter_order\n" +
             "  FROM pb_lab_standards"));
     parametersReportScrollPane.setViewportView(parametersReportTable);
 
@@ -1973,7 +1973,7 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
     private void editParametersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editParametersBtnActionPerformed
         if (procedureGroupTxt.getText().length() > 0) {
             siParametersTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT typeof_test, lower_limit, upper_limit, units, date, specimen, "
-                    + "       status, notes, code, specimen_source, \"paramater_ID\""
+                    + "       status, notes, code, specimen_source, \"parameter_ID\""
                     + "  FROM pb_lab_standards WHERE code = '" + labProcedureCodeTxt.getText() + "' ORDER BY 1"));
             javax.swing.JComboBox cmBox1 = new javax.swing.JComboBox(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT initcap(specimen) as specimen FROM pb_lab_specimen ORDER BY 1"));
 
@@ -2095,7 +2095,7 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
                     java.sql.PreparedStatement pstmt = connectDB.prepareStatement("UPDATE pb_lab_standards"
                             + "   SET typeof_test=?, lower_limit=?, upper_limit=?, units=?, "
                             + "       specimen=?, status=?, notes=?, specimen_source=? "
-                            + " WHERE \"paramater_ID\"= ? ");
+                            + " WHERE \"parameter_ID\"= ? ");
                     pstmt.setObject(1, siParametersTable.getValueAt(j, 0));
                     pstmt.setObject(2, siParametersTable.getValueAt(j, 1));
                     pstmt.setObject(3, siParametersTable.getValueAt(j, 2));
@@ -2274,7 +2274,7 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
     private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
 
         this.parametersReportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT typeof_test, lower_limit, upper_limit, units, date, specimen, \n"
-                + "       status, test, notes, code, specimen_source, \"paramater_ID\", parameter_order\n"
+                + "       status, test, notes, code, specimen_source, \"parameter_ID\", parameter_order\n"
                 + "  FROM pb_lab_standards"));
         // TODO add your handling code here:
     }//GEN-LAST:event_refreshBtnActionPerformed

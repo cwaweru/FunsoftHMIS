@@ -81,14 +81,11 @@ public class ShiftReportPdf implements java.lang.Runnable {
 
             threadCheck = false;
 
-
             System.out.println("We shall be lucky to get back to start in one piece");
 
         }
 
         if (!threadCheck) {
-
-
 
             Thread.currentThread().stop();
 
@@ -259,7 +256,6 @@ public class ShiftReportPdf implements java.lang.Runnable {
 
         java.lang.String pdfDateStamp = dateStampPdf.toString();
 
-
         try {
 
             java.io.File tempFile = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
@@ -272,7 +268,7 @@ public class ShiftReportPdf implements java.lang.Runnable {
 
             java.lang.String creditTotal = null;
 
-            com.lowagie.text.Document docPdf = new com.lowagie.text.Document();
+            com.lowagie.text.Document docPdf = new com.lowagie.text.Document(PageSize.A4.rotate());
 
             try {
 
@@ -283,7 +279,6 @@ public class ShiftReportPdf implements java.lang.Runnable {
                     String compName = null;
                     String date = null;
                     try {
-
 
                         java.sql.Statement st3 = connectDB.createStatement();
                         java.sql.Statement st4 = connectDB.createStatement();
@@ -309,7 +304,7 @@ public class ShiftReportPdf implements java.lang.Runnable {
                         docPdf.setHeader(headerFoter);
 
                     } catch (java.sql.SQLException SqlExec) {
-
+                        SqlExec.printStackTrace();
                         javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
                     }
@@ -318,9 +313,7 @@ public class ShiftReportPdf implements java.lang.Runnable {
 
                     docPdf.setFooter(footer);
 
-
                     docPdf.open();
-
 
                     try {
                         java.util.Calendar calendar = java.util.Calendar.getInstance();
@@ -332,19 +325,18 @@ public class ShiftReportPdf implements java.lang.Runnable {
                         System.out.println(datenowSql.toString());
 
                         //  java.lang.Object listofStaffNos[] = this.getListofStaffNos();
+                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(12);
 
-                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(10);
-
-                        int headerwidths[] = {6, 8, 10, 27, 8, 11, 11, 11, 11, 11};
+                        int headerwidths[] = {6, 8, 10, 27, 8, 11, 11, 11, 11, 11, 11, 11};
 
                         table.setWidths(headerwidths);
+                        
+                        table.setHeaderRows(3);
 
                         table.setWidthPercentage((105));
 
-
                         //  table.getDefaultCell().setBorder(Rectangle.BOTTOM);
-
-                        table.getDefaultCell().setColspan(7);
+                        table.getDefaultCell().setColspan(9);
                         table.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
                         table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -357,8 +349,6 @@ public class ShiftReportPdf implements java.lang.Runnable {
                         phrase = new Phrase("PrintDate: " + datenowSql, pFontHeader1);
                         table.addCell(phrase);
 
-
-
                         table.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
                         table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
 
@@ -366,6 +356,8 @@ public class ShiftReportPdf implements java.lang.Runnable {
                         double chqTotal = 0.00;
                         double crTotal = 0.00;
                         double eftTotal = 0.00;
+                        double drctTotal = 0.00;
+                        double mpayTotal = 0.00;
                         int noSeq = 0;
                         int pnoSeq = 0;
                         double pettyCash = 0.00;
@@ -382,14 +374,13 @@ public class ShiftReportPdf implements java.lang.Runnable {
 
                             java.sql.ResultSet rset2 = st3.executeQuery("select user_name,shift_no,status from ac_shifts where shift_no = '" + memNo + "'");
 
-
                             while (rset2.next()) {
                                 table.getDefaultCell().setColspan(3);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase = new Phrase("Shift No. : " + rset2.getObject(2).toString(), pFontHeader);
                                 table.addCell(phrase);
 
-                                table.getDefaultCell().setColspan(4);
+                                table.getDefaultCell().setColspan(6);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase = new Phrase("Cashier :  " + rset2.getObject(1).toString().toUpperCase(), pFontHeader);
                                 table.addCell(phrase);
@@ -429,7 +420,15 @@ public class ShiftReportPdf implements java.lang.Runnable {
                             phrase = new Phrase("C/Card", pFontHeader);
                             table.addCell(phrase);
 
-                            phrase = new Phrase("E.F.T", pFontHeader);
+                            phrase = new Phrase("EFT/RTGS", pFontHeader);
+
+                            table.addCell(phrase);
+
+                            phrase = new Phrase("Direct Banking", pFontHeader);
+
+                            table.addCell(phrase);
+
+                            phrase = new Phrase("Mobile Pay", pFontHeader);
 
                             table.addCell(phrase);
 
@@ -437,7 +436,6 @@ public class ShiftReportPdf implements java.lang.Runnable {
 
                             table.addCell(phrase);
                             java.sql.ResultSet rsetTotals1 = st2.executeQuery("SELECT SUM(debit),sum(credit),sum(debit-credit) from ac_cash_collection WHERE shift_no = '" + memNo + "'");
-
 
                             for (int i = 0; i < receiptNos.length; i++) {
 
@@ -452,27 +450,29 @@ public class ShiftReportPdf implements java.lang.Runnable {
                                 java.sql.Statement stx1 = connectDB.createStatement();
                                 java.sql.Statement sty1 = connectDB.createStatement();
                                 java.sql.Statement ste1 = connectDB.createStatement();
+                                java.sql.Statement ste2 = connectDB.createStatement();
+                                java.sql.Statement ste3 = connectDB.createStatement();
+                                java.sql.Statement ste12 = connectDB.createStatement();
+                                java.sql.Statement ste13 = connectDB.createStatement();
+                                java.sql.ResultSet rsety1 = sty1.executeQuery("select COUNT(receipt_no) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND shift_no = '" + memNo + "' AND payment_mode ilike 'Cash%' group by receipt_no");
 
-                                java.sql.ResultSet rsety1 = sty1.executeQuery("select COUNT(receipt_no) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND shift_no = '" + memNo + "' AND payment_mode = 'Cash' group by receipt_no");
-
-                                java.sql.ResultSet rsetz1 = stz1.executeQuery("select COUNT(receipt_no) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND  shift_no = '" + memNo + "' AND payment_mode = 'Cheque' group by receipt_no");
-                                java.sql.ResultSet rsetx1 = stx1.executeQuery("select COUNT(receipt_no) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND  shift_no = '" + memNo + "'  AND payment_mode = 'Credit Card' group by receipt_no");
-                                java.sql.ResultSet rsete1 = ste1.executeQuery("select COUNT(receipt_no) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND  shift_no = '" + memNo + "' AND payment_mode ilike 'eft' group by receipt_no");
-
+                                java.sql.ResultSet rsetz1 = stz1.executeQuery("select COUNT(receipt_no) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND  shift_no = '" + memNo + "' AND payment_mode ilike 'Cheque' group by receipt_no");
+                                java.sql.ResultSet rsetx1 = stx1.executeQuery("select COUNT(receipt_no) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND  shift_no = '" + memNo + "'  AND payment_mode ilike 'Credit Card' group by receipt_no");
+                                java.sql.ResultSet rsete1 = ste1.executeQuery("select COUNT(receipt_no) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND  shift_no = '" + memNo + "' AND (payment_mode ilike 'eft' or payment_mode ilike 'rtgs') group by receipt_no");
+                                java.sql.ResultSet rsete2 = ste2.executeQuery("select COUNT(receipt_no) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND  shift_no = '" + memNo + "' AND payment_mode ilike 'direct banking' group by receipt_no");
+                                java.sql.ResultSet rsete3 = ste3.executeQuery("select COUNT(receipt_no) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND  shift_no = '" + memNo + "' AND payment_mode ilike 'm-pesa' group by receipt_no");
                                 // java.sql.ResultSet rset = st.executeQuery("select receipt_no,date,dealer,cheque_no,sum(debit),sum(credit),sum(debit-credit) from ac_cash_collection where shift_no = '"+memNo+"' and payment_mode ILIKE '"+listofAct[i].toString()+"' and user_name = '"+UserName+"' group by receipt_no,date,dealer,cheque_no order by receipt_no");
                                 java.sql.ResultSet rset = st.executeQuery("select DISTINCT receipt_no,date,dealer,receipt_time::time(0) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND shift_no = '" + memNo + "' ORDER BY receipt_no LIMIT 1");
-                                java.sql.ResultSet rsety = sty.executeQuery("select sum(debit-credit),sum(credit),sum(debit-credit) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND shift_no = '" + memNo + "'  AND payment_mode = 'Cash' group by receipt_no");
+                                java.sql.ResultSet rsety = sty.executeQuery("select sum(debit-credit),sum(credit),sum(debit-credit) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND shift_no = '" + memNo + "'  AND payment_mode ilike 'Cash%' group by receipt_no");
 
-                                java.sql.ResultSet rsetz = stz.executeQuery("select sum(debit),sum(credit),sum(debit-credit) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND  shift_no = '" + memNo + "'  AND payment_mode = 'Cheque' group by receipt_no");
-                                java.sql.ResultSet rsetx = stx.executeQuery("select sum(debit),sum(credit),sum(debit-credit) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND  shift_no = '" + memNo + "'  AND payment_mode = 'Credit Card' group by receipt_no");
-                                java.sql.ResultSet rsetex = ste.executeQuery("select sum(debit),sum(credit),sum(debit-credit) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND  shift_no = '" + memNo + "' AND payment_mode ilike 'eft' group by receipt_no");
-
+                                java.sql.ResultSet rsetz = stz.executeQuery("select sum(debit),sum(credit),sum(debit-credit) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND  shift_no = '" + memNo + "'  AND payment_mode ilike 'Cheque' group by receipt_no");
+                                java.sql.ResultSet rsetx = stx.executeQuery("select sum(debit),sum(credit),sum(debit-credit) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND  shift_no = '" + memNo + "'  AND payment_mode ilike 'Credit Card' group by receipt_no");
+                                java.sql.ResultSet rsetex = ste.executeQuery("select sum(debit),sum(credit),sum(debit-credit) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND  shift_no = '" + memNo + "' AND (payment_mode ilike 'eft' or payment_mode ilike 'rtgs') group by receipt_no");
+                                java.sql.ResultSet rsetex1 = ste12.executeQuery("select sum(debit),sum(credit),sum(debit-credit) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND  shift_no = '" + memNo + "' AND payment_mode ilike 'direct banking' group by receipt_no");
+                                java.sql.ResultSet rsetex2 = ste13.executeQuery("select sum(debit),sum(credit),sum(debit-credit) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND  shift_no = '" + memNo + "' AND payment_mode ilike 'm-pesa' group by receipt_no");
                                 java.sql.ResultSet rsetm = stm.executeQuery("select sum(credit),sum(debit-credit) from ac_cash_collection where receipt_no = '" + receiptNos[i] + "' AND  shift_no = '" + memNo + "'  group by receipt_no");
 
-
-
                                 while (rset.next()) {
-
 
                                     table.getDefaultCell().setBorderColor(java.awt.Color.white);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
@@ -583,7 +583,6 @@ public class ShiftReportPdf implements java.lang.Runnable {
 
                                 }
 
-
                                 int eft = 0;
                                 while (rsete1.next()) {
                                     eft = rsete1.getInt(1);
@@ -611,13 +610,64 @@ public class ShiftReportPdf implements java.lang.Runnable {
 
                                 }
 
+                                int drct = 0;
+                                while (rsete2.next()) {
+                                    drct = rsete2.getInt(1);
+                                }
 
+                                if (drct > 0) {
+                                    while (rsetex1.next()) {
+                                        table.getDefaultCell().setColspan(1);
+
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+
+                                        phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(rsetex1.getString(1), "0.00")), pFontHeader1);
+                                        table.addCell(phrase);
+                                        drctTotal = drctTotal + rsetex1.getDouble(1);
+                                    }
+
+                                } else {
+                                    table.getDefaultCell().setColspan(1);
+
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(java.lang.String.valueOf(0.00), "0.00")), pFontHeader1);
+                                    table.addCell(phrase);
+                                    drctTotal = drctTotal + 0;
+
+                                }
+
+                                int mpay = 0;
+                                while (rsete3.next()) {
+                                    mpay = rsete3.getInt(1);
+                                }
+
+                                if (mpay > 0) {
+                                    while (rsetex2.next()) {
+                                        table.getDefaultCell().setColspan(1);
+
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+
+                                        phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(rsetex2.getString(1), "0.00")), pFontHeader1);
+                                        table.addCell(phrase);
+                                        mpayTotal = mpayTotal + rsetex2.getDouble(1);
+                                    }
+
+                                } else {
+                                    table.getDefaultCell().setColspan(1);
+
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(java.lang.String.valueOf(0.00), "0.00")), pFontHeader1);
+                                    table.addCell(phrase);
+                                    mpayTotal = mpayTotal + 0;
+
+                                }
 
                                 while (rsetm.next()) {
                                     //  phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(rsetm.getString(1),"0.00")),pFontHeader1);
 
                                     //  table.addCell(phrase);
-
                                     phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(rsetm.getString(2), "0.00")), pFontHeader1);
 
                                     table.addCell(phrase);
@@ -657,11 +707,15 @@ public class ShiftReportPdf implements java.lang.Runnable {
 
                                 table.addCell(phrase);
 
+                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(drctTotal)), pFontHeader);
 
+                                table.addCell(phrase);
+
+                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(mpayTotal)), pFontHeader);
+
+                                table.addCell(phrase);
                                 //   phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetTotals1.getString(2)),pFontHeader);
-
                                 //   table.addCell(phrase);
-
                                 phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetTotals1.getString(3)), pFontHeader);
 
                                 table.addCell(phrase);
@@ -670,39 +724,39 @@ public class ShiftReportPdf implements java.lang.Runnable {
 
 
                             /*  for (int i = 0; i < listofAct.length; i++) {
-                            java.sql.Statement st1 = connectDB.createStatement();
+                             java.sql.Statement st1 = connectDB.createStatement();
 
-                            java.sql.ResultSet rset1 = st1.executeQuery("select sum(debit),sum(credit),sum(debit-credit) from ac_cash_collection where shift_no = '"+memNo+"'  AND cash_point = '"+CashPoint+"' and payment_mode ILIKE '"+listofAct[i].toString()+"' group by payment_mode ");
+                             java.sql.ResultSet rset1 = st1.executeQuery("select sum(debit),sum(credit),sum(debit-credit) from ac_cash_collection where shift_no = '"+memNo+"'  AND cash_point = '"+CashPoint+"' and payment_mode ILIKE '"+listofAct[i].toString()+"' group by payment_mode ");
 
-                            table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
-                            while (rset1.next()){
-                            phrase = new Phrase(" ", pFontHeader);
+                             table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
+                             while (rset1.next()){
+                             phrase = new Phrase(" ", pFontHeader);
 
-                            table.addCell(phrase);
-                            table.getDefaultCell().setColspan(4);
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase(listofAct[i].toString(), pFontHeader);
+                             table.addCell(phrase);
+                             table.getDefaultCell().setColspan(4);
+                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                             phrase = new Phrase(listofAct[i].toString(), pFontHeader);
 
-                            table.addCell(phrase);
-                            table.getDefaultCell().setColspan(1);
+                             table.addCell(phrase);
+                             table.getDefaultCell().setColspan(1);
 
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
 
-                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset1.getString(1)),pFontHeader);
+                             phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset1.getString(1)),pFontHeader);
 
-                            table.addCell(phrase);
+                             table.addCell(phrase);
 
-                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset1.getString(2)),pFontHeader);
+                             phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset1.getString(2)),pFontHeader);
 
-                            table.addCell(phrase);
+                             table.addCell(phrase);
 
-                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset1.getString(3)),pFontHeader);
+                             phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset1.getString(3)),pFontHeader);
 
-                            table.addCell(phrase);
-                            }
+                             table.addCell(phrase);
+                             }
 
-                            }*/
-                            table.getDefaultCell().setColspan(10);
+                             }*/
+                            table.getDefaultCell().setColspan(12);
 
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             phrase = new Phrase("         ", pFontHeader);
@@ -710,7 +764,7 @@ public class ShiftReportPdf implements java.lang.Runnable {
                             table.addCell(phrase);
                             table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
 
-                            table.getDefaultCell().setColspan(10);
+                            table.getDefaultCell().setColspan(12);
 
                             table.getDefaultCell().setBorder(Rectangle.BOTTOM);
                             // table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
@@ -720,10 +774,8 @@ public class ShiftReportPdf implements java.lang.Runnable {
                             table.addCell(phrase);
 
                             // table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
-
                             // table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
                             // table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP);
-
                             java.sql.Statement st3s = connectDB.createStatement();
                             java.sql.ResultSet setTotals1 = st3s.executeQuery("SELECT SUM(debit - credit) from ac_cash_collection WHERE  shift_no = '" + memNo + "'  ");
 
@@ -737,10 +789,9 @@ public class ShiftReportPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
                                 table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
 
-
                                 while (rsetsw.next()) {
                                     table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
-                                    table.getDefaultCell().setColspan(6);
+                                    table.getDefaultCell().setColspan(8);
 
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                     phrase = new Phrase(rsetsw.getObject(1).toString(), pFontHeader1);
@@ -761,19 +812,16 @@ public class ShiftReportPdf implements java.lang.Runnable {
                                     table.addCell(phrase);
 
                                     // phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetTotals1.getString(3)),pFontHeader);
-
                                     //  table.addCell(phrase);
-
-
                                 }
                             }
-                            table.getDefaultCell().setColspan(10);
+                            table.getDefaultCell().setColspan(12);
                             table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
                             table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP);
 
                             while (setTotals1.next()) {
 
-                                table.getDefaultCell().setColspan(6);
+                                table.getDefaultCell().setColspan(8);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase = new Phrase("TOTAL", pFontHeader);
@@ -797,12 +845,9 @@ public class ShiftReportPdf implements java.lang.Runnable {
                                 // phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetTotals1.getString(3)),pFontHeader);
 
                                 //  table.addCell(phrase);
-
-
                             }
 
-
-                            table.getDefaultCell().setColspan(10);
+                            table.getDefaultCell().setColspan(12);
                             table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             phrase = new Phrase("         ", pFontHeader);
@@ -810,15 +855,13 @@ public class ShiftReportPdf implements java.lang.Runnable {
                             table.addCell(phrase);
                             //table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
 
-                            table.getDefaultCell().setColspan(10);
+                            table.getDefaultCell().setColspan(12);
 
                             //
-
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             phrase = new Phrase("Petty Cash Breakdown".toUpperCase(), pFontHeader);
 
                             table.addCell(phrase);
-
 
                             table.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
                             table.getDefaultCell().setBorderColor(java.awt.Color.black);
@@ -836,7 +879,7 @@ public class ShiftReportPdf implements java.lang.Runnable {
                             phrase = new Phrase("Payer", pFontHeader);
                             table.addCell(phrase);
 
-                            table.getDefaultCell().setColspan(4);
+                            table.getDefaultCell().setColspan(6);
                             phrase = new Phrase("Reason", pFontHeader);
                             table.addCell(phrase);
 
@@ -853,7 +896,6 @@ public class ShiftReportPdf implements java.lang.Runnable {
 
                             table.addCell(phrase);
 
-
                             for (int f = 0; f < voucherNos.length; f++) {
                                 java.sql.Statement sts = connectDB.createStatement();
                                 java.sql.Statement stsw = connectDB.createStatement();
@@ -867,14 +909,14 @@ public class ShiftReportPdf implements java.lang.Runnable {
 
 
                                 /* while (rsetsw.next()) {
-                                table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
-                                table.getDefaultCell().setColspan(5);
+                                 table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
+                                 table.getDefaultCell().setColspan(5);
 
-                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase(rsetsw.getObject(1).toString(), pFontHeader1);
+                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                 phrase = new Phrase(rsetsw.getObject(1).toString(), pFontHeader1);
 
-                                table.addCell(phrase);
-                                }*/
+                                 table.addCell(phrase);
+                                 }*/
                                 while (rsetsw.next()) {
                                     table.getDefaultCell().setColspan(1);
 
@@ -890,7 +932,7 @@ public class ShiftReportPdf implements java.lang.Runnable {
                                     table.getDefaultCell().setColspan(1);
                                     phrase = new Phrase(rsetsw.getObject(3).toString(), pFontHeader1);
                                     table.addCell(phrase);
-                                    table.getDefaultCell().setColspan(4);
+                                    table.getDefaultCell().setColspan(6);
                                     phrase = new Phrase(rsetsw.getObject(4).toString(), pFontHeader1);
                                     table.addCell(phrase);
                                     table.getDefaultCell().setColspan(1);
@@ -908,15 +950,12 @@ public class ShiftReportPdf implements java.lang.Runnable {
                                     table.addCell(phrase);
 
                                     // phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetTotals1.getString(3)),pFontHeader);
-
                                     //  table.addCell(phrase);
-
-
                                 }
                             }
                             table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
                             table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP);
-                            table.getDefaultCell().setColspan(7);
+                            table.getDefaultCell().setColspan(9);
 
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             phrase = new Phrase("Total Petty Cash", pFontHeader);
@@ -933,61 +972,59 @@ public class ShiftReportPdf implements java.lang.Runnable {
 
                             /* table.getDefaultCell().setColspan(4);
 
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase("  ", pFontHeader);
+                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                             phrase = new Phrase("  ", pFontHeader);
 
-                            table.addCell(phrase);
-                            table.getDefaultCell().setColspan(4);
+                             table.addCell(phrase);
+                             table.getDefaultCell().setColspan(4);
 
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase("Total Cash", pFontHeader);
+                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                             phrase = new Phrase("Total Cash", pFontHeader);
 
-                            table.addCell(phrase);
+                             table.addCell(phrase);
 
-                            table.getDefaultCell().setColspan(1);
+                             table.getDefaultCell().setColspan(1);
 
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
 
-                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(cashTotal)), pFontHeader);
+                             phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(cashTotal)), pFontHeader);
 
-                            table.addCell(phrase);
+                             table.addCell(phrase);
 
 
 
-                            table.getDefaultCell().setColspan(4);
+                             table.getDefaultCell().setColspan(4);
 
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase("  ", pFontHeader);
+                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                             phrase = new Phrase("  ", pFontHeader);
 
-                            table.addCell(phrase);
+                             table.addCell(phrase);
 
-                            table.getDefaultCell().setColspan(4);
+                             table.getDefaultCell().setColspan(4);
 
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase("Total Petty Cash", pFontHeader);
+                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                             phrase = new Phrase("Total Petty Cash", pFontHeader);
 
-                            table.addCell(phrase);
+                             table.addCell(phrase);
 
-                            table.getDefaultCell().setColspan(1);
+                             table.getDefaultCell().setColspan(1);
 
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
 
-                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(pettyCash)), pFontHeader);
+                             phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(pettyCash)), pFontHeader);
 
-                            table.addCell(phrase);
+                             table.addCell(phrase);
                              */
-
-
                             table.getDefaultCell().setColspan(4);
 
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             phrase = new Phrase("  ", pFontHeader);
 
                             table.addCell(phrase);
-                            table.getDefaultCell().setColspan(5);
+                            table.getDefaultCell().setColspan(7);
 
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase("Total Cash - Petty Cash", pFontHeader);
+                            phrase = new Phrase("Shift Total Cash Balance", pFontHeader);
 
                             table.addCell(phrase);
 
@@ -999,17 +1036,15 @@ public class ShiftReportPdf implements java.lang.Runnable {
 
                             table.addCell(phrase);
 
-
                             table.getDefaultCell().setBorder(Rectangle.BOTTOM);
                             table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
-
 
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
                             table.getDefaultCell().setColspan(35);
                             phrase = new Phrase(" ");
                             table.addCell(phrase);
-                            table.getDefaultCell().setColspan(10);
+                            table.getDefaultCell().setColspan(12);
                             phrase = new Phrase("RECEIVED FROM:_________________BANKED BY: _____________ Date: ____/____/______ Time: _________", pFontHeader);
                             table.addCell(phrase);
 
@@ -1023,13 +1058,12 @@ public class ShiftReportPdf implements java.lang.Runnable {
                             docPdf.add(table);
 
                         } catch (java.sql.SQLException SqlExec) {
-
+                            SqlExec.printStackTrace();
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
                         }
 
                         // }
-
                     } catch (com.lowagie.text.BadElementException BadElExec) {
 
                         javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), BadElExec.getMessage());
@@ -1048,17 +1082,14 @@ public class ShiftReportPdf implements java.lang.Runnable {
             }
 
             docPdf.close();
-docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
-
-
+            docPdf.close();
+            com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
         } catch (java.io.IOException IOexec) {
 
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), IOexec.getMessage());
 
         }
-
-
 
     }
 
@@ -1068,11 +1099,9 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
         java.util.Vector listActVector = new java.util.Vector(1, 1);
 
-
         try {
 
             //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-
             java.sql.Statement stmt1 = connectDB.createStatement();
 
             java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT initcap(payment_mode) as payment_mode FROM ac_cash_collection where shift_no = '" + memNo + "' order by payment_mode");
@@ -1100,11 +1129,9 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
         java.util.Vector listActVector1 = new java.util.Vector(1, 1);
 
-
         try {
 
             //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-
             java.sql.Statement stmt1 = connectDB.createStatement();
 
             java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT activity_code FROM ac_cash_collection where shift_no = '" + memNo + "' order by activity_code");
@@ -1132,11 +1159,9 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
         java.util.Vector listActVector11 = new java.util.Vector(1, 1);
 
-
         try {
 
             //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-
             java.sql.Statement stmt1 = connectDB.createStatement();
 
             java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT receipt_no FROM ac_cash_collection where shift_no = '" + memNo + "' order by receipt_no");
@@ -1164,9 +1189,7 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
         java.util.Vector listActVector11P = new java.util.Vector(1, 1);
 
-
         try {
-
 
             java.sql.Statement stmt1 = connectDB.createStatement();
 

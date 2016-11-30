@@ -17,6 +17,8 @@ public class CancelTheatre extends javax.swing.JPanel {
      */
     public CancelTheatre() {
         initComponents();
+        javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/Icons/nursing/theatre.jpg"));
+        icon.paintIcon(this, this.getGraphics(), this.getWidth(), this.getHeight());
     }
 
     /**
@@ -29,22 +31,22 @@ public class CancelTheatre extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jLabel1 = new javax.swing.JLabel();
+        theaterLable = new javax.swing.JLabel();
 
         setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/nursing/theatre.jpg"))); // NOI18N
+        theaterLable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/nursing/theatre.jpg"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        add(jLabel1, gridBagConstraints);
+        add(theaterLable, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel theaterLable;
     // End of variables declaration//GEN-END:variables
 }

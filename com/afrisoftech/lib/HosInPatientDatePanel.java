@@ -604,7 +604,7 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
             case 163: {
                 com.afrisoftech.reports.FinalInterimPatientlnvSummPdf policy = new com.afrisoftech.reports.FinalInterimPatientlnvSummPdf();
 
-                policy.FinalInterimPatientlnvSummPdf(connectDB, visitIDTxt.getText());
+                policy.FinalInterimPatientlnvSummPdf(connectDB, visitIDTxt.getText(), this.patNoTxt.getText());
 
                // this.dispose();
             }
