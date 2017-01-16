@@ -136,7 +136,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
         jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Login Dialog [Funsoft ERP/ I-HMIS Version 7.0 Rel. 4.1] ");
+        setTitle("Login Dialog [Funsoft ERP/ I-HMIS Version 7.0 Rel. 4.2] ");
         setFont(new java.awt.Font("Lucida Sans", 1, 10)); // NOI18N
         setModal(true);
         setName("syslogindlg"); // NOI18N
@@ -1055,7 +1055,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
             connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + this.dbServerIp + ":" + dbPort + "/" + activeDatabase, userName, passWord);
 
             //  connection.
-            version = "7.0 R 4.0";
+            version = "7.0 R 4.1";
             
             String current_version = com.afrisoftech.lib.VersionControl.VersionControl(connection);
             if (com.afrisoftech.lib.VersionControl.ActiveVersion(connection) == Boolean.TRUE) {
