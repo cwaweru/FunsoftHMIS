@@ -34,7 +34,7 @@ public class BasicPaint {
     private BufferedImage colorSample = new BufferedImage(
             16,16,BufferedImage.TYPE_INT_RGB);
     private JLabel imageLabel;
-    private int activeTool;
+    public int activeTool;
     public static final int SELECTION_TOOL = 0;
     public static final int DRAW_TOOL = 1;
     public static final int TEXT_TOOL = 2;
@@ -43,7 +43,7 @@ public class BasicPaint {
     private Rectangle selection;
     private boolean dirty = false;
     private Stroke stroke = new BasicStroke(
-            3,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,1.7f);
+            12,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,1.7f);
     private RenderingHints renderingHints;
 
     public JComponent getGui() {
@@ -60,7 +60,7 @@ public class BasicPaint {
 
             JPanel imageView = new JPanel(new GridBagLayout());
             imageView.setPreferredSize(new Dimension(560,440));
-            imageLabel = new JLabel(new ImageIcon(canvasImage));
+            imageLabel = new JLabel(new ImageIcon(getCanvasImage()));
             JScrollPane imageScroll = new JScrollPane(imageView);
             imageView.add(imageLabel);
             imageLabel.addMouseMotionListener(new ImageMouseMotionListener());
@@ -88,7 +88,7 @@ public class BasicPaint {
             setColor(color);
 
             final SpinnerNumberModel strokeModel = 
-                    new SpinnerNumberModel(3,1,16,1);
+                    new SpinnerNumberModel(7,1,16,1);
             JSpinner strokeSize = new JSpinner(strokeModel);
             ChangeListener strokeListener = new ChangeListener() {
                 @Override
@@ -120,7 +120,7 @@ public class BasicPaint {
                                 gui, "Erase the current painting?");
                     }
                     if (result==JOptionPane.OK_OPTION) {
-                        clear(canvasImage);
+                        clear(getCanvasImage());
                     }
                 }
             };
@@ -133,8 +133,8 @@ public class BasicPaint {
             JToolBar tools = new JToolBar(JToolBar.VERTICAL);
             tools.setFloatable(false);
             JButton crop = new JButton("Crop");
-            final JRadioButton select = new JRadioButton("Select", true);
-            final JRadioButton draw = new JRadioButton("Draw");
+            final JRadioButton select = new JRadioButton("Select");
+            final JRadioButton draw = new JRadioButton("Draw", true);
             final JRadioButton text = new JRadioButton("Text");
 
             tools.add(crop);            
@@ -166,7 +166,7 @@ public class BasicPaint {
 
             gui.add(output,BorderLayout.PAGE_END);
             clear(colorSample);
-            clear(canvasImage);
+            clear(getCanvasImage());
         }
 
         return gui;
@@ -187,16 +187,16 @@ public class BasicPaint {
         this.originalImage = image;
         int w = image.getWidth();
         int h = image.getHeight();
-        canvasImage = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
+        setCanvasImage(new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB));
 
-        Graphics2D g = this.canvasImage.createGraphics();
+        Graphics2D g = this.getCanvasImage().createGraphics();
         g.setRenderingHints(renderingHints);
         g.drawImage(image, 0, 0, gui);
         g.dispose();
 
         selection = new Rectangle(0,0,w,h); 
         if (this.imageLabel!=null) {
-            imageLabel.setIcon(new ImageIcon(canvasImage));
+            imageLabel.setIcon(new ImageIcon(getCanvasImage()));
             this.imageLabel.repaint();
         }
         if (gui!=null) {
@@ -270,8 +270,8 @@ public class BasicPaint {
                     if (result==JFileChooser.APPROVE_OPTION ) {
                         try {
                             File f = ch.getSelectedFile();
-                            ImageIO.write(BasicPaint.this.canvasImage, "png", f);
-                            BasicPaint.this.originalImage = BasicPaint.this.canvasImage;
+                            ImageIO.write(BasicPaint.this.getCanvasImage(), "png", f);
+                            BasicPaint.this.originalImage = BasicPaint.this.getCanvasImage();
                             dirty = false;
                         } catch (IOException ioe) {
                             showError(ioe);
@@ -376,7 +376,7 @@ public class BasicPaint {
     public void text(Point point) {
         String text = JOptionPane.showInputDialog(gui, "Text to add", "Text");
         if (text!=null) {
-            Graphics2D g = this.canvasImage.createGraphics();
+            Graphics2D g = this.getCanvasImage().createGraphics();
             g.setRenderingHints(renderingHints);
             g.setColor(this.color);
             g.setStroke(stroke);
@@ -388,7 +388,7 @@ public class BasicPaint {
     }
 
     public void draw(Point point) {
-        Graphics2D g = this.canvasImage.createGraphics();
+        Graphics2D g = this.getCanvasImage().createGraphics();
         g.setRenderingHints(renderingHints);
         g.setColor(this.color);
         g.setStroke(stroke);
@@ -396,6 +396,20 @@ public class BasicPaint {
         g.drawLine(point.x, point.y, point.x+n, point.y+n);
         g.dispose();
         this.imageLabel.repaint();
+    }
+
+    /**
+     * @return the canvasImage
+     */
+    public BufferedImage getCanvasImage() {
+        return canvasImage;
+    }
+
+    /**
+     * @param canvasImage the canvasImage to set
+     */
+    public void setCanvasImage(BufferedImage canvasImage) {
+        this.canvasImage = canvasImage;
     }
 
     class ImageMouseListener extends MouseAdapter {

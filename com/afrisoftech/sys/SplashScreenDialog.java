@@ -369,7 +369,7 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
 
         jLabel1.setText("jLabel1");
 
-        setTitle("Funsoft Hospital Management Information System (Funsoft ERP/I-HMIS Ver 7.0 Release 4.1)");
+        setTitle("Funsoft Hospital Management Information System (Funsoft ERP/I-HMIS Ver 7.0 Release 4.4)");
         setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         setUndecorated(true);
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -474,32 +474,42 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-//    
-//        java.util.HashMap fontAttributes = new java.util.HashMap();
-//        fontAttributes.put(java.awt.font.TextAttribute.FAMILY, "MONOSPACE");
-//        fontAttributes.put(java.awt.font.TextAttribute.SIZE, new java.lang.Float(11.5));
-//        fontAttributes.put(java.awt.font.TextAttribute.WIDTH, java.awt.font.TextAttribute.WIDTH_CONDENSED);//TH_CONDENSED);
-//        fontAttributes.put(java.awt.font.TextAttribute.WEIGHT, java.awt.font.TextAttribute.WEIGHT_BOLD);//IGHT_EXTRA_LIGHT);
-//        Font FONT_STANDARD = new Font(fontAttributes);
-////      Font FONT_STANDARD = new Font("Helvetica",Font.PLAIN,11);
-//        FontUIResource FONT_UI_RES_STANDARD = new FontUIResource(FONT_STANDARD);
-//        Enumeration keys = UIManager.getDefaults().keys();
-//        while (keys.hasMoreElements()) {
-//            Object key = keys.nextElement();
-//            Object value = UIManager.get(key);
-//            if (value instanceof FontUIResource) UIManager.put(key,FONT_UI_RES_STANDARD);
-//        }
-//        try {
-//            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//        } catch (Exception e) {}
-
+    
+        java.util.HashMap fontAttributes = new java.util.HashMap();
+        fontAttributes.put(java.awt.font.TextAttribute.FAMILY, "TAHOMA");
+       // fontAttributes.put(java.awt.font.TextAttribute.FAMILY, "MONOSPACE");
+        fontAttributes.put(java.awt.font.TextAttribute.SIZE, new java.lang.Float(11.0));
+        fontAttributes.put(java.awt.font.TextAttribute.WIDTH, java.awt.font.TextAttribute.WIDTH_REGULAR);//WIDTH_CONDENSED);//TH_CONDENSED);
+        fontAttributes.put(java.awt.font.TextAttribute.WEIGHT, java.awt.font.TextAttribute.WEIGHT_REGULAR);//IGHT_EXTRA_LIGHT);
+        Font FONT_STANDARD = new Font(fontAttributes);
+     // Font FONT_STANDARD = new Font("Helvetica",Font.PLAIN,11);
+        FontUIResource FONT_UI_RES_STANDARD = new FontUIResource(FONT_STANDARD);
+        Enumeration keys = UIManager.getDefaults().keys();
+        while (keys.hasMoreElements()) {
+            Object key = keys.nextElement();
+            Object value = UIManager.get(key);
+            if (value instanceof FontUIResource) UIManager.put(key,FONT_UI_RES_STANDARD);
+        }
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {}
+     
         splashDialog = new SplashScreenDialog(new javax.swing.JFrame(), false);
-
+        
         splashDialog.setVisible(true);
-
+        
         login2HospitalThread = new java.lang.Thread(splashDialog, "Login2Hospital");
-
+        
         login2HospitalThread.start();
+        
+//
+//        splashDialog = new SplashScreenDialog(new javax.swing.JFrame(), false);
+//
+//        splashDialog.setVisible(true);
+//
+//        login2HospitalThread = new java.lang.Thread(splashDialog, "Login2Hospital");
+//
+//        login2HospitalThread.start();
 
 
 

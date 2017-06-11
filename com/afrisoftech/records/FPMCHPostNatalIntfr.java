@@ -1714,7 +1714,7 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
                         + "            partner_hiv_tested, partner_hiv_results, cancer_screening_method, "
                         + "            cancer_screening_results, pnc_exercise_given, vitamina_supplimentation, "
                         + "            modern_fp_method, multi_vitamin, haemantics, diagnosis, referred_from, "
-                        + "            referred_to, remarks, counselled, mother_preventive, infant_preventive)"
+                        + "            referred_to, remarks, counselling, mother_preventive, infant_preventive)"
                         + "    VALUES (?, ?, ?, ?, ?, "
                         + "            ?, ?, ?, ?, ?, ?, "
                         + "            ?, ?, ?, ?, "

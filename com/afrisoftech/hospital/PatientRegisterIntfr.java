@@ -8397,7 +8397,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     private void takeSnapBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_takeSnapBtnActionPerformed
         if (patientNumberTxt.getText().length() > 3) {
             try {
-                imageFile = new File(String.format(patientNumberTxt.getText() + "-%d.jpg", System.currentTimeMillis()));
+                imageFile = new File(String.format(patientNumberTxt.getText() + "-%d.jpg", System.currentTimeMillis()).replace("/", "_"));
                 ImageIO.write(webcam.getImage(), "JPG", imageFile);
                 System.out.println("Image saved in " + imageFile.getAbsolutePath());
                 if (Thread.currentThread().isAlive()) {

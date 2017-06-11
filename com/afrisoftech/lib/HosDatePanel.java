@@ -1238,7 +1238,18 @@ public class HosDatePanel extends javax.swing.JDialog {
 
             }
             break;
+                
+            case 20447: {
+                
+                com.afrisoftech.records.reports.EyeDiagnosisSummaryPdf policy = new com.afrisoftech.records.reports.EyeDiagnosisSummaryPdf();
 
+                policy.EyeDiagnosisSummaryPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
+
+                // com.afrisoftech.reports.OpAttSheetSummPdf policy = new com.afrisoftech.reports.OpAttSheetSummPdf();
+                //policy.OpAttSheetSummPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
+                //this.dispose();
+            }
+            break;
             case 229: {
                 com.afrisoftech.reports.WriteOffSummPdf policy = new com.afrisoftech.reports.WriteOffSummPdf();
 

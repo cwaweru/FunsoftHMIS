@@ -1254,7 +1254,7 @@
                 <Component class="javax.swing.JTable" name="indexingTable">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, &quot;SELECT date_recorded as coding_date, user_name, patient_no, main_service as code, disease as code_description, doctor_surgeon, scrub_nurse as classification, ward_name as unit_name, pat_category as patient_category, pat_age as patient_age, gender from hp_patient_diagnosis order by 1&quot;)" type="code"/>
+                      <Connection code="com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, &quot;SELECT date_recorded as coding_date, user_name, patient_no, main_service as code, disease as code_description, doctor_surgeon, scrub_nurse as classification, ward_name as unit_name, pat_category as patient_category, pat_age as patient_age, gender from hp_patient_diagnosis WHERE date_recorded = now()::date order by 1&quot;)" type="code"/>
                     </Property>
                   </Properties>
                   <AuxValues>

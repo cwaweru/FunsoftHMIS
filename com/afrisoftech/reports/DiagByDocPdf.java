@@ -18,8 +18,8 @@ public class DiagByDocPdf implements java.lang.Runnable {
     boolean threadCheck = true;
     java.lang.Thread threadSample;
     com.afrisoftech.lib.DBObject dbObject;
-    com.lowagie.text.Font pFontHeader = FontFactory.getFont(FontFactory.HELVETICA, 9, Font.BOLD);
-    com.lowagie.text.Font pFontHeader1 = FontFactory.getFont(FontFactory.HELVETICA, 8, Font.NORMAL);
+    com.lowagie.text.Font pFontHeader = FontFactory.getFont(FontFactory.HELVETICA, 8, Font.BOLD);
+    com.lowagie.text.Font pFontHeader1 = FontFactory.getFont(FontFactory.HELVETICA, 7, Font.NORMAL);
     //   com.lowagie.text.ParagraphFont pgraph = Paragraph();
     java.lang.Runtime rtThreadSample = java.lang.Runtime.getRuntime();
     java.lang.Process prThread;
@@ -329,7 +329,7 @@ public class DiagByDocPdf implements java.lang.Runnable {
                             //  table.addCell(phrase);
                             table.getDefaultCell().setColspan(4);
 
-                            phrase = new Phrase(memNo + " Patient Att. List :     Period : " + dateFormat.format(endDate11) + " ------ " + dateFormat.format(endDate1), pFontHeader);
+                            phrase = new Phrase("CLINICIAN : "+memNo.toUpperCase() + " Patient Att. List :     Period : " + dateFormat.format(endDate11) + " TO " + dateFormat.format(endDate1), pFontHeader);
 
                             table.addCell(phrase);
                             table.getDefaultCell().setColspan(1);
@@ -374,23 +374,27 @@ public class DiagByDocPdf implements java.lang.Runnable {
 
                         try {
 
-                            java.sql.PreparedStatement st = connectDB.prepareStatement("select DISTINCT ON (patient_no) patient_no,trans_date,initcap(name),initcap(diagnosis),initcap(notes) from doc_diagnosis WHERE trans_date BETWEEN ? AND ? and doctor ilike ? order by 1");
+                            java.sql.PreparedStatement st = connectDB.prepareStatement("select DISTINCT (patient_no) as patient_no,date_recorded::date,initcap(patient_name),initcap(disease), comments from hp_patient_diagnosis WHERE date_recorded::date BETWEEN ? AND ? and (UPPER(user_name) = UPPER(?) or UPPER(user_name) = (SELECT DISTINCT UPPER(login_name) from secure_menu_access where UPPER(f_name || ' '|| l_name) = UPPER(?) LIMIT 1)) order by 2");
 
                             st.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
 
                             st.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
 
                             st.setObject(3, memNo);
+                            
+                            st.setObject(4, memNo);
 
                             java.sql.ResultSet rset = st.executeQuery();
 
-                            java.sql.PreparedStatement st1 = connectDB.prepareStatement("select COUNT ( DISTINCT patient_no) from doc_diagnosis WHERE trans_date BETWEEN ? AND ? and doctor ilike ?");
+                            java.sql.PreparedStatement st1 = connectDB.prepareStatement("select COUNT ( DISTINCT patient_no) from hp_patient_diagnosis WHERE date_recorded BETWEEN ? AND ? and (UPPER(user_name) = UPPER(?) or UPPER(user_name) = (SELECT DISTINCT UPPER(login_name) from secure_menu_access where UPPER(f_name || ' '|| l_name) = UPPER(?) LIMIT 1))");
 
                             st1.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
 
                             st1.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
 
                             st1.setObject(3, memNo);
+                            
+                            st1.setObject(4, memNo);
 
                             java.sql.ResultSet rset1 = st1.executeQuery();
 

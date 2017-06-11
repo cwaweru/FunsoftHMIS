@@ -328,6 +328,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     int MonthlyxraySummary = 51077;
     int WeeklySummaryRev = 511;
     int IpAnalySummaryRev = 512;
+    int eyeOptSumm = 20447;
     int AieB = 513;
     int MonthlyRevComp = 514;
     int QuarterlyRevComp = 515;
@@ -1441,6 +1442,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         physioReqmnit = new javax.swing.JMenuItem();
         physioresultsmnit = new javax.swing.JMenuItem();
         rehabmnitmnit = new javax.swing.JMenuItem();
+        eyeUnitmnit = new javax.swing.JMenuItem();
         Dental = new javax.swing.JMenu();
         dentalReqmnit = new javax.swing.JMenuItem();
         dentalresultsmnit = new javax.swing.JMenuItem();
@@ -2120,6 +2122,10 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         xraymonthlyanalysismnit = new javax.swing.JMenuItem();
         dental = new javax.swing.JMenu();
         dentregistermnit = new javax.swing.JMenuItem();
+        eyemn = new javax.swing.JMenu();
+        eyeClinicRegistermnit = new javax.swing.JMenuItem();
+        eyeUnitDetailedReportmnit = new javax.swing.JMenuItem();
+        eyeServicesSummarymnit = new javax.swing.JMenuItem();
         clinicsbookings = new javax.swing.JMenu();
         Bookingsmnit = new javax.swing.JMenuItem();
         ConfirmedBookingsmnit = new javax.swing.JMenuItem();
@@ -5446,6 +5452,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         physiotherapy.add(rehabmnitmnit);
 
         patientmanagemn.add(physiotherapy);
+
+        eyeUnitmnit.setText("Eye Unit Module");
+        eyeUnitmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eyeUnitmnitActionPerformed(evt);
+            }
+        });
+        patientmanagemn.add(eyeUnitmnit);
 
         Dental.setText("Dental");
 
@@ -10137,6 +10151,34 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         dental.add(dentregistermnit);
 
         PatientRecordsmn.add(dental);
+
+        eyemn.setText("Eye Clinic Reports");
+
+        eyeClinicRegistermnit.setText("Eye Clinic Register");
+        eyeClinicRegistermnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eyeClinicRegistermnitActionPerformed(evt);
+            }
+        });
+        eyemn.add(eyeClinicRegistermnit);
+
+        eyeUnitDetailedReportmnit.setText("Eye Services Detailed Report");
+        eyeUnitDetailedReportmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eyeUnitDetailedReportmnitActionPerformed(evt);
+            }
+        });
+        eyemn.add(eyeUnitDetailedReportmnit);
+
+        eyeServicesSummarymnit.setText("Eye Unit Summary Report");
+        eyeServicesSummarymnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eyeServicesSummarymnitActionPerformed(evt);
+            }
+        });
+        eyemn.add(eyeServicesSummarymnit);
+
+        PatientRecordsmn.add(eyemn);
 
         clinicsbookings.setText("Bookings");
 
@@ -21167,6 +21209,49 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         }        // TODO add your handling code here:
     }//GEN-LAST:event_labSpecimenSourcemnitActionPerformed
 
+    private void eyeUnitmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyeUnitmnitActionPerformed
+        javax.swing.JInternalFrame prod = new com.afrisoftech.laboratory.EyeConsultationIntfr(connectDB, pConnDB, getMainClass());
+        saccopn.add(prod, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            prod.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eyeUnitmnitActionPerformed
+
+    private void eyeClinicRegistermnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyeClinicRegistermnitActionPerformed
+        biz.systempartners.reports.EyeUnitRegisterReportIntfr dismth = new biz.systempartners.reports.EyeUnitRegisterReportIntfr(connectDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eyeClinicRegistermnitActionPerformed
+
+    private void eyeUnitDetailedReportmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyeUnitDetailedReportmnitActionPerformed
+        biz.systempartners.reports.EyeUnitDetailedReportIntfr dismth = new biz.systempartners.reports.EyeUnitDetailedReportIntfr(connectDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eyeUnitDetailedReportmnitActionPerformed
+
+    private void eyeServicesSummarymnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyeServicesSummarymnitActionPerformed
+
+        com.afrisoftech.lib.HosDatePanel dates = new com.afrisoftech.lib.HosDatePanel(this, true, this.eyeOptSumm, connectDB);
+
+        dates.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eyeServicesSummarymnitActionPerformed
+
     /**
      * Exit the Application
      */
@@ -25141,6 +25226,11 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem expiredaccmnit;
     private javax.swing.JMenuItem extactscmmnit;
     private javax.swing.JMenuItem extendedNursingmnit;
+    private javax.swing.JMenuItem eyeClinicRegistermnit;
+    private javax.swing.JMenuItem eyeServicesSummarymnit;
+    private javax.swing.JMenuItem eyeUnitDetailedReportmnit;
+    private javax.swing.JMenuItem eyeUnitmnit;
+    private javax.swing.JMenu eyemn;
     private javax.swing.JMenuItem fahrmnit;
     private javax.swing.JMenuItem feedingMethodsmnit;
     private javax.swing.JMenuItem finalInPatientInvmnit;

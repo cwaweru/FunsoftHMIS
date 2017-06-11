@@ -1206,7 +1206,7 @@ public class PatientDiagIntfr extends javax.swing.JInternalFrame {
 
         indexingPanel.setLayout(new java.awt.GridBagLayout());
 
-        indexingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date_recorded as coding_date, user_name, patient_no, main_service as code, disease as code_description, doctor_surgeon, scrub_nurse as classification, ward_name as unit_name, pat_category as patient_category, pat_age as patient_age, gender from hp_patient_diagnosis order by 1"));
+        indexingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date_recorded as coding_date, user_name, patient_no, main_service as code, disease as code_description, doctor_surgeon, scrub_nurse as classification, ward_name as unit_name, pat_category as patient_category, pat_age as patient_age, gender from hp_patient_diagnosis WHERE date_recorded = now()::date order by 1"));
         indexingScrollPane.setViewportView(indexingTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();

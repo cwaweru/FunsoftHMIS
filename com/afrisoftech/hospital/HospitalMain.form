@@ -3044,6 +3044,14 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
+            <MenuItem class="javax.swing.JMenuItem" name="eyeUnitmnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Eye Unit Module"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eyeUnitmnitActionPerformed"/>
+              </Events>
+            </MenuItem>
             <Menu class="javax.swing.JMenu" name="Dental">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Dental"/>
@@ -8172,6 +8180,37 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dentregistermnitActionPerformed"/>
+                      </Events>
+                    </MenuItem>
+                  </SubComponents>
+                </Menu>
+                <Menu class="javax.swing.JMenu" name="eyemn">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Eye Clinic Reports"/>
+                  </Properties>
+                  <SubComponents>
+                    <MenuItem class="javax.swing.JMenuItem" name="eyeClinicRegistermnit">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Eye Clinic Register"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eyeClinicRegistermnitActionPerformed"/>
+                      </Events>
+                    </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="eyeUnitDetailedReportmnit">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Eye Services Detailed Report"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eyeUnitDetailedReportmnitActionPerformed"/>
+                      </Events>
+                    </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="eyeServicesSummarymnit">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Eye Unit Summary Report"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eyeServicesSummarymnitActionPerformed"/>
                       </Events>
                     </MenuItem>
                   </SubComponents>

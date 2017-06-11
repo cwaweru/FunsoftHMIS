@@ -5,15 +5,15 @@
  */
 package com.afrisoftech.lib;
 
-import com.lowagie.text.BadElementException;
-import com.lowagie.text.Image;
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.Image;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -68,34 +68,34 @@ public class SaveBytea2DB {
                 connectDB.commit();
                 pstmt.close();
                 /*
-                java.sql.PreparedStatement pstmtR = connectDB.prepareStatement("SELECT * FROM test_binary ORDER BY 1 DESC LIMIT 1");
-                java.sql.ResultSet rs = pstmtR.executeQuery();
-                while (rs.next()) {
-                    byte[] imgBytes = rs.getBytes(2);
-                    java.io.ByteArrayOutputStream byteaStream = new java.io.ByteArrayOutputStream();
-                    try {
-                        byteaStream.write(imgBytes);
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                        Logger.getLogger(SaveBytea2DB.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    java.io.File tempFile = null;
+                 java.sql.PreparedStatement pstmtR = connectDB.prepareStatement("SELECT * FROM test_binary ORDER BY 1 DESC LIMIT 1");
+                 java.sql.ResultSet rs = pstmtR.executeQuery();
+                 while (rs.next()) {
+                 byte[] imgBytes = rs.getBytes(2);
+                 java.io.ByteArrayOutputStream byteaStream = new java.io.ByteArrayOutputStream();
+                 try {
+                 byteaStream.write(imgBytes);
+                 } catch (IOException ex) {
+                 ex.printStackTrace();
+                 Logger.getLogger(SaveBytea2DB.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+                 java.io.File tempFile = null;
                     
-                    try {
-                        tempFile = java.io.File.createTempFile("REP" + com.afrisoftech.lib.DateLables.getDateLabel() + "_", ".pdf");
-                        tempFile.deleteOnExit();
-                        java.io.OutputStream fileIS = new java.io.FileOutputStream(tempFile);
-                        fileIS.write(imgBytes);
-                        fileIS.close();
-                        // this is where i am trying to display the file
-                        //  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                        Logger.getLogger(SaveBytea2DB.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                 try {
+                 tempFile = java.io.File.createTempFile("REP" + com.afrisoftech.lib.DateLables.getDateLabel() + "_", ".pdf");
+                 tempFile.deleteOnExit();
+                 java.io.OutputStream fileIS = new java.io.FileOutputStream(tempFile);
+                 fileIS.write(imgBytes);
+                 fileIS.close();
+                 // this is where i am trying to display the file
+                 //  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
+                 } catch (IOException ex) {
+                 ex.printStackTrace();
+                 Logger.getLogger(SaveBytea2DB.class.getName()).log(Level.SEVERE, null, ex);
+                 }
 
-                }
-                */
+                 }
+                 */
                 try {
                     fis.close();
                 } catch (IOException ex) {
@@ -117,7 +117,7 @@ public class SaveBytea2DB {
         java.io.File tempFile = null;
         connectDB = connDB;
         try {
-            java.sql.PreparedStatement pstmtR = connectDB.prepareStatement("SELECT DISTINCT document_data, data_capture_time FROM funsoft_image_graphics  WHERE document_ref_no = ? ORDER BY data_capture_time DESC LIMIT 1");
+            java.sql.PreparedStatement pstmtR = connectDB.prepareStatement("SELECT DISTINCT document_data, data_capture_time FROM funsoft_image_graphics  WHERE document_ref_no = ?  AND document_source = 'OUT_PATIENT_REGISTER' ORDER BY data_capture_time DESC LIMIT 1");
             pstmtR.setString(1, documentRefNumber);
             java.sql.ResultSet rs = pstmtR.executeQuery();
             while (rs.next()) {
@@ -153,7 +153,8 @@ public class SaveBytea2DB {
 
         return tempFile;
     }
-        public static com.lowagie.text.Image getImage(java.sql.Connection connDB, String documentRefNumber) {
+
+    public static com.itextpdf.text.Image getImage(java.sql.Connection connDB, String documentRefNumber) {
         java.io.File tempFile = null;
         Image image = null;
         connectDB = connDB;
@@ -179,12 +180,11 @@ public class SaveBytea2DB {
                     try {
                         image = Image.getInstance(tempFile.getPath());
                     } catch (BadElementException ex) {
-                        Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();
                     } catch (MalformedURLException ex) {
-                        Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();
                     }
-                    
-                    
+
                     System.out.println(tempFile.getPath());
                     // this is where i am trying to display the file
                     //  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
@@ -202,4 +202,84 @@ public class SaveBytea2DB {
 
         return image;
     }
+
+    public static com.itextpdf.text.Image getImage(java.sql.Connection connDB, String documentRefNumber, java.sql.Timestamp date) {
+        java.io.File tempFile = null;
+        Image image = null;
+        connectDB = connDB;
+        try {
+            java.sql.PreparedStatement pstmtR = connectDB.prepareStatement("SELECT DISTINCT document_data, data_capture_time FROM funsoft_image_graphics  WHERE document_ref_no = ? AND data_capture_time::date = ? ORDER BY data_capture_time DESC LIMIT 1");
+            pstmtR.setString(1, documentRefNumber);
+            pstmtR.setTimestamp(2, date);
+            java.sql.ResultSet rs = pstmtR.executeQuery();
+            while (rs.next()) {
+                byte[] imgBytes = rs.getBytes(1);
+                java.io.ByteArrayOutputStream byteaStream = new java.io.ByteArrayOutputStream();
+                try {
+                    byteaStream.write(imgBytes);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    Logger.getLogger(SaveBytea2DB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                try {
+                    tempFile = java.io.File.createTempFile("REP" + com.afrisoftech.lib.DateLables.getDateLabel() + "_", ".png");
+                    tempFile.deleteOnExit();
+                    java.io.OutputStream fileIS = new java.io.FileOutputStream(tempFile);
+                    fileIS.write(imgBytes);
+                    try {
+                        image = Image.getInstance(tempFile.getPath());
+                    } catch (BadElementException ex) {
+                        ex.printStackTrace();
+                    } catch (MalformedURLException ex) {
+                        ex.printStackTrace();
+                    }
+
+                    System.out.println(tempFile.getPath());
+                    // this is where i am trying to display the file
+                    //  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    Logger.getLogger(SaveBytea2DB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Logger.getLogger(SaveBytea2DB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return image;
+    }
+        public static java.io.ByteArrayOutputStream getImageBytea(java.sql.Connection connDB, String documentRefNumber, java.sql.Timestamp date) {
+        java.io.File tempFile = null;
+        Image image = null;
+        connectDB = connDB;
+        java.io.ByteArrayOutputStream byteaStream = null;
+        try {
+            java.sql.PreparedStatement pstmtR = connectDB.prepareStatement("SELECT DISTINCT document_data, data_capture_time FROM funsoft_image_graphics  WHERE document_ref_no = ? AND data_capture_time = ? ORDER BY data_capture_time DESC LIMIT 1");
+            pstmtR.setString(1, documentRefNumber);
+            pstmtR.setTimestamp(2, date);
+            java.sql.ResultSet rs = pstmtR.executeQuery();
+            while (rs.next()) {
+                byte[] imgBytes = rs.getBytes(1);
+                byteaStream = new java.io.ByteArrayOutputStream();
+                try {
+                    byteaStream.write(imgBytes);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    Logger.getLogger(SaveBytea2DB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Logger.getLogger(SaveBytea2DB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return byteaStream;
+    }
 }
+
