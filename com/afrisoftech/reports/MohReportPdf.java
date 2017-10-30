@@ -708,7 +708,8 @@ public class MohReportPdf implements java.lang.Runnable {
                                /* java.sql.PreparedStatement pset11ag = connectDB.prepareStatement("select code from pb_activity WHERE activity_category ilike 'IEDS'");
                                 java.sql.ResultSet rset11ag = pset11ag.executeQuery();
                                 while (rset11ag.next()) {*/
-                                java.sql.PreparedStatement psetwav = connectDB.prepareStatement("select sum(amount) FROM moh_reporting WHERE receipt_time = '" + listofAct[i] + "'  AND receipt_source = 'IEDS'");
+                                java.sql.PreparedStatement psetwav = connectDB.prepareStatement("select sum(credit-debit) FROM ac_ledger WHERE transaction_time::date = '" + listofAct[i] + "'  AND transaction_type = 'waiver%'");
+                               // java.sql.PreparedStatement psetwav = connectDB.prepareStatement("select sum(amount) FROM moh_reporting WHERE receipt_time = '" + listofAct[i] + "'  AND receipt_source = 'IEDS'");
                                 java.sql.ResultSet rsetwav = psetwav.executeQuery();
 
                                 while (rsetwav.next()) {
@@ -720,7 +721,8 @@ public class MohReportPdf implements java.lang.Runnable {
                                /* java.sql.PreparedStatement pset11ag1 = connectDB.prepareStatement("select code from pb_activity WHERE activity_category ilike 'IEXE'");
                                 java.sql.ResultSet rset11ag1 = pset11ag1.executeQuery();
                                 while (rset11ag1.next()) {*/
-                                java.sql.PreparedStatement psetwn2 = connectDB.prepareStatement("select sum(amount*-1) FROM moh_reporting WHERE receipt_time = '" + listofAct[i] + "'  AND receipt_source = 'IEXE'");
+                                java.sql.PreparedStatement psetwn2 = connectDB.prepareStatement("select sum(credit-debit) FROM ac_ledger WHERE transaction_time::date = '" + listofAct[i] + "'  AND transaction_type = 'exemption%'");
+                                ////java.sql.PreparedStatement psetwn2 = connectDB.prepareStatement("select sum(amount*-1) FROM moh_reporting WHERE receipt_time = '" + listofAct[i] + "'  AND receipt_source = 'IEXE'"); // commented by cwaweru on 4/8/2017
                                 java.sql.ResultSet rsetwn2 = psetwn2.executeQuery();
 
                                 while (rsetwn2.next()) {

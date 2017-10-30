@@ -40,11 +40,11 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jSearchDialog2 = new javax.swing.JDialog();
-        jSearchPanel2 = new javax.swing.JPanel();
-        jTextField113 = new javax.swing.JTextField();
+        patientSearchDialog = new javax.swing.JDialog();
+        patientSearchPanel = new javax.swing.JPanel();
+        patientSearchTxt = new javax.swing.JTextField();
         jSearchScrollPane2 = new javax.swing.JScrollPane();
-        jSearchTable2 = new com.afrisoftech.dbadmin.JTable();
+        patientSearchTable = new com.afrisoftech.dbadmin.JTable();
         jButton42 = new javax.swing.JButton();
         jButton52 = new javax.swing.JButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
@@ -98,18 +98,18 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         jTextField5 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        exemptionsChkbx = new javax.swing.JCheckBox();
 
-        jSearchDialog2.setModal(true);
-        jSearchDialog2.setUndecorated(true);
-        jSearchDialog2.getContentPane().setLayout(new java.awt.GridBagLayout());
+        patientSearchDialog.setModal(true);
+        patientSearchDialog.setUndecorated(true);
+        patientSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jSearchPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jSearchPanel2.setLayout(new java.awt.GridBagLayout());
+        patientSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        patientSearchPanel.setLayout(new java.awt.GridBagLayout());
 
-        jTextField113.addCaretListener(new javax.swing.event.CaretListener() {
+        patientSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField113CaretUpdate(evt);
+                patientSearchTxtCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -119,15 +119,15 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 300.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-        jSearchPanel2.add(jTextField113, gridBagConstraints);
+        patientSearchPanel.add(patientSearchTxt, gridBagConstraints);
 
-        jSearchTable2.setToolTipText("Click on the target row to select the patient from the search.");
-        jSearchTable2.setShowHorizontalLines(false);
+        patientSearchTable.setToolTipText("Click on the target row to select the patient from the search.");
+        patientSearchTable.setShowHorizontalLines(false);
         /*javax.swing.table.TableColumn column = null;
 
         for (int i = 0; i < 4; i++) {
 
-            column = jSearchTable2.getColumnModel().getColumn(i);
+            column = patientSearchTable.getColumnModel().getColumn(i);
 
             if (i == 1) {
 
@@ -140,12 +140,12 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
             }
         }
         */
-        jSearchTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+        patientSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSearchTable2MouseClicked(evt);
+                patientSearchTableMouseClicked(evt);
             }
         });
-        jSearchScrollPane2.setViewportView(jSearchTable2);
+        jSearchScrollPane2.setViewportView(patientSearchTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -154,7 +154,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
-        jSearchPanel2.add(jSearchScrollPane2, gridBagConstraints);
+        patientSearchPanel.add(jSearchScrollPane2, gridBagConstraints);
 
         jButton42.setText("Select");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -162,9 +162,9 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchPanel2.add(jButton42, gridBagConstraints);
+        patientSearchPanel.add(jButton42, gridBagConstraints);
 
-        jButton52.setText("Cancel");
+        jButton52.setText("Dispose");
         jButton52.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton52ActionPerformed(evt);
@@ -175,7 +175,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchPanel2.add(jButton52, gridBagConstraints);
+        patientSearchPanel.add(jButton52, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -183,14 +183,14 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchDialog2.getContentPane().add(jSearchPanel2, gridBagConstraints);
+        patientSearchDialog.getContentPane().add(patientSearchPanel, gridBagConstraints);
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Patients Statement View");
+        setTitle("Facility Social Workers' Desk - Authority for Waivers and Exemptions");
         setFrameIcon(null);
         try {
             setSelected(true);
@@ -894,15 +894,15 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel3.add(jTextField8, gridBagConstraints);
 
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(51, 51, 0));
-        jCheckBox1.setText("Exempt The Bill ?");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        exemptionsChkbx.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        exemptionsChkbx.setForeground(new java.awt.Color(51, 51, 0));
+        exemptionsChkbx.setText("Exempt The Bill ?");
+        exemptionsChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                exemptionsChkbxActionPerformed(evt);
             }
         });
-        jPanel3.add(jCheckBox1, new java.awt.GridBagConstraints());
+        jPanel3.add(exemptionsChkbx, new java.awt.GridBagConstraints());
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1092,14 +1092,14 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                 double balance = orig - alloc;
 
                 if (Boolean.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 5).toString()) == java.lang.Boolean.TRUE) {
-                    jCheckBox1.setSelected(false);
+                    exemptionsChkbx.setSelected(false);
                     if (price < balance) {
                         jTable1.setValueAt(price, jTable1.getSelectedRow(), 4);
                     } else {
                         jTable1.setValueAt(balance, jTable1.getSelectedRow(), 4);
                     }
                 } else {
-                    jCheckBox1.setSelected(false);
+                    exemptionsChkbx.setSelected(false);
                     jTable1.setValueAt(0, jTable1.getSelectedRow(), 4);
 
                 }
@@ -1118,7 +1118,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton52ActionPerformed
-        this.jSearchDialog2.dispose();        // Add your handling code here:
+        this.patientSearchDialog.dispose();        // Add your handling code here:
     }//GEN-LAST:event_jButton52ActionPerformed
     private void populateTable2(java.lang.String patient_no) {
 
@@ -1168,17 +1168,17 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         }
 
     }
-    private void jSearchTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable2MouseClicked
+    private void patientSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patientSearchTableMouseClicked
         //        this.jComboBox131.setSelectedItem(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 1).toString());
         for (int k = 0; k < jTable1.getRowCount(); k++) {
             for (int r = 0; r < jTable1.getColumnCount(); r++) {
                 jTable1.getModel().setValueAt(null, k, r);
             }
         }
-        jTextField1.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 1).toString());
-        jTextField9.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 0).toString());
-        jTextField10.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 2).toString());
-        jSearchDialog2.dispose();
+        jTextField1.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 1).toString());
+        jTextField9.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 0).toString());
+        jTextField10.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 2).toString());
+        patientSearchDialog.dispose();
         if (this.jCheckBox11.isSelected()) {
             try {
 
@@ -1211,19 +1211,19 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                 //  System.out.println("Insert not successful");
             }
         }
-        jSearchDialog2.dispose();
-        jCheckBox1.setSelected(false);
+        patientSearchDialog.dispose();
+        exemptionsChkbx.setSelected(false);
         // Add your handling code here:
-    }//GEN-LAST:event_jSearchTable2MouseClicked
+    }//GEN-LAST:event_patientSearchTableMouseClicked
 
-    private void jTextField113CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField113CaretUpdate
+    private void patientSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_patientSearchTxtCaretUpdate
 
         if (this.jCheckBox11.isSelected() && this.jCheckBox3.isSelected()) {
 
-            if (jTextField113.getCaretPosition() < 3) {
+            if (patientSearchTxt.getCaretPosition() < 3) {
                 System.out.println("Nothing");
             } else {
-                jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where patient_no ILIKE '" + jTextField113.getText() + "%'  order by second_name"));
+                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where patient_no ILIKE '" + patientSearchTxt.getText() + "%'  order by second_name"));
                 /*     searchRowSet2.execute("SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where patient_no ILIKE '"+jTextField113.getText()+"%'  order by second_name");
 
                  jSearchTable2.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet2, new org.netbeans.lib.sql.models.TableModel.Column[] {
@@ -1233,16 +1233,16 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                  //  new org.netbeans.lib.sql.models.TableModel.Column("residence", "Residence", false)
                  }));
                  */
-                jSearchTable2.setShowHorizontalLines(false);
-                jSearchScrollPane2.setViewportView(jSearchTable2);
+                patientSearchTable.setShowHorizontalLines(false);
+                jSearchScrollPane2.setViewportView(patientSearchTable);
 
             }
         } else {
             if (this.jCheckBox11.isSelected() && this.jCheckBox4.isSelected()) {
-                if (jTextField113.getCaretPosition() < 3) {
+                if (patientSearchTxt.getCaretPosition() < 3) {
                     System.out.println("Nothing");
                 } else {
-                    jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where second_name||' '||first_name||' '||last_name ILIKE '" + jTextField113.getText() + "%'  order by second_name"));
+                    patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where second_name||' '||first_name||' '||last_name ILIKE '" + patientSearchTxt.getText() + "%'  order by second_name"));
 
                     /*    searchRowSet2.execute("SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where second_name||' '||first_name||' '||last_name ILIKE '"+jTextField113.getText()+"%'  order by second_name");
 
@@ -1253,8 +1253,8 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                      //  new org.netbeans.lib.sql.models.TableModel.Column("residence", "Residence", false)
                      }));
                      */
-                    jSearchTable2.setShowHorizontalLines(false);
-                    jSearchScrollPane2.setViewportView(jSearchTable2);
+                    patientSearchTable.setShowHorizontalLines(false);
+                    jSearchScrollPane2.setViewportView(patientSearchTable);
 
                 }
             }
@@ -1264,18 +1264,18 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
 
             // if(this.jCheckBox21.isSelected()){
             //   if( jTextField113.getCaretPosition() > 3){
-            if (jTextField113.getCaretPosition() < 3) {
+            if (patientSearchTxt.getCaretPosition() < 3) {
                 System.out.println("Nothing");
             } else {
-                jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no,patient_name,visit_id FROM hp_admission WHERE patient_no ILIKE '" + jTextField113.getText() + "%' AND check_out = false UNION ALL SELECT annual_no,patient_name,annual_no FROM hp_mortuary WHERE patient_no ILIKE '" + jTextField113.getText() + "%' AND discharged = false ORDER BY patient_name"));
+                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no,patient_name,visit_id FROM hp_admission WHERE patient_no ILIKE '" + patientSearchTxt.getText() + "%' AND check_out = false UNION ALL SELECT annual_no,patient_name,annual_no FROM hp_mortuary WHERE patient_no ILIKE '" + patientSearchTxt.getText() + "%' AND discharged = false ORDER BY patient_name"));
 
-                jSearchTable2.setShowHorizontalLines(false);
-                jSearchScrollPane2.setViewportView(jSearchTable2);
+                patientSearchTable.setShowHorizontalLines(false);
+                jSearchScrollPane2.setViewportView(patientSearchTable);
 
             }
         } else {
             if (this.jCheckBox21.isSelected() && this.jCheckBox4.isSelected()) {
-                jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no,patient_name,visit_id FROM hp_admission WHERE patient_name ILIKE '" + jTextField113.getText() + "%' AND check_out = false UNION ALL SELECT annual_no,patient_name,annual_no FROM hp_mortuary WHERE patient_name ILIKE '" + jTextField113.getText() + "%' AND discharged = false ORDER BY patient_name"));
+                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no,patient_name,visit_id FROM hp_admission WHERE patient_name ILIKE '" + patientSearchTxt.getText() + "%' AND check_out = false UNION ALL SELECT annual_no,patient_name,annual_no FROM hp_mortuary WHERE patient_name ILIKE '" + patientSearchTxt.getText() + "%' AND discharged = false ORDER BY patient_name"));
                 /*
                  searchRowSet2.execute("SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_inpatient_register where second_name||' '||first_name||' '||last_name ILIKE '"+jTextField113.getText()+"%' order by second_name");
 
@@ -1286,15 +1286,15 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                  // new org.netbeans.lib.sql.models.TableModel.Column("residence", "Residence", false)
                  }));
                  */
-                jSearchTable2.setShowHorizontalLines(false);
-                jSearchScrollPane2.setViewportView(jSearchTable2);
+                patientSearchTable.setShowHorizontalLines(false);
+                jSearchScrollPane2.setViewportView(patientSearchTable);
 
             }
         }
         //  }
         // }
         // Add your handling code here:
-    }//GEN-LAST:event_jTextField113CaretUpdate
+    }//GEN-LAST:event_patientSearchTxtCaretUpdate
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         searchButtonClicked2();        // Add your handling code here:
@@ -1306,11 +1306,11 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
         java.awt.Point point = this.jTextField9.getLocationOnScreen();
 
-        jSearchDialog2.setSize(400, 200);
+        patientSearchDialog.setSize(400, 200);
 
-        jSearchDialog2.setLocation(point);
+        patientSearchDialog.setLocation(point);
 
-        jSearchDialog2.setVisible(true);
+        patientSearchDialog.setVisible(true);
 
     }
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -1522,6 +1522,8 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         String user = null;
         String accDesc1 = null;
         String glAcc1 = null;
+        String glAccExe = null;
+        String glAcc1Exe = null;
         try {
             connectDB.setAutoCommit(false);
 
@@ -1554,7 +1556,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                         if (java.lang.Double.valueOf(jTable1.getValueAt(i, 4).toString()) > 0) {
                             String waiver = "-";
 
-                            if (jCheckBox1.isSelected()) {
+                            if (exemptionsChkbx.isSelected()) {
                                 waiver = "IEXE";
                             } else {
                                 waiver = "IEDS";
@@ -1564,6 +1566,13 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                             while (rse121.next()) {
                                 glAcc = rse121.getObject(1).toString();
                                 glAcc1 = rse121.getObject(2).toString();
+                            }
+
+                            java.sql.Statement stm121exe = connectDB.createStatement();
+                            java.sql.ResultSet rse121exe = stm121exe.executeQuery("select activity,code from pb_activity WHERE activity_category  ILIKE '" + waiver + "'");
+                            while (rse121exe.next()) {
+                                glAccExe = rse121exe.getObject(1).toString();
+                                glAcc1Exe = rse121exe.getObject(2).toString();
                             }
                             java.sql.PreparedStatement pstmt22 = connectDB.prepareStatement("INSERT INTO hp_patient_billing VALUES(?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?,?,?)");
                             pstmt22.setString(1, jTextField9.getText());
@@ -1626,7 +1635,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                                 pstmt.setString(8, cardName);
                                 pstmt.setString(9, isurer);
                                 pstmt.setDate(10, null);
-                                if (jCheckBox1.isSelected()) {
+                                if (exemptionsChkbx.isSelected()) {
 
                                     pstmt.setString(11, "Exemption");
                                     pstmt.setString(16, "EXEMPTIONS");
@@ -1659,7 +1668,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                                 pstmt2.setString(2, glAcc);
                                 pstmt2.setString(3, jTextField9.getText());
                                 pstmt2.setString(4, jTextField1.getText());
-                                if (jCheckBox1.isSelected()) {
+                                if (exemptionsChkbx.isSelected()) {
                                     pstmt2.setString(5, "Exemption");
                                 } else {
                                     pstmt2.setString(5, "Waiver");
@@ -1670,7 +1679,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                                 pstmt2.setString(8, "IP");
                                 pstmt2.setString(9, jTextField8.getText());
                                 pstmt2.setString(10, jTextField7.getText());
-                                if (jCheckBox1.isSelected()) {
+                                if (exemptionsChkbx.isSelected()) {
                                     pstmt2.setString(11, "Exemption");
                                 } else {
                                     pstmt2.setString(11, "Waiver");
@@ -1679,7 +1688,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                                 pstmt2.setString(13, "");
                                 pstmt2.setString(14, jTable1.getValueAt(i, 1).toString());
                                 //pstmt2.setString(15, "Revenue");
-                                if (jCheckBox1.isSelected()) {
+                                if (exemptionsChkbx.isSelected()) {
                                     pstmt2.setString(15, "Exemption");
                                 } else {
                                     pstmt2.setString(15, "Waiver");
@@ -1731,14 +1740,14 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         }   // Add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void exemptionsChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exemptionsChkbxActionPerformed
         for (int k = 0; k < jTable1.getRowCount(); k++) {
             if (jTable1.getModel().getValueAt(k, 0) != null) {
                 jTable1.setValueAt(false, k, 5);
                 // float qty = java.lang.Float.parseFloat(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
                 float price = java.lang.Float.parseFloat(jTable1.getValueAt(k, 3).toString());
                 //float total = 0;
-                if (jCheckBox1.isSelected()) {
+                if (exemptionsChkbx.isSelected()) {
 
                     jTable1.setValueAt(price, k, 4);
                 } else {
@@ -1756,7 +1765,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
             }
 
         }        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_exemptionsChkbxActionPerformed
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
 
@@ -1837,12 +1846,12 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private com.afrisoftech.lib.DatePicker datePicker3;
+    private javax.swing.JCheckBox exemptionsChkbx;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton42;
     private javax.swing.JButton jButton52;
     private javax.swing.JButton jButton6;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox11;
     private javax.swing.JCheckBox jCheckBox21;
     private javax.swing.JCheckBox jCheckBox3;
@@ -1866,17 +1875,13 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel31;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JDialog jSearchDialog2;
-    private javax.swing.JPanel jSearchPanel2;
     private javax.swing.JScrollPane jSearchScrollPane2;
-    private javax.swing.JTable jSearchTable2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField113;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -1885,6 +1890,10 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JDialog patientSearchDialog;
+    private javax.swing.JPanel patientSearchPanel;
+    private javax.swing.JTable patientSearchTable;
+    private javax.swing.JTextField patientSearchTxt;
     private javax.swing.JButton searchButton;
     // End of variables declaration//GEN-END:variables
 }

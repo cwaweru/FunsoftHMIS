@@ -9,7 +9,7 @@
 
 package biz.systempartners.claims;
 
-import com.sun.star.lib.uno.environments.java.java_environment;
+//import com.sun.star.lib.uno.environments.java.java_environment;
 import java.io.IOException;
 
 /**

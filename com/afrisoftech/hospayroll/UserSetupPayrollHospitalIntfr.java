@@ -7,7 +7,7 @@ package com.afrisoftech.hospayroll;
 
 import java.sql.SQLException;
 
-//import com.sun.star.lib.uno.environments.java.java_environment;
+////import com.sun.star.lib.uno.environments.java.java_environment;
 /**
  *
  * @author Charles W. Waweru <cwaweru@systempartners.biz>
@@ -2225,7 +2225,7 @@ public class UserSetupPayrollHospitalIntfr extends javax.swing.JInternalFrame {
 
                         }
 
-                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("CREATE USER " + logonNameTxt.getText() + " WITH PASSWORD '" + newPasswordField.getText() + "' CREATEUSER CREATEDB");
+                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("CREATE USER " + logonNameTxt.getText() + " WITH PASSWORD '" + newPasswordField.getText() + "' CREATEROLE CREATEDB");
 
                         java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO secure_menu_access(login_name, menu_list, f_name, l_name, department, sys_name, group_name) VALUES (lower(?),?,?,?,?,?,?)");
 

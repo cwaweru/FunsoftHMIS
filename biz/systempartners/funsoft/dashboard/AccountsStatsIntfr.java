@@ -28,8 +28,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
 
         initComponents();
 
-       // startThreads();
-        
+        startThreads();
     }
 
     /**
@@ -47,9 +46,9 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         helpBtn = new javax.swing.JButton();
         endDatePicker = new com.afrisoftech.lib.DatePicker();
         beginDatePicker = new com.afrisoftech.lib.DatePicker();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        facilityIndicatorsTabbedPane = new javax.swing.JTabbedPane();
         summaryPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        OPAttendanceIndicatorsPanel = new javax.swing.JPanel();
         totalOPDAttendanceLbl = new javax.swing.JLabel();
         totalOPDAttendanceTxt = new javax.swing.JTextField();
         newlyRegisteredPatientTxt = new javax.swing.JTextField();
@@ -139,6 +138,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
+        buttonPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 204, 255), null, new java.awt.Color(102, 102, 255)));
         buttonPanel.setLayout(new java.awt.GridBagLayout());
 
         refreshBtn.setText("Refresh Dashboard");
@@ -182,6 +182,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 1;
         gridBagConstraints.ipady = 1;
         gridBagConstraints.weightx = 1.0;
@@ -192,6 +193,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         buttonPanel.add(beginDatePicker, gridBagConstraints);
@@ -204,13 +206,15 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(buttonPanel, gridBagConstraints);
 
+        facilityIndicatorsTabbedPane.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 153, 255)));
+
         summaryPanel.setBackground(new java.awt.Color(204, 204, 255));
         summaryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Facility Global Service Indicators"));
         summaryPanel.setEnabled(false);
         summaryPanel.setLayout(new java.awt.GridBagLayout());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Patient Attendance Summary"));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        OPAttendanceIndicatorsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Patient Attendance Summary"));
+        OPAttendanceIndicatorsPanel.setLayout(new java.awt.GridBagLayout());
 
         totalOPDAttendanceLbl.setText("Total OPD Attendance (TODAY)");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -218,10 +222,11 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel1.add(totalOPDAttendanceLbl, gridBagConstraints);
+        OPAttendanceIndicatorsPanel.add(totalOPDAttendanceLbl, gridBagConstraints);
 
         totalOPDAttendanceTxt.setEditable(false);
         totalOPDAttendanceTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        totalOPDAttendanceTxt.setText("0");
         totalOPDAttendanceTxt.setMinimumSize(new java.awt.Dimension(100, 20));
         totalOPDAttendanceTxt.setPreferredSize(new java.awt.Dimension(100, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -229,10 +234,11 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(totalOPDAttendanceTxt, gridBagConstraints);
+        OPAttendanceIndicatorsPanel.add(totalOPDAttendanceTxt, gridBagConstraints);
 
         newlyRegisteredPatientTxt.setEditable(false);
         newlyRegisteredPatientTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        newlyRegisteredPatientTxt.setText("0");
         newlyRegisteredPatientTxt.setMinimumSize(new java.awt.Dimension(100, 20));
         newlyRegisteredPatientTxt.setPreferredSize(new java.awt.Dimension(100, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -240,7 +246,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(newlyRegisteredPatientTxt, gridBagConstraints);
+        OPAttendanceIndicatorsPanel.add(newlyRegisteredPatientTxt, gridBagConstraints);
 
         newlyRegisteredPatientsLbl.setText("Newly Registered Patients (TODAY)");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -250,7 +256,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel1.add(newlyRegisteredPatientsLbl, gridBagConstraints);
+        OPAttendanceIndicatorsPanel.add(newlyRegisteredPatientsLbl, gridBagConstraints);
 
         revisitingPatientsTodayLbl.setText("Revisiting Patients (TODAY)");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -260,10 +266,11 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel1.add(revisitingPatientsTodayLbl, gridBagConstraints);
+        OPAttendanceIndicatorsPanel.add(revisitingPatientsTodayLbl, gridBagConstraints);
 
         revisitingOPDPatientsTxt.setEditable(false);
         revisitingOPDPatientsTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        revisitingOPDPatientsTxt.setText("0");
         revisitingOPDPatientsTxt.setMinimumSize(new java.awt.Dimension(100, 20));
         revisitingOPDPatientsTxt.setPreferredSize(new java.awt.Dimension(100, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -271,10 +278,11 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.gridy = 2;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(revisitingOPDPatientsTxt, gridBagConstraints);
+        OPAttendanceIndicatorsPanel.add(revisitingOPDPatientsTxt, gridBagConstraints);
 
         staffOPDAttendanceTxt.setEditable(false);
         staffOPDAttendanceTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        staffOPDAttendanceTxt.setText("0");
         staffOPDAttendanceTxt.setMinimumSize(new java.awt.Dimension(100, 20));
         staffOPDAttendanceTxt.setPreferredSize(new java.awt.Dimension(100, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -282,7 +290,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(staffOPDAttendanceTxt, gridBagConstraints);
+        OPAttendanceIndicatorsPanel.add(staffOPDAttendanceTxt, gridBagConstraints);
 
         staffOPDAttendanceLbl.setText("Daily Staff Visits (OPD) (TODAY)");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -292,7 +300,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel1.add(staffOPDAttendanceLbl, gridBagConstraints);
+        OPAttendanceIndicatorsPanel.add(staffOPDAttendanceLbl, gridBagConstraints);
 
         mtdOPDAttendanceLbl.setText("Month To Date OPD Attendance");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -302,10 +310,11 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel1.add(mtdOPDAttendanceLbl, gridBagConstraints);
+        OPAttendanceIndicatorsPanel.add(mtdOPDAttendanceLbl, gridBagConstraints);
 
         mtdOPDAttendanceTxt.setEditable(false);
         mtdOPDAttendanceTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        mtdOPDAttendanceTxt.setText("0");
         mtdOPDAttendanceTxt.setMinimumSize(new java.awt.Dimension(100, 20));
         mtdOPDAttendanceTxt.setPreferredSize(new java.awt.Dimension(100, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -313,7 +322,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.gridy = 4;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(mtdOPDAttendanceTxt, gridBagConstraints);
+        OPAttendanceIndicatorsPanel.add(mtdOPDAttendanceTxt, gridBagConstraints);
 
         ytdOPDAttendanceLbl.setText("Year To Date OPD Attendance");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -323,10 +332,11 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel1.add(ytdOPDAttendanceLbl, gridBagConstraints);
+        OPAttendanceIndicatorsPanel.add(ytdOPDAttendanceLbl, gridBagConstraints);
 
         ytdOPDAtendanceTxt.setEditable(false);
         ytdOPDAtendanceTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        ytdOPDAtendanceTxt.setText("0");
         ytdOPDAtendanceTxt.setMinimumSize(new java.awt.Dimension(100, 20));
         ytdOPDAtendanceTxt.setPreferredSize(new java.awt.Dimension(100, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -334,17 +344,19 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(ytdOPDAtendanceTxt, gridBagConstraints);
+        OPAttendanceIndicatorsPanel.add(ytdOPDAtendanceTxt, gridBagConstraints);
 
-        averageDailyRevisitsLbl.setText("Average Daily Revisits");
+        averageDailyRevisitsLbl.setText("Average Daily OPD Revisits");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel1.add(averageDailyRevisitsLbl, gridBagConstraints);
+        OPAttendanceIndicatorsPanel.add(averageDailyRevisitsLbl, gridBagConstraints);
 
         averageDailyRevisitsTxt.setEditable(false);
+        averageDailyRevisitsTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        averageDailyRevisitsTxt.setText("0");
         averageDailyRevisitsTxt.setMinimumSize(new java.awt.Dimension(100, 20));
         averageDailyRevisitsTxt.setPreferredSize(new java.awt.Dimension(100, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -352,7 +364,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(averageDailyRevisitsTxt, gridBagConstraints);
+        OPAttendanceIndicatorsPanel.add(averageDailyRevisitsTxt, gridBagConstraints);
 
         averageOPDAttendanceLbl.setText("Average Daily OPD Attendance");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -362,9 +374,11 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel1.add(averageOPDAttendanceLbl, gridBagConstraints);
+        OPAttendanceIndicatorsPanel.add(averageOPDAttendanceLbl, gridBagConstraints);
 
         averageDailyAttendanceTxt.setEditable(false);
+        averageDailyAttendanceTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        averageDailyAttendanceTxt.setText("0");
         averageDailyAttendanceTxt.setMinimumSize(new java.awt.Dimension(100, 20));
         averageDailyAttendanceTxt.setPreferredSize(new java.awt.Dimension(100, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -372,7 +386,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.gridy = 7;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(averageDailyAttendanceTxt, gridBagConstraints);
+        OPAttendanceIndicatorsPanel.add(averageDailyAttendanceTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -381,7 +395,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.weighty = 200.0;
-        summaryPanel.add(jPanel1, gridBagConstraints);
+        summaryPanel.add(OPAttendanceIndicatorsPanel, gridBagConstraints);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("IP Resources Summary"));
         jPanel2.setLayout(new java.awt.GridBagLayout());
@@ -513,6 +527,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
 
         ytdAdmissionsTxt.setEditable(false);
         ytdAdmissionsTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        ytdAdmissionsTxt.setText("0");
         ytdAdmissionsTxt.setMinimumSize(new java.awt.Dimension(100, 20));
         ytdAdmissionsTxt.setPreferredSize(new java.awt.Dimension(100, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -533,6 +548,8 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         jPanel2.add(averageDailyAdmissionsLbl, gridBagConstraints);
 
         averageDailyAdmissionsTxt.setEditable(false);
+        averageDailyAdmissionsTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        averageDailyAdmissionsTxt.setText("0");
         averageDailyAdmissionsTxt.setMinimumSize(new java.awt.Dimension(100, 20));
         averageDailyAdmissionsTxt.setPreferredSize(new java.awt.Dimension(100, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -553,6 +570,8 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         jPanel2.add(averangeDailyReadmissionsLbl, gridBagConstraints);
 
         averageDailyReadmissionsTxt.setEditable(false);
+        averageDailyReadmissionsTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        averageDailyReadmissionsTxt.setText("0");
         averageDailyReadmissionsTxt.setMinimumSize(new java.awt.Dimension(100, 20));
         averageDailyReadmissionsTxt.setPreferredSize(new java.awt.Dimension(100, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -605,7 +624,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         ledgerBalancesPanel.add(totalCashCollectedLbl, gridBagConstraints);
 
-        dailyCashCollectionHplk.setText("");
+        dailyCashCollectionHplk.setText("0.00");
         dailyCashCollectionHplk.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         dailyCashCollectionHplk.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         dailyCashCollectionHplk.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -654,7 +673,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         ledgerBalancesPanel.add(qtdCashTotalLbl, gridBagConstraints);
 
         mtdCashTotalHplk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        mtdCashTotalHplk.setText("");
+        mtdCashTotalHplk.setText("0.00");
         mtdCashTotalHplk.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         mtdCashTotalHplk.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         mtdCashTotalHplk.setMinimumSize(new java.awt.Dimension(100, 20));
@@ -667,7 +686,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weighty = 1.0;
         ledgerBalancesPanel.add(mtdCashTotalHplk, gridBagConstraints);
 
-        qtdCashTotalHplk.setText("");
+        qtdCashTotalHplk.setText("0.00");
         qtdCashTotalHplk.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         qtdCashTotalHplk.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         qtdCashTotalHplk.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -679,7 +698,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weighty = 1.0;
         ledgerBalancesPanel.add(qtdCashTotalHplk, gridBagConstraints);
 
-        ytdCashTotalHplk.setText("");
+        ytdCashTotalHplk.setText("0.00");
         ytdCashTotalHplk.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         ytdCashTotalHplk.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         ytdCashTotalHplk.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -751,7 +770,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         ledgerBalancesPanel.add(jLabel9, gridBagConstraints);
 
-        jLabel10.setText("Year to Date Total Equity/Funding");
+        jLabel10.setText("Year to Date Total Equity/Funding/Grants");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
@@ -821,7 +840,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         ledgerBalancesPanel.add(jLabel16, gridBagConstraints);
 
-        ytdGRNTotalHplk.setText("");
+        ytdGRNTotalHplk.setText("0.00");
         ytdGRNTotalHplk.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         ytdGRNTotalHplk.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         ytdGRNTotalHplk.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -833,7 +852,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weighty = 1.0;
         ledgerBalancesPanel.add(ytdGRNTotalHplk, gridBagConstraints);
 
-        ytdPCardTotalHplk2.setText("");
+        ytdPCardTotalHplk2.setText("0.00");
         ytdPCardTotalHplk2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         ytdPCardTotalHplk2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         ytdPCardTotalHplk2.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -845,7 +864,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weighty = 1.0;
         ledgerBalancesPanel.add(ytdPCardTotalHplk2, gridBagConstraints);
 
-        ytdInventoryTotalHplk3.setText("");
+        ytdInventoryTotalHplk3.setText("0.00");
         ytdInventoryTotalHplk3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         ytdInventoryTotalHplk3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         ytdInventoryTotalHplk3.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -857,7 +876,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weighty = 1.0;
         ledgerBalancesPanel.add(ytdInventoryTotalHplk3, gridBagConstraints);
 
-        ytdCashBookTotalHplk4.setText("");
+        ytdCashBookTotalHplk4.setText("0.00");
         ytdCashBookTotalHplk4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         ytdCashBookTotalHplk4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         ytdCashBookTotalHplk4.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -869,7 +888,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weighty = 1.0;
         ledgerBalancesPanel.add(ytdCashBookTotalHplk4, gridBagConstraints);
 
-        ytdExpensesTotalHplk5.setText("");
+        ytdExpensesTotalHplk5.setText("0.00");
         ytdExpensesTotalHplk5.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         ytdExpensesTotalHplk5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         ytdExpensesTotalHplk5.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -881,7 +900,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weighty = 1.0;
         ledgerBalancesPanel.add(ytdExpensesTotalHplk5, gridBagConstraints);
 
-        ytdRevenueTotalHplk6.setText("");
+        ytdRevenueTotalHplk6.setText("0.00");
         ytdRevenueTotalHplk6.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         ytdRevenueTotalHplk6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         ytdRevenueTotalHplk6.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -893,7 +912,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weighty = 1.0;
         ledgerBalancesPanel.add(ytdRevenueTotalHplk6, gridBagConstraints);
 
-        ytdLiabilitiesTotalHplk7.setText("");
+        ytdLiabilitiesTotalHplk7.setText("0.00");
         ytdLiabilitiesTotalHplk7.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         ytdLiabilitiesTotalHplk7.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         ytdLiabilitiesTotalHplk7.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -905,7 +924,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weighty = 1.0;
         ledgerBalancesPanel.add(ytdLiabilitiesTotalHplk7, gridBagConstraints);
 
-        ytdEquityFundingTotalHplk8.setText("");
+        ytdEquityFundingTotalHplk8.setText("0.00");
         ytdEquityFundingTotalHplk8.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         ytdEquityFundingTotalHplk8.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         ytdEquityFundingTotalHplk8.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -917,7 +936,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weighty = 1.0;
         ledgerBalancesPanel.add(ytdEquityFundingTotalHplk8, gridBagConstraints);
 
-        ytdCreditorsTotalHplk9.setText("");
+        ytdCreditorsTotalHplk9.setText("0.00");
         ytdCreditorsTotalHplk9.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         ytdCreditorsTotalHplk9.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         ytdCreditorsTotalHplk9.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -929,7 +948,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weighty = 1.0;
         ledgerBalancesPanel.add(ytdCreditorsTotalHplk9, gridBagConstraints);
 
-        ytdDebtorsTotalHplk10.setText("");
+        ytdDebtorsTotalHplk10.setText("0.00");
         ytdDebtorsTotalHplk10.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         ytdDebtorsTotalHplk10.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         ytdDebtorsTotalHplk10.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -941,7 +960,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weighty = 1.0;
         ledgerBalancesPanel.add(ytdDebtorsTotalHplk10, gridBagConstraints);
 
-        ytdRevenueTotalHplk11.setText("");
+        ytdRevenueTotalHplk11.setText("0.00");
         ytdRevenueTotalHplk11.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         ytdRevenueTotalHplk11.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         ytdRevenueTotalHplk11.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -953,7 +972,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weighty = 1.0;
         ledgerBalancesPanel.add(ytdRevenueTotalHplk11, gridBagConstraints);
 
-        qtdRevenueTotalHplk12.setText("");
+        qtdRevenueTotalHplk12.setText("0.00");
         qtdRevenueTotalHplk12.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         qtdRevenueTotalHplk12.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         qtdRevenueTotalHplk12.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -965,7 +984,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weighty = 1.0;
         ledgerBalancesPanel.add(qtdRevenueTotalHplk12, gridBagConstraints);
 
-        mtdRevenueTotalHplk13.setText("");
+        mtdRevenueTotalHplk13.setText("0.00");
         mtdRevenueTotalHplk13.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         mtdRevenueTotalHplk13.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         mtdRevenueTotalHplk13.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -991,7 +1010,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weighty = 1.0;
         summaryPanel.add(jLabel3, gridBagConstraints);
 
-        jTabbedPane1.addTab("Global Service Indicators", summaryPanel);
+        facilityIndicatorsTabbedPane.addTab("Global Service Indicators", summaryPanel);
 
         accountDetaledPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -1011,10 +1030,10 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.weighty = 1.0;
         accountDetaledPanel.add(detailsScrollPane, gridBagConstraints);
 
-        jTabbedPane1.addTab("Account Details Panel", accountDetaledPanel);
+        facilityIndicatorsTabbedPane.addTab("Account Details Panel", accountDetaledPanel);
 
         trendAnalysisPanel.setLayout(new java.awt.GridBagLayout());
-        jTabbedPane1.addTab("Charts and Trend Analysis", trendAnalysisPanel);
+        facilityIndicatorsTabbedPane.addTab("Charts and Trend Analysis", trendAnalysisPanel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1022,7 +1041,7 @@ public class AccountsStatsIntfr extends javax.swing.JInternalFrame implements ja
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 200.0;
-        getContentPane().add(jTabbedPane1, gridBagConstraints);
+        getContentPane().add(facilityIndicatorsTabbedPane, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1102,7 +1121,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                     java.sql.PreparedStatement dailyOpdPstmt = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date::date = '" + endDatePicker.getDate() + "'::date ");
                     java.sql.ResultSet dailyOpdRset = dailyOpdPstmt.executeQuery();
                     while (dailyOpdRset.next()) {
-                        totalOPDAttendanceTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedInteger(dailyOpdRset.getInt(1)));
+                        totalOPDAttendanceTxt.setText(String.valueOf(dailyOpdRset.getInt(1)));
                     }
                     dailyOpdRset.close();
                     dailyOpdPstmt.close();
@@ -1135,7 +1154,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                     java.sql.PreparedStatement dailyOpdNewPstmt = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date::date = '" + endDatePicker.getDate() + "'::date AND comments = 'New' ");
                     java.sql.ResultSet dailyOpdNewRset = dailyOpdNewPstmt.executeQuery();
                     while (dailyOpdNewRset.next()) {
-                        newlyRegisteredPatientTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedInteger(dailyOpdNewRset.getInt(1)));
+                        newlyRegisteredPatientTxt.setText(String.valueOf(dailyOpdNewRset.getInt(1)));
                     }
                     dailyOpdNewRset.close();
                     dailyOpdNewPstmt.close();
@@ -1169,7 +1188,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                     java.sql.PreparedStatement dailyOpdOldPstmt = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date::date = '" + endDatePicker.getDate() + "'::date AND comments = 'Old' ");
                     java.sql.ResultSet dailyOpdOldRset = dailyOpdOldPstmt.executeQuery();
                     while (dailyOpdOldRset.next()) {
-                        revisitingOPDPatientsTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedInteger(dailyOpdOldRset.getInt(1)));
+                        revisitingOPDPatientsTxt.setText(String.valueOf(dailyOpdOldRset.getInt(1)));
                     }
                     dailyOpdOldRset.close();
                     dailyOpdOldPstmt.close();
@@ -1203,7 +1222,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                     java.sql.PreparedStatement dailyOpdStaffPstmt = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date::date = '" + endDatePicker.getDate() + "'::date AND department ILIKE 'Staff' ");
                     java.sql.ResultSet dailyOpdStaffRset = dailyOpdStaffPstmt.executeQuery();
                     while (dailyOpdStaffRset.next()) {
-                        staffOPDAttendanceTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedInteger(dailyOpdStaffRset.getInt(1)));
+                        staffOPDAttendanceTxt.setText(String.valueOf(dailyOpdStaffRset.getInt(1)));
                     }
                     dailyOpdStaffRset.close();
                     dailyOpdStaffPstmt.close();
@@ -1240,7 +1259,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
 
                     java.sql.ResultSet previousAdmRset = previousAdmPstmt.executeQuery();
                     while (previousAdmRset.next()) {
-                        previousPatientsTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedInteger(previousAdmRset.getInt(1)));
+                        previousPatientsTxt.setText(String.valueOf(previousAdmRset.getInt(1)));
                     }
                     previousAdmRset.close();
                     previousAdmPstmt.close();
@@ -1273,7 +1292,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                     java.sql.PreparedStatement dailyAdmissionPstmt = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_admission WHERE date_admitted = '" + endDatePicker.getDate() + "' AND adm_type ILIKE 'First%' ");
                     java.sql.ResultSet dailyAdmissionRset = dailyAdmissionPstmt.executeQuery();
                     while (dailyAdmissionRset.next()) {
-                        totalDailyAdmissionsTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedInteger(dailyAdmissionRset.getInt(1)));
+                        totalDailyAdmissionsTxt.setText(String.valueOf(dailyAdmissionRset.getInt(1)));
                     }
                     dailyAdmissionRset.close();
                     dailyAdmissionPstmt.close();
@@ -1307,7 +1326,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                     ReAdmissionPstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()));
                     java.sql.ResultSet ReAdmissionRset = ReAdmissionPstmt.executeQuery();
                     while (ReAdmissionRset.next()) {
-                        totalDailyReadmissionsTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedInteger(ReAdmissionRset.getInt(1)));
+                        totalDailyReadmissionsTxt.setText(String.valueOf(ReAdmissionRset.getInt(1)));
                     }
                     ReAdmissionRset.close();
                     ReAdmissionPstmt.close();
@@ -1341,7 +1360,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                     TotalAdmissionPstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()));
                     java.sql.ResultSet TotalAdmissionRset = TotalAdmissionPstmt.executeQuery();
                     while (TotalAdmissionRset.next()) {
-                        weeklyAdmissionsTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedInteger(TotalAdmissionRset.getInt(1)));
+                        weeklyAdmissionsTxt.setText(String.valueOf(TotalAdmissionRset.getInt(1)));
                     }
                     TotalAdmissionRset.close();
                     TotalAdmissionPstmt.close();
@@ -1375,7 +1394,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                     TotalDischargesPstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()));
                     java.sql.ResultSet TotalDischargesRset = TotalDischargesPstmt.executeQuery();
                     while (TotalDischargesRset.next()) {
-                        dailyDischargesTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedInteger(TotalDischargesRset.getInt(1)));
+                        dailyDischargesTxt.setText(String.valueOf(TotalDischargesRset.getInt(1)));
                     }
                     TotalDischargesRset.close();
                     TotalDischargesPstmt.close();
@@ -1422,7 +1441,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
 
                         while (TotalIpRset.next()) {
                             allpatients = TotalIpRset.getInt(1);
-                            inPatientTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedInteger(allpatients - discharges));
+                            inPatientTxt.setText(String.valueOf(allpatients - discharges));
                         }
                     }
                     TotalIpRset.close();
@@ -1509,7 +1528,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                     }
                     java.sql.ResultSet MonthOpdRset = MonthOpdPstmt.executeQuery();
                     while (MonthOpdRset.next()) {
-                        mtdOPDAttendanceTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedInteger(MonthOpdRset.getInt(1)));
+                        mtdOPDAttendanceTxt.setText(String.valueOf(MonthOpdRset.getInt(1)));
                     }
                     MonthOpdRset.close();
                     MonthOpdPstmt.close();
@@ -1557,7 +1576,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                     java.sql.ResultSet yearlyOpdRset = yearlyOpdPstmt.executeQuery();
 
                     while (yearlyOpdRset.next()) {
-                        ytdOPDAtendanceTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedInteger(yearlyOpdRset.getInt(1)));
+                        ytdOPDAtendanceTxt.setText(String.valueOf(yearlyOpdRset.getInt(1)));
                     }
                     yearlyOpdRset.close();
                     yearlyOpdPstmt.close();
@@ -1604,7 +1623,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                     java.sql.ResultSet yearlyAdmRset = yearlyAdmPstmt.executeQuery();
 
                     while (yearlyAdmRset.next()) {
-                        ytdAdmissionsTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedInteger(yearlyAdmRset.getInt(1)));
+                        ytdAdmissionsTxt.setText(String.valueOf(yearlyAdmRset.getInt(1)));
                     }
                     yearlyAdmRset.close();
                     yearlyAdmPstmt.close();
@@ -1744,7 +1763,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                     java.sql.ResultSet yearlyBillsRset = yearlyBillsPstmt.executeQuery();
 
                     while (yearlyBillsRset.next()) {
-                        ytdPCardTotalHplk2.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(yearlyBillsRset.getDouble(1)));
+                        ytdRevenueTotalHplk11.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(yearlyBillsRset.getDouble(1)));
                     }
                     yearlyBillsRset.close();
                     yearlyBillsPstmt.close();
@@ -1921,7 +1940,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                 java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
 
                 try {
-                    java.sql.PreparedStatement yearlyCashCollectionPstmt = connectDB.prepareStatement("SELECT sum(debit-credit) FROM ac_accounts_payable WHERE  date between ? AND ?");
+                    java.sql.PreparedStatement yearlyCashCollectionPstmt = connectDB.prepareStatement("SELECT sum(credit-debit) FROM ac_accounts_payable WHERE  date between ? AND ?");
                     try {
                         yearlyCashCollectionPstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(rangeDates[0][0].toString().trim())));
                         yearlyCashCollectionPstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(endDatePicker.getDate().toString())));
@@ -2203,10 +2222,10 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                 java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
 
                 try {
-                    java.sql.PreparedStatement yearlyCashCollectionPstmt = connectDB.prepareStatement("SELECT sum(credit-debit) FROM ac_ledger WHERE  description ilike 'grn%' AND date between ? AND ?");
+                    java.sql.PreparedStatement yearlyCashCollectionPstmt = connectDB.prepareStatement("SELECT sum(credit-debit) FROM ac_ledger WHERE  description ilike 'grn%' AND date <= ?");
                     try {
-                        yearlyCashCollectionPstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(beginDatePicker.getDate().toString())));
-                        yearlyCashCollectionPstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(endDatePicker.getDate().toString())));
+                        //    yearlyCashCollectionPstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(beginDatePicker.getDate().toString())));
+                        yearlyCashCollectionPstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(endDatePicker.getDate().toString())));
                     } catch (ParseException ex) {
                         Logger.getLogger(AccountsStatsIntfr.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -2344,10 +2363,10 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                 java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
 
                 try {
-                    java.sql.PreparedStatement cashBookBalancePstmt = connectDB.prepareStatement("SELECT sum(debit-credit) FROM ac_cash_book WHERE date between ? AND ?");
+                    java.sql.PreparedStatement cashBookBalancePstmt = connectDB.prepareStatement("SELECT sum(debit-credit) FROM ac_cash_book WHERE date <= ?");
                     try {
-                        cashBookBalancePstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(rangeDates[0][0].toString().trim())));
-                        cashBookBalancePstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(endDatePicker.getDate().toString())));
+                        // cashBookBalancePstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(rangeDates[0][0].toString().trim())));
+                        cashBookBalancePstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(endDatePicker.getDate().toString())));
                     } catch (ParseException ex) {
                         Logger.getLogger(AccountsStatsIntfr.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -2407,7 +2426,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                     cashAtHandBalanceRset.close();
                     cashAtHandBalancePstmt.close();
 
-                        // yearlyCashCollectionRset = null;
+                    // yearlyCashCollectionRset = null;
                     // yearlyCashCollectionPstmt = null;
                 } catch (SQLException ex) {
                     Logger.getLogger(AccountsStatsIntfr.class.getName()).log(Level.SEVERE, null, ex);
@@ -2454,7 +2473,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                     cashAtHandBalanceRset.close();
                     cashAtHandBalancePstmt.close();
 
-                        // yearlyCashCollectionRset = null;
+                    // yearlyCashCollectionRset = null;
                     // yearlyCashCollectionPstmt = null;
                 } catch (SQLException ex) {
                     Logger.getLogger(AccountsStatsIntfr.class.getName()).log(Level.SEVERE, null, ex);
@@ -2470,8 +2489,8 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
             }
         }
     }
-    
-        class TotalExpenses extends Thread {
+
+    class TotalExpenses extends Thread {
 
         public void TotalExpenses() {
         }
@@ -2485,7 +2504,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                 java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
 
                 try {
-                    java.sql.PreparedStatement cashAtHandBalancePstmt = connectDB.prepareStatement("SELECT sum(debit-credit) FROM ac_ledger WHERE activity_code ilike '8%' AND date between ? AND ?");
+                    java.sql.PreparedStatement cashAtHandBalancePstmt = connectDB.prepareStatement("SELECT sum(debit-credit) FROM ac_ledger WHERE activity_code IN (SELECT code FROM pb_activity WHERE upper(category_class) = upper('pled')) AND date between ? AND ?");
                     try {
                         cashAtHandBalancePstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(beginDatePicker.getDate().toString())));
                         cashAtHandBalancePstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(endDatePicker.getDate().toString())));
@@ -2501,7 +2520,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                     cashAtHandBalanceRset.close();
                     cashAtHandBalancePstmt.close();
 
-                        // yearlyCashCollectionRset = null;
+                    // yearlyCashCollectionRset = null;
                     // yearlyCashCollectionPstmt = null;
                 } catch (SQLException ex) {
                     Logger.getLogger(AccountsStatsIntfr.class.getName()).log(Level.SEVERE, null, ex);
@@ -2517,7 +2536,8 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
             }
         }
     }
-        class TotalIncome extends Thread {
+
+    class TotalIncome extends Thread {
 
         public void TotalIncome() {
         }
@@ -2531,7 +2551,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                 java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
 
                 try {
-                    java.sql.PreparedStatement cashAtHandBalancePstmt = connectDB.prepareStatement("SELECT sum(credit-debit) FROM ac_ledger WHERE activity_code ilike '6%' date between ? AND ?");
+                    java.sql.PreparedStatement cashAtHandBalancePstmt = connectDB.prepareStatement("SELECT sum(credit-debit) FROM ac_ledger WHERE activity_code IN (SELECT code FROM pb_activity WHERE activity_category ILIKE 'I') AND date between ? AND ?");
                     try {
                         cashAtHandBalancePstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(beginDatePicker.getDate().toString())));
                         cashAtHandBalancePstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(endDatePicker.getDate().toString())));
@@ -2547,7 +2567,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                     cashAtHandBalanceRset.close();
                     cashAtHandBalancePstmt.close();
 
-                        // yearlyCashCollectionRset = null;
+                    // yearlyCashCollectionRset = null;
                     // yearlyCashCollectionPstmt = null;
                 } catch (SQLException ex) {
                     Logger.getLogger(AccountsStatsIntfr.class.getName()).log(Level.SEVERE, null, ex);
@@ -2563,8 +2583,273 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
             }
         }
     }
-    private void startThreads(){
-        
+
+    class AverageOPDREAttendance extends Thread {
+
+        public void AverageOPDREAttendance() {
+        }
+
+        @Override
+        public synchronized void run() {
+            while (true) {
+                // if (endDatePicker.getDate() != null) {
+//                com.afrisoftech.timeseries.YearyAgeing yearlyAgeingSeries = new com.afrisoftech.timeseries.YearyAgeing(1, endDatePicker.getDate());
+//                java.lang.Object[][] rangeDates = yearlyAgeingSeries.getAgeingDateSeries();
+//                java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+
+                try {
+                    java.sql.PreparedStatement averageOPDReAttendancePstmt = connectDB.prepareStatement("SELECT (count(patient_no)/90)::numeric(10,0) FROM hp_patient_visit WHERE upper(comments) = upper('old') AND date between ?::date - 90 AND ?::date");
+
+                    averageOPDReAttendancePstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()));
+                    averageOPDReAttendancePstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()));
+
+                    java.sql.ResultSet averageOPDReAttendanceRset = averageOPDReAttendancePstmt.executeQuery();
+
+                    while (averageOPDReAttendanceRset.next()) {
+                        averageDailyRevisitsTxt.setText(String.valueOf(averageOPDReAttendanceRset.getInt(1)));
+                    }
+                    averageOPDReAttendanceRset.close();
+                    averageOPDReAttendancePstmt.close();
+
+                    // yearlyCashCollectionRset = null;
+                    // yearlyCashCollectionPstmt = null;
+                } catch (SQLException ex) {
+                    Logger.getLogger(AccountsStatsIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                    // javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.toString());
+                }
+                try {
+                    Thread.sleep(statisticsSnoozeTime);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(AccountsStatsIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                // }
+
+            }
+        }
+    }
+
+    class AverageOPDAttendance extends Thread {
+
+        public void AverageOPDAttendance() {
+        }
+
+        @Override
+        public synchronized void run() {
+            while (true) {
+                // if (endDatePicker.getDate() != null) {
+//                com.afrisoftech.timeseries.YearyAgeing yearlyAgeingSeries = new com.afrisoftech.timeseries.YearyAgeing(1, endDatePicker.getDate());
+//                java.lang.Object[][] rangeDates = yearlyAgeingSeries.getAgeingDateSeries();
+//                java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+
+                try {
+                    java.sql.PreparedStatement averageOPDAttendancePstmt = connectDB.prepareStatement("SELECT (count(patient_no)/90)::numeric(15,0) FROM hp_patient_visit WHERE  date between ?::date - 90 AND ?::date");
+
+                    averageOPDAttendancePstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()));
+                    averageOPDAttendancePstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()));
+
+                    java.sql.ResultSet averageOPDAttendanceRset = averageOPDAttendancePstmt.executeQuery();
+
+                    while (averageOPDAttendanceRset.next()) {
+                        averageDailyAttendanceTxt.setText(String.valueOf(averageOPDAttendanceRset.getInt(1)));
+                    }
+                    averageOPDAttendanceRset.close();
+                    averageOPDAttendancePstmt.close();
+
+                    // yearlyCashCollectionRset = null;
+                    // yearlyCashCollectionPstmt = null;
+                } catch (SQLException ex) {
+                    Logger.getLogger(AccountsStatsIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                    // javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.toString());
+                }
+                try {
+                    Thread.sleep(statisticsSnoozeTime);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(AccountsStatsIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                // }
+
+            }
+        }
+    }
+
+    class AverageDailyAdmissions extends Thread {
+
+        public void AverageDailyAdmissions() {
+        }
+
+        @Override
+        public synchronized void run() {
+            while (true) {
+                // if (endDatePicker.getDate() != null) {
+//                com.afrisoftech.timeseries.YearyAgeing yearlyAgeingSeries = new com.afrisoftech.timeseries.YearyAgeing(1, endDatePicker.getDate());
+//                java.lang.Object[][] rangeDates = yearlyAgeingSeries.getAgeingDateSeries();
+//                java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+
+                try {
+                    java.sql.PreparedStatement averageDailyAdmissionsPstmt = connectDB.prepareStatement("SELECT (count(patient_no)/90)::numeric(15,0) FROM hp_admission WHERE  date_admitted between ?::date - 90 AND ?::date");
+
+                    averageDailyAdmissionsPstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()));
+                    averageDailyAdmissionsPstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()));
+
+                    java.sql.ResultSet averageDailyAdmissionsRset = averageDailyAdmissionsPstmt.executeQuery();
+
+                    while (averageDailyAdmissionsRset.next()) {
+                        averageDailyAdmissionsTxt.setText(String.valueOf(averageDailyAdmissionsRset.getInt(1)));
+                    }
+                    averageDailyAdmissionsRset.close();
+                    averageDailyAdmissionsPstmt.close();
+
+                    // yearlyCashCollectionRset = null;
+                    // yearlyCashCollectionPstmt = null;
+                } catch (SQLException ex) {
+                    Logger.getLogger(AccountsStatsIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                    // javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.toString());
+                }
+                try {
+                    Thread.sleep(statisticsSnoozeTime);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(AccountsStatsIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                // }
+
+            }
+        }
+    }
+
+    class AverageDailyREAdmissions extends Thread {
+
+        public void AverageDailyREAdmissions() {
+        }
+
+        @Override
+        public synchronized void run() {
+            while (true) {
+                // if (endDatePicker.getDate() != null) {
+//                com.afrisoftech.timeseries.YearyAgeing yearlyAgeingSeries = new com.afrisoftech.timeseries.YearyAgeing(1, endDatePicker.getDate());
+//                java.lang.Object[][] rangeDates = yearlyAgeingSeries.getAgeingDateSeries();
+//                java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+
+                try {
+                    java.sql.PreparedStatement averageDailyREAdmissionsPstmt = connectDB.prepareStatement("SELECT (count(patient_no)/90)::numeric(15,0) FROM hp_admission WHERE adm_type ILIKE 're%' AND date_admitted between ?::date - 90 AND ?::date");
+
+                    averageDailyREAdmissionsPstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()));
+                    averageDailyREAdmissionsPstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()));
+
+                    java.sql.ResultSet averageDailyREAdmissionsRset = averageDailyREAdmissionsPstmt.executeQuery();
+
+                    while (averageDailyREAdmissionsRset.next()) {
+                        averageDailyReadmissionsTxt.setText(String.valueOf(averageDailyREAdmissionsRset.getInt(1)));
+                    }
+                    averageDailyREAdmissionsRset.close();
+                    averageDailyREAdmissionsPstmt.close();
+
+                    // yearlyCashCollectionRset = null;
+                    // yearlyCashCollectionPstmt = null;
+                } catch (SQLException ex) {
+                    Logger.getLogger(AccountsStatsIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                    // javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.toString());
+                }
+                try {
+                    Thread.sleep(statisticsSnoozeTime);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(AccountsStatsIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                // }
+
+            }
+        }
+    }
+
+    class Liabilities extends Thread {
+
+        public void Liabilities() {
+        }
+
+        @Override
+        public synchronized void run() {
+            while (true) {
+                // if (endDatePicker.getDate() != null) {
+//                com.afrisoftech.timeseries.YearyAgeing yearlyAgeingSeries = new com.afrisoftech.timeseries.YearyAgeing(1, endDatePicker.getDate());
+//                java.lang.Object[][] rangeDates = yearlyAgeingSeries.getAgeingDateSeries();
+//                java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+
+                try {
+                    java.sql.PreparedStatement liabilitiesPstmt = connectDB.prepareStatement("SELECT sum(credit-debit) FROM ac_ledger WHERE activity_code IN (SELECT code FROM pb_activity WHERE upper(category_class) = upper('bl')) AND date <= ?::date");
+
+                    //liabilitiesPstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()));
+                    liabilitiesPstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()));
+
+                    java.sql.ResultSet liabilitiesRset = liabilitiesPstmt.executeQuery();
+
+                    while (liabilitiesRset.next()) {
+                        ytdLiabilitiesTotalHplk7.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(liabilitiesRset.getDouble(1)));
+                    }
+                    liabilitiesRset.close();
+                    liabilitiesPstmt.close();
+
+                    // yearlyCashCollectionRset = null;
+                    // yearlyCashCollectionPstmt = null;
+                } catch (SQLException ex) {
+                    Logger.getLogger(AccountsStatsIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                    // javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.toString());
+                }
+                try {
+                    Thread.sleep(statisticsSnoozeTime);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(AccountsStatsIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                // }
+
+            }
+        }
+    }
+
+    class GrantsAndEquity extends Thread {
+
+        public void GrantsAndEquity() {
+        }
+
+        @Override
+        public synchronized void run() {
+            while (true) {
+                // if (endDatePicker.getDate() != null) {
+//                com.afrisoftech.timeseries.YearyAgeing yearlyAgeingSeries = new com.afrisoftech.timeseries.YearyAgeing(1, endDatePicker.getDate());
+//                java.lang.Object[][] rangeDates = yearlyAgeingSeries.getAgeingDateSeries();
+//                java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+
+                try {
+                    java.sql.PreparedStatement grantsAndEquityPstmt = connectDB.prepareStatement("SELECT sum(credit-debit) FROM ac_ledger WHERE activity_code IN (SELECT code FROM pb_activity WHERE upper(category_class) = upper('bli')) AND date <= ?::date");
+
+                    //liabilitiesPstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()));
+                    grantsAndEquityPstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()));
+
+                    java.sql.ResultSet grantsAndEquityRset = grantsAndEquityPstmt.executeQuery();
+
+                    while (grantsAndEquityRset.next()) {
+                        ytdEquityFundingTotalHplk8.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(grantsAndEquityRset.getDouble(1)));
+                    }
+                    grantsAndEquityRset.close();
+                    grantsAndEquityPstmt.close();
+
+                    // yearlyCashCollectionRset = null;
+                    // yearlyCashCollectionPstmt = null;
+                } catch (SQLException ex) {
+                    Logger.getLogger(AccountsStatsIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                    // javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.toString());
+                }
+                try {
+                    Thread.sleep(statisticsSnoozeTime);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(AccountsStatsIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                // }
+
+            }
+        }
+    }
+
+    private void startThreads() {
+
         statisticsSnoozeTime = Integer.parseInt(System.getProperty("statistics.snooze.time", "5000"));
 
         DailyCashCollection dailyCashCollected = new DailyCashCollection();
@@ -2658,28 +2943,58 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
         PatientCardBalance patientCardBalance = new PatientCardBalance();
 
         patientCardBalance.start();
-        
+
         GRNAccountBalance grnAccountBalance = new GRNAccountBalance();
-        
+
         grnAccountBalance.start();
-        
+
         InventoryBalance inventoryBalance = new InventoryBalance();
-        
+
         inventoryBalance.start();
-        
+
         TotalLiabilities totalLiabilities = new TotalLiabilities();
-        
+
         totalLiabilities.start();
-        
+
         TotalIncome totalIncome = new TotalIncome();
-        
+
         totalIncome.start();
-        
+
         TotalExpenses totalExpenses = new TotalExpenses();
-        
+
         totalExpenses.start();
+
+        AverageOPDAttendance averageOPDAttendance = new AverageOPDAttendance();
+
+        averageOPDAttendance.start();
+
+        AverageOPDREAttendance averageOPDREAttendance = new AverageOPDREAttendance();
+
+        averageOPDREAttendance.start();
+
+        AverageDailyAdmissions averageDailyAdmissions = new AverageDailyAdmissions();
+
+        averageDailyAdmissions.start();
+
+        AverageDailyREAdmissions averageDailyREAdmissions = new AverageDailyREAdmissions();
+
+        averageDailyREAdmissions.start();
+
+        CashBookBalance cashBookBalance = new CashBookBalance();
+
+        cashBookBalance.start();
+
+        Liabilities liabilities = new Liabilities();
+
+        liabilities.start();
+
+        GrantsAndEquity grantsAndEquity = new GrantsAndEquity();
+
+        grantsAndEquity.start();
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel OPAttendanceIndicatorsPanel;
     private javax.swing.JTable accountDetailsPanel;
     private javax.swing.JPanel accountDetaledPanel;
     private javax.swing.JLabel averageDailyAdmissionsLbl;
@@ -2697,6 +3012,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JTextField dailyDischargesTxt;
     private javax.swing.JScrollPane detailsScrollPane;
     private com.afrisoftech.lib.DatePicker endDatePicker;
+    private javax.swing.JTabbedPane facilityIndicatorsTabbedPane;
     private javax.swing.JButton helpBtn;
     private javax.swing.JTextField inPatientTxt;
     private javax.swing.JLabel ipdAdmissionsTotalLbl;
@@ -2715,9 +3031,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel ledgerBalancesPanel;
     private javax.swing.JLabel monthlyAdmissionsLbl;
     private javax.swing.JLabel mtdAdmissionsLbl;

@@ -7,7 +7,7 @@ package com.afrisoftech.hr;
 
 import java.sql.SQLException;
 
-//import com.sun.star.lib.uno.environments.java.java_environment;
+////import com.sun.star.lib.uno.environments.java.java_environment;
 /**
  *
  * @author  Charles W. Waweru <cwaweru@systempartners.biz>
@@ -2181,7 +2181,7 @@ public class UserSetupHRHospitalIntfr extends javax.swing.JInternalFrame {
 
                 }
 
-                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("CREATE USER " + jTextField582.getText() + " WITH PASSWORD '" + jPasswordField1.getText() + "' CREATEUSER CREATEDB");
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("CREATE USER " + jTextField582.getText() + " WITH PASSWORD '" + jPasswordField1.getText() + "' CREATEROLE CREATEDB");
 
                 java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO secure_menu_access(login_name, menu_list, f_name, l_name, department, sys_name, group_name) VALUES (lower(?),?,?,?,?,?,?)");
 

@@ -3384,6 +3384,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         commPanel.add(writeMailBtn, gridBagConstraints);
@@ -8594,7 +8595,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         RevRepotmd.add(iprevbyaccmnit);
 
-        theatrescorecard.setText("Theare Revenue");
+        theatrescorecard.setText("Theater Revenue");
         theatrescorecard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 theatrescorecardActionPerformed(evt);
@@ -12743,7 +12744,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
                     }
                     try {
                         java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO ac_shifts values(?,?)");
-                       // pstmt.setString(1, System.getProperty("cashpoint"));
+                        // pstmt.setString(1, System.getProperty("cashpoint"));
                         pstmt.setString(1, cashPointPett);
                         pstmt.setString(2, "Running");
                         pstmt.executeUpdate();
@@ -16292,7 +16293,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             java.sql.Statement stmtx = connectDB.createStatement();
             java.sql.ResultSet rsetx = stmtx.executeQuery("select code from ac_cash_points_setup where description ilike current_user");
             while (rsetx.next()) {
-                 cashPoint = rsetx.getObject(1).toString();
+                cashPoint = rsetx.getObject(1).toString();
             }
 
             java.sql.Statement stmt = connectDB.createStatement();
@@ -16323,7 +16324,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             System.out.println(sqlex.getMessage());
 
         }
-
 
         // Add your handling code here:
     }//GEN-LAST:event_ReceiptsmnitActionPerformed
@@ -20154,7 +20154,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
             dismth.setSelected(true);
             dismth.setVisible(true);
         } catch (java.beans.PropertyVetoException pvt) {
-            
+
         }
 
     }//GEN-LAST:event_nurseraisebillmnitActionPerformed
@@ -21191,7 +21191,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     }//GEN-LAST:event_patientRegistrationPointsmnitActionPerformed
 
     private void xrayFilmTypesmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xrayFilmTypesmnitActionPerformed
-         com.afrisoftech.hospital.XrayFilmTypesIntfr comp = new com.afrisoftech.hospital.XrayFilmTypesIntfr(connectDB, pConnDB);
+        com.afrisoftech.hospital.XrayFilmTypesIntfr comp = new com.afrisoftech.hospital.XrayFilmTypesIntfr(connectDB, pConnDB);
         saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
         comp.setSize(saccopn.getSize());
         try {
@@ -21608,7 +21608,10 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                 title = "FUNSOFT Integrated Hospital Management Information System (FUNSOFT I-HMIS Ver " + com.afrisoftech.sys.Login2Hospital.version + ") :: " + (rs1.getString(1)); //- ["+jTabbedPane1.getSelectedComponent().getName()+"]";
 
             }
-
+            
+//            netscape.javascript.JSObject global = netscape.javascript.JSObject.getWindow(new java.applet.Applet());
+//            global.eval("document.title = '" + title + "'");
+            
         } catch (java.sql.SQLException sqlEx) {
             sqlEx.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sqlEx.getMessage());

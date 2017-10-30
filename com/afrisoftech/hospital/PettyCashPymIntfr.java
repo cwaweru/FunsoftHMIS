@@ -6,7 +6,7 @@
 
 package com.afrisoftech.hospital;
 
-import com.sun.star.lib.uno.environments.java.java_environment;
+//import com.sun.star.lib.uno.environments.java.java_environment;
 import java.text.FieldPosition;
 import java.text.ParsePosition;
 import java.util.Date;

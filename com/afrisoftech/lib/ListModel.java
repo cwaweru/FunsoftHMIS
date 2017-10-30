@@ -9,7 +9,7 @@
 
 package com.afrisoftech.lib;
 
-import com.sun.star.lib.uno.environments.java.java_environment;
+//import com.sun.star.lib.uno.environments.java.java_environment;
 
 /**
  *

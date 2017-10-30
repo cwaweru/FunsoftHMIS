@@ -10,6 +10,8 @@ import ca.uhn.hl7v2.HapiContext;
 import ca.uhn.hl7v2.model.v24.message.ADT_A01;
 import ca.uhn.hl7v2.model.v24.segment.MSH;
 import ca.uhn.hl7v2.model.v24.segment.PID;
+import ca.uhn.hl7v2.model.v24.segment.OBR;
+import ca.uhn.hl7v2.model.v24.segment.OBX;
 import ca.uhn.hl7v2.parser.Parser;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -76,7 +78,14 @@ public class HL7Messaging {
     private static String PATIENT_ADMISSION_WARD = null;
     private static String PATIENT_ADMISSION_OUTCOME = null;
     private static String VICTIM_OF_GENDER_VIOLENCE = null;
-
+public static void main(String args[]){
+    HL7Messaging hl7Messaging = new HL7Messaging();
+        try {
+            hl7Messaging.generateHL7Message(java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5433/funsoft", "admin", "funsoft"), "32534");
+        } catch (SQLException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+}
     /**
      * @return the PATIENT_ID
      */
@@ -836,7 +845,8 @@ public class HL7Messaging {
         PATIENT_VISIT_ID = aPATIENT_VISIT_ID;
     }
 
-    public static ADT_A01 generateHL7Message(java.sql.Connection connectDB, String patientNo) {
+    public  ADT_A01 generateHL7Message(java.sql.Connection connectDB, String patientNo) {
+  
         ADT_A01 adt = new ADT_A01();
         try {
             adt.initQuickstart("ADT", "A01", "P");
@@ -865,6 +875,8 @@ public class HL7Messaging {
             System.out.println("Printing XML Encoded Message:");
             System.out.println(encodedMessage);
 
+            OBX obx = adt.getOBX();
+          //  obx.
         } catch (HL7Exception ex) {
             Exceptions.printStackTrace(ex);
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());

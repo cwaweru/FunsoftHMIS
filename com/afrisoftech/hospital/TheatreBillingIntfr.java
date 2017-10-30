@@ -5,7 +5,7 @@
  */
 package com.afrisoftech.hospital;
 
-//import com.sun.star.lib.uno.environments.java.java_environment;
+////import com.sun.star.lib.uno.environments.java.java_environment;
 /**
  *
  * @author  root

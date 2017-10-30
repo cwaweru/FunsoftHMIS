@@ -7,7 +7,7 @@
 //import java.lang.*;
 
 package com.afrisoftech.reports;
-import com.sun.star.lib.uno.environments.java.java_environment;
+//import com.sun.star.lib.uno.environments.java.java_environment;
 import java.awt.Point;
 import java.awt.Color;
 import java.io.FileOutputStream;

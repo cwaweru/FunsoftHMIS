@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -32,6 +33,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
     private String rcodex;
     private double toPayBalance;
     String deceasedWardNumber = null;
+    public static String checkoutRequestID = null;
 
     public InpatientDepositIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
@@ -101,6 +103,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         jLabel41121 = new javax.swing.JLabel();
         datePicker1 = new com.afrisoftech.lib.DatePicker();
         jButton221 = new javax.swing.JButton();
+        payViaMobilePayBtn = new javax.swing.JButton();
         jPanel511 = new javax.swing.JPanel();
         jLabel1211 = new javax.swing.JLabel();
         paymentModeCmbx = new javax.swing.JComboBox();
@@ -129,6 +132,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         patientNoChk = new javax.swing.JCheckBox();
         patientNameChk = new javax.swing.JCheckBox();
+        payerMobileTelephoneNumberTxt = new javax.swing.JFormattedTextField();
         schemeDepositRdi = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         glAccountCmbx = new javax.swing.JComboBox();
@@ -496,11 +500,25 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1111.add(jButton221, gridBagConstraints);
+
+        payViaMobilePayBtn.setText("Push to mobile for payment");
+        payViaMobilePayBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payViaMobilePayBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1111.add(payViaMobilePayBtn, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -797,6 +815,26 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         jPanel1.add(patientNameChk, gridBagConstraints);
 
+        payerMobileTelephoneNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bill Payer Telephone No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
+        payerMobileTelephoneNumberTxt.setForeground(new java.awt.Color(0, 0, 255));
+        try {
+            payerMobileTelephoneNumberTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("254-7##-######")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        payerMobileTelephoneNumberTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payerMobileTelephoneNumberTxtActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(payerMobileTelephoneNumberTxt, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -1033,7 +1071,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 3.0;
         jPanel212.add(jPanel6, gridBagConstraints);
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NB:Tendered Amount= Physical amount handed to cashier", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 51, 102))); // NOI18N
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NB:Tendered Amount= Physical amount handed to cashier", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 51, 102)));
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
         jLabel112.setText("Name");
@@ -1454,6 +1492,9 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         //   jButton301.setEnabled(true);
 
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+                if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+            javax.swing.JOptionPane.showMessageDialog(this, "You must enter a valid client Mpesa telephone number in the format : 254-7xxxxxxx on the Bill Payer Telephone No field");
+        }
         // patientsDialog.dispose();         // Add your handling code here:
     }//GEN-LAST:event_jSearchTableMouseClicked
 
@@ -1613,7 +1654,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
 
                                 System.err.println("niko hapA ....  " + receiptNo2);
                                 System.err.println("niko hapA ....  " + receiptNo1);
-                                    // jTextField3.setText(receiptNo2);
+                                // jTextField3.setText(receiptNo2);
 
                                 java.util.Calendar calendar = java.util.Calendar.getInstance();
 
@@ -1718,12 +1759,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
                                     pstmtx.setDouble(12, 0.0);
                                     pstmtx.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker2.getDate()));
                                     pstmtx.setObject(15, patientAcc);
-                                    /*
-                                     * if(jRadioButton1.isSelected()){
-                                     * pstmtx.setString(16,"Receipts"); //}else{
-                                     */
                                     pstmtx.setObject(16, "Receipt");
-                                    //}
                                     pstmtx.setDouble(17, 1);
                                     pstmtx.setObject(18, "");
                                     pstmtx.setBoolean(19, true);
@@ -2199,6 +2235,44 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
     private void visitIDTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitIDTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_visitIDTxtActionPerformed
+
+    private void payViaMobilePayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payViaMobilePayBtnActionPerformed
+        String payerTelephoneNumber = null;
+        System.out.println("Payer Mobile Telephone Number : [" + payerMobileTelephoneNumberTxt.getText().replace("-", "").length() + "]");
+
+        if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
+            payerTelephoneNumber = payerMobileTelephoneNumberTxt.getText().replace("-", "");
+
+            if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
+                                //STK Push for mobile payment
+                javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful.Bill Number. " + visitIDTxt.getText() + "", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
+                    boolean checkoutReturn = com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), visitIDTxt.getText(), payerTelephoneNumber, amountPaidTxt.getText());
+                    if (checkoutReturn) {
+                        try {
+                            System.out.println("Processing patient card data : ["+checkoutRequestID+"]");
+                            java.sql.PreparedStatement pstmtCheckout = connectDB.prepareStatement("UPDATE hp_patient_card SET checkout_request_id = ? WHERE visit_id = ?");
+                            pstmtCheckout.setString(1, checkoutRequestID);
+                            pstmtCheckout.setString(2, visitIDTxt.getText());
+                            pstmtCheckout.executeUpdate();
+                            pstmtCheckout.close();
+                        } catch (SQLException ex) {
+                            Exceptions.printStackTrace(ex);
+                            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+                        }
+                    }
+                }
+             //   com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), visitIDTxt.getText(), payerTelephoneNumber, amountPaidTxt.getText());
+            }
+        } else if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() != 12) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please check telephone number! It should be formatted as follows : 2547xxxxxx");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_payViaMobilePayBtnActionPerformed
+
+    private void payerMobileTelephoneNumberTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payerMobileTelephoneNumberTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_payerMobileTelephoneNumberTxtActionPerformed
 
     public java.lang.String getShiftNumber() {
 
@@ -2739,6 +2813,8 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox patientNoChk;
     private javax.swing.JTextField patientNumberTxt;
     private javax.swing.JDialog patientsDialog;
+    private javax.swing.JButton payViaMobilePayBtn;
+    private javax.swing.JFormattedTextField payerMobileTelephoneNumberTxt;
     private javax.swing.JTextField payerTxt;
     private javax.swing.JRadioButton payment;
     private javax.swing.JComboBox paymentModeCmbx;

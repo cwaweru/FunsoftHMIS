@@ -18,7 +18,7 @@ import org.openide.util.Exceptions;
  * @author root
  */
 public class Login2Hospital extends javax.swing.JDialog implements java.lang.Runnable {
-    
+
     int noOfWrongEntries = 0;
     boolean errorStatus = false;
     boolean securitySettings = true;
@@ -76,24 +76,27 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
      * Creates new form logindlg
      */
     public Login2Hospital(java.awt.Frame parent, boolean modal, com.afrisoftech.sys.SplashScreenDialog splashParent, java.lang.Thread loginthread) {
-        
+
         super(parent, modal);
-        
+
         splashScreen = splashParent;
-        
+
         login2HospitalThread = loginthread;
-        
+
         this.loadImage();
-        
+
+//        netscape.javascript.JSObject global = netscape.javascript.JSObject.getWindow(null);
+//        global.eval("document.title = 'Logon to Funsoft ERP/I-HMIS'");
+
         desktopPaneIcon = new javax.swing.ImageIcon(System.getProperty("backgrdimg", "c:/Tests/clouds.jpg"));
 
         // waitThread = new com.afrisoftech.sys.SplashScreenDialog.WaitThread();
         //        splashScreen = new com.afrisoftech.sys.SplashScreenDialog(new java.awt.Frame(), true);
         //        splashScreen.setVisible(true);
         dbServerIp = this.getdbServerIpAdd();
-        
+
         initComponents();
-        
+
     }
 
     /**
@@ -326,7 +329,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-        
+
         if (evt.getModifiers() == java.awt.event.KeyEvent.VK_ENTER) {
 
             //  System.out.println("Key Typed");
@@ -340,7 +343,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        
+
         if (evt.getModifiers() == java.awt.event.KeyEvent.VK_ENTER) {
 
             //            this.toBack();
@@ -353,24 +356,24 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jPasswordField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyTyped
-        
+
         if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
 
             //            toBack();
             jButton1.doClick();
-            
+
         }
 
         // Add your handling code here:
     }//GEN-LAST:event_jPasswordField1KeyTyped
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-        
+
         if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
 
             //            this.toBack();
             jButton1.doClick();
-            
+
         }
 
         // Add your handling code here:
@@ -384,39 +387,39 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
             //            this.toBack();
             // this.logOn2System();
             jButton1.doClick();
-            
+
         }
 
         // Add your handling code here:
     }//GEN-LAST:event_formKeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         noOfWrongEntries++;
-        
+
         if (noOfWrongEntries < 4) {
-            
+
             loginThread = new java.lang.Thread(this, "LoginThread");
-            
+
             securitySettings = true;
-            
+
             securityFinished = true;
-            
+
             waitThread = null;
-            
+
             waitThread = new WaitThread();
-            
+
             loginThread.start();
-            
+
             this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
-            
+
             setVisible(false);
 
             // dispose();
         } else {
-            
+
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Please seek authentication assistance from System Administrator!");
-            
+
             this.dispose();
         }
 
@@ -427,16 +430,16 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         this.jTextField1.setText(null);
-        
+
         this.jPasswordField1.setText(null);
 
         // Add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
+
         this.dispose();
 
         // Add your handling code here:
@@ -446,9 +449,9 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
      * Closes the dialog
      */
     private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
-        
+
         setVisible(false);
-        
+
         dispose();
 
     }//GEN-LAST:event_closeDialog
@@ -462,176 +465,175 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
 
     //  public class DbServerIP extends javax.swing.AbstractAction {
     public java.lang.String getdbServerIpAdd() {
-        
+
         java.lang.String dbServerIp = null;
-        
+
         java.lang.String myAppFileUrl = null;
-        
+
         myAppFileUrl = System.getProperty("user.dir")
                 + System.getProperty("file.separator")
                 + "hosprop.properties";
-        
+
         try {
-            
+
             java.io.FileInputStream propInFile = new java.io.FileInputStream(myAppFileUrl);
-            
+
             java.util.Properties appProp = new java.util.Properties();
-            
+
             try {
                 System.out.println("Properties file : " + myAppFileUrl);
-                
+
                 appProp.load(propInFile);
 
                 //  dbServerIp = "192.168.12.1";
                 // dbServerIp = "127.0.0.1";
                 dbServerIp = appProp.getProperty("dbServerIpAdd", "192.16.2.5");
-                
+
                 System.out.println("Database Server IP : " + dbServerIp);
 
                 // activeDatabase = "funsoft";
                 activeDatabase = appProp.getProperty("activeDatabase", "funsoft");
-                
+
                 System.setProperty("activeDatabase", activeDatabase);
-                
+
                 receiptPageMargin = appProp.getProperty("receiptPageMargin", "0");
-                
+
                 System.setProperty("receiptPageMargin", receiptPageMargin);
-                
+
                 receiptFontSize = appProp.getProperty("receiptFontSize", "10");
-                
+
                 System.setProperty("receiptFontSize", this.receiptFontSize);
-                
+
                 receiptTitleFontSize = appProp.getProperty("receiptTitleFontSize", "12");
-                
+
                 System.setProperty("receiptTitleFontSize", this.receiptTitleFontSize);
-                
+
                 dbPort = appProp.getProperty("dbPort", "5432");
-                
+
                 System.setProperty("dbPort", dbPort);
-                
+
                 path2Acrobat = appProp.getProperty("path2Acrobat", "c:/Program Files/Adobe/Acrobat 5.0/Reader/AcroRd32.exe");
-                
+
                 defaultlnf = appProp.getProperty("defaultlnf", "com.l2fprod.gui.plaf.skin.SkinLookAndFeel");
-                
+
                 backgrdimg = appProp.getProperty("backgrdimg", "c:/Tests/clouds.jpg");
-                
+
              //   cashpoint = appProp.getProperty("cashpoint");
-                
                 docsdir = appProp.getProperty("docsdir");
-                
+
                 defaultPrinter = appProp.getProperty("defaultprinter", "PRN");
-                
+
                 System.setProperty("docsdir", docsdir);
-                
+
                 System.setProperty("defaultprinter", defaultPrinter);
-                
+
                 papersize_width = appProp.getProperty("papersize_width", java.lang.String.valueOf(270));
-                
+
                 System.setProperty("papersize_width", papersize_width);
-                
+
                 papersize_legnth = appProp.getProperty("papersize_legnth", java.lang.String.valueOf(270));
-                
+
                 System.setProperty("papersize_legnth", papersize_legnth);
-                
+
                 font_type_name = appProp.getProperty("font_type_name", "monospaced.plain");
 
                 //    System.setProperty("backgrdimg", backgrdimg);
                 System.setProperty("defaultlnf", defaultlnf);
-                
+
                 defaulttheme = appProp.getProperty("defaulttheme", "xplunathemepack.zip");
-                
+
                 System.setProperty("defaulttheme", defaulttheme);
-                
+
                 System.setProperty("acrobatpath", path2Acrobat);
-                
+
                 System.setProperty("activedatabase", "funsoft");
-                
+
                 System.out.println(dbServerIp);
-                
+
                 defaultSplitPane = appProp.getProperty("defaultsplitpane", "Hospital Operations");
-                
+
                 System.setProperty("defaultsplitpane", defaultSplitPane);
-                
+
                 phraseSeparator = appProp.getProperty("phrase.separator", "");
-                
+
                 lineCharacter = appProp.getProperty("line.character", "-");
-                
+
                 dottedLineCharacter = appProp.getProperty("dotted.line.character", ".");
-                
+
                 newLineCharacter = appProp.getProperty("new.line.character", "\n");
-                
+
                 linesPerPage = appProp.getProperty("linesperpage", "62");
-                
+
                 charactersPerLine = appProp.getProperty("charactersperline", "70");
-                
+
                 rcptLinesPerPage = appProp.getProperty("rcptlinesperpage", "16");
-                
+
                 rcptCharsPerPage = appProp.getProperty("rcptcharactersperline", "72");
-                
+
                 companyLogo = appProp.getProperty("company.logo");
-                
+
                 waterMark = appProp.getProperty("company.watermark");
-                
+
                 imageDir = appProp.getProperty("images.dir");
-                
+
                 System.setProperty("images.dir", imageDir);
-                
+
                 System.setProperty("company.logo", companyLogo);
-                
+
                 System.setProperty("company.watermark", waterMark);
-                
+
                 System.setProperty("phrase.separator", phraseSeparator);
-                
+
                 System.setProperty("line.character", lineCharacter);
-                
+
                 System.setProperty("dotted.line.character", dottedLineCharacter);
-                
+
                 System.setProperty("new.line.character", newLineCharacter);
-                
+
                 System.setProperty("linesperpage", linesPerPage);
-                
+
                 System.setProperty("charactersperline", charactersPerLine);
-                
+
                 System.setProperty("rcptlinesperpage", rcptLinesPerPage);
-                
+
                 System.setProperty("rcptcharactersperline", rcptCharsPerPage);
-                
+
                 exemptionsMode = appProp.getProperty("exemptions.mode", "true");
-                
+
                 System.setProperty("exemptions.mode", exemptionsMode);
-                
+
                 mailSmtpHost = appProp.getProperty("mail.smtp.host", "192.1.1.70");
-                
+
                 System.setProperty("mail.smtp.host", mailSmtpHost);
-                
+
                 claimFromAddress = appProp.getProperty("claims.from.address", "claims@systempartners.biz");
-                
+
                 System.setProperty("claims.from.address", claimFromAddress);
-                
+
                 System.setProperty("smtp.port.number", appProp.getProperty("smtp.port.number", "25"));
-                
+
                 propInFile.close();
-                
+
             } catch (java.io.IOException ioExec) {
-                
+
                 ioExec.printStackTrace();
-                
+
                 System.out.println(ioExec.getMessage());
-                
+
             }
 
             // return dbServerIp;
         } catch (java.lang.Exception exc) {
-            
+
             exc.printStackTrace();
-            
+
             System.out.println(exc.getMessage());
 
             //    javax.swing.JOptionPane.showMessageDialog(this, "Properties file not found!");
         }
-        
+
         return dbServerIp;
-        
+
     }
 
     public static void retrieveFunsoftProperties(java.sql.Connection connectDB) {
@@ -643,7 +645,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
             while (rsetProperties.next()) {
                 System.setProperty(rsetProperties.getString(1), rsetProperties.getString(2));
             }
-            
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
@@ -652,142 +654,141 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
     }
 
     public void menuItemDisabler(java.lang.String[] menuItems2disable, javax.swing.JFrame appChosen, javax.swing.JMenuBar appMenuBar) {
-        
+
         int noOfMnit = menuItems2disable.length;
         System.out.println("Counted Menu items2Disable " + noOfMnit);
-        
+
     }
-    
+
     public void logOn2System() throws FileNotFoundException {
 
         //       com.afrisoftech.hospital.HospitalMain secureHospitalInst = null;
         java.awt.Toolkit.getDefaultToolkit().beep();
-        
+
         com.afrisoftech.hospinventory.StockMain secureStockInst = null;
-        
+
         com.afrisoftech.hospayroll.PayrollMain securePayrollMain = null;
-        
+
         com.afrisoftech.hr.HRMain secureHRMain = null;
 
 //        com.afrisoftech.sys.SecureLogin2Hospital secureLogin2Hospital = null;
         com.afrisoftech.sys.SecureLogin2HospInventory secureLogin2Stock = null;
-        
+
         com.afrisoftech.sys.SecureLogin2HospPayroll secureLogin2Payroll = null;
-        
+
         com.afrisoftech.sys.SecureLogin2HR secureLogin2HRM = null;
-        
+
         userName = this.jTextField1.getText().toLowerCase();
-        
+
         char passsWord[] = this.jPasswordField1.getPassword();
-        
+
         java.lang.String passWord = java.lang.String.copyValueOf(passsWord);
-        
+
         pwdInfo = new org.netbeans.lib.sql.PasswordInfo(passWord);
 
         //////  System.out.println(pwdInfo.getPassword());
         /////  System.out.println(passWord);
         sysProp = System.getProperties();
-        
+
         sysProp.setProperty("password", passWord);
-        
+
         System.setProperty("currentuser", userName);
-        
+
         javax.swing.MenuElement[] menuItems = null;
-        
+
         java.sql.Statement resStatement = null;
-        
+
         if (!userName.equals("") && !passWord.equals("")) {
-            
+
             try {
-                
+
                 connDB = this.getDbConnection(userName, passWord);
-     
+
               // connDB.setClientInfo("ApplicationName", "Funsoft I-HMIS");
-                
                 pconnDB = this.getPooledConnectionSource();
-                
+
                 retrieveFunsoftProperties(connDB);
-                
+
                 if ((connDB != null) && (pconnDB != null)) {
-                    
+
                     javax.swing.SwingUtilities.updateComponentTreeUI(splashScreen);
-                    
+
                     startRunning();
-                    
+
                     secureLogin2Stock = new com.afrisoftech.sys.SecureLogin2HospInventory(new java.awt.Frame(), false, connDB, pconnDB, userName);
-                    
+
                     secureStockInst = secureLogin2Stock.logOn2System();
-                    
+
                     secureLogin2Payroll = new com.afrisoftech.sys.SecureLogin2HospPayroll(new java.awt.Frame(), false, connDB, pconnDB, userName);
-                    
+
                     securePayrollMain = secureLogin2Payroll.logOn2System();
-                    
+
                     secureLogin2HRM = new com.afrisoftech.sys.SecureLogin2HR(new java.awt.Frame(), false, connDB, pconnDB, userName);
-                    
+
                     secureHRMain = secureLogin2HRM.logOn2System();
                     //    secureLogin2Hospital = new com.afrisoftech.sys.SecureLogin2Hospital(new java.awt.Frame(), false, connDB, pconnDB, userName);
 
                     //    secureHospitalInst = secureLogin2Hospital.logOn2System();
                     if (!connDB.equals(null)) {
-                        
+
                         System.out.println("Connected to database successfully");
-                        
+
                         resStatement = connDB.createStatement();
-                        
+
                     }
                     System.out.println("Created statement");
-                    
+
                     java.sql.ResultSet reSet = resStatement.executeQuery("select menu_item from secure_passwd where access_priv ='t' AND login_name ='" + userName + "'");
-                    
+
                     System.out.println("selected");
-                    
+
                     while (reSet.next()) {
-                        
+
                         java.lang.reflect.Field[] field;
-                        
+
                         try {
-                            
+
                             java.lang.Class cl = Class.forName("com.afrisoftech.hospital.HospitalMain");
-                            
+
                             field = cl.getDeclaredFields();
-                            
+
                             System.out.println("Class loaded");
-                            
+
                             for (int j = 0; j < field.length; j++) {
-                                
+
                                 if (field[j].getName().endsWith("mnit")) {
-                                    
+
                                     System.out.println(field[j]);
                                 }
-                                
+
                             }
-                            
+
                         } catch (java.lang.Exception Exc) {
-                            
+
                             Exc.printStackTrace();
-                            
+
                             System.out.println("Error");
                         }
 
                         //                       System.out.println("Check for hospitaInst object["+secureHospitalInst+"]");
                         hospitalInst = new com.afrisoftech.hospital.HospitalMain(connDB, pconnDB, this.path2Acrobat, this.pwdInfo.getPassword(), secureStockInst, securePayrollMain, secureHRMain);
-                        
+
                         sysProp.put("hospmain", hospitalInst);
-                        
+
                         java.lang.Object[] menuList2enable = this.getSystemMenuItems2Enable(this.getMenuItems2Enable(userName));
-                        
+
                         hospitalInst.menuItemsDisabler(menuList2enable);
 
                         //   hospitalInst.setSize(java.awt.Toolkit.getDefaultToolkit().getScreenSize());
                         hospitalInst.createTaskPanes();
-                        
+
                         hospitalInst.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
                         //                     inventoryInst.setVisible(true);
                         hospitalInst.getPath2Acrobat();
 
                         //    System.out.println(reSet.getString(1));
                     }
-                    
+
 //                    this.getCashPoint();
 
                     /*
@@ -800,29 +801,29 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
                      * hospitalInst.createReportsTree();
                      */
                     hospitalInst.createOperationsPopupMenu();
-                    
+
                     hospitalInst.createInventoryPopupMenu();
-                    
+
                     hospitalInst.createPayrollPopupMenu();
-                    
+
                     hospitalInst.createHRMPopupMenu();
-                    
+
                     hospitalInst.createSystemMenus();
-                    
+
                     hospitalInst.createStockMenuBar();
-                    
+
                     hospitalInst.createPayrollMenuBar();
-                    
+
                     hospitalInst.createHRMenuBar();
 
                     // hospitalInst.createTreeDBAdmin();
                     // hospitalInst.createTreeGraphicals();
                     hospitalInst.setVisible(true);
-                    
+
                     this.setVisible(false);
-                    
+
                     securityFinished = false;
-                    
+
                     securitySettings = false;
 
                     // splashScreen.dispose();
@@ -833,68 +834,68 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
                     //  progressThread.stopStatus = true;
                     //   progressThread.stopStatus = false;
                 } else {
-                    
+
                     this.setVisible(true);
-                    
+
                     this.toFront();
-                    
+
                 }
-                
+
             } catch (java.sql.SQLException sqlExec) {
-                
+
                 java.awt.Toolkit.getDefaultToolkit().beep();
-                
+
                 sqlExec.printStackTrace();
-                
+
                 javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
-                
+
             }
-            
+
         } else {
-            
+
             if (userName.equals("") && passWord.equals("")) {
-                
+
                 java.awt.Toolkit.getDefaultToolkit().beep();
-                
+
                 javax.swing.JOptionPane.showMessageDialog(this, "Can't have null username"
                         + " and password!", "Warning!", javax.swing.JOptionPane.WARNING_MESSAGE);
-                
+
                 this.setVisible(true);
-                
+
                 this.toFront();
-                
+
             } else {
-                
+
                 if (userName.equals("") && !passWord.equals("")) {
-                    
+
                     java.awt.Toolkit.getDefaultToolkit().beep();
-                    
+
                     javax.swing.JOptionPane.showMessageDialog(this, "Can't have null "
                             + "username!", "Warning!", javax.swing.JOptionPane.WARNING_MESSAGE);
-                    
+
                     this.setVisible(true);
-                    
+
                     this.toFront();
-                    
+
                 } else {
                     if (!userName.equals("") && passWord.equals("")) {
-                        
+
                         java.awt.Toolkit.getDefaultToolkit().beep();
-                        
+
                         javax.swing.JOptionPane.showMessageDialog(this, "Can't have null "
                                 + "password!", "Warning!", javax.swing.JOptionPane.WARNING_MESSAGE);
-                        
+
                         this.setVisible(true);
-                        
+
                         this.toFront();
-                        
+
                     }
-                    
+
                 }
             }
         }
     }
-    
+
 //    public void getCashPoint() {
 //        
 //        java.lang.String myAppFileUrl = null;
@@ -941,57 +942,56 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
 //            //    javax.swing.JOptionPane.showMessageDialog(this, "Properties file not found!");
 //        }
 //    }
-    
     public java.lang.String[] getMenuItems2Enable(java.lang.String logiName) {
-        
+
         java.sql.ResultSet rsetArray;
-        
+
         java.lang.String[] menus2enable = null;
-        
+
         java.sql.Array menuListArray = null;
-        
+
         java.util.Vector menuVector = new java.util.Vector(1, 1);
-        
+
         try {
-            
+
             java.sql.Statement stmtDB = connDB.createStatement();
-            
+
             java.sql.ResultSet rSet = stmtDB.executeQuery("SELECT menu_list FROM secure_menu_access WHERE login_name ='" + logiName + "' AND sys_name = 'hospital_main'");
-            
+
             while (rSet.next()) {
-                
+
                 menuListArray = rSet.getArray(1);
-                
+
                 menus2enable = (java.lang.String[]) menuListArray.getArray();
-                
+
             }
-            
+
         } catch (java.sql.SQLException sqlExec) {
-            
+
             sqlExec.printStackTrace();
-            
+
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
-            
+
         }
-        
+
         System.out.println("These are items to enable \n");
-        
+
         for (int k = 0; k < menus2enable.length; k++) {
             //        System.out.println(menus2enable[k]);
         }
-        
+
         return menus2enable;
-        
+
     }
-    
+
     public java.lang.Object[] getSystemMenuItems2Enable(java.lang.String[] menus2enable) {
-        
+
         java.lang.Object[] menuList2enable = null;
-        
+
         java.util.Vector menuListVector = new java.util.Vector(1, 1);
-        
+
         for (int i = 0; i < menus2enable.length; i++) {
-            
+
             try {
 
                 //java.sql.Statement stmtDB = connDB.createStatement();
@@ -999,56 +999,56 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
                 //java.sql.ResultSet rSet = stmtDB.executeQuery("SELECT menu_item FROM menu_item_list WHERE item_desc='"+menus2enable[i]+"'");
                 //  System.out.println("SECURITY :: Menu Description  Item2enable : ["+menus2enable[i].toString()+"]");
                 stmtDB.setString(1, menus2enable[i].toString());
-                
+
                 java.sql.ResultSet rSet = stmtDB.executeQuery();//executeQuery("SELECT menu_item FROM menu_item_list WHERE item_desc='"+menus2enable[i]+"'");
 
                 while (rSet.next()) {
 
                     //     System.out.println("SECURITY :: Menu Item2enable : ["+rSet.getString(1)+"]");
                     menuListVector.addElement(rSet.getString(1));
-                    
+
                 }
-                
+
             } catch (java.sql.SQLException sqlExec) {
-                
+
                 sqlExec.printStackTrace();
-                
+
                 javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getLocalizedMessage());
-                
+
             }
-            
+
         }
-        
+
         return menuList2enable = menuListVector.toArray();
-        
+
     }
-    
+
     public java.sql.Connection getDbConnection(java.lang.String userName, java.lang.String passWord) throws java.sql.SQLException {
-        
+
         java.sql.Connection connection = null;
-        
+
         try {
-            
+
             java.lang.Class.forName("org.postgresql.Driver");
-            
+
         } catch (java.lang.ClassNotFoundException cnf) {
-            
+
             cnf.printStackTrace();
-            
+
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), cnf.getMessage());
-            
+
         }
-        
+
         try {
-            
+
             if (dbServerIp == null) {
                 dbServerIp = "172.16.2.5";
             }
-            
+
             if (dbPort == null) {
                 dbPort = "5432";
             }
-            
+
             if (activeDatabase == null) {
                 activeDatabase = "funsoft";
             }
@@ -1056,7 +1056,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
 
             //  connection.
             version = "8.0 R 3.0";
-            
+
             String current_version = com.afrisoftech.lib.VersionControl.VersionControl(connection);
             if (com.afrisoftech.lib.VersionControl.ActiveVersion(connection) == Boolean.TRUE) {
                 if (version.equals(current_version)) {
@@ -1068,166 +1068,166 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
             } else {
                 System.out.println("version control not activated");
             }
-            
+
         } catch (java.sql.SQLException sqlExec) {
-            
+
             sqlExec.printStackTrace();
             this.setVisible(true);
-            
+
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), "ERROR : Logon denied due to incorrect username & password,\n network disconnection or dataserver not running!\n\nERROR DETAILS : \n[" + sqlExec.getMessage() + "]");
-            
+
         }
-        
+
         return connection;
     }
-    
+
     public org.netbeans.lib.sql.pool.PooledConnectionSource getPooledConnectionSource() {
-        
+
         org.netbeans.lib.sql.pool.PooledConnectionSource pooledConnectionSource1 = new org.netbeans.lib.sql.pool.PooledConnectionSource();
-        
+
         pooledConnectionSource1.setDatabase("jdbc:postgresql://" + this.dbServerIp + ":" + dbPort + "/" + activeDatabase);
-        
+
         pooledConnectionSource1.setDriver("org.postgresql.Driver");
-        
+
         pooledConnectionSource1.setPassword(pwdInfo);
-        
+
         pooledConnectionSource1.setUsername(userName);
-        
+
         return pooledConnectionSource1;
     }
-    
+
     public void run() {
-        
+
         while (securitySettings) {
-            
+
             if (securityFinished) {
-                
+
                 this.toBack();
-                
+
                 waitThread.start();
                 try {
                     logOn2System();
                 } catch (FileNotFoundException ex) {
-                    
+
                     ex.printStackTrace();
-                    
+
                     Logger.getLogger(Login2Hospital.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             } else {
 
                 //                splashScreen.progressLable.setText("Working...");
                 try {
-                    
+
                     Thread.currentThread().sleep(100);
-                    
+
                 } catch (java.lang.InterruptedException IntExec) {
-                    
+
                     System.out.println(IntExec.getMessage());
-                    
+
                 }
-                
+
             }
-            
+
             securitySettings = false;
         }
-        
+
     }
-    
+
     class ProgressThread extends java.lang.Thread {
-        
+
         boolean stopStatus = false;
         int min = 0;
         int max = 100;
-        
+
         public ProgressThread(java.awt.Component parent) {
         }
-        
+
         public void setStop(boolean value) {
-            
+
             stopStatus = value;
-            
+
         }
-        
+
         public void run() {
-            
+
             splashScreen.invalidate();
-            
+
             splashScreen.addVisibles();
-            
+
             splashScreen.validate();
-            
+
             while (securityFinished) {
-                
+
                 min = 0;
-                
+
                 max = 10000;
-                
+
                 for (int i = min; i <= max; i++) {
-                    
+
                     if (securityFinished) {
 
                         ///      splashScreen.splashProgressBar.setIndeterminate(true);
                         splashScreen.splashProgressBar.setValue(i);
-                        
+
                         System.out.println("Progressbar value  ---- : [" + i + "]");
-                        
+
                     }
                     try {
-                        
+
                         java.lang.Thread.sleep(300);
-                        
+
                     } catch (java.lang.InterruptedException intExec) {
-                        
+
                         javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), "Interruption Exception!");
                     }
-                    
+
                 }
-                
+
             }
-            
+
         }
     }
-    
+
     private void startRunning() {
-        
+
         System.out.println("Starting to run Progress Thread");
-        
+
         if (progressThread == null || !progressThread.isAlive()) {
-            
+
             progressThread = new ProgressThread(this);
-            
+
             progressThread.start();
-            
+
             System.out.println("Progress Thread started");
-            
+
         }
-        
+
     }
-    
+
     private void stopRunning() {
-        
+
         System.out.println("Stopping run Progress Thread");
-        
+
         progressThread.setStop(true);
-        
+
     }
-    
+
     public class WaitThread extends java.lang.Thread {
-        
+
         javax.swing.JLabel logonLabel;
-        
+
         public void WaitThread() {
             //    logonLabel = new javax.swing.JLabel("Loading security settings. Please wait...");
         }
-        
+
         public void run() {
             logonLabel = new javax.swing.JLabel("Loading security settings. Please wait...");
             int i = 50;
             int j = 100;
             int k = 200;
             while (securitySettings) {
-                
+
                 if (i < 255) {
                     if (j < 255) {
                         if (k < 255) {
@@ -1250,42 +1250,42 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
                 } else {
                     i = 200;
                 }
-                
+
                 System.out.println("Value of i is :[" + i + "]");
                 try {
-                    
+
                     Thread.currentThread().sleep(100);
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }
-                
+
                 i = i + 5;
                 j = j + 5;
                 k = k + 5;
-                
+
             }
         }
     }
-    
+
     public void loadImage() {
-        
+
         java.lang.String myAppFileUrl = null;
-        
+
         myAppFileUrl = System.getProperty("user.dir")
                 + System.getProperty("file.separator")
                 + "hosprop.properties";
-        
+
         try {
-            
+
             java.io.FileInputStream propInFile = new java.io.FileInputStream(myAppFileUrl);
 
             //       java.io.FileOutputStream propOutFile = new java.io.FileOutputStream("myapp.properties");
             java.util.Properties appProp = new java.util.Properties();
-            
+
             try {
-                
+
                 appProp.load(propInFile);
-                
+
                 backgrdimg = appProp.getProperty("backgrdimg", "c:/Tests/clouds.jpg");
 
                 // System.setProperty("backgrdimg", backgrdimg);
@@ -1293,21 +1293,21 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
 
                 //  return dbServerIp;
             } catch (java.io.IOException ioExec) {
-                
+
                 System.out.println(ioExec.getMessage());
-                
+
             }
 
             // return dbServerIp;
         } catch (java.lang.Exception exc) {
-            
+
             System.out.println(exc.getMessage());
 
             //    javax.swing.JOptionPane.showMessageDialog(this, "Properties file not found!");
         }
-        
+
     }
-    
+
     @Override
     public void dispose() {
         System.exit(0);

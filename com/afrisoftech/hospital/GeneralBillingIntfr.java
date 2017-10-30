@@ -5,7 +5,7 @@
  */
 package com.afrisoftech.hospital;
 
-//import com.sun.star.lib.uno.environments.java.java_environment;
+////import com.sun.star.lib.uno.environments.java.java_environment;
 import java.awt.event.MouseEvent;
 import org.jfree.xml.factory.objects.JavaBaseClassFactory;
 import java.awt.event.*;
@@ -40,6 +40,8 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     boolean priceEdit = false;
     boolean rePrints = false;
     private String age;
+    String payerTelephoneNumber = null;
+    public static String checkoutRequestID = null;
 
     public GeneralBillingIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
@@ -247,9 +249,10 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         maleChkbx = new javax.swing.JCheckBox();
         femaleChkbx = new javax.swing.JCheckBox();
         jLabel27 = new javax.swing.JLabel();
+        payerMobileTelephoneNumberTxt = new javax.swing.JFormattedTextField();
         jLabel53 = new javax.swing.JLabel();
-        billTotalTxt = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
+        billTotalTxt = new javax.swing.JTextField();
         billingActionButtonsPanel = new javax.swing.JPanel();
         try {
             java.lang.Class.forName("org.postgresql.Driver");
@@ -2677,7 +2680,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
             generalBillingPanel.add(billingTablesJscrl, gridBagConstraints);
 
-            patientParticularsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select patient here. (The highlighted fields are mandatory)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
+            patientParticularsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select patient here. (The highlighted fields are mandatory)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
             patientParticularsPanel.setLayout(new java.awt.GridBagLayout());
 
             jLabel9.setForeground(new java.awt.Color(255, 0, 51));
@@ -2913,7 +2916,8 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
             patientParticularsPanel.add(jLabel12, gridBagConstraints);
 
-            paymentModeCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cash", "Scheme" }));
+            paymentModeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT payment_mode FROM pb_paymentmodes ORDER BY 1")
+            );
             paymentModeCmbx.setEnabled(false);
             paymentModeCmbx.setMinimumSize(new java.awt.Dimension(75, 20));
             paymentModeCmbx.addActionListener(new java.awt.event.ActionListener() {
@@ -3215,6 +3219,22 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
             patientParticularsPanel.add(jLabel27, gridBagConstraints);
 
+            payerMobileTelephoneNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bill Payer Telephone No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
+            payerMobileTelephoneNumberTxt.setForeground(new java.awt.Color(0, 0, 255));
+            try {
+                payerMobileTelephoneNumberTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("254-7##-######")));
+            } catch (java.text.ParseException ex) {
+                ex.printStackTrace();
+            }
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 4;
+            gridBagConstraints.gridy = 9;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+            patientParticularsPanel.add(payerMobileTelephoneNumberTxt, gridBagConstraints);
+
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 1;
@@ -3231,6 +3251,14 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             generalBillingPanel.add(jLabel53, gridBagConstraints);
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 7;
+            gridBagConstraints.gridwidth = 7;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+            gridBagConstraints.weightx = 1.0;
+            generalBillingPanel.add(jSeparator1, gridBagConstraints);
 
             billTotalTxt.setEditable(false);
             billTotalTxt.setForeground(new java.awt.Color(255, 0, 51));
@@ -3254,14 +3282,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
             generalBillingPanel.add(billTotalTxt, gridBagConstraints);
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 7;
-            gridBagConstraints.gridwidth = 7;
-            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
-            gridBagConstraints.weightx = 1.0;
-            generalBillingPanel.add(jSeparator1, gridBagConstraints);
 
             billingActionButtonsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
             billingActionButtonsPanel.setMinimumSize(new java.awt.Dimension(100, 220));
@@ -6851,6 +6871,10 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         }
         patientSearchFieldTxt.setText("");
         generalBillingPatientSearchDialog.dispose();
+
+        if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+            javax.swing.JOptionPane.showMessageDialog(this, "You must enter a valid client Mpesa telephone number in the format : 254-7xxxxxxx on the Bill Payer Telephone No field");
+        }
         // Add your handling code here:
     }//GEN-LAST:event_patientSearchTblMouseClicked
 
@@ -6893,9 +6917,9 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT anc as anc_no, first_name||' '||middle_name||' '||last_name, telephone, next_of_kin, age::int as age from rh.mother_details where anc ILIKE '%" + patientSearchFieldTxt.getText() + "%' or first_name||' '||middle_name||' '||last_name  ILIKE '%" + patientSearchFieldTxt.getText() + "%' "
                         + " UNION SELECT DISTINCT fp_clinic_no as anc_no, full_name, telephone_no as telephone, '' as next_of_kin, age::int as age from rh.fp_services_register where fp_clinic_no ILIKE '%" + patientSearchFieldTxt.getText() + "%' or full_name  ILIKE '%" + patientSearchFieldTxt.getText() + "%'"
                         + " UNION SELECT DISTINCT pnc_no as anc_no, full_name, telephone, '' as next_of_kin, age::int as age from rh.post_natal_follow_up_register where pnc_no ILIKE '%" + patientSearchFieldTxt.getText() + "%' or full_name  ILIKE '%" + patientSearchFieldTxt.getText() + "%' ORDER BY 2"));
-           
-            patientSearchTbl.setShowHorizontalLines(false);
-            patientSearchJscrl.setViewportView(patientSearchTbl);
+
+                patientSearchTbl.setShowHorizontalLines(false);
+                patientSearchJscrl.setViewportView(patientSearchTbl);
             }
         }
         if (this.ipdChkbx.isSelected() && this.byNumberChkbx.isSelected()) {
@@ -7149,21 +7173,80 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_clearformDataBtnActionPerformed
 
     private void savebillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebillBtnActionPerformed
-        // Check condition on balance for prepaid debtors
-        if (com.afrisoftech.lib.CheckPrepaySchemes.checkPrepayStatus(connectDB, schemeAccountNumberTxt.getText())) {
-            double totalSum = Double.parseDouble(billTotalTxt.getText());
-            if (totalSum > 0) {
-                if (totalSum > com.afrisoftech.lib.CheckPrepaySchemes.checkLimitExceeded(connectDB, schemeAccountNumberTxt.getText())) {
-                    javax.swing.JOptionPane.showMessageDialog(this, "THE BILL IS GREATER THAN THE SCHEME PREPAID BALANCE! THE SCHEME ADMINISTRATOR MUST MAKE ADDITIONAL DEPOSIT.", "ALERT MESSAGE!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                    savebillBtn.setEnabled(false);
-                    saveAndPrintBillBtn.setEnabled(false);
-                    rePrintBillBtn.setEnabled(false);
 
-                    // jButton7.setEnabled(false);
+        System.out.println("Payer Mobile Telephone Number : [" + payerMobileTelephoneNumberTxt.getText().replace(" ", "").replace("-", "").length() + "]");
+
+        if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+            if (payerMobileTelephoneNumberTxt.getText().replace(" ", "").replace("-", "").length() == 12) {
+                payerTelephoneNumber = payerMobileTelephoneNumberTxt.getText().replace(" ", "").replace("-", "");
+
+                // Check condition on balance for prepaid debtors
+                if (com.afrisoftech.lib.CheckPrepaySchemes.checkPrepayStatus(connectDB, schemeAccountNumberTxt.getText())) {
+                    double totalSum = Double.parseDouble(billTotalTxt.getText());
+                    if (totalSum > 0) {
+                        if (totalSum > com.afrisoftech.lib.CheckPrepaySchemes.checkLimitExceeded(connectDB, schemeAccountNumberTxt.getText())) {
+                            javax.swing.JOptionPane.showMessageDialog(this, "THE BILL IS GREATER THAN THE SCHEME PREPAID BALANCE! THE SCHEME ADMINISTRATOR MUST MAKE ADDITIONAL DEPOSIT.", "ALERT MESSAGE!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                            savebillBtn.setEnabled(false);
+                            saveAndPrintBillBtn.setEnabled(false);
+                            rePrintBillBtn.setEnabled(false);
+
+                            // jButton7.setEnabled(false);
+                        } else {
+                            savebillBtn.setEnabled(true);
+                            // saveAndPrintBillBtn.setEnabled(true);
+                            rePrintBillBtn.setEnabled(true);
+
+                            if (java.lang.Double.valueOf(billTotalTxt.getText()) > 0.00 && patientNumberTxt.getText().toCharArray().length > 0) {
+                                double bill = java.lang.Double.valueOf(billTotalTxt.getText());
+                                // if(bill > 0){
+                                java.util.Date periodFrom = null;
+                                java.util.Date periodTo = null;
+
+                                try {
+
+                                    java.sql.Statement stmtf = connectDB.createStatement();
+                                    java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + datePicker1.getDate() + "' BETWEEN period_from AND period_to");
+                                    while (rsetf.next()) {
+                                        periodFrom = rsetf.getDate(1);
+                                        periodTo = rsetf.getDate(2);
+                                    }
+
+                                } catch (java.sql.SQLException sq) {
+                                    javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                    System.out.println(sq.getMessage());
+                                    jLabel3.setForeground(java.awt.Color.red);
+                                    jLabel3.setText("Sorry. Insert not Successful");
+                                }
+
+                                if (datePicker1.getDate().before(periodFrom) || datePicker1.getDate().after(periodTo)) {
+                                    javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                                } else {
+                                    if (discreetServicesTbl.isEditing()) {
+                                        discreetServicesTbl.getCellEditor().stopCellEditing();
+                                    }
+                                    /*
+                                 * if (packagesTbl.isEditing()) {
+                                 * packagesTbl.getCellEditor().stopCellEditing(); }
+                                 *
+                                     */
+                                    dispatchThread = new DispatchThread();
+
+                                    dispatchThread.start();
+
+                                    savebillBtn.setEnabled(false);
+
+                                    saveAndPrintBillBtn.setEnabled(false);
+                                }
+
+                            } else {
+                                javax.swing.JOptionPane.showMessageDialog(this, "ERROR: You MUST enter all form details correctly.\nCheck that mandatory fields have valid data.\n There MUST be a valid bill.");
+                            }
+
+                        }
+                    }
+
                 } else {
-                    savebillBtn.setEnabled(true);
-                    // saveAndPrintBillBtn.setEnabled(true);
-                    rePrintBillBtn.setEnabled(true);
 
                     if (java.lang.Double.valueOf(billTotalTxt.getText()) > 0.00 && patientNumberTxt.getText().toCharArray().length > 0) {
                         double bill = java.lang.Double.valueOf(billTotalTxt.getText());
@@ -7195,9 +7278,9 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                 discreetServicesTbl.getCellEditor().stopCellEditing();
                             }
                             /*
-                             * if (packagesTbl.isEditing()) {
-                             * packagesTbl.getCellEditor().stopCellEditing(); }
-                             *
+                         * if (packagesTbl.isEditing()) {
+                         * packagesTbl.getCellEditor().stopCellEditing(); }
+                         *
                              */
                             dispatchThread = new DispatchThread();
 
@@ -7211,59 +7294,131 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                     } else {
                         javax.swing.JOptionPane.showMessageDialog(this, "ERROR: You MUST enter all form details correctly.\nCheck that mandatory fields have valid data.\n There MUST be a valid bill.");
                     }
-
                 }
+
+            } else if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").replace(" ", "").length() != 12) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Please check telephone number! It should be formatted as follows : 2547xxxxxxxx");
             }
 
         } else {
+            // Check condition on balance for prepaid debtors
+            if (com.afrisoftech.lib.CheckPrepaySchemes.checkPrepayStatus(connectDB, schemeAccountNumberTxt.getText())) {
+                double totalSum = Double.parseDouble(billTotalTxt.getText());
+                if (totalSum > 0) {
+                    if (totalSum > com.afrisoftech.lib.CheckPrepaySchemes.checkLimitExceeded(connectDB, schemeAccountNumberTxt.getText())) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "THE BILL IS GREATER THAN THE SCHEME PREPAID BALANCE! THE SCHEME ADMINISTRATOR MUST MAKE ADDITIONAL DEPOSIT.", "ALERT MESSAGE!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                        savebillBtn.setEnabled(false);
+                        saveAndPrintBillBtn.setEnabled(false);
+                        rePrintBillBtn.setEnabled(false);
 
-            if (java.lang.Double.valueOf(billTotalTxt.getText()) > 0.00 && patientNumberTxt.getText().toCharArray().length > 0) {
-                double bill = java.lang.Double.valueOf(billTotalTxt.getText());
-                // if(bill > 0){
-                java.util.Date periodFrom = null;
-                java.util.Date periodTo = null;
+                        // jButton7.setEnabled(false);
+                    } else {
+                        savebillBtn.setEnabled(true);
+                        // saveAndPrintBillBtn.setEnabled(true);
+                        rePrintBillBtn.setEnabled(true);
 
-                try {
+                        if (java.lang.Double.valueOf(billTotalTxt.getText()) > 0.00 && patientNumberTxt.getText().toCharArray().length > 0) {
+                            double bill = java.lang.Double.valueOf(billTotalTxt.getText());
+                            // if(bill > 0){
+                            java.util.Date periodFrom = null;
+                            java.util.Date periodTo = null;
 
-                    java.sql.Statement stmtf = connectDB.createStatement();
-                    java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + datePicker1.getDate() + "' BETWEEN period_from AND period_to");
-                    while (rsetf.next()) {
-                        periodFrom = rsetf.getDate(1);
-                        periodTo = rsetf.getDate(2);
+                            try {
+
+                                java.sql.Statement stmtf = connectDB.createStatement();
+                                java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + datePicker1.getDate() + "' BETWEEN period_from AND period_to");
+                                while (rsetf.next()) {
+                                    periodFrom = rsetf.getDate(1);
+                                    periodTo = rsetf.getDate(2);
+                                }
+
+                            } catch (java.sql.SQLException sq) {
+                                javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                System.out.println(sq.getMessage());
+                                jLabel3.setForeground(java.awt.Color.red);
+                                jLabel3.setText("Sorry. Insert not Successful");
+                            }
+
+                            if (datePicker1.getDate().before(periodFrom) || datePicker1.getDate().after(periodTo)) {
+                                javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                            } else {
+                                if (discreetServicesTbl.isEditing()) {
+                                    discreetServicesTbl.getCellEditor().stopCellEditing();
+                                }
+                                /*
+                                 * if (packagesTbl.isEditing()) {
+                                 * packagesTbl.getCellEditor().stopCellEditing(); }
+                                 *
+                                 */
+                                dispatchThread = new DispatchThread();
+
+                                dispatchThread.start();
+
+                                savebillBtn.setEnabled(false);
+
+                                saveAndPrintBillBtn.setEnabled(false);
+                            }
+
+                        } else {
+                            javax.swing.JOptionPane.showMessageDialog(this, "ERROR: You MUST enter all form details correctly.\nCheck that mandatory fields have valid data.\n There MUST be a valid bill.");
+                        }
+
                     }
-
-                } catch (java.sql.SQLException sq) {
-                    javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                    System.out.println(sq.getMessage());
-                    jLabel3.setForeground(java.awt.Color.red);
-                    jLabel3.setText("Sorry. Insert not Successful");
-                }
-
-                if (datePicker1.getDate().before(periodFrom) || datePicker1.getDate().after(periodTo)) {
-                    javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-                } else {
-                    if (discreetServicesTbl.isEditing()) {
-                        discreetServicesTbl.getCellEditor().stopCellEditing();
-                    }
-                    /*
-                     * if (packagesTbl.isEditing()) {
-                     * packagesTbl.getCellEditor().stopCellEditing(); }
-                     *
-                     */
-                    dispatchThread = new DispatchThread();
-
-                    dispatchThread.start();
-
-                    savebillBtn.setEnabled(false);
-
-                    saveAndPrintBillBtn.setEnabled(false);
                 }
 
             } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "ERROR: You MUST enter all form details correctly.\nCheck that mandatory fields have valid data.\n There MUST be a valid bill.");
+
+                if (java.lang.Double.valueOf(billTotalTxt.getText()) > 0.00 && patientNumberTxt.getText().toCharArray().length > 0) {
+                    double bill = java.lang.Double.valueOf(billTotalTxt.getText());
+                    // if(bill > 0){
+                    java.util.Date periodFrom = null;
+                    java.util.Date periodTo = null;
+
+                    try {
+
+                        java.sql.Statement stmtf = connectDB.createStatement();
+                        java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + datePicker1.getDate() + "' BETWEEN period_from AND period_to");
+                        while (rsetf.next()) {
+                            periodFrom = rsetf.getDate(1);
+                            periodTo = rsetf.getDate(2);
+                        }
+
+                    } catch (java.sql.SQLException sq) {
+                        javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                        System.out.println(sq.getMessage());
+                        jLabel3.setForeground(java.awt.Color.red);
+                        jLabel3.setText("Error! Data not saved. Check your entries and try again");
+                    }
+
+                    if (datePicker1.getDate().before(periodFrom) || datePicker1.getDate().after(periodTo)) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                    } else {
+                        if (discreetServicesTbl.isEditing()) {
+                            discreetServicesTbl.getCellEditor().stopCellEditing();
+                        }
+                        /*
+                         * if (packagesTbl.isEditing()) {
+                         * packagesTbl.getCellEditor().stopCellEditing(); }
+                         *
+                         */
+                        dispatchThread = new DispatchThread();
+
+                        dispatchThread.start();
+
+                        savebillBtn.setEnabled(false);
+
+                        saveAndPrintBillBtn.setEnabled(false);
+                    }
+
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(this, "ERROR: You MUST enter all form details correctly.\nCheck that mandatory fields have valid data.\n There MUST be a valid bill.");
+                }
             }
+
         }
+
 
     }//GEN-LAST:event_savebillBtnActionPerformed
 
@@ -7974,7 +8129,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                 } else {
                                     java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into hp_patient_billing values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?))");
                                     pstmt2.setString(1, patientNumberTxt.getText());
-                                    pstmt2.setString(10, transNo);
                                     pstmt2.setString(2, patientNameTxt.getText());
                                     pstmt2.setString(3, paymentModeCmbx.getSelectedItem().toString());
                                     pstmt2.setString(4, patientCategoryTxt.getText());
@@ -7983,8 +8137,9 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                     pstmt2.setDouble(7, java.lang.Double.valueOf(discreetServicesTbl.getValueAt(i, 3).toString()));
                                     pstmt2.setObject(8, discreetServicesTbl.getValueAt(i, 4).toString());
                                     pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));//java.sql.Date.valueOf(String.format("%1$tY-%1$tm-%1$te",datePicker1.getDate())));
-                                    pstmt2.setBoolean(12, false);
+                                    pstmt2.setString(10, transNo);
                                     pstmt2.setString(11, user);
+                                    pstmt2.setBoolean(12, false);
                                     pstmt2.setString(13, glAcc);
                                     pstmt2.setInt(14, visitid);
                                     pstmt2.setString(15, doctorNameTxt.getText().toString());
@@ -8443,10 +8598,21 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 }
                 billTotalTxt.setText("0.00");
 
+                //STK Push for mobile payment
+                javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful.Bill No. " + transNo + "", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
+                    boolean checkoutReturn = com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), transNo, payerTelephoneNumber, billTotalTxt.getText());
+                    if (checkoutReturn) {
+                        java.sql.PreparedStatement pstmtCheckout = connectDB.prepareStatement("UPDATE hp_patient_billing SET checkout_request_id = ? WHERE inpatient_no = ?");
+                        pstmtCheckout.setString(1, checkoutRequestID);
+                        pstmtCheckout.setString(2, transNo);
+                        pstmtCheckout.executeUpdate();
+                        pstmtCheckout.close();
+                    }
+                }
+                
                 connectDB.commit();
                 connectDB.setAutoCommit(true);
-
-                javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful.Bill No. " + transNo + "", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                 patientNameTxt.setText("");
                 patientCategoryTxt.setText("");
@@ -8467,7 +8633,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 saveAndPrintBillBtn.setEnabled(false);
                 savebillBtn.setEnabled(false);
                 rePrintBillBtn.setEnabled(true);
-                paymentModeCmbx.setSelectedItem("Cash");
+                //paymentModeCmbx.setSelectedItem("Cash");
             } catch (java.sql.SQLException sq) {
                 sq.printStackTrace();
                 try {
@@ -8692,6 +8858,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane patientSearchJscrl;
     private javax.swing.JTable patientSearchTbl;
     private javax.swing.JPanel patientSelectionModePanel;
+    private javax.swing.JFormattedTextField payerMobileTelephoneNumberTxt;
     public static javax.swing.JTextField payerNameTxt;
     public static javax.swing.JComboBox paymentModeCmbx;
     private javax.swing.JButton rePrintBillBtn;

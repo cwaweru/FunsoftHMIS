@@ -9,7 +9,7 @@
 
 package biz.systempartners.claims;
 
-import com.sun.star.lib.uno.environments.java.java_environment;
+//import com.sun.star.lib.uno.environments.java.java_environment;
 import java.io.IOException;
 
 /**
@@ -285,7 +285,7 @@ public class PharmacyClaim implements java.lang.Runnable {
                 int k =  1;
                 
                 // steve:
-                double bill = java.lang.Double.valueOf(com.afrisoftech.hospinventory.PatientsBillingIntfr.jTextField15.getText());
+                double bill = java.lang.Double.valueOf(com.afrisoftech.hospinventory.PatientsBillingIntfr.billTotalTxt.getText());
                 
                 if(bill > 0){ 
                     

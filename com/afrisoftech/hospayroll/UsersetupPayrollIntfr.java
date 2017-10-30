@@ -1329,7 +1329,7 @@ public class UsersetupPayrollIntfr extends javax.swing.JInternalFrame {
 //            java.sql.Connection con = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/hospital","postgres","pilsiner");
                 
                 
-                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("CREATE USER "+jTextField582.getText()+" WITH PASSWORD '"+jPasswordField1.getText()+"' CREATEUSER CREATEDB");
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("CREATE USER "+jTextField582.getText()+" WITH PASSWORD '"+jPasswordField1.getText()+"' CREATEROLE CREATEDB");
                 
                 java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO secure_menu_access values(lower(?),?,?,?,?)");
                 

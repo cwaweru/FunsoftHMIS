@@ -101,7 +101,7 @@ public class AboutBoxintfr extends javax.swing.JInternalFrame {
 
         jTextArea1.setEditable(false);
         jTextArea1.setBackground(new java.awt.Color(204, 204, 255));
-        jTextArea1.setText("Funsoft I-HIMS System Version 7.0  Rel. 4.0\n\n");
+        jTextArea1.setText("Funsoft I-HIMS System Version 8.0  Release 3.0\n\n");
         jTextArea1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

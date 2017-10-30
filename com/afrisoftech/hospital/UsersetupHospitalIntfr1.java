@@ -8,7 +8,7 @@ package com.afrisoftech.hospital;
 
 import java.sql.SQLException;
 
-//import com.sun.star.lib.uno.environments.java.java_environment;
+////import com.sun.star.lib.uno.environments.java.java_environment;
 
 /**
  *
@@ -1792,7 +1792,7 @@ public class UsersetupHospitalIntfr1 extends javax.swing.JInternalFrame {
 
             try {
                 
-                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("CREATE USER "+jTextField582.getText()+" WITH PASSWORD '"+jPasswordField1.getText()+"' CREATEUSER CREATEDB");
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("CREATE USER "+jTextField582.getText()+" WITH PASSWORD '"+jPasswordField1.getText()+"' CREATEROLE CREATEDB");
                 
                 java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO secure_menu_access values(lower(?),?,?,?,?,?)");
                 

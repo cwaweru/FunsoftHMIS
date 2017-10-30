@@ -293,9 +293,9 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                         java.sql.ResultSet rset2 = st3.executeQuery("SELECT hospital_name,district_branch,region FROM pb_hospitalprofile");
                         java.sql.ResultSet rset4 = st4.executeQuery("SELECT date('now') as Date");
                         while (rset2.next()) {
-                            compName = rset2.getObject(1).toString();
-                            District = rset2.getObject(2).toString();
-                            Region = rset2.getObject(3).toString();
+                            compName = rset2.getString(1);
+                            District = rset2.getString(2);
+                            Region = rset2.getString(3);
                         }
                         while (rset4.next()) {
                             date = rset4.getObject(1).toString();
@@ -309,6 +309,8 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                     } catch (java.sql.SQLException SqlExec) {
 
+                        SqlExec.printStackTrace();
+                        
                         javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
                     }

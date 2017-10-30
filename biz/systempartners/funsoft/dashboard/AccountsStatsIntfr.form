@@ -29,6 +29,16 @@
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="buttonPanel">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder>
+              <Color PropertyName="highlightInner" blue="ff" green="cc" red="33" type="rgb"/>
+              <Color PropertyName="shadowInner" blue="ff" green="66" red="66" type="rgb"/>
+            </BevelBorder>
+          </Border>
+        </Property>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
           <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
@@ -83,7 +93,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="5" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="1" ipadY="1" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+              <GridBagConstraints gridX="5" gridY="0" gridWidth="1" gridHeight="1" fill="1" ipadX="1" ipadY="1" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -97,13 +107,22 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="4" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+              <GridBagConstraints gridX="4" gridY="0" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
             </Constraint>
           </Constraints>
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+    <Container class="javax.swing.JTabbedPane" name="facilityIndicatorsTabbedPane">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+            <MatteColorBorder>
+              <Color PropertyName="color" blue="ff" green="99" red="0" type="rgb"/>
+            </MatteColorBorder>
+          </Border>
+        </Property>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
           <GridBagConstraints gridX="0" gridY="2" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="200.0"/>
@@ -134,7 +153,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="jPanel1">
+            <Container class="javax.swing.JPanel" name="OPAttendanceIndicatorsPanel">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -164,6 +183,7 @@
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="11"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[100, 20]"/>
                     </Property>
@@ -181,6 +201,7 @@
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="11"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[100, 20]"/>
                     </Property>
@@ -218,6 +239,7 @@
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="11"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[100, 20]"/>
                     </Property>
@@ -235,6 +257,7 @@
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="11"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[100, 20]"/>
                     </Property>
@@ -272,6 +295,7 @@
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="11"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[100, 20]"/>
                     </Property>
@@ -299,6 +323,7 @@
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="11"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[100, 20]"/>
                     </Property>
@@ -314,7 +339,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="averageDailyRevisitsLbl">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Average Daily Revisits"/>
+                    <Property name="text" type="java.lang.String" value="Average Daily OPD Revisits"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -325,6 +350,8 @@
                 <Component class="javax.swing.JTextField" name="averageDailyRevisitsTxt">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="horizontalAlignment" type="int" value="11"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[100, 20]"/>
                     </Property>
@@ -351,6 +378,8 @@
                 <Component class="javax.swing.JTextField" name="averageDailyAttendanceTxt">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="horizontalAlignment" type="int" value="11"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[100, 20]"/>
                     </Property>
@@ -539,6 +568,7 @@
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="horizontalAlignment" type="int" value="11"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[100, 20]"/>
                     </Property>
@@ -565,6 +595,8 @@
                 <Component class="javax.swing.JTextField" name="averageDailyAdmissionsTxt">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="horizontalAlignment" type="int" value="11"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[100, 20]"/>
                     </Property>
@@ -591,6 +623,8 @@
                 <Component class="javax.swing.JTextField" name="averageDailyReadmissionsTxt">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="horizontalAlignment" type="int" value="11"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[100, 20]"/>
                     </Property>
@@ -665,7 +699,7 @@
                 </Component>
                 <Component class="org.jdesktop.swingx.JXHyperlink" name="dailyCashCollectionHplk">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value=""/>
+                    <Property name="text" type="java.lang.String" value="0.00"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="10" style="1"/>
                     </Property>
@@ -720,7 +754,7 @@
                         <LineBorder/>
                       </Border>
                     </Property>
-                    <Property name="text" type="java.lang.String" value=""/>
+                    <Property name="text" type="java.lang.String" value="0.00"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="10" style="1"/>
                     </Property>
@@ -740,7 +774,7 @@
                 </Component>
                 <Component class="org.jdesktop.swingx.JXHyperlink" name="qtdCashTotalHplk">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value=""/>
+                    <Property name="text" type="java.lang.String" value="0.00"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="10" style="1"/>
                     </Property>
@@ -757,7 +791,7 @@
                 </Component>
                 <Component class="org.jdesktop.swingx.JXHyperlink" name="ytdCashTotalHplk">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value=""/>
+                    <Property name="text" type="java.lang.String" value="0.00"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="10" style="1"/>
                     </Property>
@@ -834,7 +868,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel10">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Year to Date Total Equity/Funding"/>
+                    <Property name="text" type="java.lang.String" value="Year to Date Total Equity/Funding/Grants"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -904,7 +938,7 @@
                 </Component>
                 <Component class="org.jdesktop.swingx.JXHyperlink" name="ytdGRNTotalHplk">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value=""/>
+                    <Property name="text" type="java.lang.String" value="0.00"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="10" style="1"/>
                     </Property>
@@ -921,7 +955,7 @@
                 </Component>
                 <Component class="org.jdesktop.swingx.JXHyperlink" name="ytdPCardTotalHplk2">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value=""/>
+                    <Property name="text" type="java.lang.String" value="0.00"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="10" style="1"/>
                     </Property>
@@ -938,7 +972,7 @@
                 </Component>
                 <Component class="org.jdesktop.swingx.JXHyperlink" name="ytdInventoryTotalHplk3">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value=""/>
+                    <Property name="text" type="java.lang.String" value="0.00"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="10" style="1"/>
                     </Property>
@@ -955,7 +989,7 @@
                 </Component>
                 <Component class="org.jdesktop.swingx.JXHyperlink" name="ytdCashBookTotalHplk4">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value=""/>
+                    <Property name="text" type="java.lang.String" value="0.00"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="10" style="1"/>
                     </Property>
@@ -972,7 +1006,7 @@
                 </Component>
                 <Component class="org.jdesktop.swingx.JXHyperlink" name="ytdExpensesTotalHplk5">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value=""/>
+                    <Property name="text" type="java.lang.String" value="0.00"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="10" style="1"/>
                     </Property>
@@ -989,7 +1023,7 @@
                 </Component>
                 <Component class="org.jdesktop.swingx.JXHyperlink" name="ytdRevenueTotalHplk6">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value=""/>
+                    <Property name="text" type="java.lang.String" value="0.00"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="10" style="1"/>
                     </Property>
@@ -1006,7 +1040,7 @@
                 </Component>
                 <Component class="org.jdesktop.swingx.JXHyperlink" name="ytdLiabilitiesTotalHplk7">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value=""/>
+                    <Property name="text" type="java.lang.String" value="0.00"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="10" style="1"/>
                     </Property>
@@ -1023,7 +1057,7 @@
                 </Component>
                 <Component class="org.jdesktop.swingx.JXHyperlink" name="ytdEquityFundingTotalHplk8">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value=""/>
+                    <Property name="text" type="java.lang.String" value="0.00"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="10" style="1"/>
                     </Property>
@@ -1040,7 +1074,7 @@
                 </Component>
                 <Component class="org.jdesktop.swingx.JXHyperlink" name="ytdCreditorsTotalHplk9">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value=""/>
+                    <Property name="text" type="java.lang.String" value="0.00"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="10" style="1"/>
                     </Property>
@@ -1057,7 +1091,7 @@
                 </Component>
                 <Component class="org.jdesktop.swingx.JXHyperlink" name="ytdDebtorsTotalHplk10">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value=""/>
+                    <Property name="text" type="java.lang.String" value="0.00"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="10" style="1"/>
                     </Property>
@@ -1074,7 +1108,7 @@
                 </Component>
                 <Component class="org.jdesktop.swingx.JXHyperlink" name="ytdRevenueTotalHplk11">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value=""/>
+                    <Property name="text" type="java.lang.String" value="0.00"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="10" style="1"/>
                     </Property>
@@ -1091,7 +1125,7 @@
                 </Component>
                 <Component class="org.jdesktop.swingx.JXHyperlink" name="qtdRevenueTotalHplk12">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value=""/>
+                    <Property name="text" type="java.lang.String" value="0.00"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="10" style="1"/>
                     </Property>
@@ -1108,7 +1142,7 @@
                 </Component>
                 <Component class="org.jdesktop.swingx.JXHyperlink" name="mtdRevenueTotalHplk13">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value=""/>
+                    <Property name="text" type="java.lang.String" value="0.00"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="10" style="1"/>
                     </Property>

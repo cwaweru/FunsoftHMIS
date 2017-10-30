@@ -6,7 +6,7 @@
 
 package com.afrisoftech.accounting;
 
-import com.sun.star.lib.uno.environments.java.java_environment;
+//import com.sun.star.lib.uno.environments.java.java_environment;
 import java.awt.Color;
 import java.text.FieldPosition;
 import java.text.ParsePosition;

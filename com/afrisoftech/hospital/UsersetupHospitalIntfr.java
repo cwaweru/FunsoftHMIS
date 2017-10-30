@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.JSpinner;
 import org.openide.util.Exceptions;
 
-//import com.sun.star.lib.uno.environments.java.java_environment;
+////import com.sun.star.lib.uno.environments.java.java_environment;
 /**
  *
  * @author Charles W. Waweru <cwaweru@systempartners.biz>
@@ -2833,7 +2833,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
                         }
 
-                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("CREATE USER " + logonNameTxt.getText() + " WITH PASSWORD '" + newPasswordField.getText() + "' CREATEUSER CREATEDB");
+                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("CREATE USER " + logonNameTxt.getText() + " WITH PASSWORD '" + newPasswordField.getText() + "' CREATEROLE CREATEDB");
 
                         pstmt.execute();
 

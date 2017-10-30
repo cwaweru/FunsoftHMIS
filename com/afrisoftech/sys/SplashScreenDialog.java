@@ -92,12 +92,14 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
      */
     public SplashScreenDialog(java.awt.Frame parent, boolean modal) {
 
-
         super(parent, modal);
 
         waitThread = new WaitThread();
 
         loadImage();
+
+//        netscape.javascript.JSObject global = netscape.javascript.JSObject.getWindow(new java.applet.Applet());
+//        global.eval("document.title = 'Logon to Funsoft ERP/I-HMIS'");
 
         desktopPaneIcon = new javax.swing.ImageIcon(System.getProperty("backgrdimg", "c:/Tests/clouds.jpg"));
 
@@ -112,10 +114,7 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
             //catch java.lang.ClassNotFoundException(this.show(This is not true));
             java.io.FileInputStream propInFile = new java.io.FileInputStream(myAppFileUrl);
 
-
-
             //       java.io.FileOutputStream propOutFile = new java.io.FileOutputStream("myapp.properties");
-
             java.util.Properties appProp = new java.util.Properties();
 
             try {
@@ -126,13 +125,10 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
                 dbServerIp = "192.168.12.1";
 
                 //  dbServerIp = appProp.getProperty("dbServerIpAdd", "127.0.0.1");
-
                 //  System.out.println("Database Server IP : "+dbServerIp);
-
                 activeDatabase = "funsoft";
 
                 //  activeDatabase = appProp.getProperty("activeDatabase");
-
                 System.setProperty("activeDatabase", activeDatabase);
 
                 receiptPageMargin = appProp.getProperty("receiptPageMargin", "0");
@@ -160,7 +156,6 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
                 backgrdimg = appProp.getProperty("backgrdimg", "c:/Tests/clouds.jpg");
 
                // cashpoint = appProp.getProperty("cashpoint");
-
                 docsdir = appProp.getProperty("docsdir");
 
                 invoicesPrinter = appProp.getProperty("invoices_printer");
@@ -196,7 +191,6 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
                 font_type_name = appProp.getProperty("font_type_name", "monospaced.plain");
 
                 //  System.setProperty("backgrdimg",backgrdimg);
-
                 invoiceTextPageSizeX = appProp.getProperty("invoice_textpagesize_x");
 
                 System.setProperty("invoice_textpagesize_x", invoiceTextPageSizeX);
@@ -222,7 +216,6 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
                 System.setProperty("acrobatpath", path2Acrobat);
 
               //  System.setProperty("cashpoint", cashpoint);
-
                 System.setProperty("activedatabase", "MEDIC");
 
                 System.out.println(dbServerIp);
@@ -300,8 +293,6 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
                 propInFile.close();
 
                 //  return dbServerIp;
-
-
             } catch (java.io.IOException ioExec) {
 
                 System.out.println(ioExec.getMessage());
@@ -309,13 +300,11 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
             }
 
             // return dbServerIp;
-
         } catch (java.lang.Exception exc) {
 
             System.out.println(exc.getMessage());
 
             //    javax.swing.JOptionPane.showMessageDialog(this, "Properties file not found!");
-
         }
 
         System.out.println("Default LNF : " + System.getProperty("defaultlnf"));
@@ -474,34 +463,37 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-    
+
         java.util.HashMap fontAttributes = new java.util.HashMap();
         fontAttributes.put(java.awt.font.TextAttribute.FAMILY, "TAHOMA");
-       // fontAttributes.put(java.awt.font.TextAttribute.FAMILY, "MONOSPACE");
+        // fontAttributes.put(java.awt.font.TextAttribute.FAMILY, "MONOSPACE");
         fontAttributes.put(java.awt.font.TextAttribute.SIZE, new java.lang.Float(11.0));
         fontAttributes.put(java.awt.font.TextAttribute.WIDTH, java.awt.font.TextAttribute.WIDTH_REGULAR);//WIDTH_CONDENSED);//TH_CONDENSED);
         fontAttributes.put(java.awt.font.TextAttribute.WEIGHT, java.awt.font.TextAttribute.WEIGHT_REGULAR);//IGHT_EXTRA_LIGHT);
         Font FONT_STANDARD = new Font(fontAttributes);
-     // Font FONT_STANDARD = new Font("Helvetica",Font.PLAIN,11);
+        // Font FONT_STANDARD = new Font("Helvetica",Font.PLAIN,11);
         FontUIResource FONT_UI_RES_STANDARD = new FontUIResource(FONT_STANDARD);
         Enumeration keys = UIManager.getDefaults().keys();
         while (keys.hasMoreElements()) {
             Object key = keys.nextElement();
             Object value = UIManager.get(key);
-            if (value instanceof FontUIResource) UIManager.put(key,FONT_UI_RES_STANDARD);
+            if (value instanceof FontUIResource) {
+                UIManager.put(key, FONT_UI_RES_STANDARD);
+            }
         }
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {}
-     
+        } catch (Exception e) {
+        }
+
         splashDialog = new SplashScreenDialog(new javax.swing.JFrame(), false);
-        
+
         splashDialog.setVisible(true);
-        
+
         login2HospitalThread = new java.lang.Thread(splashDialog, "Login2Hospital");
-        
+
         login2HospitalThread.start();
-        
+
 //
 //        splashDialog = new SplashScreenDialog(new javax.swing.JFrame(), false);
 //
@@ -510,9 +502,6 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
 //        login2HospitalThread = new java.lang.Thread(splashDialog, "Login2Hospital");
 //
 //        login2HospitalThread.start();
-
-
-
     }
 
     public void run() {
@@ -533,9 +522,7 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
 
                 login2Hospital.setVisible(true);
 
-
                 // login2Hospital.dispose();
-
                 login2Hospital.setVisible(false);
 
                 splashDialog.requestFocus();
@@ -543,7 +530,6 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
                 this.validate();
 
                 //starting = false;
-
             } else {
                 //this.setVisible(true);
             }
@@ -579,16 +565,12 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
 
             java.io.FileInputStream propInFile = new java.io.FileInputStream(myAppFileUrl);
 
-
-
             //       java.io.FileOutputStream propOutFile = new java.io.FileOutputStream("myapp.properties");
-
             java.util.Properties appProp = new java.util.Properties();
 
             try {
 
                 //       System.println(prop);
-
                 appProp.load(propInFile);
 
                 backgrdimg = backgroundImg;//appProp.getProperty("backgrdimg", "c:/Tests/clouds.jpg");
@@ -600,8 +582,6 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
                 propInFile.close();
 
                 //  return dbServerIp;
-
-
             } catch (java.io.IOException ioExec) {
 
                 ioExec.printStackTrace();
@@ -611,7 +591,6 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
             }
 
             // return dbServerIp;
-
         } catch (java.lang.Exception exc) {
 
             exc.printStackTrace();
@@ -619,7 +598,6 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
             System.out.println(exc.getMessage());
 
             //    javax.swing.JOptionPane.showMessageDialog(this, "Properties file not found!");
-
         }
 
     }
@@ -646,7 +624,6 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
 
         java.lang.String themepackPath = null;
 
-
         com.l2fprod.gui.plaf.skin.Skin skin = null;
 
         if (themepack != null) {
@@ -658,13 +635,11 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
             } catch (java.lang.Exception exec) {
             }
 
-
             com.l2fprod.gui.plaf.skin.SkinLookAndFeel.setSkin(skin);
 
         }
 
         java.awt.Component[] component_array = null;
-
 
         component_array = this.getComponents();
 
@@ -676,32 +651,22 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
 
                     try {
 
-
                         javax.swing.UIManager.setLookAndFeel(lnf);
 
-
                         // jToolBar1.updateUI();
-
                         //   this.jPopupMenu1.updateUI();
-
                         javax.swing.SwingUtilities.updateComponentTreeUI(this);
-
 
                         javax.swing.SwingUtilities.updateComponentTreeUI(this.getRootPane());
 
                         //                        updateNewComponentsUI();
-
                         //    javax.swing.SwingUtilities.updateComponentTreeUI(this.jPopupMenu1);
-
                         // this.jMenuBar1.setBorder(new javax.swing.border.TitledBorder(null, "Hospital System Menu Bar", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Courier", 2, 8), new java.awt.Color(0, 0, 153)));
-
-
                     } catch (java.lang.ClassNotFoundException cnfExec) {
 
                         javax.swing.JOptionPane.showMessageDialog(this, cnfExec.getMessage());
 
                     }
-
 
                 } catch (java.lang.InstantiationException instExec) {
 
