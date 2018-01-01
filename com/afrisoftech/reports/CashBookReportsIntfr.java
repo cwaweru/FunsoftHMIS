@@ -102,7 +102,7 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle(org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.title")); // NOI18N
+        setTitle("Cash Book Reports");
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -110,7 +110,7 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
 
         cashBookSearchPanel.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(selectCashBookLbl, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.selectCashBookLbl.text")); // NOI18N
+        selectCashBookLbl.setText("Select Cash Book");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -128,13 +128,13 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         cashBookSearchPanel.add(cashbookCmbx, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(beginDateLbl, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.beginDateLbl.text")); // NOI18N
+        beginDateLbl.setText("Begin Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         cashBookSearchPanel.add(beginDateLbl, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(endDateLbl, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.endDateLbl.text")); // NOI18N
+        endDateLbl.setText("End Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
@@ -190,8 +190,8 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
 
         totalDebitLbl.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         totalDebitLbl.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        org.openide.awt.Mnemonics.setLocalizedText(totalDebitLbl, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.totalDebitLbl.text")); // NOI18N
-        totalDebitLbl.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.totalDebitLbl.border.title"))); // NOI18N
+        totalDebitLbl.setText("0.00");
+        totalDebitLbl.setBorder(javax.swing.BorderFactory.createTitledBorder("Total Debit"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 5.0;
@@ -200,8 +200,8 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
 
         totalCreditLbl.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         totalCreditLbl.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        org.openide.awt.Mnemonics.setLocalizedText(totalCreditLbl, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.totalCreditLbl.text")); // NOI18N
-        totalCreditLbl.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.totalCreditLbl.border.title"))); // NOI18N
+        totalCreditLbl.setText("0.00");
+        totalCreditLbl.setBorder(javax.swing.BorderFactory.createTitledBorder("Total Credit"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 5.0;
@@ -210,15 +210,15 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
 
         cashbookBalanceLbl.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cashbookBalanceLbl.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        org.openide.awt.Mnemonics.setLocalizedText(cashbookBalanceLbl, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.cashbookBalanceLbl.text")); // NOI18N
-        cashbookBalanceLbl.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.cashbookBalanceLbl.border.title"))); // NOI18N
+        cashbookBalanceLbl.setText("0.00");
+        cashbookBalanceLbl.setBorder(javax.swing.BorderFactory.createTitledBorder("Cash Book Balance (Debit - Credit)"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 5.0;
         gridBagConstraints.weighty = 1.0;
         cashBookAnalysisActionPanel.add(cashbookBalanceLbl, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(refreshBtn, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.refreshBtn.text")); // NOI18N
+        refreshBtn.setText("Refresh cash book data");
         refreshBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshBtnActionPerformed(evt);
@@ -229,7 +229,7 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         cashBookAnalysisActionPanel.add(refreshBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(clearFormBtn, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.clearFormBtn.text")); // NOI18N
+        clearFormBtn.setText("Clear form");
         clearFormBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearFormBtnActionPerformed(evt);
@@ -240,7 +240,7 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         cashBookAnalysisActionPanel.add(clearFormBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeBtn, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.closeBtn.text")); // NOI18N
+        closeBtn.setText("Close form");
         closeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeBtnActionPerformed(evt);
@@ -259,13 +259,13 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         cashBookPanel.add(cashBookAnalysisActionPanel, gridBagConstraints);
 
-        cashbookReportsTabbedPane.addTab(org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.cashBookPanel.TabConstraints.tabTitle"), cashBookPanel); // NOI18N
+        cashbookReportsTabbedPane.addTab("Cash Book Reports", cashBookPanel);
 
         shiftReportsPanel.setLayout(new java.awt.GridBagLayout());
 
         shiftReportsSearchPanel.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(selectCashBookLbl1, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.selectCashBookLbl1.text")); // NOI18N
+        selectCashBookLbl1.setText("Shift Operator");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -283,13 +283,13 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         shiftReportsSearchPanel.add(shiftOperatorCmbx, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(beginDateLbl1, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.beginDateLbl1.text")); // NOI18N
+        beginDateLbl1.setText("Begin Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         shiftReportsSearchPanel.add(beginDateLbl1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(endDateLbl1, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.endDateLbl1.text")); // NOI18N
+        endDateLbl1.setText("End Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
@@ -343,8 +343,8 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
 
         totalDebitLbl1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         totalDebitLbl1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        org.openide.awt.Mnemonics.setLocalizedText(totalDebitLbl1, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.totalDebitLbl1.text")); // NOI18N
-        totalDebitLbl1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.totalDebitLbl1.border.title"))); // NOI18N
+        totalDebitLbl1.setText("0.00");
+        totalDebitLbl1.setBorder(javax.swing.BorderFactory.createTitledBorder("Total Debit"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 5.0;
@@ -353,8 +353,8 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
 
         totalCreditLbl1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         totalCreditLbl1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        org.openide.awt.Mnemonics.setLocalizedText(totalCreditLbl1, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.totalCreditLbl1.text")); // NOI18N
-        totalCreditLbl1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.totalCreditLbl1.border.title"))); // NOI18N
+        totalCreditLbl1.setText("0.00");
+        totalCreditLbl1.setBorder(javax.swing.BorderFactory.createTitledBorder("Total Credit"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 5.0;
@@ -363,15 +363,15 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
 
         cashbookBalanceLbl1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cashbookBalanceLbl1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        org.openide.awt.Mnemonics.setLocalizedText(cashbookBalanceLbl1, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.cashbookBalanceLbl1.text")); // NOI18N
-        cashbookBalanceLbl1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.cashbookBalanceLbl1.border.title"))); // NOI18N
+        cashbookBalanceLbl1.setText("0.00");
+        cashbookBalanceLbl1.setBorder(javax.swing.BorderFactory.createTitledBorder("Shifts Balance (Debit - Credit)"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 5.0;
         gridBagConstraints.weighty = 1.0;
         shiftReportsAnalysisActionPanel.add(cashbookBalanceLbl1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(refreshBtn1, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.refreshBtn1.text")); // NOI18N
+        refreshBtn1.setText("Refresh shift reconciliation data");
         refreshBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshBtn1ActionPerformed(evt);
@@ -382,7 +382,7 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         shiftReportsAnalysisActionPanel.add(refreshBtn1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(clearFormBtn1, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.clearFormBtn1.text")); // NOI18N
+        clearFormBtn1.setText("Clear form");
         clearFormBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearFormBtn1ActionPerformed(evt);
@@ -393,7 +393,7 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         shiftReportsAnalysisActionPanel.add(clearFormBtn1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeBtn1, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.closeBtn1.text")); // NOI18N
+        closeBtn1.setText("Close form");
         closeBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeBtn1ActionPerformed(evt);
@@ -412,13 +412,13 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         shiftReportsPanel.add(shiftReportsAnalysisActionPanel, gridBagConstraints);
 
-        cashbookReportsTabbedPane.addTab(org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.shiftReportsPanel.TabConstraints.tabTitle"), shiftReportsPanel); // NOI18N
+        cashbookReportsTabbedPane.addTab("Shift Reconciliation Reports", shiftReportsPanel);
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         shiftReportsSearchPanel1.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(selectCashBookLbl2, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.selectCashBookLbl2.text")); // NOI18N
+        selectCashBookLbl2.setText("Sfift Number");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -436,13 +436,13 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         shiftReportsSearchPanel1.add(shiftOperatorCmbx1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(beginDateLbl2, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.beginDateLbl2.text")); // NOI18N
+        beginDateLbl2.setText("Begin Date1");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         shiftReportsSearchPanel1.add(beginDateLbl2, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(endDateLbl2, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.endDateLbl2.text")); // NOI18N
+        endDateLbl2.setText("End Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
@@ -496,8 +496,8 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
 
         totalDebitLbl2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         totalDebitLbl2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        org.openide.awt.Mnemonics.setLocalizedText(totalDebitLbl2, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.totalDebitLbl2.text")); // NOI18N
-        totalDebitLbl2.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.totalDebitLbl2.border.title"))); // NOI18N
+        totalDebitLbl2.setText("0.00");
+        totalDebitLbl2.setBorder(javax.swing.BorderFactory.createTitledBorder("Total Debit"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 5.0;
@@ -506,8 +506,8 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
 
         totalCreditLbl2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         totalCreditLbl2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        org.openide.awt.Mnemonics.setLocalizedText(totalCreditLbl2, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.totalCreditLbl2.text")); // NOI18N
-        totalCreditLbl2.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.totalCreditLbl2.border.title"))); // NOI18N
+        totalCreditLbl2.setText("0.00");
+        totalCreditLbl2.setBorder(javax.swing.BorderFactory.createTitledBorder("Total Credit"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 5.0;
@@ -516,15 +516,15 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
 
         cashbookBalanceLbl2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cashbookBalanceLbl2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        org.openide.awt.Mnemonics.setLocalizedText(cashbookBalanceLbl2, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.cashbookBalanceLbl2.text")); // NOI18N
-        cashbookBalanceLbl2.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.cashbookBalanceLbl2.border.title"))); // NOI18N
+        cashbookBalanceLbl2.setText("0.00");
+        cashbookBalanceLbl2.setBorder(javax.swing.BorderFactory.createTitledBorder("Shifts Balance (Debit - Credit)"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 5.0;
         gridBagConstraints.weighty = 1.0;
         shiftReportsAnalysisActionPanel1.add(cashbookBalanceLbl2, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(refreshBtn2, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.refreshBtn2.text")); // NOI18N
+        refreshBtn2.setText("Refresh Receipt listing");
         refreshBtn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshBtn2ActionPerformed(evt);
@@ -535,7 +535,7 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         shiftReportsAnalysisActionPanel1.add(refreshBtn2, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(clearFormBtn2, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.clearFormBtn2.text")); // NOI18N
+        clearFormBtn2.setText("Clear form");
         clearFormBtn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearFormBtn2ActionPerformed(evt);
@@ -546,7 +546,7 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         shiftReportsAnalysisActionPanel1.add(clearFormBtn2, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeBtn2, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.closeBtn2.text")); // NOI18N
+        closeBtn2.setText("Close form");
         closeBtn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeBtn2ActionPerformed(evt);
@@ -565,7 +565,7 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(shiftReportsAnalysisActionPanel1, gridBagConstraints);
 
-        cashbookReportsTabbedPane.addTab(org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.jPanel1.TabConstraints.tabTitle"), jPanel1); // NOI18N
+        cashbookReportsTabbedPane.addTab("Shift Transactions/Receipts Listing", jPanel1);
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
@@ -573,8 +573,8 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
 
         totalDebitLbl3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         totalDebitLbl3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        org.openide.awt.Mnemonics.setLocalizedText(totalDebitLbl3, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.totalDebitLbl3.text")); // NOI18N
-        totalDebitLbl3.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.totalDebitLbl3.border.title"))); // NOI18N
+        totalDebitLbl3.setText("0.00");
+        totalDebitLbl3.setBorder(javax.swing.BorderFactory.createTitledBorder("Total Debit"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 5.0;
@@ -583,8 +583,8 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
 
         totalCreditLbl3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         totalCreditLbl3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        org.openide.awt.Mnemonics.setLocalizedText(totalCreditLbl3, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.totalCreditLbl3.text")); // NOI18N
-        totalCreditLbl3.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.totalCreditLbl3.border.title"))); // NOI18N
+        totalCreditLbl3.setText("0.00");
+        totalCreditLbl3.setBorder(javax.swing.BorderFactory.createTitledBorder("Total Credit"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 5.0;
@@ -593,15 +593,15 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
 
         cashbookBalanceLbl3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cashbookBalanceLbl3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        org.openide.awt.Mnemonics.setLocalizedText(cashbookBalanceLbl3, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.cashbookBalanceLbl3.text")); // NOI18N
-        cashbookBalanceLbl3.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.cashbookBalanceLbl3.border.title"))); // NOI18N
+        cashbookBalanceLbl3.setText("0.00");
+        cashbookBalanceLbl3.setBorder(javax.swing.BorderFactory.createTitledBorder("Shifts Balance (Debit - Credit)"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 5.0;
         gridBagConstraints.weighty = 1.0;
         receiptReportsAnalysisActionPanel.add(cashbookBalanceLbl3, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(refreshBtn3, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.refreshBtn3.text")); // NOI18N
+        refreshBtn3.setText("Refresh receipt details");
         refreshBtn3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshBtn3ActionPerformed(evt);
@@ -612,7 +612,7 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         receiptReportsAnalysisActionPanel.add(refreshBtn3, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(clearFormBtn3, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.clearFormBtn3.text")); // NOI18N
+        clearFormBtn3.setText("Clear form");
         clearFormBtn3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearFormBtn3ActionPerformed(evt);
@@ -623,7 +623,7 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         receiptReportsAnalysisActionPanel.add(clearFormBtn3, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeBtn3, org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.closeBtn3.text")); // NOI18N
+        closeBtn3.setText("Close form");
         closeBtn3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeBtn3ActionPerformed(evt);
@@ -660,7 +660,7 @@ public class CashBookReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 200.0;
         jPanel2.add(receiptReportPanel2, gridBagConstraints);
 
-        cashbookReportsTabbedPane.addTab(org.openide.util.NbBundle.getMessage(CashBookReportsIntfr.class, "CashBookReportsIntfr.jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
+        cashbookReportsTabbedPane.addTab("Receipt Details", jPanel2);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;

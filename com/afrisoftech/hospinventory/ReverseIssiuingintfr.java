@@ -6,7 +6,7 @@
 package com.afrisoftech.hospinventory;
 
 import java.sql.SQLException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -1220,7 +1220,7 @@ public class ReverseIssiuingintfr extends javax.swing.JInternalFrame {
                 }
             }
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
         }
         if (transferStatus) {

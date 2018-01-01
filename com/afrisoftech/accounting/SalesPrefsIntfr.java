@@ -44,6 +44,9 @@ public class SalesPrefsIntfr extends javax.swing.JInternalFrame {
         mainPanel = new javax.swing.JPanel();
         priceEditRbt = new javax.swing.JRadioButton();
         reprintRbt = new javax.swing.JRadioButton();
+        waiversRbt = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
+        paymodeCmbx = new javax.swing.JComboBox();
         buttonPanel = new javax.swing.JPanel();
         updateBtn = new javax.swing.JButton();
         closeBtn = new javax.swing.JButton();
@@ -62,6 +65,29 @@ public class SalesPrefsIntfr extends javax.swing.JInternalFrame {
         reprintRbt.setText("Allow Re-Printing of receipts");
         reprintRbt.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         mainPanel.add(reprintRbt, new java.awt.GridBagConstraints());
+
+        waiversRbt.setText("Allow Waivers and Exemptions");
+        waiversRbt.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        mainPanel.add(waiversRbt, new java.awt.GridBagConstraints());
+
+        jLabel1.setText("Default Payment Mode");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        mainPanel.add(jLabel1, gridBagConstraints);
+
+        paymodeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT payment_mode FROM public.pb_paymentmodes ORDER BY 1")
+        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        mainPanel.add(paymodeCmbx, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -112,8 +138,7 @@ public class SalesPrefsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(buttonPanel, gridBagConstraints);
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-410)/2, (screenSize.height-127)/2, 410, 127);
+        setBounds(0, 0, 547, 160);
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
@@ -126,16 +151,21 @@ public class SalesPrefsIntfr extends javax.swing.JInternalFrame {
                fetchSize = rsetFetchPrefs.getInt(1);
             }
             if (fetchSize > 0) {
-                java.sql.PreparedStatement pstmtUpdate = connectDB.prepareStatement("UPDATE sales_prefs SET edit_prices =?, re_prints=?");
+                java.sql.PreparedStatement pstmtUpdate = connectDB.prepareStatement("UPDATE sales_prefs SET edit_prices =?, re_prints=?, waivers = ?, default_pay_mode = ?");
                 pstmtUpdate.setBoolean(1, this.getPriceEditRbt().isSelected());
                 pstmtUpdate.setBoolean(2, this.getReprintRbt().isSelected());
+                pstmtUpdate.setBoolean(3, this.getWaiversRbt().isSelected());
+                pstmtUpdate.setObject(4, this.paymodeCmbx.getSelectedItem());
                 pstmtUpdate.executeUpdate();
             } else {
-                java.sql.PreparedStatement pstmtInsert = connectDB.prepareStatement("INSERT INTO sales_prefs(edit_prices, re_prints) VALUES (?, ?)");
+                java.sql.PreparedStatement pstmtInsert = connectDB.prepareStatement("INSERT INTO sales_prefs(edit_prices, re_prints, waivers, default_pay_mode) VALUES (?, ?, ?, ?)");
                 pstmtInsert.setBoolean(1, this.getPriceEditRbt().isSelected());
                 pstmtInsert.setBoolean(2, this.getReprintRbt().isSelected());
+                pstmtInsert.setBoolean(3, this.getReprintRbt().isSelected());
+                pstmtInsert.setObject(4, this.paymodeCmbx.getSelectedItem());
                 pstmtInsert.executeUpdate();
             }
+            javax.swing.JOptionPane.showMessageDialog(this, "Sales preferences updated successfully.");
         // TODO add your handling code here:
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -155,11 +185,14 @@ public class SalesPrefsIntfr extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JButton closeBtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JComboBox paymodeCmbx;
     private javax.swing.JRadioButton priceEditRbt;
     private javax.swing.JRadioButton reprintRbt;
     private javax.swing.JLabel spacerLbl;
     private javax.swing.JButton updateBtn;
+    private javax.swing.JRadioButton waiversRbt;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -202,5 +235,19 @@ public class SalesPrefsIntfr extends javax.swing.JInternalFrame {
      */
     public void setReprintRbt(javax.swing.JRadioButton reprintRbt) {
         this.reprintRbt = reprintRbt;
+    }
+    
+        /**
+     * @return the waiversRbt
+     */
+    public javax.swing.JRadioButton getWaiversRbt() {
+        return waiversRbt;
+    }
+
+    /**
+     * @param waiversRbt the waiversRbt to set
+     */
+    public void setWaiversRbt(javax.swing.JRadioButton waiversRbt) {
+        this.waiversRbt = waiversRbt;
     }
 }

@@ -123,7 +123,7 @@ public class EyeUnitRegisterReportIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         buttonPanel.add(spacerLabel, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(generateReportBtn, "Generate Eye Unit Attendance Report");
+        generateReportBtn.setText("Generate Eye Unit Attendance Report");
         generateReportBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 generateReportBtnActionPerformed(evt);
@@ -131,10 +131,10 @@ public class EyeUnitRegisterReportIntfr extends javax.swing.JInternalFrame {
         });
         buttonPanel.add(generateReportBtn, new java.awt.GridBagConstraints());
 
-        org.openide.awt.Mnemonics.setLocalizedText(refreshReportBtn, "Refresh Report");
+        refreshReportBtn.setText("Refresh Report");
         buttonPanel.add(refreshReportBtn, new java.awt.GridBagConstraints());
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeReportBtn, "Close form");
+        closeReportBtn.setText("Close form");
         closeReportBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeReportBtnActionPerformed(evt);

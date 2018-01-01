@@ -205,7 +205,7 @@ public class RevenueReportIntfr extends javax.swing.JInternalFrame {
 
         dashBoardButtonPanel.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(refreshBtn, "Refresh listing");
+        refreshBtn.setText("Refresh listing");
         refreshBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshBtnActionPerformed(evt);
@@ -216,7 +216,7 @@ public class RevenueReportIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         dashBoardButtonPanel.add(refreshBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(editBtn, "Edit information");
+        editBtn.setText("Edit information");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -224,7 +224,7 @@ public class RevenueReportIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         dashBoardButtonPanel.add(editBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(clearBtn, "Clear form");
+        clearBtn.setText("Clear form");
         clearBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearBtnActionPerformed(evt);
@@ -237,7 +237,7 @@ public class RevenueReportIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         dashBoardButtonPanel.add(clearBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeBtn, "Close form");
+        closeBtn.setText("Close form");
         closeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeBtnActionPerformed(evt);

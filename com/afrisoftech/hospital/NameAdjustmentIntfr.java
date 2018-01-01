@@ -6,7 +6,7 @@ package com.afrisoftech.hospital;
 
 import java.beans.PropertyChangeEvent;
 import java.sql.SQLException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -138,7 +138,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         nameSearchPanel.add(nameSearchScrollPane, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeButton, "Cancel");
+        closeButton.setText("Cancel");
         closeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeButtonActionPerformed(evt);
@@ -172,13 +172,13 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         patientSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         patientSearchPanel.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, "Patient No Search Dialog");
+        jLabel1.setText("Patient No Search Dialog");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         patientSearchPanel.add(jLabel1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, "Patient Names");
+        jLabel2.setText("Patient Names");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -221,7 +221,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         buttonGroup2.add(opdChkbx);
         opdChkbx.setForeground(new java.awt.Color(51, 51, 255));
         opdChkbx.setMnemonic('o');
-        org.openide.awt.Mnemonics.setLocalizedText(opdChkbx, "OUT Patients");
+        opdChkbx.setText("OUT Patients");
         opdChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
@@ -232,7 +232,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         ipdChkbx.setForeground(new java.awt.Color(255, 0, 51));
         ipdChkbx.setMnemonic('i');
         ipdChkbx.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(ipdChkbx, "IN Patients");
+        ipdChkbx.setText("IN Patients");
         ipdChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -242,7 +242,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
 
         buttonGroup3.add(noSearchChkbx);
         noSearchChkbx.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(noSearchChkbx, "Search By Patient No./Unit No.");
+        noSearchChkbx.setText("Search By Patient No./Unit No.");
         noSearchChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -252,7 +252,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         patientSearchPanel.add(noSearchChkbx, gridBagConstraints);
 
         buttonGroup3.add(nameSearchChkbx);
-        org.openide.awt.Mnemonics.setLocalizedText(nameSearchChkbx, "Search By Name");
+        nameSearchChkbx.setText("Search By Name");
         nameSearchChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
@@ -261,7 +261,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         patientSearchPanel.add(nameSearchChkbx, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel4, "First Name");
+        jLabel4.setText("First Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -276,7 +276,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         patientSearchPanel.add(newFirstNameTxt, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel5, "Middle Name");
+        jLabel5.setText("Middle Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
@@ -291,7 +291,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         patientSearchPanel.add(newMiddleNameTxt, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel6, "Last/Sur Name");
+        jLabel6.setText("Last/Sur Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 4;
@@ -306,7 +306,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         patientSearchPanel.add(newSurNameTxt, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel7, "Unit Number");
+        jLabel7.setText("Unit Number");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -356,7 +356,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         patientSearchPanel.add(jPanel41, gridBagConstraints);
 
         visitTxt.setForeground(new java.awt.Color(102, 102, 255));
-        org.openide.awt.Mnemonics.setLocalizedText(visitTxt, "Please enter the preferred names below");
+        visitTxt.setText("Please enter the preferred names below");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -386,7 +386,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 19, 0, 0);
         commandPanel.add(spacerLabel, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(saveButton, "Save Patient Name changes");
+        saveButton.setText("Save Patient Name changes");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveButtonActionPerformed(evt);
@@ -400,7 +400,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         commandPanel.add(saveButton, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(clearButton, "Clear form");
+        clearButton.setText("Clear form");
         clearButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearButtonActionPerformed(evt);
@@ -414,7 +414,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         commandPanel.add(clearButton, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeFormButton, "Close form");
+        closeFormButton.setText("Close form");
         closeFormButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeFormButtonActionPerformed(evt);
@@ -503,7 +503,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 19, 0, 0);
         commandPanel1.add(spacerLabel1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(saveButton1, "Refresh report");
+        saveButton1.setText("Refresh report");
         saveButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveButton1ActionPerformed(evt);
@@ -517,7 +517,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         commandPanel1.add(saveButton1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(clearButton1, "Clear form");
+        clearButton1.setText("Clear form");
         clearButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearButton1ActionPerformed(evt);
@@ -531,7 +531,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         commandPanel1.add(clearButton1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeFormButton1, "Close form");
+        closeFormButton1.setText("Close form");
         closeFormButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeFormButton1ActionPerformed(evt);
@@ -696,7 +696,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
                     clearForm();
                     javax.swing.JOptionPane.showMessageDialog(this, "Patient names update successfully");
                 } catch (SQLException ex) {
-                    Exceptions.printStackTrace(ex);
+                                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                     javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
                 }
 

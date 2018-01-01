@@ -7,7 +7,7 @@ package com.afrisoftech.records;
 
 import java.beans.PropertyChangeEvent;
 import java.sql.SQLException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -5662,7 +5662,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
                 regimenDrugCodeTxt.setText(rset.getString(1));
             }
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_regimenDrugCmbxActionPerformed

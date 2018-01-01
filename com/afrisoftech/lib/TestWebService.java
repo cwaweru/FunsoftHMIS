@@ -31,7 +31,7 @@ public class TestWebService extends javax.swing.JInternalFrame {
 
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(applyWebServiceBtn, org.openide.util.NbBundle.getMessage(TestWebService.class, "TestWebService.applyWebServiceBtn.text")); // NOI18N
+        applyWebServiceBtn.setText("Apply Web Service");
         applyWebServiceBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 applyWebServiceBtnActionPerformed(evt);

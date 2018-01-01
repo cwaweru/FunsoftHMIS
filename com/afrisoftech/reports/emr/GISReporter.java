@@ -51,18 +51,18 @@ public class GISReporter extends javax.swing.JInternalFrame {
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        headerPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Select Indicator and Date Range")); // NOI18N
+        headerPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Select Indicator and Date Range"));
         headerPanel.setLayout(new java.awt.GridBagLayout());
 
         indicatorCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Attendance", "Morbidity", "Employee Distribution" }));
-        indicatorCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Monitored Indicator")); // NOI18N
+        indicatorCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Monitored Indicator"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 5.0;
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(indicatorCmbx, gridBagConstraints);
 
-        beginDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder("Begin Date")); // NOI18N
+        beginDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder("Begin Date"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -71,7 +71,7 @@ public class GISReporter extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(beginDatePicker, gridBagConstraints);
 
-        endDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder("End Date")); // NOI18N
+        endDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder("End Date"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -80,7 +80,7 @@ public class GISReporter extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(endDatePicker, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(refreshGISReportBtn, "Refresh Report");
+        refreshGISReportBtn.setText("Refresh Report");
         refreshGISReportBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshGISReportBtnActionPerformed(evt);
@@ -94,7 +94,7 @@ public class GISReporter extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(refreshGISReportBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(printReportBtn, "Print Report");
+        printReportBtn.setText("Print Report");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
@@ -103,7 +103,7 @@ public class GISReporter extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(printReportBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(saveReportBtn, "Save Report");
+        saveReportBtn.setText("Save Report");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
@@ -114,7 +114,7 @@ public class GISReporter extends javax.swing.JInternalFrame {
 
         morbidityCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT initcap(disease) FROM hp_patient_diagnosis")
         );
-        morbidityCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Morbidity Indicators")); // NOI18N
+        morbidityCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Morbidity Indicators"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;

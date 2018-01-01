@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -75,7 +75,7 @@ public class ExceluploadDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton1, org.openide.util.NbBundle.getMessage(ExceluploadDialog.class, "ExceluploadDialog.jButton1.text")); // NOI18N
+        jButton1.setText("Upload Data");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -87,7 +87,7 @@ public class ExceluploadDialog extends javax.swing.JDialog {
         gridBagConstraints.weightx = 1.0;
         getContentPane().add(jButton1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton2, org.openide.util.NbBundle.getMessage(ExceluploadDialog.class, "ExceluploadDialog.jButton2.text")); // NOI18N
+        jButton2.setText("Close Screen");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -101,7 +101,7 @@ public class ExceluploadDialog extends javax.swing.JDialog {
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(ExceluploadDialog.class, "ExceluploadDialog.jLabel1.text")); // NOI18N
+        jLabel1.setText("jLabel1");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -1141,7 +1141,7 @@ public class ExceluploadDialog extends javax.swing.JDialog {
         gridBagConstraints.weighty = 6.0;
         getContentPane().add(jScrollPane1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton3, org.openide.util.NbBundle.getMessage(ExceluploadDialog.class, "ExceluploadDialog.jButton3.text")); // NOI18N
+        jButton3.setText("Trim White Spaces");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -1273,7 +1273,7 @@ public class ExceluploadDialog extends javax.swing.JDialog {
                 }
             }
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -1287,7 +1287,7 @@ public class ExceluploadDialog extends javax.swing.JDialog {
             }
 
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
 
         return code;

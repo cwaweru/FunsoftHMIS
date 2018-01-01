@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import javax.swing.*;
 import java.util.*;
 import javax.swing.plaf.*;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *

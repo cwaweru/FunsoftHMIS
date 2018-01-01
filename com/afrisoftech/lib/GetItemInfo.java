@@ -9,7 +9,7 @@ import com.afrisoftech.hospital.HospitalMain;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *

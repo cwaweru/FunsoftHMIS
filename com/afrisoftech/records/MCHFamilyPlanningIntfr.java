@@ -6,7 +6,7 @@
 package com.afrisoftech.records;
 
 import java.sql.SQLException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -965,7 +965,7 @@ public class MCHFamilyPlanningIntfr extends javax.swing.JInternalFrame {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
         if (fpClinicNumberTxt.getText().isEmpty()) {
             fpClinicNumberTxt.setText(fpNumber);

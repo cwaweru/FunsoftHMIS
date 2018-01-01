@@ -5,7 +5,7 @@
 package com.afrisoftech.accounting;
 
 import java.sql.SQLException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -97,7 +97,7 @@ public class MergingElectronicAndManualOrdersInfr extends javax.swing.JInternalF
         gridBagConstraints.weighty = 20.0;
         jSearchPanel.add(jSearchScrollPane, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton9, "Dispose");
+        jButton9.setText("Dispose");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -152,7 +152,7 @@ public class MergingElectronicAndManualOrdersInfr extends javax.swing.JInternalF
         gridBagConstraints.weighty = 20.0;
         jSearchPanel1.add(jSearchScrollPane1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton10, "Dispose");
+        jButton10.setText("Dispose");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -291,7 +291,7 @@ public class MergingElectronicAndManualOrdersInfr extends javax.swing.JInternalF
 
         commandsPanel.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(saveBtn, "Merge Order Numbers");
+        saveBtn.setText("Merge Order Numbers");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveBtnActionPerformed(evt);
@@ -302,7 +302,7 @@ public class MergingElectronicAndManualOrdersInfr extends javax.swing.JInternalF
         gridBagConstraints.gridy = 0;
         commandsPanel.add(saveBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeFormBtn, "Close form");
+        closeFormBtn.setText("Close form");
         closeFormBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeFormBtnActionPerformed(evt);
@@ -438,7 +438,7 @@ public class MergingElectronicAndManualOrdersInfr extends javax.swing.JInternalF
         } catch (SQLException ex) {
             //javax.swing.JOptionPane.showMessageDialog(this, "Order number updated successfully");
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 

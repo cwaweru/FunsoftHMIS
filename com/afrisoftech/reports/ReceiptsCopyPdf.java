@@ -18,7 +18,7 @@ import com.lowagie.text.Image;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import java.net.MalformedURLException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 public class ReceiptsCopyPdf implements java.lang.Runnable {
     
@@ -65,11 +65,11 @@ public class ReceiptsCopyPdf implements java.lang.Runnable {
             Image imgWaterMark = Image.getInstance(System.getProperty("company.watermark"));
             // beginDate = begindate;
         } catch (BadElementException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         } catch (MalformedURLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
         
         // endDate = endate;

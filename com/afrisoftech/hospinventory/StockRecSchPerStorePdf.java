@@ -16,7 +16,7 @@ import com.lowagie.text.pdf.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 public class StockRecSchPerStorePdf implements java.lang.Runnable {
 
@@ -533,7 +533,7 @@ public class StockRecSchPerStorePdf implements java.lang.Runnable {
             }
 
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
 
         return qty;

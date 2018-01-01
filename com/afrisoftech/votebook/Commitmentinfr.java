@@ -106,7 +106,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         jSearchPanel.add(jTextField111, gridBagConstraints);
 
-        jSearchTable.setToolTipText(org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jSearchTable.toolTipText")); // NOI18N
+        jSearchTable.setToolTipText("Click on the target row to select the patient from the search.");
         jSearchTable.setShowHorizontalLines(false);
         /*javax.swing.table.TableColumn column = null;
 
@@ -141,7 +141,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel.add(jSearchScrollPane, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton41, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jButton41.text")); // NOI18N
+        jButton41.setText("Select");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -149,7 +149,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jSearchPanel.add(jButton41, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton51, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jButton51.text")); // NOI18N
+        jButton51.setText("Dispose");
         jButton51.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton51ActionPerformed(evt);
@@ -174,11 +174,11 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle(org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.title")); // NOI18N
+        setTitle("Commitments/payments made off system");
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel5, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jLabel5.text")); // NOI18N
+        jLabel5.setText("Financial Year");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -201,7 +201,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 50);
         getContentPane().add(financialPeriodCmbxBill, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel6, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jLabel6.text")); // NOI18N
+        jLabel6.setText("AIE NO:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -224,7 +224,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 50);
         getContentPane().add(aie_no_bill, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel8, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jLabel8.text")); // NOI18N
+        jLabel8.setText("Vote");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -247,7 +247,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 50);
         getContentPane().add(voteBillTxt, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel7, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jLabel7.text")); // NOI18N
+        jLabel7.setText("Budget Type");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -271,7 +271,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         getContentPane().add(aieTypeCbx, gridBagConstraints);
 
         creditorsBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(creditorsBtn, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.creditorsBtn.text")); // NOI18N
+        creditorsBtn.setText("Creditors");
         creditorsBtn.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         creditorsBtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         creditorsBtn.addItemListener(new java.awt.event.ItemListener() {
@@ -290,7 +290,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         getContentPane().add(creditorsBtn, gridBagConstraints);
 
         imprestBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(imprestBtn, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.imprestBtn.text")); // NOI18N
+        imprestBtn.setText("Staff");
         imprestBtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         imprestBtn.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -325,7 +325,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 50);
         getContentPane().add(QuarterBillCbx, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel18, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jLabel18.text")); // NOI18N
+        jLabel18.setText("Quarter");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -333,7 +333,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jLabel18, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel9, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jLabel9.text")); // NOI18N
+        jLabel9.setText("Division");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -360,7 +360,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 50);
         getContentPane().add(voteheadBillCbx, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel10, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jLabel10.text")); // NOI18N
+        jLabel10.setText("Vote Head");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
@@ -382,7 +382,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 50);
         getContentPane().add(voteSubheadBillCbx, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jLabel2.text")); // NOI18N
+        jLabel2.setText("Supplier/Creditor/Staff Member");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
@@ -390,7 +390,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jLabel2, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel4, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jLabel4.text")); // NOI18N
+        jLabel4.setText("Voucher No:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
@@ -398,7 +398,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jLabel4, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel14, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jLabel14.text")); // NOI18N
+        jLabel14.setText("Invoice No :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
@@ -406,7 +406,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jLabel14, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jCheckBox1, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jCheckBox1.text")); // NOI18N
+        jCheckBox1.setText("Commitment");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
@@ -414,7 +414,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jCheckBox1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton1, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jButton1.text")); // NOI18N
+        jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -425,7 +425,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 11;
         getContentPane().add(jButton1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jCheckBox2, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jCheckBox2.text")); // NOI18N
+        jCheckBox2.setText("Payment");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 10;
@@ -433,7 +433,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jCheckBox2, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton2, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jButton2.text")); // NOI18N
+        jButton2.setText("Clear");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -459,7 +459,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         jPanel61.add(dealerNameTxt, gridBagConstraints);
 
         searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
-        searchButton.setToolTipText(org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.searchButton.toolTipText")); // NOI18N
+        searchButton.setToolTipText("Search patient name");
         searchButton.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         searchButton.setMaximumSize(new java.awt.Dimension(74, 53));
         searchButton.setMinimumSize(new java.awt.Dimension(74, 53));
@@ -481,8 +481,6 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanel61, gridBagConstraints);
-
-        voucher_no.setText(org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.voucher_no.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
@@ -491,8 +489,6 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 50);
         getContentPane().add(voucher_no, gridBagConstraints);
-
-        invoice_no.setText(org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.invoice_no.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 9;
@@ -501,8 +497,6 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 50);
         getContentPane().add(invoice_no, gridBagConstraints);
-
-        jTextField20.setText(org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jTextField20.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 9;
@@ -522,7 +516,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(invoiceDatePicker, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel13, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jLabel13.text")); // NOI18N
+        jLabel13.setText("Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 7;
@@ -532,15 +526,13 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 0);
         getContentPane().add(jLabel13, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jLabel1.text")); // NOI18N
+        jLabel1.setText("Document No:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jLabel1, gridBagConstraints);
-
-        lpoTxt1.setText(org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.lpoTxt1.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 8;
@@ -550,7 +542,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 50);
         getContentPane().add(lpoTxt1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jLabel3.text")); // NOI18N
+        jLabel3.setText("Amount:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 9;
@@ -558,7 +550,7 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jLabel3, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jCheckBox3, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jCheckBox3.text")); // NOI18N
+        jCheckBox3.setText("Decompose Expenditure Block figure");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 10;
@@ -567,7 +559,6 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 0, 51));
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel11, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jLabel11.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
@@ -575,7 +566,6 @@ public class Commitmentinfr extends javax.swing.JInternalFrame {
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 0, 51));
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel12, org.openide.util.NbBundle.getMessage(Commitmentinfr.class, "Commitmentinfr.jLabel12.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 4;

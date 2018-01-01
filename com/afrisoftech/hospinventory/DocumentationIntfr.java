@@ -17,7 +17,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -95,7 +95,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         jPanel29.setLayout(new java.awt.GridBagLayout());
 
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/pdf1.jpg"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(jButton13, "Upload pdf to database");
+        jButton13.setText("Upload pdf to database");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
@@ -109,7 +109,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         jPanel29.add(jButton13, gridBagConstraints);
 
         jLabel30.setForeground(new java.awt.Color(255, 0, 0));
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel30, "Doc Description (e.g Purchase order to 'ABC Company')");
+        jLabel30.setText("Doc Description (e.g Purchase order to 'ABC Company')");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -118,7 +118,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         jPanel29.add(jLabel30, gridBagConstraints);
 
         jLabel32.setForeground(new java.awt.Color(255, 0, 0));
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel32, "Doc Ref_No (e.g PC/23)");
+        jLabel32.setText("Doc Ref_No (e.g PC/23)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -156,7 +156,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel29.add(refNotxt, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton34, "Preview Document ");
+        jButton34.setText("Preview Document ");
         jButton34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton34ActionPerformed(evt);
@@ -167,7 +167,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 6;
         jPanel29.add(jButton34, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, "File Path");
+        jLabel1.setText("File Path");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -245,7 +245,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jScrollPane1, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, "Search Key(Ref No or Doc Name)");
+        jLabel2.setText("Search Key(Ref No or Doc Name)");
         jPanel3.add(jLabel2, new java.awt.GridBagConstraints());
 
         keySearch.setText("Type ref_no here and press enter...");
@@ -273,7 +273,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Apply a date filter to view multiple uploads"));
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, "Begin Date");
+        jLabel3.setText("Begin Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -296,7 +296,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel5.add(endPckr, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel4, "End Date");
+        jLabel4.setText("End Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -305,7 +305,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel5.add(jLabel4, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jRadioButton1, null);
+        jRadioButton1.setText("null");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
@@ -344,7 +344,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
             try {
                 fis = new java.io.FileInputStream(file);
             } catch (FileNotFoundException ex) {
-                Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             }
 
             PreparedStatement pst = connectDB.prepareStatement("INSERT INTO st_scm_docs(ref_no, document_name,  other_details,uploaded_file) VALUES (?, ?, ?, ? )");
@@ -359,7 +359,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
             connectDB.commit();
             JOptionPane.showMessageDialog(this, "Done");
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
         }
@@ -434,9 +434,9 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
             try {
                 file = getStoredPDF(connectDB, ref);
             } catch (FileNotFoundException ex) {
-                Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             } catch (DocumentException ex) {
-                Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             }
 
             if (file != null) {
@@ -462,7 +462,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(this, "Done");
 
                 } catch (SQLException ex) {
-                    Exceptions.printStackTrace(ex);
+                                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                 }
 
             }

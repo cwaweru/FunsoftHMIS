@@ -5,15 +5,50 @@
  */
 package com.afrisoftech.hospinventory;
 
+import com.afrisoftech.dbadmin.JTable;
+import com.afrisoftech.lib.DatePicker;
 import com.afrisoftech.lib.GetItemInfo;
 import com.afrisoftech.lib.UserName;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import org.openide.util.Exceptions;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -68,106 +103,106 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
+        GridBagConstraints gridBagConstraints;
 
-        jSearcItem = new javax.swing.JDialog();
-        jSearchPanel = new javax.swing.JPanel();
-        jTextField111 = new javax.swing.JTextField();
-        jSearchScrollPane = new javax.swing.JScrollPane();
-        jSearchTable = new com.afrisoftech.dbadmin.JTable();
-        jButton9 = new javax.swing.JButton();
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        searchsupplier = new javax.swing.JDialog();
-        jSearchPanel2 = new javax.swing.JPanel();
-        jTextField113 = new javax.swing.JTextField();
-        jSearchScrollPane2 = new javax.swing.JScrollPane();
-        jSearchTable2 = new com.afrisoftech.dbadmin.JTable();
-        jButton42 = new javax.swing.JButton();
-        jButton52 = new javax.swing.JButton();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        searchTender = new javax.swing.JDialog();
-        jSearchPanel3 = new javax.swing.JPanel();
-        jTextField114 = new javax.swing.JTextField();
-        tendersScrllpn = new javax.swing.JScrollPane();
-        tendersTbl = new com.afrisoftech.dbadmin.JTable();
-        jButton53 = new javax.swing.JButton();
-        searchVote = new javax.swing.JDialog();
-        jSearchPanel4 = new javax.swing.JPanel();
-        searchtlpo1 = new javax.swing.JTextField();
-        jSearchScrollPane3 = new javax.swing.JScrollPane();
-        votesTbl = new com.afrisoftech.dbadmin.JTable();
-        jButton11 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        datePicker1 = new com.afrisoftech.lib.DatePicker();
-        jLabel4 = new javax.swing.JLabel();
-        sectionCmbx = new javax.swing.JComboBox();
-        jPanel41 = new javax.swing.JPanel();
-        supplietTxt = new javax.swing.JTextField();
-        searchButton = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        lpoNumberTxt = new javax.swing.JTextField();
-        orderCmbx = new javax.swing.JComboBox();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jPanel42 = new javax.swing.JPanel();
-        TenderNoTxt = new javax.swing.JTextField();
-        searchButton1 = new javax.swing.JButton();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
-        jPanel63 = new javax.swing.JPanel();
-        TenderNoTxt1 = new javax.swing.JTextField();
-        tenderSearchbtn1 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        postbtn = new javax.swing.JButton();
-        cancelbtn = new javax.swing.JButton();
-        exitbtn = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        itemsTbl = new com.afrisoftech.dbadmin.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        jSearcItem = new JDialog();
+        jSearchPanel = new JPanel();
+        jTextField111 = new JTextField();
+        jSearchScrollPane = new JScrollPane();
+        jSearchTable = new JTable();
+        jButton9 = new JButton();
+        buttonGroup1 = new ButtonGroup();
+        searchsupplier = new JDialog();
+        jSearchPanel2 = new JPanel();
+        jTextField113 = new JTextField();
+        jSearchScrollPane2 = new JScrollPane();
+        jSearchTable2 = new JTable();
+        jButton42 = new JButton();
+        jButton52 = new JButton();
+        buttonGroup2 = new ButtonGroup();
+        searchTender = new JDialog();
+        jSearchPanel3 = new JPanel();
+        jTextField114 = new JTextField();
+        tendersScrllpn = new JScrollPane();
+        tendersTbl = new JTable();
+        jButton53 = new JButton();
+        searchVote = new JDialog();
+        jSearchPanel4 = new JPanel();
+        searchtlpo1 = new JTextField();
+        jSearchScrollPane3 = new JScrollPane();
+        votesTbl = new JTable();
+        jButton11 = new JButton();
+        jPanel1 = new JPanel();
+        jLabel9 = new JLabel();
+        jTextField9 = new JTextField();
+        jLabel13 = new JLabel();
+        datePicker1 = new DatePicker();
+        jLabel4 = new JLabel();
+        sectionCmbx = new JComboBox();
+        jPanel41 = new JPanel();
+        supplietTxt = new JTextField();
+        searchButton = new JButton();
+        jLabel11 = new JLabel();
+        lpoNumberTxt = new JTextField();
+        orderCmbx = new JComboBox();
+        jLabel2 = new JLabel();
+        jLabel10 = new JLabel();
+        jPanel42 = new JPanel();
+        TenderNoTxt = new JTextField();
+        searchButton1 = new JButton();
+        jCheckBox3 = new JCheckBox();
+        jPanel6 = new JPanel();
+        jLabel16 = new JLabel();
+        jPanel63 = new JPanel();
+        TenderNoTxt1 = new JTextField();
+        tenderSearchbtn1 = new JButton();
+        jTextField3 = new JTextField();
+        jLabel12 = new JLabel();
+        jTextField6 = new JTextField();
+        jLabel17 = new JLabel();
+        jPanel3 = new JPanel();
+        postbtn = new JButton();
+        cancelbtn = new JButton();
+        exitbtn = new JButton();
+        jLabel5 = new JLabel();
+        jButton1 = new JButton();
+        jButton2 = new JButton();
+        jLabel3 = new JLabel();
+        jLabel15 = new JLabel();
+        jScrollPane1 = new JScrollPane();
+        jTextArea1 = new JTextArea();
+        jPanel2 = new JPanel();
+        jScrollPane2 = new JScrollPane();
+        itemsTbl = new JTable();
+        jPanel4 = new JPanel();
+        jLabel6 = new JLabel();
+        jTextField4 = new JTextField();
+        jLabel7 = new JLabel();
+        jTextField1 = new JTextField();
+        jLabel8 = new JLabel();
+        jTextField5 = new JTextField();
+        jLabel1 = new JLabel();
+        jTextField2 = new JTextField();
+        jCheckBox1 = new JCheckBox();
+        jCheckBox2 = new JCheckBox();
 
         jSearcItem.setModal(true);
         jSearcItem.setUndecorated(true);
-        jSearcItem.getContentPane().setLayout(new java.awt.GridBagLayout());
+        jSearcItem.getContentPane().setLayout(new GridBagLayout());
 
-        jSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jSearchPanel.setLayout(new java.awt.GridBagLayout());
+        jSearchPanel.setBorder(BorderFactory.createEtchedBorder());
+        jSearchPanel.setLayout(new GridBagLayout());
 
-        jTextField111.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+        jTextField111.addCaretListener(new CaretListener() {
+            public void caretUpdate(CaretEvent evt) {
                 jTextField111CaretUpdate(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 10.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
+        gridBagConstraints.insets = new Insets(0, 0, 0, 100);
         jSearchPanel.add(jTextField111, gridBagConstraints);
 
         jSearchTable.setShowHorizontalLines(false);
@@ -192,60 +227,60 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
             System.out.println(sqlex.getMessage());
         }
         */
-        jSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jSearchTable.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jSearchTableMouseClicked(evt);
             }
         });
         jSearchScrollPane.setViewportView(jSearchTable);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
         jSearchPanel.add(jSearchScrollPane, gridBagConstraints);
 
         jButton9.setText("Dispose");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton9.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton9ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jSearchPanel.add(jButton9, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jSearcItem.getContentPane().add(jSearchPanel, gridBagConstraints);
 
         searchsupplier.setModal(true);
         searchsupplier.setUndecorated(true);
-        searchsupplier.getContentPane().setLayout(new java.awt.GridBagLayout());
+        searchsupplier.getContentPane().setLayout(new GridBagLayout());
 
-        jSearchPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jSearchPanel2.setLayout(new java.awt.GridBagLayout());
+        jSearchPanel2.setBorder(BorderFactory.createEtchedBorder());
+        jSearchPanel2.setLayout(new GridBagLayout());
 
-        jTextField113.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+        jTextField113.addCaretListener(new CaretListener() {
+            public void caretUpdate(CaretEvent evt) {
                 jTextField113CaretUpdate(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 300.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        gridBagConstraints.insets = new Insets(0, 0, 0, 5);
         jSearchPanel2.add(jTextField113, gridBagConstraints);
 
         jSearchTable2.setToolTipText("Click on the target row to select the patient from the search.");
@@ -267,24 +302,24 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
             }
         }
         */
-        jSearchTable2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jSearchTable2.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jSearchTable2MouseClicked(evt);
             }
         });
         jSearchScrollPane2.setViewportView(jSearchTable2);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
         jSearchPanel2.add(jSearchScrollPane2, gridBagConstraints);
 
         jButton42.setText("Select");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
@@ -292,45 +327,45 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         jSearchPanel2.add(jButton42, gridBagConstraints);
 
         jButton52.setText("Close");
-        jButton52.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton52.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton52ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jSearchPanel2.add(jButton52, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         searchsupplier.getContentPane().add(jSearchPanel2, gridBagConstraints);
 
         searchTender.setModal(true);
         searchTender.setUndecorated(true);
-        searchTender.getContentPane().setLayout(new java.awt.GridBagLayout());
+        searchTender.getContentPane().setLayout(new GridBagLayout());
 
-        jSearchPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jSearchPanel3.setLayout(new java.awt.GridBagLayout());
+        jSearchPanel3.setBorder(BorderFactory.createEtchedBorder());
+        jSearchPanel3.setLayout(new GridBagLayout());
 
-        jTextField114.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+        jTextField114.addCaretListener(new CaretListener() {
+            public void caretUpdate(CaretEvent evt) {
                 jTextField114CaretUpdate(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 300.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        gridBagConstraints.insets = new Insets(0, 0, 0, 5);
         jSearchPanel3.add(jTextField114, gridBagConstraints);
 
         tendersTbl.setToolTipText("Click on the target row to select the patient from the search.");
@@ -352,57 +387,57 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
             }
         }
         */
-        tendersTbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        tendersTbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 tendersTblMouseClicked(evt);
             }
         });
         tendersScrllpn.setViewportView(tendersTbl);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
         jSearchPanel3.add(tendersScrllpn, gridBagConstraints);
 
         jButton53.setText("Close");
-        jButton53.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton53.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton53ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jSearchPanel3.add(jButton53, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         searchTender.getContentPane().add(jSearchPanel3, gridBagConstraints);
 
         searchVote.setModal(true);
         searchVote.setUndecorated(true);
-        searchVote.getContentPane().setLayout(new java.awt.GridBagLayout());
+        searchVote.getContentPane().setLayout(new GridBagLayout());
 
-        jSearchPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jSearchPanel4.setLayout(new java.awt.GridBagLayout());
+        jSearchPanel4.setBorder(BorderFactory.createEtchedBorder());
+        jSearchPanel4.setLayout(new GridBagLayout());
 
-        searchtlpo1.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+        searchtlpo1.addCaretListener(new CaretListener() {
+            public void caretUpdate(CaretEvent evt) {
                 searchtlpo1CaretUpdate(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 10.0;
         gridBagConstraints.weighty = 1.0;
         jSearchPanel4.add(searchtlpo1, gridBagConstraints);
@@ -429,38 +464,38 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
             System.out.println(sqlex.getMessage());
         }
         */
-        votesTbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        votesTbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 votesTblMouseClicked(evt);
             }
         });
         jSearchScrollPane3.setViewportView(votesTbl);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
         jSearchPanel4.add(jSearchScrollPane3, gridBagConstraints);
 
         jButton11.setText("Dispose");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton11.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jSearchPanel4.add(jButton11, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         searchVote.getContentPane().add(jSearchPanel4, gridBagConstraints);
@@ -471,7 +506,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         setTitle("Externally Generated Lpo/Lso");
         setToolTipText("");
         setVisible(true);
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        getContentPane().setLayout(new GridBagLayout());
 
         /*        javax.swing.SpinnerDateModel spinerDate = new javax.swing.SpinnerDateModel();
         dateSpinner = new javax.swing.JSpinner(spinerDate);
@@ -485,444 +520,444 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
         jPanel1.add(dateSpinner, gridBagConstraints);
         */
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        jPanel1.setBorder(BorderFactory.createEtchedBorder());
+        jPanel1.setLayout(new GridBagLayout());
 
         jLabel9.setText("Supplier");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
+        gridBagConstraints.insets = new Insets(0, 30, 0, 0);
         jPanel1.add(jLabel9, gridBagConstraints);
 
         jTextField9.setEditable(false);
-        jTextField9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        jTextField9.setFont(new Font("Tahoma", 1, 12)); // NOI18N
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        gridBagConstraints.insets = new Insets(0, 0, 0, 10);
         jPanel1.add(jTextField9, gridBagConstraints);
 
         jLabel13.setText("Section");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
+        gridBagConstraints.insets = new Insets(0, 30, 0, 0);
         jPanel1.add(jLabel13, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 40);
+        gridBagConstraints.insets = new Insets(0, 0, 0, 40);
         jPanel1.add(datePicker1, gridBagConstraints);
 
         jLabel4.setText("Lpo/Lso Expiry Date");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
+        gridBagConstraints.insets = new Insets(0, 30, 0, 0);
         jPanel1.add(jLabel4, gridBagConstraints);
 
-        sectionCmbx.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        sectionCmbx.setForeground(new java.awt.Color(0, 51, 204));
-        sectionCmbx.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        sectionCmbx.setFont(new Font("Dialog", 1, 14)); // NOI18N
+        sectionCmbx.setForeground(new Color(0, 51, 204));
+        sectionCmbx.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
                 sectionCmbxItemStateChanged(evt);
             }
         });
-        sectionCmbx.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        sectionCmbx.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 sectionCmbxActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        gridBagConstraints.insets = new Insets(0, 0, 0, 10);
         jPanel1.add(sectionCmbx, gridBagConstraints);
 
-        jPanel41.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel41.setLayout(new java.awt.GridBagLayout());
+        jPanel41.setBorder(BorderFactory.createEtchedBorder());
+        jPanel41.setLayout(new GridBagLayout());
 
         supplietTxt.setEditable(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel41.add(supplietTxt, gridBagConstraints);
 
-        searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
+        searchButton.setIcon(new ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
         searchButton.setToolTipText("Search");
-        searchButton.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        searchButton.setMaximumSize(new java.awt.Dimension(74, 53));
-        searchButton.setMinimumSize(new java.awt.Dimension(74, 53));
-        searchButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        searchButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        searchButton.setHorizontalAlignment(SwingConstants.TRAILING);
+        searchButton.setMaximumSize(new Dimension(74, 53));
+        searchButton.setMinimumSize(new Dimension(74, 53));
+        searchButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+        searchButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 searchButtonActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         jPanel41.add(searchButton, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 3.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jPanel41, gridBagConstraints);
 
         jLabel11.setText("Lpo/Lso Number");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
+        gridBagConstraints.insets = new Insets(0, 30, 0, 0);
         jPanel1.add(jLabel11, gridBagConstraints);
 
         lpoNumberTxt.setText("-");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        gridBagConstraints.insets = new Insets(0, 0, 0, 10);
         jPanel1.add(lpoNumberTxt, gridBagConstraints);
 
-        orderCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "LPO", "LSO" }));
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        orderCmbx.setModel(new DefaultComboBoxModel(new String[] { "LPO", "LSO" }));
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         jPanel1.add(orderCmbx, gridBagConstraints);
 
         jLabel2.setText("Document Type Used");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         jPanel1.add(jLabel2, gridBagConstraints);
 
         jLabel10.setText("Tender Number");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
+        gridBagConstraints.insets = new Insets(0, 30, 0, 0);
         jPanel1.add(jLabel10, gridBagConstraints);
 
-        jPanel42.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel42.setLayout(new java.awt.GridBagLayout());
+        jPanel42.setBorder(BorderFactory.createEtchedBorder());
+        jPanel42.setLayout(new GridBagLayout());
 
         TenderNoTxt.setEditable(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel42.add(TenderNoTxt, gridBagConstraints);
 
         searchButton1.setToolTipText("Search");
-        searchButton1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        searchButton1.setMaximumSize(new java.awt.Dimension(74, 53));
-        searchButton1.setMinimumSize(new java.awt.Dimension(74, 53));
-        searchButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        searchButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        searchButton1.setHorizontalAlignment(SwingConstants.TRAILING);
+        searchButton1.setMaximumSize(new Dimension(74, 53));
+        searchButton1.setMinimumSize(new Dimension(74, 53));
+        searchButton1.setVerticalTextPosition(SwingConstants.BOTTOM);
+        searchButton1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 searchButton1ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         jPanel42.add(searchButton1, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 3.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jPanel42, gridBagConstraints);
 
-        jCheckBox3.setForeground(new java.awt.Color(255, 0, 51));
+        jCheckBox3.setForeground(new Color(255, 0, 51));
         jCheckBox3.setText("Automatic LPO NO.");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jCheckBox3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jCheckBox3ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
         jPanel1.add(jCheckBox3, gridBagConstraints);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Votebook Details(compulsory)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.red)); // NOI18N
-        jPanel6.setLayout(new java.awt.GridBagLayout());
+        jPanel6.setBorder(BorderFactory.createTitledBorder(null, "Votebook Details(compulsory)", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.red));
+        jPanel6.setLayout(new GridBagLayout());
 
         jLabel16.setText("Vote name");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new Insets(0, 30, 0, 0);
         jPanel6.add(jLabel16, gridBagConstraints);
 
-        jPanel63.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel63.setMinimumSize(new java.awt.Dimension(82, 37));
-        jPanel63.setLayout(new java.awt.GridBagLayout());
+        jPanel63.setBorder(BorderFactory.createEtchedBorder());
+        jPanel63.setMinimumSize(new Dimension(82, 37));
+        jPanel63.setLayout(new GridBagLayout());
 
         TenderNoTxt1.setEditable(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel63.add(TenderNoTxt1, gridBagConstraints);
 
-        tenderSearchbtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
+        tenderSearchbtn1.setIcon(new ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
         tenderSearchbtn1.setToolTipText("Search");
-        tenderSearchbtn1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        tenderSearchbtn1.setMaximumSize(new java.awt.Dimension(74, 53));
-        tenderSearchbtn1.setMinimumSize(new java.awt.Dimension(74, 53));
-        tenderSearchbtn1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tenderSearchbtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        tenderSearchbtn1.setHorizontalAlignment(SwingConstants.TRAILING);
+        tenderSearchbtn1.setMaximumSize(new Dimension(74, 53));
+        tenderSearchbtn1.setMinimumSize(new Dimension(74, 53));
+        tenderSearchbtn1.setVerticalTextPosition(SwingConstants.BOTTOM);
+        tenderSearchbtn1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 tenderSearchbtn1ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         jPanel63.add(tenderSearchbtn1, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         jPanel6.add(jPanel63, gridBagConstraints);
 
         jTextField3.setEditable(false);
-        jTextField3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(0, 0, 255));
-        jTextField3.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+        jTextField3.setFont(new Font("Dialog", 1, 14)); // NOI18N
+        jTextField3.setForeground(new Color(0, 0, 255));
+        jTextField3.addCaretListener(new CaretListener() {
+            public void caretUpdate(CaretEvent evt) {
                 jTextField3CaretUpdate(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        gridBagConstraints.insets = new Insets(0, 20, 0, 0);
         jPanel6.add(jTextField3, gridBagConstraints);
 
         jLabel12.setText("  -  ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.weighty = 1.0;
         jPanel6.add(jLabel12, gridBagConstraints);
 
         jTextField6.setEditable(false);
-        jTextField6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(0, 0, 255));
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        jTextField6.setFont(new Font("Dialog", 1, 14)); // NOI18N
+        jTextField6.setForeground(new Color(0, 0, 255));
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel6.add(jTextField6, gridBagConstraints);
 
-        jLabel17.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel17.setForeground(new Color(255, 51, 51));
         jLabel17.setText("{ Format: [head]-[subhead]  e.g 101-6240 }");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 9;
         jPanel6.add(jLabel17, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
         gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jPanel6, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 4.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         getContentPane().add(jPanel1, gridBagConstraints);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel3.setLayout(new java.awt.GridBagLayout());
+        jPanel3.setBorder(BorderFactory.createEtchedBorder());
+        jPanel3.setLayout(new GridBagLayout());
 
-        postbtn.setBackground(new java.awt.Color(0, 204, 204));
+        postbtn.setBackground(new Color(0, 204, 204));
         postbtn.setMnemonic('s');
         postbtn.setText("Send LPO/LSO for Approvals");
-        postbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        postbtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 postbtnActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(postbtn, gridBagConstraints);
 
-        cancelbtn.setBackground(new java.awt.Color(0, 204, 204));
+        cancelbtn.setBackground(new Color(0, 204, 204));
         cancelbtn.setMnemonic('l');
         cancelbtn.setText("Clear entries");
-        cancelbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cancelbtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 cancelbtnActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(cancelbtn, gridBagConstraints);
 
-        exitbtn.setBackground(new java.awt.Color(0, 204, 204));
+        exitbtn.setBackground(new Color(0, 204, 204));
         exitbtn.setMnemonic('c');
         exitbtn.setText("Close form");
-        exitbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        exitbtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 exitbtnActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(exitbtn, gridBagConstraints);
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        jLabel5.setHorizontalAlignment(SwingConstants.CENTER);
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         jPanel3.add(jLabel5, gridBagConstraints);
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 204));
+        jButton1.setBackground(new Color(0, 204, 204));
         jButton1.setMnemonic('r');
         jButton1.setText("Remove row");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jButton1, gridBagConstraints);
 
-        jButton2.setBackground(new java.awt.Color(0, 204, 204));
+        jButton2.setBackground(new Color(0, 204, 204));
         jButton2.setMnemonic('h');
         jButton2.setText("Help");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 9;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jButton2, gridBagConstraints);
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        jLabel3.setHorizontalAlignment(SwingConstants.CENTER);
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         jPanel3.add(jLabel3, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 200.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jLabel15, gridBagConstraints);
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Brief remarks"));
+        jScrollPane1.setBorder(BorderFactory.createTitledBorder("Brief remarks"));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setBorder(null);
         jScrollPane1.setViewportView(jTextArea1);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jScrollPane1, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanel3, gridBagConstraints);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel2.setLayout(new java.awt.GridBagLayout());
+        jPanel2.setBorder(BorderFactory.createEtchedBorder());
+        jPanel2.setLayout(new GridBagLayout());
 
-        itemsTbl.setModel(new javax.swing.table.DefaultTableModel(
+        itemsTbl.setModel(new DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -1030,7 +1065,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                Object.class, Object.class, Object.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Object.class, Object.class, Object.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, true, false, true, false, true, false, true, true, false, false
@@ -1044,10 +1079,10 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        itemsTbl.setGridColor(new java.awt.Color(204, 204, 255));
-        cmbox = new javax.swing.JComboBox();
+        itemsTbl.setGridColor(new Color(204, 204, 255));
+        cmbox = new JComboBox();
 
-        javax.swing.table.TableColumn column = null;
+        TableColumn column = null;
         for (int i = 0; i < 12; i++) {
             column = itemsTbl.getColumnModel().getColumn(i);
             if (i == 0) {
@@ -1061,162 +1096,162 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
 
             }
         }
-        itemsTbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        itemsTbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 itemsTblMouseClicked(evt);
             }
         });
-        itemsTbl.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        itemsTbl.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 itemsTblKeyReleased(evt);
             }
         });
         jScrollPane2.setViewportView(itemsTbl);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 8;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.weighty = 50.0;
         jPanel2.add(jScrollPane2, gridBagConstraints);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel4.setLayout(new java.awt.GridBagLayout());
+        jPanel4.setBorder(BorderFactory.createTitledBorder(""));
+        jPanel4.setLayout(new GridBagLayout());
 
         jLabel6.setText("Total Discount");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        gridBagConstraints.insets = new Insets(0, 0, 0, 10);
         jPanel4.add(jLabel6, gridBagConstraints);
 
         jTextField4.setEditable(false);
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField4.setHorizontalAlignment(JTextField.RIGHT);
         jTextField4.setText("0.00");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        gridBagConstraints.insets = new Insets(0, 0, 0, 20);
         jPanel4.add(jTextField4, gridBagConstraints);
 
         jLabel7.setText("VAT Amount");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        gridBagConstraints.insets = new Insets(0, 0, 0, 10);
         jPanel4.add(jLabel7, gridBagConstraints);
 
         jTextField1.setEditable(false);
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField1.setHorizontalAlignment(JTextField.RIGHT);
         jTextField1.setText("0.00");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        gridBagConstraints.insets = new Insets(0, 0, 0, 20);
         jPanel4.add(jTextField1, gridBagConstraints);
 
         jLabel8.setText("Net Value");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        gridBagConstraints.insets = new Insets(0, 0, 0, 10);
         jPanel4.add(jLabel8, gridBagConstraints);
 
         jTextField5.setEditable(false);
-        jTextField5.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField5.setHorizontalAlignment(JTextField.RIGHT);
         jTextField5.setText("0.00");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        gridBagConstraints.insets = new Insets(0, 0, 0, 20);
         jPanel4.add(jTextField5, gridBagConstraints);
 
         jLabel1.setText("Gross Value");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        gridBagConstraints.insets = new Insets(0, 0, 0, 10);
         jPanel4.add(jLabel1, gridBagConstraints);
 
         jTextField2.setEditable(false);
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField2.setHorizontalAlignment(JTextField.RIGHT);
         jTextField2.setText("0.00");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        gridBagConstraints.insets = new Insets(0, 0, 0, 20);
         jPanel4.add(jTextField2, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel2.add(jPanel4, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 100.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        gridBagConstraints.insets = new Insets(0, 5, 0, 5);
         getContentPane().add(jPanel2, gridBagConstraints);
 
         buttonGroup1.add(jCheckBox1);
         jCheckBox1.setText("Main Store");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jCheckBox1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         getContentPane().add(jCheckBox1, gridBagConstraints);
 
         buttonGroup1.add(jCheckBox2);
         jCheckBox2.setText("Sub Store");
         jCheckBox2.setEnabled(false);
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jCheckBox2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jCheckBox2ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         getContentPane().add(jCheckBox2, gridBagConstraints);
 
         setBounds(0, 0, 1272, 612);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jSearchTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable2MouseClicked
+    private void jSearchTable2MouseClicked(MouseEvent evt) {//GEN-FIRST:event_jSearchTable2MouseClicked
         // jTextField1.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 1).toString());
         supplietTxt.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 0).toString());
         searchsupplier.dispose();
@@ -1233,11 +1268,11 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         } // Add your handling code here:
     }//GEN-LAST:event_jSearchTable2MouseClicked
 
-    private void jButton52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton52ActionPerformed
+    private void jButton52ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton52ActionPerformed
         this.searchsupplier.dispose();        // Add your handling code here:
     }//GEN-LAST:event_jButton52ActionPerformed
 
-    private void jTextField113CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField113CaretUpdate
+    private void jTextField113CaretUpdate(CaretEvent evt) {//GEN-FIRST:event_jTextField113CaretUpdate
         if (jTextField113.getCaretPosition() < 3) {
             System.out.println("Nothing");
         } else {
@@ -1262,7 +1297,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         searchsupplier.setVisible(true);
 
     }
-    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+    private void searchButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         for (int k = 0; k < jSearchTable2.getRowCount(); k++) {
             for (int r = 0; r < jSearchTable2.getColumnCount(); r++) {
                 jSearchTable2.getModel().setValueAt(null, k, r);
@@ -1274,7 +1309,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_searchButtonActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void jCheckBox2ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
         sectionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select stores from store_allocation where user_name = current_user and type ilike 'direct purch%' "));
 //setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select distinct store_name from st_stores order by store_name"));
         sectionCmbx.addActionListener(new java.awt.event.ActionListener() {
@@ -1288,12 +1323,12 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jCheckBox2ActionPerformed
 
-    private void sectionCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectionCmbxActionPerformed
+    private void sectionCmbxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_sectionCmbxActionPerformed
 
         // Add your handling code here:
     }//GEN-LAST:event_sectionCmbxActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void jCheckBox1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         //  jComboBox2.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' union select DISTINCT stores from store_allocation where user_name = current_user and type ilike 'direct purch%' order by 1 "));
         sectionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT  buyer_name  FROM st_buyers_register where buyer_designation='SSO'"));
         sectionCmbx.addActionListener(new java.awt.event.ActionListener() {
@@ -1305,7 +1340,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-    private void itemsTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemsTblMouseClicked
+    private void itemsTblMouseClicked(MouseEvent evt) {//GEN-FIRST:event_itemsTblMouseClicked
         if (itemsTbl.getSelectedColumn() == 0) {
 
             this.cmboxMouseClicked();
@@ -1328,11 +1363,11 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         jSearcItem.setLocation(point);
         jSearcItem.setVisible(true);
     }
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void jButton9ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         jSearcItem.dispose();         // Add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void jTextField111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField111CaretUpdate
+    private void jTextField111CaretUpdate(CaretEvent evt) {//GEN-FIRST:event_jTextField111CaretUpdate
         //if(this.jComboBox2.getSelectedItem().equals("GENERAL STORE")){
         if (this.jTextField111.getCaretPosition() < 5) {
             System.out.print("Nothing");
@@ -1345,7 +1380,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jTextField111CaretUpdate
 
-    private void jSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTableMouseClicked
+    private void jSearchTableMouseClicked(MouseEvent evt) {//GEN-FIRST:event_jSearchTableMouseClicked
         itemsTbl.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0), itemsTbl.getSelectedRow(), 0);
         itemsTbl.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 1), itemsTbl.getSelectedRow(), 1);
         itemsTbl.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 2), itemsTbl.getSelectedRow(), 2);
@@ -1382,7 +1417,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jSearchTableMouseClicked
 
-    private void itemsTblKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_itemsTblKeyReleased
+    private void itemsTblKeyReleased(KeyEvent evt) {//GEN-FIRST:event_itemsTblKeyReleased
         double orderedqty = 0.00;
         double tenderbalance = 0.00;
         orderedqty = java.lang.Double.parseDouble(itemsTbl.getValueAt(itemsTbl.getSelectedRow(), 3).toString());
@@ -1479,11 +1514,11 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_itemsTblKeyReleased
 
-    private void exitbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitbtnActionPerformed
+    private void exitbtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_exitbtnActionPerformed
         this.setVisible(false);        // Add your handling code here:
     }//GEN-LAST:event_exitbtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int rows2Delete = itemsTbl.getSelectedRowCount();
 
         int[] selectedRows = itemsTbl.getSelectedRows();
@@ -1520,7 +1555,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void cancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbtnActionPerformed
+    private void cancelbtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_cancelbtnActionPerformed
         jTextField2.setText("00");
         jTextField4.setText("00");
         jTextField1.setText("00");
@@ -1563,7 +1598,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
 
     }
 
-    private void postbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postbtnActionPerformed
+    private void postbtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_postbtnActionPerformed
 
         if (jTextField3.getText().length() > 1) {
             int exitOption = javax.swing.JOptionPane.showConfirmDialog(this, "You Are About To Generate an " + orderCmbx.getSelectedItem() + " To " + supplietTxt.getText().toUpperCase() + "\n Yes To Continue", "Caution before Saving!", javax.swing.JOptionPane.YES_NO_CANCEL_OPTION);
@@ -1721,7 +1756,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
                         try {
                             connectDB.rollback();
                         } catch (SQLException ex1) {
-                            Exceptions.printStackTrace(ex1);
+                            ex1.printStackTrace();
                         }
 
                     }
@@ -1750,7 +1785,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         return dept;
 
     }
-    private void sectionCmbxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sectionCmbxItemStateChanged
+    private void sectionCmbxItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_sectionCmbxItemStateChanged
         // TODO add your handling code here
 //        jTextField6.setText(null);
 //            try {
@@ -1780,7 +1815,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_sectionCmbxItemStateChanged
 
-    private void searchButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton1ActionPerformed
+    private void searchButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_searchButton1ActionPerformed
         // TODO add your handling code here:
         System.out.println("Showing dialog");
 
@@ -1794,7 +1829,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         searchTender.setVisible(true);
     }//GEN-LAST:event_searchButton1ActionPerformed
 
-    private void jTextField114CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField114CaretUpdate
+    private void jTextField114CaretUpdate(CaretEvent evt) {//GEN-FIRST:event_jTextField114CaretUpdate
         // TODO add your handling code here:
         if (jTextField114.getCaretPosition() < 3) {
             System.out.println("Nothing");
@@ -1808,19 +1843,19 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jTextField114CaretUpdate
 
-    private void tendersTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tendersTblMouseClicked
+    private void tendersTblMouseClicked(MouseEvent evt) {//GEN-FIRST:event_tendersTblMouseClicked
         // TODO add your handling code here:
         TenderNoTxt.setText(tendersTbl.getValueAt(tendersTbl.getSelectedRow(), 0).toString());
         searchTender.dispose();
 
     }//GEN-LAST:event_tendersTblMouseClicked
 
-    private void jButton53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton53ActionPerformed
+    private void jButton53ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton53ActionPerformed
         // TODO add your handling code here:
         searchTender.dispose();
     }//GEN-LAST:event_jButton53ActionPerformed
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+    private void jCheckBox3ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
         // TODO add your handling code here:
         if (jCheckBox3.isSelected()) {
             jCheckBox3.setLabel("Automatic LPO NO.");
@@ -1833,7 +1868,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jCheckBox3ActionPerformed
 
-    private void tenderSearchbtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tenderSearchbtn1ActionPerformed
+    private void tenderSearchbtn1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_tenderSearchbtn1ActionPerformed
         // TODO add your handling code here:
         System.out.println("Showing dialog");
 
@@ -1846,19 +1881,19 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         searchVote.setVisible(true);
     }//GEN-LAST:event_tenderSearchbtn1ActionPerformed
 
-    private void jTextField3CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField3CaretUpdate
+    private void jTextField3CaretUpdate(CaretEvent evt) {//GEN-FIRST:event_jTextField3CaretUpdate
         // TODO add your handling code here:
         if (jTextField1.getCaretPosition() == 3) {
             jTextField1.setEditable(false);
         }
     }//GEN-LAST:event_jTextField3CaretUpdate
 
-    private void searchtlpo1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchtlpo1CaretUpdate
+    private void searchtlpo1CaretUpdate(CaretEvent evt) {//GEN-FIRST:event_searchtlpo1CaretUpdate
         // TODO add your handling code here:
         votesTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select subheadname,srccode,subhead from subheads where subheadname ilike '%" + searchtlpo1.getText() + "%' or subhead ilike '%" + searchtlpo1.getText() + "%' or srccode ilike '%" + searchtlpo1.getText() + "%'"));
     }//GEN-LAST:event_searchtlpo1CaretUpdate
 
-    private void votesTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_votesTblMouseClicked
+    private void votesTblMouseClicked(MouseEvent evt) {//GEN-FIRST:event_votesTblMouseClicked
         // TODO add your handling code here:
         TenderNoTxt1.setText(votesTbl.getValueAt(votesTbl.getSelectedRow(), 0).toString());
         jTextField3.setText(votesTbl.getValueAt(votesTbl.getSelectedRow(), 1).toString());
@@ -1867,7 +1902,7 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         jButton11.doClick();
     }//GEN-LAST:event_votesTblMouseClicked
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void jButton11ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
         this.searchVote.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
@@ -2053,84 +2088,84 @@ public class ExternallyGeneratedLso extends javax.swing.JInternalFrame {
         //               jTextField31.setText(java.lang.String.valueOf(resFloat));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TenderNoTxt;
-    private javax.swing.JTextField TenderNoTxt1;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JButton cancelbtn;
-    private com.afrisoftech.lib.DatePicker datePicker1;
-    public javax.swing.JButton exitbtn;
+    private JTextField TenderNoTxt;
+    private JTextField TenderNoTxt1;
+    private ButtonGroup buttonGroup1;
+    private ButtonGroup buttonGroup2;
+    private JButton cancelbtn;
+    private DatePicker datePicker1;
+    public JButton exitbtn;
     private javax.swing.JTable itemsTbl;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton42;
-    private javax.swing.JButton jButton52;
-    private javax.swing.JButton jButton53;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel41;
-    private javax.swing.JPanel jPanel42;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel63;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JDialog jSearcItem;
-    private javax.swing.JPanel jSearchPanel;
-    private javax.swing.JPanel jSearchPanel2;
-    private javax.swing.JPanel jSearchPanel3;
-    private javax.swing.JPanel jSearchPanel4;
-    private javax.swing.JScrollPane jSearchScrollPane;
-    private javax.swing.JScrollPane jSearchScrollPane2;
-    private javax.swing.JScrollPane jSearchScrollPane3;
+    private JButton jButton1;
+    private JButton jButton11;
+    private JButton jButton2;
+    private JButton jButton42;
+    private JButton jButton52;
+    private JButton jButton53;
+    private JButton jButton9;
+    private JCheckBox jCheckBox1;
+    private JCheckBox jCheckBox2;
+    private JCheckBox jCheckBox3;
+    private JLabel jLabel1;
+    private JLabel jLabel10;
+    private JLabel jLabel11;
+    private JLabel jLabel12;
+    private JLabel jLabel13;
+    private JLabel jLabel15;
+    private JLabel jLabel16;
+    private JLabel jLabel17;
+    private JLabel jLabel2;
+    private JLabel jLabel3;
+    private JLabel jLabel4;
+    private JLabel jLabel5;
+    private JLabel jLabel6;
+    private JLabel jLabel7;
+    private JLabel jLabel8;
+    private JLabel jLabel9;
+    private JPanel jPanel1;
+    private JPanel jPanel2;
+    private JPanel jPanel3;
+    private JPanel jPanel4;
+    private JPanel jPanel41;
+    private JPanel jPanel42;
+    private JPanel jPanel6;
+    private JPanel jPanel63;
+    private JScrollPane jScrollPane1;
+    private JScrollPane jScrollPane2;
+    private JDialog jSearcItem;
+    private JPanel jSearchPanel;
+    private JPanel jSearchPanel2;
+    private JPanel jSearchPanel3;
+    private JPanel jSearchPanel4;
+    private JScrollPane jSearchScrollPane;
+    private JScrollPane jSearchScrollPane2;
+    private JScrollPane jSearchScrollPane3;
     private javax.swing.JTable jSearchTable;
     private javax.swing.JTable jSearchTable2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField111;
-    private javax.swing.JTextField jTextField113;
-    private javax.swing.JTextField jTextField114;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField9;
-    private javax.swing.JTextField lpoNumberTxt;
-    private javax.swing.JComboBox orderCmbx;
-    private javax.swing.JButton postbtn;
-    private javax.swing.JButton searchButton;
-    private javax.swing.JButton searchButton1;
-    private javax.swing.JDialog searchTender;
-    private javax.swing.JDialog searchVote;
-    private javax.swing.JDialog searchsupplier;
-    private javax.swing.JTextField searchtlpo1;
-    private javax.swing.JComboBox sectionCmbx;
-    private javax.swing.JTextField supplietTxt;
-    private javax.swing.JButton tenderSearchbtn1;
-    private javax.swing.JScrollPane tendersScrllpn;
+    private JTextArea jTextArea1;
+    private JTextField jTextField1;
+    private JTextField jTextField111;
+    private JTextField jTextField113;
+    private JTextField jTextField114;
+    private JTextField jTextField2;
+    private JTextField jTextField3;
+    private JTextField jTextField4;
+    private JTextField jTextField5;
+    private JTextField jTextField6;
+    private JTextField jTextField9;
+    private JTextField lpoNumberTxt;
+    private JComboBox orderCmbx;
+    private JButton postbtn;
+    private JButton searchButton;
+    private JButton searchButton1;
+    private JDialog searchTender;
+    private JDialog searchVote;
+    private JDialog searchsupplier;
+    private JTextField searchtlpo1;
+    private JComboBox sectionCmbx;
+    private JTextField supplietTxt;
+    private JButton tenderSearchbtn1;
+    private JScrollPane tendersScrllpn;
     private javax.swing.JTable tendersTbl;
     private javax.swing.JTable votesTbl;
     // End of variables declaration//GEN-END:variables

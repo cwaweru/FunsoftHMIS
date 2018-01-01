@@ -15,7 +15,7 @@ import com.lowagie.text.pdf.*;
 import java.net.MalformedURLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 public class PatientFilePdf implements java.lang.Runnable {
 
@@ -308,18 +308,18 @@ public class PatientFilePdf implements java.lang.Runnable {
             img = Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo());
             //    //Image imgWaterMark = Image.getInstance(System.getProperty("company.watermark"));
         } catch (BadElementException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         } catch (MalformedURLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
 
             java.io.File tempFile = null;
         try {
             tempFile = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
         } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
 
             tempFile.deleteOnExit();

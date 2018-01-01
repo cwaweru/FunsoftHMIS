@@ -543,7 +543,7 @@ public class FinalDescInPatientIntmlnvPdf implements java.lang.Runnable {
                                     + " AND (invoice_no NOT LIKE 'O%' and invoice_no NOT LIKE 'IP%') AND (transaction_type not ilike 'Receipts%' and transaction_type not ilike 'Remittance%') and "
                                     + " (service not ilike 'Receipt' OR service not ilike 'Receipt Adj' ) AND service not ilike 'Discou%' and paid = 'false' and service != 'N.H.I.F'");
 
-                            java.sql.ResultSet rset11 = st11.executeQuery(" select date::date,initcap(service) as service,dosage::int4,requisition_no,sum(credit-debit) from hp_patient_card where patient_no = '" + patNo + "'  AND visit_id = '" + memNo + "' AND"
+                            java.sql.ResultSet rset11 = st11.executeQuery(" select date::date,initcap(service) as service,dosage::int4, requisition_no, sum(credit-debit) from hp_patient_card where patient_no = '" + patNo + "'  AND visit_id = '" + memNo + "' AND"
                                     + " (service = 'N.H.I.F' OR service ilike 'Receipt' OR service ilike 'Receipt Adj' OR service ilike 'Discou%') "
                                     + " AND (invoice_no NOT LIKE 'O%' and invoice_no NOT LIKE 'IP%') AND (transaction_type not ilike 'Receipts%' and transaction_type not ilike 'Remittance%') "
                                     + " and  requisition_no  NOT LIKE 'IP%' AND invoice_no NOT LIKE 'IP%' GROUP BY date::date,initcap(service),dosage,requisition_no order by date::date");
@@ -645,6 +645,8 @@ public class FinalDescInPatientIntmlnvPdf implements java.lang.Runnable {
                             table1.addCell(phrase8);
                             //}
                         } catch (java.sql.SQLException SqlExec) {
+                            
+                            SqlExec.printStackTrace();
                             System.out.println("sq" + SqlExec);
 
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
@@ -733,7 +735,7 @@ public class FinalDescInPatientIntmlnvPdf implements java.lang.Runnable {
                                     + "    AND (invoice_no NOT LIKE 'O%' and invoice_no NOT LIKE 'IP%') AND (transaction_type not ilike 'Receipts%' and transaction_type not ilike 'Remittance%') and  "
                                     + " service != 'N.H.I.F' AND service not ilike 'Receipt' AND service not ilike 'Receipt Adj'  AND service not ilike 'Discou%' AND service != 'Invoice' and paid = 'true' AND patient_no = '" + patNo + "'");
 
-                            java.sql.ResultSet rset11 = st11.executeQuery(" select date::date, user_name, billing_time::time, initcap(service) as service,dosage,CASE WHEN (service = 'Receipt') THEN requisition_no ELSE reference END AS reference,credit-debit from hp_patient_card where visit_id = '" + memNo + "' AND "
+                            java.sql.ResultSet rset11 = st11.executeQuery(" select date::date, user_name, billing_time::time, UPPER(CASE WHEN checkout_request_id is null THEN service ELSE (SELECT cash_point||':'||account_no||':'||journal_no FROM ac_cash_collection WHERE ac_cash_collection.transaction_no = hp_patient_card.reference ORDER BY 1 DESC LIMIT 1) END) as service,dosage,CASE WHEN (service = 'Receipt') THEN requisition_no ELSE reference END AS reference,credit-debit from hp_patient_card where visit_id = '" + memNo + "' AND "
                                     + "  (invoice_no NOT LIKE 'O%' and invoice_no NOT LIKE 'IP%') AND (transaction_type not ilike 'Receipts%' and transaction_type not ilike 'Remittance%') and "
                                     + "(service = 'N.H.I.F' or service ilike 'Receipt' or service ilike 'Receipt Adj'  OR service ilike 'Discou%') AND patient_no = '" + patNo + "' order by date::date");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
                             System.out.println("\n\n\n\n\n\n\n\n select date::date, user_name, billing_time::time, initcap(service) as service,dosage,CASE WHEN (service = 'Receipt') THEN requisition_no ELSE reference END AS reference,credit-debit from hp_patient_card where visit_id = '" + memNo + "' AND "
@@ -1065,7 +1067,7 @@ public class FinalDescInPatientIntmlnvPdf implements java.lang.Runnable {
                             table.getDefaultCell().setColspan(8);
 
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                            phrase = new Phrase(" Please Note this is an ESTIMATE BILL and is Due to change", pFontHeader1);
+                            phrase = new Phrase(" Please Note this is an ESTIMATE BILL and is due to change", pFontHeader1);
 
                             table.addCell(phrase);
                             docPdf.add(table);

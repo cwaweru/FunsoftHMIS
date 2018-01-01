@@ -15,7 +15,7 @@ import ca.uhn.hl7v2.model.v24.segment.OBX;
 import ca.uhn.hl7v2.parser.Parser;
 import java.io.IOException;
 import java.sql.SQLException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -83,7 +83,7 @@ public static void main(String args[]){
         try {
             hl7Messaging.generateHL7Message(java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5433/funsoft", "admin", "funsoft"), "32534");
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
 }
     /**
@@ -878,10 +878,10 @@ public static void main(String args[]){
             OBX obx = adt.getOBX();
           //  obx.
         } catch (HL7Exception ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
         } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
         }
         return adt;
@@ -900,7 +900,7 @@ public static void main(String args[]){
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex);
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
 
         return (String.valueOf(hl7SequenceID));

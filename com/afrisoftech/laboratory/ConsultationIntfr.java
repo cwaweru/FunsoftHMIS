@@ -23,7 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
 import org.jdesktop.swingx.decorator.ColorHighlighter;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -6661,7 +6661,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-            Exceptions.printStackTrace(ex);
+            ex.printStackTrace();
+            //            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
 
         laboratoryResultsDisplayTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT parameter, units, out_come, lower_limit, upper_limit, (CASE WHEN result::varchar ~ '^[0-9]*.?[0-9]*$' AND (result < lower_limit or result > upper_limit) THEN true  ELSE false END) AS exceptional_results from hp_lab_results WHERE lab_no = '" + labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 3) + "'"));
@@ -9203,7 +9204,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
         Boolean patientPaid = false;
         switch (patType.toLowerCase().trim()) {

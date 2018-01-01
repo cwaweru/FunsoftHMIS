@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -853,7 +853,7 @@ public class Merging_SuppliersNewIntfr extends javax.swing.JInternalFrame {
 
             }
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
 
         refreshbtn.doClick();
@@ -921,7 +921,7 @@ public class Merging_SuppliersNewIntfr extends javax.swing.JInternalFrame {
             }
 
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
         return status;
     }
@@ -981,7 +981,7 @@ public class Merging_SuppliersNewIntfr extends javax.swing.JInternalFrame {
             refresh();
             calculator();
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
     class WaitingSuppliers extends Thread {

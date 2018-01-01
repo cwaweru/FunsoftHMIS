@@ -68,6 +68,7 @@ public class CashPointsIntfr extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane21 = new javax.swing.JScrollPane();
         jTable11 = new com.afrisoftech.dbadmin.JTable();
@@ -137,7 +138,7 @@ public class CashPointsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel.add(jSearchScrollPane, gridBagConstraints);
 
-        jButton9.setText("Cancel");
+        jButton9.setText("Dispose");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -192,7 +193,7 @@ public class CashPointsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel1.add(jSearchScrollPane1, gridBagConstraints);
 
-        jButton91.setText("Cancel");
+        jButton91.setText("Dispose");
         jButton91.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton91ActionPerformed(evt);
@@ -216,7 +217,7 @@ public class CashPointsIntfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Cash Points");
+        setTitle("Cash Points and PayBill setup ");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/ColorPreview.gif"))); // NOI18N
         try {
             setSelected(true);
@@ -307,13 +308,12 @@ public class CashPointsIntfr extends javax.swing.JInternalFrame {
     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
     gridBagConstraints.ipady = 10;
     gridBagConstraints.weightx = 1.0;
-    gridBagConstraints.weighty = 10.0;
+    gridBagConstraints.weighty = 200.0;
     gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
     jPanel1.add(jScrollPane2, gridBagConstraints);
 
-    jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/check.gif"))); // NOI18N
     jButton1.setMnemonic('O');
-    jButton1.setText("Ok");
+    jButton1.setText("Save data");
     jButton1.setToolTipText("Click here enter data");
     jButton1.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -321,7 +321,7 @@ public class CashPointsIntfr extends javax.swing.JInternalFrame {
         }
     });
     gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 8;
     gridBagConstraints.weightx = 1.0;
     gridBagConstraints.weighty = 1.0;
@@ -337,7 +337,7 @@ public class CashPointsIntfr extends javax.swing.JInternalFrame {
         }
     });
     gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
+    gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 8;
     gridBagConstraints.weightx = 1.0;
     gridBagConstraints.weighty = 1.0;
@@ -400,6 +400,13 @@ public class CashPointsIntfr extends javax.swing.JInternalFrame {
     gridBagConstraints.weightx = 1.0;
     gridBagConstraints.weighty = 1.0;
     jPanel1.add(jButton5, gridBagConstraints);
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 8;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+    gridBagConstraints.weightx = 500.0;
+    gridBagConstraints.weighty = 1.0;
+    jPanel1.add(jLabel1, gridBagConstraints);
 
     jTabbedPane1.addTab("Cash Points", jPanel1);
 
@@ -408,59 +415,59 @@ public class CashPointsIntfr extends javax.swing.JInternalFrame {
 
     jTable11.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null}
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null}
         },
         new String [] {
-            "User Name", "Main Cash Point", "Petty Cash point"
+            "User Name", "Main Cash Point", "Petty Cash point", "Pay Bill"
         }
     ));
     jTable11.setShowHorizontalLines(false);
@@ -931,7 +938,7 @@ public class CashPointsIntfr extends javax.swing.JInternalFrame {
             
             java.sql.Statement stmtTable1 = connectDB.createStatement();
             
-            java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select description,code,pett_point from ac_cash_points_setup");
+            java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select description,code,pett_point, paybill_no from ac_cash_points_setup");
             
             while (rsetTable1.next()) {
                 
@@ -939,6 +946,7 @@ public class CashPointsIntfr extends javax.swing.JInternalFrame {
                 jTable11.setValueAt(rsetTable1.getObject(1), i, 0);
                 jTable11.setValueAt(rsetTable1.getObject(2), i, 1);
                 jTable11.setValueAt(rsetTable1.getObject(3), i, 2);
+                jTable11.setValueAt(rsetTable1.getObject(4), i, 3);
                 
                 i++;
                 
@@ -1019,15 +1027,15 @@ public class CashPointsIntfr extends javax.swing.JInternalFrame {
                         j = rsetTable11.getInt(1);
                     }
                     if (j <= 0) {
-                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into ac_cash_points_setup values(?,?,?)");
+                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into ac_cash_points_setup values(?,?,?,?)");
                         
                         pstmt.setObject(1,jTable11.getValueAt(i,1).toString());
                         pstmt.setObject(2,jTable11.getValueAt(i,0).toString());
                         pstmt.setObject(3,jTable11.getValueAt(i,2).toString());
-                        
+                        pstmt.setObject(4,jTable11.getValueAt(i,3).toString());
                         pstmt.executeUpdate();
                     }else{
-                        java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE ac_cash_points_setup SET code = '"+jTable11.getModel().getValueAt(i,1).toString()+"',pett_point = '"+jTable11.getModel().getValueAt(i,2).toString()+"'  WHERE description ILIKE '"+jTable11.getModel().getValueAt(i,0).toString()+"'");
+                        java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE ac_cash_points_setup SET code = '"+jTable11.getModel().getValueAt(i,1).toString()+"',pett_point = '"+jTable11.getModel().getValueAt(i,2).toString()+"', paybill_no = '"+jTable11.getModel().getValueAt(i,3).toString()+"'   WHERE description ILIKE '"+jTable11.getModel().getValueAt(i,0).toString()+"'");
                         pstmt31.executeUpdate();
                     }
                 }
@@ -1277,6 +1285,7 @@ public class CashPointsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton61;
     private javax.swing.JButton jButton9;
     private javax.swing.JButton jButton91;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;

@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import main.Country;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 import support.HolidayException;
 
 /**
@@ -1229,7 +1229,7 @@ public class LeaveApplicationIntfr extends javax.swing.JInternalFrame {
             }
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
 
     }//GEN-LAST:event_leavetypeCmbxActionPerformed
@@ -1957,7 +1957,7 @@ public class LeaveApplicationIntfr extends javax.swing.JInternalFrame {
                 durationTxt.setText(String.valueOf(rset.getInt(1)));
             }
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
         
     }

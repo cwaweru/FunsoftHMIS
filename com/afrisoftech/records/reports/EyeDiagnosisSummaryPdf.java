@@ -8,7 +8,7 @@ import static com.afrisoftech.reports.PatientCardPdf.connectDB;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import java.io.IOException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 //import //java.awt.Desktop;
 
 public class EyeDiagnosisSummaryPdf implements java.lang.Runnable {
@@ -264,7 +264,7 @@ public class EyeDiagnosisSummaryPdf implements java.lang.Runnable {
         try {
             tempFile = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
         } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
 
         tempFile.deleteOnExit();
@@ -284,7 +284,7 @@ public class EyeDiagnosisSummaryPdf implements java.lang.Runnable {
             try {
                 pdfWriter = com.itextpdf.text.pdf.PdfWriter.getInstance(docPdf, new java.io.FileOutputStream(tempFile));
             } catch (DocumentException ex) {
-                Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             }
 
             String compName = null;

@@ -5,7 +5,7 @@
  */
 package com.afrisoftech.funsoft.mobilepay;
 
-import com.bazaarvoice.jolt.JsonUtils;
+//import com.bazaarvoice.jolt.JsonUtils;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -46,7 +46,7 @@ import org.apache.directory.server.core.authn.PasswordUtil;
 import org.bouncycastle.util.encoders.Base64;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 //import org.ow2.util.base64.Base64;
 /**
@@ -222,7 +222,7 @@ public class MobilePayAPI {
                                         byte[] cipherText = cipher.doFinal(input);
 
                                         // Convert the resulting encrypted byte array into a string using base64 encoding
-                                        encryptedPassword = com.itextpdf.text.pdf.codec.Base64.encodeBytes(cipherText);//Base64.toBase64String(cipherText);
+                                        encryptedPassword = Base64.toBase64String(cipherText);
 
                                     } catch (NoSuchAlgorithmException ex) {
                                         Logger.getLogger(PasswordUtil.class.getName()).log(Level.SEVERE, null, ex);
@@ -269,7 +269,7 @@ public class MobilePayAPI {
             json.put("PartyB", "881100");
             json.put("Remarks", "Testing Rest API");
             json.put("QueueTimeOutURL", "");
-            json.put("ResultURL", "http://192.162.85.226:17934/FunsoftWebServices/funsoft/InvoiceService/mpesasettlement");
+            json.put("ResultURL", "https://192.162.85.226:17933/FunsoftWebServices/funsoft/InvoiceService/mpesasettlement");
             json.put("Occasion", "1234567891");
             message = json.toString();
             System.out.println("This is the JSON String : " + message);
@@ -339,7 +339,7 @@ public class MobilePayAPI {
 
     }
 
-    public static boolean sendProcessRequest(String accessToken, String accountNo, String payerMobilePhone, String billedAmount) {
+    public static boolean sendProcessRequest(String accessToken, String accountNo, String payerMobilePhone, String billedAmount, String shortCode) {
         boolean checkoutRequestStatus = true;
         OkHttpClient client = new OkHttpClient();
         Calendar calendar = Calendar.getInstance();
@@ -347,8 +347,7 @@ public class MobilePayAPI {
         dateFormat.setCalendar(calendar);
         String timeStamp = dateFormat.format(calendar.getTime());
         System.out.println("Timestamp : [" + dateFormat.format(calendar.getTime()) + "]");
-        String password = "174379" + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + timeStamp;
-//        String password = "174379:bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919:" + timeStamp;
+        String password = shortCode + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + timeStamp;
         String encodedPassword = Base64.toBase64String(password.getBytes());
         System.out.println("Unencoded password : [" + password + "]");
         System.out.println("Encoded password : [" + encodedPassword + "]");
@@ -357,17 +356,15 @@ public class MobilePayAPI {
         String message = null;
         JSONObject json = new JSONObject();
         try {
-            json.put("BusinessShortCode", "174379");
-            //json.put("Password", "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMTYwMjE2MTY1NjI3");
+            json.put("BusinessShortCode", shortCode);
             json.put("Password", encodedPassword);
-            // json.put("Timestamp", "20160216165627");
             json.put("Timestamp", timeStamp);
             json.put("TransactionType", "CustomerPayBillOnline");
             json.put("Amount", "10");
             json.put("PartyA", payerMobilePhone);
-            json.put("PartyB", "174379");
+            json.put("PartyB", shortCode);
             json.put("PhoneNumber", payerMobilePhone);
-            json.put("CallBackURL", "https://192.162.85.226:17933/FunsoftWebServices/funsoft/InvoiceService/mpesasettlement");
+            json.put("CallBackURL", "https://41.203.219.58:17933/FunsoftWebServices/funsoft/InvoiceService/mpesasettlement");
             json.put("AccountReference", accountNo);
             json.put("TransactionDesc", "Settlement for client bill");
             message = json.toString();
@@ -400,7 +397,7 @@ public class MobilePayAPI {
                     System.out.println("Checkout Request ID : [" + myJsonObject.getString("errorMessage") + "]");
                     javax.swing.JOptionPane.showMessageDialog(null, "Payment Request Error : " + myJsonObject.getString("errorMessage") + ". Try again.");
                 } catch (JSONException ex) {
-                    Exceptions.printStackTrace(ex);
+                    ex.printStackTrace(); //Exceptions.printStackTrace(ex);
                 }
             } else if (myJsonObject.toString().contains("Success")) {
                 try {
@@ -408,9 +405,12 @@ public class MobilePayAPI {
                     com.afrisoftech.hospital.GeneralBillingIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
                     com.afrisoftech.hospinventory.PatientsBillingIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
                     com.afrisoftech.accounting.InpatientDepositIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
+                    com.afrisoftech.hospital.HospitalMain.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
+                    com.afrisoftech.accounting.GovBillPaymentsIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID"); 
                     System.out.println("Checout Request ID : [" + myJsonObject.getString("CheckoutRequestID") + "]");
+                    
                 } catch (JSONException ex) {
-                    Exceptions.printStackTrace(ex);
+                    ex.printStackTrace(); //Exceptions.printStackTrace(ex);
                 }
             }
             System.out.println("Response for Process Request : [" + myJsonObject.toString() + "]");
@@ -431,7 +431,7 @@ public class MobilePayAPI {
         String timeStamp = dateFormat.format(calendar.getTime());
         System.out.println("Timestamp : [" + dateFormat.format(calendar.getTime()) + "]");
         String password = "174379" + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + timeStamp;
-        String encodedPassword = com.itextpdf.text.pdf.codec.Base64.encodeBytes(password.getBytes());;
+        String encodedPassword = Base64.toBase64String(password.getBytes());;
 
         System.out.println("Unencoded password : [" + password + "]");
         System.out.println("Encoded password : [" + encodedPassword + "]");
@@ -470,6 +470,7 @@ public class MobilePayAPI {
             }
 
             System.out.println("Response for Process Request : [" + myObject.toString() + "]");
+            
         } catch (IOException ex) {
             ex.printStackTrace();
         }

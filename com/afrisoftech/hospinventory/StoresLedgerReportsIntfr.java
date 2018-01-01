@@ -8,7 +8,7 @@ package com.afrisoftech.hospinventory;
 import java.awt.Color;
 import java.sql.SQLException;
 import org.jdesktop.swingx.decorator.ColorHighlighter;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -234,10 +234,10 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 200.0;
         abcAnalysisPanel.add(abcAnalysisJscrl, gridBagConstraints);
 
-        abcPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "The A  and C - Threshold figures MUST be set before the generating the report ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 51, 51))); // NOI18N
+        abcPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "The A  and C - Threshold figures MUST be set before the generating the report ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 51, 51)));
         abcPanel.setLayout(new java.awt.GridBagLayout());
 
-        aThresholdTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "A Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
+        aThresholdTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "A Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
         aThresholdTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
         aThresholdTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -246,7 +246,7 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         abcPanel.add(aThresholdTxt, gridBagConstraints);
 
-        bThresholdTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "B Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+        bThresholdTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "B Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
         bThresholdTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
         bThresholdTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -255,7 +255,7 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         abcPanel.add(bThresholdTxt, gridBagConstraints);
 
-        cThresholdTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "C Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 255, 0))); // NOI18N
+        cThresholdTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "C Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 255, 0)));
         cThresholdTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
         cThresholdTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -313,10 +313,10 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 300.0;
         movementAnalysisPanel.add(movementAnalysisJscrl, gridBagConstraints);
 
-        abcPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "The A  and C - Threshold figures MUST be set before the generating the report ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 51, 51))); // NOI18N
+        abcPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "The A  and C - Threshold figures MUST be set before the generating the report ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 51, 51)));
         abcPanel1.setLayout(new java.awt.GridBagLayout());
 
-        aThresholdTxt1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "A Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
+        aThresholdTxt1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "A Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
         aThresholdTxt1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
         aThresholdTxt1.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -325,7 +325,7 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         abcPanel1.add(aThresholdTxt1, gridBagConstraints);
 
-        bThresholdTxt1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "B Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+        bThresholdTxt1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "B Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
         bThresholdTxt1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
         bThresholdTxt1.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -334,7 +334,7 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         abcPanel1.add(bThresholdTxt1, gridBagConstraints);
 
-        cThresholdTxt1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "C Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 255, 0))); // NOI18N
+        cThresholdTxt1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "C Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 255, 0)));
         cThresholdTxt1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
         cThresholdTxt1.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -370,7 +370,7 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
 
         buttonPanel.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(generateReportBtn, "Generate Report");
+        generateReportBtn.setText("Generate Report");
         generateReportBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 generateReportBtnActionPerformed(evt);
@@ -383,7 +383,7 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         buttonPanel.add(generateReportBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(refreshReportBtn, "Refresh Report");
+        refreshReportBtn.setText("Refresh Report");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -391,7 +391,7 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         buttonPanel.add(refreshReportBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeFormBtn, "Close form");
+        closeFormBtn.setText("Close form");
         closeFormBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeFormBtnActionPerformed(evt);
@@ -488,7 +488,7 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
 
             }
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
         }
         return new javax.swing.table.DefaultTableModel(rowDataVector, columnNamesVector);

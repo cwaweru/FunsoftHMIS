@@ -6,7 +6,7 @@
 package com.afrisoftech.records;
 
 import java.sql.SQLException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -76,9 +76,9 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         rehabilitationChkbx = new javax.swing.JCheckBox();
         referralsLbl = new javax.swing.JLabel();
         referralsCmbx = new javax.swing.JComboBox();
-        serviceDatePicker = new com.afrisoftech.lib.DatePicker();
         serviceDateLbl = new javax.swing.JLabel();
         integrationChbx = new javax.swing.JCheckBox();
+        serviceDatePicker = new com.afrisoftech.lib.DatePicker();
 
         patientSearchdlg.setUndecorated(true);
         patientSearchdlg.getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -135,7 +135,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         patientSearchPanel.add(patientSearchScrollPane, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(selectBtn, "Select");
+        selectBtn.setText("Select");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -143,7 +143,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         patientSearchPanel.add(selectBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeDialogBtn, "Close");
+        closeDialogBtn.setText("Close");
         closeDialogBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeDialogBtnActionPerformed(evt);
@@ -175,7 +175,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         buttonPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         buttonPanel.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(saveBtn, "Save rehabilitation services data");
+        saveBtn.setText("Save rehabilitation services data");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveBtnActionPerformed(evt);
@@ -188,7 +188,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         buttonPanel.add(saveBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(clearFormBtn, "Clear form");
+        clearFormBtn.setText("Clear form");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -196,7 +196,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         buttonPanel.add(clearFormBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeBtn, "Close form");
+        closeBtn.setText("Close form");
         closeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeBtnActionPerformed(evt);
@@ -268,7 +268,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
 
         buttonGroup3.add(searchByNumberChkbx);
         searchByNumberChkbx.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(searchByNumberChkbx, "Search By  No.");
+        searchByNumberChkbx.setText("Search By  No.");
         searchByNumberChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -278,7 +278,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         searchCriteria.add(searchByNumberChkbx, gridBagConstraints);
 
         buttonGroup3.add(searchByNameChkbx);
-        org.openide.awt.Mnemonics.setLocalizedText(searchByNameChkbx, "Search By Name");
+        searchByNameChkbx.setText("Search By Name");
         searchByNameChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -287,7 +287,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         searchCriteria.add(searchByNameChkbx, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(confirmVisitRdbtn, "Confirm Visit");
+        confirmVisitRdbtn.setText("Confirm Visit");
         confirmVisitRdbtn.setEnabled(false);
         confirmVisitRdbtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         confirmVisitRdbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -314,7 +314,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
 
         buttonGroup2.add(outptChkbx);
         outptChkbx.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(outptChkbx, "Out Patient");
+        outptChkbx.setText("Out Patient");
         outptChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         outptChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,7 +327,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         patientCategoryPanel.add(outptChkbx, gridBagConstraints);
 
         buttonGroup2.add(walkinPtbx);
-        org.openide.awt.Mnemonics.setLocalizedText(walkinPtbx, "Walk In Patient");
+        walkinPtbx.setText("Walk In Patient");
         walkinPtbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         walkinPtbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -342,7 +342,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         patientCategoryPanel.add(walkinPtbx, gridBagConstraints);
 
         buttonGroup2.add(inPatientChkbx);
-        org.openide.awt.Mnemonics.setLocalizedText(inPatientChkbx, "In Patient");
+        inPatientChkbx.setText("In Patient");
         inPatientChkbx.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         inPatientChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         inPatientChkbx.addActionListener(new java.awt.event.ActionListener() {
@@ -419,7 +419,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
 
         buttonGroup1.add(assessmentChkbx);
         assessmentChkbx.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(assessmentChkbx, "Assessment done");
+        assessmentChkbx.setText("Assessment done");
         assessmentChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -429,7 +429,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         jPanel1.add(assessmentChkbx, gridBagConstraints);
 
         buttonGroup1.add(treatmentChkbx);
-        org.openide.awt.Mnemonics.setLocalizedText(treatmentChkbx, "Treated");
+        treatmentChkbx.setText("Treated");
         treatmentChkbx.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         treatmentChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -440,7 +440,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         jPanel1.add(treatmentChkbx, gridBagConstraints);
 
         buttonGroup1.add(rehabilitationChkbx);
-        org.openide.awt.Mnemonics.setLocalizedText(rehabilitationChkbx, "Rehabilitated");
+        rehabilitationChkbx.setText("Rehabilitated");
         rehabilitationChkbx.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         rehabilitationChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -450,7 +450,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(rehabilitationChkbx, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(referralsLbl, "Referral made");
+        referralsLbl.setText("Referral made");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -461,14 +461,8 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         jPanel1.add(referralsCmbx, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel1.add(serviceDatePicker, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(serviceDateLbl, "Service date");
+        serviceDateLbl.setText("Service date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -476,7 +470,7 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(serviceDateLbl, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(integrationChbx, "Integrated to community");
+        integrationChbx.setText("Integrated to community");
         integrationChbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         integrationChbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -489,6 +483,12 @@ public class RehabilitationServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(integrationChbx, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(serviceDatePicker, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

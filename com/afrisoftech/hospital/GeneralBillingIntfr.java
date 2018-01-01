@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.event.*;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -277,6 +277,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         spacerPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        payBillNumberTxt = new javax.swing.JTextField();
         chargeRatesCategoriesPanel = new javax.swing.JPanel();
         searchbyCodeChkbx = new javax.swing.JCheckBox();
         searchbyNameChkbx = new javax.swing.JCheckBox();
@@ -3446,6 +3447,19 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             billingActionButtonsPanel.add(jButton2, gridBagConstraints);
+
+            payBillNumberTxt.setEditable(false);
+            payBillNumberTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+            payBillNumberTxt.setText(com.afrisoftech.lib.CashShiftNumberFactory.getPayBillNumber(connectDB)
+            );
+            payBillNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PayBill Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 7;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            billingActionButtonsPanel.add(payBillNumberTxt, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 7;
@@ -7580,7 +7594,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
     }//GEN-LAST:event_mergeOpBillBtnActionPerformed
 
@@ -8601,7 +8615,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 //STK Push for mobile payment
                 javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful.Bill No. " + transNo + "", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                 if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
-                    boolean checkoutReturn = com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), transNo, payerTelephoneNumber, billTotalTxt.getText());
+                    boolean checkoutReturn = com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), transNo, payerTelephoneNumber, billTotalTxt.getText(), com.afrisoftech.hospital.HospitalMain.payBillNumber);
                     if (checkoutReturn) {
                         java.sql.PreparedStatement pstmtCheckout = connectDB.prepareStatement("UPDATE hp_patient_billing SET checkout_request_id = ? WHERE inpatient_no = ?");
                         pstmtCheckout.setString(1, checkoutRequestID);
@@ -8858,6 +8872,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane patientSearchJscrl;
     private javax.swing.JTable patientSearchTbl;
     private javax.swing.JPanel patientSelectionModePanel;
+    private javax.swing.JTextField payBillNumberTxt;
     private javax.swing.JFormattedTextField payerMobileTelephoneNumberTxt;
     public static javax.swing.JTextField payerNameTxt;
     public static javax.swing.JComboBox paymentModeCmbx;

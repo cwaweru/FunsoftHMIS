@@ -6,7 +6,7 @@
 package com.afrisoftech.records;
 
 import java.sql.SQLException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -99,7 +99,6 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         patientSearchPanel.add(patientSearchTxt, gridBagConstraints);
 
-        patientSearchTbl.setToolTipText(org.openide.util.NbBundle.getMessage(SocialWorkServicesIntfr.class, "RehabilitationServicesIntfr.patientSearchTbl.toolTipText")); // NOI18N
         patientSearchTbl.setShowHorizontalLines(false);
         /*javax.swing.table.TableColumn column = null;
 
@@ -134,7 +133,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         patientSearchPanel.add(patientSearchScrollPane, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(selectBtn, org.openide.util.NbBundle.getMessage(SocialWorkServicesIntfr.class, "RehabilitationServicesIntfr.selectBtn.text")); // NOI18N
+        selectBtn.setText("Select");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -142,7 +141,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         patientSearchPanel.add(selectBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeDialogBtn, org.openide.util.NbBundle.getMessage(SocialWorkServicesIntfr.class, "RehabilitationServicesIntfr.closeDialogBtn.text")); // NOI18N
+        closeDialogBtn.setText("Close");
         closeDialogBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeDialogBtnActionPerformed(evt);
@@ -174,7 +173,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
         buttonPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         buttonPanel.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(saveBtn, "Save social services data");
+        saveBtn.setText("Save social services data");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveBtnActionPerformed(evt);
@@ -187,7 +186,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         buttonPanel.add(saveBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(clearFormBtn, "Clear form");
+        clearFormBtn.setText("Clear form");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -195,7 +194,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         buttonPanel.add(clearFormBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeBtn, "Close form");
+        closeBtn.setText("Close form");
         closeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeBtnActionPerformed(evt);
@@ -207,8 +206,6 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         buttonPanel.add(closeBtn, gridBagConstraints);
-
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(SocialWorkServicesIntfr.class, "RehabilitationServicesIntfr.jLabel1.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -231,7 +228,6 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
         jPanel42.setLayout(new java.awt.GridBagLayout());
 
         patientNoTxt.setEditable(false);
-        patientNoTxt.setToolTipText(org.openide.util.NbBundle.getMessage(SocialWorkServicesIntfr.class, "RehabilitationServicesIntfr.patientNoTxt.toolTipText")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -241,7 +237,6 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
         jPanel42.add(patientNoTxt, gridBagConstraints);
 
         searchButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
-        searchButton2.setToolTipText(org.openide.util.NbBundle.getMessage(SocialWorkServicesIntfr.class, "RehabilitationServicesIntfr.searchButton2.toolTipText")); // NOI18N
         searchButton2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         searchButton2.setMaximumSize(new java.awt.Dimension(74, 53));
         searchButton2.setMinimumSize(new java.awt.Dimension(74, 53));
@@ -269,7 +264,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
 
         buttonGroup3.add(searchByNumberChkbx);
         searchByNumberChkbx.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(searchByNumberChkbx, "Search By  No.");
+        searchByNumberChkbx.setText("Search By  No.");
         searchByNumberChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -279,7 +274,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
         searchCriteria.add(searchByNumberChkbx, gridBagConstraints);
 
         buttonGroup3.add(searchByNameChkbx);
-        org.openide.awt.Mnemonics.setLocalizedText(searchByNameChkbx, "Search By Name");
+        searchByNameChkbx.setText("Search By Name");
         searchByNameChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -288,7 +283,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         searchCriteria.add(searchByNameChkbx, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(confirmVisitRdbtn, "Confirm Visit");
+        confirmVisitRdbtn.setText("Confirm Visit");
         confirmVisitRdbtn.setEnabled(false);
         confirmVisitRdbtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         confirmVisitRdbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -315,7 +310,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
 
         buttonGroup2.add(outptChkbx);
         outptChkbx.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(outptChkbx, "Out Patient");
+        outptChkbx.setText("Out Patient");
         outptChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         outptChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -328,7 +323,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
         patientCategoryPanel.add(outptChkbx, gridBagConstraints);
 
         buttonGroup2.add(walkinPtbx);
-        org.openide.awt.Mnemonics.setLocalizedText(walkinPtbx, "Walk In Patient");
+        walkinPtbx.setText("Walk In Patient");
         walkinPtbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         walkinPtbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -343,7 +338,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
         patientCategoryPanel.add(walkinPtbx, gridBagConstraints);
 
         buttonGroup2.add(inPatientChkbx);
-        org.openide.awt.Mnemonics.setLocalizedText(inPatientChkbx, "In Patient");
+        inPatientChkbx.setText("In Patient");
         inPatientChkbx.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         inPatientChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         inPatientChkbx.addActionListener(new java.awt.event.ActionListener() {
@@ -367,7 +362,6 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
         headerPanel.add(patientCategoryPanel, gridBagConstraints);
 
         patientNameTxt.setEditable(false);
-        patientNameTxt.setText(org.openide.util.NbBundle.getMessage(SocialWorkServicesIntfr.class, "RehabilitationServicesIntfr.patientNameTxt.text")); // NOI18N
         patientNameTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Patient Names"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -419,7 +413,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(referralsLbl, "Referral made");
+        referralsLbl.setText("Referral made");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -437,7 +431,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(serviceDatePicker, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(serviceDateLbl, "Service date");
+        serviceDateLbl.setText("Service date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -445,7 +439,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(serviceDateLbl, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(integrationChbx, "Integrated to community");
+        integrationChbx.setText("Integrated to community");
         integrationChbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         integrationChbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -459,7 +453,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(integrationChbx, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(serviceGivenLbl, "Service given");
+        serviceGivenLbl.setText("Service given");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;

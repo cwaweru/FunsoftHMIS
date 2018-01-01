@@ -10,7 +10,7 @@
 package com.afrisoftech.lib;
 
 import java.sql.SQLException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -33,7 +33,7 @@ public class VersionControl {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
         return version;
      }
@@ -49,7 +49,7 @@ public class VersionControl {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
         return active;
      }

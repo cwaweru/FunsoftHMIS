@@ -88,7 +88,7 @@ public class ReverseCommitmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         jSearchPanel2.add(jTextField113, gridBagConstraints);
 
-        jSearchTable2.setToolTipText(org.openide.util.NbBundle.getMessage(ReverseCommitmentIntfr.class, "ReverseCommitmentIntfr.jSearchTable2.toolTipText")); // NOI18N
+        jSearchTable2.setToolTipText("Click on the target row to select the patient from the search.");
         jSearchTable2.setShowHorizontalLines(false);
         /*javax.swing.table.TableColumn column = null;
 
@@ -123,7 +123,7 @@ public class ReverseCommitmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel2.add(jSearchScrollPane2, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton52, org.openide.util.NbBundle.getMessage(ReverseCommitmentIntfr.class, "ReverseCommitmentIntfr.jButton52.text")); // NOI18N
+        jButton52.setText("Close");
         jButton52.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton52ActionPerformed(evt);
@@ -149,7 +149,7 @@ public class ReverseCommitmentIntfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle(org.openide.util.NbBundle.getMessage(ReverseCommitmentIntfr.class, "ReverseCommitmentIntfr.title")); // NOI18N
+        setTitle("Reverse Commitment");
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -171,7 +171,7 @@ public class ReverseCommitmentIntfr extends javax.swing.JInternalFrame {
         jPanel4.add(voucherCbx, gridBagConstraints);
 
         searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
-        searchButton.setToolTipText(org.openide.util.NbBundle.getMessage(ReverseCommitmentIntfr.class, "ReverseCommitmentIntfr.searchButton.toolTipText")); // NOI18N
+        searchButton.setToolTipText("Search");
         searchButton.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         searchButton.setMaximumSize(new java.awt.Dimension(74, 53));
         searchButton.setMinimumSize(new java.awt.Dimension(74, 53));
@@ -195,7 +195,7 @@ public class ReverseCommitmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanel4, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(ReverseCommitmentIntfr.class, "ReverseCommitmentIntfr.jLabel2.text")); // NOI18N
+        jLabel2.setText("Voucher No");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -203,7 +203,7 @@ public class ReverseCommitmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jLabel2, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, org.openide.util.NbBundle.getMessage(ReverseCommitmentIntfr.class, "ReverseCommitmentIntfr.jLabel3.text")); // NOI18N
+        jLabel3.setText("Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -211,7 +211,7 @@ public class ReverseCommitmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jLabel3, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel5, org.openide.util.NbBundle.getMessage(ReverseCommitmentIntfr.class, "ReverseCommitmentIntfr.jLabel5.text")); // NOI18N
+        jLabel5.setText("Account Code");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -219,7 +219,7 @@ public class ReverseCommitmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jLabel5, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel6, org.openide.util.NbBundle.getMessage(ReverseCommitmentIntfr.class, "ReverseCommitmentIntfr.jLabel6.text")); // NOI18N
+        jLabel6.setText("Amount");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -228,7 +228,6 @@ public class ReverseCommitmentIntfr extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel6, gridBagConstraints);
 
         jTextField1.setEditable(false);
-        jTextField1.setText(org.openide.util.NbBundle.getMessage(ReverseCommitmentIntfr.class, "ReverseCommitmentIntfr.jTextField1.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
@@ -238,7 +237,6 @@ public class ReverseCommitmentIntfr extends javax.swing.JInternalFrame {
         getContentPane().add(jTextField1, gridBagConstraints);
 
         dealerNameTxt.setEditable(false);
-        dealerNameTxt.setText(org.openide.util.NbBundle.getMessage(ReverseCommitmentIntfr.class, "ReverseCommitmentIntfr.dealerNameTxt.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -248,7 +246,6 @@ public class ReverseCommitmentIntfr extends javax.swing.JInternalFrame {
         getContentPane().add(dealerNameTxt, gridBagConstraints);
 
         jTextField4.setEditable(false);
-        jTextField4.setText(org.openide.util.NbBundle.getMessage(ReverseCommitmentIntfr.class, "ReverseCommitmentIntfr.jTextField4.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -257,7 +254,7 @@ public class ReverseCommitmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jTextField4, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(ReverseCommitmentIntfr.class, "ReverseCommitmentIntfr.jLabel1.text")); // NOI18N
+        jLabel1.setText("Reason ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -279,7 +276,7 @@ public class ReverseCommitmentIntfr extends javax.swing.JInternalFrame {
         jPanel5.setBackground(new java.awt.Color(204, 204, 255));
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton4, org.openide.util.NbBundle.getMessage(ReverseCommitmentIntfr.class, "ReverseCommitmentIntfr.jButton4.text")); // NOI18N
+        jButton4.setText("Close");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -292,7 +289,7 @@ public class ReverseCommitmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
         jPanel5.add(jButton4, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton5, org.openide.util.NbBundle.getMessage(ReverseCommitmentIntfr.class, "ReverseCommitmentIntfr.jButton5.text")); // NOI18N
+        jButton5.setText("Reverse Payment");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -304,7 +301,7 @@ public class ReverseCommitmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
         jPanel5.add(jButton5, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton2, org.openide.util.NbBundle.getMessage(ReverseCommitmentIntfr.class, "ReverseCommitmentIntfr.jButton2.text")); // NOI18N
+        jButton2.setText("Preview Payment Voucher");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

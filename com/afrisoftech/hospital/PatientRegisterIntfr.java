@@ -44,7 +44,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *

@@ -160,30 +160,12 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
 
         shiftTotalsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Float.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         shiftTotalsTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 shiftTotalsTableMouseClicked(evt);
@@ -431,7 +413,7 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
         int confirm = javax.swing.JOptionPane.showConfirmDialog(this, "Terminate shift number : [" + shiftTotalsTable.getValueAt(shiftTotalsTable.getSelectedRow(), 1) + "] for Cashier : [" + shiftTotalsTable.getValueAt(shiftTotalsTable.getSelectedRow(), 2) + "]", "CLOSE SHIFT", javax.swing.JOptionPane.OK_CANCEL_OPTION);
         if (confirm == javax.swing.JOptionPane.OK_OPTION) {
             try {
-                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("UPDATE ac_shifts set status = 'Closed' WHERE shift_no = ?");
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("UPDATE ac_shifts set status = 'Closed', end_date = now()::timestamp(0) WHERE shift_no = ?");
 
                 pstmt.setString(1, shiftTotalsTable.getValueAt(shiftTotalsTable.getSelectedRow(), 1).toString());
 
@@ -910,12 +892,13 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
     }
 
     private void closeShift() {
+        int shift_no = java.lang.Integer.valueOf(shiftTotalsTable.getValueAt(shiftTotalsTable.getSelectedRow(), 1).toString());
         int confirm = javax.swing.JOptionPane.showConfirmDialog(this, "Terminate shift number : [" + shiftTotalsTable.getValueAt(shiftTotalsTable.getSelectedRow(), 1) + "] for Cashier : [" + shiftTotalsTable.getValueAt(shiftTotalsTable.getSelectedRow(), 2) + "]", "CLOSE SHIFT", javax.swing.JOptionPane.OK_CANCEL_OPTION);
         if (confirm == javax.swing.JOptionPane.OK_OPTION) {
             try {
                 java.sql.PreparedStatement pstmt = connectDB.prepareStatement("UPDATE ac_shifts set status = 'Closed', end_date = now() WHERE shift_no = ?");
 
-                pstmt.setInt(1, java.lang.Integer.valueOf(shiftTotalsTable.getValueAt(shiftTotalsTable.getSelectedRow(), 1).toString()));
+                pstmt.setInt(1, shift_no);
 
                 pstmt.executeUpdate();
                 // TODO add your handling code here:

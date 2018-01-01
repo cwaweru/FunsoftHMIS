@@ -24,7 +24,7 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.awt.*;
 import java.sql.SQLException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -1902,7 +1902,7 @@ public class AssetsRegintfr extends javax.swing.JInternalFrame implements java.l
                 ex.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
-                Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             }
             jLabel2.setForeground(java.awt.Color.red);
             jLabel2.setText("ERROR! Please double check your entries");
@@ -1997,7 +1997,7 @@ public class AssetsRegintfr extends javax.swing.JInternalFrame implements java.l
             registerAssetsBtn.setText("Update Asset Register");
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
         this.assetSearchDialog.dispose();
 
@@ -2238,7 +2238,7 @@ public class AssetsRegintfr extends javax.swing.JInternalFrame implements java.l
                 ex.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
-                Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             }
             jLabel2.setForeground(java.awt.Color.red);
             jLabel2.setText("ERROR! Please double check your entries");

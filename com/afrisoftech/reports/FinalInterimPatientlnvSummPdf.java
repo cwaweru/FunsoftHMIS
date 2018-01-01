@@ -570,7 +570,7 @@ public class FinalInterimPatientlnvSummPdf implements java.lang.Runnable {
                             java.sql.ResultSet rset1 = st1.executeQuery(" select initcap(main_service) as service,sum(dosage)::int,sum(debit-credit) from hp_patient_card where visit_id = '" + memNo + "' and service != 'N.H.I.F' AND service != 'N.H.I.F' AND service not ilike 'Receipt%' AND service not ilike 'Receipt Adj' AND service not ilike 'Discou%' AND service != 'Invoice' group by initcap(main_service) order by service");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
                             java.sql.ResultSet rsetTotals = st2.executeQuery("select sum(debit - credit) from hp_patient_card where visit_id = '" + memNo + "' and service != 'N.H.I.F' AND service not ilike 'Receipt%' AND service not ilike 'Receipt Adj' AND service not ilike 'Discou%' AND service != 'Invoice'");
 
-                            java.sql.ResultSet rset11 = st11.executeQuery(" select initcap(main_service) as service,sum(dosage)::int,sum(credit-debit) from hp_patient_card where visit_id = '" + memNo + "' AND (service = 'N.H.I.F' or service ilike 'Receipt%' or service ilike 'Receipt Adj'  OR service ilike 'Discou%') group by main_service order by main_service");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
+                            java.sql.ResultSet rset11 = st11.executeQuery(" select UPPER(CASE WHEN checkout_request_id is null THEN service ELSE (SELECT cash_point||':'||account_no||':'||journal_no FROM ac_cash_collection WHERE ac_cash_collection.transaction_no = hp_patient_card.reference ORDER BY 1 DESC LIMIT 1) END) as service,sum(dosage)::int,sum(credit-debit) from hp_patient_card where visit_id = '" + memNo + "' AND (service = 'N.H.I.F' or service ilike 'Receipt%' or service ilike 'Receipt Adj'  OR service ilike 'Discou%') group by 1 order by 1");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
                             java.sql.ResultSet rsetTotals1 = st21.executeQuery("select sum(credit) from hp_patient_card where visit_id = '" + memNo + "' and (service = 'N.H.I.F' or service ilike 'Receipt' or service ilike 'Receipt Adj'  OR service ilike 'Discou%')");
 
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -665,7 +665,7 @@ public class FinalInterimPatientlnvSummPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Total ".toUpperCase() + dbObject.getDBObject(rset11.getObject(1), "-"), pFontHeader);
+                                phrase = new Phrase("Payment(s) : ".toUpperCase() + dbObject.getDBObject(rset11.getObject(1), "-"), pFontHeader);
 
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);

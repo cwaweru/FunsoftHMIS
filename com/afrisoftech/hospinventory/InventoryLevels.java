@@ -6,7 +6,7 @@
 package com.afrisoftech.hospinventory;
 
 import java.sql.SQLException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -50,7 +50,7 @@ public class InventoryLevels {
                 leadOrderDays = rset.getInt(1);
             }
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         return leadOrderDays;
@@ -75,7 +75,7 @@ public class InventoryLevels {
                 bufferStockDays = rset.getInt(1);
             }
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         return bufferStockDays;
@@ -128,7 +128,7 @@ public class InventoryLevels {
                 averagingDays = Math.round(rset.getInt(1));
             }
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         return averagingDays;
@@ -193,7 +193,7 @@ public class InventoryLevels {
                 expiryDays = rset.getInt(1);
             }
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -220,7 +220,7 @@ public class InventoryLevels {
                 stockLevel = rset.getInt(1);
             }
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         return stockLevel;
@@ -247,7 +247,7 @@ public class InventoryLevels {
                 storeStockLevel = rset.getInt(1);
             }
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -273,7 +273,7 @@ public class InventoryLevels {
                 consumptionNumbers = rset.getInt(1);
             }
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -300,7 +300,7 @@ public class InventoryLevels {
                 storeConsumptionNumbers = rset.getInt(1);
             }
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -363,7 +363,7 @@ public class InventoryLevels {
             }
 
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
         return expiryStatus;
     }

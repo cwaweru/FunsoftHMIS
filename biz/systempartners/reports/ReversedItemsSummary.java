@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -364,7 +364,7 @@ public class ReversedItemsSummary extends javax.swing.JInternalFrame {
             }
 
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
 
         return internal;
@@ -385,7 +385,7 @@ public class ReversedItemsSummary extends javax.swing.JInternalFrame {
                 javax.swing.JOptionPane.showMessageDialog(this, "Reversal of GRN completed successfully.");
             }
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed

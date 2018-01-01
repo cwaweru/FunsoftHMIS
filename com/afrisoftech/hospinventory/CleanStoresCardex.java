@@ -7,7 +7,7 @@
 package com.afrisoftech.hospinventory;
 
 import java.sql.SQLException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -21,7 +21,7 @@ public class CleanStoresCardex {
             java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT description FROM st_sub_stores WHERE store_name = ?");
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
         
     }

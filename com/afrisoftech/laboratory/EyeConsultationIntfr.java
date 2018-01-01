@@ -33,7 +33,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JTextField;
 import org.jdesktop.swingx.decorator.ColorHighlighter;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -7028,7 +7028,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
 
         laboratoryResultsDisplayTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT parameter, units, out_come, lower_limit, upper_limit, (CASE WHEN result::varchar ~ '^[0-9]*.?[0-9]*$' AND (result < lower_limit or result > upper_limit) THEN true  ELSE false END) AS exceptional_results from hp_lab_results WHERE lab_no = '" + labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 3) + "'"));
@@ -9585,7 +9585,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
         Boolean patientPaid = false;
         switch (patType.toLowerCase().trim()) {
@@ -11385,7 +11385,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
                 connectDB.setAutoCommit(false);
                 savedPoint = connectDB.setSavepoint("EYE_DATA");
             } catch (SQLException ex) {
-                Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                 javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
             }
             try {
@@ -11548,7 +11548,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
                 try {
                     connectDB.rollback(savedPoint);
                 } catch (SQLException ex) {
-                    Exceptions.printStackTrace(ex);
+                                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                 }
                 sqe.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(this, sqe.getMessage());

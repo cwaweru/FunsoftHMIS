@@ -592,14 +592,14 @@ public class ReceiptsPdf implements java.lang.Runnable {
                                     table.getDefaultCell().setColspan(3);
 
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase("Payment Mode: " + rset6.getString(1).toUpperCase(), pFontHeader);
+                                    phrase = new Phrase("Pay Mode: " + rset6.getString(1).toUpperCase(), pFontHeader);
 
                                     table.addCell(phrase);
 
                                     table.getDefaultCell().setColspan(3);
 
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase("Served By: " + rset6.getString(2).toString().toUpperCase(), pFontHeader);
+                                    phrase = new Phrase("Cashier: " + rset6.getString(2).toString().toUpperCase(), pFontHeader);
                                     table.addCell(phrase);
                                     //table.getDefaultCell().setColspan(6);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -627,6 +627,7 @@ public class ReceiptsPdf implements java.lang.Runnable {
                                 //  pstmt4.executeUpdate();
                             } catch (java.sql.SQLException SqlExec) {
 
+                                SqlExec.printStackTrace();
                                 javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
                             }

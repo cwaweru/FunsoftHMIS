@@ -6,7 +6,7 @@
 package com.afrisoftech.hospinventory;
 
 import java.sql.SQLException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -78,7 +78,7 @@ public class AcceptanceCertificateByPassIntfr extends javax.swing.JInternalFrame
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         lpoSearchPanel.add(searchLPOTxt, gridBagConstraints);
 
-        lpoSearchTable.setToolTipText(org.openide.util.NbBundle.getMessage(AcceptanceCertificateByPassIntfr.class, "AcceptanceCertificateByPassIntfr.lpoSearchTable.toolTipText")); // NOI18N
+        lpoSearchTable.setToolTipText("Click on the target row to select the patient from the search.");
         lpoSearchTable.setShowHorizontalLines(false);
         /*javax.swing.table.TableColumn column = null;
 
@@ -113,7 +113,7 @@ public class AcceptanceCertificateByPassIntfr extends javax.swing.JInternalFrame
         gridBagConstraints.weighty = 20.0;
         lpoSearchPanel.add(lpoSearchScrollPane, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(searchCloseBtn, org.openide.util.NbBundle.getMessage(AcceptanceCertificateByPassIntfr.class, "AcceptanceCertificateByPassIntfr.searchCloseBtn.text")); // NOI18N
+        searchCloseBtn.setText("Close");
         searchCloseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchCloseBtnActionPerformed(evt);
@@ -138,14 +138,13 @@ public class AcceptanceCertificateByPassIntfr extends javax.swing.JInternalFrame
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle(org.openide.util.NbBundle.getMessage(AcceptanceCertificateByPassIntfr.class, "AcceptanceCertificateByPassIntfr.title")); // NOI18N
+        setTitle("By Pass for Acceptance Certificate");
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         supplierNameTxt.setEditable(false);
-        supplierNameTxt.setText(org.openide.util.NbBundle.getMessage(AcceptanceCertificateByPassIntfr.class, "AcceptanceCertificateByPassIntfr.supplierNameTxt.text")); // NOI18N
-        supplierNameTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(AcceptanceCertificateByPassIntfr.class, "AcceptanceCertificateByPassIntfr.supplierNameTxt.border.title"))); // NOI18N
+        supplierNameTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Supplier Name"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -154,7 +153,7 @@ public class AcceptanceCertificateByPassIntfr extends javax.swing.JInternalFrame
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanel1.add(supplierNameTxt, gridBagConstraints);
 
-        deliveryDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(AcceptanceCertificateByPassIntfr.class, "AcceptanceCertificateByPassIntfr.deliveryDatePicker.border.title"))); // NOI18N
+        deliveryDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder("Delivery Date"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -175,7 +174,7 @@ public class AcceptanceCertificateByPassIntfr extends javax.swing.JInternalFrame
         searchPanel.add(lpoNumberTxt, gridBagConstraints);
 
         searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
-        searchButton.setToolTipText(org.openide.util.NbBundle.getMessage(AcceptanceCertificateByPassIntfr.class, "AcceptanceCertificateByPassIntfr.searchButton.toolTipText")); // NOI18N
+        searchButton.setToolTipText("Search");
         searchButton.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         searchButton.setMaximumSize(new java.awt.Dimension(74, 53));
         searchButton.setMinimumSize(new java.awt.Dimension(74, 53));
@@ -200,7 +199,7 @@ public class AcceptanceCertificateByPassIntfr extends javax.swing.JInternalFrame
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(searchPanel, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(lpoSupplierLbl, org.openide.util.NbBundle.getMessage(AcceptanceCertificateByPassIntfr.class, "AcceptanceCertificateByPassIntfr.lpoSupplierLbl.text")); // NOI18N
+        lpoSupplierLbl.setText("Search by LPO or Supplier Name :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -237,7 +236,7 @@ public class AcceptanceCertificateByPassIntfr extends javax.swing.JInternalFrame
 
         actionsPanel.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(confirmAcceptanceBtn, org.openide.util.NbBundle.getMessage(AcceptanceCertificateByPassIntfr.class, "AcceptanceCertificateByPassIntfr.confirmAcceptanceBtn.text")); // NOI18N
+        confirmAcceptanceBtn.setText("Confirm Acceptance");
         confirmAcceptanceBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmAcceptanceBtnActionPerformed(evt);
@@ -250,7 +249,7 @@ public class AcceptanceCertificateByPassIntfr extends javax.swing.JInternalFrame
         gridBagConstraints.weighty = 1.0;
         actionsPanel.add(confirmAcceptanceBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeBtn, org.openide.util.NbBundle.getMessage(AcceptanceCertificateByPassIntfr.class, "AcceptanceCertificateByPassIntfr.closeBtn.text")); // NOI18N
+        closeBtn.setText("Close form");
         closeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeBtnActionPerformed(evt);
@@ -262,8 +261,6 @@ public class AcceptanceCertificateByPassIntfr extends javax.swing.JInternalFrame
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         actionsPanel.add(closeBtn, gridBagConstraints);
-
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(AcceptanceCertificateByPassIntfr.class, "AcceptanceCertificateByPassIntfr.jLabel1.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;

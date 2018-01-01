@@ -70,7 +70,7 @@ public class PatientAttendanceTrailIntfr extends javax.swing.JInternalFrame {
 
         buttonPanel.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(refreshReportBtn, "Generate audit report");
+        refreshReportBtn.setText("Generate audit report");
         refreshReportBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshReportBtnActionPerformed(evt);
@@ -81,7 +81,7 @@ public class PatientAttendanceTrailIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         buttonPanel.add(refreshReportBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(clearFormBtn, "Clear form");
+        clearFormBtn.setText("Clear form");
         clearFormBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearFormBtnActionPerformed(evt);
@@ -92,7 +92,7 @@ public class PatientAttendanceTrailIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         buttonPanel.add(clearFormBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeFormBtn, "Close form");
+        closeFormBtn.setText("Close form");
         closeFormBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeFormBtnActionPerformed(evt);

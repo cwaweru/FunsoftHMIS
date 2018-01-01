@@ -7,7 +7,7 @@ package biz.systempartners.utils;
 import java.awt.Color;
 import java.sql.SQLException;
 import org.jdesktop.swingx.decorator.ColorHighlighter;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -90,7 +90,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle(org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.title")); // NOI18N
+        setTitle("Funsoft HMIS ICT - Help Desk - Register all your ICT intervention requests here");
         setAutoscrolls(true);
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -98,7 +98,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         headerPanel.setLayout(new java.awt.GridBagLayout());
 
         departmentCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT depart_name FROM pb_main_department order by 1"));
-        departmentCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.departmentCmbx.border.title"))); // NOI18N
+        departmentCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Select department"));
         departmentCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 departmentCmbxActionPerformed(evt);
@@ -111,7 +111,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         headerPanel.add(departmentCmbx, gridBagConstraints);
 
         sectionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT section FROM master_file ORDER BY 1"));
-        sectionCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.sectionCmbx.border.title"))); // NOI18N
+        sectionCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Select section"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
@@ -119,7 +119,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         headerPanel.add(sectionCmbx, gridBagConstraints);
 
         natureofIRCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Funsoft Issue", "Training requirement", "Network disconnection", "Computer malfunction", "Keyboard malfunction", "Mouse malfuntion", "Computer Viruses", "Monitor malfunction", "Power failure", "Other", " " }));
-        natureofIRCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.natureofIRCmbx.border.title"))); // NOI18N
+        natureofIRCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Nature of problem"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -134,7 +134,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
 
         actionPanel.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(sendRequestBtn, org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.sendRequestBtn.text")); // NOI18N
+        sendRequestBtn.setText("Send Intervention Request(IR)");
         sendRequestBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sendRequestBtnActionPerformed(evt);
@@ -145,7 +145,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         actionPanel.add(sendRequestBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(clearFormBtn, org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.clearFormBtn.text")); // NOI18N
+        clearFormBtn.setText("Clear Form");
         clearFormBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearFormBtnActionPerformed(evt);
@@ -156,7 +156,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         actionPanel.add(clearFormBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeBtn, org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.closeBtn.text")); // NOI18N
+        closeBtn.setText("Close form");
         closeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeBtnActionPerformed(evt);
@@ -166,8 +166,6 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
         actionPanel.add(closeBtn, gridBagConstraints);
-
-        org.openide.awt.Mnemonics.setLocalizedText(spacerLabel, org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.spacerLabel.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -176,7 +174,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         actionPanel.add(spacerLabel, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(refreshBtn, org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.refreshBtn.text")); // NOI18N
+        refreshBtn.setText("Refresh form");
         refreshBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshBtnActionPerformed(evt);
@@ -189,7 +187,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         actionPanel.add(refreshBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeRequestBtn, org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.closeRequestBtn.text")); // NOI18N
+        closeRequestBtn.setText("Close request");
         closeRequestBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeRequestBtnActionPerformed(evt);
@@ -210,7 +208,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(actionPanel, gridBagConstraints);
 
-        bodyPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.bodyPanel.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(153, 153, 255))); // NOI18N
+        bodyPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Describe the nature of the problem here (Emergency - in 30Mins, Urgent - in 1 Hr, Important -  in 2 hrs, Routine - in 12 Hrs)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(153, 153, 255)));
         bodyPanel.setLayout(new java.awt.GridBagLayout());
 
         interventionRequestJscrl.setViewportView(interventionRequestEditorPane);
@@ -225,7 +223,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         bodyPanel.add(interventionRequestJscrl, gridBagConstraints);
 
         levelButtonGroup.add(emergencyChkbx);
-        org.openide.awt.Mnemonics.setLocalizedText(emergencyChkbx, org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.emergencyChkbx.text")); // NOI18N
+        emergencyChkbx.setText("Emergency");
         emergencyChkbx.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         emergencyChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -235,7 +233,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         bodyPanel.add(emergencyChkbx, gridBagConstraints);
 
         levelButtonGroup.add(urgentChkbx);
-        org.openide.awt.Mnemonics.setLocalizedText(urgentChkbx, org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.urgentChkbx.text")); // NOI18N
+        urgentChkbx.setText("Urgent");
         urgentChkbx.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         urgentChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -247,7 +245,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         bodyPanel.add(urgentChkbx, gridBagConstraints);
 
         levelButtonGroup.add(importantChkbx);
-        org.openide.awt.Mnemonics.setLocalizedText(importantChkbx, org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.importantChkbx.text")); // NOI18N
+        importantChkbx.setText("Important");
         importantChkbx.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         importantChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -260,7 +258,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
 
         levelButtonGroup.add(routineChkbx);
         routineChkbx.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(routineChkbx, org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.routineChkbx.text")); // NOI18N
+        routineChkbx.setText("Routine");
         routineChkbx.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         routineChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -271,8 +269,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         bodyPanel.add(routineChkbx, gridBagConstraints);
 
-        requestTelephoneTxt.setText(org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.requestTelephoneTxt.text")); // NOI18N
-        requestTelephoneTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.requestTelephoneTxt.border.title"))); // NOI18N
+        requestTelephoneTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Tel/Ext"));
         requestTelephoneTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestTelephoneTxtActionPerformed(evt);
@@ -286,7 +283,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         bodyPanel.add(requestTelephoneTxt, gridBagConstraints);
 
-        jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.bodyPanel.TabConstraints.tabTitle"), bodyPanel); // NOI18N
+        jTabbedPane1.addTab("Intervention Request Panel", bodyPanel);
 
         followUpPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -299,7 +296,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         followUpPanel.add(jScrollPane1, gridBagConstraints);
 
-        jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(HelpDeskIntfr.class, "HelpDeskIntfr.followUpPanel.TabConstraints.tabTitle"), followUpPanel); // NOI18N
+        jTabbedPane1.addTab("Intervention Request follow-up panel", followUpPanel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -363,7 +360,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
     }//GEN-LAST:event_sendRequestBtnActionPerformed
 
@@ -392,7 +389,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             }
         }
         // TODO add your handling code here:

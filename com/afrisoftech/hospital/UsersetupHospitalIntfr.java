@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JSpinner;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 ////import com.sun.star.lib.uno.environments.java.java_environment;
 /**
@@ -2967,7 +2967,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
     }//GEN-LAST:event_jComboBox6ActionPerformed
 
@@ -3117,7 +3117,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
             } catch (ParseException ex) {
                 ex.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             }
 
             // pstmt.setTimestamp(2, new java.sql.Timestamp.);
@@ -3125,7 +3125,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
     }//GEN-LAST:event_scheduleTaskBtnActionPerformed
 
@@ -3142,7 +3142,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
                         pstmtUpdateUser.execute();
                     } catch (SQLException ex) {
                         javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                        Exceptions.printStackTrace(ex);
+                                    ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                     }
 
                 }
@@ -3175,7 +3175,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
                         pstmtUpdateUser.execute();
                     } catch (SQLException ex) {
                         javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                        Exceptions.printStackTrace(ex);
+                                    ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                     }
 
                 }
@@ -3236,7 +3236,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
     }//GEN-LAST:event_saveAccessControlpolicyBtnActionPerformed
 
@@ -3267,13 +3267,13 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
             } catch (ParseException ex) {
                 ex.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_updateScheduleTaskBtnActionPerformed
@@ -3295,14 +3295,14 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
                     formattedDate = dateFormat.parse(dateInstance.toLocaleString());
                     maintenanceTaskDescription1.setText(scheduledTasksTable.getValueAt(scheduledTasksTable.getSelectedRow(), 1).toString());
                 } catch (ParseException ex) {
-                    Exceptions.printStackTrace(ex);
+                                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                 }
             }
             // TODO add your handling code here:
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
     }//GEN-LAST:event_scheduledTasksTableMouseClicked
 

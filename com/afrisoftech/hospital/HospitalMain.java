@@ -27,7 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -96,6 +96,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     String cashPoint = null;
     String cashPointPett = null;
     //    private java.lang.Thread activePaneThread;
+    public static boolean mobilePaid = false;
     int Outorders = 4;
     int PaySlip = 0;
     int treeRowCount = 0;
@@ -548,6 +549,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     javax.swing.PopupFactory progressBarPopupFactory;
     javax.swing.Popup progressBarPopup;
     ConnectionStatus connectionStatus;
+    public static String payBillNumber = null;
     //javax.swing.ProgressMonitor progressMonitor;
     // java.awt.Image imgScaled = imgIconLoaded.getImage();
     /**
@@ -665,6 +667,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     private JScrollPane chartsTaskScrollPane;
     java.util.Vector tableColumnsVector1;
     private int GroupedTb = 999911;
+    public static String checkoutRequestID = null;
 
     /**
      * Default constructor
@@ -928,6 +931,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/funsoft_logo.gif")).getImage());
 
+        payBillNumber = com.afrisoftech.lib.CashShiftNumberFactory.getPayBillNumber(connectDB);
         // ManagePOSShifts managePOSShifts = new ManagePOSShifts();
         // managePOSShifts.start();
 
@@ -945,8 +949,8 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             systemTray = java.awt.SystemTray.getSystemTray();
         }
 
-        // MobilePayMsgReader mobilePayThread = new MobilePayMsgReader();
-        // mobilePayThread.start();
+         MobilePayMsgReader mobilePayThread = new MobilePayMsgReader();
+         mobilePayThread.start();
         this.getCashPointProperties();
 
         //Starting the garbage collector cycle
@@ -1884,6 +1888,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         Salesmnit = new javax.swing.JMenuItem();
         ipservicesmnit = new javax.swing.JMenuItem();
         debtshiftmnit = new javax.swing.JMenuItem();
+        creditSalesDepartmentReportsmnit = new javax.swing.JMenuItem();
         jSeparator45 = new javax.swing.JSeparator();
         RevRepotmd = new javax.swing.JMenu();
         dailyrevmnit = new javax.swing.JMenuItem();
@@ -2889,11 +2894,11 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
+            }
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
             }
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -2918,7 +2923,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         desktopPane.setOpaque(false);
         desktopPane.setLayout(new java.awt.GridBagLayout());
 
-        saccopn.setBackground(new java.awt.Color(204, 255, 204));
+        saccopn.setBackground(new java.awt.Color(0, 153, 255));
         saccopn.setOpaque(false);
         saccopn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -3069,7 +3074,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         backupDB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Devices & Hardware/DVDR.png"))); // NOI18N
         backupDB.setToolTipText("DB Backup");
-        backupDB.setBorder(null);
         backupDB.setBorderPainted(false);
         backupDB.setMaximumSize(new java.awt.Dimension(48, 32));
         backupDB.setMinimumSize(new java.awt.Dimension(26, 26));
@@ -3082,7 +3086,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         compactDB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Folders/Folder Blue Stuff.png"))); // NOI18N
         compactDB.setToolTipText("DB Compact");
-        compactDB.setBorder(null);
         compactDB.setBorderPainted(false);
         compactDB.setMaximumSize(new java.awt.Dimension(48, 32));
         compactDB.setMinimumSize(new java.awt.Dimension(26, 26));
@@ -3119,7 +3122,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         helpButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Help 2.png"))); // NOI18N
         helpButton.setToolTipText("Get system help");
-        helpButton.setBorder(null);
         helpButton.setBorderPainted(false);
         helpButton.setMaximumSize(new java.awt.Dimension(48, 32));
         helpButton.setMinimumSize(new java.awt.Dimension(26, 26));
@@ -3138,7 +3140,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         operationsToolBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Control Panel 1.png"))); // NOI18N
         operationsToolBar.setToolTipText("Operations");
-        operationsToolBar.setBorder(null);
         operationsToolBar.setBorderPainted(false);
         operationsToolBar.setMaximumSize(new java.awt.Dimension(48, 32));
         operationsToolBar.setMinimumSize(new java.awt.Dimension(26, 26));
@@ -3151,7 +3152,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         pharmacyToolBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Software Boxes/Software Green 1.png"))); // NOI18N
         pharmacyToolBar.setToolTipText("Pharmacy");
-        pharmacyToolBar.setBorder(null);
         pharmacyToolBar.setBorderPainted(false);
         pharmacyToolBar.setMaximumSize(new java.awt.Dimension(48, 32));
         pharmacyToolBar.setMinimumSize(new java.awt.Dimension(26, 26));
@@ -3164,7 +3164,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         payrollToolBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/CD Cases/Software CD 1.png"))); // NOI18N
         payrollToolBar.setToolTipText("Payroll");
-        payrollToolBar.setBorder(null);
         payrollToolBar.setBorderPainted(false);
         payrollToolBar.setMaximumSize(new java.awt.Dimension(48, 32));
         payrollToolBar.setMinimumSize(new java.awt.Dimension(26, 26));
@@ -3177,7 +3176,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         reportsToolBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Devices & Hardware/CD Linux.png"))); // NOI18N
         reportsToolBar.setToolTipText("Reports");
-        reportsToolBar.setBorder(null);
         reportsToolBar.setBorderPainted(false);
         reportsToolBar.setMaximumSize(new java.awt.Dimension(48, 32));
         reportsToolBar.setMinimumSize(new java.awt.Dimension(26, 26));
@@ -3191,7 +3189,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         openShift.setAction(openShiftAction);
         openShift.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/AntiVirus.png"))); // NOI18N
         openShift.setToolTipText("Open Shift");
-        openShift.setBorder(null);
         openShift.setBorderPainted(false);
         openShift.setMaximumSize(new java.awt.Dimension(48, 32));
         openShift.setMinimumSize(new java.awt.Dimension(26, 26));
@@ -3204,7 +3201,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         closeShift.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Devices & Hardware/PC Security 1.png"))); // NOI18N
         closeShift.setToolTipText("Close Shift");
-        closeShift.setBorder(null);
         closeShift.setBorderPainted(false);
         closeShift.setMaximumSize(new java.awt.Dimension(48, 32));
         closeShift.setMinimumSize(new java.awt.Dimension(26, 26));
@@ -3217,8 +3213,8 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         suspendShift.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Download.png"))); // NOI18N
         suspendShift.setToolTipText("Suspend Shift");
-        suspendShift.setBorder(null);
         suspendShift.setBorderPainted(false);
+        suspendShift.setEnabled(false);
         suspendShift.setMaximumSize(new java.awt.Dimension(48, 32));
         suspendShift.setMinimumSize(new java.awt.Dimension(26, 26));
         suspendShift.addActionListener(new java.awt.event.ActionListener() {
@@ -3230,7 +3226,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         optimizeDB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Folders/Folder Yellow Pics 1.png"))); // NOI18N
         optimizeDB.setToolTipText("DB Optimize");
-        optimizeDB.setBorder(null);
         optimizeDB.setBorderPainted(false);
         optimizeDB.setMaximumSize(new java.awt.Dimension(48, 32));
         optimizeDB.setMinimumSize(new java.awt.Dimension(26, 26));
@@ -5622,7 +5617,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         receiptsmn.add(govPosmnit);
 
         inReceiptsmnit.setText("InPatient Receipts");
-        inReceiptsmnit.setEnabled(false);
         inReceiptsmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inReceiptsmnitActionPerformed(evt);
@@ -8525,6 +8519,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         Salesmn.add(debtshiftmnit);
+
+        creditSalesDepartmentReportsmnit.setText("Credit Sale Departmental Reports");
+        creditSalesDepartmentReportsmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creditSalesDepartmentReportsmnitActionPerformed(evt);
+            }
+        });
+        Salesmn.add(creditSalesDepartmentReportsmnit);
 
         financeopermn.add(Salesmn);
         financeopermn.add(jSeparator45);
@@ -15850,7 +15852,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
     private void suspendShiftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suspendShiftActionPerformed
 
-        suspendmnitActionPerformed(evt);
+    //    suspendmnitActionPerformed(evt);
         // Add your handling code here:
     }//GEN-LAST:event_suspendShiftActionPerformed
 
@@ -16195,7 +16197,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             try {
                 connectDB.close();
             } catch (SQLException ex) {
-                Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             }
 
             System.exit(0);
@@ -20061,7 +20063,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                         try {
                             connectDB.close();
                         } catch (SQLException ex) {
-                            Exceptions.printStackTrace(ex);
+                                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                         }
                         System.exit(0);
                     }
@@ -21251,6 +21253,16 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
         // TODO add your handling code here:
     }//GEN-LAST:event_eyeServicesSummarymnitActionPerformed
+
+    private void creditSalesDepartmentReportsmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditSalesDepartmentReportsmnitActionPerformed
+        biz.systempartners.reports.CreditSalesDepartmentalReportIntfr dismth = new biz.systempartners.reports.CreditSalesDepartmentalReportIntfr(connectDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_creditSalesDepartmentReportsmnitActionPerformed
 
     /**
      * Exit the Application
@@ -22473,7 +22485,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                             } catch (SQLException ex) {
                                 // ex.printStackTrace();
                                 javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
-                                Exceptions.printStackTrace(ex);
+                                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                                 connectDB.close();
                                 System.exit(1);
                             }
@@ -22483,11 +22495,11 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
                 } catch (SQLException ex) {
                     javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
-                    Exceptions.printStackTrace(ex);
+                                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                     try {
                         connectDB.close();
                     } catch (SQLException ex1) {
-                        Exceptions.printStackTrace(ex1);
+                        ex1.printStackTrace();
                     }
                     System.exit(1);
                 }
@@ -23779,7 +23791,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                     JOptionPane.showMessageDialog(this, "You currently have approximately [" + supp + "] IRQs and [" + supp1 + "] PRQs to approve");
 
                 } catch (SQLException ex) {
-                    //Exceptions.printStackTrace(ex);
+                    //            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                     ex.printStackTrace();
                 }
 
@@ -24675,18 +24687,19 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         public void run() {
             while (true) {
                 try {
-                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT description, debit, patient_no, dealer, transaction_no, card_no FROM ac_cash_collection WHERE mobilepay_alert = false AND transaction_type ilike 'mpesa'");
+                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT description, debit, patient_no, dealer, transaction_no, card_no, journal_no, account_no FROM ac_cash_collection WHERE mobilepay_alert = false AND checkout_request_id = ? UNION SELECT DISTINCT '', paid_amount, patient_no, dealer, transaction_no, checkout_request_id, mpesa_trx_id, telephone_number FROM public.mobile_payments WHERE checkout_request_id_paid = ?");
+                    pstmt.setString(1, checkoutRequestID);
+                    pstmt.setString(2, checkoutRequestID);
                     java.sql.ResultSet rset = pstmt.executeQuery();
                     while (rset.next()) {
-
-                        //  trayIcon.
+                        mobilePaid = true;
                         try {
                             if (java.awt.SystemTray.isSupported()) {
                                 java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(new javax.swing.ImageIcon(getClass().getResource("/funsoft_logo.gif")).getImage(), "MPESA PAYMENT ALERT! : Funsoft HMIS - Payment FROM - " + rset.getString(4) + ", \n TEL. No.:" + rset.getString(6) + " MPESA TRANSACTION ID :" + rset.getString(5) + " \n for Patient Number : " + rset.getString(3) + ", Amount KES[" + com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rset.getDouble(2)) + "]");
                                 trayIcon.setImageAutoSize(true);
                                 systemTray.add(trayIcon);
                             } else {
-                                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "MPESA PAYMENT ALERT! : Funsoft HMIS - Payment FROM - " + rset.getString(4) + ", \n TEL. No.:" + rset.getString(6) + " MPESA TRANSACTION ID :" + rset.getString(5) + " \n for Patient Number : " + rset.getString(3) + ", Amount KES[" + com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rset.getDouble(2)) + "]");
+                                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "MPESA PAYMENT ALERT! : Funsoft HMIS - Payment confirmation FROM - " + rset.getString(4) + ", \n TEL. No.:" + rset.getString(8) + " MPESA TRANSACTION ID :" + rset.getString(7) + " \n for Patient Number : " + rset.getString(3) + ", Amount KES[" + com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rset.getDouble(2)) + "]");
                             }
                             java.awt.Toolkit.getDefaultToolkit().beep();
                             java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("UPDATE ac_cash_collection SET mobilepay_alert = true WHERE transaction_no = ?");
@@ -24697,7 +24710,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                             awte.printStackTrace();
                             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), awte.getMessage());
                         }
-                        // systemTray.add(null);
+
                     }
                     rset.close();
                     pstmt.close();
@@ -24706,7 +24719,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                     javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sqlEx.getMessage());
                 }
                 try {
-                    Thread.currentThread().sleep(java.lang.Integer.parseInt(System.getProperty("sms.fetch.snooze.period", "5000")));
+                    Thread.currentThread().sleep(5000); //java.lang.Integer.parseInt(System.getProperty("sms.fetch.snooze.period", "5000")));
                 } catch (java.lang.InterruptedException intEx) {
                     intEx.printStackTrace();
                 }
@@ -25095,6 +25108,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem cpactdatamnit;
     private javax.swing.JMenuItem crdstmtmnit;
     private javax.swing.JMenuItem crdtstmtmnit;
+    private javax.swing.JMenuItem creditSalesDepartmentReportsmnit;
     private javax.swing.JMenuItem creditSalesDetailedmnit;
     private javax.swing.JMenuItem creditSalesReportmnit;
     public javax.swing.JMenuItem creditallocmnit;

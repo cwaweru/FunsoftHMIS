@@ -15,7 +15,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -163,7 +163,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel4.add(jSearchScrollPane4, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton93, "Dispose");
+        jButton93.setText("Dispose");
         jButton93.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton93ActionPerformed(evt);
@@ -217,7 +217,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel.add(jSearchScrollPane, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton9, "Dispose");
+        jButton9.setText("Dispose");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -270,7 +270,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel5.add(jSearchScrollPane5, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton94, "Close");
+        jButton94.setText("Close");
         jButton94.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton94ActionPerformed(evt);
@@ -322,7 +322,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel6.add(jSearchScrollPane6, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton95, "Close");
+        jButton95.setText("Close");
         jButton95.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton95ActionPerformed(evt);
@@ -349,7 +349,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select user to set in selected section", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select user to set in selected section", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
         jPanel13.setLayout(new java.awt.GridBagLayout());
 
         moduleTbl.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -709,19 +709,21 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         }
         */
         moduleTbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                moduleTblMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 moduleTblMouseEntered(evt);
             }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                moduleTblMouseClicked(evt);
+            }
         });
         jScrollPane23.setViewportView(moduleTbl);
+        /*
         if (moduleTbl.getColumnModel().getColumnCount() > 0) {
             moduleTbl.getColumnModel().getColumn(0).setHeaderValue("Funsoft Login name");
             moduleTbl.getColumnModel().getColumn(1).setHeaderValue(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.moduleTbl.columnModel.title2")); // NOI18N
             moduleTbl.getColumnModel().getColumn(2).setHeaderValue(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.moduleTbl.columnModel.title1")); // NOI18N
         }
+        */
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -745,7 +747,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
 
         jButton13.setBackground(new java.awt.Color(0, 255, 204));
         jButton13.setMnemonic('O');
-        org.openide.awt.Mnemonics.setLocalizedText(jButton13, "Allocate staff to section");
+        jButton13.setText("Allocate staff to section");
         jButton13.setToolTipText("Click here enter data");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -761,7 +763,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
 
         jButton63.setBackground(new java.awt.Color(0, 255, 204));
         jButton63.setMnemonic('r');
-        org.openide.awt.Mnemonics.setLocalizedText(jButton63, "Edit");
+        jButton63.setText("Edit");
         jButton63.setPreferredSize(new java.awt.Dimension(189, 25));
         jButton63.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -776,7 +778,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
 
         jButton53.setBackground(new java.awt.Color(0, 255, 204));
         jButton53.setMnemonic('d');
-        org.openide.awt.Mnemonics.setLocalizedText(jButton53, "Clear Form");
+        jButton53.setText("Clear Form");
         jButton53.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton53ActionPerformed(evt);
@@ -796,7 +798,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel13.add(jLabel4, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton1, "Delete Entries");
+        jButton1.setText("Delete Entries");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -818,7 +820,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, "Purchasing Section");
+        jLabel3.setText("Purchasing Section");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         jPanel2.add(jLabel3, gridBagConstraints);
@@ -859,7 +861,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel2.add(jPanel59, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(superUserCmbx, "SuperUser?");
+        superUserCmbx.setText("SuperUser?");
         superUserCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 superUserCmbxActionPerformed(evt);
@@ -886,7 +888,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
 
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
-        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select user to set in selected section", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select user to set in selected section", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
         jPanel14.setLayout(new java.awt.GridBagLayout());
 
         moduleTbl1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -1246,19 +1248,21 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         }
         */
         moduleTbl1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                moduleTbl1MouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 moduleTbl1MouseEntered(evt);
             }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                moduleTbl1MouseClicked(evt);
+            }
         });
         jScrollPane24.setViewportView(moduleTbl1);
+        /*
         if (moduleTbl1.getColumnModel().getColumnCount() > 0) {
             moduleTbl1.getColumnModel().getColumn(0).setHeaderValue(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.moduleTbl.columnModel.title0")); // NOI18N
             moduleTbl1.getColumnModel().getColumn(1).setHeaderValue(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.moduleTbl.columnModel.title2")); // NOI18N
             moduleTbl1.getColumnModel().getColumn(2).setHeaderValue(org.openide.util.NbBundle.getMessage(SuppliesSectionsIntfr.class, "SuppliesSectionsIntfr.moduleTbl.columnModel.title1")); // NOI18N
         }
+        */
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1282,7 +1286,8 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
 
         jButton14.setBackground(new java.awt.Color(0, 255, 204));
         jButton14.setMnemonic('O');
-        org.openide.awt.Mnemonics.setLocalizedText(jButton14, "    Allocate    ");
+        jButton14.setText("    Allocate    ");
+        jButton14.setToolTipText("Click here enter data");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
@@ -1297,7 +1302,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
 
         jButton64.setBackground(new java.awt.Color(0, 255, 204));
         jButton64.setMnemonic('r');
-        org.openide.awt.Mnemonics.setLocalizedText(jButton64, "Clear form");
+        jButton64.setText("Clear form");
         jButton64.setPreferredSize(new java.awt.Dimension(189, 25));
         jButton64.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1317,7 +1322,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel14.add(jLabel6, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton2, "Close Form");
+        jButton2.setText("Close Form");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -1349,7 +1354,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel7.add(jPanel61, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(superUserCmbx1, "Multiple Sections");
+        superUserCmbx1.setText("Multiple Sections");
         superUserCmbx1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 superUserCmbx1ActionPerformed(evt);
@@ -1381,7 +1386,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
 
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel5, "Username");
+        jLabel5.setText("Username");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         jPanel4.add(jLabel5, gridBagConstraints);
@@ -1422,7 +1427,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel4.add(jPanel60, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, "Module");
+        jLabel1.setText("Module");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -1451,7 +1456,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel4.add(jPasswordField4, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, "Password");
+        jLabel2.setText("Password");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -1459,7 +1464,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel4.add(jLabel2, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(setpwdbtn, "Set Password");
+        setpwdbtn.setText("Set Password");
         setpwdbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 setpwdbtnActionPerformed(evt);
@@ -1958,7 +1963,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
             }
 
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+            ex.printStackTrace(); //Exceptions.printStackTrace(ex);
         }
         return inference;
     }
@@ -2105,7 +2110,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
             }
 
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+            ex.printStackTrace(); //Exceptions.printStackTrace(ex);
         }
         return fullname;
     }
@@ -2127,7 +2132,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
 
                 usertxt.setText(null);
             } catch (SQLException ex) {
-                Exceptions.printStackTrace(ex);
+                ex.printStackTrace(); //Exceptions.printStackTrace(ex);
             }
 
         } else {
@@ -2136,7 +2141,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
                 java.sql.PreparedStatement pstmts = connectDB.prepareStatement("UPDATE secure_levels_access set authorisation='" + md5(jPasswordField4.getText()) + "' where login_username='" + usertxt.getText() + "' and menu_access='" + moduleCmbx.getSelectedItem() + "'");
                 pstmts.executeUpdate();
             } catch (SQLException ex) {
-                Exceptions.printStackTrace(ex);
+                ex.printStackTrace(); //Exceptions.printStackTrace(ex);
             }
 
             JOptionPane.showMessageDialog(null, "Password Changed Successfully", "CONFIRMATION MESSAGE", JOptionPane.INFORMATION_MESSAGE);
@@ -2172,7 +2177,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
                     }
                 }
             } catch (SQLException ex) {
-                Exceptions.printStackTrace(ex);
+                ex.printStackTrace(); //Exceptions.printStackTrace(ex);
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -7,11 +7,13 @@
 package com.afrisoftech.sys;
 
 //import com.afrisoftech.medic.*;
+import java.awt.Frame;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.openide.util.Exceptions;
+import javax.swing.JFrame;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -86,7 +88,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
         this.loadImage();
 
 //        netscape.javascript.JSObject global = netscape.javascript.JSObject.getWindow(null);
-//        global.eval("document.title = 'Logon to Funsoft ERP/I-HMIS'");
+//        global.eval("document.title = 'Funsoft Integrated Healthcare Management Information System (Funsoft ERP/I-HMIS)'");
 
         desktopPaneIcon = new javax.swing.ImageIcon(System.getProperty("backgrdimg", "c:/Tests/clouds.jpg"));
 
@@ -649,7 +651,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
     }
 
@@ -714,7 +716,13 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
                     javax.swing.SwingUtilities.updateComponentTreeUI(splashScreen);
 
                     startRunning();
-
+                    
+//                    com.afrisoftech.enterprise.EnterpriseMain enterpriseMain = new com.afrisoftech.enterprise.EnterpriseMain(connDB);
+//
+//                    enterpriseMain.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//                    
+//                    enterpriseMain.setVisible(true);
+                            
                     secureLogin2Stock = new com.afrisoftech.sys.SecureLogin2HospInventory(new java.awt.Frame(), false, connDB, pconnDB, userName);
 
                     secureStockInst = secureLogin2Stock.logOn2System();

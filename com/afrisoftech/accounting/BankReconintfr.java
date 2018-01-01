@@ -9,7 +9,7 @@ package com.afrisoftech.accounting;
 
 import java.sql.SQLException;
 import java.util.Date;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -1158,7 +1158,7 @@ public class BankReconintfr extends javax.swing.JInternalFrame {
           
             } catch (SQLException ex) {
                 javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                        Exceptions.printStackTrace(ex);
+                                    ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                     }
     }//GEN-LAST:event_jButton1ActionPerformed
     

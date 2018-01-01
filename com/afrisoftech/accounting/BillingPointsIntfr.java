@@ -6,7 +6,7 @@
 package com.afrisoftech.accounting;
 
 import java.sql.SQLException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -1472,7 +1472,7 @@ public class BillingPointsIntfr extends javax.swing.JInternalFrame {
                 javax.swing.JOptionPane.showMessageDialog(this, "Cost centres updated successfully");
             }
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             javax.swing.JOptionPane.showMessageDialog(this, "Transaction not successful!");
         }
     }//GEN-LAST:event_saveCostCentreBtnActionPerformed

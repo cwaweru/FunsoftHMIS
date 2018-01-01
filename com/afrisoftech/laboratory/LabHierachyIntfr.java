@@ -6,7 +6,7 @@
 package com.afrisoftech.laboratory;
 
 import java.sql.SQLException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *

@@ -18,11 +18,11 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
   <AuxValues>
-    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
-    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="true"/>
-    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
@@ -48,9 +48,7 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Select department">
-                  <ResourceString PropertyName="titleX" bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.departmentCmbx.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </TitledBorder>
+                <TitledBorder title="Select department"/>
               </Border>
             </Property>
           </Properties>
@@ -70,9 +68,7 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Select section">
-                  <ResourceString PropertyName="titleX" bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.sectionCmbx.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </TitledBorder>
+                <TitledBorder title="Select section"/>
               </Border>
             </Property>
           </Properties>
@@ -101,9 +97,7 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Nature of problem">
-                  <ResourceString PropertyName="titleX" bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.natureofIRCmbx.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </TitledBorder>
+                <TitledBorder title="Nature of problem"/>
               </Border>
             </Property>
           </Properties>
@@ -120,9 +114,7 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Allocate Task">
-                  <ResourceString PropertyName="titleX" bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.actorCmbx.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </TitledBorder>
+                <TitledBorder title="Allocate Task"/>
               </Border>
             </Property>
           </Properties>
@@ -147,9 +139,7 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Pending Intervention Requests">
-                <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.followUpPanel.TabConstraints.tabTitle" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="tabTitle" type="java.lang.String" value="Pending Intervention Requests"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -190,7 +180,6 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder title="(Emergency - in 30Mins, Urgent - in 1 Hr, Important -  in 2 hrs, Routine - in 12 Hrs)">
-                  <ResourceString PropertyName="titleX" bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.bodyPanel.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                   <Color PropertyName="color" blue="ff" green="99" red="99" type="rgb"/>
                 </TitledBorder>
               </Border>
@@ -199,9 +188,7 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Intervention Request Panel">
-                <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.bodyPanel.TabConstraints.tabTitle" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="tabTitle" type="java.lang.String" value="Intervention Request Panel"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -224,9 +211,7 @@
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="Specify action to be taken on the IR">
-                          <ResourceString PropertyName="titleX" bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.interventionRequestEditorPane.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                        </TitledBorder>
+                        <TitledBorder title="Specify action to be taken on the IR"/>
                       </Border>
                     </Property>
                   </Properties>
@@ -238,9 +223,7 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="levelButtonGroup"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.emergencyChkbx.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Emergency"/>
                 <Property name="horizontalAlignment" type="int" value="11"/>
                 <Property name="horizontalTextPosition" type="int" value="10"/>
               </Properties>
@@ -255,9 +238,7 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="levelButtonGroup"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.urgentChkbx.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Urgent"/>
                 <Property name="horizontalAlignment" type="int" value="11"/>
                 <Property name="horizontalTextPosition" type="int" value="10"/>
               </Properties>
@@ -272,9 +253,7 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="levelButtonGroup"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.importantChkbx.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Important"/>
                 <Property name="horizontalAlignment" type="int" value="11"/>
                 <Property name="horizontalTextPosition" type="int" value="10"/>
               </Properties>
@@ -290,9 +269,7 @@
                   <ComponentRef name="levelButtonGroup"/>
                 </Property>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.routineChkbx.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Routine"/>
                 <Property name="horizontalAlignment" type="int" value="11"/>
                 <Property name="horizontalTextPosition" type="int" value="10"/>
               </Properties>
@@ -305,14 +282,9 @@
             <Component class="javax.swing.JTextField" name="requestTelephoneTxt">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.requestTelephoneTxt.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Tel/Ext">
-                      <ResourceString PropertyName="titleX" bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.requestTelephoneTxt.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                    </TitledBorder>
+                    <TitledBorder title="Tel/Ext"/>
                   </Border>
                 </Property>
               </Properties>
@@ -329,14 +301,9 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="horizontalAlignment" type="int" value="11"/>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.requestIDTxt.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Request ID">
-                      <ResourceString PropertyName="titleX" bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.requestIDTxt.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                    </TitledBorder>
+                    <TitledBorder title="Request ID"/>
                   </Border>
                 </Property>
               </Properties>
@@ -352,14 +319,9 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="cc" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.irStatementTxt.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Intervention Request statement">
-                      <ResourceString PropertyName="titleX" bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.irStatementTxt.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                    </TitledBorder>
+                    <TitledBorder title="Intervention Request statement"/>
                   </Border>
                 </Property>
               </Properties>
@@ -375,14 +337,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="11" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.irSourceTxt.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="IR Source">
-                      <ResourceString PropertyName="titleX" bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.irSourceTxt.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                    </TitledBorder>
+                    <TitledBorder title="IR Source"/>
                   </Border>
                 </Property>
               </Properties>
@@ -407,9 +364,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="sendRequestBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.sendRequestBtn.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="Update IR Status"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sendRequestBtnActionPerformed"/>
@@ -422,9 +377,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="clearFormBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.clearFormBtn.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="Clear Form"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearFormBtnActionPerformed"/>
@@ -437,9 +390,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="closeBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.closeBtn.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="Close form"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="closeBtnActionPerformed"/>
@@ -452,9 +403,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="refreshBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.refreshBtn.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="Refresh IR Listing"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshBtnActionPerformed"/>
@@ -467,14 +416,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="searchIRTxt">
           <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.searchIRTxt.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-            </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Search Request">
-                  <ResourceString PropertyName="titleX" bundle="biz/systempartners/utils/Bundle.properties" key="HelpDeskOperationsIntfr.searchIRTxt.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                </TitledBorder>
+                <TitledBorder title="Search Request"/>
               </Border>
             </Property>
           </Properties>

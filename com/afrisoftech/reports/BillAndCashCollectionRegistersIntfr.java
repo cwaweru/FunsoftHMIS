@@ -69,7 +69,7 @@ public class BillAndCashCollectionRegistersIntfr extends javax.swing.JInternalFr
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle(org.openide.util.NbBundle.getMessage(BillAndCashCollectionRegistersIntfr.class, "BillAndCashCollectionRegistersIntfr.title")); // NOI18N
+        setTitle("Departmental Workloads and Billing Registers");
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -77,14 +77,14 @@ public class BillAndCashCollectionRegistersIntfr extends javax.swing.JInternalFr
         headerPanel.setLayout(new java.awt.GridBagLayout());
 
         DepartmentCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT main_service FROM pb_operating_parameters ORDER BY 1"));
-        DepartmentCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(BillAndCashCollectionRegistersIntfr.class, "BillAndCashCollectionRegistersIntfr.DepartmentCmbx.border.title"))); // NOI18N
+        DepartmentCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("SELECT DEPARTMENT"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(DepartmentCmbx, gridBagConstraints);
 
-        startDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(BillAndCashCollectionRegistersIntfr.class, "BillAndCashCollectionRegistersIntfr.startDatePicker.border.title"))); // NOI18N
+        startDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder("Start Date"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -93,7 +93,7 @@ public class BillAndCashCollectionRegistersIntfr extends javax.swing.JInternalFr
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(startDatePicker, gridBagConstraints);
 
-        endDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(BillAndCashCollectionRegistersIntfr.class, "BillAndCashCollectionRegistersIntfr.endDatePicker.border.title"))); // NOI18N
+        endDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder("End Date"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
@@ -103,7 +103,7 @@ public class BillAndCashCollectionRegistersIntfr extends javax.swing.JInternalFr
         headerPanel.add(endDatePicker, gridBagConstraints);
 
         staffAccountCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT upper(login_name) FROM secure_menu_access ORDER BY 1"));
-        staffAccountCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(BillAndCashCollectionRegistersIntfr.class, "BillAndCashCollectionRegistersIntfr.staffAccountCmbx.border.title"))); // NOI18N
+        staffAccountCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("SELECT STAFF ACCOUNT"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -112,8 +112,7 @@ public class BillAndCashCollectionRegistersIntfr extends javax.swing.JInternalFr
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(staffAccountCmbx, gridBagConstraints);
 
-        transactionNoSearchTxt.setText(org.openide.util.NbBundle.getMessage(BillAndCashCollectionRegistersIntfr.class, "BillAndCashCollectionRegistersIntfr.transactionNoSearchTxt.text")); // NOI18N
-        transactionNoSearchTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(BillAndCashCollectionRegistersIntfr.class, "BillAndCashCollectionRegistersIntfr.transactionNoSearchTxt.border.title"))); // NOI18N
+        transactionNoSearchTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Transaction No."));
         transactionNoSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 transactionNoSearchTxtCaretUpdate(evt);
@@ -133,7 +132,7 @@ public class BillAndCashCollectionRegistersIntfr extends javax.swing.JInternalFr
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(headerPanel, gridBagConstraints);
 
-        bodyPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(BillAndCashCollectionRegistersIntfr.class, "BillAndCashCollectionRegistersIntfr.bodyPanel.border.title"))); // NOI18N
+        bodyPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Register data"));
         bodyPanel.setLayout(new java.awt.GridBagLayout());
 
         javax.swing.table.TableModel tableModel = reportTable.getModel();
@@ -166,7 +165,7 @@ public class BillAndCashCollectionRegistersIntfr extends javax.swing.JInternalFr
 
         actionPanel.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(getReportBtn, org.openide.util.NbBundle.getMessage(BillAndCashCollectionRegistersIntfr.class, "BillAndCashCollectionRegistersIntfr.getReportBtn.text")); // NOI18N
+        getReportBtn.setText("Generate report");
         getReportBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getReportBtnActionPerformed(evt);
@@ -177,7 +176,7 @@ public class BillAndCashCollectionRegistersIntfr extends javax.swing.JInternalFr
         gridBagConstraints.gridy = 0;
         actionPanel.add(getReportBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(clearFormBtn, org.openide.util.NbBundle.getMessage(BillAndCashCollectionRegistersIntfr.class, "BillAndCashCollectionRegistersIntfr.clearFormBtn.text")); // NOI18N
+        clearFormBtn.setText("Clear form");
         clearFormBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearFormBtnActionPerformed(evt);
@@ -188,7 +187,7 @@ public class BillAndCashCollectionRegistersIntfr extends javax.swing.JInternalFr
         gridBagConstraints.gridy = 0;
         actionPanel.add(clearFormBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeFormBtn, org.openide.util.NbBundle.getMessage(BillAndCashCollectionRegistersIntfr.class, "BillAndCashCollectionRegistersIntfr.closeFormBtn.text")); // NOI18N
+        closeFormBtn.setText("Close form");
         closeFormBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeFormBtnActionPerformed(evt);
@@ -201,7 +200,6 @@ public class BillAndCashCollectionRegistersIntfr extends javax.swing.JInternalFr
 
         spacerLbl.setForeground(new java.awt.Color(102, 102, 255));
         spacerLbl.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        org.openide.awt.Mnemonics.setLocalizedText(spacerLbl, org.openide.util.NbBundle.getMessage(BillAndCashCollectionRegistersIntfr.class, "BillAndCashCollectionRegistersIntfr.spacerLbl.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;

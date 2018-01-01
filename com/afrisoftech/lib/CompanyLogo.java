@@ -16,7 +16,7 @@ public class CompanyLogo {
         
         String fileName = null;
         
-        path2Logo = System.getProperty("user.dir")+System.getProperty("file.separator")+"COMPANY_LOGO.jpg";
+        path2Logo = System.getProperty("user.dir")+System.getProperty("file.separator")+"COMPANY-LOGO.jpg";
         
         return path2Logo;
         

@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 
 /**
@@ -606,7 +606,8 @@ if(cbxItem.getSelectedIndex()>-1){
                 ex.printStackTrace();
                 Logger.getLogger(ConsumablesUse.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex1) {
-                Exceptions.printStackTrace(ex1);
+                ex1.printStackTrace();
+                //Exceptions.printStackTrace(ex1);
             }
         }
         

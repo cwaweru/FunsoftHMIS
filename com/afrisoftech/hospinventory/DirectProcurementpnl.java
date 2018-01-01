@@ -10,7 +10,7 @@ import static com.afrisoftech.hospinventory.AwardApprovalsIntfr.connectDB;
 import com.afrisoftech.lib.ClearTable;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -1443,7 +1443,7 @@ public class DirectProcurementpnl extends javax.swing.JPanel {
 //            // TODO add your handling code here:
 //            WaitingPRsThread.sleep(30000);
 //        } catch (InterruptedException ex) {
-//            Exceptions.printStackTrace(ex);
+//                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
 //        }
 //        
         refreshTable2();

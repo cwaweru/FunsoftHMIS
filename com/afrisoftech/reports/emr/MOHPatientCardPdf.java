@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartRenderingInfo;
 import org.jfree.chart.ChartUtilities;
@@ -379,7 +379,7 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
 
                                 dateFormatters = new com.afrisoftech.lib.DateFormatter(dateFormat.parse(endDate.toLocaleString()), "yyyy");
                             } catch (ParseException ex) {
-                                Exceptions.printStackTrace(ex);
+                                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                             }
 
                             java.lang.String yearString = dateFormatters.getDateString();

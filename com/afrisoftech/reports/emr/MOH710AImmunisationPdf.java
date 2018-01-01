@@ -8,7 +8,7 @@ import com.afrisoftech.records.reports.*;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.*;
 import java.text.ParseException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 //import //java.awt.Desktop;
 
 public class MOH710AImmunisationPdf implements java.lang.Runnable {
@@ -358,7 +358,7 @@ public class MOH710AImmunisationPdf implements java.lang.Runnable {
 
                                 dateFormatters = new com.afrisoftech.lib.DateFormatter(dateFormat.parse(endDate.toLocaleString()), "yyyy");
                             } catch (ParseException ex) {
-                                Exceptions.printStackTrace(ex);
+                                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                             }
 
                             java.lang.String yearString = dateFormatters.getDateString();

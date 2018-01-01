@@ -123,7 +123,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         jSearchPanel2.add(jTextField113, gridBagConstraints);
 
-        jSearchTable2.setToolTipText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.jSearchTable2.toolTipText")); // NOI18N
+        jSearchTable2.setToolTipText("Click on the target row to select the patient from the search.");
         jSearchTable2.setShowHorizontalLines(false);
         /*javax.swing.table.TableColumn column = null;
 
@@ -158,7 +158,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jSearchPanel2.add(jSearchScrollPane2, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton522, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.jButton522.text")); // NOI18N
+        jButton522.setText("Dispose");
         jButton522.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton522ActionPerformed(evt);
@@ -183,16 +183,16 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.title")); // NOI18N
+        setTitle("Partograph Chart Tool");
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         partographHeaderPanel.setLayout(new java.awt.GridBagLayout());
 
-        partographSearchPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.partographSearchPanel.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 11), new java.awt.Color(0, 0, 204))); // NOI18N
+        partographSearchPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Here......", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 11), new java.awt.Color(0, 0, 204))); // NOI18N
         partographSearchPanel.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel93, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.jLabel93.text")); // NOI18N
+        jLabel93.setText("Patient No/Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -211,7 +211,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         patientSearchPanel.add(nameNoTxt, gridBagConstraints);
 
-        searchButton4.setToolTipText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.searchButton4.toolTipText")); // NOI18N
+        searchButton4.setToolTipText("Search");
         searchButton4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         searchButton4.setMaximumSize(new java.awt.Dimension(74, 53));
         searchButton4.setMinimumSize(new java.awt.Dimension(74, 53));
@@ -271,7 +271,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         partographHeaderPanel.add(partographSearchPanel, gridBagConstraints);
 
-        patientDetaillsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.patientDetaillsPanel.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 204))); // NOI18N
+        patientDetaillsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patients Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 204)));
         patientDetaillsPanel.setForeground(new java.awt.Color(0, 0, 204));
         patientDetaillsPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -281,7 +281,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         patientDetailsTxt.setLineWrap(true);
         patientDetailsTxt.setRows(3);
         patientDetailsTxt.setTabSize(5);
-        patientDetailsTxt.setText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.patientDetailsTxt.text")); // NOI18N
+        patientDetailsTxt.setText("\n");
         patientDetailsTxt.setWrapStyleWord(true);
         patientDetailsTxt.setAutoscrolls(false);
         patientDetailsTxt.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -297,7 +297,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
 
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(systemicAssessmentBtn, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.systemicAssessmentBtn.text")); // NOI18N
+        systemicAssessmentBtn.setText("Systemic Assessment");
         systemicAssessmentBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 systemicAssessmentBtnActionPerformed(evt);
@@ -308,7 +308,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 1;
         jPanel4.add(systemicAssessmentBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(patientCardReportBtn, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.patientCardReportBtn.text")); // NOI18N
+        patientCardReportBtn.setText("Patient Card");
         patientCardReportBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         patientCardReportBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -333,7 +333,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel4.add(patientHistoryCmbx, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(partgraphBtn, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.partgraphBtn.text")); // NOI18N
+        partgraphBtn.setText("Partograph Chart");
         partgraphBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 partgraphBtnActionPerformed(evt);
@@ -367,16 +367,16 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(partographHeaderPanel, gridBagConstraints);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.jPanel3.border.title"))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter Partograph Details"));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(foetalHeartRateLbl, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.foetalHeartRateLbl.text")); // NOI18N
+        foetalHeartRateLbl.setText("Foetal Heart Rate");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(foetalHeartRateLbl, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(liquorLbl, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.liquorLbl.text")); // NOI18N
+        liquorLbl.setText("Liquor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -384,7 +384,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(liquorLbl, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(mouldingLbl, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.mouldingLbl.text")); // NOI18N
+        mouldingLbl.setText("Moulding");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -392,7 +392,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(mouldingLbl, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(cervicalDilationlbl, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.cervicalDilationlbl.text")); // NOI18N
+        cervicalDilationlbl.setText("Cervical Dilation (CM)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -400,7 +400,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(cervicalDilationlbl, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(descentofHeadlbl, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.descentofHeadlbl.text")); // NOI18N
+        descentofHeadlbl.setText("Descent of Head");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -408,7 +408,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(descentofHeadlbl, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(contractionsPMLbl, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.contractionsPMLbl.text")); // NOI18N
+        contractionsPMLbl.setText("Contractions per 10 Mins");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -416,7 +416,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(contractionsPMLbl, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(oxytocinLbl, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.oxytocinLbl.text")); // NOI18N
+        oxytocinLbl.setText("Oxytocin UI");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -424,7 +424,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(oxytocinLbl, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(oxytocinDPMLbl, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.oxytocinDPMLbl.text")); // NOI18N
+        oxytocinDPMLbl.setText("Oxytocin Drops/Min");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -432,7 +432,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
 
         babyRemarksTxt.setColumns(20);
         babyRemarksTxt.setRows(5);
-        babyRemarksTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.babyRemarksTxt.border.title"))); // NOI18N
+        babyRemarksTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Remarks on status of baby"));
         babyRemarksJscrl.setViewportView(babyRemarksTxt);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -443,8 +443,6 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(babyRemarksJscrl, gridBagConstraints);
-
-        foetalHeartRateTxt.setText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.foetalHeartRateTxt.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -452,8 +450,6 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(foetalHeartRateTxt, gridBagConstraints);
-
-        liquorTxt.setText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.liquorTxt.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -464,7 +460,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
 
         motherRemarksTxt.setColumns(20);
         motherRemarksTxt.setRows(5);
-        motherRemarksTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.motherRemarksTxt.border.title"))); // NOI18N
+        motherRemarksTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Remarks on status of mother"));
         motherRemarksJscrl.setViewportView(motherRemarksTxt);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -475,15 +471,12 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 10.0;
         jPanel3.add(motherRemarksJscrl, gridBagConstraints);
-
-        mouldingTxt.setText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.mouldingTxt.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel3.add(mouldingTxt, gridBagConstraints);
 
-        cervicalDilationTxt.setText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.cervicalDilationTxt.text")); // NOI18N
         cervicalDilationTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cervicalDilationTxtActionPerformed(evt);
@@ -494,15 +487,11 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel3.add(cervicalDilationTxt, gridBagConstraints);
-
-        descentofHeadTxt.setText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.descentofHeadTxt.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel3.add(descentofHeadTxt, gridBagConstraints);
-
-        oxytocinUITxt.setText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.oxytocinUITxt.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -510,8 +499,6 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(oxytocinUITxt, gridBagConstraints);
-
-        oxytocinDPMTxt.setText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.oxytocinDPMTxt.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
@@ -520,7 +507,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(oxytocinDPMTxt, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(urineproteinLbl, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.urineproteinLbl.text")); // NOI18N
+        urineproteinLbl.setText("Urine Protein");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -528,7 +515,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(urineproteinLbl, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(urineAcetoneLbl, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.urineAcetoneLbl.text")); // NOI18N
+        urineAcetoneLbl.setText("Urine Acetone");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
@@ -536,15 +523,13 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(urineAcetoneLbl, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(urineVolumeLbl, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.urineVolumeLbl.text")); // NOI18N
+        urineVolumeLbl.setText("Urine Volume");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(urineVolumeLbl, gridBagConstraints);
-
-        urineProteinTxt.setText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.urineProteinTxt.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -552,8 +537,6 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(urineProteinTxt, gridBagConstraints);
-
-        urineAcetoneTxt.setText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.urineAcetoneTxt.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
@@ -562,7 +545,6 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(urineAcetoneTxt, gridBagConstraints);
 
-        urineVolumeTxt.setText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.urineVolumeTxt.text")); // NOI18N
         urineVolumeTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 urineVolumeTxtActionPerformed(evt);
@@ -575,8 +557,6 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(urineVolumeTxt, gridBagConstraints);
-
-        contractionsPMTxt.setText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.contractionsPMTxt.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -585,15 +565,13 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(contractionsPMTxt, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(temparatureLbl, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.temparatureLbl.text")); // NOI18N
+        temparatureLbl.setText("Temperature");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(temparatureLbl, gridBagConstraints);
-
-        temparatureTxt.setText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.temparatureTxt.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 5;
@@ -602,15 +580,13 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(temparatureTxt, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(respirationLbl, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.respirationLbl.text")); // NOI18N
+        respirationLbl.setText("Respiration");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(respirationLbl, gridBagConstraints);
-
-        respirationTxt.setText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.respirationTxt.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 6;
@@ -619,15 +595,13 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(respirationTxt, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(pulseforMotherLbl, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.pulseforMotherLbl.text")); // NOI18N
+        pulseforMotherLbl.setText("Pulse Rate for Mother");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(pulseforMotherLbl, gridBagConstraints);
-
-        motherPulseRateTxt.setText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.motherPulseRateTxt.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
@@ -636,15 +610,13 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(motherPulseRateTxt, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(diastolicBPLbl, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.diastolicBPLbl.text")); // NOI18N
+        diastolicBPLbl.setText("Blood Pressure (Diastolic)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(diastolicBPLbl, gridBagConstraints);
-
-        diastolicBPTxt.setText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.diastolicBPTxt.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 7;
@@ -653,15 +625,13 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(diastolicBPTxt, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(systolicBPLbl, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.systolicBPLbl.text")); // NOI18N
+        systolicBPLbl.setText("Blood Pressure (Systolic)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 7;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(systolicBPLbl, gridBagConstraints);
-
-        systolicBPTxt.setText(org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.systolicBPTxt.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 7;
@@ -681,7 +651,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
 
         commandsPanel.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(saveDataBtn, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.saveDataBtn.text")); // NOI18N
+        saveDataBtn.setText("Save partograph information");
         saveDataBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveDataBtnActionPerformed(evt);
@@ -694,7 +664,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         commandsPanel.add(saveDataBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(clearFormBtn, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.clearFormBtn.text")); // NOI18N
+        clearFormBtn.setText("Clear form");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -702,7 +672,7 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         commandsPanel.add(clearFormBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeFormBtn, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.closeFormBtn.text")); // NOI18N
+        closeFormBtn.setText("Close form");
         closeFormBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeFormBtnActionPerformed(evt);
@@ -714,8 +684,6 @@ public class PartographIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         commandsPanel.add(closeFormBtn, gridBagConstraints);
-
-        org.openide.awt.Mnemonics.setLocalizedText(spacerLabel, org.openide.util.NbBundle.getMessage(PartographIntfr.class, "PartographIntfr.spacerLabel.text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;

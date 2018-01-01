@@ -51,13 +51,13 @@ public class PaedEtatIntfr extends javax.swing.JInternalFrame {
 
         buttonPanel.setLayout(new java.awt.GridBagLayout());
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton1, org.openide.util.NbBundle.getMessage(PaedEtatIntfr.class, "PaedEtatIntfr.jButton1.text")); // NOI18N
+        jButton1.setText("Save clinical details");
         buttonPanel.add(jButton1, new java.awt.GridBagConstraints());
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton2, org.openide.util.NbBundle.getMessage(PaedEtatIntfr.class, "PaedEtatIntfr.jButton2.text")); // NOI18N
+        jButton2.setText("Close form");
         buttonPanel.add(jButton2, new java.awt.GridBagConstraints());
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton3, org.openide.util.NbBundle.getMessage(PaedEtatIntfr.class, "PaedEtatIntfr.jButton3.text")); // NOI18N
+        jButton3.setText("Clear form");
         buttonPanel.add(jButton3, new java.awt.GridBagConstraints());
 
         getContentPane().add(buttonPanel, new java.awt.GridBagConstraints());

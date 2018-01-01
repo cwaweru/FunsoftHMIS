@@ -6,7 +6,7 @@
 package com.afrisoftech.lib;
 
 import java.sql.SQLException;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
@@ -37,7 +37,7 @@ public class FamilyPlanningIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-            Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
         if (count < 1) {
             return "N";
