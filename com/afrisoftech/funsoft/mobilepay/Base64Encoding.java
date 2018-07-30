@@ -76,6 +76,7 @@ public class Base64Encoding {
 
         } catch (IOException ex) {
             ex.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(null, "There is a problem connecting to mobile payments service provider. Please contact system administrator");
         }
 
         return accessToken;

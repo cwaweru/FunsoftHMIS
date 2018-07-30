@@ -1045,14 +1045,14 @@ public class MCHFamilyPlanningIntfr extends javax.swing.JInternalFrame {
     }
     private void searchANCFileTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchANCFileTxtCaretUpdate
         //        if(jCheckBox7.isSelected()){
-        if (searchANCFileTxt.getCaretPosition() < 4) {
+        if (searchANCFileTxt.getCaretPosition() < 3) {
 
             System.out.println("Nothing");
         } else {
             ancSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT "
                     + "fp_clinic_no,full_name FROM"
                     + " rh.fp_services_register WHERE (fp_clinic_no ILIKE '%" + searchANCFileTxt.getText() + "%' "
-                    + "OR full_name ILIKE '%" + searchANCFileTxt.getText() + "%') "
+                    + "OR full_name ILIKE '%" + searchANCFileTxt.getText() + "%' OR patient_no ILIKE '%" + searchANCFileTxt.getText() + "%') "
                     + " ORDER BY 2"));
             ancSearchTable.setShowHorizontalLines(false);
             ancSearchScrollPane.setViewportView(ancSearchTable);

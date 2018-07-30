@@ -24,7 +24,7 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
     boolean threadCheck = true;
     java.lang.Thread threadSample;
     com.lowagie.text.Font pFontHeader = FontFactory.getFont(FontFactory.HELVETICA, 9, Font.BOLD);
-    com.lowagie.text.Font pFontHeader1 = FontFactory.getFont(FontFactory.HELVETICA, 8, Font.NORMAL);
+    com.lowagie.text.Font pFontHeader1 = FontFactory.getFont(FontFactory.HELVETICA, 7, Font.NORMAL);
     com.lowagie.text.Font pFontHeader2 = FontFactory.getFont(FontFactory.HELVETICA, 14, Font.BOLD);
     //   com.lowagie.text.ParagraphFont pgraph = Paragraph();
     java.lang.Runtime rtThreadSample = java.lang.Runtime.getRuntime();
@@ -80,14 +80,11 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
 
             threadCheck = false;
 
-
             System.out.println("We shall be lucky to get back to start in one piece");
 
         }
 
         if (!threadCheck) {
-
-
 
             Thread.currentThread().stop();
 
@@ -258,7 +255,6 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
 
         java.lang.String pdfDateStamp = dateStampPdf.toString();
 
-
         try {
 
             java.io.File tempFile = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
@@ -272,7 +268,7 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
             java.lang.String creditTotal = null;
 
             // com.lowagie.text.Document docPdf = new com.lowagie.text.Document();
-            com.lowagie.text.Document docPdf = new com.lowagie.text.Document(PageSize.A4.rotate());
+            com.lowagie.text.Document docPdf = new com.lowagie.text.Document(PageSize.A3.rotate());
 
             try {
 
@@ -291,16 +287,16 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
                         java.sql.ResultSet rset2 = st3.executeQuery("SELECT hospital_name,district_branch,region FROM pb_hospitalprofile");
                         java.sql.ResultSet rset4 = st4.executeQuery("SELECT date('now') as Date");
                         while (rset2.next()) {
-                            compName = rset2.getObject(1).toString();
-                            District = rset2.getObject(2).toString();
-                            Region = rset2.getObject(3).toString();
+                            compName = rset2.getString(1);
+                            District = rset2.getString(2);
+                            Region = rset2.getString(3);
                         }
                         while (rset4.next()) {
-                            date = rset4.getObject(1).toString();
+                            date = rset4.getDate(1).toString();
                         }
                     } catch (SQLException ex) {
                         javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
-                                    ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                     }
                     com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase(compName.toUpperCase()), false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
                     headerFoter.setAlignment(com.lowagie.text.HeaderFooter.ALIGN_CENTER);
@@ -309,12 +305,9 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
                     headerFoter.setRight(5);
                     docPdf.setHeader(headerFoter);
 
-
-
                     com.lowagie.text.HeaderFooter footer = new com.lowagie.text.HeaderFooter(new Phrase("Page: "), true);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 12, Font.BOLDITALIC,java.awt.Color.blue));
 
                     docPdf.setFooter(footer);
-
 
                     docPdf.open();
 
@@ -325,7 +318,6 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
                     int selfT = 0;
                     int copT = 0;
                     try {
-
 
                         com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(27);
 
@@ -357,21 +349,12 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
                         
                          table2.setHeaderRows(1);*/
                         // table.getDefaultCell().setBorder(Rectangle.BOTTOM);
-
                         table.getDefaultCell().setColspan(6);
-
 
                         Phrase phrase = new Phrase("", pFontHeader);
 
-
                         try {
                             try {
-                                // String compName = null;
-                                // String District = null;
-                                //  String Region = null;
-
-                                //  String date = null;
-                                // java.sql.Connection conDb = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
 
                                 java.sql.Statement st3Y = connectDB.createStatement();
                                 java.sql.Statement st4Y = connectDB.createStatement();
@@ -386,29 +369,26 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
                                     date = rset4.getObject(1).toString();
                                 }
 
-                                java.sql.Statement st4x = connectDB.createStatement();
-                                java.sql.ResultSet rset4x = st4x.executeQuery("SELECT EXTRACT(MINUTE FROM(current_time::time - report_time::time)) FROM patient_treated");
-
-                                while (rset4x.next()) {
-                                    mints = rset4x.getFloat(1);
-                                    System.out.println("Mins " + mints);
-                                }
-                                if (mints > 7 || mints <= 0) {
-
-                                    java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("DELETE FROM patient_treated");
-                                    pstmt31.executeUpdate();
-
-                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO patient_treated("
-                                            + " patient_no, name, curr_date, doctor, diagnosis, rank, age, gender, clinic) "
-                                            + " SELECT patient_no, name, curr_date, doctor, diagnosis, rank, age,"
-                                            + " gender, clinic FROM patient_seen");
-
-                                    pstmt.executeUpdate();
-                                }
-
-
+//                                java.sql.Statement st4x = connectDB.createStatement();
+//                                java.sql.ResultSet rset4x = st4x.executeQuery("SELECT EXTRACT(MINUTE FROM(current_time::time - report_time::time)) FROM patient_treated");
+//
+//                                while (rset4x.next()) {
+//                                    mints = rset4x.getFloat(1);
+//                                    System.out.println("Mins " + mints);
+//                                }
+//                                if (mints > 7 || mints <= 0) {
+//
+//                                    java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("DELETE FROM patient_treated");
+//                                    pstmt31.executeUpdate();
+//
+//                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO patient_treated("
+//                                            + " patient_no, name, curr_date, doctor, diagnosis, rank, age, gender, clinic) "
+//                                            + " SELECT patient_no, name, curr_date, doctor, diagnosis, rank, age,"
+//                                            + " gender, clinic FROM patient_seen");
+//
+//                                    //pstmt.executeUpdate();
+//                                }
                                 java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);//MEDIUM);
-
 
                                 java.util.Date endDate1 = dateFormat.parse(endDate.toLocaleString());//dateInstance.toLocaleString());
                                 java.util.Date endDate11 = dateFormat.parse(beginDate.toLocaleString());//dateInstance.toLocaleString());
@@ -456,7 +436,6 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setColspan(6);
                                 phrase = new Phrase("YEAR  : " + yearString.toUpperCase(), pFontHeader1);
                                 table.addCell(phrase);
-
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
 
@@ -573,7 +552,10 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 phrase = new Phrase("R", pFontHeader1);
                                 table.addCell(phrase);
+
                             } catch (java.sql.SQLException sqlExec) {
+
+                                sqlExec.printStackTrace();
 
                                 javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
 
@@ -585,16 +567,13 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
 
                         }
 
-
                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
 
                         // table.addCell("Amount KShs.");
-
                         table.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
                         // table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
 
                         try {
-
 
                             int tmUnderOne = 0;
                             int tmOneFour = 0;
@@ -704,34 +683,63 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
 
                                 // Created a view hp_patient_visit to analyse the data before select.
                                 // Male result-sets.
-                                java.sql.ResultSet rset = st.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric <= 1 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'New'");
-                                java.sql.ResultSet rset1 = st1.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 1.01 AND 4 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'New'");
-                                java.sql.ResultSet rset2 = st2.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 5 AND 14 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'New'");
-                                java.sql.ResultSet rset3 = st3.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 15 AND 44 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'New'");
-                                java.sql.ResultSet rset4 = st4.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 45 AND 60 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'New'");
-                                java.sql.ResultSet rset5 = st5.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric > 60 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'New'");
+//                                java.sql.ResultSet rset = st.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric <= 1 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'New'");
+//                                java.sql.ResultSet rset1 = st1.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 1.01 AND 4 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'New'");
+//                                java.sql.ResultSet rset2 = st2.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 5 AND 14 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'New'");
+//                                java.sql.ResultSet rset3 = st3.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 15 AND 44 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'New'");
+//                                java.sql.ResultSet rset4 = st4.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 45 AND 60 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'New'");
+//                                java.sql.ResultSet rset5 = st5.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric > 60 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'New'");
+//
+//                                java.sql.ResultSet rsetm = stm.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric <= 1 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'Old'");
+//                                java.sql.ResultSet rset1m = st1m.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 1.01 AND 4 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'Old'");
+//                                java.sql.ResultSet rset2m = st2m.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 5 AND 14 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'Old'");
+//                                java.sql.ResultSet rset3m = st3m.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 15 AND 44 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'Old'");
+//                                java.sql.ResultSet rset4m = st4m.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 45 AND 60 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'Old'");
+//                                java.sql.ResultSet rset5m = st5m.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric > 60 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'Old'");
+//
+//                                // Female result sets.
+//                                java.sql.ResultSet rset10 = st10.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric <= 1 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'New'");
+//                                java.sql.ResultSet rset11 = st11.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 1.01 AND 4 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'New'");
+//                                java.sql.ResultSet rset12 = st12.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 5 AND 14 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'New'");
+//                                java.sql.ResultSet rset13 = st13.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 15 AND 44 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'New'");
+//                                java.sql.ResultSet rset14 = st14.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 45 AND 60 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'New'");
+//                                java.sql.ResultSet rset15 = st15.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric > 60 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'New'");
+//
+//                                java.sql.ResultSet rset10f = st10f.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric <= 1 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'Old'");
+//                                java.sql.ResultSet rset11f = st11f.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 1.01 AND 4 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'Old'");
+//                                java.sql.ResultSet rset12f = st12f.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 5 AND 14 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'Old'");
+//                                java.sql.ResultSet rset13f = st13f.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 15 AND 44 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'Old'");
+//                                java.sql.ResultSet rset14f = st14f.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 45 AND 60 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'Old'");
+//                                java.sql.ResultSet rset15f = st15f.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric > 60 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'Old'");
+//                                
+                                java.sql.ResultSet rset = st.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric <= 1 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'MALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'NEW'");
+                                java.sql.ResultSet rset1 = st1.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric between 1.01 AND 4 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'MALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'NEW'");
+                                java.sql.ResultSet rset2 = st2.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric between 5 AND 14 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'MALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'NEW'");
+                                java.sql.ResultSet rset3 = st3.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric between 15 AND 44 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'MALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'NEW'");
+                                java.sql.ResultSet rset4 = st4.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric between 45 AND 60 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'MALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'NEW'");
+                                java.sql.ResultSet rset5 = st5.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric > 60 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'MALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'NEW'");
 
-                                java.sql.ResultSet rsetm = stm.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric <= 1 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'Old'");
-                                java.sql.ResultSet rset1m = st1m.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 1.01 AND 4 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'Old'");
-                                java.sql.ResultSet rset2m = st2m.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 5 AND 14 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'Old'");
-                                java.sql.ResultSet rset3m = st3m.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 15 AND 44 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'Old'");
-                                java.sql.ResultSet rset4m = st4m.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 45 AND 60 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'Old'");
-                                java.sql.ResultSet rset5m = st5m.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric > 60 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Male' AND rank ILIKE 'Old'");
+                                java.sql.ResultSet rsetm = stm.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric <= 1 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'MALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'OLD'");
+                                java.sql.ResultSet rset1m = st1m.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric between 1.01 AND 4 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'MALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'OLD'");
+                                java.sql.ResultSet rset2m = st2m.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric between 5 AND 14 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'MALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'OLD'");
+                                java.sql.ResultSet rset3m = st3m.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric between 15 AND 44 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'MALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'OLD'");
+                                java.sql.ResultSet rset4m = st4m.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric between 45 AND 60 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'MALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'OLD'");
+                                java.sql.ResultSet rset5m = st5m.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric > 60 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'MALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'OLD'");
 
                                 // Female result sets.
-                                java.sql.ResultSet rset10 = st10.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric <= 1 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'New'");
-                                java.sql.ResultSet rset11 = st11.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 1.01 AND 4 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'New'");
-                                java.sql.ResultSet rset12 = st12.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 5 AND 14 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'New'");
-                                java.sql.ResultSet rset13 = st13.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 15 AND 44 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'New'");
-                                java.sql.ResultSet rset14 = st14.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 45 AND 60 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'New'");
-                                java.sql.ResultSet rset15 = st15.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric > 60 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'New'");
+                                java.sql.ResultSet rset10 = st10.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric <= 1 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'FEMALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded  AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' LIMIT 1) = 'NEW'");
+                                java.sql.ResultSet rset11 = st11.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric between 1.01 AND 4 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'FEMALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded  AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' LIMIT 1) = 'NEW'");
+                                java.sql.ResultSet rset12 = st12.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric between 5 AND 14 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'FEMALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'NEW'");
+                                java.sql.ResultSet rset13 = st13.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric between 15 AND 44 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'FEMALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'NEW'");
+                                java.sql.ResultSet rset14 = st14.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric between 45 AND 60 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'FEMALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'NEW'");
+                                java.sql.ResultSet rset15 = st15.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric > 60 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'FEMALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'NEW'");
 
-                                java.sql.ResultSet rset10f = st10f.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric <= 1 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'Old'");
-                                java.sql.ResultSet rset11f = st11f.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 1.01 AND 4 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'Old'");
-                                java.sql.ResultSet rset12f = st12f.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 5 AND 14 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'Old'");
-                                java.sql.ResultSet rset13f = st13f.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 15 AND 44 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'Old'");
-                                java.sql.ResultSet rset14f = st14f.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric between 45 AND 60 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'Old'");
-                                java.sql.ResultSet rset15f = st15f.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM patient_treated WHERE curr_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric > 60 AND clinic ilike '" + listofAct[i] + "' AND gender ilike 'Female' AND rank ILIKE 'Old'");
+                                java.sql.ResultSet rset10f = st10f.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric <= 1 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'FEMALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'OLD'");
+                                java.sql.ResultSet rset11f = st11f.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric between 1.01 AND 4 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'FEMALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'OLD'");
+                                java.sql.ResultSet rset12f = st12f.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric between 5 AND 14 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'FEMALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'OLD'");
+                                java.sql.ResultSet rset13f = st13f.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric between 15 AND 44 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'FEMALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'OLD'");
+                                java.sql.ResultSet rset14f = st14f.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric between 45 AND 60 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'FEMALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'OLD'");
+                                java.sql.ResultSet rset15f = st15f.executeQuery("SELECT COUNT(DISTINCT patient_no) FROM hp_patient_diagnosis WHERE date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pat_age::numeric > 60 AND upper(ward_name) = '" + listofAct[i].toString().toUpperCase() + "' AND upper(gender) = 'FEMALE' AND (SELECT upper(comments) FROM hp_patient_visit WHERE hp_patient_visit.patient_no = hp_patient_diagnosis.patient_no AND hp_patient_visit.date::date = hp_patient_diagnosis.date_recorded AND hp_patient_diagnosis.date_recorded BETWEEN '" + beginDate + "' AND '" + endDate + "'  LIMIT 1) = 'OLD'");
 
                                 table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -788,9 +796,7 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
                                     mOverSixtyOner = rset5m.getInt(1);
                                 }
 
-
                                 // female results.
-
                                 while (rset10.next()) {
                                     fUnderOne = rset10.getInt(1);
                                 }
@@ -888,7 +894,6 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
                                 tmOverSixtyOner = tmOverSixtyOner + mOverSixtyOner;
                                 table.addCell(phrase);
 
-
                                 // female
                                 phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(fUnderOne)), pFontHeader1);
                                 tfUnderOne = tfUnderOne + fUnderOne;
@@ -953,7 +958,7 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                             table.getDefaultCell().setVerticalAlignment(PdfCell.ALIGN_MIDDLE);
                             table.getDefaultCell().setMinimumHeight(20);
-                            phrase = new Phrase("All Ages", pFontHeader1);
+                            phrase = new Phrase("Totals for All Ages", pFontHeader1);
                             table.addCell(phrase);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                             table.getDefaultCell().setColspan(1);
@@ -1036,19 +1041,12 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
                             phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(tMaleFemaler)), pFontHeader1);
                             table.addCell(phrase);
 
-                            /*table.getDefaultCell().setColspan(7);
-                             phrase = new Phrase(" ", pFontHeader1);
-                             table.addCell(phrase);
-                             table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
-                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                             phrase = new Phrase(".................................. \n Medical Officer-in-Charge", pFontHeader1);
-                             table.addCell(phrase);
-
-                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                             phrase = new Phrase("*To be despatched not later than the Tuesday of the month immediately following to the District Medical \n Officer of Health with copies to; \n          1.        REGIONAL DIRECTOR OF HEALTH SERVICES", pFontHeader1);
-
-                             table.addCell(phrase);
-                             */
+                            table.getDefaultCell().setColspan(25);
+                            phrase = new Phrase("Total Patients Diagnosed", pFontHeader1);
+                            table.addCell(phrase);
+                            table.getDefaultCell().setColspan(2);
+                            phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(tMaleFemaler + tMaleFemale)), pFontHeader1);
+                            table.addCell(phrase);
 
                             docPdf.add(table);
                             //docPdf.add(table1);
@@ -1060,7 +1058,6 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
                         }
 
                         // }
-
                     } catch (com.lowagie.text.BadElementException BadElExec) {
 
                         javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), BadElExec.getMessage());
@@ -1078,8 +1075,6 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
 
             }
 
-
-
             docPdf.close();
             com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
@@ -1089,8 +1084,6 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
 
         }
 
-
-
     }
 
     public java.lang.Object[] getListofStaffNos() {
@@ -1099,16 +1092,15 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
 
         java.util.Vector listStaffNoVector = new java.util.Vector(1, 1);
 
-
         try {
 
             //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-
             java.sql.Statement stmt1 = connectDB.createStatement();
 
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT distinct initcap(clinics) FROM pb_clinics ORDER BY 1");
-            //  java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no FROM hp_admission WHERE discharge = false ORDER BY patient_no");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT distinct initcap(clinics) FROM pb_clinics WHERE clinics IS NOT NULL ORDER BY 1");
 
+//           java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT distinct upper(ward_name) FROM hp_patient_diagnosis WHERE ward_name IS NOT NULL ORDER BY 1");
+//  java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no FROM hp_admission WHERE discharge = false ORDER BY patient_no");
             while (rSet1.next()) {
 
                 listStaffNoVector.addElement(rSet1.getObject(1).toString());
@@ -1120,7 +1112,6 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
 
         }
-
 
         listofStaffNos = listStaffNoVector.toArray();
         System.out.println("Done list of Staff Nos ...");

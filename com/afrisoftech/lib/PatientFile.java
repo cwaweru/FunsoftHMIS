@@ -1009,11 +1009,8 @@ public class PatientFile {
             } else {
                 java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT name as patient_names,"
                         + " date, '',"
-                        + "(SELECT year_of_birth::date FROM hp_patient_register WHERE hp_patient_register.patient_no = ? ORDER BY 1 DESC LIMIT 1) as date_of_birth,"
-                        + " ward, bed_no, doctor, wing, nok, tel, address, id_no, mode_of_payment, companion, referred_from, nationality, discharge, date_admitted,"
-                        + "user_name, discharge_date, check_out, invoice_no, visit_id, pat_age, gender, marital_status,speciality,occupation,"
-                        + "pat_religion, pat_district, pat_location,nok_residence, nok_relationship, nhif_status, home_county, residence_county,"
-                        + "education_level, referred_to, patient_disability, admission_comments FROM hp_patient_visit WHERE patient_no = ?");
+                        + "(SELECT year_of_birth::date FROM hp_patient_register WHERE hp_patient_register.patient_no = ? ORDER BY 1 DESC LIMIT 1) as date_of_birth"
+                        + " FROM hp_patient_visit WHERE patient_no = ?");
                 pstmt.setString(1, patientNo);
                 pstmt.setString(2, patientNo);
                 java.sql.ResultSet rset = pstmt.executeQuery();
@@ -1028,19 +1025,13 @@ public class PatientFile {
 
                     setPatientDateofBith(rset.getDate(4));
 
-                    setWardName(wardName);
-
-                    setWardWingFirm(wardWingFirm);
-
-                    setVisitNumber(visitNumber);
-
                 }
             }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();
         }
 
     }

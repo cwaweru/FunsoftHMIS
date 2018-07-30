@@ -77,14 +77,11 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
             threadCheck = false;
 
-
             System.out.println("We shall be lucky to get back to start in one piece");
 
         }
 
         if (!threadCheck) {
-
-
 
             Thread.currentThread().stop();
 
@@ -255,7 +252,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
         java.lang.String pdfDateStamp = dateStampPdf.toString();
 
-
         try {
 
             java.io.File tempFile = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
@@ -277,7 +273,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                     com.lowagie.text.pdf.PdfWriter.getInstance(docPdf, new java.io.FileOutputStream(tempFile));
 
-
                     String compName = null;
                     String District = null;
                     String Region = null;
@@ -286,7 +281,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                     try {
 
                         // java.sql.Connection conDb = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-
                         java.sql.Statement st3 = connectDB.createStatement();
                         java.sql.Statement st4 = connectDB.createStatement();
 
@@ -309,8 +303,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                     } catch (java.sql.SQLException SqlExec) {
 
-                        SqlExec.printStackTrace();
-                        
                         javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
                     }
@@ -318,7 +310,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                     com.lowagie.text.HeaderFooter footer = new com.lowagie.text.HeaderFooter(new Phrase("Page: "), true);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 12, Font.BOLDITALIC,java.awt.Color.blue));
 
                     docPdf.setFooter(footer);
-
 
                     docPdf.open();
 
@@ -329,7 +320,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                     int selfT = 0;
                     int copT = 0;
                     try {
-
 
                         com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(5);
 
@@ -364,13 +354,10 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                         table.getDefaultCell().setColspan(5);
 
-
                         Phrase phrase = new Phrase("", pFontHeader);
-
 
                         try {
                             java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);//MEDIUM);
-
 
                             java.util.Date endDate1 = dateFormat.parse(endDate.toLocaleString());//dateInstance.toLocaleString());
                             java.util.Date endDate11 = dateFormat.parse(beginDate.toLocaleString());//dateInstance.toLocaleString());
@@ -391,9 +378,7 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             phrase = new Phrase("Printed On  :" + date, pFontHeader);
 
                             // table.addCell(phrase);
-
                             // Phrase phrase = new Phrase("Patients List As At:" +endDate, pFontHeader);
-
                             //table.addCell(phrase);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
 
@@ -411,10 +396,10 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             table.addCell(phrase);
                             table.getDefaultCell().setColspan(5);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase("District : " + District, pFontHeader);
+                            phrase = new Phrase("District/Sub County : " + District, pFontHeader);
                             table.addCell(phrase);
                             table.getDefaultCell().setColspan(3);
-                            phrase = new Phrase("Region : " + Region, pFontHeader);
+                            phrase = new Phrase("Region/County : " + Region, pFontHeader);
                             table.addCell(phrase);
                             table.getDefaultCell().setColspan(2);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
@@ -424,12 +409,12 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             table.getDefaultCell().setColspan(5);
                             table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase("A. OUTPATIENT SERVICES", pFontHeader);
+                            phrase = new Phrase("A. OUT-PATIENT SERVICES", pFontHeader);
                             table.addCell(phrase);
 
                             table.getDefaultCell().setColspan(2);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase("A1 GENERAL OUTPATIENTS(FILTER CLINICS)", pFontHeader);
+                            phrase = new Phrase("A1 GENERAL OUT-PATIENTS(FILTER CLINICS)", pFontHeader);
                             table.addCell(phrase);
 
                             table.getDefaultCell().setColspan(1);
@@ -444,31 +429,26 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             table.addCell(phrase);
 
                             /*table.getDefaultCell().setColspan(1);
-                            phrase = new Phrase("AGE GROUPS",pFontHeader);
-                            table.addCell(phrase);
+                             phrase = new Phrase("AGE GROUPS",pFontHeader);
+                             table.addCell(phrase);
                             
-                            phrase = new Phrase("Male",pFontHeader);
-                            table.addCell(phrase);
+                             phrase = new Phrase("Male",pFontHeader);
+                             table.addCell(phrase);
                             
-                            phrase = new Phrase("Female",pFontHeader);
-                            table.addCell(phrase);
+                             phrase = new Phrase("Female",pFontHeader);
+                             table.addCell(phrase);
                             
-                            phrase = new Phrase("Male",pFontHeader);
-                            table.addCell(phrase);
+                             phrase = new Phrase("Male",pFontHeader);
+                             table.addCell(phrase);
                             
-                            phrase = new Phrase("Female",pFontHeader);
-                            table.addCell(phrase);
+                             phrase = new Phrase("Female",pFontHeader);
+                             table.addCell(phrase);
                             
-                            phrase = new Phrase("Male",pFontHeader);
-                            table.addCell(phrase);
+                             phrase = new Phrase("Male",pFontHeader);
+                             table.addCell(phrase);
                             
-                            phrase = new Phrase("Female",pFontHeader);
-                            table.addCell(phrase);*/
-
-
-
-
-
+                             phrase = new Phrase("Female",pFontHeader);
+                             table.addCell(phrase);*/
                             //phrase = new Phrase("Budget Cumm. Adm. for the month",pFontHeader);
                             //table.addCell(phrase);
                         } catch (java.text.ParseException psExec) {
@@ -477,11 +457,9 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                         }
 
-
                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
 
                         // table.addCell("Amount KShs.");
-
                         table.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
                         // table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
 
@@ -514,14 +492,16 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             int patNo1 = 0;
                             /*java.sql.ResultSet rsetAge = stw.executeQuery("SELECT min_age,max_age FROM patient_age WHERE description ilike '"+listofAct[i]+"'");
                             
-                            while(rsetAge.next()){
-                            lowerAge = rsetAge.getDouble(1);
-                            upperAge = rsetAge.getDouble(2);
-                            }*/
+                             while(rsetAge.next()){
+                             lowerAge = rsetAge.getDouble(1);
+                             upperAge = rsetAge.getDouble(2);
+                             }*/
                             java.sql.Statement st = connectDB.createStatement();
                             java.sql.Statement st1 = connectDB.createStatement();
-                            java.sql.ResultSet rset = st.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND rank ilike 'new' AND TRIM(gender) ilike 'MALE' AND clinic ILIKE 'OPD%'");
-                            java.sql.ResultSet rset1 = st1.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND rank ilike 'old' AND TRIM(gender) ilike 'MALE' AND clinic ILIKE 'OPD%'");
+                            //java.sql.ResultSet rset = st.executeQuery("SELECT DISTINCT COUNT(patient_no) from hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND comments ilike 'new' AND TRIM(gender) ilike 'MALE' AND clinic ILIKE 'OPD%'");
+                            //java.sql.ResultSet rset1 = st1.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND comments ilike 'old' AND TRIM(gender) ilike 'MALE' AND clinic ILIKE 'OPD%'");
+                            java.sql.ResultSet rset = st.executeQuery("SELECT DISTINCT COUNT(patient_no) from hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND comments ilike 'new' AND TRIM(gender) ilike 'MALE' AND (clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
+                            java.sql.ResultSet rset1 = st1.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND comments ilike 'old' AND TRIM(gender) ilike 'MALE' AND (clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
                             while (rset.next()) {
                                 while (rset1.next()) {
                                     newCount = 0;
@@ -548,11 +528,10 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                                 }
                             }
 
-
                             java.sql.Statement st21 = connectDB.createStatement();
                             java.sql.Statement st12 = connectDB.createStatement();
-                            java.sql.ResultSet rset2 = st21.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND rank ilike 'new' AND TRIM(gender) ilike 'FEMALE' AND clinic ILIKE 'OPD%'");
-                            java.sql.ResultSet rset12 = st12.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND rank ilike 'old' AND TRIM(gender) ilike 'FEMALE' AND clinic ILIKE 'OPD%'");
+                            java.sql.ResultSet rset2 = st21.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND comments ilike 'new' AND TRIM(gender) ilike 'FEMALE' AND (clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
+                            java.sql.ResultSet rset12 = st12.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND comments ilike 'old' AND TRIM(gender) ilike 'FEMALE' AND (clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
                             while (rset2.next()) {
                                 while (rset12.next()) {
                                     newCount = 0;
@@ -581,8 +560,8 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                             java.sql.Statement st212 = connectDB.createStatement();
                             java.sql.Statement st122 = connectDB.createStatement();
-                            java.sql.ResultSet rset22 = st212.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date::date  BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) < 5 AND rank ilike 'new' AND TRIM(gender) ilike 'MALE' AND clinic ILIKE 'OPD%'");
-                            java.sql.ResultSet rset122 = st122.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date::date  BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) < 5 AND rank ilike 'old' AND TRIM(gender) ilike 'MALE' AND clinic ILIKE 'OPD%'");
+                            java.sql.ResultSet rset22 = st212.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date  BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) < 5 AND comments ilike 'new' AND TRIM(gender) ilike 'MALE' AND (clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
+                            java.sql.ResultSet rset122 = st122.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date  BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) < 5 AND comments ilike 'old' AND TRIM(gender) ilike 'MALE' AND (clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
                             while (rset22.next()) {
                                 while (rset122.next()) {
                                     newCount = 0;
@@ -611,8 +590,8 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                             java.sql.Statement st2121 = connectDB.createStatement();
                             java.sql.Statement st1221 = connectDB.createStatement();
-                            java.sql.ResultSet rset221 = st2121.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date::date  BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) < 5 AND rank ilike 'new' AND TRIM(gender) ilike 'FEMALE' AND clinic ILIKE 'OPD%'");
-                            java.sql.ResultSet rset1221 = st1221.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date::date  BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) < 5 AND rank ilike 'old' AND TRIM(gender) ilike 'FEMALE' AND clinic ILIKE 'OPD%'");
+                            java.sql.ResultSet rset221 = st2121.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date  BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) < 5 AND comments ilike 'new' AND TRIM(gender) ilike 'FEMALE' AND (clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
+                            java.sql.ResultSet rset1221 = st1221.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date  BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) < 5 AND comments ilike 'old' AND TRIM(gender) ilike 'FEMALE' AND (clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
                             while (rset221.next()) {
                                 while (rset1221.next()) {
                                     newCount = 0;
@@ -644,7 +623,7 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             phrase = new Phrase("A.1.5", pFontHeader);
                             table.addCell(phrase);
                             table.getDefaultCell().setColspan(1);
-                            phrase = new Phrase("TOTAL GENERAL OUTPATIENTS", pFontHeader);
+                            phrase = new Phrase("TOTAL GENERAL OUT-PATIENTS", pFontHeader);
                             table.addCell(phrase);
                             table.getDefaultCell().setColspan(1);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
@@ -658,8 +637,8 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                             java.sql.Statement stx = connectDB.createStatement();
                             java.sql.Statement st1x = connectDB.createStatement();
-                            java.sql.ResultSet rsetx = stx.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND clinic ILIKE 'Casualty' AND rank ilike 'new'");
-                            java.sql.ResultSet rset1x = st1x.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND clinic ILIKE 'Casualty' AND rank ilike 'old'");
+                            java.sql.ResultSet rsetx = stx.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND clinic ILIKE 'Casualty' AND comments ilike 'new'");
+                            java.sql.ResultSet rset1x = st1x.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND clinic ILIKE 'Casualty' AND comments ilike 'old'");
                             while (rsetx.next()) {
                                 while (rset1x.next()) {
                                     newCount = 0;
@@ -694,8 +673,8 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                             java.sql.Statement sts = connectDB.createStatement();
                             java.sql.Statement st1s = connectDB.createStatement();
-                            java.sql.ResultSet rsets = sts.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND rank ilike 'new' AND (clinic ILIKE 'ENT' OR clinic ILIKE 'E.N.T')");
-                            java.sql.ResultSet rset1s = st1s.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND rank ilike 'old'  AND (clinic ILIKE 'ENT' OR clinic ILIKE 'E.N.T')");
+                            java.sql.ResultSet rsets = sts.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments ilike 'new' AND (clinic ILIKE 'ENT%' OR clinic ILIKE 'E.N.T%')");
+                            java.sql.ResultSet rset1s = st1s.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND comments ilike 'old'  AND (clinic ILIKE 'ENT%' OR clinic ILIKE 'E.N.T%')");
                             while (rsets.next()) {
                                 while (rset1s.next()) {
                                     newCount = 0;
@@ -724,8 +703,8 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                             java.sql.Statement sts1 = connectDB.createStatement();
                             java.sql.Statement st1s1 = connectDB.createStatement();
-                            java.sql.ResultSet rsets1 = sts1.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND rank ilike 'new' AND clinic ILIKE 'Eye%'");
-                            java.sql.ResultSet rset1s1 = st1s1.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND rank ilike 'old'  AND clinic ILIKE 'Eye%'");
+                            java.sql.ResultSet rsets1 = sts1.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments ilike 'new' AND clinic ILIKE 'Eye%'");
+                            java.sql.ResultSet rset1s1 = st1s1.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND comments ilike 'old'  AND clinic ILIKE 'Eye%'");
                             while (rsets1.next()) {
                                 while (rset1s1.next()) {
                                     newCount = 0;
@@ -754,8 +733,8 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                             java.sql.Statement sts11 = connectDB.createStatement();
                             java.sql.Statement st1s11 = connectDB.createStatement();
-                            java.sql.ResultSet rsets11 = sts11.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND rank ilike 'new' AND (clinic ILIKE 'TB' OR clinic ILIKE 'leprosy' OR clinic ILIKE 'Chest')");
-                            java.sql.ResultSet rset1s11 = st1s11.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND rank ilike 'old'  AND (clinic ILIKE 'TB' OR clinic ILIKE 'leprosy' OR clinic ILIKE 'Chest')");
+                            java.sql.ResultSet rsets11 = sts11.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments ilike 'new' AND (clinic ILIKE 'TB%' OR clinic ILIKE 'leprosy%' OR clinic ILIKE 'Chest%')");
+                            java.sql.ResultSet rset1s11 = st1s11.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND comments ilike 'old'  AND (clinic ILIKE 'TB%' OR clinic ILIKE 'leprosy%' OR clinic ILIKE 'Chest%')");
                             while (rsets11.next()) {
                                 while (rset1s11.next()) {
                                     newCount = 0;
@@ -782,11 +761,10 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                                 }
                             }
 
-
                             java.sql.Statement sts111 = connectDB.createStatement();
                             java.sql.Statement st1s111 = connectDB.createStatement();
-                            java.sql.ResultSet rsets111 = sts111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND rank ilike 'new' AND (clinic ILIKE 'sti' OR clinic ILIKE 'std' OR clinic ILIKE 'sex%')");
-                            java.sql.ResultSet rset1s111 = st1s111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND rank ilike 'old'  AND (clinic ILIKE 'sti' OR clinic ILIKE 'std' OR clinic ILIKE 'sex%')");
+                            java.sql.ResultSet rsets111 = sts111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments ilike 'new' AND (clinic ILIKE 'sti%' OR clinic ILIKE 'std%' OR clinic ILIKE 'sex%')");
+                            java.sql.ResultSet rset1s111 = st1s111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND comments ilike 'old'  AND (clinic ILIKE 'sti%' OR clinic ILIKE 'std%' OR clinic ILIKE 'sex%')");
                             while (rsets111.next()) {
                                 while (rset1s111.next()) {
                                     newCount = 0;
@@ -813,11 +791,10 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                                 }
                             }
 
-
                             java.sql.Statement sts1111 = connectDB.createStatement();
                             java.sql.Statement st1s1111 = connectDB.createStatement();
-                            java.sql.ResultSet rsets1111 = sts1111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND rank ilike 'new' AND clinic ILIKE 'psychia%'");
-                            java.sql.ResultSet rset1s1111 = st1s1111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND rank ilike 'old'  AND clinic ILIKE 'psychia%'");
+                            java.sql.ResultSet rsets1111 = sts1111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments ilike 'new' AND (clinic ILIKE 'psychiatry%' OR clinic ILIKE 'psyc%' OR clinic ILIKE 'mental%')");
+                            java.sql.ResultSet rset1s1111 = st1s1111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND comments ilike 'old'  AND (clinic ILIKE 'psychiatry%' OR clinic ILIKE 'psyc%' OR clinic ILIKE 'mental%')");
                             while (rsets1111.next()) {
                                 while (rset1s1111.next()) {
                                     newCount = 0;
@@ -844,11 +821,10 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                                 }
                             }
 
-
                             java.sql.Statement sts11111 = connectDB.createStatement();
                             java.sql.Statement st1s11111 = connectDB.createStatement();
-                            java.sql.ResultSet rsets11111 = sts11111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND rank ilike 'new' AND (clinic ILIKE 'ORTH%' OR clinic ILIKE 'OTHo%')");
-                            java.sql.ResultSet rset1s11111 = st1s11111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND rank ilike 'old'  AND (clinic ILIKE 'ORTH%' OR clinic ILIKE 'OTHo%')");
+                            java.sql.ResultSet rsets11111 = sts11111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments ilike 'new' AND (clinic ILIKE 'ORTH%' OR clinic ILIKE 'OTHO%')");
+                            java.sql.ResultSet rset1s11111 = st1s11111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND comments ilike 'old'  AND (clinic ILIKE 'ORTH%' OR clinic ILIKE 'OTHO%')");
                             while (rsets11111.next()) {
                                 while (rset1s11111.next()) {
                                     newCount = 0;
@@ -875,6 +851,201 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                                 }
                             }
 
+                            rsets11111 = sts11111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments ilike 'new' AND (clinic ILIKE 'Occu%' OR clinic ILIKE 'Occupational%')");
+                            rset1s11111 = st1s11111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND comments ilike 'old'  AND (clinic ILIKE 'Occu%' OR clinic ILIKE 'Occupational%')");
+                            while (rsets11111.next()) {
+                                while (rset1s11111.next()) {
+                                    newCount = 0;
+                                    oldCount = 0;
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase("A.3.7", pFontHeader1);
+                                    table.addCell(phrase);
+                                    table.getDefaultCell().setColspan(1);
+                                    phrase = new Phrase("Occupational Therapy Clinic", pFontHeader1);
+                                    table.addCell(phrase);
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                                    newCount = rsets11111.getInt(1);
+                                    oldCount = rset1s11111.getInt(1);
+                                    newMaleTotal = newMaleTotal + rsets11111.getInt(1);
+                                    oldMaleTotal = oldMaleTotal + rset1s11111.getInt(1);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(newCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(oldCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(newCount + oldCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                }
+                            }
+
+                            rsets11111 = sts11111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments ilike 'new' AND (clinic ILIKE 'physio%' OR clinic ILIKE 'Physiotherapy%')");
+                            rset1s11111 = st1s11111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND comments ilike 'old'  AND (clinic ILIKE 'physio%' OR clinic ILIKE 'Physiotherapy%')");
+                            while (rsets11111.next()) {
+                                while (rset1s11111.next()) {
+                                    newCount = 0;
+                                    oldCount = 0;
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase("A.3.8", pFontHeader1);
+                                    table.addCell(phrase);
+                                    table.getDefaultCell().setColspan(1);
+                                    phrase = new Phrase("Physiotherapy Clinic", pFontHeader1);
+                                    table.addCell(phrase);
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                                    newCount = rsets11111.getInt(1);
+                                    oldCount = rset1s11111.getInt(1);
+                                    newMaleTotal = newMaleTotal + rsets11111.getInt(1);
+                                    oldMaleTotal = oldMaleTotal + rset1s11111.getInt(1);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(newCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(oldCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(newCount + oldCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                }
+                            }
+
+                            rsets11111 = sts11111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments ilike 'new' AND (clinic ILIKE 'Medical%' OR clinic ILIKE 'mopc%' OR clinic ILIKE 'm.o.p.c%')");
+                            rset1s11111 = st1s11111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND comments ilike 'old'  AND (clinic ILIKE 'Medical%' OR clinic ILIKE 'mopc%' OR clinic ILIKE 'm.o.p.c%')");
+                            while (rsets11111.next()) {
+                                while (rset1s11111.next()) {
+                                    newCount = 0;
+                                    oldCount = 0;
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase("A.3.9", pFontHeader1);
+                                    table.addCell(phrase);
+                                    table.getDefaultCell().setColspan(1);
+                                    phrase = new Phrase("Medical Clinic", pFontHeader1);
+                                    table.addCell(phrase);
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                                    newCount = rsets11111.getInt(1);
+                                    oldCount = rset1s11111.getInt(1);
+                                    newMaleTotal = newMaleTotal + rsets11111.getInt(1);
+                                    oldMaleTotal = oldMaleTotal + rset1s11111.getInt(1);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(newCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(oldCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(newCount + oldCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                }
+                            }
+
+                            rsets11111 = sts11111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments ilike 'new' AND (clinic ILIKE 'Surgical%' OR clinic ILIKE 'sopc%' OR clinic ILIKE 's.o.p.c%')");
+                            rset1s11111 = st1s11111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND comments ilike 'old'  AND (clinic ILIKE 'Surgical%' OR clinic ILIKE 'sopc%' OR clinic ILIKE 's.o.p.c%' )");
+                            while (rsets11111.next()) {
+                                while (rset1s11111.next()) {
+                                    newCount = 0;
+                                    oldCount = 0;
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase("A.3.10", pFontHeader1);
+                                    table.addCell(phrase);
+                                    table.getDefaultCell().setColspan(1);
+                                    phrase = new Phrase("Surgical Clinic", pFontHeader1);
+                                    table.addCell(phrase);
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                                    newCount = rsets11111.getInt(1);
+                                    oldCount = rset1s11111.getInt(1);
+                                    newMaleTotal = newMaleTotal + rsets11111.getInt(1);
+                                    oldMaleTotal = oldMaleTotal + rset1s11111.getInt(1);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(newCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(oldCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(newCount + oldCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                }
+                            }
+
+                            rsets11111 = sts11111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments ilike 'new' AND (clinic ILIKE 'Paediatrics%' or clinic ILIKE 'Peads%' OR clinic ILIKE 'popc%' OR clinic ILIKE 'p.o.p.c%')");
+                            rset1s11111 = st1s11111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND comments ilike 'old'  AND (clinic ILIKE 'Paediatrics%' or clinic ILIKE 'Peads%' OR clinic ILIKE 'popc%' OR clinic ILIKE 'p.o.p.c%' )");
+                            while (rsets11111.next()) {
+                                while (rset1s11111.next()) {
+                                    newCount = 0;
+                                    oldCount = 0;
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase("A.3.11", pFontHeader1);
+                                    table.addCell(phrase);
+                                    table.getDefaultCell().setColspan(1);
+                                    phrase = new Phrase("Paediatrics Clinic", pFontHeader1);
+                                    table.addCell(phrase);
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                                    newCount = rsets11111.getInt(1);
+                                    oldCount = rset1s11111.getInt(1);
+                                    newMaleTotal = newMaleTotal + rsets11111.getInt(1);
+                                    oldMaleTotal = oldMaleTotal + rset1s11111.getInt(1);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(newCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(oldCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(newCount + oldCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                }
+                            }
+
+                            rsets11111 = sts11111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments ilike 'new' AND (clinic ILIKE 'Obstetrics%' or clinic ILIKE 'Gynae%' or clinic ILIKE 'obs%' OR clinic ILIKE 'gopc%' OR clinic ILIKE 'g.o.p.c%')");
+                            rset1s11111 = st1s11111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND comments ilike 'old'  AND (clinic ILIKE 'Obstetrics%' or clinic ILIKE 'Gynae%' or clinic ILIKE 'obs%' OR clinic ILIKE 'gopc%' OR clinic ILIKE 'g.o.p.c%' )");
+                            while (rsets11111.next()) {
+                                while (rset1s11111.next()) {
+                                    newCount = 0;
+                                    oldCount = 0;
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase("A.3.12", pFontHeader1);
+                                    table.addCell(phrase);
+                                    table.getDefaultCell().setColspan(1);
+                                    phrase = new Phrase("Obstetrics/Gynaecology ", pFontHeader1);
+                                    table.addCell(phrase);
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                                    newCount = rsets11111.getInt(1);
+                                    oldCount = rset1s11111.getInt(1);
+                                    newMaleTotal = newMaleTotal + rsets11111.getInt(1);
+                                    oldMaleTotal = oldMaleTotal + rset1s11111.getInt(1);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(newCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(oldCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(newCount + oldCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                }
+                            }
+
+                            rsets11111 = sts11111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments ilike 'new' AND (clinic ILIKE 'Other%' OR clinic ILIKE 'special%' )");
+                            rset1s11111 = st1s11111.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND comments ilike 'old'  AND upper(clinic) IN (SELECT DISTINCT upper(clinics)  FROM pb_clinics WHERE clinic_category ILIKE 'other')");
+                            while (rsets11111.next()) {
+                                while (rset1s11111.next()) {
+                                    newCount = 0;
+                                    oldCount = 0;
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase("A.3.13", pFontHeader1);
+                                    table.addCell(phrase);
+                                    table.getDefaultCell().setColspan(1);
+                                    phrase = new Phrase("All Other Special Clinics ", pFontHeader1);
+                                    table.addCell(phrase);
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                                    newCount = rsets11111.getInt(1);
+                                    oldCount = rset1s11111.getInt(1);
+                                    newMaleTotal = newMaleTotal + rsets11111.getInt(1);
+                                    oldMaleTotal = oldMaleTotal + rset1s11111.getInt(1);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(newCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(oldCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(newCount + oldCount)), pFontHeader1);
+                                    table.addCell(phrase);
+                                }
+                            }
 
                             table.getDefaultCell().setColspan(1);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -893,7 +1064,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(newMaleTotal + oldMaleTotal)), pFontHeader);
                             table.addCell(phrase);
 
-
                             table.getDefaultCell().setColspan(5);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             phrase = new Phrase("A.4 MCH/FP CLIENTS", pFontHeader);
@@ -901,8 +1071,8 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                             java.sql.Statement sts4 = connectDB.createStatement();
                             java.sql.Statement st1s4 = connectDB.createStatement();
-                            java.sql.ResultSet rsets4 = sts4.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND rank ilike 'new' AND clinic ILIKE 'CWC%'");
-                            java.sql.ResultSet rset41 = st1s4.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND rank ilike 'old'  AND clinic ILIKE 'CWC%'");
+                            java.sql.ResultSet rsets4 = sts4.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments ilike 'new' AND clinic ILIKE 'CWC%'");
+                            java.sql.ResultSet rset41 = st1s4.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND comments ilike 'old'  AND clinic ILIKE 'CWC%'");
                             while (rsets4.next()) {
                                 while (rset41.next()) {
                                     newCount = 0;
@@ -931,8 +1101,8 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                             java.sql.Statement sts42 = connectDB.createStatement();
                             java.sql.Statement st1s42 = connectDB.createStatement();
-                            java.sql.ResultSet rsets42 = sts42.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND rank ilike 'new' AND clinic ILIKE 'ANC%'");
-                            java.sql.ResultSet rset412 = st1s42.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND rank ilike 'old'  AND clinic ILIKE 'ANC%'");
+                            java.sql.ResultSet rsets42 = sts42.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments ilike 'new' AND clinic ILIKE 'ANC%'");
+                            java.sql.ResultSet rset412 = st1s42.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND comments ilike 'old'  AND clinic ILIKE 'ANC%'");
                             while (rsets42.next()) {
                                 while (rset412.next()) {
                                     newCount = 0;
@@ -961,8 +1131,8 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                             java.sql.Statement sts43 = connectDB.createStatement();
                             java.sql.Statement st1s43 = connectDB.createStatement();
-                            java.sql.ResultSet rsets43 = sts43.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND rank ilike 'new' AND clinic ILIKE 'PNC%'");
-                            java.sql.ResultSet rset413 = st1s43.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND rank ilike 'old'  AND clinic ILIKE 'PNC%'");
+                            java.sql.ResultSet rsets43 = sts43.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments ilike 'new' AND clinic ILIKE 'PNC%'");
+                            java.sql.ResultSet rset413 = st1s43.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND comments ilike 'old'  AND clinic ILIKE 'PNC%'");
                             while (rsets43.next()) {
                                 while (rset413.next()) {
                                     newCount = 0;
@@ -991,8 +1161,8 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                             java.sql.Statement sts44 = connectDB.createStatement();
                             java.sql.Statement st1s44 = connectDB.createStatement();
-                            java.sql.ResultSet rsets44 = sts44.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND rank ilike 'new' AND clinic ILIKE 'FP%'");
-                            java.sql.ResultSet rset414 = st1s44.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND rank ilike 'old'  AND clinic ILIKE 'FP%'");
+                            java.sql.ResultSet rsets44 = sts44.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments ilike 'new' AND clinic ILIKE 'FP%'");
+                            java.sql.ResultSet rset414 = st1s44.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND comments ilike 'old'  AND clinic ILIKE 'FP%'");
                             while (rsets44.next()) {
                                 while (rset414.next()) {
                                     newCount = 0;
@@ -1036,17 +1206,15 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(newFemaleTotal + oldFemaleTotal)), pFontHeader);
                             table.addCell(phrase);
 
-
                             table.getDefaultCell().setColspan(5);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             phrase = new Phrase("A.5 DENTAL CLINIC", pFontHeader);
                             table.addCell(phrase);
 
-
                             java.sql.Statement sts5 = connectDB.createStatement();
                             java.sql.Statement st1s5 = connectDB.createStatement();
-                            java.sql.ResultSet rset5 = sts5.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND rank ilike 'new' AND clinic ILIKE 'DENTAL%' AND (service NOT ILIKE '%extraction%' OR service NOT ILIKE '%filling%')");
-                            java.sql.ResultSet rsets5 = st1s5.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM pb_doctors_request WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND rank ilike 'old'  AND clinic ILIKE 'DENTAL%' AND (service NOT ILIKE '%extraction%' OR service NOT ILIKE '%filling%')");
+                            java.sql.ResultSet rset5 = sts5.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments ilike 'new' AND clinic ILIKE 'DENTAL%' ");
+                            java.sql.ResultSet rsets5 = st1s5.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND comments ilike 'old'  AND clinic ILIKE 'DENTAL%' ");
                             while (rset5.next()) {
                                 while (rsets5.next()) {
                                     newCount = 0;
@@ -1072,7 +1240,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                                     table.addCell(phrase);
                                 }
                             }
-
 
                             java.sql.Statement sts51 = connectDB.createStatement();
                             java.sql.Statement st1s51 = connectDB.createStatement();
@@ -1135,7 +1302,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                                 }
                             }
 
-
                             table.getDefaultCell().setColspan(1);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             phrase = new Phrase("A.5.4", pFontHeader);
@@ -1153,11 +1319,10 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(totalMale + totalFemale)), pFontHeader);
                             table.addCell(phrase);
 
-
                             table.getDefaultCell().setColspan(2);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-                            phrase = new Phrase("A.6 TOTAL OUTPATIENT SERVICES \n (=A.1.5 + A.2 + A.3.7 + A.4.5 + A.5.4)", pFontHeader);
+                            phrase = new Phrase("A.6 TOTAL OUT-PATIENT SERVICES \n (=A.1.5 + A.2 + A.3.7 + A.4.5 + A.5.4)", pFontHeader);
                             table.addCell(phrase);
                             table.getDefaultCell().setColspan(1);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
@@ -1220,7 +1385,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                             }
 
-
                             java.sql.Statement stst = connectDB.createStatement();
                             java.sql.ResultSet rsst = stst.executeQuery("SELECT COUNT(patient_no) FROM ac_ledger WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND (service_type ILIKE '%stitchi%' OR service_type ILIKE '%stichi%') AND drawer = 'OP'");
                             while (rsst.next()) {
@@ -1237,7 +1401,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                                 phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(newCount)), pFontHeader);
                                 table.addCell(phrase);
                             }
-
 
                             java.sql.Statement stdr = connectDB.createStatement();
                             java.sql.ResultSet rsdr = stdr.executeQuery("SELECT COUNT(patient_no) FROM ac_ledger WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND (service_type ILIKE '%dressing%') AND drawer = 'OP'");
@@ -1256,8 +1419,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                             }
 
-
-
                             java.sql.Statement stpp = connectDB.createStatement();
                             java.sql.ResultSet rspp = stpp.executeQuery("SELECT sum(quantity) FROM ac_cash_collection WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND (description ILIKE '%pop%' OR description ILIKE '%p.o.p.%' OR description ILIKE '%p o p%' OR description ILIKE '%plaster%' )");
                             while (rspp.next()) {
@@ -1275,6 +1436,23 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                             }
 
+//                              stdr = connectDB.createStatement();
+//                            rsdr = stdr.executeQuery("SELECT sum(quantity) FROM ac_cash_collection WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND (description ILIKE '%r.o.s%' OR description ILIKE '%removal of stitches%') ");
+//                            while (rsdr.next()) {
+//                                newCount = 0;
+//                                oldCount = 0;
+//                                table.getDefaultCell().setFixedHeight(50);
+//                                table.getDefaultCell().setColspan(2);
+//                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+//                                phrase = new Phrase("A.10 Removal OF Stitches", pFontHeader);
+//                                table.addCell(phrase);
+//
+//                                table.getDefaultCell().setColspan(1);
+//                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+//                                newCount = rsdr.getInt(1);
+//                                phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(newCount)), pFontHeader);
+//                                table.addCell(phrase);
+//                            }
 //Inpatient workload starts here....
 //Discharges
                             float gAdults = 0;
@@ -1291,7 +1469,7 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             table.getDefaultCell().setColspan(5);
                             table.getDefaultCell().setBorder(Rectangle.TOP);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            table.getDefaultCell().setFixedHeight(190);
+                            table.getDefaultCell().setFixedHeight(100);
                             phrase = new Phrase("", pFontHeader);
                             table.addCell(phrase);
                             //table2.addCell(phrase);
@@ -1324,10 +1502,14 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                             //Discharges
                             java.sql.Statement stppx = connectDB.createStatement();
-                            java.sql.ResultSet rsppx = stppx.executeQuery("SELECT COUNT(patient_no) FROM hp_patient_diagnosis"
-                                    + " WHERE date_discharged::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
-                                    + "pat_age > 5 AND (ward_name NOT ILIKE '%Mat%' OR ward_name NOT ILIKE '%Ame%' OR ward_name NOT ILIKE '%paed%') "
-                                    + "AND admission_outcome ILIKE 'discharge' AND pat_category ILIKE 'IP'");
+//                            java.sql.ResultSet rsppx = stppx.executeQuery("SELECT COUNT(patient_no) FROM hp_patient_diagnosis"
+//                                    + " WHERE date_discharged::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
+//                                    + "pat_age > 5 AND (ward_name NOT ILIKE '%Mat%' OR ward_name NOT ILIKE '%Ame%' OR ward_name NOT ILIKE '%paed%') "
+//                                    + "AND admission_outcome ILIKE 'discharge' AND pat_category ILIKE 'IP'");
+                            java.sql.ResultSet rsppx = stppx.executeQuery("SELECT COUNT(patient_no) FROM hp_admission"
+                                    + " WHERE discharge_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
+                                    + "pat_age > 5 AND (ward NOT ILIKE '%Mat%' OR ward NOT ILIKE '%Ame%' OR ward NOT ILIKE '%paed%') "
+                                    + "AND discharge = true");
                             while (rsppx.next()) {
 
                                 gAdults = rsppx.getFloat(1);
@@ -1336,10 +1518,10 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             }
 
                             java.sql.Statement stppx1 = connectDB.createStatement();
-                            java.sql.ResultSet rsppx1 = stppx1.executeQuery("SELECT COUNT(patient_no) FROM hp_patient_diagnosis"
-                                    + " WHERE date_discharged::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
-                                    + "pat_age <= 5"
-                                    + "AND admission_outcome ILIKE 'discharge' AND pat_category ILIKE 'IP'");
+                            java.sql.ResultSet rsppx1 = stppx1.executeQuery("SELECT COUNT(patient_no) FROM hp_admission"
+                                    + " WHERE discharge_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
+                                    + "pat_age <= 5 AND ward ilike 'paed%'"
+                                    + "AND discharge = true");
                             while (rsppx1.next()) {
 
                                 paeds = rsppx1.getFloat(1);
@@ -1348,10 +1530,10 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             }
 
                             java.sql.Statement stppx2 = connectDB.createStatement();
-                            java.sql.ResultSet rsppx2 = stppx2.executeQuery("SELECT COUNT(patient_no) FROM hp_patient_diagnosis"
-                                    + " WHERE date_discharged::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
-                                    + "pat_age > 5 AND ward_name ILIKE '%Mat%' "
-                                    + "AND admission_outcome ILIKE 'discharge' AND pat_category ILIKE 'IP'");
+                            java.sql.ResultSet rsppx2 = stppx2.executeQuery("SELECT COUNT(patient_no) FROM hp_admission"
+                                    + " WHERE discharge_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
+                                    + "pat_age > 5 AND ward ILIKE '%Mat%' "
+                                    + "AND discharge = true");
                             while (rsppx2.next()) {
 
                                 matMothers = rsppx2.getFloat(1);
@@ -1360,10 +1542,10 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             }
 
                             java.sql.Statement stppx3 = connectDB.createStatement();
-                            java.sql.ResultSet rsppx3 = stppx3.executeQuery("SELECT COUNT(patient_no) FROM hp_patient_diagnosis"
-                                    + " WHERE date_discharged::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
-                                    + "pat_age > 5 AND ward_name ILIKE '%ameni%' "
-                                    + "AND admission_outcome ILIKE 'discharge' AND pat_category ILIKE 'IP'");
+                            java.sql.ResultSet rsppx3 = stppx3.executeQuery("SELECT COUNT(patient_no) FROM hp_admission"
+                                    + " WHERE discharge_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
+                                    + "pat_age > 5 AND ward ILIKE '%ameni%' "
+                                    + "AND discharge = true");
                             while (rsppx3.next()) {
 
                                 amenity = rsppx3.getFloat(1);
@@ -1395,10 +1577,14 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                             //Deaths
                             java.sql.Statement stppd = connectDB.createStatement();
-                            java.sql.ResultSet rsppd = stppd.executeQuery("SELECT COUNT(patient_no) FROM hp_patient_diagnosis"
-                                    + " WHERE date_discharged::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
-                                    + "pat_age > 5 AND (ward_name NOT ILIKE '%Mat%' OR ward_name NOT ILIKE '%Ame%' OR ward_name NOT ILIKE '%paed%') "
-                                    + "AND admission_outcome ILIKE 'Died' AND pat_category ILIKE 'IP'");
+//                            java.sql.ResultSet rsppd = stppd.executeQuery("SELECT COUNT(patient_no) FROM hp_patient_diagnosis"
+//                                    + " WHERE date_discharged::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
+//                                    + "pat_age > 5 AND (ward_name NOT ILIKE '%Mat%' OR ward_name NOT ILIKE '%Ame%' OR ward_name NOT ILIKE '%paed%') "
+//                                    + "AND admission_outcome ILIKE 'Died' AND pat_category ILIKE 'IP'");
+                            java.sql.ResultSet rsppd = stppd.executeQuery("SELECT COUNT(patient_no) FROM hp_mortuary"
+                                    + " WHERE date_of_death BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
+                                    + "year_of_birth::numeric(5,1) > 5 AND patient_no IN (SELECT patient_no FROM hp_admission WHERE ward NOT ILIKE '%Mat%' OR ward NOT ILIKE '%Ame%' OR ward NOT ILIKE '%paed% ORDER BY date_admitted::date DESC LIMIT 1') "
+                                    + "");
                             while (rsppd.next()) {
 
                                 gAdults = rsppd.getFloat(1);
@@ -1407,10 +1593,10 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             }
 
                             java.sql.Statement stppd1 = connectDB.createStatement();
-                            java.sql.ResultSet rsppd1 = stppd1.executeQuery("SELECT COUNT(patient_no) FROM hp_patient_diagnosis"
-                                    + " WHERE date_discharged::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
-                                    + "pat_age <= 5 "
-                                    + "AND admission_outcome ILIKE 'died' AND pat_category ILIKE 'IP'");
+                            java.sql.ResultSet rsppd1 = stppd1.executeQuery("SELECT COUNT(patient_no) FROM hp_mortuary"
+                                    + " WHERE date_of_death::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
+                                    + "year_of_birth::numeric(5,1) <= 5 "
+                                    + "AND patient_no IN (SELECT patient_no FROM hp_admission WHERE ward ILIKE '%paed%' ORDER BY date_admitted::date DESC LIMIT 1)");
                             while (rsppd1.next()) {
 
                                 paeds = rsppd1.getFloat(1);
@@ -1419,10 +1605,10 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             }
 
                             java.sql.Statement stppd2 = connectDB.createStatement();
-                            java.sql.ResultSet rsppd2 = stppd2.executeQuery("SELECT COUNT(patient_no) FROM hp_patient_diagnosis"
-                                    + " WHERE date_discharged::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
-                                    + "pat_age > 5 AND ward_name ILIKE '%Mat%' "
-                                    + "AND admission_outcome ILIKE 'died' AND pat_category ILIKE 'IP'");
+                            java.sql.ResultSet rsppd2 = stppd2.executeQuery("SELECT COUNT(patient_no) FROM hp_mortuary"
+                                    + " WHERE date_of_death::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
+                                    + "year_of_birth::numeric(5,1) > 5 AND patient_no IN (SELECT patient_no FROM hp_admission WHERE ward ILIKE '%Mat%' ORDER BY date_admitted::date DESC LIMIT 1) "
+                                    + "");
                             while (rsppd2.next()) {
 
                                 matMothers = rsppd2.getFloat(1);
@@ -1431,10 +1617,10 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             }
 
                             java.sql.Statement stppd3 = connectDB.createStatement();
-                            java.sql.ResultSet rsppd3 = stppd3.executeQuery("SELECT COUNT(patient_no) FROM hp_patient_diagnosis"
-                                    + " WHERE date_discharged::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
-                                    + "pat_age > 5 AND ward_name ILIKE '%ameni%' "
-                                    + "AND admission_outcome ILIKE 'discharge' AND pat_category ILIKE 'IP'");
+                            java.sql.ResultSet rsppd3 = stppd3.executeQuery("SELECT COUNT(patient_no) FROM hp_mortuary"
+                                    + " WHERE date_of_death::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
+                                    + "year_of_birth::numeric(5,1) > 5 AND patient_no IN (SELECT patient_no FROM hp_admission WHERE ward ILIKE '%Ameni%' ORDER BY date_admitted::date DESC LIMIT 1) "
+                                    + "");
                             while (rsppx3.next()) {
 
                                 amenity = rsppx3.getFloat(1);
@@ -1627,7 +1813,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             table2.addCell(phrase);
 
                             //Paroles
-
                             java.sql.Statement stp = connectDB.createStatement();
                             java.sql.ResultSet rsp = stp.executeQuery("SELECT COUNT(patient_no) FROM hp_admission"
                                     + " WHERE date_admitted::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
@@ -1760,7 +1945,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             table2.addCell(phrase);
 
                             // obd non nhif members
-
                             java.sql.Statement stp8 = connectDB.createStatement();
                             java.sql.ResultSet rsp8 = stp8.executeQuery("SELECT COUNT(patient_no) FROM hp_admission"
                                     + " WHERE date_admitted::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
@@ -1827,7 +2011,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             table2.addCell(phrase);
 
                             //Well pple
-
                             table2.getDefaultCell().setColspan(1);
                             table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             phrase = new Phrase("B.1.12", pFontHeader1);
@@ -2006,7 +2189,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             table2.addCell(phrase);
                             // table2.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
 
-
 //table2.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
                             java.sql.Statement stp103 = connectDB.createStatement();
                             java.sql.ResultSet rsp103 = stp103.executeQuery("SELECT COUNT(patient_no) FROM ac_ledger"
@@ -2032,7 +2214,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             phrase = new Phrase("", pFontHeader1);
                             table2.addCell(phrase);
 
-
                             java.sql.Statement stp104 = connectDB.createStatement();
                             java.sql.ResultSet rsp104 = stp104.executeQuery("SELECT COUNT(patient_no) FROM ac_ledger"
                                     + " WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
@@ -2054,9 +2235,7 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             table2.addCell(phrase);
                             // table2.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
 
-
                             //type_of_birth
-
                             java.sql.Statement stp105 = connectDB.createStatement();
                             java.sql.ResultSet rsp105 = stp105.executeQuery("SELECT COUNT(mother_serial_no) FROM rh.post_natal_services"
                                     + " WHERE service_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
@@ -2080,7 +2259,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(patno)), pFontHeader1);
                             table2.addCell(phrase);
 
-
                             java.sql.Statement stp106 = connectDB.createStatement();
                             java.sql.ResultSet rsp106 = stp106.executeQuery("SELECT COUNT(patient_no) FROM ac_ledger"
                                     + " WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "
@@ -2099,7 +2277,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                             phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(patno)), pFontHeader1);
                             table2.addCell(phrase);
-
 
                             table2.getDefaultCell().setColspan(2);
                             phrase = new Phrase("", pFontHeader1);
@@ -2177,7 +2354,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             phrase = new Phrase("", pFontHeader1);
                             table2.addCell(phrase);
 
-
                             phrase = new Phrase("D.1 Body days", pFontHeader1);
                             table2.addCell(phrase);
                             table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
@@ -2222,7 +2398,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             table2.getDefaultCell().setColspan(1);
                             phrase = new Phrase("", pFontHeader1);
                             table2.addCell(phrase);
-
 
                             table2.getDefaultCell().setColspan(1);
                             table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -2488,7 +2663,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(patno)), pFontHeader1);
                             table2.addCell(phrase);
 
-
                             table2.getDefaultCell().setColspan(1);
                             table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             phrase = new Phrase("F.3", pFontHeader1);
@@ -2615,7 +2789,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(patno)), pFontHeader1);
                             table2.addCell(phrase);
 
-
                             phrase = new Phrase("Total", pFontHeader);
                             table2.addCell(phrase);
                             java.sql.Statement stp124 = connectDB.createStatement();
@@ -2695,7 +2868,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             phrase = new Phrase("", pFontHeader);
                             table2.addCell(phrase);
 
-
                             //phrase = new Phrase("", pFontHeader1);
                             //table2.addCell(phrase);
                             docPdf.add(table);
@@ -2708,7 +2880,6 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                         }
 
                         // }
-
                     } catch (com.lowagie.text.BadElementException BadElExec) {
 
                         javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), BadElExec.getMessage());
@@ -2726,141 +2897,135 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
             }
 
-             
-
             //  try {
 
             /* if (System.getProperty("os.name").equalsIgnoreCase("Linux"))  {
             
-            System.out.println(tempFile);
+             System.out.println(tempFile);
             
-            wait_for_Pdf2Show = rt.exec("kghostview "+tempFile+"");
+             wait_for_Pdf2Show = rt.exec("kghostview "+tempFile+"");
             
-            wait_for_Pdf2Show.waitFor();
+             wait_for_Pdf2Show.waitFor();
             
-            } else {*/
-docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
+             } else {*/
+            docPdf.close();
+            com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
             // wait_for_Pdf2Show = rt.exec("c:/Program Files/Adobe/Acrobat 5.0/Reader/AcroRd32.exe "+tempFile);
 
             // wait_for_Pdf2Show.waitFor();
-
             // }
 
             /*     } catch(java.lang.InterruptedException intrExec) {
             
-            javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), intrExec.getMessage());
+             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), intrExec.getMessage());
             
-            }
+             }
              */
-
-
         } catch (java.io.IOException IOexec) {
 
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), IOexec.getMessage());
 
         }
 
-
-
     }
     /*public java.lang.Object[] getListofStaffNos() {
     
-    java.lang.Object[] listofStaffNos = null;
+     java.lang.Object[] listofStaffNos = null;
     
-    java.util.Vector listStaffNoVector = new java.util.Vector(1,1);
-    
-    
-    try {
-    
-    //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-    
-    java.sql.Statement stmt1 = connectDB.createStatement();
-    
-    java.sql.ResultSet rSet1 = stmt1.executeQuery("select distinct initcap(description),min_age from patient_age order by min_age");
-    //  java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no FROM hp_admission WHERE discharge = false ORDER BY patient_no");
-    
-    while (rSet1.next()) {
-    
-    listStaffNoVector.addElement(rSet1.getObject(1).toString());
-    
-    }
-    
-    }catch (java.sql.SQLException sqlExec) {
-    
-    javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
-    
-    }
+     java.util.Vector listStaffNoVector = new java.util.Vector(1,1);
     
     
-    listofStaffNos = listStaffNoVector.toArray();
-    System.out.println("Done list of Staff Nos ...");
-    return listofStaffNos;
-    }
+     try {
+    
+     //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
+    
+     java.sql.Statement stmt1 = connectDB.createStatement();
+    
+     java.sql.ResultSet rSet1 = stmt1.executeQuery("select distinct initcap(description),min_age from patient_age order by min_age");
+     //  java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no FROM hp_admission WHERE discharge = false ORDER BY patient_no");
+    
+     while (rSet1.next()) {
+    
+     listStaffNoVector.addElement(rSet1.getObject(1).toString());
+    
+     }
+    
+     }catch (java.sql.SQLException sqlExec) {
+    
+     javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
+    
+     }
+    
+    
+     listofStaffNos = listStaffNoVector.toArray();
+     System.out.println("Done list of Staff Nos ...");
+     return listofStaffNos;
+     }
      */
     /*public java.lang.Object[] getListofStaffNos1() {
     
-    java.lang.Object[] listofStaffNos1 = null;
+     java.lang.Object[] listofStaffNos1 = null;
     
-    java.util.Vector listStaffNoVector1 = new java.util.Vector(1,1);
-    
-    
-    try {
-    
-    //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-    
-    java.sql.Statement stmt1 = connectDB.createStatement();
-    
-    java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT ward_code FROM hp_admission WHERE date_admitted BETWEEN '"+beginDate+"' AND '"+endDate+"' ORDER BY ward_code");
-    
-    while (rSet1.next()) {
-    
-    listStaffNoVector1.addElement(rSet1.getObject(1).toString());
-    
-    }
-    
-    }catch (java.sql.SQLException sqlExec) {
-    
-    javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
-    
-    }
+     java.util.Vector listStaffNoVector1 = new java.util.Vector(1,1);
     
     
-    listofStaffNos1 = listStaffNoVector1.toArray();
-    System.out.println("Done list of Staff Nos ...");
-    return listofStaffNos1;
-    }
+     try {
+    
+     //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
+    
+     java.sql.Statement stmt1 = connectDB.createStatement();
+    
+     java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT ward_code FROM hp_admission WHERE date_admitted BETWEEN '"+beginDate+"' AND '"+endDate+"' ORDER BY ward_code");
+    
+     while (rSet1.next()) {
+    
+     listStaffNoVector1.addElement(rSet1.getObject(1).toString());
+    
+     }
+    
+     }catch (java.sql.SQLException sqlExec) {
+    
+     javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
+    
+     }
     
     
-    public java.lang.Object[] getListofStaffNos11() {
-    
-    java.lang.Object[] listofStaffNos11 = null;
-    
-    java.util.Vector listStaffNoVector11 = new java.util.Vector(1,1);
-    
-    
-    try {
-    
-    //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-    
-    java.sql.Statement stmt1 = connectDB.createStatement();
-    
-    java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT mode_of_payment FROM hp_admission WHERE discharge_date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' ORDER BY mode_of_payment");
-    
-    while (rSet1.next()) {
-    
-    listStaffNoVector11.addElement(rSet1.getObject(1).toString());
-    
-    }
-    
-    }catch (java.sql.SQLException sqlExec) {
-    
-    javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
-    
-    }
+     listofStaffNos1 = listStaffNoVector1.toArray();
+     System.out.println("Done list of Staff Nos ...");
+     return listofStaffNos1;
+     }
     
     
-    listofStaffNos11 = listStaffNoVector11.toArray();
-    System.out.println("Done list of Staff Nos ...");
-    return listofStaffNos11;
-    }*/
+     public java.lang.Object[] getListofStaffNos11() {
+    
+     java.lang.Object[] listofStaffNos11 = null;
+    
+     java.util.Vector listStaffNoVector11 = new java.util.Vector(1,1);
+    
+    
+     try {
+    
+     //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
+    
+     java.sql.Statement stmt1 = connectDB.createStatement();
+    
+     java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT mode_of_payment FROM hp_admission WHERE discharge_date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' ORDER BY mode_of_payment");
+    
+     while (rSet1.next()) {
+    
+     listStaffNoVector11.addElement(rSet1.getObject(1).toString());
+    
+     }
+    
+     }catch (java.sql.SQLException sqlExec) {
+    
+     javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
+    
+     }
+    
+    
+     listofStaffNos11 = listStaffNoVector11.toArray();
+     System.out.println("Done list of Staff Nos ...");
+     return listofStaffNos11;
+     }*/
 }

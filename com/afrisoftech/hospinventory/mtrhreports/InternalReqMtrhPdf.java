@@ -356,12 +356,12 @@ public class InternalReqMtrhPdf implements java.lang.Runnable {
 
                         try {
                             
-                            Image img = Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo());
-                            //Image imgWaterMark = Image.getInstance(System.getProperty("company.watermark"));
+                            Image img = Image.getInstance(System.getProperty("user.dir")                             +("/COMPANY_LOGO.jpg"));
+                            Image imgWaterMark = Image.getInstance(System.getProperty("company.watermark"));
                             table21.getDefaultCell().setColspan(6);
                             table21.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                             table21.getDefaultCell().setFixedHeight(50);
-                            table21.addCell(Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo()));
+                            table21.addCell(Image.getInstance(System.getProperty("user.dir")                             +("/COMPANY_LOGO.jpg")));
                             table21.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                             table21.getDefaultCell().setFixedHeight(25);
                             java.sql.Statement st3 = connectDB.createStatement();
@@ -638,7 +638,7 @@ public class InternalReqMtrhPdf implements java.lang.Runnable {
 
 
                             while (rset1.next()) {
-                                java.sql.ResultSet rset11 = st6.executeQuery("SELECT qty_issued,date_issued FROM st_receive_requisation WHERE requisition_no != '" + OrderNo + "'"
+                                java.sql.ResultSet rset11 = st6.executeQuery("SELECT qty_issued,date_issued FROM st_receive_requisation WHERE requisition_no = '" + OrderNo + "'"
                                         + " AND item_code ILIKE '" + rset1.getString(1) + "' ORDER BY  date_issued DESC LIMIT 1 ");// where supplier_name = 'Uchumi'member_no = '"+memNo+"'  AND date BETWEEN '"+beginDate+"' AND '"+endDate+"'");
                                 while (rset11.next()) {
                                     table.getDefaultCell().setBorder(Rectangle.TOP | Rectangle.BOTTOM | Rectangle.LEFT | Rectangle.RIGHT);
@@ -767,14 +767,15 @@ public class InternalReqMtrhPdf implements java.lang.Runnable {
 
                             table2.addCell(phrase2);
 
-                            table21.getDefaultCell().setFixedHeight(580);
-                            table21.addCell(table);
-
+                          ////  table21.getDefaultCell().setFixedHeight(580); //Commented by Charles W 03/05/2016
+                            
+                            
                             docPdf.add(table21);
-
+                            docPdf.add(table);
                             docPdf.add(table2);
+                            
                         } catch (java.sql.SQLException SqlExec) {
-
+                            SqlExec.printStackTrace();
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
                         }

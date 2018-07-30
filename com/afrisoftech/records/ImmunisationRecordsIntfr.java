@@ -823,7 +823,7 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
         if (ancNumberTxt.getText().isEmpty()) {
             ancNumberTxt.setText(cwcNumber);
@@ -839,9 +839,9 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
                                 + "            date_of_visit, patient_no, clinic_number, "
                                 + "            patient_names, village, age, telephone_no, "
                                 + "            immunisation_procedure, referral_in, "
-                                + "            referral_out, mother_name, father_name, gender, date_of_birth, comments, real_age)"
+                                + "            referral_out, mother_name, father_name, gender, date_of_birth, comments, real_age, fic_date)"
                                 + "    VALUES (?, ?, ?, ?, ?, "
-                                + "            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                + "            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                         pstmtImmunisationInfo.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(ancVisitDatePicker.getDate()));
                         pstmtImmunisationInfo.setString(2, patientNumberTxt.getText());
                         pstmtImmunisationInfo.setString(3, ancNumberTxt.getText());
@@ -858,6 +858,7 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
                         pstmtImmunisationInfo.setObject(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePickerYOB.getDate()));
                         pstmtImmunisationInfo.setObject(15, commentsTxt.getText());
                         pstmtImmunisationInfo.setObject(16, ageTxt.getText());
+                        pstmtImmunisationInfo.setObject(17, com.afrisoftech.lib.SQLDateFormat.getSQLDate(deliveryDatePicker.getDate()));
                         pstmtImmunisationInfo.execute();
 
                     }
@@ -883,16 +884,15 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
 
     }
     private void searchANCFileTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchANCFileTxtCaretUpdate
-        //        if(jCheckBox7.isSelected()){
-        //        if(jCheckBox7.isSelected()){
-        if (searchANCFileTxt.getCaretPosition() < 6) {
+
+        if (searchANCFileTxt.getCaretPosition() < 3) {
 
             System.out.println("Nothing");
         } else {
             ancSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT "
                     + "child_serial_no, full_names FROM"
                     + " rh.child_health_follow_up WHERE (child_serial_no ILIKE '%" + searchANCFileTxt.getText() + "%' "
-                    + "OR full_names ILIKE '%" + searchANCFileTxt.getText() + "%') ORDER BY 2 "
+                    + "OR full_names ILIKE '%" + searchANCFileTxt.getText() + "%' OR patient_no ILIKE '%" + searchANCFileTxt.getText() + "%') ORDER BY 2 "
             ));
             ancSearchTable.setShowHorizontalLines(false);
             ancSearchScrollPane.setViewportView(ancSearchTable);
@@ -911,11 +911,11 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
 
         this.ancNumberTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 0).toString());
         this.patientNumberTxt.setText(ancSearchTable.getValueAt(ancSearchTable.getSelectedRow(), 0).toString());
-        
+
         this.firstNameTxt.setText(null);
         this.middleNameTxt.setText(null);
         this.lastNameTxt.setText(null);
-        
+
         if (tokenizer.hasMoreTokens()) {
             lastNameTxt.setText(tokenizer.nextToken());
         }
@@ -961,7 +961,6 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
         searchButtonClicked();
 
 //        immunisationProceduresTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT procedure_code, procedure_description, comments, false as given_this_visit FROM rh.immunisation_procedures WHERE procedure_code in (SELECT distinct procedure_code FROM rh.immunisation_procedures EXCEPT SELECT DISTINCT immunisation_procedure FROM rh.immunisation_register) ORDER BY 2"));
-
         // Add your handling code here:
     }//GEN-LAST:event_ancCardSearchFieldActionPerformed
 
@@ -975,7 +974,7 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
 
     private void revisitRdbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_revisitRdbtnActionPerformed
 
-  //      this.regClearFormBtn.doClick();
+        //      this.regClearFormBtn.doClick();
         // Add your handling code here:
     }//GEN-LAST:event_revisitRdbtnActionPerformed
 

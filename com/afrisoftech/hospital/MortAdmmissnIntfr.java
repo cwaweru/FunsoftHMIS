@@ -268,7 +268,7 @@ public class MortAdmmissnIntfr extends javax.swing.JInternalFrame {
 
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Deceased details. Please note that all highlighted fields in RED are mandatory.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 0)));
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Deceased details. Please note that all highlighted fields in RED are mandatory.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 0))); // NOI18N
         jPanel11.setLayout(new java.awt.GridBagLayout());
 
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -423,7 +423,7 @@ public class MortAdmmissnIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel11.add(intBodyResidenceTxt, gridBagConstraints);
 
-        jLabel611.setText("Age");
+        jLabel611.setText("Age(years)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -882,7 +882,7 @@ public class MortAdmmissnIntfr extends javax.swing.JInternalFrame {
 
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Deceased details. Please note that all highlighted fields in RED are mandatory.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 0)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Deceased details. Please note that all highlighted fields in RED are mandatory.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 0))); // NOI18N
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -944,7 +944,7 @@ public class MortAdmmissnIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(datePicker1, gridBagConstraints);
 
-        jLabel6.setText("Age");
+        jLabel6.setText("Age(years)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -1123,12 +1123,12 @@ public class MortAdmmissnIntfr extends javax.swing.JInternalFrame {
         jLabel42.setForeground(new java.awt.Color(255, 0, 0));
         jLabel42.setText("Unit Category");
         jLabel42.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jLabel42AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1552,7 +1552,7 @@ public class MortAdmmissnIntfr extends javax.swing.JInternalFrame {
                             pstmt.setString(2, intNameTxt.getText());
                             pstmt.setString(3, intBodyResidenceTxt.getText());
                             pstmt.setString(5, intGenderTxt.getText());
-                            pstmt.setString(4, intAgetxt.getText().toUpperCase());
+                            pstmt.setString(4, String.valueOf(Integer.parseInt(intAgetxt.getText())));
                             pstmt.setString(6, serialNumberTxt.getText());
                             pstmt.setString(7, "");
                             pstmt.setString(8, user);
@@ -1812,7 +1812,7 @@ public class MortAdmmissnIntfr extends javax.swing.JInternalFrame {
                 pstmt.setString(1, bidSerialNoTxt.getText());
                 pstmt.setString(2, bidNameTxt.getText());
                 pstmt.setString(3, bidResidenceTxt.getText());
-                pstmt.setString(4, bidAgeTxt.getText().toUpperCase());
+                pstmt.setString(4, String.valueOf(Integer.parseInt(bidAgeTxt.getText())));
                 pstmt.setString(5, cmBox);
                 pstmt.setString(6, bidSerialNoTxt.getText());
                 pstmt.setString(7, bidPoliceOfficerTxt.getText());

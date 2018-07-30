@@ -527,7 +527,7 @@ public class MOH209RadiologyRegisterPdf implements java.lang.Runnable {
                             for (int i = 0; i < listofAct.length; i++) {
                                 System.out.println("Row number ["+listofAct[i]+"]");
                                 java.sql.PreparedStatement stw = connectDB.prepareStatement("SELECT DISTINCT "
-                                        + " date_part('day', date) ||'-'||date_part('month', date) ||'-'||date_part('year', date), patient_no, xray_no, patient_name, age::numeric(3,0) as age, initcap(gender),"
+                                        + " date_part('day', date) ||'-'||date_part('month', date) ||'-'||date_part('year', date), patient_no, xray_no, patient_name, (CASE WHEN age ~ '^[0-9\\.]+$' THEN age::numeric(10,0) ELSE null END) as age, initcap(gender),"
                                         + " (SELECT initcap(residence) FROM hp_inpatient_register"
                                         + " WHERE hp_xray_results.patient_no = hp_inpatient_register.patient_no"
                                         + " UNION SELECT initcap(residence) FROM hp_patient_register WHERE "

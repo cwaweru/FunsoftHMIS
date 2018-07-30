@@ -2913,7 +2913,13 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="consultationmnit">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Clerking Of Patient"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Clerking of Patients (CPOE)"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultationmnitActionPerformed"/>
@@ -2942,6 +2948,12 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="labtestsresultmnit">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="0" red="0" type="rgb"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Lab Results"/>
                   </Properties>
                   <Events>
@@ -2979,6 +2991,20 @@
                 <Property name="text" type="java.lang.String" value="Radiology &amp; Imaging"/>
               </Properties>
               <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="xrayresults">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Imaging/Xray Results"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="xrayresultsActionPerformed"/>
+                  </Events>
+                </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="xraysmnit">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Diagnostic Imaging Procedure"/>
@@ -2993,14 +3019,6 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="xraypendingReqActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="xrayresults">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Imaging/Xray Results"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="xrayresultsActionPerformed"/>
                   </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="xraymnit">
@@ -6448,14 +6466,47 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="debtshiftmnitActionPerformed"/>
                       </Events>
                     </MenuItem>
-                    <MenuItem class="javax.swing.JMenuItem" name="creditSalesDepartmentReportsmnit">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Credit Sale Departmental Reports"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="creditSalesDepartmentReportsmnitActionPerformed"/>
-                      </Events>
+                    <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator103">
                     </MenuItem>
+                    <Menu class="javax.swing.JMenu" name="universalHealthcareReportsmn">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Universal Healthcare Reports"/>
+                      </Properties>
+                      <SubComponents>
+                        <MenuItem class="javax.swing.JMenuItem" name="creditSalesDepartmentReportsmnit">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Credit Sale Departmental Reports"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="creditSalesDepartmentReportsmnitActionPerformed"/>
+                          </Events>
+                        </MenuItem>
+                        <MenuItem class="javax.swing.JMenuItem" name="creditSalesDepartmentDetailedReportsmnit">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Credit Sale Detailed Departmental Reports"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="creditSalesDepartmentDetailedReportsmnitActionPerformed"/>
+                          </Events>
+                        </MenuItem>
+                        <MenuItem class="javax.swing.JMenuItem" name="exmptionsWaiversRefundsmnit">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Exemptions/Waivers and Refunds"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exmptionsWaiversRefundsmnitActionPerformed"/>
+                          </Events>
+                        </MenuItem>
+                        <MenuItem class="javax.swing.JMenuItem" name="universalHealthcareSalesAnalysismnit">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Unviversal Healthcare Sales Summary"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="universalHealthcareSalesAnalysismnitActionPerformed"/>
+                          </Events>
+                        </MenuItem>
+                      </SubComponents>
+                    </Menu>
                   </SubComponents>
                 </Menu>
                 <MenuItem class="javax.swing.JSeparator" name="jSeparator45">
@@ -8351,6 +8402,24 @@
                     </MenuItem>
                   </SubComponents>
                 </Menu>
+                <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator104">
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="tbScreeningReportmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="TB Screening Register"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbScreeningReportmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="tbScreeningProceduresmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="TB Screening procedures Report"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbScreeningProceduresmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
               </SubComponents>
             </Menu>
             <Menu class="javax.swing.JMenu" name="managementmnit">

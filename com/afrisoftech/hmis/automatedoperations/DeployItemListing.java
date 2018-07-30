@@ -153,9 +153,9 @@ public class DeployItemListing implements Runnable {
 
                 try {
                     java.sql.PreparedStatement pstmt = connectDB.prepareStatement(
-                            "select item_code,'' as description, '' as strength,"
+                            "select DISTINCT item_code,'' as description, '' as strength,"
                             + "'' as units,0::numeric AS Dose_Qty, 0::numeric as buying_price, 0::numeric as selling FROM st_stock_item "
-                            + "WHERE department ILIKE '%drug%' and sub_cat_code ilike '" + categoriesList[j] + "' "
+                            + "WHERE (department ILIKE '%drug%' or department ILIKE '%pharm%' OR department ILIKE '%bulk%') and sub_cat_code ilike '" + categoriesList[j] + "' "
                             + "EXCEPT SELECT product_id,'' as product,'' as strength,'' as units,0::numeric AS Dose_Qty,0::numeric,0::numeric as selling "
                             + "FROM st_stock_prices WHERE department ilike '%pharmacy%' AND category ilike '" + categoriesList[j] + "'");
 

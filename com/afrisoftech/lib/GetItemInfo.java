@@ -32,7 +32,9 @@ public class GetItemInfo {
         String code = null;
 
         try {//
-            java.sql.PreparedStatement pst = connectDB.prepareStatement("(SELECT distinct item_code FROM st_stock_item WHERE description ILIKE '" + item_desc + "'   union SELECT  distinct item_code from st_sub_stores where item ilike '" + item_desc + "') order by 1");
+            java.sql.PreparedStatement pst = connectDB.prepareStatement("(SELECT distinct item_code FROM st_stock_item WHERE description ILIKE '" + item_desc + "' "
+                    + "  union SELECT  distinct item_code from st_sub_stores where upper(item) = '" + item_desc.toUpperCase() + "')"
+                    + "UNION select code FROM pb_operating_parameters WHERE upper(service_type) = '" + item_desc.toUpperCase() + "' order by 1");
             java.sql.ResultSet rsetCode = pst.executeQuery();
             while (rsetCode.next()) {
 

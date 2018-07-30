@@ -1,17 +1,14 @@
 //Author Charles Waweru
-
 //Made to test Java support for Threads.
-
 //Revision : Ver 1.0a
-
 //import java.lang.*;
 package com.afrisoftech.reports;
 
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.*;
+import java.awt.Color;
 
 //import //java.awt.Desktop;
-
 public class PatientLabResultsPdf implements java.lang.Runnable {
 
     java.lang.String memNo = null;
@@ -49,7 +46,6 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
         dbObject = new com.afrisoftech.lib.DBObject();
 
         // beginDate = begindate;
-
         // endDate = endate;
         threadSample = new java.lang.Thread(this, "SampleThread");
 
@@ -91,14 +87,11 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
 
             threadCheck = false;
 
-
             System.out.println("We shall be lucky to get back to start in one piece");
 
         }
 
         if (!threadCheck) {
-
-
 
             Thread.currentThread().stop();
 
@@ -269,7 +262,6 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
 
         java.lang.String pdfDateStamp = dateStampPdf.toString();
 
-
         try {
 
             java.io.File tempFile = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
@@ -284,60 +276,25 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
 
             com.lowagie.text.Document docPdf = new com.lowagie.text.Document();
 
-
             try {
 
                 try {
 
                     com.lowagie.text.pdf.PdfWriter.getInstance(docPdf, new java.io.FileOutputStream(tempFile));
 
-
                     String compName = null;
                     String date = null;
                     String Messg = null;
-                    /*
-                    try {
-
-
-                    java.sql.Statement st3 = connectDB.createStatement();
-                    java.sql.Statement st4 = connectDB.createStatement();
-                    java.sql.ResultSet rset2 = st3.executeQuery("SELECT name FROM interim_footer");
-
-                    // java.sql.ResultSet rset2 = st3.executeQuery("SELECT hospital_name FROM pb_hospitalprofile");
-                    //   java.sql.ResultSet rset4 = st4.executeQuery("SELECT date('now') as Date");
-                    while(rset2.next()){
-                    Messg = rset2.getObject(1).toString();
-                    }
-
-
-                    //  while(rset4.next())
-                    //    date = rset4.getObject(1).toString();
-
-                    com.lowagie.text.HeaderFooter footer = new com.lowagie.text.HeaderFooter(new Phrase(""+Messg+""),false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
-
-                    //  com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase(""+compName+""),false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
-                    //  headerFoter.ALIGN_CENTER;
-                    //  headerFoter.setRight(5);
-                    docPdf.setFooter(footer);
-
-
-                    } catch(java.sql.SQLException SqlExec) {
-
-                    javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
-
-                    }*/
-
 
                     docPdf.open();
-
 
                     try {
 
                         java.lang.Object listofStaffNos[] = this.getListofStaffNos();
                         for (int j = 0; j < listofStaffNos.length; j++) {
-                            
-                            System.out.println("Request ID or Lab No. ["+listofStaffNos[j]+"]");
-                            
+
+                            System.out.println("Request ID or Lab No. [" + listofStaffNos[j] + "]");
+
                             com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(6);
 
                             int headerwidths[] = {25, 25, 20, 15, 15, 15};
@@ -346,15 +303,19 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
                             //table..setWidths(headerwidths);
                             table.setWidthPercentage((100));
 
-
                             //table.getDefaultCell().setBorder(Rectangle.BOTTOM);
-
+                            table.getDefaultCell().setColspan(6);
+                            table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
                             table.getDefaultCell().setColspan(6);
 
-                            Phrase phrase = new Phrase();
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                            table.getDefaultCell().setFixedHeight(50);
+                            table.addCell(Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo()));
+                            table.getDefaultCell().setFixedHeight(-1);
+                            Phrase phrase = new Phrase("");
+                            phrase = new Phrase();
 
                             //  table.addCell(phrase);
-
                             table.getDefaultCell().setColspan(1);
                             table.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
                             // table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
@@ -378,8 +339,8 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
                                 java.sql.ResultSet rset22 = st32.executeQuery("SELECT header_name,current_date FROM pb_header");
                                 //  java.sql.ResultSet rseta = sta.executeQuery("SELECT ad.ward,ad.bed_no,ad.doctor ,pr.adm_date,pr.discharge_date FROM hp_admission ad,hp_inpatient_register pr WHERE pr.patient_no = '"+memNo+"' and pr.patient_no = ad.patient_no");
 
-                                java.sql.ResultSet rset = st1.executeQuery("SELECT DISTINCT patient_no,initcap(patient_name) FROM hp_lab_results WHERE lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "'");
-                                java.sql.ResultSet rset4 = sta.executeQuery("SELECT DISTINCT lab_no,age,gender,date ,spec_time FROM hp_lab_results WHERE lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "'");
+                                java.sql.ResultSet rset = st1.executeQuery("SELECT DISTINCT patient_no,initcap(patient_name),lab_no,age::numeric(5,0),gender,date,spec_time FROM hp_lab_results WHERE lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "'");
+                                java.sql.ResultSet rset4 = sta.executeQuery("SELECT DISTINCT lab_no,age::numeric(5,0),gender,date ,spec_time, lower_limit, upper_limit FROM hp_lab_results WHERE lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "'");
                                 java.sql.ResultSet rset41 = st2.executeQuery("SELECT DISTINCT typeof_test FROM hp_lab_results WHERE lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "'");
 
                                 java.sql.ResultSet rset4111 = st22.executeQuery("SELECT DISTINCT pathologist,doctor FROM hp_lab_results WHERE lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "'");
@@ -394,64 +355,91 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
                                     table.addCell(phrase);
                                     Date = rset22.getObject(2).toString();
 
-
                                     table.getDefaultCell().setColspan(6);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                                    phrase = new Phrase("Lab Results".toUpperCase(), pFontHeader1);
+                                    phrase = new Phrase("Laboratory Results".toUpperCase(), pFontHeader1);
                                     table.addCell(phrase);
                                     table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
 
                                     //table.getDefaultCell().setBorder(Rectangle.BOTTOM);
                                     //table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
                                     while (rset.next()) {
-                                        while (rset4.next()) {
+                                        // while (rset4.next()) {
 
-                                            table.getDefaultCell().setColspan(6);
-                                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                            phrase = new Phrase("Lab No         :  " + dbObject.getDBObject(rset4.getObject(1), "-"), pFontHeader1);
-                                            table.addCell(phrase);
-                                            table.getDefaultCell().setColspan(3);
-                                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                            phrase = new Phrase("Patient No    : " + dbObject.getDBObject(rset.getObject(1), "-"), pFontHeader1);
-                                            table.addCell(phrase);
+                                        table.getDefaultCell().setColspan(6);
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                        phrase = new Phrase("Lab No.         :  ".toUpperCase() + dbObject.getDBObject(rset.getObject(3), "-"), pFontHeader1);
+                                        table.addCell(phrase);
 
+                                        table.getDefaultCell().setColspan(1);
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                        phrase = new Phrase("Patient No.", pFontHeader1);
+                                        table.addCell(phrase);
 
-                                            table.getDefaultCell().setColspan(3);
-                                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                            phrase = new Phrase("Patient Name : " + dbObject.getDBObject(rset.getObject(2), "-"), pFontHeader1);
-                                            table.addCell(phrase);
+                                        table.getDefaultCell().setColspan(2);
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                        phrase = new Phrase(dbObject.getDBObject(rset.getObject(1), "-"), pFontHeader1);
+                                        table.addCell(phrase);
 
-                                            System.out.println("No 2");
+                                        table.getDefaultCell().setColspan(1);
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                        phrase = new Phrase("Patient Name", pFontHeader1);
+                                        table.addCell(phrase);
 
+                                        table.getDefaultCell().setColspan(2);
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                        phrase = new Phrase(dbObject.getDBObject(rset.getObject(2), "-"), pFontHeader1);
+                                        table.addCell(phrase);
+                                        System.out.println("No 2");
 
+                                        table.getDefaultCell().setColspan(1);
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                        phrase = new Phrase("Patient Age", pFontHeader1);
+                                        table.addCell(phrase);
 
+                                        table.getDefaultCell().setColspan(2);
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                        phrase = new Phrase(dbObject.getDBObject(rset.getObject(4), "-"), pFontHeader1);
+                                        table.addCell(phrase);
 
+                                        table.getDefaultCell().setColspan(1);
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                        phrase = new Phrase("Gender", pFontHeader1);
+                                        table.addCell(phrase);
 
+                                        table.getDefaultCell().setColspan(2);
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                        phrase = new Phrase(dbObject.getDBObject(rset.getObject(5), "-"), pFontHeader1);
+                                        table.addCell(phrase);
 
-                                            table.getDefaultCell().setColspan(3);
-                                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                            phrase = new Phrase("Age   : " + dbObject.getDBObject(rset4.getObject(2), "-"), pFontHeader1);
-                                            table.addCell(phrase);
+                                        table.getDefaultCell().setColspan(1);
+                                        phrase = new Phrase("Specimen Time", pFontHeader1);
+                                        table.addCell(phrase);
+                                        table.getDefaultCell().setColspan(2);
+                                        phrase = new Phrase(dbObject.getDBObject(rset.getObject(7), "-"), pFontHeader1);
+                                        table.addCell(phrase);
 
-                                            table.getDefaultCell().setColspan(3);
-                                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                            phrase = new Phrase("Sex             : " + dbObject.getDBObject(rset4.getObject(3), "-"), pFontHeader1);
-                                            table.addCell(phrase);
-                                            table.getDefaultCell().setColspan(3);
+                                        table.getDefaultCell().setColspan(1);
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                        phrase = new Phrase("Date", pFontHeader1);
+                                        table.addCell(phrase);
 
-                                            phrase = new Phrase("Specimen Time      : " + dbObject.getDBObject(rset4.getObject(5), "-"), pFontHeader1);
-                                            table.addCell(phrase);
+                                        table.getDefaultCell().setColspan(2);
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                        phrase = new Phrase(dbObject.getDBObject(rset.getObject(6), "-"), pFontHeader1);
+                                        table.addCell(phrase);
 
-                                            table.getDefaultCell().setColspan(3);
+                                        table.getDefaultCell().setColspan(3);
+                                        phrase = new Phrase(" ", pFontHeader1);
+                                        table.addCell(phrase);
 
-                                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                            phrase = new Phrase("Date      : " + dbObject.getDBObject(rset4.getObject(4), "-"), pFontHeader1);
-                                            table.addCell(phrase);
-                                            phrase = new Phrase(" ", pFontHeader1);
-                                            table.addCell(phrase);
-                                            phrase = new Phrase("Print Date: " + Date, pFontHeader1);
-                                            table.addCell(phrase);
-                                        }
+                                        table.getDefaultCell().setColspan(1);
+                                        phrase = new Phrase("Print Date", pFontHeader1);
+                                        table.addCell(phrase);
+
+                                        table.getDefaultCell().setColspan(2);
+                                        phrase = new Phrase(Date, pFontHeader1);
+                                        table.addCell(phrase);
                                     }
                                 }
 
@@ -462,16 +450,15 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
                                 //   java.lang.Object listofStaffNos[] = this.getListofStaffNos();
                                 //  for (int j = 0; j < listofStaffNos.length; j++) {
 
-                                System.out.println("From list : ["+listofStaffNos[j].toString()+"]");
+                                System.out.println("From list : [" + listofStaffNos[j].toString() + "]");
                                 java.sql.ResultSet rset12 = st12.executeQuery("SELECT DISTINCT initcap(code),typeof_test FROM hp_lab_results WHERE  lab_no ilike '" + listofStaffNos[j].toString() + "' or request_id ilike '" + listofStaffNos[j].toString() + "'");
-  //                              java.sql.ResultSet rset12 = st12.executeQuery("SELECT DISTINCT initcap(code),typeof_test FROM hp_lab_results WHERE  lab_no ilike '" + listofStaffNos[j].toString() + "' or request_id ilike '" + listofStaffNos[j].toString() + "'");
-
+                                //                              java.sql.ResultSet rset12 = st12.executeQuery("SELECT DISTINCT initcap(code),typeof_test FROM hp_lab_results WHERE  lab_no ilike '" + listofStaffNos[j].toString() + "' or request_id ilike '" + listofStaffNos[j].toString() + "'");
 
                                 while (rset12.next()) {
                                     // table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                                     Test = rset12.getObject(1).toString();
-                                    System.out.println("From list : ["+Test+"]");
+                                    System.out.println("From list : [" + Test + "]");
                                     testName = rset12.getObject(2).toString();
                                     java.sql.ResultSet rset4c = stc.executeQuery("SELECT DISTINCT status,notes FROM pb_lab_standards WHERE  code ilike '" + Test + "'");
                                     while (rset4c.next()) {
@@ -480,47 +467,49 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
                                         Notice = dbObject.getDBObject(rset4c.getString(2), "-");
                                         System.out.println(Status);
                                     }
-                                    java.sql.ResultSet rset1 = st.executeQuery("SELECT parameter,out_come||' '||units,lower_limit,upper_limit FROM hp_lab_results WHERE code ilike '" + Test + "'  and (lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "') order by 1");
+                                    java.sql.ResultSet rset1 = st.executeQuery("SELECT parameter,out_come||' '||units,lower_limit,upper_limit, out_come FROM hp_lab_results WHERE code ilike '" + Test + "'  and (lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "') order by 1");
                                     // while (rset41.next()){
                                     java.sql.ResultSet rset411 = st21.executeQuery("SELECT DISTINCT comments FROM hp_lab_results WHERE  (lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "') and code ilike '" + Test + "' ");
 
                                     if (Status.startsWith("t")) {
 
-
                                         System.out.println("No 4");
 
                                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
+//                                        table.getDefaultCell().setColspan(6);
+//                                        phrase = new Phrase("REFERENCE RANGE", pFontHeader1);
+//                                        table.addCell(phrase);
                                         table.getDefaultCell().setColspan(6);
-                                        phrase = new Phrase("Reference Range", pFontHeader1);
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                        phrase = new Phrase("PROCEDURE: " + testName.toUpperCase(), pFontHeader1);
                                         table.addCell(phrase);
+                                        
                                         table.getDefaultCell().setColspan(2);
-                                        phrase = new Phrase("Test", pFontHeader1);
+                                        phrase = new Phrase("PARAMETER", pFontHeader1);
                                         table.addCell(phrase);
                                         table.getDefaultCell().setColspan(1);
-                                        phrase = new Phrase("Result", pFontHeader1);
+                                        phrase = new Phrase("RESULT", pFontHeader1);
                                         table.addCell(phrase);
 
                                         table.getDefaultCell().setColspan(1);
-                                        phrase = new Phrase("Lower", pFontHeader1);
+                                        phrase = new Phrase("LOWER LIMIT", pFontHeader1);
                                         table.addCell(phrase);
                                         // table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
 
                                         table.getDefaultCell().setColspan(1);
-                                        phrase = new Phrase("Upper", pFontHeader1);
+                                        phrase = new Phrase("UPPER LIMIT", pFontHeader1);
                                         table.addCell(phrase);
-                                        phrase = new Phrase(" ", pFontHeader1);
+
+                                        phrase = new Phrase("STATUS", pFontHeader1);
                                         table.addCell(phrase);
                                         table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
-                                        table.getDefaultCell().setColspan(18);
-                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                        phrase = new Phrase("   ", pFontHeader1);
-                                        table.addCell(phrase);
+//                                        table.getDefaultCell().setColspan(18);
+//                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+//                                        phrase = new Phrase("   ", pFontHeader1);
+//                                        table.addCell(phrase);
                                         //table.getDefaultCell().setBorder(Rectangle.BOTTOM);
-                                        table.getDefaultCell().setColspan(6);
-                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                        phrase = new Phrase("TEST: " + testName.toUpperCase(), pFontHeader1);
-                                        table.addCell(phrase);
+
                                         // }
                                         //table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
                                         //phrase = new Phrase("Notes: "+Notice, pFontHeader1);
@@ -547,16 +536,21 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
                                             table.addCell(phrase);
 
                                             table.getDefaultCell().setColspan(1);
-                                           // table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                            // table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                             phrase = new Phrase(dbObject.getDBObject(rset1.getObject(4), "-"), pFontHeader);
-
                                             table.addCell(phrase);
 
+                                            if (rset1.getDouble(5) > rset1.getDouble(3) && rset1.getDouble(5) < rset1.getDouble(4)) {
+                                                table.getDefaultCell().setBackgroundColor(Color.GREEN);
+                                            } else {
+                                                table.getDefaultCell().setBackgroundColor(Color.RED);
+                                            }
                                             table.getDefaultCell().setColspan(1);
                                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                             phrase = new Phrase(" ", pFontHeader);
 
                                             table.addCell(phrase);
+                                            table.getDefaultCell().setBackgroundColor(Color.WHITE);
 
                                         }
                                         while (rset411.next()) {
@@ -569,7 +563,6 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
 
                                         System.out.println("No 6");
                                     } else {
-
 
                                         table.getDefaultCell().setColspan(18);
                                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -608,11 +601,6 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
 
                                             table.addCell(phrase);
 
-
-
-
-
-
                                         }
                                         System.out.println("No 8");
                                         while (rset411.next()) {
@@ -630,7 +618,6 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
 
                                 }
                                 System.out.println("No 9");
-
 
                                 table.getDefaultCell().setColspan(18);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -654,19 +641,18 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
 
                                 // table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP);
-
                                 docPdf.add(table);
 
                             } catch (java.sql.SQLException SqlExec) {
 
                                 SqlExec.printStackTrace();
-                                
+
                                 javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
                             }
                             boolean boolNewPage = docPdf.newPage();
                         }
-                    // }
+                        // }
 
                     } catch (com.lowagie.text.BadElementException BadElExec) {
 
@@ -685,19 +671,14 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
 
             }
 
-          
-            docPdf.close(); 
+            docPdf.close();
             com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
-
-
 
         } catch (java.io.IOException IOexec) {
 
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), IOexec.getMessage());
 
         }
-
-
 
     }
 
@@ -707,16 +688,14 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
 
         java.util.Vector listStaffNoVector = new java.util.Vector(1, 1);
 
-
         try {
 
             //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-
             java.sql.Statement stmt1 = connectDB.createStatement();
 
             // java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no FROM hp_patient_card WHERE date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND payment_mode = 'Scheme' AND isurer = '"+memNo+"' order by patient_no");
             //java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT payee FROM ac_debtors WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' and dealer ilike '"+memNo+"%' order by payee");
-          /////  java.sql.ResultSet rSet1x = stmt1.executeQuery("SELECT DISTINCT lab_no FROM hp_lab_results WHERE  (lab_no  between '" + memNo + "' and '" + memNo1 + "') UNION SELECT DISTINCT request_id FROM lims_lab_results WHERE (request_id = '" + memNo + "' or request_id = '" + memNo1 + "') order by 1");
+            /////  java.sql.ResultSet rSet1x = stmt1.executeQuery("SELECT DISTINCT lab_no FROM hp_lab_results WHERE  (lab_no  between '" + memNo + "' and '" + memNo1 + "') UNION SELECT DISTINCT request_id FROM lims_lab_results WHERE (request_id = '" + memNo + "' or request_id = '" + memNo1 + "') order by 1");
             java.sql.ResultSet rSet1x = stmt1.executeQuery("SELECT DISTINCT lab_no FROM hp_lab_results WHERE  (lab_no  between '" + memNo + "' and '" + memNo1 + "') ORDER BY 1"); //UNION SELECT DISTINCT request_id FROM lims_lab_results WHERE (request_id = '" + memNo + "' or request_id = '" + memNo1 + "') order by 1");
 
             while (rSet1x.next()) {
@@ -736,8 +715,3 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
         return listofStaffNos;
     }
 }
-
-
-
-
-

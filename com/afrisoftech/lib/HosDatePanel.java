@@ -285,18 +285,15 @@ public class HosDatePanel extends javax.swing.JDialog {
 
         //  int mycursor = 0;
         switch (reportName) {
-                  case 12090: {
+            case 12090: {
                 com.afrisoftech.reports.CreditorsLedgerPdf policy = new com.afrisoftech.reports.CreditorsLedgerPdf();
 
                 policy.CreditorsLedgerPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
 
-
-
                 this.dispose();
 
-
-
-            }break;
+            }
+            break;
             case 120: {
                 com.afrisoftech.reports.MonthlyRentRevPdf policy = new com.afrisoftech.reports.MonthlyRentRevPdf();
 
@@ -381,7 +378,6 @@ public class HosDatePanel extends javax.swing.JDialog {
                 com.afrisoftech.reports.UnutilizedDepositsRepPdf policy = new com.afrisoftech.reports.UnutilizedDepositsRepPdf();
 
                // policy.UnutilizedDepositsRepPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
-
                 this.dispose();
 
             }
@@ -1238,9 +1234,9 @@ public class HosDatePanel extends javax.swing.JDialog {
 
             }
             break;
-                
+
             case 20447: {
-                
+
                 com.afrisoftech.records.reports.EyeDiagnosisSummaryPdf policy = new com.afrisoftech.records.reports.EyeDiagnosisSummaryPdf();
 
                 policy.EyeDiagnosisSummaryPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
@@ -1795,6 +1791,18 @@ public class HosDatePanel extends javax.swing.JDialog {
                 com.afrisoftech.reports.MohReportPdf policy = new com.afrisoftech.reports.MohReportPdf();
 
                 policy.MohReportPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
+
+                ///this.dispose();
+            }
+            break;
+
+            case 525111: {
+                //com.afrisoftech.reports.CashMonthlyRevPdf policy = new com.afrisoftech.reports.CashMonthlyRevPdf();
+
+                ///policy.CashMonthlyRevPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
+                com.afrisoftech.reports.UniversalHealthSalesReportPdf policy = new com.afrisoftech.reports.UniversalHealthSalesReportPdf();
+
+//                policy.UniversalHealthSalesReportPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
 
                 ///this.dispose();
             }

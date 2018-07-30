@@ -587,7 +587,7 @@ public class MOH240LabRegisterPdf implements java.lang.Runnable {
                             for (int i = 0; i < listofAct.length; i++) {
 
                                 java.sql.PreparedStatement stw = connectDB.prepareStatement("SELECT DISTINCT "
-                                        + " date_part('day', date) ||'-'||date_part('month', date) ||'-'||date_part('year', date), patient_no, lab_no, patient_name, age::int, initcap(gender),"
+                                        + " date_part('day', date) ||'-'||date_part('month', date) ||'-'||date_part('year', date), patient_no, lab_no, initcap(patient_name) as patient_name, age::int, initcap(gender),"
                                         + " (SELECT pat_location FROM hp_admission WHERE hp_lab_results.patient_no = hp_admission.patient_no UNION SELECT sub_location FROM "
                                         + " hp_patient_register WHERE hp_lab_results.patient_no = hp_patient_register.patient_no ORDER by 1 DESC LIMIT 1) as sub_location,"
                                         + " (SELECT initcap(residence) FROM hp_inpatient_register"
@@ -597,12 +597,14 @@ public class MOH240LabRegisterPdf implements java.lang.Runnable {
                                         + " DESC LIMIT 1) as village, (SELECT tel FROM hp_admission WHERE hp_admission.patient_no = hp_lab_results.patient_no UNION "
                                         + " SELECT tel_no FROM hp_patient_register WHERE hp_patient_register.patient_no = hp_lab_results.patient_no ORDER BY 1 DESC LIMIT 1) "
                                         + " as telephone, date_part('day', date::date) ||'-'||date_part('month', date::date) ||'-'||date_part('year', date::date), "
-                                        + " date_part('day', date::date) ||'-'||date_part('month', date::date) ||'-'||date_part('year', date::date), initcap(doctor), "
-                                        + " (SELECT diagnosis FROM pb_doctors_request WHERE pb_doctors_request.patient_no = hp_lab_results.patient_no AND"
-                                        + " pb_doctors_request.trans_date::date = hp_lab_results.date::date AND diagnosis is not null ORDER BY 1 DESC LIMIT 1) as diagnosis,(SELECT service "
+                                        + " date_part('day', date::date) ||'-'||date_part('month', date::date) ||'-'||date_part('year', date::date), (SELECT (SELECT INITCAP(f_name||' '||l_name) FROM secure_menu_access"
+                                        + " WHERE secure_menu_access.login_name = pb_doctors_request.user_name LIMIT 1) FROM pb_doctors_request WHERE hp_lab_results.request_id = pb_doctors_request.request_id) as doctor, "
+                                        + " (SELECT disease FROM hp_patient_diagnosis WHERE hp_patient_diagnosis.patient_no = hp_lab_results.patient_no AND"
+                                        + " hp_patient_diagnosis.date_recorded::date = hp_lab_results.date::date AND disease is not null ORDER BY 1 LIMIT 1) as diagnosis,(SELECT service "
                                         + "  FROM pb_doctors_request WHERE pb_doctors_request.patient_no"
-                                        + " = hp_lab_results.patient_no AND hp_lab_results.date::date = pb_doctors_request.trans_date::date ORDER BY 1 DESC LIMIT 1) as investigations, input_date::date as analyse_date, '', type_of_specimen, "
-                                        + " specimen_condition, initcap(pathologist) as analysing_officer, pathologist_comment, comments  FROM hp_lab_results WHERE "
+                                        + " = hp_lab_results.patient_no AND hp_lab_results.date::date = pb_doctors_request.trans_date::date AND pb_doctors_request.request_id = hp_lab_results.request_id"
+                                        + " ORDER BY 1 DESC LIMIT 1) as investigations, input_date::date as analyse_date, out_come, type_of_specimen, "
+                                        + " specimen_condition, initcap(pathologist) as analysing_officer, pathologist_comment, comments, (SELECT debit::varchar FROM ac_cash_collection WHERE ac_cash_collection.patient_no = hp_lab_results.patient_no AND upper(ac_cash_collection.description) = upper(hp_lab_results.typeof_test) ORDER BY 1 LIMIT 1) as receipt_amount, (SELECT receipt_no FROM ac_cash_collection WHERE ac_cash_collection.patient_no = hp_lab_results.patient_no AND upper(ac_cash_collection.description) = upper(hp_lab_results.typeof_test) ORDER BY 1 LIMIT 1) as receipt_no FROM hp_lab_results WHERE "
                                         + " date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' "
                                         + " AND patient_no = ? ORDER BY 3");
 
@@ -631,7 +633,7 @@ public class MOH240LabRegisterPdf implements java.lang.Runnable {
                                     phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(3), ""), pFontHeader1);
                                     table.addCell(phrase);
                                     //Revisit No
-                                    phrase = new Phrase("", pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(2), ""), pFontHeader1);
                                     table.addCell(phrase);
                                     //Patient names
                                     phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(4), ""), pFontHeader1);
@@ -677,19 +679,19 @@ public class MOH240LabRegisterPdf implements java.lang.Runnable {
                                     phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(15), ""), pFontHeader1);
                                     table.addCell(phrase);
                                     //Results
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(20), ""), pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(16), ""), pFontHeader1);
                                     table.addCell(phrase);
                                     //Date result dispatched
                                     phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(15), ""), pFontHeader1);
                                     table.addCell(phrase);
                                     //Amount charged
-                                    phrase = new Phrase("", pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(22), ""), pFontHeader1);
                                     table.addCell(phrase);
                                     //Receipt number
-                                    phrase = new Phrase("", pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(23), ""), pFontHeader1);
                                     table.addCell(phrase);
                                     //Referrals
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(16), ""), pFontHeader1);
+                                    phrase = new Phrase("", pFontHeader1);
                                     table.addCell(phrase);
                                     // Comments
                                     phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(21), ""), pFontHeader1);

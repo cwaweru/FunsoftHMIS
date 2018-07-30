@@ -1441,17 +1441,17 @@ public class StockpricesAutoUpdateIntfr extends javax.swing.JInternalFrame imple
                     }
                     pstmt.setDouble(3, java.lang.Double.valueOf(updateDrugsTbl.getValueAt(i, 6).toString()));
                     pstmt.setDate(5, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                    pstmt.setObject(6, updateDrugsTbl.getValueAt(i, 3).toString());
-                    pstmt.setObject(7, updateDrugsTbl.getValueAt(i, 7).toString());
-                    pstmt.setObject(8, updateDrugsTbl.getValueAt(i, 9).toString());
-                    pstmt.setObject(9, updateDrugsTbl.getValueAt(i, 8).toString());
+                    pstmt.setObject(6, updateDrugsTbl.getValueAt(i, 3));
+                    pstmt.setObject(7, updateDrugsTbl.getValueAt(i, 7));
+                    pstmt.setObject(8, updateDrugsTbl.getValueAt(i, 9));
+                    pstmt.setObject(9, updateDrugsTbl.getValueAt(i, 8));
                     pstmt.setDouble(10, java.lang.Double.valueOf(updateDrugsTbl.getValueAt(i, 4).toString()));
                     pstmt.setDouble(11, 0.00);
                     pstmt.setDouble(12, 0.00);
                     pstmt.setDouble(13, 0.00);
                     pstmt.setDouble(14, 0.00);
                     pstmt.setString(15, jTextField4.getText());
-                    pstmt.setObject(16, updateDrugsTbl.getValueAt(i, 2).toString());
+                    pstmt.setObject(16, updateDrugsTbl.getValueAt(i, 2));
                     pstmt.executeUpdate();
 
                     java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE st_stock_item SET description = ?, strength= '" + updateDrugsTbl.getValueAt(i, 2).toString() + "',units = '" + updateDrugsTbl.getValueAt(i, 3).toString() + "'  WHERE item_code = '" + updateDrugsTbl.getModel().getValueAt(i, 0).toString() + "'");

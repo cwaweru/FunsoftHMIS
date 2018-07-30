@@ -314,6 +314,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     jLabel5311 = new javax.swing.JLabel();
     billAmountTxt = new javax.swing.JTextField();
     exemptionChkbx = new javax.swing.JCheckBox();
+    jLabel5 = new javax.swing.JLabel();
+    totalBilledAmountTxt = new javax.swing.JTextField();
     jPanel12 = new javax.swing.JPanel();
     jCheckBox4 = new javax.swing.JCheckBox();
     jCheckBox5 = new javax.swing.JCheckBox();
@@ -997,20 +999,20 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             }
         });
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameClosed(evt);
             }
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -1647,11 +1649,12 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         jPanel13.add(changeTxt, gridBagConstraints);
 
-        jLabel5311.setText("Amt KShs.");
+        jLabel5311.setText("Net Amt KSH.");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridx = 11;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -1661,7 +1664,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         billAmountTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         billAmountTxt.setText("0.00");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridx = 12;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
@@ -1682,6 +1685,30 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel13.add(exemptionChkbx, gridBagConstraints);
+
+        jLabel5.setText("Total Billed Amt");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel13.add(jLabel5, gridBagConstraints);
+
+        totalBilledAmountTxt.setEditable(false);
+        totalBilledAmountTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        totalBilledAmountTxt.setText("0.00");
+        totalBilledAmountTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalBilledAmountTxtActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel13.add(totalBilledAmountTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -2134,14 +2161,17 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
     private void amountPaidTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_amountPaidTxtCaretUpdate
         if (amountPaidTxt.getCaretPosition() >= 1) {
+            double totalBilled = java.lang.Double.parseDouble(totalBilledAmountTxt.getText().replace(",", ""));
             double total = java.lang.Double.parseDouble(billAmountTxt.getText());
             double waiver = java.lang.Double.parseDouble(waivedAmountTxt.getText());
 
-            lessDiscountedAmountTxt.setText(java.lang.String.valueOf(total - waiver));
+            lessDiscountedAmountTxt.setText(java.lang.String.valueOf(totalBilled - waiver));
             double paid = java.lang.Double.parseDouble(amountPaidTxt.getText());
             double diff = java.lang.Double.parseDouble(lessDiscountedAmountTxt.getText());
             if (paid >= diff) {
                 changeTxt.setText(java.lang.String.valueOf(paid - diff));
+            } else {
+                changeTxt.setText(java.lang.String.valueOf(0.00));
             }
 
         }         // Add your handling code here:
@@ -2269,8 +2299,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 //Logger.getLogger(CafeteriaBillPaymentsIntfr.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        } else if((Double.parseDouble(amountPaidTxt.getText()) < Double.parseDouble(billAmountTxt.getText()) || Double.parseDouble(waivedAmountTxt.getText()) > 0.00) && (patientNumberTxt.getText().toCharArray().length > 0)) {
-            
+        } else if ((Double.parseDouble(amountPaidTxt.getText()) < Double.parseDouble(billAmountTxt.getText()) || Double.parseDouble(waivedAmountTxt.getText()) > 0.00) && (patientNumberTxt.getText().toCharArray().length > 0)) {
+
             receiptNumberTxt.setText(null);
             System.out.println("Printing the receipt.");
             try {
@@ -2395,7 +2425,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         patientNumberTxt.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 0).toString());
         patientNameTxt.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 1).toString());
         unitNumberTxt.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 2).toString());
-
+        payerMobileTelephoneNumberTxt.setText("254-7  -      ");
         for (int s = 0; s < jTable111.getRowCount(); s++) {
             for (int r = 0; r < jTable111.getColumnCount(); r++) {
                 jTable111.getModel().setValueAt(null, s, r);
@@ -2420,6 +2450,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
         this.populateTable(this.patientNumberTxt.getText());
         billAmountTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable111, 3)));
+        totalBilledAmountTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.TableColumnTotal.getGrossTableColumnTotal(jTable111, 3)));
+        waivedAmountTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.TableColumnTotal.getGrossTableColumnTotal(jTable111, 3) - com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable111, 3)));
+        amountPaidTxt.setText(billAmountTxt.getText());
         if (com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable111, 3) > 0) {
             generateReceiptBtn.setEnabled(true);
             this.postSaleDataBtn.setEnabled(true);
@@ -2599,7 +2632,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         billAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
         billAmountTxt.setText(java.lang.String.valueOf(totalSum));
         double totals = java.lang.Double.parseDouble(billAmountTxt.getText());
-        ///   double paid = java.lang.Double.parseDouble(jTextField121.getText());
+        totalBilledAmountTxt.setText(String.valueOf(com.afrisoftech.lib.TableColumnTotal.getGrossTableColumnTotal(jTable111, 3)));
         double waiver = java.lang.Double.parseDouble(waivedAmountTxt.getText());
         lessDiscountedAmountTxt.setText(java.lang.String.valueOf(totals - waiver));
         amountPaidTxt.setText(java.lang.String.valueOf(totals - waiver));
@@ -2774,7 +2807,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 java.sql.ResultSet rsetTable111 = stmtTable111.executeQuery("SELECT sum(amount)+'" + waivexe + "' FROM patient_bill WHERE patient_no = '" + patient_no + "'");//AND paid = false UNION SELECT sum(amount) FROM hp_patient_billing WHERE patient_name = '"+patient_no+"' AND paid = false");
 
                 while (rsetTable111.next()) {
-                    billAmountTxt.setText(rsetTable111.getObject(1).toString());
+                    billAmountTxt.setText(String.valueOf(rsetTable111.getDouble(1)));
                 }
                 rsetTable111.close();
                 stmtTable111.close();
@@ -2916,15 +2949,12 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
         }
 
-        //float qty = java.lang.Float.parseFloat(jTable111.getValueAt(jTable111.getSelectedRow(), 1).toString());
-        // float price = java.lang.Float.parseFloat(jTable111.getValueAt(jTable111.getSelectedRow(), 2).toString());
-        //float total = qty * price;
-        // jTable111.setValueAt(total, jTable111.getSelectedRow(), 3);
+        totalBilledAmountTxt.setText(String.valueOf(com.afrisoftech.lib.TableColumnTotal.getGrossTableColumnTotal(jTable111, 3)));
+
         double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable111, 3);
         billAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
         billAmountTxt.setText(java.lang.String.valueOf(totalSum));
         double totals = java.lang.Double.parseDouble(billAmountTxt.getText());
-        ///   double paid = java.lang.Double.parseDouble(jTextField121.getText());
         double waiver = java.lang.Double.parseDouble(waivedAmountTxt.getText());
         lessDiscountedAmountTxt.setText(java.lang.String.valueOf(totals - waiver));
         amountPaidTxt.setText(java.lang.String.valueOf(totals - waiver));
@@ -2964,6 +2994,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 float total = qty * price;
                 jTable111.setValueAt(total, jTable111.getSelectedRow(), 3);
                 double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable111, 3);
+                totalBilledAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getGrossTableColumnTotal(jTable111, 3)));
                 billAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
                 billAmountTxt.setText(java.lang.String.valueOf(totalSum));
                 amountPaidTxt.setText(java.lang.String.valueOf(totalSum));
@@ -2971,77 +3002,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
         }
 
-        /*
-         * double resFloat = 0.00; // double totalSum = 0.00; double floatTotal
-         * = java.lang.Double.parseDouble(jTextField311.getText());
-         *
-         * if (jTable111.getValueAt(jTable111.getSelectedRow(),
-         * jTable111.getSelectedColumn()) != null) {
-         *
-         *
-         * double floatCol2 =
-         * java.lang.Double.parseDouble(jTable111.getValueAt(jTable111.getSelectedRow(),
-         * 1).toString());
-         *
-         * double floatCol3 =
-         * java.lang.Double.parseDouble(jTable111.getValueAt(jTable111.getSelectedRow(),
-         * 2).toString());
-         *
-         * double resVal = floatCol2 * floatCol3;
-         *
-         *
-         * jTable111.setValueAt(new java.lang.Float(resVal),
-         * jTable111.getSelectedRow(), 3);
-         *
-         * // System.out.println("Value at cell 3 is : "+
-         * jTable11.getValueAt(jTable11.getSelectedRow(),3)); // }
-         *
-         * for (int i = 0; i < jTable111.getRowCount(); i++) {
-         *
-         * if (jTable111.getModel().getValueAt(i, 0) != null)
-         * {//toString().compareToIgnoreCase(null) {
-         *
-         * resFloat = resFloat + Double.parseDouble(jTable111.getValueAt(i,
-         * 3).toString());
-         *
-         *
-         * // totalSum = floatTotal + resFloat;
-         *
-         * }
-         * }
-         *
-         * this.tableModelTableChanged1(); }
-         * //jTextField31.setText(java.lang.String.valueOf(resFloat)); //}
-         *
-         *
-         * /*
-         * double resFloat = 0.00; double floatTotal =
-         * java.lang.Double.parseDouble(jTextField311.getText());
-         *
-         * for (int i = 0; i < jTable111.getRowCount(); i++) {
-         *
-         * if (jTable111.getModel().getValueAt(jTable111.getSelectedRow(), 0) !=
-         * null) {
-         *
-         * if (jTable111.getSelectedColumn() == 1) {
-         *
-         * double floatCol2 =
-         * java.lang.Double.parseDouble(jTable111.getValueAt(jTable111.getSelectedRow(),
-         * 1).toString());
-         *
-         * double floatCol3 =
-         * java.lang.Double.parseDouble(jTable111.getValueAt(jTable111.getSelectedRow(),
-         * 2).toString());
-         *
-         * double resVal = floatCol2 * floatCol3; jTable111.setValueAt(new
-         * java.lang.Float(resVal), jTable111.getSelectedRow(), 3); resFloat =
-         * resFloat + Double.parseDouble(jTable111.getModel().getValueAt(i,
-         * 3).toString());
-         *
-         * }
-         * }
-         * jTextField311.setText(java.lang.String.valueOf(resFloat)); }
-         */
         // Add your handling code here:
     }//GEN-LAST:event_jTable111KeyReleased
     private void cmbox21ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -3292,6 +3252,10 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
         // TODO add your handling code here:
     }//GEN-LAST:event_payerMobileTelephoneNumberTxtActionPerformed
+
+    private void totalBilledAmountTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalBilledAmountTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalBilledAmountTxtActionPerformed
 
     public void tableModelTableChanged1() {
         System.out.println("Calculating totals for table 11 and 2.");
@@ -4345,6 +4309,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                             Logger.getLogger(GovBillPaymentsIntfr.class.getName()).log(Level.SEVERE, null, ex);
                         }
 
+                    } else {
+                        javax.swing.JOptionPane.showMessageDialog(this, "There is a problem connecting to the mobile payments service provider. Please contact system administrator!");
                     }
                 }
             } else if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").replace(" ", "").length() != 12) {
@@ -4441,6 +4407,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel4112;
     private javax.swing.JLabel jLabel422;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel5311;
     private javax.swing.JLabel jLabel5821111;
     private javax.swing.JLabel jLabel582211;
@@ -4527,6 +4494,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JCheckBox searchNameChbx;
     private javax.swing.JCheckBox searchNoChbx;
     private javax.swing.JTextField shiftNoTxt;
+    private javax.swing.JTextField totalBilledAmountTxt;
     private javax.swing.JTextField unitNumberTxt;
     private javax.swing.JTextField waivedAmountTxt;
     private javax.swing.JCheckBox walkINChkbx;

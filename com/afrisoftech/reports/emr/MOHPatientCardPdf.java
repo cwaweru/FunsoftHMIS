@@ -379,7 +379,7 @@ public class MOHPatientCardPdf implements java.lang.Runnable {
 
                                 dateFormatters = new com.afrisoftech.lib.DateFormatter(dateFormat.parse(endDate.toLocaleString()), "yyyy");
                             } catch (ParseException ex) {
-                                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                                ex.printStackTrace();
                             }
 
                             java.lang.String yearString = dateFormatters.getDateString();

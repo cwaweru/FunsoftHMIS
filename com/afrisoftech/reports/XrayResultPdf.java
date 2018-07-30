@@ -80,14 +80,11 @@ public class XrayResultPdf implements java.lang.Runnable {
 
             threadCheck = false;
 
-
             System.out.println("We shall be lucky to get back to start in one piece");
 
         }
 
         if (!threadCheck) {
-
-
 
             Thread.currentThread().stop();
 
@@ -258,7 +255,6 @@ public class XrayResultPdf implements java.lang.Runnable {
 
         java.lang.String pdfDateStamp = dateStampPdf.toString();
 
-
         try {
 
             java.io.File tempFile = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
@@ -273,19 +269,16 @@ public class XrayResultPdf implements java.lang.Runnable {
 
             com.lowagie.text.Document docPdf = new com.lowagie.text.Document();
 
-
             try {
 
                 try {
 
                     com.lowagie.text.pdf.PdfWriter.getInstance(docPdf, new java.io.FileOutputStream(tempFile));
 
-
                     String compName = null;
                     String date = null;
                     //  String PatNo=null;
                     try {
-
 
                         java.sql.Statement st3 = connectDB.createStatement();
                         java.sql.Statement st4 = connectDB.createStatement();
@@ -307,12 +300,9 @@ public class XrayResultPdf implements java.lang.Runnable {
 
                     docPdf.setFooter(footer);
 
-
                     docPdf.open();
 
-
                     try {
-
 
                         com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(6);
 
@@ -322,15 +312,18 @@ public class XrayResultPdf implements java.lang.Runnable {
 
                         table.setWidthPercentage((100));
 
-
                         table.getDefaultCell().setBorder(Rectangle.BOTTOM);
 
                         table.getDefaultCell().setColspan(6);
 
                         Phrase phrase = new Phrase();
+                        // Add logo
+                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                        table.getDefaultCell().setFixedHeight(50);
+                        table.addCell(Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo()));
+                        table.getDefaultCell().setFixedHeight(-1);
 
                         //  table.addCell(phrase);
-
                         table.getDefaultCell().setColspan(1);
                         table.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
                         //    table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
@@ -347,22 +340,23 @@ public class XrayResultPdf implements java.lang.Runnable {
                             while (rset3.next()) {
                                 table.getDefaultCell().setColspan(6);
 
-
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                                 phrase = new Phrase(rset3.getObject(1).toString(), pFontHeader11);
                                 table.addCell(phrase);
 
-
-
                             }
 
-                            phrase = new Phrase("X-RAY/ULTRA SOUND REPORT", pFontHeader1);
+                            phrase = new Phrase(" ", pFontHeader1);
+                            table.addCell(phrase);
+                            phrase = new Phrase("RADIOLOGY/IMAGING PROCEDURE REPORT", pFontHeader1);
+                            table.addCell(phrase);
+                            phrase = new Phrase(" ", pFontHeader1);
                             table.addCell(phrase);
 
                             table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
 
                             java.sql.ResultSet rset = st.executeQuery("select distinct upper(patient_no),upper(patient_name) FROM hp_xray_results WHERE patient_no = '" + PatNo + "' AND date BETWEEN '" + beginDate + "' AND '" + endDate + "' ");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
-                            table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
+                            //table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
                             table.getDefaultCell().setBorderWidth(Rectangle.TOP);
                             while (rset.next()) {
 
@@ -370,7 +364,6 @@ public class XrayResultPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase = new Phrase("Patient No.:  " + dbObject.getDBObject(rset.getObject(1), "-"), pFontHeader1);
                                 table.addCell(phrase);
-
 
                                 table.getDefaultCell().setColspan(4);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -380,7 +373,6 @@ public class XrayResultPdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                             }
 
-                            
                             for (int j = 0; j < listofAct.length; j++) {
                                 table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
                                 table.getDefaultCell().setColspan(6);
@@ -388,43 +380,58 @@ public class XrayResultPdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 java.sql.ResultSet rsetx = stx.executeQuery("select distinct xray_no,upper(examination),date,(doctor) from hp_xray_results where xray_no = '" + listofAct[j] + "' and date BETWEEN '" + beginDate + "' AND '" + endDate + "' ");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
 
-                                java.sql.ResultSet rset1 = st1.executeQuery("select initcap(notes) from hp_xray_results where xray_no = '" + listofAct[j] + "' and date BETWEEN '" + beginDate + "' AND '" + endDate + "' order by date");
+                                java.sql.ResultSet rset1 = st1.executeQuery("select initcap(notes), radiologist_notes from hp_xray_results where xray_no = '" + listofAct[j] + "' and date BETWEEN '" + beginDate + "' AND '" + endDate + "' order by date");
                                 // union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
                                 java.sql.ResultSet rsetr = str.executeQuery("select distinct upper(user_name),upper(xray_manager) from hp_xray_results where xray_no = '" + listofAct[j] + "' AND date BETWEEN '" + beginDate + "' AND '" + endDate + "' ");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
 
-
-
                                 while (rsetx.next()) {
-                                    table.getDefaultCell().setColspan(6);
+                                    table.getDefaultCell().setColspan(2);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase("X-ray No:  " + dbObject.getDBObject(rsetx.getObject(1), "-"), pFontHeader1);
+                                    phrase = new Phrase("X-ray No", pFontHeader1);
+                                    table.addCell(phrase);
+
+                                    table.getDefaultCell().setColspan(4);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase(dbObject.getDBObject(rsetx.getObject(1), "-"), pFontHeader1);
                                     table.addCell(phrase);
 
                                     table.getDefaultCell().setColspan(2);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase("Examination", pFontHeader1);
+                                    table.addCell(phrase);
 
-                                    table.getDefaultCell().setColspan(6);
+                                    table.getDefaultCell().setColspan(4);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase("Examination: " + dbObject.getDBObject(rsetx.getObject(2), "-"), pFontHeader1);
+                                    phrase = new Phrase(dbObject.getDBObject(rsetx.getObject(2), "-"), pFontHeader1);
                                     table.addCell(phrase);
-                                    table.getDefaultCell().setColspan(6);
-                                    phrase = new Phrase("Date:  " + dbObject.getDBObject(rsetx.getObject(3), "-"), pFontHeader1);
+
+                                    table.getDefaultCell().setColspan(2);
+                                    phrase = new Phrase("Date", pFontHeader1);
                                     table.addCell(phrase);
-                                    phrase = new Phrase("Doctor Refering:  " + dbObject.getDBObject(rsetx.getObject(4), "-"), pFontHeader1);
+
+                                    table.getDefaultCell().setColspan(4);
+                                    phrase = new Phrase(dbObject.getDBObject(rsetx.getObject(3), "-"), pFontHeader1);
                                     table.addCell(phrase);
+
+                                    table.getDefaultCell().setColspan(2);
+                                    phrase = new Phrase("Doctor Referring", pFontHeader1);
+                                    table.addCell(phrase);
+
+                                    table.getDefaultCell().setColspan(4);
+                                    phrase = new Phrase(dbObject.getDBObject(rsetx.getObject(4), "-"), pFontHeader1);
+                                    table.addCell(phrase);
+
                                 }
-
-
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
                                 table.getDefaultCell().setColspan(6);
-                                phrase = new Phrase("NOTES", pFontHeader1);
+                                phrase = new Phrase(" ", pFontHeader1);
+                                table.addCell(phrase);
+                                phrase = new Phrase("RADIOGRAPHER NOTES", pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-
-
 
                                 while (rset1.next()) {
                                     table.getDefaultCell().setColspan(6);
@@ -438,7 +445,27 @@ public class XrayResultPdf implements java.lang.Runnable {
                                     phrase = new Phrase(dbObject.getDBObject(rset1.getObject(1), "-"), pFontHeader);
 
                                     table.addCell(phrase);
+                                    table.getDefaultCell().setColspan(6);
+
+                                    phrase = new Phrase(" ", pFontHeader1);
+                                    table.addCell(phrase);
+                                    
+                                    phrase = new Phrase("RADIOLOGIST NOTES/DIAGNOSIS", pFontHeader1);
+                                    table.addCell(phrase);
+
+                                    table.getDefaultCell().setColspan(6);
+                                    table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
+                                    phrase = new Phrase(" ", pFontHeader1);
+                                    table.addCell(phrase);
+
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase(dbObject.getDBObject(rset1.getObject(2), "-"), pFontHeader);
+
+                                    table.addCell(phrase);
                                 }
+
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+
                                 table.getDefaultCell().setColspan(18);
                                 phrase = new Phrase(" ", pFontHeader1);
                                 table.addCell(phrase);
@@ -455,23 +482,20 @@ public class XrayResultPdf implements java.lang.Runnable {
                                     table.addCell(phrase);
                                 }
                             }
+                            
                             table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
-                          //  table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
-                           // table.getDefaultCell().setBorderWidth(Rectangle.TOP);
-
-
-
 
                             docPdf.add(table);
 
                         } catch (java.sql.SQLException SqlExec) {
 
+                            SqlExec.printStackTrace();
+                            
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
                         }
 
                         // }
-
                     } catch (com.lowagie.text.BadElementException BadElExec) {
 
                         javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), BadElExec.getMessage());
@@ -490,17 +514,14 @@ public class XrayResultPdf implements java.lang.Runnable {
             }
 
             docPdf.close();
-docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
-
-
+            docPdf.close();
+            com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
         } catch (java.io.IOException IOexec) {
 
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), IOexec.getMessage());
 
         }
-
-
 
     }
 
@@ -509,37 +530,28 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
         java.util.Vector listActVector = new java.util.Vector(1, 1);
 
-
-
-
         try {
-
 
             java.sql.Statement stmt1 = connectDB.createStatement();
 
             java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT xray_no FROM hp_xray_results WHERE patient_no = '" + this.PatNo + "' AND date BETWEEN '" + beginDate + "' AND '" + endDate + "' ORDER BY 1 ASC ");
 
-
-
             while (rSet1.next()) {
 
                 listActVector.addElement(rSet1.getObject(1).toString());
-
-
 
             }
 
         } catch (java.sql.SQLException sqlExec) {
 
+            sqlExec.printStackTrace();
+            
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
-
-
 
         }
 
         listofActivities = listActVector.toArray();
         System.out.println("Done list of activities ...");
-
 
         return listofActivities;
 

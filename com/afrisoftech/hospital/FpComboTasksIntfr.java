@@ -669,7 +669,7 @@ public class FpComboTasksIntfr extends javax.swing.JInternalFrame implements jav
                 //if(this.getShiftStatus()){
                 if(otherReceipts == null){
                     otherReceipts = new com.afrisoftech.accounting.OtherRecptintfr(connectDB,pConnDB);
-                    otherReceipts.jButton4.addActionListener(new java.awt.event.ActionListener() {
+                    otherReceipts.closeFormBtn.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                             comboTaskPanels.removeAll();
                             repaint();

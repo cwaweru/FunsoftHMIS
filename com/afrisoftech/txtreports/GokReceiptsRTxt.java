@@ -41,6 +41,7 @@ public class GokReceiptsRTxt implements java.lang.Runnable {
     java.lang.Runtime rt = null;
     private String exemptionNumber;
     private String shiftNumber;
+    private String unitNumber;
 
     public GokReceiptsRTxt(java.sql.Connection connDb, java.lang.String combox, java.lang.String amount, java.lang.String receipt, java.lang.String paymode, java.lang.String cash, java.lang.String refund, java.lang.String shiftNo) {
 
@@ -392,7 +393,7 @@ public class GokReceiptsRTxt implements java.lang.Runnable {
             java.sql.ResultSet rset3 = st3.executeQuery("SELECT DISTINCT header,footer from ac_receipt_header");
             java.sql.ResultSet rset1 = st1.executeQuery("select date_part('day', receipt_time)||'-'||date_part('month', receipt_time)||'-'||date_part('year', receipt_time)||'@'||date_part('hour', receipt_time)||':'||date_part('minute', receipt_time) as receipt_time from ac_cash_collection where receipt_no = '"+Receipt+"'");
             java.sql.ResultSet rset5 = st5.executeQuery("select initcap(description),sum(quantity),sum(debit),round(sum(debit/quantity)) from ac_cash_collection where receipt_no = '" + Receipt + "' and debit > 0 group by description");
-            java.sql.ResultSet rset6 = st6.executeQuery("select distinct user_name,cash_point,journal_no,patient_no from ac_cash_collection where receipt_no = '" + Receipt + "'");
+            java.sql.ResultSet rset6 = st6.executeQuery("select distinct user_name,cash_point,journal_no,patient_no, (SELECT DISTINCT sub_chief FROM hp_admission WHERE ac_cash_collection.patient_no = hp_admission.patient_no AND sub_chief is not null AND sub_chief != '' ORDER BY 1 DESC LIMIT 1) as unit_number from ac_cash_collection where receipt_no = '" + Receipt + "'");
             java.sql.ResultSet rset51 = st51.executeQuery("select sum(credit) from ac_cash_collection where receipt_no = '" + Receipt + "' and credit > 0 AND (transaction_type ILIKE 'Waive%' OR transaction_type ILIKE 'Exempti%')");
 
             if (rHeader.equalsIgnoreCase("True")) {
@@ -415,18 +416,7 @@ public class GokReceiptsRTxt implements java.lang.Runnable {
 
                 while (rset5.next()) {
 
-                    // table1.addCell("  ");
-
-
                     table1.addCell(dbObject.getDBObject(rset5.getObject(1), "-"));
-
-                    //  table1.addCell(dbObject.getDBObject(rset5.getObject(2), "-"));
-
-                    //   table1.addCell(dbObject.getDBObject(rset5.getObject(4), "-"));
-
-                    // table1.addCell("  ");
-
-                    // table1.addCell("   ");
 
                     table1.addCell(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset5.getString(3)));
 
@@ -446,22 +436,14 @@ public class GokReceiptsRTxt implements java.lang.Runnable {
                    exemptionNumber = dbObject.getDBObject(rset6.getObject(3), "-");
 
                    pNumber = dbObject.getDBObject(rset6.getObject(4), "-");
+                   
+                   unitNumber = dbObject.getDBObject(rset6.getObject(4), "-");
+                   
                 }
 
                 while (rset51.next()) {
 
-                    // table1.addCell("  ");
-
-
-                    //   table1.addCell("Waiver");
                     table1.addCell("Waiver/Exemption, Ref/No: " + exemptionNumber);
-                    //  table1.addCell(dbObject.getDBObject(rset5.getObject(2), "-"));
-
-                    //   table1.addCell(dbObject.getDBObject(rset5.getObject(4), "-"));
-
-                    // table1.addCell("  ");
-
-                    // table1.addCell("   ");
 
                     table1.addCell(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset51.getString(1)));
 
@@ -483,7 +465,7 @@ public class GokReceiptsRTxt implements java.lang.Runnable {
 
                 table4.addCell("Date : " + dates);
 
-                table21.addCell("Patient No : " + pNumber.toUpperCase());
+                table21.addCell("Patient No : " + pNumber.toUpperCase()+", Unit Number : "+unitNumber);
 
                 table21.addCell("Received from : " + MNo.toUpperCase());
 
@@ -499,15 +481,6 @@ public class GokReceiptsRTxt implements java.lang.Runnable {
 
                 }
 
-                //  table21.addCell(" - ");
-
-                // table21.addCell("A sum of " +cash_words);
-
-                // table21.addCell("In respect of :- "+MNo+ "  " +Name.toUpperCase());
-
-                //  table3.addCell("");
-
-                //  table3.addCell("");
 
                 table3.addCell("Total");
 

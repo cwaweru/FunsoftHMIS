@@ -3352,6 +3352,8 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
 
         jTextField13.setText("");
         jTextField22.setText("");
+        
+        payerMobileTelephoneNumberTxt.setText("254-7  -      ");
 
         double limit = 0.00;
         double bal = 0.00;

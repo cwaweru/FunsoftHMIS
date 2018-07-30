@@ -364,7 +364,7 @@ public class MobilePayAPI {
             json.put("PartyA", payerMobilePhone);
             json.put("PartyB", shortCode);
             json.put("PhoneNumber", payerMobilePhone);
-            json.put("CallBackURL", "https://41.203.219.58:17933/FunsoftWebServices/funsoft/InvoiceService/mpesasettlement");
+            json.put("CallBackURL", "https://192.162.85.226:17933/FunsoftWebServices/funsoft/InvoiceService/mpesasettlement");
             json.put("AccountReference", accountNo);
             json.put("TransactionDesc", "Settlement for client bill");
             message = json.toString();

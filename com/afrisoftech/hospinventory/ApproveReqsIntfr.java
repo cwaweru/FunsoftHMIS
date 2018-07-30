@@ -745,7 +745,7 @@ public class ApproveReqsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 4.5;
+        gridBagConstraints.weightx = 30.0;
         gridBagConstraints.weighty = 30.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         jPanel2.add(jScrollPane1, gridBagConstraints);
@@ -791,6 +791,8 @@ public class ApproveReqsIntfr extends javax.swing.JInternalFrame {
         jPanel11.add(approvedBytxt, gridBagConstraints);
 
         totalValueTxt.setEditable(false);
+        totalValueTxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        totalValueTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         totalValueTxt.setText("0.00");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
@@ -1228,8 +1230,7 @@ public class ApproveReqsIntfr extends javax.swing.JInternalFrame {
 
             searchTransferTable.setShowHorizontalLines(false);
             transferNumberScrollPane.setViewportView(searchTransferTable);
-        } 
-        else {
+        } else {
             if (searchTransferNumberTxt.getText().length() > 5 && subStoreChkbx.isSelected()) {
                 searchTransferTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT requisition_no,cost_center,store_name,date FROM st_receive_requisation WHERE "
                         + "requisition_no ILIKE '" + searchTransferNumberTxt.getText() + "%' and cost_center ilike '" + recepientStoreCmbx.getSelectedItem() + "' and UPPER(cost_center) IN (SELECT distinct UPPER(stores) from store_allocation WHERE  user_name ILIKE current_user AND type ilike 'Approve IRQ') order by date desc "));
@@ -1855,12 +1856,10 @@ public class ApproveReqsIntfr extends javax.swing.JInternalFrame {
 
                             javax.swing.JOptionPane.showMessageDialog(this, "IRQ Approved Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
-//                            approvingdeptCmbx.setSelectedItem(UserName.getUserAllocatedStore(connectDB, UserName.getLoginName(connectDB)));
-                            //   TransferedItemsPdf policy = new TransferedItemsPdf();
-                            //   policy.TransferedItemsPdf(connectDB,transNo);
-                            // irqsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT requisition_no,date FROM st_receive_requisation WHERE "
-                            //        + "cost_center ilike '" + approvingdeptCmbx.getSelectedItem() + "' and irq_approval=false order by 2 desc "));
-                            // this.saveTransactionBtn.setEnabled(false);
+                            com.afrisoftech.hospinventory.mtrhreports.InternalReqMtrhPdf policy = new com.afrisoftech.hospinventory.mtrhreports.InternalReqMtrhPdf();
+
+                            policy.InternalReqMtrhPdf(connectDB, recepientStoreCmbx.getSelectedItem().toString(), irqnoTxt.getText());
+
                             for (int k = 0; k < issuingItemsTable.getRowCount(); k++) {
                                 for (int r = 0; r < issuingItemsTable.getColumnCount(); r++) {
                                     issuingItemsTable.getModel().setValueAt(null, k, r);

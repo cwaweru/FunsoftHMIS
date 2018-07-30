@@ -202,6 +202,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         facilitySearchTable = new com.afrisoftech.dbadmin.JTable();
         dispose4 = new javax.swing.JButton();
         nokbuttonGroup = new javax.swing.ButtonGroup();
+        fingerPrintDialog = new javax.swing.JDialog();
+        fingerprintIconLabel = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -225,6 +227,10 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox10 = new javax.swing.JCheckBox();
         jTextField9 = new javax.swing.JTextField();
+        jLabel39 = new javax.swing.JLabel();
+        cardsSoldTxt = new javax.swing.JTextField();
+        jLabel40 = new javax.swing.JLabel();
+        filesSoldTxt = new javax.swing.JTextField();
         billindDetailsTabbedPane = new javax.swing.JTabbedPane();
         bioDataPanel = new javax.swing.JPanel();
         patientSearchPanel = new javax.swing.JPanel();
@@ -451,20 +457,21 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         jLabel572 = new javax.swing.JLabel();
         registrationStatusLbl = new javax.swing.JLabel();
         buttonPanel = new javax.swing.JPanel();
-        jButton301 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton152 = new javax.swing.JButton();
-        jButton202 = new javax.swing.JButton();
-        jButton252 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        saveRegistrationBtn = new javax.swing.JButton();
+        savePrintRegistrationBtn = new javax.swing.JButton();
+        editFileBtn = new javax.swing.JButton();
+        clearFieldsBtn = new javax.swing.JButton();
+        closeFormBtn = new javax.swing.JButton();
+        helpBtn = new javax.swing.JButton();
+        readSmartCardBtn = new javax.swing.JButton();
+        reprintFileBtn = new javax.swing.JButton();
+        scanDocumentBtn = new javax.swing.JButton();
+        bookingBtn = new javax.swing.JButton();
         webCameraPanel = new javax.swing.JPanel();
         webCamPanel =  new javax.swing.JPanel();
         startBtn = new javax.swing.JButton(new StartAction());
         takeSnapBtn = new javax.swing.JButton();
+        fingerPrintReaderBtn = new javax.swing.JButton();
 
         patientSearchDialog.setUndecorated(true);
         patientSearchDialog.setResizable(false);
@@ -1656,6 +1663,20 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.weighty = 1.0;
                                         facilitySearchDialog.getContentPane().add(facilitySearchMainPanel, gridBagConstraints);
 
+                                        fingerPrintDialog.setTitle("Fingerprint Reader");
+                                        fingerPrintDialog.setBackground(new java.awt.Color(51, 102, 255));
+                                        fingerPrintDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+                                        fingerprintIconLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, new java.awt.Color(102, 204, 255), new java.awt.Color(0, 51, 255), new java.awt.Color(153, 255, 255), new java.awt.Color(204, 102, 255)));
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 0;
+                                        gridBagConstraints.gridy = 0;
+                                        gridBagConstraints.gridwidth = 2;
+                                        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                                        gridBagConstraints.weightx = 1.0;
+                                        gridBagConstraints.weighty = 100.0;
+                                        fingerPrintDialog.getContentPane().add(fingerprintIconLabel, gridBagConstraints);
+
                                         setClosable(true);
                                         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
                                         setIconifiable(true);
@@ -1671,18 +1692,18 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
                                             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
                                             }
-                                            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+                                            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
                                             }
                                             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
                                                 formInternalFrameClosing(evt);
                                             }
-                                            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                                            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+                                            }
+                                            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
                                             }
                                             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
                                             }
-                                            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-                                            }
-                                            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+                                            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                                             }
                                         });
                                         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -1896,7 +1917,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                             }
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
-                                        gridBagConstraints.gridx = 2;
+                                        gridBagConstraints.gridx = 5;
                                         gridBagConstraints.gridy = 9;
                                         gridBagConstraints.weightx = 1.0;
                                         jPanel3.add(jCheckBox9, gridBagConstraints);
@@ -1910,7 +1931,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                             }
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
-                                        gridBagConstraints.gridx = 1;
+                                        gridBagConstraints.gridx = 6;
                                         gridBagConstraints.gridy = 9;
                                         gridBagConstraints.weightx = 1.0;
                                         jPanel3.add(jCheckBox2, gridBagConstraints);
@@ -1925,7 +1946,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                             }
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
-                                        gridBagConstraints.gridx = 0;
+                                        gridBagConstraints.gridx = 4;
                                         gridBagConstraints.gridy = 9;
                                         gridBagConstraints.weightx = 1.0;
                                         jPanel3.add(jCheckBox1, gridBagConstraints);
@@ -1939,7 +1960,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                             }
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
-                                        gridBagConstraints.gridx = 3;
+                                        gridBagConstraints.gridx = 7;
                                         gridBagConstraints.gridy = 9;
                                         gridBagConstraints.weightx = 1.0;
                                         jPanel3.add(jCheckBox10, gridBagConstraints);
@@ -1947,9 +1968,51 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         jTextField9.setMinimumSize(new java.awt.Dimension(0, 0));
                                         jTextField9.setPreferredSize(new java.awt.Dimension(0, 0));
                                         gridBagConstraints = new java.awt.GridBagConstraints();
-                                        gridBagConstraints.gridx = 4;
+                                        gridBagConstraints.gridx = 8;
                                         gridBagConstraints.gridy = 9;
                                         jPanel3.add(jTextField9, gridBagConstraints);
+
+                                        jLabel39.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+                                        jLabel39.setText("Total cards sold");
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 0;
+                                        gridBagConstraints.gridy = 9;
+                                        gridBagConstraints.weightx = 1.0;
+                                        gridBagConstraints.weighty = 1.0;
+                                        jPanel3.add(jLabel39, gridBagConstraints);
+
+                                        cardsSoldTxt.setBackground(new java.awt.Color(204, 204, 255));
+                                        cardsSoldTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+                                        cardsSoldTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+                                        cardsSoldTxt.setText("0");
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 1;
+                                        gridBagConstraints.gridy = 9;
+                                        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                                        gridBagConstraints.weightx = 1.0;
+                                        gridBagConstraints.weighty = 1.0;
+                                        jPanel3.add(cardsSoldTxt, gridBagConstraints);
+
+                                        jLabel40.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+                                        jLabel40.setText("Total files sold");
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 2;
+                                        gridBagConstraints.gridy = 9;
+                                        gridBagConstraints.weightx = 1.0;
+                                        gridBagConstraints.weighty = 1.0;
+                                        jPanel3.add(jLabel40, gridBagConstraints);
+
+                                        filesSoldTxt.setBackground(new java.awt.Color(204, 204, 255));
+                                        filesSoldTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+                                        filesSoldTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+                                        filesSoldTxt.setText("0");
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 3;
+                                        gridBagConstraints.gridy = 9;
+                                        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                                        gridBagConstraints.weightx = 1.0;
+                                        gridBagConstraints.weighty = 1.0;
+                                        jPanel3.add(filesSoldTxt, gridBagConstraints);
 
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 0;
@@ -1974,7 +2037,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         bioDataPanel.setLayout(new java.awt.GridBagLayout());
 
                                         patientSearchPanel.setBackground(new java.awt.Color(153, 255, 204));
-                                        patientSearchPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 255), new java.awt.Color(102, 255, 51), null), "Patient Details (Highlighted fields MUST be filled.)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
+                                        patientSearchPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 255), new java.awt.Color(102, 255, 51), null), "Patient Details (Highlighted fields MUST be filled.)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
                                         patientSearchPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
                                             public void mouseMoved(java.awt.event.MouseEvent evt) {
                                                 patientSearchPanelMouseMoved(evt);
@@ -2394,7 +2457,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         bioDataPanel.add(patientSearchPanel, gridBagConstraints);
 
                                         otherDetailsPanel.setBackground(new java.awt.Color(204, 255, 204));
-                                        otherDetailsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 102), null, null), "Other Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
+                                        otherDetailsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 102), null, null), "Other Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
                                         otherDetailsPanel.setLayout(new java.awt.GridBagLayout());
 
                                         physicalResidenceLbl.setForeground(new java.awt.Color(255, 51, 153));
@@ -2427,7 +2490,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         otherDetailsPanel.add(residenceTxt, gridBagConstraints);
 
                                         nokDetails.setBackground(new java.awt.Color(153, 255, 204));
-                                        nokDetails.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Next of Kin (NOK)Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
+                                        nokDetails.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Next of Kin (NOK)Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
                                         nokDetails.setLayout(new java.awt.GridBagLayout());
 
                                         jLabel28.setBackground(new java.awt.Color(255, 204, 255));
@@ -4147,7 +4210,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         jPanel1.add(billindDetailsTabbedPane, gridBagConstraints);
 
                                         payModePanel.setBackground(new java.awt.Color(204, 255, 255));
-                                        payModePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter patient details (You can search by Admission/Patient number, ID number, Telephone Number or Next of Kin details)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
+                                        payModePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter patient details (You can search by Admission/Patient number, ID number, Telephone Number or Next of Kin details)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
                                         payModePanel.setLayout(new java.awt.GridBagLayout());
 
                                         branchTxt.setEditable(false);
@@ -4351,19 +4414,19 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         });
                                         buttonPanel.setLayout(new java.awt.GridBagLayout());
 
-                                        jButton301.setMnemonic('S');
-                                        jButton301.setText("Save file data");
-                                        jButton301.setToolTipText("Click here to enter data");
-                                        jButton301.setMinimumSize(new java.awt.Dimension(30, 25));
-                                        jButton301.setPreferredSize(new java.awt.Dimension(30, 25));
-                                        jButton301.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+                                        saveRegistrationBtn.setMnemonic('S');
+                                        saveRegistrationBtn.setText("Save file data");
+                                        saveRegistrationBtn.setToolTipText("Click here to enter data");
+                                        saveRegistrationBtn.setMinimumSize(new java.awt.Dimension(30, 25));
+                                        saveRegistrationBtn.setPreferredSize(new java.awt.Dimension(30, 25));
+                                        saveRegistrationBtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
                                             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                                                jButton301MouseMoved(evt);
+                                                saveRegistrationBtnMouseMoved(evt);
                                             }
                                         });
-                                        jButton301.addActionListener(new java.awt.event.ActionListener() {
+                                        saveRegistrationBtn.addActionListener(new java.awt.event.ActionListener() {
                                             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                                jButton301ActionPerformed(evt);
+                                                saveRegistrationBtnActionPerformed(evt);
                                             }
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -4372,16 +4435,16 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
-                                        buttonPanel.add(jButton301, gridBagConstraints);
+                                        buttonPanel.add(saveRegistrationBtn, gridBagConstraints);
 
-                                        jButton3.setMnemonic('P');
-                                        jButton3.setText("Save file & print");
-                                        jButton3.setMaximumSize(new java.awt.Dimension(25, 25));
-                                        jButton3.setMinimumSize(new java.awt.Dimension(30, 25));
-                                        jButton3.setPreferredSize(new java.awt.Dimension(30, 25));
-                                        jButton3.addActionListener(new java.awt.event.ActionListener() {
+                                        savePrintRegistrationBtn.setMnemonic('P');
+                                        savePrintRegistrationBtn.setText("Save file & print");
+                                        savePrintRegistrationBtn.setMaximumSize(new java.awt.Dimension(25, 25));
+                                        savePrintRegistrationBtn.setMinimumSize(new java.awt.Dimension(30, 25));
+                                        savePrintRegistrationBtn.setPreferredSize(new java.awt.Dimension(30, 25));
+                                        savePrintRegistrationBtn.addActionListener(new java.awt.event.ActionListener() {
                                             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                                jButton3ActionPerformed(evt);
+                                                savePrintRegistrationBtnActionPerformed(evt);
                                             }
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -4390,16 +4453,16 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
-                                        buttonPanel.add(jButton3, gridBagConstraints);
+                                        buttonPanel.add(savePrintRegistrationBtn, gridBagConstraints);
 
-                                        jButton152.setMnemonic('E');
-                                        jButton152.setText("Edit file data");
-                                        jButton152.setToolTipText("Click here to edit data");
-                                        jButton152.setMinimumSize(new java.awt.Dimension(30, 25));
-                                        jButton152.setPreferredSize(new java.awt.Dimension(30, 25));
-                                        jButton152.addActionListener(new java.awt.event.ActionListener() {
+                                        editFileBtn.setMnemonic('E');
+                                        editFileBtn.setText("Edit file data");
+                                        editFileBtn.setToolTipText("Click here to edit data");
+                                        editFileBtn.setMinimumSize(new java.awt.Dimension(30, 25));
+                                        editFileBtn.setPreferredSize(new java.awt.Dimension(30, 25));
+                                        editFileBtn.addActionListener(new java.awt.event.ActionListener() {
                                             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                                jButton152ActionPerformed(evt);
+                                                editFileBtnActionPerformed(evt);
                                             }
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -4408,16 +4471,16 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
-                                        buttonPanel.add(jButton152, gridBagConstraints);
+                                        buttonPanel.add(editFileBtn, gridBagConstraints);
 
-                                        jButton202.setMnemonic('l');
-                                        jButton202.setText("Clear form fields");
-                                        jButton202.setToolTipText("Click here to clear fields");
-                                        jButton202.setMinimumSize(new java.awt.Dimension(30, 25));
-                                        jButton202.setPreferredSize(new java.awt.Dimension(30, 25));
-                                        jButton202.addActionListener(new java.awt.event.ActionListener() {
+                                        clearFieldsBtn.setMnemonic('l');
+                                        clearFieldsBtn.setText("Clear form fields");
+                                        clearFieldsBtn.setToolTipText("Click here to clear fields");
+                                        clearFieldsBtn.setMinimumSize(new java.awt.Dimension(30, 25));
+                                        clearFieldsBtn.setPreferredSize(new java.awt.Dimension(30, 25));
+                                        clearFieldsBtn.addActionListener(new java.awt.event.ActionListener() {
                                             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                                jButton202ActionPerformed(evt);
+                                                clearFieldsBtnActionPerformed(evt);
                                             }
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -4426,16 +4489,16 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
-                                        buttonPanel.add(jButton202, gridBagConstraints);
+                                        buttonPanel.add(clearFieldsBtn, gridBagConstraints);
 
-                                        jButton252.setMnemonic('c');
-                                        jButton252.setText("Close form");
-                                        jButton252.setToolTipText("Click here to close window");
-                                        jButton252.setMinimumSize(new java.awt.Dimension(30, 25));
-                                        jButton252.setPreferredSize(new java.awt.Dimension(30, 25));
-                                        jButton252.addActionListener(new java.awt.event.ActionListener() {
+                                        closeFormBtn.setMnemonic('c');
+                                        closeFormBtn.setText("Close form");
+                                        closeFormBtn.setToolTipText("Click here to close window");
+                                        closeFormBtn.setMinimumSize(new java.awt.Dimension(30, 25));
+                                        closeFormBtn.setPreferredSize(new java.awt.Dimension(30, 25));
+                                        closeFormBtn.addActionListener(new java.awt.event.ActionListener() {
                                             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                                jButton252ActionPerformed(evt);
+                                                closeFormBtnActionPerformed(evt);
                                             }
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -4444,26 +4507,26 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
-                                        buttonPanel.add(jButton252, gridBagConstraints);
+                                        buttonPanel.add(closeFormBtn, gridBagConstraints);
 
-                                        jButton1.setMnemonic('h');
-                                        jButton1.setText("Help");
-                                        jButton1.setMinimumSize(new java.awt.Dimension(30, 25));
-                                        jButton1.setPreferredSize(new java.awt.Dimension(30, 25));
+                                        helpBtn.setMnemonic('h');
+                                        helpBtn.setText("Help");
+                                        helpBtn.setMinimumSize(new java.awt.Dimension(30, 25));
+                                        helpBtn.setPreferredSize(new java.awt.Dimension(30, 25));
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 0;
                                         gridBagConstraints.gridy = 11;
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
-                                        buttonPanel.add(jButton1, gridBagConstraints);
+                                        buttonPanel.add(helpBtn, gridBagConstraints);
 
-                                        jButton2.setText("Read Smart Card");
-                                        jButton2.setMinimumSize(new java.awt.Dimension(50, 25));
-                                        jButton2.setPreferredSize(new java.awt.Dimension(50, 25));
-                                        jButton2.addActionListener(new java.awt.event.ActionListener() {
+                                        readSmartCardBtn.setText("Read Smart Card");
+                                        readSmartCardBtn.setMinimumSize(new java.awt.Dimension(50, 25));
+                                        readSmartCardBtn.setPreferredSize(new java.awt.Dimension(50, 25));
+                                        readSmartCardBtn.addActionListener(new java.awt.event.ActionListener() {
                                             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                                jButton2ActionPerformed(evt);
+                                                readSmartCardBtnActionPerformed(evt);
                                             }
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -4472,16 +4535,16 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
-                                        buttonPanel.add(jButton2, gridBagConstraints);
+                                        buttonPanel.add(readSmartCardBtn, gridBagConstraints);
 
-                                        jButton4.setMnemonic('R');
-                                        jButton4.setText("Reprint file data");
-                                        jButton4.setMaximumSize(new java.awt.Dimension(25, 25));
-                                        jButton4.setMinimumSize(new java.awt.Dimension(30, 25));
-                                        jButton4.setPreferredSize(new java.awt.Dimension(30, 25));
-                                        jButton4.addActionListener(new java.awt.event.ActionListener() {
+                                        reprintFileBtn.setMnemonic('R');
+                                        reprintFileBtn.setText("Reprint file data");
+                                        reprintFileBtn.setMaximumSize(new java.awt.Dimension(25, 25));
+                                        reprintFileBtn.setMinimumSize(new java.awt.Dimension(30, 25));
+                                        reprintFileBtn.setPreferredSize(new java.awt.Dimension(30, 25));
+                                        reprintFileBtn.addActionListener(new java.awt.event.ActionListener() {
                                             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                                jButton4ActionPerformed(evt);
+                                                reprintFileBtnActionPerformed(evt);
                                             }
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -4490,12 +4553,12 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
-                                        buttonPanel.add(jButton4, gridBagConstraints);
+                                        buttonPanel.add(reprintFileBtn, gridBagConstraints);
 
-                                        jButton5.setText("Scan Document");
-                                        jButton5.addActionListener(new java.awt.event.ActionListener() {
+                                        scanDocumentBtn.setText("Scan Document");
+                                        scanDocumentBtn.addActionListener(new java.awt.event.ActionListener() {
                                             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                                jButton5ActionPerformed(evt);
+                                                scanDocumentBtnActionPerformed(evt);
                                             }
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -4504,12 +4567,12 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
-                                        buttonPanel.add(jButton5, gridBagConstraints);
+                                        buttonPanel.add(scanDocumentBtn, gridBagConstraints);
 
-                                        jButton9.setText("Booking of Patient");
-                                        jButton9.addActionListener(new java.awt.event.ActionListener() {
+                                        bookingBtn.setText("Booking of Patient");
+                                        bookingBtn.addActionListener(new java.awt.event.ActionListener() {
                                             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                                jButton9ActionPerformed(evt);
+                                                bookingBtnActionPerformed(evt);
                                             }
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -4518,7 +4581,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
-                                        buttonPanel.add(jButton9, gridBagConstraints);
+                                        buttonPanel.add(bookingBtn, gridBagConstraints);
 
                                         webCameraPanel.setBackground(new java.awt.Color(204, 204, 255));
                                         webCameraPanel.setBorder(new javax.swing.border.MatteBorder(null));
@@ -4568,8 +4631,25 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.gridy = 5;
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
                                         gridBagConstraints.weightx = 2.0;
-                                        gridBagConstraints.weighty = 10.0;
+                                        gridBagConstraints.weighty = 20.0;
                                         buttonPanel.add(webCameraPanel, gridBagConstraints);
+
+                                        fingerPrintReaderBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fingerprint_images.jpg"))); // NOI18N
+                                        fingerPrintReaderBtn.setText("Finger Print Reader");
+                                        fingerPrintReaderBtn.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+                                        fingerPrintReaderBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+                                        fingerPrintReaderBtn.addActionListener(new java.awt.event.ActionListener() {
+                                            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                                fingerPrintReaderBtnActionPerformed(evt);
+                                            }
+                                        });
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 0;
+                                        gridBagConstraints.gridy = 6;
+                                        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                                        gridBagConstraints.weightx = 1.0;
+                                        gridBagConstraints.weighty = 1.0;
+                                        buttonPanel.add(fingerPrintReaderBtn, gridBagConstraints);
 
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 6;
@@ -4586,10 +4666,10 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.weighty = 1.0;
                                         getContentPane().add(mainPanel, gridBagConstraints);
 
-                                        setBounds(0, 0, 1088, 550);
+                                        setBounds(0, 0, 1244, 550);
                                     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void reprintFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reprintFileBtnActionPerformed
 
         int slipNo = 0;
         String rct = null;
@@ -4639,9 +4719,9 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
 //        // TODO add your handling code here:
 
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_reprintFileBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void readSmartCardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readSmartCardBtnActionPerformed
         residenceTxt.setText("");
         nokNameTxt.setText("");
         // jTextField14.setText("");
@@ -4767,7 +4847,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
          * jTextField2.setText(claimFile.medicalAidNumber);
          */
 // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_readSmartCardBtnActionPerformed
 
     private void patientSearchDialogComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_patientSearchDialogComponentHidden
 //        jSearchDialog.dispose();
@@ -4941,7 +5021,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField1112CaretUpdate
 
     private void searchButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton11ActionPerformed
-        this.jButton1.setVisible(true);
+        this.helpBtn.setVisible(true);
         searchButton3Clicked();        // Add your handling code here:
     }//GEN-LAST:event_searchButton11ActionPerformed
     private void searchButton3Clicked() {
@@ -4994,12 +5074,12 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         patientNumberTxt.grabFocus();
         paymentModeCmbx.setSelectedItem("Cash");
         patientCategoryCmbx.setSelectedItem("Above 5 Yrs".toUpperCase());
-        jButton3.setEnabled(true);
-        jButton301.setText("Save file data");
+        savePrintRegistrationBtn.setEnabled(true);
+        saveRegistrationBtn.setText("Save file data");
         registrationStatusLbl.setText("");
-        jButton301.setEnabled(true);
-        jButton152.setEnabled(true);
-        jButton3.setEnabled(true);
+        saveRegistrationBtn.setEnabled(true);
+        editFileBtn.setEnabled(true);
+        savePrintRegistrationBtn.setEnabled(true);
         this.reVisit = false;
 
         searchbyNameChkbx.setEnabled(true);
@@ -5071,11 +5151,11 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
         patientCategoryCmbx.setSelectedItem("Above 5 Yrs".toUpperCase());
         registrationStatusLbl.setText("");
-        jButton301.setEnabled(true);
-        jButton3.setEnabled(true);
+        saveRegistrationBtn.setEnabled(true);
+        savePrintRegistrationBtn.setEnabled(true);
         this.reVisit = false;
-        jButton152.setEnabled(false);
-        jButton301.setText("Save file data");
+        editFileBtn.setEnabled(false);
+        saveRegistrationBtn.setText("Save file data");
         searchbyNameChkbx.setEnabled(false);
         searchbyNumberChkbx.setEnabled(false);
         searchButton1.setEnabled(false);
@@ -5161,9 +5241,9 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_createNewFileRbtnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void savePrintRegistrationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePrintRegistrationBtnActionPerformed
         String cmbx1 = paymentModeCmbx.getSelectedItem().toString();
-        jButton301ActionPerformed(evt);
+        saveRegistrationBtnActionPerformed(evt);
         int slipNo = 0;
         String rct = null;
         String selectedchkbx = null;
@@ -5231,7 +5311,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
             //         pFile.PatientFilePdf(connectDB, patientNumberTxt.getText().toUpperCase(), firstNameTxt.getText().toUpperCase() + " " + surNameTxt.getText().toUpperCase(), datePickerYOB.getDate(), selectedchkbx.toUpperCase(), selectedchkbx1.toUpperCase(), ageTxt.getText().toUpperCase(), locationTxt.getText().toUpperCase(), currentResidenceTxt.getText().toUpperCase(), jTextField5.getText().toUpperCase(), jTextField5821.getText().toUpperCase(), nokNameTxt.getText().toUpperCase(), nokRelationShipCmbx.getSelectedItem().toString().toUpperCase(), jTextField20.getText().toUpperCase(), nokTelephoneTxt.getText().toUpperCase(), nokResidenceTxt.getText().toUpperCase());
         }
         // Add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_savePrintRegistrationBtnActionPerformed
 
     private void dispose111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dispose111ActionPerformed
         jSearchDialog111.dispose();        // Add your handling code here:
@@ -5289,8 +5369,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         }
         // }
 
-        jButton301.setEnabled(true);
-        jButton3.setEnabled(true);
+        saveRegistrationBtn.setEnabled(true);
+        savePrintRegistrationBtn.setEnabled(true);
         jSearchDialog111.dispose();        // Add your handling code here:
     }//GEN-LAST:event_jSearchTable111MouseClicked
 
@@ -5518,7 +5598,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                  * ?,?,?,?,?,?)");
                  */
 
-                /*
+ /*
                  * java.sql.Statement stm1 = connectDB.createStatement();
                  * java.sql.ResultSet rse1 = stm1.executeQuery("select
                  * code,activity,user from pb_activity where activity_category
@@ -5857,9 +5937,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         firstNameTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 1).toString());
         surNameTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 2).toString());
         patientSearchDialog.dispose();
-        if (createNewFileRbtn.isSelected()) {
-            jSearchDialog4.dispose();
-        }
+        jSearchDialog4.dispose();
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
@@ -6002,18 +6080,20 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         } else {
             //    webCamPanel = new ImagePanel();
             webCameraPanel.remove(webCamPanel);
-            panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-            panel.setMaximumSize(new java.awt.Dimension(142, 37));
-            panel.setLayout(new java.awt.GridBagLayout());
-            java.awt.GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridwidth = 2;
-            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-            gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.weighty = 10.0;
-            webCameraPanel.add(panel, gridBagConstraints);
+            if (panel != null) {
+                panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+                panel.setMaximumSize(new java.awt.Dimension(142, 37));
+                panel.setLayout(new java.awt.GridBagLayout());
+                java.awt.GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridwidth = 2;
+                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                gridBagConstraints.weightx = 1.0;
+                gridBagConstraints.weighty = 10.0;
+                webCameraPanel.add(panel, gridBagConstraints);
+            }
         }
         webCameraPanel.revalidate();
-            //  com.afrisoftech.lib.SaveBytea2DB.insertBytea(connectDB, file, "JPG", "image/jpeg", patientNumberTxt.getText(), file.getName(), "OUT_PATIENT_REGISTER");
+        //  com.afrisoftech.lib.SaveBytea2DB.insertBytea(connectDB, file, "JPG", "image/jpeg", patientNumberTxt.getText(), file.getName(), "OUT_PATIENT_REGISTER");
 //        } catch (IOException e1) {
 //            e1.printStackTrace();
 //        }
@@ -6049,7 +6129,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                 System.out.println("Nothing");
             } else {
 
-                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence, patient_race as unit_number, tel_no as telephone_no, id_no, nok_telno as nok_tel_no, nok as next_of_kin from hp_patient_register where patient_no ILIKE '%" + patientSearchTxt.getText() + "%'  or patient_race ILIKE '" + patientSearchTxt.getText() + "%'  order by patient_no")); // or tel_no ILIKE '" + patientSearchTxt.getText() + "%' or nok_telno  ILIKE '" + patientSearchTxt.getText() + "%' or id_no ILIKE '" + patientSearchTxt.getText() + "%'  order by patient_no"));
+                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence, patient_race as unit_number, tel_no as telephone_no, id_no, nok_telno as nok_tel_no, nok as next_of_kin from hp_patient_register where patient_no ILIKE '%" + patientSearchTxt.getText() + "%'  or patient_race ILIKE '" + patientSearchTxt.getText() + "%' or tel_no ILIKE '" + patientSearchTxt.getText() + "%' or nok_telno  ILIKE '" + patientSearchTxt.getText() + "%' or id_no ILIKE '" + patientSearchTxt.getText() + "%'  order by patient_no"));
 
                 patientSearchTable.setShowHorizontalLines(false);
                 patientSearchJscrl.setViewportView(patientSearchTable);
@@ -6068,11 +6148,11 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
     private void searchButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton1ActionPerformed
         if (jRadioButton2.isSelected()) {
-            jButton301.setEnabled(false);
-            jButton3.setEnabled(false);
+            saveRegistrationBtn.setEnabled(false);
+            savePrintRegistrationBtn.setEnabled(false);
         } else if (revisitRbtn.isSelected()) {
-            jButton301.setEnabled(true);
-            jButton3.setEnabled(true);
+            saveRegistrationBtn.setEnabled(true);
+            savePrintRegistrationBtn.setEnabled(true);
         }
         billindDetailsTabbedPane.setSelectedIndex(0);
         searchButtonClicked();
@@ -6080,7 +6160,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_searchButton1ActionPerformed
 
-    private void jButton152ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton152ActionPerformed
+    private void editFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editFileBtnActionPerformed
 
         registrationStatusLbl.setText("");
 
@@ -6137,10 +6217,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                     + "information_source,education_level,occupation, emails, id_no, nok_add, pat_nationality, nok_telno,"
                     + "nok_relationship, nok_residence, nok_email, pat_marital_status, tribe, district, locations,"
                     + "sub_location, chief_name, sub_chief,(current_date-year_of_birth::date)/365 FROM hp_patient_register WHERE patient_no ILIKE '" + patientNumberTxt.getText() + "'");
-            if (createNewFileRbtn.isSelected()) {
-                jSearchDialog4.setVisible(false);
-            }
-
+            jSearchDialog4.setVisible(false);
             while (rset.next()) {
                 paymentModeCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(7), "-"));
                 dateofLastVisitTxt.setText(dbObject.getDBObject(rset.getObject(8), "-"));
@@ -6208,13 +6285,13 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
             System.out.println("Select not successful");
         }
         //}
-        jButton301.setEnabled(true);
-        jButton301.setText("Update");
+        saveRegistrationBtn.setEnabled(true);
+        saveRegistrationBtn.setText("Update");
         patientSearchDialog.dispose();
 
         //   javax.swing.JFrame bank = new NewPatients(connectDB, pConnDB, jTextField3.getText());
         //  bank.setVisible(true);        // Add your handling code here:
-    }//GEN-LAST:event_jButton152ActionPerformed
+    }//GEN-LAST:event_editFileBtnActionPerformed
 
     private void jCheckBox12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
         try {
@@ -6250,9 +6327,9 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         //this.jDialog31.setVisible(true);// Add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-    private void jButton301MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton301MouseMoved
+    private void saveRegistrationBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveRegistrationBtnMouseMoved
         jLabel2.setText("");        // Add your handling code here:
-    }//GEN-LAST:event_jButton301MouseMoved
+    }//GEN-LAST:event_saveRegistrationBtnMouseMoved
 
     private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
     }//GEN-LAST:event_jPanel1MouseEntered
@@ -6267,7 +6344,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         //       }        // Add your handling code here:
     }//GEN-LAST:event_formFocusGained
 
-    private void jButton202ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton202ActionPerformed
+    private void clearFieldsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFieldsBtnActionPerformed
         //   jComboBox1.setSelectedItem(null);
         patientCategoryCmbx.setSelectedItem(null);
         //   jComboBox1.setSelectedItem(null);
@@ -6311,12 +6388,15 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         jTextField26.setText("");
         this.clearForm();
         // Add your handling code here:
-    }//GEN-LAST:event_jButton202ActionPerformed
+    }//GEN-LAST:event_clearFieldsBtnActionPerformed
 
-    private void jButton252ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton252ActionPerformed
-        panel.stop();
-        this.setVisible(false);        // Add your handling code here:
-    }//GEN-LAST:event_jButton252ActionPerformed
+    private void closeFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeFormBtnActionPerformed
+        if (panel != null) {
+            panel.stop();
+            this.setVisible(false);
+        }
+// Add your handling code here:
+    }//GEN-LAST:event_closeFormBtnActionPerformed
 
     private void jPanel52ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel52ComponentShown
         //     jPanel2.setVisible(false);   // Add your handling code here:
@@ -6343,13 +6423,13 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
             }
 
             //jButton301.setEnabled(true);
-            jButton3.setEnabled(true);
+            savePrintRegistrationBtn.setEnabled(true);
             registrationStatusLbl.setText("");
         }
         // Add your handling code here:
     }//GEN-LAST:event_paymentModeCmbxActionPerformed
 
-    private void jButton301ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton301ActionPerformed
+    private void saveRegistrationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveRegistrationBtnActionPerformed
 
         int unitNo = 0;
         try {
@@ -6537,7 +6617,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                 String patientsNo = com.afrisoftech.lib.DateLables.getDateLabel();
                                                                 int pNo = 0;
 
-                                                                if (jButton301.getText().equalsIgnoreCase("Save file data")) {
+                                                                if (saveRegistrationBtn.getText().equalsIgnoreCase("Save file data")) {
 
                                                                     //     if (this.jTextField21.getText().toCharArray().length < 1 || this.jTextField6.getText().toCharArray().length < 1){// || this.jTextField1.getText().toCharArray().length < 1){
                                                                     java.sql.Statement stm12 = connectDB.createStatement();
@@ -6852,7 +6932,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                     pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
 
                                                                                     pstmt.executeUpdate();
-                                                                                                                // javax.swing.JOptionPane.showMessageDialog(this, "Patient Registered Successfully for Pateint Number :["++"] and Name : ["++"]", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                                                                    // javax.swing.JOptionPane.showMessageDialog(this, "Patient Registered Successfully for Pateint Number :["++"] and Name : ["++"]", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                                                                                     //      this.registrationStatusLbl.setText("PATIENT REGISTRATION SUCCESSFUL");
                                                                                     //     this.registrationStatusLbl.setVisible(true);
@@ -7538,7 +7618,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                     }
 
                                                                 } else {
-                                                                    if (jButton301.getText().equalsIgnoreCase("Update")) {
+                                                                    if (saveRegistrationBtn.getText().equalsIgnoreCase("Update")) {
 
                                                                         //    System.out.println("PSTMT1 : and JTEXTFIELD21 : "+jTextField21.toString());
                                                                         java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("UPDATE hp_patient_register set first_name = ?,"
@@ -7875,9 +7955,9 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                 }
 
                                                                 paymentModeCmbx.setSelectedItem(null);
-                                                                jButton301.setEnabled(false);
-                                                                jButton3.setEnabled(false);
-                                                                jButton301.setText("Save file data");
+                                                                saveRegistrationBtn.setEnabled(false);
+                                                                savePrintRegistrationBtn.setEnabled(false);
+                                                                saveRegistrationBtn.setText("Save file data");
 
                                                                 connectDB.commit();
                                                                 connectDB.setAutoCommit(true);
@@ -7968,6 +8048,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 //                                                                                     policeStationTxt.getText()+ " " +  accidentDate+ " " + 
 //                                                                                     driverNameTxt.getText()+ " " + accidentVehicleNumberTxt.getText()+ " " + 
 //                                                                                     accidentDriverLicenseTxt.getText()+ " " + accidentDriverIDTxt.getText());
+
 ////                                                regForm.callPdf(connectDB, patientNumberTxt.getText(), "OP");
 //                                                                            regForm.generatePdf(firstNameTxt.getText().toUpperCase() + " " + surNameTxt.getText().toUpperCase(),
 //                                                                                    ageTxt.getText(), selectedStatus, nationalityCmbx.getSelectedItem().toString(),
@@ -7981,7 +8062,6 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 //                                                                                     policeStationTxt.getText(), accidentDate,
 //                                                                                     driverNameTxt.getText(),accidentVehicleNumberTxt.getText(),
 //                                                                                     accidentDriverLicenseTxt.getText(),accidentDriverIDTxt.getText());
-
                                                 this.typeofAccidentCmbx.setSelectedItem(null);
                                                 this.modeofArrivalCmbx.setSelectedItem(null);
                                                 this.nameofPoliceOfficerTxt.setText(null);
@@ -7990,9 +8070,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                 this.accidentVehicleNumberTxt.setText(null);
                                                 this.accidentDriverLicenseTxt.setText(null);
                                                 this.accidentDriverIDTxt.setText(null);
-                                                String patientNumber = patientNumberTxt.getText();
                                                 this.clearForm();
-                                                patientNumberTxt.setText(patientNumber);
                                             } catch (java.lang.Exception ex) {
                                                 ex.printStackTrace();
                                                 System.out.println(ex.getMessage());
@@ -8054,7 +8132,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 //            }
 //        }
 // Add your handling code here:
-    }//GEN-LAST:event_jButton301ActionPerformed
+    }//GEN-LAST:event_saveRegistrationBtnActionPerformed
 
     private void jPanel1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentShown
         // Add your handling code here:
@@ -8158,9 +8236,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         patientNumberTxt.setText(jSearchTable4.getValueAt(jSearchTable4.getSelectedRow(), 0).toString());
         firstNameTxt.setText(jSearchTable4.getValueAt(jSearchTable4.getSelectedRow(), 1).toString());
         surNameTxt.setText(jSearchTable4.getValueAt(jSearchTable4.getSelectedRow(), 2).toString());
-        if (createNewFileRbtn.isSelected()) {
-            jSearchDialog4.dispose();
-        }
+        jSearchDialog4.dispose();
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
@@ -8240,20 +8316,16 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
         //     emailAddTxt.setText("");
         //     idNoTxt.setText("");
-        jButton301.setEnabled(true);
+        saveRegistrationBtn.setEnabled(true);
 
-        if (createNewFileRbtn.isSelected()) {
-            jSearchDialog4.dispose();
-        }
+        jSearchDialog4.dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jSearchTable4MouseClicked
 
     private void dispose3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dispose3ActionPerformed
 
-        if (createNewFileRbtn.isSelected()) {
-            jSearchDialog4.dispose();
-        }
+        jSearchDialog4.dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_dispose3ActionPerformed
@@ -8262,7 +8334,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jSearchDialog4ComponentHidden
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void scanDocumentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanDocumentBtnActionPerformed
         /*
          try {
          try {
@@ -8299,7 +8371,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
          */
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_scanDocumentBtnActionPerformed
 
     private void patientCategoryCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientCategoryCmbxActionPerformed
         if (paymentModeCmbx.getSelectedItem() != null) {
@@ -8315,13 +8387,13 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         patientNumberTxt.grabFocus();
         paymentModeCmbx.setSelectedItem("Cash");
         patientCategoryCmbx.setSelectedItem("Above 5 Yrs".toUpperCase());
-        jButton3.setEnabled(true);
-        jButton301.setText("Save file data");
+        savePrintRegistrationBtn.setEnabled(true);
+        saveRegistrationBtn.setText("Save file data");
         registrationStatusLbl.setText("");
-        jButton301.setEnabled(false);
-        jButton3.setEnabled(false);
+        saveRegistrationBtn.setEnabled(false);
+        savePrintRegistrationBtn.setEnabled(false);
         this.reVisit = false;
-        jButton152.setEnabled(true);
+        editFileBtn.setEnabled(true);
 
         searchbyNameChkbx.setEnabled(true);
         searchbyNumberChkbx.setEnabled(true);
@@ -8384,7 +8456,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         this.reVisit = true;        // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void bookingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingBtnActionPerformed
         TheatreBookingIntfr comp = new TheatreBookingIntfr(connectDB, pConnDB);
         saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
         try {
@@ -8392,12 +8464,12 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         } catch (java.beans.PropertyVetoException pvt) {
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_bookingBtnActionPerformed
 
     private void takeSnapBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_takeSnapBtnActionPerformed
         if (patientNumberTxt.getText().length() > 3) {
             try {
-                imageFile = new File(String.format(patientNumberTxt.getText() + "-%d.jpg", System.currentTimeMillis()).replace("/", "_"));
+                imageFile = new File(String.format(patientNumberTxt.getText().replace("/", "") + "-%d.jpg", System.currentTimeMillis()));
                 ImageIO.write(webcam.getImage(), "JPG", imageFile);
                 System.out.println("Image saved in " + imageFile.getAbsolutePath());
                 if (Thread.currentThread().isAlive()) {
@@ -8631,55 +8703,51 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_dateofLastVisitTxtMouseClicked
 
     private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_firstNameTxtCaretUpdate
-//
-//        searchbyNameChkbx.setSelected(true);
-//
-//        System.out.println("Showing dialog");
-//
-//        java.awt.Point point = this.firstNameTxt.getLocationOnScreen();
-//
-//        point.setLocation(firstNameTxt.getLocationOnScreen().x, firstNameTxt.getLocationOnScreen().y + 20);
-//        if (createNewFileRbtn.isSelected()) {
-//
-//            jSearchDialog4.setSize(700, 200);
-//
-//            jSearchDialog4.setLocation(point);
-//
-//            jSearchDialog4.setVisible(true);
-//
-//            if (searchbyNameChkbx.isSelected() && createNewFileRbtn.isSelected()) {
-//                if (firstNameTxt.getCaretPosition() < 3) {
-//
-//                    System.out.println("Nothing");
-//                } else {
-//                    jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence from hp_patient_register where (replace(second_name, '''', '') ILIKE '%" + surNameTxt.getText().replace("'", "") + "%' AND replace(first_name, '''', '') ILIKE '%" + firstNameTxt.getText().replace("'", "") + "%') OR (replace(first_name, '''', '') ILIKE '%" + surNameTxt.getText().replace("'", "") + "%' AND replace(second_name, '''', '') ILIKE '%" + firstNameTxt.getText().replace("'", "") + "%') order by second_name"));
-////                jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM patient_names('" + firstNameTxt.getText() + "','" + surNameTxt.getText() + "','' ) order by second_name"));
-//
-//                    jSearchTable4.setShowHorizontalLines(false);
-//                    jSearchScrollPane4.setViewportView(jSearchTable4);
-//                }
-//                firstNameTxt.requestFocusInWindow();
-//            } else if (searchbyNumberChkbx.isSelected() && createNewFileRbtn.isSelected()) {
-//                if (firstNameTxt.getCaretPosition() < 3) {
-//
-//                    System.out.println("Nothing");
-//                } else {
-//
-//                    jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence from hp_patient_register where patient_no ILIKE '%" + firstNameTxt.getText() + "%' order by patient_no"));
-//
-//                    jSearchTable4.setShowHorizontalLines(false);
-//                    jSearchScrollPane4.setViewportView(jSearchTable4);
-//
-//                }
-//
-//            }
-//
-//        
-//    }
-//
-//    firstNameTxt.requestFocusInWindow ();
 
-    // TODO add your handling code here:
+        searchbyNameChkbx.setSelected(true);
+
+        System.out.println("Showing dialog");
+
+        java.awt.Point point = this.firstNameTxt.getLocationOnScreen();
+
+        point.setLocation(firstNameTxt.getLocationOnScreen().x, firstNameTxt.getLocationOnScreen().y + 20);
+
+        jSearchDialog4.setSize(700, 200);
+
+        jSearchDialog4.setLocation(point);
+
+        jSearchDialog4.setVisible(true);
+
+        if (searchbyNameChkbx.isSelected()) {
+            if (firstNameTxt.getCaretPosition() < 3) {
+
+                System.out.println("Nothing");
+            } else {
+                jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence from hp_patient_register where (replace(second_name, '''', '') ILIKE '%" + surNameTxt.getText().replace("'", "") + "%' AND replace(first_name, '''', '') ILIKE '%" + firstNameTxt.getText().replace("'", "") + "%') OR (replace(first_name, '''', '') ILIKE '%" + surNameTxt.getText().replace("'", "") + "%' AND replace(second_name, '''', '') ILIKE '%" + firstNameTxt.getText().replace("'", "") + "%') order by second_name"));
+//                jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM patient_names('" + firstNameTxt.getText() + "','" + surNameTxt.getText() + "','' ) order by second_name"));
+
+                jSearchTable4.setShowHorizontalLines(false);
+                jSearchScrollPane4.setViewportView(jSearchTable4);
+            }
+            firstNameTxt.requestFocusInWindow();
+        } else if (searchbyNumberChkbx.isSelected()) {
+            if (firstNameTxt.getCaretPosition() < 3) {
+
+                System.out.println("Nothing");
+            } else {
+
+                jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence from hp_patient_register where patient_no ILIKE '%" + firstNameTxt.getText() + "%' order by patient_no"));
+
+                jSearchTable4.setShowHorizontalLines(false);
+                jSearchScrollPane4.setViewportView(jSearchTable4);
+
+            }
+
+        }
+
+        firstNameTxt.requestFocusInWindow();
+
+        // TODO add your handling code here:
     }//GEN-LAST:event_firstNameTxtCaretUpdate
 
     private void surNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_surNameTxtCaretUpdate
@@ -8823,17 +8891,51 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void firstNameTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_firstNameTxtFocusLost
-        if (createNewFileRbtn.isSelected()) {
-            jSearchDialog4.dispose();
-        }
+
+        jSearchDialog4.dispose();
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_firstNameTxtFocusLost
 
     private void servicePointCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_servicePointCmbxActionPerformed
 
+        try {
+               java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(patient_no) FROM ac_ledger WHERE date = '"+datePicker2.getDate()+"' AND service_type ILIKE '%card%' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE UPPER(parameter) = '"+servicePointCmbx.getSelectedItem().toString().toUpperCase()+"' AND date = '"+datePicker2.getDate()+"')");
+               java.sql.ResultSet rset = pstmt.executeQuery();
+            while(rset.next()){
+                cardsSoldTxt.setText(String.valueOf(rset.getInt(1)));
+            }
+            rset.close();
+            pstmt.close();
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        
+        
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(patient_no) FROM ac_ledger WHERE date = '"+datePicker2.getDate()+"' AND service_type ILIKE '%file%' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE UPPER(parameter) = '"+servicePointCmbx.getSelectedItem().toString().toUpperCase()+"' AND date = '"+datePicker2.getDate()+"' UNION SELECT patient_no FROM hp_admission WHERE UPPER(diagnosis3) = '"+servicePointCmbx.getSelectedItem().toString().toUpperCase()+"' AND date = '"+datePicker2.getDate()+"')");
+            java.sql.ResultSet rset = pstmt.executeQuery();
+            while(rset.next()){
+                filesSoldTxt.setText(String.valueOf(rset.getInt(1)));
+            }
+            rset.close();
+            pstmt.close();
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        
 //        defaultServicePoint = servicePointCmbx.getSelectedItem().toString();
-        // TODO add your handling code here:
+            // TODO add your handling code here:
     }//GEN-LAST:event_servicePointCmbxActionPerformed
+
+    private void fingerPrintReaderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fingerPrintReaderBtnActionPerformed
+
+        com.afrisoftech.lib.biometric.SecuGen secugenFingerPrint = new com.afrisoftech.lib.biometric.SecuGen();
+        
+        secugenFingerPrint.registerFingerPrint(connectDB, visitID);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fingerPrintReaderBtnActionPerformed
     private void changeDate() {
         ageLabel.setText(com.afrisoftech.lib.PatientAge.getPatientActualAge(connectDB, this.datePickerYOB.getDate()));
         ageTxt.setText(String.valueOf(com.afrisoftech.lib.PatientAge.getPatientAge(connectDB, this.datePickerYOB.getDate())));
@@ -8983,7 +9085,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
         //     emailAddTxt.setText("");
         //     idNoTxt.setText("");
-        jButton301.setEnabled(true);
+        saveRegistrationBtn.setEnabled(true);
     }
 
     public void takeSnaphotFromVideo() {
@@ -9009,80 +9111,79 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         //pack();
         //setVisible(true);
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    
-
-}
+    }
 
     private class StartAction extends AbstractAction implements Runnable {
 
-    public StartAction() {
-        super("Start");
-    }
+        public StartAction() {
+            super("Start");
+        }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
+        @Override
+        public void actionPerformed(ActionEvent e) {
 //            panel.stop();
 //            initializeWebCam();
-        webCameraPanel.remove(webCamPanel);
-        startBtn.setEnabled(false);
-        takeSnapBtn.setEnabled(true);
+            webCameraPanel.remove(webCamPanel);
+            startBtn.setEnabled(false);
+            takeSnapBtn.setEnabled(true);
+            if (panel != null) {
+                panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+                panel.setMaximumSize(new java.awt.Dimension(142, 37));
+                panel.setLayout(new java.awt.GridBagLayout());
+                java.awt.GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridwidth = 2;
+                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                gridBagConstraints.weightx = 1.0;
+                gridBagConstraints.weighty = 10.0;
+                panel.setSize(displaySize);
+                webCameraPanel.add(panel, gridBagConstraints);
 
-        panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        panel.setMaximumSize(new java.awt.Dimension(142, 37));
-        panel.setLayout(new java.awt.GridBagLayout());
-        java.awt.GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 10.0;
-        panel.setSize(displaySize);
-        webCameraPanel.add(panel, gridBagConstraints);
-
-        webCameraPanel.validate();
+                webCameraPanel.validate();
+            }
 
             // remember to start panel asynchronously - otherwise GUI will be
-        // blocked while OS is opening webcam HW (will have to wait for
-        // webcam to be ready) and this causes GUI to hang, stop responding
-        // and repainting
-        executor.execute(this);
+            // blocked while OS is opening webcam HW (will have to wait for
+            // webcam to be ready) and this causes GUI to hang, stop responding
+            // and repainting
+            executor.execute(this);
 
-        this.run();
+            this.run();
 
-    }
+        }
 
-    @Override
-    public void run() {
-
-        panel.start();
-
-    }
-}
-
-// jSearchDialog.dispose();
-public class ImagePanel extends javax.swing.JPanel {
-
-    private Image image;
-
-    public ImagePanel() {
-        try {
-            if (imageFile != null) {
-                image = ImageIO.read(imageFile);
+        @Override
+        public void run() {
+            if (panel != null) {
+                panel.start();
             }
-        } catch (IOException ex) {
-            // handle exception...
         }
     }
 
-    @Override
-    protected void paintComponent(java.awt.Graphics g) {
-        super.paintComponent(g);
-        System.out.println("Doing image painting");
-        g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), this); // see javadoc for more info on the parameters            
+    // jSearchDialog.dispose();
+    public class ImagePanel extends javax.swing.JPanel {
+
+        private Image image;
+
+        public ImagePanel() {
+            try {
+                if (imageFile != null) {
+                    image = ImageIO.read(imageFile);
+                }
+            } catch (IOException ex) {
+                // handle exception...
+            }
+        }
+
+        @Override
+        protected void paintComponent(java.awt.Graphics g) {
+            super.paintComponent(g);
+            System.out.println("Doing image painting");
+            g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), this); // see javadoc for more info on the parameters            
+        }
+
     }
 
-}
-
-private void initializeWebCam() {
+    private void initializeWebCam() {
         webcam = Webcam.getDefault();
         if (webcam != null) {
             webCameraPanel.remove(webCamPanel);
@@ -9123,6 +9224,7 @@ private void initializeWebCam() {
     private javax.swing.JFormattedTextField ageYrsTxt;
     private javax.swing.JTabbedPane billindDetailsTabbedPane;
     private javax.swing.JPanel bioDataPanel;
+    private javax.swing.JButton bookingBtn;
     private javax.swing.JTextField branchTxt;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
@@ -9135,9 +9237,12 @@ private void initializeWebCam() {
     private javax.swing.JPanel cardDetailsPanel;
     private javax.swing.JLabel cardSerialNoLbl;
     private javax.swing.JTextField cardSerialNoTxt;
+    private javax.swing.JTextField cardsSoldTxt;
+    private javax.swing.JButton clearFieldsBtn;
     private javax.swing.JLabel clinicNumberLbl;
     private javax.swing.JTextField clinicNumberTxt;
     private javax.swing.JButton closeBtn;
+    public javax.swing.JButton closeFormBtn;
     private javax.swing.JComboBox countyofBirthCmbx;
     private javax.swing.JLabel countyofBirthLbl;
     private javax.swing.JComboBox countyofResidenceCmbx;
@@ -9177,6 +9282,7 @@ private void initializeWebCam() {
     private javax.swing.JButton disposeDiseaseSearchBtn;
     private javax.swing.JComboBox districtCmbx;
     private javax.swing.JTextField driverNameTxt;
+    private javax.swing.JButton editFileBtn;
     private javax.swing.JComboBox educationLevelCmbx;
     private javax.swing.JTextField emailAddTxt;
     private javax.swing.JTextField emailAddTxt1;
@@ -9188,8 +9294,13 @@ private void initializeWebCam() {
     private javax.swing.JPanel facilitySearchMainPanel;
     private javax.swing.JTable facilitySearchTable;
     private javax.swing.JTextField facilitySearchTxt;
+    private javax.swing.JTextField filesSoldTxt;
+    public static javax.swing.JDialog fingerPrintDialog;
+    private javax.swing.JButton fingerPrintReaderBtn;
+    public static javax.swing.JLabel fingerprintIconLabel;
     private javax.swing.JTextField firstNameTxt;
     private javax.swing.JPanel headerPanel;
+    private javax.swing.JButton helpBtn;
     private javax.swing.JLabel idNoLbl;
     private javax.swing.JLabel idNoLbl1;
     private javax.swing.JLabel idNoLbl2;
@@ -9198,22 +9309,12 @@ private void initializeWebCam() {
     private javax.swing.JComboBox informationSourceCmbx;
     private javax.swing.JPanel insuranceDetailsPanel;
     private javax.swing.JPanel insurerDetailsPanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton1111;
-    private javax.swing.JButton jButton152;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton202;
-    public javax.swing.JButton jButton252;
     private javax.swing.JButton jButton252111;
-    private javax.swing.JButton jButton3;
-    public static javax.swing.JButton jButton301;
     private javax.swing.JButton jButton301111;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton51;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
@@ -9262,7 +9363,9 @@ private void initializeWebCam() {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
@@ -9408,6 +9511,7 @@ private void initializeWebCam() {
     private javax.swing.JPanel previousPanel;
     private javax.swing.JScrollPane previousVisitsScrollPane;
     private javax.swing.JTable previousVisitsTable;
+    private javax.swing.JButton readSmartCardBtn;
     private javax.swing.JComboBox referralCountyCmbx;
     private javax.swing.JLabel referralCountyLbl;
     private javax.swing.JTextField referralFacilityNameTxt;
@@ -9425,6 +9529,7 @@ private void initializeWebCam() {
     private javax.swing.JScrollPane reportsScrollPane;
     private javax.swing.JLabel reportsSpacerLbl;
     private javax.swing.JTable reportsTable;
+    private javax.swing.JButton reprintFileBtn;
     private javax.swing.JLabel residenceCountyLbl;
     private javax.swing.JTextField residenceTxt;
     public javax.swing.JRadioButton revisitRbtn;
@@ -9435,6 +9540,9 @@ private void initializeWebCam() {
     private javax.swing.JLabel rtaSpacerLbl;
     private javax.swing.JLabel rtaTypeOfAccidentLbl;
     private javax.swing.JCheckBox samaritanChkbx;
+    private javax.swing.JButton savePrintRegistrationBtn;
+    public static javax.swing.JButton saveRegistrationBtn;
+    private javax.swing.JButton scanDocumentBtn;
     private javax.swing.JButton searchButton;
     private javax.swing.JButton searchButton1;
     private javax.swing.JButton searchButton11;

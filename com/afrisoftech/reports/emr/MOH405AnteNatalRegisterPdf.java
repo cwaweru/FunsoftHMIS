@@ -83,14 +83,11 @@ public class MOH405AnteNatalRegisterPdf implements java.lang.Runnable {
 
             threadCheck = false;
 
-
             System.out.println("We shall be lucky to get back to start in one piece");
 
         }
 
         if (!threadCheck) {
-
-
 
             Thread.currentThread().stop();
 
@@ -261,7 +258,6 @@ public class MOH405AnteNatalRegisterPdf implements java.lang.Runnable {
 
         java.lang.String pdfDateStamp = dateStampPdf.toString();
 
-
         try {
 
             java.io.File tempFile = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
@@ -274,7 +270,7 @@ public class MOH405AnteNatalRegisterPdf implements java.lang.Runnable {
 
             java.lang.String creditTotal = null;
 
-            com.lowagie.text.Document docPdf = new com.lowagie.text.Document(PageSize.A2.rotate());
+            com.lowagie.text.Document docPdf = new com.lowagie.text.Document(PageSize.A1.rotate());
 
             try {
 
@@ -282,7 +278,6 @@ public class MOH405AnteNatalRegisterPdf implements java.lang.Runnable {
                     Image img = Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo());
 
                     //Image imgWaterMark = Image.getInstance(System.getProperty("company.watermark"));
-
                     com.lowagie.text.pdf.PdfWriter.getInstance(docPdf, new java.io.FileOutputStream(tempFile));
 
                     String compName = null;
@@ -330,10 +325,9 @@ public class MOH405AnteNatalRegisterPdf implements java.lang.Runnable {
 
                     try {
 
+                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(46);
 
-                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(45);
-
-                        int headerwidths[] = {5, 25, 15, 15, 15, 45, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 40, 15, 15, 15, 15, 15, 40, 15, 15, 15, 45};
+                        int headerwidths[] = {5, 25, 25, 25, 15, 45, 15, 15, 15, 15, 15, 25, 25, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 25, 15, 15, 15, 15, 15, 15, 15, 15, 15, 40, 15, 15, 15, 15, 15, 40, 15, 15, 15, 25, 45};
 
                         table.setWidths(headerwidths);
 
@@ -362,7 +356,7 @@ public class MOH405AnteNatalRegisterPdf implements java.lang.Runnable {
                             java.lang.String yearString = dateFormatters.getDateString();
 
                             table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
-                            table.getDefaultCell().setColspan(45);
+                            table.getDefaultCell().setColspan(46);
 
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                             table.getDefaultCell().setFixedHeight(50);
@@ -382,14 +376,13 @@ public class MOH405AnteNatalRegisterPdf implements java.lang.Runnable {
                             phrase = new Phrase("HEALTH FACILITY : " + compName, pFontHeader22);
                             table.addCell(phrase);
 
-                            table.getDefaultCell().setColspan(6);
+                            table.getDefaultCell().setColspan(7);
                             phrase = new Phrase("MONTH : " + monthString.toUpperCase(), pFontHeader22);
                             table.addCell(phrase);
 
                             table.getDefaultCell().setColspan(6);
                             phrase = new Phrase("YEAR : " + yearString.toUpperCase(), pFontHeader22);
                             table.addCell(phrase);
-
 
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
 
@@ -413,7 +406,6 @@ public class MOH405AnteNatalRegisterPdf implements java.lang.Runnable {
 
                             phrase = new Phrase("ANC No. (Revisit)", pFontHeader11);
                             table.addCell(phrase);
-
 
                             phrase = new Phrase("No. of ANC Visits", pFontHeader11);
                             table.addCell(phrase);
@@ -450,7 +442,6 @@ public class MOH405AnteNatalRegisterPdf implements java.lang.Runnable {
 
                             phrase = new Phrase("Height", pFontHeader11);
                             table.addCell(phrase);
-
 
                             phrase = new Phrase("Blood Pressure", pFontHeader11);
                             table.addCell(phrase);
@@ -534,6 +525,9 @@ public class MOH405AnteNatalRegisterPdf implements java.lang.Runnable {
                             table.addCell(phrase);
 
                             phrase = new Phrase("Referrals 3 = To other HF, 4 = to CU", pFontHeader11);
+                            table.addCell(phrase);
+
+                            phrase = new Phrase("Telephone", pFontHeader11);
                             table.addCell(phrase);
 
                             phrase = new Phrase("Remarks/Comments", pFontHeader11);
@@ -674,6 +668,9 @@ public class MOH405AnteNatalRegisterPdf implements java.lang.Runnable {
                             phrase = new Phrase("AR", pFontHeader11);
                             table.addCell(phrase);
 
+                            phrase = new Phrase("AS", pFontHeader11);
+                            table.addCell(phrase);
+
                         } catch (java.text.ParseException psExec) {
 
                             psExec.printStackTrace();
@@ -700,9 +697,9 @@ public class MOH405AnteNatalRegisterPdf implements java.lang.Runnable {
                                         + " date_part('day', date_time::date) ||'-'||date_part('month', date_time::date) ||'-'||date_part('year', date_time::date),"
                                         + " anc, anc, no_visits, first_name||' '||middle_name||' '||last_name, "
                                         + "  village, age, marital_status, parity, gravida, lmp, edd, gestation, weight, height, bp, breast_exam, hb, vdrl, "
-                                        + " hiv_initial, hiv_retest, who_stage, cd_four, art_start, ctx, sdnvp, azt, haart, nvp, couple_canc, patner_tested,"
+                                        + " hiv_initial, hiv_retest, who_stage, cd_four, (CASE WHEN hiv_initial ilike '%P' OR hiv_retest ilike '%P' THEN art_start ELSE null END) AS art_start, ctx, sdnvp, azt, haart, nvp, couple_canc, patner_tested,"
                                         + "tb_status, cervical_cancer, other_con, deworm, ipt, tt_dose, iron||' '||folic, r_itn, add_treatment, anc_exercise, "
-                                        + "reffered, referred_out, remarks  FROM rh.mother_details WHERE "
+                                        + "reffered, referred_out, telephone, remarks  FROM rh.mother_details WHERE "
                                         + " date_time::date BETWEEN '" + beginDate + "' AND '" + endDate + "' "
                                         + " AND anc = ?");
 
@@ -855,6 +852,9 @@ public class MOH405AnteNatalRegisterPdf implements java.lang.Runnable {
                                     phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(44), ""), pFontHeader1);
                                     table.addCell(phrase);
 
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(45), ""), pFontHeader1);
+                                    table.addCell(phrase);
+
                                 }
 
                             }
@@ -905,7 +905,6 @@ public class MOH405AnteNatalRegisterPdf implements java.lang.Runnable {
         java.lang.Object[] listofStaffNos = null;
 
         java.util.Vector listStaffNoVector = new java.util.Vector(1, 1);
-
 
         try {
 

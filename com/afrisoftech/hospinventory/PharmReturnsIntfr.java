@@ -584,7 +584,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         jPanel6.add(outPtChbx, gridBagConstraints);
 
         buttonGroup1.add(walkinPtChbx);
-        walkinPtChbx.setText("Walk In Patient");
+        walkinPtChbx.setText("Walk-In Patient");
         walkinPtChbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         walkinPtChbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -844,7 +844,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         jPanel13.add(jScrollPane22, gridBagConstraints);
 
         jPanel23.setBackground(new java.awt.Color(204, 255, 204));
-        jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Confirm Quantities Before Returning", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 102)));
+        jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Confirm Quantities Before Returning", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 102))); // NOI18N
         jPanel23.setLayout(new java.awt.GridBagLayout());
 
         jLabel91.setText("Patient No.");
@@ -947,7 +947,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         jPanel23.add(jLabel61, gridBagConstraints);
 
-        jPanel42.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "At least 5 characters", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 102, 102)));
+        jPanel42.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "At least 5 characters", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 102, 102))); // NOI18N
         jPanel42.setLayout(new java.awt.GridBagLayout());
 
         patientNumberTxt.setEditable(false);
@@ -1259,7 +1259,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weightx = 500.0;
         gridBagConstraints.weighty = 1.0;
         jPanel9.add(jLabel2, gridBagConstraints);
 
@@ -1335,10 +1335,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 
         if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
 
-
             //     double presc = java.lang.Double.parseDouble(jTextField8.getText());
-
-
             if (outPtChbx.isSelected()) {
                 chbox = "OP";
             } else {
@@ -1350,7 +1347,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                     }
                 }
             }
-
 
             try {
 
@@ -1371,10 +1367,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 
                 //   BillInvoicePdf policy = new BillInvoicePdf();
                 //   policy.BillInvoicePdf(connectDB,jTextField9.getText(), jTextField1.getText(),jTextField3.getText(),prescNo,jTextField5.getText(),jTable1,datePicker1.getDate());
-
-
-
-
                 // }
                 //  jComboBox2.setSelectedItem(null);
             } catch (java.sql.SQLException sq) {
@@ -1423,10 +1415,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 
         if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
 
-
             //  double presc = java.lang.Double.parseDouble(jTextField8.getText());
-
-
             if (outPtChbx.isSelected()) {
                 chbox = "OP";
             } else {
@@ -1438,7 +1427,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                     }
                 }
             }
-
 
             try {
 
@@ -1458,14 +1446,11 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 
                 com.afrisoftech.txtreports.PrescriptionTxt policy = new com.afrisoftech.txtreports.PrescriptionTxt(connectDB, patientNumberTxt.getText(), patientNameTxt.getText(), prescNo, jTextField52.getText());
 
-
-
                 for (int k = 0; k < pharmacyReturnsTbl.getRowCount(); k++) {
                     for (int r = 0; r < pharmacyReturnsTbl.getColumnCount(); r++) {
                         pharmacyReturnsTbl.getModel().setValueAt(null, k, r);
                     }
                 }
-
 
                 // }
                 //  jComboBox2.setSelectedItem(null);
@@ -1507,9 +1492,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
          * System.out.println(sqlex.getMessage()); }
          *
          */
-
-
-
         jSearchDialog4.dispose();  // Add your handling code here:
     }//GEN-LAST:event_jSearchTable4MouseClicked
 
@@ -1555,8 +1537,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 
         jSearchDialog4.setVisible(true);
 
-
-
     }
     private void searchButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton3ActionPerformed
         //  searchButtonClicked3();  // Add your handling code here:
@@ -1587,7 +1567,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
             }
         }
 
-
         //  jTextField3.setText("0.00");// Add your handling code here:
     }//GEN-LAST:event_jButton32ActionPerformed
 
@@ -1613,15 +1592,11 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 
                 for (int i = 0; i < selectedRows.length; i++) {
 
-
-
                     javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) pharmacyReturnsTbl.getModel();
 
                     defTableModel.removeRow(selectedRows[i]);
 
                 }
-
-
 
             } else {
 
@@ -1640,10 +1615,9 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         java.util.Date periodFrom = null;
         java.util.Date periodTo = null;
-        
-      
-        java.util.Date dateToday=new java.util.Date();
-        java.text.SimpleDateFormat sdf=new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        java.util.Date dateToday = new java.util.Date();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         try {
 
@@ -1718,8 +1692,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
             if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
 
                 // presc = java.lang.Double.parseDouble(jTextField8.getText());
-
-
                 if (outPtChbx.isSelected()) {
                     chbox = "OP";
                 } else {
@@ -1732,7 +1704,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                     }
                 }
 
-
                 java.sql.Savepoint registerSavePoint = null;
                 try {
                     connectDB.setAutoCommit(false);
@@ -1743,7 +1714,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                 }
 
                 try {
-
 
                     java.sql.Statement stm121x = connectDB.createStatement();
 
@@ -1887,7 +1857,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                             stock = rs1111c.getObject(1).toString();
                                         }
 
-
                                         presc = 0.00;
 
                                         Total = java.lang.Double.parseDouble(jTextField32.getText());
@@ -1901,7 +1870,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                             amount1 = java.lang.Double.parseDouble(pharmacyReturnsTbl.getValueAt(i, 5).toString());
 
                                             //  percentage = (amount1/Total)*100;
-
                                             TotalPrice = amount1;
                                         }
                                         java.sql.Statement stm121 = connectDB.createStatement();
@@ -1930,7 +1898,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 
                                         String activityCde = null;
 
-
                                         java.sql.Statement stmactivity = connectDB.createStatement();
                                         java.sql.ResultSet rseactivity = stmactivity.executeQuery(""
                                                 + "SELECT stock_code FROM pb_departments WHERE department_name ilike '%" + pharmacyReturnsTbl.getModel().getValueAt(i, 6).toString() + "%'");
@@ -1939,23 +1906,20 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                             activityCde = rseactivity.getObject(1).toString();
                                             System.err.println(activityCde);
                                         }
-                                        
+
                                         Statement fee = connectDB.createStatement();
-                                         java.sql.ResultSet rseActvty = fee.executeQuery("select distinct activity from pb_activity where code ='"+glCodeTxt.getText()+"' limit 1 ");
+                                        java.sql.ResultSet rseActvty = fee.executeQuery("select distinct activity from pb_activity where code ='" + glCodeTxt.getText() + "' limit 1 ");
                                         while (rseActvty.next()) {
 
                                             activity = rseActvty.getObject(1).toString();
                                             System.err.println(activity);
                                         }
 
-
-
                                         System.out.println(price);
 
                                         //1
                                         java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
                                         //1 for (int i = 0; i < jTable1.getRowCount(); i++){
-
 
                                         pstmt.setString(1, patientNumberTxt.getText());
                                         pstmt.setObject(2, pharmacyReturnsTbl.getValueAt(i, 0).toString());
@@ -1978,7 +1942,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                         }
                                         pstmt.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(pharmReturnDate.getDate()));
                                         pstmt.setObject(15, patientAcc);
-                                        pstmt.setString(16,  activity);
+                                        pstmt.setString(16, activity);
                                         pstmt.setDouble(17, java.lang.Double.parseDouble(pharmacyReturnsTbl.getValueAt(i, 1).toString()));
                                         pstmt.setObject(18, staffNo);
                                         pstmt.setBoolean(19, false);
@@ -2027,7 +1991,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 
                                         pstmt2.executeUpdate();
 
-
                                         java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("insert into hp_pharmacy values( ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                                         pstmt1.setString(1, patientNumberTxt.getText());
                                         pstmt1.setString(2, patientNameTxt.getText());
@@ -2055,10 +2018,9 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                         pstmt1.executeUpdate();
 
 //
-                                        
                                         java.sql.PreparedStatement pstmt1a = connectDB.prepareStatement("INSERT INTO st_stock_cardex values( ? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                                         pstmt1a.setString(1, null);
-                                        pstmt1a.setObject(3 , pharmacyReturnsTbl.getValueAt(i, 0).toString());
+                                        pstmt1a.setObject(3, pharmacyReturnsTbl.getValueAt(i, 0).toString());
                                         pstmt1a.setString(2, pharmacyReturnsTbl.getValueAt(i, 6).toString());
                                         pstmt1a.setDate(4, null);
                                         pstmt1a.setDouble(21, amount);
@@ -2101,7 +2063,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                         //  pstmt1a.setString(33, pharmacyReturnsTbl.getValueAt(i, 8).toString());
                                         pstmt1a.executeUpdate();
 
-
                                         java.sql.PreparedStatement pstmt2a = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
                                         pstmt2a.setObject(1, costofSaleCode);
                                         pstmt2a.setObject(2, costofSale);
@@ -2129,9 +2090,8 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                         pstmt2a.executeUpdate();
                                         // }
 
-
                                         java.sql.PreparedStatement pstmt33 = connectDB.prepareStatement("insert into st_sub_stores values( ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                                       // pstmt33.setObject(1, pharmacyReturnsTbl.getValueAt(i, 6).toString());//initially 28/7/2014
+                                        // pstmt33.setObject(1, pharmacyReturnsTbl.getValueAt(i, 6).toString());//initially 28/7/2014
                                         pstmt33.setObject(1, departmentCmbx.getSelectedItem().toString());
                                         pstmt33.setObject(2, pharmacyReturnsTbl.getValueAt(i, 0).toString());
                                         pstmt33.setDouble(3, java.lang.Double.parseDouble(pharmacyReturnsTbl.getValueAt(i, 1).toString()));
@@ -2154,7 +2114,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                         pstmt33.executeUpdate();
                                         System.out.println("We are finished To Insert  -- " + pharmacyReturnsTbl.getModel().getValueAt(i, 0));
 
-
                                     }
                                 }
                                 //                  javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -2170,7 +2129,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 
                                 java.sql.Statement stm1q = connectDB.createStatement();
                                 java.sql.ResultSet rse1 = stm1q.executeQuery("select pay_mode,account_no,description,payer,payer,expiry_date,account_no from hp_patient_register where patient_no ='" + patientNumberTxt.getText() + "'");
-
 
                                 while (rse1.next()) {
 
@@ -2223,7 +2181,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                             code = rse122.getObject(1).toString();
                             glAcc = rse122.getObject(2).toString();
                         }
-                        System.out.println("This "+glAcc);
+                        System.out.println("This " + glAcc);
 
                         java.sql.Statement pst2 = connectDB.createStatement();
                         java.sql.ResultSet rs = pst2.executeQuery("select current_user");
@@ -2290,7 +2248,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                         stock = rs1111c.getObject(1).toString();
                                     }
 
-
                                     presc = 0.00;
 
                                     Total = java.lang.Double.parseDouble(jTextField32.getText());
@@ -2304,7 +2261,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                         amount1 = java.lang.Double.parseDouble(pharmacyReturnsTbl.getValueAt(i, 5).toString());
 
                                         //  percentage = (amount1/Total)*100;
-
                                         TotalPrice = amount1;
                                     }
                                     java.sql.Statement stm121 = connectDB.createStatement();
@@ -2336,7 +2292,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                         java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
                                         //1 for (int i = 0; i < jTable1.getRowCount(); i++){
 
-
                                         pstmt.setString(1, patientNumberTxt.getText());
                                         pstmt.setObject(2, pharmacyReturnsTbl.getValueAt(i, 0).toString());
                                         pstmt.setString(3, patientCategoryTxt.getText());
@@ -2358,7 +2313,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                         }
                                         pstmt.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(pharmReturnDate.getDate()));
                                         pstmt.setObject(15, patientAcc);
-                                        pstmt.setString(16,  activity);
+                                        pstmt.setString(16, activity);
                                         pstmt.setDouble(17, java.lang.Double.parseDouble(pharmacyReturnsTbl.getValueAt(i, 1).toString()) * -1);
                                         pstmt.setObject(18, staffNo);
                                         pstmt.setBoolean(19, false);
@@ -2372,7 +2327,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                         pstmt.setTimestamp(27, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
                                         pstmt.setString(28, jTextField1.getText());
                                         pstmt.executeUpdate();
-
 
                                         java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
                                         //pstmt2.setString(1, code);
@@ -2407,7 +2361,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                         pstmt2.setString(23, user);
                                         pstmt2.executeUpdate();
 
-
                                         java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("insert into hp_pharmacy values( ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                                         pstmt1.setString(1, patientNumberTxt.getText());
                                         pstmt1.setString(2, patientNameTxt.getText());
@@ -2434,7 +2387,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                         //  pstmt1.setObject(22, pharmacyReturnsTbl.getValueAt(i, 8).toString());
                                         pstmt1.executeUpdate();
                                     } else {
-
 
                                         if (DirectRev) {
 
@@ -2467,7 +2419,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                             java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
                                             //1 for (int i = 0; i < jTable1.getRowCount(); i++){
 
-
                                             pstmt.setString(1, patientNumberTxt.getText());
                                             pstmt.setObject(2, pharmacyReturnsTbl.getValueAt(i, 0).toString());
                                             pstmt.setString(3, patientCategoryTxt.getText());
@@ -2489,7 +2440,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                             }
                                             pstmt.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(pharmReturnDate.getDate()));
                                             pstmt.setObject(15, patientAcc);
-                                            pstmt.setString(16,  activity);
+                                            pstmt.setString(16, activity);
                                             pstmt.setDouble(17, java.lang.Double.parseDouble(pharmacyReturnsTbl.getValueAt(i, 1).toString()) * -1);
                                             pstmt.setObject(18, staffNo);
                                             pstmt.setBoolean(19, false);
@@ -2503,7 +2454,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                             pstmt.setTimestamp(27, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
                                             pstmt.setString(28, jTextField1.getText());
                                             pstmt.executeUpdate();
-
 
                                             java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
 //                                            pstmt2.setString(1, activityCode);
@@ -2610,11 +2560,10 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                     //  pstmt1a.setString(33, pharmacyReturnsTbl.getValueAt(i, 8).toString());
                                     pstmt1a.executeUpdate();
 
-
                                     java.sql.PreparedStatement pstmt2a = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
                                     //pstmt2a.setObject(1, activityCode);
                                     pstmt2a.setObject(1, costofSaleCode);
-                                    
+
                                     pstmt2a.setObject(2, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connectDB, costofSaleCode));
                                     pstmt2a.setString(3, patientNumberTxt.getText());
                                     pstmt2a.setString(4, patientNameTxt.getText());
@@ -2639,7 +2588,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                     pstmt2a.setString(23, userName);
                                     pstmt2a.executeUpdate();
 
-
                                     java.sql.PreparedStatement pstmt33 = connectDB.prepareStatement("insert into st_sub_stores values( ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                                     pstmt33.setObject(2, pharmacyReturnsTbl.getValueAt(i, 0).toString());
                                     pstmt33.setString(12, units);
@@ -2662,7 +2610,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                     // pstmt33.setString(17, pharmacyReturnsTbl.getValueAt(i, 8).toString());
                                     pstmt33.executeUpdate();
 
-
                                     // }
                                 }
 
@@ -2671,12 +2618,9 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 
                         }
 
-
-
-
                     }
-                        connectDB.commit();
-                        connectDB.setAutoCommit(true);
+                    connectDB.commit();
+                    connectDB.setAutoCommit(true);
 
                     jTextField32.setText("0.00");
                     amountTxt.setText("0.00");
@@ -2686,9 +2630,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                         }
                     }
 
-
-
-                    javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully. "+transNo, "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully. " + transNo, "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                     //  jComboBox2.setSelectedItem(null);
                 } catch (java.sql.SQLException sq) {
@@ -2725,15 +2667,15 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 
         if (pharmacyReturnsTbl.getModel().getValueAt(pharmacyReturnsTbl.getSelectedRow(), 1) != null) {
             if (pharmacyReturnsTbl.getSelectedColumn() == pharmacyReturnsTbl.getSelectedColumn()) {
-                
+
                 float qty = java.lang.Float.parseFloat(pharmacyReturnsTbl.getValueAt(pharmacyReturnsTbl.getSelectedRow(), 1).toString());
                 float price = java.lang.Float.parseFloat(pharmacyReturnsTbl.getValueAt(pharmacyReturnsTbl.getSelectedRow(), 3).toString());
                 float total = qty * price;
                 pharmacyReturnsTbl.setValueAt(total, pharmacyReturnsTbl.getSelectedRow(), 5);
-                
+
                 double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(pharmacyReturnsTbl, 5);
-                
-               // amountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
+
+                // amountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
             }
 
         }
@@ -2882,14 +2824,13 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         jSearchDialog3.setLocation(point);
         jSearchDialog3.setVisible(true);
 
-
     }
     private void pharmacyReturnsTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pharmacyReturnsTblMouseClicked
         if (pharmacyReturnsTbl.getSelectedColumn() == 0) {
 
             this.cmbox13MouseClicked();
-        }   
-        
+        }
+
 //        else if (pharmacyReturnsTbl.getSelectedColumn() == 2 ) {
 //                 if(Boolean.valueOf(pharmacyReturnsTbl.getValueAt(pharmacyReturnsTbl.getSelectedRow(), 2).toString()) == java.lang.Boolean.TRUE){
 //                 
@@ -2909,8 +2850,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 //                 
 //            
 //            }   
-
-        
         // Add your handling code here:
     }//GEN-LAST:event_pharmacyReturnsTblMouseClicked
 
@@ -2922,17 +2861,14 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         jTextField32.setText("0.00");
 
         // jTextField32.setText("0.00");
-
         for (int k = 0; k < pharmacyReturnsTbl.getRowCount(); k++) {
             for (int r = 0; r < pharmacyReturnsTbl.getColumnCount(); r++) {
                 pharmacyReturnsTbl.getModel().setValueAt(null, k, r);
             }
         }
 
-
         patientNumberTxt.setText(jSearchTable2121.getValueAt(jSearchTable2121.getSelectedRow(), 0).toString());
         patientNameTxt.setText(jSearchTable2121.getValueAt(jSearchTable2121.getSelectedRow(), 1).toString());
-
 
         int j = 0;
         try {
@@ -2950,25 +2886,17 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                 jTextField1.setText(rset1v.getObject(1).toString());
             }
 
-
         } catch (java.sql.SQLException sqlex) {
             System.out.println(sqlex.getMessage());
         }
-    
-         pharmacyReturnsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT item AS DESCRIPTION, issuing as QTY, false as RETURN, price as UNITPRICE, 0 AS DISCOUNT, total as TOTAL, store_name as DEPARTMENT,  item_code as ITEM_CODE, '-' as STRENGTH,'"+glCodeTxt.getText()+"' as gl_code FROM st_sub_stores WHERE issiued_to ilike  '%" + patientNumberTxt.getText() + "%'  AND trans_date > (current_date-30) and  item not like '%DISPENSING FEE%'"));
-         
-         
 
+        pharmacyReturnsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT item AS DESCRIPTION, issuing as QTY, false as RETURN, price as UNITPRICE, 0 AS DISCOUNT, total as TOTAL, store_name as DEPARTMENT,  item_code as ITEM_CODE, '-' as STRENGTH,'" + glCodeTxt.getText() + "' as gl_code FROM st_sub_stores WHERE issiued_to ilike  '%" + patientNumberTxt.getText() + "%'  AND trans_date > (current_date-30) and  item not like '%DISPENSING FEE%'"));
 
-       // transNocmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT transaction_no FROM st_sub_stores WHERE issiued_to ilike  '%" + patientNumberTxt.getText() + "%' and store_name ilike '%"+departmentCmbx.getSelectedItem().toString()+"%' ORDER BY 1 ASC "));
+        // transNocmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT transaction_no FROM st_sub_stores WHERE issiued_to ilike  '%" + patientNumberTxt.getText() + "%' and store_name ilike '%"+departmentCmbx.getSelectedItem().toString()+"%' ORDER BY 1 ASC "));
         transNocmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT transaction_no FROM st_sub_stores WHERE issiued_to ilike  '%" + patientNumberTxt.getText() + "%' and trans_date::date>current_date-30 ORDER BY 1 ASC "));
         // pharmacyReturnsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
 //                "SELECT description AS DESCRIPTION, quantity as QTY, false as RETURN, price as UNITPRICE, 0 AS DISCOUNT, amount as TOTAL, main_service as DEPARTMENT, (select item_code FROM st_stock_item WHERE hp_pharmacy.description=st_stock_item.item_code) as item_code, '-' as STRENGTH, gl_code FROM hp_pharmacy where patient_no = '" + patientNumberTxt.getText() + "'  AND main_service ilike '%pharmacy%'"));
 //
-
-
-
-
 
         for (int i = 0; i < pharmacyReturnsTbl.getRowCount(); i++) {
             try {
@@ -2983,23 +2911,16 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 
                 }
 
-               
-            } 
-            
-              catch (Exception ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(PharmReturnsIntfr.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-
-
 
         }
 //          pharmacyReturnsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
 //                "SELECT service AS DESCRIPTION, dosage as QTY, false as RETURN, debit/dosage as UNITPRICE, 0 AS DISCOUNT, debit as TOTAL, main_service as DEPARTMENT, (select item_code FROM st_stock_item WHERE description=hp_patient_card.service) as item_code FROM hp_patient_card where patient_no = '" + patientNumberTxt.getText() + "' AND visit_id = '" + jTextField1.getText() + "' AND main_service ilike '%pharmacy%'"));
 
-
         jSearchDialog2121.dispose();
-        
+
 // int control=pharmacyReturnsTbl.getRowCount();
 //
 //
@@ -3027,13 +2948,9 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 //        } catch (java.sql.SQLException sqlex) {
 //            System.out.println(sqlex.getMessage());
 //        }
-
         System.err.println("SELECT service AS DESCRIPTION, dosage as QTY, false as RETURN, debit/dosage as UNITPRICE, 0 AS DISCOUNT, debit as TOTAL, main_service as DEPARTMENT, (select item_code FROM st_stock_item WHERE description ilike hp_patient_card.service) as item_code, '-' as strength FROM hp_patient_card where patient_no = '" + patientNumberTxt.getText() + "' AND visit_id = '" + jTextField1.getText() + "' AND main_service ilike '%pharmacy%'");
 
-
-
         try {
-
 
             java.sql.Statement stmt1 = connectDB.createStatement();
             java.sql.ResultSet rset1 = stmt1.executeQuery("select category,pay_mode from hp_patient_register where patient_no  = '" + patientNumberTxt.getText() + "'");
@@ -3090,9 +3007,8 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
             if (jTextField113121.getCaretPosition() < 3) {
 
                 System.out.println("Nothing");
-            } 
-               else {
-                   jSearchTable2121.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, name from inpatient_list where name ILIKE '%" + jTextField113121.getText() + "%' order by name"));
+            } else {
+                jSearchTable2121.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, name from inpatient_list where name ILIKE '%" + jTextField113121.getText() + "%' order by name"));
 
                 jSearchTable2121.setShowHorizontalLines(false);
                 jSearchScrollPane2121.setViewportView(jSearchTable2121);
@@ -3123,8 +3039,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                         jSearchTable2121.setShowHorizontalLines(false);
                         jSearchScrollPane2121.setViewportView(jSearchTable2121);
 
-
-
                     }
                 } else {
 
@@ -3137,8 +3051,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 
                             jSearchTable2121.setShowHorizontalLines(false);
                             jSearchScrollPane2121.setViewportView(jSearchTable2121);
-
-
 
                         }
 
@@ -3153,8 +3065,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 
                                 jSearchTable2121.setShowHorizontalLines(false);
                                 jSearchScrollPane2121.setViewportView(jSearchTable2121);
-
-
 
                             }
                         }
@@ -3337,8 +3247,6 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
          */
         jSearchTable212.setShowHorizontalLines(false);
         jSearchScrollPane212.setViewportView(jSearchTable212);
-
-
 
         // Add your handling code here:
     }//GEN-LAST:event_jTextField11312CaretUpdate
@@ -3533,10 +3441,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         void initComponents() {
 
             // oldComboBox1311Model = jComboBox1311.getModel();
-
             // comboTextField = new javax.swing.JTextField();
-
-
             comboTextField.addKeyListener(new java.awt.event.KeyAdapter() {
                 public void keyTyped(java.awt.event.KeyEvent e) {
 
@@ -3569,22 +3474,17 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 
         public void changeComboBoxModel(java.lang.String typedLetters) {
 
-
-
             javax.swing.DefaultComboBoxModel newComboBox1311Model = new javax.swing.DefaultComboBoxModel();
 
             System.out.println("ComboBox Item No. " + oldComboBox1311Model.getSize());
 
-
             for (int i = 0; i < oldComboBox1311Model.getSize(); i++) {
-
 
                 if (oldComboBox1311Model.getElementAt(i).toString().startsWith(typedLetters)) {
 
                     newComboBox1311Model.addElement(oldComboBox1311Model.getElementAt(i));
 
                     //                    jComboBox1311.setModel(newComboBox1311Model);
-
                 }
 
             }
@@ -3661,7 +3561,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         this.patientNameTxt.setEditable(true);
         this.jTextField52.setText("Cash");
         this.patientCategoryTxt.setText("General");
-        
+
         //compell searching only by wk number because the names used here are never standard
         searchnameChbx.setSelected(false);
         SearchNoChbx.setSelected(true);
@@ -3670,34 +3570,26 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_walkinPtChbxActionPerformed
 
     private void departmentCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentCmbxActionPerformed
-        
-        
-         
+
         try {
             // TODO add your handling code here:
-            java.sql.PreparedStatement glcode = connectDB.prepareStatement("select income_account from pb_departments where department_name='"+departmentCmbx.getSelectedItem()+"'");
-       
+            java.sql.PreparedStatement glcode = connectDB.prepareStatement("select income_account from pb_departments where upper(department_name) = '" + departmentCmbx.getSelectedItem().toString().toUpperCase() + "'");
+
             ResultSet rcode = glcode.executeQuery();
-             while(rcode.next()){
-                 
-                 String code = dbObject.getDBObject(rcode.getObject(1).toString(), "-");
-                 
-                 glCodeTxt.setText(code);
-             
-             }
-        
-        
-        
-        } 
-        
-        
-        catch (SQLException ex) {
+            while (rcode.next()) {
+
+                String code = dbObject.getDBObject(rcode.getObject(1).toString(), "-");
+
+                glCodeTxt.setText(code);
+
+            }
+
+        } catch (SQLException ex) {
             Logger.getLogger(PharmReturnsIntfr.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
         }
-        
-        
-        transNocmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT transaction_no FROM st_sub_stores WHERE issiued_to ilike  '%" + patientNumberTxt.getText() + "%' and store_name ilike '%"+departmentCmbx.getSelectedItem().toString()+"%' ORDER BY 1 ASC "));
+
+        transNocmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT transaction_no FROM st_sub_stores WHERE issiued_to ilike  '%" + patientNumberTxt.getText() + "%' and store_name ilike '%" + departmentCmbx.getSelectedItem().toString() + "%' ORDER BY 1 ASC "));
 }//GEN-LAST:event_departmentCmbxActionPerformed
 
     private void patientCategoryTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientCategoryTxtActionPerformed
@@ -3710,10 +3602,10 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 
     private void transNocmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transNocmbxActionPerformed
         // TODO add your handling code here:
-        if(!transNocmbx.getSelectedItem().toString().equals("-")){
-        //pharmacyReturnsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT item AS DESCRIPTION, issuing as QTY, false as RETURN, price as UNITPRICE, 0 AS DISCOUNT, total as TOTAL, store_name as DEPARTMENT,  item_code as ITEM_CODE, '-' as STRENGTH,'"+glCodeTxt.getText()+"' as gl_code FROM st_sub_stores WHERE issiued_to ilike  '%" + patientNumberTxt.getText() + "%' and store_name ilike '"+departmentCmbx.getSelectedItem().toString()+"' AND transaction_no= '"+transNocmbx.getSelectedItem().toString()+"' and item not like 'DISPENSING FEE'"));
-        pharmacyReturnsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT item AS DESCRIPTION, issuing as QTY, false as RETURN, price as UNITPRICE, 0 AS DISCOUNT, total as TOTAL, store_name as DEPARTMENT,  item_code as ITEM_CODE, '-' as STRENGTH,'"+glCodeTxt.getText()+"' as gl_code FROM st_sub_stores WHERE issiued_to ilike  '%" + patientNumberTxt.getText() + "%'  AND transaction_no= '"+transNocmbx.getSelectedItem().toString()+"' and item not like 'DISPENSING FEE'"));
-        
+        if (!transNocmbx.getSelectedItem().toString().equals("-")) {
+            //pharmacyReturnsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT item AS DESCRIPTION, issuing as QTY, false as RETURN, price as UNITPRICE, 0 AS DISCOUNT, total as TOTAL, store_name as DEPARTMENT,  item_code as ITEM_CODE, '-' as STRENGTH,'"+glCodeTxt.getText()+"' as gl_code FROM st_sub_stores WHERE issiued_to ilike  '%" + patientNumberTxt.getText() + "%' and store_name ilike '"+departmentCmbx.getSelectedItem().toString()+"' AND transaction_no= '"+transNocmbx.getSelectedItem().toString()+"' and item not like 'DISPENSING FEE'"));
+            pharmacyReturnsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT item AS DESCRIPTION, issuing as QTY, false as RETURN, price as UNITPRICE, 0 AS DISCOUNT, total as TOTAL, store_name as DEPARTMENT,  item_code as ITEM_CODE, '-' as STRENGTH,'" + glCodeTxt.getText() + "' as gl_code FROM st_sub_stores WHERE issiued_to ilike  '%" + patientNumberTxt.getText() + "%'  AND transaction_no= '" + transNocmbx.getSelectedItem().toString() + "' and item not like 'DISPENSING FEE'"));
+
         }
         amountTxt.setText("0.00");
     }//GEN-LAST:event_transNocmbxActionPerformed
@@ -3733,53 +3625,44 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         // TODO add your handling code here:
-         // TODO add your handling code here:
-        System.out.println("PHARMACIES " +departmentCmbx.getItemCount());
-        if(departmentCmbx.getItemCount()<1) {
-        
-        javax.swing.JOptionPane.showMessageDialog(this, "You Need To Be Allocated A Pharmacy Outlet To Transact.\n Please Contact Your Inventory Supervisor");
-        jButton41.doClick();
-        
+        // TODO add your handling code here:
+        System.out.println("PHARMACIES " + departmentCmbx.getItemCount());
+        if (departmentCmbx.getItemCount() < 1) {
+
+            javax.swing.JOptionPane.showMessageDialog(this, "You Need To Be Allocated A Pharmacy Outlet To Transact.\n Please Contact Your Inventory Supervisor");
+            jButton41.doClick();
+
         }
         departmentCmbx.setSelectedIndex(0);
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void pharmacyReturnsTblMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pharmacyReturnsTblMouseReleased
         // TODO add your handling code here:
-        
-            
-        
+
+
     }//GEN-LAST:event_pharmacyReturnsTblMouseReleased
 
     private void pharmacyReturnsTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pharmacyReturnsTblMousePressed
         // TODO add your handling code here:
-        
+
         //amountTxt.setText("0.00");
-        
-        if (pharmacyReturnsTbl.getSelectedColumn() == 2 ) {
+        if (pharmacyReturnsTbl.getSelectedColumn() == 2) {
             System.out.println(pharmacyReturnsTbl.getValueAt(pharmacyReturnsTbl.getSelectedRow(), 2).toString());
-                 if(Boolean.valueOf(pharmacyReturnsTbl.getValueAt(pharmacyReturnsTbl.getSelectedRow(), 2).toString()) == java.lang.Boolean.TRUE){
-                 
-                  
-                  
-                 totalreturn = Double.valueOf(com.afrisoftech.lib.CurrencyFormatter.parseFormattedString(amountTxt.getText())) - Double.valueOf(pharmacyReturnsTbl.getModel().getValueAt(pharmacyReturnsTbl.getSelectedRow(), 5).toString()) ;
+            if (Boolean.valueOf(pharmacyReturnsTbl.getValueAt(pharmacyReturnsTbl.getSelectedRow(), 2).toString()) == java.lang.Boolean.TRUE) {
+
+                totalreturn = Double.valueOf(com.afrisoftech.lib.CurrencyFormatter.parseFormattedString(amountTxt.getText())) - Double.valueOf(pharmacyReturnsTbl.getModel().getValueAt(pharmacyReturnsTbl.getSelectedRow(), 5).toString());
                 // amountTxt.setText(totalreturn.toString());
-                 
-                 amountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalreturn));
-                 
-                   }
-                 
-              else
-                  if(Boolean.valueOf(pharmacyReturnsTbl.getValueAt(pharmacyReturnsTbl.getSelectedRow(), 2).toString()) == java.lang.Boolean.FALSE){
-                 totalreturn = Double.valueOf(com.afrisoftech.lib.CurrencyFormatter.parseFormattedString(amountTxt.getText())) + Double.valueOf(pharmacyReturnsTbl.getModel().getValueAt(pharmacyReturnsTbl.getSelectedRow(), 5).toString()) ;
-                 amountTxt.setText(totalreturn.toString());
-                 
-                 amountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalreturn));
-                     }
-                  
-                 
-            
-            } 
+
+                amountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalreturn));
+
+            } else if (Boolean.valueOf(pharmacyReturnsTbl.getValueAt(pharmacyReturnsTbl.getSelectedRow(), 2).toString()) == java.lang.Boolean.FALSE) {
+                totalreturn = Double.valueOf(com.afrisoftech.lib.CurrencyFormatter.parseFormattedString(amountTxt.getText())) + Double.valueOf(pharmacyReturnsTbl.getModel().getValueAt(pharmacyReturnsTbl.getSelectedRow(), 5).toString());
+                amountTxt.setText(totalreturn.toString());
+
+                amountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalreturn));
+            }
+
+        }
     }//GEN-LAST:event_pharmacyReturnsTblMousePressed
     private void populateTable1(java.lang.String patient_no) {
         int j = 0;

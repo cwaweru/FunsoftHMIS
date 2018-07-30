@@ -2379,6 +2379,7 @@
                           <Color blue="ff" green="33" red="33" type="rgb"/>
                         </Property>
                         <Property name="mnemonic" type="int" value="111"/>
+                        <Property name="selected" type="boolean" value="true"/>
                         <Property name="text" type="java.lang.String" value="OUT- Patients"/>
                       </Properties>
                       <Events>
@@ -2396,7 +2397,6 @@
                           <ComponentRef name="buttonGroup1"/>
                         </Property>
                         <Property name="mnemonic" type="int" value="105"/>
-                        <Property name="selected" type="boolean" value="true"/>
                         <Property name="text" type="java.lang.String" value="IN-Patients"/>
                       </Properties>
                       <Events>

@@ -315,7 +315,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                  <GridBagConstraints gridX="0" gridY="6" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="0" insetsRight="10" anchor="10" weightX="1.0" weightY="3.0"/>
+                  <GridBagConstraints gridX="0" gridY="6" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="0" insetsRight="10" anchor="10" weightX="1.0" weightY="1.0"/>
                 </Constraint>
               </Constraints>
 
@@ -324,23 +324,10 @@
                 <Component class="javax.swing.JButton" name="postbtn">
                   <Properties>
                     <Property name="mnemonic" type="int" value="115"/>
-                    <Property name="text" type="java.lang.String" value="Save"/>
+                    <Property name="text" type="java.lang.String" value="Save S11 request voucher"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="postbtnActionPerformed"/>
-                  </Events>
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                      <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
-                <Component class="javax.swing.JButton" name="resetbtn">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Reset"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resetbtnActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -348,31 +335,44 @@
                     </Constraint>
                   </Constraints>
                 </Component>
+                <Component class="javax.swing.JButton" name="resetbtn">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Reset form"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resetbtnActionPerformed"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                      <GridBagConstraints gridX="2" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
                 <Component class="javax.swing.JButton" name="cancelbtn">
                   <Properties>
                     <Property name="mnemonic" type="int" value="108"/>
-                    <Property name="text" type="java.lang.String" value="Clear"/>
+                    <Property name="text" type="java.lang.String" value="Clear form"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelbtnActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                      <GridBagConstraints gridX="3" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+                      <GridBagConstraints gridX="4" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
                     </Constraint>
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JButton" name="exitbtn">
                   <Properties>
                     <Property name="mnemonic" type="int" value="99"/>
-                    <Property name="text" type="java.lang.String" value="Close"/>
+                    <Property name="text" type="java.lang.String" value="Close form"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitbtnActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                      <GridBagConstraints gridX="4" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+                      <GridBagConstraints gridX="5" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -386,17 +386,24 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="removeRowBtn">
                   <Properties>
                     <Property name="mnemonic" type="int" value="114"/>
-                    <Property name="text" type="java.lang.String" value="Remove Row"/>
+                    <Property name="text" type="java.lang.String" value="Remove row"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeRowBtnActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                      <GridBagConstraints gridX="2" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+                      <GridBagConstraints gridX="3" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel10">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                      <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="200.0" weightY="1.0"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -412,7 +419,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                  <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="10" insetsBottom="0" insetsRight="10" anchor="10" weightX="1.0" weightY="20.0"/>
+                  <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="10" insetsBottom="0" insetsRight="10" anchor="10" weightX="1.0" weightY="200.0"/>
                 </Constraint>
               </Constraints>
 
@@ -505,7 +512,7 @@
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable();"/>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*java.lang.Object[] strCmb = {&quot;Normal&quot;,&quot;Urgent&quot;,&quot;&quot;};&#xa;&#xa;javax.swing.JComboBox cmBox = new javax.swing.JComboBox(strCmb);&#xa;&#xa;javax.swing.table.TableColumn teditor = this.jTable1.getColumn(&quot;Status&quot;);&#xa;            &#xa;            teditor.setCellEditor(new javax.swing.DefaultCellEditor(cmBox));&#xa; */&#xa;      &#xa;javax.swing.table.TableColumn column = null;&#xa;              for (int i = 0; i &lt; 9; i++) {&#xa;                  column = itemsTbl.getColumnModel().getColumn(i);&#xa;                  if (i == 1) {&#xa;                      &#xa;                      column.setPreferredWidth(300); //sport column is bigger&#xa;                  } else {&#xa;                      if (i == 0) {&#xa;                          column.setPreferredWidth(100);&#xa;                      } else {&#xa;                          //if (i == 2) {&#xa;                              column.setPreferredWidth(150);&#xa;                         // }  else &#xa;                      //column.setPreferredWidth(50);&#xa;                  &#xa;                      }&#xa;                  }&#xa;              }&#xa; &#xa;/*cmBox1 = new javax.swing.JComboBox(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;select  initcap(description) as description from st_main_category order by description&quot;));&#xa;&#xa;javax.swing.table.TableColumn teditor1 = this.jTable1.getColumn(&quot;Category&quot;);&#xa;&#xa;teditor1.setCellEditor(new javax.swing.DefaultCellEditor(cmBox1));&#xa;cmBox1.addActionListener(new java.awt.event.ActionListener() {&#xa;    public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;        String branch = null;&#xa;       &#xa;        try {&#xa;         &#xa;             java.sql.Statement stmt = connectDB.createStatement();&#xa;             java.sql.ResultSet rset = stmt.executeQuery(&quot;SELECT cos_account FROM pb_main_department2 where depart_name ilike &apos;&quot;+jComboBox1.getSelectedItem()+&quot;&apos; and classification ilike &apos;&quot;+cmBox1.getSelectedItem()+&quot;&apos;&quot;);// WHERE depart_name ilike &apos;&quot;+cmBox1.getSelectedItem()+&quot;&apos;&quot;);&#xa;            while (rset.next()){&#xa;                branch = rset.getObject(1).toString();&#xa;                itemsTbl.setValueAt(branch,itemsTbl.getSelectedRow(), 8);&#xa;            }&#xa;            &#xa;            rset.close();&#xa;            stmt.close();&#xa;           &#xa;        } catch (java.sql.SQLException sqe) {&#xa;            sqe.printStackTrace();&#xa;            System.out.println(&quot;Insert not successful&quot;);&#xa;        }&#xa;        &#xa;        cmBox1ActionPerformed(evt);&#xa;    }&#xa;    &#xa;});*/"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*java.lang.Object[] strCmb = {&quot;Normal&quot;,&quot;Urgent&quot;,&quot;&quot;};&#xa;&#xa;javax.swing.JComboBox cmBox = new javax.swing.JComboBox(strCmb);&#xa;&#xa;javax.swing.table.TableColumn teditor = this.jTable1.getColumn(&quot;Status&quot;);&#xa;            &#xa;            teditor.setCellEditor(new javax.swing.DefaultCellEditor(cmBox));&#xa; */&#xa;      &#xa;javax.swing.table.TableColumn column = null;&#xa;              for (int i = 0; i &lt; 9; i++) {&#xa;                  column = itemsTbl.getColumnModel().getColumn(i);&#xa;                  if (i == 1) {&#xa;                      &#xa;                      column.setPreferredWidth(300); //sport column is bigger&#xa;                  } else {&#xa;                      if (i == 0) {&#xa;                          column.setPreferredWidth(100);&#xa;                      } else {&#xa;                          //if (i == 2) {&#xa;                              column.setPreferredWidth(150);&#xa;                         // }  else &#xa;                      //column.setPreferredWidth(50);&#xa;                  &#xa;                      }&#xa;                  }&#xa;              }&#xa; &#xa;/*cmBox1 = new javax.swing.JComboBox(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;select  initcap(description) as description from st_main_category order by description&quot;));&#xa;&#xa;javax.swing.table.TableColumn teditor1 = this.jTable1.getColumn(&quot;Category&quot;);&#xa;&#xa;teditor1.setCellEditor(new javax.swing.DefaultCellEditor(cmBox1));&#xa;cmBox1.addActionListener(new java.awt.event.ActionListener() {&#xa;    public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;        String branch = null;&#xa;       &#xa;        try {&#xa;         &#xa;             java.sql.Statement stmt = connectDB.createStatement();&#xa;             java.sql.ResultSet rset = stmt.executeQuery(&quot;SELECT cos_account FROM pb_main_department2 where depart_name ilike &apos;&quot;+recipientStoreCmbx.getSelectedItem()+&quot;&apos; and classification ilike &apos;&quot;+cmBox1.getSelectedItem()+&quot;&apos;&quot;);// WHERE depart_name ilike &apos;&quot;+cmBox1.getSelectedItem()+&quot;&apos;&quot;);&#xa;            while (rset.next()){&#xa;                branch = rset.getObject(1).toString();&#xa;                itemsTbl.setValueAt(branch,itemsTbl.getSelectedRow(), 8);&#xa;            }&#xa;            &#xa;            rset.close();&#xa;            stmt.close();&#xa;           &#xa;        } catch (java.sql.SQLException sqe) {&#xa;            sqe.printStackTrace();&#xa;            System.out.println(&quot;Insert not successful&quot;);&#xa;        }&#xa;        &#xa;        cmBox1ActionPerformed(evt);&#xa;    }&#xa;    &#xa;});*/"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>
@@ -567,14 +574,14 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox1">
+                <Component class="javax.swing.JComboBox" name="recipientStoreCmbx">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT store_name FROM st_stores ORDER BY 1&quot;)" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="recipientStoreCmbxActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -592,14 +599,14 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox2">
+                <Component class="javax.swing.JComboBox" name="issuingStoreCmbx">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT distinct initcap(store_name)  FROM st_main_stores union select distinct initcap(store_name) from st_stores ORDER BY 1 ASC&quot;)" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="issuingStoreCmbxActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -919,6 +926,10 @@
                 <Component class="javax.swing.JTextField" name="jTextField2">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="12" style="1"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="11"/>
                     <Property name="text" type="java.lang.String" value="0.00"/>
                   </Properties>
                   <Constraints>

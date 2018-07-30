@@ -343,6 +343,8 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
     cashPointTxt = new javax.swing.JTextField();
     jLabel1311 = new javax.swing.JLabel();
     jTextField811 = new javax.swing.JTextField();
+    payerMobileTelephoneNumberTxt = new javax.swing.JFormattedTextField();
+    payBillNumberTxt = new javax.swing.JTextField();
 
     jSearchDialog.setModal(true);
     jSearchDialog.setUndecorated(true);
@@ -984,20 +986,20 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
             }
         });
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameClosed(evt);
             }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -1414,7 +1416,7 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel9.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane211.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cash Sale Particulars - Select item/service (by clicking once on the ITEM/SERVICE column) and specify the quantity. Remember to press the TAB key to validate your entries.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 153, 255))); // NOI18N
+        jScrollPane211.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cash Sale Particulars - Select item/service (by clicking once on the ITEM/SERVICE column) and specify the quantity. Remember to press the TAB key to validate your entries.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 153, 255)));
 
         jTable111.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTable111.setModel(new javax.swing.table.DefaultTableModel(
@@ -1908,6 +1910,39 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel51.add(jTextField811, gridBagConstraints);
+
+        payerMobileTelephoneNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bill Payer Telephone No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
+        payerMobileTelephoneNumberTxt.setForeground(new java.awt.Color(0, 0, 255));
+        try {
+            payerMobileTelephoneNumberTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("254-7##-######")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        payerMobileTelephoneNumberTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payerMobileTelephoneNumberTxtActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel51.add(payerMobileTelephoneNumberTxt, gridBagConstraints);
+
+        payBillNumberTxt.setEditable(false);
+        payBillNumberTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        payBillNumberTxt.setText(com.afrisoftech.lib.CashShiftNumberFactory.getPayBillNumber(connectDB)
+        );
+        payBillNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PayBill Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel51.add(payBillNumberTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -2995,6 +3030,10 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
         // Add your handling code here:
     }//GEN-LAST:event_jTextField1111CaretUpdate
 
+    private void payerMobileTelephoneNumberTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payerMobileTelephoneNumberTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_payerMobileTelephoneNumberTxtActionPerformed
+
     public void tableModelTableChanged1() {
         System.out.println("Calculating totals for table 11 and 2.");
         //        double resFloat = 0.00;
@@ -3752,6 +3791,8 @@ public class CafeteriaBillPaymentsIntfr extends javax.swing.JInternalFrame imple
     private javax.swing.JTextField jTextField811;
     private javax.swing.JTextField jTextField82;
     private javax.swing.JTextField jTextField91;
+    private javax.swing.JTextField payBillNumberTxt;
+    private javax.swing.JFormattedTextField payerMobileTelephoneNumberTxt;
     private javax.swing.JButton searchButton1;
     private javax.swing.JButton searchButton13;
     // End of variables declaration//GEN-END:variables

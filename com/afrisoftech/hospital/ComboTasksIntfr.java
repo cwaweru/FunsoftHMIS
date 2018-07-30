@@ -434,7 +434,7 @@ public class ComboTasksIntfr extends javax.swing.JInternalFrame implements java.
         if (patientRegister == null) {
             patientRegister = new PatientRegisterIntfr(connectDB, pConnDB);
         }
-        patientRegister.jButton252.addActionListener(new java.awt.event.ActionListener() {
+        patientRegister.closeFormBtn.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboTaskPanels.removeAll();
@@ -811,7 +811,7 @@ public class ComboTasksIntfr extends javax.swing.JInternalFrame implements java.
                 //if(this.getShiftStatus()){
                 if (otherReceipts == null) {
                     otherReceipts = new com.afrisoftech.accounting.OtherRecptintfr(connectDB, pConnDB);
-                    otherReceipts.jButton4.addActionListener(new java.awt.event.ActionListener() {
+                    otherReceipts.closeFormBtn.addActionListener(new java.awt.event.ActionListener() {
 
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                             comboTaskPanels.removeAll();

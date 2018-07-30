@@ -252,7 +252,6 @@ public class PatientCardPdf implements java.lang.Runnable {
 
     }
 
-            
     public void generatePdf(java.lang.String memNo) {
 
         java.lang.Process wait_for_Pdf2Show;
@@ -281,7 +280,8 @@ public class PatientCardPdf implements java.lang.Runnable {
 
                 try {
 
-                    com.itextpdf.text.Phrase headerFoter = null;                                          com.itextpdf.text.pdf.PdfWriter.getInstance(docPdf, new java.io.FileOutputStream(tempFile));
+                    com.itextpdf.text.Phrase headerFoter = null;
+                    com.itextpdf.text.pdf.PdfWriter.getInstance(docPdf, new java.io.FileOutputStream(tempFile));
 
                     String compName = null;
                     String date = null;
@@ -388,43 +388,99 @@ public class PatientCardPdf implements java.lang.Runnable {
 
                             while (rsetp.next()) {
 
-                                table.getDefaultCell().setColspan(3);
+                                table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
-                                phrase = new Phrase("Patient No. : " + rsetp.getObject(1).toString(), pFontHeader11);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
-                                phrase = new Phrase("Category : " + dbObject.getDBObject(rsetp.getObject(3), "-"), pFontHeader11);
+                                phrase = new Phrase("Patient No.", pFontHeader11);
                                 table.addCell(phrase);
 
-                                //table.getDefaultCell().setColspan(2);
+                                table.getDefaultCell().setColspan(2);
                                 table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
-                                phrase = new Phrase("Patient Name : " + rsetp.getObject(2).toString(), pFontHeader11);
+                                phrase = new Phrase(rsetp.getObject(1).toString(), pFontHeader11);
                                 table.addCell(phrase);
 
-                                // table.getDefaultCell().setColspan(2);
+                                table.getDefaultCell().setColspan(2);
                                 table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
-                                phrase = new Phrase("TEl No. : " + dbObject.getDBObject(rsetp.getObject(5), "-"), pFontHeader11);
+                                phrase = new Phrase("Category", pFontHeader11);
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setColspan(1);
+                                table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+                                phrase = new Phrase(dbObject.getDBObject(rsetp.getObject(3), "-"), pFontHeader11);
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setColspan(1);
+                                table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+                                phrase = new Phrase("Patient Name", pFontHeader11);
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setColspan(2);
+                                table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+                                phrase = new Phrase(rsetp.getObject(2).toString(), pFontHeader11);
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setColspan(2);
+                                table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+                                phrase = new Phrase("TEl No.", pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
 
-                                phrase = new Phrase("Sexx : " + dbObject.getDBObject(rsetp.getObject(7), "-"), pFontHeader11);
-                                table.addCell(phrase);
-                                phrase = new Phrase("Next Of Kin : " + dbObject.getDBObject(rsetp.getObject(8), "-"), pFontHeader11);
-                                table.addCell(phrase);
-
-                                phrase = new Phrase("Age : " + dbObject.getDBObject(rsetp.getObject(9), "-"), pFontHeader11);
-                                table.addCell(phrase);
-
-                                //  table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Date Last Visit : " + dbObject.getDBObject(rsetp.getObject(6), "-"), pFontHeader11);
-                                table.addCell(phrase);
+                                table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
-                                phrase = new Phrase("Residence : " + dbObject.getDBObject(rsetp.getObject(4), "-"), pFontHeader11);
+                                phrase = new Phrase(dbObject.getDBObject(rsetp.getObject(5), "-"), pFontHeader11);
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setColspan(1);
+                                phrase = new Phrase("Gender", pFontHeader11);
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setColspan(2);
+                                phrase = new Phrase(dbObject.getDBObject(rsetp.getObject(7), "-"), pFontHeader11);
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setColspan(2);
+                                phrase = new Phrase("Next Of Kin", pFontHeader11);
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setColspan(1);
+                                phrase = new Phrase(dbObject.getDBObject(rsetp.getObject(8), "-"), pFontHeader11);
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setColspan(1);
+                                phrase = new Phrase("Age", pFontHeader11);
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setColspan(2);
+                                phrase = new Phrase(dbObject.getDBObject(rsetp.getObject(9), "-"), pFontHeader11);
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setColspan(2);
+                                phrase = new Phrase("Date Last Visit", pFontHeader11
+                                );
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setColspan(1);
+                                phrase = new Phrase(dbObject.getDBObject(rsetp.getObject(6), "-"), pFontHeader11
+                                );
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setColspan(1);
+                                table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+                                phrase = new Phrase("Residence", pFontHeader11);
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setColspan(2);
+                                table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+                                phrase = new Phrase(dbObject.getDBObject(rsetp.getObject(4), "-"), pFontHeader11);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
 
-                                phrase = new Phrase("Payment Mode : " + dbObject.getDBObject(rsetp.getObject(10), "-"), pFontHeader11);
+                                table.getDefaultCell().setColspan(2);
+                                phrase = new Phrase("Payment Mode", pFontHeader11);
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setColspan(1);
+                                phrase = new Phrase(dbObject.getDBObject(rsetp.getObject(10), "-"), pFontHeader11);
                                 table.addCell(phrase);
 
                             }
@@ -477,7 +533,7 @@ public class PatientCardPdf implements java.lang.Runnable {
                                         + " FROM hp_clinical_results where patient_no = '" + memNo + "' and date  = '" + listofStaffNos[j] + "' AND treatment != '' AND comments IS NOT NULL  "
                                         + " UNION ALL SELECT DISTINCT INITCAP(examination),input_date::TIME(0), INITCAP(doctor), notes"
                                         + " FROM hp_xray_results WHERE patient_no = '" + memNo + "' AND date  = '" + listofStaffNos[j] + "' "
-                                        + " ORDER BY 2 ");
+                                        + " UNION SELECT INITCAP(service), curr_date::TIME(0), initcap(doctor), '' as notes FROM pb_doctors_request WHERE revenue_code not ilike '%pharmacy%' AND patient_no = '" + memNo + "' AND trans_date  = '" + listofStaffNos[j] + "' ORDER BY 2 ");
                                 java.sql.ResultSet rset2c11 = st2c11.executeQuery("SELECT DISTINCT INITCAP(description),input_date::TIME(0), initcap(doctor), '' as notes from hp_clinical_results "
                                         + "WHERE patient_no = '" + memNo + "' and date  = '" + listofStaffNos[j] + "' AND description != '' AND DESCRIPTION IS NOT NULL  AND description NOT ILIKE 'null%' "
                                         + " UNION ALL "
@@ -513,7 +569,6 @@ public class PatientCardPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setColspan(2);
                                 //  table.getDefaultCell().setBorderColor(com.itextpdf.text.BaseColor.WHITE);
                                 table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
-
 
                                 table.getDefaultCell().setColspan(1);
 
@@ -645,7 +700,7 @@ public class PatientCardPdf implements java.lang.Runnable {
 
                                     table.addCell(phrase);
 
-                                 }
+                                }
 
                                 table.getDefaultCell().setColspan(1);
                                 //  table.getDefaultCell().setBorderColor(com.itextpdf.text.BaseColor.WHITE);
@@ -686,7 +741,7 @@ public class PatientCardPdf implements java.lang.Runnable {
                                     table.getDefaultCell().setColspan(4);
                                     //  table.getDefaultCell().setBorderColor(com.itextpdf.text.BaseColor.WHITE);
                                     table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
-                                  //  Image image = com.afrisoftech.lib.SaveBytea2DB.getImage(connectDB, memNo, rsetImages.getTimestamp(1));
+                                    //  Image image = com.afrisoftech.lib.SaveBytea2DB.getImage(connectDB, memNo, rsetImages.getTimestamp(1));
 //                                    table.addCell(image);
                                     ByteArrayOutputStream bout = com.afrisoftech.lib.SaveBytea2DB.getImageBytea(connectDB, memNo, rsetImages.getTimestamp(1));
                                     // ChartUtilities.writeChartAsPNG(bout, getPartoChart(), 750, 380);
@@ -700,8 +755,6 @@ public class PatientCardPdf implements java.lang.Runnable {
                                     table.addCell(phrase);
                                 }
 
-                                //table.addCell(phrase);
-                                //table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader11);
@@ -767,7 +820,7 @@ public class PatientCardPdf implements java.lang.Runnable {
                                     //  table.getDefaultCell().setBorderColor(com.itextpdf.text.BaseColor.WHITE);
                                     table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
 
-                                    phrase = new Phrase(dbObject.getDBObject(rset2c1.getObject(1), "-") + " RESULTS : "+dbObject.getDBObject(rset2c1.getObject("notes"), "-"), pFontHeader);
+                                    phrase = new Phrase(dbObject.getDBObject(rset2c1.getObject(1), "-") + " RESULTS : " + dbObject.getDBObject(rset2c1.getObject("notes"), "-"), pFontHeader);
 
                                     table.addCell(phrase);
 
@@ -836,7 +889,7 @@ public class PatientCardPdf implements java.lang.Runnable {
                                                 Notice = dbObject.getDBObject(rset4c.getString(2), "-");
                                                 System.out.println(Status);
                                             }
-                                            java.sql.ResultSet rset1w = st11.executeQuery("select parameter,out_come||' '||units,lower_limit,upper_limit from hp_lab_results where code ilike '" + Test + "'  and lab_no ilike '" + listofStaffNos1[l] + "'  AND date  = '" + listofStaffNos[j] + "' order by OID");
+                                            java.sql.ResultSet rset1w = st11.executeQuery("select parameter,out_come||' '||units,lower_limit,upper_limit, out_come from hp_lab_results where code ilike '" + Test + "'  and lab_no ilike '" + listofStaffNos1[l] + "'  AND date  = '" + listofStaffNos[j] + "' order by OID");
                                             // while (rset41.next()){
                                             java.sql.ResultSet rset411 = st21.executeQuery("select distinct comments from hp_lab_results where  lab_no ilike '" + listofStaffNos1[l] + "' and code ilike '" + Test + "' AND date  = '" + listofStaffNos[j] + "' ");
 
@@ -853,7 +906,7 @@ public class PatientCardPdf implements java.lang.Runnable {
                                                 table.addCell(phrase);
                                                 table.getDefaultCell().setColspan(4);
                                                 table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
-                                                phrase = new Phrase("TEST: " + testName.toUpperCase(), pFontHeader1);
+                                                phrase = new Phrase("PARAMETER: " + testName.toUpperCase(), pFontHeader1);
                                                 table.addCell(phrase);
                                                 table.getDefaultCell().setColspan(1);
                                                 phrase = new Phrase(Tech, pFontHeader);
@@ -865,7 +918,7 @@ public class PatientCardPdf implements java.lang.Runnable {
                                                 // table.addCell(phrase);
                                                 //table.addCell(phrase);
                                                 table.getDefaultCell().setColspan(1);
-                                                phrase = new Phrase("Test", pFontHeader1);
+                                                phrase = new Phrase("Parameter", pFontHeader1);
                                                 table.addCell(phrase);
                                                 table.getDefaultCell().setColspan(1);
                                                 phrase = new Phrase("Result", pFontHeader1);
@@ -894,7 +947,7 @@ public class PatientCardPdf implements java.lang.Runnable {
                                                 //phrase = new Phrase("Notes: "+Notice, pFontHeader1);
                                                 //table.addCell(phrase);
                                                 table.getDefaultCell().setColspan(1);
-                                                phrase = new Phrase("", pFontHeader1);
+                                                phrase = new Phrase("Status", pFontHeader1);
                                                 table.addCell(phrase);
                                                 //table.addCell(phrase);
                                                 while (rset1w.next()) {
@@ -928,12 +981,17 @@ public class PatientCardPdf implements java.lang.Runnable {
                                                     phrase = new Phrase(dbObject.getDBObject(rset1w.getObject(4), "-"), pFontHeader);
 
                                                     table.addCell(phrase);
-
+                                                    if (rset1w.getDouble(5) > rset1w.getDouble(3) && rset1w.getDouble(5) < rset1w.getDouble(4)) {
+                                                        table.getDefaultCell().setBackgroundColor(BaseColor.GREEN);
+                                                    } else {
+                                                        table.getDefaultCell().setBackgroundColor(BaseColor.RED);
+                                                    }
                                                     table.getDefaultCell().setColspan(1);
                                                     table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
                                                     table.getDefaultCell().setColspan(1);
                                                     phrase = new Phrase("", pFontHeader1);
                                                     table.addCell(phrase);
+                                                    table.getDefaultCell().setBackgroundColor(BaseColor.WHITE);
                                                     //table.addCell(phrase);
                                                 }
 
@@ -1273,7 +1331,7 @@ public class PatientCardPdf implements java.lang.Runnable {
             java.sql.Statement stmt1 = connectDB.createStatement();
 
             // java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no FROM hp_patient_card WHERE date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND payment_mode = 'Scheme' AND isurer = '"+memNo+"' order by patient_no");
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT date FROM hp_patient_visit where patient_no = '" + MNo + "' UNION SELECT date_admitted::date as date FROM hp_admission WHERE patient_no = '" + MNo + "' order by date");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT date FROM hp_patient_visit where patient_no = '" + MNo + "' UNION SELECT date_admitted::date as date FROM hp_admission WHERE patient_no = '" + MNo + "' AND patient_no IS NOT NULL order by date DESC");
 //            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT trans_date FROM pb_doctors_request WHERE patient_no = '" + MNo + "'  ORDER by 1");
 
             while (rSet1.next()) {

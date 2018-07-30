@@ -80,7 +80,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton111 = new javax.swing.JButton();
+        saveBtn = new javax.swing.JButton();
         jButton211 = new javax.swing.JButton();
         jButton512 = new javax.swing.JButton();
         jButton311 = new javax.swing.JButton();
@@ -951,11 +951,11 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
             }
         });
         itemsTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                itemsTableMousePressed(evt);
-            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 itemsTableMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                itemsTableMousePressed(evt);
             }
         });
         jScrollPane21.setViewportView(itemsTable);
@@ -985,11 +985,11 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jButton111.setMnemonic('S');
-        jButton111.setText("Save");
-        jButton111.addActionListener(new java.awt.event.ActionListener() {
+        saveBtn.setMnemonic('S');
+        saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton111ActionPerformed(evt);
+                saveBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -997,7 +997,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel2.add(jButton111, gridBagConstraints);
+        jPanel2.add(saveBtn, gridBagConstraints);
 
         jButton211.setMnemonic('E');
         jButton211.setText("Edit");
@@ -2386,8 +2386,8 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton111.setLabel("Update");
-        jButton111.setEnabled(true);
+        saveBtn.setLabel("Update");
+        saveBtn.setEnabled(true);
         // Add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
@@ -2428,7 +2428,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
             sqe.printStackTrace();
             System.out.println("selection not successful");
         }
-        jButton111.setEnabled(true);        // Add your handling code here:
+        saveBtn.setEnabled(true);        // Add your handling code here:
     }//GEN-LAST:event_classificationCmbxActionPerformed
 
     private void jButton5111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5111ActionPerformed
@@ -2712,7 +2712,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void storeNameCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeNameCmbxActionPerformed
-        jButton111.setEnabled(true);
+        saveBtn.setEnabled(true);
         // Add your handling code here:
     }//GEN-LAST:event_storeNameCmbxActionPerformed
 
@@ -2737,7 +2737,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         }
         this.jComboBox11.setSelectedItem(null);
         jTextField2.setText("");
-        jButton111.setLabel("Save");
+        saveBtn.setLabel("Save");
         // Add your handling code here:
     }//GEN-LAST:event_jButton311ActionPerformed
 
@@ -2935,8 +2935,8 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
             }
         }
 
-        jButton111.setText("Update");
-        jButton111.setEnabled(true);
+        saveBtn.setText("Update");
+        saveBtn.setEnabled(true);
         // Add your handling code here:
     }//GEN-LAST:event_jButton211ActionPerformed
 
@@ -2956,7 +2956,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton111ActionPerformed
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         java.util.Calendar calendar = java.util.Calendar.getInstance();
 
         long dateNow = calendar.getTimeInMillis();
@@ -3008,7 +3008,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
                     transfer = Float.parseFloat(itemsTable.getModel().getValueAt(i, 5).toString());//buying price
                     packing = Float.parseFloat(itemsTable.getModel().getValueAt(i, 4).toString());//item per pack
 
-                    if (jButton111.getText().equalsIgnoreCase("Update")) {//if the save button is pressed after edit is pressed
+                    if (saveBtn.getText().equalsIgnoreCase("Update")) {//if the save button is pressed after edit is pressed
 
                         java.sql.Statement stmtw1 = connectDB.createStatement();
                         java.sql.ResultSet rsetw1 = stmtw1.executeQuery("select mark_up from st_stores where store_name = '" + this.storeNameCmbx.getSelectedItem() + "'");
@@ -3316,10 +3316,10 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
             }
 
             jLabel6.setForeground(java.awt.Color.white);
-            jButton111.setLabel("Save");
+            saveBtn.setLabel("Save");
             jTextField11.setText("-");
             jTextField21.setText("-");
-            this.jButton111.setEnabled(false);
+            this.saveBtn.setEnabled(false);
 
             ClearTable.clearthisTable(itemsTable);
 
@@ -3344,7 +3344,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         }
 
         // Add your handling code here:
-    }//GEN-LAST:event_jButton111ActionPerformed
+    }//GEN-LAST:event_saveBtnActionPerformed
 
     private void jComboBox11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox11ActionPerformed
 
@@ -3629,40 +3629,43 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
     private void itemsTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemsTableMousePressed
 
         // TODO add your handling code here:
-        if (storeNameCmbx.getSelectedItem() != null) {
-            if (!Boolean.parseBoolean(itemsTable.getValueAt(itemsTable.getSelectedRow(), 10).toString())) {
-                code = "-";
-                this.sel = itemsTable.getSelectedColumn();
+        if (saveBtn.getText().equalsIgnoreCase("Save") && itemsTable.getSelectedColumn() == 10) {
+            if (storeNameCmbx.getSelectedItem() != null) {
+                if (!Boolean.parseBoolean(itemsTable.getValueAt(itemsTable.getSelectedRow(), 10).toString())) {
+                    code = "-";
+                    this.sel = itemsTable.getSelectedColumn();
 
-                System.out.println(sel);
+                    System.out.println(sel);
 
-                if (sel == 10 && itemsTable.getValueAt(itemsTable.getSelectedRow(), 0) == null) {
-                    System.out.println("The sequence is::" + sequence);
+                    if (sel == 10 && itemsTable.getValueAt(itemsTable.getSelectedRow(), 0) == null) {
+                        System.out.println("The sequence is::" + sequence);
 
-                    PreparedStatement pst;
-                    try {
-                        pst = connectDB.prepareStatement("select lpad(nextval('item_code_seq')::varchar, 4, '0')");
+                        PreparedStatement pst;
+                        try {
+                            pst = connectDB.prepareStatement("select lpad(nextval('item_code_seq')::varchar, 4, '0')");
 
-                        java.sql.ResultSet rst = pst.executeQuery();
-                        while (rst.next()) {
-                            sequence = rst.getObject(1).toString();
+                            java.sql.ResultSet rst = pst.executeQuery();
+                            while (rst.next()) {
+                                sequence = rst.getObject(1).toString();
 
-                            System.err.println("The sequence is::" + sequence);
+                                System.err.println("The sequence is::" + sequence);
+                            }
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
                         }
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
+                        category = classificationCmbx.getSelectedItem().toString().substring(0, 4).toUpperCase();
+
+                        code = category + "0" + sequence;
+
+                        itemsTable.setValueAt(code, itemsTable.getSelectedRow(), 0);
                     }
-                    category = classificationCmbx.getSelectedItem().toString().substring(0, 4).toUpperCase();
-
-                    code = category + "0" + sequence;
-
-                    itemsTable.setValueAt(code, itemsTable.getSelectedRow(), 0);
+                } else {
+                    itemsTable.setValueAt(null, itemsTable.getSelectedRow(), 0);
                 }
             } else {
-                itemsTable.setValueAt(null, itemsTable.getSelectedRow(), 0);
+                javax.swing.JOptionPane.showMessageDialog(this, "You MUST select at least one store!");
             }
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "You MUST select at least one store!");
+
         }
     }//GEN-LAST:event_itemsTableMousePressed
 
@@ -3782,7 +3785,6 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton111;
     private javax.swing.JButton jButton112;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
@@ -3863,6 +3865,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JButton saveBroadCategoriesButton;
+    private javax.swing.JButton saveBtn;
     private javax.swing.JButton saveTypeofStoresBtn;
     private javax.swing.ButtonGroup servOrStock;
     private javax.swing.JComboBox storeNameCmbx;

@@ -8935,17 +8935,17 @@ public class NursingTriage extends javax.swing.JInternalFrame {
             java.sql.ResultSet rse123 = stm123.executeQuery("select age(year_of_birth::date) from hp_patient_register where patient_no ilike '%" + patient_num + "%'");
             while (rse123.next()) {
                 ///getting the user
-                age = rse123.getObject(1).toString();
+                age = rse123.getString(1);
                 System.out.println("\n\nam executing the age which is " + age + "\n\n");
             }
             //getting details
             java.sql.Statement stm12 = connectDB.createStatement();
             java.sql.ResultSet rse12 = stm12.executeQuery(
                     "Select  hp_patient_visit.patient_no,  hp_patient_visit.name,  "
-                    + "   hp_patient_visit.gender,hp_patient_visit.marital_status,  hp_patient_visit.date,  hp_patient_visit.clinic "
+                    + "   hp_patient_visit.gender, hp_patient_visit.marital_status,  hp_patient_visit.date::varchar,  hp_patient_visit.clinic "
                     + "From  hp_patient_visit "
                     + " where date::date>=( '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(headerDatePicker.getDate()) + "'::date-5)"
-                    + " and hp_patient_visit.clinic='" + ward + "' AND hp_patient_visit.patient_no ilike '%" + patient_num + "%'  ");
+                    + " and hp_patient_visit.patient_no ilike '%" + patient_num + "%'  ");
             while (rse12.next()) {
                 ///getting the user
                 System.out.println("\n\nam executing the user\n\n");
@@ -8953,25 +8953,25 @@ public class NursingTriage extends javax.swing.JInternalFrame {
 //                int month = Integer.parseInt(age.substring(5, 7));
 //                int day = Integer.parseInt(age.substring(8, 10));
 
-                dateAdmitted = rse12.getObject(5).toString();
+                dateAdmitted = rse12.getString(5);
 
-                text = "Names:-" + rse12.getObject(2).toString() + "    Age: ".
+                text = "Names:-" + rse12.getString(2) + "    Age: ".
                         concat(age + "\n Gender: ".
-                                concat(rse12.getObject(3).toString() + "     Marital Status: ".
-                                        concat(rse12.getObject(4).toString() + "\n Clinic : ".
-                                                concat(rse12.getObject(6).toString() + "    Date of Visit: ".
-                                                        concat(rse12.getObject(5).toString())))));
+                                concat(rse12.getString(3) + "     Marital Status: ".
+                                        concat(rse12.getString(4) + "\n Clinic : ".
+                                                concat(rse12.getString(6) + "    Date of Visit: ".
+                                                        concat(rse12.getString(5))))));
                 System.out.println("\n\nam executing the user and the text is " + text + "\n\n");
-                String visit = rse12.getObject(5).toString().trim();
+                String visit = rse12.getString(5).trim();
                 System.out.println("the visit id is now " + visit);
                 visitId = visit.replace("-", "");
                 System.out.println("the visitID id is now " + visitId);
-                gender = rse12.getObject(3).toString();
+                gender = rse12.getString(3);
 
-                patient_name = rse12.getObject(2).toString();
+                patient_name = rse12.getString(2);
 
-                title = visitId + " Clinic:-" + ward + "                           (" + rse12.getObject(1).toString().concat("    ").
-                        concat(rse12.getObject(2).toString()).concat(")");
+                title = visitId + " Clinic:-" + ward + "                           (" + rse12.getString(1).concat("    ").
+                        concat(rse12.getString(2)).concat(")");
                 this.setTitle(title);
 
             }
@@ -9608,8 +9608,12 @@ public class NursingTriage extends javax.swing.JInternalFrame {
     private void calculateBMI() {
         Double BMI = 0.0;
         dbObject = new com.afrisoftech.lib.DBObject();
-        double height = Double.valueOf(dbObject.getDBObject(this.heightTxt.getText(), "0.00"));
-        double weight = Double.valueOf(dbObject.getDBObject(this.weightTxt.getText(), "0.00"));
+        double height = 0.0;
+        double weight = 0.0;
+        if (heightTxt.getText().length() > 0 && weightTxt.getText().length() > 0) {
+            height = Double.valueOf(dbObject.getDBObject(this.heightTxt.getText(), "0.00"));
+            weight = Double.valueOf(dbObject.getDBObject(this.weightTxt.getText(), "0.00"));
+        }
 
         if (weightTxt.getText().toString().equals("")) {
             weight = 0.0;
@@ -9626,6 +9630,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
             bmiTxt.setText(String.valueOf(BMI.shortValue()));
 
         } catch (Exception e) {
+            e.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, e.getMessage() + "\n weight allows numerical only", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
             weightTxt.setText("");
         }

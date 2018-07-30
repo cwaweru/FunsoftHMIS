@@ -121,33 +121,33 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
         ancCardDetailsPanel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        whoStageTxt = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        cd4CountTxt = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        datePicker1 = new com.afrisoftech.lib.DatePicker();
+        startARTDatePicker = new com.afrisoftech.lib.DatePicker();
         jPanel4 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox();
+        ctxCmbx = new javax.swing.JComboBox();
         jLabel24 = new javax.swing.JLabel();
-        jComboBox7 = new javax.swing.JComboBox();
+        sdNVPCmbx = new javax.swing.JComboBox();
         jLabel25 = new javax.swing.JLabel();
-        jComboBox8 = new javax.swing.JComboBox();
+        aztCmbx = new javax.swing.JComboBox();
         jLabel26 = new javax.swing.JLabel();
-        jComboBox9 = new javax.swing.JComboBox();
+        arvCmbx = new javax.swing.JComboBox();
         jLabel27 = new javax.swing.JLabel();
-        jComboBox10 = new javax.swing.JComboBox();
+        haartCmbx = new javax.swing.JComboBox();
         jLabel28 = new javax.swing.JLabel();
-        jComboBox11 = new javax.swing.JComboBox();
+        nvp4BabyCmbx = new javax.swing.JComboBox();
         jPanel5 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        tbStatusTxt = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
-        jComboBox12 = new javax.swing.JComboBox();
+        screenCervicalCancerCmbx = new javax.swing.JComboBox();
         jPanel6 = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
-        jComboBox13 = new javax.swing.JComboBox();
-        jTextField12 = new javax.swing.JTextField();
+        otherConditionsCmbx = new javax.swing.JComboBox();
+        otherConditionsTxt = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
@@ -156,25 +156,25 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
-        jComboBox14 = new javax.swing.JComboBox();
-        jComboBox15 = new javax.swing.JComboBox();
-        jComboBox16 = new javax.swing.JComboBox();
-        jComboBox17 = new javax.swing.JComboBox();
-        jComboBox18 = new javax.swing.JComboBox();
-        jComboBox19 = new javax.swing.JComboBox();
+        dewormingCmbx = new javax.swing.JComboBox();
+        ipt123Cmbx = new javax.swing.JComboBox();
+        ttDoseCmbx = new javax.swing.JComboBox();
+        ironCmbx = new javax.swing.JComboBox();
+        folicAcidCmbx = new javax.swing.JComboBox();
+        itnCmbx = new javax.swing.JComboBox();
         jLabel40 = new javax.swing.JLabel();
-        jComboBox20 = new javax.swing.JComboBox();
+        additionalTreatmentCmbx = new javax.swing.JComboBox();
         ferrousFolateCmbx = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
-        jComboBox21 = new javax.swing.JComboBox();
+        coupleCounselledCmbx = new javax.swing.JComboBox();
         jLabel42 = new javax.swing.JLabel();
-        jComboBox22 = new javax.swing.JComboBox();
+        partnerHIVResultsCmbx = new javax.swing.JComboBox();
         jLabel43 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        referralTxt = new javax.swing.JTextField();
+        remarksScrollPane = new javax.swing.JScrollPane();
+        remarksTxt = new javax.swing.JTextPane();
         buttonPanel = new javax.swing.JPanel();
         saveMotherInfoBtn = new javax.swing.JButton();
         regEditdataBtn = new javax.swing.JButton();
@@ -786,6 +786,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             ancMotherInfoPanel.add(rhesusFactorLbl, gridBagConstraints);
 
+            gestationPeriodTxt.setToolTipText("This must be a numerical value");
             gestationPeriodTxt.setMinimumSize(new java.awt.Dimension(50, 20));
             gestationPeriodTxt.setPreferredSize(new java.awt.Dimension(50, 20));
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -796,6 +797,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             ancMotherInfoPanel.add(gestationPeriodTxt, gridBagConstraints);
 
+            hbTxt.setToolTipText("This must be a numerical value");
             hbTxt.setMinimumSize(new java.awt.Dimension(50, 20));
             hbTxt.setPreferredSize(new java.awt.Dimension(50, 20));
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -816,6 +818,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             ancMotherInfoPanel.add(numberofVisitlbl, gridBagConstraints);
 
+            numberofVisitTxt.setToolTipText("This must be a numerical value");
             numberofVisitTxt.setMinimumSize(new java.awt.Dimension(50, 20));
             numberofVisitTxt.setPreferredSize(new java.awt.Dimension(50, 20));
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -887,6 +890,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             ancMotherInfoPanel.add(cardOpeningOptionsPanel, gridBagConstraints);
 
+            weightTxt.setToolTipText("This must be a numerical value");
             weightTxt.setMinimumSize(new java.awt.Dimension(50, 20));
             weightTxt.setPreferredSize(new java.awt.Dimension(50, 20));
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1067,12 +1071,12 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             jPanel3.add(jLabel20, gridBagConstraints);
 
-            jTextField8.setMinimumSize(new java.awt.Dimension(50, 20));
-            jTextField8.setPreferredSize(new java.awt.Dimension(50, 20));
+            whoStageTxt.setMinimumSize(new java.awt.Dimension(50, 20));
+            whoStageTxt.setPreferredSize(new java.awt.Dimension(50, 20));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
-            jPanel3.add(jTextField8, gridBagConstraints);
+            jPanel3.add(whoStageTxt, gridBagConstraints);
 
             jLabel21.setText("CD4 Count");
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1083,15 +1087,16 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             jPanel3.add(jLabel21, gridBagConstraints);
 
-            jTextField9.setMinimumSize(new java.awt.Dimension(50, 20));
-            jTextField9.setPreferredSize(new java.awt.Dimension(50, 20));
+            cd4CountTxt.setToolTipText("This must be a numerical value");
+            cd4CountTxt.setMinimumSize(new java.awt.Dimension(50, 20));
+            cd4CountTxt.setPreferredSize(new java.awt.Dimension(50, 20));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 1;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel3.add(jTextField9, gridBagConstraints);
+            jPanel3.add(cd4CountTxt, gridBagConstraints);
 
             jLabel22.setText("Start on ART in ANC");
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1108,7 +1113,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel3.add(datePicker1, gridBagConstraints);
+            jPanel3.add(startARTDatePicker, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -1129,14 +1134,14 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             jPanel4.add(jLabel23, gridBagConstraints);
 
-            jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
+            ctxCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 1;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel4.add(jComboBox6, gridBagConstraints);
+            jPanel4.add(ctxCmbx, gridBagConstraints);
 
             jLabel24.setText("sdNVP");
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1148,14 +1153,14 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             jPanel4.add(jLabel24, gridBagConstraints);
 
-            jComboBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
+            sdNVPCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 2;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel4.add(jComboBox7, gridBagConstraints);
+            jPanel4.add(sdNVPCmbx, gridBagConstraints);
 
             jLabel25.setText("AZT");
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1167,14 +1172,14 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             jPanel4.add(jLabel25, gridBagConstraints);
 
-            jComboBox8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
+            aztCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 3;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel4.add(jComboBox8, gridBagConstraints);
+            jPanel4.add(aztCmbx, gridBagConstraints);
 
             jLabel26.setText("3 ARVs");
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1186,14 +1191,14 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             jPanel4.add(jLabel26, gridBagConstraints);
 
-            jComboBox9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
+            arvCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 4;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel4.add(jComboBox9, gridBagConstraints);
+            jPanel4.add(arvCmbx, gridBagConstraints);
 
             jLabel27.setText("HAART");
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1205,14 +1210,14 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             jPanel4.add(jLabel27, gridBagConstraints);
 
-            jComboBox10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
+            haartCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 5;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel4.add(jComboBox10, gridBagConstraints);
+            jPanel4.add(haartCmbx, gridBagConstraints);
 
             jLabel28.setText("NVP for Baby");
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1224,14 +1229,14 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             jPanel4.add(jLabel28, gridBagConstraints);
 
-            jComboBox11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
+            nvp4BabyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 6;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel4.add(jComboBox11, gridBagConstraints);
+            jPanel4.add(nvp4BabyCmbx, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -1255,7 +1260,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel5.add(jTextField10, gridBagConstraints);
+            jPanel5.add(tbStatusTxt, gridBagConstraints);
 
             jLabel30.setText("Cervical Cancer");
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1267,14 +1272,14 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             jPanel5.add(jLabel30, gridBagConstraints);
 
-            jComboBox12.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "PAP", "VIA" }));
+            screenCervicalCancerCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "PAP", "VIA" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 1;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel5.add(jComboBox12, gridBagConstraints);
+            jPanel5.add(screenCervicalCancerCmbx, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -1294,18 +1299,18 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             jPanel6.add(jLabel31, gridBagConstraints);
 
-            jComboBox13.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hypertension", "Diabetes", "Epilepsy", "Malaria in Pregnancy", "STIs/RTI", "Others Specify" }));
+            otherConditionsCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hypertension", "Diabetes", "Epilepsy", "Malaria in Pregnancy", "STIs/RTI", "Others Specify" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel6.add(jComboBox13, gridBagConstraints);
+            jPanel6.add(otherConditionsCmbx, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 1;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
-            jPanel6.add(jTextField12, gridBagConstraints);
+            jPanel6.add(otherConditionsTxt, gridBagConstraints);
 
             jLabel32.setText("Specify Other Conditions");
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1388,59 +1393,59 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             jPanel7.add(jLabel39, gridBagConstraints);
 
-            jComboBox14.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
+            dewormingCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel7.add(jComboBox14, gridBagConstraints);
+            jPanel7.add(dewormingCmbx, gridBagConstraints);
 
-            jComboBox15.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "1", "2", "3", "NA" }));
+            ipt123Cmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "1", "2", "3", "NA" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 1;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel7.add(jComboBox15, gridBagConstraints);
+            jPanel7.add(ipt123Cmbx, gridBagConstraints);
 
-            jComboBox16.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "1", "2", "3", "4", "5" }));
+            ttDoseCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "1", "2", "3", "4", "5" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 2;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel7.add(jComboBox16, gridBagConstraints);
+            jPanel7.add(ttDoseCmbx, gridBagConstraints);
 
-            jComboBox17.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
+            ironCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 3;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel7.add(jComboBox17, gridBagConstraints);
+            jPanel7.add(ironCmbx, gridBagConstraints);
 
-            jComboBox18.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
+            folicAcidCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 4;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel7.add(jComboBox18, gridBagConstraints);
+            jPanel7.add(folicAcidCmbx, gridBagConstraints);
 
-            jComboBox19.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
+            itnCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 6;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel7.add(jComboBox19, gridBagConstraints);
+            jPanel7.add(itnCmbx, gridBagConstraints);
 
             jLabel40.setText("Additional Treatment");
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1452,14 +1457,14 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             jPanel7.add(jLabel40, gridBagConstraints);
 
-            jComboBox20.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Hypertension", "Diabetes", "Epilepsy", "Malaria in Pregnacy", "STIs/RTI", "Others", " " }));
+            additionalTreatmentCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Hypertension", "Diabetes", "Epilepsy", "Malaria in Pregnacy", "STIs/RTI", "Others", " " }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 7;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel7.add(jComboBox20, gridBagConstraints);
+            jPanel7.add(additionalTreatmentCmbx, gridBagConstraints);
 
             ferrousFolateCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1500,13 +1505,13 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             jPanel8.add(jLabel41, gridBagConstraints);
 
-            jComboBox21.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
+            coupleCounselledCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "N", "Y" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-            jPanel8.add(jComboBox21, gridBagConstraints);
+            jPanel8.add(coupleCounselledCmbx, gridBagConstraints);
 
             jLabel42.setText("Partners Results");
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1517,7 +1522,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             jPanel8.add(jLabel42, gridBagConstraints);
 
-            jComboBox22.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "P", "N", "U", "KP" }));
+            partnerHIVResultsCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "P", "N", "U", "KP" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 1;
@@ -1525,7 +1530,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-            jPanel8.add(jComboBox22, gridBagConstraints);
+            jPanel8.add(partnerHIVResultsCmbx, gridBagConstraints);
 
             jLabel43.setText("Reffered for");
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1542,10 +1547,10 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-            jPanel8.add(jTextField13, gridBagConstraints);
+            jPanel8.add(referralTxt, gridBagConstraints);
 
-            jTextPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Remarks"));
-            jScrollPane1.setViewportView(jTextPane1);
+            remarksTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Remarks"));
+            remarksScrollPane.setViewportView(remarksTxt);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -1555,7 +1560,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 2.0;
-            jPanel8.add(jScrollPane1, gridBagConstraints);
+            jPanel8.add(remarksScrollPane, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
@@ -1666,19 +1671,21 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
 }//GEN-LAST:event_regEditdataBtnActionPerformed
 
     private void saveMotherInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMotherInfoBtnActionPerformed
-        
-        String ancNumber = null;
-        try {
-            java.sql.PreparedStatement pstmtANC = connectDB.prepareStatement("SELECT 'ANC'||lpad(nextval('anc_no_seq')::text,8,0::text)");
-            java.sql.ResultSet rsetANC = pstmtANC.executeQuery();
-            while(rsetANC.next()){
-                ancNumber = rsetANC.getString(1);
+
+        String ancNumber = ancNumberTxt.getText();
+        if (ancNumber.length() < 1) {
+            try {
+                java.sql.PreparedStatement pstmtANC = connectDB.prepareStatement("SELECT 'ANC'||lpad(nextval('anc_no_seq')::text,8,0::text)");
+                java.sql.ResultSet rsetANC = pstmtANC.executeQuery();
+                while (rsetANC.next()) {
+                    ancNumber = rsetANC.getString(1);
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ancNumberTxt.setText(ancNumber);
         }
-        ancNumberTxt.setText(ancNumber);
         try {
             connectDB.setAutoCommit(false);
             java.sql.PreparedStatement pstmtMotherInfo = connectDB.prepareStatement("INSERT INTO rh.mother_details("
@@ -1733,29 +1740,33 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             pstmtMotherInfo.setObject(25, serologyCmbx.getSelectedItem());
             pstmtMotherInfo.setObject(26, hivInitialCmbx.getSelectedItem());
             pstmtMotherInfo.setObject(27, hivResultCmbx.getSelectedItem());
-            pstmtMotherInfo.setString(28, jTextField8.getText());
-            pstmtMotherInfo.setString(29, jTextField9.getText());
-            pstmtMotherInfo.setDate(30, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-            pstmtMotherInfo.setObject(31, jComboBox6.getSelectedItem());
-            pstmtMotherInfo.setObject(32, jComboBox7.getSelectedItem());
-            pstmtMotherInfo.setObject(33, jComboBox8.getSelectedItem());
-            pstmtMotherInfo.setObject(34, jComboBox9.getSelectedItem());
-            pstmtMotherInfo.setObject(35, jComboBox10.getSelectedItem());
-            pstmtMotherInfo.setObject(36, jComboBox11.getSelectedItem());
-            pstmtMotherInfo.setString(37, jTextField10.getText());
-            pstmtMotherInfo.setObject(38, jComboBox12.getSelectedItem());
-            pstmtMotherInfo.setObject(39, jComboBox13.getSelectedItem());
-            pstmtMotherInfo.setObject(40, jComboBox14.getSelectedItem());
-            pstmtMotherInfo.setObject(41, jComboBox15.getSelectedItem());
-            pstmtMotherInfo.setObject(42, jComboBox16.getSelectedItem());
-            pstmtMotherInfo.setObject(43, jComboBox17.getSelectedItem());
-            pstmtMotherInfo.setObject(44, jComboBox18.getSelectedItem());
-            pstmtMotherInfo.setObject(45, jComboBox19.getSelectedItem());
-            pstmtMotherInfo.setObject(46, jComboBox20.getSelectedItem());
-            pstmtMotherInfo.setObject(47, jComboBox21.getSelectedItem());
-            pstmtMotherInfo.setObject(48, jComboBox22.getSelectedItem());
-            pstmtMotherInfo.setString(49, jTextField13.getText());
-            pstmtMotherInfo.setString(50, jTextPane1.getText());
+            pstmtMotherInfo.setString(28, whoStageTxt.getText());
+            pstmtMotherInfo.setString(29, cd4CountTxt.getText());
+            if (hivInitialCmbx.getSelectedItem().toString().toUpperCase().contains("P") || hivResultCmbx.getSelectedItem().toString().toUpperCase().contains("P")) {
+                pstmtMotherInfo.setDate(30, com.afrisoftech.lib.SQLDateFormat.getSQLDate(startARTDatePicker.getDate()));
+            } else {
+                pstmtMotherInfo.setDate(30, null);
+            }
+            pstmtMotherInfo.setObject(31, ctxCmbx.getSelectedItem());
+            pstmtMotherInfo.setObject(32, sdNVPCmbx.getSelectedItem());
+            pstmtMotherInfo.setObject(33, aztCmbx.getSelectedItem());
+            pstmtMotherInfo.setObject(34, arvCmbx.getSelectedItem());
+            pstmtMotherInfo.setObject(35, haartCmbx.getSelectedItem());
+            pstmtMotherInfo.setObject(36, nvp4BabyCmbx.getSelectedItem());
+            pstmtMotherInfo.setString(37, tbStatusTxt.getText());
+            pstmtMotherInfo.setObject(38, screenCervicalCancerCmbx.getSelectedItem());
+            pstmtMotherInfo.setObject(39, otherConditionsCmbx.getSelectedItem());
+            pstmtMotherInfo.setObject(40, dewormingCmbx.getSelectedItem());
+            pstmtMotherInfo.setObject(41, ipt123Cmbx.getSelectedItem());
+            pstmtMotherInfo.setObject(42, ttDoseCmbx.getSelectedItem());
+            pstmtMotherInfo.setObject(43, ironCmbx.getSelectedItem());
+            pstmtMotherInfo.setObject(44, folicAcidCmbx.getSelectedItem());
+            pstmtMotherInfo.setObject(45, itnCmbx.getSelectedItem());
+            pstmtMotherInfo.setObject(46, additionalTreatmentCmbx.getSelectedItem());
+            pstmtMotherInfo.setObject(47, coupleCounselledCmbx.getSelectedItem());
+            pstmtMotherInfo.setObject(48, partnerHIVResultsCmbx.getSelectedItem());
+            pstmtMotherInfo.setString(49, referralTxt.getText());
+            pstmtMotherInfo.setString(50, remarksTxt.getText());
             pstmtMotherInfo.setDate(51, com.afrisoftech.lib.SQLDateFormat.getSQLDate(ancVisitdatePicker.getDate()));
             pstmtMotherInfo.setString(52, bloodGroupTxt.getText());
             pstmtMotherInfo.setString(53, rhesusFactorTxt.getText());
@@ -1841,7 +1852,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
 
     private void searchANCFileTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchANCFileTxtCaretUpdate
         //        if(jCheckBox7.isSelected()){
-        if (searchANCFileTxt.getCaretPosition() < 4) {
+        if (searchANCFileTxt.getCaretPosition() < 3) {
 
             System.out.println("Nothing");
         } else {
@@ -1898,11 +1909,11 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             java.sql.ResultSet rset1 = stmt1.executeQuery("SELECT file_no,surname,other_names,pat_age,nok,relationship,residence,date_admitted FROM hp_maternity_register WHERE file_no ='" + ancNumberTxt.getText() + "' ORDER By date_admitted DESC LIMIT 1");
             while (rset1.next()) {
 
-                jTextField12.setText(rset1.getObject(1).toString());
+                otherConditionsTxt.setText(rset1.getObject(1).toString());
                 gestationPeriodTxt.setText(rset1.getObject(2).toString());
                 //   jTextField25.setText(rset1.getObject(3).toString());
                 ageTxt.setText(rset1.getObject(4).toString());
-                jTextField8.setText(rset1.getObject(5).toString());
+                whoStageTxt.setText(rset1.getObject(5).toString());
                 // this.nokRelationShipCmbx.setSelectedItem(rset1.getObject(6).toString());
                 residenceTxt.setText(rset1.getObject(7).toString());
             }
@@ -1911,29 +1922,15 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             java.sql.ResultSet rset12 = stmt12.executeQuery("SELECT address,pat_district,pat_location,chief_name,sub_chief FROM hp_admission WHERE patient_no ='" + ancNumberTxt.getText() + "'  ");
             while (rset12.next()) {
 
-                /*  jTextField14.setText(rset12.getObject(1).toString());
-                 jTextField26.setText(rset12.getObject(2).toString());
-                 jTextField27.setText(rset12.getObject(3).toString());
-                 jTextField28.setText(rset12.getObject(4).toString());*/
-                jTextField8.setText(rset12.getObject(5).toString());
-
+                whoStageTxt.setText(rset12.getObject(5).toString());
                 java.text.DateFormat df = java.text.DateFormat.getDateInstance();
                 java.text.SimpleDateFormat sdf = (java.text.SimpleDateFormat) df;
-
                 sdf.applyPattern("yyyy-MM-dd");
-                /* try {
-                 datePicker2.setDate(sdf.parse(rset1.getString(4)));
-                 datePicker3.setDate(sdf.parse(rset1.getString(5)));
-                
-                 } catch (java.text.ParseException pe) {
-                 javax.swing.JOptionPane.showMessageDialog(this, pe.getMessage());
-                 }*/
             }
 
         } catch (java.sql.SQLException sqe) {
             sqe.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sqe.getMessage());
-            //  System.out.println("Insert not successful");
         }
         ancSearchDialog.dispose();
 
@@ -1952,12 +1949,12 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
 
     private void regClearFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regClearFormBtnActionPerformed
         this.getContentPane().removeAll();
-        
+
         this.initComponents();
-        
+
         this.setSize(this.getParent().getSize());
-        
-       // TODO add your handling code here:
+
+        // TODO add your handling code here:
     }//GEN-LAST:event_regClearFormBtnActionPerformed
 
     private void regCloseFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regCloseFormBtnActionPerformed
@@ -1978,6 +1975,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox additionalTreatmentCmbx;
     private javax.swing.JTextField addressTxt;
     private javax.swing.JLabel ageLbl;
     private javax.swing.JTextField ageTxt;
@@ -1993,6 +1991,8 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTable ancSearchTable;
     private javax.swing.JLabel ancVisitDateLbl;
     private com.afrisoftech.lib.DatePicker ancVisitdatePicker;
+    private javax.swing.JComboBox arvCmbx;
+    private javax.swing.JComboBox aztCmbx;
     private javax.swing.JLabel bloodGroupLbl;
     private javax.swing.JTextField bloodGroupTxt;
     private javax.swing.JLabel bloodPressureLbl;
@@ -2000,12 +2000,15 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JPanel cardOpeningOptionsPanel;
+    private javax.swing.JTextField cd4CountTxt;
     private javax.swing.JComboBox counsellingCmbx;
     private javax.swing.JLabel counsellingLbl;
+    private javax.swing.JComboBox coupleCounselledCmbx;
     public javax.swing.JRadioButton createExistingCardRdbtn;
     private javax.swing.JRadioButton createNewCardRdbtn;
-    private com.afrisoftech.lib.DatePicker datePicker1;
+    private javax.swing.JComboBox ctxCmbx;
     private com.afrisoftech.lib.DatePicker datePickerYOB;
+    private javax.swing.JComboBox dewormingCmbx;
     private javax.swing.JButton dispose;
     private javax.swing.JLabel dobLbl;
     private javax.swing.JPanel dobPanel;
@@ -2018,10 +2021,12 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel expectedNoofPregLbl;
     private javax.swing.JComboBox ferrousFolateCmbx;
     private javax.swing.JTextField firstNameTxt;
+    private javax.swing.JComboBox folicAcidCmbx;
     private javax.swing.JTextField gestationPeriodTxt;
     private javax.swing.JLabel gestationperiodLbl;
     private javax.swing.JLabel gravidaLbl;
     private javax.swing.JTextField gravidaTxt;
+    private javax.swing.JComboBox haartCmbx;
     private javax.swing.JLabel hbLbl;
     private javax.swing.JTextField hbTxt;
     private javax.swing.JTextField heightTxt;
@@ -2033,23 +2038,9 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel hivRetestLbl;
     private javax.swing.JPanel hivStatusPanel;
     private javax.swing.JLabel howclientKnewcentreLbl;
-    private javax.swing.JComboBox jComboBox10;
-    private javax.swing.JComboBox jComboBox11;
-    private javax.swing.JComboBox jComboBox12;
-    private javax.swing.JComboBox jComboBox13;
-    private javax.swing.JComboBox jComboBox14;
-    private javax.swing.JComboBox jComboBox15;
-    private javax.swing.JComboBox jComboBox16;
-    private javax.swing.JComboBox jComboBox17;
-    private javax.swing.JComboBox jComboBox18;
-    private javax.swing.JComboBox jComboBox19;
-    private javax.swing.JComboBox jComboBox20;
-    private javax.swing.JComboBox jComboBox21;
-    private javax.swing.JComboBox jComboBox22;
-    private javax.swing.JComboBox jComboBox6;
-    private javax.swing.JComboBox jComboBox7;
-    private javax.swing.JComboBox jComboBox8;
-    private javax.swing.JComboBox jComboBox9;
+    private javax.swing.JComboBox ipt123Cmbx;
+    private javax.swing.JComboBox ironCmbx;
+    private javax.swing.JComboBox itnCmbx;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -2082,14 +2073,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel lastNameLbl;
     private javax.swing.JTextField lastnameTxt;
     private com.afrisoftech.lib.DatePicker lmpDatePicker;
@@ -2100,11 +2084,16 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField nextTxt;
     private javax.swing.JTextField numberofVisitTxt;
     private javax.swing.JLabel numberofVisitlbl;
+    private javax.swing.JComboBox nvp4BabyCmbx;
     private javax.swing.JComboBox occupationCmbx;
     private javax.swing.JLabel occupationLbl;
+    private javax.swing.JComboBox otherConditionsCmbx;
+    private javax.swing.JTextField otherConditionsTxt;
     private javax.swing.JLabel parityLbl;
     private javax.swing.JTextField parityTxt;
+    private javax.swing.JComboBox partnerHIVResultsCmbx;
     private javax.swing.JLabel reasonForVisitLbl;
+    private javax.swing.JTextField referralTxt;
     private javax.swing.JComboBox referralsINCmbx;
     private javax.swing.JComboBox referralsOUTCmbx;
     private javax.swing.JButton regClearFormBtn;
@@ -2112,18 +2101,26 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton regEditdataBtn;
     private javax.swing.JComboBox religionCmbx;
     private javax.swing.JLabel religionLbl;
+    private javax.swing.JScrollPane remarksScrollPane;
+    private javax.swing.JTextPane remarksTxt;
     private javax.swing.JTextField residenceTxt;
     private javax.swing.JRadioButton revisitRdbtn;
     private javax.swing.JLabel rhesusFactorLbl;
     private javax.swing.JTextField rhesusFactorTxt;
     private javax.swing.JButton saveMotherInfoBtn;
+    private javax.swing.JComboBox screenCervicalCancerCmbx;
+    private javax.swing.JComboBox sdNVPCmbx;
     private javax.swing.JTextField searchANCFileTxt;
     private javax.swing.JComboBox serologyCmbx;
     private javax.swing.JLabel serologyLbl;
     private javax.swing.JLabel spacerLbl;
+    private com.afrisoftech.lib.DatePicker startARTDatePicker;
+    private javax.swing.JTextField tbStatusTxt;
     private javax.swing.JTextField telephoneTxt;
+    private javax.swing.JComboBox ttDoseCmbx;
     private javax.swing.JLabel villageTxt;
     private javax.swing.JLabel weightLbl;
     private javax.swing.JTextField weightTxt;
+    private javax.swing.JTextField whoStageTxt;
     // End of variables declaration//GEN-END:variables
 }

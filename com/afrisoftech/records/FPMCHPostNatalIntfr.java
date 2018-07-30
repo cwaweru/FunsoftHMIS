@@ -1799,14 +1799,14 @@ public class FPMCHPostNatalIntfr extends javax.swing.JInternalFrame {
     }
     private void searchANCFileTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchANCFileTxtCaretUpdate
         //        if(jCheckBox7.isSelected()){
-        if (searchANCFileTxt.getCaretPosition() < 4) {
+        if (searchANCFileTxt.getCaretPosition() < 3) {
 
             System.out.println("Nothing");
         } else {
             ancSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT "
                     + "pnc_no, full_name FROM"
                     + " rh.post_natal_follow_up_register WHERE (pnc_no ILIKE '%" + searchANCFileTxt.getText() + "%' "
-                    + "OR full_name ILIKE '%" + searchANCFileTxt.getText() + "%') "
+                    + "OR full_name ILIKE '%" + searchANCFileTxt.getText() + "%' OR patient_no ILIKE '%" + searchANCFileTxt.getText() + "%') "
             ));
             ancSearchTable.setShowHorizontalLines(false);
             ancSearchScrollPane.setViewportView(ancSearchTable);

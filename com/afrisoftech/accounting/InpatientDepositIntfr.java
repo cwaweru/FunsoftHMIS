@@ -1390,6 +1390,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         patientNumberTxt.setText("");
         amountPaidTxt.setText("0.00");
         balanceTxt.setText("");
+        payerMobileTelephoneNumberTxt.setText("254-7  -      ");
         this.patientsDialog.dispose();
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         int j = 0;

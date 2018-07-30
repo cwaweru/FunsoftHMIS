@@ -336,7 +336,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel611">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Age"/>
+                    <Property name="text" type="java.lang.String" value="Age(years)"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -976,7 +976,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Age"/>
+                    <Property name="text" type="java.lang.String" value="Age(years)"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

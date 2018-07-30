@@ -91,6 +91,8 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
         weightTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         heightTxt = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        detailedAgeTxt = new javax.swing.JTextField();
         immunisationProceduresPanel = new javax.swing.JPanel();
         immunisationScrollPane = new javax.swing.JScrollPane();
         immunisationProceduresTable = new com.afrisoftech.dbadmin.JTable();
@@ -309,7 +311,7 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
             educationLevelLbl.setText("Type of followup");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
-            gridBagConstraints.gridy = 6;
+            gridBagConstraints.gridy = 7;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             immunisationClientInfoPanel.add(educationLevelLbl, gridBagConstraints);
@@ -318,7 +320,7 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
             typeofFollowupCmbx.setPreferredSize(new java.awt.Dimension(150, 19));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 4;
-            gridBagConstraints.gridy = 6;
+            gridBagConstraints.gridy = 7;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
@@ -328,7 +330,7 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
             reasonForVisitLbl.setText("Address");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
-            gridBagConstraints.gridy = 5;
+            gridBagConstraints.gridy = 6;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -339,7 +341,7 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
             addressTxt.setPreferredSize(new java.awt.Dimension(150, 19));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 4;
-            gridBagConstraints.gridy = 5;
+            gridBagConstraints.gridy = 6;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
@@ -349,7 +351,7 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
             howclientKnewcentreLbl.setText("Name of Father");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
-            gridBagConstraints.gridy = 7;
+            gridBagConstraints.gridy = 8;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -378,7 +380,7 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
             nameofFatherTxt.setPreferredSize(new java.awt.Dimension(150, 20));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 4;
-            gridBagConstraints.gridy = 7;
+            gridBagConstraints.gridy = 8;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
@@ -408,7 +410,7 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             immunisationClientInfoPanel.add(cwcNumberTxt, gridBagConstraints);
 
-            dobPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter date of birth or patient Age here ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 51, 153))); // NOI18N
+            dobPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter date of birth or patient Age here ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 51, 153)));
             dobPanel.setLayout(new java.awt.GridBagLayout());
 
             dobLbl.setText("Date of Birth");
@@ -429,7 +431,7 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
             dobPanel.add(datePickerYOB, gridBagConstraints);
 
-            ageTxt.setToolTipText("Enter age of patient here");
+            ageTxt.setToolTipText("Enter age of patient here, this entry MUST be an integer. This entry MUST be a numeric figure. Use the \"Age Details\" field to narrate the age details. ");
             ageTxt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
             ageTxt.setMinimumSize(new java.awt.Dimension(50, 18));
             ageTxt.setPreferredSize(new java.awt.Dimension(50, 18));
@@ -484,7 +486,7 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
             educationLevelLbl1.setText("Gender");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
-            gridBagConstraints.gridy = 4;
+            gridBagConstraints.gridy = 5;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             immunisationClientInfoPanel.add(educationLevelLbl1, gridBagConstraints);
@@ -493,7 +495,7 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
             genderCmbx.setPreferredSize(new java.awt.Dimension(150, 19));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 4;
-            gridBagConstraints.gridy = 4;
+            gridBagConstraints.gridy = 5;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -706,7 +708,7 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
             jLabel2.setText("Height(CM)");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
-            gridBagConstraints.gridy = 8;
+            gridBagConstraints.gridy = 9;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -714,17 +716,34 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
             immunisationClientInfoPanel.add(jLabel2, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 4;
-            gridBagConstraints.gridy = 8;
+            gridBagConstraints.gridy = 9;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             immunisationClientInfoPanel.add(heightTxt, gridBagConstraints);
 
+            jLabel3.setText("Age Details (eg 2 weeks, 1 month 2 days...)");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 3;
+            gridBagConstraints.gridy = 4;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+            immunisationClientInfoPanel.add(jLabel3, gridBagConstraints);
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 4;
+            gridBagConstraints.gridy = 4;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            immunisationClientInfoPanel.add(detailedAgeTxt, gridBagConstraints);
+
             jTabbedPane1.addTab("Child Welfare Clinic Register - Page 1", immunisationClientInfoPanel);
 
             immunisationProceduresPanel.setLayout(new java.awt.GridBagLayout());
 
-            immunisationScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tick as appropriate", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+            immunisationScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tick as appropriate", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
 
             immunisationProceduresTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT cwc_indicator_code, cwc_indicator_description, cwc_indicator_comments, false as noted_indicators FROM rh.child_clinic_indicators ORDER BY 2")
             );
@@ -835,6 +854,7 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
     private void saveMotherInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMotherInfoBtnActionPerformed
 
         String cwcNumber = null;
+
         try {
             java.sql.PreparedStatement pstmtCWC = connectDB.prepareStatement("SELECT 'CWC'||lpad(nextval('cwc_no_seq')::text,8,0::text)");
             java.sql.ResultSet rsetCWC = pstmtCWC.executeQuery();
@@ -843,9 +863,13 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
-        cwcNumberTxt.setText(cwcNumber);
+        if (cwcNumber != null) {
+            cwcNumberTxt.setText(cwcNumber);
+        } else {
+            cwcNumber = cwcNumberTxt.getText();
+        }
         if (cwcNumberTxt.getText().isEmpty() || ageTxt.getText().isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Client Identification number, client age and clinic number cannot be empty");
         } else {
@@ -857,15 +881,15 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
                                 + "            service_date, patient_no, child_serial_no, "
                                 + "            full_names, village, age, telephone_no, "
                                 + "            cwc_indicator, referrals_in, "
-                                + "            referrals_out, mother_name, father_name, gender, date_of_birth, revisit, weight, height, type_of_followup, remarks)"
+                                + "            referrals_out, mother_name, father_name, gender, date_of_birth, revisit, weight, height, type_of_followup, remarks, child_age)"
                                 + "            VALUES (?, ?, ?, ?, ?, "
-                                + "            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                + "            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                         pstmtImmunisationInfo.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(ancVisitDatePicker.getDate()));
                         pstmtImmunisationInfo.setString(2, patientNumberTxt.getText());
                         pstmtImmunisationInfo.setString(3, cwcNumberTxt.getText());
                         pstmtImmunisationInfo.setString(4, firstNameTxt.getText() + " " + middleNameTxt.getText() + " " + lastNameTxt.getText());
                         pstmtImmunisationInfo.setString(5, residenceTxt.getText());
-                        pstmtImmunisationInfo.setString(6, ageTxt.getText());
+                        pstmtImmunisationInfo.setString(6, detailedAgeTxt.getText());
                         pstmtImmunisationInfo.setString(7, telephoneTxt.getText());
                         pstmtImmunisationInfo.setObject(8, immunisationProceduresTable.getValueAt(i, 0));
                         pstmtImmunisationInfo.setObject(9, referralINCmbx.getSelectedItem());
@@ -883,6 +907,7 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
                         pstmtImmunisationInfo.setDouble(17, Double.parseDouble(heightTxt.getText()));
                         pstmtImmunisationInfo.setObject(18, typeofFollowupCmbx.getSelectedItem());
                         pstmtImmunisationInfo.setObject(19, commentsTxt.getText());
+                        pstmtImmunisationInfo.setInt(20, Integer.parseInt(ageTxt.getText()));
                         pstmtImmunisationInfo.execute();
 
                     }
@@ -909,14 +934,14 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
     }
     private void searchANCFileTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchANCFileTxtCaretUpdate
         //        if(jCheckBox7.isSelected()){
-        if (searchANCFileTxt.getCaretPosition() < 4) {
+        if (searchANCFileTxt.getCaretPosition() < 3) {
 
             System.out.println("Nothing");
         } else {
             ancSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT "
                     + "child_serial_no, full_names FROM"
                     + " rh.child_health_follow_up WHERE (child_serial_no ILIKE '%" + searchANCFileTxt.getText() + "%' "
-                    + "OR full_names ILIKE '%" + searchANCFileTxt.getText() + "%') ORDER BY 2 "
+                    + "OR full_names ILIKE '%" + searchANCFileTxt.getText() + "%' OR patient_no ILIKE '%" + searchANCFileTxt.getText() + "%') ORDER BY 2 "
             ));
             ancSearchTable.setShowHorizontalLines(false);
             ancSearchScrollPane.setViewportView(ancSearchTable);
@@ -938,7 +963,7 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
         this.firstNameTxt.setText(null);
         this.middleNameTxt.setText(null);
         this.lastNameTxt.setText(null);
-        
+
         if (tokenizer.hasMoreTokens()) {
             lastNameTxt.setText(tokenizer.nextToken());
         }
@@ -1075,6 +1100,7 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField cwcNumberTxt;
     private com.afrisoftech.lib.DatePicker datePickerYOB;
     private com.afrisoftech.lib.DatePicker deliveryDatePicker;
+    private javax.swing.JTextField detailedAgeTxt;
     private javax.swing.JButton dispose;
     private javax.swing.JLabel dobLbl;
     private javax.swing.JPanel dobPanel;
@@ -1091,6 +1117,7 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane immunisationScrollPane;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;

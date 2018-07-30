@@ -625,7 +625,7 @@ public class MOH510ImmunisationRegisterPdf implements java.lang.Runnable {
                                 java.sql.PreparedStatement stw = connectDB.prepareStatement("SELECT DISTINCT "
                                         + " date_part('day', date_of_visit) ||'-'||date_part('month', date_of_visit) ||'-'||date_part('year', date_of_visit), clinic_number, patient_no, patient_names, initcap(gender),"
                                         + " date_part('day', date_of_birth) ||'-'||date_part('month', date_of_birth) ||'-'||date_part('year', date_of_birth), "
-                                        + " father_name, mother_name, village, telephone_no, referral_in||' '||referral_out as referrals, comments  FROM rh.immunisation_register WHERE "
+                                        + " father_name, mother_name, village, telephone_no, referral_in||' '||referral_out as referrals, comments, fic_date  FROM rh.immunisation_register WHERE "
                                         + " date_of_visit::date BETWEEN '" + beginDate + "' AND '" + endDate + "' "
                                         + " AND patient_no = ?");
 
@@ -664,7 +664,7 @@ public class MOH510ImmunisationRegisterPdf implements java.lang.Runnable {
                                     phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(6), ""), pFontHeader1);
                                     table.addCell(phrase);
 
-                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString(7), ""), pFontHeader1);
+                                    phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getDate("fic_date"), ""), pFontHeader1);
                                     table.addCell(phrase);
                                     //Village
                                     phrase = new Phrase(new com.afrisoftech.lib.DBObject().getDBObject(rsetw.getString("father_name"), ""), pFontHeader1);

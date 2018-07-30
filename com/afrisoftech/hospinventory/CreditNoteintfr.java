@@ -9,7 +9,7 @@ import com.afrisoftech.lib.GetItemInfo;
 import java.sql.SQLException;
 import java.util.Vector;
 //import org.openide.util.Exceptions;
-import org.postgresql.core.Logger;
+//import org.postgresql.core.Logger;
 
 /**
  *

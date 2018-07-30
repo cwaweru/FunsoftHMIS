@@ -41,7 +41,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
         initComponents();
         setFixedColumns.DisallowReordering(itemSearchtbl);
 
-        jComboBox1.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' union select distinct stores from store_allocation where user_name = current_user and type ilike 'Raise Requisitions'"));
+        recipientStoreCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' union select distinct stores from store_allocation where user_name = current_user and type ilike 'Raise Requisitions'"));
     }
 
     /**
@@ -82,7 +82,8 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
         cancelbtn = new javax.swing.JButton();
         exitbtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        removeRowBtn = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         itemsTbl = new com.afrisoftech.dbadmin.JTable();
@@ -90,9 +91,9 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        recipientStoreCmbx = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        issuingStoreCmbx = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel61 = new javax.swing.JPanel();
@@ -401,23 +402,10 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
         postbtn.setMnemonic('s');
-        postbtn.setText("Save");
+        postbtn.setText("Save S11 request voucher");
         postbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 postbtnActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel3.add(postbtn, gridBagConstraints);
-
-        resetbtn.setText("Reset");
-        resetbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resetbtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -425,31 +413,44 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
+        jPanel3.add(postbtn, gridBagConstraints);
+
+        resetbtn.setText("Reset form");
+        resetbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetbtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         jPanel3.add(resetbtn, gridBagConstraints);
 
         cancelbtn.setMnemonic('l');
-        cancelbtn.setText("Clear");
+        cancelbtn.setText("Clear form");
         cancelbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelbtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(cancelbtn, gridBagConstraints);
 
         exitbtn.setMnemonic('c');
-        exitbtn.setText("Close");
+        exitbtn.setText("Close form");
         exitbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitbtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -461,26 +462,33 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel3.add(jLabel5, gridBagConstraints);
 
-        jButton1.setMnemonic('r');
-        jButton1.setText("Remove Row");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        removeRowBtn.setMnemonic('r');
+        removeRowBtn.setText("Remove row");
+        removeRowBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                removeRowBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jButton1, gridBagConstraints);
+        jPanel3.add(removeRowBtn, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jLabel10, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 3.0;
+        gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 0, 10);
         jPanel4.add(jPanel3, gridBagConstraints);
 
@@ -602,7 +610,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
                 try {
 
                     java.sql.Statement stmt = connectDB.createStatement();
-                    java.sql.ResultSet rset = stmt.executeQuery("SELECT cos_account FROM pb_main_department2 where depart_name ilike '"+jComboBox1.getSelectedItem()+"' and classification ilike '"+cmBox1.getSelectedItem()+"'");// WHERE depart_name ilike '"+cmBox1.getSelectedItem()+"'");
+                    java.sql.ResultSet rset = stmt.executeQuery("SELECT cos_account FROM pb_main_department2 where depart_name ilike '"+recipientStoreCmbx.getSelectedItem()+"' and classification ilike '"+cmBox1.getSelectedItem()+"'");// WHERE depart_name ilike '"+cmBox1.getSelectedItem()+"'");
                     while (rset.next()){
                         branch = rset.getObject(1).toString();
                         itemsTbl.setValueAt(branch,itemsTbl.getSelectedRow(), 8);
@@ -644,7 +652,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 20.0;
+        gridBagConstraints.weighty = 200.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
         jPanel4.add(jPanel2, gridBagConstraints);
 
@@ -700,10 +708,10 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
         jPanel1.add(jLabel21, gridBagConstraints);
 
-        jComboBox1.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT store_name FROM st_stores ORDER BY 1"));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        recipientStoreCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT store_name FROM st_stores ORDER BY 1"));
+        recipientStoreCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                recipientStoreCmbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -713,7 +721,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 5);
-        jPanel1.add(jComboBox1, gridBagConstraints);
+        jPanel1.add(recipientStoreCmbx, gridBagConstraints);
 
         jLabel3.setText("Store To Requisition from");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -724,10 +732,10 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
         jPanel1.add(jLabel3, gridBagConstraints);
 
-        jComboBox2.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT distinct initcap(store_name)  FROM st_main_stores union select distinct initcap(store_name) from st_stores ORDER BY 1 ASC"));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        issuingStoreCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT distinct initcap(store_name)  FROM st_main_stores union select distinct initcap(store_name) from st_stores ORDER BY 1 ASC"));
+        issuingStoreCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                issuingStoreCmbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -736,7 +744,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 5);
-        jPanel1.add(jComboBox2, gridBagConstraints);
+        jPanel1.add(issuingStoreCmbx, gridBagConstraints);
 
         jLabel1.setText("Status");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -980,6 +988,8 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
         jPanel41.add(jScrollPane21, gridBagConstraints);
 
         jTextField2.setEditable(false);
+        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         jTextField2.setText("0.00");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
@@ -1400,7 +1410,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
             if (itemsTbl.getSelectedColumn() == itemsTbl.getSelectedColumn()) {
                 double qty = java.lang.Float.parseFloat(itemsTbl.getValueAt(itemsTbl.getSelectedRow(), 4).toString());
                 double price = java.lang.Float.parseFloat(itemsTbl.getValueAt(itemsTbl.getSelectedRow(), 5).toString());
-              //  double units = java.lang.Float.parseFloat(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
+                //  double units = java.lang.Float.parseFloat(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
 
                 double total = qty * price;
                 itemsTbl.setValueAt(total, itemsTbl.getSelectedRow(), 7);
@@ -1557,7 +1567,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox4ActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void issuingStoreCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issuingStoreCmbxActionPerformed
         /*       if(this.jComboBox2.getSelectedItem().toString().equalsIgnoreCase("CLINICAL STORE")){
          try {
          java.sql.Statement pstmt = connectDB.createStatement();
@@ -1587,9 +1597,9 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
          }
          */
 // Add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_issuingStoreCmbxActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void recipientStoreCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recipientStoreCmbxActionPerformed
         /*      if(this.jComboBox2.getSelectedItem().toString().equalsIgnoreCase("Main Store")){
  
          crset31.setCommand("select store_name from st_stores order by store_name asc");
@@ -1614,9 +1624,9 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
  
  
          }*/ // Add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_recipientStoreCmbxActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void removeRowBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeRowBtnActionPerformed
         int rows2Delete = itemsTbl.getSelectedRowCount();
 
         int[] selectedRows = itemsTbl.getSelectedRows();
@@ -1662,7 +1672,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
 
             }
         }        // Add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_removeRowBtnActionPerformed
 
     private void jButton91ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton91ActionPerformed
         this.itemsearchdialog.dispose();        // Add your handling code here:
@@ -1681,7 +1691,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
         if (this.jCheckBox1.isSelected()) {
             try {
                 java.sql.Statement pstmt = connectDB.createStatement();
-                java.sql.ResultSet rs = pstmt.executeQuery("select sum(QTY) from stock_balance_qty  WHERE item_code ILIKE '" + itemsTbl.getValueAt(itemsTbl.getSelectedRow(), 0) + "' AND department ilike '" + jComboBox2.getSelectedItem() + "'");
+                java.sql.ResultSet rs = pstmt.executeQuery("select sum(QTY) from stock_balance_qty  WHERE item_code ILIKE '" + itemsTbl.getValueAt(itemsTbl.getSelectedRow(), 0) + "' AND department ilike '" + issuingStoreCmbx.getSelectedItem() + "'");
                 while (rs.next()) {
 
                     bal = rs.getDouble(1);
@@ -1715,13 +1725,13 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_itemSearchtblMouseClicked
 
     private void itemsearchcaretCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_itemsearchcaretCaretUpdate
-       // itemSearchtbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select distinct item_code,description,strength,units,buying_price FROM st_stock_item WHERE description ILIKE '%"+jTextField1111.getText()+"%' and department ilike '"+this.jComboBox2.getSelectedItem().toString()+"%' union all select distinct item_code,description,strength,units,buying_price FROM st_stock_item_others WHERE description ILIKE '%"+jTextField1111.getText()+"%' and department ilike '"+this.jComboBox2.getSelectedItem().toString()+"%' ORDER BY description"));
+        // itemSearchtbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select distinct item_code,description,strength,units,buying_price FROM st_stock_item WHERE description ILIKE '%"+jTextField1111.getText()+"%' and department ilike '"+this.jComboBox2.getSelectedItem().toString()+"%' union all select distinct item_code,description,strength,units,buying_price FROM st_stock_item_others WHERE description ILIKE '%"+jTextField1111.getText()+"%' and department ilike '"+this.jComboBox2.getSelectedItem().toString()+"%' ORDER BY description"));
 
         if (itemsearchcaret.getCaretPosition() < 4) {
             System.out.println("Nothing");
         } else {
 
-            itemSearchtbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct item_code,description,strength,units,buying_price FROM st_stock_item WHERE (description ILIKE '%" + itemsearchcaret.getText() + "%' OR item_code ILIKE '%" + itemsearchcaret.getText() + "%') AND department ILIKE '" + jComboBox2.getSelectedItem() + "'    UNION  select distinct product_id,product,strength,units,selling_price FROM st_stock_prices WHERE product ILIKE '%" + itemsearchcaret.getText() + "%' AND department ILIKE '" + jComboBox2.getSelectedItem() + "' ORDER BY 1"));
+            itemSearchtbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct item_code,description,strength,units,buying_price FROM st_stock_item WHERE (description ILIKE '%" + itemsearchcaret.getText() + "%' OR item_code ILIKE '%" + itemsearchcaret.getText() + "%') AND department ILIKE '" + issuingStoreCmbx.getSelectedItem() + "'    UNION  select distinct product_id,product,strength,units,selling_price FROM st_stock_prices WHERE product ILIKE '%" + itemsearchcaret.getText() + "%' AND department ILIKE '" + issuingStoreCmbx.getSelectedItem() + "' ORDER BY 1"));
 
             jSearchScrollPane1.setViewportView(itemSearchtbl);
 
@@ -1868,7 +1878,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
 
     private void postbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postbtnActionPerformed
 
-        if (!jComboBox1.getSelectedItem().toString().equalsIgnoreCase("-")) {
+        if (!recipientStoreCmbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
 
             System.out.println(jTextField1.getText());
             String description = null;
@@ -1906,7 +1916,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
                     userName = rs.getString(1);
                 }
                 java.sql.Statement ps = connectDB.createStatement();
-                java.sql.ResultSet rs2 = ps.executeQuery("select 'IRQ'||lpad(nextval('req_no_seq')::text,6,'0'::text)");
+                java.sql.ResultSet rs2 = ps.executeQuery("select 'IRQ'||lpad(nextval('req_no_seq')::text,7,'0'::text)");
                 while (rs2.next()) {
                     transNo = rs2.getObject(1).toString();
                 }
@@ -1925,7 +1935,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
 
                             pstmt.setObject(1, jTextField1.getText());
                             pstmt.setObject(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker2.getDate()));
-                            pstmt.setObject(3, jComboBox1.getSelectedItem());
+                            pstmt.setObject(3, recipientStoreCmbx.getSelectedItem());
                             pstmt.setObject(4, itemsTbl.getValueAt(i, 1).toString());
                             pstmt.setObject(5, itemsTbl.getValueAt(i, 3).toString());
                             pstmt.setDouble(6, java.lang.Double.valueOf(itemsTbl.getValueAt(i, 4).toString()));//*java.lang.Double.valueOf(jTable1.getValueAt(i,3).toString()));
@@ -1939,7 +1949,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
                             pstmt.setString(12, transNo);
                             pstmt.setDouble(13, java.lang.Double.valueOf(itemsTbl.getValueAt(i, 5).toString()));//java.lang.Double.valueOf(jTable1.getValueAt(i,3).toString()));
                             pstmt.setString(14, userName);
-                            pstmt.setObject(15, jComboBox2.getSelectedItem());
+                            pstmt.setObject(15, issuingStoreCmbx.getSelectedItem());
                             pstmt.setDouble(16, 0.00);
                             pstmt.setDouble(17, java.lang.Double.valueOf(itemsTbl.getValueAt(i, 6).toString()));
                             pstmt.setBoolean(18, false);
@@ -1964,7 +1974,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
                             pstmt.executeUpdate();
                         }
                     } else {
-                //cancelbtn.doClick();
+                        //cancelbtn.doClick();
                         // javax.swing.JOptionPane.showMessageDialog(this, "You cant o on every Entry of an Item");
 
                     }
@@ -1984,10 +1994,14 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
                 jTextField1.setText("0.00");
                 com.afrisoftech.hospinventory.mtrhreports.InternalReqMtrhPdf policy = new com.afrisoftech.hospinventory.mtrhreports.InternalReqMtrhPdf();
 
-                policy.InternalReqMtrhPdf(connectDB, jComboBox1.getSelectedItem().toString(), transNo);
+                policy.InternalReqMtrhPdf(connectDB, recipientStoreCmbx.getSelectedItem().toString(), transNo);
+
+//                com.afrisoftech.hospinventory.InternalReqPdf policy = new com.afrisoftech.hospinventory.InternalReqPdf();
+//
+//                policy.InternalReqPdf(connectDB, recipientStoreCmbx.getSelectedItem().toString(), transNo2);
            // com.afrisoftech.hospinventory.InternalReqPdf policy = new com.afrisoftech.hospinventory.InternalReqPdf();
 
-            //policy.InternalReqPdf(connectDB,jComboBox1.getSelectedItem().toString(),transNo);
+                //policy.InternalReqPdf(connectDB,jComboBox1.getSelectedItem().toString(),transNo);
                 for (int k = 0; k < itemsTbl.getRowCount(); k++) {
                     for (int r = 0; r < itemsTbl.getColumnCount(); r++) {
                         itemsTbl.getModel().setValueAt(null, k, r);
@@ -2025,7 +2039,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
 
     public void xmlSerializing() {
 
-            //ObjectSerialization serializer = new ObjectSerialization();
+        //ObjectSerialization serializer = new ObjectSerialization();
         //String[] table_contents = itemsTbl.getModel().getValueAt(i, j);
         // DefaultTableModel myTableData =(DefaultTableModel)itemsTbl.getModel();
         try {
@@ -2050,7 +2064,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
             requisFile = java.io.File.createTempFile(com.afrisoftech.lib.UserName.getLoginName(connectDB) + "_" + com.afrisoftech.lib.ServerTime.serverDate(connectDB).toString(), ".req", new java.io.File(System.getProperty("user.dir")));
 
             System.out.println("[" + com.afrisoftech.lib.UserName.getLoginName(connectDB).toUpperCase() + "_" + com.afrisoftech.lib.ServerTime.serverDate(connectDB).toString() + "].req");
-                //          requisFile.deleteOnExit();
+            //          requisFile.deleteOnExit();
 
             requistOutStream = new java.io.FileOutputStream(requisFile);
 
@@ -2060,7 +2074,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
 
             requisObjStream.flush();
 
-             //   itemsTbl.se
+            //   itemsTbl.se
 //            } else {
 //                
 //                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Can't serialize an empty query!", "Warning on empty query", javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -2146,11 +2160,11 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
     private com.afrisoftech.lib.DatePicker datePicker3;
     private javax.swing.JButton exitbtn;
     private javax.swing.JButton exitbtn1;
+    private javax.swing.JComboBox issuingStoreCmbx;
     private javax.swing.JTable itemSearchtbl;
     private javax.swing.JTable itemsTbl;
     private javax.swing.JTextField itemsearchcaret;
     private javax.swing.JDialog itemsearchdialog;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton42;
     private javax.swing.JButton jButton511;
     private javax.swing.JButton jButton52;
@@ -2160,11 +2174,10 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel112;
     private javax.swing.JLabel jLabel2;
@@ -2214,6 +2227,8 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton postbtn1;
     private javax.swing.JDialog previousIRQDialog;
     private javax.swing.JButton prvsIRQTxt;
+    private javax.swing.JComboBox recipientStoreCmbx;
+    private javax.swing.JButton removeRowBtn;
     private javax.swing.JButton resetbtn;
     private javax.swing.JButton resetbtn1;
     private javax.swing.JButton searchButton;

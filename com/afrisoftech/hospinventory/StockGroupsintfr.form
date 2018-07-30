@@ -884,8 +884,8 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="itemsTableMousePressed"/>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="itemsTableMouseClicked"/>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="itemsTableMousePressed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable(){&#xd;&#xa;            Class[] types = new Class [] {&#xd;&#xa;                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Double.class, java.lang.Boolean.class&#xd;&#xa;            };&#xd;&#xa;            boolean[] canEdit = new boolean [] {&#xd;&#xa;                true, true, true, true, true, true, true, true, true, false, true, true, true, true&#xd;&#xa;            };&#xd;&#xa;&#xd;&#xa;            public Class getColumnClass(int columnIndex) {&#xd;&#xa;                return types [columnIndex];&#xd;&#xa;            }&#xd;&#xa;&#xd;&#xa;            public boolean isCellEditable(int rowIndex, int columnIndex) {&#xd;&#xa;                return canEdit [columnIndex];&#xd;&#xa;            }&#xd;&#xa;        };"/>
@@ -924,13 +924,13 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="jButton111">
+                <Component class="javax.swing.JButton" name="saveBtn">
                   <Properties>
                     <Property name="mnemonic" type="int" value="83"/>
                     <Property name="text" type="java.lang.String" value="Save"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton111ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveBtnActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

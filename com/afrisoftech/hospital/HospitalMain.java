@@ -15,11 +15,13 @@
 //531849
 package com.afrisoftech.hospital;
 
+import biz.systempartners.claims.Claim;
 import static com.afrisoftech.hospinventory.StockMain.medicdspane;
 import com.afrisoftech.lib.UserName;
 import com.afrisoftech.nursing.NursingWards;
 import com.afrisoftech.reports.UserAccountsDialog;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Vector;
@@ -385,6 +387,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     int FperSex = 5249;
     int FpConptPerType = 5250;
     int MohCash = 5251;
+    int MohCashUniversal = 525111;
     int DocAllocs = 5252;
     int TransactionsAudit = 5253;
     int Ipservices = 5254;
@@ -550,6 +553,10 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     javax.swing.Popup progressBarPopup;
     ConnectionStatus connectionStatus;
     public static String payBillNumber = null;
+    public static String exchangeDBAdd = null;
+    public static String exchangeDBPort = null;
+    public static String exchangeDBUser = null;
+    public static String exchangeDBPass = null;
     //javax.swing.ProgressMonitor progressMonitor;
     // java.awt.Image imgScaled = imgIconLoaded.getImage();
     /**
@@ -949,8 +956,8 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             systemTray = java.awt.SystemTray.getSystemTray();
         }
 
-         MobilePayMsgReader mobilePayThread = new MobilePayMsgReader();
-         mobilePayThread.start();
+        MobilePayMsgReader mobilePayThread = new MobilePayMsgReader();
+        mobilePayThread.start();
         this.getCashPointProperties();
 
         //Starting the garbage collector cycle
@@ -1438,9 +1445,9 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         labregmnit = new javax.swing.JMenuItem();
         labprocmnit = new javax.swing.JMenuItem();
         xray = new javax.swing.JMenu();
+        xrayresults = new javax.swing.JMenuItem();
         xraysmnit = new javax.swing.JMenuItem();
         xraypendingReq = new javax.swing.JMenuItem();
-        xrayresults = new javax.swing.JMenuItem();
         xraymnit = new javax.swing.JMenuItem();
         physiotherapy = new javax.swing.JMenu();
         physioReqmnit = new javax.swing.JMenuItem();
@@ -1888,7 +1895,12 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         Salesmnit = new javax.swing.JMenuItem();
         ipservicesmnit = new javax.swing.JMenuItem();
         debtshiftmnit = new javax.swing.JMenuItem();
+        jSeparator103 = new javax.swing.JPopupMenu.Separator();
+        universalHealthcareReportsmn = new javax.swing.JMenu();
         creditSalesDepartmentReportsmnit = new javax.swing.JMenuItem();
+        creditSalesDepartmentDetailedReportsmnit = new javax.swing.JMenuItem();
+        exmptionsWaiversRefundsmnit = new javax.swing.JMenuItem();
+        universalHealthcareSalesAnalysismnit = new javax.swing.JMenuItem();
         jSeparator45 = new javax.swing.JSeparator();
         RevRepotmd = new javax.swing.JMenu();
         dailyrevmnit = new javax.swing.JMenuItem();
@@ -2147,6 +2159,9 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         gbvmonthmnit = new javax.swing.JMenuItem();
         survivorprofmnit = new javax.swing.JMenuItem();
         pepetratormnit = new javax.swing.JMenuItem();
+        jSeparator104 = new javax.swing.JPopupMenu.Separator();
+        tbScreeningReportmnit = new javax.swing.JMenuItem();
+        tbScreeningProceduresmnit = new javax.swing.JMenuItem();
         managementmnit = new javax.swing.JMenu();
         Deprecmnit = new javax.swing.JMenuItem();
         Deprecatesmnit = new javax.swing.JMenuItem();
@@ -5328,7 +5343,9 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         docRequestMn.setText("Clinical Requests");
 
-        consultationmnit.setText("Clerking Of Patient");
+        consultationmnit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        consultationmnit.setForeground(new java.awt.Color(0, 0, 255));
+        consultationmnit.setText("Clerking of Patients (CPOE)");
         consultationmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 consultationmnitActionPerformed(evt);
@@ -5351,6 +5368,8 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         labmn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Recent Documents.png"))); // NOI18N
         labmn.setText("Laboratory");
 
+        labtestsresultmnit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labtestsresultmnit.setForeground(new java.awt.Color(0, 0, 255));
         labtestsresultmnit.setText("Lab Results");
         labtestsresultmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -5387,6 +5406,16 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         xray.setText("Radiology & Imaging");
 
+        xrayresults.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        xrayresults.setForeground(new java.awt.Color(0, 0, 255));
+        xrayresults.setText("Imaging/Xray Results");
+        xrayresults.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xrayresultsActionPerformed(evt);
+            }
+        });
+        xray.add(xrayresults);
+
         xraysmnit.setText("Diagnostic Imaging Procedure");
         xraysmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -5402,14 +5431,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         xray.add(xraypendingReq);
-
-        xrayresults.setText("Imaging/Xray Results");
-        xrayresults.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                xrayresultsActionPerformed(evt);
-            }
-        });
-        xray.add(xrayresults);
 
         xraymnit.setLabel("Xray Reporting");
         xraymnit.addActionListener(new java.awt.event.ActionListener() {
@@ -8519,6 +8540,9 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         Salesmn.add(debtshiftmnit);
+        Salesmn.add(jSeparator103);
+
+        universalHealthcareReportsmn.setText("Universal Healthcare Reports");
 
         creditSalesDepartmentReportsmnit.setText("Credit Sale Departmental Reports");
         creditSalesDepartmentReportsmnit.addActionListener(new java.awt.event.ActionListener() {
@@ -8526,7 +8550,33 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
                 creditSalesDepartmentReportsmnitActionPerformed(evt);
             }
         });
-        Salesmn.add(creditSalesDepartmentReportsmnit);
+        universalHealthcareReportsmn.add(creditSalesDepartmentReportsmnit);
+
+        creditSalesDepartmentDetailedReportsmnit.setText("Credit Sale Detailed Departmental Reports");
+        creditSalesDepartmentDetailedReportsmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creditSalesDepartmentDetailedReportsmnitActionPerformed(evt);
+            }
+        });
+        universalHealthcareReportsmn.add(creditSalesDepartmentDetailedReportsmnit);
+
+        exmptionsWaiversRefundsmnit.setText("Exemptions/Waivers and Refunds");
+        exmptionsWaiversRefundsmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exmptionsWaiversRefundsmnitActionPerformed(evt);
+            }
+        });
+        universalHealthcareReportsmn.add(exmptionsWaiversRefundsmnit);
+
+        universalHealthcareSalesAnalysismnit.setText("Unviversal Healthcare Sales Summary");
+        universalHealthcareSalesAnalysismnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                universalHealthcareSalesAnalysismnitActionPerformed(evt);
+            }
+        });
+        universalHealthcareReportsmn.add(universalHealthcareSalesAnalysismnit);
+
+        Salesmn.add(universalHealthcareReportsmn);
 
         financeopermn.add(Salesmn);
         financeopermn.add(jSeparator45);
@@ -10304,6 +10354,23 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         gbvreportmnit.add(pepetratormnit);
 
         PatientRecordsmn.add(gbvreportmnit);
+        PatientRecordsmn.add(jSeparator104);
+
+        tbScreeningReportmnit.setText("TB Screening Register");
+        tbScreeningReportmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbScreeningReportmnitActionPerformed(evt);
+            }
+        });
+        PatientRecordsmn.add(tbScreeningReportmnit);
+
+        tbScreeningProceduresmnit.setText("TB Screening procedures Report");
+        tbScreeningProceduresmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbScreeningProceduresmnitActionPerformed(evt);
+            }
+        });
+        PatientRecordsmn.add(tbScreeningProceduresmnit);
 
         reportsmn.add(PatientRecordsmn);
 
@@ -12075,6 +12142,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     }//GEN-LAST:event_compdebtorstxtmnitActionPerformed
 
     private void readSmartCardMnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readSmartCardMnitActionPerformed
+
 //    System.setProperty("docsdir",System.getProperty("user.dir"));
         java.io.File xmlDocFile = null;
         //  try {
@@ -12082,48 +12150,80 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         // xmlDocFile = java.io.File.createTempFile("CLAIM"+biz.systempartners.claims.DateLables.getDateLabel()+"_", ".xml", new java.io.File(System.getProperty("docsdir")));
         xmlDocFile = new java.io.File(System.getProperty("docsdir"), "ForwardedCardData.xml");//.createTempFile("HospitalClaimsFile", ".xml", new java.io.File(System.getProperty("docsdir")));
 
+        //xmlDocFile = java.io.File.createTempFile("CARD"+biz.systempartners.claims.DateLables.getDateLabel()+"_", ".xml", new java.io.File(System.getProperty("docsdir")));
         // } catch(java.io.IOException ioExec){
         //    ioExec.printStackTrace();
         // }
+        try {
+
+            java.sql.Connection mysqlConn = com.afrisoftech.lib.SmartExchange.getDBConnection(connectDB);
+            java.sql.PreparedStatement pstmtMysql = mysqlConn.prepareStatement("SELECT Smart_File FROM exchange_files WHERE Progress_Flag = ?");
+
+            pstmtMysql.setInt(1, 1);
+
+            java.sql.ResultSet rstmtMysql = pstmtMysql.executeQuery();
+
+            while (rstmtMysql.next()) {
+                java.sql.Blob blob = rstmtMysql.getBlob("Smart_File");
+                System.out.println("Read " + blob.length() + " bytes ");
+                byte[] array = blob.getBytes(1, (int) blob.length());
+                //File file = File.createTempFile("something-", ".binary", new File("."));
+                java.io.FileOutputStream out;
+                try {
+                    out = new java.io.FileOutputStream(xmlDocFile);
+                    try {
+                        out.write(array);
+                        out.close();
+                    } catch (IOException ex) {
+                        Logger.getLogger(HospitalMain.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(HospitalMain.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        } catch (java.sql.SQLException ex) {
+            ex.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
         biz.systempartners.claims.XMLClaimFile claimFile = new biz.systempartners.claims.XMLClaimFile();
 
         claimFile.processFile(xmlDocFile);
 
-        javax.swing.JOptionPane.showMessageDialog(this, "Smart Card read successfully with identity:\nCard Number :[" + claimFile.cardNumber + "] and Name : [" + claimFile.patientSurName + " " + claimFile.patientForenames + "]");
-
-        com.afrisoftech.hospital.GeneralBillingIntfr.patientNumberTxt.setText(claimFile.patientNumber);
-        com.afrisoftech.hospital.GeneralBillingIntfr.patientNameTxt.setText(claimFile.patientSurName + " " + claimFile.patientForenames);
+        //com.afrisoftech.hospital.GeneralBillingIntfr.patientNumberTxt.setText(claimFile.patientNumber);
+        //com.afrisoftech.hospital.GeneralBillingIntfr.patientNameTxt.setText(claimFile.patientSurName + " " + claimFile.patientForenames);
         com.afrisoftech.hospital.GeneralBillingIntfr.paymentModeCmbx.setSelectedItem("Scheme");
-        com.afrisoftech.hospital.GeneralBillingIntfr.schemeNameTxt.setText(claimFile.medicalAidCode);
-        com.afrisoftech.hospital.GeneralBillingIntfr.payerNameTxt.setText(claimFile.medicalAidPlan);
+        com.afrisoftech.hospital.GeneralBillingIntfr.schemeNameTxt.setText(claimFile.medicalAidPlan);
+        com.afrisoftech.hospital.GeneralBillingIntfr.payerNameTxt.setText(claimFile.medicalAidCode);
         com.afrisoftech.hospital.GeneralBillingIntfr.schemeAccountNumberTxt.setText(claimFile.medicalAidNumber);
         com.afrisoftech.hospital.GeneralBillingIntfr.unitNumberTxt.setText(claimFile.medicalAidCode);
         com.afrisoftech.hospital.GeneralBillingIntfr.schemeMemberNumberTxt.setText(claimFile.medicalAidNumber);
         com.afrisoftech.hospital.GeneralBillingIntfr.schemeMemberNameTxt.setText(claimFile.patientSurName + " " + claimFile.patientForenames);
         com.afrisoftech.hospital.GeneralBillingIntfr.cardBalanceTxt.setText(claimFile.cardBalance);
-        /*
-         * jTextField3.setText(claimFile.patientNumber);
-         * jTextField21.setText(claimFile.patientSurName);
-         * jTextField6.setText(claimFile.patientForenames);
-         * jComboBox1.setSelectedItem("Scheme");
-         * jTextField5.setText(claimFile.patientAddress);
-         * jTextField5821.setText(claimFile.patientTelephone);
-         * emailAddTxt.setText(claimFile.patientEmail);
-         * java.text.SimpleDateFormat dateFormat = new
-         * java.text.SimpleDateFormat();//.getInstance();
-         * dateFormat.applyPattern("yyyy-MM-dd");
-         *
-         * if(claimFile.patientDOB != null) { try {
-         * datePickerYOB.setDate(dateFormat.parse(claimFile.patientDOB)); }
-         * catch (ParseException ex) { ex.printStackTrace();
-         * javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage()); } }
-         * jTextField13.setText(claimFile.cardNumber);
-         * jTextField36.setText(claimFile.patientSurName+"
-         * "+claimFile.patientForenames); jTextField361.setText("KAREN
-         * PRIVILEGE"); jTextField2.setText("KAREN HOSPITAL");
-         *
-         */
         com.afrisoftech.hospital.GeneralBillingIntfr.readSmartCardBtn.doClick();
+
+        javax.swing.JOptionPane.showMessageDialog(this, "SmartLink Card read successfully with identity:\nCard Number :[" + claimFile.cardNumber + "] and Name : [" + claimFile.patientSurName + " " + claimFile.patientForenames + "]");
+
+//        java.sql.Connection mysqlConn;
+//        try {
+//
+//            mysqlConn = java.sql.DriverManager.getConnection("jdbc:mysql://192.168.0.104:3307/smartlink", "integ_user", "integ123");
+//
+//            java.sql.PreparedStatement pstmtMysql = mysqlConn.prepareStatement("UPDATE exchange_files SET Progress_Flag = ? WHERE Global_Id = ?");
+//
+//            pstmtMysql.setInt(1, 10);
+//            
+//            pstmtMysql.setString(2, claimFile.cardNumber);
+//            
+//            pstmtMysql.executeUpdate();
+//
+//            javax.swing.JOptionPane.showMessageDialog(this, "SmartLink Card read successfully with identity:\nCard Number :[" + claimFile.cardNumber + "] and Name : [" + claimFile.patientSurName + " " + claimFile.patientForenames + "]");
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(HospitalMain.class.getName()).log(Level.SEVERE, null, ex);
+//            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+//        }
 // TODO add your handling code here:
     }//GEN-LAST:event_readSmartCardMnitActionPerformed
 
@@ -15852,7 +15952,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
     private void suspendShiftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suspendShiftActionPerformed
 
-    //    suspendmnitActionPerformed(evt);
+        //    suspendmnitActionPerformed(evt);
         // Add your handling code here:
     }//GEN-LAST:event_suspendShiftActionPerformed
 
@@ -16197,7 +16297,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             try {
                 connectDB.close();
             } catch (SQLException ex) {
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             }
 
             System.exit(0);
@@ -18496,7 +18596,10 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 }//GEN-LAST:event_physioresultsmnitActionPerformed
 
     private void dentalReqmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dentalReqmnitActionPerformed
-        com.afrisoftech.laboratory.DentPendingRequestsIntfr comp = new com.afrisoftech.laboratory.DentPendingRequestsIntfr(connectDB, pConnDB);
+//        com.afrisoftech.laboratory.DentPendingRequestsIntfr comp = new com.afrisoftech.laboratory.DentPendingRequestsIntfr(connectDB, pConnDB);
+
+        com.afrisoftech.laboratory.ConsultationDentalIntfr comp = new com.afrisoftech.laboratory.ConsultationDentalIntfr(connectDB, pConnDB, getMainClass());
+
         saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
         try {
             comp.setSelected(true);
@@ -20063,7 +20166,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                         try {
                             connectDB.close();
                         } catch (SQLException ex) {
-                                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                         }
                         System.exit(0);
                     }
@@ -21264,6 +21367,53 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         }        // TODO add your handling code here:
     }//GEN-LAST:event_creditSalesDepartmentReportsmnitActionPerformed
 
+    private void creditSalesDepartmentDetailedReportsmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditSalesDepartmentDetailedReportsmnitActionPerformed
+        biz.systempartners.reports.CreditSalesDepartmentalDetailsReportIntfr dismth = new biz.systempartners.reports.CreditSalesDepartmentalDetailsReportIntfr(connectDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_creditSalesDepartmentDetailedReportsmnitActionPerformed
+
+    private void exmptionsWaiversRefundsmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exmptionsWaiversRefundsmnitActionPerformed
+        biz.systempartners.reports.WaiversExemptionsRefundssReportIntfr dismth = new biz.systempartners.reports.WaiversExemptionsRefundssReportIntfr(connectDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }       // TODO add your handling code here:
+    }//GEN-LAST:event_exmptionsWaiversRefundsmnitActionPerformed
+
+    private void universalHealthcareSalesAnalysismnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_universalHealthcareSalesAnalysismnitActionPerformed
+        com.afrisoftech.lib.UniversalHealthcareDatePanel dates = new com.afrisoftech.lib.UniversalHealthcareDatePanel(this, true, this.MohCashUniversal, connectDB);
+
+        dates.setVisible(true);         // TODO add your handling code here:
+    }//GEN-LAST:event_universalHealthcareSalesAnalysismnitActionPerformed
+
+    private void tbScreeningReportmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbScreeningReportmnitActionPerformed
+        biz.systempartners.reports.TBScreeningRegisterReportIntfr dismth = new biz.systempartners.reports.TBScreeningRegisterReportIntfr(connectDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_tbScreeningReportmnitActionPerformed
+
+    private void tbScreeningProceduresmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbScreeningProceduresmnitActionPerformed
+        biz.systempartners.reports.TBScreeningProceduresReportIntfr dismth = new biz.systempartners.reports.TBScreeningProceduresReportIntfr(connectDB);
+        saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
+        try {
+            dismth.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbScreeningProceduresmnitActionPerformed
+
     /**
      * Exit the Application
      */
@@ -21617,13 +21767,37 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
             while (rs1.next()) {
 
                 //   title = "FUNSOFT Integrated Hospital Management Information System (FUNSOFT I-HMIS Ver 7.0 R 3.2) :: " + (rs1.getString(1)); //- ["+jTabbedPane1.getSelectedComponent().getName()+"]";
-                title = "FUNSOFT Integrated Hospital Management Information System (FUNSOFT I-HMIS Ver " + com.afrisoftech.sys.Login2Hospital.version + ") :: " + (rs1.getString(1)); //- ["+jTabbedPane1.getSelectedComponent().getName()+"]";
+                title = "FUNSOFT Integrated Universal Healthcare Management Information System (FUNSOFT I-HMIS/UHC MIS Ver " + com.afrisoftech.sys.Login2Hospital.version + ") :: " + (rs1.getString(1)); //- ["+jTabbedPane1.getSelectedComponent().getName()+"]";
 
             }
-            
+
 //            netscape.javascript.JSObject global = netscape.javascript.JSObject.getWindow(new java.applet.Applet());
 //            global.eval("document.title = '" + title + "'");
-            
+        } catch (java.sql.SQLException sqlEx) {
+            sqlEx.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sqlEx.getMessage());
+        }
+        return title;
+    }
+
+    public static java.lang.String getAbsoluteCompanyName() {
+
+        java.lang.String title = null;
+
+        try {
+
+            java.sql.Statement stmt1 = connectDB.createStatement();
+
+            java.sql.ResultSet rs1 = stmt1.executeQuery("select hospital_name from pb_hospitalprofile");
+
+            while (rs1.next()) {
+
+                title = rs1.getString(1).toUpperCase();
+
+            }
+
+//            netscape.javascript.JSObject global = netscape.javascript.JSObject.getWindow(new java.applet.Applet());
+//            global.eval("document.title = '" + title + "'");
         } catch (java.sql.SQLException sqlEx) {
             sqlEx.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sqlEx.getMessage());
@@ -22485,7 +22659,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                             } catch (SQLException ex) {
                                 // ex.printStackTrace();
                                 javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
-                                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                                 connectDB.close();
                                 System.exit(1);
                             }
@@ -22495,7 +22669,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
                 } catch (SQLException ex) {
                     javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
-                                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                    ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                     try {
                         connectDB.close();
                     } catch (SQLException ex1) {
@@ -24687,25 +24861,33 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         public void run() {
             while (true) {
                 try {
-                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT description, debit, patient_no, dealer, transaction_no, card_no, journal_no, account_no FROM ac_cash_collection WHERE mobilepay_alert = false AND checkout_request_id = ? UNION SELECT DISTINCT '', paid_amount, patient_no, dealer, transaction_no, checkout_request_id, mpesa_trx_id, telephone_number FROM public.mobile_payments WHERE checkout_request_id_paid = ?");
+                    if(checkoutRequestID != null){
+//                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT DISTINCT description, debit, patient_no, dealer, transaction_no, card_no, journal_no, account_no FROM ac_cash_collection WHERE mobilepay_alert = false AND checkout_request_id = ? AND patient_no IS NOT NULL AND checkout_request_id IS NOT NULL UNION SELECT DISTINCT '', paid_amount, patient_no, dealer, transaction_no, checkout_request_id, mpesa_trx_id, telephone_number FROM public.mobile_payments WHERE patient_no IS NOT NULL AND mobilepay_alert = false AND checkout_request_id_paid = ? AND checkout_request_id_paid IS NOT NULL");
+                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT DISTINCT sum(debit), patient_no, dealer, transaction_no, card_no, journal_no, account_no FROM ac_cash_collection WHERE mobilepay_alert = false AND checkout_request_id = ? AND patient_no IS NOT NULL AND checkout_request_id IS NOT NULL GROUP BY 2,3,4,5,6,7");
+//                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT DISTINCT description, debit, patient_no, dealer, transaction_no, card_no, journal_no, account_no FROM ac_cash_collection WHERE mobilepay_alert = false AND checkout_request_id = ? AND patient_no IS NOT NULL AND checkout_request_id IS NOT NULL");
+
                     pstmt.setString(1, checkoutRequestID);
-                    pstmt.setString(2, checkoutRequestID);
+                   // pstmt.setString(2, checkoutRequestID);
                     java.sql.ResultSet rset = pstmt.executeQuery();
                     while (rset.next()) {
                         mobilePaid = true;
                         try {
                             if (java.awt.SystemTray.isSupported()) {
-                                java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(new javax.swing.ImageIcon(getClass().getResource("/funsoft_logo.gif")).getImage(), "MPESA PAYMENT ALERT! : Funsoft HMIS - Payment FROM - " + rset.getString(4) + ", \n TEL. No.:" + rset.getString(6) + " MPESA TRANSACTION ID :" + rset.getString(5) + " \n for Patient Number : " + rset.getString(3) + ", Amount KES[" + com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rset.getDouble(2)) + "]");
+                                java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(new javax.swing.ImageIcon(getClass().getResource("/funsoft_logo.gif")).getImage(), "MPESA PAYMENT ALERT! : Funsoft HMIS - Payment FROM - " + rset.getString(3) + ", \n TEL. No.:" + rset.getString(5) + " MPESA TRANSACTION ID :" + rset.getString(4) + " \n for Patient Number : " + rset.getString(2) + ", Amount KES[" + com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rset.getDouble(1)) + "]");
                                 trayIcon.setImageAutoSize(true);
                                 systemTray.add(trayIcon);
                             } else {
-                                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "MPESA PAYMENT ALERT! : Funsoft HMIS - Payment confirmation FROM - " + rset.getString(4) + ", \n TEL. No.:" + rset.getString(8) + " MPESA TRANSACTION ID :" + rset.getString(7) + " \n for Patient Number : " + rset.getString(3) + ", Amount KES[" + com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rset.getDouble(2)) + "]");
+                                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "MPESA PAYMENT ALERT! : Funsoft HMIS - Payment confirmation FROM - " + rset.getString(3) + ", \n TEL. No.:" + rset.getString(7) + " MPESA TRANSACTION ID :" + rset.getString(6) + " \n for Patient Number : " + rset.getString(2) + ", Amount KES[" + com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rset.getDouble(1)) + "]");
                             }
                             java.awt.Toolkit.getDefaultToolkit().beep();
                             java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("UPDATE ac_cash_collection SET mobilepay_alert = true WHERE transaction_no = ?");
-                            pstmt1.setString(1, rset.getString(5));
+                            pstmt1.setString(1, rset.getString(4));
                             pstmt1.executeUpdate();
                             pstmt1.close();
+                            java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("UPDATE mobile_payments SET mobilepay_alert = true WHERE checkout_request_id_paid = ?");
+                            pstmt2.setString(1, checkoutRequestID);
+                            pstmt2.executeUpdate();
+                            pstmt2.close();
                         } catch (java.awt.AWTException awte) {
                             awte.printStackTrace();
                             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), awte.getMessage());
@@ -24714,6 +24896,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                     }
                     rset.close();
                     pstmt.close();
+                }
                 } catch (java.sql.SQLException sqlEx) {
                     sqlEx.printStackTrace();
                     javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sqlEx.getMessage());
@@ -25108,6 +25291,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem cpactdatamnit;
     private javax.swing.JMenuItem crdstmtmnit;
     private javax.swing.JMenuItem crdtstmtmnit;
+    private javax.swing.JMenuItem creditSalesDepartmentDetailedReportsmnit;
     private javax.swing.JMenuItem creditSalesDepartmentReportsmnit;
     private javax.swing.JMenuItem creditSalesDetailedmnit;
     private javax.swing.JMenuItem creditSalesReportmnit;
@@ -25239,6 +25423,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem exceedlimitsmnit;
     private javax.swing.JMenuItem exemptionmnit;
     public static javax.swing.JMenuItem exitmnITb;
+    private javax.swing.JMenuItem exmptionsWaiversRefundsmnit;
     private javax.swing.JMenuItem expensesmnit;
     private javax.swing.JMenuItem expiredaccmnit;
     private javax.swing.JMenuItem extactscmmnit;
@@ -25394,6 +25579,8 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JPopupMenu.Separator jSeparator100;
     private javax.swing.JPopupMenu.Separator jSeparator101;
     private javax.swing.JPopupMenu.Separator jSeparator102;
+    private javax.swing.JPopupMenu.Separator jSeparator103;
+    private javax.swing.JPopupMenu.Separator jSeparator104;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator13;
@@ -25911,6 +26098,8 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     public javax.swing.JSeparator tasksSeparator;
     private javax.swing.JMenuItem taxreturnmnit;
     private javax.swing.JMenuItem taxsetupmnit;
+    private javax.swing.JMenuItem tbScreeningProceduresmnit;
+    private javax.swing.JMenuItem tbScreeningReportmnit;
     private javax.swing.JMenuItem tbmovmentmnit;
     private javax.swing.JMenuItem textPrintermnit;
     private javax.swing.JMenuItem theaterManagementmnit;
@@ -25945,6 +26134,8 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem unfinalisedOpmnit;
     private javax.swing.JMenuItem unfinalisedinvmnit;
     private javax.swing.JMenuItem unfinalizeInvoicemnit;
+    private javax.swing.JMenu universalHealthcareReportsmn;
+    private javax.swing.JMenuItem universalHealthcareSalesAnalysismnit;
     private javax.swing.JMenuItem unlinkedgrnsmnit;
     private javax.swing.JMenuItem unpaidDispInvmnit;
     private javax.swing.JMenuItem unrecitemsmnit;

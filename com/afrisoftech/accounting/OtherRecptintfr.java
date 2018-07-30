@@ -5,6 +5,8 @@
  */
 package com.afrisoftech.accounting;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author root
@@ -25,6 +27,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
     String actvtyDesc = null;
     String receiptActivity = null;
     String payeeName = null;
+    private String checkoutRequestID;
 
     public OtherRecptintfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
@@ -34,7 +37,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 
         initComponents();
       //  System.out.println("Cashpoint : " + System.getProperty("cashpoint"));
-        paymodCmbx.setSelectedItem("Cash");
+        paymentModeCmbx.setSelectedItem("Cash");
         cashPointTxt.setText(getCashPoint());
         shiftNoTxt.setText(getShiftNumber());
         // jTextField14.setText(com.afrisoftech.hospital.HospitalMain.);
@@ -71,7 +74,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
+        detailsPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         receivedFromTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -79,13 +82,13 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         jLabel531 = new javax.swing.JLabel();
         glCodeTxt = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        paymodCmbx = new javax.swing.JComboBox();
+        paymentModeCmbx = new javax.swing.JComboBox();
         jPanel211 = new javax.swing.JPanel();
         otherReceiptTxt = new javax.swing.JTextField();
         searchButton2 = new javax.swing.JButton();
         jLabel61 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
-        jPanel2111 = new javax.swing.JPanel();
+        receiptDetailsPanel = new javax.swing.JPanel();
         receiptDetailTxt = new javax.swing.JTextField();
         searchButton21 = new javax.swing.JButton();
         jLabel532 = new javax.swing.JLabel();
@@ -96,33 +99,35 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         jPanel212 = new javax.swing.JPanel();
         searchTxt = new javax.swing.JTextField();
         searchButton3 = new javax.swing.JButton();
+        payerMobileTelephoneNumberTxt = new javax.swing.JFormattedTextField();
+        payBillNumberTxt = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        chequeDrawerNameTxt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        chequeNumberTxt = new javax.swing.JTextField();
         jLabel54 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        drawerBankTxt = new javax.swing.JTextField();
         jLabel53 = new javax.swing.JLabel();
-        amountTxt = new javax.swing.JTextField();
+        amountPaidTxt = new javax.swing.JTextField();
         cashPointTxt = new javax.swing.JTextField();
         shiftNoTxt = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         datePicker1 = new com.afrisoftech.lib.DatePicker();
-        jPanel4 = new javax.swing.JPanel();
+        buttonPanel = new javax.swing.JPanel();
         try {
             java.lang.Class.forName("org.postgresql.Driver");
         }catch (java.lang.ClassNotFoundException sl){
             System.out.println(sl.getMessage());
         }
 
-        jButton1 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        saveReceiptBtn = new javax.swing.JButton();
+        reprintReceiptBtn = new javax.swing.JButton();
+        clearFormBtn = new javax.swing.JButton();
+        closeFormBtn = new javax.swing.JButton();
         try {
             java.lang.Class.forName("org.postgresql.Driver");
         }catch (java.lang.ClassNotFoundException sl){
@@ -131,7 +136,8 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 
         jButton11 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        payViaMobilePayBtn = new javax.swing.JButton();
+        optionsPanel = new javax.swing.JPanel();
         loanStockChk = new javax.swing.JCheckBox();
         creditorChk = new javax.swing.JCheckBox();
         surrenderChk = new javax.swing.JCheckBox();
@@ -410,9 +416,9 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         getContentPane().add(jTextField6, gridBagConstraints);
 
         jTextField8.setEditable(false);
+        jTextField8.setEnabled(false);
         jTextField8.setMinimumSize(new java.awt.Dimension(0, 0));
         jTextField8.setPreferredSize(new java.awt.Dimension(0, 0));
-        jTextField8.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 8;
@@ -420,8 +426,8 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         getContentPane().add(jTextField8, gridBagConstraints);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter payer details"));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        detailsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter payer details"));
+        detailsPanel.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setText("Received From(Name)");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -429,14 +435,14 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
-        jPanel1.add(jLabel1, gridBagConstraints);
+        detailsPanel.add(jLabel1, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(receivedFromTxt, gridBagConstraints);
+        detailsPanel.add(receivedFromTxt, gridBagConstraints);
 
         jLabel6.setText("Receipt Details");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -446,7 +452,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
-        jPanel1.add(jLabel6, gridBagConstraints);
+        detailsPanel.add(jLabel6, gridBagConstraints);
 
         jLabel2.setText("Other Receipt Details");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -456,7 +462,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-        jPanel1.add(jLabel2, gridBagConstraints);
+        detailsPanel.add(jLabel2, gridBagConstraints);
 
         jLabel531.setText("Receipt No.");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -466,7 +472,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-        jPanel1.add(jLabel531, gridBagConstraints);
+        detailsPanel.add(jLabel531, gridBagConstraints);
 
         glCodeTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -476,7 +482,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPanel1.add(glCodeTxt, gridBagConstraints);
+        detailsPanel.add(glCodeTxt, gridBagConstraints);
 
         jLabel8.setText("Payment Mode");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -486,12 +492,12 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-        jPanel1.add(jLabel8, gridBagConstraints);
+        detailsPanel.add(jLabel8, gridBagConstraints);
 
-        paymodCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select DISTINCT initcap(payment_mode) as payment_mode from pb_paymentmodes order by payment_mode"));
-        paymodCmbx.addActionListener(new java.awt.event.ActionListener() {
+        paymentModeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select DISTINCT initcap(payment_mode) as payment_mode from pb_paymentmodes order by payment_mode"));
+        paymentModeCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                paymodCmbxActionPerformed(evt);
+                paymentModeCmbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -500,7 +506,8 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(paymodCmbx, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        detailsPanel.add(paymentModeCmbx, gridBagConstraints);
 
         jPanel211.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel211.setLayout(new java.awt.GridBagLayout());
@@ -535,7 +542,8 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jPanel211, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        detailsPanel.add(jPanel211, gridBagConstraints);
 
         jLabel61.setText("Organisation Name/Imprest No:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -545,21 +553,21 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
-        jPanel1.add(jLabel61, gridBagConstraints);
+        detailsPanel.add(jLabel61, gridBagConstraints);
 
         jTextField5.setMinimumSize(new java.awt.Dimension(0, 0));
         jTextField5.setPreferredSize(new java.awt.Dimension(0, 0));
-        jPanel1.add(jTextField5, new java.awt.GridBagConstraints());
+        detailsPanel.add(jTextField5, new java.awt.GridBagConstraints());
 
-        jPanel2111.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel2111.setLayout(new java.awt.GridBagLayout());
+        receiptDetailsPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        receiptDetailsPanel.setLayout(new java.awt.GridBagLayout());
 
         receiptDetailTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel2111.add(receiptDetailTxt, gridBagConstraints);
+        receiptDetailsPanel.add(receiptDetailTxt, gridBagConstraints);
 
         searchButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
         searchButton21.setToolTipText("Search");
@@ -572,7 +580,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                 searchButton21ActionPerformed(evt);
             }
         });
-        jPanel2111.add(searchButton21, new java.awt.GridBagConstraints());
+        receiptDetailsPanel.add(searchButton21, new java.awt.GridBagConstraints());
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -580,7 +588,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jPanel2111, gridBagConstraints);
+        detailsPanel.add(receiptDetailsPanel, gridBagConstraints);
 
         jLabel532.setText("Gl Code");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -590,7 +598,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-        jPanel1.add(jLabel532, gridBagConstraints);
+        detailsPanel.add(jLabel532, gridBagConstraints);
 
         receiptNoTxt.setEditable(false);
         receiptNoTxt.setForeground(new java.awt.Color(255, 0, 51));
@@ -601,7 +609,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPanel1.add(receiptNoTxt, gridBagConstraints);
+        detailsPanel.add(receiptNoTxt, gridBagConstraints);
 
         jPanel2112.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2112.setLayout(new java.awt.GridBagLayout());
@@ -632,7 +640,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jPanel2112, gridBagConstraints);
+        detailsPanel.add(jPanel2112, gridBagConstraints);
 
         jPanel212.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel212.setLayout(new java.awt.GridBagLayout());
@@ -667,7 +675,40 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jPanel212, gridBagConstraints);
+        detailsPanel.add(jPanel212, gridBagConstraints);
+
+        payerMobileTelephoneNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bill Payer Telephone No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
+        payerMobileTelephoneNumberTxt.setForeground(new java.awt.Color(0, 0, 255));
+        try {
+            payerMobileTelephoneNumberTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("254-7##-######")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        payerMobileTelephoneNumberTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payerMobileTelephoneNumberTxtActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailsPanel.add(payerMobileTelephoneNumberTxt, gridBagConstraints);
+
+        payBillNumberTxt.setEditable(false);
+        payBillNumberTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        payBillNumberTxt.setText(com.afrisoftech.lib.CashShiftNumberFactory.getPayBillNumber(connectDB)
+        );
+        payBillNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PayBill Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailsPanel.add(payBillNumberTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -678,7 +719,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 3.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        getContentPane().add(jPanel1, gridBagConstraints);
+        getContentPane().add(detailsPanel, gridBagConstraints);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Other details"));
         jPanel2.setLayout(new java.awt.GridBagLayout());
@@ -698,7 +739,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        jPanel3.add(jTextField1, gridBagConstraints);
+        jPanel3.add(chequeDrawerNameTxt, gridBagConstraints);
 
         jLabel4.setText("Cheque Number");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -716,7 +757,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPanel3.add(jTextField2, gridBagConstraints);
+        jPanel3.add(chequeNumberTxt, gridBagConstraints);
 
         jLabel54.setText("Drawer's Bank");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -732,11 +773,11 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        jPanel3.add(jTextField9, gridBagConstraints);
+        jPanel3.add(drawerBankTxt, gridBagConstraints);
 
         jLabel53.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel53.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel53.setText("Amount To Pay");
+        jLabel53.setText("Amount Paid");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 5;
@@ -746,10 +787,10 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         jPanel3.add(jLabel53, gridBagConstraints);
 
-        amountTxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        amountTxt.setForeground(new java.awt.Color(204, 0, 0));
-        amountTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        amountTxt.setText("0.00");
+        amountPaidTxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        amountPaidTxt.setForeground(new java.awt.Color(204, 0, 0));
+        amountPaidTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        amountPaidTxt.setText("0.00");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 5;
@@ -757,7 +798,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPanel3.add(amountTxt, gridBagConstraints);
+        jPanel3.add(amountPaidTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -825,15 +866,15 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(datePicker1, gridBagConstraints);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        jPanel4.setLayout(new java.awt.GridBagLayout());
+        buttonPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        buttonPanel.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setMnemonic('p');
-        jButton1.setText("Save Receipt and print");
-        jButton1.setToolTipText("Click here to enter data");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        saveReceiptBtn.setMnemonic('p');
+        saveReceiptBtn.setText("Save Receipt and Print");
+        saveReceiptBtn.setToolTipText("Click here to enter data");
+        saveReceiptBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                saveReceiptBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -841,28 +882,13 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 12;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jButton1, gridBagConstraints);
+        buttonPanel.add(saveReceiptBtn, gridBagConstraints);
 
-        jButton5.setText("RePrint");
-        jButton5.setEnabled(false);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        reprintReceiptBtn.setText("RePrint");
+        reprintReceiptBtn.setEnabled(false);
+        reprintReceiptBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jButton5, gridBagConstraints);
-
-        jButton3.setMnemonic('l');
-        jButton3.setText("Clear form");
-        jButton3.setToolTipText("Click here to clear textfields");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                reprintReceiptBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -870,14 +896,14 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 12;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jButton3, gridBagConstraints);
+        buttonPanel.add(reprintReceiptBtn, gridBagConstraints);
 
-        jButton4.setMnemonic('C');
-        jButton4.setText("Close form");
-        jButton4.setToolTipText("Click here to close window");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        clearFormBtn.setMnemonic('l');
+        clearFormBtn.setText("Clear form");
+        clearFormBtn.setToolTipText("Click here to clear textfields");
+        clearFormBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                clearFormBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -885,7 +911,22 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 12;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jButton4, gridBagConstraints);
+        buttonPanel.add(clearFormBtn, gridBagConstraints);
+
+        closeFormBtn.setMnemonic('C');
+        closeFormBtn.setText("Close form");
+        closeFormBtn.setToolTipText("Click here to close window");
+        closeFormBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeFormBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        buttonPanel.add(closeFormBtn, gridBagConstraints);
 
         jButton11.setMnemonic('O');
         jButton11.setText("Save Receipt");
@@ -896,18 +937,32 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 12;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jButton11, gridBagConstraints);
+        buttonPanel.add(jButton11, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 12;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 500.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jLabel5, gridBagConstraints);
+        buttonPanel.add(jLabel5, gridBagConstraints);
+
+        payViaMobilePayBtn.setText("Push to mobile for payment");
+        payViaMobilePayBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payViaMobilePayBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        buttonPanel.add(payViaMobilePayBtn, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -915,9 +970,9 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        getContentPane().add(jPanel4, gridBagConstraints);
+        getContentPane().add(buttonPanel, gridBagConstraints);
 
-        jPanel5.setLayout(new java.awt.GridBagLayout());
+        optionsPanel.setLayout(new java.awt.GridBagLayout());
 
         buttonGroup1.add(loanStockChk);
         loanStockChk.setText("Loan Stock");
@@ -927,7 +982,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel5.add(loanStockChk, gridBagConstraints);
+        optionsPanel.add(loanStockChk, gridBagConstraints);
 
         buttonGroup1.add(creditorChk);
         creditorChk.setText("Creditor");
@@ -941,7 +996,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel5.add(creditorChk, gridBagConstraints);
+        optionsPanel.add(creditorChk, gridBagConstraints);
 
         buttonGroup1.add(surrenderChk);
         surrenderChk.setText("Imprest Surrender");
@@ -955,7 +1010,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel5.add(surrenderChk, gridBagConstraints);
+        optionsPanel.add(surrenderChk, gridBagConstraints);
 
         buttonGroup1.add(consutantChk);
         consutantChk.setText("Consultant");
@@ -969,7 +1024,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel5.add(consutantChk, gridBagConstraints);
+        optionsPanel.add(consutantChk, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -978,7 +1033,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jPanel5, gridBagConstraints);
+        getContentPane().add(optionsPanel, gridBagConstraints);
 
         setBounds(0, 0, 1126, 539);
     }// </editor-fold>//GEN-END:initComponents
@@ -987,8 +1042,8 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         receiptDetailTxt.setText(jSearchTable11.getValueAt(jSearchTable11.getSelectedRow(), 0).toString());
         glCodeTxt.setText(jSearchTable11.getValueAt(jSearchTable11.getSelectedRow(), 1).toString());
         jSearchDialog11.dispose();
-        jButton1.setEnabled(true);
-        jButton1.setEnabled(true);
+        saveReceiptBtn.setEnabled(true);
+        saveReceiptBtn.setEnabled(true);
         // Add your handling code here:
     }//GEN-LAST:event_jSearchTable11MouseClicked
 
@@ -1011,7 +1066,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_searchButton21ActionPerformed
 
     private void creditorChkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditorChkActionPerformed
-        jButton1.setEnabled(true);
+        saveReceiptBtn.setEnabled(true);
         jButton11.setEnabled(true);
         for (int k = 0; k < jSearchTable1.getRowCount(); k++) {
             for (int r = 0; r < jSearchTable1.getColumnCount(); r++) {
@@ -1023,7 +1078,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                 jSearchTable2.getModel().setValueAt(null, k, r);
             }
         }
-        amountTxt.setText("0.00");
+        amountPaidTxt.setText("0.00");
         receiptDetailTxt.setText("");
         searchTxt.setText("");
         receivedFromTxt.setText("");
@@ -1047,7 +1102,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_creditorChkActionPerformed
 
     private void consutantChkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consutantChkActionPerformed
-        jButton1.setEnabled(true);
+        saveReceiptBtn.setEnabled(true);
         jButton11.setEnabled(true);
         for (int k = 0; k < jSearchTable1.getRowCount(); k++) {
             for (int r = 0; r < jSearchTable1.getColumnCount(); r++) {
@@ -1060,7 +1115,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         searchTxt.setText("");
         receivedFromTxt.setText("");
         jTextField11111.setText("");
-        amountTxt.setText("0.00");
+        amountPaidTxt.setText("0.00");
         try {
             // if(this.jCheckBox1.isSelected()){
             java.sql.Statement stmt1 = connectDB.createStatement();
@@ -1330,7 +1385,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                     pstSurrender.setObject(3, payeeName);
                     pstSurrender.setString(4, actvtyDesc);
                     pstSurrender.setDouble(5, 0.00);//debit or issues 
-                    pstSurrender.setDouble(6, java.lang.Double.valueOf(amountTxt.getText().toString()));
+                    pstSurrender.setDouble(6, java.lang.Double.valueOf(amountPaidTxt.getText().toString()));
                     pstSurrender.setDate(7, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
                     pstSurrender.setString(8, User1);
                     pstSurrender.setBoolean(9, true);
@@ -1355,8 +1410,8 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                     pstSurrender.setBoolean(28, true);
                     pstSurrender.executeUpdate();
 
-                    if (java.lang.Double.valueOf(amountTxt.getText().toString()) >= unsurrenderedAmount) {
-                        System.out.println("Amount in the field" + java.lang.Double.valueOf(amountTxt.getText().toString()));
+                    if (java.lang.Double.valueOf(amountPaidTxt.getText().toString()) >= unsurrenderedAmount) {
+                        System.out.println("Amount in the field" + java.lang.Double.valueOf(amountPaidTxt.getText().toString()));
                         System.out.println("Amount in the DB" + java.lang.Double.valueOf(unsurrenderedAmount));
                         java.sql.PreparedStatement pstmtCompletePettyCash = connectDB.prepareStatement("update ac_petty_cash set approved_surrender = true and checked_surrender = true where voucher_no = ?");
                         pstmtCompletePettyCash.setObject(1, searchTxt.getText().toString());
@@ -1378,17 +1433,17 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                         pstmt.setString(1, glCodeTxt.getText());
                         pstmt.setString(2, receivedFromTxt.getText());
                         pstmt.setString(4, "");
-                        pstmt.setString(3, paymodCmbx.getSelectedItem().toString());
+                        pstmt.setString(3, paymentModeCmbx.getSelectedItem().toString());
                         pstmt.setString(5, receivedFromTxt.getText());
                         pstmt.setString(7, jTextField8.getText());
                         pstmt.setString(6, otherReceiptTxt.getText());
                         pstmt.setString(8, receiptNo);
                         pstmt.setString(9, glCodeTxt.getText());
-                        pstmt.setString(10, jTextField2.getText());
+                        pstmt.setString(10, chequeNumberTxt.getText());
                         pstmt.setString(11, transNo);
                         pstmt.setString(12, "Receipt");
                         pstmt.setDouble(13, 0.00);
-                        pstmt.setDouble(14, java.lang.Double.valueOf(amountTxt.getText()));
+                        pstmt.setDouble(14, java.lang.Double.valueOf(amountPaidTxt.getText()));
                         pstmt.setString(16, receiptNo);
                         pstmt.setDate(15, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
                         pstmt.setObject(17, receiptDetailTxt.getText());
@@ -1399,7 +1454,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                         pstmt.setDate(22, null);
                         pstmt.setDate(23, null);
                         pstmt.setDouble(24, 0.00);
-                        pstmt.setDouble(25, java.lang.Double.valueOf(amountTxt.getText()));
+                        pstmt.setDouble(25, java.lang.Double.valueOf(amountPaidTxt.getText()));
                         pstmt.executeUpdate();
 
                     } else {
@@ -1410,17 +1465,17 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                             pstmt.setString(1, glCodeTxt.getText());
                             pstmt.setString(2, otherReceiptTxt.getText());
                             pstmt.setString(4, "");
-                            pstmt.setString(3, paymodCmbx.getSelectedItem().toString());
+                            pstmt.setString(3, paymentModeCmbx.getSelectedItem().toString());
                             pstmt.setString(5, receivedFromTxt.getText());
                             pstmt.setString(7, jTextField8.getText());
                             pstmt.setString(6, otherReceiptTxt.getText());
                             pstmt.setString(8, receiptNo);
                             pstmt.setString(9, glCodeTxt.getText());
-                            pstmt.setString(10, jTextField2.getText());
+                            pstmt.setString(10, chequeNumberTxt.getText());
                             pstmt.setString(11, transNo);
                             pstmt.setString(12, "Receipt");
                             pstmt.setDouble(13, 0.00);
-                            pstmt.setDouble(14, java.lang.Double.valueOf(amountTxt.getText()));
+                            pstmt.setDouble(14, java.lang.Double.valueOf(amountPaidTxt.getText()));
                             pstmt.setString(16, receiptNo);
                             pstmt.setDate(15, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
                             pstmt.setObject(17, receiptDetailTxt.getText());
@@ -1431,7 +1486,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                             pstmt.setDate(22, null);
                             pstmt.setDate(23, null);
                             pstmt.setDouble(24, 0.00);
-                            pstmt.setDouble(25, java.lang.Double.valueOf(amountTxt.getText()));
+                            pstmt.setDouble(25, java.lang.Double.valueOf(amountPaidTxt.getText()));
                             pstmt.executeUpdate();
                         } else {
                             if (consutantChk.isSelected()) {
@@ -1445,17 +1500,17 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                                 pstmt.setString(5, glCodeTxt.getText());
                                 pstmt.setString(6, "RECEIPT");
                                 pstmt.setDouble(7, 0.00);
-                                pstmt.setDouble(8, java.lang.Double.valueOf(amountTxt.getText()));
+                                pstmt.setDouble(8, java.lang.Double.valueOf(amountPaidTxt.getText()));
                                 pstmt.setString(9, receiptNo);
                                 pstmt.setString(10, "");
-                                pstmt.setString(11, paymodCmbx.getSelectedItem().toString());
+                                pstmt.setString(11, paymentModeCmbx.getSelectedItem().toString());
                                 pstmt.setBoolean(12, true);
                                 pstmt.setString(13, User1);
                                 pstmt.setDate(14, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
                                 pstmt.setString(15, "");
                                 pstmt.setString(16, receivedFromTxt.getText());
                                 pstmt.setDouble(17, 0.00);
-                                pstmt.setDouble(18, java.lang.Double.valueOf(amountTxt.getText()));
+                                pstmt.setDouble(18, java.lang.Double.valueOf(amountPaidTxt.getText()));
                                 pstmt.executeUpdate();
 
                             } else {
@@ -1472,10 +1527,10 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                                     pstmt2.setString(4, otherReceiptTxt.getText());
                                 }
                                 pstmt2.setString(6, "");
-                                pstmt2.setString(8, jTextField1.getText());
-                                pstmt2.setString(9, jTextField9.getText());
+                                pstmt2.setString(8, chequeDrawerNameTxt.getText());
+                                pstmt2.setString(9, drawerBankTxt.getText());
                                 pstmt2.setString(10, "");
-                                pstmt2.setString(11, jTextField2.getText());
+                                pstmt2.setString(11, chequeNumberTxt.getText());
                                 pstmt2.setString(12, receiptNo);
 
                                 if (otherReceiptTxt.getText() == null) {
@@ -1487,7 +1542,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                                 pstmt2.setString(13, "");
                                 pstmt2.setString(14, receiptDetailTxt.getText());
                                 pstmt2.setObject(15, "Receipts");
-                                pstmt2.setDouble(17, java.lang.Double.valueOf(amountTxt.getText()));
+                                pstmt2.setDouble(17, java.lang.Double.valueOf(amountPaidTxt.getText()));
                                 pstmt2.setDouble(16, 0.00);
                                 pstmt2.setDate(18, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
                                 pstmt2.setString(19, transNo);
@@ -1504,21 +1559,21 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                     }
                     java.sql.PreparedStatement pstmt2a = connectDB.prepareStatement("insert into ac_cash_collection values(?,?,?,initcap(?),?,?, ?, initcap(?), initcap(?), ?, ?, ?, initcap(?), ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
                     pstmt2a.setObject(1, glCodeTxt.getText());
-                    pstmt2a.setObject(5, paymodCmbx.getSelectedItem().toString());
+                    pstmt2a.setObject(5, paymentModeCmbx.getSelectedItem().toString());
                     pstmt2a.setString(2, otherReceiptTxt.getText());
                     pstmt2a.setString(3, otherReceiptTxt.getText());
                     pstmt2a.setString(4, receivedFromTxt.getText());
                     pstmt2a.setString(6, "");
                     pstmt2a.setString(7, receivedFromTxt.getText());
-                    pstmt2a.setString(8, jTextField1.getText());
-                    pstmt2a.setString(9, jTextField9.getText());
+                    pstmt2a.setString(8, chequeDrawerNameTxt.getText());
+                    pstmt2a.setString(9, drawerBankTxt.getText());
                     pstmt2a.setString(10, rcode);
                     pstmt2a.setString(12, receiptNo);
-                    pstmt2a.setString(11, jTextField2.getText());
+                    pstmt2a.setString(11, chequeNumberTxt.getText());
                     pstmt2a.setString(13, "");
                     pstmt2a.setString(14, otherReceiptTxt.getText());
                     pstmt2a.setObject(15, "Receipts");
-                    pstmt2a.setDouble(16, java.lang.Double.valueOf(amountTxt.getText()));
+                    pstmt2a.setDouble(16, java.lang.Double.valueOf(amountPaidTxt.getText()));
                     pstmt2a.setDouble(17, 00);
                     pstmt2a.setDate(18, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
                     pstmt2a.setString(19, transNo);
@@ -1540,7 +1595,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                     psr.setString(1, jTextField8.getText());
                     psr.setString(2, otherReceiptTxt.getText());
                     psr.setDate(3, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
-                    psr.setDouble(4, java.lang.Double.valueOf(amountTxt.getText()));
+                    psr.setDouble(4, java.lang.Double.valueOf(amountPaidTxt.getText()));
                     psr.setInt(5, java.lang.Integer.valueOf(shiftNoTxt.getText()));
                     psr.setString(6, cashPointTxt.getText());
                     psr.setString(7, receiptNo);
@@ -1575,7 +1630,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                     receiptNoTxt.setText(receiptNo2);
                     javax.swing.JOptionPane.showMessageDialog(this, "Data Inserted Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
-                    jButton1.setEnabled(false);
+                    saveReceiptBtn.setEnabled(false);
                     jButton11.setEnabled(false);
 
                 }
@@ -1598,7 +1653,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButton11ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void reprintReceiptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reprintReceiptBtnActionPerformed
 
         String receiptNo = null;
         try {
@@ -1621,21 +1676,21 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
             }
             if (nodetails.equalsIgnoreCase("NoDetails")) {
 
-                com.afrisoftech.txtreports.NoDetReceiptsTxt policy = new com.afrisoftech.txtreports.NoDetReceiptsTxt(connectDB, "-", receivedFromTxt.getText(), amountTxt.getText(), receiptNo, this.paymodCmbx.getSelectedItem().toString());
+                com.afrisoftech.txtreports.NoDetReceiptsTxt policy = new com.afrisoftech.txtreports.NoDetReceiptsTxt(connectDB, "-", receivedFromTxt.getText(), amountPaidTxt.getText(), receiptNo, this.paymentModeCmbx.getSelectedItem().toString());
             } else {
                 if (nodetails.equalsIgnoreCase("Codes")) {
-                    com.afrisoftech.txtreports.CodeReceiptsTxt policy = new com.afrisoftech.txtreports.CodeReceiptsTxt(connectDB, "-", receivedFromTxt.getText(), amountTxt.getText(), receiptNo, this.paymodCmbx.getSelectedItem().toString());
+                    com.afrisoftech.txtreports.CodeReceiptsTxt policy = new com.afrisoftech.txtreports.CodeReceiptsTxt(connectDB, "-", receivedFromTxt.getText(), amountPaidTxt.getText(), receiptNo, this.paymentModeCmbx.getSelectedItem().toString());
 
                 } else {
                     if (nodetails.equalsIgnoreCase("dept")) {
-                        com.afrisoftech.txtreports.ReceiptsPerDeptTxt policy = new com.afrisoftech.txtreports.ReceiptsPerDeptTxt(connectDB, "-", receivedFromTxt.getText(), amountTxt.getText(), receiptNo, this.paymodCmbx.getSelectedItem().toString());
+                        com.afrisoftech.txtreports.ReceiptsPerDeptTxt policy = new com.afrisoftech.txtreports.ReceiptsPerDeptTxt(connectDB, "-", receivedFromTxt.getText(), amountPaidTxt.getText(), receiptNo, this.paymentModeCmbx.getSelectedItem().toString());
 
                     } else {
                         if (nodetails.equalsIgnoreCase("Prints") && rct.equalsIgnoreCase("Pdf")) {
                             com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
                             policy.ReceiptsPdf(connectDB, receiptNo);
                         } else {
-                            com.afrisoftech.txtreports.ReceiptsTxt policy = new com.afrisoftech.txtreports.ReceiptsTxt(connectDB, "-", receivedFromTxt.getText(), amountTxt.getText(), receiptNo, this.paymodCmbx.getSelectedItem().toString());
+                            com.afrisoftech.txtreports.ReceiptsTxt policy = new com.afrisoftech.txtreports.ReceiptsTxt(connectDB, "-", receivedFromTxt.getText(), amountPaidTxt.getText(), receiptNo, this.paymentModeCmbx.getSelectedItem().toString());
                         }
                     }
                 }
@@ -1653,9 +1708,9 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 
         }
         // Add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_reprintReceiptBtnActionPerformed
 
-    private void paymodCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymodCmbxActionPerformed
+    private void paymentModeCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentModeCmbxActionPerformed
         /*       try {
          java.sql.Statement stmt = connectDB.createStatement();
          java.sql.ResultSet rset = stmt.executeQuery("select gl_account,description from ac_cash_points where payment_code ='"+jComboBox11.getSelectedItem()+"'");
@@ -1678,35 +1733,35 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
          sqe.printStackTrace();
          //  System.out.println("Insert not successful");
          }  */    // Add your handling code here:
-    }//GEN-LAST:event_paymodCmbxActionPerformed
+    }//GEN-LAST:event_paymentModeCmbxActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void closeFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeFormBtnActionPerformed
         this.setVisible(false);  // Add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_closeFormBtnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void clearFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFormBtnActionPerformed
         otherReceiptTxt.setEditable(true);
         searchButton2.setEnabled(true);
         searchTxt.setEditable(true);
         searchTxt.setText("");
         //  jTextField7.setText("");
         //      jTextField10.setText("");
-        jTextField9.setText("");
+        drawerBankTxt.setText("");
         //        jTextField5.setText("");
         //        jTextField12.setText("");
         receivedFromTxt.setText("");
         otherReceiptTxt.setText("");
         glCodeTxt.setText("");
         //        jTextField5.setText("");
-        amountTxt.setText("");
-        jTextField1.setText("");
-        jTextField2.setText("");
+        amountPaidTxt.setText("");
+        chequeDrawerNameTxt.setText("");
+        chequeNumberTxt.setText("");
         receiptDetailTxt.setText("");
-        paymodCmbx.setSelectedItem(null);
+        paymentModeCmbx.setSelectedItem(null);
         // Add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_clearFormBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void saveReceiptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveReceiptBtnActionPerformed
         java.util.Calendar calendar = java.util.Calendar.getInstance();
 
         long dateNow = calendar.getTimeInMillis();
@@ -1773,33 +1828,33 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 
                 if (nodetails.equalsIgnoreCase("NoDetails")) {
 
-                    com.afrisoftech.txtreports.IPDebtorsReceiptsTxt policy = new com.afrisoftech.txtreports.IPDebtorsReceiptsTxt(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), searchTxt.getText(), amountTxt.getText(), receiptNo, paymodCmbx.getSelectedItem().toString(), jTextField2.getText());
+                    com.afrisoftech.txtreports.IPDebtorsReceiptsTxt policy = new com.afrisoftech.txtreports.IPDebtorsReceiptsTxt(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), searchTxt.getText(), amountPaidTxt.getText(), receiptNo, paymentModeCmbx.getSelectedItem().toString(), chequeNumberTxt.getText());
                 } else {
                     if (nodetails.equalsIgnoreCase("Prints") && rct.equalsIgnoreCase("Pdf")) {
                         com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
                         policy.ReceiptsPdf(connectDB, receiptNo);
                         com.afrisoftech.reports.OtherReceiptsBPdf policy1 = new com.afrisoftech.reports.OtherReceiptsBPdf();
-                        policy1.OtherReceiptsBPdf(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), amountTxt.getText(), receiptNo, paymodCmbx.getSelectedItem().toString(), jTextField2.getText());
+                        policy1.OtherReceiptsBPdf(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), amountPaidTxt.getText(), receiptNo, paymentModeCmbx.getSelectedItem().toString(), chequeNumberTxt.getText());
                     } else {
                         //    com.afrisoftech.txtreports.InpatientReceiptsTxt policy = new com.afrisoftech.txtreports.InpatientReceiptsTxt(connectDB, jTextField9.getText(), jTextField2.getText(), jTextField1.getText(), receiptNo, paymodCmbx.getSelectedItem().toString(), otherReceiptTxt.getText(), jTextField1.getText());
-                        com.afrisoftech.txtreports.DebtorsReceiptsTxt policy1 = new com.afrisoftech.txtreports.DebtorsReceiptsTxt(connectDB, receiptDetailTxt.getText() + ":" + otherReceiptTxt.getText(), receivedFromTxt.getText(), searchTxt.getText(), amountTxt.getText(), receiptNo, paymodCmbx.getSelectedItem().toString(), jTextField2.getText());
+                        com.afrisoftech.txtreports.DebtorsReceiptsTxt policy1 = new com.afrisoftech.txtreports.DebtorsReceiptsTxt(connectDB, receiptDetailTxt.getText() + ":" + otherReceiptTxt.getText(), receivedFromTxt.getText(), searchTxt.getText(), amountPaidTxt.getText(), receiptNo, paymentModeCmbx.getSelectedItem().toString(), chequeNumberTxt.getText());
                     }
                 }
 
 //
 //                com.afrisoftech.reports.OtherReceiptsBPdf policy = new com.afrisoftech.reports.OtherReceiptsBPdf();
 //                policy.OtherReceiptsBPdf(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), amountTxt.getText(), receiptNo, paymodCmbx.getSelectedItem().toString(), jTextField2.getText());
-                jTextField9.setText("");
+                drawerBankTxt.setText("");
                 receivedFromTxt.setText("");
                 otherReceiptTxt.setText("");
                 glCodeTxt.setText("");
                 jTextField5.setText("");
-                amountTxt.setText("");
-                jTextField1.setText("");
-                jTextField2.setText("");
+                amountPaidTxt.setText("");
+                chequeDrawerNameTxt.setText("");
+                chequeNumberTxt.setText("");
 
-                paymodCmbx.setSelectedItem(null);
-                jButton1.setEnabled(false);
+                paymentModeCmbx.setSelectedItem(null);
+                saveReceiptBtn.setEnabled(false);
                 jButton11.setEnabled(false);
 
                 javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Data Inserted Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -1827,7 +1882,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 //        
 //        jButton1.setEnabled(false);
         // Add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_saveReceiptBtnActionPerformed
 
     private void searchButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton22ActionPerformed
         // TODO add your handling code here:
@@ -1885,7 +1940,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                 java.sql.ResultSet rsetBalance = stmtBalance.executeQuery("select sum(debit-credit) as bal, sum(debit) as total, payee FROM ac_petty_cash where voucher_no = '" + searchTxt.getText().toString() + "' and status != 'Payment Done' group by payee,voucher_no order by voucher_no");
 
                 while (rsetBalance.next()) {
-                    amountTxt.setText(rsetBalance.getObject(1).toString());
+                    amountPaidTxt.setText(rsetBalance.getObject(1).toString());
                     receivedFromTxt.setText(rsetBalance.getObject(3).toString());
                     payeeName = rsetBalance.getObject(3).toString();
 
@@ -1935,7 +1990,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 
     private void surrenderChkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_surrenderChkActionPerformed
         // TODO add your handling code here:
-        jButton1.setEnabled(true);
+        saveReceiptBtn.setEnabled(true);
         jButton11.setEnabled(true);
         receivedFromTxt.setText("");
         for (int k = 0; k < jSearchTable2.getRowCount(); k++) {
@@ -1947,7 +2002,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
             jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct staff_veh, payee,voucher_no from ac_petty_cash where (voucher_no !='' and (voucher_no ilike '%PETT%') or (voucher_no ilike '%S_IMPREST%' )or (voucher_no ilike '%T_IMPREST%')) and status != 'Payment Done' and approved_surrender = false GROUP BY staff_veh, payee,voucher_no having sum(debit-credit) > 0 ORDER BY 1"));
 
         }
-        amountTxt.setText("0.00");
+        amountPaidTxt.setText("0.00");
         receiptDetailTxt.setText("");
         searchTxt.setText("");
         receivedFromTxt.setText("");
@@ -1969,6 +2024,44 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 //        }
 
     }//GEN-LAST:event_surrenderChkActionPerformed
+
+    private void payerMobileTelephoneNumberTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payerMobileTelephoneNumberTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_payerMobileTelephoneNumberTxtActionPerformed
+
+    private void payViaMobilePayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payViaMobilePayBtnActionPerformed
+//        String payerTelephoneNumber = null;
+//        System.out.println("Payer Mobile Telephone Number : [" + payerMobileTelephoneNumberTxt.getText().replace("-", "").length() + "]");
+//
+//        if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
+//            payerTelephoneNumber = payerMobileTelephoneNumberTxt.getText().replace("-", "");
+//
+//            if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
+//                //STK Push for mobile payment
+//                javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful.Bill Number. " + visitIDTxt.getText() + "", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+//                if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
+//                    boolean checkoutReturn = com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), visitIDTxt.getText(), payerTelephoneNumber, amountPaidTxt.getText(), com.afrisoftech.hospital.HospitalMain.payBillNumber);
+//                    if (checkoutReturn) {
+//                        try {
+//                            System.out.println("Processing patient card data : ["+checkoutRequestID+"]");
+//                            java.sql.PreparedStatement pstmtCheckout = connectDB.prepareStatement("UPDATE hp_patient_card SET checkout_request_id = ? WHERE visit_id = ?");
+//                            pstmtCheckout.setString(1, checkoutRequestID);
+//                            pstmtCheckout.setString(2, visitIDTxt.getText());
+//                            pstmtCheckout.executeUpdate();
+//                            pstmtCheckout.close();
+//                        } catch (SQLException ex) {
+//                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+//                            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+//                        }
+//                    }
+//                }
+//                //   com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), visitIDTxt.getText(), payerTelephoneNumber, amountPaidTxt.getText());
+//            }
+//        } else if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() != 12) {
+//            javax.swing.JOptionPane.showMessageDialog(this, "Please check telephone number! It should be formatted as follows : 2547xxxxxx");
+//        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_payViaMobilePayBtnActionPerformed
     public java.lang.String getShiftNumber() {
 
         try {
@@ -2050,7 +2143,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
             String nodetails = null;
             String rct = null;
             jButton11.doClick(); //ActionPerformed(evt);
-            jButton5.doClick(); //ActionPerformed(evt);
+            reprintReceiptBtn.doClick(); //ActionPerformed(evt);
 
             try {
 
@@ -2096,33 +2189,33 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 
                 if (nodetails.equalsIgnoreCase("NoDetails")) {
 
-                    com.afrisoftech.txtreports.IPDebtorsReceiptsTxt policy = new com.afrisoftech.txtreports.IPDebtorsReceiptsTxt(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), searchTxt.getText(), amountTxt.getText(), receiptNo, paymodCmbx.getSelectedItem().toString(), jTextField2.getText());
+                    com.afrisoftech.txtreports.IPDebtorsReceiptsTxt policy = new com.afrisoftech.txtreports.IPDebtorsReceiptsTxt(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), searchTxt.getText(), amountPaidTxt.getText(), receiptNo, paymentModeCmbx.getSelectedItem().toString(), chequeNumberTxt.getText());
                 } else {
                     if (nodetails.equalsIgnoreCase("Prints") && rct.equalsIgnoreCase("Pdf")) {
                         com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
                         policy.ReceiptsPdf(connectDB, receiptNo);
                         com.afrisoftech.reports.OtherReceiptsBPdf policy1 = new com.afrisoftech.reports.OtherReceiptsBPdf();
-                        policy1.OtherReceiptsBPdf(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), amountTxt.getText(), receiptNo, paymodCmbx.getSelectedItem().toString(), jTextField2.getText());
+                        policy1.OtherReceiptsBPdf(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), amountPaidTxt.getText(), receiptNo, paymentModeCmbx.getSelectedItem().toString(), chequeNumberTxt.getText());
                     } else {
-                        com.afrisoftech.txtreports.InpatientReceiptsTxt policy = new com.afrisoftech.txtreports.InpatientReceiptsTxt(connectDB, jTextField9.getText(), jTextField2.getText(), jTextField1.getText(), receiptNo, paymodCmbx.getSelectedItem().toString(), otherReceiptTxt.getText(), jTextField1.getText());
-                        com.afrisoftech.txtreports.DebtorsReceiptsTxt policy1 = new com.afrisoftech.txtreports.DebtorsReceiptsTxt(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), searchTxt.getText(), amountTxt.getText(), receiptNo, paymodCmbx.getSelectedItem().toString(), jTextField2.getText());
+                        com.afrisoftech.txtreports.InpatientReceiptsTxt policy = new com.afrisoftech.txtreports.InpatientReceiptsTxt(connectDB, drawerBankTxt.getText(), chequeNumberTxt.getText(), chequeDrawerNameTxt.getText(), receiptNo, paymentModeCmbx.getSelectedItem().toString(), otherReceiptTxt.getText(), chequeDrawerNameTxt.getText());
+                        com.afrisoftech.txtreports.DebtorsReceiptsTxt policy1 = new com.afrisoftech.txtreports.DebtorsReceiptsTxt(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), searchTxt.getText(), amountPaidTxt.getText(), receiptNo, paymentModeCmbx.getSelectedItem().toString(), chequeNumberTxt.getText());
                     }
                 }
 
                 com.afrisoftech.reports.OtherReceiptsBPdf policy = new com.afrisoftech.reports.OtherReceiptsBPdf();
-                policy.OtherReceiptsBPdf(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), amountTxt.getText(), receiptNo, paymodCmbx.getSelectedItem().toString(), jTextField2.getText());
+                policy.OtherReceiptsBPdf(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), amountPaidTxt.getText(), receiptNo, paymentModeCmbx.getSelectedItem().toString(), chequeNumberTxt.getText());
 
-                jTextField9.setText("");
+                drawerBankTxt.setText("");
                 receivedFromTxt.setText("");
                 otherReceiptTxt.setText("");
                 glCodeTxt.setText("");
                 jTextField5.setText("");
-                amountTxt.setText("");
-                jTextField1.setText("");
-                jTextField2.setText("");
+                amountPaidTxt.setText("");
+                chequeDrawerNameTxt.setText("");
+                chequeNumberTxt.setText("");
 
-                paymodCmbx.setSelectedItem(null);
-                jButton1.setEnabled(false);
+                paymentModeCmbx.setSelectedItem(null);
+                saveReceiptBtn.setEnabled(false);
                 jButton11.setEnabled(false);
 
                 javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Data Inserted Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -2143,18 +2236,21 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField amountTxt;
+    private javax.swing.JTextField amountPaidTxt;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JPanel buttonPanel;
     private javax.swing.JTextField cashPointTxt;
+    private javax.swing.JTextField chequeDrawerNameTxt;
+    private javax.swing.JTextField chequeNumberTxt;
+    private javax.swing.JButton clearFormBtn;
+    public javax.swing.JButton closeFormBtn;
     private javax.swing.JCheckBox consutantChk;
     private javax.swing.JCheckBox creditorChk;
     private com.afrisoftech.lib.DatePicker datePicker1;
+    private javax.swing.JPanel detailsPanel;
+    private javax.swing.JTextField drawerBankTxt;
     private javax.swing.JTextField glCodeTxt;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton3;
-    public javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton511;
     private javax.swing.JButton jButton5111;
     private javax.swing.JButton jButton512;
@@ -2174,15 +2270,11 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel211;
-    private javax.swing.JPanel jPanel2111;
     private javax.swing.JPanel jPanel2112;
     private javax.swing.JPanel jPanel212;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JDialog jSearchDialog1;
     private javax.swing.JDialog jSearchDialog11;
     private javax.swing.JDialog jSearchDialog2;
@@ -2195,22 +2287,26 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
     private javax.swing.JTable jSearchTable1;
     private javax.swing.JTable jSearchTable11;
     private javax.swing.JTable jSearchTable2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField11111;
     private javax.swing.JTextField jTextField111111;
     private javax.swing.JTextField jTextField11112;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3612;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JCheckBox loanStockChk;
+    private javax.swing.JPanel optionsPanel;
     private javax.swing.JTextField otherReceiptTxt;
-    private javax.swing.JComboBox paymodCmbx;
+    private javax.swing.JTextField payBillNumberTxt;
+    private javax.swing.JButton payViaMobilePayBtn;
+    private javax.swing.JFormattedTextField payerMobileTelephoneNumberTxt;
+    private javax.swing.JComboBox paymentModeCmbx;
     private javax.swing.JTextField receiptDetailTxt;
+    private javax.swing.JPanel receiptDetailsPanel;
     private javax.swing.JTextField receiptNoTxt;
     private javax.swing.JTextField receivedFromTxt;
+    private javax.swing.JButton reprintReceiptBtn;
+    private javax.swing.JButton saveReceiptBtn;
     private javax.swing.JButton searchButton2;
     private javax.swing.JButton searchButton21;
     private javax.swing.JButton searchButton22;

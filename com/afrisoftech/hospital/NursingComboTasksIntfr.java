@@ -427,7 +427,7 @@ public class NursingComboTasksIntfr extends javax.swing.JInternalFrame implement
         if (patientRegister == null) {
             patientRegister = new PatientRegisterIntfr(connectDB, pConnDB);
         }
-        patientRegister.jButton252.addActionListener(new java.awt.event.ActionListener() {
+        patientRegister.closeFormBtn.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboTaskPanels.removeAll();

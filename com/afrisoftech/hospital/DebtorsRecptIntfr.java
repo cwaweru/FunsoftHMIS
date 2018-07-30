@@ -93,6 +93,8 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         inPatientChkbx = new javax.swing.JCheckBox();
         jLabel13 = new javax.swing.JLabel();
         debtorBalanceTxt = new javax.swing.JFormattedTextField();
+        payerMobileTelephoneNumberTxt = new javax.swing.JFormattedTextField();
+        payBillNumberTxt = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -731,6 +733,39 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel1.add(debtorBalanceTxt, gridBagConstraints);
+
+        payerMobileTelephoneNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bill Payer Telephone No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
+        payerMobileTelephoneNumberTxt.setForeground(new java.awt.Color(0, 0, 255));
+        try {
+            payerMobileTelephoneNumberTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("254-7##-######")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        payerMobileTelephoneNumberTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payerMobileTelephoneNumberTxtActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(payerMobileTelephoneNumberTxt, gridBagConstraints);
+
+        payBillNumberTxt.setEditable(false);
+        payBillNumberTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        payBillNumberTxt.setText(com.afrisoftech.lib.CashShiftNumberFactory.getPayBillNumber(connectDB)
+        );
+        payBillNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PayBill Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(payBillNumberTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1540,6 +1575,10 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         patientSearchDialog.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_patientSearchCloseButonActionPerformed
+
+    private void payerMobileTelephoneNumberTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payerMobileTelephoneNumberTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_payerMobileTelephoneNumberTxtActionPerformed
     public java.lang.String getShiftNumber() {
 
         try {
@@ -1674,7 +1713,9 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTable patientSearchTable;
     private javax.swing.JTextField patientSearchTxt;
     private javax.swing.JPanel patientSelectionCriteriaPanel;
+    private javax.swing.JTextField payBillNumberTxt;
     private javax.swing.JTextField payerCategoryTxt;
+    private javax.swing.JFormattedTextField payerMobileTelephoneNumberTxt;
     private javax.swing.JComboBox paymentModeCmb;
     public javax.swing.JCheckBox receiptByPayerChk;
     private javax.swing.JTextField receiptTxt;

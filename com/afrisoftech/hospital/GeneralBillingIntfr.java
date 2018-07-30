@@ -3633,6 +3633,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             buttonGroup1.add(opdChkbx);
             opdChkbx.setForeground(new java.awt.Color(51, 51, 255));
             opdChkbx.setMnemonic('o');
+            opdChkbx.setSelected(true);
             opdChkbx.setText("OUT- Patients");
             opdChkbx.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3646,7 +3647,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             buttonGroup1.add(ipdChkbx);
             ipdChkbx.setMnemonic('i');
-            ipdChkbx.setSelected(true);
             ipdChkbx.setText("IN-Patients");
             ipdChkbx.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4840,7 +4840,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         schemeAccountNumberTxt.setText(jSearchTable13.getValueAt(jSearchTable13.getSelectedRow(), 0).toString());
         try {
             java.sql.Statement stmt1cz3 = connectDB.createStatement();
-            java.sql.ResultSet rset1cz3 = stmt1cz3.executeQuery("SELECT account_no,payer_name,usesmartcard FROM ac_schemes WHERE scheme_name  ILIKE '" + schemeNameTxt.getText() + "'");
+            java.sql.ResultSet rset1cz3 = stmt1cz3.executeQuery("SELECT account_no,payer_name,usesmartcard FROM ac_schemes WHERE sch_abbrev  ILIKE '" + schemeNameTxt.getText() + "'");
             while (rset1cz3.next()) {
                 schemeAccountNumberTxt.setText(rset1cz3.getObject(1).toString());
                 payerNameTxt.setText(rset1cz3.getObject(2).toString());
@@ -6621,6 +6621,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         savebillBtn.setEnabled(true);
         rePrintBillBtn.setEnabled(false);
         bedAmountTxt.setText("0.00");
+        payerMobileTelephoneNumberTxt.setText("254-7  -      ");
         patientNameTxt.setText(patientSearchTbl.getValueAt(patientSearchTbl.getSelectedRow(), 1).toString());
         patientNumberTxt.setText(patientSearchTbl.getValueAt(patientSearchTbl.getSelectedRow(), 0).toString());
         if (mchfpChkbx.isSelected()) {
@@ -7240,9 +7241,9 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                         discreetServicesTbl.getCellEditor().stopCellEditing();
                                     }
                                     /*
-                                 * if (packagesTbl.isEditing()) {
-                                 * packagesTbl.getCellEditor().stopCellEditing(); }
-                                 *
+                                     * if (packagesTbl.isEditing()) {
+                                     * packagesTbl.getCellEditor().stopCellEditing(); }
+                                     *
                                      */
                                     dispatchThread = new DispatchThread();
 
@@ -7292,9 +7293,9 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                 discreetServicesTbl.getCellEditor().stopCellEditing();
                             }
                             /*
-                         * if (packagesTbl.isEditing()) {
-                         * packagesTbl.getCellEditor().stopCellEditing(); }
-                         *
+                             * if (packagesTbl.isEditing()) {
+                             * packagesTbl.getCellEditor().stopCellEditing(); }
+                             *
                              */
                             dispatchThread = new DispatchThread();
 
@@ -7426,6 +7427,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                         saveAndPrintBillBtn.setEnabled(false);
                     }
 
+                    //Print bill
                 } else {
                     javax.swing.JOptionPane.showMessageDialog(this, "ERROR: You MUST enter all form details correctly.\nCheck that mandatory fields have valid data.\n There MUST be a valid bill.");
                 }
@@ -7594,7 +7596,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
     }//GEN-LAST:event_mergeOpBillBtnActionPerformed
 
@@ -7799,14 +7801,17 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
                 if (opdChkbx.isSelected()) {
                     java.sql.Statement stmt1cz3 = connectDB.createStatement();
-                    java.sql.ResultSet rset1cz3 = stmt1cz3.executeQuery("SELECT account_no,payer_name,usesmartcard FROM ac_schemes WHERE account_no  = '" + schemeAccountNumberTxt.getText() + "'");
+                    java.sql.ResultSet rset1cz3 = stmt1cz3.executeQuery("SELECT account_no,payer_name,usesmartcard FROM ac_schemes WHERE upper(sch_abbrev)  = '" + schemeNameTxt.getText().toUpperCase() + "'");
                     while (rset1cz3.next()) {
                         smartcard = rset1cz3.getBoolean(3);
                     }
                     if (smartcard) {
+                        
+                        javax.swing.JOptionPane.showMessageDialog(this, "Working on Smartlink claim file");
                         biz.systempartners.claims.Claim claimInstance = new biz.systempartners.claims.Claim();
-
+                        biz.systempartners.claims.Claim.invoiceNo = transNo;
                         claimInstance.createXMLDoc(discreetServicesTbl, connectDB);
+                        biz.systempartners.claims.XMLClaim.transNo = transNo;
                     }
                 } else {
                     //this for inpatient;
@@ -7968,6 +7973,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                     pstmt24.setString(23, user);
                                     pstmt24.executeUpdate();
                                 } else {
+                                    // Normal billing for schemes
                                     java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into hp_patient_billing values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?))");
 
                                     pstmt2.setString(1, patientNumberTxt.getText());
@@ -8624,9 +8630,10 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                         pstmtCheckout.close();
                     }
                 }
-                
+
                 connectDB.commit();
                 connectDB.setAutoCommit(true);
+                com.afrisoftech.txtreports.GokBillingTxt billPrint = new com.afrisoftech.txtreports.GokBillingTxt(connectDB, patientNameTxt.getText(), billTotalTxt.getText(), transNo, "Scheme");
 
                 patientNameTxt.setText("");
                 patientCategoryTxt.setText("");

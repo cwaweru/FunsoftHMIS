@@ -696,7 +696,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
         if (!reconcileInventoryBtn.isEnabled()) {
             reconcileInventoryBtn.setEnabled(true);
         }
-        storeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select DISTINCT store_name from st_stores ORDER BY 1"));
+        storeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT store_name from st_main_stores ORDER BY 1"));
 
         storeCmbx.setSelectedIndex(0);
         storeCmbx.addActionListener(new java.awt.event.ActionListener() {

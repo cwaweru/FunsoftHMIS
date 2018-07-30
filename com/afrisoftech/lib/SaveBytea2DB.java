@@ -252,7 +252,8 @@ public class SaveBytea2DB {
 
         return image;
     }
-        public static java.io.ByteArrayOutputStream getImageBytea(java.sql.Connection connDB, String documentRefNumber, java.sql.Timestamp date) {
+
+    public static java.io.ByteArrayOutputStream getImageBytea(java.sql.Connection connDB, String documentRefNumber, java.sql.Timestamp date) {
         java.io.File tempFile = null;
         Image image = null;
         connectDB = connDB;
@@ -281,5 +282,23 @@ public class SaveBytea2DB {
 
         return byteaStream;
     }
-}
 
+    public static byte[] getImageByteArray(java.sql.Connection connDB, String documentRefNumber) {
+        byte[] imageBytes = null;
+        connectDB = connDB;
+         try {
+            java.sql.PreparedStatement pstmtR = connectDB.prepareStatement("SELECT DISTINCT document_data, data_capture_time FROM funsoft_image_graphics  WHERE document_ref_no = ? ORDER BY data_capture_time DESC LIMIT 1");
+            pstmtR.setString(1, documentRefNumber);
+            java.sql.ResultSet rs = pstmtR.executeQuery();
+            while (rs.next()) {
+                imageBytes = rs.getBytes(1);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Logger.getLogger(SaveBytea2DB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return imageBytes;
+    }
+}
