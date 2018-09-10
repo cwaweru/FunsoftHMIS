@@ -9383,7 +9383,8 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
                             + "hpv.patient_no,hpv.input_date::time(0) as Visit_time,"
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
-                            + ",hpv.nature as Seen from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'    "
+                            + ",hpv.nature as Seen, (SELECT receipt_no FROM ac_cash_collection WHERE (ac_cash_collection.description ILIKE '%consultation%' OR ac_cash_collection.description ILIKE '%card%' OR ac_cash_collection.description ILIKE '%attend%') AND ac_cash_collection.patient_no = hpv.patient_no AND ac_cash_collection.date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1) ORDER BY ac_cash_collection.date DESC LIMIT 1) as receipt_no "
+                                    + " from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'    "
                             + "  ORDER BY hpv.input_date::time(0)"));
                 } else {
                     this.clerkingwaitingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
@@ -9391,7 +9392,8 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
                             + "hpv.patient_no,hpv.input_date::time(0) as Visit_time,"
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
-                            + ",hpv.nature as Seen from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'    "
+                            + ",hpv.nature as Seen, (SELECT receipt_no FROM ac_cash_collection WHERE (ac_cash_collection.description ILIKE '%consultation%' OR ac_cash_collection.description ILIKE '%card%' OR ac_cash_collection.description ILIKE '%attend%') AND ac_cash_collection.patient_no = hpv.patient_no AND ac_cash_collection.date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1) ORDER BY ac_cash_collection.date DESC LIMIT 1) as receipt_no "
+                                    + " from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'    "
                             + "and hpv.clinic ='" + this.waitingclinicscmbx.getSelectedItem().toString() + "'  ORDER BY hpv.input_date::time(0)"));
 
                 }
@@ -10525,8 +10527,9 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
                             + "hpv.patient_no,hpv.input_date::time(0) as Visit_time,"
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
-                            + ",hpv.nature as Seen from  hp_patient_visit hpv  where (hpv.patient_no ilike '%" + searchpatienttxtfld.getText() + "%' OR hpv.name ilike '%" + searchpatienttxtfld.getText() + "%') "
-                            + "and hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'    "
+                            + ",hpv.nature as Seen, (SELECT receipt_no FROM ac_cash_collection WHERE (ac_cash_collection.description ILIKE '%consultation%' OR ac_cash_collection.description ILIKE '%card%' OR ac_cash_collection.description ILIKE '%attend%') AND ac_cash_collection.patient_no = hpv.patient_no AND ac_cash_collection.date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1) ORDER BY ac_cash_collection.date DESC LIMIT 1) as receipt_no "
+                                    + " from  hp_patient_visit hpv  where (hpv.patient_no ilike '%" + searchpatienttxtfld.getText() + "%' OR hpv.name ilike '%" + searchpatienttxtfld.getText() + "%') "
+                            + "and hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)    "
                             + "   ORDER BY hpv.input_date::time(0) "));
                 } else if (inpatientCheckBox.isSelected()) {
                     this.clerkingwaitingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
@@ -10544,9 +10547,10 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
                             + "hpv.patient_no,hpv.input_date::time(0) as Visit_time,"
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
-                            + ",hpv.nature as Seen from  hp_patient_visit hpv  where  "
+                            + ",hpv.nature as Seen, (SELECT receipt_no FROM ac_cash_collection WHERE (ac_cash_collection.description ILIKE '%consultation%' OR ac_cash_collection.description ILIKE '%card%' OR ac_cash_collection.description ILIKE '%attend%') AND ac_cash_collection.patient_no = hpv.patient_no AND ac_cash_collection.date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1) ORDER BY ac_cash_collection.date DESC LIMIT 1) as receipt_no "
+                                    + " from  hp_patient_visit hpv  where  "
                             + "   (hpv.name ilike '%" + searchpatienttxtfld.getText() + "%' OR hpv.patient_no ilike '%" + searchpatienttxtfld.getText() + "%') "
-                            + "and hpv.input_date::date='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'   "
+                            + "and hpv.input_date::date='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)   "
                             + "and hpv.clinic ='" + this.waitingclinicscmbx.getSelectedItem().toString() + "'  ORDER BY hpv.input_date::time(0)  "));
                 } else if (inpatientCheckBox.isSelected() == true) {
                     this.clerkingwaitingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,

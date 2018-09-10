@@ -461,11 +461,12 @@ public class TransferedItemsPdf implements java.lang.Runnable {
                             table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
 
                             while (rset.next()) {
-                                 java.sql.Statement uintst = connectDB.createStatement();
-
-                                 java.sql.ResultSet rsetunit = uintst.executeQuery(""
+                                 java.sql.PreparedStatement uintst = connectDB.prepareStatement(""
                                          + "SELECT units  FROM st_stock_item where "
-                                         + "item_code ilike '"+rset.getString(1)+"' and description ilike '"+rset.getString(1)+"' ;");
+                                         + "item_code ilike ? and description ilike ?");
+                                 uintst.setString(1, rset.getString(1));
+                                 uintst.setString(2, rset.getString(1));
+                                 java.sql.ResultSet rsetunit = uintst.executeQuery();
                            
                                 
                                 table.getDefaultCell().setColspan(1);

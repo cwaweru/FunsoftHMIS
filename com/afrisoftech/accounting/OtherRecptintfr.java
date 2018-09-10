@@ -6,6 +6,8 @@
 package com.afrisoftech.accounting;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,7 +38,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         pConnDB = pconnDB;
 
         initComponents();
-      //  System.out.println("Cashpoint : " + System.getProperty("cashpoint"));
+        //  System.out.println("Cashpoint : " + System.getProperty("cashpoint"));
         paymentModeCmbx.setSelectedItem("Cash");
         cashPointTxt.setText(getCashPoint());
         shiftNoTxt.setText(getShiftNumber());
@@ -61,9 +63,9 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         jButton511 = new javax.swing.JButton();
         jSearchDialog11 = new javax.swing.JDialog();
         jSearchPanel11 = new javax.swing.JPanel();
-        jTextField111111 = new javax.swing.JTextField();
+        searchGLCodesTxt = new javax.swing.JTextField();
         jSearchScrollPane11 = new javax.swing.JScrollPane();
-        jSearchTable11 = new com.afrisoftech.dbadmin.JTable();
+        glCodeSearchTable = new com.afrisoftech.dbadmin.JTable();
         jButton5111 = new javax.swing.JButton();
         jSearchDialog2 = new javax.swing.JDialog();
         jSearchPanel2 = new javax.swing.JPanel();
@@ -228,9 +230,9 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         jSearchPanel11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jSearchPanel11.setLayout(new java.awt.GridBagLayout());
 
-        jTextField111111.addCaretListener(new javax.swing.event.CaretListener() {
+        searchGLCodesTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField111111CaretUpdate(evt);
+                searchGLCodesTxtCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -240,10 +242,10 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 300.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-        jSearchPanel11.add(jTextField111111, gridBagConstraints);
+        jSearchPanel11.add(searchGLCodesTxt, gridBagConstraints);
 
-        jSearchTable11.setToolTipText("Click on the target row to select the patient from the search.");
-        jSearchTable11.setShowHorizontalLines(false);
+        glCodeSearchTable.setToolTipText("Click on the target row to select the patient from the search.");
+        glCodeSearchTable.setShowHorizontalLines(false);
         /*javax.swing.table.TableColumn column = null;
 
         for (int i = 0; i < 4; i++) {
@@ -261,12 +263,12 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
             }
         }
         */
-        jSearchTable11.addMouseListener(new java.awt.event.MouseAdapter() {
+        glCodeSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSearchTable11MouseClicked(evt);
+                glCodeSearchTableMouseClicked(evt);
             }
         });
-        jSearchScrollPane11.setViewportView(jSearchTable11);
+        jSearchScrollPane11.setViewportView(glCodeSearchTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -677,7 +679,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         detailsPanel.add(jPanel212, gridBagConstraints);
 
-        payerMobileTelephoneNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bill Payer Telephone No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
+        payerMobileTelephoneNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bill Payer Telephone No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
         payerMobileTelephoneNumberTxt.setForeground(new java.awt.Color(0, 0, 255));
         try {
             payerMobileTelephoneNumberTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("254-7##-######")));
@@ -701,7 +703,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         payBillNumberTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         payBillNumberTxt.setText(com.afrisoftech.lib.CashShiftNumberFactory.getPayBillNumber(connectDB)
         );
-        payBillNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PayBill Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
+        payBillNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PayBill Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -1038,28 +1040,28 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         setBounds(0, 0, 1126, 539);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jSearchTable11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable11MouseClicked
-        receiptDetailTxt.setText(jSearchTable11.getValueAt(jSearchTable11.getSelectedRow(), 0).toString());
-        glCodeTxt.setText(jSearchTable11.getValueAt(jSearchTable11.getSelectedRow(), 1).toString());
+    private void glCodeSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_glCodeSearchTableMouseClicked
+        receiptDetailTxt.setText(glCodeSearchTable.getValueAt(glCodeSearchTable.getSelectedRow(), 0).toString());
+        glCodeTxt.setText(glCodeSearchTable.getValueAt(glCodeSearchTable.getSelectedRow(), 1).toString());
         jSearchDialog11.dispose();
         saveReceiptBtn.setEnabled(true);
         saveReceiptBtn.setEnabled(true);
         // Add your handling code here:
-    }//GEN-LAST:event_jSearchTable11MouseClicked
+    }//GEN-LAST:event_glCodeSearchTableMouseClicked
 
     private void jButton5111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5111ActionPerformed
         jSearchDialog11.dispose();    // Add your handling code here:
     }//GEN-LAST:event_jButton5111ActionPerformed
 
-    private void jTextField111111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField111111CaretUpdate
+    private void searchGLCodesTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchGLCodesTxtCaretUpdate
 
-        jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select activity as scheme,code from pb_activity where activity ILIKE '" + jTextField111111.getText().toString() + "%' AND category_class ilike 'plid' AND activity not ilike '%exemption%' AND activity not ilike '%abscond%'  AND  activity not ilike '%waiver%' order by activity"));
+        glCodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select activity as scheme,code from pb_activity where activity ILIKE '" + searchGLCodesTxt.getText().toString() + "%' AND category_class ilike 'plid' AND activity not ilike '%exemption%' AND activity not ilike '%abscond%'  AND  activity not ilike '%waiver%' order by activity"));
 
-        jSearchTable11.setShowHorizontalLines(false);
-        jSearchScrollPane11.setViewportView(jSearchTable11);
+        glCodeSearchTable.setShowHorizontalLines(false);
+        jSearchScrollPane11.setViewportView(glCodeSearchTable);
 
         // Add your handling code here:
-    }//GEN-LAST:event_jTextField111111CaretUpdate
+    }//GEN-LAST:event_searchGLCodesTxtCaretUpdate
 
     private void searchButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton21ActionPerformed
         searchButton11Clicked();    // Add your handling code here:
@@ -1732,7 +1734,14 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
          } catch (java.sql.SQLException sqe) {
          sqe.printStackTrace();
          //  System.out.println("Insert not successful");
-         }  */    // Add your handling code here:
+         if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+         javax.swing.JOptionPane.showMessageDialog(this, "You must enter a valid client Mpesa telephone number in the format : 254-7xx-xxxxxx on the Bill Payer Telephone No field");
+         }
+         }  */
+        if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+            javax.swing.JOptionPane.showMessageDialog(this, "You must enter a valid client Mpesa telephone number in the format : 254-7xx-xxxxxx on the Bill Payer Telephone No field");
+        }
+// Add your handling code here:
     }//GEN-LAST:event_paymentModeCmbxActionPerformed
 
     private void closeFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeFormBtnActionPerformed
@@ -2030,36 +2039,80 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_payerMobileTelephoneNumberTxtActionPerformed
 
     private void payViaMobilePayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payViaMobilePayBtnActionPerformed
-//        String payerTelephoneNumber = null;
-//        System.out.println("Payer Mobile Telephone Number : [" + payerMobileTelephoneNumberTxt.getText().replace("-", "").length() + "]");
-//
-//        if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
-//            payerTelephoneNumber = payerMobileTelephoneNumberTxt.getText().replace("-", "");
-//
-//            if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
-//                //STK Push for mobile payment
-//                javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful.Bill Number. " + visitIDTxt.getText() + "", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-//                if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
-//                    boolean checkoutReturn = com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), visitIDTxt.getText(), payerTelephoneNumber, amountPaidTxt.getText(), com.afrisoftech.hospital.HospitalMain.payBillNumber);
-//                    if (checkoutReturn) {
-//                        try {
-//                            System.out.println("Processing patient card data : ["+checkoutRequestID+"]");
-//                            java.sql.PreparedStatement pstmtCheckout = connectDB.prepareStatement("UPDATE hp_patient_card SET checkout_request_id = ? WHERE visit_id = ?");
-//                            pstmtCheckout.setString(1, checkoutRequestID);
-//                            pstmtCheckout.setString(2, visitIDTxt.getText());
-//                            pstmtCheckout.executeUpdate();
-//                            pstmtCheckout.close();
-//                        } catch (SQLException ex) {
-//                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
-//                            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-//                        }
-//                    }
-//                }
-//                //   com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), visitIDTxt.getText(), payerTelephoneNumber, amountPaidTxt.getText());
-//            }
-//        } else if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() != 12) {
-//            javax.swing.JOptionPane.showMessageDialog(this, "Please check telephone number! It should be formatted as follows : 2547xxxxxx");
-//        }
+        String payerTelephoneNumber = null;
+        System.out.println("Payer Mobile Telephone Number : [" + payerMobileTelephoneNumberTxt.getText().replace("-", "").length() + "]");
+
+        String transactionNo = null;
+
+        try {
+            java.sql.PreparedStatement pstmtTransNo = connectDB.prepareStatement("select nextval('transaction_no_seq')");
+
+            java.sql.ResultSet rsetTransNo = pstmtTransNo.executeQuery();
+
+            while (rsetTransNo.next()) {
+
+                transactionNo = rsetTransNo.getObject(1).toString();
+
+            }
+
+            java.sql.PreparedStatement pstmtOther = connectDB.prepareStatement("INSERT INTO public.hp_patient_billing("
+                    + "            patient_no, patient_name, payment_mode, patient_category, service, "
+                    + "            quantity, amount, gl_code, trans_date, inpatient_no, user_name, "
+                    + "            paid, revenue_code, visit_id, doctor, collected, checkout_request_id)"
+                    + "    VALUES (?, ?, ?, ?, ?, "
+                    + "            ?, ?, ?, ?, ?, ?, "
+                    + "            ?, ?, ?, ?, ?, ?)");
+            pstmtOther.setString(1, transactionNo);
+            pstmtOther.setString(2, receivedFromTxt.getText());
+            pstmtOther.setString(3, paymentModeCmbx.getSelectedItem().toString());
+            pstmtOther.setString(4, "Other Receipts");
+            pstmtOther.setString(5, otherReceiptTxt.getText());
+            pstmtOther.setInt(6, 1);
+            pstmtOther.setDouble(7, Double.parseDouble(amountPaidTxt.getText()));
+            pstmtOther.setString(8, glCodeTxt.getText());
+            pstmtOther.setDate(9, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
+            pstmtOther.setString(10, transactionNo);
+            pstmtOther.setString(11, com.afrisoftech.lib.UserName.getUserName(connectDB));
+            pstmtOther.setBoolean(12, false);
+            pstmtOther.setString(13, receiptDetailTxt.getText());
+            pstmtOther.setString(14, transactionNo);
+            pstmtOther.setObject(15, null);
+            pstmtOther.setBoolean(16, false);
+            pstmtOther.setObject(17, null);
+            pstmtOther.execute();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+
+        if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
+            payerTelephoneNumber = payerMobileTelephoneNumberTxt.getText().replace("-", "");
+
+            if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
+                //STK Push for mobile payment
+                javax.swing.JOptionPane.showMessageDialog(this, "Request successful.Bill number. " + transactionNo + "", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
+                    boolean checkoutReturn = com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), transactionNo, payerTelephoneNumber, amountPaidTxt.getText(), com.afrisoftech.hospital.HospitalMain.payBillNumber);
+                    if (checkoutReturn) {
+                        try {
+                            System.out.println("Processing transaction request data : [" + checkoutRequestID + "]");
+                            java.sql.PreparedStatement pstmtCheckout = connectDB.prepareStatement("UPDATE hp_patient_billing SET checkout_request_id = ? WHERE inpatient_no = ?");
+                            pstmtCheckout.setString(1, checkoutRequestID);
+                            pstmtCheckout.setString(2, transactionNo);
+                            pstmtCheckout.executeUpdate();
+                            pstmtCheckout.close();
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+                        }
+                    }
+                }
+                //   com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), visitIDTxt.getText(), payerTelephoneNumber, amountPaidTxt.getText());
+            }
+        } else if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() != 12) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please check telephone number! It should be formatted as follows : 2547xxxxxx");
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_payViaMobilePayBtnActionPerformed
     public java.lang.String getShiftNumber() {
@@ -2069,7 +2122,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
             java.sql.Statement stmtf = connectDB.createStatement();
             java.sql.ResultSet rsetf = stmtf.executeQuery("select code from ac_cash_points_setup where description = current_user");
             while (rsetf.next()) {
-                 cashPoint = rsetf.getObject(1).toString();
+                cashPoint = rsetf.getObject(1).toString();
             }
             rsetf.close();
             stmtf.close();
@@ -2082,7 +2135,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 
             java.sql.Statement stmt = connectDB.createStatement();
 
-             java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE cash_point = '"+getCashPoint()+"' AND user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
+            java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE cash_point = '" + getCashPoint() + "' AND user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
             //java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
 
             while (rset.next()) {
@@ -2249,6 +2302,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
     private com.afrisoftech.lib.DatePicker datePicker1;
     private javax.swing.JPanel detailsPanel;
     private javax.swing.JTextField drawerBankTxt;
+    private javax.swing.JTable glCodeSearchTable;
     private javax.swing.JTextField glCodeTxt;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton511;
@@ -2285,10 +2339,8 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jSearchScrollPane11;
     private javax.swing.JScrollPane jSearchScrollPane2;
     private javax.swing.JTable jSearchTable1;
-    private javax.swing.JTable jSearchTable11;
     private javax.swing.JTable jSearchTable2;
     private javax.swing.JTextField jTextField11111;
-    private javax.swing.JTextField jTextField111111;
     private javax.swing.JTextField jTextField11112;
     private javax.swing.JTextField jTextField3612;
     private javax.swing.JTextField jTextField5;
@@ -2311,6 +2363,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton searchButton21;
     private javax.swing.JButton searchButton22;
     private javax.swing.JButton searchButton3;
+    private javax.swing.JTextField searchGLCodesTxt;
     private javax.swing.JTextField searchTxt;
     private javax.swing.JTextField shiftNoTxt;
     private javax.swing.JCheckBox surrenderChk;

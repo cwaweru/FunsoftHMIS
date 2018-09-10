@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="LiscenceSetup.java">
+        <attr name="class_dependency_javax.swing.JFrame" stringvalue="LiscenceSetup"/>
+    </fileobject>
+    <fileobject name="VehicleDailyRoutintfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="VehicleDailyRoutintfr"/>
+    </fileobject>
+    <fileobject name="TyreSetupintfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="TyreSetupintfr"/>
+    </fileobject>
+    <fileobject name="TyreIssuingintfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="TyreIssuingintfr"/>
+    </fileobject>
+    <fileobject name="LisenceSetupintfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="LisenceSetupintfr"/>
+    </fileobject>
+    <fileobject name="LiscenceRenewal.java">
+        <attr name="class_dependency_javax.swing.JFrame" stringvalue="LiscenceRenewal"/>
+    </fileobject>
+</attributes>

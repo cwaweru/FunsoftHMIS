@@ -482,6 +482,7 @@ public class MpesaDetailsintfr extends javax.swing.JInternalFrame {
 
     private void receiptSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_receiptSearchTxtCaretUpdate
         //jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select DISTINCT shift_no,cash_point,sum((debit-credit) as amt from ac_cash_collection where reconciled = false and shift_no ILIKE '"+jTextField113.getText()+"%' group by shift_no,cash_point"));
+        if(receiptSearchTxt.getText().length() > 6){
         receiptSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT "
                 + "patient_no,journal_no AS journal_no,account_no AS Tel_No, receipt_no, date, drawer FROM ac_cash_collection WHERE patient_no ILIKE '%" + receiptSearchTxt.getText() + "%' "
                 + " AND cash_point ILIKE 'M-pesa%'"
@@ -492,6 +493,7 @@ public class MpesaDetailsintfr extends javax.swing.JInternalFrame {
                 + "ORDER BY 1,2 desc LIMIT 50"));
 
         receiptSearchScrollPane.setViewportView(receiptSearchTable);
+        }
      //   System.out.println("Cannot sort out");
 
         // }        // Add your handling code here:
@@ -568,9 +570,11 @@ public class MpesaDetailsintfr extends javax.swing.JInternalFrame {
                                 
                             }else{
                                 if(nodetails.equalsIgnoreCase("Prints") && rct.equalsIgnoreCase("Pdf") ){
-                                    com.afrisoftech.reports.ReceiptsCopyPdf policy = new com.afrisoftech.reports.ReceiptsCopyPdf();
-                                    
-                                    policy.ReceiptsCopyPdf(connectDB,jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+                                    com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
+                                    policy.ReceiptsPdf(connectDB, jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+//                                    com.afrisoftech.reports.ReceiptsCopyPdf policy = new com.afrisoftech.reports.ReceiptsCopyPdf();
+//                                    
+//                                    policy.ReceiptsCopyPdf(connectDB,jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
                                 }else{
                                 //   com.afrisoftech.txtreports.ReceiptsCopyTxt policy = new com.afrisoftech.txtreports.ReceiptsCopyTxt(connectDB,jTextField36.getText(),printState);
                                 com.afrisoftech.txtreports.GokMobilePayReceiptsRCopyTxt policy = new com.afrisoftech.txtreports.GokMobilePayReceiptsRCopyTxt(connectDB, jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());

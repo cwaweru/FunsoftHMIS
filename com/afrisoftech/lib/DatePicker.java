@@ -6,8 +6,8 @@ package com.afrisoftech.lib;
  * Created on August 21, 2003, 9:20 PM
  */
 import java.beans.*;
-import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,27 +15,39 @@ import java.util.logging.Logger;
  *
  * @author root
  */
+//public class DatePicker extends com.qt.datapicker.DatePicker implements Runnable {
+//public class DatePicker extends com.alee.extended.date. implements java.io.Serializable, Runnable {
 public class DatePicker extends com.toedter.calendar.JDateChooser implements java.io.Serializable, Runnable {
-//public class DatePicker extends kiwi.ui.DateChooserField implements java.io.Serializable {
-
+//public class DatePicker extends kiwi.ui.DateChooserField implements java.io.Serializable, Runnable {
+    
     private static final String PROP_SAMPLE_PROPERTY = "SampleProperty";
     private String sampleProperty;
     private PropertyChangeSupport propertySupport;
     java.sql.Connection dbConnection = null;
     Thread datePickerThread = new Thread(this);
 
+//    public DatePicker(Observer observer) {
+//        super(observer);
+//        //        super("dd MMM yyyy");
+//        java.util.Calendar cal = java.util.Calendar.getInstance();
+//        java.util.Date todayDate = cal.getTime();
+//      //  this.setDate(todayDate);
+//        propertySupport = new PropertyChangeSupport(this);
+        
+//        datePickerThread.start();
+//    }
+
     /**
      * Creates new BeanTest
      */
     public DatePicker() {
-   //     super("dd MMM yyyy");
+//        super("dd MMM yyyy");
         java.util.Calendar cal = java.util.Calendar.getInstance();
         java.util.Date todayDate = cal.getTime();
         this.setDate(todayDate);
         propertySupport = new PropertyChangeSupport(this);
-       // dbConnection = getDBConnection();
         dbConnection = com.afrisoftech.hospital.HospitalMain.connectDB;
-        datePickerThread.start();
+       // datePickerThread.start();
     }
 
     public String getSampleProperty() {
@@ -65,6 +77,7 @@ public class DatePicker extends com.toedter.calendar.JDateChooser implements jav
             java.util.Date todayDate = cal.getTime();
             java.sql.Statement stmt;
             try {
+                dbConnection = com.afrisoftech.hospital.HospitalMain.connectDB;
                 stmt = dbConnection.createStatement();
                 java.sql.ResultSet rset = stmt.executeQuery("SELECT current_date");
                 while (rset.next()) {
@@ -86,11 +99,10 @@ public class DatePicker extends com.toedter.calendar.JDateChooser implements jav
             }
 
         }
-        
+
+
+
+
+        // throw new UnsupportedOperationException("Not supported yet.");
     }
-    
 }
-
-
-
-

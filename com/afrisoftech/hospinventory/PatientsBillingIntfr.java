@@ -2795,7 +2795,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
                     javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful.Bill No. " + prescNo + "", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                     {
                         if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
-                            boolean checkoutReturn = com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), prescNo, payerTelephoneNumber, billTotalTxt.getText(), com.afrisoftech.hospital.HospitalMain.payBillNumber);
+                            boolean checkoutReturn = com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), prescNo, payerTelephoneNumber, String.valueOf(Math.round(Double.parseDouble(billTotalTxt.getText()))), com.afrisoftech.hospital.HospitalMain.payBillNumber);
                             if (checkoutReturn) {
                                 java.sql.PreparedStatement pstmtCheckout = connectDB.prepareStatement("UPDATE hp_pharmacy SET checkout_request_id = ? WHERE prescription_no = ?");
                                 pstmtCheckout.setString(1, checkoutRequestID);

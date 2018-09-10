@@ -1222,7 +1222,7 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
         double floatCol2 = 0.00;
         double floatCol3 = 0.00;
         //  double totalSum = 0.00;
-        if (grnDetailsTable.getValueAt(grnDetailsTable.getSelectedRow(), grnDetailsTable.getSelectedColumn()) != null) {
+        if (grnDetailsTable.getValueAt(grnDetailsTable.getSelectedRow(), 0) != null) {
 
             floatCol2 = java.lang.Double.parseDouble(grnDetailsTable.getValueAt(grnDetailsTable.getSelectedRow(), 3).toString());
 

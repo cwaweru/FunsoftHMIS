@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="AllocateAllowanceintfr.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="AllocateAllowanceintfr"/>
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="AllocateAllowanceintfr"/>
+    </fileobject>
+    <fileobject name="AllowanceAdjustintfr.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="AllowanceAdjustintfr"/>
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="AllowanceAdjustintfr"/>
+    </fileobject>
+    <fileobject name="Allowanceintfr.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="Allowanceintfr"/>
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="Allowanceintfr"/>
+    </fileobject>
+    <fileobject name="AllowancesDeductionsintfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="AllowancesDeductionsintfr"/>
+    </fileobject>
+    <fileobject name="ApprovedDedPdf.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="ApprovedDedPdf"/>
+    </fileobject>
+    <fileobject name="BanksIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="BanksIntfr"/>
+    </fileobject>
+    <fileobject name="BatcheEarningintfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="BatcheEarningintfr"/>
+    </fileobject>
+    <fileobject name="CoinageIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="CoinageIntfr"/>
+    </fileobject>
+    <fileobject name="CombinedNSSFPdf.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="CombinedNSSFPdf"/>
+    </fileobject>
+    <fileobject name="ContriDedComparPdf.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="ContriDedComparPdf"/>
+    </fileobject>
+    <fileobject name="DeductionsPdf.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="DeductionsPdf"/>
+    </fileobject>
+    <fileobject name="Deductionsintfr.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="Deductionsintfr"/>
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="Deductionsintfr"/>
+    </fileobject>
+    <fileobject name="DefinedContrIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="DefinedContrIntfr"/>
+    </fileobject>
+    <fileobject name="DeptNetPayPdf.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="DeptNetPayPdf"/>
+    </fileobject>
+    <fileobject name="MasterFileintfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="MasterFileintfr"/>
+    </fileobject>
+    <fileobject name="NSSFPdf.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="NSSFPdf"/>
+    </fileobject>
+    <fileobject name="NetSalaryPdf.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="NetSalaryPdf"/>
+    </fileobject>
+    <fileobject name="NhifPdf.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="NhifPdf"/>
+    </fileobject>
+    <fileobject name="P10ListPdf.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="P10ListPdf"/>
+    </fileobject>
+    <fileobject name="PayeListPdf.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="PayeListPdf"/>
+    </fileobject>
+    <fileobject name="PayrollCatSetupintfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="PayrollCatSetupintfr"/>
+    </fileobject>
+    <fileobject name="PayrollClassesIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="PayrollClassesIntfr"/>
+    </fileobject>
+    <fileobject name="PayrollMain.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="PayrollMain"/>
+        <attr name="class_dependency_javax.swing.JFrame" stringvalue="PayrollMain"/>
+    </fileobject>
+    <fileobject name="PayslipPerStaffPdf.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="PayslipPerStaffPdf"/>
+    </fileobject>
+    <fileobject name="PostedStaffPdf.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="PostedStaffPdf"/>
+    </fileobject>
+    <fileobject name="Postingsintfr.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="Postingsintfr"/>
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="Postingsintfr"/>
+    </fileobject>
+    <fileobject name="SaccoDeductionsintfr.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="SaccoDeductionsintfr"/>
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="SaccoDeductionsintfr"/>
+    </fileobject>
+    <fileobject name="SalaryJournalPdf.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="SalaryJournalPdf"/>
+    </fileobject>
+    <fileobject name="Sectionsintfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="Sectionsintfr"/>
+    </fileobject>
+    <fileobject name="SigleDeductionintfr.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="SigleDeductionintfr"/>
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="SigleDeductionintfr"/>
+    </fileobject>
+    <fileobject name="SigleEarningsintfr.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="SigleEarningsintfr"/>
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="SigleEarningsintfr"/>
+    </fileobject>
+    <fileobject name="StaffsIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="StaffsIntfr"/>
+    </fileobject>
+    <fileobject name="StatutoryCompIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="StatutoryCompIntfr"/>
+    </fileobject>
+    <fileobject name="TaxableIncomeintfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="TaxableIncomeintfr"/>
+    </fileobject>
+    <fileobject name="TaxesPdf.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="TaxesPdf"/>
+    </fileobject>
+    <fileobject name="UsersetupPayrollIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="UsersetupPayrollIntfr"/>
+    </fileobject>
+</attributes>

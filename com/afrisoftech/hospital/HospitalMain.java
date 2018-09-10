@@ -29,6 +29,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import com.inet.jortho.SpellChecker;
+import com.inet.jortho.FileUserDictionary;
 //import org.openide.util.Exceptions;
 
 /**
@@ -36,6 +38,8 @@ import javax.swing.JScrollPane;
  * @author Charles Wanjema Waweru <cwaweru@systempartners.biz>
  */
 public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnable {
+
+    public static boolean discreetReceipt = false;
 
     private String newline = "\n";
     private String newTab = "\t";
@@ -675,6 +679,9 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     java.util.Vector tableColumnsVector1;
     private int GroupedTb = 999911;
     public static String checkoutRequestID = null;
+    public static String oAuthKey = null;
+    public static String passKey = null;
+    public static String callBackURL = null;
 
     /**
      * Default constructor
@@ -16421,6 +16428,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
 
         } catch (java.sql.SQLException sqlex) {
+
             javax.swing.JOptionPane.showMessageDialog(this, sqlex.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
 
             System.out.println(sqlex.getMessage());
@@ -17209,6 +17217,9 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             //  status = true;
 
         } catch (java.sql.SQLException sqlex) {
+
+            sqlex.printStackTrace();
+
             javax.swing.JOptionPane.showMessageDialog(this, sqlex.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
 
             System.out.println(sqlex.getMessage());
@@ -22893,6 +22904,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         smpthr_dboptim.stop();
 
     }
+
     /*
      * public void setURL(java.net.URL newURL) {
      *
@@ -22928,7 +22940,6 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
      *
      * }
      */
-
     /**
      *
      */
@@ -22977,6 +22988,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         return this;
 
     }
+
     /*
      * private javax.swing.JTextPane createTextPane() { javax.swing.JTextPane
      * textPane = new javax.swing.JTextPane(); java.lang.String[] initString = {
@@ -23055,7 +23067,6 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
      *
      * }
      */
-
     class CustomTreeCellEditor extends javax.swing.tree.DefaultTreeCellEditor {
 
         // Color currentColor = null;
@@ -23070,7 +23081,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
             //setClickCountToStart(1); //This is usually 1 or 2.
             //Must do this so that editing stops when appropriate.
-           /*
+            /*
              * treeButton.addActionListener(new ActionListener() {
              *
              * public void actionPerformed(ActionEvent e) {
@@ -23476,14 +23487,14 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                 new String[]{
                     "Column Name", "Include"
                 }) {
-                    Class[] types = new Class[]{
-                        java.lang.Object.class, java.lang.Boolean.class
-                    };
+            Class[] types = new Class[]{
+                java.lang.Object.class, java.lang.Boolean.class
+            };
 
-                    public Class getColumnClass(int columnIndex) {
-                        return types[columnIndex];
-                    }
-                });
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+        });
 
     }
 
@@ -23498,14 +23509,14 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                 new String[]{
                     "Column Name", "Include"
                 }) {
-                    Class[] types = new Class[]{
-                        java.lang.Object.class, java.lang.Boolean.class
-                    };
+            Class[] types = new Class[]{
+                java.lang.Object.class, java.lang.Boolean.class
+            };
 
-                    public Class getColumnClass(int columnIndex) {
-                        return types[columnIndex];
-                    }
-                });
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+        });
 
     }
 
@@ -24861,42 +24872,84 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         public void run() {
             while (true) {
                 try {
-                    if(checkoutRequestID != null){
+                    if (checkoutRequestID != null) {
+                        String shiftNumber = null;
+                        java.sql.PreparedStatement pstmtShiftNo = connectDB.prepareStatement("SELECT shift_no FROM ac_shifts WHERE status = 'Running' and user_name = current_user ORDER BY start_date DESC LIMIT 1");
+                        java.sql.ResultSet rsetShiftNo = pstmtShiftNo.executeQuery();
+                        while (rsetShiftNo.next()) {
+                            shiftNumber = rsetShiftNo.getString(1);
+                        }
 //                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT DISTINCT description, debit, patient_no, dealer, transaction_no, card_no, journal_no, account_no FROM ac_cash_collection WHERE mobilepay_alert = false AND checkout_request_id = ? AND patient_no IS NOT NULL AND checkout_request_id IS NOT NULL UNION SELECT DISTINCT '', paid_amount, patient_no, dealer, transaction_no, checkout_request_id, mpesa_trx_id, telephone_number FROM public.mobile_payments WHERE patient_no IS NOT NULL AND mobilepay_alert = false AND checkout_request_id_paid = ? AND checkout_request_id_paid IS NOT NULL");
-                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT DISTINCT sum(debit), patient_no, dealer, transaction_no, card_no, journal_no, account_no FROM ac_cash_collection WHERE mobilepay_alert = false AND checkout_request_id = ? AND patient_no IS NOT NULL AND checkout_request_id IS NOT NULL GROUP BY 2,3,4,5,6,7");
+                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT DISTINCT sum(debit), patient_no, dealer, transaction_no, card_no, journal_no, account_no, receipt_no, shift_no, payment_mode FROM ac_cash_collection WHERE mobilepay_alert = false AND checkout_request_id = ? AND patient_no IS NOT NULL AND checkout_request_id IS NOT NULL GROUP BY 2,3,4,5,6,7,8,9,10");
 //                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT DISTINCT description, debit, patient_no, dealer, transaction_no, card_no, journal_no, account_no FROM ac_cash_collection WHERE mobilepay_alert = false AND checkout_request_id = ? AND patient_no IS NOT NULL AND checkout_request_id IS NOT NULL");
 
-                    pstmt.setString(1, checkoutRequestID);
-                   // pstmt.setString(2, checkoutRequestID);
-                    java.sql.ResultSet rset = pstmt.executeQuery();
-                    while (rset.next()) {
-                        mobilePaid = true;
-                        try {
-                            if (java.awt.SystemTray.isSupported()) {
-                                java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(new javax.swing.ImageIcon(getClass().getResource("/funsoft_logo.gif")).getImage(), "MPESA PAYMENT ALERT! : Funsoft HMIS - Payment FROM - " + rset.getString(3) + ", \n TEL. No.:" + rset.getString(5) + " MPESA TRANSACTION ID :" + rset.getString(4) + " \n for Patient Number : " + rset.getString(2) + ", Amount KES[" + com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rset.getDouble(1)) + "]");
-                                trayIcon.setImageAutoSize(true);
-                                systemTray.add(trayIcon);
-                            } else {
-                                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "MPESA PAYMENT ALERT! : Funsoft HMIS - Payment confirmation FROM - " + rset.getString(3) + ", \n TEL. No.:" + rset.getString(7) + " MPESA TRANSACTION ID :" + rset.getString(6) + " \n for Patient Number : " + rset.getString(2) + ", Amount KES[" + com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rset.getDouble(1)) + "]");
-                            }
-                            java.awt.Toolkit.getDefaultToolkit().beep();
-                            java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("UPDATE ac_cash_collection SET mobilepay_alert = true WHERE transaction_no = ?");
-                            pstmt1.setString(1, rset.getString(4));
-                            pstmt1.executeUpdate();
-                            pstmt1.close();
-                            java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("UPDATE mobile_payments SET mobilepay_alert = true WHERE checkout_request_id_paid = ?");
-                            pstmt2.setString(1, checkoutRequestID);
-                            pstmt2.executeUpdate();
-                            pstmt2.close();
-                        } catch (java.awt.AWTException awte) {
-                            awte.printStackTrace();
-                            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), awte.getMessage());
-                        }
+                        pstmt.setString(1, checkoutRequestID);
 
+                        // pstmt.setString(2, checkoutRequestID);
+                        java.sql.ResultSet rset = pstmt.executeQuery();
+                        while (rset.next()) {
+                            mobilePaid = true;
+                            String receiptNo2 = rset.getString(8);
+                            //try {
+//                            if (java.awt.SystemTray.isSupported()) {
+//                                java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(new javax.swing.ImageIcon(getClass().getResource("/funsoft_logo.gif")).getImage(), "MPESA PAYMENT ALERT! : Funsoft HMIS - Payment FROM - " + rset.getString(3) + ", \n TEL. No.:" + rset.getString(5) + " MPESA TRANSACTION ID :" + rset.getString(4) + " \n for Patient Number : " + rset.getString(2) + ", Amount KES[" + com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rset.getDouble(1)) + "]");
+//                                trayIcon.setImageAutoSize(true);
+//                                systemTray.add(trayIcon);
+//                            } else {
+                            int isCashier = 0;
+                            java.sql.PreparedStatement pstsmtIsCashier = connectDB.prepareStatement("SELECT count(description) FROm ac_cash_points_setup WHERE description = current_user");
+                            java.sql.ResultSet rsetIsCashier = pstsmtIsCashier.executeQuery();
+                            while (rsetIsCashier.next()) {
+                                isCashier = rsetIsCashier.getInt(1);
+                            }
+                            if (isCashier > 0) {
+                                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "MPESA PAYMENT ALERT! : Funsoft HMIS - Payment confirmation FROM - " + rset.getString(3) + ", \n TEL. No.:" + rset.getString(7) + " MPESA TRANSACTION ID :" + rset.getString(6) + " \n for Patient Number : " + rset.getString(2) + ", Amount KES[" + com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rset.getDouble(1)) + "] Receipt No: [" + rset.getString(8) + "]");
+//                            }
+                                java.awt.Toolkit.getDefaultToolkit().beep();
+                                java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("UPDATE ac_cash_collection SET mobilepay_alert = true, user_name = current_user, shift_no = ? WHERE transaction_no = ?");
+                                pstmt1.setString(1, shiftNumber);
+                                pstmt1.setString(2, rset.getString(4));
+                                pstmt1.executeUpdate();
+                                pstmt1.close();
+                                java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("UPDATE mobile_payments SET mobilepay_alert = true WHERE checkout_request_id_paid = ?");
+                                pstmt2.setString(1, checkoutRequestID);
+                                pstmt2.executeUpdate();
+
+                                pstmt2.close();
+
+//                            if(discreetReceipt){
+//                               
+//                                
+//                                
+//                            }
+                                // We print the receipt from mobile payment at this stage
+                                String rct = null;
+                                java.sql.Statement ps112 = connectDB.createStatement();
+                                java.sql.ResultSet rst112 = ps112.executeQuery("select distinct rct_format from receipt_pref");
+                                while (rst112.next()) {
+                                    rct = rst112.getObject(1).toString();
+                                }
+                                if (rct.equalsIgnoreCase("Pdf")) {
+                                    com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
+                                    policy.ReceiptsPdf(connectDB, receiptNo2);
+                                    discreetReceipt = false;
+                                } else {
+                                    com.afrisoftech.txtreports.GokReceiptsTxt policy = new com.afrisoftech.txtreports.GokReceiptsTxt(connectDB, rset.getString(3), com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rset.getDouble(1)), receiptNo2, rset.getString(10).toString(), com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rset.getDouble(1)), "0.00", rset.getString(9), "");
+                                    discreetReceipt = false;
+                                    //  com.afrisoftech.txtreports.GokReceiptsTxt policy = new com.afrisoftech.txtreports.GokReceiptsTxt(connectDB, patientNameTxt.getText(), billAmountTxt.getText(), receiptNo2, this.paymentModeCmbx.getSelectedItem().toString(), amountPaidTxt.getText(), "0.00", shiftNoTxt.getText(), unitNumberTxt.getText());
+
+                                }
+//                            } catch (java.awt.AWTException awte) {
+//                                //awte.printStackTrace();
+//                                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), awte.getMessage());
+//                            }
+
+                            }
+                        }
+                        rset.close();
+                        pstmt.close();
                     }
-                    rset.close();
-                    pstmt.close();
-                }
+
                 } catch (java.sql.SQLException sqlEx) {
                     sqlEx.printStackTrace();
                     javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sqlEx.getMessage());
@@ -24948,6 +25001,19 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
             }
         }
     }
+
+    public void initialiseSpellChecker() {
+        //FILE LOCATION OF DICTIONARY
+        String userDictionaryPath = "/dictionary/";
+
+        //SET DICTIONARY PROVIDER FROM DICTIONARY PATH
+        SpellChecker.setUserDictionaryProvider(new FileUserDictionary(userDictionaryPath));
+
+        //REGISTER DICTIONARY
+        SpellChecker.registerDictionaries(getClass().getResource(userDictionaryPath), "en");
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AdmisDischargesmnit;
     private javax.swing.JMenuItem AieRepmnit;

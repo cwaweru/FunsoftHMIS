@@ -162,7 +162,9 @@ public class MobilePayAPI {
         System.out.println("OkHttpClient : [" + client + "]");
 
         Request request = new Request.Builder()
-                .url("https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials")
+                .url("https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials")
+                // https://api.safaricom.co.ke/oauth/v1/generate
+                // .url("https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials")
                 .get()
                 .addHeader("Authorization", "Basic " + auth)
                 .addHeader("cache-control", "no-cache")
@@ -347,7 +349,10 @@ public class MobilePayAPI {
         dateFormat.setCalendar(calendar);
         String timeStamp = dateFormat.format(calendar.getTime());
         System.out.println("Timestamp : [" + dateFormat.format(calendar.getTime()) + "]");
-        String password = shortCode + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + timeStamp;
+        System.out.println("Shortcode : [" + shortCode + "]");
+        String password = shortCode + com.afrisoftech.hospital.HospitalMain.passKey + timeStamp;
+//        String password = shortCode + "48d34200abe6ebbcbc3bc644487c3651936d129f2274f6ee95" + timeStamp;
+//        String password = shortCode + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + timeStamp; // for testing purposes
         String encodedPassword = Base64.toBase64String(password.getBytes());
         System.out.println("Unencoded password : [" + password + "]");
         System.out.println("Encoded password : [" + encodedPassword + "]");
@@ -360,11 +365,12 @@ public class MobilePayAPI {
             json.put("Password", encodedPassword);
             json.put("Timestamp", timeStamp);
             json.put("TransactionType", "CustomerPayBillOnline");
-            json.put("Amount", "10");
+            json.put("Amount", billedAmount);
             json.put("PartyA", payerMobilePhone);
             json.put("PartyB", shortCode);
             json.put("PhoneNumber", payerMobilePhone);
-            json.put("CallBackURL", "https://192.162.85.226:17933/FunsoftWebServices/funsoft/InvoiceService/mpesasettlement");
+            json.put("CallBackURL", com.afrisoftech.hospital.HospitalMain.callBackURL);
+//            json.put("CallBackURL", "https://41.203.219.58:17933/FunsoftWebServices/funsoft/InvoiceService/mpesasettlement");
             json.put("AccountReference", accountNo);
             json.put("TransactionDesc", "Settlement for client bill");
             message = json.toString();
@@ -376,7 +382,8 @@ public class MobilePayAPI {
         RequestBody body = RequestBody.create(mediaType, message);
 
         Request request = new Request.Builder()
-                .url("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest")
+                .url("https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest")
+                //  .url("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest")            
                 .post(body)
                 .addHeader("authorization", "Bearer " + accessToken)
                 .addHeader("content-type", "application/json")
@@ -405,10 +412,11 @@ public class MobilePayAPI {
                     com.afrisoftech.hospital.GeneralBillingIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
                     com.afrisoftech.hospinventory.PatientsBillingIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
                     com.afrisoftech.accounting.InpatientDepositIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
+                    com.afrisoftech.accounting.InpatientRecpIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
                     com.afrisoftech.hospital.HospitalMain.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
-                    com.afrisoftech.accounting.GovBillPaymentsIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID"); 
+                    com.afrisoftech.accounting.GovBillPaymentsIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
                     System.out.println("Checout Request ID : [" + myJsonObject.getString("CheckoutRequestID") + "]");
-                    
+
                 } catch (JSONException ex) {
                     ex.printStackTrace(); //Exceptions.printStackTrace(ex);
                 }
@@ -470,7 +478,7 @@ public class MobilePayAPI {
             }
 
             System.out.println("Response for Process Request : [" + myObject.toString() + "]");
-            
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }

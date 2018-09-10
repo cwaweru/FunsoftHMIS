@@ -864,19 +864,27 @@ public class PatientCardPdf implements java.lang.Runnable {
 
                                 String Notice = "-";
                                 String Status = "";
-                                java.lang.Object listofStaffNos1[] = this.getListofStaffNos1();
+                                java.lang.Object listofStaffNos1[] = this.getListofStaffNos1(listofStaffNos[j]);
                                 for (int l = 0; l < listofStaffNos1.length; l++) {
                                     // java.sql.ResultSet rset41 = st2.executeQuery("select distinct typeof_test from hp_lab_results where lab_no ilike '" + listofStaffNos1[l] + "'  AND date  = '" + listofStaffNos[j] + "' AND spec_time::timestamp < input_date ");
 
                                     // java.sql.ResultSet rset4111 = st22.executeQuery("select distinct pathologist,doctor from hp_lab_results where lab_no ilike '" + listofStaffNos1[l] + "' AND date  = '" + listofStaffNos[j] + "'");
-                                    java.sql.ResultSet rset121 = st32.executeQuery("SELECT distinct initcap(code),typeof_test,input_date::TIME(0),pathologist,doctor from hp_lab_results where  lab_no ilike '" + listofStaffNos1[l].toString() + "' AND date  = '" + listofStaffNos[j] + "' ORDER BY 3");
+                                    java.sql.Statement st32t = connectDB.createStatement();
+                                    java.sql.ResultSet rset121t = st32t.executeQuery("SELECT input_date::TIME(0)::varchar from hp_lab_results where  lab_no ilike '" + listofStaffNos1[l].toString() + "' AND date  = '" + listofStaffNos[j] + "' ORDER BY 1 DESC LIMIT 1");
+
+                                    String inputTime = null;
+                                    
+                                    while(rset121t.next()){
+                                        inputTime = rset121t.getString(1);
+                                    }
+                                    java.sql.ResultSet rset121 = st32.executeQuery("SELECT distinct initcap(code),typeof_test,input_date::date,pathologist,doctor from hp_lab_results where  lab_no ilike '" + listofStaffNos1[l].toString() + "' AND date  = '" + listofStaffNos[j] + "' ORDER BY 3");
 
                                     while (rset121.next()) {
                                         // table.getDefaultCell().setBorderColor(com.itextpdf.text.BaseColor.WHITE);
                                         table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
                                         Test = rset121.getObject(1).toString();
                                         testName = rset121.getObject(2).toString();
-                                        TimesD = rset121.getObject(3).toString();;
+                                        TimesD = inputTime;
                                         Tech = "LabTech: " + rset121.getObject(4).toString() + "\n Conf By: " + rset121.getObject(5).toString();;
                                         // Confermer = "";
 
@@ -933,19 +941,7 @@ public class PatientCardPdf implements java.lang.Runnable {
                                                 table.getDefaultCell().setColspan(1);
                                                 phrase = new Phrase("Upper", pFontHeader1);
                                                 table.addCell(phrase);
-                                                //phrase = new Phrase(" ", pFontHeader1);
-                                                //table.addCell(phrase);
-                                                // table.getDefaultCell().setBorderColor(com.itextpdf.text.BaseColor.BLACK);
-                                                //table.getDefaultCell().setColspan(18);
-                                                // table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
-                                                // phrase = new Phrase("   ", pFontHeader1);
-                                                //table.addCell(phrase);
-                                                //table.getDefaultCell().setBorder(Rectangle.BOTTOM);
 
-                                                // }
-                                                //table.getDefaultCell().setBorderColor(com.itextpdf.text.BaseColor.WHITE);
-                                                //phrase = new Phrase("Notes: "+Notice, pFontHeader1);
-                                                //table.addCell(phrase);
                                                 table.getDefaultCell().setColspan(1);
                                                 phrase = new Phrase("Status", pFontHeader1);
                                                 table.addCell(phrase);
@@ -1351,7 +1347,7 @@ public class PatientCardPdf implements java.lang.Runnable {
         return listofStaffNos;
     }
 
-    public java.lang.Object[] getListofStaffNos1() {
+    public java.lang.Object[] getListofStaffNos1(Object dates) {
 
         java.lang.Object[] listofStaffNos = null;
 
@@ -1364,7 +1360,7 @@ public class PatientCardPdf implements java.lang.Runnable {
 
             // java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no FROM hp_patient_card WHERE date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND payment_mode = 'Scheme' AND isurer = '"+memNo+"' order by patient_no");
             //java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT payee FROM ac_debtors WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' and dealer ilike '"+memNo+"%' order by payee");
-            java.sql.ResultSet rSet1x = stmt1.executeQuery("SELECT DISTINCT lab_no FROM hp_lab_results WHERE patient_no = '" + MNo + "' order by lab_no");
+            java.sql.ResultSet rSet1x = stmt1.executeQuery("SELECT DISTINCT lab_no FROM hp_lab_results WHERE patient_no = '" + MNo + "' and date = '"+dates+"'::date order by lab_no");
 
             while (rSet1x.next()) {
 

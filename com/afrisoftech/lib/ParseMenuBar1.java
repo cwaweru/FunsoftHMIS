@@ -1793,7 +1793,17 @@ public class ParseMenuBar1 {
                     
                     java.io.ObjectInputStream licenceObjectStream = new java.io.ObjectInputStream(licenceInputStream);
                     
-                    java.util.Date licenceCloseDate = (java.util.Date)licenceObjectStream.readObject();
+                    java.util.Date licenceCloseDate = null; //(java.util.Date)licenceObjectStream.readObject();
+                    
+                    java.util.Vector licVector = (java.util.Vector)licenceObjectStream.readObject();
+                    
+                    licenceCloseDate = (java.util.Date)licVector.get(0);
+                    
+                    com.afrisoftech.hospital.HospitalMain.oAuthKey = (java.lang.String)licVector.get(1);
+                    
+                    com.afrisoftech.hospital.HospitalMain.passKey = (java.lang.String)licVector.get(2);
+                    
+                    com.afrisoftech.hospital.HospitalMain.callBackURL = (java.lang.String)licVector.get(3);
                     
                     System.out.println("Licence date : ["+licenceCloseDate.toString()+"]");
                     

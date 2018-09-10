@@ -94,6 +94,8 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
         datePickerYOB = new com.afrisoftech.lib.DatePicker();
         jLabel36 = new javax.swing.JLabel();
         agelabel = new javax.swing.JLabel();
+        jLabel112 = new javax.swing.JLabel();
+        ageYrsTxt = new javax.swing.JTextField();
         jLabel34 = new javax.swing.JLabel();
         jTextField24 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
@@ -833,7 +835,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
             jPanel18.setBackground(new java.awt.Color(204, 255, 204));
             jPanel18.setLayout(new java.awt.GridBagLayout());
 
-            jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter date of birth or patient Age here ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 51, 153))); // NOI18N
+            jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter date of birth or patient Age here ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 51, 153))); // NOI18N
             jPanel15.setLayout(new java.awt.GridBagLayout());
 
             jLabel66.setText("Date of Birth");
@@ -874,6 +876,27 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             jPanel15.add(agelabel, gridBagConstraints);
+
+            jLabel112.setText("Patient Age (Years)");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 2;
+            gridBagConstraints.gridy = 1;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel15.add(jLabel112, gridBagConstraints);
+
+            ageYrsTxt.addCaretListener(new javax.swing.event.CaretListener() {
+                public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                    ageYrsTxtCaretUpdate(evt);
+                }
+            });
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 3;
+            gridBagConstraints.gridy = 1;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel15.add(ageYrsTxt, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -1179,11 +1202,11 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
                 }
             });
             datePicker1.addInputMethodListener(new java.awt.event.InputMethodListener() {
-                public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                    datePicker1CaretPositionChanged(evt);
-                }
                 public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                     datePicker1InputMethodTextChanged(evt);
+                }
+                public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+                    datePicker1CaretPositionChanged(evt);
                 }
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -4805,7 +4828,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
                         }
 
                         java.sql.Statement pss1 = connectDB.createStatement();
-                        java.sql.ResultSet rss1 = pss1.executeQuery("select '" + "OBS" + "'||lpad('" + patNos + "'," + digitNo + ",'0')");
+                        java.sql.ResultSet rss1 = pss1.executeQuery("select '" + "OBS" + "'||lpad('" + patNos + "'," + digitNo + ",'0')||'/'||'" + yrs + "'");
                         while (rss1.next()) {
                             patientsNo = rss1.getObject(1).toString();
                             jTextField12.setText(rss1.getObject(1).toString());
@@ -5673,6 +5696,25 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_patientSearchPanelComponentShown
+
+    private void ageYrsTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_ageYrsTxtCaretUpdate
+
+        if (ageYrsTxt.getText().length() > 0) {
+            try {
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT current_date - round(? * 365.25)::int");
+                pstmt.setInt(1, Integer.parseInt(ageYrsTxt.getText()));
+                java.sql.ResultSet rset = pstmt.executeQuery();
+                while (rset.next()) {
+                    datePickerYOB.setDate(rset.getDate(1));
+                }
+
+            } catch (java.sql.SQLException sq) {
+                sq.printStackTrace();
+                javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage());
+
+            }
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_ageYrsTxtCaretUpdate
     private void searchButtonClicked() {
 
         System.out.println("Showing dialog");
@@ -5699,6 +5741,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox admissionOutcomeCmbx;
     private javax.swing.JComboBox admissionWardCmbx;
     private javax.swing.JTextField ageTxt;
+    private javax.swing.JTextField ageYrsTxt;
     private javax.swing.JLabel agelabel;
     private javax.swing.JTextField anomaliesTxt;
     private javax.swing.JTextField apgarFiveMinsTxt;
@@ -5801,6 +5844,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel110;
     private javax.swing.JLabel jLabel111;
+    private javax.swing.JLabel jLabel112;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;

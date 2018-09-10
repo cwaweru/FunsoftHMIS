@@ -37,9 +37,10 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
     java.lang.Runtime rtThreadSample = java.lang.Runtime.getRuntime();
     java.lang.Process prThread;
     private String ks;
+    private String procMethod = null;
 
     //  public void FinalPatientInvoicePdf(java.sql.Connection connDb, java.lang.String begindate, java.lang.String endate, java.lang.String combox) {
-    public void StockLedgerStockControlCard(java.sql.Connection connDb, java.util.Date begindate, java.util.Date endate, java.lang.String combox, java.lang.String combox1, java.lang.String drugname) {
+    public void StockLedgerStockControlCard(java.sql.Connection connDb, java.util.Date begindate, java.util.Date endate, java.lang.String combox, java.lang.String combox1, java.lang.String drugname, Object procurementMethod) {
 
         dbObject = new com.afrisoftech.lib.DBObject();
 
@@ -54,6 +55,13 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
         beginDate = begindate;
 
         endDate = endate;
+
+        if (procurementMethod != null) {
+            procMethod = procurementMethod.toString();
+        } else {
+            procMethod = null;
+        }
+
         threadSample = new java.lang.Thread(this, "SampleThread");
 
         System.out.println("threadSample created");
@@ -94,14 +102,11 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
 
             threadCheck = false;
 
-
             System.out.println("We shall be lucky to get back to start in one piece");
 
         }
 
         if (!threadCheck) {
-
-
 
             Thread.currentThread().stop();
 
@@ -272,7 +277,6 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
 
         java.lang.String pdfDateStamp = dateStampPdf.toString();
 
-
         try {
 
             java.io.File tempFile = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
@@ -306,11 +310,9 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
 
                     com.lowagie.text.pdf.PdfWriter.getInstance(docPdf, new java.io.FileOutputStream(tempFile));
 
-
                     String compName = null;
                     String date = null;
                     String Messg = null;
-
 
                     docPdf.open();
 
@@ -330,7 +332,6 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
                         //  com.lowagie.text.Table table = new com.lowagie.text.Table(7);
 
                         // table.endHeaders();
-
                         int headerwidths[] = {15, 15, 30, 15, 15, 15, 15};
                         try {
                             table1.setWidths(headerwidths);
@@ -344,7 +345,7 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
                             table1.getDefaultCell().setColspan(2);
                             table1.getDefaultCell().setFixedHeight(70);
                             table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                            table1.addCell(Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo()));
+                            table1.addCell(Image.getInstance(System.getProperty("user.dir") + ("/COMPANY_LOGO.jpg")));
                             table1.getDefaultCell().setFixedHeight(16);
                             java.sql.PreparedStatement st321 = connectDB.prepareStatement("select header_name from pb_header");
                             java.sql.ResultSet rset3 = st321.executeQuery();
@@ -358,18 +359,19 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
                                 table1.addCell(phrase);
                             }
 
-
                             table1.getDefaultCell().setBorder(Rectangle.BOTTOM);
 
                             table1.getDefaultCell().setColspan(7);
 
                             //       Phrase phrase = new Phrase();
-
                             //  table.addCell(phrase);
-
                             table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                            phrase = new Phrase("STORES LEDGER AND STOCK CONTROL CARD", pFontHeader11);
 
+                            if (procMethod != null) {
+                                phrase = new Phrase("STORES LEDGER AND STOCK CONTROL CARD : PROCUREMENT METHOD - " + procMethod.toString(), pFontHeader11);
+                            } else {
+                                phrase = new Phrase("STORES LEDGER AND STOCK CONTROL CARD", pFontHeader11);
+                            }
                             table1.addCell(phrase);
 
                             table1.getDefaultCell().setColspan(3);
@@ -383,13 +385,9 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
 
                             table1.addCell(phrase);
 
-
-
                             table1.getDefaultCell().setColspan(1);
                             table1.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
                             table1.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
-
-
 
                             java.sql.Statement st2x = connectDB.createStatement();
 
@@ -435,12 +433,10 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
 
                         java.lang.Object listofStaffNos[] = this.getListofStaffNos();
 
-
                         com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(7);
                         //  com.lowagie.text.Table table = new com.lowagie.text.Table(7);
 
                         // table.endHeaders();
-
                         int headerwidths[] = {15, 15, 30, 15, 15, 15, 15};
 
                         table.setWidths(headerwidths);
@@ -459,21 +455,15 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
                         //  com.lowagie.text.Table table = new com.lowagie.text.Table(7);
 
                         // table.endHeaders();
-
-
                         int headerwidths2[] = {15, 10, 35, 15, 10, 20, 15, 10, 10, 15, 20, 10, 10, 10, 10, 10};
-
 
                         table2.setWidths(headerwidths2);
 
                         table2.setWidthPercentage((100));
 
-
-
                         Phrase phrase = new Phrase();
                         Phrase phrase2 = new Phrase();
                         //  table.addCell(phrase);
-
 
                         try {
                             double price = 0.00;
@@ -488,16 +478,19 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
                             java.sql.Statement st4 = connectDB.createStatement();
                             java.sql.Statement st41 = connectDB.createStatement();
                             java.sql.Statement st5 = connectDB.createStatement();
-                            // java.sql.ResultSet rset1 = st1.executeQuery("select date_prescribed,patient_no ,patient_name,pay_mode,quantity,price,amount from hp_pharmacy where description ilike '"+memNo1+"' and main_service ilike '"+memNo+"%' AND date_prescribed BETWEEN '"+beginDate+"' AND '"+endDate+"' order by date_prescribed");
-                            // java.sql.ResultSet rset1 = st1.executeQuery("select trans_date::date,'' ,issiued_to,receiving,issuing,price,total from st_sub_stores where item||' '||strength ilike '"+memNo1+"' and store_name ilike '"+memNo+"%' AND trans_date BETWEEN '"+beginDate+"' AND '"+endDate+"' order by trans_date");
 
-                            //            java.sql.ResultSet rset1 = st1.executeQuery("select trans_date::date,transaction_no ,CASE WHEN (transaction_no ilike 'T%')THEN initcap(sub_store) ELSE initcap(issiued_to) END as issiued_to,receiving,issuing,price,total from st_sub_stores where item_code ilike '" + memNo1 + "' and store_name ilike '" + memNo + "' AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND issuing > 0 ORDER BY trans_date");
-                            java.sql.ResultSet rset1q = st1q.executeQuery("select sum(receiving) from st_sub_stores where item_code ilike '" + memNo1 + "' and store_name ilike '" + memNo + "' AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "'");
-                            //            java.sql.ResultSet rset1q1 = st5.executeQuery("select date,invoice_no,supplier,sum(received),sum(price),sum(total) from stores_ledger where item_code ilike '" + memNo1 + "' AND store ILIKE '" + memNo + "' AND date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND transaction_type ILIKE 'receiving' GROUP BY 1,2,3");
+                            java.sql.ResultSet rset1q = null;
+                            java.sql.ResultSet rset11 = null;
+                            if (procMethod != null) {
+                                rset1q = st1q.executeQuery("select sum(receiving) from st_sub_stores where UPPER(procurement_method) = '" + procMethod.toUpperCase() + "' AND   item_code = '" + memNo1 + "' and upper(store_name) = '" + memNo.toUpperCase() + "' AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "'");
+                                rset11 = st11.executeQuery("select sum(receiving-issuing) from st_sub_stores where UPPER(procurement_method) = '" + procMethod.toUpperCase() + "' AND   item_code = '" + memNo1 + "' and upper(store_name) = '" + memNo.toUpperCase() + "' AND trans_date::date <= '" + beginDate + "'::date - 1");
+                            } else {
+                                rset1q = st1q.executeQuery("select sum(receiving) from st_sub_stores where item_code = '" + memNo1 + "' and upper(store_name) = '" + memNo.toUpperCase() + "' AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "'");
+                                rset11 = st11.executeQuery("select sum(receiving-issuing) from st_sub_stores where  item_code = '" + memNo1 + "' and upper(store_name) = '" + memNo.toUpperCase() + "' AND trans_date::date <= '" + beginDate + "'::date - 1");
 
-                            java.sql.ResultSet rset4 = st4.executeQuery("select buying_price/packaging from st_stock_item where item_code ilike '" + memNo1 + "'");
-                            java.sql.ResultSet rset11 = st11.executeQuery("select sum(receiving-issuing) from st_sub_stores where item_code ilike '" + memNo1 + "' and store_name ilike '" + memNo + "' AND trans_date::date <= '" + beginDate + "'::date - 1");
-                            //java.sql.ResultSet rset111 = st111.executeQuery("select sum(issuing),sum(total) from st_sub_stores where item ilike '"+memNo1+"' and sub_store ilike '"+memNo+"%' AND trans_date BETWEEN '"+beginDate+"' AND '"+endDate+"'");
+                            }
+                            java.sql.ResultSet rset4 = st4.executeQuery("select buying_price/packaging from st_stock_item where item_code = '" + memNo1 + "'");
+
                             table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
 
                             table.getDefaultCell().setColspan(5);
@@ -566,7 +559,6 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
                             table2.addCell(phrase);
 
                             //table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-
                             table2.getDefaultCell().setColspan(3);
 
                             phrase = new Phrase("RECEIPTS", pFontHeader1);
@@ -644,7 +636,6 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
                             table2.addCell(phrase);
 
                             //table2.getDefaultCell().setColspan(1);
-
                             phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(closingBal * price)), pFontHeader);
 
                             table2.addCell(phrase);
@@ -659,21 +650,23 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
                             table2.addCell(phrase);
                             phrase = new Phrase(" ", pFontHeader1);
                             table2.addCell(phrase);
-                            
-                            java.sql.Statement vouchersEtc=connectDB.createStatement();
-                            java.sql.ResultSet vouchersSet=null;
-                            String voucher=null;
-                            
+
+                            java.sql.Statement vouchersEtc = connectDB.createStatement();
+                            java.sql.ResultSet vouchersSet = null;
+                            String voucher = null;
+
                             for (int i = 0; i < listofStaffNos.length; i++) {
-                                //           java.sql.ResultSet rset1 = st1.executeQuery("select trans_date::date,transaction_no ,CASE WHEN (transaction_no ilike 'T%')THEN initcap(sub_store ||' '||issiued_to) ELSE initcap(issiued_to) END as issiued_to,receiving,issuing,price,total from st_sub_stores where item_code ilike '" + memNo1 + "' and store_name ilike '" + memNo + "' AND trans_date::date = '" + listofStaffNos[i] + "'  ORDER BY trans_date");
-                                java.sql.ResultSet issuesSet = st1.executeQuery("select trans_date::date,transaction_no||' - '||manual_transfer_no ,CASE WHEN (transaction_no ilike 'T%')THEN initcap(sub_store ||' '||issiued_to) ELSE initcap(issiued_to) END as issiued_to,receiving,issuing,price,total,manual_transfer_no from st_sub_stores where item_code ilike '" + memNo1 + "' and store_name ilike '" + memNo + "' AND trans_date::date = '" + listofStaffNos[i] + "' AND issuing > 0 ORDER BY trans_date");
-                                ////           java.sql.ResultSet rset1q1 = st5.executeQuery("select date,invoice_no,supplier,sum(quantity_received),sum(price_per_item),sum(debit) from st_stock_cardex where item_code ilike '" + memNo1 + "' AND store ILIKE '" + memNo + "' AND date::date = '" + listofStaffNos[i] + "' AND transaction_type ILIKE 'receiving' GROUP BY 1,2,3"
-                                ////                   + "UNION select trans_date::date as date,transaction_no as invoice_no ,CASE WHEN (transaction_no ilike 'Stock count%')THEN initcap(sub_store ||' '||issiued_to) ELSE initcap(issiued_to) END as issiued_to, sum(receiving), sum(price),sum(total) from st_sub_stores where item_code ilike '" + memNo1 + "' and store_name ilike '" + memNo + "' AND trans_date::date = '" + listofStaffNos[i] + "' AND receiving > 0 GROUP BY 1,2,3");
-                                //           java.sql.ResultSet rset1q1 = st5.executeQuery("select date,invoice_no,supplier,sum(quantity_received),sum(price_per_item),sum(debit) from st_stock_cardex where item_code ilike '" + memNo1 + "' AND store ILIKE '" + memNo + "' AND date::date = '" + listofStaffNos[i] + "' AND transaction_type ILIKE 'receiving' GROUP BY 1,2,3");
-                                java.sql.ResultSet receiptsSet = st5.executeQuery("select trans_date::date as date,transaction_no as invoice_no ,CASE WHEN (transaction_no ilike 'Stock count%')THEN initcap(sub_store ||' '||issiued_to) ELSE initcap(issiued_to) END as issiued_to, sum(receiving), sum(price),sum(total) ,manual_transfer_no from st_sub_stores where item_code ilike '" + memNo1 + "' and store_name ilike '" + memNo + "' AND trans_date::date = '" + listofStaffNos[i] + "' AND receiving > 0 GROUP BY 1,2,3,7");
+                                java.sql.ResultSet issuesSet = null;
+                                java.sql.ResultSet receiptsSet = null;
+                                if (procMethod != null) {
+                                    issuesSet = st1.executeQuery("select trans_date::date,transaction_no||' '||manual_transfer_no ,CASE WHEN (transaction_no ilike 'T%')THEN initcap(sub_store ||' - '||issiued_to) ELSE initcap(issiued_to) END as issiued_to,receiving,issuing,price,total,manual_transfer_no from st_sub_stores where UPPER(procurement_method) = '" + procMethod.toUpperCase() + "' AND   upper(item_code) = '" + memNo1.toUpperCase() + "' and upper(store_name) = '" + memNo.toUpperCase() + "' AND trans_date::date = '" + listofStaffNos[i] + "' AND issuing > 0 ORDER BY trans_date");
+                                    receiptsSet = st5.executeQuery("select trans_date::date as date,transaction_no as invoice_no ,CASE WHEN (transaction_no ilike 'Stock count%' or transaction_no ilike 'T%')THEN initcap(sub_store ||' - '||issiued_to) ELSE initcap(issiued_to) END as issiued_to, sum(receiving), sum(price),sum(total) ,manual_transfer_no from st_sub_stores where  UPPER(procurement_method) = '" + procMethod.toUpperCase() + "' AND   upper(item_code) = '" + memNo1.toUpperCase() + "' and upper(store_name) = '" + memNo.toUpperCase() + "' AND trans_date::date = '" + listofStaffNos[i] + "' AND receiving > 0 GROUP BY 1,2,3,7");
+                                } else {
+                                    issuesSet = st1.executeQuery("select trans_date::date,transaction_no||' '||manual_transfer_no ,CASE WHEN (transaction_no ilike 'T%')THEN initcap(sub_store ||' - '||issiued_to) ELSE initcap(issiued_to) END as issiued_to,receiving,issuing,price,total,manual_transfer_no from st_sub_stores where upper(item_code) = '" + memNo1.toUpperCase() + "' and upper(store_name) = '" + memNo.toUpperCase() + "' AND trans_date::date = '" + listofStaffNos[i] + "' AND issuing > 0 ORDER BY trans_date");
+                                    receiptsSet = st5.executeQuery("select trans_date::date as date,transaction_no as invoice_no ,CASE WHEN (transaction_no ilike 'Stock count%' or transaction_no ilike 'T%')THEN initcap(sub_store ||' - '||issiued_to) ELSE initcap(issiued_to) END as issiued_to, sum(receiving), sum(price),sum(total) ,manual_transfer_no from st_sub_stores where upper(item_code) = '" + memNo1.toUpperCase() + "' and upper(store_name) = '" + memNo.toUpperCase() + "' AND trans_date::date = '" + listofStaffNos[i] + "' AND receiving > 0 GROUP BY 1,2,3,7");
+                                }
                                 while (receiptsSet.next()) {
                                     table2.getDefaultCell().setColspan(1);
-                                    //table2.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
 
                                     table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                     phrase = new Phrase(dbObject.getDBObject(receiptsSet.getObject(1), "-"), pFontHeader);
@@ -681,14 +674,18 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
                                     table2.addCell(phrase);
                                     table2.getDefaultCell().setColspan(1);
 
-                                    vouchersSet=vouchersEtc.executeQuery("select 'LPO No '||order_no||', GRN No. '||grn_no FROM st_stock_cardex where requisition_no='"+receiptsSet.getString(1)+"'");
-                                    System.out.println("select 'LPO No '||order_no||', GRN No. '||grn_no FROM st_stock_cardex where requisition_no='"+receiptsSet.getString(2)+"'");
-                                    while(vouchersSet.next()){
-                                        voucher=vouchersSet.getString(1);
+                                    if (procMethod != null) {
+                                        vouchersSet = vouchersEtc.executeQuery("select 'LPO No '||order_no||', GRN No. '||grn_no FROM st_stock_cardex where UPPER(procurement_method) = '" + procMethod.toUpperCase() + "' AND   requisition_no='" + receiptsSet.getString(1) + "'");
+                                    } else {
+                                        vouchersSet = vouchersEtc.executeQuery("select 'LPO No '||order_no||', GRN No. '||grn_no FROM st_stock_cardex where requisition_no='" + receiptsSet.getString(1) + "'");
                                     }
-                                    
+                                    System.out.println("select 'LPO No '||order_no||', GRN No. '||grn_no FROM st_stock_cardex where requisition_no='" + receiptsSet.getString(2) + "'");
+                                    while (vouchersSet.next()) {
+                                        voucher = vouchersSet.getString(1);
+                                    }
+
                                     table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase(dbObject.getDBObject(receiptsSet.getObject(2)+" "+dbObject.getDBObject(voucher,"-"), "-"), pFontHeader);
+                                    phrase = new Phrase(dbObject.getDBObject(receiptsSet.getObject(2) + " " + dbObject.getDBObject(voucher, "-"), "-"), pFontHeader);
 
                                     table2.addCell(phrase);
                                     table2.getDefaultCell().setColspan(1);
@@ -746,15 +743,6 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
                                     phrase = new Phrase(" ", pFontHeader1);
                                     table2.addCell(phrase);
 
-
-                                    //  phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(closingBal * price)), pFontHeader);
-
-                                    // table2.addCell(phrase);
-
-                                    // phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset1.getString(7)),pFontHeader);
-                                    // osBalanceAmt1 = osBalanceAmt1 + rset1.getDouble(7);
-                                    //  table.addCell(phrase);
-
                                 }
                                 while (issuesSet.next()) {
                                     table2.getDefaultCell().setColspan(1);
@@ -809,13 +797,10 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
                                     //issuing = rset1.getDouble(5);
 
                                     //phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(closingBal * price)), pFontHeader);
-
                                     // table2.addCell(phrase);
-
                                     // phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset1.getString(7)),pFontHeader);
                                     // osBalanceAmt1 = osBalanceAmt1 + rset1.getDouble(7);
                                     //  table.addCell(phrase);
-
                                     phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(closingBal)), pFontHeader);
 
                                     table2.addCell(phrase);
@@ -862,7 +847,6 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
                             table2.addCell(phrase);
 
                             //table2.getDefaultCell().setColspan(1);
-
                             phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(closingBal * price)), pFontHeader);
 
                             table2.addCell(phrase);
@@ -878,22 +862,18 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
                             phrase = new Phrase(" ", pFontHeader1);
                             table2.addCell(phrase);
 
-
                             docPdf.add(table);
 
                             docPdf.add(table2);
 
                             //       docPdf.add(table);
-
-
                         } catch (java.sql.SQLException SqlExec) {
-
-                            javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
                             SqlExec.printStackTrace();
+                            javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
+
                         }
 
                         // }  // }
-
                     } catch (com.lowagie.text.BadElementException BadElExec) {
 
                         javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), BadElExec.getMessage());
@@ -911,11 +891,8 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
 
             }
 
-
             docPdf.close();
             com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
-
-
 
         } catch (java.io.IOException IOexec) {
 
@@ -930,15 +907,18 @@ public class StockLedgerStockControlCard implements java.lang.Runnable {
 
         java.util.Vector listStaffNoVector = new java.util.Vector(1, 1);
 
-
         try {
 
             //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-
             java.sql.Statement stmt1 = connectDB.createStatement();
+            java.sql.ResultSet rSet1 = null;
+            if (procMethod != null) {
+                rSet1 = stmt1.executeQuery("select DISTINCT trans_date::date from st_sub_stores WHERE  UPPER(procurement_method) = '" + procMethod.toUpperCase() + "' AND  upper(item_code) = '" + memNo1.toUpperCase() + "' AND upper(store_name) = '" + memNo.toUpperCase() + "' AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' ORDER BY 1");
+            } else {
+                rSet1 = stmt1.executeQuery("select DISTINCT trans_date::date from st_sub_stores WHERE upper(item_code) = '" + memNo1.toUpperCase() + "' AND upper(store_name) = '" + memNo.toUpperCase() + "' AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' ORDER BY 1");
 
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("select DISTINCT date from store_ledger WHERE item_code ilike '" + memNo1 + "' AND store ILIKE '" + memNo + "' AND date::date BETWEEN '" + beginDate + "' AND '" + endDate + "'");
-
+            }
+//            java.sql.ResultSet rSet1 = stmt1.executeQuery("select DISTINCT date from store_ledger WHERE item_code ilike '" + memNo1 + "' AND store ILIKE '" + memNo + "' AND date::date BETWEEN '" + beginDate + "' AND '" + endDate + "'");
             while (rSet1.next()) {
 
                 listStaffNoVector.addElement(rSet1.getObject(1).toString());

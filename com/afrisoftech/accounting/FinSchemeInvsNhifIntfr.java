@@ -3591,10 +3591,13 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
 
     }
     private void jTextField1131CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1131CaretUpdate
+
+        if (jTextField1131.getText().length() > 3){
         jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select ha.patient_no as pat_no,ha.patient_name as name,ha.visit_id,ha.date_admitted::date as date_admitted,ha.discharge_date::date AS date_discharged from hp_admission ha where ha.patient_no ILIKE '" + jTextField1131.getText() + "%' AND ha.check_out = false UNION ALL SELECT annual_no,patient_name,annual_no,date_received,discharge_date FROM hp_mortuary WHERE annual_no ILIKE '" + jTextField1131.getText() + "%' AND discharged = false order by 1"));
 
         jSearchScrollPane21.setViewportView(jSearchTable21);
-        System.out.println("Cannot sort out");
+        //System.out.println("Cannot sort out");
+        }
 
         // Add your handling code here:
     }//GEN-LAST:event_jTextField1131CaretUpdate
@@ -5616,7 +5619,7 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
 
     private void calculateNhifCtegory() {
         float noofDays = 0;
-        float balance = java.lang.Float.parseFloat(netAmountTxt.getText());
+        double balance = java.lang.Double.parseDouble(netAmountTxt.getText());
         float nhif = 0;
         float Rate = 0;
         double patientBillBefore = 0.00;
@@ -5629,27 +5632,27 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
 
         //Compute bill before card maturity date        
         try {
-            java.sql.PreparedStatement billBeforeCardMaturity = connectDB.prepareStatement("SELECT sum(debit) FROM hp_patient_card where patient_no = ? and visit_id = ? and date between '" + this.admissionDatePicker.getDate() + "'::date and '" + this.cardMaturityDatePicker.getDate() + "'::date - 1");
+            java.sql.PreparedStatement billBeforeCardMaturity = connectDB.prepareStatement("SELECT ROUND(sum(debit)) FROM hp_patient_card where patient_no = ? and visit_id = ? and date between '" + this.admissionDatePicker.getDate() + "'::date and '" + this.cardMaturityDatePicker.getDate() + "'::date - 1");
             billBeforeCardMaturity.setString(1, patientNumberTxt.getText());
             billBeforeCardMaturity.setString(2, visitIDTxt.getText());
             java.sql.ResultSet rsetBill = billBeforeCardMaturity.executeQuery();
             while (rsetBill.next()) {
-                patientBillBefore = rsetBill.getDouble(1);
+                patientBillBefore = Math.round(rsetBill.getDouble(1));
             }
-            java.sql.PreparedStatement billAfterCardMaturity = connectDB.prepareStatement("SELECT sum(debit) FROM hp_patient_card where patient_no = ? and visit_id = ? and date between '" + this.dischargeDatePicker.getDate() + "'::date + 1 and '" + this.checkoutDatePicker.getDate() + "'::date");
+            java.sql.PreparedStatement billAfterCardMaturity = connectDB.prepareStatement("SELECT ROUND(sum(debit)) FROM hp_patient_card where patient_no = ? and visit_id = ? and date between '" + this.dischargeDatePicker.getDate() + "'::date + 1 and '" + this.checkoutDatePicker.getDate() + "'::date");
             billAfterCardMaturity.setString(1, patientNumberTxt.getText());
             billAfterCardMaturity.setString(2, visitIDTxt.getText());
             java.sql.ResultSet rsetBill2 = billAfterCardMaturity.executeQuery();
             while (rsetBill2.next()) {
-                patientBillAfter = rsetBill2.getDouble(1);
+                patientBillAfter = Math.round(rsetBill2.getDouble(1));
             }
 
-            java.sql.PreparedStatement billCoveredbyNHIF = connectDB.prepareStatement("SELECT sum(debit) FROM hp_patient_card where patient_no = ? and visit_id = ? and date between '" + this.cardMaturityDatePicker.getDate() + "'::date and '" + this.dischargeDatePicker.getDate() + "'::date");
+            java.sql.PreparedStatement billCoveredbyNHIF = connectDB.prepareStatement("SELECT ROUND(sum(debit)) FROM hp_patient_card where patient_no = ? and visit_id = ? and date between '" + this.cardMaturityDatePicker.getDate() + "'::date and '" + this.dischargeDatePicker.getDate() + "'::date");
             billCoveredbyNHIF.setString(1, patientNumberTxt.getText());
             billCoveredbyNHIF.setString(2, visitIDTxt.getText());
             java.sql.ResultSet rsetBillNHIF = billCoveredbyNHIF.executeQuery();
             while (rsetBillNHIF.next()) {
-                patientBillNHIF = rsetBillNHIF.getDouble(1);
+                patientBillNHIF = Math.round(rsetBillNHIF.getDouble(1));
             }
             if (java.lang.Double.valueOf(payCashTxt.getText()) > 0) {
             } else {
@@ -5657,7 +5660,7 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                 this.billAfterClinicalDischargeTxt.setText(String.valueOf((patientBillAfter)));
             }
             java.sql.Statement pss11 = connectDB.createStatement();
-            java.sql.ResultSet rss11 = pss11.executeQuery("SELECT rate,compute_days,package_amount FROM pb_nssf_rebeats WHERE name ILIKE '" + nhifCategoryCmbx.getSelectedItem().toString() + "'");
+            java.sql.ResultSet rss11 = pss11.executeQuery("SELECT ROUND(rate),compute_days,ROUND(package_amount) FROM pb_nssf_rebeats WHERE name ILIKE '" + nhifCategoryCmbx.getSelectedItem().toString() + "'");
             while (rss11.next()) {
                 Rate = rss11.getFloat(1);
                 computeDays = rss11.getBoolean(2);
@@ -5819,17 +5822,17 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
 
         //double grossdue = totalbill - (totalotherdebtors + nhifdiff + nhifrebate);
 
-        double grossdue = totalbill - (nhifdiff + nhifrebate);
+        double grossdue = Math.round(totalbill - (nhifdiff + nhifrebate));
         patienttopaytxtfld.setText(String.valueOf(grossdue));
     }
 
     private void netAmount() {
-        double grossdue = Double.valueOf(patienttopaytxtfld.getText().replace(",", ""));
+        double grossdue = Math.round(Double.valueOf(patienttopaytxtfld.getText().replace(",", "")));
         //  double payments = java.lang.Double.parseDouble(this.totalDepositRealTxt.getText())
         //          + java.lang.Double.parseDouble(this.totalDepositsTxt.getText());
-        double payments = java.lang.Double.parseDouble(this.totalDepositsTxt.getText().replace(",", "")) + java.lang.Double.parseDouble(this.discountAmountTxt.getText().replace(",", ""));// + java.lang.Double.parseDouble(this.discountAmountTxt.getText().replace(",", ""));
+        double payments = Math.round(java.lang.Double.parseDouble(this.totalDepositsTxt.getText().replace(",", ""))) + java.lang.Double.parseDouble(this.discountAmountTxt.getText().replace(",", ""));// + java.lang.Double.parseDouble(this.discountAmountTxt.getText().replace(",", ""));
 
-        double netDue = grossdue - payments;
+        double netDue = Math.round(grossdue - payments);
 
         if (netDue >= 0) {
             netAmountTxt.setText(String.valueOf(netDue));

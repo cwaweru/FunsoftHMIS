@@ -5870,7 +5870,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
 
         if (ageYrsTxt.getText().length() > 0) {
             try {
-                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT current_date - ? * 365");
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT current_date - round(? * 365.25)::int");
                 pstmt.setInt(1, Integer.parseInt(ageYrsTxt.getText()));
                 java.sql.ResultSet rset = pstmt.executeQuery();
                 while (rset.next()) {

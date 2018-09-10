@@ -116,7 +116,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         datePicker2 = new com.afrisoftech.lib.DatePicker();
         jLabel1 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        receiptNoTxt = new javax.swing.JTextField();
         deposit = new javax.swing.JRadioButton();
         payment = new javax.swing.JRadioButton();
         jPanel212 = new javax.swing.JPanel();
@@ -642,12 +642,12 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         jPanel511.add(jLabel1, gridBagConstraints);
 
-        jTextField3.setEditable(false);
-        jTextField3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(251, 9, 102));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        receiptNoTxt.setEditable(false);
+        receiptNoTxt.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        receiptNoTxt.setForeground(new java.awt.Color(251, 9, 102));
+        receiptNoTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                receiptNoTxtActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -656,7 +656,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 40);
-        jPanel511.add(jTextField3, gridBagConstraints);
+        jPanel511.add(receiptNoTxt, gridBagConstraints);
 
         buttonGroup3.add(deposit);
         deposit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -816,7 +816,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         jPanel1.add(patientNameChk, gridBagConstraints);
 
-        payerMobileTelephoneNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bill Payer Telephone No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
+        payerMobileTelephoneNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bill Payer Telephone No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
         payerMobileTelephoneNumberTxt.setForeground(new java.awt.Color(0, 0, 255));
         try {
             payerMobileTelephoneNumberTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("254-7##-######")));
@@ -840,7 +840,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         payBillNumberTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         payBillNumberTxt.setText(com.afrisoftech.lib.CashShiftNumberFactory.getPayBillNumber(connectDB)
         );
-        payBillNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PayBill Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
+        payBillNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PayBill Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -1085,7 +1085,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 3.0;
         jPanel212.add(jPanel6, gridBagConstraints);
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NB:Tendered Amount= Physical amount handed to cashier", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 51, 102)));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NB:Tendered Amount= Physical amount handed to cashier", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 51, 102))); // NOI18N
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
         jLabel112.setText("Name");
@@ -1302,14 +1302,14 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
 
             java.sql.PreparedStatement pstmtReprint = connectDB.prepareStatement("SELECT dealer FROM ac_cash_collection WHERE receipt_no = ?");
 
-            pstmtReprint.setString(1, jTextField3.getText());
+            pstmtReprint.setString(1, receiptNoTxt.getText());
             java.sql.ResultSet rsetReprint = pstmtReprint.executeQuery();
 
             while (rsetReprint.next()) {
                 clientReceipt = rsetReprint.getString(1);
             }
 
-            receiptNo1 = jTextField3.getText();
+            receiptNo1 = receiptNoTxt.getText();
             // }
             String nodetails = null;
 
@@ -1507,7 +1507,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         //   jButton301.setEnabled(true);
 
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-                if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+        if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
             javax.swing.JOptionPane.showMessageDialog(this, "You must enter a valid client Mpesa telephone number in the format : 254-7xxxxxxx on the Bill Payer Telephone No field");
         }
         // patientsDialog.dispose();         // Add your handling code here:
@@ -1755,7 +1755,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
                                     rdf.getMessage();
 
                                 }
-                                jTextField3.setText(receiptNo2);
+                                receiptNoTxt.setText(receiptNo2);
 
                                 if (payment.isSelected()) {
                                     java.sql.PreparedStatement pstmtx = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
@@ -1885,7 +1885,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
                                 java.sql.PreparedStatement pstmt112z = connectDB.prepareStatement("UPDATE hp_patient_card SET requisition_no = '" + receiptNo2 + "' WHERE requisition_no = '" + receiptNo1 + "'");
                                 pstmt112z.executeUpdate();
 
-                                jTextField3.setText(receiptNo2);
+                                receiptNoTxt.setText(receiptNo2);
 
                                 java.sql.Statement ps11 = connectDB.createStatement();
                                 java.sql.ResultSet rst11 = ps11.executeQuery("select nodetails from receipt_pref");
@@ -1902,15 +1902,29 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
 
                                 java.sql.PreparedStatement pstmtReprint = connectDB.prepareStatement("SELECT dealer FROM ac_cash_collection WHERE receipt_no = ?");
 
-                                pstmtReprint.setString(1, jTextField3.getText());
+                                pstmtReprint.setString(1, receiptNoTxt.getText());
                                 java.sql.ResultSet rsetReprint = pstmtReprint.executeQuery();
 
                                 while (rsetReprint.next()) {
                                     clientReceipt = rsetReprint.getString(1);
                                 }
 
-                                if (receiptNo2 != null) {
-                                    com.afrisoftech.txtreports.GokReceiptsTxt policy = new com.afrisoftech.txtreports.GokReceiptsTxt(connectDB, clientReceipt, amountPaidTxt.getText(), receiptNo2, paymentModeCmbx.getSelectedItem().toString(), tenderedAmttxt.getText(), changeTxt.getText(), shiftNoTxt.getText(), unitNumberTxt.getText());
+//                                if (receiptNo2 != null) {
+//                                    com.afrisoftech.txtreports.GokReceiptsTxt policy = new com.afrisoftech.txtreports.GokReceiptsTxt(connectDB, clientReceipt, amountPaidTxt.getText(), receiptNo2, paymentModeCmbx.getSelectedItem().toString(), tenderedAmttxt.getText(), changeTxt.getText(), shiftNoTxt.getText(), unitNumberTxt.getText());
+//                                }
+                                String receiptNo = receiptNoTxt.getText();
+                                rct = null;
+                                java.sql.Statement ps112x = connectDB.createStatement();
+                                java.sql.ResultSet rst112x = ps112.executeQuery("select rct_format from receipt_pref");
+                                while (rst112x.next()) {
+                                    rct = rst112x.getObject(1).toString();
+                                }
+                                if (rct.equalsIgnoreCase("Pdf")) {
+                                    com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
+                                    policy.ReceiptsPdf(connectDB, receiptNo2);
+                                } else {
+                                    com.afrisoftech.txtreports.GokReceiptsTxt policy = new com.afrisoftech.txtreports.GokReceiptsTxt(connectDB, patientNameTxt.getText(), amountPaidTxt.getText(), receiptNo2, this.paymentModeCmbx.getSelectedItem().toString(), amountPaidTxt.getText(), changeTxt.getText(), shiftNoTxt.getText(), unitNumberTxt.getText());
+
                                 }
                                 connectDB.commit();
                                 connectDB.setAutoCommit(true);
@@ -2001,7 +2015,11 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
                 jTextField2121.setText("");
                 jTextField4111.setText("");
             }
-        }        // Add your handling code here:
+        }
+        if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+            javax.swing.JOptionPane.showMessageDialog(this, "You must enter a valid client Mpesa telephone number in the format : 254-7xx-xxxxxx on the Bill Payer Telephone No field");
+        }
+// Add your handling code here:
     }//GEN-LAST:event_paymentModeCmbxActionPerformed
 
     private void patientBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientBillBtnActionPerformed
@@ -2028,9 +2046,9 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_patientBillBtnActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void receiptNoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receiptNoTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_receiptNoTxtActionPerformed
 
     private void paymentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_paymentItemStateChanged
         // this.glAccountCmbx.setEnabled(false);
@@ -2259,25 +2277,25 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
             payerTelephoneNumber = payerMobileTelephoneNumberTxt.getText().replace("-", "");
 
             if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
-                                //STK Push for mobile payment
+                //STK Push for mobile payment
                 javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful.Bill Number. " + visitIDTxt.getText() + "", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                 if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
-                    boolean checkoutReturn = com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), visitIDTxt.getText(), payerTelephoneNumber, amountPaidTxt.getText(), com.afrisoftech.hospital.HospitalMain.payBillNumber);
+                    boolean checkoutReturn = com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), visitIDTxt.getText(), payerTelephoneNumber, String.valueOf(Math.round(Double.parseDouble(amountPaidTxt.getText()))), com.afrisoftech.hospital.HospitalMain.payBillNumber);
                     if (checkoutReturn) {
                         try {
-                            System.out.println("Processing patient card data : ["+checkoutRequestID+"]");
+                            System.out.println("Processing patient card data : [" + checkoutRequestID + "]");
                             java.sql.PreparedStatement pstmtCheckout = connectDB.prepareStatement("UPDATE hp_patient_card SET checkout_request_id = ? WHERE visit_id = ?");
                             pstmtCheckout.setString(1, checkoutRequestID);
                             pstmtCheckout.setString(2, visitIDTxt.getText());
                             pstmtCheckout.executeUpdate();
                             pstmtCheckout.close();
                         } catch (SQLException ex) {
-                                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
                         }
                     }
                 }
-             //   com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), visitIDTxt.getText(), payerTelephoneNumber, amountPaidTxt.getText());
+                //   com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), visitIDTxt.getText(), payerTelephoneNumber, amountPaidTxt.getText());
             }
         } else if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() != 12) {
             javax.swing.JOptionPane.showMessageDialog(this, "Please check telephone number! It should be formatted as follows : 2547xxxxxx");
@@ -2539,7 +2557,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
                                         rdf.getMessage();
 
                                     }
-                                    jTextField3.setText(receiptNo2);
+                                    receiptNoTxt.setText(receiptNo2);
 
                                     if (payment.isSelected()) {
                                         java.sql.PreparedStatement pstmtx = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
@@ -2674,7 +2692,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
                                     java.sql.PreparedStatement pstmt112z = connectDB.prepareStatement("UPDATE hp_patient_card SET requisition_no = '" + receiptNo2 + "' WHERE requisition_no = '" + receiptNo1 + "'");
                                     pstmt112z.executeUpdate();
 
-                                    jTextField3.setText(receiptNo2);
+                                    receiptNoTxt.setText(receiptNo2);
 
                                     java.sql.Statement ps11 = connectDB.createStatement();
                                     java.sql.ResultSet rst11 = ps11.executeQuery("select nodetails from receipt_pref");
@@ -2691,7 +2709,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
 
                                     java.sql.PreparedStatement pstmtReprint = connectDB.prepareStatement("SELECT dealer FROM ac_cash_collection WHERE receipt_no = ?");
 
-                                    pstmtReprint.setString(1, jTextField3.getText());
+                                    pstmtReprint.setString(1, receiptNoTxt.getText());
                                     java.sql.ResultSet rsetReprint = pstmtReprint.executeQuery();
 
                                     while (rsetReprint.next()) {
@@ -2816,7 +2834,6 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField2121;
     private javax.swing.JTextField jTextField221;
     private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4111;
     private javax.swing.JTextField jTextField421;
     private javax.swing.JTextField jTextField512;
@@ -2834,6 +2851,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField payerTxt;
     private javax.swing.JRadioButton payment;
     private javax.swing.JComboBox paymentModeCmbx;
+    private javax.swing.JTextField receiptNoTxt;
     private javax.swing.JRadioButton schemeDepositRdi;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchNameTxt;

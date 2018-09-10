@@ -5473,7 +5473,7 @@ public class StockMain extends javax.swing.JFrame {
     }//GEN-LAST:event_bypassAcceptanceCertificatemnitActionPerformed
 
     private void storesLedgerReportsmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storesLedgerReportsmnitActionPerformed
-            javax.swing.JInternalFrame dismth = new com.afrisoftech.hospinventory.StoresLedgerReportsIntfr(connectDB);
+            javax.swing.JInternalFrame dismth = new com.afrisoftech.hospinventory.StoresDashboardReportsIntfr(connectDB);
         medicdspane.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
         try {
             dismth.setSelected(true);

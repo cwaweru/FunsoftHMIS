@@ -1653,7 +1653,7 @@ public class MortAdmmissnIntfr extends javax.swing.JInternalFrame {
             try {
 
                 java.sql.Statement stmt1 = connectDB.createStatement();
-                java.sql.ResultSet rset1 = stmt1.executeQuery("SELECT test,age,gender,department,date from hp_patient_visit WHERE patient_no  ='" + intPatientNoTxt.getText() + "' ORDER BY date DESC LIMIT 1");
+                java.sql.ResultSet rset1 = stmt1.executeQuery("SELECT test,age::int,gender,department,date from hp_patient_visit WHERE patient_no  ='" + intPatientNoTxt.getText() + "' ORDER BY date DESC LIMIT 1");
                 while (rset1.next()) {
                     intBodyResidenceTxt.setText(rset1.getObject(1).toString());
                     intAgetxt.setText(rset1.getObject(2).toString());
@@ -1670,7 +1670,7 @@ public class MortAdmmissnIntfr extends javax.swing.JInternalFrame {
             try {
 
                 java.sql.Statement stmt1 = connectDB.createStatement();
-                java.sql.ResultSet rset1 = stmt1.executeQuery("select residence,pat_age,gender,ward,date_admitted from hp_admission where patient_no  ='" + intPatientNoTxt.getText() + "' ORDER BY date_admitted DESC LIMIT 1");
+                java.sql.ResultSet rset1 = stmt1.executeQuery("select residence,pat_age::int,gender,ward,date_admitted from hp_admission where patient_no  ='" + intPatientNoTxt.getText() + "' ORDER BY date_admitted DESC LIMIT 1");
                 while (rset1.next()) {
                     intBodyResidenceTxt.setText(rset1.getObject(1).toString());
                     intAgetxt.setText(rset1.getObject(2).toString());

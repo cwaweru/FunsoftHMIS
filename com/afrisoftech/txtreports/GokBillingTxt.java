@@ -317,7 +317,7 @@ public class GokBillingTxt implements java.lang.Runnable {
 
         // String ColumnModelTitle4[] = { "    ", "   ", "   " };
         String ColumnModelTitle4[] = {"BILL No.", "Date"};
-        Object reportName[] = {"BILLED ITEMS"};
+        Object reportName[] = {"BILLED ITEMS, THIS IS NOT A RECEIPT!"};
 
 
         javax.swing.table.DefaultTableModel headerTitle = new javax.swing.table.DefaultTableModel(reportName, 1);

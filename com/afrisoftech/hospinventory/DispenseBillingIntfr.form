@@ -154,7 +154,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JDialog" name="jSearchDialog2">
+    <Container class="javax.swing.JDialog" name="patientSearchDialog">
       <Properties>
         <Property name="modal" type="boolean" value="true"/>
         <Property name="undecorated" type="boolean" value="true"/>
@@ -162,7 +162,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jSearchPanel2">
+        <Container class="javax.swing.JPanel" name="patientSearchPanel">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -178,9 +178,9 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="jTextField113">
+            <Component class="javax.swing.JTextField" name="searchPatientTxt">
               <Events>
-                <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="jTextField113CaretUpdate"/>
+                <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="searchPatientTxtCaretUpdate"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -188,7 +188,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jSearchScrollPane2">
+            <Container class="javax.swing.JScrollPane" name="patientSearchScrollPane">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                   <GridBagConstraints gridX="0" gridY="1" gridWidth="3" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="20.0"/>
@@ -197,13 +197,13 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jSearchTable2">
+                <Component class="javax.swing.JTable" name="patientSearchTable">
                   <Properties>
                     <Property name="toolTipText" type="java.lang.String" value="Click on the target row to select the patient from the search."/>
                     <Property name="showHorizontalLines" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jSearchTable2MouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="patientSearchTableMouseClicked"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable();"/>
@@ -212,12 +212,12 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButton52">
+            <Component class="javax.swing.JButton" name="patientSearchBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Dispose"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton52ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="patientSearchBtnActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -285,7 +285,7 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable();"/>
                     <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value=""/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*javax.swing.table.TableColumn column = null;&#xa;&#xa;              for (int i = 0; i &lt; 4; i++) {&#xa;                  &#xa;                  column = jSearchTable2.getColumnModel().getColumn(i);&#xa;                  &#xa;                  if (i == 1) {&#xa;                      &#xa;                      column.setPreferredWidth(400);&#xa;                      //sport column is bigger&#xa;                  } else {&#xa;                      &#xa;                      column.setPreferredWidth(200);&#xa;                      &#xa;                  } &#xa;              }&#xa; */"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*javax.swing.table.TableColumn column = null;&#xa;&#xa;              for (int i = 0; i &lt; 4; i++) {&#xa;                  &#xa;                  column = patientSearchTable.getColumnModel().getColumn(i);&#xa;                  &#xa;                  if (i == 1) {&#xa;                      &#xa;                      column.setPreferredWidth(400);&#xa;                      //sport column is bigger&#xa;                  } else {&#xa;                      &#xa;                      column.setPreferredWidth(200);&#xa;                      &#xa;                  } &#xa;              }&#xa; */"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
@@ -371,7 +371,7 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable();"/>
                     <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value=""/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*javax.swing.table.TableColumn column = null;&#xa;&#xa;              for (int i = 0; i &lt; 4; i++) {&#xa;                  &#xa;                  column = jSearchTable2.getColumnModel().getColumn(i);&#xa;                  &#xa;                  if (i == 1) {&#xa;                      &#xa;                      column.setPreferredWidth(400);&#xa;                      //sport column is bigger&#xa;                  } else {&#xa;                      &#xa;                      column.setPreferredWidth(200);&#xa;                      &#xa;                  } &#xa;              }&#xa; */"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*javax.swing.table.TableColumn column = null;&#xa;&#xa;              for (int i = 0; i &lt; 4; i++) {&#xa;                  &#xa;                  column = patientSearchTable.getColumnModel().getColumn(i);&#xa;                  &#xa;                  if (i == 1) {&#xa;                      &#xa;                      column.setPreferredWidth(400);&#xa;                      //sport column is bigger&#xa;                  } else {&#xa;                      &#xa;                      column.setPreferredWidth(200);&#xa;                      &#xa;                  } &#xa;              }&#xa; */"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
@@ -457,7 +457,7 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable();"/>
                     <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value=""/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*javax.swing.table.TableColumn column = null;&#xa;&#xa;              for (int i = 0; i &lt; 4; i++) {&#xa;                  &#xa;                  column = jSearchTable2.getColumnModel().getColumn(i);&#xa;                  &#xa;                  if (i == 1) {&#xa;                      &#xa;                      column.setPreferredWidth(400);&#xa;                      //sport column is bigger&#xa;                  } else {&#xa;                      &#xa;                      column.setPreferredWidth(200);&#xa;                      &#xa;                  } &#xa;              }&#xa; */"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*javax.swing.table.TableColumn column = null;&#xa;&#xa;              for (int i = 0; i &lt; 4; i++) {&#xa;                  &#xa;                  column = patientSearchTable.getColumnModel().getColumn(i);&#xa;                  &#xa;                  if (i == 1) {&#xa;                      &#xa;                      column.setPreferredWidth(400);&#xa;                      //sport column is bigger&#xa;                  } else {&#xa;                      &#xa;                      column.setPreferredWidth(200);&#xa;                      &#xa;                  } &#xa;              }&#xa; */"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
@@ -620,7 +620,7 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable();"/>
                     <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value=""/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*javax.swing.table.TableColumn column = null;&#xa;&#xa;              for (int i = 0; i &lt; 4; i++) {&#xa;                  &#xa;                  column = jSearchTable2.getColumnModel().getColumn(i);&#xa;                  &#xa;                  if (i == 1) {&#xa;                      &#xa;                      column.setPreferredWidth(400);&#xa;                      //sport column is bigger&#xa;                  } else {&#xa;                      &#xa;                      column.setPreferredWidth(200);&#xa;                      &#xa;                  } &#xa;              }&#xa; */"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*javax.swing.table.TableColumn column = null;&#xa;&#xa;              for (int i = 0; i &lt; 4; i++) {&#xa;                  &#xa;                  column = patientSearchTable.getColumnModel().getColumn(i);&#xa;                  &#xa;                  if (i == 1) {&#xa;                      &#xa;                      column.setPreferredWidth(400);&#xa;                      //sport column is bigger&#xa;                  } else {&#xa;                      &#xa;                      column.setPreferredWidth(200);&#xa;                      &#xa;                  } &#xa;              }&#xa; */"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
@@ -776,8 +776,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Waiting Patients">
-                <Property name="tabTitle" type="java.lang.String" value="Waiting Patients"/>
+              <JTabbedPaneConstraints tabName="View Waiting Patients">
+                <Property name="tabTitle" type="java.lang.String" value="View Waiting Patients"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -814,8 +814,8 @@
                           <Table columnCount="6" rowCount="300">
                             <Column editable="false" title="Date" type="java.lang.Object"/>
                             <Column editable="false" title="Service No." type="java.lang.Object"/>
-                            <Column editable="false" title="Name" type="java.lang.Object"/>
-                            <Column editable="false" title="No" type="java.lang.Object"/>
+                            <Column editable="false" title="Patient Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Prescription No." type="java.lang.Object"/>
                             <Column editable="false" title="Doctor" type="java.lang.Object"/>
                             <Column editable="true" title="View" type="java.lang.Boolean"/>
                           </Table>
@@ -1027,7 +1027,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField2">
+                    <Component class="javax.swing.JTextField" name="residenceTxt">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="doubleBuffered" type="boolean" value="true"/>
@@ -1064,7 +1064,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel6">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Doctor"/>
+                        <Property name="text" type="java.lang.String" value="Doctor prescribing"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -1088,7 +1088,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextField" name="nameNoTxt">
+                        <Component class="javax.swing.JTextField" name="patientNoTxt">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                           </Properties>
@@ -1124,10 +1124,10 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JComboBox" name="jComboBox1">
+                    <Component class="javax.swing.JComboBox" name="storeCmbx">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;select stores from store_allocation where user_name = current_user&quot;)" type="code"/>
+                          <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT DISTINCT stores FROM store_allocation where user_name = current_user ORDER BY 1&quot;)" type="code"/>
                         </Property>
                         <Property name="selectedIndex" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                           <Connection code="0" type="code"/>
@@ -1391,13 +1391,13 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField8">
+                <Component class="javax.swing.JTextField" name="prescriptionFeeTxt">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="4"/>
                     <Property name="text" type="java.lang.String" value="0"/>
                   </Properties>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="  try {&#xa;            java.sql.Statement pstmt2 = connectDB.createStatement();&#xa;            java.sql.ResultSet rs2 = pstmt2.executeQuery(&quot;select rate from pb_operating_parameters where category = &apos;PF&apos;&quot;);&#xa;            &#xa;            while (rs2.next()){&#xa;                jTextField8.setText(rs2.getObject(1).toString());&#xa;                // jTextField2.setText(rs.getObject(2).toString());&#xa;                &#xa;            }&#xa;        } catch(java.sql.SQLException sqlex){&#xa;            System.out.println(sqlex.getMessage());&#xa;        }"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="  try {&#xa;            java.sql.Statement pstmt2 = connectDB.createStatement();&#xa;            java.sql.ResultSet rs2 = pstmt2.executeQuery(&quot;select rate from pb_operating_parameters where category = &apos;PF&apos;&quot;);&#xa;            &#xa;            while (rs2.next()){&#xa;                prescriptionFeeTxt.setText(rs2.getObject(1).toString());&#xa;                // residenceTxt.setText(rs.getObject(2).toString());&#xa;                &#xa;            }&#xa;        } catch(java.sql.SQLException sqlex){&#xa;            System.out.println(sqlex.getMessage());&#xa;        }"/>
                   </AuxValues>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -1405,17 +1405,16 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton21">
+                <Component class="javax.swing.JButton" name="printPrescriptionBtn">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="cc" red="ff" type="rgb"/>
                     </Property>
                     <Property name="mnemonic" type="int" value="68"/>
-                    <Property name="text" type="java.lang.String" value="Dispense &amp; Print"/>
-                    <Property name="enabled" type="boolean" value="false"/>
+                    <Property name="text" type="java.lang.String" value="Print Prescription"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton21ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printPrescriptionBtnActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="this.setVisible(false);"/>
@@ -1426,7 +1425,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton211">
+                <Component class="javax.swing.JButton" name="reprintPrescriptionBtn">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="cc" red="ff" type="rgb"/>
@@ -1435,7 +1434,7 @@
                     <Property name="text" type="java.lang.String" value="Reprint"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton211ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reprintPrescriptionBtnActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="this.setVisible(false);"/>
@@ -1510,8 +1509,8 @@
                     <Property name="toolTipText" type="java.lang.String" value="Click here enter data"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sendBillBtnActionPerformed"/>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="sendBillBtnFocusGained"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sendBillBtnActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value=""/>
@@ -1738,7 +1737,10 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextField" name="jTextField93">
+                        <Component class="javax.swing.JTextField" name="prescriptionNoTxt">
+                          <Properties>
+                            <Property name="enabled" type="boolean" value="false"/>
+                          </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                               <GridBagConstraints gridX="1" gridY="2" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>

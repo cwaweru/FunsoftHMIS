@@ -421,7 +421,7 @@ public class ReceiptsCopyPdf implements java.lang.Runnable {
                                 java.sql.ResultSet rset5 = st5.executeQuery("SELECT DISTINCT account_no from ac_cash_collection where receipt_no = '"+MNo+"' AND transaction_type = 'Receipts' group by account_no,description");
                                 java.sql.ResultSet rset51 = st51.executeQuery("select initcap(description),sum(debit-credit) from ac_cash_collection where receipt_no = '"+MNo+"' AND transaction_type = 'Receipts' group by account_no,description ORDER BY sum(debit) DESC");
                                 
-                                java.sql.ResultSet rset6 = st6.executeQuery("SELECT DISTINCT payment_mode||' '||cheque_no, user_name,cash_point from ac_cash_collection where receipt_no = '"+MNo+"' AND transaction_type = 'Receipts'");
+                                java.sql.ResultSet rset6 = st6.executeQuery("SELECT DISTINCT payment_mode, user_name,cash_point from ac_cash_collection where receipt_no = '"+MNo+"' AND transaction_type = 'Receipts'");
                                 System.out.println(MNo);
                                 
                           /*  while (rset3.next()){

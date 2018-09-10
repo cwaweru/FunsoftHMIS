@@ -1594,10 +1594,10 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 }
             });
             packagesTbl.addInputMethodListener(new java.awt.event.InputMethodListener() {
+                public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                }
                 public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
                     packagesTblCaretPositionChanged(evt);
-                }
-                public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 }
             });
             packagesTbl.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -2681,7 +2681,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
             generalBillingPanel.add(billingTablesJscrl, gridBagConstraints);
 
-            patientParticularsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select patient here. (The highlighted fields are mandatory)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
+            patientParticularsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select patient here. (The highlighted fields are mandatory)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
             patientParticularsPanel.setLayout(new java.awt.GridBagLayout());
 
             jLabel9.setForeground(new java.awt.Color(255, 0, 51));
@@ -2919,7 +2919,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             paymentModeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT payment_mode FROM pb_paymentmodes ORDER BY 1")
             );
-            paymentModeCmbx.setEnabled(false);
             paymentModeCmbx.setMinimumSize(new java.awt.Dimension(75, 20));
             paymentModeCmbx.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3220,7 +3219,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
             patientParticularsPanel.add(jLabel27, gridBagConstraints);
 
-            payerMobileTelephoneNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bill Payer Telephone No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
+            payerMobileTelephoneNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bill Payer Telephone No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
             payerMobileTelephoneNumberTxt.setForeground(new java.awt.Color(0, 0, 255));
             try {
                 payerMobileTelephoneNumberTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("254-7##-######")));
@@ -3452,7 +3451,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             payBillNumberTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
             payBillNumberTxt.setText(com.afrisoftech.lib.CashShiftNumberFactory.getPayBillNumber(connectDB)
             );
-            payBillNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PayBill Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
+            payBillNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PayBill Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 7;
@@ -7806,7 +7805,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                         smartcard = rset1cz3.getBoolean(3);
                     }
                     if (smartcard) {
-                        
+
                         javax.swing.JOptionPane.showMessageDialog(this, "Working on Smartlink claim file");
                         biz.systempartners.claims.Claim claimInstance = new biz.systempartners.claims.Claim();
                         biz.systempartners.claims.Claim.invoiceNo = transNo;
@@ -8616,12 +8615,11 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                         packagesTbl.setValueAt(null, k, r);
                     }
                 }
-                billTotalTxt.setText("0.00");
 
                 //STK Push for mobile payment
                 javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful.Bill No. " + transNo + "", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                 if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
-                    boolean checkoutReturn = com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), transNo, payerTelephoneNumber, billTotalTxt.getText(), com.afrisoftech.hospital.HospitalMain.payBillNumber);
+                    boolean checkoutReturn = com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), transNo, payerTelephoneNumber, String.valueOf(Math.round(Double.parseDouble(billTotalTxt.getText()))), com.afrisoftech.hospital.HospitalMain.payBillNumber);
                     if (checkoutReturn) {
                         java.sql.PreparedStatement pstmtCheckout = connectDB.prepareStatement("UPDATE hp_patient_billing SET checkout_request_id = ? WHERE inpatient_no = ?");
                         pstmtCheckout.setString(1, checkoutRequestID);
@@ -8630,10 +8628,12 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                         pstmtCheckout.close();
                     }
                 }
-
+                billTotalTxt.setText("0.00");
                 connectDB.commit();
                 connectDB.setAutoCommit(true);
-                com.afrisoftech.txtreports.GokBillingTxt billPrint = new com.afrisoftech.txtreports.GokBillingTxt(connectDB, patientNameTxt.getText(), billTotalTxt.getText(), transNo, "Scheme");
+                
+                // Commented by CWW to revisit later
+                ///com.afrisoftech.txtreports.GokBillingTxt billPrint = new com.afrisoftech.txtreports.GokBillingTxt(connectDB, patientNameTxt.getText(), billTotalTxt.getText(), transNo, "Scheme");
 
                 patientNameTxt.setText("");
                 patientCategoryTxt.setText("");

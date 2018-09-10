@@ -91,7 +91,7 @@ public class Receivingintfr extends javax.swing.JInternalFrame {
         jTextField51 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        grnDetailsTable = new javax.swing.JTable()/*new com.afrisoftech.dbadmin.JTable()*/;
+        grnDetailsTable = new com.afrisoftech.dbadmin.JTable();
         jPanel4 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();

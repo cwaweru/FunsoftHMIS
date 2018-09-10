@@ -2690,7 +2690,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                 gLCodeTxt.setText(rsetGL.getObject(1).toString());
             }
             java.sql.PreparedStatement pstmt = connectDB.prepareStatement("select dealer,patient_no,activity_code from ac_cash_collection where receipt_no = ? ");
-            java.sql.PreparedStatement pstmtx = connectDB.prepareStatement("select distinct ac.description,ac.quantity,ROUND(ac.debit),ROUND(ac.debit/ac.quantity),ac.activity_code,hp.prescription_no"
+            java.sql.PreparedStatement pstmtx = connectDB.prepareStatement("select distinct ac.description,ac.quantity,ROUND(ac.debit),ROUND(ac.debit/ac.quantity), '"+gLCodeTxt.getText()+"', hp.prescription_no"
                     + " from ac_cash_collection ac, hp_pharmacy hp where ac.description = hp.description AND ac.patient_no = hp.patient_no "
                     + "AND hp.collected = false AND hp.paid = true AND ac.receipt_no = ? AND ac.receipt_no=hp.manual_pr AND ac.credit = 0 AND hp.date_prescribed::date >= current_date - 2 AND ac.date::date >= current_date - 2 "
                     //   + "---AND ac.activity_code = ? "
@@ -2793,7 +2793,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
         if (jTextField115.getCaretPosition() > 6) {
             //jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select chq_no FROM pb_documents_register WHERE chq_no ILIKE '%" + jTextField115.getText() + "%' and used = 'false' and doc_name ilike '%pha%' order by chq_no"));
             //jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT receipt_no FROM ac_cash_collection WHERE receipt_no ILIKE '" + jTextField115.getText() + "%' AND receipt_time::date > (CURRENT_DATE-2)"));
-            jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT receipt_no FROM ac_cash_collection WHERE receipt_no = '" + jTextField115.getText() + "' AND receipt_time::date > (CURRENT_DATE-30)"));
+            jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT receipt_no, date as receipt_date, dealer as client_name FROM ac_cash_collection WHERE receipt_no = '" + jTextField115.getText() + "' AND receipt_time::date > (CURRENT_DATE-30)"));
             jSearchScrollPane4.setViewportView(jSearchTable4);
             System.out.println("Cannot sort out");
 

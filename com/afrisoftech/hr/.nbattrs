@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="ReasonsForDisciplinaryActionIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="ReasonsForDisciplinaryActionIntfr"/>
+    </fileobject>
+    <fileobject name="AppraisalsIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="AppraisalsIntfr"/>
+    </fileobject>
+    <fileobject name="SafetyEquipmentsIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="SafetyEquipmentsIntfr"/>
+    </fileobject>
+    <fileobject name="JobFamilyIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="JobFamilyIntfr"/>
+    </fileobject>
+    <fileobject name="JobGroupsIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="JobGroupsIntfr"/>
+    </fileobject>
+    <fileobject name="ExternalInterviewersIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="ExternalInterviewersIntfr"/>
+    </fileobject>
+    <fileobject name="MedicalTestsIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="MedicalTestsIntfr"/>
+    </fileobject>
+    <fileobject name="MemosPdf.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="MemosPdf"/>
+    </fileobject>
+    <fileobject name="AllocationOfRolesIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="AllocationOfRolesIntfr"/>
+    </fileobject>
+    <fileobject name="ResourceAccessControlIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="ResourceAccessControlIntfr"/>
+    </fileobject>
+    <fileobject name="EducationalQualificationIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="EducationalQualificationIntfr"/>
+    </fileobject>
+    <fileobject name="EmployeeStatusIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="EmployeeStatusIntfr"/>
+    </fileobject>
+    <fileobject name="InjuryIncidentInfoIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="InjuryIncidentInfoIntfr"/>
+    </fileobject>
+    <fileobject name="JobGroupingsOldIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="JobGroupingsOldIntfr"/>
+    </fileobject>
+    <fileobject name="JobFunctionsIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="JobFunctionsIntfr"/>
+    </fileobject>
+    <fileobject name="TpesOfDiscActionIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="TpesOfDiscActionIntfr"/>
+    </fileobject>
+    <fileobject name="RetireesListPdf.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="RetireesListPdf"/>
+    </fileobject>
+    <fileobject name="HRMain.java">
+        <attr name="class_dependency_javax.swing.JFrame" stringvalue="HRMain"/>
+    </fileobject>
+    <fileobject name="JobStatusIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="JobStatusIntfr"/>
+    </fileobject>
+    <fileobject name="StaffResumeDBIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="StaffResumeDBIntfr"/>
+    </fileobject>
+    <fileobject name="ContractMgmtntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="ContractMgmtntfr"/>
+    </fileobject>
+    <fileobject name="HealthSafetyPromotionIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="HealthSafetyPromotionIntfr"/>
+    </fileobject>
+    <fileobject name="JobFunctionsAssgnIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="JobFunctionsAssgnIntfr"/>
+    </fileobject>
+    <fileobject name="InterviewTypesIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="InterviewTypesIntfr"/>
+    </fileobject>
+    <fileobject name="InterviewDispositionIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="InterviewDispositionIntfr"/>
+    </fileobject>
+    <fileobject name="EmployeeCategoryIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="EmployeeCategoryIntfr"/>
+    </fileobject>
+    <fileobject name="JobDesignationIntfr.java">
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="JobDesignationIntfr"/>
+    </fileobject>
+</attributes>

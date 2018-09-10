@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="Login2HRM.java">
+        <attr name="NetBeansAttrArguments" serialvalue="aced0005757200135b4c6a6176612e6c616e672e537472696e673badd256e7e91d7b47020000787000000000"/>
+        <attr name="class_dependency_javax.swing.JDialog" stringvalue="Login2HRM"/>
+    </fileobject>
+    <fileobject name="Login2HospInventory.java">
+        <attr name="NetBeansAttrArguments" serialvalue="aced0005757200135b4c6a6176612e6c616e672e537472696e673badd256e7e91d7b47020000787000000000"/>
+        <attr name="class_dependency_javax.swing.JDialog" stringvalue="Login2HospInventory"/>
+    </fileobject>
+    <fileobject name="Login2HospPayroll.java">
+        <attr name="NetBeansAttrArguments" serialvalue="aced0005757200135b4c6a6176612e6c616e672e537472696e673badd256e7e91d7b47020000787000000000"/>
+        <attr name="class_dependency_javax.swing.JDialog" stringvalue="Login2HospPayroll"/>
+    </fileobject>
+    <fileobject name="SecureLogin2HospInventory.java">
+        <attr name="NetBeansAttrArguments" serialvalue="aced0005757200135b4c6a6176612e6c616e672e537472696e673badd256e7e91d7b47020000787000000000"/>
+    </fileobject>
+    <fileobject name="SecureLogin2HospPayroll.java">
+        <attr name="NetBeansAttrArguments" serialvalue="aced0005757200135b4c6a6176612e6c616e672e537472696e673badd256e7e91d7b47020000787000000000"/>
+    </fileobject>
+    <fileobject name="SecureLogin2Hospital22.java">
+        <attr name="NetBeansAttrArguments" serialvalue="aced0005757200135b4c6a6176612e6c616e672e537472696e673badd256e7e91d7b47020000787000000000"/>
+    </fileobject>
+</attributes>

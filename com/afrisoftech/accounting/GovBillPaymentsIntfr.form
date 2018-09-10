@@ -1324,7 +1324,7 @@
                                   <Font name="Tahoma" size="12" style="1"/>
                                 </Property>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="7" rowCount="20">
+                                  <Table columnCount="8" rowCount="20">
                                     <Column editable="false" title="Service" type="java.lang.Object"/>
                                     <Column editable="true" title="Quantity" type="java.lang.Integer"/>
                                     <Column editable="false" title="Price" type="java.lang.Double"/>
@@ -1332,6 +1332,7 @@
                                     <Column editable="false" title="Gl Account" type="java.lang.Object"/>
                                     <Column editable="false" title="Billed" type="java.lang.Boolean"/>
                                     <Column editable="false" title="Item ID" type="java.lang.Object"/>
+                                    <Column editable="false" title="Transaction No" type="java.lang.Object"/>
                                   </Table>
                                 </Property>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -1374,7 +1375,7 @@
                                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTable111KeyReleased"/>
                               </Events>
                               <AuxValues>
-                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable(){&#xa;    Class[] types = new Class [] {&#xa;        java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class&#xa;    };&#xa;    /*    false, true, priceEdit, false, false, false&#xa;    };*/&#xa;&#xa; boolean[] canEdit = new boolean [] {&#xa;        false, true, false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}"/>
+                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable(){&#xa;    Class[] types = new Class [] {&#xa;        java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class&#xa;    };&#xa;    /*    false, true, priceEdit, false, false, false&#xa;    };*/&#xa;&#xa; boolean[] canEdit = new boolean [] {&#xa;        false, true, false, false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}"/>
                                 <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value=""/>
                                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="javax.swing.table.TableColumn column1 = null;&#xa;              for (int i = 0; i &lt; 6; i++) {&#xa;                  column1 = jTable111.getColumnModel().getColumn(i);&#xa;                  if (i == 0) {&#xa;                      &#xa;                      column1.setPreferredWidth(300); //sport column is bigger&#xa;                  } else {&#xa;                     &#xa;                          //if (i == 2) {&#xa;                              column1.setPreferredWidth(150);&#xa;                         // }  else &#xa;                      //column.setPreferredWidth(50);&#xa;                  &#xa;                      &#xa;                  }&#xa;              }"/>
                               </AuxValues>

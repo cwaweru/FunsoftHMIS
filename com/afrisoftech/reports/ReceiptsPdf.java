@@ -40,6 +40,8 @@ public class ReceiptsPdf implements java.lang.Runnable {
     java.lang.Runtime rtThreadSample = java.lang.Runtime.getRuntime();
     java.lang.Process prThread;
     private double totals = 0.00;
+    PdfWriter writer = null;
+    PdfContentByte cb = null;
 
     // public void ReceiptsPdf(java.sql.Connection connDb, java.lang.String begindate, java.lang.String endate, java.lang.String combox) {
     public void ReceiptsPdf(java.sql.Connection connDb, java.lang.String combox) {
@@ -51,7 +53,6 @@ public class ReceiptsPdf implements java.lang.Runnable {
         connectDB = connDb;
 
         // beginDate = begindate;
-
         // endDate = endate;
         threadSample = new java.lang.Thread(this, "SampleThread");
 
@@ -93,14 +94,11 @@ public class ReceiptsPdf implements java.lang.Runnable {
 
             threadCheck = false;
 
-
             System.out.println("We shall be lucky to get back to start in one piece");
 
         }
 
         if (!threadCheck) {
-
-
 
             Thread.currentThread().stop();
 
@@ -329,7 +327,6 @@ public class ReceiptsPdf implements java.lang.Runnable {
                  * com.lowagie.text.Font pFontHeaderx =
                  * FontFactory.getFont(FontFactory.HELVETICA, 13, Font.NORMAL);
                  */
-
                 // com.lowagie.text.Document docPdf = new com.lowagie.text.Document(new Rectangle(java.lang.Float.parseFloat(System.getProperty("papersize_width")), java.lang.Float.parseFloat(System.getProperty("papersize_legnth"))).rotate(),java.lang.Float.parseFloat(System.getProperty("receiptPageMargin")),java.lang.Float.parseFloat(System.getProperty("receiptPageMargin")),java.lang.Float.parseFloat(System.getProperty("receiptPageMargin")),java.lang.Float.parseFloat(System.getProperty("receiptPageMargin")));
                 com.lowagie.text.Document docPdf = new com.lowagie.text.Document(new Rectangle((Widths), Heights), Margins, Margins, Margins, Margins);
                 //// com.lowagie.text.Document docPdf = new com.lowagie.text.Document(new Rectangle((595), 419),5,5,5,5);
@@ -337,7 +334,6 @@ public class ReceiptsPdf implements java.lang.Runnable {
                 // com.lowagie.text.Document docPdf = new com.lowagie.text.Document(); 
 
                 //            com.lowagie.text.Document docPdf = new com.lowagie.text.Document(new Rectangle(java.lang.Float.parseFloat(System.getProperty("papersize_width")), java.lang.Float.parseFloat(System.getProperty("papersize_legnth"))));
-
                 try {
 
                     try {
@@ -348,12 +344,11 @@ public class ReceiptsPdf implements java.lang.Runnable {
                         String compName = null;
                         String date = null;
 
-                        PdfWriter writer = PdfWriter.getInstance(docPdf, new FileOutputStream(tempFile));
+                        writer = PdfWriter.getInstance(docPdf, new FileOutputStream(tempFile));
 
                         docPdf.open();
 
-                        PdfContentByte cb = writer.getDirectContent();
-
+                        //PdfContentByte cb = writer.getDirectContent();
                         String footers = null;
                         try {
                             com.lowagie.text.pdf.PdfPTable table2 = new com.lowagie.text.pdf.PdfPTable(6);
@@ -369,7 +364,6 @@ public class ReceiptsPdf implements java.lang.Runnable {
                             table1.setWidths(headerwidths1);
 
                             table1.setWidthPercentage((100));
-
 
                             com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(6);
 
@@ -411,7 +405,6 @@ public class ReceiptsPdf implements java.lang.Runnable {
                                 }
                                 java.sql.ResultSet rset3 = st3.executeQuery("SELECT header,footer FROM ac_receipt_header");
 
-
                                 //  java.sql.ResultSet rset3 = st3.executeQuery("select hospital_name,postal_code||' '||box_no,main_telno||' '||other_telno,initcap(street),main_faxno,email,website,room_no from pb_hospitalprofile");
                                 java.sql.ResultSet rset1 = st1.executeQuery("SELECT DISTINCT initcap(cb.dealer),initcap(cb.account_no),patient_no FROM ac_cash_collection cb where cb.receipt_no = '" + MNo + "' AND cb.transaction_type = 'Receipts'");
                                 java.sql.ResultSet rsetTotals = st2.executeQuery("select SUM(pc.debit-credit) as debit FROM ac_cash_collection pc where receipt_no = '" + MNo + "' AND pc.transaction_type = 'Receipts'");
@@ -419,10 +412,9 @@ public class ReceiptsPdf implements java.lang.Runnable {
                                 java.sql.ResultSet rset5 = st5.executeQuery("SELECT DISTINCT account_no from ac_cash_collection where receipt_no = '" + MNo + "' AND transaction_type = 'Receipts' group by account_no,description");
                                 java.sql.ResultSet rset51 = st51.executeQuery("SELECT initcap(description),sum(debit-credit) from ac_cash_collection WHERE receipt_no = '" + MNo + "' AND transaction_type = 'Receipts' group by account_no,description ORDER BY sum(debit) DESC");
 
-                                java.sql.ResultSet rset6 = st6.executeQuery("SELECT DISTINCT payment_mode||' '||cheque_no, user_name,cash_point,shift_no FROM ac_cash_collection where receipt_no = '" + MNo + "' AND transaction_type = 'Receipts'");
+                                java.sql.ResultSet rset6 = st6.executeQuery("SELECT DISTINCT payment_mode, user_name,cash_point,shift_no, journal_no, account_no, current_user FROM ac_cash_collection where receipt_no = '" + MNo + "' AND transaction_type = 'Receipts'");
 
                                 java.sql.ResultSet rsetw = stw.executeQuery("SELECT sum(credit),journal_no from ac_cash_collection where receipt_no = '" + MNo + "' and credit > 0 AND (transaction_type ILIKE 'Waive%' OR transaction_type ILIKE 'Exempti%') GROUP BY 2");
-
 
                                 System.out.println(MNo);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
@@ -449,7 +441,6 @@ public class ReceiptsPdf implements java.lang.Runnable {
 
                                     footers = rset3.getObject(2).toString();
 
-
                                 }
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
@@ -468,12 +459,10 @@ public class ReceiptsPdf implements java.lang.Runnable {
 
                                     table.addCell(phrase);
 
-
                                     //table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                     phrase = new Phrase("Date: " + rs.getObject(2).toString() + " @ " + rs.getObject(3).toString(), pFontHeader);
 
                                     table.addCell(phrase);
-
 
                                 }
 
@@ -506,7 +495,6 @@ public class ReceiptsPdf implements java.lang.Runnable {
                                     table.getDefaultCell().setColspan(4);
 
                                     //phrase = new Phrase("    ", pFontHeader);
-
                                     //table.addCell(phrase);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
@@ -568,9 +556,7 @@ public class ReceiptsPdf implements java.lang.Runnable {
 
                                     table.addCell(phrase);
 
-
                                 }
-
 
                                 table.getDefaultCell().setColspan(4);
 
@@ -607,21 +593,32 @@ public class ReceiptsPdf implements java.lang.Runnable {
                                     table.addCell(phrase);
                                     phrase = new Phrase("Shift No: " + rset6.getString(4).toString().toUpperCase(), pFontHeader);
                                     table.addCell(phrase);
-                                    phrase = new Phrase("Shift No: ".toUpperCase(), pFontHeader);
+                                    table.getDefaultCell().setColspan(6);
+                                    phrase = new Phrase("Operator: " + rset6.getString(7), pFontHeader);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase("Transaction. No: " + rset6.getString(5), pFontHeader);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase("Mobile Tel. No: " + rset6.getString(6), pFontHeader);
                                     table.addCell(phrase);
                                 }
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-
+                                table.getDefaultCell().setColspan(6);
                                 // docPdf.add(new Paragraph("Barcode 128"));
+                                cb = null;
+                                cb = writer.getDirectContent();
                                 Barcode128 code128 = new Barcode128();
                                 code128.setCode(MNo);
                                 code128.setBarHeight(16);
                                 //code128.setSize(7);
 
                                 code128.setTextAlignment(Element.ALIGN_CENTER);
-
+                                code128.setCodeType(Barcode128.CODE128);
+                                System.out.println("Print Content Byte : [" + cb.toString() + "]");
+                                Image code128Image = code128.createImageWithBarcode(cb, null, null);
+                                PdfPCell cell = new PdfPCell(code128Image);
+                                table.addCell(cell);
                                 docPdf.add(table);
-                                docPdf.add(code128.createImageWithBarcode(cb, null, null));
+                                // docPdf.add(code128.createImageWithBarcode(cb, null, null));
                                 //docPdf.add(p);
                                 //  java.sql.PreparedStatement pstmt4 = connectDB.prepareStatement("UPDATE hp_patient_card SET paid ='true' WHERE patient_no = '"+MNo+"' AND date::date = current_date");
                                 //  pstmt4.executeUpdate();
@@ -633,7 +630,6 @@ public class ReceiptsPdf implements java.lang.Runnable {
                             }
 
                             // }
-
                         } catch (com.lowagie.text.BadElementException BadElExec) {
 
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), BadElExec.getMessage());

@@ -6,6 +6,9 @@
 package com.afrisoftech.lib;
 
 import com.afrisoftech.hospital.HospitalMain;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,13 +35,90 @@ public class GetItemInfo {
         String code = null;
 
         try {//
-            java.sql.PreparedStatement pst = connectDB.prepareStatement("(SELECT distinct item_code FROM st_stock_item WHERE description ILIKE '" + item_desc + "' "
-                    + "  union SELECT  distinct item_code from st_sub_stores where upper(item) = '" + item_desc.toUpperCase() + "')"
-                    + "UNION select code FROM pb_operating_parameters WHERE upper(service_type) = '" + item_desc.toUpperCase() + "' order by 1");
+            java.sql.PreparedStatement pst = connectDB.prepareStatement("(SELECT distinct item_code FROM st_stock_item WHERE description ILIKE '" + item_desc + "'   union SELECT  distinct item_code from st_sub_stores where item ilike '" + item_desc + "') order by 1");
             java.sql.ResultSet rsetCode = pst.executeQuery();
             while (rsetCode.next()) {
 
-                code = rsetCode.getObject(1).toString();
+                code = rsetCode.getString(1);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GetItemInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return code;
+
+    }
+
+    public static Double itemBalance(java.sql.Connection connectDB, String itemcode, String Store, Date date1) {
+        Double bal = 0.0;
+        try {
+            PreparedStatement pst = connectDB.prepareStatement("select case when qty=0 or qty IS NULL then 0 ELSE qty END AS qty,1 from st_balance_qty( '" + itemcode + "',  '" + date1 + "' , '" + Store + "') ");
+            ResultSet rst = pst.executeQuery();
+            while (rst.next()) {
+                bal = rst.getDouble(1);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return bal;
+
+    }
+
+    public static Double itemPrice(java.sql.Connection connectDB, String itemcode) {
+        Double price = 0.0;
+        try {
+            PreparedStatement pst = connectDB.prepareStatement("SELECT (buying_price/packaging)::numeric(15,0) FROM st_stock_item WHERE st_stock_item.item_code ILIKE '" + itemcode + "' LIMIT 1");
+            ResultSet rst = pst.executeQuery();
+            while (rst.next()) {
+                price = rst.getDouble(1);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return price;
+
+    }
+
+    public static java.lang.String getExpiryByCode(java.lang.String itemcode, java.sql.Connection connectDB) {
+        
+        String expiryDate = null;
+
+        try {//
+//            java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT * FROM expirybyitem('" + itemcode + "')");
+            java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT expiry_date FROM st_stock_cardex WHERE upper(item_code) = upper(?) AND order_no is not null AND expiry_date is not null ORDER BY 1 DESC LIMIT 1");
+            pst.setString(1, itemcode);
+            java.sql.ResultSet rsetCode = pst.executeQuery();
+            while (rsetCode.next()) {
+
+                expiryDate = new com.afrisoftech.lib.DBObject().getDBObject(rsetCode.getDate(1), "-");
+
+            }
+            
+        } catch (SQLException ex) {
+            
+            Logger.getLogger(GetItemInfo.class.getName()).log(Level.SEVERE, null, ex);
+            
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            
+        }
+
+        return new com.afrisoftech.lib.DBObject().getDBObject(expiryDate, "-");
+
+    }
+
+    public static java.lang.String getItemCodeByConcatenatedDesc(java.lang.String item_desc, java.sql.Connection connectDB) {
+        String code = null;
+
+        try {//
+            java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT distinct product_id FROM st_stock_prices WHERE product||' '||strength ILIKE '" + item_desc + "' ORDER BY 1");
+            System.err.println("SELECT distinct product_code FROM st_stock_prices WHERE product||' '||strength ILIKE '" + item_desc + "' ORDER BY 1");
+            java.sql.ResultSet rsetCode = pst.executeQuery();
+            while (rsetCode.next()) {
+
+                code = rsetCode.getString(1);
 
             }
         } catch (SQLException ex) {
@@ -74,7 +154,7 @@ public class GetItemInfo {
             java.sql.ResultSet rsetCode = pst.executeQuery();
             while (rsetCode.next()) {
 
-                desc = rsetCode.getObject(1).toString();
+                desc = rsetCode.getString(1);
 
             }
 
@@ -91,14 +171,14 @@ public class GetItemInfo {
         String units = "NO";
         DBObject DBObject = new DBObject();
         try {
-            java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT  distinct units from st_stock_item where item_code ILIKE '%" + item + "%' order by 1 limit 1 ");
+            java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT  distinct units from st_stock_item where trim(item_code) ILIKE '" + item + "' order by 1 limit 1 ");
 
             java.sql.ResultSet rsetCode = pst.executeQuery();
-            System.err.println("SELECT  units from st_sub_stores where item ILIKE '%" + item + "%' and units is not null limit 1 ");
+            System.err.println("SELECT  distinct units from st_stock_item where item_code ILIKE '" + item + "' order by 1 limit 1 ");
 
             while (rsetCode.next()) {
 
-                units = DBObject.getDBObject(rsetCode.getObject(1).toString(), units);
+                units = DBObject.getDBObject(rsetCode.getObject(1), units);
 
             }
 
@@ -119,7 +199,7 @@ public class GetItemInfo {
             java.sql.ResultSet rsetdesc = pst.executeQuery();
             while (rsetdesc.next()) {
 
-                desc = DBObject.getDBObject(rsetdesc.getObject(1).toString(), "N/A");
+                desc = DBObject.getDBObject(rsetdesc.getObject(1), "N/A");
 
             }
         } catch (SQLException ex) {
@@ -137,7 +217,7 @@ public class GetItemInfo {
             java.sql.ResultSet rsetCode = pst.executeQuery();
             while (rsetCode.next()) {
 
-                supplier = rsetCode.getObject(1).toString();
+                supplier = rsetCode.getString(1);
 
             }
 
@@ -159,7 +239,7 @@ public class GetItemInfo {
             java.sql.ResultSet rsetdesc = pst.executeQuery();
             while (rsetdesc.next()) {
 
-                desc = DBObject.getDBObject(rsetdesc.getObject(1).toString(), "N/A");
+                desc = DBObject.getDBObject(rsetdesc.getObject(1), "N/A");
 
             }
         } catch (SQLException ex) {
@@ -174,7 +254,7 @@ public class GetItemInfo {
         Double qty = 0.0;
         try {
             java.sql.PreparedStatement pst = connectDB.prepareStatement("select SUM(quantity-ordered_qty) FROM st_recommendation where quotation_no = '" + Tender_no + "' and trim(initcap(supplier)) ilike '" + supp + "' and trim(item_code) ilike '" + Item_desc + "'");
-            
+
             System.err.println("select SUM(quantity-ordered_qty) FROM st_recommendation where quotation_no = '" + Tender_no + "' and trim(initcap(supplier)) ilike '" + supp + "' and trim(item_code) ilike '" + Item_desc + "'");
             java.sql.ResultSet rsetqty = pst.executeQuery();
             while (rsetqty.next()) {
@@ -212,14 +292,12 @@ public class GetItemInfo {
     public static void updateTrail(java.lang.String activity, java.sql.Connection connectDB) {
 
         try {
-            connectDB.setAutoCommit(false);
             java.sql.PreparedStatement pst = connectDB.prepareStatement("INSERT INTO st_user_activity (activity_description) VALUES (?)");
             pst.setObject(1, activity);
 
             pst.executeUpdate();
 
-            connectDB.commit();
-            connectDB.setAutoCommit(true);
+            //        connectDB.commit();
         } catch (SQLException ex) {
             Logger.getLogger(GetItemInfo.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
@@ -248,18 +326,17 @@ public class GetItemInfo {
         String code = null;
         com.afrisoftech.lib.DBObject DBObject = new com.afrisoftech.lib.DBObject();
         try {
-                        java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT DISTINCT upper(code) from st_main_stores where store_name ilike '" + store_name + "' UNION  SELECT  DISTINCT  sales_code from st_stores WHERE store_name  ilike '" + store_name + "'  ORDER BY 1 limit 1");
-
-          //  java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT DISTINCT upper(code) from st_main_stores where store_name ilike '" + store_name + "' UNION  SELECT  DISTINCT  income_account from pb_departments WHERE department_name  ilike '" + store_name + "'  ORDER BY 1 limit 1");
+            java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT DISTINCT upper(code) from st_main_stores where store_name ilike '" + store_name + "' UNION  SELECT  DISTINCT  income_account from pb_departments WHERE department_name  ilike '" + store_name + "'  ORDER BY 1 limit 1");
             //java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT DISTINCT upper(status) from st_main_stores where store_name ilike '"+store_name+"' union  select  distinct  upper(cs_code) as status from st_stores where store_name ilike '"+store_name+"' ORDER BY 1 limit 1");
+            System.err.println("SELECT DISTINCT upper(code) from st_main_stores where store_name ilike '" + store_name + "' UNION  SELECT  DISTINCT  income_account from pb_departments WHERE department_name  ilike '" + store_name + "'  ORDER BY 1 limit 1");
+
             java.sql.ResultSet rsetdesc = pst.executeQuery();
             while (rsetdesc.next()) {
 
-                code = DBObject.getDBObject(rsetdesc.getObject(1).toString(), "");
+                code = DBObject.getDBObject(rsetdesc.getObject(1), "");
 
             }
         } catch (SQLException ex) {
-            
             Logger.getLogger(GetItemInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -276,11 +353,12 @@ public class GetItemInfo {
             java.sql.ResultSet rsetdesc = pst.executeQuery();
             while (rsetdesc.next()) {
 
-                code = DBObject.getDBObject(rsetdesc.getObject(1).toString(), "");
+                code = DBObject.getDBObject(rsetdesc.getObject(1), "");
 
             }
         } catch (SQLException ex) {
             Logger.getLogger(GetItemInfo.class.getName()).log(Level.SEVERE, null, ex);
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
         return code;
@@ -303,10 +381,10 @@ public class GetItemInfo {
     }
 
     public static java.lang.String getIRQapprover(java.lang.String irq, java.sql.Connection connectDB) {
-        String user = null;
+        String user = "";
         com.afrisoftech.lib.DBObject DBObject = new com.afrisoftech.lib.DBObject();
         try {
-            java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT DISTINCT lower(irq_approved_by) from st_receive_requisation where requisition_no ilike '" + irq + "'  ORDER BY 1 limit 1");
+            java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT DISTINCT upper(irq_approved_by) from st_receive_requisation where requisition_no ilike '" + irq + "'  ORDER BY 1 limit 1");
             //java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT DISTINCT upper(status) from st_main_stores where store_name ilike '"+store_name+"' union  select  distinct  upper(cs_code) as status from st_stores where store_name ilike '"+store_name+"' ORDER BY 1 limit 1");
             java.sql.ResultSet rsetdesc = pst.executeQuery();
             while (rsetdesc.next()) {
@@ -315,6 +393,28 @@ public class GetItemInfo {
 
             }
         } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
+            Logger.getLogger(GetItemInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return user;
+
+    }
+
+    public static java.lang.String getIRQUser(java.lang.String irq, java.sql.Connection connectDB) {
+        String user = "";
+        com.afrisoftech.lib.DBObject DBObject = new com.afrisoftech.lib.DBObject();
+        try {
+            java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT DISTINCT upper(doctor) from st_sub_stores where transaction_no ilike '" + irq + "'  ORDER BY 1 limit 1");
+            //java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT DISTINCT upper(status) from st_main_stores where store_name ilike '"+store_name+"' union  select  distinct  upper(cs_code) as status from st_stores where store_name ilike '"+store_name+"' ORDER BY 1 limit 1");
+            java.sql.ResultSet rsetdesc = pst.executeQuery();
+            while (rsetdesc.next()) {
+
+                user = DBObject.getDBObject(rsetdesc.getObject(1), "N/A");
+
+            }
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
             Logger.getLogger(GetItemInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -343,15 +443,12 @@ public class GetItemInfo {
         return status;
 
     }
-    
-    
-    
-    
-    public static java.lang.Double getConversion(String issuingUnit ,java.lang.String bulkUnit,java.sql.Connection connectDB) {
+
+    public static java.lang.Double getConversion(String issuingUnit, java.lang.String bulkUnit, java.sql.Connection connectDB) {
         Double unit = 1.00;
-        
+
         try {
-            java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT DISTINCT conversion_unit FROM st_packing WHERE genre_desc ilike '"+issuingUnit+"' AND bulk_supply_unit ilike '"+bulkUnit+"'  ORDER BY 1 limit 1");
+            java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT DISTINCT conversion_unit FROM st_packing WHERE genre_desc ilike '" + issuingUnit + "' AND bulk_supply_unit ilike '" + bulkUnit + "'  ORDER BY 1 limit 1");
             //java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT DISTINCT upper(status) from st_main_stores where store_name ilike '"+store_name+"' union  select  distinct  upper(cs_code) as status from st_stores where store_name ilike '"+store_name+"' ORDER BY 1 limit 1");
             java.sql.ResultSet rsetdesc = pst.executeQuery();
             while (rsetdesc.next()) {

@@ -285,13 +285,13 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     jScrollPane211 = new javax.swing.JScrollPane();
     jTable111 = new com.afrisoftech.dbadmin.JTable(){
         Class[] types = new Class [] {
-            java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
+            java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class
         };
         /*    false, true, priceEdit, false, false, false
     };*/
 
     boolean[] canEdit = new boolean [] {
-        false, true, false, false, false, false, false
+        false, true, false, false, false, false, false, false
     };
 
     public Class getColumnClass(int columnIndex) {
@@ -999,16 +999,16 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             }
         });
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameClosed(evt);
             }
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -1311,7 +1311,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.weighty = 1.0;
         jPanel211.add(mchfpChbx, gridBagConstraints);
 
-        payerMobileTelephoneNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bill Payer Telephone No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 51)));
+        payerMobileTelephoneNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bill Payer Telephone No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
         payerMobileTelephoneNumberTxt.setForeground(new java.awt.Color(0, 0, 255));
         try {
             payerMobileTelephoneNumberTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("254-7##-######")));
@@ -1477,41 +1477,41 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel9.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane211.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cash Sale Particulars - Select item/service (by clicking once on the ITEM/SERVICE column) and specify the quantity. Remember to press the TAB key to validate your entries.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 153, 255)));
+        jScrollPane211.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cash Sale Particulars - Select item/service (by clicking once on the ITEM/SERVICE column) and specify the quantity. Remember to press the TAB key to validate your entries.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 153, 255))); // NOI18N
 
         jTable111.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTable111.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Service", "Quantity", "Price", "Total", "Gl Account", "Billed", "Item ID"
+                "Service", "Quantity", "Price", "Total", "Gl Account", "Billed", "Item ID", "Transaction No"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, false, false
+                false, true, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -2796,6 +2796,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                     jTable111.setValueAt(rsetTable1.getObject(5), i, 4);
                     jTable111.setValueAt(true, i, 5);
                     jTable111.setValueAt(rsetTable1.getObject(8), i, 6);
+                    jTable111.setValueAt(rsetTable1.getObject(9), i, 7);
 
                     i++;
 
@@ -3138,6 +3139,10 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         postSaleDataBtn.setEnabled(true);
         generateReceiptBtn.setEnabled(true);
         reprintReceiptBtn.setEnabled(true);
+
+        if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+            javax.swing.JOptionPane.showMessageDialog(this, "You must enter a valid client Mpesa telephone number in the format : 254-7xx-xxxxxx on the Bill Payer Telephone No field");
+        }
         // Add your handling code here:
     }//GEN-LAST:event_paymentModeCmbxActionPerformed
 
@@ -4291,19 +4296,39 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         } else {
             if (payerMobileTelephoneNumberTxt.getText().replace(" ", "").replace("-", "").length() == 12) {
                 payerTelephoneNumber = payerMobileTelephoneNumberTxt.getText().replace(" ", "").replace("-", "");
-                javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful.Bill No. " + transNo + "", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                String transactionNo = null;
+                for (int n = 0; n < jTable111.getRowCount(); n++) {
+                    if (jTable111.getValueAt(n, 0) != null) {
+                        transactionNo = jTable111.getValueAt(n, 7).toString();
+                    }
+                }
+                javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful.Bill No. " + transactionNo + "", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                 if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
-                    boolean checkoutReturn = com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), "transNo", payerTelephoneNumber, billAmountTxt.getText(), com.afrisoftech.hospital.HospitalMain.payBillNumber);
+                    boolean checkoutReturn = com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("A3AuQyjuuDNejTAd19oRfpozPBD098L6:IrQkzTfJBSNHXQif"), transactionNo, payerTelephoneNumber, String.valueOf(Math.round(Double.parseDouble(billAmountTxt.getText()))), com.afrisoftech.hospital.HospitalMain.payBillNumber);
                     if (checkoutReturn) {
-                        java.sql.PreparedStatement pstmtCheckout = null;
                         try {
-                            pstmtCheckout = connectDB.prepareStatement("UPDATE hp_patient_billing SET checkout_request_id = ? WHERE inpatient_no = ?");
-                            pstmtCheckout.setString(1, checkoutRequestID);
+                            java.sql.PreparedStatement pstmtCheckout = null;
+                            for (int n = 0; n < jTable111.getRowCount(); n++) {
+                                if (jTable111.getValueAt(n, 0) != null) {
+                                    transactionNo = jTable111.getValueAt(n, 7).toString();
 
-                            pstmtCheckout.setString(2, transNo);
+                                    pstmtCheckout = connectDB.prepareStatement("UPDATE hp_patient_billing SET checkout_request_id = ? WHERE inpatient_no = ?");
+                                    pstmtCheckout.setString(1, checkoutRequestID);
 
-                            pstmtCheckout.executeUpdate();
-                            pstmtCheckout.close();
+                                    pstmtCheckout.setString(2, transactionNo);
+
+                                    pstmtCheckout.executeUpdate();
+                                    pstmtCheckout.close();
+
+                                    pstmtCheckout = connectDB.prepareStatement("UPDATE hp_pharmacy SET checkout_request_id = ? WHERE prescription_no = ?");
+                                    pstmtCheckout.setString(1, checkoutRequestID);
+
+                                    pstmtCheckout.setString(2, transactionNo);
+
+                                    pstmtCheckout.executeUpdate();
+                                    pstmtCheckout.close();
+                                }
+                            }
 
                         } catch (SQLException ex) {
                             Logger.getLogger(GovBillPaymentsIntfr.class.getName()).log(Level.SEVERE, null, ex);

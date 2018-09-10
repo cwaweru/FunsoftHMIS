@@ -70,14 +70,11 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
 
             threadCheck = false;
 
-
             System.out.println("We shall be lucky to get back to start in one piece");
 
         }
 
         if (!threadCheck) {
-
-
 
             Thread.currentThread().stop();
 
@@ -249,7 +246,6 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
 
         java.lang.String pdfDateStamp = dateStampPdf.toString();
 
-
         try {
 
             java.io.File tempFile = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
@@ -270,16 +266,9 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
 
                     com.lowagie.text.pdf.PdfWriter.getInstance(docPdf, new java.io.FileOutputStream(tempFile));
 
-
-
-
-
-
-
                     String compName = null;
                     String date = null;
                     try {
-
 
                         java.sql.Statement st3 = connectDB.createStatement();
                         java.sql.Statement st4 = connectDB.createStatement();
@@ -319,7 +308,6 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
 
                         }
 
-
                         com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase("" + compName, pFontHeader), false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
                         headerFoter.setAlignment(com.lowagie.text.HeaderFooter.ALIGN_CENTER);
                         headerFoter.setRight(5);
@@ -340,18 +328,15 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
 
                     }
 
-
                     com.lowagie.text.HeaderFooter footer = new com.lowagie.text.HeaderFooter(new Phrase("Diagnosis By Doc (Summary) - Page: ", pFontHeader1), true);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 12, Font.BOLDITALIC,java.awt.Color.blue));
 
                     docPdf.setFooter(footer);
-
 
                     docPdf.open();
                     double osBalance1 = 0.00;
                     double ipDiag = 0;
                     double opDiag = 0;
                     try {
-
 
                         com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(4);
 
@@ -362,7 +347,6 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
                         table.setWidthPercentage((100));
 
                         table.setHeaderRows(3);
-
 
                         table.getDefaultCell().setBorder(Rectangle.BOTTOM);
                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -382,7 +366,6 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
                         try {
                             java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);//MEDIUM);
 
-
                             java.util.Date endDate1 = dateFormat.parse(endDate.toLocaleString());//dateInstance.toLocaleString());
                             java.util.Date endDate11 = dateFormat.parse(beginDate.toLocaleString());//dateInstance.toLocaleString());
 
@@ -398,9 +381,6 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
 
                             table.addCell(phrase);
 
-
-
-
                         } catch (java.text.ParseException psExec) {
 
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), psExec.getMessage());
@@ -409,14 +389,11 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
                         //phrase = new Phrase("Name", pFontHeader);
 
                         //table.addCell(phrase);
-
-
                         table.getDefaultCell().setColspan(2);
 
                         phrase = new Phrase("DOCTOR", pFontHeader);
 
                         table.addCell(phrase);
-
 
                         table.getDefaultCell().setColspan(1);
 
@@ -430,24 +407,18 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
 
                         table.addCell(phrase);
 
-
-
                         table.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
                         //table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
                         try {
 
-
                             java.sql.Statement st212 = connectDB.createStatement();
-                        //    java.sql.Statement st2 = connectDB.createStatement();
+                            //    java.sql.Statement st2 = connectDB.createStatement();
                             java.sql.ResultSet rset1 = null;
 
-
                             //for (int k = 0; k < listofAct1.length; k++) {
-
                             java.sql.ResultSet rset11 = st212.executeQuery("SELECT count(DISTINCT patient_no) from doctors_diag WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "'");
 
                             while (rset11.next()) {
-
 
                                 table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -457,8 +428,6 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
                                 osBalance1 = rset11.getDouble(1);
                                 // table.addCell(phrase);
                             }
-
-
 
                             double osBalance = 0;
                             // java.lang.Object[] listofAct = this.getListofActivities();
@@ -471,7 +440,6 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
                                 st2.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
                                 st2.setObject(3, listofAct1[k].toString());
                                 rset1 = st2.executeQuery(); //"SELECT  COUNT (DISTINCT patient_no) from doctors_diag WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND doctor ilike '" + listofAct1[k].toString() + "'");
-
 
                                 while (rset1.next()) {
 
@@ -496,7 +464,6 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
                                     phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance * 100 / osBalance1)), pFontNum);
                                     //   osBalance1 = osBalance1 + rset1.getDouble(5);
                                     table.addCell(phrase);
-
 
                                 }
                             }
@@ -553,10 +520,8 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
 
             }
 
-             
-docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
-
-
+            docPdf.close();
+            com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
         } catch (java.io.IOException IOexec) {
 
@@ -564,9 +529,8 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
         }
 
-
-
     }
+
     /*
     public java.lang.Object[] getListofActivities() {
     
@@ -606,11 +570,9 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
         java.util.Vector listActVector1 = new java.util.Vector(1, 1);
 
-
         try {
 
             //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-
             java.sql.Statement stmt1 = connectDB.createStatement();
 
             java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT distinct UPPER(doctor), COUNT(DISTINCT patient_no) FROM doctors_diag WHERE trans_date BETWEEN '" + beginDate + "' AND '" + endDate + "' GROUP BY 1 ORDER BY 2 DESC");

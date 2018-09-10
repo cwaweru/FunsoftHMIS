@@ -2823,6 +2823,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                 this.paidTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
                         "SELECT pb_doctors_request.trans_date,patient_no, patient_name, payment_mode,service,quantity,amount,inv_no,doctor,"
                         + "false as Carry_Test,request_id as Request_No,curr_date::time(0),visit_id,diagnosis as Specimen,notes as Test_notes, "
+                                + "(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb_doctors_request.patient_no AND pb_doctors_request.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,"
                         + " (CASE WHEN payment_mode ilike 'scheme' THEN (SELECT description FROM (select date,description from hp_patient_register WHERE hp_patient_register.patient_no = pb_doctors_request.patient_no UNION select date,description from hp_inpatient_register WHERE hp_inpatient_register.patient_no = pb_doctors_request.patient_no ORDER BY date DESC LIMIT 1) as foo) ELSE '' END) as scheme_name FROM pb_doctors_request where "
                         + "requisition_no='LAB' AND pb_doctors_request.trans_date='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker.getDate()) + "' and "
                         + "   pb_doctors_request.paid=true and \n"
