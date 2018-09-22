@@ -370,7 +370,7 @@ public class MobilePayAPI {
             json.put("PartyB", shortCode);
             json.put("PhoneNumber", payerMobilePhone);
             json.put("CallBackURL", com.afrisoftech.hospital.HospitalMain.callBackURL);
-//            json.put("CallBackURL", "https://41.203.219.58:17933/FunsoftWebServices/funsoft/InvoiceService/mpesasettlement");
+//            json.put("CallBackURL", "https://192.162.85.226:17933/FunsoftWebServices/funsoft/InvoiceService/mpesasettlement");
             json.put("AccountReference", accountNo);
             json.put("TransactionDesc", "Settlement for client bill");
             message = json.toString();
@@ -382,8 +382,8 @@ public class MobilePayAPI {
         RequestBody body = RequestBody.create(mediaType, message);
 
         Request request = new Request.Builder()
-                .url("https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest")
-                //  .url("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest")            
+                //.url("https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest")
+                  .url("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest")            
                 .post(body)
                 .addHeader("authorization", "Bearer " + accessToken)
                 .addHeader("content-type", "application/json")

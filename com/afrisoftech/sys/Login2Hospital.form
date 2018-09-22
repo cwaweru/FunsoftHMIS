@@ -3,7 +3,7 @@
 <Form version="1.2" maxVersion="1.2" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Login Dialog [Funsoft ERP/ I-HMIS/UHCMIS Version 8.0 Rel. 3.9] "/>
+    <Property name="title" type="java.lang.String" value="Login Dialog [Funsoft ERP/ I-HMIS/UHCMIS Version 8.0 Rel. 3.10] "/>
     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
       <Font name="Lucida Sans" size="10" style="1"/>
     </Property>

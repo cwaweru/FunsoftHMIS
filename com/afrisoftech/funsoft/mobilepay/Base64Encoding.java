@@ -46,7 +46,8 @@ public class Base64Encoding {
         //
         System.out.println("OkHttpClient : [" + client + "]");
         Request request = new Request.Builder()
-                .url("https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials")
+                .url("https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials")
+                //.url("https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials")
                 .get()
                 .addHeader("authorization", "Basic " + auth)
                 .addHeader("cache-control", "no-cache")

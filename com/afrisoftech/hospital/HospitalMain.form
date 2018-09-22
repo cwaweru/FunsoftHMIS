@@ -9472,7 +9472,7 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="mainPanel">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel() {&#xa;        &#xa;        public void paintComponent(java.awt.Graphics g) {&#xa;         &#xa;            java.awt.Dimension d = getSize();&#xa;            &#xa;            g.drawImage(desktopPaneIcon.getImage(), 0, 0, d.width, d.height,null);&#xa;         //   System.out.println(&quot;still drawing&quot;);&#xa;            setOpaque(false);&#xa;            &#xa;            super.paintComponent(g);&#xa;            &#xa;        }&#xa;        &#xa;    };&#xa;    "/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(); /*{&#xa;        &#xa;        public void paintComponent(java.awt.Graphics g) {&#xa;         &#xa;            java.awt.Dimension d = getSize();&#xa;            &#xa;            g.drawImage(desktopPaneIcon.getImage(), 0, 0, d.width, d.height,null);&#xa;         //   System.out.println(&quot;still drawing&quot;);&#xa;            setOpaque(false);&#xa;            &#xa;            super.paintComponent(g);&#xa;            &#xa;        }&#xa;        &#xa;    };&#xa;*/&#xa;    "/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -9530,7 +9530,7 @@
                 <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel() {&#xa;        &#xa;        public void paintComponent(java.awt.Graphics g) {&#xa;         &#xa;            java.awt.Dimension d = getSize();&#xa;            &#xa;            g.drawImage(desktopPaneIcon.getImage(), 0, 0, d.width, d.height,null);&#xa;       //     System.out.println(&quot;still drawing&quot;);&#xa;            setOpaque(false);&#xa;            &#xa;            super.paintComponent(g);&#xa;            &#xa;        }&#xa;        &#xa;    };&#xa;    "/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(); /* {&#xa;        &#xa;&#xa;        public void paintComponent(java.awt.Graphics g) {&#xa;         &#xa;            desktopPane.setSize(100, 80);&#xa;&#xa;            java.awt.Dimension d = desktopPane.getSize();&#xa;            &#xa;            g.drawImage(desktopPaneIcon.getImage(), 0, 0, d.width, d.height,null);&#xa;       //     System.out.println(&quot;still drawing&quot;);&#xa;            setOpaque(false);&#xa;            &#xa;            super.paintComponent(g);&#xa;            &#xa;        }&#xa;        &#xa;    };&#xa;    */"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">

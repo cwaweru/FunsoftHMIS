@@ -1075,7 +1075,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
-        mainPanel = new javax.swing.JPanel() {
+        mainPanel = new javax.swing.JPanel(); /*{
 
             public void paintComponent(java.awt.Graphics g) {
 
@@ -1090,14 +1090,17 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
 
         };
+        */
         ;
         mainSplitPane = new javax.swing.JSplitPane();
         treePane = new javax.swing.JPanel();
-        desktopPane = new javax.swing.JPanel() {
+        desktopPane = new javax.swing.JPanel(); /* {
 
             public void paintComponent(java.awt.Graphics g) {
 
-                java.awt.Dimension d = getSize();
+                desktopPane.setSize(100, 80);
+
+                java.awt.Dimension d = desktopPane.getSize();
 
                 g.drawImage(desktopPaneIcon.getImage(), 0, 0, d.width, d.height,null);
                 //     System.out.println("still drawing");
@@ -1108,7 +1111,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
 
         };
-        ;
+        */;
         saccopn = new kiwi.ui.KDesktopPane();
         /*new javax.swing.JDesktopPane(){
 

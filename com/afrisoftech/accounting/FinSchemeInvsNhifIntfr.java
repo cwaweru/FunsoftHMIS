@@ -4055,7 +4055,7 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                                     //}
                                     if (rebateType) {
                                         Double nhifDiff = schemediff;//Double.parseDouble(netAmountTxt.getText()) - Double.parseDouble(schemeInvoicingTable.getValueAt(0, 2).toString());
-                                        if (nhifDiff != 0 && payModeTxt.getText().equalsIgnoreCase("Cash")) {
+                                        if (nhifDiff != 0 ) { //&& payModeTxt.getText().equalsIgnoreCase("Cash")
                                             String diffCode = null;
                                             String diffDesc = null;
                                             java.sql.Statement pss11u = connectDB.createStatement();
@@ -4188,6 +4188,8 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                                 int exitOption1 = javax.swing.JOptionPane.showConfirmDialog(this, "Confirm NHIF Card No. !!", "Caution before Saving!", javax.swing.JOptionPane.YES_NO_CANCEL_OPTION);
 
                                 if (exitOption1 == javax.swing.JOptionPane.YES_OPTION) {
+                                    
+                                    System.out.println("Executing NHIF..................");
 
                                     java.sql.Statement pss12q = connectDB.createStatement();
                                     java.sql.ResultSet rsts11q = pss12q.executeQuery("select date from ac_debtors where invoice_no  = '" + invoiceNo + "'");
@@ -4308,8 +4310,11 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                                     pstmt1.setString(35, cardNumberTxt.getText());
                                     pstmt1.setString(36, claimNumberTxt.getText());
                                     pstmt1.executeUpdate();
+                                    
+                                    System.out.println("NHIF DIFF Value.................."+nhifDiff);
 
-                                    if (nhifDiff != 0 && payModeTxt.getText().equalsIgnoreCase("Cash")) {
+                                    if (nhifDiff != 0 ) { //&& payModeTxt.getText().equalsIgnoreCase("Cash")
+                                        System.out.println("Executing NHIF DIFF..................");
                                         String diffCode = null;
                                         String diffDesc = null;
                                         java.sql.Statement pss11u = connectDB.createStatement();
@@ -4394,6 +4399,7 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                                         pstmt2x.setString(23, user);
                                         pstmt2x.executeUpdate();
                                     }
+                                    System.out.println("DONE WITH NHIfs..................");
                                 }
                                 // }
                             }
