@@ -45,10 +45,32 @@ public class MpesaDetailsintfr extends javax.swing.JInternalFrame {
         receiptSearchScrollPane = new javax.swing.JScrollPane();
         receiptSearchTable = new com.afrisoftech.dbadmin.JTable();
         disposeBtn = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel7 = new javax.swing.JLabel();
+        receiptSearchDialog1 = new javax.swing.JDialog();
+        jSearchPanel3 = new javax.swing.JPanel();
+        receiptSearchTxt1 = new javax.swing.JTextField();
+        receiptSearchScrollPane1 = new javax.swing.JScrollPane();
+        receiptSearchTable1 = new com.afrisoftech.dbadmin.JTable();
+        disposeBtn1 = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel92 = new javax.swing.JLabel();
+        payerNameTxt1 = new javax.swing.JTextField();
+        jPanel6 = new javax.swing.JPanel();
+        transactionIdentifierTxt1 = new javax.swing.JTextField();
+        searchButton1 = new javax.swing.JButton();
+        transactionDateTxt1 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        mobileTransactionNumberTxt1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        payerTelephoneNoTxt1 = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new com.afrisoftech.dbadmin.JTable();
@@ -64,6 +86,9 @@ public class MpesaDetailsintfr extends javax.swing.JInternalFrame {
         mobileTransactionNumberTxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         payerTelephoneNoTxt = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -130,7 +155,7 @@ public class MpesaDetailsintfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -144,6 +169,83 @@ public class MpesaDetailsintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         receiptSearchDialog.getContentPane().add(jSearchPanel2, gridBagConstraints);
 
+        receiptSearchDialog1.setModal(true);
+        receiptSearchDialog1.setUndecorated(true);
+        receiptSearchDialog1.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jSearchPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jSearchPanel3.setLayout(new java.awt.GridBagLayout());
+
+        receiptSearchTxt1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                receiptSearchTxt1CaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 300.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jSearchPanel3.add(receiptSearchTxt1, gridBagConstraints);
+
+        receiptSearchTable1.setToolTipText("Click on the target row to select the patient from the search.");
+        receiptSearchTable1.setShowHorizontalLines(false);
+        /*javax.swing.table.TableColumn column = null;
+
+        for (int i = 0; i < 4; i++) {
+
+            column = receiptSearchTable.getColumnModel().getColumn(i);
+
+            if (i == 1) {
+
+                column.setPreferredWidth(400);
+                //sport column is bigger
+            } else {
+
+                column.setPreferredWidth(200);
+
+            }
+        }
+        */
+        receiptSearchTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                receiptSearchTable1MouseClicked(evt);
+            }
+        });
+        receiptSearchScrollPane1.setViewportView(receiptSearchTable1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 20.0;
+        jSearchPanel3.add(receiptSearchScrollPane1, gridBagConstraints);
+
+        disposeBtn1.setText("Close");
+        disposeBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                disposeBtn1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jSearchPanel3.add(disposeBtn1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        receiptSearchDialog1.getContentPane().add(jSearchPanel3, gridBagConstraints);
+
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
@@ -153,30 +255,157 @@ public class MpesaDetailsintfr extends javax.swing.JInternalFrame {
         setFrameIcon(null);
         setVisible(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameActivated(evt);
             }
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jButton3.setMnemonic('l');
-        jButton3.setText("Clear form");
-        jButton3.setToolTipText("Click here to clear fields");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Patient No / Transaction No / Tel No", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 11))); // NOI18N
+        jPanel5.setLayout(new java.awt.GridBagLayout());
+
+        jLabel10.setText("Patient No / Transaction No / Tel No.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel5.add(jLabel10, gridBagConstraints);
+
+        jLabel4.setText("Mobile Transaction No");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel5.add(jLabel4, gridBagConstraints);
+
+        jLabel92.setText("Transaction Time");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel5.add(jLabel92, gridBagConstraints);
+
+        payerNameTxt1.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        jPanel5.add(payerNameTxt1, gridBagConstraints);
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel6.setMinimumSize(new java.awt.Dimension(7, 30));
+        jPanel6.setPreferredSize(new java.awt.Dimension(6, 30));
+        jPanel6.setLayout(new java.awt.GridBagLayout());
+
+        transactionIdentifierTxt1.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel6.add(transactionIdentifierTxt1, gridBagConstraints);
+
+        searchButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
+        searchButton1.setToolTipText("Search");
+        searchButton1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        searchButton1.setMaximumSize(new java.awt.Dimension(74, 53));
+        searchButton1.setMinimumSize(new java.awt.Dimension(74, 53));
+        searchButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        searchButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                searchButton1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        jPanel6.add(searchButton1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel5.add(jPanel6, gridBagConstraints);
+
+        transactionDateTxt1.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        jPanel5.add(transactionDateTxt1, gridBagConstraints);
+
+        jLabel6.setText("Transaction Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel5.add(jLabel6, gridBagConstraints);
+
+        mobileTransactionNumberTxt1.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel5.add(mobileTransactionNumberTxt1, gridBagConstraints);
+
+        jLabel8.setText("Payer Telephone No");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel5.add(jLabel8, gridBagConstraints);
+
+        payerTelephoneNoTxt1.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel5.add(payerTelephoneNoTxt1, gridBagConstraints);
+
+        jButton5.setMnemonic('l');
+        jButton5.setText("Clear form");
+        jButton5.setToolTipText("Click here to clear fields");
+        jButton5.setEnabled(false);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -184,15 +413,15 @@ public class MpesaDetailsintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 13;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jButton3, gridBagConstraints);
+        jPanel5.add(jButton5, gridBagConstraints);
 
-        jButton4.setMnemonic('C');
-        jButton4.setText("Close form");
-        jButton4.setToolTipText("Click here to close ");
-        jButton4.setSelected(true);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButton6.setMnemonic('C');
+        jButton6.setText("Close form");
+        jButton6.setToolTipText("Click here to close ");
+        jButton6.setSelected(true);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButton6ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -200,29 +429,57 @@ public class MpesaDetailsintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 13;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jButton4, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
-        gridBagConstraints.weightx = 1.0;
-        getContentPane().add(jSeparator1, gridBagConstraints);
+        jPanel5.add(jButton6, gridBagConstraints);
 
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 12;
         gridBagConstraints.gridwidth = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        getContentPane().add(jLabel7, gridBagConstraints);
+        jPanel5.add(jLabel11, gridBagConstraints);
+
+        jButton2.setText("Print Receipt");
+        jButton2.setEnabled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel5.add(jButton2, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1000.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel5.add(jLabel12, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1000.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel1.add(jPanel5, gridBagConstraints);
+
+        jTabbedPane1.addTab("Confirm M-Pesa transactions", jPanel1);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Patient No / Transaction No / Tel No", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 11))); // NOI18N
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createTitledBorder(null, "You MUST select the row in the table for the receipt that you want to print!", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 51, 51)));
+        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createTitledBorder(null, "You MUST select the row in the table for the receipt that you want to print!", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 51, 51))); // NOI18N
 
         /*        tableModel = jTable1.getModel();
 
@@ -408,16 +665,45 @@ public class MpesaDetailsintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(payerTelephoneNoTxt, gridBagConstraints);
 
+        jButton3.setMnemonic('l');
+        jButton3.setText("Clear form");
+        jButton3.setToolTipText("Click here to clear fields");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jButton3, gridBagConstraints);
+
+        jButton4.setMnemonic('C');
+        jButton4.setText("Close form");
+        jButton4.setToolTipText("Click here to close ");
+        jButton4.setSelected(true);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jButton4, gridBagConstraints);
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1000.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        getContentPane().add(jPanel3, gridBagConstraints);
+        jPanel3.add(jLabel7, gridBagConstraints);
 
         jButton1.setText("Print Receipt");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -431,7 +717,7 @@ public class MpesaDetailsintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jButton1, gridBagConstraints);
+        jPanel3.add(jButton1, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 13;
@@ -439,7 +725,15 @@ public class MpesaDetailsintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1000.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jLabel3, gridBagConstraints);
+        jPanel3.add(jLabel3, gridBagConstraints);
+
+        jTabbedPane1.addTab("Reprinting processed receipts", jPanel3);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        getContentPane().add(jTabbedPane1, gridBagConstraints);
 
         setBounds(0, 0, 760, 500);
     }// </editor-fold>//GEN-END:initComponents
@@ -462,7 +756,6 @@ public class MpesaDetailsintfr extends javax.swing.JInternalFrame {
 
         this.receiptSearchDialog.dispose();
 
-
         jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT "
                 + "patient_no,dealer AS Name, receipt_no, journal_no AS Transaction_no, drawer AS Payer, account_no AS Tel_No,"
                 + "debit AS Amount, date, drawer as service_provider FROM ac_cash_collection WHERE journal_no ILIKE '" + mobileTransactionNumberTxt.getText() + "%'"
@@ -482,19 +775,19 @@ public class MpesaDetailsintfr extends javax.swing.JInternalFrame {
 
     private void receiptSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_receiptSearchTxtCaretUpdate
         //jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select DISTINCT shift_no,cash_point,sum((debit-credit) as amt from ac_cash_collection where reconciled = false and shift_no ILIKE '"+jTextField113.getText()+"%' group by shift_no,cash_point"));
-        if(receiptSearchTxt.getText().length() > 6){
-        receiptSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT "
-                + "patient_no,journal_no AS journal_no,account_no AS Tel_No, receipt_no, date, drawer FROM ac_cash_collection WHERE patient_no ILIKE '%" + receiptSearchTxt.getText() + "%' "
-                + " AND cash_point ILIKE 'M-pesa%'"
-                + " UNION ALL SELECT DISTINCT patient_no,journal_no AS journal_no, account_no AS Tel_No, receipt_no, date, drawer FROM ac_cash_collection WHERE "
-                + "account_no ILIKE '%" + receiptSearchTxt.getText() + "%'  AND cash_point ILIKE 'M-pesa%' UNION ALL SELECT DISTINCT"
-                + " patient_no,journal_no AS journal_no, account_no AS Tel_No, receipt_no, date, drawer "
-                + "FROM ac_cash_collection WHERE journal_no ILIKE '%" + receiptSearchTxt.getText() + "%' AND cash_point ILIKE 'M-pesa%'"
-                + "ORDER BY 1,2 desc LIMIT 50"));
+        if (receiptSearchTxt.getText().length() > 6) {
+            receiptSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT "
+                    + "patient_no,journal_no AS journal_no,account_no AS Tel_No, receipt_no, date, drawer FROM ac_cash_collection WHERE patient_no ILIKE '%" + receiptSearchTxt.getText() + "%' "
+                    + " AND cash_point ILIKE 'M-pesa%'"
+                    + " UNION ALL SELECT DISTINCT patient_no,journal_no AS journal_no, account_no AS Tel_No, receipt_no, date, drawer FROM ac_cash_collection WHERE "
+                    + "account_no ILIKE '%" + receiptSearchTxt.getText() + "%'  AND cash_point ILIKE 'M-pesa%' UNION ALL SELECT DISTINCT"
+                    + " patient_no,journal_no AS journal_no, account_no AS Tel_No, receipt_no, date, drawer "
+                    + "FROM ac_cash_collection WHERE journal_no ILIKE '%" + receiptSearchTxt.getText() + "%' AND cash_point ILIKE 'M-pesa%'"
+                    + "ORDER BY 1,2 desc LIMIT 50"));
 
-        receiptSearchScrollPane.setViewportView(receiptSearchTable);
+            receiptSearchScrollPane.setViewportView(receiptSearchTable);
         }
-     //   System.out.println("Cannot sort out");
+        //   System.out.println("Cannot sort out");
 
         // }        // Add your handling code here:
     }//GEN-LAST:event_receiptSearchTxtCaretUpdate
@@ -528,73 +821,123 @@ public class MpesaDetailsintfr extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-
         this.getContentPane().removeAll();
         this.initComponents();
-
 
         // Add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                try{
-                    connectDB.setAutoCommit(false);
-                    
-                    String nodetails = null;
-                    
-                    java.sql.Statement ps11 = connectDB.createStatement();
-                    java.sql.ResultSet rst11 = ps11.executeQuery("select nodetails from receipt_pref");
-                    while (rst11.next()){
-                        nodetails = rst11.getObject(1).toString();
-                    }
-                    
-                    String rct = null;
-                    
-                    java.sql.Statement ps112 = connectDB.createStatement();
-                    java.sql.ResultSet rst112 = ps112.executeQuery("select rct_format from receipt_pref");
-                    while (rst112.next()){
-                        rct = rst112.getObject(1).toString();
-                    }
-                    
-                    
-                    if(nodetails.equalsIgnoreCase("NoDetails")){
-                        com.afrisoftech.txtreports.RctOutCopyTxt policy = new com.afrisoftech.txtreports.RctOutCopyTxt(connectDB, jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
-                    }else{
-                        if(nodetails.equalsIgnoreCase("Codes")){
-                               //com.afrisoftech.txtreports.ReceiptsCopyTxt policy = new com.afrisoftech.txtreports.ReceiptsCopyTxt(connectDB,jTextField36.getText(),printState);
-                             com.afrisoftech.txtreports.GokReceiptsRCopyTxt policy = new com.afrisoftech.txtreports.GokReceiptsRCopyTxt(connectDB,jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+        try {
+            connectDB.setAutoCommit(false);
 
-                        }else{
-                            if(nodetails.equalsIgnoreCase("Dept")){
-                                com.afrisoftech.txtreports.ReceiptsPerDeptCopyTxt policy = new com.afrisoftech.txtreports.ReceiptsPerDeptCopyTxt(connectDB, jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString(), true);
-                                
-                            }else{
-                                if(nodetails.equalsIgnoreCase("Prints") && rct.equalsIgnoreCase("Pdf") ){
-                                    com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
-                                    policy.ReceiptsPdf(connectDB, jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+            String nodetails = null;
+
+            java.sql.Statement ps11 = connectDB.createStatement();
+            java.sql.ResultSet rst11 = ps11.executeQuery("select nodetails from receipt_pref");
+            while (rst11.next()) {
+                nodetails = rst11.getObject(1).toString();
+            }
+
+            String rct = null;
+
+            java.sql.Statement ps112 = connectDB.createStatement();
+            java.sql.ResultSet rst112 = ps112.executeQuery("select rct_format from receipt_pref");
+            while (rst112.next()) {
+                rct = rst112.getObject(1).toString();
+            }
+
+            if (nodetails.equalsIgnoreCase("NoDetails")) {
+                com.afrisoftech.txtreports.RctOutCopyTxt policy = new com.afrisoftech.txtreports.RctOutCopyTxt(connectDB, jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+            } else {
+                if (nodetails.equalsIgnoreCase("Codes")) {
+                    //com.afrisoftech.txtreports.ReceiptsCopyTxt policy = new com.afrisoftech.txtreports.ReceiptsCopyTxt(connectDB,jTextField36.getText(),printState);
+                    com.afrisoftech.txtreports.GokReceiptsRCopyTxt policy = new com.afrisoftech.txtreports.GokReceiptsRCopyTxt(connectDB, jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+
+                } else {
+                    if (nodetails.equalsIgnoreCase("Dept")) {
+                        com.afrisoftech.txtreports.ReceiptsPerDeptCopyTxt policy = new com.afrisoftech.txtreports.ReceiptsPerDeptCopyTxt(connectDB, jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString(), true);
+
+                    } else {
+                        if (nodetails.equalsIgnoreCase("Prints") && rct.equalsIgnoreCase("Pdf")) {
+                            com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
+                            policy.ReceiptsPdf(connectDB, jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
 //                                    com.afrisoftech.reports.ReceiptsCopyPdf policy = new com.afrisoftech.reports.ReceiptsCopyPdf();
 //                                    
 //                                    policy.ReceiptsCopyPdf(connectDB,jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
-                                }else{
-                                //   com.afrisoftech.txtreports.ReceiptsCopyTxt policy = new com.afrisoftech.txtreports.ReceiptsCopyTxt(connectDB,jTextField36.getText(),printState);
-                                com.afrisoftech.txtreports.GokMobilePayReceiptsRCopyTxt policy = new com.afrisoftech.txtreports.GokMobilePayReceiptsRCopyTxt(connectDB, jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
-                                }
-                            }
+                        } else {
+                            //   com.afrisoftech.txtreports.ReceiptsCopyTxt policy = new com.afrisoftech.txtreports.ReceiptsCopyTxt(connectDB,jTextField36.getText(),printState);
+                            com.afrisoftech.txtreports.GokMobilePayReceiptsRCopyTxt policy = new com.afrisoftech.txtreports.GokMobilePayReceiptsRCopyTxt(connectDB, jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
                         }
                     }
-                }catch(java.sql.SQLException sq){
-                    sq.printStackTrace();
-                    try {
-                        connectDB.rollback();
-                    }catch (java.sql.SQLException sql){
-                        javax.swing.JOptionPane.showMessageDialog(this,sql.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
-                    }
-                    System.out.println(sq.getMessage());
-                    javax.swing.JOptionPane.showMessageDialog(this,sq.getMessage(), "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
-                    
                 }
+            }
+        } catch (java.sql.SQLException sq) {
+            sq.printStackTrace();
+            try {
+                connectDB.rollback();
+            } catch (java.sql.SQLException sql) {
+                javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+            System.out.println(sq.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void searchButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton1ActionPerformed
+
+        //java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
+        java.awt.Point point = this.transactionIdentifierTxt1.getLocationOnScreen();
+
+        receiptSearchDialog1.setSize(600, 200);
+
+        receiptSearchDialog1.setLocation(point);
+
+        receiptSearchDialog1.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+
+        this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void receiptSearchTxt1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_receiptSearchTxt1CaretUpdate
+        if(receiptSearchTxt1.getText().length() > 5){
+        receiptSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_time::time(0), mobile_tx_id, account_no, date, paid_amount, upper(dealer) as client_name, journal_no as paybill_no, mobilepay_alert as processed FROM public.mobile_payments WHERE account_no ilike '%"+receiptSearchTxt1.getText()+"%' ORDER BY account_no"));
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_receiptSearchTxt1CaretUpdate
+
+    private void receiptSearchTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_receiptSearchTable1MouseClicked
+
+        transactionDateTxt1.setText(receiptSearchTable1.getValueAt(receiptSearchTable1.getSelectedRow(), 3).toString());
+        payerNameTxt1.setText(receiptSearchTable1.getValueAt(receiptSearchTable1.getSelectedRow(), 0).toString());
+        //   jTextField2.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 0).toString());
+        transactionIdentifierTxt1.setText(receiptSearchTable1.getValueAt(receiptSearchTable1.getSelectedRow(), 1).toString());
+        mobileTransactionNumberTxt1.setText(receiptSearchTable1.getValueAt(receiptSearchTable1.getSelectedRow(), 1).toString());
+        payerTelephoneNoTxt1.setText(receiptSearchTable1.getValueAt(receiptSearchTable1.getSelectedRow(), 2).toString());
+
+        receiptSearchDialog1.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_receiptSearchTable1MouseClicked
+
+    private void disposeBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disposeBtn1ActionPerformed
+      
+        receiptSearchDialog1.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_disposeBtn1ActionPerformed
     /*
      * public void tableModelTableChanged(javax.swing.event.TableModelEvent evt)
      * {
@@ -630,31 +973,56 @@ public class MpesaDetailsintfr extends javax.swing.JInternalFrame {
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton disposeBtn;
+    private javax.swing.JButton disposeBtn1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     public javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    public javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel91;
+    private javax.swing.JLabel jLabel92;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jSearchPanel2;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel jSearchPanel3;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField mobileTransactionNumberTxt;
+    private javax.swing.JTextField mobileTransactionNumberTxt1;
     private javax.swing.JTextField payerNameTxt;
+    private javax.swing.JTextField payerNameTxt1;
     private javax.swing.JTextField payerTelephoneNoTxt;
+    private javax.swing.JTextField payerTelephoneNoTxt1;
     private javax.swing.JDialog receiptSearchDialog;
+    private javax.swing.JDialog receiptSearchDialog1;
     private javax.swing.JScrollPane receiptSearchScrollPane;
+    private javax.swing.JScrollPane receiptSearchScrollPane1;
     private javax.swing.JTable receiptSearchTable;
+    private javax.swing.JTable receiptSearchTable1;
     private javax.swing.JTextField receiptSearchTxt;
+    private javax.swing.JTextField receiptSearchTxt1;
     private javax.swing.JButton searchButton;
+    private javax.swing.JButton searchButton1;
     private javax.swing.JTextField transactionDateTxt;
+    private javax.swing.JTextField transactionDateTxt1;
     private javax.swing.JTextField transactionIdentifierTxt;
+    private javax.swing.JTextField transactionIdentifierTxt1;
     // End of variables declaration//GEN-END:variables
 }

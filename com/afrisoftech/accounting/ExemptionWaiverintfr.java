@@ -64,13 +64,13 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jTextField9 = new javax.swing.JTextField();
+        registrationNumberTxt = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jTextField10 = new javax.swing.JTextField();
+        searchByNoChkbx = new javax.swing.JCheckBox();
+        searchByNameChkbx = new javax.swing.JCheckBox();
+        visitIDTxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jTextField11 = new javax.swing.JTextField();
@@ -87,8 +87,8 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         jButton4 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel31 = new javax.swing.JPanel();
-        jCheckBox11 = new javax.swing.JCheckBox();
-        jCheckBox21 = new javax.swing.JCheckBox();
+        opdChkbx = new javax.swing.JCheckBox();
+        ipChkbx = new javax.swing.JCheckBox();
         datePicker3 = new com.afrisoftech.lib.DatePicker();
         jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -600,14 +600,14 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        jTextField9.setEditable(false);
+        registrationNumberTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jTextField9, gridBagConstraints);
+        jPanel4.add(registrationNumberTxt, gridBagConstraints);
 
         searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
         searchButton.setToolTipText("Search");
@@ -649,22 +649,22 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         jPanel2.add(jTextField7, gridBagConstraints);
 
-        buttonGroup2.add(jCheckBox3);
-        jCheckBox3.setSelected(true);
-        jCheckBox3.setText("Search By  No.");
-        jPanel2.add(jCheckBox3, new java.awt.GridBagConstraints());
+        buttonGroup2.add(searchByNoChkbx);
+        searchByNoChkbx.setSelected(true);
+        searchByNoChkbx.setText("Search By  No.");
+        jPanel2.add(searchByNoChkbx, new java.awt.GridBagConstraints());
 
-        buttonGroup2.add(jCheckBox4);
-        jCheckBox4.setText("Search By Name");
-        jPanel2.add(jCheckBox4, new java.awt.GridBagConstraints());
+        buttonGroup2.add(searchByNameChkbx);
+        searchByNameChkbx.setText("Search By Name");
+        jPanel2.add(searchByNameChkbx, new java.awt.GridBagConstraints());
 
-        jTextField10.setEditable(false);
+        visitIDTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        jPanel2.add(jTextField10, gridBagConstraints);
+        jPanel2.add(visitIDTxt, gridBagConstraints);
 
         jLabel5.setText("Visit Id");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -788,25 +788,25 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         jPanel31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
         jPanel31.setLayout(new java.awt.GridBagLayout());
 
-        buttonGroup1.add(jCheckBox11);
-        jCheckBox11.setForeground(new java.awt.Color(51, 51, 255));
-        jCheckBox11.setMnemonic('o');
-        jCheckBox11.setText("Out Patients");
+        buttonGroup1.add(opdChkbx);
+        opdChkbx.setForeground(new java.awt.Color(51, 51, 255));
+        opdChkbx.setMnemonic('o');
+        opdChkbx.setText("Out Patients");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel31.add(jCheckBox11, gridBagConstraints);
+        jPanel31.add(opdChkbx, gridBagConstraints);
 
-        buttonGroup1.add(jCheckBox21);
-        jCheckBox21.setForeground(new java.awt.Color(255, 0, 51));
-        jCheckBox21.setMnemonic('i');
-        jCheckBox21.setSelected(true);
-        jCheckBox21.setText("InPatients");
+        buttonGroup1.add(ipChkbx);
+        ipChkbx.setForeground(new java.awt.Color(255, 0, 51));
+        ipChkbx.setMnemonic('i');
+        ipChkbx.setSelected(true);
+        ipChkbx.setText("IN-Patients or Farewell Home");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel31.add(jCheckBox21, gridBagConstraints);
+        jPanel31.add(ipChkbx, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -1019,10 +1019,10 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         int i = 0;
         int j = 0;
         try {
-            if (jCheckBox21.isSelected()) {
+            if (ipChkbx.isSelected()) {
                 java.sql.Statement stmt = connectDB.createStatement();
 
-                java.sql.ResultSet rset = stmt.executeQuery("SELECT count(service) FROM hp_patient_card WHERE patient_no = '" + patient_no + "'");
+                java.sql.ResultSet rset = stmt.executeQuery("SELECT count(service) FROM hp_patient_card WHERE patient_no = '" + patient_no + "' AND visit_id = '"+visitIDTxt.getText()+"'");
 
                 while (rset.next()) {
                     j = rset.getInt(1);
@@ -1040,13 +1040,13 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
 //                    System.out.println("Date1 : " + datePicker1.getDate().toString());
                     System.out.println("Date2 : " + datePicker3.getDate().toString());
 
-                    java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT current_date::date,service, sum(dosage), Sum(debit-credit), sum(0),main_service FROM hp_patient_card WHERE patient_no = '" + patient_no + "' AND paid = false GROUP BY 1,2,6 ORDER BY date");
+                    java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT date::date, service, sum(dosage), Sum(debit-credit), sum(0),main_service FROM hp_patient_card WHERE patient_no = '" + patient_no + "' AND  paid = false AND visit_id = '"+visitIDTxt.getText()+"' GROUP BY 1,2,6 ORDER BY 1");
 
                     while (rsetTable1.next()) {
 
-                        rsetTable1x = stmtTable1x.executeQuery("SELECT DISTINCT gl_account FROM pb_operating_parameters WHERE main_service ILIKE '" + rsetTable1.getObject(6).toString() + "%'");
+                        rsetTable1x = stmtTable1x.executeQuery("SELECT DISTINCT gl_account FROM pb_operating_parameters WHERE upper(main_service) = '" + rsetTable1.getObject(6).toString().toUpperCase() + "' UNION SELECT DISTINCT gl_code FROM st_stock_prices WHERE upper(department) = '" + rsetTable1.getObject(6).toString().toUpperCase() + "'");
                         while (rsetTable1x.next()) {
-                            rsetx = stmtTable111.executeQuery("SELECT sum(debit-credit),sum(quantity) FROM ac_cash_collection WHERE description = '" + rsetTable1.getObject(2) + "' AND activity_code = '" + rsetTable1x.getObject(1) + "' AND journal_no = '" + jTextField10.getText() + "'");
+                            rsetx = stmtTable111.executeQuery("SELECT sum(debit-credit),sum(quantity) FROM ac_cash_collection WHERE upper(description) = '" + rsetTable1.getObject(2).toString().toUpperCase() + "' AND activity_code = '" + rsetTable1x.getObject(1) + "' AND journal_no = '" + visitIDTxt.getText() + "'");
                             while (rsetx.next()) {
                                 double amount = rsetTable1.getDouble(4);
                                 double receipts = rsetx.getDouble(1);
@@ -1072,7 +1072,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
             }
             //}
         } catch (java.sql.SQLException sqlExec) {
-
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
 
         }
@@ -1125,7 +1125,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         int i = 0;
         int j = 0;
         try {
-            if (jCheckBox11.isSelected()) {
+            if (opdChkbx.isSelected()) {
                 java.sql.Statement stmt = connectDB.createStatement();
 
                 java.sql.ResultSet rset = stmt.executeQuery("SELECT count(description) FROM patient_bill WHERE patient_no = '" + patient_no + "'");
@@ -1176,14 +1176,14 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
             }
         }
         jTextField1.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 1).toString());
-        jTextField9.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 0).toString());
-        jTextField10.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 2).toString());
+        registrationNumberTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 0).toString());
+        visitIDTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 2).toString());
         patientSearchDialog.dispose();
-        if (this.jCheckBox11.isSelected()) {
+        if (this.opdChkbx.isSelected()) {
             try {
 
                 java.sql.Statement stmt1 = connectDB.createStatement();
-                java.sql.ResultSet rset1 = stmt1.executeQuery("select category,pay_mode from hp_patient_register where patient_no  ='" + jTextField9.getText() + "'");
+                java.sql.ResultSet rset1 = stmt1.executeQuery("select category,pay_mode from hp_patient_register where patient_no  ='" + registrationNumberTxt.getText() + "'");
                 while (rset1.next()) {
                     jTextField2.setText(rset1.getObject(1).toString());
                     jTextField7.setText(rset1.getObject(2).toString());
@@ -1193,19 +1193,19 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                 //  System.out.println("Insert not successful");
             }
 
-            this.populateTable2(jTextField9.getText());
+            this.populateTable2(registrationNumberTxt.getText());
         } else {
 
             try {
 
                 java.sql.Statement stmt1 = connectDB.createStatement();
-                java.sql.ResultSet rset1 = stmt1.executeQuery("select category,pay_mode from hp_inpatient_register where patient_no  ='" + jTextField9.getText() + "'");
+                java.sql.ResultSet rset1 = stmt1.executeQuery("select category,pay_mode from hp_inpatient_register where patient_no  ='" + registrationNumberTxt.getText() + "'");
                 while (rset1.next()) {
                     jTextField2.setText(rset1.getObject(1).toString());
                     jTextField7.setText(rset1.getObject(2).toString());
                 }
 
-                this.populateTable3(jTextField9.getText());
+                this.populateTable3(registrationNumberTxt.getText());
             } catch (java.sql.SQLException sqe) {
                 sqe.printStackTrace();
                 //  System.out.println("Insert not successful");
@@ -1218,7 +1218,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
 
     private void patientSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_patientSearchTxtCaretUpdate
 
-        if (this.jCheckBox11.isSelected() && this.jCheckBox3.isSelected()) {
+        if (this.opdChkbx.isSelected() && this.searchByNoChkbx.isSelected()) {
 
             if (patientSearchTxt.getCaretPosition() < 3) {
                 System.out.println("Nothing");
@@ -1238,7 +1238,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
 
             }
         } else {
-            if (this.jCheckBox11.isSelected() && this.jCheckBox4.isSelected()) {
+            if (this.opdChkbx.isSelected() && this.searchByNameChkbx.isSelected()) {
                 if (patientSearchTxt.getCaretPosition() < 3) {
                     System.out.println("Nothing");
                 } else {
@@ -1260,21 +1260,21 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
             }
         }
         // }else{
-        if (this.jCheckBox21.isSelected() && this.jCheckBox3.isSelected()) {
+        if (this.ipChkbx.isSelected() && this.searchByNoChkbx.isSelected()) {
 
             // if(this.jCheckBox21.isSelected()){
             //   if( jTextField113.getCaretPosition() > 3){
             if (patientSearchTxt.getCaretPosition() < 3) {
                 System.out.println("Nothing");
             } else {
-                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no,patient_name,visit_id FROM hp_admission WHERE patient_no ILIKE '" + patientSearchTxt.getText() + "%' AND check_out = false UNION ALL SELECT annual_no,patient_name,annual_no FROM hp_mortuary WHERE patient_no ILIKE '" + patientSearchTxt.getText() + "%' AND discharged = false ORDER BY patient_name"));
+                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no,patient_name,visit_id FROM hp_admission WHERE patient_no ILIKE '" + patientSearchTxt.getText() + "%' AND check_out = false UNION ALL SELECT annual_no,patient_name,annual_no FROM hp_mortuary WHERE (patient_no ILIKE '" + patientSearchTxt.getText() + "%' or annual_no ILIKE '" + patientSearchTxt.getText() + "%')  AND discharged = false ORDER BY patient_name"));
 
                 patientSearchTable.setShowHorizontalLines(false);
                 jSearchScrollPane2.setViewportView(patientSearchTable);
 
             }
         } else {
-            if (this.jCheckBox21.isSelected() && this.jCheckBox4.isSelected()) {
+            if (this.ipChkbx.isSelected() && this.searchByNameChkbx.isSelected()) {
                 patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no,patient_name,visit_id FROM hp_admission WHERE patient_name ILIKE '" + patientSearchTxt.getText() + "%' AND check_out = false UNION ALL SELECT annual_no,patient_name,annual_no FROM hp_mortuary WHERE patient_name ILIKE '" + patientSearchTxt.getText() + "%' AND discharged = false ORDER BY patient_name"));
                 /*
                  searchRowSet2.execute("SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_inpatient_register where second_name||' '||first_name||' '||last_name ILIKE '"+jTextField113.getText()+"%' order by second_name");
@@ -1304,7 +1304,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         System.out.println("Showing dialog");
 
         // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
-        java.awt.Point point = this.jTextField9.getLocationOnScreen();
+        java.awt.Point point = this.registrationNumberTxt.getLocationOnScreen();
 
         patientSearchDialog.setSize(400, 200);
 
@@ -1544,12 +1544,12 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
             }
 
             java.sql.Statement ps11 = connectDB.createStatement();
-            java.sql.ResultSet rst11 = ps11.executeQuery("select 'E/W'||lpad(nextval('exemption')::text, 5, 0::text),CURRENT_USER");
+            java.sql.ResultSet rst11 = ps11.executeQuery("select 'E/W'||lpad(nextval('exemption')::text, 8, 0::text),CURRENT_USER");
             while (rst11.next()) {
                 billNo = rst11.getObject(1).toString();
                 user = rst11.getObject(2).toString();
             }
-            if (this.jCheckBox11.isSelected()) {
+            if (this.opdChkbx.isSelected()) {
                 for (int i = 0; i < jTable1.getRowCount(); i++) {
                     if (jTable1.getModel().getValueAt(i, 4) != null) {
 
@@ -1575,7 +1575,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                                 glAcc1Exe = rse121exe.getObject(2).toString();
                             }
                             java.sql.PreparedStatement pstmt22 = connectDB.prepareStatement("INSERT INTO hp_patient_billing VALUES(?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?,?,?)");
-                            pstmt22.setString(1, jTextField9.getText());
+                            pstmt22.setString(1, registrationNumberTxt.getText());
                             pstmt22.setString(2, jTextField1.getText());
                             pstmt22.setString(3, jTextField7.getText());
                             pstmt22.setString(4, jTextField2.getText());
@@ -1595,9 +1595,9 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                     }
                 }
             } else {
-                if (this.jCheckBox21.isSelected()) {
+                if (this.ipChkbx.isSelected()) {
                     java.sql.Statement stm1 = connectDB.createStatement();
-                    java.sql.ResultSet rse1 = stm1.executeQuery("select pay_mode,account_no,description,payer,payer,expiry_date,account_no from hp_inpatient_register where patient_no ='" + jTextField9.getText() + "'");
+                    java.sql.ResultSet rse1 = stm1.executeQuery("select pay_mode,account_no,description,payer,payer,expiry_date,account_no from hp_inpatient_register where patient_no ='" + registrationNumberTxt.getText() + "'");
                     while (rse1.next()) {
                         cardNo = rse1.getString(2);
                         scheme = rse1.getString(3);
@@ -1607,10 +1607,10 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                         staffNo = rse1.getString(7);
                     }
                     java.sql.Statement stm1c = connectDB.createStatement();
-                    java.sql.ResultSet rse1c = stm1c.executeQuery("SELECT DISTINCT visit_id,date_admitted FROM hp_admission WHERE patient_no ='" + jTextField9.getText() + "' ORDER BY date_admitted DESC LIMIT 1");
+                    java.sql.ResultSet rse1c = stm1c.executeQuery("SELECT DISTINCT visit_id,date_admitted FROM hp_admission WHERE patient_no ='" + registrationNumberTxt.getText() + "' UNION SELECT annual_no as visit_id, input_date::date as date_admitted FROM hp_mortuary WHERE  patient_no ='" + registrationNumberTxt.getText() + "' ORDER BY 2 DESC LIMIT 1");
                     while (rse1c.next()) {
                         visitid = rse1c.getString(1);
-                        jTextField10.setText(rse1c.getString(1));
+                        visitIDTxt.setText(rse1c.getString(1));
                     }
                     for (int i = 0; i < jTable1.getRowCount(); i++) {
                         if (jTable1.getModel().getValueAt(i, 4) != null) {
@@ -1625,7 +1625,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                                 }
 
                                 java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_card values(?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?)");
-                                pstmt.setString(1, jTextField9.getText());
+                                pstmt.setString(1, registrationNumberTxt.getText());
                                 pstmt.setObject(2, jTable1.getValueAt(i, 1).toString());
                                 pstmt.setString(3, jTextField2.getText());
                                 pstmt.setString(4, jTextField7.getText());
@@ -1666,7 +1666,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                                 java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
                                 pstmt2.setObject(1, jTable1.getValueAt(i, 6).toString());
                                 pstmt2.setString(2, glAcc);
-                                pstmt2.setString(3, jTextField9.getText());
+                                pstmt2.setString(3, registrationNumberTxt.getText());
                                 pstmt2.setString(4, jTextField1.getText());
                                 if (exemptionsChkbx.isSelected()) {
                                     pstmt2.setString(5, "Exemption");
@@ -1847,15 +1847,12 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup3;
     private com.afrisoftech.lib.DatePicker datePicker3;
     private javax.swing.JCheckBox exemptionsChkbx;
+    private javax.swing.JCheckBox ipChkbx;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton42;
     private javax.swing.JButton jButton52;
     private javax.swing.JButton jButton6;
-    private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox21;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JLabel jLabel1;
@@ -1880,7 +1877,6 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -1889,11 +1885,15 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JCheckBox opdChkbx;
     private javax.swing.JDialog patientSearchDialog;
     private javax.swing.JPanel patientSearchPanel;
     private javax.swing.JTable patientSearchTable;
     private javax.swing.JTextField patientSearchTxt;
+    private javax.swing.JTextField registrationNumberTxt;
     private javax.swing.JButton searchButton;
+    private javax.swing.JCheckBox searchByNameChkbx;
+    private javax.swing.JCheckBox searchByNoChkbx;
+    private javax.swing.JTextField visitIDTxt;
     // End of variables declaration//GEN-END:variables
 }

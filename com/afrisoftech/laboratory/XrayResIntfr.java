@@ -1513,8 +1513,8 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                                         pstmt.setObject(5, Sex);
                                         pstmt.setString(6, jTextArea1.getText());
                                         pstmt.setString(7, xraytestTable.getValueAt(i, 0).toString());
-
-                                        pstmt.setDate(8, com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()));
+                                        pstmt.setDate(8, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
+             //                           pstmt.setDate(8, com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()));
                                         pstmt.setTimestamp(9, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
                                         pstmt.setDouble(10, java.lang.Double.valueOf(xraytestTable.getValueAt(i, 1).toString()));
                                         pstmt.setString(11, Categ);
@@ -2093,7 +2093,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
     private void refreshbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshbuttonActionPerformed
         runGetListThread();
         runconfirmGetListThread();
-        radiologyResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, patient_name, xray_no, examination, doctor as doctor_requesting, user_name as radiologist, doc_read as read FROM hp_xray_results WHERE date::date >= current_date - 2 ORDER BY 1,3,4"));
+        radiologyResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, patient_name, xray_no, examination, doctor as doctor_requesting, user_name as radiologist, doc_read as read FROM hp_xray_results WHERE date::date >= '"+xraydatePicker.getDate()+"'::date - 2 ORDER BY 1,3,4"));
     }//GEN-LAST:event_refreshbuttonActionPerformed
 
     private void searchTextFieldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchTextFieldCaretUpdate

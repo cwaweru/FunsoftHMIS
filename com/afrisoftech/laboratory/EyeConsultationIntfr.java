@@ -10688,7 +10688,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
     }//GEN-LAST:event_jTabbedPane2MouseClicked
 
     private void searchpatienttxtfldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchpatienttxtfldCaretUpdate
-        if (!searchpatienttxtfld.getText().equalsIgnoreCase(" ") && searchpatienttxtfld.getText().length() >= 3) {
+        if (!searchpatienttxtfld.getText().equalsIgnoreCase(" ") && searchpatienttxtfld.getText().length() >= 6) {
             if (searchnocheckbx.isSelected()) {
                 if (outpatientCheckBox.isSelected()) {
                     System.out.println(" select distinct "

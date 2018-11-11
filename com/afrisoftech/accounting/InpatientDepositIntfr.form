@@ -910,7 +910,7 @@
                           <Font name="Tahoma" size="11" style="1"/>
                         </Property>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.afrisoftech.lib.CashShiftNumberFactory.getPayBillNumber(connectDB)&#xd;&#xa;" type="code"/>
+                          <Connection code="com.afrisoftech.hospital.HospitalMain.payBillNumber" type="code"/>
                         </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">

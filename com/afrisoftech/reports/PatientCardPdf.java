@@ -513,7 +513,11 @@ public class PatientCardPdf implements java.lang.Runnable {
                                         + " SELECT INITCAP(hpc||' '||pmhs||' '||pdhs||' '||exam||' '||exam_notes"
                                         + " ||' '||imp_inv||' '||inv),initcap(pc),'',initcap(doctor),'',input_date::TIME(0)"
                                         + "  FROM hp_xray_results WHERE patient_no = '" + memNo + "' AND date  = '" + listofStaffNos[j] + "' AND xray_no ilike  'd%'"
-                                        + " ORDER BY 6 ");
+                                        + " UNION ALL "
+                                        + "SELECT indicator_checked, remarks, '', initcap(user_name), '', visit_date::time(0)  FROM hp_screening_data WHERE patient_no = '" + memNo + "' AND visit_date::date  = '" + listofStaffNos[j] + "' "
+                                        + "UNION ALL "
+                                        + " SELECT requested_procedure, procedure_result, '', initcap(user_name), '', request_time::time(0)  FROM hp_screening_procedures WHERE patient_no = '" + memNo + "' AND request_time::date  = '" + listofStaffNos[j] + "' "
+                                        + "ORDER BY 6 ");
                                 // java.sql.ResultSet rset2e1 = st2e1.executeQuery(" select distinct doctor,input_date from hp_clinical_results where patient_no = '" + memNo + "' and date  = '" + listofStaffNos[j] + "' ORDER BY INPUT_DATE");
 
                                 // java.sql.ResultSet rseth = sth.executeQuery(" select distinct date,marital_status,sex_hist , contraceptive ,illness ,drug_allergy,alcohol,smoking ,narration,hist_heading from hp_patients_hist where patient_no = '"+memNo+"'  ");
@@ -873,8 +877,8 @@ public class PatientCardPdf implements java.lang.Runnable {
                                     java.sql.ResultSet rset121t = st32t.executeQuery("SELECT input_date::TIME(0)::varchar from hp_lab_results where  lab_no ilike '" + listofStaffNos1[l].toString() + "' AND date  = '" + listofStaffNos[j] + "' ORDER BY 1 DESC LIMIT 1");
 
                                     String inputTime = null;
-                                    
-                                    while(rset121t.next()){
+
+                                    while (rset121t.next()) {
                                         inputTime = rset121t.getString(1);
                                     }
                                     java.sql.ResultSet rset121 = st32.executeQuery("SELECT distinct initcap(code),typeof_test,input_date::date,pathologist,doctor from hp_lab_results where  lab_no ilike '" + listofStaffNos1[l].toString() + "' AND date  = '" + listofStaffNos[j] + "' ORDER BY 3");
@@ -1360,7 +1364,7 @@ public class PatientCardPdf implements java.lang.Runnable {
 
             // java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no FROM hp_patient_card WHERE date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND payment_mode = 'Scheme' AND isurer = '"+memNo+"' order by patient_no");
             //java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT payee FROM ac_debtors WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' and dealer ilike '"+memNo+"%' order by payee");
-            java.sql.ResultSet rSet1x = stmt1.executeQuery("SELECT DISTINCT lab_no FROM hp_lab_results WHERE patient_no = '" + MNo + "' and date = '"+dates+"'::date order by lab_no");
+            java.sql.ResultSet rSet1x = stmt1.executeQuery("SELECT DISTINCT lab_no FROM hp_lab_results WHERE patient_no = '" + MNo + "' and date = '" + dates + "'::date order by lab_no");
 
             while (rSet1x.next()) {
 

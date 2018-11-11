@@ -3330,8 +3330,14 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         viewTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                 + "select distinct date::date,patient_no,scheme,sum(debit-credit)   "
                 + " FROM hp_patient_card where ip_no='OP' and scheme !='' and paid=false"
-                + " and upper(scheme) = upper('" + schemeNameTxt1.getText() + "') and date between '" + beginDate.getDate().toString() + "' and '" + endDate.getDate().toString() + "'  "
+                + " and upper(scheme) = upper('" + schemeNameTxt1.getText() + "') and date between '" + beginDate.getDate().toString() + "'::date and '" + endDate.getDate().toString() + "'::date  "
                 + "  group by 1,2,3 having sum(debit-credit)>0 order by patient_no"));
+        
+        System.err.println(""
+                + "select distinct date::date,patient_no,scheme,sum(debit-credit)   "
+                + " FROM hp_patient_card where ip_no='OP' and scheme !='' and paid=false"
+                + " and upper(scheme) = upper('" + schemeNameTxt1.getText() + "') and date between '" + beginDate.getDate().toString() + "'::date and '" + endDate.getDate().toString() + "'::date  "
+                + "  group by 1,2,3 having sum(debit-credit)>0 order by patient_no");
 
         accountNoTxt.setText("");
 
@@ -4717,8 +4723,14 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         viewTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                 + "select distinct date::date,patient_no,scheme, sum(debit-credit), upper(funsoft_get_patient_name(patient_no))   "
                 + " FROM hp_patient_card where (ip_no='OP' or ip_no = '') and scheme !='' and paid=false"
-                + " and date between '" + beginDate.getDate().toString() + "' and '" + endDate.getDate().toString() + "'  "
+                + " and date between '" + beginDate.getDate().toString() + "'::date and '" + endDate.getDate().toString() + "'::date  "
                 + "  group by 1,2,3 having sum(debit-credit)>0 order by patient_no"));
+        
+        System.err.println(""
+                + "select distinct date::date,patient_no,scheme, sum(debit-credit), upper(funsoft_get_patient_name(patient_no))   "
+                + " FROM hp_patient_card where (ip_no='OP' or ip_no = '') and scheme !='' and paid=false"
+                + " and date between '" + beginDate.getDate().toString() + "'::date and '" + endDate.getDate().toString() + "'::date  "
+                + "  group by 1,2,3 having sum(debit-credit)>0 order by patient_no");
 
         accountNoTxt.setText("");
         // TODO add your handling code here:

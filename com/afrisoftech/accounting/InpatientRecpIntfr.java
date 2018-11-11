@@ -6,6 +6,7 @@
 package com.afrisoftech.accounting;
 
 import java.sql.SQLException;
+import java.io.UnsupportedEncodingException;
 
 /**
  *
@@ -70,6 +71,13 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         jSearchScrollPane1 = new javax.swing.JScrollPane();
         jSearchTable1 = new com.afrisoftech.dbadmin.JTable();
         jButton91 = new javax.swing.JButton();
+        mobilepayTxSearchDialog = new javax.swing.JDialog();
+        jSearchPanel22 = new javax.swing.JPanel();
+        mobilepayTxSearchTxt = new javax.swing.JTextField();
+        jSearchScrollPane22 = new javax.swing.JScrollPane();
+        mobilepayTxtSearchTable = new com.afrisoftech.dbadmin.JTable();
+        jButton422 = new javax.swing.JButton();
+        jButton522 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         jPanel711 = new javax.swing.JPanel();
@@ -122,6 +130,8 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         datePicker2 = new com.afrisoftech.lib.DatePicker();
         jLabel1 = new javax.swing.JLabel();
         receiptNumberTxt = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        paybillNumberCmbx = new javax.swing.JComboBox<>();
         jPanel212 = new javax.swing.JPanel();
         jTextField152 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -166,6 +176,12 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         wardNameTxt = new javax.swing.JTextField();
         payBillNumberTxt = new javax.swing.JTextField();
         payerMobileTelephoneNumberTxt = new javax.swing.JFormattedTextField();
+        jPanel62 = new javax.swing.JPanel();
+        mobilepayTxNoTxt = new javax.swing.JTextField();
+        searchButton2 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        mobileTxAmountTxt = new javax.swing.JTextField();
 
         patientSearchDialog.setModal(true);
         patientSearchDialog.setUndecorated(true);
@@ -382,6 +398,94 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         billingItemsSearchDialog.getContentPane().add(jSearchPanel1, gridBagConstraints);
+
+        mobilepayTxSearchDialog.setModal(true);
+        mobilepayTxSearchDialog.setUndecorated(true);
+        mobilepayTxSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jSearchPanel22.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jSearchPanel22.setLayout(new java.awt.GridBagLayout());
+
+        mobilepayTxSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                mobilepayTxSearchTxtCaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 300.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jSearchPanel22.add(mobilepayTxSearchTxt, gridBagConstraints);
+
+        mobilepayTxtSearchTable.setToolTipText("Click on the target row to select the patient from the search.");
+        mobilepayTxtSearchTable.setShowHorizontalLines(false);
+        /*javax.swing.table.TableColumn column = null;
+
+        for (int i = 0; i < 4; i++) {
+
+            column = jSearchTable2.getColumnModel().getColumn(i);
+
+            if (i == 1) {
+
+                column.setPreferredWidth(400);
+                //sport column is bigger
+            } else {
+
+                column.setPreferredWidth(200);
+
+            }
+        }
+        */
+        mobilepayTxtSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mobilepayTxtSearchTableMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mobilepayTxtSearchTableMouseEntered(evt);
+            }
+        });
+        jSearchScrollPane22.setViewportView(mobilepayTxtSearchTable);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 20.0;
+        jSearchPanel22.add(jSearchScrollPane22, gridBagConstraints);
+
+        jButton422.setText("Select");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jSearchPanel22.add(jButton422, gridBagConstraints);
+
+        jButton522.setText("Dispose");
+        jButton522.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton522ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jSearchPanel22.add(jButton522, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        mobilepayTxSearchDialog.getContentPane().add(jSearchPanel22, gridBagConstraints);
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -660,7 +764,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 100.0;
         jPanel1111.add(jLabel13, gridBagConstraints);
 
-        stkPushBtn.setText("Push to Mobile for payment");
+        stkPushBtn.setText("Mobile Pay");
         stkPushBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stkPushBtnActionPerformed(evt);
@@ -714,7 +818,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         jLabel1321.setText("Invoice No");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -724,7 +828,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         invoiceNumberTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.weighty = 1.0;
@@ -809,6 +913,31 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel511.add(receiptNumberTxt, gridBagConstraints);
 
+        jLabel16.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel16.setText("Selected Paybill");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel511.add(jLabel16, gridBagConstraints);
+
+        paybillNumberCmbx.setForeground(new java.awt.Color(0, 0, 0));
+        paybillNumberCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '' as paybill_no UNION SELECT DISTINCT paybill_no FROM ac_cash_points ORDER BY 1"));
+        paybillNumberCmbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paybillNumberCmbxActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        jPanel511.add(paybillNumberCmbx, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -892,216 +1021,216 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         billTable.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         billTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Description", "Qty", "Gross", "Discount", "Disc. Amt", "Gross Amt", "Net Amt", "Allocate ?", "Gl Account", "Code", "Transaction_no"
+                "Description", "Qty", "Gross", "Discount", "Disc. Amt", "Gross Amt", "Net Amt", "Allocate ?", "Gl Account", "Code", "Transaction_no", "Date"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, false, false, false, false, true, false, false, false
+                false, true, true, false, false, false, false, true, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1341,7 +1470,6 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
 
         buttonGroup2.add(dischargeRdbtn);
         dischargeRdbtn.setText("Discharge");
-        dischargeRdbtn.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -1460,7 +1588,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         jLabel112.setText("Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -1470,7 +1598,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         patientNameTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.weightx = 5.0;
@@ -1519,7 +1647,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         jLabel15.setText("Ward Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -1529,7 +1657,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         wardNameTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -1537,7 +1665,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
 
         payBillNumberTxt.setEditable(false);
         payBillNumberTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        payBillNumberTxt.setText(com.afrisoftech.lib.CashShiftNumberFactory.getPayBillNumber(connectDB)
+        payBillNumberTxt.setText(com.afrisoftech.hospital.HospitalMain.payBillNumber
         );
         payBillNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PayBill Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1562,6 +1690,86 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel2.add(payerMobileTelephoneNumberTxt, gridBagConstraints);
+
+        jPanel62.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel62.setMinimumSize(new java.awt.Dimension(82, 40));
+        jPanel62.setPreferredSize(new java.awt.Dimension(87, 40));
+        jPanel62.setLayout(new java.awt.GridBagLayout());
+
+        mobilepayTxNoTxt.setEditable(false);
+        mobilepayTxNoTxt.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                mobilepayTxNoTxtCaretUpdate(evt);
+            }
+        });
+        mobilepayTxNoTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                mobilepayTxNoTxtFocusGained(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1000.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel62.add(mobilepayTxNoTxt, gridBagConstraints);
+
+        searchButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Find 2.png"))); // NOI18N
+        searchButton2.setToolTipText("Search");
+        searchButton2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        searchButton2.setIconTextGap(0);
+        searchButton2.setMaximumSize(new java.awt.Dimension(74, 53));
+        searchButton2.setMinimumSize(new java.awt.Dimension(74, 53));
+        searchButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        searchButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel62.add(searchButton2, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel2.add(jPanel62, gridBagConstraints);
+
+        jLabel17.setText("Mobile Transaction No.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        jPanel2.add(jLabel17, gridBagConstraints);
+
+        jLabel4.setText("Mobile Tx Amount");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel2.add(jLabel4, gridBagConstraints);
+
+        mobileTxAmountTxt.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        mobileTxAmountTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        mobileTxAmountTxt.setText("0.00");
+        mobileTxAmountTxt.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        jPanel2.add(mobileTxAmountTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1670,7 +1878,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
     private void jButton3111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3111ActionPerformed
 
         amountPaidTxt.setText("0.00");
-
+        payerMobileTelephoneNumberTxt.setText("254-7  -      ");
         for (int k = 0; k < billTable.getRowCount(); k++) {
             for (int r = 0; r < billTable.getColumnCount(); r++) {
                 billTable.getModel().setValueAt(null, k, r);
@@ -1684,6 +1892,10 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void patientSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patientSearchTableMouseClicked
+        mobileTxAmountTxt.setText("0.00");
+        com.afrisoftech.hospital.HospitalMain.mobileTxID = null;
+        com.afrisoftech.hospital.HospitalMain.mobileTelephone = null;
+        payerMobileTelephoneNumberTxt.setText("254-7  -      ");
         this.jButton1111.setEnabled(true);
         patientNameTxt.setText("");
         visitIDTxt.setText("");
@@ -1816,8 +2028,8 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
                     //       java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select date::date as date,service,dosage as quantity,debit-credit as amount FROM hp_patient_card WHERE patient_no ='"+jTextField91.getText()+"' and paid = false AND (invoice_no NOT ILIKE 'O%' OR invoice_no NOT ILIKE 'I%')  AND visit_id = '"+jTextField16.getText()+"'");
                     java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT main_service,"
                             + "CASE WHEN (sum(dosage)=0) THEN (sum(debit-credit)/sum(1))::NUMERIC(10,2) ELSE (sum(debit-credit)/sum(dosage))::NUMERIC(10,2) END AS amount,"
-                            + "service,sum(dosage),sum(debit-credit),visit_id,doctor,reference FROM hp_patient_card WHERE patient_no ='" + patientNumberTxt.getText() + "'"
-                            + " AND (invoice_no NOT ILIKE 'O%' OR invoice_no NOT ILIKE 'I%')  AND visit_id = '" + visitIDTxt.getText() + "'  GROUP BY main_service,service,visit_id,doctor,reference");
+                            + "service,sum(dosage),sum(debit-credit),visit_id,doctor,reference,date FROM hp_patient_card WHERE patient_no ='" + patientNumberTxt.getText() + "'"
+                            + " AND (invoice_no NOT ILIKE 'O%' OR invoice_no NOT ILIKE 'I%')  AND visit_id = '" + visitIDTxt.getText() + "'  GROUP BY main_service,service,visit_id,doctor,reference,date");
 
                     while (rsetTable1.next()) {
 
@@ -1846,6 +2058,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
                                         //jTable11.setValueAt(rsetTable1.getObject(5), i, 5);
                                         billTable.setValueAt(rsetTable1x.getObject(1), i, 8);
                                         billTable.setValueAt(rsetTable1.getObject(8), i, 10);
+                                        billTable.setValueAt(rsetTable1.getObject(9), i, 11);
                                         String code = null;
                                         while (rsetx1.next()) {
 
@@ -2548,7 +2761,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
                                     java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT "
                                             + "INTO ac_cash_collection VALUES(?,?,?,initcap(?),?,?, ?, "
                                             + "initcap(?), initcap(?), ?, ?, ?, initcap(?), ?, ?, ?, ?, ?, ?, "
-                                            + "?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                            + "?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                                     pstmt2.setObject(1, billTable.getValueAt(i, 8).toString());
                                     pstmt2.setObject(5, paymentModeCmbx.getSelectedItem().toString());
                                     pstmt2.setString(2, billTable.getValueAt(i, 0).toString());
@@ -2561,8 +2774,13 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
                                     pstmt2.setString(10, rcode);
                                     pstmt2.setString(12, receiptNo1);
                                     pstmt2.setString(11, jTextField221.getText());
-                                    pstmt2.setString(13, visitIDTxt.getText());
-                                    pstmt2.setString(14, payerTxt.getText());
+                                    if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+                                        pstmt2.setString(13, com.afrisoftech.hospital.HospitalMain.mobileTxID);
+                                        pstmt2.setString(14, com.afrisoftech.hospital.HospitalMain.mobileTelephone);
+                                    } else {
+                                        pstmt2.setString(13, visitIDTxt.getText());
+                                        pstmt2.setString(14, payerTxt.getText());
+                                    }
                                     pstmt2.setObject(15, "Receipts");
                                     pstmt2.setDouble(16, java.lang.Double.valueOf(billTable.getValueAt(i, 6).toString()));
                                     pstmt2.setDouble(17, 0.00);
@@ -2583,7 +2801,13 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
                                     pstmt2.setObject(32, priceCategory);
                                     pstmt2.setObject(33, code);
                                     pstmt2.setDouble(34, java.lang.Double.valueOf(billTable.getValueAt(i, 6).toString()) / java.lang.Double.valueOf(billTable.getValueAt(i, 1).toString()));
-
+                                    if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+                                        pstmt2.setObject(35, checkoutRequestID);
+                                        pstmt2.setObject(36, payBillNumberTxt.getText());
+                                    } else {
+                                        pstmt2.setObject(35, priceCategory);
+                                        pstmt2.setObject(36, code);
+                                    }
                                     pstmt2.executeUpdate();
 
                                 } else {
@@ -2775,6 +2999,17 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
 
                                 //                             com.afrisoftech.txtreports.GokReceiptsTxt policy = new com.afrisoftech.txtreports.GokReceiptsTxt(connectDB, jTextField91.getText(), jTextField311.getText(), receiptNo2, this.jComboBox41.getSelectedItem().toString(), jTextField121.getText(), jTextField131.getText(), jTextField811.getText());
                             }
+
+                            //Discharge and check out patient if "Discharge" button is selected
+//                            if (dischargeRdbtn.isSelected()) {
+//                                java.sql.PreparedStatement pstmt12d = connectDB.prepareStatement("UPDATE hp_admission SET check_out = true,discharged_by = current_user WHERE patient_no = '" + this.patientNumberTxt.getText() + "' AND visit_id = '" + visitIDTxt.getText() + "'");
+//                                pstmt12d.executeUpdate();
+//                            }
+                            java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("UPDATE mobile_payments SET mobilepay_alert = true WHERE mobile_tx_id = ?");
+                            pstmt2.setString(1, com.afrisoftech.hospital.HospitalMain.mobileTxID);
+                            pstmt2.executeUpdate();
+
+                            pstmt2.close();
 
                             connectDB.commit();
                             connectDB.setAutoCommit(true);
@@ -3285,6 +3520,9 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton91ActionPerformed
 
     private void stkPushBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stkPushBtnActionPerformed
+        com.afrisoftech.hospital.HospitalMain.mobileTxType = "IPD";
+        com.afrisoftech.hospital.HospitalMain.patientID = patientNumberTxt.getText();
+        com.afrisoftech.hospital.HospitalMain.patientName = patientNameTxt.getText();
         com.afrisoftech.hospital.HospitalMain.discreetReceipt = true;
         String payerTelephoneNumber = null;
         System.out.println("Payer Mobile Telephone Number : [" + payerMobileTelephoneNumberTxt.getText().replace("-", "").length() + "]");
@@ -3325,6 +3563,102 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_stkPushBtnActionPerformed
+
+    private void paybillNumberCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paybillNumberCmbxActionPerformed
+        if (paybillNumberCmbx.getSelectedItem() != null) {
+            com.afrisoftech.hospital.HospitalMain.payBillNumber = paybillNumberCmbx.getSelectedItem().toString();
+            try {
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT DISTINCT merchant_id, consumer_secrets FROM ac_cash_points WHERE paybill_no = ?");
+
+                pstmt.setString(1, paybillNumberCmbx.getSelectedItem().toString());
+                java.sql.ResultSet rset = pstmt.executeQuery();
+                while (rset.next()) {
+                    try {
+                        com.afrisoftech.hospital.HospitalMain.passKey = new String(rset.getBytes(1), "UTF-8");
+                        com.afrisoftech.hospital.HospitalMain.oAuthKey = new String(rset.getBytes(2), "UTF-8");
+                    } catch (UnsupportedEncodingException ex) {
+                        ex.printStackTrace();
+                        javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+                    }
+                }
+            } catch (SQLException ex) {
+                javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+                ex.printStackTrace();
+            }
+
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a paybill in order to proceed");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_paybillNumberCmbxActionPerformed
+
+    private void mobilepayTxNoTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_mobilepayTxNoTxtCaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobilepayTxNoTxtCaretUpdate
+
+    private void mobilepayTxNoTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mobilepayTxNoTxtFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobilepayTxNoTxtFocusGained
+
+    private void searchButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton2ActionPerformed
+
+        com.afrisoftech.hospital.HospitalMain.mobileTxID = null;
+        com.afrisoftech.hospital.HospitalMain.mobileTelephone = null;
+
+        System.out.println("Showing dialog");
+
+        // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
+        java.awt.Point point = this.mobilepayTxNoTxt.getLocationOnScreen();
+
+        mobilepayTxSearchDialog.setSize(700, 200);
+
+        mobilepayTxSearchDialog.setLocation(point);
+
+        mobilepayTxSearchDialog.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchButton2ActionPerformed
+
+    private void mobilepayTxSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_mobilepayTxSearchTxtCaretUpdate
+
+        if (mobilepayTxSearchTxt.getText().length() > 5) {
+            mobilepayTxtSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_time::time(0), mobile_tx_id, account_no, date, paid_amount, upper(dealer) as client_name, journal_no as paybill_no, mobilepay_alert as processed FROM public.mobile_payments WHERE mobilepay_alert = false AND account_no ilike '%" + mobilepayTxSearchTxt.getText() + "%' ORDER BY account_no"));
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobilepayTxSearchTxtCaretUpdate
+
+    private void mobilepayTxtSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobilepayTxtSearchTableMouseClicked
+
+        mobilepayTxNoTxt.setText(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 1).toString());
+
+        com.afrisoftech.hospital.HospitalMain.mobileTxID = mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 1).toString();
+
+        com.afrisoftech.hospital.HospitalMain.mobileTelephone = mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 2).toString();
+
+        payerMobileTelephoneNumberTxt.setText(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 2).toString());
+
+        mobileTxAmountTxt.setText(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 4).toString());
+        
+        presentedAmountTxt.setText(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 4).toString());
+        
+        paymentModeCmbx.setSelectedItem("M-Pesa");
+        
+        paybillNumberCmbx.setSelectedItem(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 6).toString());
+  
+        mobilepayTxSearchDialog.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobilepayTxtSearchTableMouseClicked
+
+    private void mobilepayTxtSearchTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobilepayTxtSearchTableMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobilepayTxtSearchTableMouseEntered
+
+    private void jButton522ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton522ActionPerformed
+
+        mobilepayTxSearchDialog.dispose();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton522ActionPerformed
 
     public java.lang.String getShiftNumber() {
 
@@ -3418,11 +3752,13 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField invoiceNumberTxt;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton1111;
+    public static javax.swing.JButton jButton1111;
     private javax.swing.JButton jButton221;
     private javax.swing.JButton jButton3111;
     public javax.swing.JButton jButton4111;
+    private javax.swing.JButton jButton422;
     private javax.swing.JButton jButton5111;
+    private javax.swing.JButton jButton522;
     private javax.swing.JButton jButton61;
     private javax.swing.JButton jButton9;
     private javax.swing.JButton jButton91;
@@ -3437,6 +3773,8 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1321;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel2122;
     private javax.swing.JLabel jLabel2131;
@@ -3445,6 +3783,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3121;
     private javax.swing.JLabel jLabel3131;
     private javax.swing.JLabel jLabel321;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel41121;
     private javax.swing.JLabel jLabel412;
     private javax.swing.JLabel jLabel4221;
@@ -3466,14 +3805,17 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel321;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel511;
+    private javax.swing.JPanel jPanel62;
     private javax.swing.JPanel jPanel711;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JDialog jSearchDialog2;
     private javax.swing.JPanel jSearchPanel;
     private javax.swing.JPanel jSearchPanel1;
     private javax.swing.JPanel jSearchPanel2;
+    private javax.swing.JPanel jSearchPanel22;
     private javax.swing.JScrollPane jSearchScrollPane;
     private javax.swing.JScrollPane jSearchScrollPane1;
+    private javax.swing.JScrollPane jSearchScrollPane22;
     private javax.swing.JTable jSearchTable1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator1111;
@@ -3487,6 +3829,11 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField512;
     private javax.swing.JTextField jTextField5211;
     private javax.swing.JTextField jTextField611;
+    private javax.swing.JTextField mobileTxAmountTxt;
+    private javax.swing.JTextField mobilepayTxNoTxt;
+    private javax.swing.JDialog mobilepayTxSearchDialog;
+    private javax.swing.JTextField mobilepayTxSearchTxt;
+    private javax.swing.JTable mobilepayTxtSearchTable;
     private javax.swing.JCheckBox nameSearchChkbx;
     private javax.swing.JCheckBox numberSearchChkbx;
     private javax.swing.JTextField patientCategoryTxt;
@@ -3496,12 +3843,14 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTable patientSearchTable;
     private javax.swing.JTextField patientSearchTxt;
     private javax.swing.JTextField payBillNumberTxt;
+    private javax.swing.JComboBox<String> paybillNumberCmbx;
     private javax.swing.JFormattedTextField payerMobileTelephoneNumberTxt;
     private javax.swing.JTextField payerTxt;
     private javax.swing.JComboBox paymentModeCmbx;
     private javax.swing.JTextField presentedAmountTxt;
     private javax.swing.JTextField receiptNumberTxt;
     private javax.swing.JButton searchButton;
+    private javax.swing.JButton searchButton2;
     private javax.swing.JTextField shiftNumberTxt;
     private javax.swing.JButton stkPushBtn;
     private javax.swing.JCheckBox tickAllChkbx;

@@ -644,7 +644,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextField" name="jTextField93">
+                        <Component class="javax.swing.JTextField" name="prescriptionNoTxt">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                           </Properties>
@@ -881,7 +881,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField13">
+                    <Component class="javax.swing.JTextField" name="patientNameTxt">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="doubleBuffered" type="boolean" value="true"/>
@@ -915,7 +915,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField22">
+                    <Component class="javax.swing.JTextField" name="patientCategoryTxt">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="doubleBuffered" type="boolean" value="true"/>
@@ -962,7 +962,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextField" name="jTextField92">
+                        <Component class="javax.swing.JTextField" name="patientNoTxt">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                             <Property name="toolTipText" type="java.lang.String" value="Click one on the ellipses on the right to select select a patient file"/>
@@ -1003,7 +1003,7 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JComboBox" name="jComboBox2">
+                    <Component class="javax.swing.JComboBox" name="doctorCmbx">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                           <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;select first_name||&apos; &apos;||middle_name as name from pb_doctors_list  where status ilike &apos;acti%&apos; order by name&quot;)" type="code"/>
@@ -1319,7 +1319,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="jComboBox4">
+                    <Component class="javax.swing.JComboBox" name="storetoCreditCmbx">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                           <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;select stores from store_allocation where user_name = current_user&quot;)" type="code"/>
@@ -1330,7 +1330,7 @@
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox4ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="storetoCreditCmbxActionPerformed"/>
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

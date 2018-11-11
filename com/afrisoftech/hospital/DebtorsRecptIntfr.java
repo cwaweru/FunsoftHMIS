@@ -46,12 +46,12 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         jSearchScrollPane = new javax.swing.JScrollPane();
         jSearchTable = new com.afrisoftech.dbadmin.JTable();
         jButton51 = new javax.swing.JButton();
-        schemeDialog = new javax.swing.JDialog();
-        jSearchPanel1 = new javax.swing.JPanel();
-        jTextField11111 = new javax.swing.JTextField();
-        jSearchScrollPane1 = new javax.swing.JScrollPane();
-        jSearchTable1 = new com.afrisoftech.dbadmin.JTable();
-        jButton511 = new javax.swing.JButton();
+        schemeSearchDialog = new javax.swing.JDialog();
+        schemeSearchPanel = new javax.swing.JPanel();
+        schemeSearchTxt = new javax.swing.JTextField();
+        schemeSearchScrollPane = new javax.swing.JScrollPane();
+        schemeSearchTable = new com.afrisoftech.dbadmin.JTable();
+        closeSchemeSearchBtn = new javax.swing.JButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         patientSearchDialog = new javax.swing.JDialog();
@@ -217,16 +217,16 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jSearchDialog.getContentPane().add(jSearchPanel, gridBagConstraints);
 
-        schemeDialog.setModal(true);
-        schemeDialog.setUndecorated(true);
-        schemeDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+        schemeSearchDialog.setModal(true);
+        schemeSearchDialog.setUndecorated(true);
+        schemeSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jSearchPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jSearchPanel1.setLayout(new java.awt.GridBagLayout());
+        schemeSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        schemeSearchPanel.setLayout(new java.awt.GridBagLayout());
 
-        jTextField11111.addCaretListener(new javax.swing.event.CaretListener() {
+        schemeSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField11111CaretUpdate(evt);
+                schemeSearchTxtCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -236,10 +236,10 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 300.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-        jSearchPanel1.add(jTextField11111, gridBagConstraints);
+        schemeSearchPanel.add(schemeSearchTxt, gridBagConstraints);
 
-        jSearchTable1.setToolTipText("Click on the target row to select the patient from the search.");
-        jSearchTable1.setShowHorizontalLines(false);
+        schemeSearchTable.setToolTipText("Click on the target row to select the patient from the search.");
+        schemeSearchTable.setShowHorizontalLines(false);
         /*javax.swing.table.TableColumn column = null;
 
         for (int i = 0; i < 4; i++) {
@@ -257,12 +257,12 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
             }
         }
         */
-        jSearchTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        schemeSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSearchTable1MouseClicked(evt);
+                schemeSearchTableMouseClicked(evt);
             }
         });
-        jSearchScrollPane1.setViewportView(jSearchTable1);
+        schemeSearchScrollPane.setViewportView(schemeSearchTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -271,13 +271,13 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
-        jSearchPanel1.add(jSearchScrollPane1, gridBagConstraints);
+        schemeSearchPanel.add(schemeSearchScrollPane, gridBagConstraints);
 
-        jButton511.setMnemonic('C');
-        jButton511.setText("Close");
-        jButton511.addActionListener(new java.awt.event.ActionListener() {
+        closeSchemeSearchBtn.setMnemonic('C');
+        closeSchemeSearchBtn.setText("Close");
+        closeSchemeSearchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton511ActionPerformed(evt);
+                closeSchemeSearchBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -285,7 +285,7 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchPanel1.add(jButton511, gridBagConstraints);
+        schemeSearchPanel.add(closeSchemeSearchBtn, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -293,7 +293,7 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        schemeDialog.getContentPane().add(jSearchPanel1, gridBagConstraints);
+        schemeSearchDialog.getContentPane().add(schemeSearchPanel, gridBagConstraints);
 
         patientSearchDialog.setModal(true);
         patientSearchDialog.setUndecorated(true);
@@ -734,7 +734,7 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel1.add(debtorBalanceTxt, gridBagConstraints);
 
-        payerMobileTelephoneNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bill Payer Telephone No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
+        payerMobileTelephoneNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bill Payer Telephone No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
         payerMobileTelephoneNumberTxt.setForeground(new java.awt.Color(0, 0, 255));
         try {
             payerMobileTelephoneNumberTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("254-7##-######")));
@@ -758,7 +758,7 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         payBillNumberTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         payBillNumberTxt.setText(com.afrisoftech.lib.CashShiftNumberFactory.getPayBillNumber(connectDB)
         );
-        payBillNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PayBill Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
+        payBillNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PayBill Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -1354,25 +1354,25 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_searchButton2ActionPerformed
 
-    private void jButton511ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton511ActionPerformed
-        schemeDialog.dispose();    // Add your handling code here:
-    }//GEN-LAST:event_jButton511ActionPerformed
+    private void closeSchemeSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeSchemeSearchBtnActionPerformed
+        schemeSearchDialog.dispose();    // Add your handling code here:
+    }//GEN-LAST:event_closeSchemeSearchBtnActionPerformed
     private void searchButton1Clicked() {
 
         System.out.println("Showing dialog");
 
         java.awt.Point point = this.schemeNameTxt.getLocationOnScreen();
 
-        schemeDialog.setSize(400, 200);
+        schemeSearchDialog.setSize(400, 200);
 
-        schemeDialog.setLocation(point);
+        schemeSearchDialog.setLocation(point);
 
-        schemeDialog.setVisible(true);
+        schemeSearchDialog.setVisible(true);
     }
-    private void jSearchTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable1MouseClicked
-        schemeNameTxt.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 0).toString());
-        jTextField8.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 1).toString());
-        actualPayerTxt.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 0).toString());
+    private void schemeSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schemeSearchTableMouseClicked
+        schemeNameTxt.setText(schemeSearchTable.getValueAt(schemeSearchTable.getSelectedRow(), 0).toString());
+        jTextField8.setText(schemeSearchTable.getValueAt(schemeSearchTable.getSelectedRow(), 1).toString());
+        actualPayerTxt.setText(schemeSearchTable.getValueAt(schemeSearchTable.getSelectedRow(), 0).toString());
 
         try {
             java.sql.Statement stmt = connectDB.createStatement();
@@ -1389,8 +1389,8 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         } catch (java.sql.SQLException sqe) {
             sqe.printStackTrace();
         }
-
-        schemeDialog.dispose();
+        
+        schemeSearchDialog.dispose();
         this.jButton11.setEnabled(true);
         this.jButton1.setEnabled(true);
 
@@ -1406,21 +1406,21 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         chequeNoTxt.setText("");
         //  jComboBox131.setSelectedItem(null);
         paymentModeCmbx.setSelectedItem(null);
-        schemeDialog.dispose();   // Add your handling code here:
-    }//GEN-LAST:event_jSearchTable1MouseClicked
+        schemeSearchDialog.dispose();   // Add your handling code here:
+    }//GEN-LAST:event_schemeSearchTableMouseClicked
 
-    private void jTextField11111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField11111CaretUpdate
-        if (jTextField11111.getCaretPosition() < 1) {
+    private void schemeSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_schemeSearchTxtCaretUpdate
+        if (schemeSearchTxt.getCaretPosition() < 1) {
 
             System.out.println("Nothing");
         } else {
-            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select (scheme_name) as scheme,account_no from ac_schemes where scheme_name ILIKE '%" + jTextField11111.getText().toString() + "%' AND closed = false "));
+            schemeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select (scheme_name) as scheme,account_no from ac_schemes where scheme_name ILIKE '%" + schemeSearchTxt.getText().toString() + "%' AND closed = false "));
 
-            jSearchTable1.setShowHorizontalLines(false);
-            jSearchScrollPane1.setViewportView(jSearchTable1);
+            schemeSearchTable.setShowHorizontalLines(false);
+            schemeSearchScrollPane.setViewportView(schemeSearchTable);
 
         }         // Add your handling code here:
-    }//GEN-LAST:event_jTextField11111CaretUpdate
+    }//GEN-LAST:event_schemeSearchTxtCaretUpdate
 
     private void jButton51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton51ActionPerformed
         jSearchDialog.dispose();            // Add your handling code here:
@@ -1653,6 +1653,7 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JTextField cashPointTxt;
     private javax.swing.JTextField chequeNoTxt;
+    private javax.swing.JButton closeSchemeSearchBtn;
     private javax.swing.JCheckBox createNewAccChk;
     private com.afrisoftech.lib.DatePicker datePicker1;
     private javax.swing.JFormattedTextField debtorBalanceTxt;
@@ -1665,7 +1666,6 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
     public javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton51;
-    private javax.swing.JButton jButton511;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1693,14 +1693,10 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JDialog jSearchDialog;
     private javax.swing.JPanel jSearchPanel;
-    private javax.swing.JPanel jSearchPanel1;
     private javax.swing.JScrollPane jSearchScrollPane;
-    private javax.swing.JScrollPane jSearchScrollPane1;
     private javax.swing.JTable jSearchTable;
-    private javax.swing.JTable jSearchTable1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1111;
-    private javax.swing.JTextField jTextField11111;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField otherDetailsTxt;
@@ -1722,8 +1718,12 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox paymentModeCmbx;
     public javax.swing.JCheckBox receiptByPayerChk;
     private javax.swing.JTextField receiptTxt;
-    private javax.swing.JDialog schemeDialog;
     private javax.swing.JTextField schemeNameTxt;
+    private javax.swing.JDialog schemeSearchDialog;
+    private javax.swing.JPanel schemeSearchPanel;
+    private javax.swing.JScrollPane schemeSearchScrollPane;
+    private javax.swing.JTable schemeSearchTable;
+    private javax.swing.JTextField schemeSearchTxt;
     private javax.swing.JButton searchButton1;
     private javax.swing.JButton searchButton2;
     private javax.swing.JTextField shiftNoTxt;

@@ -2192,8 +2192,13 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.weighty = 1.0;
         actionsPanel.add(tbScreeningSputumChkbx, gridBagConstraints);
 
-        tbScreeningChestXrayChkbx.setText("Chest X-Ray");
+        tbScreeningChestXrayChkbx.setText("X-Ray");
         tbScreeningChestXrayChkbx.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        tbScreeningChestXrayChkbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbScreeningChestXrayChkbxActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -2221,7 +2226,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.weighty = 1.0;
         actionsPanel.add(spacerlabelExtra, gridBagConstraints);
 
-        jScrollPane23.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Investigation request details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 255))); // NOI18N
+        jScrollPane23.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Investigation request details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 153, 255))); // NOI18N
         jScrollPane23.setViewportView(screeningInvestigationsTxt);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -2277,7 +2282,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         tbScreeningResultsPanel.add(tbScreeningSputumSmearResultCmbx, gridBagConstraints);
 
         tbScreeningChestXrayResultCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Non Suggestive", "Suggestive" }));
-        tbScreeningChestXrayResultCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Chest X-Ray"));
+        tbScreeningChestXrayResultCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("X-Ray"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -2286,7 +2291,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.weighty = 1.0;
         tbScreeningResultsPanel.add(tbScreeningChestXrayResultCmbx, gridBagConstraints);
 
-        jScrollPane24.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clinical examination details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 255))); // NOI18N
+        jScrollPane24.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clinical examination details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 153, 255))); // NOI18N
         jScrollPane24.setViewportView(screeningResultsTxt);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -2321,7 +2326,6 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         consultationTabbedPane.setForeground(new java.awt.Color(0, 51, 0));
-        consultationTabbedPane.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         consultationTabbedPane.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 consultationTabbedPaneMouseClicked(evt);
@@ -2331,7 +2335,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 51, 255), 2, true), "Click The Relevant Button", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 51, 255), 2, true), "Click The Relevant Button", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
@@ -2401,7 +2405,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel1.add(loadALLpatientsbtn, gridBagConstraints);
 
-        searchpatienttxtfld.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search patient ......", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 102, 255))); // NOI18N
+        searchpatienttxtfld.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search patient ......", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 255))); // NOI18N
         searchpatienttxtfld.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 searchpatienttxtfldCaretUpdate(evt);
@@ -3837,7 +3841,6 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         clerkingTabbedPane.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         clerkingTabbedPane.setForeground(new java.awt.Color(0, 153, 0));
         clerkingTabbedPane.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
-        clerkingTabbedPane.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
 
         clerkingPanel.setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -4243,7 +4246,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true, true, true, false, false, false
+                false, true, false, true, true, true, true, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -5858,10 +5861,10 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.weightx = 1.0;
         jPanel19.add(jButton8, gridBagConstraints);
 
-        jPanel231.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "External Transfer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 0, 255))); // NOI18N
+        jPanel231.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "External Transfer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 0, 255))); // NOI18N
         jPanel231.setLayout(new java.awt.GridBagLayout());
 
-        jPanel811.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(153, 0, 153))); // NOI18N
+        jPanel811.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(153, 0, 153))); // NOI18N
         jPanel811.setLayout(new java.awt.GridBagLayout());
 
         jLabel1133.setText("Consultants I/C");
@@ -9499,7 +9502,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             + "hpv.patient_no,hpv.input_date::time(0) as Visit_time,"
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
-                            + ",hpv.nature as Seen, (SELECT receipt_no FROM ac_cash_collection WHERE (ac_cash_collection.description ILIKE '%consultation%' OR ac_cash_collection.description ILIKE '%card%' OR ac_cash_collection.description ILIKE '%attend%') AND ac_cash_collection.patient_no = hpv.patient_no AND ac_cash_collection.date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1) ORDER BY ac_cash_collection.date DESC LIMIT 1) as receipt_no from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)    "
+                            + ",hpv.nature as Seen, '' as receipt_no from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)    "
                             + "  ORDER BY hpv.input_date::time(0)"));
                 } else {
                     this.clerkingwaitingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
@@ -9507,7 +9510,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             + "hpv.patient_no,hpv.input_date::time(0) as Visit_time,"
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
-                            + ",hpv.nature as Seen, (SELECT receipt_no FROM ac_cash_collection WHERE (ac_cash_collection.description ILIKE '%consultation%' OR ac_cash_collection.description ILIKE '%card%' OR ac_cash_collection.description ILIKE '%attend%') AND ac_cash_collection.patient_no = hpv.patient_no AND ac_cash_collection.date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1) ORDER BY ac_cash_collection.date DESC LIMIT 1) as receipt_no from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)    "
+                            + ",hpv.nature as Seen, '' as receipt_no from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)    "
+                            //+ ",hpv.nature as Seen, (SELECT receipt_no FROM ac_cash_collection WHERE (ac_cash_collection.description ILIKE '%consultation%' OR ac_cash_collection.description ILIKE '%card%' OR ac_cash_collection.description ILIKE '%attend%') AND ac_cash_collection.patient_no = hpv.patient_no AND ac_cash_collection.date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1) ORDER BY ac_cash_collection.date DESC LIMIT 1) as receipt_no from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)    "
                             + "and hpv.clinic ='" + this.waitingclinicscmbx.getSelectedItem().toString() + "'  ORDER BY hpv.input_date::time(0)"));
 
                 }
@@ -9632,7 +9636,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             java.sql.Statement stmt1 = connectDB.createStatement();
             java.sql.ResultSet rset1 = null;
             if (outpatientCheckBox.isSelected()) {
-                rset1 = stmt1.executeQuery("select gender,age::int,department from hp_patient_visit where patient_no ='" + clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 0).toString()+ "' ORDER BY age desc LIMIT 1 ");
+                rset1 = stmt1.executeQuery("select gender,age::int,department from hp_patient_visit where patient_no ='" + clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 0).toString() + "' ORDER BY age desc LIMIT 1 ");
             } else {
                 rset1 = stmt1.executeQuery("select gender,pat_age::int,ward from hp_admission where patient_no ='" + clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 0).toString() + "' ORDER BY date_admitted desc LIMIT 1 ");
             }
@@ -10450,24 +10454,39 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     }//GEN-LAST:event_generalCheckBoxActionPerformed
 
     private void lablatoryCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lablatoryCheckActionPerformed
-        this.searchservicesTextField.setEditable(true);
-        query = "Laboratory";
-        this.generalServicesOrderingPanel.setVisible(false);
-        this.servicesOrderHeaderPanel.setVisible(true);
-        this.pharmacyRequestsPanel.setVisible(false);
-        this.jPanel82.setVisible(true);
-        this.jScrollPane2.setVisible(true);
-        this.jScrollPane3.setVisible(false);
-        this.jLabel16.setVisible(false);
-        jComboBox2.setVisible(false);
-        for (int k = 0; k < pharmacyTable.getRowCount(); k++) {
-            for (int r = 0; r < pharmacyTable.getColumnCount(); r++) {
-                pharmacyTable.setValueAt(null, k, r);
+        float hasHistory = 0;
+        java.sql.Statement stm121b;
+        try {
+            stm121b = connectDB.createStatement();
+
+            java.sql.ResultSet rset24bx = stm121b.executeQuery("SELECT COUNT(patient_no) FROM hp_clinical_results WHERE patient_no = '" + nameNoTxt.getText() + "' AND typeof_test IS NOT NULL AND comments IS NOT NULL AND date = '" + transdatePicker.getDate() + "'");
+            while (rset24bx.next()) {
+                hasHistory = rset24bx.getFloat(1);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultationIntfr.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if (hasHistory > 0) {
+            this.searchservicesTextField.setEditable(true);
+            query = "Laboratory";
+            this.generalServicesOrderingPanel.setVisible(false);
+            this.servicesOrderHeaderPanel.setVisible(true);
+            this.pharmacyRequestsPanel.setVisible(false);
+            this.jPanel82.setVisible(true);
+            this.jScrollPane2.setVisible(true);
+            this.jScrollPane3.setVisible(false);
+            this.jLabel16.setVisible(false);
+            jComboBox2.setVisible(false);
+            for (int k = 0; k < pharmacyTable.getRowCount(); k++) {
+                for (int r = 0; r < pharmacyTable.getColumnCount(); r++) {
+                    pharmacyTable.setValueAt(null, k, r);
+                }
+            }
 
-        diagnosticsServicesTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select request_code,request_name FROM clerking_requests_category where department ilike 'Laboratory' order by 1 asc"));
-
+            diagnosticsServicesTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select request_code,request_name FROM clerking_requests_category where department ilike 'Laboratory' order by 1 asc"));
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "You MUST record patient history before proceeding to diagnostics/investigations.");
+        }
         // Add your handling code here:
     }//GEN-LAST:event_lablatoryCheckActionPerformed
 
@@ -10510,23 +10529,38 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     }//GEN-LAST:event_pharmacyCheckBoxActionPerformed
 
     private void radiologyCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiologyCheckActionPerformed
-        this.searchservicesTextField.setEditable(true);
-        this.generalServicesOrderingPanel.setVisible(false);
-        query = "X-Ray";
-        this.jPanel82.setVisible(true);
-        this.servicesOrderHeaderPanel.setVisible(true);
-        this.jScrollPane2.setVisible(true);
-        this.jScrollPane3.setVisible(false);
-        this.jLabel16.setVisible(false);
-        jComboBox2.setVisible(false);
-        for (int k = 0; k < pharmacyTable.getRowCount(); k++) {
-            for (int r = 0; r < pharmacyTable.getColumnCount(); r++) {
-                pharmacyTable.setValueAt(null, k, r);
+        float hasHistory = 0;
+        java.sql.Statement stm121b;
+        try {
+            stm121b = connectDB.createStatement();
+
+            java.sql.ResultSet rset24bx = stm121b.executeQuery("SELECT COUNT(patient_no) FROM hp_clinical_results WHERE patient_no = '" + nameNoTxt.getText() + "' AND typeof_test IS NOT NULL AND comments IS NOT NULL AND date = '" + transdatePicker.getDate() + "'");
+            while (rset24bx.next()) {
+                hasHistory = rset24bx.getFloat(1);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultationIntfr.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if (hasHistory > 0) {
+            this.searchservicesTextField.setEditable(true);
+            this.generalServicesOrderingPanel.setVisible(false);
+            query = "X-Ray";
+            this.jPanel82.setVisible(true);
+            this.servicesOrderHeaderPanel.setVisible(true);
+            this.jScrollPane2.setVisible(true);
+            this.jScrollPane3.setVisible(false);
+            this.jLabel16.setVisible(false);
+            jComboBox2.setVisible(false);
+            for (int k = 0; k < pharmacyTable.getRowCount(); k++) {
+                for (int r = 0; r < pharmacyTable.getColumnCount(); r++) {
+                    pharmacyTable.setValueAt(null, k, r);
+                }
+            }
 
-        diagnosticsServicesTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select request_code,request_name FROM clerking_requests_category where trim(department) ilike 'X-Ray' or trim(department) ilike 'XRay' or trim(department) ilike 'x-ray' or trim(department) ilike 'radiology' or trim(department) ilike 'imaging' order by 1 asc"));
-
+            diagnosticsServicesTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select request_code,request_name FROM clerking_requests_category where trim(department) ilike 'X-Ray' or trim(department) ilike 'XRay' or trim(department) ilike 'x-ray' or trim(department) ilike 'radiology' or trim(department) ilike 'imaging' order by 1 asc"));
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "You MUST record patient history before proceeding to diagnostics/investigations.");
+        }
         // Add your handling code here:
     }//GEN-LAST:event_radiologyCheckActionPerformed
 
@@ -10741,7 +10775,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             + "hpv.patient_no,hpv.input_date::time(0) as Visit_time,"
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date,"
-                            + "(SELECT receipt_no FROM ac_cash_collection WHERE (ac_cash_collection.description ILIKE '%consultation%' OR ac_cash_collection.description ILIKE '%card%' OR ac_cash_collection.description ILIKE '%attend%') AND ac_cash_collection.patient_no = hpv.patient_no AND ac_cash_collection.date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1) ORDER BY ac_cash_collection.date DESC LIMIT 1) as receipt_no "
+                            // + "(SELECT receipt_no FROM ac_cash_collection WHERE (ac_cash_collection.description ILIKE '%consultation%' OR ac_cash_collection.description ILIKE '%card%' OR ac_cash_collection.description ILIKE '%attend%') AND ac_cash_collection.patient_no = hpv.patient_no AND ac_cash_collection.date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1) ORDER BY ac_cash_collection.date DESC LIMIT 1) as receipt_no "
                             + "from  hp_patient_visit hpv  where hpv.patient_no ilike '" + searchpatienttxtfld.getText() + "%'  "
                             + "and hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)    "
                             + "    ORDER BY hpv.input_date::time(0) ");
@@ -10750,7 +10784,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             + "hpv.patient_no,hpv.input_date::time(0) as Visit_time,"
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
-                            + ",hpv.nature as Seen,(SELECT receipt_no FROM ac_cash_collection WHERE (ac_cash_collection.description ILIKE '%consultation%' OR ac_cash_collection.description ILIKE '%card%' OR ac_cash_collection.description ILIKE '%attend%') AND ac_cash_collection.patient_no = hpv.patient_no AND ac_cash_collection.date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1) ORDER BY ac_cash_collection.date DESC LIMIT 1) as receipt_no"
+                            + ",hpv.nature as Seen, '' as receipt_no"
+                            //                            + ",hpv.nature as Seen,(SELECT receipt_no FROM ac_cash_collection WHERE (ac_cash_collection.description ILIKE '%consultation%' OR ac_cash_collection.description ILIKE '%card%' OR ac_cash_collection.description ILIKE '%attend%') AND ac_cash_collection.patient_no = hpv.patient_no AND ac_cash_collection.date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1) ORDER BY ac_cash_collection.date DESC LIMIT 1) as receipt_no"
+
                             + " from  hp_patient_visit hpv  where (hpv.patient_no ilike '%" + searchpatienttxtfld.getText() + "%' OR hpv.name ilike '%" + searchpatienttxtfld.getText() + "%') "
                             + "and hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)    "
                             + "   ORDER BY hpv.input_date::time(0) "));
@@ -10770,7 +10806,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             + "hpv.patient_no,hpv.input_date::time(0) as Visit_time,"
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
-                            + ",hpv.nature as Seen, (SELECT receipt_no FROM ac_cash_collection WHERE (ac_cash_collection.description ILIKE '%consultation%' OR ac_cash_collection.description ILIKE '%card%' OR ac_cash_collection.description ILIKE '%attend%') AND ac_cash_collection.patient_no = hpv.patient_no AND ac_cash_collection.date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1) ORDER BY ac_cash_collection.date DESC LIMIT 1) as receipt_no "
+                            + ",hpv.nature as Seen, '' as receipt_no "
                             + " from  hp_patient_visit hpv  where  "
                             + "   (hpv.name ilike '%" + searchpatienttxtfld.getText() + "%' OR hpv.patient_no ilike '%" + searchpatienttxtfld.getText() + "%') "
                             + "and hpv.input_date::date>'" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)   "
@@ -10812,35 +10848,35 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 marital = rset24a.getString(1);
             }
             if (clerkingTabbedPane.getSelectedIndex() == 0) {
-                if(clinicalExamineditorTxt.getText().length() > 5 && complainsTextPaneTxt.getText().length() > 5 && provisionalDiagnosistxt.getText().length() > 3){
-                PreparedStatement pstmt21 = connectDB.prepareStatement("INSERT INTO hp_clinical_results VALUES(?,?,?,?,?,?,?, ?, ?, ?, current_user, ?,?,?)");
+                if (clinicalExamineditorTxt.getText().length() > 5 && complainsTextPaneTxt.getText().length() > 5 && provisionalDiagnosistxt.getText().length() > 3) {
+                    PreparedStatement pstmt21 = connectDB.prepareStatement("INSERT INTO hp_clinical_results VALUES(?,?,?,?,?,?,?, ?, ?, ?, current_user, ?,?,?)");
 
-                pstmt21.setString(1, jTextField922.getText());
-                pstmt21.setString(2, patientNameTxt.getText());
-                pstmt21.setString(3, clinicalExamineditorTxt.getText());
-                pstmt21.setString(4, "");
-                pstmt21.setString(5, cat);
-                // pstmt21.setString(6,jTable1.getValueAt(i,0).toString());
-                pstmt21.setString(6, jTextField9111.getText());
-                pstmt21.setDate(7, com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()));
-                pstmt21.setString(8, "RST COMPLAINS");
+                    pstmt21.setString(1, jTextField922.getText());
+                    pstmt21.setString(2, patientNameTxt.getText());
+                    pstmt21.setString(3, clinicalExamineditorTxt.getText());
+                    pstmt21.setString(4, "");
+                    pstmt21.setString(5, cat);
+                    // pstmt21.setString(6,jTable1.getValueAt(i,0).toString());
+                    pstmt21.setString(6, jTextField9111.getText());
+                    pstmt21.setDate(7, com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()));
+                    pstmt21.setString(8, "RST COMPLAINS");
 
-                pstmt21.setObject(9, complainsTextPaneTxt.getText());
-                pstmt21.setTimestamp(10, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+                    pstmt21.setObject(9, complainsTextPaneTxt.getText());
+                    pstmt21.setTimestamp(10, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
 
-                pstmt21.setObject(11, provisionalDiagnosistxt.getText());
-                pstmt21.setObject(12, "");
-                pstmt21.setString(13, "");
+                    pstmt21.setObject(11, provisionalDiagnosistxt.getText());
+                    pstmt21.setObject(12, "");
+                    pstmt21.setString(13, "");
 
-                pstmt21.executeUpdate();
-                PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE hp_patient_visit SET nature = 'Cons',doctor_name  = current_user ,cons_time =current_timestamp where patient_no = '" + jTextField922.getText() + "' AND  nature = '1' ");
-                pstmt46.executeUpdate();
-                PreparedStatement pstmt46x = connectDB.prepareStatement("UPDATE hp_patient_register SET waiting_patient = false where patient_no = '" + jTextField922.getText() + "'");
-                pstmt46x.executeUpdate();
-                javax.swing.JOptionPane.showMessageDialog(this, "Data Inserted Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                   javax.swing.JOptionPane.showMessageDialog(this, "The client history/complaints, physical examination and provisional diagnosis MUST be indicated before proceeding to save the info.");
-                    }
+                    pstmt21.executeUpdate();
+                    PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE hp_patient_visit SET nature = 'Cons',doctor_name  = current_user ,cons_time =current_timestamp where patient_no = '" + jTextField922.getText() + "' AND  nature = '1' ");
+                    pstmt46.executeUpdate();
+                    PreparedStatement pstmt46x = connectDB.prepareStatement("UPDATE hp_patient_register SET waiting_patient = false where patient_no = '" + jTextField922.getText() + "'");
+                    pstmt46x.executeUpdate();
+                    javax.swing.JOptionPane.showMessageDialog(this, "Data Inserted Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(this, "The client history/complaints, physical examination and provisional diagnosis MUST be indicated before proceeding to save the info.");
+                }
             } else if (clerkingTabbedPane.getSelectedIndex() == 2) {
                 if (diagnosisTable.isEditing()) {
                     diagnosisTable.getCellEditor().stopCellEditing();
@@ -10863,7 +10899,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                         }
 
                         float history = 0;
-                        
+
                         java.sql.Statement stm121bx = connectDB.createStatement();
 
                         java.sql.ResultSet rset24bx1 = stm121bx.executeQuery("SELECT COUNT(patient_no) FROM hp_clinical_results WHERE patient_no = '" + nameNoTxt.getText() + "' AND typeof_test IS NOT NULL AND comments IS NOT NULL AND date = '" + transdatePicker.getDate() + "'");
@@ -11510,7 +11546,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     }//GEN-LAST:event_tbScreeningClearFormBtnActionPerformed
 
     private void tbScreeningSaveInvestigationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbScreeningSaveInvestigationsBtnActionPerformed
-        if (tbScreeeningGeneExpertChkbx.isSelected() || tbScreeningSputumChkbx.isSelected() || tbScreeningChestXrayChkbx.isSelected()) {
+        if (tbScreeeningGeneExpertChkbx.isSelected() || tbScreeningSputumChkbx.isSelected() || tbScreeningChestXrayChkbx.isSelected() || screeningInvestigationsTxt.getText().length() > 5) {
             if (tbScreeeningGeneExpertChkbx.isSelected()) {
                 try {
                     java.sql.PreparedStatement pstmtScreeningInvestigations = connectDB.prepareStatement("INSERT INTO public.hp_screening_procedures("
@@ -11645,6 +11681,34 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         tbScreeningDialog.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_tbScreeningSaveInvestigationsResultsBtnActionPerformed
+
+    private void tbScreeningChestXrayChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbScreeningChestXrayChkbxActionPerformed
+
+        if (tbScreeningChestXrayChkbx.isSelected()) {
+            consultationTabbedPane.setSelectedIndex(2);
+            clerkingTabbedPane.setSelectedIndex(1);
+            radiologyCheck.setSelected(true);
+            radiologyCheck.doClick();
+            this.searchservicesTextField.setEditable(true);
+            this.generalServicesOrderingPanel.setVisible(false);
+            query = "X-Ray";
+            this.jPanel82.setVisible(true);
+            this.servicesOrderHeaderPanel.setVisible(true);
+            this.jScrollPane2.setVisible(true);
+            this.jScrollPane3.setVisible(false);
+            this.jLabel16.setVisible(false);
+            jComboBox2.setVisible(false);
+            for (int k = 0; k < pharmacyTable.getRowCount(); k++) {
+                for (int r = 0; r < pharmacyTable.getColumnCount(); r++) {
+                    pharmacyTable.setValueAt(null, k, r);
+                }
+            }
+
+            diagnosticsServicesTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select request_code,request_name FROM clerking_requests_category where trim(department) ilike 'X-Ray' or trim(department) ilike 'XRay' or trim(department) ilike 'x-ray' or trim(department) ilike 'radiology' or trim(department) ilike 'imaging' order by 1 asc"));
+
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbScreeningChestXrayChkbxActionPerformed
 
     private void populateTable1(java.lang.String patient_no) {
     }
@@ -12692,112 +12756,112 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                     }
                     //end of general services
                 } else if (lablatoryCheck.isSelected() || radiologyCheck.isSelected()) {
-                    float hasHistory = 0;
-                    java.sql.Statement stm121b = connectDB.createStatement();
-                    java.sql.ResultSet rset24bx = stm121b.executeQuery("SELECT COUNT(patient_no) FROM hp_clinical_results WHERE patient_no = '" + nameNoTxt.getText() + "' AND typeof_test IS NOT NULL AND comments IS NOT NULL AND date = '" + transdatePicker.getDate() + "'");
-                    while (rset24bx.next()) {
-                        hasHistory = rset24bx.getFloat(1);
-                    }
+//                    float hasHistory = 0;
+//                    java.sql.Statement stm121b = connectDB.createStatement();
+//                    java.sql.ResultSet rset24bx = stm121b.executeQuery("SELECT COUNT(patient_no) FROM hp_clinical_results WHERE patient_no = '" + nameNoTxt.getText() + "' AND typeof_test IS NOT NULL AND comments IS NOT NULL AND date = '" + transdatePicker.getDate() + "'");
+//                    while (rset24bx.next()) {
+//                        hasHistory = rset24bx.getFloat(1);
+//                    }
+//
+//                    if (hasHistory > 0) {
+                    if (jTable13.getValueAt(i, 0) == Boolean.TRUE) {
+                        rse121 = stm121q.executeQuery("select activity from pb_activity where code ='" + jTable13.getValueAt(i, 5).toString() + "'");
 
-                    if (hasHistory > 0) {
-                        if (jTable13.getValueAt(i, 0) == Boolean.TRUE) {
-                            rse121 = stm121q.executeQuery("select activity from pb_activity where code ='" + jTable13.getValueAt(i, 5).toString() + "'");
+                        while (rse121.next()) {
 
-                            while (rse121.next()) {
+                            System.out.println("am executing this now lab check and radio check false");
+                            String glAcc = rse121.getObject(1).toString();
+                            PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO pb_doctors_request VALUES(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?), ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?)");
 
-                                System.out.println("am executing this now lab check and radio check false");
-                                String glAcc = rse121.getObject(1).toString();
-                                PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO pb_doctors_request VALUES(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?), ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?)");
+                            pstmt2.setString(1, nameNoTxt.getText());
 
-                                pstmt2.setString(1, nameNoTxt.getText());
+                            if (patientNameTxt.getText().equals("")) {
+                                javax.swing.JOptionPane.showMessageDialog(this, "Patient Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                            } else {
 
-                                if (patientNameTxt.getText().equals("")) {
-                                    javax.swing.JOptionPane.showMessageDialog(this, "Patient Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                } else {
+                                pstmt2.setString(2, patientNameTxt.getText());
+                            }
+                            // pstmt2.setString(2,jTextField1.getText());
+                            pstmt2.setString(3, paymentModetxt.getText());
+                            if (jTextField8.getText().equals("")) {
+                                javax.swing.JOptionPane.showMessageDialog(this, "Doctor's Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                            } else {
 
-                                    pstmt2.setString(2, patientNameTxt.getText());
+                                pstmt2.setString(4, jTextField8.getText());
+                            }
+                            //  pstmt2.setString(4,jTextField8.getText());
+                            pstmt2.setString(5, jTable13.getValueAt(i, 1).toString());
+                            pstmt2.setDouble(6, java.lang.Double.valueOf(jTable13.getValueAt(i, 2).toString()));
+                            pstmt2.setDouble(7, java.lang.Double.valueOf(jTable13.getValueAt(i, 4).toString()));
+                            pstmt2.setObject(8, jTable13.getValueAt(i, 5).toString());
+                            pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker12.getDate()));
+                            pstmt2.setString(10, billNo);
+                            if (paymentModetxt.getText().startsWith("Scheme")) {
+                                pstmt2.setBoolean(12, true);
+                            } else {
+
+                                pstmt2.setBoolean(12, false);
+                            }
+                            pstmt2.setString(11, user);
+                            pstmt2.setString(13, glAcc);
+                            pstmt2.setString(18, billNo);
+                            if (lablatoryCheck.isSelected() == true) {
+                                pstmt2.setString(15, "LAB");
+                            } else if (radiologyCheck.isSelected() == true) {
+                                pstmt2.setString(15, "X-RAY");
+                            }
+
+                            pstmt2.setBoolean(16, false);
+                            pstmt2.setBoolean(17, false);
+                            pstmt2.setString(14, visitID);
+                            pstmt2.setString(19, datePicker12.getDate().toString());
+                            pstmt2.setTimestamp(20, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+                            pstmt2.setString(21, waitingclinicscmbx.getSelectedItem().toString());
+                            pstmt2.setString(22, rank);
+                            pstmt2.setString(23, ageTxt.getText().toString());
+                            pstmt2.setString(24, notesTextField.getText().toString());
+                            pstmt2.setString(25, waitingclinicscmbx.getSelectedItem().toString());
+                            if (lablatoryCheck.isSelected() == Boolean.TRUE) {
+                                if (this.jTable13.getValueAt(i, 6) != null) {
+                                    pstmt2.setString(26, jTable13.getValueAt(i, 6).toString());
                                 }
-                                // pstmt2.setString(2,jTextField1.getText());
-                                pstmt2.setString(3, paymentModetxt.getText());
-                                if (jTextField8.getText().equals("")) {
-                                    javax.swing.JOptionPane.showMessageDialog(this, "Doctor's Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                } else {
+                            } else {
+                                pstmt2.setString(26, "");
+                            }
 
-                                    pstmt2.setString(4, jTextField8.getText());
-                                }
-                                //  pstmt2.setString(4,jTextField8.getText());
-                                pstmt2.setString(5, jTable13.getValueAt(i, 1).toString());
-                                pstmt2.setDouble(6, java.lang.Double.valueOf(jTable13.getValueAt(i, 2).toString()));
-                                pstmt2.setDouble(7, java.lang.Double.valueOf(jTable13.getValueAt(i, 4).toString()));
-                                pstmt2.setObject(8, jTable13.getValueAt(i, 5).toString());
-                                pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker12.getDate()));
-                                pstmt2.setString(10, billNo);
-                                if (paymentModetxt.getText().startsWith("Scheme")) {
-                                    pstmt2.setBoolean(12, true);
-                                } else {
+                            pstmt2.setString(27, Sex);
+                            pstmt2.setString(28, "DOC POSTING");
+                            pstmt2.setString(29, billNo + "-" + i);
+                            pstmt2.executeUpdate();
 
-                                    pstmt2.setBoolean(12, false);
-                                }
-                                pstmt2.setString(11, user);
-                                pstmt2.setString(13, glAcc);
-                                pstmt2.setString(18, billNo);
-                                if (lablatoryCheck.isSelected() == true) {
-                                    pstmt2.setString(15, "LAB");
-                                } else if (radiologyCheck.isSelected() == true) {
-                                    pstmt2.setString(15, "X-RAY");
-                                }
+                            if (jTable13.getValueAt(i, 1).toString().startsWith("plaster") || jTable13.getValueAt(i, 1).toString().startsWith("POP") || jTable13.getValueAt(i, 1).toString().startsWith("p.o.p")) {
+                            } else {
+                                if (!paymentModetxt.getText().startsWith("Scheme") && outpatientCheckBox.isSelected()) {
+                                    PreparedStatement pstmt2f = connectDB.prepareStatement("insert into hp_patient_billing values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?),?)");
 
-                                pstmt2.setBoolean(16, false);
-                                pstmt2.setBoolean(17, false);
-                                pstmt2.setString(14, visitID);
-                                pstmt2.setString(19, datePicker12.getDate().toString());
-                                pstmt2.setTimestamp(20, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
-                                pstmt2.setString(21, waitingclinicscmbx.getSelectedItem().toString());
-                                pstmt2.setString(22, rank);
-                                pstmt2.setString(23, ageTxt.getText().toString());
-                                pstmt2.setString(24, notesTextField.getText().toString());
-                                pstmt2.setString(25, waitingclinicscmbx.getSelectedItem().toString());
-                                if (lablatoryCheck.isSelected() == Boolean.TRUE) {
-                                    if (this.jTable13.getValueAt(i, 6) != null) {
-                                        pstmt2.setString(26, jTable13.getValueAt(i, 6).toString());
-                                    }
-                                } else {
-                                    pstmt2.setString(26, "");
-                                }
-
-                                pstmt2.setString(27, Sex);
-                                pstmt2.setString(28, "DOC POSTING");
-                                pstmt2.setString(29, billNo + "-" + i);
-                                pstmt2.executeUpdate();
-
-                                if (jTable13.getValueAt(i, 1).toString().startsWith("plaster") || jTable13.getValueAt(i, 1).toString().startsWith("POP") || jTable13.getValueAt(i, 1).toString().startsWith("p.o.p")) {
-                                } else {
-                                    if (!paymentModetxt.getText().startsWith("Scheme") && outpatientCheckBox.isSelected()) {
-                                        PreparedStatement pstmt2f = connectDB.prepareStatement("insert into hp_patient_billing values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?),?)");
-
-                                        pstmt2f.setString(1, nameNoTxt.getText());
-                                        pstmt2f.setString(2, patientNameTxt.getText());
-                                        pstmt2f.setString(3, paymentModetxt.getText());
-                                        pstmt2f.setString(4, jTextField22.getText());
-                                        pstmt2f.setString(5, jTable13.getValueAt(i, 1).toString());
-                                        pstmt2f.setDouble(6, java.lang.Double.valueOf(jTable13.getValueAt(i, 2).toString()));
-                                        pstmt2f.setDouble(7, java.lang.Double.valueOf(jTable13.getValueAt(i, 4).toString()));
-                                        pstmt2f.setObject(8, jTable13.getValueAt(i, 5).toString());
-                                        pstmt2f.setDate(9, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //SQLDateFormat.getSQLDate(datePicker12.getDate()));//java.sql.Date.valueOf(String.format("%1$tY-%1$tm-%1$te",datePicker1.getDate())));
-                                        pstmt2f.setString(10, billNo);
-                                        pstmt2f.setString(11, user);
+                                    pstmt2f.setString(1, nameNoTxt.getText());
+                                    pstmt2f.setString(2, patientNameTxt.getText());
+                                    pstmt2f.setString(3, paymentModetxt.getText());
+                                    pstmt2f.setString(4, jTextField22.getText());
+                                    pstmt2f.setString(5, jTable13.getValueAt(i, 1).toString());
+                                    pstmt2f.setDouble(6, java.lang.Double.valueOf(jTable13.getValueAt(i, 2).toString()));
+                                    pstmt2f.setDouble(7, java.lang.Double.valueOf(jTable13.getValueAt(i, 4).toString()));
+                                    pstmt2f.setObject(8, jTable13.getValueAt(i, 5).toString());
+                                    pstmt2f.setDate(9, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //SQLDateFormat.getSQLDate(datePicker12.getDate()));//java.sql.Date.valueOf(String.format("%1$tY-%1$tm-%1$te",datePicker1.getDate())));
+                                    pstmt2f.setString(10, billNo);
+                                    pstmt2f.setString(11, user);
 //                                    if (paymentModetxt.getText().startsWith("Scheme") || inpatientCheckBox.isSelected() == Boolean.TRUE) {
 //                                        pstmt2f.setBoolean(12, true);
 //                                    } else if (paymentModetxt.getText().startsWith("Cash") && outpatientCheckBox.isSelected() == Boolean.TRUE) {
 //                                        pstmt2f.setBoolean(12, true);
 //                                    }
-                                        pstmt2f.setBoolean(12, false);
-                                        pstmt2f.setString(13, glAcc);
-                                        pstmt2f.setString(14, visitID);
-                                        pstmt2f.setString(15, "");
-                                        pstmt2f.setBoolean(16, false);
-                                        pstmt2f.executeUpdate();
-                                        /*
+                                    pstmt2f.setBoolean(12, false);
+                                    pstmt2f.setString(13, glAcc);
+                                    pstmt2f.setString(14, visitID);
+                                    pstmt2f.setString(15, "");
+                                    pstmt2f.setBoolean(16, false);
+                                    pstmt2f.executeUpdate();
+                                    /*
                                      org.apache.commons.httpclient.methods.PostMethod postMethod = new org.apache.commons.httpclient.methods.PostMethod("");
                                      org.apache.commons.httpclient.NameValuePair[] data = {
                                      new org.apache.commons.httpclient.NameValuePair("patient_no", nameNoTxt.getText()),
@@ -12814,122 +12878,122 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                      InputStream in = postMethod.getResponseBodyAsStream();
                                      String in2 = postMethod.getResponseBodyAsString();
                                      System.out.println(in2);
-                                         */
+                                     */
 //                                    HttpPost httpClient = new HttpPost("");
 //                                    httpClient.setURI(null);
-                                    } else if (paymentModetxt.getText().startsWith("Scheme") || inpatientCheckBox.isSelected()) {
-                                        //in patient and outpatient scheme
-                                        ////************************************
-                                        ////************************************
+                                } else if (paymentModetxt.getText().startsWith("Scheme") || inpatientCheckBox.isSelected()) {
+                                    //in patient and outpatient scheme
+                                    ////************************************
+                                    ////************************************
 
-                                        String payMode = null;
-                                        String patientAcc = null;
-                                        String cardNo = null;
-                                        String AccDesc = null;
-                                        String scheme = paymentModetxt.getText();
-                                        String cardName = null;
-                                        String isurer = null;
-                                        String expDate = null;
-                                        String staffNo = null;
+                                    String payMode = null;
+                                    String patientAcc = null;
+                                    String cardNo = null;
+                                    String AccDesc = null;
+                                    String scheme = paymentModetxt.getText();
+                                    String cardName = null;
+                                    String isurer = null;
+                                    String expDate = null;
+                                    String staffNo = null;
 
-                                        java.sql.Statement stm1 = connectDB.createStatement();
-                                        java.sql.ResultSet rse1 = stm1.executeQuery("select pay_mode,account_no,description,payer,payer,expiry_date,account_no from hp_inpatient_register where patient_no ='" + nameNoTxt.getText() + "'");
-                                        while (rse1.next()) {
-                                            cardNo = dbObject.getDBObject(rse1.getObject(2), "-");
-                                            scheme = dbObject.getDBObject(rse1.getObject(3), "-");
-                                            cardName = dbObject.getDBObject(rse1.getObject(4), "-");
-                                            isurer = dbObject.getDBObject(rse1.getObject(5), "-");
-                                            expDate = rse1.getString(6);
-                                            staffNo = dbObject.getDBObject(rse1.getObject(7), "-");
+                                    java.sql.Statement stm1 = connectDB.createStatement();
+                                    java.sql.ResultSet rse1 = stm1.executeQuery("select pay_mode,account_no,description,payer,payer,expiry_date,account_no from hp_inpatient_register where patient_no ='" + nameNoTxt.getText() + "'");
+                                    while (rse1.next()) {
+                                        cardNo = dbObject.getDBObject(rse1.getObject(2), "-");
+                                        scheme = dbObject.getDBObject(rse1.getObject(3), "-");
+                                        cardName = dbObject.getDBObject(rse1.getObject(4), "-");
+                                        isurer = dbObject.getDBObject(rse1.getObject(5), "-");
+                                        expDate = rse1.getString(6);
+                                        staffNo = dbObject.getDBObject(rse1.getObject(7), "-");
 
-                                        }
-
-                                        java.sql.Statement stm12p = connectDB.createStatement();
-                                        java.sql.ResultSet rse12p = stm12p.executeQuery("select code,activity from pb_activity where activity_category ='PR'");
-                                        while (rse12p.next()) {
-
-                                            patientAcc = rse12p.getObject(1).toString();
-                                            AccDesc = rse12p.getObject(2).toString();
-                                        }
-
-                                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
-                                        pstmt.setString(1, nameNoTxt.getText());
-                                        pstmt.setObject(2, jTable13.getValueAt(i, 1).toString());
-                                        pstmt.setString(3, jTextField22.getText());
-                                        pstmt.setString(4, paymentModetxt.getText());
-                                        pstmt.setString(5, String.valueOf(transNo));
-                                        pstmt.setString(7, schemeNameTxt.getText());
-                                        pstmt.setString(6, cardNo);
-                                        pstmt.setString(8, cardName);
-                                        pstmt.setString(9, isurer);
-                                        pstmt.setDate(10, null);//java.sql.Date.valueOf(expDate.toString()));
-                                        pstmt.setString(11, "");
-                                        pstmt.setDouble(12, java.lang.Double.valueOf(jTable13.getValueAt(i, 4).toString()));
-                                        pstmt.setDouble(13, 0.00);
-                                        pstmt.setDate(14, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //SQLDateFormat.getSQLDate(datePicker11.getDate()));
-                                        pstmt.setObject(15, patientAcc);
-                                        pstmt.setString(16, glAcc);
-                                        pstmt.setDouble(17, java.lang.Double.valueOf(jTable13.getValueAt(i, 2).toString()));
-                                        pstmt.setObject(18, staffNo);
-                                        pstmt.setBoolean(19, false);
-                                        pstmt.setString(20, "Billing");
-                                        pstmt.setBoolean(21, false);
-                                        pstmt.setString(22, AccDesc);
-                                        pstmt.setObject(23, visitID);
-                                        pstmt.setString(24, user);
-                                        pstmt.setString(25, billNo);
-                                        if (this.outpatientCheckBox.isSelected() == Boolean.TRUE) {
-                                            pstmt.setString(26, "OP");
-                                        } else if (this.inpatientCheckBox.isSelected() == Boolean.TRUE) {
-                                            pstmt.setString(26, "IP");
-                                        }
-                                        pstmt.setTimestamp(27, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));//com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.util.Calendar.getInstance().getTime()));
-                                        pstmt.setObject(28, visitID);
-                                        pstmt.executeUpdate();
-
-                                        java.sql.PreparedStatement pstmt24 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-                                        pstmt24.setObject(1, jTable13.getValueAt(i, 5).toString());
-                                        pstmt24.setString(2, glAcc);
-                                        pstmt24.setString(3, nameNoTxt.getText());
-                                        pstmt24.setString(4, patientNameTxt.getText());
-                                        pstmt24.setString(5, "");
-                                        pstmt24.setString(6, cardNo);
-                                        pstmt24.setString(7, cardName);
-                                        if (this.outpatientCheckBox.isSelected() == Boolean.TRUE) {
-                                            pstmt24.setString(8, "OP");
-                                        } else if (this.inpatientCheckBox.isSelected() == Boolean.TRUE) {
-                                            pstmt24.setString(8, "IP");
-                                        }
-                                        pstmt24.setString(9, jTextField9111.getText());
-                                        pstmt24.setObject(10, paymentModetxt.getText());
-                                        pstmt24.setString(11, "");
-                                        pstmt24.setString(12, "");
-                                        pstmt24.setString(13, "");
-                                        pstmt24.setString(14, jTable13.getValueAt(i, 1).toString());
-                                        pstmt24.setString(15, "Billing");
-                                        pstmt24.setDouble(16, 0.00);
-                                        pstmt24.setDouble(17, java.lang.Double.valueOf(jTable13.getValueAt(i, 4).toString()));
-                                        pstmt24.setDate(18, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //SQLDateFormat.getSQLDate(datePicker11.getDate()));
-                                        pstmt24.setObject(19, transNo);
-                                        pstmt24.setBoolean(20, false);
-                                        pstmt24.setBoolean(21, false);
-                                        pstmt24.setBoolean(22, false);
-                                        pstmt24.setString(23, user);
-                                        pstmt24.executeUpdate();
-
-                                        //in patient and outpatient scheme
-                                        ////************************************
-                                        ////************************************
-                                        ////************************************
                                     }
+
+                                    java.sql.Statement stm12p = connectDB.createStatement();
+                                    java.sql.ResultSet rse12p = stm12p.executeQuery("select code,activity from pb_activity where activity_category ='PR'");
+                                    while (rse12p.next()) {
+
+                                        patientAcc = rse12p.getObject(1).toString();
+                                        AccDesc = rse12p.getObject(2).toString();
+                                    }
+
+                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
+                                    pstmt.setString(1, nameNoTxt.getText());
+                                    pstmt.setObject(2, jTable13.getValueAt(i, 1).toString());
+                                    pstmt.setString(3, jTextField22.getText());
+                                    pstmt.setString(4, paymentModetxt.getText());
+                                    pstmt.setString(5, String.valueOf(transNo));
+                                    pstmt.setString(7, schemeNameTxt.getText());
+                                    pstmt.setString(6, cardNo);
+                                    pstmt.setString(8, cardName);
+                                    pstmt.setString(9, isurer);
+                                    pstmt.setDate(10, null);//java.sql.Date.valueOf(expDate.toString()));
+                                    pstmt.setString(11, "");
+                                    pstmt.setDouble(12, java.lang.Double.valueOf(jTable13.getValueAt(i, 4).toString()));
+                                    pstmt.setDouble(13, 0.00);
+                                    pstmt.setDate(14, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //SQLDateFormat.getSQLDate(datePicker11.getDate()));
+                                    pstmt.setObject(15, patientAcc);
+                                    pstmt.setString(16, glAcc);
+                                    pstmt.setDouble(17, java.lang.Double.valueOf(jTable13.getValueAt(i, 2).toString()));
+                                    pstmt.setObject(18, staffNo);
+                                    pstmt.setBoolean(19, false);
+                                    pstmt.setString(20, "Billing");
+                                    pstmt.setBoolean(21, false);
+                                    pstmt.setString(22, AccDesc);
+                                    pstmt.setObject(23, visitID);
+                                    pstmt.setString(24, user);
+                                    pstmt.setString(25, billNo);
+                                    if (this.outpatientCheckBox.isSelected() == Boolean.TRUE) {
+                                        pstmt.setString(26, "OP");
+                                    } else if (this.inpatientCheckBox.isSelected() == Boolean.TRUE) {
+                                        pstmt.setString(26, "IP");
+                                    }
+                                    pstmt.setTimestamp(27, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));//com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.util.Calendar.getInstance().getTime()));
+                                    pstmt.setObject(28, visitID);
+                                    pstmt.executeUpdate();
+
+                                    java.sql.PreparedStatement pstmt24 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+                                    pstmt24.setObject(1, jTable13.getValueAt(i, 5).toString());
+                                    pstmt24.setString(2, glAcc);
+                                    pstmt24.setString(3, nameNoTxt.getText());
+                                    pstmt24.setString(4, patientNameTxt.getText());
+                                    pstmt24.setString(5, "");
+                                    pstmt24.setString(6, cardNo);
+                                    pstmt24.setString(7, cardName);
+                                    if (this.outpatientCheckBox.isSelected() == Boolean.TRUE) {
+                                        pstmt24.setString(8, "OP");
+                                    } else if (this.inpatientCheckBox.isSelected() == Boolean.TRUE) {
+                                        pstmt24.setString(8, "IP");
+                                    }
+                                    pstmt24.setString(9, jTextField9111.getText());
+                                    pstmt24.setObject(10, paymentModetxt.getText());
+                                    pstmt24.setString(11, "");
+                                    pstmt24.setString(12, "");
+                                    pstmt24.setString(13, "");
+                                    pstmt24.setString(14, jTable13.getValueAt(i, 1).toString());
+                                    pstmt24.setString(15, "Billing");
+                                    pstmt24.setDouble(16, 0.00);
+                                    pstmt24.setDouble(17, java.lang.Double.valueOf(jTable13.getValueAt(i, 4).toString()));
+                                    pstmt24.setDate(18, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //SQLDateFormat.getSQLDate(datePicker11.getDate()));
+                                    pstmt24.setObject(19, transNo);
+                                    pstmt24.setBoolean(20, false);
+                                    pstmt24.setBoolean(21, false);
+                                    pstmt24.setBoolean(22, false);
+                                    pstmt24.setString(23, user);
+                                    pstmt24.executeUpdate();
+
+                                    //in patient and outpatient scheme
+                                    ////************************************
+                                    ////************************************
+                                    ////************************************
                                 }
                             }
-
                         }
 
-                    } else {
-                        javax.swing.JOptionPane.showMessageDialog(this, "You MUST record patient history before proceeding to diagnostics/investigations.");
                     }
+
+//                    } else {
+//                        javax.swing.JOptionPane.showMessageDialog(this, "You MUST record patient history before proceeding to diagnostics/investigations.");
+//                    }
                 }
             }
             ///END OF JTABLE13 OPERATIONS
@@ -12965,7 +13029,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                 pstmt2.setString(4, jTextField8.getText());
                             }
                             pstmt2.setString(5, pharmacyTable.getValueAt(n, 0).toString());
-                            pstmt2.setDouble(6, 1);
+                            pstmt2.setDouble(6, Double.parseDouble(pharmacyTable.getValueAt(n, 1).toString()));
                             pstmt2.setDouble(7, java.lang.Double.valueOf(pharmacyTable.getValueAt(n, 2).toString()));
                             pstmt2.setString(8, jTextField10.getText());
                             pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker12.getDate()));

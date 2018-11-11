@@ -3239,7 +3239,7 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                     AccDesc = rse12.getObject(2).toString();
                 }
                         java.sql.Statement pss1 = connectDB.createStatement();
-                        if (payModeTxt.getText().toString().equalsIgnoreCase("Cash") && Double.parseDouble(netBillValueTxt.getText()) <= 0 && invoiceNoTxt.getText().equalsIgnoreCase("")) {
+                        if (payModeTxt.getText().toString().equalsIgnoreCase("Cash") && Double.parseDouble(netBillValueTxt.getText()) <= 1 && invoiceNoTxt.getText().equalsIgnoreCase("")) {
                           //  java.sql.ResultSet rss1 = pss1.executeQuery("select 'I'||(nextval('ipinvoice_no_seq'))");
                           //  while (rss1.next()) {
                           //      invoiceNo = rss1.getObject(1).toString();
@@ -3418,7 +3418,7 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                             
                         javax.swing.JOptionPane.showMessageDialog(this, "Patient [" + patientNameTxt.getText().toUpperCase() + "] released.\n  Inv. No. is " + invoiceNoTxt.getText() + ". The final invoice form and release letter shall be printed shortly.", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
-                        
+                         
 
                         java.sql.Statement ps1 = connectDB.createStatement();
                         java.sql.ResultSet rst1 = ps1.executeQuery("SELECT discharge_no FROM hp_patient_discharge WHERE inv_no = '"+invoiceNoTxt.getText()+"'");

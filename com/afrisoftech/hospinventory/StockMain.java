@@ -307,6 +307,7 @@ public class StockMain extends javax.swing.JFrame {
         pharmacyoperatinsmnit = new javax.swing.JMenuItem();
         Receptcopyphamnit = new javax.swing.JMenuItem();
         dispensepaidmnit = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         nutritionMnu = new javax.swing.JMenu();
         nutriHomeAssessFormMnItm = new javax.swing.JMenuItem();
         nutritionFeedingAssessMnuItem = new javax.swing.JMenuItem();
@@ -1583,7 +1584,7 @@ public class StockMain extends javax.swing.JFrame {
         purchasemb.add(assetsmn);
 
         pharmacymn.setMnemonic('h');
-        pharmacymn.setText("Pharmacy");
+        pharmacymn.setText("Dispensing");
         pharmacymn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pharmacymnActionPerformed(evt);
@@ -1661,6 +1662,14 @@ public class StockMain extends javax.swing.JFrame {
             }
         });
         pharmacymn.add(dispensepaidmnit);
+
+        jMenuItem1.setText("Dispense Sutures and Dressings");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        pharmacymn.add(jMenuItem1);
 
         purchasemb.add(pharmacymn);
 
@@ -5487,6 +5496,17 @@ public class StockMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_generateLPOmnitActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        javax.swing.JInternalFrame dismth = new com.afrisoftech.hospinventory.PatientsDressingsBillingIntfr(connectDB, pConnDB);
+        medicdspane.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            dismth.setSelected(true);
+            dismth.setSize(medicdspane.getSize());
+            dismth.setVisible(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -6093,6 +6113,7 @@ public class StockMain extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu9;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem30;
     private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem32;

@@ -352,6 +352,7 @@ public class MobilePayAPI {
         System.out.println("Shortcode : [" + shortCode + "]");
         String password = shortCode + com.afrisoftech.hospital.HospitalMain.passKey + timeStamp;
 //        String password = shortCode + "48d34200abe6ebbcbc3bc644487c3651936d129f2274f6ee95" + timeStamp;
+//            json.put("CallBackURL", "https://192.162.85.226:17933/FunsoftWebServices/funsoft/InvoiceService/mpesasettlement");
 //        String password = shortCode + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + timeStamp; // for testing purposes
         String encodedPassword = Base64.toBase64String(password.getBytes());
         System.out.println("Unencoded password : [" + password + "]");
@@ -380,14 +381,22 @@ public class MobilePayAPI {
             Logger.getLogger(MobilePayAPI.class.getName()).log(Level.SEVERE, null, ex);
         }
         RequestBody body = RequestBody.create(mediaType, message);
-
-        Request request = new Request.Builder()
-                //.url("https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest")
-                  .url("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest")            
-                .post(body)
-                .addHeader("authorization", "Bearer " + accessToken)
-                .addHeader("content-type", "application/json")
-                .build();
+        Request request = null;
+        if (com.afrisoftech.hospital.HospitalMain.mobileTxTest) {
+            request = new Request.Builder()
+                    .url("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest") // for sandbox test cases        
+                    .post(body)
+                    .addHeader("authorization", "Bearer " + accessToken)
+                    .addHeader("content-type", "application/json")
+                    .build();
+        } else {
+            request = new Request.Builder()
+                    .url("https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest")
+                    .post(body)
+                    .addHeader("authorization", "Bearer " + accessToken)
+                    .addHeader("content-type", "application/json")
+                    .build();
+        }
         try {
             Response response = client.newCall(request).execute();
             JSONObject myJsonObject = null;
@@ -404,7 +413,7 @@ public class MobilePayAPI {
                     System.out.println("Checkout Request ID : [" + myJsonObject.getString("errorMessage") + "]");
                     javax.swing.JOptionPane.showMessageDialog(null, "Payment Request Error : " + myJsonObject.getString("errorMessage") + ". Try again.");
                 } catch (JSONException ex) {
-                    ex.printStackTrace(); //Exceptions.printStackTrace(ex);
+                    ex.printStackTrace();
                 }
             } else if (myJsonObject.toString().contains("Success")) {
                 try {
@@ -418,7 +427,7 @@ public class MobilePayAPI {
                     System.out.println("Checout Request ID : [" + myJsonObject.getString("CheckoutRequestID") + "]");
 
                 } catch (JSONException ex) {
-                    ex.printStackTrace(); //Exceptions.printStackTrace(ex);
+                    ex.printStackTrace();
                 }
             }
             System.out.println("Response for Process Request : [" + myJsonObject.toString() + "]");
@@ -551,4 +560,77 @@ public class MobilePayAPI {
 //
 //        return "Success";
 //    }
+    public static boolean registerCallbackURL(String accessToken, String shortCode, String callBackURL, String validationURL) {
+        boolean checkoutRequestStatus = true;
+        
+        OkHttpClient client = new OkHttpClient();
+
+        MediaType mediaType = MediaType.parse("application/json");
+
+        String message = null;
+        JSONObject json = new JSONObject();
+        try {
+            json.put("ShortCode", shortCode);
+            json.put("ConfirmationURL", callBackURL);
+            json.put("ValidationURL", callBackURL);
+            json.put("ResponseType", "Success");
+            message = json.toString();
+            System.out.println("This is the JSON String : " + message);
+
+        } catch (JSONException ex) {
+            Logger.getLogger(MobilePayAPI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        RequestBody body = RequestBody.create(mediaType, message);
+        Request request = null;
+        if (com.afrisoftech.hospital.HospitalMain.mobileTxTest) {
+            request = new Request.Builder()
+                    .url("https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl") // for sandbox test cases        
+                    .post(body)
+                    .addHeader("authorization", "Bearer " + accessToken)
+                    .addHeader("content-type", "application/json")
+                    .build();
+        } else {
+            request = new Request.Builder()
+                    .url("https://api.safaricom.co.ke/mpesa/c2b/v1/registerurl")
+                    .post(body)
+                    .addHeader("authorization", "Bearer " + accessToken)
+                    .addHeader("content-type", "application/json")
+                    .build();
+        }
+        try {
+            Response response = client.newCall(request).execute();
+            JSONObject myJsonObject = null;
+            try {
+                myJsonObject = new JSONObject(response.body().string());
+            } catch (JSONException ex) {
+                Logger.getLogger(MobilePayAPI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            if (myJsonObject.toString().contains("error")) {
+                try {
+//                    checkoutRequestID = myJsonObject.getString("errorMessage");
+                    checkoutRequestStatus = false;
+                    System.out.println("Checkout Request ID : [" + myJsonObject.getString("errorMessage") + "]");
+                    javax.swing.JOptionPane.showMessageDialog(null, "Payment Request Error : " + myJsonObject.getString("errorMessage") + ". Try again.");
+                } catch (JSONException ex) {
+                    ex.printStackTrace();
+                }
+            } else if (myJsonObject.toString().contains("Success")) {
+                try {
+                    checkoutRequestStatus = true;
+
+                    System.out.println("Checout Request ID : [" + myJsonObject.getString("CheckoutRequestID") + "]");
+
+                } catch (JSONException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            System.out.println("Response for Process Request : [" + myJsonObject.toString() + "]");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        return checkoutRequestStatus;
+    }
 }

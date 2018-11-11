@@ -732,21 +732,21 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
             }
             setVisible(true);
             addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-                public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-                    formInternalFrameActivated(evt);
-                }
-                public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+                public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                    formInternalFrameOpened(evt);
                 }
                 public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
                 }
-                public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-                }
-                public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+                public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
                 }
                 public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
                 }
-                public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-                    formInternalFrameOpened(evt);
+                public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+                }
+                public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                    formInternalFrameActivated(evt);
+                }
+                public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
                 }
             });
             addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -1311,7 +1311,6 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
 
             pharmacyCmbx.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
             pharmacyCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select distinct stores from store_allocation where user_name = current_user and type ilike 'bill'"));
-            pharmacyCmbx.setEnabled(false);
             pharmacyCmbx.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     pharmacyCmbxActionPerformed(evt);

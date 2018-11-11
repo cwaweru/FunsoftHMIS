@@ -57,7 +57,7 @@ public class CashShiftNumberFactory {
 
             connectDB = connDB;
 
-            java.sql.PreparedStatement pstmtPayBillNumber = connectDB.prepareStatement("SELECT DISTINCT paybill_no FROM ac_cash_points_setup WHERE description = 'mpesa'");
+            java.sql.PreparedStatement pstmtPayBillNumber = connectDB.prepareStatement("SELECT paybill_no FROM ac_cash_points WHERE upper(location) = (SELECT upper(code) FROM ac_cash_points_setup WHERE description = current_user)");
 
             java.sql.ResultSet rsetPayBillNumber = pstmtPayBillNumber.executeQuery();
 

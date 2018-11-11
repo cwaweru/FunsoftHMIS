@@ -2378,7 +2378,6 @@
                           <Color blue="ff" green="33" red="33" type="rgb"/>
                         </Property>
                         <Property name="mnemonic" type="int" value="111"/>
-                        <Property name="selected" type="boolean" value="true"/>
                         <Property name="text" type="java.lang.String" value="OUT- Patients"/>
                       </Properties>
                       <Events>
@@ -2416,7 +2415,6 @@
                           <Color blue="99" green="0" red="99" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Walk-IN"/>
-                        <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="walkinChkbxActionPerformed"/>

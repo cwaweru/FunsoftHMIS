@@ -1458,9 +1458,9 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
 
     private void storesAuditTrailTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_storesAuditTrailTableMouseClicked
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
-        com.afrisoftech.hospinventory.StockLedgerStockControlCard policy = new com.afrisoftech.hospinventory.StockLedgerStockControlCard();
+        com.afrisoftech.hospinventory.StockLedgerStockControlCardNew policy = new com.afrisoftech.hospinventory.StockLedgerStockControlCardNew();
 
-        policy.StockLedgerStockControlCard(connectDB, this.startDatePicker.getDate(), this.endDatePicker.getDate(), itemCode1Txt.getText(), this.itemTrailStoreCmbx.getSelectedItem().toString(), itemDescriptionTxt1.getText(), procurementMethodCmbx.getSelectedItem());
+        policy.StockLedgerStockControlCardNew(connectDB, this.startDatePicker.getDate(), this.endDatePicker.getDate(), itemCode1Txt.getText(), this.itemTrailStoreCmbx.getSelectedItem().toString(), itemDescriptionTxt1.getText()); //, procurementMethodCmbx.getSelectedItem()
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         // TODO add your handling code here:
     }//GEN-LAST:event_storesAuditTrailTableMouseClicked

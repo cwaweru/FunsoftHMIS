@@ -6,6 +6,7 @@
 package com.afrisoftech.accounting;
 
 import com.afrisoftech.lib.ServerTime;
+import java.io.UnsupportedEncodingException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -198,7 +199,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     jSearchTable2 = new javax.swing.JTable();
     jButton42 = new javax.swing.JButton();
     jButton52 = new javax.swing.JButton();
-    jSearchDialog21 = new javax.swing.JDialog();
+    patientSearchDialog = new javax.swing.JDialog();
     jSearchPanel21 = new javax.swing.JPanel();
     patientSearchTxt = new javax.swing.JTextField();
     jSearchScrollPane21 = new javax.swing.JScrollPane();
@@ -231,6 +232,13 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     jSearchTable11 = new javax.swing.JTable();
     dispose11 = new javax.swing.JButton();
     buttonGroup2 = new javax.swing.ButtonGroup();
+    mobilepayTxSearchDialog = new javax.swing.JDialog();
+    jSearchPanel22 = new javax.swing.JPanel();
+    mobilepayTxSearchTxt = new javax.swing.JTextField();
+    jSearchScrollPane22 = new javax.swing.JScrollPane();
+    mobilepayTxtSearchTable = new com.afrisoftech.dbadmin.JTable();
+    jButton422 = new javax.swing.JButton();
+    jButton522 = new javax.swing.JButton();
     jTabbedPane1 = new javax.swing.JTabbedPane();
     jPanel8 = new javax.swing.JPanel();
     jPanel71 = new javax.swing.JPanel();
@@ -262,6 +270,10 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     unitNumberTxt = new javax.swing.JTextField();
     mchfpChbx = new javax.swing.JCheckBox();
     payerMobileTelephoneNumberTxt = new javax.swing.JFormattedTextField();
+    jPanel62 = new javax.swing.JPanel();
+    mobilepayTxNoTxt = new javax.swing.JTextField();
+    searchButton2 = new javax.swing.JButton();
+    jLabel7 = new javax.swing.JLabel();
     jSeparator111 = new javax.swing.JSeparator();
     jPanel32 = new javax.swing.JPanel();
     jPanel32.setVisible(false);
@@ -283,7 +295,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     jTextField5111 = new javax.swing.JTextField();
     jPanel9 = new javax.swing.JPanel();
     jScrollPane211 = new javax.swing.JScrollPane();
-    jTable111 = new com.afrisoftech.dbadmin.JTable(){
+    billTable = new com.afrisoftech.dbadmin.JTable(){
         Class[] types = new Class [] {
             java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class
         };
@@ -342,6 +354,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     closePosBtn = new javax.swing.JButton();
     helpBtn = new javax.swing.JButton();
     jLabel1 = new javax.swing.JLabel();
+    stkPushBtn = new javax.swing.JButton();
     jPanel51 = new javax.swing.JPanel();
     jLabel121 = new javax.swing.JLabel();
     paymentModeCmbx = new javax.swing.JComboBox();
@@ -355,8 +368,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     shiftNoTxt = new javax.swing.JTextField();
     jLabel113 = new javax.swing.JLabel();
     receiptNumberTxt = new javax.swing.JTextField();
-    paybillNumberLbl = new javax.swing.JLabel();
-    paybillNumberTxt = new javax.swing.JTextField();
+    jLabel6 = new javax.swing.JLabel();
+    paybillNumberCmbx = new javax.swing.JComboBox<>();
 
     jSearchDialog.setModal(true);
     jSearchDialog.setUndecorated(true);
@@ -628,9 +641,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     gridBagConstraints.weighty = 1.0;
     jSearchDialog2.getContentPane().add(jSearchPanel2, gridBagConstraints);
 
-    jSearchDialog21.setModal(true);
-    jSearchDialog21.setUndecorated(true);
-    jSearchDialog21.getContentPane().setLayout(new java.awt.GridBagLayout());
+    patientSearchDialog.setModal(true);
+    patientSearchDialog.setUndecorated(true);
+    patientSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
     jSearchPanel21.setBorder(javax.swing.BorderFactory.createEtchedBorder());
     jSearchPanel21.setLayout(new java.awt.GridBagLayout());
@@ -714,7 +727,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
     gridBagConstraints.weightx = 1.0;
     gridBagConstraints.weighty = 1.0;
-    jSearchDialog21.getContentPane().add(jSearchPanel21, gridBagConstraints);
+    patientSearchDialog.getContentPane().add(jSearchPanel21, gridBagConstraints);
 
     jDialog31.setTitle("Enter Doctors Fee");
     jDialog31.setModal(true);
@@ -980,6 +993,94 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.weighty = 1.0;
         jSearchDialog11.getContentPane().add(jSearchPanel11, gridBagConstraints);
 
+        mobilepayTxSearchDialog.setModal(true);
+        mobilepayTxSearchDialog.setUndecorated(true);
+        mobilepayTxSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jSearchPanel22.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jSearchPanel22.setLayout(new java.awt.GridBagLayout());
+
+        mobilepayTxSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                mobilepayTxSearchTxtCaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 300.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jSearchPanel22.add(mobilepayTxSearchTxt, gridBagConstraints);
+
+        mobilepayTxtSearchTable.setToolTipText("Click on the target row to select the patient from the search.");
+        mobilepayTxtSearchTable.setShowHorizontalLines(false);
+        /*javax.swing.table.TableColumn column = null;
+
+        for (int i = 0; i < 4; i++) {
+
+            column = jSearchTable2.getColumnModel().getColumn(i);
+
+            if (i == 1) {
+
+                column.setPreferredWidth(400);
+                //sport column is bigger
+            } else {
+
+                column.setPreferredWidth(200);
+
+            }
+        }
+        */
+        mobilepayTxtSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mobilepayTxtSearchTableMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mobilepayTxtSearchTableMouseEntered(evt);
+            }
+        });
+        jSearchScrollPane22.setViewportView(mobilepayTxtSearchTable);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 20.0;
+        jSearchPanel22.add(jSearchScrollPane22, gridBagConstraints);
+
+        jButton422.setText("Select");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jSearchPanel22.add(jButton422, gridBagConstraints);
+
+        jButton522.setText("Dispose");
+        jButton522.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton522ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jSearchPanel22.add(jButton522, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        mobilepayTxSearchDialog.getContentPane().add(jSearchPanel22, gridBagConstraints);
+
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
@@ -999,20 +1100,20 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             }
         });
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameClosed(evt);
             }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -1064,7 +1165,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
@@ -1074,7 +1175,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         jLabel2121.setText("Revenue Code");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -1311,7 +1412,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.weighty = 1.0;
         jPanel211.add(mchfpChbx, gridBagConstraints);
 
-        payerMobileTelephoneNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bill Payer Telephone No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
+        payerMobileTelephoneNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bill Payer Telephone No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
         payerMobileTelephoneNumberTxt.setForeground(new java.awt.Color(0, 0, 255));
         try {
             payerMobileTelephoneNumberTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("254-7##-######")));
@@ -1332,6 +1433,68 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel211.add(payerMobileTelephoneNumberTxt, gridBagConstraints);
+
+        jPanel62.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel62.setMinimumSize(new java.awt.Dimension(82, 40));
+        jPanel62.setPreferredSize(new java.awt.Dimension(87, 40));
+        jPanel62.setLayout(new java.awt.GridBagLayout());
+
+        mobilepayTxNoTxt.setEditable(false);
+        mobilepayTxNoTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Please type at least 6 characters"));
+        mobilepayTxNoTxt.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                mobilepayTxNoTxtCaretUpdate(evt);
+            }
+        });
+        mobilepayTxNoTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                mobilepayTxNoTxtFocusGained(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1000.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel62.add(mobilepayTxNoTxt, gridBagConstraints);
+
+        searchButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Find 2.png"))); // NOI18N
+        searchButton2.setToolTipText("Search");
+        searchButton2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        searchButton2.setIconTextGap(0);
+        searchButton2.setMaximumSize(new java.awt.Dimension(74, 53));
+        searchButton2.setMinimumSize(new java.awt.Dimension(74, 53));
+        searchButton2.setPreferredSize(new java.awt.Dimension(33, 23));
+        searchButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        searchButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel62.add(searchButton2, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel211.add(jPanel62, gridBagConstraints);
+
+        jLabel7.setText("Mobile Transaction No.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        jPanel211.add(jLabel7, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1477,10 +1640,10 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel9.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane211.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cash Sale Particulars - Select item/service (by clicking once on the ITEM/SERVICE column) and specify the quantity. Remember to press the TAB key to validate your entries.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 153, 255))); // NOI18N
+        jScrollPane211.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cash Sale Particulars - Select item/service (by clicking once on the ITEM/SERVICE column) and specify the quantity. Remember to press the TAB key to validate your entries.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 153, 255))); // NOI18N
 
-        jTable111.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTable111.setModel(new javax.swing.table.DefaultTableModel(
+        billTable.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        billTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -1522,10 +1685,10 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 return canEdit [columnIndex];
             }
         });
-        jTable111.setRowHeight(22);
+        billTable.setRowHeight(22);
         javax.swing.table.TableColumn column1 = null;
         for (int i = 0; i < 6; i++) {
-            column1 = jTable111.getColumnModel().getColumn(i);
+            column1 = billTable.getColumnModel().getColumn(i);
             if (i == 0) {
 
                 column1.setPreferredWidth(300); //sport column is bigger
@@ -1538,22 +1701,22 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
             }
         }
-        jTable111.addMouseListener(new java.awt.event.MouseAdapter() {
+        billTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable111MouseClicked(evt);
+                billTableMouseClicked(evt);
             }
         });
-        jTable111.addComponentListener(new java.awt.event.ComponentAdapter() {
+        billTable.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                jTable111ComponentShown(evt);
+                billTableComponentShown(evt);
             }
         });
-        jTable111.addKeyListener(new java.awt.event.KeyAdapter() {
+        billTable.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTable111KeyReleased(evt);
+                billTableKeyReleased(evt);
             }
         });
-        jScrollPane211.setViewportView(jTable111);
+        jScrollPane211.setViewportView(billTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1782,9 +1945,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         jPanel10.setLayout(new java.awt.GridBagLayout());
 
         postSaleDataBtn.setBackground(new java.awt.Color(230, 230, 230));
-        postSaleDataBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Folders/Folder Blue Documents.png"))); // NOI18N
         postSaleDataBtn.setMnemonic('O');
-        postSaleDataBtn.setText("Post Receipt data");
+        postSaleDataBtn.setText("Post data");
         postSaleDataBtn.setToolTipText("Click here enter data");
         postSaleDataBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1792,8 +1954,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel10.add(postSaleDataBtn, gridBagConstraints);
@@ -1809,8 +1972,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel10.add(generateReceiptBtn, gridBagConstraints);
@@ -1825,13 +1989,12 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel10.add(reprintReceiptBtn, gridBagConstraints);
 
-        removeRowBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Folders/Folder Blue Downloads.png"))); // NOI18N
         removeRowBtn.setMnemonic('r');
         removeRowBtn.setText("Remove Row");
         removeRowBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -1840,11 +2003,11 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPanel10.add(removeRowBtn, gridBagConstraints);
 
-        clearFormBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Devices & Hardware/Hard Drive Mac 2.png"))); // NOI18N
         clearFormBtn.setMnemonic('l');
         clearFormBtn.setText("Clear data");
         clearFormBtn.setToolTipText("Click here to clear textfields");
@@ -1854,8 +2017,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel10.add(clearFormBtn, gridBagConstraints);
@@ -1870,7 +2034,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -1880,7 +2044,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         helpBtn.setMnemonic('h');
         helpBtn.setText("Help");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -1892,6 +2056,20 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.weightx = 3000.0;
         gridBagConstraints.weighty = 1.0;
         jPanel10.add(jLabel1, gridBagConstraints);
+
+        stkPushBtn.setText("Mobile Pay");
+        stkPushBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stkPushBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel10.add(stkPushBtn, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -2012,7 +2190,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         jLabel113.setText("Receipt No");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -2023,7 +2201,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         receiptNumberTxt.setForeground(new java.awt.Color(255, 102, 102));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.weightx = 9.0;
@@ -2031,23 +2209,30 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel51.add(receiptNumberTxt, gridBagConstraints);
 
-        paybillNumberLbl.setText("Paybill Number");
+        jLabel6.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel6.setText("Selected Paybill");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-        jPanel51.add(paybillNumberLbl, gridBagConstraints);
+        jPanel51.add(jLabel6, gridBagConstraints);
 
-        paybillNumberTxt.setEditable(false);
-        paybillNumberTxt.setText(com.afrisoftech.lib.CashShiftNumberFactory.getPayBillNumber(connectDB)
-        );
+        paybillNumberCmbx.setForeground(new java.awt.Color(0, 0, 0));
+        paybillNumberCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '' as paybill_no UNION SELECT DISTINCT paybill_no FROM ac_cash_points ORDER BY 1"));
+        paybillNumberCmbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paybillNumberCmbxActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        jPanel51.add(paybillNumberTxt, gridBagConstraints);
+        jPanel51.add(paybillNumberCmbx, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
@@ -2265,9 +2450,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                 patientNumberTxt.setText(null);
                                 exemptionNumberTxt.setText(null);
                                 exemptionChkbx.setSelected(false);
-                                for (int m = 0; m < jTable111.getRowCount(); m++) {
-                                    for (int j = 0; j < jTable111.getColumnCount(); j++) {
-                                        jTable111.setValueAt(null, m, j);
+                                for (int m = 0; m < billTable.getRowCount(); m++) {
+                                    for (int j = 0; j < billTable.getColumnCount(); j++) {
+                                        billTable.setValueAt(null, m, j);
                                     }
                                 }
                                 lessDiscountedAmountTxt.setText("0.00");
@@ -2367,9 +2552,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                 patientNumberTxt.setText(null);
                                 exemptionNumberTxt.setText(null);
                                 exemptionChkbx.setSelected(false);
-                                for (int m = 0; m < jTable111.getRowCount(); m++) {
-                                    for (int j = 0; j < jTable111.getColumnCount(); j++) {
-                                        jTable111.setValueAt(null, m, j);
+                                for (int m = 0; m < billTable.getRowCount(); m++) {
+                                    for (int j = 0; j < billTable.getColumnCount(); j++) {
+                                        billTable.setValueAt(null, m, j);
                                     }
                                 }
                                 lessDiscountedAmountTxt.setText("0.00");
@@ -2422,13 +2607,18 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
     }
     private void jSearchTable21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable21MouseClicked
+
+        com.afrisoftech.hospital.HospitalMain.mobileTxID = null;
+        com.afrisoftech.hospital.HospitalMain.mobileTelephone = null;
+        mobilepayTxNoTxt.setText(null);
+
         patientNumberTxt.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 0).toString());
         patientNameTxt.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 1).toString());
         unitNumberTxt.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 2).toString());
-        payerMobileTelephoneNumberTxt.setText("254-7  -      ");
-        for (int s = 0; s < jTable111.getRowCount(); s++) {
-            for (int r = 0; r < jTable111.getColumnCount(); r++) {
-                jTable111.getModel().setValueAt(null, s, r);
+        payerMobileTelephoneNumberTxt.setText("254-7XX-XXXXXX");
+        for (int s = 0; s < billTable.getRowCount(); s++) {
+            for (int r = 0; r < billTable.getColumnCount(); r++) {
+                billTable.getModel().setValueAt(null, s, r);
             }
 
         }
@@ -2449,16 +2639,16 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         }
 
         this.populateTable(this.patientNumberTxt.getText());
-        billAmountTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable111, 3)));
-        totalBilledAmountTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.TableColumnTotal.getGrossTableColumnTotal(jTable111, 3)));
-        waivedAmountTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.TableColumnTotal.getGrossTableColumnTotal(jTable111, 3) - com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable111, 3)));
+        billAmountTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(billTable, 3)));
+        totalBilledAmountTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.TableColumnTotal.getGrossTableColumnTotal(billTable, 3)));
+        waivedAmountTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.TableColumnTotal.getGrossTableColumnTotal(billTable, 3) - com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(billTable, 3)));
         amountPaidTxt.setText(billAmountTxt.getText());
-        if (com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable111, 3) > 0) {
+        if (com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(billTable, 3) > 0) {
             generateReceiptBtn.setEnabled(true);
             this.postSaleDataBtn.setEnabled(true);
             this.reprintReceiptBtn.setEnabled(true);
         }
-        jSearchDialog21.dispose();
+        patientSearchDialog.dispose();
         // Add your handling code here:
     }//GEN-LAST:event_jSearchTable21MouseClicked
 
@@ -2467,19 +2657,22 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     }//GEN-LAST:event_searchButton1ActionPerformed
     private void searchButton212Clicked() {
 
+        com.afrisoftech.hospital.HospitalMain.mobileTxID = null;
+        com.afrisoftech.hospital.HospitalMain.mobileTelephone = null;
+
         System.out.println("Showing dialog");
 
         // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
         java.awt.Point point = this.patientNameTxt.getLocationOnScreen();
 
-        jSearchDialog21.setSize(700, 200);
+        patientSearchDialog.setSize(700, 200);
 
-        jSearchDialog21.setLocation(point);
+        patientSearchDialog.setLocation(point);
 
-        jSearchDialog21.setVisible(true);
+        patientSearchDialog.setVisible(true);
     }
     private void jButton521ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton521ActionPerformed
-        this.jSearchDialog21.dispose();        // Add your handling code here:
+        this.patientSearchDialog.dispose();        // Add your handling code here:
     }//GEN-LAST:event_jButton521ActionPerformed
 
     private void patientSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_patientSearchTxtCaretUpdate
@@ -2614,25 +2807,25 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         //      }
     }
     private void jSearchTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable1MouseClicked
-        jTable111.setValueAt(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 0), jTable111.getSelectedRow(), 0);
-        jTable111.setValueAt(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 1), jTable111.getSelectedRow(), 2);
-        jTable111.setValueAt(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 2), jTable111.getSelectedRow(), 4);
-        jTable111.setValueAt(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 3), jTable111.getSelectedRow(), 6);
-        jTable111.setValueAt(1, jTable111.getSelectedRow(), 1);
+        billTable.setValueAt(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 0), billTable.getSelectedRow(), 0);
+        billTable.setValueAt(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 1), billTable.getSelectedRow(), 2);
+        billTable.setValueAt(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 2), billTable.getSelectedRow(), 4);
+        billTable.setValueAt(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 3), billTable.getSelectedRow(), 6);
+        billTable.setValueAt(1, billTable.getSelectedRow(), 1);
 
-        jTable111.setValueAt(false, jTable111.getSelectedRow(), 5);
+        billTable.setValueAt(false, billTable.getSelectedRow(), 5);
 
         jSearchDialog1.dispose();
 
-        float qty = java.lang.Float.parseFloat(jTable111.getValueAt(jTable111.getSelectedRow(), 1).toString());
-        float price = java.lang.Float.parseFloat(jTable111.getValueAt(jTable111.getSelectedRow(), 2).toString());
+        float qty = java.lang.Float.parseFloat(billTable.getValueAt(billTable.getSelectedRow(), 1).toString());
+        float price = java.lang.Float.parseFloat(billTable.getValueAt(billTable.getSelectedRow(), 2).toString());
         float total = qty * price;
-        jTable111.setValueAt(total, jTable111.getSelectedRow(), 3);
-        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable111, 3);
+        billTable.setValueAt(total, billTable.getSelectedRow(), 3);
+        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(billTable, 3);
         billAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
         billAmountTxt.setText(java.lang.String.valueOf(totalSum));
         double totals = java.lang.Double.parseDouble(billAmountTxt.getText());
-        totalBilledAmountTxt.setText(String.valueOf(com.afrisoftech.lib.TableColumnTotal.getGrossTableColumnTotal(jTable111, 3)));
+        totalBilledAmountTxt.setText(String.valueOf(com.afrisoftech.lib.TableColumnTotal.getGrossTableColumnTotal(billTable, 3)));
         double waiver = java.lang.Double.parseDouble(waivedAmountTxt.getText());
         lessDiscountedAmountTxt.setText(java.lang.String.valueOf(totals - waiver));
         amountPaidTxt.setText(java.lang.String.valueOf(totals - waiver));
@@ -2789,19 +2982,19 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 while (rsetTable1.next()) {
 
                     System.out.println("Working at table row " + i);
-                    jTable111.setValueAt(rsetTable1.getObject(1), i, 0);
-                    jTable111.setValueAt(rsetTable1.getObject(2), i, 1);
-                    jTable111.setValueAt(rsetTable1.getObject(3), i, 2);
-                    jTable111.setValueAt(rsetTable1.getObject(4), i, 3);
-                    jTable111.setValueAt(rsetTable1.getObject(5), i, 4);
-                    jTable111.setValueAt(true, i, 5);
-                    jTable111.setValueAt(rsetTable1.getObject(8), i, 6);
-                    jTable111.setValueAt(rsetTable1.getObject(9), i, 7);
+                    billTable.setValueAt(rsetTable1.getObject(1), i, 0);
+                    billTable.setValueAt(rsetTable1.getObject(2), i, 1);
+                    billTable.setValueAt(rsetTable1.getObject(3), i, 2);
+                    billTable.setValueAt(rsetTable1.getObject(4), i, 3);
+                    billTable.setValueAt(rsetTable1.getObject(5), i, 4);
+                    billTable.setValueAt(true, i, 5);
+                    billTable.setValueAt(rsetTable1.getObject(8), i, 6);
+                    billTable.setValueAt(rsetTable1.getObject(9), i, 7);
 
                     i++;
 
                 }
-                billAmountTxt.setText(String.valueOf(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable111, 3)));
+                billAmountTxt.setText(String.valueOf(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(billTable, 3)));
 
                 java.sql.Statement stmtTable111 = connectDB.createStatement();
 
@@ -2898,9 +3091,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         }          // Add your handling code here:
     }//GEN-LAST:event_reprintReceiptBtnActionPerformed
 
-    private void jTable111MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable111MouseClicked
+    private void billTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billTableMouseClicked
 
-        if (jTable111.getSelectedColumn() == 0) {
+        if (billTable.getSelectedColumn() == 0) {
 
             this.cmbox221MouseClicked();
         }
@@ -2910,17 +3103,17 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         reprintReceiptBtn.setEnabled(false);
         jTextField112.setText("");
         // Add your handling code here:
-    }//GEN-LAST:event_jTable111MouseClicked
+    }//GEN-LAST:event_billTableMouseClicked
 
-    private void jTable111ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTable111ComponentShown
+    private void billTableComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_billTableComponentShown
         // Add your handling code here:
-    }//GEN-LAST:event_jTable111ComponentShown
+    }//GEN-LAST:event_billTableComponentShown
 
     private void removeRowBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeRowBtnActionPerformed
 
-        int rows2Delete = jTable111.getSelectedRowCount();
+        int rows2Delete = billTable.getSelectedRowCount();
 
-        int[] selectedRows = jTable111.getSelectedRows();
+        int[] selectedRows = billTable.getSelectedRows();
 
         if (rows2Delete < 1) {
 
@@ -2935,7 +3128,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 for (int i = 0; i
                         < selectedRows.length; i++) {
 
-                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable111.getModel();
+                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) billTable.getModel();
 
                     defTableModel.removeRow(selectedRows[i]);
 
@@ -2943,16 +3136,16 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
             } else {
 
-                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable111.getModel();
+                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) billTable.getModel();
 
-                defTableModel.removeRow(jTable111.getSelectedRow());
+                defTableModel.removeRow(billTable.getSelectedRow());
             }
 
         }
 
-        totalBilledAmountTxt.setText(String.valueOf(com.afrisoftech.lib.TableColumnTotal.getGrossTableColumnTotal(jTable111, 3)));
+        totalBilledAmountTxt.setText(String.valueOf(com.afrisoftech.lib.TableColumnTotal.getGrossTableColumnTotal(billTable, 3)));
 
-        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable111, 3);
+        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(billTable, 3);
         billAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
         billAmountTxt.setText(java.lang.String.valueOf(totalSum));
         double totals = java.lang.Double.parseDouble(billAmountTxt.getText());
@@ -2967,11 +3160,12 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
         exemptionChkbx.setSelected(false);
         patientNameTxt.setText("");
+        payerMobileTelephoneNumberTxt.setText("254-7  -      ");
         for (int k = 0; k
-                < jTable111.getRowCount(); k++) {
+                < billTable.getRowCount(); k++) {
             for (int r = 0; r
-                    < jTable111.getColumnCount(); r++) {
-                jTable111.getModel().setValueAt(null, k, r);
+                    < billTable.getColumnCount(); r++) {
+                billTable.getModel().setValueAt(null, k, r);
             }
 
         }
@@ -2987,15 +3181,15 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         this.dispose();       // Add your handling code here:
     }//GEN-LAST:event_closePosBtnActionPerformed
 
-    private void jTable111KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable111KeyReleased
-        if (jTable111.getModel().getValueAt(jTable111.getSelectedRow(), 1) != null) {
-            if (jTable111.getSelectedColumn() == jTable111.getSelectedColumn()) {
-                float qty = java.lang.Float.parseFloat(jTable111.getValueAt(jTable111.getSelectedRow(), 1).toString());
-                float price = java.lang.Float.parseFloat(jTable111.getValueAt(jTable111.getSelectedRow(), 2).toString());
+    private void billTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_billTableKeyReleased
+        if (billTable.getModel().getValueAt(billTable.getSelectedRow(), 1) != null) {
+            if (billTable.getSelectedColumn() == billTable.getSelectedColumn()) {
+                float qty = java.lang.Float.parseFloat(billTable.getValueAt(billTable.getSelectedRow(), 1).toString());
+                float price = java.lang.Float.parseFloat(billTable.getValueAt(billTable.getSelectedRow(), 2).toString());
                 float total = qty * price;
-                jTable111.setValueAt(total, jTable111.getSelectedRow(), 3);
-                double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable111, 3);
-                totalBilledAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getGrossTableColumnTotal(jTable111, 3)));
+                billTable.setValueAt(total, billTable.getSelectedRow(), 3);
+                double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(billTable, 3);
+                totalBilledAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getGrossTableColumnTotal(billTable, 3)));
                 billAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
                 billAmountTxt.setText(java.lang.String.valueOf(totalSum));
                 amountPaidTxt.setText(java.lang.String.valueOf(totalSum));
@@ -3004,10 +3198,10 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         }
 
         // Add your handling code here:
-    }//GEN-LAST:event_jTable111KeyReleased
+    }//GEN-LAST:event_billTableKeyReleased
     private void cmbox21ActionPerformed(java.awt.event.ActionEvent evt) {
         java.lang.Object selectedGuaran = cmbox21.getSelectedItem();
-        int i = jTable111.getSelectedRow();
+        int i = billTable.getSelectedRow();
 
         if (selectedGuaran != null) {
 
@@ -3015,8 +3209,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 java.sql.Statement pstmt = connectDB.createStatement();
                 java.sql.ResultSet rs = pstmt.executeQuery("select rate::numeric as rate,gl_account from pb_operating_parameters where service_type = '" + selectedGuaran + "' UNION ALL select sp.selling_price,sp.gl_code from st_stock_prices sp where sp.product = '" + selectedGuaran + "'");
                 while (rs.next()) {
-                    jTable111.setValueAt(rs.getObject(1), i, 2);
-                    jTable111.setValueAt(rs.getObject(2), i, 4);
+                    billTable.setValueAt(rs.getObject(1), i, 2);
+                    billTable.setValueAt(rs.getObject(2), i, 4);
                 }
                 rs.close();
                 pstmt.close();
@@ -3262,22 +3456,250 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         // TODO add your handling code here:
     }//GEN-LAST:event_totalBilledAmountTxtActionPerformed
 
+    private void paybillNumberCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paybillNumberCmbxActionPerformed
+        if (paybillNumberCmbx.getSelectedItem() != null) {
+            com.afrisoftech.hospital.HospitalMain.payBillNumber = paybillNumberCmbx.getSelectedItem().toString();
+            try {
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT DISTINCT merchant_id, consumer_secrets FROM ac_cash_points WHERE paybill_no = ?");
+
+                pstmt.setString(1, paybillNumberCmbx.getSelectedItem().toString());
+                java.sql.ResultSet rset = pstmt.executeQuery();
+                while (rset.next()) {
+                    try {
+                        com.afrisoftech.hospital.HospitalMain.passKey = new String(rset.getBytes(1), "UTF-8");
+                        com.afrisoftech.hospital.HospitalMain.oAuthKey = new String(rset.getBytes(2), "UTF-8");
+                    } catch (UnsupportedEncodingException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            } catch (SQLException ex) {
+                javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+                ex.printStackTrace();
+            }
+
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a paybill in order to proceed");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_paybillNumberCmbxActionPerformed
+
+    private void stkPushBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stkPushBtnActionPerformed
+        if (billTable.isEditing()) {
+            billTable.getCellEditor().stopCellEditing();
+        }
+
+        int billedItems = 0;
+        boolean isBilled = false;
+        try {
+            for (int j = 0; j < billTable.getRowCount(); j++) {
+                if (billTable.getValueAt(j, 0) != null) {
+                    if (billTable.getValueAt(j, 7) != null) {
+                        billedItems++;
+                    }
+
+                }
+
+            }
+            if (billedItems == 0) {
+                isBilled = false;
+                java.sql.Statement ps = connectDB.createStatement();
+                java.sql.ResultSet rst = ps.executeQuery("select nextval('transaction_no_seq')");
+
+                while (rst.next()) {
+                    rst.getObject(1).toString();
+
+                    transNo = rst.getObject(1).toString();
+                }
+                
+                for (int j = 0; j < billTable.getRowCount(); j++) {
+                    if (billTable.getValueAt(j, 0) != null) {
+                        if (billTable.getValueAt(j, 7) == null) {
+                            billTable.setValueAt(transNo, j, 7);
+                        }
+
+                    }
+
+                }
+
+            } else {
+
+                isBilled = true;
+
+            }
+            if (patientNameTxt.getText().length() > 3 && patientNumberTxt.getText().length() > 3 && !isBilled && Double.parseDouble(billAmountTxt.getText()) > 0.00) {
+                for (int i = 0; i < billTable.getRowCount(); i++) {
+                    if (billTable.getValueAt(i, 0) != null) {
+                        java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into hp_patient_billing values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?))");
+                        pstmt2.setString(1, patientNumberTxt.getText());
+                        pstmt2.setString(10, transNo);
+                        pstmt2.setString(2, patientNameTxt.getText());
+                        pstmt2.setString(3, paymentModeCmbx.getSelectedItem().toString());
+                        pstmt2.setString(4, "OP");
+                        pstmt2.setString(5, billTable.getValueAt(i, 0).toString());
+                        pstmt2.setDouble(6, java.lang.Double.valueOf(billTable.getValueAt(i, 1).toString()));
+                        pstmt2.setDouble(7, java.lang.Double.valueOf(billTable.getValueAt(i, 3).toString()));
+                        pstmt2.setObject(8, billTable.getValueAt(i, 4).toString());
+                        pstmt2.setDate(9, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));//java.sql.Date.valueOf(String.format("%1$tY-%1$tm-%1$te",datePicker1.getDate())));
+                        pstmt2.setBoolean(12, false);
+                        pstmt2.setString(11, com.afrisoftech.lib.UserName.getLoginName(connectDB));
+                        pstmt2.setString(13, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connectDB, billTable.getValueAt(i, 4).toString()));
+                        pstmt2.setInt(14, Integer.parseInt(transNo));
+                        pstmt2.setString(15, null);
+                        pstmt2.executeUpdate();
+                    }
+                }
+            } else {
+                if(!isBilled){
+                javax.swing.JOptionPane.showMessageDialog(this, "Please double check your entries");
+                }
+            }
+        } catch (java.sql.SQLException sqe) {
+            sqe.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, sqe.getMessage());
+        }
+        com.afrisoftech.hospital.HospitalMain.patientID = patientNumberTxt.getText();
+        com.afrisoftech.hospital.HospitalMain.patientName = patientNameTxt.getText();
+        com.afrisoftech.hospital.HospitalMain.mobileTxType = "OPD";
+
+        String payerTelephoneNumber = null;
+
+        System.out.println("Payer Mobile Telephone Number : [" + payerMobileTelephoneNumberTxt.getText().replace(" ", "").replace("-", "").length() + "]");
+
+        if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+            if (payerMobileTelephoneNumberTxt.getText().replace(" ", "").replace("-", "").length() == 12) {
+                payerTelephoneNumber = payerMobileTelephoneNumberTxt.getText().replace(" ", "").replace("-", "");
+                String transactionNo = null;
+                for (int n = 0; n < billTable.getRowCount(); n++) {
+                    if (billTable.getValueAt(n, 0) != null) {
+                        transactionNo = billTable.getValueAt(n, 7).toString();
+                    }
+                }
+                javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful.Bill No. " + transactionNo + "", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
+                    boolean checkoutReturn = com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("A3AuQyjuuDNejTAd19oRfpozPBD098L6:IrQkzTfJBSNHXQif"), transactionNo, payerTelephoneNumber, String.valueOf(Math.round(Double.parseDouble(billAmountTxt.getText()))), com.afrisoftech.hospital.HospitalMain.payBillNumber);
+                    if (checkoutReturn) {
+                        try {
+                            java.sql.PreparedStatement pstmtCheckout = null;
+                            for (int n = 0; n < billTable.getRowCount(); n++) {
+                                if (billTable.getValueAt(n, 0) != null) {
+                                    transactionNo = billTable.getValueAt(n, 7).toString();
+
+                                    pstmtCheckout = connectDB.prepareStatement("UPDATE hp_patient_billing SET checkout_request_id = ? WHERE inpatient_no = ? AND upper(service) = ?");
+                                    pstmtCheckout.setString(1, checkoutRequestID);
+
+                                    pstmtCheckout.setString(2, transactionNo);
+                                    pstmtCheckout.setString(3, billTable.getValueAt(n, 0).toString().toUpperCase());
+
+                                    pstmtCheckout.executeUpdate();
+                                    pstmtCheckout.close();
+
+                                    pstmtCheckout = connectDB.prepareStatement("UPDATE hp_pharmacy SET checkout_request_id = ? WHERE prescription_no = ? AND upper(description) = ?");
+                                    pstmtCheckout.setString(1, checkoutRequestID);
+
+                                    pstmtCheckout.setString(2, transactionNo);
+                                    pstmtCheckout.setString(3, billTable.getValueAt(n, 0).toString().toUpperCase());
+
+                                    pstmtCheckout.executeUpdate();
+                                    pstmtCheckout.close();
+                                }
+                            }
+
+                        } catch (SQLException ex) {
+                            Logger.getLogger(GovBillPaymentsIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                    } else {
+                        javax.swing.JOptionPane.showMessageDialog(this, "There is a problem connecting to the mobile payments service provider. Please contact system administrator!");
+                    }
+                }
+            } else if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").replace(" ", "").length() != 12) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Please check telephone number! It should be formatted as follows : 2547xxxxxxxx");
+            }
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stkPushBtnActionPerformed
+
+    private void mobilepayTxNoTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_mobilepayTxNoTxtCaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobilepayTxNoTxtCaretUpdate
+
+    private void mobilepayTxNoTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mobilepayTxNoTxtFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobilepayTxNoTxtFocusGained
+
+    private void searchButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton2ActionPerformed
+
+        com.afrisoftech.hospital.HospitalMain.mobileTxID = null;
+        com.afrisoftech.hospital.HospitalMain.mobileTelephone = null;
+
+        System.out.println("Showing dialog");
+
+        // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
+        java.awt.Point point = this.mobilepayTxNoTxt.getLocationOnScreen();
+
+        mobilepayTxSearchDialog.setSize(700, 200);
+
+        mobilepayTxSearchDialog.setLocation(point);
+
+        mobilepayTxSearchDialog.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchButton2ActionPerformed
+
+    private void mobilepayTxSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_mobilepayTxSearchTxtCaretUpdate
+
+        if (mobilepayTxSearchTxt.getText().length() > 5) {
+            mobilepayTxtSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_time::time(0), mobile_tx_id, account_no, date, paid_amount, upper(dealer) as client_name, journal_no as paybill_no, mobilepay_alert as processed FROM public.mobile_payments WHERE mobilepay_alert = false AND account_no ilike '%" + mobilepayTxSearchTxt.getText() + "%' ORDER BY account_no"));
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobilepayTxSearchTxtCaretUpdate
+
+    private void mobilepayTxtSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobilepayTxtSearchTableMouseClicked
+
+        mobilepayTxNoTxt.setText(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 1).toString());
+
+        com.afrisoftech.hospital.HospitalMain.mobileTxID = mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 1).toString();
+
+        com.afrisoftech.hospital.HospitalMain.mobileTelephone = mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 2).toString();
+
+        payerMobileTelephoneNumberTxt.setText(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 2).toString());
+
+        paymentModeCmbx.setSelectedItem("M-Pesa");
+        
+        paybillNumberCmbx.setSelectedItem(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 6).toString());
+        
+        mobilepayTxSearchDialog.dispose();
+// TODO add your handling code here:
+    }//GEN-LAST:event_mobilepayTxtSearchTableMouseClicked
+
+    private void mobilepayTxtSearchTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobilepayTxtSearchTableMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobilepayTxtSearchTableMouseEntered
+
+    private void jButton522ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton522ActionPerformed
+
+        mobilepayTxSearchDialog.dispose();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton522ActionPerformed
+
     public void tableModelTableChanged1() {
         System.out.println("Calculating totals for table 11 and 2.");
         //        double resFloat = 0.00;
         double resFloat = 0.00;
 
-        for (int i = 0; i < jTable111.getRowCount(); i++) {
+        for (int i = 0; i < billTable.getRowCount(); i++) {
 
-            if (jTable111.getModel().getValueAt(i, 0) != null) {
+            if (billTable.getModel().getValueAt(i, 0) != null) {
 
-                if (jTable111.getSelectedColumn() == 1) {
+                if (billTable.getSelectedColumn() == 1) {
 
-                    resFloat = resFloat + Double.parseDouble(jTable111.getModel().getValueAt(i, 3).toString());
+                    resFloat = resFloat + Double.parseDouble(billTable.getModel().getValueAt(i, 3).toString());
 
                     billAmountTxt.setText(java.lang.String.valueOf(resFloat));
                 } else {
-                    resFloat = resFloat + Double.parseDouble(jTable111.getModel().getValueAt(i, 3).toString());
+                    resFloat = resFloat + Double.parseDouble(billTable.getModel().getValueAt(i, 3).toString());
                 }
 
                 billAmountTxt.setText(java.lang.String.valueOf(resFloat));
@@ -3294,17 +3716,17 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         double resFloat = 0.00;
 
         for (int i = 0; i
-                < jTable111.getRowCount(); i++) {
+                < billTable.getRowCount(); i++) {
 
-            if (jTable111.getModel().getValueAt(i, 0) != null) {
+            if (billTable.getModel().getValueAt(i, 0) != null) {
 
-                if (jTable111.getSelectedColumn() == 1) {
+                if (billTable.getSelectedColumn() == 1) {
 
-                    resFloat = resFloat + Double.parseDouble(jTable111.getModel().getValueAt(i, 3).toString());
+                    resFloat = resFloat + Double.parseDouble(billTable.getModel().getValueAt(i, 3).toString());
 
                     billAmountTxt.setText(java.lang.String.valueOf(resFloat));
                 } else {
-                    resFloat = resFloat + Double.parseDouble(jTable111.getModel().getValueAt(i, 3).toString());
+                    resFloat = resFloat + Double.parseDouble(billTable.getModel().getValueAt(i, 3).toString());
                 }
 
                 billAmountTxt.setText(java.lang.String.valueOf(resFloat));
@@ -3392,274 +3814,279 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
     private void saveData() {
 
-        String payerTelephoneNumber = null;
+        if ((exemptionChkbx.isSelected() || Double.parseDouble(waivedAmountTxt.getText()) > 0.00) && exemptionNumberTxt.getText().toCharArray().length < 1) {
 
-        System.out.println("Payer Mobile Telephone Number : [" + payerMobileTelephoneNumberTxt.getText().replace(" ", "").replace("-", "").length() + "]");
+            //System.out.println("Can't process receipt...");
+            // processReceipt = false;
+            javax.swing.JOptionPane.showMessageDialog(this, "You MUST provide Exemption/Waiver number.\n Please type the reference number for the Exemption/Waiver\n on the [Exemption/Waiver Number] field on the POS form.", "WARNING: EXEMPTION/WAIVER NUMBER!", javax.swing.JOptionPane.WARNING_MESSAGE);
+        } else {
 
-        if (!paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+            processReceipt = true;
 
-            if ((exemptionChkbx.isSelected() || Double.parseDouble(waivedAmountTxt.getText()) > 0.00) && exemptionNumberTxt.getText().toCharArray().length < 1) {
+            ///  System.
+            if (patientNameTxt.getText().equalsIgnoreCase("")) {
+                javax.swing.JOptionPane.showMessageDialog(this, "You cannot save without the name", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
-                //System.out.println("Can't process receipt...");
-                // processReceipt = false;
-                javax.swing.JOptionPane.showMessageDialog(this, "You MUST provide Exemption/Waiver number.\n Please type the reference number for the Exemption/Waiver\n on the [Exemption/Waiver Number] field on the POS form.", "WARNING: EXEMPTION/WAIVER NUMBER!", javax.swing.JOptionPane.WARNING_MESSAGE);
             } else {
-
-                processReceipt = true;
-
-                ///  System.
-                if (patientNameTxt.getText().equalsIgnoreCase("")) {
-                    javax.swing.JOptionPane.showMessageDialog(this, "You cannot save without the name", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                if (shiftNoTxt.getText().equalsIgnoreCase("")) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "You cannot save without the shift No \n enquire if you are created as a shift operator", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
-                    if (shiftNoTxt.getText().equalsIgnoreCase("")) {
-                        javax.swing.JOptionPane.showMessageDialog(this, "You cannot save without the shift No \n enquire if you are created as a shift operator", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    receiptNumberTxt.setText("");
 
-                    } else {
-                        receiptNumberTxt.setText("");
+                    java.util.Calendar calendar = java.util.Calendar.getInstance();
 
-                        java.util.Calendar calendar = java.util.Calendar.getInstance();
+                    long dateNow = calendar.getTimeInMillis();
 
-                        long dateNow = calendar.getTimeInMillis();
+                    java.sql.Date datenowSql1 = new java.sql.Date(dateNow);
 
-                        java.sql.Date datenowSql1 = new java.sql.Date(dateNow);
+                    System.out.println("RECEIPT DATE : [" + datenowSql1.toString() + "]");
 
-                        System.out.println("RECEIPT DATE : [" + datenowSql1.toString() + "]");
+                    java.sql.Timestamp datenowSql = new java.sql.Timestamp(dateNow);
 
-                        java.sql.Timestamp datenowSql = new java.sql.Timestamp(dateNow);
+                    System.out.println(datenowSql.toString());
+                    String desc = null;
+                    String billNo = null;
+                    String transNo = null;
+                    String payMode = null;
+                    String patientAcc = null;
+                    String cardNo = null;
+                    String AccDesc = null;
+                    String scheme = null;
+                    String cardName = null;
+                    String isurer = null;
+                    String expDate = null;
+                    String staffNo = null;
+                    String glAcc = null;
+                    String receiptNo1 = null;
+                    String actCode1 = null;
+                    String glCode1 = null;
+                    String bankAcc1 = null;
+                    String transNo1 = null;
+                    String actNames1 = null;
+                    String patCat1 = null;
+                    String patientAcc1 = null;
+                    String user = null;
+                    String glAcc1 = null;
+                    String priceCategory = null;
+                    String name = null;
+                    String mdepartment = null;
+                    java.sql.Date dates = null;
+                    receiptNo2 = null;
+                    java.sql.Savepoint registerSavePoint = null;
+                    try {
+                        connectDB.setAutoCommit(false);
+                        registerSavePoint
+                                = connectDB.setSavepoint("registration");
+                    } catch (java.sql.SQLException ex) {
+                        ex.printStackTrace();
+                    }
 
-                        System.out.println(datenowSql.toString());
-                        String desc = null;
-                        String billNo = null;
-                        String transNo = null;
-                        String payMode = null;
-                        String patientAcc = null;
-                        String cardNo = null;
-                        String AccDesc = null;
-                        String scheme = null;
-                        String cardName = null;
-                        String isurer = null;
-                        String expDate = null;
-                        String staffNo = null;
-                        String glAcc = null;
-                        String receiptNo1 = null;
-                        String actCode1 = null;
-                        String glCode1 = null;
-                        String bankAcc1 = null;
-                        String transNo1 = null;
-                        String actNames1 = null;
-                        String patCat1 = null;
-                        String patientAcc1 = null;
-                        String user = null;
-                        String glAcc1 = null;
-                        String priceCategory = null;
-                        String name = null;
-                        String mdepartment = null;
-                        java.sql.Date dates = null;
-                        receiptNo2 = null;
-                        java.sql.Savepoint registerSavePoint = null;
-                        try {
-                            connectDB.setAutoCommit(false);
-                            registerSavePoint
-                                    = connectDB.setSavepoint("registration");
-                        } catch (java.sql.SQLException ex) {
-                            ex.printStackTrace();
-                        }
-
-                        try {
-                            java.sql.Statement stm1211 = connectDB.createStatement();
-                            //    java.sql.Statement ps1 = connectDB.createStatement();
-                            java.sql.Statement pss = connectDB.createStatement();
-                            //   java.sql.Statement stm122 = connectDB.createStatement();
-                            java.sql.Statement pss1 = connectDB.createStatement();
-                            java.sql.Statement stm121 = connectDB.createStatement();
-                            java.sql.ResultSet rse121 = null;
-                            java.sql.Statement stm121s = connectDB.createStatement();
-                            java.sql.ResultSet rse121s = null;
-                            java.sql.Statement stm121w = connectDB.createStatement();
-                            java.sql.Statement stm121r = connectDB.createStatement();
-                            java.sql.Statement ps1q = connectDB.createStatement();
-                            java.sql.PreparedStatement pstmt112F = null;
-                            java.sql.PreparedStatement pstmt112 = null;
-                            java.sql.ResultSet rst1q = null;
-                            java.sql.PreparedStatement psr = null;
-                            java.sql.PreparedStatement pstmt25 = null;
-                            java.sql.PreparedStatement pstmt212 = null;
-                            java.sql.ResultSet rse121w = null;
-                            java.sql.ResultSet rse121r = null;
-                            java.sql.PreparedStatement pstmt41d = null;
-                            java.sql.PreparedStatement pstmt41 = null;
-                            java.sql.PreparedStatement pstmt411 = null;
-                            java.sql.PreparedStatement pstmt25e = null;
-                            java.sql.Statement ps = connectDB.createStatement();
-                            java.sql.ResultSet rst = null;
-                            java.sql.Statement stm12fx = connectDB.createStatement();
-                            java.sql.ResultSet rse12fx = null;
-                            java.sql.Statement stm12f = connectDB.createStatement();
-                            java.sql.ResultSet rse12f = null;
-                            java.sql.Statement stm12 = connectDB.createStatement();
-                            java.sql.ResultSet rse12 = null;
-                            java.sql.ResultSet rse1211 = null;
-                            java.sql.ResultSet rsts = null;
-                            java.sql.ResultSet rss = null;
+                    try {
+                        java.sql.Statement stm1211 = connectDB.createStatement();
+                        //    java.sql.Statement ps1 = connectDB.createStatement();
+                        java.sql.Statement pss = connectDB.createStatement();
+                        //   java.sql.Statement stm122 = connectDB.createStatement();
+                        java.sql.Statement pss1 = connectDB.createStatement();
+                        java.sql.Statement stm121 = connectDB.createStatement();
+                        java.sql.ResultSet rse121 = null;
+                        java.sql.Statement stm121s = connectDB.createStatement();
+                        java.sql.ResultSet rse121s = null;
+                        java.sql.Statement stm121w = connectDB.createStatement();
+                        java.sql.Statement stm121r = connectDB.createStatement();
+                        java.sql.Statement ps1q = connectDB.createStatement();
+                        java.sql.PreparedStatement pstmt112F = null;
+                        java.sql.PreparedStatement pstmt112 = null;
+                        java.sql.ResultSet rst1q = null;
+                        java.sql.PreparedStatement psr = null;
+                        java.sql.PreparedStatement pstmt25 = null;
+                        java.sql.PreparedStatement pstmt212 = null;
+                        java.sql.ResultSet rse121w = null;
+                        java.sql.ResultSet rse121r = null;
+                        java.sql.PreparedStatement pstmt41d = null;
+                        java.sql.PreparedStatement pstmt41 = null;
+                        java.sql.PreparedStatement pstmt411 = null;
+                        java.sql.PreparedStatement pstmt25e = null;
+                        java.sql.Statement ps = connectDB.createStatement();
+                        java.sql.ResultSet rst = null;
+                        java.sql.Statement stm12fx = connectDB.createStatement();
+                        java.sql.ResultSet rse12fx = null;
+                        java.sql.Statement stm12f = connectDB.createStatement();
+                        java.sql.ResultSet rse12f = null;
+                        java.sql.Statement stm12 = connectDB.createStatement();
+                        java.sql.ResultSet rse12 = null;
+                        java.sql.ResultSet rse1211 = null;
+                        java.sql.ResultSet rsts = null;
+                        java.sql.ResultSet rss = null;
 
 //select current_timestamp
-                            rse12fx = stm12fx.executeQuery("select cash_point,start_date::DATE from ac_shifts WHERE shift_no = '" + shiftNoTxt.getText() + "'");
-                            while (rse12fx.next()) {
-                                cashPointTxt.setText(rse12fx.getString(1));
-                                dates = rse12fx.getDate(2);
-                            }
-                            dates = com.afrisoftech.lib.ServerTime.getSQLDate(connectDB);
-                            rse12f = stm12f.executeQuery("select now()");
-                            while (rse12f.next()) {
-                                datenowSql = rse12f.getTimestamp(1);
-                            }
+                        rse12fx = stm12fx.executeQuery("select cash_point,start_date::DATE from ac_shifts WHERE shift_no = '" + shiftNoTxt.getText() + "'");
+                        while (rse12fx.next()) {
+                            cashPointTxt.setText(rse12fx.getString(1));
+                            dates = rse12fx.getDate(2);
+                        }
+                        dates = com.afrisoftech.lib.ServerTime.getSQLDate(connectDB);
+                        rse12f = stm12f.executeQuery("select now()");
+                        while (rse12f.next()) {
+                            datenowSql = rse12f.getTimestamp(1);
+                        }
 
-                            rse12 = stm12.executeQuery("select code,activity,current_user from pb_activity where activity_category ='PR'");
-                            while (rse12.next()) {
+                        rse12 = stm12.executeQuery("select code,activity,current_user from pb_activity where activity_category ='PR'");
+                        while (rse12.next()) {
 
-                                patientAcc = rse12.getObject(1).toString();
-                                AccDesc = rse12.getObject(2).toString();
-                                user = rse12.getObject(3).toString();
-                            }
+                            patientAcc = rse12.getObject(1).toString();
+                            AccDesc = rse12.getObject(2).toString();
+                            user = rse12.getObject(3).toString();
+                        }
 
-                            rse1211 = stm1211.executeQuery("select activity,code from pb_activity where activity_category ='RC'");
-                            while (rse1211.next()) {
-                                rname = rse1211.getObject(1).toString();
-                                rcode = rse1211.getObject(2).toString();
-                            }
+                        rse1211 = stm1211.executeQuery("select activity,code from pb_activity where activity_category ='RC'");
+                        while (rse1211.next()) {
+                            rname = rse1211.getObject(1).toString();
+                            rcode = rse1211.getObject(2).toString();
+                        }
 
-                            /*
+                        /*
                              * java.sql.ResultSet rst1 = ps1.executeQuery("select
                              * nextval('receipt_no_seq')"); while (rst1.next()){
                              * receiptNo1 = rst1.getObject(1).toString(); }
-                             */
-                            //receiptNo1 = datenowSql.toString();//com.afrisoftech.lib.DateLables.getDateLabel();
-                            rss = pss.executeQuery("select nextval('transaction_no_seq')");
-                            while (rss.next()) {
-                                transNo1 = rss.getObject(1).toString();
-                                receiptNo1 = "O" + rss.getObject(1).toString();
-                            }
+                         */
+                        //receiptNo1 = datenowSql.toString();//com.afrisoftech.lib.DateLables.getDateLabel();
+                        rss = pss.executeQuery("select nextval('transaction_no_seq')");
+                        while (rss.next()) {
+                            transNo1 = rss.getObject(1).toString();
+                            receiptNo1 = "O" + rss.getObject(1).toString();
+                        }
 
-                            rsts = pss1.executeQuery("select code,activity from pb_activity where activity_category ='PR'");
-                            while (rsts.next()) {
-                                actCode1 = rsts.getObject(1).toString();
-                                actNames1 = rsts.getObject(2).toString();
-                            }
+                        rsts = pss1.executeQuery("select code,activity from pb_activity where activity_category ='PR'");
+                        while (rsts.next()) {
+                            actCode1 = rsts.getObject(1).toString();
+                            actNames1 = rsts.getObject(2).toString();
+                        }
 
-                            for (int i = 0; i < jTable111.getRowCount(); i++) {
-                                if (jTable111.getModel().getValueAt(i, 0) != null) {
-                                    double waived = java.lang.Double.valueOf(jTable111.getValueAt(i, 3).toString());
+                        for (int i = 0; i < billTable.getRowCount(); i++) {
+                            if (billTable.getModel().getValueAt(i, 0) != null) {
+                                double waived = java.lang.Double.valueOf(billTable.getValueAt(i, 3).toString());
 
-                                    System.out.println("Bill No 2 " + billNo);
+                                System.out.println("Bill No 2 " + billNo);
 
-                                    rse121 = stm121.executeQuery("select activity,code,department from pb_activity where code ='" + jTable111.getModel().getValueAt(i, 4).toString() + "'");
-                                    while (rse121.next()) {
+                                rse121 = stm121.executeQuery("select activity,code,department from pb_activity where code ='" + billTable.getModel().getValueAt(i, 4).toString() + "'");
+                                while (rse121.next()) {
 
-                                        glAcc = rse121.getObject(1).toString();
-                                        if (rse121.getObject(3) != null) {
-                                            mdepartment = rse121.getObject(3).toString();
-                                        } else {
-                                            mdepartment = "-";
-                                        }
+                                    glAcc = rse121.getObject(1).toString();
+                                    if (rse121.getObject(3) != null) {
+                                        mdepartment = rse121.getObject(3).toString();
+                                    } else {
+                                        mdepartment = "-";
                                     }
-                                    rse121s = stm121s.executeQuery("SELECT prov_code FROM st_stock_item WHERE item_code = '" + jTable111.getModel().getValueAt(i, 6).toString() + "' "
-                                            + "UNION ALL SELECT price_category FROM pb_operating_parameters WHERE code = '" + jTable111.getModel().getValueAt(i, 6).toString() + "'");
-                                    while (rse121s.next()) {
+                                }
+                                rse121s = stm121s.executeQuery("SELECT prov_code FROM st_stock_item WHERE item_code = '" + billTable.getModel().getValueAt(i, 6).toString() + "' "
+                                        + "UNION ALL SELECT price_category FROM pb_operating_parameters WHERE code = '" + billTable.getModel().getValueAt(i, 6).toString() + "'");
+                                while (rse121s.next()) {
 
-                                        if (rse121s.getObject(1) == null) {
-                                            priceCategory = "0";
+                                    if (rse121s.getObject(1) == null) {
+                                        priceCategory = "0";
+                                    } else {
+                                        priceCategory = rse121s.getObject(1).toString();
+                                    }
+                                }
+
+                                if (waived > 0) {
+                                    if (billTable.getValueAt(i, 0).toString().equalsIgnoreCase("NHIF PAYMENTS") || billTable.getValueAt(i, 0).toString().equalsIgnoreCase("OTHER DEBTORS PAYMENTS")) {
+                                    } else {
+
+                                        System.out.println("Bill No 4" + billNo);
+                                        pstmt212 = connectDB.prepareStatement("INSERT INTO ac_ledger values(?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+                                        pstmt212.setObject(1, billTable.getValueAt(i, 4).toString());
+                                        pstmt212.setString(2, glAcc);
+                                        pstmt212.setString(3, patientNumberTxt.getText());
+                                        if (patientNameTxt.getText().equals("") || patientNameTxt.getText().equals(null)) {
+                                            javax.swing.JOptionPane.showMessageDialog(this, "PATIENT NAME MISSING !!", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
                                         } else {
-                                            priceCategory = rse121s.getObject(1).toString();
+                                            pstmt212.setString(4, patientNameTxt.getText());
                                         }
+
+                                        pstmt212.setString(5, "");
+                                        pstmt212.setString(6, "");
+                                        pstmt212.setString(7, "");
+                                        pstmt212.setString(8, "OP");
+                                        pstmt212.setString(9, jTextField51.getText());
+                                        pstmt212.setString(10, paymentModeCmbx.getSelectedItem().toString());
+                                        pstmt212.setString(11, jTextField22.getText());
+                                        pstmt212.setString(12, receiptNo1);
+                                        pstmt212.setString(13, "");
+                                        pstmt212.setString(14, billTable.getValueAt(i, 0).toString());
+                                        pstmt212.setString(15, "Revenue");
+                                        pstmt212.setDouble(16, 0.00);
+                                        pstmt212.setDouble(17, java.lang.Double.valueOf(billTable.getValueAt(i, 3).toString()));
+                                        pstmt212.setDate(18, dates);//.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                        pstmt212.setString(19, transNo1);
+                                        pstmt212.setBoolean(20, false);
+                                        pstmt212.setBoolean(21, false);
+                                        pstmt212.setBoolean(22, false);
+                                        pstmt212.setString(23, user);
+                                        pstmt212.setString(24, cashPointTxt.getText());
+                                        pstmt212.setString(25, shiftNoTxt.getText());
+                                        pstmt212.executeUpdate();
+                                        pstmt212.close();
+                                        //}
                                     }
 
-                                    if (waived > 0) {
-                                        if (jTable111.getValueAt(i, 0).toString().equalsIgnoreCase("NHIF PAYMENTS") || jTable111.getValueAt(i, 0).toString().equalsIgnoreCase("OTHER DEBTORS PAYMENTS")) {
-                                        } else {
+                                    pstmt25 = connectDB.prepareStatement("INSERT INTO "
+                                            + "ac_cash_collection values(?,?,?,?,?,?,?,?, "
+                                            + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
+                                            + "?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                    pstmt25.setObject(1, billTable.getValueAt(i, 4).toString());
+                                    pstmt25.setObject(2, billTable.getValueAt(i, 0).toString());
+                                    pstmt25.setString(3, patientNumberTxt.getText());
+                                    pstmt25.setString(4, patientNameTxt.getText().toUpperCase());
+                                    pstmt25.setString(5, paymentModeCmbx.getSelectedItem().toString());
+                                    pstmt25.setString(6, jTextField212.getText());
+                                    pstmt25.setString(7, jTextField521.getText());
+                                    pstmt25.setString(8, jTextField42.getText());
+                                    if (jTextField51.getText().equals("")) {
+                                        pstmt25.setString(9, jTextField411.getText());
+                                    } else {
+                                        pstmt25.setString(9, jTextField51.getText());
+                                    }
 
-                                            System.out.println("Bill No 4" + billNo);
-                                            pstmt212 = connectDB.prepareStatement("INSERT INTO ac_ledger values(?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-                                            pstmt212.setObject(1, jTable111.getValueAt(i, 4).toString());
-                                            pstmt212.setString(2, glAcc);
-                                            pstmt212.setString(3, patientNumberTxt.getText());
-                                            if (patientNameTxt.getText().equals("") || patientNameTxt.getText().equals(null)) {
-                                                javax.swing.JOptionPane.showMessageDialog(this, "PATIENT NAME MISSING !!", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                            } else {
-                                                pstmt212.setString(4, patientNameTxt.getText());
-                                            }
-
-                                            pstmt212.setString(5, "");
-                                            pstmt212.setString(6, "");
-                                            pstmt212.setString(7, "");
-                                            pstmt212.setString(8, "OP");
-                                            pstmt212.setString(9, jTextField51.getText());
-                                            pstmt212.setString(10, paymentModeCmbx.getSelectedItem().toString());
-                                            pstmt212.setString(11, jTextField22.getText());
-                                            pstmt212.setString(12, receiptNo1);
-                                            pstmt212.setString(13, "");
-                                            pstmt212.setString(14, jTable111.getValueAt(i, 0).toString());
-                                            pstmt212.setString(15, "Revenue");
-                                            pstmt212.setDouble(16, 0.00);
-                                            pstmt212.setDouble(17, java.lang.Double.valueOf(jTable111.getValueAt(i, 3).toString()));
-                                            pstmt212.setDate(18, dates);//.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                                            pstmt212.setString(19, transNo1);
-                                            pstmt212.setBoolean(20, false);
-                                            pstmt212.setBoolean(21, false);
-                                            pstmt212.setBoolean(22, false);
-                                            pstmt212.setString(23, user);
-                                            pstmt212.setString(24, cashPointTxt.getText());
-                                            pstmt212.setString(25, shiftNoTxt.getText());
-                                            pstmt212.executeUpdate();
-                                            pstmt212.close();
-                                            //}
-                                        }
-
-                                        pstmt25 = connectDB.prepareStatement("INSERT INTO "
-                                                + "ac_cash_collection values(?,?,?,?,?,?,?,?, "
-                                                + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
-                                                + "?,?,?,?,?,?,?,?,?,?,?,?)");
-                                        pstmt25.setObject(1, jTable111.getValueAt(i, 4).toString());
-                                        pstmt25.setObject(2, jTable111.getValueAt(i, 0).toString());
-                                        pstmt25.setString(3, patientNumberTxt.getText());
-                                        pstmt25.setString(4, patientNameTxt.getText().toUpperCase());
-                                        pstmt25.setString(5, paymentModeCmbx.getSelectedItem().toString());
-                                        pstmt25.setString(6, jTextField212.getText());
-                                        pstmt25.setString(7, jTextField521.getText());
-                                        pstmt25.setString(8, jTextField42.getText());
-                                        if (jTextField51.getText().equals("")) {
-                                            pstmt25.setString(9, jTextField411.getText());
-                                        } else {
-                                            pstmt25.setString(9, jTextField51.getText());
-                                        }
-
-                                        pstmt25.setString(10, rcode);
-                                        pstmt25.setString(11, jTextField22.getText());
-                                        pstmt25.setString(12, receiptNo1);
+                                    pstmt25.setString(10, rcode);
+                                    pstmt25.setString(11, jTextField22.getText());
+                                    pstmt25.setString(12, receiptNo1);
+                                    if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+                                        pstmt25.setString(13, com.afrisoftech.hospital.HospitalMain.mobileTxID);
+                                        pstmt25.setString(14, com.afrisoftech.hospital.HospitalMain.mobileTelephone);
+                                    } else {
                                         pstmt25.setString(13, exemptionNumberTxt.getText());
                                         pstmt25.setString(14, patientNameTxt.getText().toUpperCase());
-                                        pstmt25.setString(15, "Receipts");
-                                        pstmt25.setDouble(16, java.lang.Double.valueOf(jTable111.getValueAt(i, 3).toString()));
-                                        pstmt25.setDouble(17, 0.00);
-                                        pstmt25.setDate(18, dates);//com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                                        pstmt25.setString(19, "" + transNo1 + "");
-                                        pstmt25.setBoolean(20, false);
-                                        pstmt25.setBoolean(21, false);
-                                        pstmt25.setBoolean(22, false);
-                                        pstmt25.setString(23, user);
-                                        pstmt25.setString(24, cashPointTxt.getText());
-                                        pstmt25.setString(25, shiftNoTxt.getText());
-                                        pstmt25.setDate(26, null);
-                                        pstmt25.setDouble(27, java.lang.Double.valueOf(jTable111.getValueAt(i, 1).toString()));
-                                        pstmt25.setDate(28, null);
-                                        pstmt25.setTimestamp(29, datenowSql);
-                                        pstmt25.setString(30, mdepartment);
-                                        pstmt25.setBoolean(31, false);
-                                        pstmt25.setObject(32, priceCategory);
-                                        pstmt25.setObject(33, jTable111.getValueAt(i, 6).toString());
-                                        pstmt25.setDouble(34, java.lang.Double.valueOf(jTable111.getValueAt(i, 2).toString()));
-
-                                        pstmt25.executeUpdate();
+                                    }
+                                    pstmt25.setString(15, "Receipts");
+                                    pstmt25.setDouble(16, java.lang.Double.valueOf(billTable.getValueAt(i, 3).toString()));
+                                    pstmt25.setDouble(17, 0.00);
+                                    pstmt25.setDate(18, dates);//com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                    pstmt25.setString(19, "" + transNo1 + "");
+                                    pstmt25.setBoolean(20, false);
+                                    pstmt25.setBoolean(21, false);
+                                    pstmt25.setBoolean(22, false);
+                                    pstmt25.setString(23, user);
+                                    pstmt25.setString(24, cashPointTxt.getText());
+                                    pstmt25.setString(25, shiftNoTxt.getText());
+                                    pstmt25.setDate(26, null);
+                                    pstmt25.setDouble(27, java.lang.Double.valueOf(billTable.getValueAt(i, 1).toString()));
+                                    pstmt25.setDate(28, null);
+                                    pstmt25.setTimestamp(29, datenowSql);
+                                    pstmt25.setString(30, mdepartment);
+                                    pstmt25.setBoolean(31, false);
+                                    pstmt25.setObject(32, priceCategory);
+                                    pstmt25.setObject(33, billTable.getValueAt(i, 6).toString());
+                                    pstmt25.setDouble(34, java.lang.Double.valueOf(billTable.getValueAt(i, 2).toString()));
+                                    if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+                                        pstmt25.setString(35, checkoutRequestID);
+                                        pstmt25.setObject(36, paybillNumberCmbx.getSelectedItem());
+                                    } else {
+                                        pstmt25.setString(35, null);
+                                        pstmt25.setString(36, null);
+                                    }
+                                    pstmt25.executeUpdate();
 //
 //                                    pstmt41d = connectDB.prepareStatement("UPDATE pb_doctors_request SET paid = true WHERE patient_no = '" + patientNumberTxt.getText() + "' AND service = '" + jTable111.getValueAt(i, 0) + "' AND trans_date >= current_date - 1");
 //                                    pstmt41d.executeUpdate();
@@ -3669,225 +4096,134 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 //                                    pstmt411 = connectDB.prepareStatement("UPDATE hp_patient_billing SET paid = true, collected = false WHERE patient_no = '" + patientNumberTxt.getText() + "' AND service = '" + jTable111.getValueAt(i, 0) + "' AND trans_date > current_date - 2");
 //                                    pstmt411.executeUpdate();
 
-                                        if (jTable111.getValueAt(i, 0).toString().equalsIgnoreCase("NHIF PAYMENTS")) {
-                                            pstmt25e = connectDB.prepareStatement("INSERT INTO ac_debtors values(?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
+                                    if (billTable.getValueAt(i, 0).toString().equalsIgnoreCase("NHIF PAYMENTS")) {
+                                        pstmt25e = connectDB.prepareStatement("INSERT INTO ac_debtors values(?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
 
-                                            pstmt25e.setObject(1, rcode);
-                                            pstmt25e.setObject(2, jComboBox111.getSelectedItem().toString());
-                                            pstmt25e.setString(3, patientNameTxt.getText());
-                                            pstmt25e.setString(4, "");
-                                            pstmt25e.setString(5, jTable111.getValueAt(i, 0).toString());
-                                            pstmt25e.setString(6, "");
-                                            pstmt25e.setString(7, "");
-                                            pstmt25e.setString(8, receiptNo1);
-                                            pstmt25e.setString(9, "");
-                                            pstmt25e.setString(10, "");
-                                            pstmt25e.setString(11, transNo1);
-                                            pstmt25e.setString(12, "Debt Payments");
-                                            pstmt25e.setDouble(13, 0.00);
-                                            pstmt25e.setDouble(14, java.lang.Double.valueOf(jTable111.getValueAt(i, 3).toString()));
-                                            pstmt25e.setDate(15, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                                            pstmt25e.setString(16, "");
-                                            pstmt25e.setObject(17, "DEBTORS ACCOUNT");
-                                            pstmt25e.setBoolean(18, false);
-                                            pstmt25e.setBoolean(19, false);
-                                            pstmt25e.setString(20, user);
-                                            pstmt25e.setString(21, "");
-                                            pstmt25e.setDouble(22, 0.00);
-                                            pstmt25e.setBoolean(23, false);
-                                            pstmt25e.setDouble(24, 0.00);
-                                            pstmt25e.setString(25, "");
-                                            pstmt25e.setDate(26, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                                            pstmt25e.setBoolean(27, false);
-                                            pstmt25e.executeUpdate();
+                                        pstmt25e.setObject(1, rcode);
+                                        pstmt25e.setObject(2, jComboBox111.getSelectedItem().toString());
+                                        pstmt25e.setString(3, patientNameTxt.getText());
+                                        pstmt25e.setString(4, "");
+                                        pstmt25e.setString(5, billTable.getValueAt(i, 0).toString());
+                                        pstmt25e.setString(6, "");
+                                        pstmt25e.setString(7, "");
+                                        pstmt25e.setString(8, receiptNo1);
+                                        pstmt25e.setString(9, "");
+                                        pstmt25e.setString(10, "");
+                                        pstmt25e.setString(11, transNo1);
+                                        pstmt25e.setString(12, "Debt Payments");
+                                        pstmt25e.setDouble(13, 0.00);
+                                        pstmt25e.setDouble(14, java.lang.Double.valueOf(billTable.getValueAt(i, 3).toString()));
+                                        pstmt25e.setDate(15, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                        pstmt25e.setString(16, "");
+                                        pstmt25e.setObject(17, "DEBTORS ACCOUNT");
+                                        pstmt25e.setBoolean(18, false);
+                                        pstmt25e.setBoolean(19, false);
+                                        pstmt25e.setString(20, user);
+                                        pstmt25e.setString(21, "");
+                                        pstmt25e.setDouble(22, 0.00);
+                                        pstmt25e.setBoolean(23, false);
+                                        pstmt25e.setDouble(24, 0.00);
+                                        pstmt25e.setString(25, "");
+                                        pstmt25e.setDate(26, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                        pstmt25e.setBoolean(27, false);
+                                        pstmt25e.executeUpdate();
 
-                                        }
+                                    }
 
-                                        if (jTable111.getValueAt(i, 0).toString().equalsIgnoreCase("OTHER DEBTORS PAYMENTS")) {
-                                            pstmt25e = connectDB.prepareStatement("INSERT INTO ac_debtors VALUES(?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
+                                    if (billTable.getValueAt(i, 0).toString().equalsIgnoreCase("OTHER DEBTORS PAYMENTS")) {
+                                        pstmt25e = connectDB.prepareStatement("INSERT INTO ac_debtors VALUES(?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
 
-                                            pstmt25e.setObject(1, rcode);
-                                            pstmt25e.setObject(2, jComboBox111.getSelectedItem().toString());
-                                            pstmt25e.setString(3, patientNameTxt.getText());
-                                            pstmt25e.setString(4, "");
-                                            pstmt25e.setString(5, jTable111.getValueAt(i, 0).toString());
-                                            pstmt25e.setString(6, "");
-                                            pstmt25e.setString(7, "");
-                                            pstmt25e.setString(8, receiptNo1);
-                                            pstmt25e.setString(9, "");
-                                            pstmt25e.setString(10, "");
-                                            pstmt25e.setString(11, transNo1);
-                                            pstmt25e.setString(12, "Debt Payments");
-                                            pstmt25e.setDouble(13, 0.00);
-                                            pstmt25e.setDouble(14, java.lang.Double.valueOf(jTable111.getValueAt(i, 3).toString()));
-                                            pstmt25e.setDate(15, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                                            pstmt25e.setString(16, "");
-                                            pstmt25e.setObject(17, "DEBTORS ACCOUNT");
-                                            pstmt25e.setBoolean(18, false);
-                                            pstmt25e.setBoolean(19, false);
-                                            pstmt25e.setString(20, user);
-                                            pstmt25e.setString(21, "");
-                                            pstmt25e.setDouble(22, 0.00);
-                                            pstmt25e.setBoolean(23, false);
-                                            pstmt25e.setDouble(24, 0.00);
-                                            pstmt25e.setString(25, "");
-                                            pstmt25e.setDate(26, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                                            pstmt25e.setBoolean(27, false);
-                                            pstmt25e.executeUpdate();
-                                            pstmt25e.close();
-                                        } else {
-                                        }
-
+                                        pstmt25e.setObject(1, rcode);
+                                        pstmt25e.setObject(2, jComboBox111.getSelectedItem().toString());
+                                        pstmt25e.setString(3, patientNameTxt.getText());
+                                        pstmt25e.setString(4, "");
+                                        pstmt25e.setString(5, billTable.getValueAt(i, 0).toString());
+                                        pstmt25e.setString(6, "");
+                                        pstmt25e.setString(7, "");
+                                        pstmt25e.setString(8, receiptNo1);
+                                        pstmt25e.setString(9, "");
+                                        pstmt25e.setString(10, "");
+                                        pstmt25e.setString(11, transNo1);
+                                        pstmt25e.setString(12, "Debt Payments");
+                                        pstmt25e.setDouble(13, 0.00);
+                                        pstmt25e.setDouble(14, java.lang.Double.valueOf(billTable.getValueAt(i, 3).toString()));
+                                        pstmt25e.setDate(15, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                        pstmt25e.setString(16, "");
+                                        pstmt25e.setObject(17, "DEBTORS ACCOUNT");
+                                        pstmt25e.setBoolean(18, false);
+                                        pstmt25e.setBoolean(19, false);
+                                        pstmt25e.setString(20, user);
+                                        pstmt25e.setString(21, "");
+                                        pstmt25e.setDouble(22, 0.00);
+                                        pstmt25e.setBoolean(23, false);
+                                        pstmt25e.setDouble(24, 0.00);
+                                        pstmt25e.setString(25, "");
+                                        pstmt25e.setDate(26, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                        pstmt25e.setBoolean(27, false);
+                                        pstmt25e.executeUpdate();
+                                        pstmt25e.close();
+                                    } else {
                                     }
 
                                 }
 
                             }
-                            double waiver = 0.00;
-                            if (waivedAmountTxt.getText().toCharArray().length > 0) {
-                                waiver = java.lang.Double.parseDouble(waivedAmountTxt.getText());
-                            }
 
-                            String glAcc1q = null;
-                            String glAcc2 = null;
-                            String glAcc11 = null;
-                            String glAcc21 = null;
+                        }
+                        double waiver = 0.00;
+                        if (waivedAmountTxt.getText().toCharArray().length > 0) {
+                            waiver = java.lang.Double.parseDouble(waivedAmountTxt.getText());
+                        }
 
-                            rse121r = stm121r.executeQuery("select activity,code from pb_activity where activity_category ILIKE 'RC'");
-                            while (rse121r.next()) {
-                                glAcc21 = rse121r.getObject(2).toString();
-                                glAcc11 = rse121r.getObject(1).toString();
-                            }
-                            rse121w = stm121w.executeQuery("select activity,code,department from pb_activity where activity_category ILIKE 'IEXE'");
-                            while (rse121w.next()) {
-                                glAcc2 = rse121w.getObject(1).toString();
-                                glAcc1q = rse121w.getObject(2).toString();
-                                mdepartment = rse121w.getObject(3).toString();
-                            }
-                            if (exemptionChkbx.isSelected()) {
+                        String glAcc1q = null;
+                        String glAcc2 = null;
+                        String glAcc11 = null;
+                        String glAcc21 = null;
 
-                                if (exemptionNumberTxt.getText().toCharArray().length < 1) {
-                                    ps = connectDB.createStatement();
-                                    rst = ps.executeQuery("select 'E'||lpad(nextval('exemption')::text, 7, 0::text)");
-                                    while (rst.next()) {
-                                        exemptionNumberTxt.setText(rst.getString(1));
-                                    }
-                                    rst.close();
+                        rse121r = stm121r.executeQuery("select activity,code from pb_activity where activity_category ILIKE 'RC'");
+                        while (rse121r.next()) {
+                            glAcc21 = rse121r.getObject(2).toString();
+                            glAcc11 = rse121r.getObject(1).toString();
+                        }
+                        rse121w = stm121w.executeQuery("select activity,code,department from pb_activity where activity_category ILIKE 'IEXE'");
+                        while (rse121w.next()) {
+                            glAcc2 = rse121w.getObject(1).toString();
+                            glAcc1q = rse121w.getObject(2).toString();
+                            mdepartment = rse121w.getObject(3).toString();
+                        }
+                        if (exemptionChkbx.isSelected()) {
+
+                            if (exemptionNumberTxt.getText().toCharArray().length < 1) {
+                                ps = connectDB.createStatement();
+                                rst = ps.executeQuery("select 'E'||lpad(nextval('exemption')::text, 7, 0::text)");
+                                while (rst.next()) {
+                                    exemptionNumberTxt.setText(rst.getString(1));
                                 }
-                                //          javax.swing.JOptionPane.showMessageDialog(this, "You MUST provide the reference number for the exemption or waiver.",  "WARNING: EXEMPTION NUMBER!", javax.swing.JOptionPane.WARNING_MESSAGE);
-                                //      } else {
-                                for (int k = 0; k < jTable111.getRowCount(); k++) {
-                                    if (jTable111.getModel().getValueAt(k, 0) != null) {
+                                rst.close();
+                            }
+                            //          javax.swing.JOptionPane.showMessageDialog(this, "You MUST provide the reference number for the exemption or waiver.",  "WARNING: EXEMPTION NUMBER!", javax.swing.JOptionPane.WARNING_MESSAGE);
+                            //      } else {
+                            for (int k = 0; k < billTable.getRowCount(); k++) {
+                                if (billTable.getModel().getValueAt(k, 0) != null) {
 
-                                        double waived = java.lang.Double.valueOf(jTable111.getValueAt(k, 3).toString());
-                                        if (jRadioButton1.isSelected()) {
-                                            if (waived < 0) {
+                                    double waived = java.lang.Double.valueOf(billTable.getValueAt(k, 3).toString());
+                                    if (jRadioButton1.isSelected()) {
+                                        if (waived < 0) {
 
-                                                rse121s = stm121s.executeQuery("SELECT prov_code FROM st_stock_item WHERE item_code = '" + jTable111.getModel().getValueAt(k, 6).toString() + "'");
-                                                while (rse121s.next()) {
+                                            rse121s = stm121s.executeQuery("SELECT prov_code FROM st_stock_item WHERE item_code = '" + billTable.getModel().getValueAt(k, 6).toString() + "'");
+                                            while (rse121s.next()) {
 
-                                                    if (priceCategory == null) {
-                                                        priceCategory = "0";
-                                                    } else {
-                                                        priceCategory = rse121s.getObject(1).toString();
-                                                    }
-                                                }
-
-                                                System.out.println("Bill No 4" + billNo);
-                                                pstmt212 = connectDB.prepareStatement("INSERT INTO ac_ledger values(?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-                                                pstmt212.setString(1, glAcc1q);
-                                                pstmt212.setString(2, jTable111.getValueAt(k, 0).toString());
-                                                pstmt212.setString(3, patientNumberTxt.getText());
-                                                pstmt212.setString(4, patientNameTxt.getText().toUpperCase());
-                                                pstmt212.setString(5, "");
-                                                pstmt212.setString(6, "");
-                                                pstmt212.setString(7, "");
-                                                pstmt212.setString(8, "OP");
-                                                pstmt212.setString(9, jTextField51.getText());
-                                                pstmt212.setString(10, paymentModeCmbx.getSelectedItem().toString());
-                                                pstmt212.setString(11, jTextField22.getText());
-                                                pstmt212.setString(12, receiptNo1);
-                                                pstmt212.setString(13, "");
-                                                pstmt212.setString(14, "Exemption");
-                                                pstmt212.setString(15, "Exemption");
-                                                pstmt212.setDouble(16, -1 * java.lang.Double.valueOf(jTable111.getValueAt(k, 3).toString()));
-                                                pstmt212.setDouble(17, 0.00);
-                                                pstmt212.setDate(18, dates);// com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                                                pstmt212.setString(19, transNo1);
-                                                pstmt212.setBoolean(20, false);
-                                                pstmt212.setBoolean(21, false);
-                                                pstmt212.setBoolean(22, false);
-                                                pstmt212.setString(23, user);
-                                                pstmt212.setString(24, cashPointTxt.getText());
-                                                pstmt212.setString(25, shiftNoTxt.getText());
-                                                pstmt212.executeUpdate();
-
-                                                pstmt25 = connectDB.prepareStatement("INSERT INTO ac_cash_collection values(?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?)");
-
-                                                pstmt25.setObject(1, glAcc1q);
-                                                pstmt25.setObject(2, jTable111.getValueAt(k, 0).toString());
-                                                pstmt25.setString(3, patientNumberTxt.getText());
-                                                pstmt25.setString(4, patientNameTxt.getText().toUpperCase());
-                                                pstmt25.setString(5, paymentModeCmbx.getSelectedItem().toString());
-                                                pstmt25.setString(6, jTextField212.getText());
-                                                pstmt25.setString(7, jTextField521.getText());
-                                                pstmt25.setString(8, jTextField42.getText());
-                                                if (jTextField51.getText().equals("")) {
-                                                    pstmt25.setString(9, jTextField411.getText());
+                                                if (priceCategory == null) {
+                                                    priceCategory = "0";
                                                 } else {
-                                                    pstmt25.setString(9, jTextField51.getText());
+                                                    priceCategory = rse121s.getObject(1).toString();
                                                 }
-
-                                                pstmt25.setString(10, rcode);
-                                                pstmt25.setString(11, jTextField22.getText());
-                                                pstmt25.setString(12, receiptNo1);
-                                                pstmt25.setString(13, exemptionNumberTxt.getText());
-                                                pstmt25.setString(14, patientNameTxt.getText().toUpperCase());
-                                                pstmt25.setString(15, "Exemptions");
-                                                pstmt25.setDouble(16, 0.00);
-                                                pstmt25.setDouble(17, -1 * java.lang.Double.valueOf(jTable111.getValueAt(k, 3).toString()));
-                                                pstmt25.setDate(18, dates); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                                                pstmt25.setString(19, "" + transNo1 + "");
-                                                pstmt25.setBoolean(20, false);
-                                                pstmt25.setBoolean(21, false);
-                                                pstmt25.setBoolean(22, false);
-                                                pstmt25.setString(23, user);
-                                                pstmt25.setString(24, cashPointTxt.getText());
-                                                pstmt25.setString(25, shiftNoTxt.getText());
-                                                pstmt25.setDate(26, null);
-                                                pstmt25.setDouble(27, 1);
-                                                pstmt25.setDate(28, null);
-                                                pstmt25.setTimestamp(29, datenowSql);
-                                                pstmt25.setString(30, mdepartment);
-                                                pstmt25.setBoolean(31, false);
-                                                pstmt25.setObject(32, priceCategory);
-                                                pstmt25.setObject(33, jTable111.getValueAt(k, 6).toString());
-                                                pstmt25.setDouble(34, java.lang.Double.valueOf(jTable111.getValueAt(k, 2).toString()));
-
-                                                pstmt25.executeUpdate();
-
-                                            }
-                                        } else {
-                                            //if (waived < 0) {
-
-                                            rse121w = stm121w.executeQuery("select activity,code,department from pb_activity where activity_category ILIKE 'IEXE'");
-                                            while (rse121w.next()) {
-                                                glAcc2 = rse121w.getObject(1).toString();
-                                                glAcc1q = rse121w.getObject(2).toString();
-                                                mdepartment = rse121w.getObject(3).toString();
-                                            }
-
-                                            rse121r = stm121r.executeQuery("select activity,code from pb_activity where activity_category ILIKE 'RC'");
-                                            while (rse121r.next()) {
-                                                glAcc21 = rse121r.getObject(2).toString();
-                                                glAcc11 = rse121r.getObject(1).toString();
                                             }
 
                                             System.out.println("Bill No 4" + billNo);
-
                                             pstmt212 = connectDB.prepareStatement("INSERT INTO ac_ledger values(?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
                                             pstmt212.setString(1, glAcc1q);
-                                            pstmt212.setString(2, jTable111.getValueAt(k, 0).toString());
+                                            pstmt212.setString(2, billTable.getValueAt(k, 0).toString());
                                             pstmt212.setString(3, patientNumberTxt.getText());
                                             pstmt212.setString(4, patientNameTxt.getText().toUpperCase());
                                             pstmt212.setString(5, "");
@@ -3901,9 +4237,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                             pstmt212.setString(13, "");
                                             pstmt212.setString(14, "Exemption");
                                             pstmt212.setString(15, "Exemption");
-                                            pstmt212.setDouble(16, java.lang.Double.valueOf(jTable111.getValueAt(k, 3).toString()));
+                                            pstmt212.setDouble(16, -1 * java.lang.Double.valueOf(billTable.getValueAt(k, 3).toString()));
                                             pstmt212.setDouble(17, 0.00);
-                                            pstmt212.setDate(18, dates);//com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                            pstmt212.setDate(18, dates);// com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
                                             pstmt212.setString(19, transNo1);
                                             pstmt212.setBoolean(20, false);
                                             pstmt212.setBoolean(21, false);
@@ -3913,10 +4249,10 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                             pstmt212.setString(25, shiftNoTxt.getText());
                                             pstmt212.executeUpdate();
 
-                                            pstmt25 = connectDB.prepareStatement("INSERT INTO ac_cash_collection values(?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
+                                            pstmt25 = connectDB.prepareStatement("INSERT INTO ac_cash_collection values(?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?)");
 
                                             pstmt25.setObject(1, glAcc1q);
-                                            pstmt25.setObject(2, jTable111.getValueAt(k, 0).toString());
+                                            pstmt25.setObject(2, billTable.getValueAt(k, 0).toString());
                                             pstmt25.setString(3, patientNumberTxt.getText());
                                             pstmt25.setString(4, patientNameTxt.getText().toUpperCase());
                                             pstmt25.setString(5, paymentModeCmbx.getSelectedItem().toString());
@@ -3936,8 +4272,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                             pstmt25.setString(14, patientNameTxt.getText().toUpperCase());
                                             pstmt25.setString(15, "Exemptions");
                                             pstmt25.setDouble(16, 0.00);
-                                            pstmt25.setDouble(17, java.lang.Double.valueOf(jTable111.getValueAt(k, 3).toString()));
-                                            pstmt25.setDate(18, dates);//com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                            pstmt25.setDouble(17, -1 * java.lang.Double.valueOf(billTable.getValueAt(k, 3).toString()));
+                                            pstmt25.setDate(18, dates); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
                                             pstmt25.setString(19, "" + transNo1 + "");
                                             pstmt25.setBoolean(20, false);
                                             pstmt25.setBoolean(21, false);
@@ -3952,148 +4288,33 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                             pstmt25.setString(30, mdepartment);
                                             pstmt25.setBoolean(31, false);
                                             pstmt25.setObject(32, priceCategory);
-                                            pstmt25.setObject(33, jTable111.getValueAt(k, 6).toString());
-                                            pstmt25.setDouble(34, java.lang.Double.valueOf(jTable111.getValueAt(k, 2).toString()));
+                                            pstmt25.setObject(33, billTable.getValueAt(k, 6).toString());
+                                            pstmt25.setDouble(34, java.lang.Double.valueOf(billTable.getValueAt(k, 2).toString()));
 
                                             pstmt25.executeUpdate();
 
-                                            //}
                                         }
-                                    }
-
-                                }
-                            } else {
-                                if (waiver > 0) {
-                                    if (exemptionNumberTxt.getText().toCharArray().length < 1) {
-                                        ps = connectDB.createStatement();
-                                        rst = ps.executeQuery("select 'W'||lpad(nextval('waiver')::text, 8, 0::text)");
-                                        while (rst.next()) {
-                                            exemptionNumberTxt.setText(rst.getString(1));
-                                        }
-
-                                    }
-
-                                    rse121w = stm121w.executeQuery("select activity,code,department from pb_activity where activity_category ILIKE 'IEDS'");
-                                    while (rse121w.next()) {
-
-                                        glAcc2 = rse121w.getObject(1).toString();
-                                        glAcc1q = rse121w.getObject(2).toString();
-                                        mdepartment = rse121w.getObject(3).toString();
-                                    }
-
-                                    rse121r = stm121r.executeQuery("select activity,code from pb_activity where activity_category ILIKE 'RC'");
-                                    while (rse121r.next()) {
-
-                                        glAcc21 = rse121r.getObject(2).toString();
-                                        glAcc11 = rse121r.getObject(1).toString();
-                                    }
-
-                                    if (jRadioButton1.isSelected()) {
-                                        for (int k = 0; k < jTable111.getRowCount(); k++) {
-                                            if (jTable111.getModel().getValueAt(k, 0) != null) {
-
-                                                rse121 = stm121s.executeQuery("SELECT prov_code FROM st_stock_item WHERE item_code = '" + jTable111.getModel().getValueAt(k, 6).toString() + "'");
-                                                while (rse121.next()) {
-
-                                                    if (priceCategory == null) {
-                                                        priceCategory = "0";
-                                                    } else {
-                                                        priceCategory = rse121.getObject(1).toString();
-                                                    }
-                                                }
-                                                //        if (exemptionNumberTxt.getText().toCharArray().length < 1) {
-                                                //            javax.swing.JOptionPane.showMessageDialog(this,  "You MUST provide the reference number for the exemption or waiver.", "WARNING: EXEMPTION NUMBER!", javax.swing.JOptionPane.WARNING_MESSAGE);
-                                                //        } else {
-
-                                                double waived = java.lang.Double.valueOf(jTable111.getValueAt(k, 3).toString());
-
-                                                if (waived < 0) {
-
-                                                    System.out.println("Bill No 4" + billNo);
-
-                                                    pstmt212 = connectDB.prepareStatement("INSERT INTO ac_ledger values(?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-                                                    pstmt212.setObject(1, glAcc1q);
-                                                    pstmt212.setString(2, jTable111.getValueAt(k, 0).toString());
-                                                    pstmt212.setString(3, patientNumberTxt.getText());
-                                                    pstmt212.setString(4, patientNameTxt.getText().toUpperCase());
-                                                    pstmt212.setString(5, "");
-                                                    pstmt212.setString(6, "");
-                                                    pstmt212.setString(7, "");
-                                                    pstmt212.setString(8, "OP");
-                                                    pstmt212.setString(9, jTextField51.getText());
-                                                    pstmt212.setString(10, paymentModeCmbx.getSelectedItem().toString());
-                                                    pstmt212.setString(11, jTextField22.getText());
-                                                    pstmt212.setString(12, receiptNo1);
-                                                    pstmt212.setString(13, "");
-                                                    pstmt212.setString(14, "Waiver");
-                                                    pstmt212.setString(15, "Waiver");
-                                                    pstmt212.setDouble(16, -1 * java.lang.Double.valueOf(jTable111.getValueAt(k, 3).toString()));
-                                                    pstmt212.setDouble(17, 0.00);
-                                                    pstmt212.setDate(18, dates);//com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                                                    pstmt212.setString(19, transNo1);
-                                                    pstmt212.setBoolean(20, false);
-                                                    pstmt212.setBoolean(21, false);
-                                                    pstmt212.setBoolean(22, false);
-                                                    pstmt212.setString(23, user);
-                                                    pstmt212.setString(24, cashPointTxt.getText());
-                                                    pstmt212.setString(25, shiftNoTxt.getText());
-                                                    pstmt212.executeUpdate();
-
-                                                    pstmt25 = connectDB.prepareStatement("INSERT INTO ac_cash_collection values(?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
-                                                    pstmt25.setObject(1, glAcc1q);
-                                                    pstmt25.setObject(2, jTable111.getValueAt(k, 0).toString());
-                                                    pstmt25.setString(3, patientNumberTxt.getText());
-                                                    pstmt25.setString(4, patientNameTxt.getText().toUpperCase());
-                                                    pstmt25.setString(5, paymentModeCmbx.getSelectedItem().toString());
-                                                    pstmt25.setString(6, jTextField212.getText());
-                                                    pstmt25.setString(7, jTextField521.getText());
-                                                    pstmt25.setString(8, jTextField42.getText());
-                                                    if (jTextField51.getText().equals("")) {
-                                                        pstmt25.setString(9, jTextField411.getText());
-                                                    } else {
-                                                        pstmt25.setString(9, jTextField51.getText());
-                                                    }
-
-                                                    pstmt25.setString(10, rcode);
-                                                    pstmt25.setString(11, jTextField22.getText());
-                                                    pstmt25.setString(12, receiptNo1);
-                                                    pstmt25.setString(13, exemptionNumberTxt.getText());
-                                                    pstmt25.setString(14, patientNameTxt.getText().toUpperCase());
-                                                    pstmt25.setString(15, "Waiver");
-                                                    pstmt25.setDouble(16, 0.00);
-                                                    pstmt25.setDouble(17, -1 * java.lang.Double.valueOf(jTable111.getValueAt(k, 3).toString()));
-                                                    pstmt25.setDate(18, dates);//com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                                                    pstmt25.setString(19, "" + transNo1 + "");
-                                                    pstmt25.setBoolean(20, false);
-                                                    pstmt25.setBoolean(21, false);
-                                                    pstmt25.setBoolean(22, false);
-                                                    pstmt25.setString(23, user);
-                                                    pstmt25.setString(24, cashPointTxt.getText());
-                                                    pstmt25.setString(25, shiftNoTxt.getText());
-                                                    pstmt25.setDate(26, null);
-                                                    pstmt25.setDouble(27, 1);
-                                                    pstmt25.setDate(28, null);
-                                                    pstmt25.setTimestamp(29, datenowSql);
-                                                    pstmt25.setString(30, mdepartment);
-                                                    pstmt25.setBoolean(31, false);
-                                                    pstmt25.setObject(32, priceCategory);
-                                                    pstmt25.setObject(33, jTable111.getValueAt(k, 6).toString());
-                                                    pstmt25.setDouble(34, java.lang.Double.valueOf(jTable111.getValueAt(k, 2).toString()));
-
-                                                    pstmt25.executeUpdate();
-                                                    pstmt25.close();
-                                                    pstmt212.close();
-
-                                                }
-                                            }
-                                        }
-
                                     } else {
+                                        //if (waived < 0) {
+
+                                        rse121w = stm121w.executeQuery("select activity,code,department from pb_activity where activity_category ILIKE 'IEXE'");
+                                        while (rse121w.next()) {
+                                            glAcc2 = rse121w.getObject(1).toString();
+                                            glAcc1q = rse121w.getObject(2).toString();
+                                            mdepartment = rse121w.getObject(3).toString();
+                                        }
+
+                                        rse121r = stm121r.executeQuery("select activity,code from pb_activity where activity_category ILIKE 'RC'");
+                                        while (rse121r.next()) {
+                                            glAcc21 = rse121r.getObject(2).toString();
+                                            glAcc11 = rse121r.getObject(1).toString();
+                                        }
+
                                         System.out.println("Bill No 4" + billNo);
 
                                         pstmt212 = connectDB.prepareStatement("INSERT INTO ac_ledger values(?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-                                        pstmt212.setObject(1, glAcc1q);
-                                        pstmt212.setString(2, "Waiver");
+                                        pstmt212.setString(1, glAcc1q);
+                                        pstmt212.setString(2, billTable.getValueAt(k, 0).toString());
                                         pstmt212.setString(3, patientNumberTxt.getText());
                                         pstmt212.setString(4, patientNameTxt.getText().toUpperCase());
                                         pstmt212.setString(5, "");
@@ -4105,9 +4326,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                         pstmt212.setString(11, jTextField22.getText());
                                         pstmt212.setString(12, receiptNo1);
                                         pstmt212.setString(13, "");
-                                        pstmt212.setString(14, "Waiver");
-                                        pstmt212.setString(15, "Waiver");
-                                        pstmt212.setDouble(16, java.lang.Double.valueOf(waivedAmountTxt.getText().toString()));
+                                        pstmt212.setString(14, "Exemption");
+                                        pstmt212.setString(15, "Exemption");
+                                        pstmt212.setDouble(16, java.lang.Double.valueOf(billTable.getValueAt(k, 3).toString()));
                                         pstmt212.setDouble(17, 0.00);
                                         pstmt212.setDate(18, dates);//com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
                                         pstmt212.setString(19, transNo1);
@@ -4119,9 +4340,10 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                         pstmt212.setString(25, shiftNoTxt.getText());
                                         pstmt212.executeUpdate();
 
-                                        pstmt25 = connectDB.prepareStatement("INSERT INTO ac_cash_collection values(?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
+                                        pstmt25 = connectDB.prepareStatement("INSERT INTO ac_cash_collection values(?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
+
                                         pstmt25.setObject(1, glAcc1q);
-                                        pstmt25.setObject(2, "Waiver");
+                                        pstmt25.setObject(2, billTable.getValueAt(k, 0).toString());
                                         pstmt25.setString(3, patientNumberTxt.getText());
                                         pstmt25.setString(4, patientNameTxt.getText().toUpperCase());
                                         pstmt25.setString(5, paymentModeCmbx.getSelectedItem().toString());
@@ -4139,10 +4361,10 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                         pstmt25.setString(12, receiptNo1);
                                         pstmt25.setString(13, exemptionNumberTxt.getText());
                                         pstmt25.setString(14, patientNameTxt.getText().toUpperCase());
-                                        pstmt25.setString(15, "Waiver");
+                                        pstmt25.setString(15, "Exemptions");
                                         pstmt25.setDouble(16, 0.00);
-                                        pstmt25.setDouble(17, java.lang.Double.valueOf(waivedAmountTxt.getText().toString()));
-                                        pstmt25.setDate(18, dates); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                        pstmt25.setDouble(17, java.lang.Double.valueOf(billTable.getValueAt(k, 3).toString()));
+                                        pstmt25.setDate(18, dates);//com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
                                         pstmt25.setString(19, "" + transNo1 + "");
                                         pstmt25.setBoolean(20, false);
                                         pstmt25.setBoolean(21, false);
@@ -4155,15 +4377,220 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                         pstmt25.setDate(28, null);
                                         pstmt25.setTimestamp(29, datenowSql);
                                         pstmt25.setString(30, mdepartment);
-                                        // pstmt25.executeUpdate();
+                                        pstmt25.setBoolean(31, false);
+                                        pstmt25.setObject(32, priceCategory);
+                                        pstmt25.setObject(33, billTable.getValueAt(k, 6).toString());
+                                        pstmt25.setDouble(34, java.lang.Double.valueOf(billTable.getValueAt(k, 2).toString()));
+
                                         pstmt25.executeUpdate();
 
+                                        //}
                                     }
                                 }
+
                             }
+                        } else {
+                            if (waiver > 0) {
+                                if (exemptionNumberTxt.getText().toCharArray().length < 1) {
+                                    ps = connectDB.createStatement();
+                                    rst = ps.executeQuery("select 'W'||lpad(nextval('waiver')::text, 8, 0::text)");
+                                    while (rst.next()) {
+                                        exemptionNumberTxt.setText(rst.getString(1));
+                                    }
+
+                                }
+
+                                rse121w = stm121w.executeQuery("select activity,code,department from pb_activity where activity_category ILIKE 'IEDS'");
+                                while (rse121w.next()) {
+
+                                    glAcc2 = rse121w.getObject(1).toString();
+                                    glAcc1q = rse121w.getObject(2).toString();
+                                    mdepartment = rse121w.getObject(3).toString();
+                                }
+
+                                rse121r = stm121r.executeQuery("select activity,code from pb_activity where activity_category ILIKE 'RC'");
+                                while (rse121r.next()) {
+
+                                    glAcc21 = rse121r.getObject(2).toString();
+                                    glAcc11 = rse121r.getObject(1).toString();
+                                }
+
+                                if (jRadioButton1.isSelected()) {
+                                    for (int k = 0; k < billTable.getRowCount(); k++) {
+                                        if (billTable.getModel().getValueAt(k, 0) != null) {
+
+                                            rse121 = stm121s.executeQuery("SELECT prov_code FROM st_stock_item WHERE item_code = '" + billTable.getModel().getValueAt(k, 6).toString() + "'");
+                                            while (rse121.next()) {
+
+                                                if (priceCategory == null) {
+                                                    priceCategory = "0";
+                                                } else {
+                                                    priceCategory = rse121.getObject(1).toString();
+                                                }
+                                            }
+                                            //        if (exemptionNumberTxt.getText().toCharArray().length < 1) {
+                                            //            javax.swing.JOptionPane.showMessageDialog(this,  "You MUST provide the reference number for the exemption or waiver.", "WARNING: EXEMPTION NUMBER!", javax.swing.JOptionPane.WARNING_MESSAGE);
+                                            //        } else {
+
+                                            double waived = java.lang.Double.valueOf(billTable.getValueAt(k, 3).toString());
+
+                                            if (waived < 0) {
+
+                                                System.out.println("Bill No 4" + billNo);
+
+                                                pstmt212 = connectDB.prepareStatement("INSERT INTO ac_ledger values(?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+                                                pstmt212.setObject(1, glAcc1q);
+                                                pstmt212.setString(2, billTable.getValueAt(k, 0).toString());
+                                                pstmt212.setString(3, patientNumberTxt.getText());
+                                                pstmt212.setString(4, patientNameTxt.getText().toUpperCase());
+                                                pstmt212.setString(5, "");
+                                                pstmt212.setString(6, "");
+                                                pstmt212.setString(7, "");
+                                                pstmt212.setString(8, "OP");
+                                                pstmt212.setString(9, jTextField51.getText());
+                                                pstmt212.setString(10, paymentModeCmbx.getSelectedItem().toString());
+                                                pstmt212.setString(11, jTextField22.getText());
+                                                pstmt212.setString(12, receiptNo1);
+                                                pstmt212.setString(13, "");
+                                                pstmt212.setString(14, "Waiver");
+                                                pstmt212.setString(15, "Waiver");
+                                                pstmt212.setDouble(16, -1 * java.lang.Double.valueOf(billTable.getValueAt(k, 3).toString()));
+                                                pstmt212.setDouble(17, 0.00);
+                                                pstmt212.setDate(18, dates);//com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                                pstmt212.setString(19, transNo1);
+                                                pstmt212.setBoolean(20, false);
+                                                pstmt212.setBoolean(21, false);
+                                                pstmt212.setBoolean(22, false);
+                                                pstmt212.setString(23, user);
+                                                pstmt212.setString(24, cashPointTxt.getText());
+                                                pstmt212.setString(25, shiftNoTxt.getText());
+                                                pstmt212.executeUpdate();
+
+                                                pstmt25 = connectDB.prepareStatement("INSERT INTO ac_cash_collection values(?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
+                                                pstmt25.setObject(1, glAcc1q);
+                                                pstmt25.setObject(2, billTable.getValueAt(k, 0).toString());
+                                                pstmt25.setString(3, patientNumberTxt.getText());
+                                                pstmt25.setString(4, patientNameTxt.getText().toUpperCase());
+                                                pstmt25.setString(5, paymentModeCmbx.getSelectedItem().toString());
+                                                pstmt25.setString(6, jTextField212.getText());
+                                                pstmt25.setString(7, jTextField521.getText());
+                                                pstmt25.setString(8, jTextField42.getText());
+                                                if (jTextField51.getText().equals("")) {
+                                                    pstmt25.setString(9, jTextField411.getText());
+                                                } else {
+                                                    pstmt25.setString(9, jTextField51.getText());
+                                                }
+
+                                                pstmt25.setString(10, rcode);
+                                                pstmt25.setString(11, jTextField22.getText());
+                                                pstmt25.setString(12, receiptNo1);
+                                                pstmt25.setString(13, exemptionNumberTxt.getText());
+                                                pstmt25.setString(14, patientNameTxt.getText().toUpperCase());
+                                                pstmt25.setString(15, "Waiver");
+                                                pstmt25.setDouble(16, 0.00);
+                                                pstmt25.setDouble(17, -1 * java.lang.Double.valueOf(billTable.getValueAt(k, 3).toString()));
+                                                pstmt25.setDate(18, dates);//com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                                pstmt25.setString(19, "" + transNo1 + "");
+                                                pstmt25.setBoolean(20, false);
+                                                pstmt25.setBoolean(21, false);
+                                                pstmt25.setBoolean(22, false);
+                                                pstmt25.setString(23, user);
+                                                pstmt25.setString(24, cashPointTxt.getText());
+                                                pstmt25.setString(25, shiftNoTxt.getText());
+                                                pstmt25.setDate(26, null);
+                                                pstmt25.setDouble(27, 1);
+                                                pstmt25.setDate(28, null);
+                                                pstmt25.setTimestamp(29, datenowSql);
+                                                pstmt25.setString(30, mdepartment);
+                                                pstmt25.setBoolean(31, false);
+                                                pstmt25.setObject(32, priceCategory);
+                                                pstmt25.setObject(33, billTable.getValueAt(k, 6).toString());
+                                                pstmt25.setDouble(34, java.lang.Double.valueOf(billTable.getValueAt(k, 2).toString()));
+
+                                                pstmt25.executeUpdate();
+                                                pstmt25.close();
+                                                pstmt212.close();
+
+                                            }
+                                        }
+                                    }
+
+                                } else {
+                                    System.out.println("Bill No 4" + billNo);
+
+                                    pstmt212 = connectDB.prepareStatement("INSERT INTO ac_ledger values(?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+                                    pstmt212.setObject(1, glAcc1q);
+                                    pstmt212.setString(2, "Waiver");
+                                    pstmt212.setString(3, patientNumberTxt.getText());
+                                    pstmt212.setString(4, patientNameTxt.getText().toUpperCase());
+                                    pstmt212.setString(5, "");
+                                    pstmt212.setString(6, "");
+                                    pstmt212.setString(7, "");
+                                    pstmt212.setString(8, "OP");
+                                    pstmt212.setString(9, jTextField51.getText());
+                                    pstmt212.setString(10, paymentModeCmbx.getSelectedItem().toString());
+                                    pstmt212.setString(11, jTextField22.getText());
+                                    pstmt212.setString(12, receiptNo1);
+                                    pstmt212.setString(13, "");
+                                    pstmt212.setString(14, "Waiver");
+                                    pstmt212.setString(15, "Waiver");
+                                    pstmt212.setDouble(16, java.lang.Double.valueOf(waivedAmountTxt.getText().toString()));
+                                    pstmt212.setDouble(17, 0.00);
+                                    pstmt212.setDate(18, dates);//com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                    pstmt212.setString(19, transNo1);
+                                    pstmt212.setBoolean(20, false);
+                                    pstmt212.setBoolean(21, false);
+                                    pstmt212.setBoolean(22, false);
+                                    pstmt212.setString(23, user);
+                                    pstmt212.setString(24, cashPointTxt.getText());
+                                    pstmt212.setString(25, shiftNoTxt.getText());
+                                    pstmt212.executeUpdate();
+
+                                    pstmt25 = connectDB.prepareStatement("INSERT INTO ac_cash_collection values(?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
+                                    pstmt25.setObject(1, glAcc1q);
+                                    pstmt25.setObject(2, "Waiver");
+                                    pstmt25.setString(3, patientNumberTxt.getText());
+                                    pstmt25.setString(4, patientNameTxt.getText().toUpperCase());
+                                    pstmt25.setString(5, paymentModeCmbx.getSelectedItem().toString());
+                                    pstmt25.setString(6, jTextField212.getText());
+                                    pstmt25.setString(7, jTextField521.getText());
+                                    pstmt25.setString(8, jTextField42.getText());
+                                    if (jTextField51.getText().equals("")) {
+                                        pstmt25.setString(9, jTextField411.getText());
+                                    } else {
+                                        pstmt25.setString(9, jTextField51.getText());
+                                    }
+
+                                    pstmt25.setString(10, rcode);
+                                    pstmt25.setString(11, jTextField22.getText());
+                                    pstmt25.setString(12, receiptNo1);
+                                    pstmt25.setString(13, exemptionNumberTxt.getText());
+                                    pstmt25.setString(14, patientNameTxt.getText().toUpperCase());
+                                    pstmt25.setString(15, "Waiver");
+                                    pstmt25.setDouble(16, 0.00);
+                                    pstmt25.setDouble(17, java.lang.Double.valueOf(waivedAmountTxt.getText().toString()));
+                                    pstmt25.setDate(18, dates); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                    pstmt25.setString(19, "" + transNo1 + "");
+                                    pstmt25.setBoolean(20, false);
+                                    pstmt25.setBoolean(21, false);
+                                    pstmt25.setBoolean(22, false);
+                                    pstmt25.setString(23, user);
+                                    pstmt25.setString(24, cashPointTxt.getText());
+                                    pstmt25.setString(25, shiftNoTxt.getText());
+                                    pstmt25.setDate(26, null);
+                                    pstmt25.setDouble(27, 1);
+                                    pstmt25.setDate(28, null);
+                                    pstmt25.setTimestamp(29, datenowSql);
+                                    pstmt25.setString(30, mdepartment);
+                                    // pstmt25.executeUpdate();
+                                    pstmt25.executeUpdate();
+
+                                }
+                            }
+                        }
 
 
-                            /*
+                        /*
                              psr = connectDB.prepareStatement("INSERT INTO ac_receipts_no("
                              + "account_no, account_name, date, amount, shift_no, "
                              + "cash_point, reference, user_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
@@ -4176,34 +4603,34 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                              psr.setString(7, receiptNo1);
                              psr.setString(8, user);
                              psr.executeUpdate();
-                             */
-                            psr = connectDB.prepareStatement("INSERT INTO ac_receipts_no("
-                                    + "account_no, account_name, date, amount, shift_no, "
-                                    + "cash_point, reference) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                            psr.setString(1, patientNumberTxt.getText());
-                            psr.setString(2, patientNameTxt.getText());
-                            psr.setDate(3, dates); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                            psr.setDouble(4, java.lang.Double.valueOf(billAmountTxt.getText()));
-                            psr.setInt(5, java.lang.Integer.valueOf(shiftNoTxt.getText()));
-                            psr.setString(6, cashPointTxt.getText());
-                            psr.setString(7, receiptNo1);
-                            // psr.setString(8, user);
-                            psr.executeUpdate();
+                         */
+                        psr = connectDB.prepareStatement("INSERT INTO ac_receipts_no("
+                                + "account_no, account_name, date, amount, shift_no, "
+                                + "cash_point, reference) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                        psr.setString(1, patientNumberTxt.getText());
+                        psr.setString(2, patientNameTxt.getText());
+                        psr.setDate(3, dates); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                        psr.setDouble(4, java.lang.Double.valueOf(billAmountTxt.getText()));
+                        psr.setInt(5, java.lang.Integer.valueOf(shiftNoTxt.getText()));
+                        psr.setString(6, cashPointTxt.getText());
+                        psr.setString(7, receiptNo1);
+                        // psr.setString(8, user);
+                        psr.executeUpdate();
 
-                            rst1q = ps1q.executeQuery("SELECT LPAD(receipt_no::TEXT,8,'0'::TEXT) FROM ac_receipts_no WHERE reference = '" + receiptNo1 + "'");
-                            while (rst1q.next()) {
-                                receiptNo2 = rst1q.getObject(1).toString();
-                            }
+                        rst1q = ps1q.executeQuery("SELECT LPAD(receipt_no::TEXT,8,'0'::TEXT) FROM ac_receipts_no WHERE reference = '" + receiptNo1 + "'");
+                        while (rst1q.next()) {
+                            receiptNo2 = rst1q.getObject(1).toString();
+                        }
 
-                            pstmt112 = connectDB.prepareStatement("UPDATE ac_cash_collection SET receipt_no = '" + receiptNo2 + "' WHERE receipt_no = '" + receiptNo1 + "'");
-                            pstmt112.executeUpdate();
+                        pstmt112 = connectDB.prepareStatement("UPDATE ac_cash_collection SET receipt_no = '" + receiptNo2 + "' WHERE receipt_no = '" + receiptNo1 + "'");
+                        pstmt112.executeUpdate();
 
-                            //PreparedStatement pstmt112a = connectDB.prepareStatement(user);
-                            PreparedStatement pstmt112a = connectDB.prepareStatement("UPDATE ac_ledger SET receipt_no = '" + receiptNo2 + "' WHERE receipt_no = '" + receiptNo1 + "'");
-                            pstmt112a.executeUpdate();
+                        //PreparedStatement pstmt112a = connectDB.prepareStatement(user);
+                        PreparedStatement pstmt112a = connectDB.prepareStatement("UPDATE ac_ledger SET receipt_no = '" + receiptNo2 + "' WHERE receipt_no = '" + receiptNo1 + "'");
+                        pstmt112a.executeUpdate();
 
-                            pstmt112F = connectDB.prepareStatement("UPDATE ac_debtors SET receipt_no = '" + receiptNo2 + "' WHERE receipt_no = '" + receiptNo1 + "'");
-                            pstmt112F.executeUpdate();
+                        pstmt112F = connectDB.prepareStatement("UPDATE ac_debtors SET receipt_no = '" + receiptNo2 + "' WHERE receipt_no = '" + receiptNo1 + "'");
+                        pstmt112F.executeUpdate();
 
 //                        for(int i=0;i<jTable111.getRowCount();i++){
 //                            if(jTable111.getValueAt(i, 0)!=null){
@@ -4211,28 +4638,34 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 //                        pstPh.executeUpdate();
 //                            }
 //                        }
-                            for (int i = 0; i < jTable111.getRowCount(); i++) {
-                                if (jTable111.getValueAt(i, 0) != null) {
-                                    pstmt41d = connectDB.prepareStatement("UPDATE pb_doctors_request SET paid = true WHERE patient_no = '" + patientNumberTxt.getText() + "' AND service = '" + jTable111.getValueAt(i, 0) + "' AND trans_date >= current_date - 1");
-                                    pstmt41d.executeUpdate();
-                                    pstmt41 = connectDB.prepareStatement("UPDATE hp_pharmacy SET manual_pr='" + receiptNo2 + "', paid = true, collected = false WHERE collected = true and patient_no = '" + patientNumberTxt.getText() + "' AND description = '" + jTable111.getValueAt(i, 0) + "' AND date_prescribed > current_date - 2 AND paid = false AND collected = true");
-                                    pstmt41.executeUpdate();
+                        for (int i = 0; i < billTable.getRowCount(); i++) {
+                            if (billTable.getValueAt(i, 0) != null) {
+                                pstmt41d = connectDB.prepareStatement("UPDATE pb_doctors_request SET paid = true WHERE patient_no = '" + patientNumberTxt.getText() + "' AND service = '" + billTable.getValueAt(i, 0) + "' AND trans_date >= current_date - 1");
+                                pstmt41d.executeUpdate();
+                                pstmt41 = connectDB.prepareStatement("UPDATE hp_pharmacy SET manual_pr='" + receiptNo2 + "', paid = true, collected = false WHERE collected = true and patient_no = '" + patientNumberTxt.getText() + "' AND description = '" + billTable.getValueAt(i, 0) + "' AND date_prescribed > current_date - 2 AND paid = false AND collected = true");
+                                pstmt41.executeUpdate();
 
-                                    pstmt411 = connectDB.prepareStatement("UPDATE hp_patient_billing SET doctor='" + receiptNo2 + "', paid = true, collected = false WHERE patient_no = '" + patientNumberTxt.getText() + "' AND service = '" + jTable111.getValueAt(i, 0) + "' AND trans_date > current_date - 2");
-                                    pstmt411.executeUpdate();
-                                }
+                                pstmt411 = connectDB.prepareStatement("UPDATE hp_patient_billing SET doctor='" + receiptNo2 + "', paid = true, collected = false WHERE patient_no = '" + patientNumberTxt.getText() + "' AND service = '" + billTable.getValueAt(i, 0) + "' AND trans_date > current_date - 2");
+                                pstmt411.executeUpdate();
                             }
+                        }
 
-                            connectDB.commit();
-                            connectDB.setAutoCommit(true);
-                            if (processReceipt) {
-                                receiptNumberTxt.setText(receiptNo2);
-                                postSaleDataBtn.setEnabled(false);
-                                generateReceiptBtn.setEnabled(false);
-                                reprintReceiptBtn.setEnabled(true);
-                            }
+                        java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("UPDATE mobile_payments SET mobilepay_alert = true WHERE mobile_tx_id = ?");
+                        pstmt2.setString(1, com.afrisoftech.hospital.HospitalMain.mobileTxID);
+                        pstmt2.executeUpdate();
 
-                            /*    pstmt112.close();
+                        pstmt2.close();
+
+                        connectDB.commit();
+                        connectDB.setAutoCommit(true);
+                        if (processReceipt) {
+                            receiptNumberTxt.setText(receiptNo2);
+                            postSaleDataBtn.setEnabled(false);
+                            generateReceiptBtn.setEnabled(false);
+                            reprintReceiptBtn.setEnabled(true);
+                        }
+
+                        /*    pstmt112.close();
                              pstmt112F.close();
                              psr.close();
                              ps1q.close();
@@ -4274,72 +4707,21 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                              rse121.close();
                              stm121.close();*/
 //                        rst.close();
-                            //  jTextField91.setEditable(false);
-                        } catch (java.sql.SQLException sq) {
+                        //  jTextField91.setEditable(false);
+                    } catch (java.sql.SQLException sq) {
 
-                            try {
-                                connectDB.rollback(registerSavePoint);
-                            } catch (java.sql.SQLException sql) {
-                                javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                            }
-                            sq.printStackTrace();
-                            System.out.println(sq.getMessage());
-                            javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-
-                        }
-
-                    }
-                }
-
-            }
-
-        } else {
-            if (payerMobileTelephoneNumberTxt.getText().replace(" ", "").replace("-", "").length() == 12) {
-                payerTelephoneNumber = payerMobileTelephoneNumberTxt.getText().replace(" ", "").replace("-", "");
-                String transactionNo = null;
-                for (int n = 0; n < jTable111.getRowCount(); n++) {
-                    if (jTable111.getValueAt(n, 0) != null) {
-                        transactionNo = jTable111.getValueAt(n, 7).toString();
-                    }
-                }
-                javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful.Bill No. " + transactionNo + "", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").length() == 12) {
-                    boolean checkoutReturn = com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendProcessRequest(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("A3AuQyjuuDNejTAd19oRfpozPBD098L6:IrQkzTfJBSNHXQif"), transactionNo, payerTelephoneNumber, String.valueOf(Math.round(Double.parseDouble(billAmountTxt.getText()))), com.afrisoftech.hospital.HospitalMain.payBillNumber);
-                    if (checkoutReturn) {
                         try {
-                            java.sql.PreparedStatement pstmtCheckout = null;
-                            for (int n = 0; n < jTable111.getRowCount(); n++) {
-                                if (jTable111.getValueAt(n, 0) != null) {
-                                    transactionNo = jTable111.getValueAt(n, 7).toString();
-
-                                    pstmtCheckout = connectDB.prepareStatement("UPDATE hp_patient_billing SET checkout_request_id = ? WHERE inpatient_no = ?");
-                                    pstmtCheckout.setString(1, checkoutRequestID);
-
-                                    pstmtCheckout.setString(2, transactionNo);
-
-                                    pstmtCheckout.executeUpdate();
-                                    pstmtCheckout.close();
-
-                                    pstmtCheckout = connectDB.prepareStatement("UPDATE hp_pharmacy SET checkout_request_id = ? WHERE prescription_no = ?");
-                                    pstmtCheckout.setString(1, checkoutRequestID);
-
-                                    pstmtCheckout.setString(2, transactionNo);
-
-                                    pstmtCheckout.executeUpdate();
-                                    pstmtCheckout.close();
-                                }
-                            }
-
-                        } catch (SQLException ex) {
-                            Logger.getLogger(GovBillPaymentsIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                            connectDB.rollback(registerSavePoint);
+                        } catch (java.sql.SQLException sql) {
+                            javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
                         }
+                        sq.printStackTrace();
+                        System.out.println(sq.getMessage());
+                        javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
-                    } else {
-                        javax.swing.JOptionPane.showMessageDialog(this, "There is a problem connecting to the mobile payments service provider. Please contact system administrator!");
                     }
+
                 }
-            } else if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && payerMobileTelephoneNumberTxt.getText().replace("-", "").replace(" ", "").length() != 12) {
-                javax.swing.JOptionPane.showMessageDialog(this, "Please check telephone number! It should be formatted as follows : 2547xxxxxxxx");
             }
 
         }
@@ -4379,6 +4761,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amountPaidTxt;
     private javax.swing.JTextField billAmountTxt;
+    private javax.swing.JTable billTable;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JTextField cashPointTxt;
@@ -4390,7 +4773,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JCheckBox exemptionChkbx;
     private javax.swing.JLabel exemptionNumberLbl;
     private javax.swing.JTextField exemptionNumberTxt;
-    private javax.swing.JButton generateReceiptBtn;
+    public static javax.swing.JButton generateReceiptBtn;
     private javax.swing.JTextField glAccountTxt;
     private javax.swing.JButton helpBtn;
     private javax.swing.JButton jButton1111;
@@ -4398,8 +4781,10 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JButton jButton301111;
     private javax.swing.JButton jButton42;
     private javax.swing.JButton jButton421;
+    private javax.swing.JButton jButton422;
     private javax.swing.JButton jButton52;
     private javax.swing.JButton jButton521;
+    private javax.swing.JButton jButton522;
     private javax.swing.JButton jButton9;
     private javax.swing.JButton jButton91;
     private javax.swing.JCheckBox jCheckBox4;
@@ -4436,7 +4821,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JLabel jLabel5311;
     private javax.swing.JLabel jLabel5821111;
     private javax.swing.JLabel jLabel582211;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel66111;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel10;
@@ -4453,6 +4840,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JPanel jPanel41;
     private javax.swing.JPanel jPanel51;
     private javax.swing.JPanel jPanel61;
+    private javax.swing.JPanel jPanel62;
     private javax.swing.JPanel jPanel71;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
@@ -4462,17 +4850,18 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JDialog jSearchDialog1;
     private javax.swing.JDialog jSearchDialog11;
     private javax.swing.JDialog jSearchDialog2;
-    private javax.swing.JDialog jSearchDialog21;
     private javax.swing.JPanel jSearchPanel;
     private javax.swing.JPanel jSearchPanel1;
     private javax.swing.JPanel jSearchPanel11;
     private javax.swing.JPanel jSearchPanel2;
     private javax.swing.JPanel jSearchPanel21;
+    private javax.swing.JPanel jSearchPanel22;
     private javax.swing.JScrollPane jSearchScrollPane;
     private javax.swing.JScrollPane jSearchScrollPane1;
     private javax.swing.JScrollPane jSearchScrollPane11;
     private javax.swing.JScrollPane jSearchScrollPane2;
     private javax.swing.JScrollPane jSearchScrollPane21;
+    private javax.swing.JScrollPane jSearchScrollPane22;
     private javax.swing.JTable jSearchTable;
     private javax.swing.JTable jSearchTable1;
     private javax.swing.JTable jSearchTable11;
@@ -4481,7 +4870,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JSeparator jSeparator111;
     private javax.swing.JSeparator jSeparator1111;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable111;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField1111;
@@ -4503,11 +4891,15 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField lessDiscountedAmountTxt;
     private javax.swing.JCheckBox mchfpChbx;
+    private javax.swing.JTextField mobilepayTxNoTxt;
+    private javax.swing.JDialog mobilepayTxSearchDialog;
+    private javax.swing.JTextField mobilepayTxSearchTxt;
+    private javax.swing.JTable mobilepayTxtSearchTable;
     private javax.swing.JTextField patientNameTxt;
     private javax.swing.JTextField patientNumberTxt;
+    private javax.swing.JDialog patientSearchDialog;
     private javax.swing.JTextField patientSearchTxt;
-    private javax.swing.JLabel paybillNumberLbl;
-    private javax.swing.JTextField paybillNumberTxt;
+    private javax.swing.JComboBox<String> paybillNumberCmbx;
     private javax.swing.JFormattedTextField payerMobileTelephoneNumberTxt;
     private javax.swing.JComboBox paymentModeCmbx;
     private javax.swing.JButton postSaleDataBtn;
@@ -4516,9 +4908,11 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JButton reprintReceiptBtn;
     private javax.swing.JButton searchButton1;
     private javax.swing.JButton searchButton13;
+    private javax.swing.JButton searchButton2;
     private javax.swing.JCheckBox searchNameChbx;
     private javax.swing.JCheckBox searchNoChbx;
     private javax.swing.JTextField shiftNoTxt;
+    private javax.swing.JButton stkPushBtn;
     private javax.swing.JTextField totalBilledAmountTxt;
     private javax.swing.JTextField unitNumberTxt;
     private javax.swing.JTextField waivedAmountTxt;

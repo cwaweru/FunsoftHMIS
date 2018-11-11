@@ -339,11 +339,11 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
                                 java.sql.ResultSet rset22 = st32.executeQuery("SELECT header_name,current_date FROM pb_header");
                                 //  java.sql.ResultSet rseta = sta.executeQuery("SELECT ad.ward,ad.bed_no,ad.doctor ,pr.adm_date,pr.discharge_date FROM hp_admission ad,hp_inpatient_register pr WHERE pr.patient_no = '"+memNo+"' and pr.patient_no = ad.patient_no");
 
-                                java.sql.ResultSet rset = st1.executeQuery("SELECT DISTINCT patient_no,initcap(patient_name),lab_no,age::numeric(5,0),gender,date,spec_time FROM hp_lab_results WHERE lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "'");
+                                java.sql.ResultSet rset = st1.executeQuery("SELECT DISTINCT patient_no,initcap(patient_name),lab_no,age::numeric(5,0),gender,date,spec_time, instrument_name FROM hp_lab_results WHERE lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "'");
                                 java.sql.ResultSet rset4 = sta.executeQuery("SELECT DISTINCT lab_no,age::numeric(5,0),gender,date ,spec_time, lower_limit, upper_limit FROM hp_lab_results WHERE lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "'");
                                 java.sql.ResultSet rset41 = st2.executeQuery("SELECT DISTINCT typeof_test FROM hp_lab_results WHERE lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "'");
 
-                                java.sql.ResultSet rset4111 = st22.executeQuery("SELECT DISTINCT pathologist,doctor FROM hp_lab_results WHERE lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "'");
+                                java.sql.ResultSet rset4111 = st22.executeQuery("SELECT DISTINCT user_name,lab_manager, pathologist,doctor, instrument_name FROM hp_lab_results WHERE lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "'");
 
                                 String Date = null;
                                 System.out.println("No 1");
@@ -366,11 +366,16 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
                                     while (rset.next()) {
                                         // while (rset4.next()) {
 
-                                        table.getDefaultCell().setColspan(6);
+                                        table.getDefaultCell().setColspan(3);
                                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                         phrase = new Phrase("Lab No.         :  ".toUpperCase() + dbObject.getDBObject(rset.getObject(3), "-"), pFontHeader1);
                                         table.addCell(phrase);
-
+                                        
+                                        table.getDefaultCell().setColspan(3);
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                        phrase = new Phrase("Equipment         :  ".toUpperCase() + dbObject.getDBObject(rset.getObject(8), "-"), pFontHeader1);
+                                        table.addCell(phrase);
+                                        
                                         table.getDefaultCell().setColspan(1);
                                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                         phrase = new Phrase("Patient No.", pFontHeader1);

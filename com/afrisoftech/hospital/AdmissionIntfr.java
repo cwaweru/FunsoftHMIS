@@ -8041,8 +8041,8 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                 pstmtDisability.executeUpdate();
 
                 com.afrisoftech.reports.PatientRegFormPdf.connectDB = connectDB;
-////                com.afrisoftech.reports.PatientRegFormPdf regForm = new com.afrisoftech.reports.PatientRegFormPdf();
-////                regForm.callPdf(connectDB, admissionNumberTxt.getText(), "IP");
+                com.afrisoftech.reports.PatientRegFormPdf regForm = new com.afrisoftech.reports.PatientRegFormPdf();
+                regForm.callPdf(connectDB, admissionNumberTxt.getText(), "IP");
 //                                                                           
 //                    regForm.generatePdf(firstNameTxt.getText().toUpperCase() + " " + surNameTxt.getText().toUpperCase(),
 //                            agelabel.getText(), selectedStatus, nationalityCmbx.getSelectedItem().toString(),

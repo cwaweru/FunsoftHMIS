@@ -4709,6 +4709,16 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="opworkloadmnitActionPerformed"/>
                   </Events>
                 </MenuItem>
+                <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator106">
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="dailyWorkloadsmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Daily Workloads Report"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dailyWorkloadsmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
               </SubComponents>
             </Menu>
             <Menu class="javax.swing.JMenu" name="inpatmn">
@@ -6407,6 +6417,27 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="divisionalSurrendermnitActionPerformed"/>
+                      </Events>
+                    </MenuItem>
+                    <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator105">
+                    </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="paybillPaymentsmnit">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Paybill Payments Report"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="paybillPaymentsmnitActionPerformed"/>
+                      </Events>
+                    </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="mobileTxReportsmnit">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/Icons/16x16/M-PESA approved logo.jpg"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="MobilePay Transactions"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mobileTxReportsmnitActionPerformed"/>
                       </Events>
                     </MenuItem>
                   </SubComponents>
@@ -8122,6 +8153,14 @@
                     <Property name="text" type="java.lang.String" value="Laboratory Results"/>
                   </Properties>
                   <SubComponents>
+                    <MenuItem class="javax.swing.JMenuItem" name="labResultsListingmnit">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Results Listing"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="labResultsListingmnitActionPerformed"/>
+                      </Events>
+                    </MenuItem>
                     <MenuItem class="javax.swing.JMenuItem" name="labresultsindmnit">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Laboratory Results"/>
@@ -8771,6 +8810,8 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="useractivitiesActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator108">
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="approvedVouchersmnit">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Approved Vouchers"/>
@@ -8815,6 +8856,16 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="analyseMaternityBillsmnitActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator107">
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="urlRegistrationmnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="URL Registration"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="urlRegistrationmnitActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -9789,11 +9840,12 @@
             <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value=""/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="mobilepayBtn">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Icons/16x16/M-PESA approved logo.jpg"/>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -9805,7 +9857,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mobilepayBtnActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel1">

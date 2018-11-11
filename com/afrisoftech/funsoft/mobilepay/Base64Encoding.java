@@ -21,78 +21,54 @@ import org.bouncycastle.util.encoders.Base64;
  */
 /**
  *
- * @author Charles
+ * @author Charles Waweru <cwaweru@systempartners.biz>
  */
 public class Base64Encoding {
 
     public static String encodetoBase64String(String stringtoEncode) {
 
-//        String app_key = "A3AuQyjuuDNejToRfpozPBD098L6";
-//        String app_secret = "IrQkzTfJNXQif";
         String appKeySecret = com.afrisoftech.hospital.HospitalMain.oAuthKey;
-    //    String appKeySecret = app_key + ":" + app_secret;
+        //    String appKeySecret = app_key + ":" + app_secret;
+        System.out.println("Consumer Secret keys : [" + com.afrisoftech.hospital.HospitalMain.oAuthKey + "]");
         byte[] bytes = null;
         try {
             bytes = appKeySecret.getBytes("ISO-8859-1");
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(Base64Encoding.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String auth = Base64.toBase64String(bytes); //encode(bytes);
+        String auth = Base64.toBase64String(bytes);
 
         OkHttpClient client = new OkHttpClient();
         System.out.println("New oAuth Access Token : [" + auth + "]");
 
-        // String auth = Base64.encode(bytes);
-        //
+        Request request = null;
         System.out.println("OkHttpClient : [" + client + "]");
-        Request request = new Request.Builder()
-                .url("https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials")
-                //.url("https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials")
-                .get()
-                .addHeader("authorization", "Basic " + auth)
-                .addHeader("cache-control", "no-cache")
-                .build();
-
-//        Response response = null;
-//        try {
-//            response = client.newCall(request).execute();
-//        } catch (IOException ex) {
-//            Logger.getLogger(Base64Encoding.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-       // +String auth = null;
+        if (com.afrisoftech.hospital.HospitalMain.mobileTxTest) {
+            request = new Request.Builder()
+                    .url("https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials")
+                    .get()
+                    .addHeader("authorization", "Basic " + auth)
+                    .addHeader("cache-control", "no-cache")
+                    .build();
+        } else {
+            request = new Request.Builder()
+                    .url("https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials")
+                    .get()
+                    .addHeader("authorization", "Basic " + auth)
+                    .addHeader("cache-control", "no-cache")
+                    .build();
+        }
+        
         String accessToken = null;
-       // byte[] bytes = null;
-       // String newStringtoEncode = A3AuQyjuuDNejTAd19oRfpozPBD098L6:IrQkzTfJBSNHXQif
-//        try {
-//            //bytes = usernameAndPassword.getBytes("ISO-8859-1");
-//            bytes = stringtoEncode.getBytes("ISO-8859-1");
-//            // bytes = stringtoEncode.getBytes("UTF-8");
-//        } catch (UnsupportedEncodingException ex) {
-//            Logger.getLogger(MobilePayAPI.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        auth = Base64.toBase64String(bytes);
-//        System.out.println("New oAuth Access Token : [" + auth + "]");
-//
-//        // String auth = Base64.encode(bytes);
-//        //
-//        System.out.println("OkHttpClient : [" + client + "]");
 
-        //                .url("https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials")
-//        Request request = new Request.Builder()
-//                //.url("https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials")
-//                .get()
-//                .addHeader("Authorization", "Basic " + auth)
-//                .addHeader("cache-control", "no-cache")
-//                .build();
-//        System.out.println("Request : [" + request + "]");
         Response response;
-        // String accessToken = null;
+
         try {
             response = client.newCall(request).execute();
             JSONObject myObject = null;
             try {
-               // System.out.println("Response Object [" + response.body().string() + "]");
-                myObject = new JSONObject(response.body().string()); // here is the problem 
+
+                myObject = new JSONObject(response.body().string());
 
             } catch (JSONException ex) {
                 Logger.getLogger(MobilePayAPI.class.getName()).log(Level.SEVERE, null, ex);
@@ -115,7 +91,7 @@ public class Base64Encoding {
         }
 
         return accessToken;
-        // return auth;
+
     }
 
 }

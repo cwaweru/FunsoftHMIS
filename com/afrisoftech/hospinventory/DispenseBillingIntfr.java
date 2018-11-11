@@ -227,7 +227,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
         jTextField6 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        opdChkbx = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jCheckBox3 = new javax.swing.JCheckBox();
         jPanel7 = new javax.swing.JPanel();
@@ -1953,14 +1953,14 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
         sendBillBtn.setMnemonic('o');
         sendBillBtn.setText("Send Bill");
         sendBillBtn.setToolTipText("Click here enter data");
-        sendBillBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendBillBtnActionPerformed(evt);
-            }
-        });
         sendBillBtn.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 sendBillBtnFocusGained(evt);
+            }
+        });
+        sendBillBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendBillBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1995,23 +1995,23 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Issue to", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 255, 153), 2), "Patient category", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 0, 255))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 255, 153), 2), "Patient category", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 0, 255))); // NOI18N
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
-        buttonGroup1.add(jCheckBox1);
-        jCheckBox1.setSelected(true);
-        jCheckBox1.setText("Out Patient");
-        jCheckBox1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(opdChkbx);
+        opdChkbx.setSelected(true);
+        opdChkbx.setText("Out Patient");
+        opdChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        opdChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                opdChkbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel6.add(jCheckBox1, gridBagConstraints);
+        jPanel6.add(opdChkbx, gridBagConstraints);
 
         buttonGroup1.add(jCheckBox2);
         jCheckBox2.setText("Walk In Patient");
@@ -2783,7 +2783,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
             double presc = java.lang.Double.parseDouble(prescriptionFeeTxt.getText());
 
-            if (jCheckBox1.isSelected()) {
+            if (opdChkbx.isSelected()) {
                 chbox = "OP";
             } else {
                 if (jCheckBox2.isSelected()) {
@@ -3052,9 +3052,9 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
     private void printPrescriptionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printPrescriptionBtnActionPerformed
         if (prescriptionNoTxt.getText().length() > 1) {
-            
+
             com.afrisoftech.txtreports.PrescriptionTxt policy = new com.afrisoftech.txtreports.PrescriptionTxt(connectDB, patientNoTxt.getText(), nameTxt.getText(), prescriptionNoTxt.getText(), paymentModeTxt.getText());
-           
+
             com.afrisoftech.reports.PrescPdf policy1 = new com.afrisoftech.reports.PrescPdf();
 
             policy1.PrescPdf(connectDB, prescriptionNoTxt.getText());
@@ -3673,29 +3673,32 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
     private void searchPatientTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchPatientTxtCaretUpdate
 
-        if (this.jCheckBox1.isSelected() && this.jCheckBox31.isSelected()) {
+        if (this.opdChkbx.isSelected() && this.jCheckBox31.isSelected()) {
 
             if (searchPatientTxt.getCaretPosition() < 3) {
                 System.out.println("Nothing");
             } else {
-                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, "
-                        + "(upper(second_name||' '||first_name||' '||last_name)) as name, (CURRENT_DATE - year_of_birth::DATE)/365 AS age, residence, (select round(weight) FROM hp_signs_record WHERE hp_patient_register.patient_no = hp_signs_record.patient_no ORDER BY date DESC LIMIT 1) as weight "
-                        + "from hp_patient_register where patient_no ILIKE '" + searchPatientTxt.getText() + "%' AND "
-                        + "  last_visit >= (current_date-2) order by patient_no LIMIT 20"));
-                patientSearchTable.setShowHorizontalLines(false);
+                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no,patient_name,trans_date,inv_no,doctor from pb_doctors_request where patient_no ILIKE '" + searchPatientTxt.getText() + "%' AND revenue_code ilike '%pharm%' AND trans_date >= current_date - 2 and paid = false group by trans_date,patient_no,patient_name,inv_no,doctor ORDER BY trans_date,inv_no DESC LIMIT 299"));
+//                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, "
+//                        + "(upper(second_name||' '||first_name||' '||last_name)) as name, (CURRENT_DATE - year_of_birth::DATE)/365 AS age, residence, (select round(weight) FROM hp_signs_record WHERE hp_patient_register.patient_no = hp_signs_record.patient_no ORDER BY date DESC LIMIT 1) as weight "
+//                        + "from hp_patient_register where patient_no ILIKE '" + searchPatientTxt.getText() + "%' AND "
+//                        + "  last_visit >= (current_date-2) order by patient_no LIMIT 20"));
+//                patientSearchTable.setShowHorizontalLines(false);
                 patientSearchScrollPane.setViewportView(patientSearchTable);
 
             }
         } else {
-            if (this.jCheckBox1.isSelected() && this.jCheckBox4.isSelected()) {
+            if (this.opdChkbx.isSelected() && this.jCheckBox4.isSelected()) {
                 if (searchPatientTxt.getCaretPosition() < 3) {
                     System.out.println("Nothing");
                 } else {
-                    patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT "
-                            + "patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, (CURRENT_DATE - year_of_birth::DATE)/365 AS age,"
-                            + " residence from hp_patient_register where second_name||' '||first_name||' '||last_name ILIKE '%" + searchPatientTxt.getText() + "%' "
-                            + " AND  last_visit >= (current_date - 2) order by second_name||' '||first_name||' '||last_name LIMIT 20"));
-
+                    patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no,patient_name,trans_date,inv_no,doctor from pb_doctors_request where second_name||' '||first_name||' '||last_name ILIKE '%" + searchPatientTxt.getText() + "%'  AND revenue_code ilike '%pharm%' AND trans_date >= current_date - 2 and paid = false group by trans_date,patient_no,patient_name,inv_no,doctor ORDER BY trans_date,inv_no DESC LIMIT 299"));
+//        
+//                    patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT "
+//                            + "patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, (CURRENT_DATE - year_of_birth::DATE)/365 AS age,"
+//                            + " residence from hp_patient_register where second_name||' '||first_name||' '||last_name ILIKE '%" + searchPatientTxt.getText() + "%' "
+//                            + " AND  last_visit >= (current_date - 2) order by second_name||' '||first_name||' '||last_name LIMIT 20"));
+//
                     patientSearchTable.setShowHorizontalLines(false);
                     patientSearchScrollPane.setViewportView(patientSearchTable);
 
@@ -3881,12 +3884,12 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
     }//GEN-LAST:event_prescriptionsTableComponentShown
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void opdChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opdChkbxActionPerformed
         // jPanel11.setVisible(false);
         jPanel1.setVisible(true);
 
         // Add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_opdChkbxActionPerformed
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
         jPanel1.setVisible(false);
@@ -4081,7 +4084,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
             double presc = java.lang.Double.parseDouble(prescriptionFeeTxt.getText());
 
-            if (jCheckBox1.isSelected()) {
+            if (opdChkbx.isSelected()) {
                 chbox = "OP";
             } else {
                 if (jCheckBox2.isSelected()) {
@@ -4271,12 +4274,27 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
         nameTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 1).toString());
         patientNoTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 0).toString());
-        ageTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 2).toString());
-        weightTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 4).toString());
-        
+
+        try {
+                java.sql.Statement stmtTable1 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select distinct category,pay_mode,(CURRENT_DATE - year_of_birth::DATE)/365 AS age, residence, (select round(weight) FROM hp_signs_record WHERE hp_patient_register.patient_no = hp_signs_record.patient_no ORDER BY date DESC LIMIT 1) as weight from hp_patient_register where patient_no='" + this.patientNoTxt.getText().toString() + "' ");
+                while (rsetTable1.next()) {
+                    this.paymentModeTxt.setText(rsetTable1.getString(2));
+                    this.residenceTxt.setText(rsetTable1.getString(1));
+                    ageTxt.setText(rsetTable1.getString(3));
+                    residenceTxt.setText(rsetTable1.getString(4));
+                    weightTxt.setText(rsetTable1.getString(5));
+
+                    //jTextField141.setText(rsetTable1.toString());
+                }
+
+        } catch (java.sql.SQLException sqe) {
+            sqe.printStackTrace();
+
+        }
 
         patientSearchDialog.dispose();
-        
+
         try {
 
             if (jCheckBox3.isSelected()) {
@@ -4298,7 +4316,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
                 }
             }
             java.sql.Statement stmt1x = connectDB.createStatement();
-            java.sql.ResultSet rset1x = stmt1x.executeQuery("SELECT doctor, inv_no FROM pb_doctors_request WHERE patient_no  ='" + patientNoTxt.getText() + "' AND trans_date > (current_date - 2) AND collected = false AND paid = false");
+            java.sql.ResultSet rset1x = stmt1x.executeQuery("SELECT doctor, inv_no FROM pb_doctors_request WHERE patient_no  ='" + patientNoTxt.getText() + "' AND trans_date > (current_date - 2) AND collected = false AND inv_no = '"+patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 3).toString()+"' AND paid = false");
             while (rset1x.next()) {
                 jTextField36.setText(rset1x.getObject(1).toString());
                 prescriptionNoTxt.setText(rset1x.getObject(2).toString());
@@ -4336,7 +4354,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
         //  if (this.jTextField5.getText().equals("Cash")) {
         if (jCheckBox3.isSelected()) {
-         //   jButton2.setVisible(true);
+            //   jButton2.setVisible(true);
             //   this.sendBillBtn.setVisible(false);
         } else {
             //   jButton2.setVisible(false);
@@ -4699,7 +4717,6 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JButton jButton91;
     private javax.swing.JButton jButton92;
     private javax.swing.JButton jButton93;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox31;
@@ -4793,6 +4810,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField91;
     private javax.swing.JTextField nameTxt;
+    private javax.swing.JCheckBox opdChkbx;
     private javax.swing.JTextField patientNoTxt;
     private javax.swing.JButton patientSearchBtn;
     private javax.swing.JDialog patientSearchDialog;

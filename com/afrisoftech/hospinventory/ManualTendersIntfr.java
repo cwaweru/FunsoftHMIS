@@ -1525,7 +1525,7 @@ public class ManualTendersIntfr extends javax.swing.JInternalFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
                 true, false, true, false, true, false, true, false, true, true
@@ -2077,6 +2077,7 @@ public class ManualTendersIntfr extends javax.swing.JInternalFrame {
             ClearTable.clearthisTable(awardItemstbl);
 
         } catch (java.sql.SQLException sq) {
+            sq.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, "ERROR: " + sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
             System.out.println(sq.getMessage());
             jLabel2.setForeground(java.awt.Color.red);

@@ -552,7 +552,7 @@ public class PharmacyPointsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         getContentPane().add(jTextField6, gridBagConstraints);
 
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter cash point here", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter cash point here", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
         jPanel11.setLayout(new java.awt.GridBagLayout());
 
         jTable11.setModel(new javax.swing.table.DefaultTableModel(
@@ -1014,7 +1014,7 @@ public class PharmacyPointsIntfr extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Pharmacy/Stock outlets allocation", jPanel11);
 
-        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter cash point here", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter cash point here", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
         jPanel12.setLayout(new java.awt.GridBagLayout());
 
         jTable12.setModel(new javax.swing.table.DefaultTableModel(
@@ -1489,7 +1489,7 @@ public class PharmacyPointsIntfr extends javax.swing.JInternalFrame {
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tick to allocate Store Privilleges Here", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
+        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tick to allocate Store Privilleges Here", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
         jPanel13.setLayout(new java.awt.GridBagLayout());
 
         moduleTbl.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -2075,6 +2075,11 @@ public class PharmacyPointsIntfr extends javax.swing.JInternalFrame {
         jPanel2.add(substoreCmbx, gridBagConstraints);
 
         superUserCmbx.setText("SuperUser?");
+        superUserCmbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                superUserCmbxActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -2920,6 +2925,11 @@ public class PharmacyPointsIntfr extends javax.swing.JInternalFrame {
         storeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' UNION SELECT distinct  upper(store_name) as store_name from st_main_stores ORDER BY 1"));
         activityChbx.doClick();
     }//GEN-LAST:event_centralStoresCmbxActionPerformed
+
+    private void superUserCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_superUserCmbxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_superUserCmbxActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox activityChbx;
     private javax.swing.ButtonGroup buttonGroup1;

@@ -10512,7 +10512,7 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
     }//GEN-LAST:event_jTabbedPane2MouseClicked
 
     private void searchpatienttxtfldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchpatienttxtfldCaretUpdate
-        if (!searchpatienttxtfld.getText().equalsIgnoreCase(" ") && searchpatienttxtfld.getText().length() >= 3) {
+        if (!searchpatienttxtfld.getText().equalsIgnoreCase(" ") && searchpatienttxtfld.getText().length() >= 6) {
             if (searchnocheckbx.isSelected()) {
                 if (outpatientCheckBox.isSelected()) {
                     System.out.println(" select distinct "
@@ -10528,7 +10528,7 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
                             + ",hpv.nature as Seen, (SELECT receipt_no FROM ac_cash_collection WHERE (ac_cash_collection.description ILIKE '%consultation%' OR ac_cash_collection.description ILIKE '%card%' OR ac_cash_collection.description ILIKE '%attend%') AND ac_cash_collection.patient_no = hpv.patient_no AND ac_cash_collection.date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1) ORDER BY ac_cash_collection.date DESC LIMIT 1) as receipt_no "
-                                    + " from  hp_patient_visit hpv  where (hpv.patient_no ilike '%" + searchpatienttxtfld.getText() + "%' OR hpv.name ilike '%" + searchpatienttxtfld.getText() + "%') "
+                                    + " from  hp_patient_visit hpv  where (hpv.patient_no ilike '%" + searchpatienttxtfld.getText() + "%' "
                             + "and hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)    "
                             + "   ORDER BY hpv.input_date::time(0) "));
                 } else if (inpatientCheckBox.isSelected()) {

@@ -42,6 +42,12 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         closeButton = new javax.swing.JButton();
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
+        bodyNameSearchDialog = new javax.swing.JDialog();
+        bodyNameSearchPanel = new javax.swing.JPanel();
+        bodyNameSearchTxt = new javax.swing.JTextField();
+        bodyNameSearchScrollPane = new javax.swing.JScrollPane();
+        bodySearchTable = new com.afrisoftech.dbadmin.JTable();
+        closeButton1 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         headerPanel = new javax.swing.JPanel();
         patientSearchPanel = new javax.swing.JPanel();
@@ -71,11 +77,37 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         saveButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
         closeFormButton = new javax.swing.JButton();
+        bodyHeaderPanel = new javax.swing.JPanel();
+        patientSearchPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        existingBodyNamesTxt = new javax.swing.JTextField();
+        bodyUnitNumberTxt = new javax.swing.JTextField();
+        reasonScrollPane1 = new javax.swing.JScrollPane();
+        reasonforBodyChangeTxt = new javax.swing.JTextArea();
+        noSearchChkbx1 = new javax.swing.JCheckBox();
+        nameSearchChkbx1 = new javax.swing.JCheckBox();
+        jLabel9 = new javax.swing.JLabel();
+        newBodyFirstNameTxt = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        newBodyMiddleNameTxt = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        newBodySurNameTxt = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jPanel42 = new javax.swing.JPanel();
+        bodyNoTxt = new javax.swing.JTextField();
+        searchButton1 = new javax.swing.JButton();
+        visitTxt1 = new javax.swing.JLabel();
+        commandPanel2 = new javax.swing.JPanel();
+        spacerLabel2 = new javax.swing.JLabel();
+        saveButton2 = new javax.swing.JButton();
+        clearButton2 = new javax.swing.JButton();
+        closeFormButton2 = new javax.swing.JButton();
         changesNamesListingPane = new javax.swing.JPanel();
         startDatePicker = new com.afrisoftech.lib.DatePicker();
         endDatePicker = new com.afrisoftech.lib.DatePicker();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new com.afrisoftech.dbadmin.JXTable();
+        nameChangeAuditTrailTable = new com.afrisoftech.dbadmin.JXTable();
         commandPanel1 = new javax.swing.JPanel();
         spacerLabel1 = new javax.swing.JLabel();
         saveButton1 = new javax.swing.JButton();
@@ -159,6 +191,83 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         nameSearchDialog.getContentPane().add(nameSearchPanel, gridBagConstraints);
 
+        bodyNameSearchDialog.setModal(true);
+        bodyNameSearchDialog.setUndecorated(true);
+        bodyNameSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        bodyNameSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        bodyNameSearchPanel.setLayout(new java.awt.GridBagLayout());
+
+        bodyNameSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                bodyNameSearchTxtCaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 300.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        bodyNameSearchPanel.add(bodyNameSearchTxt, gridBagConstraints);
+
+        bodySearchTable.setToolTipText("Click on the target row to select the patient from the search.");
+        bodySearchTable.setShowHorizontalLines(false);
+        /*javax.swing.table.TableColumn column = null;
+
+        for (int i = 0; i < 4; i++) {
+
+            column = patientSearchTable.getColumnModel().getColumn(i);
+
+            if (i == 1) {
+
+                column.setPreferredWidth(400);
+                //sport column is bigger
+            } else {
+
+                column.setPreferredWidth(200);
+
+            }
+        }
+        */
+        bodySearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bodySearchTableMouseClicked(evt);
+            }
+        });
+        bodyNameSearchScrollPane.setViewportView(bodySearchTable);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 20.0;
+        bodyNameSearchPanel.add(bodyNameSearchScrollPane, gridBagConstraints);
+
+        closeButton1.setText("Cancel");
+        closeButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeButton1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        bodyNameSearchPanel.add(closeButton1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        bodyNameSearchDialog.getContentPane().add(bodyNameSearchPanel, gridBagConstraints);
+
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -205,7 +314,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         patientSearchPanel.add(patientUnitNumberTxt, gridBagConstraints);
 
-        reasonScrollPane.setViewportBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reason for change MUST be at least 10 characters", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(102, 102, 255)));
+        reasonScrollPane.setViewportBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reason for change MUST be at least 10 characters", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(102, 102, 255))); // NOI18N
 
         reasonforChangeTxt.setColumns(20);
         reasonforChangeTxt.setRows(5);
@@ -231,7 +340,6 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         buttonGroup2.add(ipdChkbx);
         ipdChkbx.setForeground(new java.awt.Color(255, 0, 51));
         ipdChkbx.setMnemonic('i');
-        ipdChkbx.setSelected(true);
         ipdChkbx.setText("IN Patients");
         ipdChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -241,7 +349,6 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         patientSearchPanel.add(ipdChkbx, gridBagConstraints);
 
         buttonGroup3.add(noSearchChkbx);
-        noSearchChkbx.setSelected(true);
         noSearchChkbx.setText("Search By Patient No./Unit No.");
         noSearchChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -438,9 +545,262 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Change patient names", headerPanel);
 
+        bodyHeaderPanel.setLayout(new java.awt.GridBagLayout());
+
+        patientSearchPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        patientSearchPanel1.setLayout(new java.awt.GridBagLayout());
+
+        jLabel3.setText("Body Registration No Search Dialog");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        patientSearchPanel1.add(jLabel3, gridBagConstraints);
+
+        jLabel8.setText("Patient Names");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        patientSearchPanel1.add(jLabel8, gridBagConstraints);
+
+        existingBodyNamesTxt.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 9;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        patientSearchPanel1.add(existingBodyNamesTxt, gridBagConstraints);
+
+        bodyUnitNumberTxt.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        patientSearchPanel1.add(bodyUnitNumberTxt, gridBagConstraints);
+
+        reasonScrollPane1.setViewportBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reason for change MUST be at least 10 characters", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(102, 102, 255))); // NOI18N
+
+        reasonforBodyChangeTxt.setColumns(20);
+        reasonforBodyChangeTxt.setRows(5);
+        reasonScrollPane1.setViewportView(reasonforBodyChangeTxt);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 10;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        patientSearchPanel1.add(reasonScrollPane1, gridBagConstraints);
+
+        buttonGroup3.add(noSearchChkbx1);
+        noSearchChkbx1.setSelected(true);
+        noSearchChkbx1.setText("Search By Patient No./Unit No.");
+        noSearchChkbx1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        patientSearchPanel1.add(noSearchChkbx1, gridBagConstraints);
+
+        buttonGroup3.add(nameSearchChkbx1);
+        nameSearchChkbx1.setText("Search By Name");
+        nameSearchChkbx1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        patientSearchPanel1.add(nameSearchChkbx1, gridBagConstraints);
+
+        jLabel9.setText("First Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        patientSearchPanel1.add(jLabel9, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        patientSearchPanel1.add(newBodyFirstNameTxt, gridBagConstraints);
+
+        jLabel10.setText("Middle Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        patientSearchPanel1.add(jLabel10, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 3.0;
+        gridBagConstraints.weighty = 1.0;
+        patientSearchPanel1.add(newBodyMiddleNameTxt, gridBagConstraints);
+
+        jLabel11.setText("Last/Sur Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        patientSearchPanel1.add(jLabel11, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 3.0;
+        gridBagConstraints.weighty = 1.0;
+        patientSearchPanel1.add(newBodySurNameTxt, gridBagConstraints);
+
+        jLabel12.setText("Reg. No./Tag Number");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        patientSearchPanel1.add(jLabel12, gridBagConstraints);
+
+        jPanel42.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel42.setLayout(new java.awt.GridBagLayout());
+
+        bodyNoTxt.setEditable(false);
+        bodyNoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bodyNoTxtActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel42.add(bodyNoTxt, gridBagConstraints);
+
+        searchButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
+        searchButton1.setToolTipText("Search");
+        searchButton1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        searchButton1.setMaximumSize(new java.awt.Dimension(74, 53));
+        searchButton1.setMinimumSize(new java.awt.Dimension(74, 53));
+        searchButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        searchButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButton1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        jPanel42.add(searchButton1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.weighty = 1.0;
+        patientSearchPanel1.add(jPanel42, gridBagConstraints);
+
+        visitTxt1.setForeground(new java.awt.Color(102, 102, 255));
+        visitTxt1.setText("Please enter the preferred names below");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        patientSearchPanel1.add(visitTxt1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 200.0;
+        bodyHeaderPanel.add(patientSearchPanel1, gridBagConstraints);
+
+        commandPanel2.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 19, 0, 0);
+        commandPanel2.add(spacerLabel2, gridBagConstraints);
+
+        saveButton2.setText("Save Body Name changes");
+        saveButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        commandPanel2.add(saveButton2, gridBagConstraints);
+
+        clearButton2.setText("Clear form");
+        clearButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        commandPanel2.add(clearButton2, gridBagConstraints);
+
+        closeFormButton2.setText("Close form");
+        closeFormButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeFormButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        commandPanel2.add(closeFormButton2, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        bodyHeaderPanel.add(commandPanel2, gridBagConstraints);
+
+        jTabbedPane1.addTab("Change Names : Farewell Home", bodyHeaderPanel);
+
         changesNamesListingPane.setLayout(new java.awt.GridBagLayout());
 
-        startDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Report Start Date", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(102, 102, 255)));
+        startDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Report Start Date", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(102, 102, 255))); // NOI18N
 
         this.startDatePicker.getDateEditor().addPropertyChangeListener(new java.beans.PropertyChangeListener() {
 
@@ -460,7 +820,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         changesNamesListingPane.add(startDatePicker, gridBagConstraints);
 
-        endDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Report End Date", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(102, 102, 255)));
+        endDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Report End Date", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(102, 102, 255))); // NOI18N
 
         this.endDatePicker.getDateEditor().addPropertyChangeListener(new java.beans.PropertyChangeListener() {
 
@@ -480,8 +840,8 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         changesNamesListingPane.add(endDatePicker, gridBagConstraints);
 
-        jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, current_patient_name, new_patient_name, reason_for_change, timestamp_changed, user_name FROM patient_name_changes  WHERE timestamp_changed::date BETWEEN '"+startDatePicker.getDate()+"' AND '"+endDatePicker.getDate()+"' ORDER BY 3"));
-        jScrollPane1.setViewportView(jTable1);
+        nameChangeAuditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, current_patient_name, new_patient_name, reason_for_change, timestamp_changed, user_name FROM patient_name_changes  WHERE timestamp_changed::date BETWEEN '"+startDatePicker.getDate()+"' AND '"+endDatePicker.getDate()+"' ORDER BY 3"));
+        jScrollPane1.setViewportView(nameChangeAuditTrailTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -561,6 +921,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jTabbedPane1, gridBagConstraints);
+        jTabbedPane1.getAccessibleContext().setAccessibleName("Change Name - Farewell Home");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -696,7 +1057,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
                     clearForm();
                     javax.swing.JOptionPane.showMessageDialog(this, "Patient names update successfully");
                 } catch (SQLException ex) {
-                                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                    ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                     javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
                 }
 
@@ -713,7 +1074,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void saveButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButton1ActionPerformed
-        com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, current_patient_name, new_patient_name, reason_for_change, timestamp_changed, user_name FROM patient_name_changes  WHERE timestamp_changed::date BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' ORDER BY 3");        // TODO add your handling code here:
+        nameChangeAuditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, current_patient_name, new_patient_name, reason_for_change, timestamp_changed, user_name FROM patient_name_changes  WHERE timestamp_changed::date BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' ORDER BY 3"));        // TODO add your handling code here:
     }//GEN-LAST:event_saveButton1ActionPerformed
 
     private void clearButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButton1ActionPerformed
@@ -733,6 +1094,110 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
     private void endDatePickerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_endDatePickerPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_endDatePickerPropertyChange
+
+    private void bodyNoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bodyNoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bodyNoTxtActionPerformed
+
+    private void searchButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton1ActionPerformed
+
+        System.out.println("Showing dialog");
+
+        // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
+        java.awt.Point point = this.bodyNoTxt.getLocationOnScreen();
+
+        bodyNameSearchDialog.setSize(700, 200);
+
+        bodyNameSearchDialog.setLocation(point);
+
+        bodyNameSearchDialog.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchButton1ActionPerformed
+
+    private void saveButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButton2ActionPerformed
+        if (!bodyNoTxt.getText().isEmpty() && !existingBodyNamesTxt.getText().isEmpty()) {
+            if (!newBodyFirstNameTxt.getText().isEmpty() && !newBodyMiddleNameTxt.getText().isEmpty() && !newBodySurNameTxt.getText().isEmpty() && reasonforBodyChangeTxt.getText().length() > 10) {
+                try {
+                    java.sql.PreparedStatement pstmtNameChange4 = connectDB.prepareStatement("UPDATE hp_mortuary SET patient_name = TRIM(INITCAP(?)) WHERE patient_no = ?");
+                    pstmtNameChange4.setString(1, newBodyFirstNameTxt.getText() + " " + newBodyMiddleNameTxt.getText() + " " + newBodySurNameTxt.getText());
+                    pstmtNameChange4.setString(2, bodyNoTxt.getText());
+                    pstmtNameChange4.executeUpdate();
+                    java.sql.PreparedStatement pstmtNameChange6 = connectDB.prepareStatement("UPDATE hp_pharmacy SET patient_name = TRIM(INITCAP(?)) WHERE patient_no = ?");
+                    pstmtNameChange6.setString(1, newBodyFirstNameTxt.getText() + " " + newBodyMiddleNameTxt.getText() + " " + newBodySurNameTxt.getText());
+                    pstmtNameChange6.setString(2, bodyNoTxt.getText());
+                    pstmtNameChange6.executeUpdate();
+                    java.sql.PreparedStatement pstmtNameChange7 = connectDB.prepareStatement("UPDATE hp_patient_billing SET patient_name = TRIM(INITCAP(?)) WHERE patient_no = ?");
+                    pstmtNameChange7.setString(1, newBodyFirstNameTxt.getText() + " " + newBodyMiddleNameTxt.getText() + " " + newBodySurNameTxt.getText());
+                    pstmtNameChange7.setString(2, bodyNoTxt.getText());
+                    pstmtNameChange7.executeUpdate();
+
+                    java.sql.PreparedStatement pstmtNameChangeAudit = connectDB.prepareStatement("INSERT INTO patient_name_changes(patient_no, current_patient_name,"
+                            + " new_patient_name, reason_for_change)    VALUES (?, ?, TRIM(INITCAP(?)), ?)");
+                    pstmtNameChangeAudit.setString(1, bodyNoTxt.getText());
+                    pstmtNameChangeAudit.setString(2, existingBodyNamesTxt.getText());
+                    pstmtNameChangeAudit.setString(3, newBodyFirstNameTxt.getText() + " " + newBodyMiddleNameTxt.getText() + " " + newBodySurNameTxt.getText());
+                    pstmtNameChangeAudit.setString(4, reasonforBodyChangeTxt.getText());
+                    pstmtNameChangeAudit.execute();
+                    java.sql.PreparedStatement pstmtNameChange8 = connectDB.prepareStatement("UPDATE ac_debtors SET item = TRIM(INITCAP(?)) WHERE admission_no = ?");
+                    pstmtNameChange8.setString(1, newBodyFirstNameTxt.getText() + " " + newBodyMiddleNameTxt.getText() + " " + newBodySurNameTxt.getText());
+                    pstmtNameChange8.setString(2, bodyNoTxt.getText());
+                    pstmtNameChange8.executeUpdate();
+                    clearBodyForm();
+                    javax.swing.JOptionPane.showMessageDialog(this, "Body names update successfully");
+                } catch (SQLException ex) {
+                    ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                    javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+                }
+
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "You MUST set values for the preferred deceased names");
+
+            }
+
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "You MUST retrieve a deceased file in order to continue");
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saveButton2ActionPerformed
+
+    private void clearButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButton2ActionPerformed
+
+        clearBodyForm();
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clearButton2ActionPerformed
+
+    private void closeFormButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeFormButton2ActionPerformed
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_closeFormButton2ActionPerformed
+
+    private void bodyNameSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_bodyNameSearchTxtCaretUpdate
+        if (bodyNameSearchTxt.getCaretPosition() < 3) {
+            System.out.println("Nothing");
+        } else {
+            bodySearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, patient_name, tag_no as tag_number, annual_no as registration_no from hp_mortuary where patient_no ILIKE '%" + bodyNameSearchTxt.getText() + "%'  or annual_no ilike '%" + bodyNameSearchTxt.getText() + "%'  or tag_no ilike '%" + bodyNameSearchTxt.getText() + "%' order by 1"));
+
+            bodySearchTable.setShowHorizontalLines(false);
+            bodyNameSearchScrollPane.setViewportView(bodySearchTable);
+
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_bodyNameSearchTxtCaretUpdate
+
+    private void bodySearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bodySearchTableMouseClicked
+        bodyNoTxt.setText(bodySearchTable.getValueAt(bodySearchTable.getSelectedRow(), 0).toString());
+        bodyUnitNumberTxt.setText(bodySearchTable.getValueAt(bodySearchTable.getSelectedRow(), 3).toString());
+        existingBodyNamesTxt.setText(bodySearchTable.getValueAt(bodySearchTable.getSelectedRow(), 1).toString());
+        this.bodyNameSearchDialog.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bodySearchTableMouseClicked
+
+    private void closeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButton1ActionPerformed
+
+        bodyNameSearchDialog.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_closeButton1ActionPerformed
     private void searchButtonClicked2() {
 
         System.out.println("Showing dialog");
@@ -749,65 +1214,108 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
     }
 
     private void changeDate() {
-        com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, current_patient_name, new_patient_name, reason_for_change, timestamp_changed, user_name FROM patient_name_changes  WHERE timestamp_changed::date BETWEEN '"+startDatePicker.getDate()+"' AND '"+endDatePicker.getDate()+"' ORDER BY 3");
+        com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, current_patient_name, new_patient_name, reason_for_change, timestamp_changed, user_name FROM patient_name_changes  WHERE timestamp_changed::date BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' ORDER BY 3");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bodyHeaderPanel;
+    private javax.swing.JDialog bodyNameSearchDialog;
+    private javax.swing.JPanel bodyNameSearchPanel;
+    private javax.swing.JScrollPane bodyNameSearchScrollPane;
+    private javax.swing.JTextField bodyNameSearchTxt;
+    private javax.swing.JTextField bodyNoTxt;
+    private javax.swing.JTable bodySearchTable;
+    private javax.swing.JTextField bodyUnitNumberTxt;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JPanel changesNamesListingPane;
     private javax.swing.JButton clearButton;
     private javax.swing.JButton clearButton1;
+    private javax.swing.JButton clearButton2;
     private javax.swing.JButton closeButton;
+    private javax.swing.JButton closeButton1;
     private javax.swing.JButton closeFormButton;
     private javax.swing.JButton closeFormButton1;
+    private javax.swing.JButton closeFormButton2;
     private javax.swing.JPanel commandPanel;
     private javax.swing.JPanel commandPanel1;
+    private javax.swing.JPanel commandPanel2;
     private com.afrisoftech.lib.DatePicker endDatePicker;
+    private javax.swing.JTextField existingBodyNamesTxt;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JTextField intPatientNoTxt;
     private javax.swing.JCheckBox ipdChkbx;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel41;
+    private javax.swing.JPanel jPanel42;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable nameChangeAuditTrailTable;
     private javax.swing.JCheckBox nameSearchChkbx;
+    private javax.swing.JCheckBox nameSearchChkbx1;
     private javax.swing.JDialog nameSearchDialog;
     private javax.swing.JPanel nameSearchPanel;
     private javax.swing.JScrollPane nameSearchScrollPane;
     private javax.swing.JTextField nameSearchTxt;
+    private javax.swing.JTextField newBodyFirstNameTxt;
+    private javax.swing.JTextField newBodyMiddleNameTxt;
+    private javax.swing.JTextField newBodySurNameTxt;
     private javax.swing.JTextField newFirstNameTxt;
     private javax.swing.JTextField newMiddleNameTxt;
     private javax.swing.JTextField newSurNameTxt;
     private javax.swing.JCheckBox noSearchChkbx;
+    private javax.swing.JCheckBox noSearchChkbx1;
     private javax.swing.JCheckBox opdChkbx;
     private javax.swing.JTextField patientNamesTxt;
     private javax.swing.JPanel patientSearchPanel;
+    private javax.swing.JPanel patientSearchPanel1;
     private javax.swing.JTable patientSearchTable;
     private javax.swing.JTextField patientUnitNumberTxt;
     private javax.swing.JScrollPane reasonScrollPane;
+    private javax.swing.JScrollPane reasonScrollPane1;
+    private javax.swing.JTextArea reasonforBodyChangeTxt;
     private javax.swing.JTextArea reasonforChangeTxt;
     private javax.swing.JButton saveButton;
     private javax.swing.JButton saveButton1;
+    private javax.swing.JButton saveButton2;
     private javax.swing.JButton searchButton;
+    private javax.swing.JButton searchButton1;
     private javax.swing.JLabel spacerLabel;
     private javax.swing.JLabel spacerLabel1;
+    private javax.swing.JLabel spacerLabel2;
     private com.afrisoftech.lib.DatePicker startDatePicker;
     private javax.swing.JLabel visitTxt;
+    private javax.swing.JLabel visitTxt1;
     // End of variables declaration//GEN-END:variables
 
     private void clearForm() {
-       
+
         this.patientNamesTxt.setText(null);
         this.intPatientNoTxt.setText(null);
         this.nameSearchTxt.setText(null);
         this.newFirstNameTxt.setText(null);
         this.newMiddleNameTxt.setText(null);
         this.newSurNameTxt.setText(null);
-        this.reasonforChangeTxt.setText(null); }
+        this.reasonforChangeTxt.setText(null);
+    }
+        private void clearBodyForm() {
+
+        this.existingBodyNamesTxt.setText(null);
+        this.bodyNoTxt.setText(null);
+        this.bodyNameSearchTxt.setText(null);
+        this.newBodyFirstNameTxt.setText(null);
+        this.newBodyMiddleNameTxt.setText(null);
+        this.newBodySurNameTxt.setText(null);
+        this.reasonforBodyChangeTxt.setText(null);
+    }
 }

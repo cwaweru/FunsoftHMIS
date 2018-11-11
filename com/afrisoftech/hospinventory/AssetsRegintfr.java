@@ -641,6 +641,9 @@ public class AssetsRegintfr extends javax.swing.JInternalFrame implements java.l
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         assetDetailsPanel.add(dateofPurchasePicker, gridBagConstraints);
 
         assetNameLbl.setText("Asset Name");
@@ -675,6 +678,7 @@ public class AssetsRegintfr extends javax.swing.JInternalFrame implements java.l
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         assetDetailsPanel.add(assetValueTxt, gridBagConstraints);
 
         invoiceNumberLbl.setText("Invoice/Asset File No.");
@@ -746,6 +750,7 @@ public class AssetsRegintfr extends javax.swing.JInternalFrame implements java.l
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         assetDetailsPanel.add(barcodeTypeCmbx, gridBagConstraints);
 
         barCodePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Display Panel for bar-codes"));

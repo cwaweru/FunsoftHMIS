@@ -3632,7 +3632,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             buttonGroup1.add(opdChkbx);
             opdChkbx.setForeground(new java.awt.Color(51, 51, 255));
             opdChkbx.setMnemonic('o');
-            opdChkbx.setSelected(true);
             opdChkbx.setText("OUT- Patients");
             opdChkbx.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3661,7 +3660,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             buttonGroup1.add(walkinChkbx);
             walkinChkbx.setForeground(new java.awt.Color(153, 0, 153));
             walkinChkbx.setText("Walk-IN");
-            walkinChkbx.setEnabled(false);
             walkinChkbx.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     walkinChkbxActionPerformed(evt);

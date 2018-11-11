@@ -482,31 +482,31 @@ public class GatePassPdf implements java.lang.Runnable {
                             phrase = new Phrase("  ", pFontHeader);
 
                             table.addCell(phrase);
-                            phrase = new Phrase("Nurse Manager : .........................................Sign/Stamp:...................................Check-Out Date...............................", pFontHeader);
-
-                            table.addCell(phrase);
-                            phrase = new Phrase("  ", pFontHeader);
-
-                            table.addCell(phrase);
-                            phrase = new Phrase("Records Officer : .........................................Sign/Stamp:...................................Check-Out Date...............................", pFontHeader);
-
-                            table.addCell(phrase);
-                            phrase = new Phrase("  ", pFontHeader);
-
-                            table.addCell(phrase);
-                            phrase = new Phrase("Security Guard I/C : ........................................Sign/Stamp:..................................Check-Out Date................................", pFontHeader);
-
-                            table.addCell(phrase);
-                            phrase = new Phrase("  ", pFontHeader);
-                            
-                             table.addCell(phrase);
+//                            phrase = new Phrase("Nurse Manager : .........................................Sign/Stamp:...................................Check-Out Date...............................", pFontHeader);
+//
+//                            table.addCell(phrase);
+//                            phrase = new Phrase("  ", pFontHeader);
+//
+//                            table.addCell(phrase);
+//                            phrase = new Phrase("Records Officer : .........................................Sign/Stamp:...................................Check-Out Date...............................", pFontHeader);
+//
+//                            table.addCell(phrase);
+//                            phrase = new Phrase("  ", pFontHeader);
+//
+//                            table.addCell(phrase);
+//                            phrase = new Phrase("Security Guard I/C : ........................................Sign/Stamp:..................................Check-Out Date................................", pFontHeader);
+//
+//                            table.addCell(phrase);
+//                            phrase = new Phrase("  ", pFontHeader);
+//                            
+//                             table.addCell(phrase);
                             phrase = new Phrase("\nAccompanied By : ........................................Sign:..........................................Check-Out Date................................", pFontHeader);
 
                             table.addCell(phrase);
                             phrase = new Phrase("  ", pFontHeader);
 
                             table.addCell(phrase);
-                            phrase = new Phrase("NB This form should be filled in duplicate, one copy to be retained in the ward and the other one be left at the Main Gate. PLEASE NOTE THAT CHECK-OUT DATE MUST BE THE DATE THE PATIENT LEAVES THE HOSPITAL", pFontHeader11);
+                            phrase = new Phrase("NB:\nThis form should be filled in duplicate, one copy to be retained in the ward and the other one be left at the Main Gate.\nPLEASE NOTE THAT CHECK-OUT DATE MUST BE THE DATE THE PATIENT LEAVES THE HOSPITAL", pFontHeader11);
 
                             table.addCell(phrase);
                             phrase = new Phrase(" ");

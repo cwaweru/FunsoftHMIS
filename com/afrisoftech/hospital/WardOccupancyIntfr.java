@@ -44,14 +44,14 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
         org.jdesktop.swingx.decorator.PatternPredicate patternPredicate4 = new org.jdesktop.swingx.decorator.PatternPredicate("E WARD", 4, 4);
         ColorHighlighter magenta = new ColorHighlighter(patternPredicate4, Color.MAGENTA, null, Color.MAGENTA, null);
         tableHighlighters.add(magenta);
-        
+
         org.jdesktop.swingx.decorator.PatternPredicate patternPredicate5 = new org.jdesktop.swingx.decorator.PatternPredicate("LONG_STAY", 10, 10);
         ColorHighlighter orange = new ColorHighlighter(patternPredicate5, Color.ORANGE, null, Color.ORANGE, null);
         tableHighlighters.add(orange);
         org.jdesktop.swingx.decorator.PatternPredicate patternPredicate6 = new org.jdesktop.swingx.decorator.PatternPredicate("NORMAL_STAY", 10, 10);
         ColorHighlighter cyan = new ColorHighlighter(patternPredicate6, Color.CYAN, null, Color.CYAN, null);
         tableHighlighters.add(cyan);
-        
+
 //        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate5 = new org.jdesktop.swingx.decorator.PatternPredicate("CANCELLED INV", 7);
 //        ColorHighlighter cancelled = new ColorHighlighter(patternPredicate5, Color.RED, null, Color.RED, null);
 //        tableHighlighters.add(cancelled);
@@ -391,6 +391,17 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
 
             }
         ));
+        occupationTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                occupationTableMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                occupationTableMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                occupationTableMouseEntered(evt);
+            }
+        });
         occupationJScrl.setViewportView(occupationTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1115,10 +1126,10 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void wardNameCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wardNameCmbxActionPerformed
-      
+
         if (wardNameCmbx.getSelectedItem().toString().contains("--ALL--")) {
 
-            this.occupationTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, visit_id, sub_chief as unit_number, patient_name, wing, date_admitted, false as discharge, 'DISCHARGE_BED_RECONCILIATION' as comments, ward as ward_name, (SELECT sum(debit-credit)::numeric(30,2) FROM hp_patient_card WHERE hp_patient_card.patient_no = hp_admission.patient_no) as BILL_AMOUNT, (CASE WHEN (now()::date-date_admitted) > '"+Integer.parseInt(longStayThresholdTxt.getText())+"' THEN 'LONG_STAY' ELSE 'NORMAL_STAY' END) AS DURATION_OF_STAY FROM hp_admission WHERE check_out = false order by 4"));
+            this.occupationTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, visit_id, sub_chief as unit_number, patient_name, wing, date_admitted, false as discharge, 'DISCHARGE_BED_RECONCILIATION' as comments, ward as ward_name, (SELECT sum(debit-credit)::numeric(30,2) FROM hp_patient_card WHERE hp_patient_card.patient_no = hp_admission.patient_no) as BILL_AMOUNT, (CASE WHEN (now()::date-date_admitted) > '" + Integer.parseInt(longStayThresholdTxt.getText()) + "' THEN 'LONG_STAY' ELSE 'NORMAL_STAY' END) AS DURATION_OF_STAY FROM hp_admission WHERE check_out = false order by 4"));
 
         } else {
 
@@ -1431,6 +1442,29 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void occupationTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_occupationTableMouseClicked
+
+        com.afrisoftech.reports.FinalDescInPatientIntmlnvPdf policy = new com.afrisoftech.reports.FinalDescInPatientIntmlnvPdf();
+
+        policy.FinalDescInPatientIntmlnvPdf(connectDB, occupationTable.getValueAt(occupationTable.getSelectedRow(), 1).toString(), occupationTable.getValueAt(occupationTable.getSelectedRow(), 0).toString());
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_occupationTableMouseClicked
+
+    private void occupationTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_occupationTableMouseEntered
+
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_occupationTableMouseEntered
+
+    private void occupationTableMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_occupationTableMouseExited
+
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_occupationTableMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.afrisoftech.lib.DatePicker datePicker1;

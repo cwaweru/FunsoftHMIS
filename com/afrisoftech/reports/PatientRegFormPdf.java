@@ -730,7 +730,7 @@ public class PatientRegFormPdf implements java.lang.Runnable {
                         table.getDefaultCell().setColspan(6);
                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                         table.getDefaultCell().setBackgroundColor(java.awt.Color.LIGHT_GRAY);
-                        phrase = new Phrase("4. CURRENT ATTENDANCE AT KNH", pFontHeader);
+                        phrase = new Phrase("4. CURRENT ATTENDANCE AT FACILITY", pFontHeader);
                         table.addCell(phrase);
                         table.getDefaultCell().setColspan(2);
                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);

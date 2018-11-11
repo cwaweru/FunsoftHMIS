@@ -110,17 +110,19 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         useCostPriceRdbtn = new javax.swing.JRadioButton();
         useSellingPriceRdbtn = new javax.swing.JRadioButton();
         ManualS11CMBX = new javax.swing.JCheckBox();
+        subStoreChkbx = new javax.swing.JCheckBox();
+        mainStoreCkbx = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         issuingItemsTable = new com.afrisoftech.dbadmin.JTable(){
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class
             };
             /*   boolean[] canEdit = new boolean [] {
                 false, true, priceEdit, false, false
             };
             */
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true, true, false
+                false, false, false, false, false, false, false, false, true, true, false,true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -151,8 +153,6 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         jButton6 = new javax.swing.JButton();
         spacerPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        mainStoreCkbx = new javax.swing.JCheckBox();
-        subStoreChkbx = new javax.swing.JCheckBox();
 
         buttonGroup2.add(rectifyTransferChkbx);
         rectifyTransferChkbx.setText("Rectify previous transfer");
@@ -538,20 +538,20 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         setToolTipText("");
         setVisible(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameActivated(evt);
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -575,7 +575,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -585,7 +585,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         jLabel13.setText("Receipient Store");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -595,24 +595,24 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         jLabel1.setText("Issiuing Store");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         jPanel1.add(jLabel1, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
         jPanel1.add(transactionTimepicker, gridBagConstraints);
 
-        jLabel3.setText("Date");
+        jLabel3.setText("Issue Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -627,7 +627,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -646,7 +646,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
@@ -657,7 +657,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         jLabel6.setText("Transfer No");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
@@ -693,7 +693,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -702,7 +702,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         jLabel4.setText("Requisition No.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
@@ -739,7 +739,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.weightx = 1.0;
@@ -757,7 +757,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 0);
         jPanel1.add(useCostPriceRdbtn, gridBagConstraints);
@@ -768,7 +768,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         useSellingPriceRdbtn.setMargin(new java.awt.Insets(0, 0, 0, 0));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel1.add(useSellingPriceRdbtn, gridBagConstraints);
 
@@ -780,10 +780,44 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         jPanel1.add(ManualS11CMBX, gridBagConstraints);
+
+        buttonGroup1.add(subStoreChkbx);
+        subStoreChkbx.setForeground(new java.awt.Color(0, 51, 204));
+        subStoreChkbx.setText("Sub Store");
+        subStoreChkbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subStoreChkbxActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel1.add(subStoreChkbx, gridBagConstraints);
+
+        buttonGroup1.add(mainStoreCkbx);
+        mainStoreCkbx.setForeground(new java.awt.Color(0, 51, 204));
+        mainStoreCkbx.setSelected(true);
+        mainStoreCkbx.setText("Central Store");
+        mainStoreCkbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainStoreCkbxActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel1.add(mainStoreCkbx, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -791,125 +825,124 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weightx = 20.0;
         gridBagConstraints.weighty = 2.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         jPanel2.add(jPanel1, gridBagConstraints);
 
         issuingItemsTable.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         issuingItemsTable.setForeground(new java.awt.Color(102, 102, 102));
         issuingItemsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Item Code", "Item Description", "Strength", "Units", "Issuing store Bal", "Rev. Store Bal.", "Qty Per Pack", "Qty. Issued", "Price", "Total"
+                "Item Code", "Item Description", "Strength", "Units", "Issuing store Bal", "Rev. Store Bal.", "Qty Per Pack", "Qty Requested", "Qty. Issued", "Price", "Total", "Remarks"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true, true, false
+                false, false, false, false, false, false, false, false, true, true, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -965,7 +998,6 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 4.5;
         gridBagConstraints.weighty = 30.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         jPanel2.add(jScrollPane1, gridBagConstraints);
 
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -1046,7 +1078,6 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 2.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         jPanel2.add(jPanel11, gridBagConstraints);
 
         jLabel12.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
@@ -1067,8 +1098,8 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
         saveTransactionBtn.setBackground(new java.awt.Color(0, 153, 153));
         saveTransactionBtn.setMnemonic('s');
+        saveTransactionBtn.setText("Issue items");
         saveTransactionBtn.setToolTipText("click to store data");
-        saveTransactionBtn.setLabel("Save");
         saveTransactionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveTransactionBtnActionPerformed(evt);
@@ -1205,33 +1236,6 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel2.add(jPanel3, gridBagConstraints);
 
-        buttonGroup1.add(mainStoreCkbx);
-        mainStoreCkbx.setForeground(new java.awt.Color(0, 51, 204));
-        mainStoreCkbx.setSelected(true);
-        mainStoreCkbx.setText("Central Store");
-        mainStoreCkbx.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mainStoreCkbxActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.weightx = 1.0;
-        jPanel2.add(mainStoreCkbx, gridBagConstraints);
-
-        buttonGroup1.add(subStoreChkbx);
-        subStoreChkbx.setForeground(new java.awt.Color(0, 51, 204));
-        subStoreChkbx.setText("Sub Store");
-        subStoreChkbx.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                subStoreChkbxActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.weightx = 1.0;
-        jPanel2.add(subStoreChkbx, gridBagConstraints);
-
         jTabbedPane1.addTab("Stock Trasfer from on store to the other", jPanel2);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1313,7 +1317,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         if (this.newTransferChkbx.isSelected()) {
 
             issuingItemsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                    + "SELECT item_code,item_description, '' as strength, 1 as units, 0.00 as issuing_store_balance, 0.00 as recipient_store_balance, 1.00 as qty_per_pack, quantity::numeric, price::numeric, (quantity * price)::numeric AS TOTAL FROM st_receive_requisation WHERE requisition_no = '" + requisitionNumberTxt.getText() + "' and quantity - qty_issued > 0 and irq_approval=true order by item_description"));
+                    + "SELECT item_code,item_description, '' as strength, 1 as units, 0.00 as issuing_store_balance, 0.00 as recipient_store_balance, 1.00 as qty_per_pack, quantity as qty_requested, 0::numeric as qty_issued, price::numeric, 0.00::numeric AS TOTAL, '' as remarks FROM st_receive_requisation WHERE requisition_no = '" + requisitionNumberTxt.getText() + "' and quantity - qty_issued > 0 and irq_approval=true order by item_description"));
 
             count = issuingItemsTable.getRowCount();
 
@@ -1328,7 +1332,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
         } else if (this.rectifyTransferChkbx.isSelected()) {
 
-            issuingItemsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT item_code,item as item_description, '' as strength, 1 as units, 0.00 as issuing_store_balance, 0.00 as recipient_store_balance, 1.00 as qty_per_pack, issuing::numeric(10,2), buying_price::numeric(10,2), total::numeric(10,2) FROM st_sub_stores WHERE transaction_no = '" + transferNumberTxt.getText() + "' and issuing > 0 order by item"));
+            issuingItemsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT item_code,item as item_description, '' as strength, 1 as units, 0.00 as issuing_store_balance, 0.00 as recipient_store_balance, 1.00 as qty_per_pack,quantity as qty_requested, issuing::numeric(10,2), buying_price::numeric(10,2), total::numeric(10,2), '' as remarks FROM st_sub_stores WHERE transaction_no = '" + transferNumberTxt.getText() + "' and issuing > 0 order by item"));
 
         }
         //---------------
@@ -1828,13 +1832,13 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
         if (ManualS11CMBX.isSelected()) {
             System.out.println("This is a manual S11");
-            if (Double.parseDouble(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 7).toString().trim())
+            if (Double.parseDouble(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 8).toString().trim())
                     <= Double.parseDouble(qtyVector.elementAt(issuingItemsTable.getSelectedRow()).toString().trim())) {
-                System.out.println(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 7).toString() + "comparison==" + qtyVector.elementAt(issuingItemsTable.getSelectedRow()));
+                System.out.println(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 8).toString() + "comparison==" + qtyVector.elementAt(issuingItemsTable.getSelectedRow()));
 
-                if (issuingItemsTable.getModel().getValueAt(issuingItemsTable.getSelectedRow(), 7) != null) {
+                if (issuingItemsTable.getModel().getValueAt(issuingItemsTable.getSelectedRow(), 8) != null) {
                     float bal = java.lang.Float.parseFloat(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 4).toString());
-                    float floatCol2 = java.lang.Float.parseFloat(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 7).toString());
+                    float floatCol2 = java.lang.Float.parseFloat(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 8).toString());
 
                     float floatCol3 = java.lang.Float.parseFloat(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 8).toString());
                     //   float pack = java.lang.Float.parseFloat(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
@@ -1846,26 +1850,26 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
                         java.lang.Float resFloat = new java.lang.Float(resVal);
 
                         if (issuingItemsTable.getSelectedColumn() == issuingItemsTable.getSelectedColumn()) {
-                            issuingItemsTable.setValueAt(resFloat, issuingItemsTable.getSelectedRow(), 9);
+                            issuingItemsTable.setValueAt(resFloat, issuingItemsTable.getSelectedRow(), 10);
 
 //                            double Total = java.lang.Double.parseDouble(totalValueTxt.getText().toString());
 //                            double tableSum = java.lang.Double.parseDouble(resFloat.toString());
 //                            double totalSum = Total + tableSum;
 //                            totalValueTxt.setText("" + totalSum + "");
-                            totalValueTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(issuingItemsTable, 9)));
+                            totalValueTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(issuingItemsTable, 10)));
 
                         }
 
                     } else {
                         if (neg == false && bal < floatCol2) {
                             javax.swing.JOptionPane.showMessageDialog(this, "You are not allowed to dispense more than the available stock in the issuing store", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                            issuingItemsTable.setValueAt(0, issuingItemsTable.getSelectedRow(), 7);
                             issuingItemsTable.setValueAt(0, issuingItemsTable.getSelectedRow(), 8);
+                            issuingItemsTable.setValueAt(0, issuingItemsTable.getSelectedRow(), 9);
 
 //                            double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(issuingItemsTable, 7);
 //                            totalValueTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
                             ClearTable.removeSelectedRows(issuingItemsTable);
-                            totalValueTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(issuingItemsTable, 9)));
+                            totalValueTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(issuingItemsTable, 10)));
 
                         }
                     }
@@ -1876,13 +1880,13 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
                         if (issuingItemsTable.getSelectedColumn() == issuingItemsTable.getSelectedColumn()) {
 
-                            issuingItemsTable.setValueAt(resFloat, issuingItemsTable.getSelectedRow(), 9);
+                            issuingItemsTable.setValueAt(resFloat, issuingItemsTable.getSelectedRow(), 10);
 //
 //                            double Total = java.lang.Double.parseDouble(totalValueTxt.getText().toString());
 //                            double tableSum = java.lang.Double.parseDouble(resFloat.toString());
 //                            double totalSum = Total + tableSum;
 //                            totalValueTxt.setText("" + totalSum + "");
-                            totalValueTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(issuingItemsTable, 9)));
+                            totalValueTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(issuingItemsTable, 10)));
 
                         }
                     }
@@ -1891,23 +1895,23 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
             } else {
                 javax.swing.JOptionPane.showMessageDialog(this, "You are not allowed to dispense more than the available stock in the issuing store", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
 
-                issuingItemsTable.getModel().setValueAt(qtyVector.elementAt(issuingItemsTable.getSelectedRow()), issuingItemsTable.getSelectedRow(), 7);
+                issuingItemsTable.getModel().setValueAt(qtyVector.elementAt(issuingItemsTable.getSelectedRow()), issuingItemsTable.getSelectedRow(), 8);
 
                 ClearTable.removeSelectedRows(issuingItemsTable);
-                totalValueTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(issuingItemsTable, 9)));
+                totalValueTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(issuingItemsTable, 10)));
 
-                System.out.println(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 7).toString() + "comparison==" + qtyVector.elementAt(issuingItemsTable.getSelectedRow()));
+                System.out.println(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 8).toString() + "comparison==" + qtyVector.elementAt(issuingItemsTable.getSelectedRow()));
             }
 
             //   } else if (ManualS11CMBX.isSelected()) {
             // for automated S11 issuing process
         } else {
             System.out.println("This is an automated S11");
-            if (issuingItemsTable.getModel().getValueAt(issuingItemsTable.getSelectedRow(), 7) != null) {
+            if (issuingItemsTable.getModel().getValueAt(issuingItemsTable.getSelectedRow(), 8) != null) {
                 float bal = java.lang.Float.parseFloat(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 4).toString());
-                float floatCol2 = java.lang.Float.parseFloat(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 7).toString());
+                float floatCol2 = java.lang.Float.parseFloat(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 8).toString());
 
-                float floatCol3 = java.lang.Float.parseFloat(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 8).toString());
+                float floatCol3 = java.lang.Float.parseFloat(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 9).toString());
 
                 if (!neg && bal >= floatCol2) {
                     float resVal = floatCol2 * floatCol3;
@@ -1915,13 +1919,13 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
                     java.lang.Float resFloat = new java.lang.Float(resVal);
 
                     if (issuingItemsTable.getSelectedColumn() == issuingItemsTable.getSelectedColumn()) {
-                        issuingItemsTable.setValueAt(resFloat, issuingItemsTable.getSelectedRow(), 9);
+                        issuingItemsTable.setValueAt(resFloat, issuingItemsTable.getSelectedRow(), 10);
 
 //                        double Total = java.lang.Double.parseDouble(totalValueTxt.getText().toString());
 //                        double tableSum = java.lang.Double.parseDouble(resFloat.toString());
 //                        double totalSum = Total + tableSum;
 //                        totalValueTxt.setText("" + totalSum + "");
-                        totalValueTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(issuingItemsTable, 9)));
+                        totalValueTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(issuingItemsTable, 10)));
 
                     }
 
@@ -1929,13 +1933,13 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
                     if (!neg && bal < floatCol2) {
                         javax.swing.JOptionPane.showMessageDialog(this, "You are not allowed to dispense more than the available stock in the issuing store", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                        issuingItemsTable.setValueAt(0, issuingItemsTable.getSelectedRow(), 7);
                         issuingItemsTable.setValueAt(0, issuingItemsTable.getSelectedRow(), 8);
+                        issuingItemsTable.setValueAt(0, issuingItemsTable.getSelectedRow(), 9);
 
 //                        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(issuingItemsTable, 7);
 //                        totalValueTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
                         ClearTable.removeSelectedRows(issuingItemsTable);
-                        totalValueTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(issuingItemsTable, 9)));
+                        totalValueTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(issuingItemsTable, 10)));
 
                     }
                 }
@@ -1947,12 +1951,12 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
                     if (issuingItemsTable.getSelectedColumn() == issuingItemsTable.getSelectedColumn()) {
 
-                        issuingItemsTable.setValueAt(resFloat, issuingItemsTable.getSelectedRow(), 9);
+                        issuingItemsTable.setValueAt(resFloat, issuingItemsTable.getSelectedRow(), 10);
 
 //                        double Total = java.lang.Double.parseDouble(totalValueTxt.getText().toString());
 //                        double tableSum = java.lang.Double.parseDouble(resFloat.toString());
 //                        double totalSum = Total + tableSum;
-                        totalValueTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(issuingItemsTable, 9)));
+                        totalValueTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(issuingItemsTable, 10)));
 
                     }
                 }
@@ -2087,13 +2091,13 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
     private void saveTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveTransactionBtnActionPerformed
         if (issuingRecipientTxt.getText().length() > 1 && Double.parseDouble(totalValueTxt.getText().replace(",", "")) > 0.00) {
-            
+
             IssuingThread issuingThread = new IssuingThread();
 
             issuingThread.start();
 
             saveTransactionBtn.setEnabled(false);
-            
+
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Please ensure that the total value of items to be transferred has been computed and \n"
                     + "the name of the recipient has been set accordingly.");
@@ -2178,113 +2182,114 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
         public void run() {
 
-            if (com.afrisoftech.lib.TableTransactionCheck.checkTableEntries(issuingItemsTable, 0, 7)) {
-                java.util.Date dateToday = new java.util.Date();
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            //           if (com.afrisoftech.lib.TableTransactionCheck.checkTableEntries(issuingItemsTable, 0, 8)) {
+            java.util.Date dateToday = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-                System.err.println(Timestamp.valueOf(sdf.format(transactionTimepicker.getDate())));
+            System.err.println(Timestamp.valueOf(sdf.format(transactionTimepicker.getDate())));
 
-                for (int h = 0; h < issuingItemsTable.getModel().getRowCount(); h++) {
-                    if (Double.parseDouble(issuingItemsTable.getValueAt(h, 7).toString().trim())
-                            <= Double.parseDouble(qtyVector.elementAt(h).toString().trim())) {
+            for (int h = 0; h < issuingItemsTable.getModel().getRowCount(); h++) {
+                if (Double.parseDouble(issuingItemsTable.getValueAt(h, 8).toString().trim())
+                        <= Double.parseDouble(qtyVector.elementAt(h).toString().trim())) {
 
-                        if (totalValueTxt.getText() != "0.00") {
-                            if (issuingStoreCmbx.getSelectedItem() != null && recepientStoreCmbx.getSelectedItem() != null) {
-                                java.util.Date periodFrom = null;
-                                java.util.Date periodTo = null;
+                    if (totalValueTxt.getText() != "0.00") {
+                        if (issuingStoreCmbx.getSelectedItem() != null && recepientStoreCmbx.getSelectedItem() != null) {
+                            java.util.Date periodFrom = null;
+                            java.util.Date periodTo = null;
 
-                                try {
+                            try {
 
-                                    java.sql.Statement stmtf = connectDB.createStatement();
-                                    java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + transactionTimepicker.getDate() + "' BETWEEN period_from AND period_to");
-                                    while (rsetf.next()) {
-                                        periodFrom = rsetf.getDate(1);
-                                        periodTo = rsetf.getDate(2);
-                                    }
-
-                                } catch (java.sql.SQLException sq) {
-                                    javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                    System.out.println(sq.getMessage());
-
+                                java.sql.Statement stmtf = connectDB.createStatement();
+                                java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + transactionTimepicker.getDate() + "' BETWEEN period_from AND period_to");
+                                while (rsetf.next()) {
+                                    periodFrom = rsetf.getDate(1);
+                                    periodTo = rsetf.getDate(2);
                                 }
 
-                                if (transactionTimepicker.getDate().before(periodFrom) || transactionTimepicker.getDate().after(periodTo)) {
-                                    javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                            } catch (java.sql.SQLException sq) {
+                                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                System.out.println(sq.getMessage());
 
-                                } else {
-                                    if (issuingItemsTable.isEditing()) {
-                                        issuingItemsTable.getCellEditor().stopCellEditing();
-                                    }
-                                    java.util.Calendar calendar = java.util.Calendar.getInstance();
+                            }
 
-                                    long dateNow = calendar.getTimeInMillis();
+                            if (transactionTimepicker.getDate().before(periodFrom) || transactionTimepicker.getDate().after(periodTo)) {
+                                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
-                                    java.sql.Date datenowSql = new java.sql.Date(dateNow);
-                                    try {
-                                        String Stock = null;
-                                        String actCode = null;
-                                        String Stock1 = null;
-                                        String actCode1 = null;
+                            } else {
+                                if (issuingItemsTable.isEditing()) {
+                                    issuingItemsTable.getCellEditor().stopCellEditing();
+                                }
+                                java.util.Calendar calendar = java.util.Calendar.getInstance();
+
+                                long dateNow = calendar.getTimeInMillis();
+
+                                java.sql.Date datenowSql = new java.sql.Date(dateNow);
+                                try {
+                                    String Stock = null;
+                                    String actCode = null;
+                                    String Stock1 = null;
+                                    String actCode1 = null;
 //                String transNo = null;
-                                        String userName = null;
-                                        String glCode = null;
-                                        String glType = null;
-                                        boolean consumable = false;
-                                        int itemInt = 0;
-                                        double sPrice = 0.00;
-                                        double bPrice = 0.00;
-                                        String code = null;
-                                        String category = null;
-                                        String productId = null;
-                                        java.sql.Savepoint registerSavePoint = null;
-                                        try {
-                                            connectDB.setAutoCommit(false);
-                                            registerSavePoint = connectDB.setSavepoint("registration");
-                                        } catch (java.sql.SQLException ex) {
-                                            ex.printStackTrace();
-                                        }
+                                    String userName = null;
+                                    String glCode = null;
+                                    String glType = null;
+                                    boolean consumable = false;
+                                    int itemInt = 0;
+                                    double sPrice = 0.00;
+                                    double bPrice = 0.00;
+                                    String code = null;
+                                    String category = null;
+                                    String productId = null;
+                                    java.sql.Savepoint registerSavePoint = null;
+                                    try {
+                                        connectDB.setAutoCommit(false);
+                                        registerSavePoint = connectDB.setSavepoint("registration");
+                                    } catch (java.sql.SQLException ex) {
+                                        ex.printStackTrace();
+                                    }
 
-                                        try {
+                                    try {
 
-                                            if (newTransferChkbx.isSelected()) {
-                                                java.sql.Statement pst21 = connectDB.createStatement();
-                                                java.sql.ResultSet rs1 = pst21.executeQuery("select 'T'||nextval('transfer_seq')");
-                                                while (rs1.next()) {
-                                                    transNo = rs1.getObject(1).toString();
-                                                }
-                                                java.sql.Statement pst2 = connectDB.createStatement();
-                                                java.sql.ResultSet rs = pst2.executeQuery("SELECT glstock_code,store_name FROM st_stores WHERE store_name ILIKE '" + issuingStoreCmbx.getSelectedItem() + "%'");
-                                                while (rs.next()) {
-                                                    actCode = rs.getObject(1).toString();
-                                                    Stock = rs.getObject(2).toString();
-                                                }
+                                        if (newTransferChkbx.isSelected()) {
+                                            java.sql.Statement pst21 = connectDB.createStatement();
+                                            java.sql.ResultSet rs1 = pst21.executeQuery("select 'T'||nextval('transfer_seq')");
+                                            while (rs1.next()) {
+                                                transNo = rs1.getObject(1).toString();
+                                            }
+                                            java.sql.Statement pst2 = connectDB.createStatement();
+                                            java.sql.ResultSet rs = pst2.executeQuery("SELECT glstock_code,store_name FROM st_stores WHERE store_name ILIKE '" + issuingStoreCmbx.getSelectedItem() + "%'");
+                                            while (rs.next()) {
+                                                actCode = rs.getObject(1).toString();
+                                                Stock = rs.getObject(2).toString();
+                                            }
 
-                                                java.sql.Statement pst22 = connectDB.createStatement();
-                                                java.sql.ResultSet rs2 = pst22.executeQuery("SELECT glstock_code,store_name FROM st_stores WHERE store_name ILIKE '" + recepientStoreCmbx.getSelectedItem() + "%'");
-                                                while (rs2.next()) {
-                                                    actCode1 = rs2.getObject(1).toString();
-                                                    Stock1 = rs2.getObject(2).toString();
-                                                }
-                                                java.sql.Statement pst22q = connectDB.createStatement();
-                                                java.sql.ResultSet rs2q = pst22q.executeQuery("SELECT cs_code,store_name FROM st_stores WHERE store_name ILIKE '" + recepientStoreCmbx.getSelectedItem() + "%'");
-                                                while (rs2q.next()) {
-                                                    glCode = rs2q.getObject(1).toString();
-                                                    glType = rs2q.getObject(2).toString();
-                                                }
+                                            java.sql.Statement pst22 = connectDB.createStatement();
+                                            java.sql.ResultSet rs2 = pst22.executeQuery("SELECT glstock_code,store_name FROM st_stores WHERE store_name ILIKE '" + recepientStoreCmbx.getSelectedItem() + "%'");
+                                            while (rs2.next()) {
+                                                actCode1 = rs2.getObject(1).toString();
+                                                Stock1 = rs2.getObject(2).toString();
+                                            }
+                                            java.sql.Statement pst22q = connectDB.createStatement();
+                                            java.sql.ResultSet rs2q = pst22q.executeQuery("SELECT cs_code,store_name FROM st_stores WHERE store_name ILIKE '" + recepientStoreCmbx.getSelectedItem() + "%'");
+                                            while (rs2q.next()) {
+                                                glCode = rs2q.getObject(1).toString();
+                                                glType = rs2q.getObject(2).toString();
+                                            }
 
-                                                java.sql.Statement pst2q = connectDB.createStatement();
-                                                java.sql.ResultSet rsq = pst2q.executeQuery("select current_user");
-                                                while (rsq.next()) {
-                                                    userName = rsq.getObject(1).toString();
-                                                }
+                                            java.sql.Statement pst2q = connectDB.createStatement();
+                                            java.sql.ResultSet rsq = pst2q.executeQuery("select current_user");
+                                            while (rsq.next()) {
+                                                userName = rsq.getObject(1).toString();
+                                            }
 
-                                                for (int i = 0; i < issuingItemsTable.getRowCount(); i++) {
+                                            for (int i = 0; i < issuingItemsTable.getRowCount(); i++) {
 
-                                                    if (issuingItemsTable.getValueAt(i, 7) != null) {
-                                                        double price = 0;
-                                                        double pack = 0;
-                                                        double quantity = Double.parseDouble(issuingItemsTable.getValueAt(i, 7).toString());
+                                                if (issuingItemsTable.getValueAt(i, 8) != null) {
+                                                    double price = 0;
+                                                    double pack = 0;
+                                                    double quantity = Double.parseDouble(issuingItemsTable.getValueAt(i, 8).toString());
 
+                                                    if (quantity > 0) {
                                                         java.sql.Statement pst21r = connectDB.createStatement();
                                                         //         java.sql.ResultSet rstr = ps11r.executeQuery("SELECT mark_up FROM st_stores WHERE store_name ILIKE '"+jComboBox2.getSelectedItem().toString()+"'");
                                                         java.sql.ResultSet rstrs = pst21r.executeQuery("SELECT packaging FROM stockitem st WHERE st.item_code = '" + issuingItemsTable.getValueAt(i, 0).toString() + "'");
@@ -2293,10 +2298,10 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
                                                         }
 
                                                         pack = Double.parseDouble(issuingItemsTable.getValueAt(i, 6).toString());
-                                                        double uprice = Double.parseDouble(issuingItemsTable.getModel().getValueAt(i, 8).toString());
+                                                        double uprice = Double.parseDouble(issuingItemsTable.getModel().getValueAt(i, 9).toString());
                                                         if (subStoreChkbx.isSelected()) {
 
-                                                            price = Double.parseDouble(issuingItemsTable.getModel().getValueAt(i, 8).toString());
+                                                            price = Double.parseDouble(issuingItemsTable.getModel().getValueAt(i, 9).toString());
                                                             quantity = quantity;
                                                         } else {
                                                             price = uprice / pack;
@@ -2310,13 +2315,13 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
                                                         }
                                                         // Removing the stock value to the recipient store
 //                                                System.err.println("Time " + Timestamp.valueOf(SQLDateFormat.getSQLDate(transactionTimepicker.getDate()) + " " + ServerTime.getServerTrans_time(connectDB)));
-                                                        java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO st_sub_stores VALUES(? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
+                                                        java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO st_sub_stores VALUES(? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?)");
                                                         pstmt1.setString(1, issuingStoreCmbx.getSelectedItem().toString());
                                                         pstmt1.setObject(2, issuingItemsTable.getValueAt(i, 1));
                                                         pstmt1.setDouble(4, quantity);
                                                         pstmt1.setDouble(3, 0.00);
                                                         pstmt1.setDouble(5, 0.00);
-                                                        pstmt1.setDouble(6, java.lang.Double.valueOf(issuingItemsTable.getValueAt(i, 9).toString()));
+                                                        pstmt1.setDouble(6, java.lang.Double.valueOf(issuingItemsTable.getValueAt(i, 10).toString()));
                                                         pstmt1.setDouble(7, 0.00);
                                                         pstmt1.setString(8, transNo);
                                                         pstmt1.setString(9, "");
@@ -2330,6 +2335,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
                                                         pstmt1.setDouble(15, price);
                                                         pstmt1.setObject(16, issuingItemsTable.getValueAt(i, 0));
                                                         pstmt1.setObject(17, issuingItemsTable.getValueAt(i, 2));
+                                                        //pstmt1.setObject(18, issuingItemsTable.getValueAt(i, 10));
 
                                                         if (requisitionNumberTxt.getText().length() == 0 && manualS11NumberTxt.getText().length() == 0) {
                                                             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "You need Requisition Number For Security Release!");
@@ -2341,7 +2347,11 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
                                                                 pstmt1.setString(18, manualS11NumberTxt.getText());
                                                             }
                                                         }
-
+                                                        pstmt1.setBoolean(19, false);
+                                                        pstmt1.setObject(20, null);
+                                                        pstmt1.setTimestamp(21, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));
+                                                        pstmt1.setObject(22, null);
+                                                        pstmt1.setObject(23, issuingItemsTable.getValueAt(i, 11));
                                                         pstmt1.executeUpdate();
 
                                                         // Accounting for the reduction in stock value during the  stock transafer
@@ -2350,7 +2360,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
                                                         pstmt.setObject(3, issuingItemsTable.getValueAt(i, 1) + " " + issuingItemsTable.getValueAt(i, 2));
                                                         pstmt.setString(2, issuingStoreCmbx.getSelectedItem().toString());
                                                         pstmt.setDate(4, null);
-                                                        pstmt.setDouble(5, java.lang.Double.valueOf(issuingItemsTable.getValueAt(i, 9).toString()));
+                                                        pstmt.setDouble(5, java.lang.Double.valueOf(issuingItemsTable.getValueAt(i, 10).toString()));
                                                         pstmt.setDouble(6, price);
                                                         pstmt.setObject(7, issuingItemsTable.getValueAt(i, 3));
                                                         pstmt.setObject(8, "");
@@ -2373,7 +2383,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
                                                         pstmt.setDouble(21, 0.00);
                                                         pstmt.setString(23, actCode);
                                                         //      pstmt.setDouble(22, 0.00); commented and changed 25/08/13 and replaced below -- line following
-                                                        pstmt.setDouble(22, java.lang.Double.valueOf(issuingItemsTable.getValueAt(i, 9).toString()));
+                                                        pstmt.setDouble(22, java.lang.Double.valueOf(issuingItemsTable.getValueAt(i, 10).toString()));
                                                         pstmt.setString(24, "");
                                                         pstmt.setString(25, Stock);
                                                         pstmt.setString(26, transNo);
@@ -2414,7 +2424,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
                                                             pstmty.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(transactionTimepicker.getDate()));
                                                             pstmty.setString(19, issuingStoreCmbx.getSelectedItem().toString());
                                                             pstmty.setString(20, "Receiving");
-                                                            pstmty.setDouble(21, java.lang.Double.valueOf(issuingItemsTable.getValueAt(i, 9).toString()));
+                                                            pstmty.setDouble(21, java.lang.Double.valueOf(issuingItemsTable.getValueAt(i, 10).toString()));
                                                             pstmty.setDouble(22, 0.00);
                                                             pstmty.setString(23, actCode1);
                                                             pstmty.setString(24, "");
@@ -2448,7 +2458,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
                                                             pstmt2a.setString(13, "");
                                                             pstmt2a.setString(14, issuingItemsTable.getValueAt(i, 1).toString());
                                                             pstmt2a.setString(15, "Issuing");
-                                                            pstmt2a.setDouble(16, java.lang.Double.valueOf(issuingItemsTable.getValueAt(i, 9).toString()));
+                                                            pstmt2a.setDouble(16, java.lang.Double.valueOf(issuingItemsTable.getValueAt(i, 10).toString()));
                                                             pstmt2a.setDouble(17, 0.00);
                                                             pstmt2a.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(transactionTimepicker.getDate()));
                                                             pstmt2a.setString(19, transNo);
@@ -2459,13 +2469,13 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
                                                             pstmt2a.executeUpdate();
                                                         }
 
-                                                        java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("INSERT INTO st_sub_stores VALUES(? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
+                                                        java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("INSERT INTO st_sub_stores VALUES(? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?)");
                                                         pstmt11.setString(1, recepientStoreCmbx.getSelectedItem().toString());
                                                         pstmt11.setObject(2, issuingItemsTable.getValueAt(i, 1));
                                                         pstmt11.setDouble(3, quantity);
                                                         pstmt11.setDouble(4, 0.00);
                                                         pstmt11.setDouble(5, 0.00);
-                                                        pstmt11.setDouble(6, java.lang.Double.valueOf(issuingItemsTable.getValueAt(i, 9).toString()));
+                                                        pstmt11.setDouble(6, java.lang.Double.valueOf(issuingItemsTable.getValueAt(i, 10).toString()));
                                                         pstmt11.setDouble(7, 0.00);
                                                         pstmt11.setString(8, transNo);
                                                         pstmt11.setString(9, "");
@@ -2478,7 +2488,11 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
                                                         pstmt11.setObject(16, issuingItemsTable.getValueAt(i, 0));
                                                         pstmt11.setObject(17, issuingItemsTable.getValueAt(i, 2));
                                                         pstmt11.setString(18, manualS11NumberTxt.getText());
-
+                                                        pstmt11.setBoolean(19, false);
+                                                        pstmt11.setObject(20, null);
+                                                        pstmt11.setTimestamp(21, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));
+                                                        pstmt11.setObject(22, null);
+                                                        pstmt11.setObject(23, issuingItemsTable.getValueAt(i, 11));
                                                         pstmt11.executeUpdate();
 
                                                         //}
@@ -2492,90 +2506,102 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
                                                         java.sql.PreparedStatement pstmt321 = connectDB.prepareStatement("UPDATE st_receive_requisation SET qty_issued = qty_issued + " + new java.lang.Double(quantity) + " WHERE requisition_no = '" + requisitionNumberTxt.getText() + "' and item_code = '" + issuingItemsTable.getValueAt(i, 0).toString() + "'");
                                                         pstmt321.executeUpdate();
+                                                    } else {
+                                                        java.sql.PreparedStatement pstmtUpdateRemarks = connectDB.prepareStatement("UPDATE st_receive_requisation SET remarks = ? WHERE requisition_no = ? AND item_code = ? AND quantity = ?");
 
-                                                    }
-                                                }
+                                                        pstmtUpdateRemarks.setObject(1, issuingItemsTable.getValueAt(i, 11));
 
-                                            } else {
-                                                if (rectifyTransferChkbx.isSelected()) {
-                                                    for (int i = 0; i < issuingItemsTable.getRowCount(); i++) {
-                                                        if (issuingItemsTable.getValueAt(i, 0) != null) {
-                                                            java.sql.PreparedStatement pstmt3 = connectDB.prepareStatement("UPDATE st_sub_stores SET sub_store = '" + recepientStoreCmbx.getSelectedItem().toString() + "',store_name = '" + issuingStoreCmbx.getSelectedItem().toString() + "',trans_date = '" + transactionTimepicker.getDate() + "', issuing = '" + issuingItemsTable.getValueAt(i, 7).toString() + "' WHERE issuing > 0 and transaction_no = '" + transferNumberTxt.getText() + "' and item_code = '" + issuingItemsTable.getValueAt(i, 0).toString() + "'");
-                                                            pstmt3.executeUpdate();
-                                                            java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE st_sub_stores SET store_name = '" + recepientStoreCmbx.getSelectedItem().toString() + "', sub_store = '" + issuingStoreCmbx.getSelectedItem().toString() + "', trans_date = '" + transactionTimepicker.getDate() + "', receiving = '" + issuingItemsTable.getValueAt(i, 7).toString() + "'  WHERE receiving > 0 and transaction_no = '" + transferNumberTxt.getText() + "' and item_code = '" + issuingItemsTable.getValueAt(i, 0).toString() + "'");
-                                                            pstmt31.executeUpdate();
-                                                            java.sql.PreparedStatement pstmt4 = connectDB.prepareStatement("UPDATE st_stock_cardex SET store = '" + recepientStoreCmbx.getSelectedItem().toString() + "', description = '" + issuingStoreCmbx.getSelectedItem().toString() + "', date = '" + transactionTimepicker.getDate() + "', quantity_received = '" + issuingItemsTable.getValueAt(i, 7).toString() + "' WHERE quantity_received > 0 and transaction_no = '" + transferNumberTxt.getText() + "' and item_code = '" + issuingItemsTable.getValueAt(i, 0).toString() + "'");
-                                                            pstmt4.executeUpdate();
-                                                            java.sql.PreparedStatement pstmt5 = connectDB.prepareStatement("UPDATE st_stock_cardex SET store = '" + recepientStoreCmbx.getSelectedItem().toString() + "', description = '" + issuingStoreCmbx.getSelectedItem().toString() + "', date = '" + transactionTimepicker.getDate() + "', sub_store_receiving = '" + issuingItemsTable.getValueAt(i, 7).toString() + "'  WHERE sub_store_receiving > 0 and transaction_no = '" + transferNumberTxt.getText() + "' and item_code = '" + issuingItemsTable.getValueAt(i, 0).toString() + "'");
-                                                            pstmt5.executeUpdate();
-                                                            System.out.println("Rectified transaction...");
-                                                        }
+                                                        pstmtUpdateRemarks.setObject(2, requisitionNumberTxt.getText());
+
+                                                        pstmtUpdateRemarks.setObject(3, issuingItemsTable.getValueAt(i, 0));
+
+                                                        pstmtUpdateRemarks.setDouble(4, Double.parseDouble(issuingItemsTable.getValueAt(i, 7).toString()));
+                                                        
+                                                        pstmtUpdateRemarks.executeUpdate();
                                                     }
                                                 }
                                             }
-                                            connectDB.commit();
-                                            connectDB.setAutoCommit(true);
 
-                                            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Items transferred successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                                            com.afrisoftech.lib.GetItemInfo.updateTrail("Stock transfer " + transNo + " -" + requisitionNumberTxt.getText() + " from  '" + issuingStoreCmbx.getSelectedItem() + "' to " + recepientStoreCmbx.getSelectedItem(), connectDB);
-                                            TransferedItemsPdf policy = new TransferedItemsPdf();
-                                            policy.TransferedItemsPdf(connectDB, transNo);
-                                            System.err.println("the transaction no is " + transNo);
-
-                                            saveTransactionBtn.setEnabled(false);
-                                            for (int k = 0; k < issuingItemsTable.getRowCount(); k++) {
-                                                for (int r = 0; r < issuingItemsTable.getColumnCount(); r++) {
-                                                    issuingItemsTable.getModel().setValueAt(null, k, r);
+                                        } else {
+                                            if (rectifyTransferChkbx.isSelected()) {
+                                                for (int i = 0; i < issuingItemsTable.getRowCount(); i++) {
+                                                    if (issuingItemsTable.getValueAt(i, 0) != null) {
+                                                        java.sql.PreparedStatement pstmt3 = connectDB.prepareStatement("UPDATE st_sub_stores SET sub_store = '" + recepientStoreCmbx.getSelectedItem().toString() + "',store_name = '" + issuingStoreCmbx.getSelectedItem().toString() + "',trans_date = '" + transactionTimepicker.getDate() + "', issuing = '" + issuingItemsTable.getValueAt(i, 8).toString() + "' WHERE issuing > 0 and transaction_no = '" + transferNumberTxt.getText() + "' and item_code = '" + issuingItemsTable.getValueAt(i, 0).toString() + "'");
+                                                        pstmt3.executeUpdate();
+                                                        java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE st_sub_stores SET store_name = '" + recepientStoreCmbx.getSelectedItem().toString() + "', sub_store = '" + issuingStoreCmbx.getSelectedItem().toString() + "', trans_date = '" + transactionTimepicker.getDate() + "', receiving = '" + issuingItemsTable.getValueAt(i, 8).toString() + "'  WHERE receiving > 0 and transaction_no = '" + transferNumberTxt.getText() + "' and item_code = '" + issuingItemsTable.getValueAt(i, 0).toString() + "'");
+                                                        pstmt31.executeUpdate();
+                                                        java.sql.PreparedStatement pstmt4 = connectDB.prepareStatement("UPDATE st_stock_cardex SET store = '" + recepientStoreCmbx.getSelectedItem().toString() + "', description = '" + issuingStoreCmbx.getSelectedItem().toString() + "', date = '" + transactionTimepicker.getDate() + "', quantity_received = '" + issuingItemsTable.getValueAt(i, 8).toString() + "' WHERE quantity_received > 0 and transaction_no = '" + transferNumberTxt.getText() + "' and item_code = '" + issuingItemsTable.getValueAt(i, 0).toString() + "'");
+                                                        pstmt4.executeUpdate();
+                                                        java.sql.PreparedStatement pstmt5 = connectDB.prepareStatement("UPDATE st_stock_cardex SET store = '" + recepientStoreCmbx.getSelectedItem().toString() + "', description = '" + issuingStoreCmbx.getSelectedItem().toString() + "', date = '" + transactionTimepicker.getDate() + "', sub_store_receiving = '" + issuingItemsTable.getValueAt(i, 8).toString() + "'  WHERE sub_store_receiving > 0 and transaction_no = '" + transferNumberTxt.getText() + "' and item_code = '" + issuingItemsTable.getValueAt(i, 0).toString() + "'");
+                                                        pstmt5.executeUpdate();
+                                                        System.out.println("Rectified transaction...");
+                                                    }
                                                 }
                                             }
+                                        }
+                                        connectDB.commit();
+                                        connectDB.setAutoCommit(true);
 
-                                            issuingRecipientTxt.setText("");
-                                            manualS11NumberTxt.setText("");
+                                        javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Items transferred successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                        com.afrisoftech.lib.GetItemInfo.updateTrail("Stock transfer " + transNo + " -" + requisitionNumberTxt.getText() + " from  '" + issuingStoreCmbx.getSelectedItem() + "' to " + recepientStoreCmbx.getSelectedItem(), connectDB);
+                                        TransferedItemsPdf policy = new TransferedItemsPdf();
+                                        policy.TransferedItemsPdf(connectDB, transNo);
+                                        System.err.println("the transaction no is " + transNo);
 
-                                            //            jComboBox11.setSelectedItem(null);
-                                            // javax.swing.JOptionPane.showMessageDialog(this, "Enter quantity issued","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
-                                        } catch (java.sql.SQLException sq) {
-                                            sq.printStackTrace();
-                                            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-
-                                            try {
-                                                connectDB.rollback(registerSavePoint);
-                                            } catch (java.sql.SQLException sql) {
-                                                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                        saveTransactionBtn.setEnabled(false);
+                                        for (int k = 0; k < issuingItemsTable.getRowCount(); k++) {
+                                            for (int r = 0; r < issuingItemsTable.getColumnCount(); r++) {
+                                                issuingItemsTable.getModel().setValueAt(null, k, r);
                                             }
-                                            // jLabel12.setForeground(java.awt.Color.red);
-                                            // jLabel12.setText("Sorry. Another  Code already exists");
                                         }
 
-                                    } catch (java.lang.Exception ex) {
-                                        ex.printStackTrace();
-                                        System.out.println(ex.getMessage());
-                                        javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "TRANSACTION ERROR : Please double check your entries.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                        issuingRecipientTxt.setText("");
+                                        manualS11NumberTxt.setText("");
 
+                                        //            jComboBox11.setSelectedItem(null);
+                                        // javax.swing.JOptionPane.showMessageDialog(this, "Enter quantity issued","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
+                                    } catch (java.sql.SQLException sq) {
+                                        sq.printStackTrace();
+                                        javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+                                        try {
+                                            connectDB.rollback(registerSavePoint);
+                                        } catch (java.sql.SQLException sql) {
+                                            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                        }
+                                        // jLabel12.setForeground(java.awt.Color.red);
+                                        // jLabel12.setText("Sorry. Another  Code already exists");
                                     }
-                                }
-                            } else {
-                                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Please double check your entries. The issuing and recipient stores must be set.");
-                            }
 
+                                } catch (java.lang.Exception ex) {
+                                    ex.printStackTrace();
+                                    System.out.println(ex.getMessage());
+                                    javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "TRANSACTION ERROR : Please double check your entries.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+                                }
+                            }
                         } else {
-                            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Please double check your entries. There must be something to transfer.");
+                            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Please double check your entries. The issuing and recipient stores must be set.");
                         }
 
                     } else {
-                        javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Please check all through to confirm you have not entered anything beyond what has been requisited."
-                                + "\nThe system will reset all the qty values as requisited .");
-                        for (int f = 0; f < issuingItemsTable.getModel().getRowCount(); f++) {
-                            issuingItemsTable.getModel().setValueAt(qtyVector.elementAt(f), f, 7);
-                        }
-
-                        h = issuingItemsTable.getModel().getRowCount();
+                        javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Please double check your entries. There must be something to transfer.");
                     }
-                }
 
-            } else {
-                javax.swing.JOptionPane.showMessageDialog(null, "Please check to ensure that all entered quantities are correct, some may be having zero value");
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Please check all through to confirm you have not entered anything beyond what has been requisited."
+                            + "\nThe system will reset all the qty values as requisited .");
+                    for (int f = 0; f < issuingItemsTable.getModel().getRowCount(); f++) {
+                        issuingItemsTable.getModel().setValueAt(qtyVector.elementAt(f), f, 8);
+                    }
+
+                    h = issuingItemsTable.getModel().getRowCount();
+                }
             }
+//
+//            } else {
+//                javax.swing.JOptionPane.showMessageDialog(null, "Please check to ensure that all entered quantities are correct, some may be having zero value");
+//            }
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
