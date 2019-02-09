@@ -1282,7 +1282,7 @@ public class RaiseDebitNoteintfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (lpotxt.getCaretPosition() > 1) {
 
-            lpotable.setModel(TableModel.createTableVectorsCaret(connectDB, "SELECT distinct invoice_no,voucher_no,credit,item,reference_no from ac_accounts_payable where dealer='" + jTextField36.getText() + "' and credit!=0 and  invoice_no ilike '%" + lpotxt.getText() + "%' order by invoice_no asc"));
+            lpotable.setModel(TableModel.createTableVectors(connectDB, "SELECT distinct invoice_no,voucher_no,credit,item,reference_no from ac_accounts_payable where dealer='" + jTextField36.getText() + "' and credit!=0 and  invoice_no ilike '%" + lpotxt.getText() + "%' order by invoice_no asc"));
 
         }
     }//GEN-LAST:event_lpotxtCaretUpdate

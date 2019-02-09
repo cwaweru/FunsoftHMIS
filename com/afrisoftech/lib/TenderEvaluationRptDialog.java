@@ -359,20 +359,20 @@ public class TenderEvaluationRptDialog extends javax.swing.JDialog {
             
             if(reportName==2014){
             
-            jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct quotation_no from st_preliminary_results where quotation_no ilike '"+jTextField115.getText()+"%'"));
+            jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct quotation_no from st_preliminary_results where quotation_no ilike '"+jTextField115.getText()+"%'"));
             jSearchScrollPane4.setViewportView(jSearchTable4);
             System.out.println("Cannot sort out");
             
             }
             else if(reportName==2015){
-            jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct quotation_no from st_technical_evaluation where quotation_no  ilike '"+jTextField115.getText()+"%'"));
+            jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct quotation_no from st_technical_evaluation where quotation_no  ilike '"+jTextField115.getText()+"%'"));
             jSearchScrollPane4.setViewportView(jSearchTable4);
             System.out.println("Cannot sort out");
             
             }
             
             else{
-            jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct quotation_no from st_recommendation where quotation_no ilike '"+jTextField115.getText()+"%'"));
+            jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct quotation_no from st_recommendation where quotation_no ilike '"+jTextField115.getText()+"%'"));
             jSearchScrollPane4.setViewportView(jSearchTable4);
             System.out.println("Cannot sort out");
             

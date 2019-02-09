@@ -42,6 +42,7 @@ public class JXTable extends org.jdesktop.swingx.JXTable implements java.lang.Ru
         this.setSortable(true);
         this.setColumnControlVisible(true);
         this.createPopupMenu();
+        //this.setHorizontalScrollEnabled(true);
         this.packAll();
 
         this.addMouseListener(new java.awt.event.MouseAdapter() {

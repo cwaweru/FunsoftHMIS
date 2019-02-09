@@ -23,7 +23,7 @@ public class App{
     try {
 
         ip = InetAddress.getLocalHost();
-       // ip=InetAddress.getByName("172.16.4.62");
+       //ip=InetAddress.getByName("172.16.4.62");
         System.out.println("Current IP address : " + ip.getHostAddress());
 
         NetworkInterface network = NetworkInterface.getByInetAddress(ip);

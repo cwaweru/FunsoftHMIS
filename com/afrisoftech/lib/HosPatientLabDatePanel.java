@@ -685,7 +685,7 @@ public class HosPatientLabDatePanel extends javax.swing.JDialog {
             System.out.println("Nothing");
         } else {
             if (this.namechkbx.isSelected()) {
-                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, ""
+                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                         + "SELECT hd.patient_no, (upper(hd.second_name||' '||hd.last_name)) as name, hd.first_name AS surname, "
                         + "(SELECT hp.sub_chief FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) as unit_number,"
                         + "(SELECT hp.visit_id FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) as VisitId"
@@ -695,7 +695,7 @@ public class HosPatientLabDatePanel extends javax.swing.JDialog {
 
             } else {
                 if (this.nochkbx.isSelected()) {
-                    patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, ""
+                    patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                             + "SELECT hd.patient_no, (upper(hd.second_name||' '||hd.last_name)) as name,hd.first_name AS surname, "
                             + "(SELECT hp.sub_chief FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) as unit_number, "
                             + "(SELECT hp.visit_id FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) as VisitId "

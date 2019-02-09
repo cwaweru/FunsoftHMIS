@@ -2971,6 +2971,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="labregmnit">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Lab Register"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="labregmnitActionPerformed"/>
@@ -2979,6 +2980,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="labprocmnit">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Lab Procedures"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="labprocmnitActionPerformed"/>
@@ -3008,6 +3010,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="xraysmnit">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Diagnostic Imaging Procedure"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="xraysmnitActionPerformed"/>
@@ -3016,6 +3019,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="xraypendingReq">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Imaging/Xray Requests"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="xraypendingReqActionPerformed"/>
@@ -3023,6 +3027,7 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="xraymnit">
                   <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
                     <Property name="label" type="java.lang.String" value="Xray Reporting"/>
                   </Properties>
                   <Events>
@@ -3039,6 +3044,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="physioReqmnit">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Physiotherapy Requests"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="physioReqmnitActionPerformed"/>
@@ -3055,6 +3061,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="rehabmnitmnit">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Rehab Procedure"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rehabmnitmnitActionPerformed"/>
@@ -3086,6 +3093,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="dentalresultsmnit">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Dental Results"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dentalresultsmnitActionPerformed"/>
@@ -3095,6 +3103,7 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Dental Procedure"/>
                     <Property name="actionCommand" type="java.lang.String" value="Dental Module"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DentalmnitActionPerformed"/>
@@ -4543,20 +4552,20 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attendancepaidupmnitActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="AttendancePerDeptmnit">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Departmental Attendance"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AttendancePerDeptmnitActionPerformed"/>
-                  </Events>
-                </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="attdencebydptmnit">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Attendance By Department"/>
+                    <Property name="text" type="java.lang.String" value="Departmental Attendance Listing"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attdencebydptmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="AttendancePerDeptmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Departmental Attendance Summary"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AttendancePerDeptmnitActionPerformed"/>
                   </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="opmobidityundermnit">
@@ -4717,6 +4726,14 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dailyWorkloadsmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="unhNHIFClaimmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="UHC NHIF Claim Form"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="unhNHIFClaimmnitActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>
@@ -9602,7 +9619,7 @@
                     <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="saccopnComponentShown"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new kiwi.ui.KDesktopPane();&#xa;/*new javax.swing.JDesktopPane(){&#xa;    &#xa;         &#xa;        public void paintComponent(java.awt.Graphics g) {&#xa;         &#xa;            java.awt.Dimension d = getSize();&#xa;            &#xa;            g.drawImage(desktopPaneIcon.getImage(), 0, 0, d.width, d.height,null);&#xa;            System.out.println(&quot;still drawing&quot;);&#xa;            setOpaque(false);&#xa;            &#xa;            super.paintComponent(g);&#xa;            &#xa;        }   &#xa;    &#xa;    &#xa;    &#xa;};&#xa; */"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new kiwi.ui.KDesktopPane();&#xa;new javax.swing.JDesktopPane(){&#xa;    &#xa;         &#xa;        public void paintComponent(java.awt.Graphics g) {&#xa;         &#xa;            java.awt.Dimension d = getSize();&#xa;            &#xa;            g.drawImage(desktopPaneIcon.getImage(), 0, 0, d.width, d.height,null);&#xa;            System.out.println(&quot;still drawing&quot;);&#xa;            setOpaque(false);&#xa;            &#xa;            super.paintComponent(g);&#xa;            &#xa;        }   &#xa;    &#xa;    &#xa;    &#xa;};&#xa; "/>
                     <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value=""/>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="saccopn.setOpaque(false);"/>
                     <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value=""/>

@@ -363,7 +363,7 @@ public class MergingElectronicAndManualOrdersInfr extends javax.swing.JInternalF
         if (jTextField11.getCaretPosition() > 3) {
 
             //
-            jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT refno as order_no, supplier, allocated_amount from ac_aie_commitment where refno ilike '%" + jTextField11.getText() + "%' "));
+            jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT refno as order_no, supplier, allocated_amount from ac_aie_commitment where refno ilike '%" + jTextField11.getText() + "%' "));
             //jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select activity, code FROM pb_activity WHERE (activity ILIKE '%pharm%' OR activity ILIKE '%supplies%' OR sub_category ILIKE '%stock%') AND activity ilike '%" + jTextField11.getText() + "%'"));
 
             jSearchScrollPane.setViewportView(jSearchTable);
@@ -391,7 +391,7 @@ public class MergingElectronicAndManualOrdersInfr extends javax.swing.JInternalF
         if (jTextField12.getCaretPosition() > 3) {
 
             //
-            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, " SELECT order_no, store, item, quantity_received, debit from st_stock_cardex where order_no ilike '%" + jTextField12.getText() + "%'"));
+            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, " SELECT order_no, store, item, quantity_received, debit from st_stock_cardex where order_no ilike '%" + jTextField12.getText() + "%'"));
             //jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select activity, code FROM pb_activity WHERE (activity ILIKE '%pharm%' OR activity ILIKE '%supplies%' OR sub_category ILIKE '%stock%') AND activity ilike '%" + jTextField11.getText() + "%'"));
 
             jSearchScrollPane1.setViewportView(jSearchTable1);

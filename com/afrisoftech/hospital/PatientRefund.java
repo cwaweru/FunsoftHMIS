@@ -1480,7 +1480,7 @@ public double roundDownToMultiple(double number, double multiple) {
             if (inPatientRbtn.isSelected()) {
 
                 if (this.patientNameChk.isSelected()) {
-                    jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT patient_no, name, unit_number from all_inpatient_list where name ILIKE '" + searchNameTxt.getText() + "%' or unit_number ILIKE '" + searchNameTxt.getText() + "%' "
+                    jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, name, unit_number from all_inpatient_list where name ILIKE '" + searchNameTxt.getText() + "%' or unit_number ILIKE '" + searchNameTxt.getText() + "%' "
                             + "union SELECT annual_no as patient_no, patient_name as name, tag_no from hp_mortuary where annual_no ilike '%" + searchNameTxt.getText() + "%' or patient_name ilike '%" + searchNameTxt.getText() + "%' or tag_no ilike '%" + searchNameTxt.getText() + "%'  order by name"));
 
                     jSearchTable.setShowHorizontalLines(false);
@@ -1489,7 +1489,7 @@ public double roundDownToMultiple(double number, double multiple) {
                 } else {
 
                     if (this.patientNoChk.isSelected()) {
-                        jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(
+                        jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(
                                 connectDB, "SELECT patient_no, name, unit_number from all_inpatient_list where patient_no ILIKE '" + searchNameTxt.getText() + "%' or unit_number ILIKE '" + searchNameTxt.getText() + "%' "
                                 + "union SELECT annual_no as patient_no, patient_name as name, tag_no from hp_mortuary where annual_no ilike '%" + searchNameTxt.getText() + "%' or patient_name ilike '%" + searchNameTxt.getText() + "%' or tag_no ilike '%" + searchNameTxt.getText() + "%'  order by patient_no"));
 
@@ -1500,20 +1500,20 @@ public double roundDownToMultiple(double number, double multiple) {
                 }
             } else if (OutpatientRbtn.isSelected()) {
                 if (this.patientNameChk.isSelected()) {
-                    jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT distinct patient_no, name, unit_number from patient_select where name ILIKE '%" + searchNameTxt.getText() + "%' or unit_number ILIKE '" + searchNameTxt.getText() + "%'   order by 2"));
+                    jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct patient_no, name, unit_number from patient_select where name ILIKE '%" + searchNameTxt.getText() + "%' or unit_number ILIKE '" + searchNameTxt.getText() + "%'   order by 2"));
                     jSearchTable.setShowHorizontalLines(false);
                     jSearchScrollPane.setViewportView(jSearchTable);
 
                 } else {
                     if (this.patientNoChk.isSelected()) {
-                        jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT distinct patient_no, name, unit_number from patient_select where patient_no ILIKE '%" + searchNameTxt.getText() + "%'  or unit_number ILIKE '" + searchNameTxt.getText() + "%'   order by 1"));
+                        jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct patient_no, name, unit_number from patient_select where patient_no ILIKE '%" + searchNameTxt.getText() + "%'  or unit_number ILIKE '" + searchNameTxt.getText() + "%'   order by 1"));
                         jSearchTable.setShowHorizontalLines(false);
                         jSearchScrollPane.setViewportView(jSearchTable);
 
                     }
                 }
             } else {
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select account_no,(scheme_name) as scheme, payer_name from ac_schemes where scheme_name ILIKE '" + searchNameTxt.getText().toString() + "%' or account_no ILIKE '" + searchNameTxt.getText().toString() + "%'"));
+                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select account_no,(scheme_name) as scheme, payer_name from ac_schemes where scheme_name ILIKE '" + searchNameTxt.getText().toString() + "%' or account_no ILIKE '" + searchNameTxt.getText().toString() + "%'"));
                 jSearchTable.setShowHorizontalLines(false);
                 jSearchScrollPane.setViewportView(jSearchTable);
             }

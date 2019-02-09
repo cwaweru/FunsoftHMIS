@@ -1579,7 +1579,7 @@ public class ReceiptsTransfIntfr extends javax.swing.JInternalFrame {
             
 //            System.out.println("Nothing");
 //        }else{
-            jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB,"SELECT DISTINCT receipt_no as name,patient_no,dealer from ac_cash_collection where receipt_no ILIKE '"+jTextField11.getText()+"%' group by 1,2,3 having sum(debit-credit)>0 order by receipt_no"));
+            jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"SELECT DISTINCT receipt_no as name,patient_no,dealer from ac_cash_collection where receipt_no ILIKE '"+jTextField11.getText()+"%' group by 1,2,3 having sum(debit-credit)>0 order by receipt_no"));
             
             jSearchTable.setShowHorizontalLines(false);
             jSearchScrollPane.setViewportView(jSearchTable);

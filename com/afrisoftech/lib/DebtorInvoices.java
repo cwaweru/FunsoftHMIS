@@ -334,7 +334,7 @@ public class DebtorInvoices extends javax.swing.JDialog {
         if (this.jTextField1111.getCaretPosition() > 3) {
 //DR. MARILYNN AKINYI OMONDI DI0005590
            // MovingServiceItemsIntfr
-            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT item as payee , dealer as scheme from ac_debtors where item ILIKE '%" + jTextField1111.getText() + "%' or dealer ilike '%" + jTextField1111.getText().toString() + "%'  and account_no is not null  ORDER BY 1,2"));
+            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT item as payee , dealer as scheme from ac_debtors where item ILIKE '%" + jTextField1111.getText() + "%' or dealer ilike '%" + jTextField1111.getText().toString() + "%'  and account_no is not null  ORDER BY 1,2"));
         }
         // Add your handling code here:
     }//GEN-LAST:event_jTextField1111CaretUpdate

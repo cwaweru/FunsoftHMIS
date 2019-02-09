@@ -6027,7 +6027,7 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
             grossDueAmt();
             netAmount();
             if (rebateType) {
-                schemediff = Double.parseDouble(netAmountTxt.getText());
+                if(Double.valueOf(netAmountTxt.getText()) != 0 ) schemediff = Double.parseDouble(netAmountTxt.getText());
                 System.out.println("\n\n\n\n\n\n\n\n\nthe scheme diff is " + schemediff + "\t" + netAmountTxt.getText());
                 netAmountTxt.setText("0.00");
             }

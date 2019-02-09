@@ -9,7 +9,7 @@ package com.afrisoftech.lib;
  *
  * @author root
  */
-public class HosInPatientDatePanel extends javax.swing.JDialog {
+public class HosOUTPatientDatePanel extends javax.swing.JDialog {
 
     int reportName;
 
@@ -26,7 +26,7 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
     /**
      * Creates new form DatePanel
      */
-    public HosInPatientDatePanel(java.awt.Frame parent, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB, boolean modal, int repName, java.sql.Connection connectDb) {
+    public HosOUTPatientDatePanel(java.awt.Frame parent, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB, boolean modal, int repName, java.sql.Connection connectDb) {
 
         super(parent, modal);
 
@@ -38,7 +38,7 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
         //      dateStartEnd = new java.util.Vector(1,1);
 
         initComponents();
-        if (reportName == 201 || reportName == 202 || reportName == 203) {
+        if (reportName == 20012 || reportName == 202 || reportName == 203) {
             jLabel5.setVisible(true);
             jLabel6.setVisible(true);
             invoicesCMBX.setVisible(true);
@@ -63,17 +63,18 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
 
         patientSearchdialog = new javax.swing.JDialog();
         jSearchPanel1 = new javax.swing.JPanel();
-        jTextField1111 = new javax.swing.JTextField();
+        patientSearchTxt = new javax.swing.JTextField();
         jSearchScrollPane1 = new javax.swing.JScrollPane();
-        jSearchTable1 = new com.afrisoftech.dbadmin.JTable();
+        patientSearchTable = new com.afrisoftech.dbadmin.JTable();
         jButton41 = new javax.swing.JButton();
         jButton51 = new javax.swing.JButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jPanel3 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        actionPanel = new javax.swing.JPanel();
+        closeFormBtn = new javax.swing.JButton();
+        previewBtn = new javax.swing.JButton();
+        printBtn = new javax.swing.JButton();
+        spacerLbl = new javax.swing.JLabel();
+        mainPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         patNoTxt = new javax.swing.JTextField();
@@ -81,8 +82,8 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         datePicker1 = new com.afrisoftech.lib.DatePicker();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        opChkbx = new javax.swing.JCheckBox();
+        ipChkbx = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -99,9 +100,9 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
         jSearchPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jSearchPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jTextField1111.addCaretListener(new javax.swing.event.CaretListener() {
+        patientSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField1111CaretUpdate(evt);
+                patientSearchTxtCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -111,10 +112,10 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weightx = 300.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-        jSearchPanel1.add(jTextField1111, gridBagConstraints);
+        jSearchPanel1.add(patientSearchTxt, gridBagConstraints);
 
-        jSearchTable1.setToolTipText("Click on the target row to select the patient from the search.");
-        jSearchTable1.setShowHorizontalLines(false);
+        patientSearchTable.setToolTipText("Click on the target row to select the patient from the search.");
+        patientSearchTable.setShowHorizontalLines(false);
         /*javax.swing.table.TableColumn column = null;
 
         for (int i = 0; i < 4; i++) {
@@ -132,12 +133,12 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
             }
         }
         */
-        jSearchTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        patientSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSearchTable1MouseClicked(evt);
+                patientSearchTableMouseClicked(evt);
             }
         });
-        jSearchScrollPane1.setViewportView(jSearchTable1);
+        jSearchScrollPane1.setViewportView(patientSearchTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -186,13 +187,13 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel3.setLayout(new java.awt.GridBagLayout());
+        actionPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        actionPanel.setLayout(new java.awt.GridBagLayout());
 
-        jButton2.setText("Cancel");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        closeFormBtn.setText("Cancel");
+        closeFormBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                closeFormBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -200,12 +201,26 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jButton2, gridBagConstraints);
+        actionPanel.add(closeFormBtn, gridBagConstraints);
 
-        jButton1.setText("Preview");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        previewBtn.setText("Preview report");
+        previewBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                previewBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        actionPanel.add(previewBtn, gridBagConstraints);
+
+        printBtn.setMnemonic('o');
+        printBtn.setText("Send to printer");
+        printBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -213,21 +228,14 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jButton1, gridBagConstraints);
-
-        jButton11.setMnemonic('o');
-        jButton11.setText("Send to printer");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
+        actionPanel.add(printBtn, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jButton11, gridBagConstraints);
+        actionPanel.add(spacerLbl, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -236,10 +244,10 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
-        getContentPane().add(jPanel3, gridBagConstraints);
+        getContentPane().add(actionPanel, gridBagConstraints);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select inpatient no. here", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
-        jPanel4.setLayout(new java.awt.GridBagLayout());
+        mainPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select Patient File No. here", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
+        mainPanel.setLayout(new java.awt.GridBagLayout());
 
         jLabel4.setText("I/P No.");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -248,7 +256,7 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 0);
-        jPanel4.add(jLabel4, gridBagConstraints);
+        mainPanel.add(jLabel4, gridBagConstraints);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel6.setMinimumSize(new java.awt.Dimension(82, 37));
@@ -290,7 +298,7 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jPanel6, gridBagConstraints);
+        mainPanel.add(jPanel6, gridBagConstraints);
 
         jLabel1.setText("From Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -300,7 +308,7 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 0);
-        jPanel4.add(jLabel1, gridBagConstraints);
+        mainPanel.add(jLabel1, gridBagConstraints);
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -316,25 +324,25 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jPanel1, gridBagConstraints);
+        mainPanel.add(jPanel1, gridBagConstraints);
 
-        buttonGroup1.add(jCheckBox1);
-        jCheckBox1.setSelected(true);
-        jCheckBox1.setText("Patient No.");
+        buttonGroup1.add(opChkbx);
+        opChkbx.setSelected(true);
+        opChkbx.setText("Patient No.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
-        jPanel4.add(jCheckBox1, gridBagConstraints);
+        mainPanel.add(opChkbx, gridBagConstraints);
 
-        buttonGroup1.add(jCheckBox2);
-        jCheckBox2.setText("Patient Name");
+        buttonGroup1.add(ipChkbx);
+        ipChkbx.setText("Patient Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jCheckBox2, gridBagConstraints);
+        mainPanel.add(ipChkbx, gridBagConstraints);
 
         jLabel2.setText("Patient Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -343,7 +351,7 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 0);
-        jPanel4.add(jLabel2, gridBagConstraints);
+        mainPanel.add(jLabel2, gridBagConstraints);
 
         jTextField1.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -354,7 +362,7 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 3);
-        jPanel4.add(jTextField1, gridBagConstraints);
+        mainPanel.add(jTextField1, gridBagConstraints);
 
         jLabel3.setText("Visit Id");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -362,7 +370,7 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jLabel3, gridBagConstraints);
+        mainPanel.add(jLabel3, gridBagConstraints);
 
         visitIDTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -372,13 +380,13 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        jPanel4.add(visitIDTxt, gridBagConstraints);
+        mainPanel.add(visitIDTxt, gridBagConstraints);
 
         jLabel5.setText("Invoice No");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        jPanel4.add(jLabel5, gridBagConstraints);
+        mainPanel.add(jLabel5, gridBagConstraints);
 
         invoicesCMBX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -390,43 +398,43 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel4.add(invoicesCMBX, gridBagConstraints);
+        mainPanel.add(invoicesCMBX, gridBagConstraints);
 
         jLabel6.setText("Scheme");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
-        jPanel4.add(jLabel6, gridBagConstraints);
+        mainPanel.add(jLabel6, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel4.add(payerCMBX, gridBagConstraints);
+        mainPanel.add(payerCMBX, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.weighty = 100.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
-        getContentPane().add(jPanel4, gridBagConstraints);
+        getContentPane().add(mainPanel, gridBagConstraints);
 
         setSize(new java.awt.Dimension(464, 272));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void printBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printBtnActionPerformed
         this.getReport(reportName, true);        // Add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_printBtnActionPerformed
 
     private void jButton51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton51ActionPerformed
         patientSearchdialog.dispose();          // Add your handling code here:
     }//GEN-LAST:event_jButton51ActionPerformed
 
-    private void jSearchTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable1MouseClicked
+    private void patientSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patientSearchTableMouseClicked
 
         java.text.DateFormat df = java.text.DateFormat.getDateInstance();
 
@@ -434,44 +442,38 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
 
         sdf.applyPattern("yyyy-MM-dd");
 
-        patNoTxt.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 0).toString());
-        jTextField1.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 1).toString());
-        visitIDTxt.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 3).toString());
+        patNoTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 0).toString());
+        jTextField1.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 1).toString());
+        visitIDTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 3).toString());
         invoicesCMBX.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, ""
-                + "SELECT distinct  invoice_no  FROM hp_patient_card where patient_no='" + jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 0).toString().trim() + "'"
+                + "SELECT distinct  invoice_no  FROM hp_patient_card where patient_no='" + patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 0).toString().trim() + "'"
                 + "  group by invoice_no order by 1 desc"));
 //        invoicesCMBX.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, ""
 //                + "SELECT distinct  invoice_no  FROM hp_patient_card where patient_no='" + jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 0).toString().trim() + "'"
 //                + "  group by invoice_no having sum(debit-credit)<=0 order by 1 desc"));
 
         try {
-            datePicker1.setDate(sdf.parse(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 2).toString()));
+            datePicker1.setDate(sdf.parse(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 2).toString()));
         } catch (java.text.ParseException pe) {
             javax.swing.JOptionPane.showMessageDialog(this, pe.getMessage());
         }
 
         patientSearchdialog.dispose();        // Add your handling code here:
-    }//GEN-LAST:event_jSearchTable1MouseClicked
+    }//GEN-LAST:event_patientSearchTableMouseClicked
 
-    private void jTextField1111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1111CaretUpdate
-        if (this.jTextField1111.getCaretPosition() < 5) {
+    private void patientSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_patientSearchTxtCaretUpdate
+        if (this.patientSearchTxt.getCaretPosition() < 5) {
             System.out.print("Nothing");
         } else {
 
-            if (this.jCheckBox1.isSelected()) {
-                if (reportName == 201 || reportName == 202 || reportName == 203) {
-                    jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                            + "SELECT trim(patient_no) as patient_no,patient_name as name,date_admitted as adm_date,visit_id, sub_chief as unit_no from hp_admission where( patient_no ILIKE '%" + jTextField1111.getText().toString() + "%' or sub_chief ilike '%" + jTextField1111.getText().toString() + "%'  ) "
-                            + "UNION ALL SELECT trim(annual_no) as patient_no,patient_name as name,date_received as adm_date, patient_no as visit_id, tag_no as unit_no from hp_mortuary WHERE annual_no ILIKE '%" + jTextField1111.getText().toString() + "%' or tag_no ilike '%" + jTextField1111.getText().toString() + "%' ORDER BY 1,3"));
+            if (this.opChkbx.isSelected()) {
+                if (reportName == 20012) {
+                    patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+                            + "SELECT trim(patient_no) as patient_no, funsoft_get_patient_name(patient_no) as name,date::date as visit_date, patient_race as unit_no from hp_patient_register where( patient_no ILIKE '%" + patientSearchTxt.getText().toString() + "%' or patient_race ilike '%" + patientSearchTxt.getText().toString() + "%'  ) "
+                            + " AND patient_no  IN  (SELECT DISTINCT admission_no FROM ac_debtors WHERE invoice_no IS NOT NULL) ORDER BY 1,2"));
 
-                    jSearchTable1.setShowHorizontalLines(false);
-                    jSearchScrollPane1.setViewportView(jSearchTable1);
-                } else {
-                    jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT trim(patient_no) as patient_no,patient_name as name,date_admitted as adm_date,visit_id, sub_chief as unit_no from hp_admission where patient_no ILIKE '%" + jTextField1111.getText().toString() + "%' or sub_chief ilike '%" + jTextField1111.getText().toString() + "%'  AND check_out = false "
-                            + "UNION ALL SELECT trim(annual_no) as patient_no,patient_name as name,date_received as adm_date, patient_no as visit_id, tag_no as unit_no from hp_mortuary WHERE annual_no ILIKE '%" + jTextField1111.getText().toString() + "%' or tag_no ilike '%" + jTextField1111.getText().toString() + "%' AND check_out = false ORDER BY 1,3"));
-
-                    jSearchTable1.setShowHorizontalLines(false);
-                    jSearchScrollPane1.setViewportView(jSearchTable1);
+                    patientSearchTable.setShowHorizontalLines(false);
+                    jSearchScrollPane1.setViewportView(patientSearchTable);
                 }
                 /*
                  } catch(java.sql.SQLException sqlExec) {
@@ -481,28 +483,22 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
                  }
                  */
             } else {
-                if (reportName == 201 || reportName == 202 || reportName == 203) {
-                    jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                            + "SELECT DISTINCT trim(patient_no) as patient_no,patient_name as name,date_admitted as adm_date,visit_id, sub_chief as unit_no from hp_admission where patient_name ILIKE '%" + jTextField1111.getText().toString() + "%' "
-                            + "UNION ALL SELECT DISTINCT trim(annual_no) as patient_no,patient_name as name,date_received as adm_date, patient_no as visit_id, tag_no as unit_no FROM hp_mortuary WHERE patient_name ILIKE '%" + jTextField1111.getText().toString() + "%' ORDER BY 2,3"));
+                if (reportName == 20012) {
+                    patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+                            + "SELECT DISTINCT trim(patient_no) as patient_no, funsoft_get_patient_name(patient_no) as name,date as visit_date, patient_race as unit_no from hp_patient_register where funsoft_get_patient_name ILIKE '%" + patientSearchTxt.getText().toString() + "%' "
+                            + " AND patient_no  IN  (SELECT DISTINCT admission_no FROM ac_debtors WHERE invoice_no IS NOT NULL) ORDER BY 1,2"));
 
-                    jSearchTable1.setShowHorizontalLines(false);
-                    jSearchScrollPane1.setViewportView(jSearchTable1);
-                } else {
-                    jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT trim(patient_no) as patient_no,patient_name as name,date_admitted as adm_date,visit_id, sub_chief as unit_no from hp_admission where patient_name ILIKE '%" + jTextField1111.getText().toString() + "%' AND check_out = false "
-                            + "UNION ALL SELECT DISTINCT trim(annual_no) as patient_no,patient_name as name,date_received as adm_date, patient_no as visit_id, tag_no as unit_no FROM hp_mortuary WHERE patient_name ILIKE '%" + jTextField1111.getText().toString() + "%' AND check_out = false ORDER BY 2,3"));
+                    patientSearchTable.setShowHorizontalLines(false);
+                    jSearchScrollPane1.setViewportView(patientSearchTable);
+
                 }
-
-                jSearchTable1.setShowHorizontalLines(false);
-                jSearchScrollPane1.setViewportView(jSearchTable1);
-
             }
         }
         // Add your handling code here:
-    }//GEN-LAST:event_jTextField1111CaretUpdate
+    }//GEN-LAST:event_patientSearchTxtCaretUpdate
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        if (!this.jCheckBox1.isSelected() && !(this.jCheckBox2.isSelected())) {
+        if (!this.opChkbx.isSelected() && !(this.ipChkbx.isSelected())) {
             javax.swing.JOptionPane.showMessageDialog(this, "Select Patient Number or Name", "Information Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
         } else {
@@ -516,7 +512,7 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
 
         patientSearchdialog.dispose();
 
-        if (this.jCheckBox1.isSelected()) {
+        if (this.opChkbx.isSelected()) {
             java.awt.Point point = this.patNoTxt.getLocationOnScreen();
             patientSearchdialog.setLocation(point);
         } else {
@@ -529,16 +525,16 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
         patientSearchdialog.setVisible(true);
 
     }
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void closeFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeFormBtnActionPerformed
         this.dispose();        // Add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_closeFormBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void previewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previewBtnActionPerformed
 
         this.getReport(reportName, false);
 
         // Add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_previewBtnActionPerformed
 
     /**
      * Closes the dialog
@@ -620,7 +616,7 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
             case 20012: {
                 com.afrisoftech.reports.UHCNHIFClaimCardPdf policy = new com.afrisoftech.reports.UHCNHIFClaimCardPdf();
 
-                policy.UHCNHIFClaimCardPdf(connectDB,  invoicesCMBX.getSelectedItem().toString(), invoicesCMBX.getSelectedItem().toString());
+                policy.UHCNHIFClaimCardPdf(connectDB, invoicesCMBX.getSelectedItem().toString(), invoicesCMBX.getSelectedItem().toString());
 
                 // this.dispose();
             }
@@ -727,16 +723,14 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel actionPanel;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton closeFormBtn;
     private com.afrisoftech.lib.DatePicker datePicker1;
     private javax.swing.JComboBox invoicesCMBX;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JCheckBox ipChkbx;
     private javax.swing.JButton jButton41;
     private javax.swing.JButton jButton51;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -744,18 +738,21 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jSearchPanel1;
     private javax.swing.JScrollPane jSearchScrollPane1;
-    private javax.swing.JTable jSearchTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField1111;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JCheckBox opChkbx;
     private javax.swing.JTextField patNoTxt;
+    private javax.swing.JTable patientSearchTable;
+    private javax.swing.JTextField patientSearchTxt;
     private javax.swing.JDialog patientSearchdialog;
     private javax.swing.JComboBox payerCMBX;
+    private javax.swing.JButton previewBtn;
+    private javax.swing.JButton printBtn;
     private javax.swing.JButton searchButton;
+    private javax.swing.JLabel spacerLbl;
     private javax.swing.JTextField visitIDTxt;
     // End of variables declaration//GEN-END:variables
 

@@ -478,7 +478,7 @@ public class AnalyseRequisitionIntfr extends javax.swing.JInternalFrame {
         //refresh();
         if (this.tenderrecordstxtt.getCaretPosition() > 3) {
 
-            tenderrecordstblt.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT distinct requisition_no FROM st_receive_requisation where analysed=false and  (requisition_no ilike 'PRQ%' or requisition_no ilike 'SRQ%') and requisition_no ilike '%" + tenderrecordstxtt.getText() + "%' ; "));
+            tenderrecordstblt.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct requisition_no FROM st_receive_requisation where analysed=false and  (requisition_no ilike 'PRQ%' or requisition_no ilike 'SRQ%') and requisition_no ilike '%" + tenderrecordstxtt.getText() + "%' ; "));
             //nb: cert_of_incorp is not null
             tenderrecordstblt.setShowHorizontalLines(false);
 
@@ -488,7 +488,7 @@ public class AnalyseRequisitionIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tenderrecordstxttCaretUpdate
     private void refresh() {
 
-        prs_tbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT distinct requisition_no PRQ_NO,date FROM st_receive_requisation where analysed=false and  (requisition_no ilike 'PRQ%' or requisition_no ilike 'SRQ%') and upper(store_name) IN (SELECT distinct UPPER(stores) from store_allocation WHERE  user_name ILIKE current_user AND type ilike 'Approve PRQ/SRQ' limit 1) and date::date>current_date-5 "));
+        prs_tbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct requisition_no PRQ_NO,date FROM st_receive_requisation where analysed=false and  (requisition_no ilike 'PRQ%' or requisition_no ilike 'SRQ%') and upper(store_name) IN (SELECT distinct UPPER(stores) from store_allocation WHERE  user_name ILIKE current_user AND type ilike 'Approve PRQ/SRQ' limit 1) and date::date>current_date-5 "));
 
         prs_tbl.setShowHorizontalLines(false);
 
@@ -614,7 +614,7 @@ public class AnalyseRequisitionIntfr extends javax.swing.JInternalFrame {
             try {
                 //
 
-                analysisdataTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, " SELECT   distinct department STORE,item_code,description, sum(qty) Stock_Balance, '0.00' as Monthly_Usage FROM stock_balance_qty  WHERE item_code ilike '" + item + "' and department= upper(department) and department ilike  ('%STORE%')   group by 1,2,3"));
+                analysisdataTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, " SELECT   distinct department STORE,item_code,description, sum(qty) Stock_Balance, '0.00' as Monthly_Usage FROM stock_balance_qty  WHERE item_code ilike '" + item + "' and department= upper(department) and department ilike  ('%STORE%')   group by 1,2,3"));
 
                 System.out.println(" SELECT  item_code,description, sum(qty) as Stock_Balance, '' Monthly_Usage FROM stock_balance_qty  WHERE item_code =  '" + item + "' group by 1,2 order by 1 asc ");
 

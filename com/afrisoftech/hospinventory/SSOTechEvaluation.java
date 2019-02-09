@@ -807,7 +807,7 @@ public class SSOTechEvaluation extends javax.swing.JInternalFrame {
 
         } else {
             //tenderrecordstblt.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, " SELECT distinct a.quotation_no from st_floated_quotations a, st_preliminary_results b where a.quotation_no = b.quotation_no  "));
-            tenderrecordstblt.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, " (SELECT distinct quotation_no from  st_preliminary_results  where total_mark=100 and quotation_no ILIKE '%" + tenderrecordstxtt.getText() + "%' UNION "
+            tenderrecordstblt.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, " (SELECT distinct quotation_no from  st_preliminary_results  where total_mark=100 and quotation_no ILIKE '%" + tenderrecordstxtt.getText() + "%' UNION "
                     + "SELECT DISTINCT quotation_no from st_bidder_code where quotation_no ILIKE '%" + tenderrecordstxtt.getText() + "%' ) ORDER BY 1"));
             //nb: cert_of_incorp is not null
             tenderrecordstblt.setShowHorizontalLines(false);

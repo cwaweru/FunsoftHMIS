@@ -390,7 +390,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Raise Branch Requisitions");
+        setTitle("Raise Branch Requisitions (S11 Vouchers)");
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -552,7 +552,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Item Code", "Item Description", "Strength", "Units Pack", "Qty(packs)", "Price(per pack)", "Store Bal.", "Total", "Reorder"
+                "Item Code", "Item Description", "Strength", "Units Pack", "Qty", "Unit Price", "Store Bal.", "Total Value", "Reorder"
             }
         ) {
             Class[] types = new Class [] {
@@ -811,6 +811,8 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 5.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jPanel6, gridBagConstraints);
+
+        datePicker2.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -1360,7 +1362,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
         if (jTextField113.getCaretPosition() < 3) {
             System.out.println("Nothing");
         } else {
-            jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT supplier_name, code as account_no from st_suppliers where supplier_name ILIKE '" + jTextField113.getText() + "%' order by supplier_name"));
+            jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT supplier_name, code as account_no from st_suppliers where supplier_name ILIKE '" + jTextField113.getText() + "%' order by supplier_name"));
 
             /*      //   searchRowSet2.execute("SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where patient_no ILIKE '"+jTextField113.getText()+"%' and last_visit > current_date - 100 order by second_name");
              searchRowSet2.execute("SELECT supplier_name, code as account_no from st_suppliers where supplier_name ILIKE '"+jTextField113.getText()+"%' order by supplier_name");
@@ -1499,7 +1501,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
         //      j = rset.getInt(1);
         //  }
         //  if (j > 0){
-        jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct requisition_no as Req_No from st_receive_requisation where requisition_no ILIKE '" + jTextField11111.getText().toString() + "%' and (requisition_no ilike 'IRQ%') ORDER BY requisition_no"));
+        jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct requisition_no as Req_No from st_receive_requisation where requisition_no ILIKE '" + jTextField11111.getText().toString() + "%' and (requisition_no ilike 'IRQ%') ORDER BY requisition_no"));
         //   }
      /*   try {
          searchRowSet1.execute("select distinct order_no as scheme,(supplier) as name from st_orders where order_no ILIKE '"+jTextField1111.getText().toString()+"%' ORDER BY order_no");
@@ -1731,7 +1733,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
             System.out.println("Nothing");
         } else {
 
-            itemSearchtbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct item_code,description,strength,units,buying_price FROM st_stock_item WHERE (description ILIKE '%" + itemsearchcaret.getText() + "%' OR item_code ILIKE '%" + itemsearchcaret.getText() + "%') AND department ILIKE '" + issuingStoreCmbx.getSelectedItem() + "'    UNION  select distinct product_id,product,strength,units,selling_price FROM st_stock_prices WHERE product ILIKE '%" + itemsearchcaret.getText() + "%' AND department ILIKE '" + issuingStoreCmbx.getSelectedItem() + "' ORDER BY 1"));
+            itemSearchtbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,buying_price FROM st_stock_item WHERE (description ILIKE '%" + itemsearchcaret.getText() + "%' OR item_code ILIKE '%" + itemsearchcaret.getText() + "%') AND department ILIKE '" + issuingStoreCmbx.getSelectedItem() + "'    UNION  select distinct product_id,product,strength,units,selling_price FROM st_stock_prices WHERE product ILIKE '%" + itemsearchcaret.getText() + "%' AND department ILIKE '" + issuingStoreCmbx.getSelectedItem() + "' ORDER BY 1"));
 
             jSearchScrollPane1.setViewportView(itemSearchtbl);
 
@@ -1878,7 +1880,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
 
     private void postbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postbtnActionPerformed
 
-        if (!recipientStoreCmbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
+        if (!recipientStoreCmbx.getSelectedItem().toString().equalsIgnoreCase("-") && !com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker3.getDate()).before(com.afrisoftech.lib.ServerTime.getSQLDate(connectDB))) {
 
             System.out.println(jTextField1.getText());
             String description = null;
@@ -1941,7 +1943,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
                             pstmt.setDouble(6, java.lang.Double.valueOf(itemsTbl.getValueAt(i, 4).toString()));//*java.lang.Double.valueOf(jTable1.getValueAt(i,3).toString()));
                             //pstmt.setDouble(6,java.lang.Double.valueOf(jTable1.getValueAt(i,4).toString())*java.lang.Double.valueOf(jTable1.getValueAt(i,3).toString()));
                             pstmt.setDate(7, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker3.getDate()));
-                            pstmt.setDate(8, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker2.getDate()));
+                            pstmt.setDate(8, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
                             //pstmt.setDate(8,com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.util.Calendar.getInstance().getTime()));
                             pstmt.setBoolean(9, false);
                             pstmt.setBoolean(10, false);
@@ -1990,7 +1992,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
                     transNo2 = rs23.getObject(1).toString();
                 }
 
-                javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully Requisition No. is '" + transNo2 + "'", "Comfirmation", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "S11 Requisition Voucher No. [" + transNo2 + "] generated successfully.", "Confirmation for successful S11 Voucher", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                 jTextField1.setText("0.00");
                 com.afrisoftech.hospinventory.mtrhreports.InternalReqMtrhPdf policy = new com.afrisoftech.hospinventory.mtrhreports.InternalReqMtrhPdf();
 
@@ -2018,7 +2020,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Please Select Department Raising Req. \n If not available seek assistance from system administrator ", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please select department raising S11 requisition \nIf not available seek assistance from system administrator.\nYou may also need to ensure that date due is later than requisition date.", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
 

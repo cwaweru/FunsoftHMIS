@@ -5,6 +5,7 @@
  */
 package com.afrisoftech.accounting;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -73,6 +74,13 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         jSearchScrollPane2 = new javax.swing.JScrollPane();
         jSearchTable2 = new com.afrisoftech.dbadmin.JTable();
         jButton512 = new javax.swing.JButton();
+        mobilepayTxSearchDialog = new javax.swing.JDialog();
+        jSearchPanel22 = new javax.swing.JPanel();
+        mobilepayTxSearchTxt = new javax.swing.JTextField();
+        jSearchScrollPane22 = new javax.swing.JScrollPane();
+        mobilepayTxtSearchTable = new com.afrisoftech.dbadmin.JTable();
+        jButton422 = new javax.swing.JButton();
+        jButton522 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
@@ -102,7 +110,11 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         searchTxt = new javax.swing.JTextField();
         searchButton3 = new javax.swing.JButton();
         payerMobileTelephoneNumberTxt = new javax.swing.JFormattedTextField();
-        payBillNumberTxt = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        searchMobilePayTxPanel = new javax.swing.JPanel();
+        mobilepayTxNoTxt = new javax.swing.JTextField();
+        searchMobileTxButton = new javax.swing.JButton();
+        paybillNumberCmbx = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -378,6 +390,94 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jSearchDialog2.getContentPane().add(jSearchPanel2, gridBagConstraints);
+
+        mobilepayTxSearchDialog.setModal(true);
+        mobilepayTxSearchDialog.setUndecorated(true);
+        mobilepayTxSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jSearchPanel22.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jSearchPanel22.setLayout(new java.awt.GridBagLayout());
+
+        mobilepayTxSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                mobilepayTxSearchTxtCaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 300.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jSearchPanel22.add(mobilepayTxSearchTxt, gridBagConstraints);
+
+        mobilepayTxtSearchTable.setToolTipText("Click on the target row to select the patient from the search.");
+        mobilepayTxtSearchTable.setShowHorizontalLines(false);
+        /*javax.swing.table.TableColumn column = null;
+
+        for (int i = 0; i < 4; i++) {
+
+            column = jSearchTable2.getColumnModel().getColumn(i);
+
+            if (i == 1) {
+
+                column.setPreferredWidth(400);
+                //sport column is bigger
+            } else {
+
+                column.setPreferredWidth(200);
+
+            }
+        }
+        */
+        mobilepayTxtSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mobilepayTxtSearchTableMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mobilepayTxtSearchTableMouseEntered(evt);
+            }
+        });
+        jSearchScrollPane22.setViewportView(mobilepayTxtSearchTable);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 20.0;
+        jSearchPanel22.add(jSearchScrollPane22, gridBagConstraints);
+
+        jButton422.setText("Select");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jSearchPanel22.add(jButton422, gridBagConstraints);
+
+        jButton522.setText("Dispose");
+        jButton522.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton522ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jSearchPanel22.add(jButton522, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        mobilepayTxSearchDialog.getContentPane().add(jSearchPanel22, gridBagConstraints);
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -693,24 +793,88 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         detailsPanel.add(payerMobileTelephoneNumberTxt, gridBagConstraints);
 
-        payBillNumberTxt.setEditable(false);
-        payBillNumberTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        payBillNumberTxt.setText(com.afrisoftech.hospital.HospitalMain.payBillNumber
-        );
-        payBillNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PayBill Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
+        jLabel9.setText("Mobile Transaction No.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        detailsPanel.add(jLabel9, gridBagConstraints);
+
+        searchMobilePayTxPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        searchMobilePayTxPanel.setMinimumSize(new java.awt.Dimension(82, 40));
+        searchMobilePayTxPanel.setPreferredSize(new java.awt.Dimension(41, 27));
+        searchMobilePayTxPanel.setLayout(new java.awt.GridBagLayout());
+
+        mobilepayTxNoTxt.setEditable(false);
+        mobilepayTxNoTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        mobilepayTxNoTxt.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                mobilepayTxNoTxtCaretUpdate(evt);
+            }
+        });
+        mobilepayTxNoTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                mobilepayTxNoTxtFocusGained(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1000.0;
+        gridBagConstraints.weighty = 1.0;
+        searchMobilePayTxPanel.add(mobilepayTxNoTxt, gridBagConstraints);
+
+        searchMobileTxButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Find 2.png"))); // NOI18N
+        searchMobileTxButton.setToolTipText("Search");
+        searchMobileTxButton.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        searchMobileTxButton.setIconTextGap(0);
+        searchMobileTxButton.setMaximumSize(new java.awt.Dimension(74, 53));
+        searchMobileTxButton.setMinimumSize(new java.awt.Dimension(74, 53));
+        searchMobileTxButton.setPreferredSize(new java.awt.Dimension(33, 23));
+        searchMobileTxButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        searchMobileTxButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchMobileTxButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        detailsPanel.add(payBillNumberTxt, gridBagConstraints);
+        searchMobilePayTxPanel.add(searchMobileTxButton, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailsPanel.add(searchMobilePayTxPanel, gridBagConstraints);
+
+        paybillNumberCmbx.setForeground(new java.awt.Color(0, 0, 0));
+        paybillNumberCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '' as paybill_no UNION SELECT DISTINCT paybill_no FROM ac_cash_points ORDER BY 1"));
+        paybillNumberCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Paybill No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
+        paybillNumberCmbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paybillNumberCmbxActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        detailsPanel.add(paybillNumberCmbx, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1376,9 +1540,12 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                 if (surrenderChk.isSelected()) {
                     java.sql.PreparedStatement pstSurrender = connectDB.prepareStatement("INSERT INTO ac_petty_cash("
                             + "            activity_code, activity, payee, description, debit, credit, date_payable, "
-                            + "            user_name, paid, voucher_no, date, approved, department, requisitioner, " +//8
-                            "            status, document, transaction_no, cash_point, shift_no, request_no, " +//15
-                            "            code, requisition_no, donor, proj, branch, staff_veh, approved_surrender, " +//21
+                            + "            user_name, paid, voucher_no, date, approved, department, requisitioner, "
+                            +//8
+                            "            status, document, transaction_no, cash_point, shift_no, request_no, "
+                            +//15
+                            "            code, requisition_no, donor, proj, branch, staff_veh, approved_surrender, "
+                            +//21
                             "            checked_surrender)"
                             + "    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
 
@@ -1559,7 +1726,9 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                             }
                         }
                     }
-                    java.sql.PreparedStatement pstmt2a = connectDB.prepareStatement("insert into ac_cash_collection values(?,?,?,initcap(?),?,?, ?, initcap(?), initcap(?), ?, ?, ?, initcap(?), ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
+                    java.sql.PreparedStatement pstmt2a = connectDB.prepareStatement("insert into ac_cash_collection "
+                            + "values(?,?,?,initcap(?),?,?, ?, initcap(?), initcap(?), ?, ?, ?, "
+                            + "initcap(?), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                     pstmt2a.setObject(1, glCodeTxt.getText());
                     pstmt2a.setObject(5, paymentModeCmbx.getSelectedItem().toString());
                     pstmt2a.setString(2, otherReceiptTxt.getText());
@@ -1572,8 +1741,15 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                     pstmt2a.setString(10, rcode);
                     pstmt2a.setString(12, receiptNo);
                     pstmt2a.setString(11, chequeNumberTxt.getText());
-                    pstmt2a.setString(13, "");
-                    pstmt2a.setString(14, otherReceiptTxt.getText());
+//                    pstmt2a.setString(13, "");
+//                    pstmt2a.setString(14, otherReceiptTxt.getText());
+                    if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+                        pstmt2a.setString(13, com.afrisoftech.hospital.HospitalMain.mobileTxID);
+                        pstmt2a.setString(14, com.afrisoftech.hospital.HospitalMain.mobileTelephone);
+                    } else {
+                        pstmt2a.setString(13, "");
+                        pstmt2a.setString(14, otherReceiptTxt.getText());
+                    }
                     pstmt2a.setObject(15, "Receipts");
                     pstmt2a.setDouble(16, java.lang.Double.valueOf(amountPaidTxt.getText()));
                     pstmt2a.setDouble(17, 00);
@@ -1587,6 +1763,20 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                     pstmt2a.setString(25, shiftNoTxt.getText());
                     pstmt2a.setObject(26, null);
                     pstmt2a.setDouble(27, 1);
+                    pstmt2a.setDate(28, null);
+                    pstmt2a.setTimestamp(29, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));
+                    pstmt2a.setString(30, "AOT");
+                    pstmt2a.setBoolean(31, false);
+                    pstmt2a.setObject(32, "A");
+                    pstmt2a.setObject(33, "");
+                    pstmt2a.setDouble(34, java.lang.Double.valueOf(amountPaidTxt.getText()));
+                    if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+                        pstmt2a.setString(35, checkoutRequestID);
+                        pstmt2a.setObject(36, paybillNumberCmbx.getSelectedItem());
+                    } else {
+                        pstmt2a.setString(35, null);
+                        pstmt2a.setString(36, null);
+                    }
                     pstmt2a.executeUpdate();
 
                     java.sql.Statement ps1 = connectDB.createStatement();
@@ -1629,6 +1819,10 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                     java.sql.PreparedStatement pstmtac_ledger = connectDB.prepareStatement("UPDATE ac_ledger SET receipt_no = '" + receiptNo2 + "' WHERE receipt_no = '" + receiptNo + "'");
                     pstmtac_ledger.executeUpdate();
 
+                    java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("UPDATE mobile_payments SET mobilepay_alert = true WHERE mobile_tx_id = ?");
+                    pstmt2.setString(1, com.afrisoftech.hospital.HospitalMain.mobileTxID);
+                    pstmt2.executeUpdate();
+
                     receiptNoTxt.setText(receiptNo2);
                     javax.swing.JOptionPane.showMessageDialog(this, "Data Inserted Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
@@ -1639,6 +1833,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
             }
             connectDB.commit();
             connectDB.setAutoCommit(true);
+            clearFormBtn.doClick();
 
         } catch (java.sql.SQLException sq) {
             sq.printStackTrace();
@@ -1749,6 +1944,15 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_closeFormBtnActionPerformed
 
     private void clearFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFormBtnActionPerformed
+
+        amountPaidTxt.setEditable(true);
+        paybillNumberCmbx.setSelectedItem(null);
+        try {
+            payerMobileTelephoneNumberTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("254-7##-######")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        mobilepayTxNoTxt.setText(null);
         otherReceiptTxt.setEditable(true);
         searchButton2.setEnabled(true);
         searchTxt.setEditable(true);
@@ -1762,7 +1966,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         otherReceiptTxt.setText("");
         glCodeTxt.setText("");
         //        jTextField5.setText("");
-        amountPaidTxt.setText("");
+        amountPaidTxt.setText("0.00");
         chequeDrawerNameTxt.setText("");
         chequeNumberTxt.setText("");
         receiptDetailTxt.setText("");
@@ -2115,6 +2319,101 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_payViaMobilePayBtnActionPerformed
+
+    private void mobilepayTxNoTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_mobilepayTxNoTxtCaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobilepayTxNoTxtCaretUpdate
+
+    private void mobilepayTxNoTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mobilepayTxNoTxtFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobilepayTxNoTxtFocusGained
+
+    private void searchMobileTxButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchMobileTxButtonActionPerformed
+
+        com.afrisoftech.hospital.HospitalMain.mobileTxID = null;
+        com.afrisoftech.hospital.HospitalMain.mobileTelephone = null;
+
+        System.out.println("Showing dialog");
+
+        // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
+        java.awt.Point point = this.mobilepayTxNoTxt.getLocationOnScreen();
+
+        mobilepayTxSearchDialog.setSize(700, 200);
+
+        mobilepayTxSearchDialog.setLocation(point);
+
+        mobilepayTxSearchDialog.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchMobileTxButtonActionPerformed
+
+    private void mobilepayTxSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_mobilepayTxSearchTxtCaretUpdate
+
+        if (mobilepayTxSearchTxt.getText().length() > 5) {
+            mobilepayTxtSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_time::time(0), mobile_tx_id, account_no, date, paid_amount, upper(dealer) as client_name, journal_no as paybill_no, mobilepay_alert as processed FROM public.mobile_payments WHERE mobilepay_alert = false AND account_no ilike '%" + mobilepayTxSearchTxt.getText() + "%' ORDER BY account_no"));
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobilepayTxSearchTxtCaretUpdate
+
+    private void mobilepayTxtSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobilepayTxtSearchTableMouseClicked
+
+        mobilepayTxNoTxt.setText(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 1).toString());
+
+        com.afrisoftech.hospital.HospitalMain.mobileTxID = mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 1).toString();
+
+        com.afrisoftech.hospital.HospitalMain.mobileTelephone = mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 2).toString();
+
+        payerMobileTelephoneNumberTxt.setText(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 2).toString());
+
+        amountPaidTxt.setText(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 4).toString());
+        
+        amountPaidTxt.setEditable(false);
+        
+        paymentModeCmbx.setSelectedItem("M-Pesa");
+
+        paybillNumberCmbx.setSelectedItem(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 6).toString());
+
+        mobilepayTxSearchDialog.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobilepayTxtSearchTableMouseClicked
+
+    private void mobilepayTxtSearchTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobilepayTxtSearchTableMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobilepayTxtSearchTableMouseEntered
+
+    private void jButton522ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton522ActionPerformed
+
+        mobilepayTxSearchDialog.dispose();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton522ActionPerformed
+
+    private void paybillNumberCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paybillNumberCmbxActionPerformed
+        if (paybillNumberCmbx.getSelectedItem() != null) {
+            com.afrisoftech.hospital.HospitalMain.payBillNumber = paybillNumberCmbx.getSelectedItem().toString();
+            try {
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT DISTINCT merchant_id, consumer_secrets FROM ac_cash_points WHERE paybill_no = ?");
+
+                pstmt.setString(1, paybillNumberCmbx.getSelectedItem().toString());
+                java.sql.ResultSet rset = pstmt.executeQuery();
+                while (rset.next()) {
+                    try {
+                        com.afrisoftech.hospital.HospitalMain.passKey = new String(rset.getBytes(1), "UTF-8");
+                        com.afrisoftech.hospital.HospitalMain.oAuthKey = new String(rset.getBytes(2), "UTF-8");
+                    } catch (UnsupportedEncodingException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            } catch (SQLException ex) {
+                javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+                ex.printStackTrace();
+            }
+
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a paybill in order to proceed");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_paybillNumberCmbxActionPerformed
     public java.lang.String getShiftNumber() {
 
         try {
@@ -2305,9 +2604,11 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
     private javax.swing.JTable glCodeSearchTable;
     private javax.swing.JTextField glCodeTxt;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton422;
     private javax.swing.JButton jButton511;
     private javax.swing.JButton jButton5111;
     private javax.swing.JButton jButton512;
+    private javax.swing.JButton jButton522;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2324,6 +2625,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel211;
     private javax.swing.JPanel jPanel2112;
@@ -2335,9 +2637,11 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jSearchPanel1;
     private javax.swing.JPanel jSearchPanel11;
     private javax.swing.JPanel jSearchPanel2;
+    private javax.swing.JPanel jSearchPanel22;
     private javax.swing.JScrollPane jSearchScrollPane1;
     private javax.swing.JScrollPane jSearchScrollPane11;
     private javax.swing.JScrollPane jSearchScrollPane2;
+    private javax.swing.JScrollPane jSearchScrollPane22;
     private javax.swing.JTable jSearchTable1;
     private javax.swing.JTable jSearchTable2;
     private javax.swing.JTextField jTextField11111;
@@ -2347,10 +2651,14 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JCheckBox loanStockChk;
+    private javax.swing.JTextField mobilepayTxNoTxt;
+    private javax.swing.JDialog mobilepayTxSearchDialog;
+    private javax.swing.JTextField mobilepayTxSearchTxt;
+    private javax.swing.JTable mobilepayTxtSearchTable;
     private javax.swing.JPanel optionsPanel;
     private javax.swing.JTextField otherReceiptTxt;
-    private javax.swing.JTextField payBillNumberTxt;
     private javax.swing.JButton payViaMobilePayBtn;
+    private javax.swing.JComboBox<String> paybillNumberCmbx;
     private javax.swing.JFormattedTextField payerMobileTelephoneNumberTxt;
     private javax.swing.JComboBox paymentModeCmbx;
     private javax.swing.JTextField receiptDetailTxt;
@@ -2364,6 +2672,8 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton searchButton22;
     private javax.swing.JButton searchButton3;
     private javax.swing.JTextField searchGLCodesTxt;
+    private javax.swing.JPanel searchMobilePayTxPanel;
+    private javax.swing.JButton searchMobileTxButton;
     private javax.swing.JTextField searchTxt;
     private javax.swing.JTextField shiftNoTxt;
     private javax.swing.JCheckBox surrenderChk;

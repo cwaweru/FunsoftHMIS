@@ -1359,7 +1359,7 @@ public class JobCardS11Request extends javax.swing.JInternalFrame {
         if(jTextField113.getCaretPosition() < 3){
             System.out.println("Nothing");
         }else{
-            jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB,"SELECT supplier_name, code as account_no from st_suppliers where supplier_name ILIKE '"+jTextField113.getText()+"%' order by supplier_name"));
+            jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"SELECT supplier_name, code as account_no from st_suppliers where supplier_name ILIKE '"+jTextField113.getText()+"%' order by supplier_name"));
             
           /*      //   searchRowSet2.execute("SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where patient_no ILIKE '"+jTextField113.getText()+"%' and last_visit > current_date - 100 order by second_name");
                 searchRowSet2.execute("SELECT supplier_name, code as account_no from st_suppliers where supplier_name ILIKE '"+jTextField113.getText()+"%' order by supplier_name");
@@ -1506,7 +1506,7 @@ public class JobCardS11Request extends javax.swing.JInternalFrame {
         //  if (j > 0){
         
         
-        jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB,"select distinct requisition_no as Req_No from st_receive_requisation where requisition_no ILIKE '"+jTextField11111.getText().toString()+"%' and (requisition_no ilike 'IRQ%') ORDER BY requisition_no"));
+        jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select distinct requisition_no as Req_No from st_receive_requisation where requisition_no ILIKE '"+jTextField11111.getText().toString()+"%' and (requisition_no ilike 'IRQ%') ORDER BY requisition_no"));
         //   }
      /*   try {
                     searchRowSet1.execute("select distinct order_no as scheme,(supplier) as name from st_orders where order_no ILIKE '"+jTextField1111.getText().toString()+"%' ORDER BY order_no");
@@ -1758,7 +1758,7 @@ public class JobCardS11Request extends javax.swing.JInternalFrame {
         }
         else{
         
-        itemSearchtbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB,"select distinct item_code,description,strength,units,buying_price FROM st_stock_item WHERE (description ILIKE '%"+jTextField1111.getText()+"%' OR item_code ILIKE '%"+jTextField1111.getText()+"%') AND department ILIKE '"+jComboBox2.getSelectedItem()+"'    UNION  select distinct product_id,product,strength,units,selling_price FROM st_stock_prices WHERE product ILIKE '%"+jTextField1111.getText()+"%' AND department ILIKE '"+jComboBox2.getSelectedItem()+"' ORDER BY 1"));
+        itemSearchtbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select distinct item_code,description,strength,units,buying_price FROM st_stock_item WHERE (description ILIKE '%"+jTextField1111.getText()+"%' OR item_code ILIKE '%"+jTextField1111.getText()+"%') AND department ILIKE '"+jComboBox2.getSelectedItem()+"'    UNION  select distinct product_id,product,strength,units,selling_price FROM st_stock_prices WHERE product ILIKE '%"+jTextField1111.getText()+"%' AND department ILIKE '"+jComboBox2.getSelectedItem()+"' ORDER BY 1"));
         
         jSearchScrollPane1.setViewportView(itemSearchtbl);
         

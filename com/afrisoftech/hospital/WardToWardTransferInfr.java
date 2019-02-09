@@ -704,7 +704,7 @@ public class WardToWardTransferInfr extends javax.swing.JInternalFrame {
 //        } else {
             if (this.patientSearchNumberChbx.isSelected()) {
 
-                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select trim(patient_no) as scheme,patient_name as name,sub_chief as Unit_No from hp_admission where (patient_no ILIKE '%" + patientSearchTxt.getText().toString() + "%' OR sub_chief ilike '" + patientSearchTxt.getText().toString() + "%' )  AND discharge = false ORDER BY patient_no"));
+                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select trim(patient_no) as scheme,patient_name as name,sub_chief as Unit_No from hp_admission where (patient_no ILIKE '%" + patientSearchTxt.getText().toString() + "%' OR sub_chief ilike '" + patientSearchTxt.getText().toString() + "%' )  AND discharge = false ORDER BY patient_no"));
 
                 /*  searchRowSet1.execute("select trim(patient_no) as scheme,patient_name as name from hp_admission where patient_no ILIKE '"+jTextField1111.getText().toString()+"%'  AND discharge = false ORDER BY patient_no");
                 
@@ -721,7 +721,7 @@ public class WardToWardTransferInfr extends javax.swing.JInternalFrame {
 
             } else {
 
-                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select trim(patient_no) as scheme,patient_name as name,sub_chief as Unit_No from hp_admission where patient_name ILIKE '" + patientSearchTxt.getText().toString() + "%' AND discharge = false ORDER BY patient_name"));
+                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select trim(patient_no) as scheme,patient_name as name,sub_chief as Unit_No from hp_admission where patient_name ILIKE '" + patientSearchTxt.getText().toString() + "%' AND discharge = false ORDER BY patient_name"));
 
                 /*   searchRowSet1.execute("select trim(patient_no) as scheme,patient_name as name from hp_admission where patient_name ILIKE '"+jTextField1111.getText().toString()+"%' AND discharge = false ORDER BY patient_name");
                 

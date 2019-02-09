@@ -116,6 +116,7 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
         exitbtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        spacerLbl = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         itemScrollpane = new javax.swing.JScrollPane();
         InternalPrTbl = new com.afrisoftech.dbadmin.JTable();
@@ -612,7 +613,7 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Raise Requisitions For Procurement");
+        setTitle("Raise requisitions for procurement");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/Folders/Folder Yellow.png"))); // NOI18N
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -626,15 +627,15 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
 
         postbtn.setBackground(new java.awt.Color(51, 255, 204));
         postbtn.setMnemonic('s');
-        postbtn.setText("Save");
-        postbtn.setPreferredSize(new java.awt.Dimension(123, 25));
+        postbtn.setText("Save procurement request");
+        postbtn.setPreferredSize(new java.awt.Dimension(323, 25));
         postbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 postbtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -644,7 +645,7 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
         resetbtn.setText("Reset Table");
         resetbtn.setPreferredSize(new java.awt.Dimension(123, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -652,7 +653,7 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
 
         cancelbtn.setBackground(new java.awt.Color(51, 255, 204));
         cancelbtn.setMnemonic('l');
-        cancelbtn.setText("Clear");
+        cancelbtn.setText("Clear form");
         cancelbtn.setPreferredSize(new java.awt.Dimension(123, 25));
         cancelbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -660,7 +661,7 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -668,7 +669,7 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
 
         exitbtn.setBackground(new java.awt.Color(51, 255, 204));
         exitbtn.setMnemonic('c');
-        exitbtn.setText("Close");
+        exitbtn.setText("Close form");
         exitbtn.setPreferredSize(new java.awt.Dimension(123, 25));
         exitbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -676,7 +677,7 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -697,11 +698,18 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jButton1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 100.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(spacerLbl, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1034,6 +1042,8 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jSeparator1, gridBagConstraints);
+
+        reqdatepicker.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -1278,7 +1288,7 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         jPanel4.add(jPanel1, gridBagConstraints);
 
-        jTabbedPane1.addTab("Products In The Catalog", jPanel4);
+        jTabbedPane1.addTab("Generate procurement request", jPanel4);
 
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
@@ -1468,8 +1478,8 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
 
         if (prvsreqTxt.getCaretPosition() > 2) {
 
-            //jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct requisition_no as Req_No from st_receive_requisation where requisition_no ILIKE '" + jTextField11111.getText().toString() + "%' and (requisition_no ilike 'PRQ%' OR requisition_no ilike 'SRQ%') AND analysed=FALSE ORDER BY requisition_no"));
-            jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct quotation_no as Ref_No from st_orders where quotation_no ILIKE '%" + prvsreqTxt.getText().toString() + "%' ORDER BY quotation_no"));
+            //jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct requisition_no as Req_No from st_receive_requisation where requisition_no ILIKE '" + jTextField11111.getText().toString() + "%' and (requisition_no ilike 'PRQ%' OR requisition_no ilike 'SRQ%') AND analysed=FALSE ORDER BY requisition_no"));
+            jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct quotation_no as Ref_No from st_orders where quotation_no ILIKE '%" + prvsreqTxt.getText().toString() + "%' ORDER BY quotation_no"));
             jSearchTable11.setShowHorizontalLines(false);
             jSearchScrollPane11.setViewportView(jSearchTable11);
         }
@@ -1569,13 +1579,13 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
 
         if (itemSearchtxt.getCaretPosition() > 4) {
 //select distinct code,item,units from st_orders st,
-//      jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select item_code, description, units,buying_price,reorder_level from st_stock_item " +
+//      jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select item_code, description, units,buying_price,reorder_level from st_stock_item " +
 //"where department ilike '%"+procDptCbx.getSelectedItem().toString()+"%' and (description ilike '%"+jTextField1111.getText()+"%' OR item_code ilike '%"+jTextField1111.getText()+"%' )"));
 //        }
 
-//            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select b.code, b.item, b.units,b.unit_price,a.reorder_level from st_stock_item a, st_orders b\n"
+//            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select b.code, b.item, b.units,b.unit_price,a.reorder_level from st_stock_item a, st_orders b\n"
 //                    + "where initcap(a.description) = initcap(b.item) and a.department ilike '" + deptRaisingReq.getSelectedItem().toString() + "' and (a.description ilike '%" + itemSearchtxt.getText() + "%' or a.item_code ilike '%" + itemSearchtxt.getText() + "%') AND b.quotation_no ilike '" + existingTNo.getText() + "'"));
-            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct code, item, units,unit_price,1 reorder_level from  st_orders \n"
+            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct code, item, units,unit_price,1 reorder_level from  st_orders \n"
                     + "where  (item ilike '%" + itemSearchtxt.getText() + "%' or code ilike '%" + itemSearchtxt.getText() + "%') AND quotation_no ilike '" + existingTNo.getText() + "'"));
 
             jSearchScrollPane1.setViewportView(jSearchTable1);
@@ -1689,7 +1699,7 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
                         pstmt.setDouble(6, Double.parseDouble(InternalPrTbl.getValueAt(i, 3).toString()));
 
                         pstmt.setDate(7, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datedueDtPcker.getDate()));
-                        pstmt.setDate(8, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datedueDtPcker.getDate()));
+                        pstmt.setDate(8, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
 
                         // pstmt.setDate(8,com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.util.Calendar.getInstance().getTime()));
                         pstmt.setBoolean(9, false);
@@ -1713,7 +1723,7 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
 
                         pstmt.setString(19, DBObject.getDBObject(existingTNo.getText(), "-"));
                         pstmt.setObject(20, "");
-                        pstmt.setTimestamp(21, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));//com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.util.Calendar.getInstance().getTime()));
+                        pstmt.setTimestamp(21, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));//com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.util.Calendar.getInstance().getTime()));
                         pstmt.setObject(22, "");
                         pstmt.setString(23, jTextPane4.getText());
 
@@ -2034,7 +2044,7 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
     private void prqtxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_prqtxtCaretUpdate
         // TODO add your handling code here:
         if (prqtxt.getCaretPosition() > 4) {
-            prTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct requisition_no as Req_No from st_receive_requisation where requisition_no ILIKE '%" + prqtxt.getText().toString() + "%' and (requisition_no ilike 'PRQ%' OR requisition_no ilike 'SRQ%')  ORDER BY requisition_no"));
+            prTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct requisition_no as Req_No from st_receive_requisation where requisition_no ILIKE '%" + prqtxt.getText().toString() + "%' and (requisition_no ilike 'PRQ%' OR requisition_no ilike 'SRQ%')  ORDER BY requisition_no"));
         }
     }//GEN-LAST:event_prqtxtCaretUpdate
 
@@ -2057,7 +2067,7 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
     private void itemSearchtxt1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_itemSearchtxt1CaretUpdate
         // TODO add your handling code here:
         if (itemSearchtxt1.getCaretPosition() > 4) {
-            stockiTemsearchtbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct  item_code,description,units,buying_price,reorder_level from st_stock_item WHERE (item_code ILIKE '%" + itemSearchtxt1.getText() + "%' OR description ILIKE '%" + itemSearchtxt1.getText() + "%') AND department ilike '" + deptRaisingReq.getSelectedItem().toString() + "'"));
+            stockiTemsearchtbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct  item_code,description,units,buying_price,reorder_level from st_stock_item WHERE (item_code ILIKE '%" + itemSearchtxt1.getText() + "%' OR description ILIKE '%" + itemSearchtxt1.getText() + "%') AND department ilike '" + deptRaisingReq.getSelectedItem().toString() + "'"));
 
             jSearchScrollPane2.setViewportView(stockiTemsearchtbl);
         }
@@ -2133,7 +2143,7 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
     private void prvsreqTxt1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_prvsreqTxt1CaretUpdate
         // TODO add your handling code here:
         if (prvsreqTxt1.getCaretPosition() > 4) {
-            jSearchTable12.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct requisition_no as Req_No from st_purchase_schedule where requisition_no ILIKE '%" + prvsreqTxt1.getText().toString() + "%'  ORDER BY requisition_no"));
+            jSearchTable12.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct requisition_no as Req_No from st_purchase_schedule where requisition_no ILIKE '%" + prvsreqTxt1.getText().toString() + "%'  ORDER BY requisition_no"));
         }
     }//GEN-LAST:event_prvsreqTxt1CaretUpdate
 
@@ -2284,6 +2294,7 @@ public class RaiseInternalProcRequisitionIntfr extends javax.swing.JInternalFram
     private javax.swing.JButton searchButton1;
     private javax.swing.JButton searchButton2;
     private javax.swing.JButton searchButton3;
+    private javax.swing.JLabel spacerLbl;
     private javax.swing.JDialog stockiTemdialog;
     private javax.swing.JTable stockiTemsearchtbl;
     private javax.swing.JCheckBox storebalChk;

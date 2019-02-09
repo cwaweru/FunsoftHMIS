@@ -2756,7 +2756,7 @@ public class PatientsDispenseBillingIntfr extends javax.swing.JInternalFrame {
     private void jTextField115CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField115CaretUpdate
         if (jTextField115.getCaretPosition() >= 6) {
             //jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select chq_no FROM pb_documents_register WHERE chq_no ILIKE '%" + jTextField115.getText() + "%' and used = 'false' and doc_name ilike '%pha%' order by chq_no"));
-            jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select DISTINCT receipt_no FROM ac_cash_collection WHERE receipt_no ILIKE '" + jTextField115.getText() + "%' AND receipt_time::date > (CURRENT_DATE-2)"));
+            jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT receipt_no FROM ac_cash_collection WHERE receipt_no ILIKE '" + jTextField115.getText() + "%' AND receipt_time::date > (CURRENT_DATE-2)"));
 
             jSearchScrollPane4.setViewportView(jSearchTable4);
             System.out.println("Cannot sort out");
@@ -5131,7 +5131,7 @@ public class PatientsDispenseBillingIntfr extends javax.swing.JInternalFrame {
     private void searchPharmacisttxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchPharmacisttxtCaretUpdate
         // TODO add your handling code here:
         if (searchPharmacisttxt.getCaretPosition() > 2) {
-            usersTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT user_name FROM store_allocation WHERE user_name ILIKE '%" + searchPharmacisttxt.getText() + "%'"));
+            usersTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT user_name FROM store_allocation WHERE user_name ILIKE '%" + searchPharmacisttxt.getText() + "%'"));
         }
     }//GEN-LAST:event_searchPharmacisttxtCaretUpdate
     private void populateTable1(java.lang.String patient_no) {

@@ -2833,7 +2833,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
                         }
 
-                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("CREATE USER " + logonNameTxt.getText() + " WITH PASSWORD '" + newPasswordField.getText() + "' CREATEROLE CREATEDB");
+                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("CREATE USER " + logonNameTxt.getText() + " WITH PASSWORD '" + newPasswordField.getText() + "'");
 
                         pstmt.execute();
 

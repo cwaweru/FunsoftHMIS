@@ -428,7 +428,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane14">
+            <Container class="javax.swing.JScrollPane" name="pendingScrollPane">
               <Properties>
                 <Property name="autoscrolls" type="boolean" value="true"/>
               </Properties>
@@ -462,7 +462,8 @@
                     <Property name="rowHeight" type="int" value="26"/>
                   </Properties>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable()"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JXTable()"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="            javax.swing.table.TableColumn column = null;&#xa;            for (int i = 0; i &lt; pendingTable.getColumnCount(); i++) {&#xa;                column = pendingTable.getColumnModel().getColumn(i);&#xa;                if (i == 2) {&#xa;&#xa;                    column.setPreferredWidth(500); // item description column is bigger&#xa;                } else {&#xa;&#xa;                    column.setPreferredWidth(100);&#xa;&#xa;                }&#xa;            }&#xa;&#xa;            pendingScrollPane.setViewportView(pendingTable);"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
@@ -587,7 +588,8 @@
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="paidTableMouseClicked"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable()"/>
+                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JXTable()"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="            javax.swing.table.TableColumn column2 = null;&#xa;            for (int i = 0; i &lt; paidTable.getColumnCount(); i++) {&#xa;                column2 = paidTable.getColumnModel().getColumn(i);&#xa;                if (i == 2) {&#xa;&#xa;                    column2.setPreferredWidth(500); // item description column is bigger&#xa;                } else {&#xa;&#xa;                    column2.setPreferredWidth(100);&#xa;&#xa;                }&#xa;            }&#xa;            paidupScrollPane.setViewportView(paidTable);"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>
@@ -1991,7 +1993,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JTextField" name="searchpatienttxtfld">
+        <Component class="javax.swing.JTextField" name="searchPatientTxt">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -2002,7 +2004,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="searchpatienttxtfldCaretUpdate"/>
+            <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="searchPatientTxtCaretUpdate"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

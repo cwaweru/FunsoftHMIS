@@ -622,18 +622,18 @@ public class iTemDescriptionIntfr extends javax.swing.JInternalFrame {
 //        else {
             com.afrisoftech.dbadmin.setFixedColumns.DisallowReordering(jSearchTable);
             if (centralStoresCbx.isSelected()) {
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select DISTINCT item_code,description FROM stockitem WHERE (description ILIKE '%" + jTextField111.getText() + "%' OR item_code ILIKE '%" + jTextField111.getText() + "%' )AND department ILIKE '%" + storeNamecmx.getSelectedItem() + "%' order by description"));
+                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT item_code,description FROM stockitem WHERE (description ILIKE '%" + jTextField111.getText() + "%' OR item_code ILIKE '%" + jTextField111.getText() + "%' )AND department ILIKE '%" + storeNamecmx.getSelectedItem() + "%' order by description"));
 
                 jSearchTable.setShowHorizontalLines(false);
                 jSearchScrollPane.setViewportView(jSearchTable);
             } else {
                 if (servicescmb.isSelected()) {
-                    jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT service_code, service FROM services_list WHERE service ILIKE '%" + jTextField111.getText() + "%'  and department='" + storeNamecmx.getSelectedItem() + "'  ORDER BY service_code asc"));
+                    jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_code, service FROM services_list WHERE service ILIKE '%" + jTextField111.getText() + "%'  and department='" + storeNamecmx.getSelectedItem() + "'  ORDER BY service_code asc"));
                     jSearchTable.setShowHorizontalLines(false);
                     jSearchScrollPane.setViewportView(jSearchTable);
                 } 
                 else {
-                    jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select DISTINCT product_id,product FROM stockprices WHERE (product ILIKE '%" + jTextField111.getText() + "%' OR item_code ILIKE '%" + jTextField111.getText() + "%' ) AND department ILIKE '%" + storeNamecmx.getSelectedItem() + "%' ORDER BY product"));
+                    jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT product_id,product FROM stockprices WHERE (product ILIKE '%" + jTextField111.getText() + "%' OR item_code ILIKE '%" + jTextField111.getText() + "%' ) AND department ILIKE '%" + storeNamecmx.getSelectedItem() + "%' ORDER BY product"));
                 }
 
                 jSearchTable.setShowHorizontalLines(false);

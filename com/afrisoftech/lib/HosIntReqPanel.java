@@ -320,7 +320,7 @@ public class HosIntReqPanel extends javax.swing.JDialog {
 
         if (jTextField1111.getCaretPosition() > 7) {
 
-            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct(requisition_no) as Requisition,cost_center, supplier from st_receive_requisation where requisition_no ILIKE '" + jTextField1111.getText().toString() + "%' and requisition_no NOT ilike 'PR%' ORDER BY requisition_no"));
+            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct(requisition_no) as Requisition,cost_center, supplier from st_receive_requisation where requisition_no ILIKE '" + jTextField1111.getText().toString() + "%' and requisition_no NOT ilike 'PR%' ORDER BY requisition_no"));
 
             jSearchTable1.setShowHorizontalLines(false);
             jSearchScrollPane1.setViewportView(jSearchTable1);

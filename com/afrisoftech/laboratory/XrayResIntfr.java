@@ -57,13 +57,17 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        confirmrequeststable = new com.afrisoftech.dbadmin.JTable() ;
+        confirmScrollPane = new javax.swing.JScrollPane();
+        confirmRequestsTable = new com.afrisoftech.dbadmin.JXTable() ;
 
+        waitingListActionsPanel = new javax.swing.JPanel();
+        paySpacerLbl = new javax.swing.JLabel();
+        submitForPayBtn = new javax.swing.JButton();
+        cancleBtn = new javax.swing.JButton();
         jPanel21 = new javax.swing.JPanel();
         jPanel211 = new javax.swing.JPanel();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        pendingresultsTable = new com.afrisoftech.dbadmin.JTable() ;
+        paidScrollPane = new javax.swing.JScrollPane();
+        paidResultsTable = new com.afrisoftech.dbadmin.JXTable() ;
 
         jLabel14 = new javax.swing.JLabel();
         jPanel31 = new javax.swing.JPanel();
@@ -169,9 +173,9 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
 
         jPanel22.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane3.setAutoscrolls(true);
+        confirmScrollPane.setAutoscrolls(true);
 
-        confirmrequeststable.setModel(new javax.swing.table.DefaultTableModel(
+        confirmRequestsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null},
@@ -393,20 +397,73 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        confirmrequeststable.setRowHeight(26);
+        confirmRequestsTable.setRowHeight(26);
 
-        confirmrequeststable.addMouseListener(new java.awt.event.MouseAdapter() {
+        javax.swing.table.TableColumn column = null;
+        for (int i = 0; i < confirmRequestsTable.getColumnCount(); i++) {
+            column = confirmRequestsTable.getColumnModel().getColumn(i);
+            if (i == 2) {
+
+                column.setPreferredWidth(500); // item description column is bigger
+            } else {
+
+                column.setPreferredWidth(100);
+
+            }
+        }
+
+        confirmScrollPane.setViewportView(confirmRequestsTable);
+        confirmRequestsTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                confirmrequeststableMouseClicked(evt);
+                confirmRequestsTableMouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(confirmrequeststable);
+        confirmScrollPane.setViewportView(confirmRequestsTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 10.0;
-        jPanel22.add(jScrollPane3, gridBagConstraints);
+        gridBagConstraints.weighty = 200.0;
+        jPanel22.add(confirmScrollPane, gridBagConstraints);
+
+        waitingListActionsPanel.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        waitingListActionsPanel.add(paySpacerLbl, gridBagConstraints);
+
+        submitForPayBtn.setText("Submit request for payment");
+        submitForPayBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitForPayBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        waitingListActionsPanel.add(submitForPayBtn, gridBagConstraints);
+
+        cancleBtn.setText("Cancel request");
+        cancleBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancleBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        waitingListActionsPanel.add(cancleBtn, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel22.add(waitingListActionsPanel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -425,9 +482,9 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
 
         jPanel211.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane11.setAutoscrolls(true);
+        paidScrollPane.setAutoscrolls(true);
 
-        pendingresultsTable.setModel(new javax.swing.table.DefaultTableModel(
+        paidResultsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -649,20 +706,34 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        pendingresultsTable.setRowHeight(26);
+        paidResultsTable.setRowHeight(26);
 
-        pendingresultsTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        javax.swing.table.TableColumn column2 = null;
+        for (int i = 0; i < paidResultsTable.getColumnCount(); i++) {
+            column2 = paidResultsTable.getColumnModel().getColumn(i);
+            if (i == 0) {
+
+                column2.setPreferredWidth(500); // item description column is bigger
+            } else {
+
+                column2.setPreferredWidth(100);
+
+            }
+        }
+
+        paidScrollPane.setViewportView(paidResultsTable);
+        paidResultsTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pendingresultsTableMouseClicked(evt);
+                paidResultsTableMouseClicked(evt);
             }
         });
-        jScrollPane11.setViewportView(pendingresultsTable);
+        paidScrollPane.setViewportView(paidResultsTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 10.0;
-        jPanel211.add(jScrollPane11, gridBagConstraints);
+        jPanel211.add(paidScrollPane, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1270,25 +1341,25 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         setBounds(0, 0, 786, 499);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pendingresultsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pendingresultsTableMouseClicked
-        patientNoTxt.setText(pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 1).toString());
-      //  searchTextField.setText(pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 1).toString());
+    private void paidResultsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paidResultsTableMouseClicked
+        patientNoTxt.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 1).toString());
+        //  searchTextField.setText(pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 1).toString());
 
         //   this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
-        jTextField1.setText(pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 2).toString());
-        diagnosisEditorPane.setText(pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 12).toString() + "\n");
-        receiptTextFild.setText(pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 10).toString());
-        xrayTextField.setText(pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 7).toString());
-        doctorTextField.setText(pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 8).toString());
+        jTextField1.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 2).toString());
+        diagnosisEditorPane.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 12).toString() + "\n");
+        receiptTextFild.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 10).toString());
+        xrayTextField.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 7).toString());
+        doctorTextField.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 8).toString());
         getList = false;
         try {
 
             //        connectDB.setAutoCommit(false);
-            int i = pendingresultsTable.getSelectedRow();
+            int i = paidResultsTable.getSelectedRow();
 
-            if (pendingresultsTable.getValueAt(i, 0) != null) {
+            if (paidResultsTable.getValueAt(i, 0) != null) {
                 //   connectDB.setAutoCommit(false);
-                if (Boolean.valueOf(pendingresultsTable.getModel().getValueAt(i, 9).toString()) == java.lang.Boolean.TRUE) {
+                if (Boolean.valueOf(paidResultsTable.getModel().getValueAt(i, 9).toString()) == java.lang.Boolean.TRUE) {
 
                     String Sex = "";
                     // Get bio data for OUT-Patient
@@ -1297,7 +1368,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
 
                         java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("SELECT DISTINCT  age, gender FROM  pb_doctors_request WHERE  "
                                 + "  paid = true and"
-                                + " request_id  = '" + pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 10).toString().trim() + "'");
+                                + " request_id  = '" + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 10).toString().trim() + "'");
 
                         while (rsetTable113.next()) {
                             ageTextField.setText(rsetTable113.getString("age"));
@@ -1312,7 +1383,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                     // Get age and gender for IN-patient
                     if (inPatientChkbx.isSelected()) {
                         java.sql.PreparedStatement pstmtIPBio = connectDB.prepareStatement("SELECT pat_age, gender FROM hp_admission WHERE patient_no = ? ORDER BY date_admitted DESC LIMIT 1");
-                        pstmtIPBio.setString(1, pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 1).toString());
+                        pstmtIPBio.setString(1, paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 1).toString());
                         java.sql.ResultSet rsetIPBio = pstmtIPBio.executeQuery();
                         while (rsetIPBio.next()) {
                             ageTextField.setText(rsetIPBio.getString("pat_age"));
@@ -1332,16 +1403,16 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                     System.out.println("SELECT service,amount,false as Report,inv_no as Receipt_No "
                             + " FROM pb_doctors_request  WHERE  collected = true and "
                             + " posted_to_lab='XRAY POSTING' and paid =true and "
-                            + " patient_no = '" + pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 1).toString() + "' "
-                            + " and bed_no = '" + pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 7).toString() + "' "
-                            + " AND service = '" + pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 4).toString() + "'"
-                            + " and inv_no='" + pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 10).toString() + "' "
-                            + " and trans_date::date = '" + pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 0).toString() + "'::date ORDER BY trans_date asc");
+                            + " patient_no = '" + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 1).toString() + "' "
+                            + " and bed_no = '" + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 7).toString() + "' "
+                            + " AND service = '" + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 4).toString() + "'"
+                            + " and inv_no='" + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 10).toString() + "' "
+                            + " and trans_date::date = '" + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 0).toString() + "'::date ORDER BY trans_date asc");
 
                     PreparedStatement pstmt411 = connectDB.prepareStatement("UPDATE hp_patient_billing SET  collected = true WHERE "
-                            + " patient_no = '" + pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 1).toString() + "' AND "
-                            + " service = '" + pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 4).toString() + "' and "
-                            + " doctor='" + pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 7).toString() + "' ");
+                            + " patient_no = '" + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 1).toString() + "' AND "
+                            + " service = '" + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 4).toString() + "' and "
+                            + " doctor='" + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 7).toString() + "' ");
                     pstmt411.executeUpdate();
 
                 }
@@ -1352,23 +1423,23 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                 //    connectDB.setAutoCommit(true);
                 this.xraytestTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                         + "SELECT service,amount,false as Report,request_id as Request_ID,bed_no as Order "
-                        + " FROM pb_doctors_request  WHERE    request_id  = '" + pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 10).toString().trim() + "' UNION "
+                        + " FROM pb_doctors_request  WHERE    request_id  = '" + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 10).toString().trim() + "' UNION "
                         + " SELECT description as service, debit as amount,false as Report,receipt_no as Request_ID, receipt_no as Order "
-                        + " FROM ac_cash_collection  WHERE    receipt_no  = '" + pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 10).toString().trim() + "' UNION"
+                        + " FROM ac_cash_collection  WHERE    receipt_no  = '" + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 10).toString().trim() + "' UNION"
                         + " SELECT service, debit as amount, false as Report, reference as Request_ID, reference as Order "
-                        + " FROM hp_patient_card  WHERE (main_service ILIKE '%ray%' OR main_service ILIKE '%rad%') AND  reference  = '" + pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 10).toString().trim() + "'"));
+                        + " FROM hp_patient_card  WHERE (main_service ILIKE '%ray%' OR main_service ILIKE '%rad%') AND  reference  = '" + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 10).toString().trim() + "'"));
 
-                for (int k = 0; k < pendingresultsTable.getRowCount(); k++) {
-                    for (int r = 0; r < pendingresultsTable.getColumnCount(); r++) {
-                        pendingresultsTable.getModel().setValueAt(null, k, r);
+                for (int k = 0; k < paidResultsTable.getRowCount(); k++) {
+                    for (int r = 0; r < paidResultsTable.getColumnCount(); r++) {
+                        paidResultsTable.getModel().setValueAt(null, k, r);
                     }
                 }
             }
-            java.sql.PreparedStatement pstmtClinicals = connectDB.prepareStatement("SELECT typeof_test, comments, description FROM hp_clinical_results WHERE patient_no = '"+patientNoTxt.getText()+"' AND date::date > '"+xraydatePicker.getDate()+"'::date - 2 ORDER BY input_date DESC LIMIT 1");
-            
+            java.sql.PreparedStatement pstmtClinicals = connectDB.prepareStatement("SELECT typeof_test, comments, description FROM hp_clinical_results WHERE patient_no = '" + patientNoTxt.getText() + "' AND date::date > '" + xraydatePicker.getDate() + "'::date - 2 ORDER BY input_date DESC LIMIT 1");
+
             java.sql.ResultSet rsetClinical = pstmtClinicals.executeQuery();
-            
-            while(rsetClinical.next()){
+
+            while (rsetClinical.next()) {
                 clinicalHistoryTxt.setText(rsetClinical.getString(1));
                 physicalExamTxt.setText(rsetClinical.getString(2));
                 provisionalDiagnosisTxt.setText(rsetClinical.getString(3));
@@ -1390,7 +1461,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         jTabbedPane1.setSelectedIndex(2);
         //   this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         // Add your handling code here:
-    }//GEN-LAST:event_pendingresultsTableMouseClicked
+    }//GEN-LAST:event_paidResultsTableMouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.setVisible(false);   // Add your handling code here:
@@ -1423,7 +1494,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
 
         initComponents();
         this.updateUI();
-      //  getList = true;
+        //  getList = true;
 
         // getListThread.start();
         // Add your handling code here:
@@ -1514,7 +1585,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                                         pstmt.setString(6, jTextArea1.getText());
                                         pstmt.setString(7, xraytestTable.getValueAt(i, 0).toString());
                                         pstmt.setDate(8, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
-             //                           pstmt.setDate(8, com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()));
+                                        //                           pstmt.setDate(8, com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()));
                                         pstmt.setTimestamp(9, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
                                         pstmt.setDouble(10, java.lang.Double.valueOf(xraytestTable.getValueAt(i, 1).toString()));
                                         pstmt.setString(11, Categ);
@@ -1564,7 +1635,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                                         java.sql.PreparedStatement pstmtPatientCard = connectDB.prepareStatement("UPDATE hp_patient_card SET collected = true "
                                                 + "WHERE "
                                                 + " upper(service) = '" + xraytestTable.getValueAt(i, 0).toString().toUpperCase() + "' "
-                                                + "AND patient_no = '" + patientNoTxt.getText() + "' AND reference = '"+xraytestTable.getValueAt(i, 3).toString()+"' "
+                                                + "AND patient_no = '" + patientNoTxt.getText() + "' AND reference = '" + xraytestTable.getValueAt(i, 3).toString() + "' "
                                                 + "  ");
                                         pstmtPatientCard.executeUpdate();
                                     }
@@ -1715,372 +1786,372 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
          }   */     // TODO add your handling code here:
 }//GEN-LAST:event_xraytestTableMouseClicked
 
-    private void confirmrequeststableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmrequeststableMouseClicked
-        this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
-        getList = false;
-        if (this.confirmrequeststable.getValueAt(this.confirmrequeststable.getSelectedRow(), 12) == Boolean.TRUE) {
-            try {
-                java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request "
-                        + "SET collected = true  ,posted_to_lab='CANCELLED POSTING' ,paid =true,collected=true,results=true where "
-                        + "  request_id  = '" + confirmrequeststable.getValueAt(confirmrequeststable.getSelectedRow(), 10).toString().trim() + "'");
-                pstmt46.executeUpdate();
+    private void confirmRequestsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmRequestsTableMouseClicked
+//        this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+//        getList = false;
+//        if (this.confirmrequeststable.getValueAt(this.confirmrequeststable.getSelectedRow(), 12) == Boolean.TRUE) {
+//            try {
+//                java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request "
+//                        + "SET collected = true  ,posted_to_lab='CANCELLED POSTING' ,paid =true,collected=true,results=true where "
+//                        + "  request_id  = '" + confirmrequeststable.getValueAt(confirmrequeststable.getSelectedRow(), 10).toString().trim() + "'");
+//                pstmt46.executeUpdate();
+//
+//                javax.swing.JOptionPane.showMessageDialog(this, "CANCEL Successful", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+//            } catch (SQLException ex) {
+//                Logger.getLogger(XrayResIntfr.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//
+//        } else if (this.confirmrequeststable.getValueAt(this.confirmrequeststable.getSelectedRow(), 9) == Boolean.TRUE) {
+//            java.util.Calendar calendar = java.util.Calendar.getInstance();
+//
+//            long dateNow = calendar.getTimeInMillis();
+//
+//            java.sql.Date datenowSql1 = new java.sql.Date(dateNow);
+//
+//            System.out.println(datenowSql1.toString());
+//
+//            java.sql.Timestamp datenowSql = new java.sql.Timestamp(dateNow);
+//
+//            System.out.println(datenowSql.toString());
+//            //   try{
+//            String billNo = null;
+//            String transNo = null;
+//            String payMode = null;
+//            String patientAcc = null;
+//            String cardNo = null;
+//            String AccDesc = null;
+//            String scheme = null;
+//            String cardName = null;
+//            String isurer = null;
+//            String expDate = null;
+//            String staffNo = null;
+//
+//            String user = null;
+//            String accDesc1 = null;
+//            String glAcc1 = null;
+//            String chbox = null;
+//            String units = null;
+//            String gacc = null;
+//            String request = null;
+//            int itemInt = 0;
+//            double price = 0.00;
+//            String Store = null;
+//            double qty = 0.00;
+//
+//            double amount = 0.00;
+//            double sellPrice = 0.00;
+//            java.util.Date admDate = null;
+//            String visitid = "-";
+//            java.util.Date adDate = null;
+//            String opvisitid = "-";
+//
+//            try {
+//                connectDB.setAutoCommit(false);
+//                java.sql.Statement stm12t = connectDB.createStatement();
+//
+//                java.sql.Statement stm12 = connectDB.createStatement();
+//                java.sql.Statement stm121 = connectDB.createStatement();
+//                java.sql.Statement stm1211 = connectDB.createStatement();
+//                java.sql.Statement stm122 = connectDB.createStatement();
+//                java.sql.Statement stm122x = connectDB.createStatement();
+//                java.sql.Statement stm1 = connectDB.createStatement();
+//
+//                java.sql.ResultSet rse12 = stm12.executeQuery("select code,activity from pb_activity where activity_category ='PR'");
+//
+//                while (rse12.next()) {
+//
+//                    patientAcc = rse12.getObject(1).toString();
+//                    AccDesc = rse12.getObject(2).toString();
+//                }
+//
+//                java.sql.ResultSet rse12t = stm12t.executeQuery("select code,activity from pb_activity where activity_category ='PR'");
+//                while (rse12t.next()) {
+//
+//                    patientAcc = rse12t.getObject(1).toString();
+//                    AccDesc = rse12t.getObject(2).toString();
+//                }
+//
+//                for (int i = confirmrequeststable.getSelectedRow(); i <= confirmrequeststable.getSelectedRow(); i++) {
+//                    if (confirmrequeststable.getValueAt(i, 9) != null) {
+//                        if (confirmrequeststable.getModel().getValueAt(i, 9) == java.lang.Boolean.TRUE) {
+//                            String revCode = (String) confirmrequeststable.getValueAt(i, 13);
+//                            String glCode = (String) confirmrequeststable.getValueAt(i, 14);
+//                            System.out.println("Count" + i);
+//                            java.sql.Statement ps11 = connectDB.createStatement();
+//                            java.sql.ResultSet rst11 = ps11.executeQuery("select nextval('lab_request'),current_user");
+//                            while (rst11.next()) {
+//                                rst11.getObject(1).toString();
+//
+//                                billNo = rst11.getObject(1).toString();
+//                                user = rst11.getObject(2).toString();
+//
+//                            }
+//
+//                            request = confirmrequeststable.getValueAt(i, 7).toString();
+//                            if (request.startsWith("I")) {
+//
+//                                java.sql.Statement pst = connectDB.createStatement();
+//                                java.sql.ResultSet rstt = pst.executeQuery("select nextval('transaction_no_seq')");
+//
+//                                while (rstt.next()) {
+//                                    rstt.getObject(1).toString();
+//
+//                                    transNo = rstt.getObject(1).toString();
+//                                }
+//
+//                                java.sql.Statement stm121t = connectDB.createStatement();
+//
+//                                java.sql.Statement stm12n = connectDB.createStatement();
+//                                java.sql.ResultSet rse12n = stm12n.executeQuery("select adm_date from hp_inpatient_register where patient_no ='" + confirmrequeststable.getValueAt(i, 1).toString() + "'");
+//                                while (rse12n.next()) {
+//                                    admDate = rse12n.getDate(1);
+//                                }
+//                                java.sql.Statement ps11w1 = connectDB.createStatement();
+//                                java.sql.ResultSet rst11w1 = ps11w1.executeQuery("select visit_id from hp_admission where patient_no = '" + confirmrequeststable.getValueAt(i, 1).toString() + "' and check_out = false");
+//                                while (rst11w1.next()) {
+//
+//                                    visitid = rst11w1.getObject(1).toString();
+//                                }
+//
+//                                System.out.println(admDate);
+//                                // if (exp.before(date)){
+//                                //  if (adDate.before(admDate)){
+//                                //    javax.swing.JOptionPane.showMessageDialog(this, "Admission date is : " +admDate +" CHECK billing date","Date Message",javax.swing.JOptionPane.INFORMATION_MESSAGE);
+//                                // }else{
+//
+//                                if (!(confirmrequeststable.getValueAt(i, 3).toString().equals("Cash"))) {
+//                                    java.sql.ResultSet rse1 = stm1.executeQuery("select pay_mode,account_no,description,payer,payer,expiry_date,"
+//                                            + "account_no from hp_inpatient_register where patient_no ='" + confirmrequeststable.getValueAt(i, 1).toString() + "'");
+//                                    while (rse1.next()) {
+//                                        payMode = dbObject.getDBObject(rse1.getObject(1), "-");
+//                                        cardNo = dbObject.getDBObject(rse1.getObject(2), "-");
+//                                        scheme = dbObject.getDBObject(rse1.getObject(3), "-");
+//                                        cardName = dbObject.getDBObject(rse1.getObject(4), "-");
+//                                        isurer = dbObject.getDBObject(rse1.getObject(5), "-");
+//                                        expDate = dbObject.getDBObject(rse1.getObject(6), "NULL");
+//                                        staffNo = dbObject.getDBObject(rse1.getObject(7), "-");
+//                                    }
+//                                }
+//
+//                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
+//                                //  for (int i = 0; i < confirmrequeststable.getRowCount(); i++)
+//                                {
+//                                    pstmt.setString(1, confirmrequeststable.getValueAt(i, 1).toString());
+//                                    pstmt.setObject(2, confirmrequeststable.getValueAt(i, 4).toString());
+//                                    pstmt.setString(3, "General");
+//                                    pstmt.setString(4, confirmrequeststable.getValueAt(i, 3).toString());
+//                                    pstmt.setString(5, transNo);
+//                                    pstmt.setString(7, scheme);
+//                                    pstmt.setString(6, cardNo);
+//                                    pstmt.setString(8, cardName);
+//                                    pstmt.setString(9, isurer);
+//                                    pstmt.setDate(10, null);
+//                                    pstmt.setString(11, "");
+//                                    pstmt.setDouble(12, java.lang.Double.valueOf(confirmrequeststable.getValueAt(i, 6).toString()));
+//                                    pstmt.setDouble(13, 0.00);
+//                                    pstmt.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(confirmrequeststable.getValueAt(i, 0).toString())));
+//                                    pstmt.setObject(15, patientAcc);
+//                                    pstmt.setString(16, revCode);
+//                                    pstmt.setDouble(17, java.lang.Double.valueOf(confirmrequeststable.getValueAt(i, 5).toString()));
+//                                    pstmt.setObject(18, staffNo);
+//                                    pstmt.setBoolean(19, false);
+//                                    pstmt.setString(20, "Billing");
+//                                    pstmt.setBoolean(21, false);
+//                                    pstmt.setString(22, AccDesc);
+//                                    pstmt.setString(23, visitid);
+//                                    pstmt.setString(24, user);
+//                                    pstmt.setString(25, billNo);
+//                                    pstmt.setString(26, "IP");
+//                                    pstmt.setTimestamp(27, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+//                                    pstmt.setString(28, visitid);
+//                                    pstmt.executeUpdate();
+//
+//                                    java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+//                                    pstmt2.setObject(1, glCode);
+//                                    pstmt2.setString(2, revCode);
+//                                    pstmt2.setString(3, confirmrequeststable.getValueAt(i, 1).toString());
+//                                    pstmt2.setString(4, confirmrequeststable.getValueAt(i, 2).toString());
+//                                    pstmt2.setString(5, "");
+//                                    pstmt2.setString(6, cardNo);
+//                                    pstmt2.setString(7, cardName);
+//                                    pstmt2.setString(8, "IP");
+//                                    pstmt2.setString(9, confirmrequeststable.getValueAt(i, 8).toString());
+//                                    pstmt2.setString(10, confirmrequeststable.getValueAt(i, 3).toString());
+//                                    pstmt2.setString(11, "");
+//                                    pstmt2.setString(12, "");
+//                                    pstmt2.setString(13, "");
+//                                    pstmt2.setString(14, confirmrequeststable.getValueAt(i, 4).toString());
+//                                    pstmt2.setString(15, "Revenue");
+//                                    pstmt2.setDouble(16, 0.00);
+//                                    pstmt2.setDouble(17, java.lang.Double.valueOf(confirmrequeststable.getValueAt(i, 6).toString()));
+//                                    pstmt2.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(confirmrequeststable.getValueAt(i, 0).toString())));
+//                                    pstmt2.setString(19, transNo);
+//                                    pstmt2.setBoolean(20, false);
+//                                    pstmt2.setBoolean(21, false);
+//                                    pstmt2.setBoolean(22, false);
+//                                    pstmt2.setString(23, user);
+//                                    pstmt2.executeUpdate();
+//
+//                                }
+//                                //}
+//                                // }
+//
+//                                java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request"
+//                                        + " SET paid=true,posted_to_lab='XRAY POSTING' "
+//                                        + "where  request_id  = '" + confirmrequeststable.getValueAt(confirmrequeststable.getSelectedRow(), 10).toString().trim() + "'");
+//                                pstmt46.executeUpdate();
+//
+////end of inpatients
+//                            } else {//OUT PATIENTS
+//
+//                                java.sql.Statement ps11w1 = connectDB.createStatement();
+//                                java.sql.ResultSet rst11w1 = ps11w1.executeQuery("select distinct slip_no,date from credit_acc_slip where patient_no = '" + confirmrequeststable.getValueAt(confirmrequeststable.getSelectedRow(), 1).toString() + "' order by date desc limit 1");
+//                                while (rst11w1.next()) {
+//
+//                                    opvisitid = rst11w1.getObject(1).toString();
+//                                }
+//                                if (confirmrequeststable.getValueAt(i, 3).toString().trim().toLowerCase().startsWith("cash")) {
+//                                    java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into hp_patient_billing values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?))");
+//
+//                                    pstmt2.setString(1, confirmrequeststable.getValueAt(i, 1).toString());
+//
+//                                    pstmt2.setString(2, confirmrequeststable.getValueAt(i, 2).toString());
+//                                    pstmt2.setString(3, confirmrequeststable.getValueAt(i, 3).toString());
+//                                    pstmt2.setString(4, "General");
+//                                    pstmt2.setString(5, confirmrequeststable.getValueAt(i, 4).toString());
+//                                    pstmt2.setDouble(6, java.lang.Double.valueOf(confirmrequeststable.getValueAt(i, 5).toString()));
+//                                    pstmt2.setDouble(7, java.lang.Double.valueOf(confirmrequeststable.getValueAt(i, 6).toString()));
+//                                    pstmt2.setObject(8, glCode);
+//                                    pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(datenowSql1.toString())));
+//                                    pstmt2.setString(10, opvisitid);
+//
+//                                    pstmt2.setString(11, user);
+//                                    pstmt2.setBoolean(12, false);
+//                                    pstmt2.setString(13, revCode);
+//                                    pstmt2.setString(14, billNo);
+//                                    pstmt2.setString(15, confirmrequeststable.getValueAt(i, 7).toString());
+//                                    pstmt2.executeUpdate();
+//
+//                                    java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request"
+//                                            + " SET posted_to_lab='XRAY POSTING' "
+//                                            + "where  request_id  = '" + confirmrequeststable.getValueAt(confirmrequeststable.getSelectedRow(), 10).toString().trim() + "'");
+//                                    pstmt46.executeUpdate();
+//
+//                                } else if (confirmrequeststable.getValueAt(i, 3).toString().trim().toLowerCase().startsWith("scheme")) {
+//
+//                                    java.sql.ResultSet rse1 = stm1.executeQuery("select pay_mode,account_no,description,payer,payer,expiry_date,"
+//                                            + "account_no from hp_inpatient_register where patient_no ='" + confirmrequeststable.getValueAt(i, 1).toString() + "'");
+//                                    while (rse1.next()) {
+//                                        payMode = dbObject.getDBObject(rse1.getObject(1), "-");
+//                                        cardNo = dbObject.getDBObject(rse1.getObject(2), "-");
+//                                        scheme = dbObject.getDBObject(rse1.getObject(3), "-");
+//                                        cardName = dbObject.getDBObject(rse1.getObject(4), "-");
+//                                        isurer = dbObject.getDBObject(rse1.getObject(5), "-");
+//                                        expDate = dbObject.getDBObject(rse1.getObject(6), "NULL");
+//                                        staffNo = dbObject.getDBObject(rse1.getObject(7), "-");
+//                                    }
+//
+//                                    java.sql.Statement pstm121t = connectDB.createStatement();
+//                                    java.sql.ResultSet rse121t = pstm121t.executeQuery("select activity from pb_activity where code ='" + glCode + "'");
+//
+//                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
+//                                    pstmt.setString(1, confirmrequeststable.getValueAt(i, 1).toString());
+//                                    pstmt.setObject(2, confirmrequeststable.getValueAt(i, 4).toString());
+//                                    pstmt.setString(3, "General");
+//                                    pstmt.setString(4, confirmrequeststable.getValueAt(i, 3).toString());
+//                                    pstmt.setString(5, transNo);
+//                                    pstmt.setString(7, scheme);
+//                                    pstmt.setString(6, cardNo);
+//                                    pstmt.setString(8, cardName);
+//                                    pstmt.setString(9, isurer);
+//                                    pstmt.setDate(10, null);
+//                                    pstmt.setString(11, "");
+//                                    pstmt.setDouble(12, java.lang.Double.valueOf(confirmrequeststable.getValueAt(i, 6).toString()));
+//                                    pstmt.setDouble(13, 0.00);
+//                                    pstmt.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(confirmrequeststable.getValueAt(i, 0).toString())));
+//                                    pstmt.setObject(15, patientAcc);
+//                                    pstmt.setString(16, revCode);
+//                                    pstmt.setDouble(17, java.lang.Double.valueOf(confirmrequeststable.getValueAt(i, 5).toString()));
+//                                    pstmt.setObject(18, staffNo);
+//                                    pstmt.setBoolean(19, false);
+//                                    pstmt.setString(20, "Billing");
+//                                    pstmt.setBoolean(21, false);
+//                                    pstmt.setString(22, AccDesc);
+//                                    pstmt.setString(23, opvisitid);
+//                                    pstmt.setString(24, user);
+//                                    pstmt.setString(25, billNo);
+//                                    pstmt.setString(26, "OP");
+//                                    pstmt.setTimestamp(27, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+//                                    pstmt.setString(28, opvisitid);
+//                                    pstmt.executeUpdate();
+//
+//                                    java.sql.PreparedStatement pstmt2v = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+//                                    pstmt2v.setObject(1, glCode);
+//                                    pstmt2v.setString(2, revCode);
+//                                    pstmt2v.setString(3, confirmrequeststable.getValueAt(i, 1).toString());
+//                                    pstmt2v.setString(4, confirmrequeststable.getValueAt(i, 2).toString());
+//                                    pstmt2v.setString(5, "");
+//                                    pstmt2v.setString(6, cardNo);
+//                                    pstmt2v.setString(7, cardName);
+//                                    pstmt2v.setString(8, "OP");
+//                                    pstmt2v.setString(9, confirmrequeststable.getValueAt(i, 8).toString());
+//                                    pstmt2v.setString(10, confirmrequeststable.getValueAt(i, 3).toString());
+//                                    pstmt2v.setString(11, "");
+//                                    pstmt2v.setString(12, "");
+//                                    pstmt2v.setString(13, "");
+//                                    pstmt2v.setString(14, confirmrequeststable.getValueAt(i, 4).toString());
+//                                    pstmt2v.setString(15, "Revenue");
+//                                    pstmt2v.setDouble(16, 0.00);
+//                                    pstmt2v.setDouble(17, java.lang.Double.valueOf(confirmrequeststable.getValueAt(i, 6).toString()));
+//                                    pstmt2v.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(confirmrequeststable.getValueAt(i, 0).toString())));
+//                                    pstmt2v.setString(19, transNo);
+//                                    pstmt2v.setBoolean(20, false);
+//                                    pstmt2v.setBoolean(21, false);
+//                                    pstmt2v.setBoolean(22, false);
+//                                    pstmt2v.setString(23, user);
+//                                    pstmt2v.executeUpdate();
+//                                    java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request"
+//                                            + " SET paid=true,posted_to_lab='XRAY POSTING' "
+//                                            + "where  request_id  = '" + confirmrequeststable.getValueAt(confirmrequeststable.getSelectedRow(), 10).toString().trim() + "'");
+//                                    pstmt46.executeUpdate();
+//                                }
+//
+//                            }
+//                        }
+//
+//                    }
+//                }
+//
+//                javax.swing.JOptionPane.showMessageDialog(this, "X-RAY BILL RAISED Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+//
+//                //}
+//                connectDB.commit();
+//                connectDB.setAutoCommit(true);
+//
+//                for (int k = 0; k < confirmrequeststable.getRowCount(); k++) {
+//                    for (int r = 0; r < confirmrequeststable.getColumnCount(); r++) {
+//                        confirmrequeststable.getModel().setValueAt(null, k, r);
+//                    }
+//                }
+//
+//            } catch (Exception sq) {
+//
+//                try {
+//                    connectDB.rollback();
+//                } catch (java.sql.SQLException sql) {
+//                    javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+//                }
+//                sq.printStackTrace();
+//                javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+//
+//            }
+//        }
+//        refreshbutton.doClick();
+//        jTabbedPane1.setSelectedIndex(1);
+//        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+//        getList = true;
 
-                javax.swing.JOptionPane.showMessageDialog(this, "CANCEL Successful", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            } catch (SQLException ex) {
-                Logger.getLogger(XrayResIntfr.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        } else if (this.confirmrequeststable.getValueAt(this.confirmrequeststable.getSelectedRow(), 9) == Boolean.TRUE) {
-            java.util.Calendar calendar = java.util.Calendar.getInstance();
-
-            long dateNow = calendar.getTimeInMillis();
-
-            java.sql.Date datenowSql1 = new java.sql.Date(dateNow);
-
-            System.out.println(datenowSql1.toString());
-
-            java.sql.Timestamp datenowSql = new java.sql.Timestamp(dateNow);
-
-            System.out.println(datenowSql.toString());
-            //   try{
-            String billNo = null;
-            String transNo = null;
-            String payMode = null;
-            String patientAcc = null;
-            String cardNo = null;
-            String AccDesc = null;
-            String scheme = null;
-            String cardName = null;
-            String isurer = null;
-            String expDate = null;
-            String staffNo = null;
-
-            String user = null;
-            String accDesc1 = null;
-            String glAcc1 = null;
-            String chbox = null;
-            String units = null;
-            String gacc = null;
-            String request = null;
-            int itemInt = 0;
-            double price = 0.00;
-            String Store = null;
-            double qty = 0.00;
-
-            double amount = 0.00;
-            double sellPrice = 0.00;
-            java.util.Date admDate = null;
-            String visitid = "-";
-            java.util.Date adDate = null;
-            String opvisitid = "-";
-
-            try {
-                connectDB.setAutoCommit(false);
-                java.sql.Statement stm12t = connectDB.createStatement();
-
-                java.sql.Statement stm12 = connectDB.createStatement();
-                java.sql.Statement stm121 = connectDB.createStatement();
-                java.sql.Statement stm1211 = connectDB.createStatement();
-                java.sql.Statement stm122 = connectDB.createStatement();
-                java.sql.Statement stm122x = connectDB.createStatement();
-                java.sql.Statement stm1 = connectDB.createStatement();
-
-                java.sql.ResultSet rse12 = stm12.executeQuery("select code,activity from pb_activity where activity_category ='PR'");
-
-                while (rse12.next()) {
-
-                    patientAcc = rse12.getObject(1).toString();
-                    AccDesc = rse12.getObject(2).toString();
-                }
-
-                java.sql.ResultSet rse12t = stm12t.executeQuery("select code,activity from pb_activity where activity_category ='PR'");
-                while (rse12t.next()) {
-
-                    patientAcc = rse12t.getObject(1).toString();
-                    AccDesc = rse12t.getObject(2).toString();
-                }
-
-                for (int i = confirmrequeststable.getSelectedRow(); i <= confirmrequeststable.getSelectedRow(); i++) {
-                    if (confirmrequeststable.getValueAt(i, 9) != null) {
-                        if (confirmrequeststable.getModel().getValueAt(i, 9) == java.lang.Boolean.TRUE) {
-                            String revCode = (String) confirmrequeststable.getValueAt(i, 13);
-                            String glCode = (String) confirmrequeststable.getValueAt(i, 14);
-                            System.out.println("Count" + i);
-                            java.sql.Statement ps11 = connectDB.createStatement();
-                            java.sql.ResultSet rst11 = ps11.executeQuery("select nextval('lab_request'),current_user");
-                            while (rst11.next()) {
-                                rst11.getObject(1).toString();
-
-                                billNo = rst11.getObject(1).toString();
-                                user = rst11.getObject(2).toString();
-
-                            }
-
-                            request = confirmrequeststable.getValueAt(i, 7).toString();
-                            if (request.startsWith("I")) {
-
-                                java.sql.Statement pst = connectDB.createStatement();
-                                java.sql.ResultSet rstt = pst.executeQuery("select nextval('transaction_no_seq')");
-
-                                while (rstt.next()) {
-                                    rstt.getObject(1).toString();
-
-                                    transNo = rstt.getObject(1).toString();
-                                }
-
-                                java.sql.Statement stm121t = connectDB.createStatement();
-
-                                java.sql.Statement stm12n = connectDB.createStatement();
-                                java.sql.ResultSet rse12n = stm12n.executeQuery("select adm_date from hp_inpatient_register where patient_no ='" + confirmrequeststable.getValueAt(i, 1).toString() + "'");
-                                while (rse12n.next()) {
-                                    admDate = rse12n.getDate(1);
-                                }
-                                java.sql.Statement ps11w1 = connectDB.createStatement();
-                                java.sql.ResultSet rst11w1 = ps11w1.executeQuery("select visit_id from hp_admission where patient_no = '" + confirmrequeststable.getValueAt(i, 1).toString() + "' and check_out = false");
-                                while (rst11w1.next()) {
-
-                                    visitid = rst11w1.getObject(1).toString();
-                                }
-
-                                System.out.println(admDate);
-                                // if (exp.before(date)){
-                                //  if (adDate.before(admDate)){
-                                //    javax.swing.JOptionPane.showMessageDialog(this, "Admission date is : " +admDate +" CHECK billing date","Date Message",javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                                // }else{
-
-                                if (!(confirmrequeststable.getValueAt(i, 3).toString().equals("Cash"))) {
-                                    java.sql.ResultSet rse1 = stm1.executeQuery("select pay_mode,account_no,description,payer,payer,expiry_date,"
-                                            + "account_no from hp_inpatient_register where patient_no ='" + confirmrequeststable.getValueAt(i, 1).toString() + "'");
-                                    while (rse1.next()) {
-                                        payMode = dbObject.getDBObject(rse1.getObject(1), "-");
-                                        cardNo = dbObject.getDBObject(rse1.getObject(2), "-");
-                                        scheme = dbObject.getDBObject(rse1.getObject(3), "-");
-                                        cardName = dbObject.getDBObject(rse1.getObject(4), "-");
-                                        isurer = dbObject.getDBObject(rse1.getObject(5), "-");
-                                        expDate = dbObject.getDBObject(rse1.getObject(6), "NULL");
-                                        staffNo = dbObject.getDBObject(rse1.getObject(7), "-");
-                                    }
-                                }
-
-                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
-                                //  for (int i = 0; i < confirmrequeststable.getRowCount(); i++)
-                                {
-                                    pstmt.setString(1, confirmrequeststable.getValueAt(i, 1).toString());
-                                    pstmt.setObject(2, confirmrequeststable.getValueAt(i, 4).toString());
-                                    pstmt.setString(3, "General");
-                                    pstmt.setString(4, confirmrequeststable.getValueAt(i, 3).toString());
-                                    pstmt.setString(5, transNo);
-                                    pstmt.setString(7, scheme);
-                                    pstmt.setString(6, cardNo);
-                                    pstmt.setString(8, cardName);
-                                    pstmt.setString(9, isurer);
-                                    pstmt.setDate(10, null);
-                                    pstmt.setString(11, "");
-                                    pstmt.setDouble(12, java.lang.Double.valueOf(confirmrequeststable.getValueAt(i, 6).toString()));
-                                    pstmt.setDouble(13, 0.00);
-                                    pstmt.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(confirmrequeststable.getValueAt(i, 0).toString())));
-                                    pstmt.setObject(15, patientAcc);
-                                    pstmt.setString(16, revCode);
-                                    pstmt.setDouble(17, java.lang.Double.valueOf(confirmrequeststable.getValueAt(i, 5).toString()));
-                                    pstmt.setObject(18, staffNo);
-                                    pstmt.setBoolean(19, false);
-                                    pstmt.setString(20, "Billing");
-                                    pstmt.setBoolean(21, false);
-                                    pstmt.setString(22, AccDesc);
-                                    pstmt.setString(23, visitid);
-                                    pstmt.setString(24, user);
-                                    pstmt.setString(25, billNo);
-                                    pstmt.setString(26, "IP");
-                                    pstmt.setTimestamp(27, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
-                                    pstmt.setString(28, visitid);
-                                    pstmt.executeUpdate();
-
-                                    java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-                                    pstmt2.setObject(1, glCode);
-                                    pstmt2.setString(2, revCode);
-                                    pstmt2.setString(3, confirmrequeststable.getValueAt(i, 1).toString());
-                                    pstmt2.setString(4, confirmrequeststable.getValueAt(i, 2).toString());
-                                    pstmt2.setString(5, "");
-                                    pstmt2.setString(6, cardNo);
-                                    pstmt2.setString(7, cardName);
-                                    pstmt2.setString(8, "IP");
-                                    pstmt2.setString(9, confirmrequeststable.getValueAt(i, 8).toString());
-                                    pstmt2.setString(10, confirmrequeststable.getValueAt(i, 3).toString());
-                                    pstmt2.setString(11, "");
-                                    pstmt2.setString(12, "");
-                                    pstmt2.setString(13, "");
-                                    pstmt2.setString(14, confirmrequeststable.getValueAt(i, 4).toString());
-                                    pstmt2.setString(15, "Revenue");
-                                    pstmt2.setDouble(16, 0.00);
-                                    pstmt2.setDouble(17, java.lang.Double.valueOf(confirmrequeststable.getValueAt(i, 6).toString()));
-                                    pstmt2.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(confirmrequeststable.getValueAt(i, 0).toString())));
-                                    pstmt2.setString(19, transNo);
-                                    pstmt2.setBoolean(20, false);
-                                    pstmt2.setBoolean(21, false);
-                                    pstmt2.setBoolean(22, false);
-                                    pstmt2.setString(23, user);
-                                    pstmt2.executeUpdate();
-
-                                }
-                                //}
-                                // }
-
-                                java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request"
-                                        + " SET paid=true,posted_to_lab='XRAY POSTING' "
-                                        + "where  request_id  = '" + confirmrequeststable.getValueAt(confirmrequeststable.getSelectedRow(), 10).toString().trim() + "'");
-                                pstmt46.executeUpdate();
-
-//end of inpatients
-                            } else {//OUT PATIENTS
-
-                                java.sql.Statement ps11w1 = connectDB.createStatement();
-                                java.sql.ResultSet rst11w1 = ps11w1.executeQuery("select distinct slip_no,date from credit_acc_slip where patient_no = '" + confirmrequeststable.getValueAt(confirmrequeststable.getSelectedRow(), 1).toString() + "' order by date desc limit 1");
-                                while (rst11w1.next()) {
-
-                                    opvisitid = rst11w1.getObject(1).toString();
-                                }
-                                if (confirmrequeststable.getValueAt(i, 3).toString().trim().toLowerCase().startsWith("cash")) {
-                                    java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into hp_patient_billing values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?))");
-
-                                    pstmt2.setString(1, confirmrequeststable.getValueAt(i, 1).toString());
-
-                                    pstmt2.setString(2, confirmrequeststable.getValueAt(i, 2).toString());
-                                    pstmt2.setString(3, confirmrequeststable.getValueAt(i, 3).toString());
-                                    pstmt2.setString(4, "General");
-                                    pstmt2.setString(5, confirmrequeststable.getValueAt(i, 4).toString());
-                                    pstmt2.setDouble(6, java.lang.Double.valueOf(confirmrequeststable.getValueAt(i, 5).toString()));
-                                    pstmt2.setDouble(7, java.lang.Double.valueOf(confirmrequeststable.getValueAt(i, 6).toString()));
-                                    pstmt2.setObject(8, glCode);
-                                    pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(datenowSql1.toString())));
-                                    pstmt2.setString(10, opvisitid);
-
-                                    pstmt2.setString(11, user);
-                                    pstmt2.setBoolean(12, false);
-                                    pstmt2.setString(13, revCode);
-                                    pstmt2.setString(14, billNo);
-                                    pstmt2.setString(15, confirmrequeststable.getValueAt(i, 7).toString());
-                                    pstmt2.executeUpdate();
-
-                                    java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request"
-                                            + " SET posted_to_lab='XRAY POSTING' "
-                                            + "where  request_id  = '" + confirmrequeststable.getValueAt(confirmrequeststable.getSelectedRow(), 10).toString().trim() + "'");
-                                    pstmt46.executeUpdate();
-
-                                } else if (confirmrequeststable.getValueAt(i, 3).toString().trim().toLowerCase().startsWith("scheme")) {
-
-                                    java.sql.ResultSet rse1 = stm1.executeQuery("select pay_mode,account_no,description,payer,payer,expiry_date,"
-                                            + "account_no from hp_inpatient_register where patient_no ='" + confirmrequeststable.getValueAt(i, 1).toString() + "'");
-                                    while (rse1.next()) {
-                                        payMode = dbObject.getDBObject(rse1.getObject(1), "-");
-                                        cardNo = dbObject.getDBObject(rse1.getObject(2), "-");
-                                        scheme = dbObject.getDBObject(rse1.getObject(3), "-");
-                                        cardName = dbObject.getDBObject(rse1.getObject(4), "-");
-                                        isurer = dbObject.getDBObject(rse1.getObject(5), "-");
-                                        expDate = dbObject.getDBObject(rse1.getObject(6), "NULL");
-                                        staffNo = dbObject.getDBObject(rse1.getObject(7), "-");
-                                    }
-
-                                    java.sql.Statement pstm121t = connectDB.createStatement();
-                                    java.sql.ResultSet rse121t = pstm121t.executeQuery("select activity from pb_activity where code ='" + glCode + "'");
-
-                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
-                                    pstmt.setString(1, confirmrequeststable.getValueAt(i, 1).toString());
-                                    pstmt.setObject(2, confirmrequeststable.getValueAt(i, 4).toString());
-                                    pstmt.setString(3, "General");
-                                    pstmt.setString(4, confirmrequeststable.getValueAt(i, 3).toString());
-                                    pstmt.setString(5, transNo);
-                                    pstmt.setString(7, scheme);
-                                    pstmt.setString(6, cardNo);
-                                    pstmt.setString(8, cardName);
-                                    pstmt.setString(9, isurer);
-                                    pstmt.setDate(10, null);
-                                    pstmt.setString(11, "");
-                                    pstmt.setDouble(12, java.lang.Double.valueOf(confirmrequeststable.getValueAt(i, 6).toString()));
-                                    pstmt.setDouble(13, 0.00);
-                                    pstmt.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(confirmrequeststable.getValueAt(i, 0).toString())));
-                                    pstmt.setObject(15, patientAcc);
-                                    pstmt.setString(16, revCode);
-                                    pstmt.setDouble(17, java.lang.Double.valueOf(confirmrequeststable.getValueAt(i, 5).toString()));
-                                    pstmt.setObject(18, staffNo);
-                                    pstmt.setBoolean(19, false);
-                                    pstmt.setString(20, "Billing");
-                                    pstmt.setBoolean(21, false);
-                                    pstmt.setString(22, AccDesc);
-                                    pstmt.setString(23, opvisitid);
-                                    pstmt.setString(24, user);
-                                    pstmt.setString(25, billNo);
-                                    pstmt.setString(26, "OP");
-                                    pstmt.setTimestamp(27, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
-                                    pstmt.setString(28, opvisitid);
-                                    pstmt.executeUpdate();
-
-                                    java.sql.PreparedStatement pstmt2v = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-                                    pstmt2v.setObject(1, glCode);
-                                    pstmt2v.setString(2, revCode);
-                                    pstmt2v.setString(3, confirmrequeststable.getValueAt(i, 1).toString());
-                                    pstmt2v.setString(4, confirmrequeststable.getValueAt(i, 2).toString());
-                                    pstmt2v.setString(5, "");
-                                    pstmt2v.setString(6, cardNo);
-                                    pstmt2v.setString(7, cardName);
-                                    pstmt2v.setString(8, "OP");
-                                    pstmt2v.setString(9, confirmrequeststable.getValueAt(i, 8).toString());
-                                    pstmt2v.setString(10, confirmrequeststable.getValueAt(i, 3).toString());
-                                    pstmt2v.setString(11, "");
-                                    pstmt2v.setString(12, "");
-                                    pstmt2v.setString(13, "");
-                                    pstmt2v.setString(14, confirmrequeststable.getValueAt(i, 4).toString());
-                                    pstmt2v.setString(15, "Revenue");
-                                    pstmt2v.setDouble(16, 0.00);
-                                    pstmt2v.setDouble(17, java.lang.Double.valueOf(confirmrequeststable.getValueAt(i, 6).toString()));
-                                    pstmt2v.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(confirmrequeststable.getValueAt(i, 0).toString())));
-                                    pstmt2v.setString(19, transNo);
-                                    pstmt2v.setBoolean(20, false);
-                                    pstmt2v.setBoolean(21, false);
-                                    pstmt2v.setBoolean(22, false);
-                                    pstmt2v.setString(23, user);
-                                    pstmt2v.executeUpdate();
-                                    java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request"
-                                            + " SET paid=true,posted_to_lab='XRAY POSTING' "
-                                            + "where  request_id  = '" + confirmrequeststable.getValueAt(confirmrequeststable.getSelectedRow(), 10).toString().trim() + "'");
-                                    pstmt46.executeUpdate();
-                                }
-
-                            }
-                        }
-
-                    }
-                }
-
-                javax.swing.JOptionPane.showMessageDialog(this, "X-RAY BILL RAISED Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-                //}
-                connectDB.commit();
-                connectDB.setAutoCommit(true);
-
-                for (int k = 0; k < confirmrequeststable.getRowCount(); k++) {
-                    for (int r = 0; r < confirmrequeststable.getColumnCount(); r++) {
-                        confirmrequeststable.getModel().setValueAt(null, k, r);
-                    }
-                }
-
-            } catch (Exception sq) {
-
-                try {
-                    connectDB.rollback();
-                } catch (java.sql.SQLException sql) {
-                    javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                }
-                sq.printStackTrace();
-                javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-
-            }
-        }
-        refreshbutton.doClick();
-        jTabbedPane1.setSelectedIndex(1);
-        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getList = true;
-
-    }//GEN-LAST:event_confirmrequeststableMouseClicked
+    }//GEN-LAST:event_confirmRequestsTableMouseClicked
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
         if (jTabbedPane1.getSelectedIndex() == 2) {
@@ -2093,21 +2164,29 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
     private void refreshbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshbuttonActionPerformed
         runGetListThread();
         runconfirmGetListThread();
-        radiologyResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, patient_name, xray_no, examination, doctor as doctor_requesting, user_name as radiologist, doc_read as read FROM hp_xray_results WHERE date::date >= '"+xraydatePicker.getDate()+"'::date - 2 ORDER BY 1,3,4"));
+        radiologyResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, patient_name, xray_no, examination, doctor as doctor_requesting, user_name as radiologist, doc_read as read FROM hp_xray_results WHERE date::date >= '" + xraydatePicker.getDate() + "'::date - 2 ORDER BY 1,3,4"));
     }//GEN-LAST:event_refreshbuttonActionPerformed
 
     private void searchTextFieldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchTextFieldCaretUpdate
         if (outPatientChkbx.isSelected()) {
             if (searchTextField.getCaretPosition() >= 3) {
-                this.pendingresultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+                this.paidResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                         + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,bed_no as Request_No,doctor,"
                         + "false as Approve,request_id as Request_id,time_due,notes "
                         + " FROM pb_doctors_request pb WHERE"
                         + " (pb.revenue_code ilike 'X-RAY' OR pb.revenue_code ilike 'XRAY') and  paid = true AND"
-                        + " collected = false and trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
-                        + "and patient_no ilike '%" + searchTextField.getText() + "%' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE patient_no ILIKE '%" + searchTextField.getText() + "%')  ORDER BY trans_date asc"));
+                        + " collected = false and trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 60 "
+                        + "and patient_no ilike '%" + searchTextField.getText() + "%' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE patient_no ILIKE '%" + searchTextField.getText() + "%') "
+                        + " UNION "
+                        + "SELECT date as trans_date, patient_no, dealer as patient_name, payment_mode, description as service, quantity, debit, "
+                        + "receipt_no as Request_no, '' as doctor, false as Approve, receipt_no as Request_id, now()::time(0)::varchar as time_due, '' as notes from ac_cash_collection WHERE patient_no ilike '%" + searchTextField.getText() + "%' AND "
+                        + "date > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 4 AND patient_no NOT IN (SELECT DISTINCT patient_no FROM pb_doctors_request WHERE "
+                                + "(revenue_code ilike 'X-RAY' OR revenue_code ilike 'XRAY') and  paid = true AND trans_date > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 60) AND "
+                        + " ((SELECT activity FROM pb_activity where ac_cash_collection.activity_code = pb_activity.code) "
+                        + " ILIKE 'X-RAY' OR (SELECT activity FROM pb_activity where ac_cash_collection.activity_code = pb_activity.code) ilike 'XRAY') "
+                        + "ORDER BY trans_date asc"));
 
-                this.confirmrequeststable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+                this.confirmRequestsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                         + "select DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,inv_no,doctor,false as bill,"
                         + "request_id as Request_id,time_due,false as cancel,revenue_code,gl_code  from pb_doctors_request pb"
                         + " WHERE (pb.revenue_code ilike 'X-RAY' OR pb.revenue_code ilike 'XRAY')"
@@ -2117,7 +2196,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
             }
         } else {
             if (searchTextField.getCaretPosition() >= 3) {
-                this.pendingresultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+                this.paidResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                         + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,bed_no as Request_No,doctor,"
                         + "false as Approve,request_id as Request_id,time_due,notes "
                         + " FROM pb_doctors_request pb WHERE"
@@ -2170,6 +2249,53 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_radiologyResultsTableMouseClicked
+
+    private void submitForPayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitForPayBtnActionPerformed
+        for (int i = 0; i < confirmRequestsTable.getRowCount(); i++) {
+            if (Boolean.parseBoolean(confirmRequestsTable.getValueAt(i, 9).toString())) {
+                try {
+                    java.sql.PreparedStatement pstmt4611 = connectDB.prepareStatement("UPDATE hp_patient_billing"
+                            + " SET collected = true  "
+                            + " where inpatient_no = ? "
+                            + " AND upper(service) = ?");
+                    pstmt4611.setObject(1, confirmRequestsTable.getValueAt(i, 7).toString().trim());
+                    pstmt4611.setString(2, confirmRequestsTable.getValueAt(i, 4).toString().toUpperCase());
+                    pstmt4611.executeUpdate();
+                    javax.swing.JOptionPane.showMessageDialog(this, "Request(s) submitted to pay point.");
+                } catch (java.sql.SQLException sqe) {
+                    sqe.printStackTrace();
+                    javax.swing.JOptionPane.showMessageDialog(this, sqe.getMessage());
+                }
+            }
+        }
+        refreshbutton.doClick();
+        jTabbedPane1.setSelectedIndex(1);
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getList = true;
+// TODO add your handling code here:
+    }//GEN-LAST:event_submitForPayBtnActionPerformed
+
+    private void cancleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancleBtnActionPerformed
+        for (int i = 0; i < confirmRequestsTable.getRowCount(); i++) {
+            if (Boolean.parseBoolean(confirmRequestsTable.getValueAt(i, 12).toString())) {
+                try {
+                    java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request "
+                            + "SET collected = true  ,posted_to_lab='CANCELLED POSTING' ,paid =true,collected=true,results=true where "
+                            + "  request_id  = '" + confirmRequestsTable.getValueAt(i, 10).toString().trim() + "'");
+                    pstmt46.executeUpdate();
+
+                    javax.swing.JOptionPane.showMessageDialog(this, "CANCEL Successful", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                } catch (SQLException ex) {
+                    Logger.getLogger(XrayResIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        }
+        refreshbutton.doClick();
+        jTabbedPane1.setSelectedIndex(1);
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getList = true;// TODO add your handling code here:
+    }//GEN-LAST:event_cancleBtnActionPerformed
     private void populateTable1(java.lang.String patient_no) {
     }
 
@@ -2219,7 +2345,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                     + " FROM pb_doctors_request pb, pb_activity pa WHERE"
                     + " pb.requisition_no='X-RAY' and pb.gl_code = pa.code AND pa.department ILIKE 'XRY' AND paid = true AND"
                     + " results = false and trans_date >= (select current_timestamp(0)::date -1) ORDER BY trans_date asc");
-            this.pendingresultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+            this.paidResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                     + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,bed_no as Request_No,doctor,"
                     + "false as Approve,request_id as Request_id,time_due,(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,notes "
                     + " FROM pb_doctors_request pb WHERE"
@@ -2287,7 +2413,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                     + "bed_no  as Request_No,time_due,false as cancel,revenue_code,gl_code  from pb_doctors_request pb, pb_activity pa"
                     + " WHERE pb.posted_to_lab='DOC POSTING' and pb.requisition_no='X-RAY' and pb.gl_code = pa.code AND pa.department ILIKE 'XRY' and paid = false AND collected = false and trans_date >= "
                     + "(select current_timestamp(0)::date -2) ORDER BY trans_date asc");
-            this.confirmrequeststable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+            this.confirmRequestsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                     + "select DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,inv_no,doctor,false as bill,"
                     + "request_id as Request_id,time_due,false as cancel,revenue_code,gl_code  from pb_doctors_request pb "
                     + " WHERE (pb.requisition_no ilike 'X-RAY' OR pb.requisition_no ilike 'XRAY') "
@@ -2301,6 +2427,41 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
 
         }
+
+        javax.swing.table.TableColumn column2 = null;
+        for (int l = 0; l < paidResultsTable.getColumnCount(); l++) {
+            column2 = paidResultsTable.getColumnModel().getColumn(l);
+            if (l == 2) {
+
+                column2.setPreferredWidth(300); // item description column is bigger
+            } else if (i == 1 || i == 4) {
+
+                column2.setPreferredWidth(150);
+
+            } else {
+                column2.setPreferredWidth(100);
+            }
+        }
+
+        paidScrollPane.setViewportView(paidResultsTable);
+
+        javax.swing.table.TableColumn column = null;
+        for (int m = 0; m < confirmRequestsTable.getColumnCount(); m++) {
+            column = confirmRequestsTable.getColumnModel().getColumn(m);
+            if (m == 2) {
+
+                column.setPreferredWidth(300); // item description column is bigger
+            } else if (i == 1 || i == 4) {
+
+                column.setPreferredWidth(150);
+
+            } else {
+                column.setPreferredWidth(100);
+            }
+        }
+
+        confirmScrollPane.setViewportView(confirmRequestsTable);
+
         if (patNo > 5) {
 
             this.jLabel1.setText("Queue Long '" + patNo + "' Patients Are Waiting For Xray");
@@ -2319,9 +2480,11 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.JButton cancleBtn;
     private javax.swing.JButton clearButton;
     private javax.swing.JTextArea clinicalHistoryTxt;
-    private javax.swing.JTable confirmrequeststable;
+    private javax.swing.JTable confirmRequestsTable;
+    private javax.swing.JScrollPane confirmScrollPane;
     private javax.swing.JEditorPane diagnosisEditorPane;
     private javax.swing.JTextField doctorTextField;
     private javax.swing.JCheckBox femaleCheckBox;
@@ -2355,9 +2518,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel621;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
@@ -2372,9 +2533,11 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField nooffilmTextField;
     private javax.swing.JTextArea otherInformationTxt;
     private javax.swing.JCheckBox outPatientChkbx;
+    private javax.swing.JTable paidResultsTable;
+    private javax.swing.JScrollPane paidScrollPane;
     private javax.swing.JButton patientCardBtn;
     private javax.swing.JTextField patientNoTxt;
-    private javax.swing.JTable pendingresultsTable;
+    private javax.swing.JLabel paySpacerLbl;
     private javax.swing.JTextArea physicalExamTxt;
     private javax.swing.JTextArea provisionalDiagnosisTxt;
     private javax.swing.JTable radiologyResultsTable;
@@ -2382,6 +2545,8 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton refreshbutton;
     private javax.swing.JButton saveresultsButton;
     private javax.swing.JTextField searchTextField;
+    private javax.swing.JButton submitForPayBtn;
+    private javax.swing.JPanel waitingListActionsPanel;
     private javax.swing.JTextField xrayTextField;
     private com.afrisoftech.lib.DatePicker xraydatePicker;
     private javax.swing.JTable xraytestTable;

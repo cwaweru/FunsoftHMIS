@@ -370,7 +370,7 @@ public class HosInPatDatePanel extends javax.swing.JDialog {
     
     private void searchIPtxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchIPtxtCaretUpdate
        if(searchIPtxt.getCaretPosition()>3){
-           ipNumberstbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB,"SELECT trim(invoice_no) as scheme,patient_no,patient_name as name from hp_admission WHERE (invoice_no ILIKE '%"+searchIPtxt.getText().toString()+"%' or patient_name ilike  '%"+searchIPtxt.getText().toString()+"%' or patient_no ilike  '%"+searchIPtxt.getText().toString()+"%')  and invoice_no is not null ORDER BY 1"));
+           ipNumberstbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"SELECT trim(invoice_no) as scheme,patient_no,patient_name as name from hp_admission WHERE (invoice_no ILIKE '%"+searchIPtxt.getText().toString()+"%' or patient_name ilike  '%"+searchIPtxt.getText().toString()+"%' or patient_no ilike  '%"+searchIPtxt.getText().toString()+"%')  and invoice_no is not null ORDER BY 1"));
        }
          
            

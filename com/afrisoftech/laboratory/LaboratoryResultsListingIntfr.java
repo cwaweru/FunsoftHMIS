@@ -136,6 +136,19 @@ public class LaboratoryResultsListingIntfr extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        javax.swing.table.TableColumn column = null;
+        for (int i = 0; i < labResultsTable.getColumnCount(); i++) {
+            column = labResultsTable.getColumnModel().getColumn(i);
+            if (i == 2) {
+
+                column.setPreferredWidth(500); // item description column is bigger
+            } else {
+
+                column.setPreferredWidth(100);
+
+            }
+        }
+        resultsScrollPane.setViewportView(labResultsTable);
         labResultsTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labResultsTableMouseClicked(evt);

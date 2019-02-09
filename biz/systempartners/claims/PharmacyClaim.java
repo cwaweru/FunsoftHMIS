@@ -301,7 +301,7 @@ public class PharmacyClaim implements java.lang.Runnable {
                         try {
                             connectDB.setAutoCommit(false);
                             
-                            java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("UPDATE ac_cash_collection SET closed = true WHERE patient_no = '"+com.afrisoftech.hospinventory.PatientsBillingIntfr.patientNoTxt.getText()+"' AND closed = false AND date::date BETWEEN (current_date -1) AND current_date and description ilike 'copay%'");
+                            java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("UPDATE ac_cash_collection SET closed = true WHERE patient_no = '"+com.afrisoftech.hospinventory.PatientsBillingIntfr.patientNumberTxt.getText()+"' AND closed = false AND date::date BETWEEN (current_date -1) AND current_date and description ilike 'copay%'");
                             pstmt11.executeUpdate();
                             
                             connectDB.commit();
@@ -498,7 +498,7 @@ public class PharmacyClaim implements java.lang.Runnable {
                     connectDB.setAutoCommit(false);
                     
                     java.sql.Statement ps1 = connectDB.createStatement();
-                    java.sql.ResultSet rst1 = ps1.executeQuery("select description,debit*-1 FROM ac_cash_collection WHERE patient_no = '"+com.afrisoftech.hospinventory.PatientsBillingIntfr.patientNoTxt.getText()+"' AND closed = false AND date::date BETWEEN (current_date -1) AND current_date and description ilike 'copay%'");
+                    java.sql.ResultSet rst1 = ps1.executeQuery("select description,debit*-1 FROM ac_cash_collection WHERE patient_no = '"+com.afrisoftech.hospinventory.PatientsBillingIntfr.patientNumberTxt.getText()+"' AND closed = false AND date::date BETWEEN (current_date -1) AND current_date and description ilike 'copay%'");
                     while (rst1.next()){
                         System.out.println("I have started creating copy nodes");
                         txElement = xmlDoc.createElement("Transaction");

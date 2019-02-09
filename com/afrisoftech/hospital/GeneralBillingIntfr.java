@@ -84,10 +84,10 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         selectBtn = new javax.swing.JButton();
         disposeBtn = new javax.swing.JButton();
         serviceorcodeSearchDialog = new javax.swing.JDialog();
-        serviceorcodeSearchPanel = new javax.swing.JPanel();
-        serviceorcodeSearchTxt = new javax.swing.JTextField();
-        jSearchScrollPane = new javax.swing.JScrollPane();
-        serviceorcodeSearchTable = new com.afrisoftech.dbadmin.JTable();
+        servicesorcodeSearchPanel = new javax.swing.JPanel();
+        servicesorcodeSearchTxt = new javax.swing.JTextField();
+        servicesorcodeSearchScrollPane = new javax.swing.JScrollPane();
+        servicesorcodeSearchTable = new com.afrisoftech.dbadmin.JTable();
         jButton9 = new javax.swing.JButton();
         patientSearchDialog = new javax.swing.JDialog();
         jSearchPanel21 = new javax.swing.JPanel();
@@ -504,12 +504,12 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         serviceorcodeSearchDialog.setUndecorated(true);
         serviceorcodeSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        serviceorcodeSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        serviceorcodeSearchPanel.setLayout(new java.awt.GridBagLayout());
+        servicesorcodeSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        servicesorcodeSearchPanel.setLayout(new java.awt.GridBagLayout());
 
-        serviceorcodeSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
+        servicesorcodeSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                serviceorcodeSearchTxtCaretUpdate(evt);
+                servicesorcodeSearchTxtCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -517,12 +517,12 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 10.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
-        serviceorcodeSearchPanel.add(serviceorcodeSearchTxt, gridBagConstraints);
+        servicesorcodeSearchPanel.add(servicesorcodeSearchTxt, gridBagConstraints);
 
-        jSearchScrollPane.setDoubleBuffered(true);
+        servicesorcodeSearchScrollPane.setDoubleBuffered(true);
 
-        serviceorcodeSearchTable.setDoubleBuffered(true);
-        serviceorcodeSearchTable.setShowHorizontalLines(false);
+        servicesorcodeSearchTable.setDoubleBuffered(true);
+        servicesorcodeSearchTable.setShowHorizontalLines(false);
         /*    try {
             searchRowSet.setCommand("select product,selling_price,gl_code FROM st_stock_prices WHERE department = 'Pharmacy' order by product");
             searchRowSet.setConnectionSource(pConnDB);
@@ -530,13 +530,13 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             searchRowSet.execute();
 
             // crset2.setExecuteOnLoad(true);
-            serviceorcodeSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
+            servicesorcodeSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
                 new org.netbeans.lib.sql.models.TableModel.Column("product", "Description", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("selling_price", "Amount", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("gl_code", "Gl_code", false)
 
             }));
-            // jSearchScrollPane.setViewportView(serviceorcodeSearchTable);
+            // servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
 
         } catch(java.sql.SQLException sqlex){
             javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -544,17 +544,17 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             System.out.println(sqlex.getMessage());
         }
         */
-        serviceorcodeSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        servicesorcodeSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                serviceorcodeSearchTableMouseClicked(evt);
+                servicesorcodeSearchTableMouseClicked(evt);
             }
         });
-        serviceorcodeSearchTable.addKeyListener(new java.awt.event.KeyAdapter() {
+        servicesorcodeSearchTable.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                serviceorcodeSearchTableKeyReleased(evt);
+                servicesorcodeSearchTableKeyReleased(evt);
             }
         });
-        jSearchScrollPane.setViewportView(serviceorcodeSearchTable);
+        servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -563,7 +563,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
-        serviceorcodeSearchPanel.add(jSearchScrollPane, gridBagConstraints);
+        servicesorcodeSearchPanel.add(servicesorcodeSearchScrollPane, gridBagConstraints);
 
         jButton9.setText("Dispose");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -574,7 +574,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        serviceorcodeSearchPanel.add(jButton9, gridBagConstraints);
+        servicesorcodeSearchPanel.add(jButton9, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -582,7 +582,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        serviceorcodeSearchDialog.getContentPane().add(serviceorcodeSearchPanel, gridBagConstraints);
+        serviceorcodeSearchDialog.getContentPane().add(servicesorcodeSearchPanel, gridBagConstraints);
 
         patientSearchDialog.setModal(true);
         patientSearchDialog.setUndecorated(true);
@@ -696,13 +696,13 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             searchRowSet.execute();
 
             // crset2.setExecuteOnLoad(true);
-            serviceorcodeSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
+            servicesorcodeSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
                 new org.netbeans.lib.sql.models.TableModel.Column("product", "Description", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("selling_price", "Amount", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("gl_code", "Gl_code", false)
 
             }));
-            // jSearchScrollPane.setViewportView(serviceorcodeSearchTable);
+            // servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
 
         } catch(java.sql.SQLException sqlex){
             javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -772,13 +772,13 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             searchRowSet.execute();
 
             // crset2.setExecuteOnLoad(true);
-            serviceorcodeSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
+            servicesorcodeSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
                 new org.netbeans.lib.sql.models.TableModel.Column("product", "Description", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("selling_price", "Amount", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("gl_code", "Gl_code", false)
 
             }));
-            // jSearchScrollPane.setViewportView(serviceorcodeSearchTable);
+            // servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
 
         } catch(java.sql.SQLException sqlex){
             javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -933,13 +933,13 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             searchRowSet.execute();
 
             // crset2.setExecuteOnLoad(true);
-            serviceorcodeSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
+            servicesorcodeSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
                 new org.netbeans.lib.sql.models.TableModel.Column("product", "Description", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("selling_price", "Amount", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("gl_code", "Gl_code", false)
 
             }));
-            // jSearchScrollPane.setViewportView(serviceorcodeSearchTable);
+            // servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
 
         } catch(java.sql.SQLException sqlex){
             javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -1014,13 +1014,13 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             searchRowSet.execute();
 
             // crset2.setExecuteOnLoad(true);
-            serviceorcodeSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
+            servicesorcodeSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
                 new org.netbeans.lib.sql.models.TableModel.Column("product", "Description", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("selling_price", "Amount", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("gl_code", "Gl_code", false)
 
             }));
-            // jSearchScrollPane.setViewportView(serviceorcodeSearchTable);
+            // servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
 
         } catch(java.sql.SQLException sqlex){
             javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -1090,13 +1090,13 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             searchRowSet.execute();
 
             // crset2.setExecuteOnLoad(true);
-            serviceorcodeSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
+            servicesorcodeSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
                 new org.netbeans.lib.sql.models.TableModel.Column("product", "Description", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("selling_price", "Amount", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("gl_code", "Gl_code", false)
 
             }));
-            // jSearchScrollPane.setViewportView(serviceorcodeSearchTable);
+            // servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
 
         } catch(java.sql.SQLException sqlex){
             javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -1166,13 +1166,13 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             searchRowSet.execute();
 
             // crset2.setExecuteOnLoad(true);
-            serviceorcodeSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
+            servicesorcodeSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
                 new org.netbeans.lib.sql.models.TableModel.Column("product", "Description", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("selling_price", "Amount", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("gl_code", "Gl_code", false)
 
             }));
-            // jSearchScrollPane.setViewportView(serviceorcodeSearchTable);
+            // servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
 
         } catch(java.sql.SQLException sqlex){
             javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -1249,7 +1249,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 //crset1.execute();
 
                 // crset2.setExecuteOnLoad(true);
-                serviceorcodeSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(crset1, new org.netbeans.lib.sql.models.TableModel.Column[] {
+                servicesorcodeSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(crset1, new org.netbeans.lib.sql.models.TableModel.Column[] {
                     new org.netbeans.lib.sql.models.TableModel.Column("patient_no", "Patient No.", false),
                     new org.netbeans.lib.sql.models.TableModel.Column("name", "Name", false),
 
@@ -1258,9 +1258,9 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
                 }));
 
-                tableModel = serviceorcodeSearchTable.getModel();
+                tableModel = servicesorcodeSearchTable.getModel();
 
-                jSearchScrollPane.setViewportView(serviceorcodeSearchTable);
+                servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
 
                 /*   }catch(java.sql.SQLException sqlex){
                 javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -1273,7 +1273,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             for (int i = 0; i < 4; i++) {
 
-                column = serviceorcodeSearchTable.getColumnModel().getColumn(i);
+                column = servicesorcodeSearchTable.getColumnModel().getColumn(i);
 
                 if (i == 1) {
 
@@ -1353,13 +1353,13 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 searchRowSet.execute();
 
                 // crset2.setExecuteOnLoad(true);
-                serviceorcodeSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
+                servicesorcodeSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
                     new org.netbeans.lib.sql.models.TableModel.Column("product", "Description", false),
                     new org.netbeans.lib.sql.models.TableModel.Column("selling_price", "Amount", false),
                     new org.netbeans.lib.sql.models.TableModel.Column("gl_code", "Gl_code", false)
 
                 }));
-                // jSearchScrollPane.setViewportView(serviceorcodeSearchTable);
+                // servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
 
             } catch(java.sql.SQLException sqlex){
                 javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -2919,6 +2919,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             paymentModeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT payment_mode FROM pb_paymentmodes ORDER BY 1")
             );
+            paymentModeCmbx.setEnabled(false);
             paymentModeCmbx.setMinimumSize(new java.awt.Dimension(75, 20));
             paymentModeCmbx.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2940,6 +2941,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             searchButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Find 2.png"))); // NOI18N
             searchButton3.setToolTipText("Search");
+            searchButton3.setEnabled(false);
             searchButton3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
             searchButton3.setMaximumSize(new java.awt.Dimension(14, 53));
             searchButton3.setMinimumSize(new java.awt.Dimension(20, 53));
@@ -4749,7 +4751,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
                 System.out.println("You need to type more than one character to search");
             } else {
-                packagesSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT package_code, package, package_amt as price, department, glcode FROM pb_packages_setup WHERE package_code ILIKE '%" + packagesSearchTxt.getText().toString() + "%'"));
+                packagesSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT package_code, package, package_amt as price, department, glcode FROM pb_packages_setup WHERE package_code ILIKE '%" + packagesSearchTxt.getText().toString() + "%'"));
 
                 //  System.out.println("");
             }
@@ -4760,7 +4762,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 System.out.println("You need to type more than three characters to search");
             } else {
 
-                packagesSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT package_code, package, package_amt as price, department, glcode FROM pb_packages_setup WHERE package ILIKE '%" + packagesSearchTxt.getText().toString() + "%'"));
+                packagesSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT package_code, package, package_amt as price, department, glcode FROM pb_packages_setup WHERE package ILIKE '%" + packagesSearchTxt.getText().toString() + "%'"));
 
             }
 
@@ -4868,7 +4870,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             System.out.println("Nothing");
         } else {
 
-            jSearchTable13.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT account_no,scheme_name,payer_name from ac_schemes where scheme_name ILIKE '" + jTextField1113.getText() + "%' order by scheme_name"));
+            jSearchTable13.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT account_no,scheme_name,payer_name from ac_schemes where scheme_name ILIKE '" + jTextField1113.getText() + "%' order by scheme_name"));
 
             jSearchTable13.setShowHorizontalLines(false);
             jSearchScrollPane13.setViewportView(jSearchTable13);
@@ -4982,6 +4984,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_discreetServicesTblKeyReleased
 
     private void discreetServicesTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_discreetServicesTblMouseClicked
+
         if (back2ServicesTableChkbx.isSelected()) {
             if (discreetServicesTbl.getSelectedColumn() == 0) {
                 this.cmboxMouseClicked();
@@ -5037,7 +5040,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             System.out.println("Nothing");
         } else {
-            jSearchTable31.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT staff_no, (upper(first_name||' '||middle_name)) as name,staff_category from pb_doctors_list where (upper(first_name||' '||middle_name)) ILIKE '%" + jTextField1121.getText() + "%' order by first_name"));
+            jSearchTable31.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT staff_no, (upper(first_name||' '||middle_name)) as name,staff_category from pb_doctors_list where (upper(first_name||' '||middle_name)) ILIKE '%" + jTextField1121.getText() + "%' order by first_name"));
 
             /*
              * try {
@@ -5200,7 +5203,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             System.out.println("Nothing");
         } else {
-            jSearchTable3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where patient_no ILIKE '" + jTextField112.getText() + "%' and last_visit > current_date - 5 order by second_name"));
+            jSearchTable3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where patient_no ILIKE '" + jTextField112.getText() + "%' and last_visit > current_date - 5 order by second_name"));
 
             jSearchTable3.setShowHorizontalLines(false);
             jSearchScrollPane3.setViewportView(jSearchTable3);
@@ -5242,7 +5245,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             System.out.println("Nothing");
         } else {
-            jSearchTable111.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT staff_no, (upper(first_name||' '||middle_name)) as name,staff_category from pb_doctors_list where (upper(first_name||' '||middle_name)) ILIKE '" + jTextField11111.getText() + "%' order by first_name"));
+            jSearchTable111.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT staff_no, (upper(first_name||' '||middle_name)) as name,staff_category from pb_doctors_list where (upper(first_name||' '||middle_name)) ILIKE '" + jTextField11111.getText() + "%' order by first_name"));
 
 
             /*
@@ -5388,7 +5391,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
     private void jTextField1112CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1112CaretUpdate
         if (jTextField1112.getCaretPosition() > 4) {
-            jSearchTable12.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT service_type,"
+            jSearchTable12.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT service_type,"
                     + " CASE WHEN ('" + jTextField711.getText() + "' ILIKE 'Scheme') THEN anaesthetist_rate ELSE rate END AS price,gl_account as gl_code"
                     + " FROM pb_operating_parameters WHERE service_type ILIKE '%" + jTextField1112.getText() + "%' "
                     + " AND main_service ILIKE '" + jTextField51.getText() + "' order by service_type"));
@@ -5709,7 +5712,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 System.out.println("Nothing");
             } else {
 
-                jSearchTable211.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_inpatient_register where patient_no ILIKE '" + jTextField11311.getText() + "%' order by second_name"));
+                jSearchTable211.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_inpatient_register where patient_no ILIKE '" + jTextField11311.getText() + "%' order by second_name"));
                 /*
                  * try {
                  *
@@ -5741,7 +5744,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
                     System.out.println("Nothing");
                 } else {
-                    jSearchTable211.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_inpatient_register where second_name||' '||first_name||' '||last_name ILIKE '" + jTextField11311.getText() + "%' order by second_name"));
+                    jSearchTable211.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_inpatient_register where second_name||' '||first_name||' '||last_name ILIKE '" + jTextField11311.getText() + "%' order by second_name"));
 
                     jSearchTable211.setShowHorizontalLines(false);
                     jSearchScrollPane211.setViewportView(jSearchTable211);
@@ -5775,7 +5778,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton41ActionPerformed
 
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
-        serviceorcodeSearchTxt.setText("");
+        servicesorcodeSearchTxt.setText("");
         consultantPatientCategoryTxt.setText("");
         consultantBillingPayModeTxt.setText("");
         for (int k = 0; k < consultantBillingTable.getRowCount(); k++) {
@@ -5934,7 +5937,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                             pstmt2.setString(1, consultantBillingPatientNoTxt.getText());
                             pstmt2.setString(10, "");
 
-                            pstmt2.setString(2, serviceorcodeSearchTxt.getText());
+                            pstmt2.setString(2, servicesorcodeSearchTxt.getText());
                             pstmt2.setString(3, consultantBillingPayModeTxt.getText());
                             pstmt2.setString(4, consultantPatientCategoryTxt.getText());
                             pstmt2.setString(5, consultantBillingTable.getValueAt(i, 0).toString());
@@ -6035,7 +6038,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                     connectDB.setAutoCommit(true);
                     javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
-                    serviceorcodeSearchTxt.setText("");
+                    servicesorcodeSearchTxt.setText("");
                     consultantPatientCategoryTxt.setText("");
                     consultantBillingPayModeTxt.setText("");
                     for (int k = 0; k < consultantBillingTable.getRowCount(); k++) {
@@ -6108,7 +6111,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             System.out.println("Nothing");
         } else {
 
-            jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT staff_no, (upper(first_name||' '||middle_name)) as name,staff_category from pb_doctors_list where (upper(first_name||' '||middle_name)) ILIKE '%" + jTextField1111.getText() + "%' order by first_name"));
+            jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT staff_no, (upper(first_name||' '||middle_name)) as name,staff_category from pb_doctors_list where (upper(first_name||' '||middle_name)) ILIKE '%" + jTextField1111.getText() + "%' order by first_name"));
 
             jSearchTable11.setShowHorizontalLines(false);
 
@@ -6198,7 +6201,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jSearchTable1MouseClicked
 
     private void jTextField111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField111CaretUpdate
-        jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select service_type,"
+        jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select service_type,"
                 + "CASE WHEN ('" + consultantBillingPayModeTxt.getText() + "' ILIKE 'Scheme') THEN anaesthetist_rate ELSE rate END AS price,"
                 + "gl_account as gl_code FROM pb_operating_parameters WHERE "
                 + "service_type ILIKE '" + jTextField111.getText() + "%' AND main_service = '" + consultantBillingRevenueDeptCmbx.getSelectedItem().toString() + "' order by service_type"));
@@ -6258,7 +6261,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
                 System.out.println("Nothing");
             } else {
-                jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where patient_no ILIKE '" + jTextField1131.getText() + "%' and last_visit > current_date - 15 order by second_name"));
+                jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where patient_no ILIKE '" + jTextField1131.getText() + "%' and last_visit > current_date - 15 order by second_name"));
 
                 jSearchTable21.setShowHorizontalLines(false);
                 jSearchScrollPane21.setViewportView(jSearchTable21);
@@ -6271,7 +6274,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
                     System.out.println("Nothing");
                 } else {
-                    jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where second_name||' '||first_name||' '||last_name ILIKE '" + jTextField1131.getText() + "%' and last_visit > current_date - 15 order by second_name"));
+                    jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where second_name||' '||first_name||' '||last_name ILIKE '" + jTextField1131.getText() + "%' and last_visit > current_date - 15 order by second_name"));
 
                     jSearchTable21.setShowHorizontalLines(false);
                     jSearchScrollPane21.setViewportView(jSearchTable21);
@@ -6324,7 +6327,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         serviceorcodeSearchDialog.dispose();        // Add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void serviceorcodeSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_serviceorcodeSearchTableMouseClicked
+    private void servicesorcodeSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_servicesorcodeSearchTableMouseClicked
         double bedAmt = 0.00; // java.lang.Double.valueOf(bedAmountTxt.getText());
         float billNo = 0;
         try {
@@ -6340,12 +6343,12 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             System.out.println("Select not successful");
         }
 
-        discreetServicesTbl.setValueAt(serviceorcodeSearchTable.getValueAt(serviceorcodeSearchTable.getSelectedRow(), 0), discreetServicesTbl.getSelectedRow(), 0);
+        discreetServicesTbl.setValueAt(servicesorcodeSearchTable.getValueAt(servicesorcodeSearchTable.getSelectedRow(), 0), discreetServicesTbl.getSelectedRow(), 0);
         discreetServicesTbl.setValueAt(1, discreetServicesTbl.getSelectedRow(), 1);
-        discreetServicesTbl.setValueAt(serviceorcodeSearchTable.getValueAt(serviceorcodeSearchTable.getSelectedRow(), 1), discreetServicesTbl.getSelectedRow(), 2);
-        discreetServicesTbl.setValueAt(serviceorcodeSearchTable.getValueAt(serviceorcodeSearchTable.getSelectedRow(), 2), discreetServicesTbl.getSelectedRow(), 4);
+        discreetServicesTbl.setValueAt(servicesorcodeSearchTable.getValueAt(servicesorcodeSearchTable.getSelectedRow(), 1), discreetServicesTbl.getSelectedRow(), 2);
+        discreetServicesTbl.setValueAt(servicesorcodeSearchTable.getValueAt(servicesorcodeSearchTable.getSelectedRow(), 2), discreetServicesTbl.getSelectedRow(), 4);
 
-        serviceorcodeSearchTxt.setText("");
+        servicesorcodeSearchTxt.setText("");
 
         double floatCol2 = java.lang.Double.parseDouble(discreetServicesTbl.getValueAt(discreetServicesTbl.getSelectedRow(), 1).toString());
 
@@ -6380,10 +6383,10 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         }
 
         // Add your handling code here:
-    }//GEN-LAST:event_serviceorcodeSearchTableMouseClicked
+    }//GEN-LAST:event_servicesorcodeSearchTableMouseClicked
 
-    private void serviceorcodeSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_serviceorcodeSearchTxtCaretUpdate
-
+    private void servicesorcodeSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_servicesorcodeSearchTxtCaretUpdate
+        System.out.println("This is correct code!");
         String patNationality = "";
         String patCateg = "";
         String codes = this.glcodeTxt.getText();
@@ -6398,44 +6401,49 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             }
 
         } catch (java.sql.SQLException sqlex) {
+            sqlex.printStackTrace();
             System.out.println(sqlex.getMessage());
         }
         if (codeType.equalsIgnoreCase("subcode")) {
 
             if (this.searchbyCodeChkbx.isSelected()) {
 
-                if (serviceorcodeSearchTxt.getCaretPosition() < 1) {
+                if (servicesorcodeSearchTxt.getCaretPosition() < 1) {
 
                     System.out.println("You MUST type more than one character for the search to work properly.");
                 } else {
                     if (normalRateRbtn.isSelected()) {
 
-                        serviceorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT service_type,rate as price,'" + glcodeTxt.getText() + "' as glcode, code, main_service FROM pb_operating_parameters WHERE code ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%' AND  service_type NOT ILIKE '%bed%' order by 1"));// UNION ALL select DISTINCT product,selling_price,'" + glcodeTxt.getText() + "' as service_type,product_id, department as main_service FROM stockprices WHERE product ILIKE '%" + serviceorcodeSearchTxt.getText() + "%'"));
+                        servicesorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,rate as price,'" + glcodeTxt.getText() + "' as glcode, code, main_service FROM pb_operating_parameters WHERE code ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%' AND  service_type NOT ILIKE '%bed%' order by 1"));// UNION ALL select DISTINCT product,selling_price,'" + glcodeTxt.getText() + "' as service_type,product_id, department as main_service FROM stockprices WHERE product ILIKE '%" + serviceorcodeSearchTxt.getText() + "%'"));
 
+                        //  servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
                     } else {
-                        serviceorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT service_type,anaesthetist_rate as price,'" + glcodeTxt.getText() + "' as glcode, code, main_service FROM pb_operating_parameters WHERE code ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%' AND  service_type NOT ILIKE '%bed%' order by 1")); // UNION ALL select DISTINCT product,selling_price,'" + glcodeTxt.getText() + "' as service_type,product_id, department as main_service FROM stockprices WHERE product ILIKE '%" + serviceorcodeSearchTxt.getText() + "%'"));
+                        servicesorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,anaesthetist_rate as price,'" + glcodeTxt.getText() + "' as glcode, code, main_service FROM pb_operating_parameters WHERE code ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%' AND  service_type NOT ILIKE '%bed%' order by 1")); // UNION ALL select DISTINCT product,selling_price,'" + glcodeTxt.getText() + "' as service_type,product_id, department as main_service FROM stockprices WHERE product ILIKE '%" + serviceorcodeSearchTxt.getText() + "%'"));
 
+                        // servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
                     }
 
-                    jSearchScrollPane.setViewportView(serviceorcodeSearchTable);
                 }
             } else {
-                if (serviceorcodeSearchTxt.getCaretPosition() < 1) {
+                if (servicesorcodeSearchTxt.getCaretPosition() < 1) {
 
                     System.out.println("You MUST type more than one character for the search to work properly.");
                 } else {
                     if (normalRateRbtn.isSelected()) {
-                        serviceorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT service_type,rate as price,'" + glcodeTxt.getText() + "' as glcode, code, main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%' AND service_type NOT ILIKE '%bed%' order by 1"));// UNION ALL select product DISTINCT as service_type,selling_price,gl_code, department as main_service FROM stockprices WHERE product ILIKE '%" + serviceorcodeSearchTxt.getText() + "%'"));
+                        servicesorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,rate as price,'" + glcodeTxt.getText() + "' as glcode, code, main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%' AND service_type NOT ILIKE '%bed%' order by 1"));// UNION ALL select product DISTINCT as service_type,selling_price,gl_code, department as main_service FROM stockprices WHERE product ILIKE '%" + serviceorcodeSearchTxt.getText() + "%'"));
 
+                        //   servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
                     } else {
-                        serviceorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT service_type,anaesthetist_rate as price,'" + glcodeTxt.getText() + "' as glcode, code, main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%'  AND service_type NOT ILIKE '%bed%' order by 1"));// UNION ALL select DISTINCT product as service_type,selling_price,gl_code, department as main_service FROM stockprices WHERE product ILIKE '%" + serviceorcodeSearchTxt.getText() + "%'"));
+                        servicesorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,anaesthetist_rate as price,'" + glcodeTxt.getText() + "' as glcode, code, main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%'  AND service_type NOT ILIKE '%bed%' order by 1"));// UNION ALL select DISTINCT product as service_type,selling_price,gl_code, department as main_service FROM stockprices WHERE product ILIKE '%" + serviceorcodeSearchTxt.getText() + "%'"));
 
+                        //   servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
                     }
 
                     System.out.println("Please revise your spelling for the typed item and search again.");
 
                 }
             }
+
         } else {
 
             try {
@@ -6450,81 +6458,84 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 }
                 if (this.searchbyCodeChkbx.isSelected()) {
 
-                    if (serviceorcodeSearchTxt.getCaretPosition() < 1) {
+                    if (servicesorcodeSearchTxt.getCaretPosition() < 1) {
 
                         System.out.println("You MUST type more than one character for the search to work properly.");
                     } else {
                         if (normalRateRbtn.isSelected()) {
                             if (patNationality.startsWith("NON")) {
-                                serviceorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT "
+                                servicesorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT "
                                         + "service_type,other_prices as price,gl_account as glcode,code,main_service FROM pb_operating_parameters "
-                                        + "WHERE code ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%' "
+                                        + "WHERE code ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%' "
                                         + "AND service_type NOT ILIKE '%bed%'"
                                         + "UNION ALL SELECT DISTINCT service_type,other_prices as price,gl_account "
-                                        + "AS glcode,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%' "
+                                        + "AS glcode,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%' "
                                         + " AND service_type ILIKE '%bed%' "
                                         + "AND (main_service ILIKE '%ICU%' OR main_service ILIKE '%I.C.U.%')  order by 1"));// 
                                 //+" UNION ALL select DISTINCT product,selling_price,gl_code as service_type,"
                                 // + "product_id, department FROM stockprices WHERE product_id ILIKE '%" + serviceorcodeSearchTxt.getText() + "%'  ORDER BY 1"));
 
+                                // servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
                             } else {
                                 if (patCateg.startsWith("PRI")) {
-                                    serviceorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT "
+                                    servicesorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT "
                                             + "service_type,anaesthetist_rate as price,gl_account as glcode,code,main_service FROM pb_operating_parameters "
-                                            + "WHERE code ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%' "
+                                            + "WHERE code ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%' "
                                             + "AND service_type NOT ILIKE '%bed%'"
                                             + "UNION ALL SELECT DISTINCT service_type,anaesthetist_rate as price,gl_account "
-                                            + "AS glcode,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%' "
+                                            + "AS glcode,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%' "
                                             + " AND service_type ILIKE '%bed%' "
                                             + "AND (main_service ILIKE '%ICU%' OR main_service ILIKE '%I.C.U.%') order by 1"));//
                                     // + " UNION ALL select DISTINCT product,selling_price,gl_code as service_type,"
                                     // + "product_id,department FROM stockprices WHERE product_id ILIKE '%" + serviceorcodeSearchTxt.getText() + "%'  ORDER BY 1"));
 
+                                    // servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
                                 } else {
 
-                                    serviceorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT "
+                                    servicesorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT "
                                             + "service_type,rate as price,gl_account as glcode,code,main_service FROM pb_operating_parameters "
-                                            + "WHERE code ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%' "
+                                            + "WHERE code ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%' "
                                             + "AND service_type NOT ILIKE '%bed%'"
                                             + "UNION ALL SELECT DISTINCT service_type,rate as price,gl_account "
-                                            + "AS glcode,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%' "
+                                            + "AS glcode,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%' "
                                             + " AND service_type ILIKE '%bed%' "
                                             + "AND (main_service ILIKE '%ICU%' OR main_service ILIKE '%I.C.U.%') order by 1"));
                                     // + " UNION ALL select DISTINCT product,selling_price,gl_code as service_type,"
                                     // + "product_id,department FROM stockprices WHERE product_id ILIKE '%" + serviceorcodeSearchTxt.getText() + "%'  ORDER BY 1"));
+
+                                    // servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
                                 }
                             }
                         } else {
-                            serviceorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT service_type,anaesthetist_rate "
+                            servicesorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,anaesthetist_rate "
                                     + "AS price,gl_account as glcode,code,main_service FROM pb_operating_parameters WHERE code "
-                                    + "ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%'  "
+                                    + "ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%'  "
                                     + "AND service_type NOT ILIKE '%bed%'"
                                     + "UNION ALL  SELECT DISTINCT service_type,rate as price,gl_account "
-                                    + "AS glcode,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%' "
+                                    + "AS glcode,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%' "
                                     + " AND service_type ILIKE '%bed%' "
                                     + "AND (main_service ILIKE '%ICU%' OR main_service ILIKE '%I.C.U.%') order by 1"));
                             //+ "UNION ALL select DISTINCT product,selling_price,gl_code as service_type,product_id,department FROM "
                             //+ "stockprices WHERE product_id ILIKE '%" + serviceorcodeSearchTxt.getText() + "%'  ORDER BY 1"));
 
+                            //servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
                         }
-
-                        jSearchScrollPane.setViewportView(serviceorcodeSearchTable);
 
                     }
                 } else {
-                    if (serviceorcodeSearchTxt.getCaretPosition() < 1) {
+                    if (servicesorcodeSearchTxt.getCaretPosition() < 1) {
 
                         System.out.println("You MUST type more than one character for the search to work properly.");
                     } else {
                         if (normalRateRbtn.isSelected()) {
 
                             if (patNationality.startsWith("NON")) {
-                                serviceorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT "
+                                servicesorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT "
                                         + "service_type,other_prices as price,gl_account as glcode,code,main_service FROM pb_operating_parameters "
-                                        + "WHERE service_type ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%' "
+                                        + "WHERE service_type ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%' "
                                         + "AND service_type NOT ILIKE '%bed%'"
                                         + "UNION ALL SELECT DISTINCT service_type,other_prices as price,gl_account "
-                                        + "AS glcode,code,main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%' "
+                                        + "AS glcode,code,main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%' "
                                         + " AND service_type ILIKE '%bed%' "
                                         + "AND (main_service ILIKE '%ICU%' OR main_service ILIKE '%I.C.U.%') order by 1"));
                                 //+ " UNION ALL select DISTINCT product as service_type,selling_price,gl_code as service_type,"
@@ -6532,12 +6543,12 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
                             } else {
                                 if (patCateg.startsWith("PRI")) {
-                                    serviceorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT "
+                                    servicesorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT "
                                             + "service_type,anaesthetist_rate as price,gl_account as glcode,code, main_service FROM pb_operating_parameters "
-                                            + "WHERE service_type ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%' "
+                                            + "WHERE service_type ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%' "
                                             + "AND service_type NOT ILIKE '%bed%'"
                                             + "UNION ALL SELECT DISTINCT service_type,anaesthetist_rate as price, gl_account "
-                                            + "AS glcode,code, main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%' "
+                                            + "AS glcode,code, main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%' "
                                             + " AND service_type ILIKE '%bed%' "
                                             + "AND (main_service ILIKE '%ICU%' OR main_service ILIKE '%I.C.U.%') order by 1"));
                                     //+ " UNION ALL select DISTINCT product AS service_type,selling_price, gl_code as service_type,"
@@ -6546,28 +6557,29 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
                                 } else {
 
-                                    serviceorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT service_type,rate AS price,"
+                                    servicesorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,rate AS price,"
                                             + "gl_account as glcode, main_service FROM pb_operating_parameters WHERE service_type "
-                                            + "ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%'"
+                                            + "ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%'"
                                             + "AND service_type NOT ILIKE '%bed%'"
                                             + "UNION ALL SELECT DISTINCT service_type,rate AS price,"
                                             + "gl_account as glcode, main_service FROM pb_operating_parameters WHERE service_type "
-                                            + "ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%' "
+                                            + "ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%' "
                                             + "AND service_type ILIKE '%bed%' "
                                             + "AND (main_service ILIKE '%ICU%' OR main_service ILIKE '%I.C.U.%') order by 1"));
                                     //+ "UNION ALL select DISTINCT product as service_type,selling_price,gl_code,department FROM stockprices WHERE product "
                                     //+ "ILIKE '%" + serviceorcodeSearchTxt.getText() + "%'  ORDER BY 1"));
+
                                 }
                             }
 
                         } else {
-                            serviceorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT service_type,anaesthetist_rate"
+                            servicesorcodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,anaesthetist_rate"
                                     + " AS price, gl_account as glcode, main_service FROM pb_operating_parameters WHERE service_type "
-                                    + "ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%' "
+                                    + "ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%' "
                                     + "AND service_type NOT ILIKE '%bed%'"
                                     + "UNION ALL SELECT DISTINCT service_type,anaesthetist_rate"
                                     + " AS price, gl_account as glcode,main_service FROM pb_operating_parameters WHERE service_type "
-                                    + "ILIKE '%" + serviceorcodeSearchTxt.getText().toString() + "%' "
+                                    + "ILIKE '%" + servicesorcodeSearchTxt.getText().toString() + "%' "
                                     + "AND service_type ILIKE '%bed%' "
                                     //+ "AND main_service ILIKE '" + jComboBox1.getSelectedItem() + "' "
                                     + "AND (main_service ILIKE '%ICU%' OR main_service ILIKE '%I.C.U.%') order by 1"));
@@ -6588,10 +6600,26 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             }
         }
+
+        javax.swing.table.TableColumn column = null;
+        for (int i = 0; i < servicesorcodeSearchTable.getColumnCount(); i++) {
+            System.out.println("Resizing table ...");
+            column = this.servicesorcodeSearchTable.getColumnModel().getColumn(i);
+            if (i == 0) {
+
+                column.setPreferredWidth(500); // item description column is bigger
+            } else {
+
+                column.setPreferredWidth(100);
+
+            }
+        }
+        servicesorcodeSearchScrollPane.setViewportView(servicesorcodeSearchTable);
         // }
 
         // Add your handling code here:
-    }//GEN-LAST:event_serviceorcodeSearchTxtCaretUpdate
+    }//GEN-LAST:event_servicesorcodeSearchTxtCaretUpdate
+
     private void cmboxMouseClicked() {
 
         System.out.println("Showing dialog");
@@ -6643,23 +6671,38 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             unitNumberTxt.setText(patientSearchTbl.getValueAt(patientSearchTbl.getSelectedRow(), 4).toString());
             wardNameTxt.setText("");
+
             try {
 
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT payment FROM hp_patient_visit WHERE patient_no = ? AND UPPER(transaction_type) = 'REGISTRATION' AND date >= now()::date - 1 ORDER BY input_date DESC LIMIT 1");
+                pstmt.setString(1, patientNumberTxt.getText());
+                java.sql.ResultSet rset = pstmt.executeQuery();
+                while (rset.next()) {
+                    paymentModeCmbx.setSelectedItem(rset.getString(1));
+                }
                 java.sql.Statement stmt1 = connectDB.createStatement();
                 java.sql.ResultSet rset1 = stmt1.executeQuery("select category,pay_mode,description,card_no from hp_patient_register where patient_no  ='" + patientNumberTxt.getText() + "'");
                 while (rset1.next()) {
                     patientCategoryTxt.setText(rset1.getObject(1).toString());
-                    paymentModeCmbx.setSelectedItem(rset1.getObject(2).toString());
-                    schemeNameTxt.setText(dbObject.getDBObject(rset1.getObject(3), "-").toString());
+
                     memberno = dbObject.getDBObject(rset1.getObject(4), "-").toString();
                     System.out.println(memberno);
                 }
                 if (mchfpChkbx.isSelected()) {
                     patientCategoryTxt.setText("MCH");
-                    paymentModeCmbx.setSelectedItem("CASH");
+                    // paymentModeCmbx.setSelectedItem("CASH");
                 }
-                if (paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
+                if (paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme") || paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("SCHEME")) {
 
+                    java.sql.PreparedStatement pstmtCredit = connectDB.prepareStatement("SELECT scheme, payer,member_no, member_name FROM credit_acc_slip WHERE patient_no = ? and date >= now()::date - 1 ORDER BY oid DESC");
+                    pstmtCredit.setString(1, patientNumberTxt.getText());
+                    java.sql.ResultSet rsetCredit = pstmtCredit.executeQuery();
+                    while (rsetCredit.next()) {
+                        schemeNameTxt.setText(dbObject.getDBObject(rsetCredit.getObject(1), "-").toString());
+                        payerNameTxt.setText(dbObject.getDBObject(rsetCredit.getObject(2), "-").toString());
+                        schemeMemberNumberTxt.setText(dbObject.getDBObject(rsetCredit.getObject(3), "-").toString());
+                        schemeMemberNameTxt.setText(dbObject.getDBObject(rsetCredit.getObject(4), "-").toString());
+                    }
                     java.sql.Statement stmt1cz3 = connectDB.createStatement();
                     java.sql.ResultSet rset1cz3 = stmt1cz3.executeQuery("SELECT account_no,payer_name,usesmartcard FROM ac_schemes WHERE scheme_name  ILIKE '" + schemeNameTxt.getText() + "'");
                     while (rset1cz3.next()) {
@@ -6897,7 +6940,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 System.out.println("Nothing");
             } else {
 
-                patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT patient_no, name, year_of_birth, residence, unit_number from patient_select where patient_no ILIKE '%" + patientSearchFieldTxt.getText() + "%' or unit_number ILIKE '%" + patientSearchFieldTxt.getText() + "%' order by patient_no"));
+                patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, name, year_of_birth, residence, unit_number from patient_select where patient_no ILIKE '%" + patientSearchFieldTxt.getText() + "%' or unit_number ILIKE '%" + patientSearchFieldTxt.getText() + "%' order by patient_no"));
 
                 patientSearchTbl.setShowHorizontalLines(false);
                 patientSearchJscrl.setViewportView(patientSearchTbl);
@@ -6909,7 +6952,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                     System.out.println("Nothing");
                 } else {
 
-                    patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT patient_no, name, year_of_birth, residence, unit_number from patient_select where name ILIKE '%" + patientSearchFieldTxt.getText() + "%' order by name"));
+                    patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, name, year_of_birth, residence, unit_number from patient_select where name ILIKE '%" + patientSearchFieldTxt.getText() + "%' order by name"));
 
                     patientSearchTbl.setShowHorizontalLines(false);
                     patientSearchJscrl.setViewportView(patientSearchTbl);
@@ -6919,14 +6962,14 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         }
 //
 //        if (mchfpChkbx.isSelected()) {
-//            patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT anc as anc_no, first_name||' '||middle_name||' '||last_name, telephone, next_of_kin, age from rh.mother_details where anc ILIKE '%" + patientSearchFieldTxt.getText() + "%' or first_name||' '||middle_name||' '||last_name  ILIKE '%" + patientSearchFieldTxt.getText() + "%' order by 2"));
+//            patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT anc as anc_no, first_name||' '||middle_name||' '||last_name, telephone, next_of_kin, age from rh.mother_details where anc ILIKE '%" + patientSearchFieldTxt.getText() + "%' or first_name||' '||middle_name||' '||last_name  ILIKE '%" + patientSearchFieldTxt.getText() + "%' order by 2"));
 //
 //            patientSearchTbl.setShowHorizontalLines(false);
 //            patientSearchJscrl.setViewportView(patientSearchTbl);
 //        }
         if (this.mchfpChkbx.isSelected()) {
             if (patientSearchFieldTxt.getCaretPosition() > 3) {
-                patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT anc as anc_no, first_name||' '||middle_name||' '||last_name, telephone, next_of_kin, age::int as age from rh.mother_details where anc ILIKE '%" + patientSearchFieldTxt.getText() + "%' or first_name||' '||middle_name||' '||last_name  ILIKE '%" + patientSearchFieldTxt.getText() + "%' "
+                patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT anc as anc_no, first_name||' '||middle_name||' '||last_name, telephone, next_of_kin, age::int as age from rh.mother_details where anc ILIKE '%" + patientSearchFieldTxt.getText() + "%' or first_name||' '||middle_name||' '||last_name  ILIKE '%" + patientSearchFieldTxt.getText() + "%' "
                         + " UNION SELECT DISTINCT fp_clinic_no as anc_no, full_name, telephone_no as telephone, '' as next_of_kin, age::int as age from rh.fp_services_register where fp_clinic_no ILIKE '%" + patientSearchFieldTxt.getText() + "%' or full_name  ILIKE '%" + patientSearchFieldTxt.getText() + "%'"
                         + " UNION SELECT DISTINCT pnc_no as anc_no, full_name, telephone, '' as next_of_kin, age::int as age from rh.post_natal_follow_up_register where pnc_no ILIKE '%" + patientSearchFieldTxt.getText() + "%' or full_name  ILIKE '%" + patientSearchFieldTxt.getText() + "%' ORDER BY 2"));
 
@@ -6939,7 +6982,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             if (patientSearchFieldTxt.getCaretPosition() < 5) {
                 System.out.println("Nothing");
             } else {
-                patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT patient_no, name, unit_number, ward from inpatient_list where patient_no ILIKE '%" + patientSearchFieldTxt.getText() + "%' or unit_number ILIKE '%" + patientSearchFieldTxt.getText() + "%' order by patient_no"));
+                patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, name, unit_number, ward from inpatient_list where patient_no ILIKE '%" + patientSearchFieldTxt.getText() + "%' or unit_number ILIKE '%" + patientSearchFieldTxt.getText() + "%' order by patient_no"));
 
                 patientSearchTbl.setShowHorizontalLines(false);
                 patientSearchJscrl.setViewportView(patientSearchTbl);
@@ -6947,7 +6990,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             }
         } else {
             if (this.ipdChkbx.isSelected() && this.byNameChkbx.isSelected()) {
-                patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT patient_no, name, unit_number, ward from inpatient_list where name ILIKE '%" + patientSearchFieldTxt.getText() + "%' order by name"));
+                patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, name, unit_number, ward from inpatient_list where name ILIKE '%" + patientSearchFieldTxt.getText() + "%' order by name"));
                 patientSearchTbl.setShowHorizontalLines(false);
                 patientSearchJscrl.setViewportView(patientSearchTbl);
 
@@ -7160,13 +7203,14 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         patientNumberTxt.setText("");
         schemeAccountNumberTxt.setText("");
         payerNameTxt.setText("");
-
+        schemeNameTxt.setText("");
         doctorAcctNumberTxt.setText("");
         doctorNameTxt.setText("");
         unitNumberTxt.setText("");
         schemeMemberNumberTxt.setText("");
         schemeMemberNameTxt.setText("");
         cardBalanceTxt.setText("0");
+        paymentModeCmbx.setSelectedItem(null);
         for (int k = 0; k < discreetServicesTbl.getRowCount(); k++) {
             for (int r = 0; r < discreetServicesTbl.getColumnCount(); r++) {
                 discreetServicesTbl.setValueAt(null, k, r);
@@ -7435,19 +7479,19 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_savebillBtnActionPerformed
 
-    private void serviceorcodeSearchTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_serviceorcodeSearchTableKeyReleased
-        if (serviceorcodeSearchTable.editCellAt(serviceorcodeSearchTable.getSelectedRow(), serviceorcodeSearchTable.getSelectedColumn())) {
+    private void servicesorcodeSearchTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_servicesorcodeSearchTableKeyReleased
+        if (servicesorcodeSearchTable.editCellAt(servicesorcodeSearchTable.getSelectedRow(), servicesorcodeSearchTable.getSelectedColumn())) {
             javax.swing.JOptionPane.showMessageDialog(this, "Be warned  you cannot change data".toUpperCase(), "Warning Message", javax.swing.JOptionPane.WARNING_MESSAGE);
 
-            for (int k = 0; k < serviceorcodeSearchTable.getRowCount(); k++) {
-                for (int r = 0; r < serviceorcodeSearchTable.getColumnCount(); r++) {
-                    serviceorcodeSearchTable.setValueAt(null, k, r);
+            for (int k = 0; k < servicesorcodeSearchTable.getRowCount(); k++) {
+                for (int r = 0; r < servicesorcodeSearchTable.getColumnCount(); r++) {
+                    servicesorcodeSearchTable.setValueAt(null, k, r);
                 }
             }
         }
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_serviceorcodeSearchTableKeyReleased
+    }//GEN-LAST:event_servicesorcodeSearchTableKeyReleased
 
     private void bedAmountTxtPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_bedAmountTxtPropertyChange
         // TODO add your handling code here:
@@ -7462,13 +7506,14 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_consultantBillingRevenueDeptCmbxActionPerformed
 
     private void paymentModeCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentModeCmbxActionPerformed
-
-        if (paymentModeCmbx.getSelectedItem().toString() == "Cash") {
-            normalRateRbtn.setSelected(true);
-            specialRateRbtn.setEnabled(false);
-        } else {
-            specialRateRbtn.setSelected(false);
-            normalRateRbtn.setEnabled(true);
+        if (paymentModeCmbx.getSelectedItem() != null) {
+            if (paymentModeCmbx.getSelectedItem().toString() == "Cash") {
+                normalRateRbtn.setSelected(true);
+                specialRateRbtn.setEnabled(false);
+            } else {
+                specialRateRbtn.setSelected(false);
+                normalRateRbtn.setEnabled(true);
+            }
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_paymentModeCmbxActionPerformed
@@ -8629,10 +8674,11 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 billTotalTxt.setText("0.00");
                 connectDB.commit();
                 connectDB.setAutoCommit(true);
-                
-                // Commented by CWW to revisit later
-                ///com.afrisoftech.txtreports.GokBillingTxt billPrint = new com.afrisoftech.txtreports.GokBillingTxt(connectDB, patientNameTxt.getText(), billTotalTxt.getText(), transNo, "Scheme");
 
+                // Printout for the bill if connected to athermal printer or other printer only for scheme/insurance patients
+                if (paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
+                    com.afrisoftech.txtreports.GokBillingTxt billPrint = new com.afrisoftech.txtreports.GokBillingTxt(connectDB, patientNameTxt.getText(), billTotalTxt.getText(), transNo, "Scheme");
+                }
                 patientNameTxt.setText("");
                 patientCategoryTxt.setText("");
                 billTotalTxt.setText("");
@@ -8808,7 +8854,6 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jSearchPanel211;
     private javax.swing.JPanel jSearchPanel3;
     private javax.swing.JPanel jSearchPanel31;
-    private javax.swing.JScrollPane jSearchScrollPane;
     private javax.swing.JScrollPane jSearchScrollPane1;
     private javax.swing.JScrollPane jSearchScrollPane11;
     private javax.swing.JScrollPane jSearchScrollPane111;
@@ -8902,10 +8947,11 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox searchbyNameChkbx;
     private javax.swing.JButton selectBtn;
     public static javax.swing.JDialog serviceorcodeSearchDialog;
-    private javax.swing.JPanel serviceorcodeSearchPanel;
-    private javax.swing.JTable serviceorcodeSearchTable;
-    private javax.swing.JTextField serviceorcodeSearchTxt;
     public static javax.swing.JDialog servicesSearchDialog;
+    private javax.swing.JPanel servicesorcodeSearchPanel;
+    private javax.swing.JScrollPane servicesorcodeSearchScrollPane;
+    private javax.swing.JTable servicesorcodeSearchTable;
+    private javax.swing.JTextField servicesorcodeSearchTxt;
     private javax.swing.JPanel spacerPanel;
     private javax.swing.JRadioButton specialRateRbtn;
     private javax.swing.JTextField subActivityTxt;

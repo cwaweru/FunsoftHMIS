@@ -2942,7 +2942,7 @@ public void calc(){
         // TODO add your handling code here:
         if(lpotxt.getCaretPosition()>1){
 
-            lpotable.setModel(TableModel.createTableVectorsCaret(connectDB, "SELECT distinct invoice_no,date_received,date_on_invoice,amount,doc_type,false as Tick from ac_creditor_invoice_register where code='"+supplierCodeTxt.getText()+"' and invoice_no ilike '%"+lpotxt.getText()+"%' and status =false order by date_received asc"));
+            lpotable.setModel(TableModel.createTableVectors(connectDB, "SELECT distinct invoice_no,date_received,date_on_invoice,amount,doc_type,false as Tick from ac_creditor_invoice_register where code='"+supplierCodeTxt.getText()+"' and invoice_no ilike '%"+lpotxt.getText()+"%' and status =false order by date_received asc"));
 
         }
     }//GEN-LAST:event_lpotxtCaretUpdate

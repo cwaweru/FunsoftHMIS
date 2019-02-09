@@ -1281,7 +1281,7 @@ public class ReceivingWithoutLPOintfr extends javax.swing.JInternalFrame {
         if (jTextField113.getCaretPosition() < 3) {
             System.out.println("Nothing");
         } else {
-            jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT supplier_name, code as account_no from st_suppliers where supplier_name ILIKE '%" + jTextField113.getText() + "%' order by supplier_name"));
+            jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT supplier_name, code as account_no from st_suppliers where supplier_name ILIKE '%" + jTextField113.getText() + "%' order by supplier_name"));
 
             jSearchTable2.setShowHorizontalLines(false);
             jSearchScrollPane2.setViewportView(jSearchTable2);
@@ -1404,7 +1404,7 @@ public class ReceivingWithoutLPOintfr extends javax.swing.JInternalFrame {
             System.out.print("Nothing");
         } else {
             setFixedColumns.DisallowReordering(jSearchTable);
-            jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, ""
+            jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                     + "select DISTINCT description,strength,packaging,buying_price,item_code FROM stockitem WHERE description ILIKE '%" + jTextField111.getText() + "%' and department ilike '" + jComboBox2.getSelectedItem() + "' order by description"));
             ///jSearchTable.setAutoResizeMode(AUTO_RESIZE_ALL_COLUMNS);
             jSearchScrollPane.setViewportView(jSearchTable);
@@ -2186,7 +2186,7 @@ public class ReceivingWithoutLPOintfr extends javax.swing.JInternalFrame {
 
     private void tenderrecordstxt2CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_tenderrecordstxt2CaretUpdate
         // TODO add your handling code here:
-        unitsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT '-' UNION SELECT DISTINCT bulk_supply_unit FROM st_packing "));
+        unitsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT '-' UNION SELECT DISTINCT bulk_supply_unit FROM st_packing "));
     }//GEN-LAST:event_tenderrecordstxt2CaretUpdate
 
     private void tenderrecordstxt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tenderrecordstxt2ActionPerformed

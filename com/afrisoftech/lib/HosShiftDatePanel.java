@@ -337,7 +337,7 @@ public class HosShiftDatePanel extends javax.swing.JDialog {
     }//GEN-LAST:event_jSearchTable1MouseClicked
 
     private void jTextField1111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1111CaretUpdate
-        jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select shift_no as shift,status,start_date::date from ac_shifts where shift_no::CHARACTER VARYING ILIKE '" + jTextField1111.getText().toString() + "%' and user_name ilike '" + cashierCmbx.getSelectedItem() + "' ORDER BY shift_no::int DESC"));
+        jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select shift_no as shift,status,start_date::date from ac_shifts where shift_no::CHARACTER VARYING ILIKE '" + jTextField1111.getText().toString() + "%' and user_name ilike '" + cashierCmbx.getSelectedItem() + "' ORDER BY shift_no::int DESC"));
 
 
         /*

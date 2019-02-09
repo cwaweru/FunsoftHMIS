@@ -358,6 +358,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         x_rayresultsTextField = new javax.swing.JTextField();
         labTextField = new javax.swing.JTextField();
         emergencyTextField = new javax.swing.JTextField();
+        internalReferralLbl = new javax.swing.JLabel();
+        internalReferralCmbx = new javax.swing.JComboBox<>();
+        internalReferralBtn = new javax.swing.JButton();
         jTextField6 = new javax.swing.JTextField();
         jSplitPane4 = new javax.swing.JSplitPane();
         jPanel33 = new javax.swing.JPanel();
@@ -378,7 +381,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         jLabel15 = new javax.swing.JLabel();
         ageTxt = new javax.swing.JTextField();
         jPanel13 = new javax.swing.JPanel();
-        paymentModetxt = new javax.swing.JTextField();
+        paymentModeTxt = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
         jPanel25 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -500,6 +503,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         servicesOrderHeaderPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable13 = new com.afrisoftech.dbadmin.JTable();
+        viewBillBtn = new javax.swing.JButton();
         jPanel20 = new javax.swing.JPanel();
         diagnosticsScrollPane = new javax.swing.JScrollPane();
         diagnosticsServicesTable = new com.afrisoftech.dbadmin.JTable();
@@ -2344,7 +2348,6 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         waitingclinicscmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '--ALL--' as clinics UNION SELECT distinct clinics FROM pb_clinics ORDER BY 1 asc"));
-        waitingclinicscmbx.setSelectedItem("--ALL--");
 
         waitingclinicscmbx.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -2361,6 +2364,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel1.add(waitingclinicscmbx, gridBagConstraints);
 
@@ -2378,7 +2382,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
@@ -2386,7 +2390,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         jLabel28.setText("PATIENT URGENCY LISTING");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 0;
         jPanel1.add(jLabel28, gridBagConstraints);
 
@@ -2400,7 +2404,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel1.add(loadALLpatientsbtn, gridBagConstraints);
@@ -2429,7 +2433,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel1.add(loadTRIAGEDpatientsbtn, gridBagConstraints);
@@ -2511,10 +2515,40 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 6.0;
         jPanel1.add(jPanel9, gridBagConstraints);
+
+        internalReferralLbl.setText("Referral Clinic");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(internalReferralLbl, gridBagConstraints);
+
+        internalReferralCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '--ALL--' as clinics UNION SELECT distinct clinics FROM pb_clinics ORDER BY 1 asc"));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(internalReferralCmbx, gridBagConstraints);
+
+        internalReferralBtn.setText("Activate Referral");
+        internalReferralBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                internalReferralBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(internalReferralBtn, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -2724,16 +2758,16 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         jPanel13.setLayout(new java.awt.GridBagLayout());
 
-        paymentModetxt.setEditable(false);
-        paymentModetxt.setBackground(new java.awt.Color(255, 255, 255));
-        paymentModetxt.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        paymentModeTxt.setEditable(false);
+        paymentModeTxt.setBackground(new java.awt.Color(255, 255, 255));
+        paymentModeTxt.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel13.add(paymentModetxt, gridBagConstraints);
+        jPanel13.add(paymentModeTxt, gridBagConstraints);
 
         jLabel42.setText("Payment Mode");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -4431,6 +4465,21 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 50.0;
         examinationpane.add(searchServicesMainPanel, gridBagConstraints);
+
+        viewBillBtn.setText("View Scheme Patient Bill");
+        viewBillBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewBillBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        examinationpane.add(viewBillBtn, gridBagConstraints);
 
         cpoeSplitPane.setRightComponent(examinationpane);
 
@@ -6486,7 +6535,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             pstmt2.setString(2, patientNameTxt.getText());
                         }
                         // pstmt2.setString(2,jTextField1.getText());
-                        pstmt2.setString(3, paymentModetxt.getText());
+                        pstmt2.setString(3, paymentModeTxt.getText());
                         if (jTextField8.getText().equals("")) {
                             javax.swing.JOptionPane.showMessageDialog(this, "Doctor's Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                         } else {
@@ -6500,7 +6549,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                         pstmt2.setObject(8, jTable13.getValueAt(i, 4).toString());
                         pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(datePicker12.getDate().toString())));
                         pstmt2.setString(10, billNo);
-                        if (paymentModetxt.getText().startsWith("Scheme")) {
+                        if (paymentModeTxt.getText().startsWith("Scheme")) {
                             pstmt2.setBoolean(12, true);
                         } else {
                             pstmt2.setBoolean(12, false);
@@ -6549,7 +6598,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             pstmt2.setString(2, patientNameTxt.getText());
                         }
                         // pstmt2.setString(2,jTextField1.getText());
-                        pstmt2.setString(3, paymentModetxt.getText());
+                        pstmt2.setString(3, paymentModeTxt.getText());
                         if (jTextField8.getText().equals("")) {
                             javax.swing.JOptionPane.showMessageDialog(this, "Doctor's Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                         } else {
@@ -6567,7 +6616,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                         pstmt2.setString(8, jTextField10.getText());
                         pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(datePicker12.getDate().toString())));
                         pstmt2.setString(10, billNo);
-                        if (paymentModetxt.getText().startsWith("Scheme")) {
+                        if (paymentModeTxt.getText().startsWith("Scheme")) {
                             pstmt2.setBoolean(12, true);
                         } else {
 
@@ -7786,7 +7835,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         //  jTextField2.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 3).toString());
         otherspatnojTextField923.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 0).toString());
         jTextField12.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 1).toString());
-        paymentModetxt.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 2).toString());
+        paymentModeTxt.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 2).toString());
         jTextField22.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 3).toString());
 
         // 4.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 0).toString());
@@ -7841,7 +7890,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
             {
                 //Checking if the patient or relative has exceeded limit
-                if (paymentModetxt.getText().startsWith("Schem")) {
+                if (paymentModeTxt.getText().startsWith("Schem")) {
                     float balance = 0;
                     float bill = 0;
                     float limit = 0;
@@ -8525,7 +8574,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     }//GEN-LAST:event_jButton92ActionPerformed
 
     private void jTextField112CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField112CaretUpdate
-        if (!paymentModetxt.getText().equalsIgnoreCase("Scheme")) {
+        if (!paymentModeTxt.getText().equalsIgnoreCase("Scheme")) {
 
             if (this.outpatientCheckBox.isSelected()) {
 
@@ -8831,7 +8880,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                 pstmt2.setString(2, patientNameTxt.getText());
                             }
                             // pstmt2.setString(2,jTextField1.getText());
-                            pstmt2.setString(3, paymentModetxt.getText());
+                            pstmt2.setString(3, paymentModeTxt.getText());
                             if (jTextField8.getText().equals("")) {
                                 javax.swing.JOptionPane.showMessageDialog(this, "Doctor's Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                             } else {
@@ -8845,7 +8894,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker12.getDate()));
                             pstmt2.setString(10, billNo);
                             pstmt2.setString(11, user);
-                            if (paymentModetxt.getText().startsWith("Scheme")) {
+                            if (paymentModeTxt.getText().startsWith("Scheme")) {
                                 pstmt2.setBoolean(12, true);
                             } else {
                                 pstmt2.setBoolean(12, false);
@@ -8884,7 +8933,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             pstmt1.setDouble(4, java.lang.Double.valueOf(pharmacyTable.getValueAt(n, 2).toString()));
                             pstmt1.setDouble(3, 1);
                             pstmt1.setObject(5, pharmacyTable.getValueAt(n, 0).toString());
-                            if (paymentModetxt.getText().startsWith("Scheme")) {
+                            if (paymentModeTxt.getText().startsWith("Scheme")) {
                                 pstmt1.setBoolean(6, true);
                             } else {
                                 pstmt1.setBoolean(6, false);
@@ -8899,7 +8948,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             pstmt1.setDate(13, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker12.getDate()));
                             pstmt1.setObject(14, Store);
                             pstmt1.setString(15, "");
-                            pstmt1.setString(16, paymentModetxt.getText());
+                            pstmt1.setString(16, paymentModeTxt.getText());
                             pstmt1.setObject(17, pharmacyTable.getValueAt(n, 8).toString());
                             pstmt1.setDouble(18, 0.00);
                             pstmt1.setString(19, user);
@@ -8958,7 +9007,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                 pstmt2.setString(2, patientNameTxt.getText());
                             }
                             // pstmt2.setString(2,jTextField1.getText());
-                            pstmt2.setString(3, paymentModetxt.getText());
+                            pstmt2.setString(3, paymentModeTxt.getText());
                             if (jTextField8.getText().equals("")) {
                                 javax.swing.JOptionPane.showMessageDialog(this, "Doctor's Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                             } else {
@@ -8972,7 +9021,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             pstmt2.setObject(8, jTable13.getValueAt(i, 4).toString());
                             pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker12.getDate()));
                             pstmt2.setString(10, billNo);
-                            if (paymentModetxt.getText().startsWith("Scheme")) {
+                            if (paymentModeTxt.getText().startsWith("Scheme")) {
                                 pstmt2.setBoolean(12, true);
                             } else {
 
@@ -9003,7 +9052,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
                                 pstmt2f.setString(1, nameNoTxt.getText());
                                 pstmt2f.setString(2, patientNameTxt.getText());
-                                pstmt2f.setString(3, paymentModetxt.getText());
+                                pstmt2f.setString(3, paymentModeTxt.getText());
                                 pstmt2f.setString(4, jTextField22.getText());
                                 pstmt2f.setString(5, jTable13.getValueAt(i, 0).toString());
                                 pstmt2f.setDouble(6, java.lang.Double.valueOf(jTable13.getValueAt(i, 1).toString()));
@@ -9012,7 +9061,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                 pstmt2f.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker12.getDate()));//java.sql.Date.valueOf(String.format("%1$tY-%1$tm-%1$te",datePicker1.getDate())));
                                 pstmt2f.setString(10, billNo);
                                 pstmt2f.setString(11, user);
-                                if (paymentModetxt.getText().startsWith("Scheme")) {
+                                if (paymentModeTxt.getText().startsWith("Scheme")) {
                                     pstmt2f.setBoolean(12, true);
                                 } else {
                                     pstmt2f.setBoolean(12, false);
@@ -9039,7 +9088,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                     pstmt2.setString(2, patientNameTxt.getText());
                                 }
                                 // pstmt2.setString(2,jTextField1.getText());
-                                pstmt2.setString(3, paymentModetxt.getText());
+                                pstmt2.setString(3, paymentModeTxt.getText());
                                 if (jTextField8.getText().equals("")) {
                                     javax.swing.JOptionPane.showMessageDialog(this, "Doctor's Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                                 } else {
@@ -9053,7 +9102,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                 pstmt2.setObject(8, jTable13.getValueAt(i, 5).toString());
                                 pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker12.getDate()));
                                 pstmt2.setString(10, billNo);
-                                if (paymentModetxt.getText().startsWith("Scheme")) {
+                                if (paymentModeTxt.getText().startsWith("Scheme")) {
                                     pstmt2.setBoolean(12, true);
                                 } else {
 
@@ -9084,7 +9133,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
                                     pstmt2f.setString(1, nameNoTxt.getText());
                                     pstmt2f.setString(2, patientNameTxt.getText());
-                                    pstmt2f.setString(3, paymentModetxt.getText());
+                                    pstmt2f.setString(3, paymentModeTxt.getText());
                                     pstmt2f.setString(4, jTextField22.getText());
                                     pstmt2f.setString(5, jTable13.getValueAt(i, 1).toString());
                                     pstmt2f.setDouble(6, java.lang.Double.valueOf(jTable13.getValueAt(i, 2).toString()));
@@ -9093,7 +9142,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                     pstmt2f.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker12.getDate()));//java.sql.Date.valueOf(String.format("%1$tY-%1$tm-%1$te",datePicker1.getDate())));
                                     pstmt2f.setString(10, billNo);
                                     pstmt2f.setString(11, user);
-                                    if (paymentModetxt.getText().startsWith("Scheme")) {
+                                    if (paymentModeTxt.getText().startsWith("Scheme")) {
                                         pstmt2f.setBoolean(12, true);
                                     } else {
                                         pstmt2f.setBoolean(12, false);
@@ -9673,7 +9722,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 jTextField922.setText(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 0).toString());
                 otherspatnojTextField923.setText(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 0).toString());
                 patnoTextField.setText(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 0).toString());
-                paymentModetxt.setText(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 6).toString());
+                paymentModeTxt.setText(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 6).toString());
                 if (this.outpatientCheckBox.isSelected() == true) {
                     //   jTextField1.setText(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 3).toString());
                     patientNameTxt.setText(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 2).toString());
@@ -9693,7 +9742,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 if (this.outpatientCheckBox.isSelected() == true) {
                     //      jTextField16.setText(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4).toString());
 //            jTextField21.setText(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4).toString());
-                    paymentModetxt.setText(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 6).toString());
+                    paymentModeTxt.setText(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 6).toString());
                     paymentjTextField20.setText(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4).toString());
 
                 }
@@ -10859,7 +10908,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                     // pstmt21.setString(6,jTable1.getValueAt(i,0).toString());
                     pstmt21.setString(6, jTextField9111.getText());
                     pstmt21.setDate(7, com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()));
-                    pstmt21.setString(8, "RST COMPLAINS");
+                    pstmt21.setString(8, "");
 
                     pstmt21.setObject(9, complainsTextPaneTxt.getText());
                     pstmt21.setTimestamp(10, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
@@ -11710,6 +11759,54 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         // TODO add your handling code here:
     }//GEN-LAST:event_tbScreeningChestXrayChkbxActionPerformed
 
+    private void internalReferralBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_internalReferralBtnActionPerformed
+        if (waitingclinicscmbx.getSelectedItem() != null && internalReferralCmbx.getSelectedItem() != null) {
+            if (waitingclinicscmbx.getSelectedItem().toString().toUpperCase() != internalReferralCmbx.getSelectedItem().toString().toUpperCase() && nameNoTxt.getText().length() > 0 ){
+                try {
+                    java.sql.PreparedStatement pstmtInternalReferral = connectDB.prepareStatement("INSERT INTO public.hp_patient_visit("
+                            + "            patient_no, name, ip_no, payment, visit_no, services, quantity, "
+                            + "            department, amount, test, date, result, doctor_name, user_name, "
+                            + "            input_date, transaction_type, nature, \"time\", comments, parameter, "
+                            + "            status, age, gender, marital_status, obs_by, shift_no, cons_time, "
+                            + "            obs_time, clinic, urgency, discharge, dischargedetails, patient_disability, "
+                            + "            refer_source, service_start_time, samaritan_name, samaritan_tel_no, "
+                            + "            nok_name, nok_tel_no, referral_type, referral_county, referral_facility)"
+                            + "SELECT patient_no, name, ip_no, payment, visit_no, services, quantity, "
+                            + "       department, amount, test, now()::date, result, doctor_name, user_name, "
+                            + "       now(), transaction_type, nature, \"time\", comments, parameter, "
+                            + "       status, age, gender, marital_status, obs_by, shift_no, cons_time, "
+                            + "       obs_time, ?, urgency, discharge, dischargedetails, patient_disability, "
+                            + "       refer_source, service_start_time, samaritan_name, samaritan_tel_no, "
+                            + "       nok_name, nok_tel_no, referral_type, referral_county, referral_facility"
+                            + "  FROM public.hp_patient_visit WHERE patient_no = ? ORDER BY input_date DESC LIMIT 1");
+                    pstmtInternalReferral.setString(1, internalReferralCmbx.getSelectedItem().toString());
+                    pstmtInternalReferral.setString(2, nameNoTxt.getText());
+                    pstmtInternalReferral.execute();
+
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+                }
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "The patient file must be set and the referring clinic cannot be the same as referral clinic!");
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "The referring clinic and referral clinic must be set!");
+        }
+    }//GEN-LAST:event_internalReferralBtnActionPerformed
+
+    private void viewBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBillBtnActionPerformed
+        if(paymentModeTxt.getText().equalsIgnoreCase("Scheme")){
+            com.afrisoftech.reports.OutPatientBillPdf policy = new com.afrisoftech.reports.OutPatientBillPdf();
+
+            policy.OutPatientBillPdf(connectDB, datePicker2.getDate(), transdatePicker.getDate(), nameNoTxt.getText());
+
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "The patient is not using medical insurance for billing.");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewBillBtnActionPerformed
+
     private void populateTable1(java.lang.String patient_no) {
     }
 
@@ -12102,6 +12199,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JPanel illustrationPanel;
     private javax.swing.JCheckBox inpatientCheckBox;
     private javax.swing.JTextField insttransjTextField1711;
+    private javax.swing.JButton internalReferralBtn;
+    private javax.swing.JComboBox<String> internalReferralCmbx;
+    private javax.swing.JLabel internalReferralLbl;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -12409,7 +12509,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JCheckBox outpatientCheckBox;
     private javax.swing.JTextField patientNameTxt;
     private javax.swing.JTextField patnoTextField;
-    private javax.swing.JTextField paymentModetxt;
+    private javax.swing.JTextField paymentModeTxt;
     private javax.swing.JTextField paymentjTextField20;
     private javax.swing.JCheckBox pharmacyCheckBox;
     private javax.swing.JPanel pharmacyRequestsPanel;
@@ -12502,6 +12602,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JTextField transtechnicianjTextField181;
     private javax.swing.JTextField triageTextField;
     private javax.swing.JComboBox urgencyComboBox;
+    private javax.swing.JButton viewBillBtn;
     private javax.swing.JLabel visitDateLbl;
     private javax.swing.JTable vitalsignstable;
     private javax.swing.JComboBox waitingclinicscmbx;
@@ -12577,7 +12678,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                 pstmt2.setString(2, patientNameTxt.getText());
                             }
                             // pstmt2.setString(2,jTextField1.getText());
-                            pstmt2.setString(3, paymentModetxt.getText());
+                            pstmt2.setString(3, paymentModeTxt.getText());
                             if (jTextField8.getText().equals("")) {
                                 javax.swing.JOptionPane.showMessageDialog(this, "Doctor's Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                             } else {
@@ -12591,7 +12692,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             pstmt2.setObject(8, jTable14.getValueAt(i, 4).toString());
                             pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker12.getDate()));
                             pstmt2.setString(10, billNo);
-                            if (paymentModetxt.getText().contains("Scheme") || inpatientCheckBox.isSelected()) {
+                            if (paymentModeTxt.getText().contains("Scheme") || inpatientCheckBox.isSelected()) {
                                 pstmt2.setBoolean(12, true);
                             } else {
 
@@ -12619,12 +12720,12 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
                             if (jTable14.getValueAt(i, 0).toString().startsWith("plaster") || jTable14.getValueAt(i, 0).toString().startsWith("POP") || jTable14.getValueAt(i, 0).toString().startsWith("p.o.p")) {
                             } else {
-                                if (!this.paymentModetxt.getText().startsWith("Scheme") && outpatientCheckBox.isSelected()) {
+                                if (!this.paymentModeTxt.getText().startsWith("Scheme") && outpatientCheckBox.isSelected()) {
                                     PreparedStatement pstmt2f = connectDB.prepareStatement("insert into hp_patient_billing values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?),?)");
 
                                     pstmt2f.setString(1, nameNoTxt.getText());
                                     pstmt2f.setString(2, patientNameTxt.getText());
-                                    pstmt2f.setString(3, paymentModetxt.getText());
+                                    pstmt2f.setString(3, paymentModeTxt.getText());
                                     pstmt2f.setString(4, jTextField22.getText());
                                     pstmt2f.setString(5, jTable14.getValueAt(i, 0).toString());
                                     pstmt2f.setDouble(6, java.lang.Double.valueOf(jTable14.getValueAt(i, 1).toString()));
@@ -12642,9 +12743,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                     pstmt2f.setString(13, glAcc);
                                     pstmt2f.setString(14, visitID);
                                     pstmt2f.setString(15, "");
-                                    pstmt2f.setBoolean(16, false);
+                                    pstmt2f.setBoolean(16, true);
                                     pstmt2f.executeUpdate();
-                                } else if (paymentModetxt.getText().contains("Scheme") || inpatientCheckBox.isSelected()) {
+                                } else if (paymentModeTxt.getText().contains("Scheme") || inpatientCheckBox.isSelected()) {
                                     //in patient and outpatient scheme
                                     ////************************************
                                     ////************************************
@@ -12654,7 +12755,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                     String patientAcc = null;
                                     String cardNo = null;
                                     String AccDesc = null;
-                                    String scheme = paymentModetxt.getText();
+                                    String scheme = paymentModeTxt.getText();
                                     String cardName = null;
                                     String isurer = null;
                                     String expDate = null;
@@ -12684,7 +12785,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                     pstmt.setString(1, nameNoTxt.getText());
                                     pstmt.setObject(2, jTable14.getValueAt(i, 0).toString());
                                     pstmt.setString(3, jTextField22.getText());
-                                    pstmt.setString(4, paymentModetxt.getText());
+                                    pstmt.setString(4, paymentModeTxt.getText());
                                     pstmt.setString(5, String.valueOf(transNo));
                                     pstmt.setString(7, schemeNameTxt.getText());
                                     pstmt.setString(6, cardNo);
@@ -12729,7 +12830,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                         pstmt24.setString(8, "IP");
                                     }
                                     pstmt24.setString(9, jTextField9111.getText());
-                                    pstmt24.setObject(10, paymentModetxt.getText());
+                                    pstmt24.setObject(10, paymentModeTxt.getText());
                                     pstmt24.setString(11, "");
                                     pstmt24.setString(12, "");
                                     pstmt24.setString(13, "");
@@ -12782,7 +12883,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                 pstmt2.setString(2, patientNameTxt.getText());
                             }
                             // pstmt2.setString(2,jTextField1.getText());
-                            pstmt2.setString(3, paymentModetxt.getText());
+                            pstmt2.setString(3, paymentModeTxt.getText());
                             if (jTextField8.getText().equals("")) {
                                 javax.swing.JOptionPane.showMessageDialog(this, "Doctor's Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                             } else {
@@ -12796,7 +12897,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             pstmt2.setObject(8, jTable13.getValueAt(i, 5).toString());
                             pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker12.getDate()));
                             pstmt2.setString(10, billNo);
-                            if (paymentModetxt.getText().startsWith("Scheme")) {
+                            if (paymentModeTxt.getText().startsWith("Scheme")) {
                                 pstmt2.setBoolean(12, true);
                             } else {
 
@@ -12836,12 +12937,12 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
                             if (jTable13.getValueAt(i, 1).toString().startsWith("plaster") || jTable13.getValueAt(i, 1).toString().startsWith("POP") || jTable13.getValueAt(i, 1).toString().startsWith("p.o.p")) {
                             } else {
-                                if (!paymentModetxt.getText().startsWith("Scheme") && outpatientCheckBox.isSelected()) {
+                                if (!paymentModeTxt.getText().startsWith("Scheme") && outpatientCheckBox.isSelected()) {
                                     PreparedStatement pstmt2f = connectDB.prepareStatement("insert into hp_patient_billing values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?),?)");
 
                                     pstmt2f.setString(1, nameNoTxt.getText());
                                     pstmt2f.setString(2, patientNameTxt.getText());
-                                    pstmt2f.setString(3, paymentModetxt.getText());
+                                    pstmt2f.setString(3, paymentModeTxt.getText());
                                     pstmt2f.setString(4, jTextField22.getText());
                                     pstmt2f.setString(5, jTable13.getValueAt(i, 1).toString());
                                     pstmt2f.setDouble(6, java.lang.Double.valueOf(jTable13.getValueAt(i, 2).toString()));
@@ -12881,7 +12982,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                      */
 //                                    HttpPost httpClient = new HttpPost("");
 //                                    httpClient.setURI(null);
-                                } else if (paymentModetxt.getText().startsWith("Scheme") || inpatientCheckBox.isSelected()) {
+                                } else if (paymentModeTxt.getText().startsWith("Scheme") || inpatientCheckBox.isSelected()) {
                                     //in patient and outpatient scheme
                                     ////************************************
                                     ////************************************
@@ -12890,7 +12991,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                     String patientAcc = null;
                                     String cardNo = null;
                                     String AccDesc = null;
-                                    String scheme = paymentModetxt.getText();
+                                    String scheme = paymentModeTxt.getText();
                                     String cardName = null;
                                     String isurer = null;
                                     String expDate = null;
@@ -12920,7 +13021,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                     pstmt.setString(1, nameNoTxt.getText());
                                     pstmt.setObject(2, jTable13.getValueAt(i, 1).toString());
                                     pstmt.setString(3, jTextField22.getText());
-                                    pstmt.setString(4, paymentModetxt.getText());
+                                    pstmt.setString(4, paymentModeTxt.getText());
                                     pstmt.setString(5, String.valueOf(transNo));
                                     pstmt.setString(7, schemeNameTxt.getText());
                                     pstmt.setString(6, cardNo);
@@ -12965,7 +13066,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                         pstmt24.setString(8, "IP");
                                     }
                                     pstmt24.setString(9, jTextField9111.getText());
-                                    pstmt24.setObject(10, paymentModetxt.getText());
+                                    pstmt24.setObject(10, paymentModeTxt.getText());
                                     pstmt24.setString(11, "");
                                     pstmt24.setString(12, "");
                                     pstmt24.setString(13, "");
@@ -13021,7 +13122,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                                 pstmt2.setString(2, patientNameTxt.getText());
                             }
                             // pstmt2.setString(2,jTextField1.getText());
-                            pstmt2.setString(3, paymentModetxt.getText());
+                            pstmt2.setString(3, paymentModeTxt.getText());
                             if (jTextField8.getText().equals("")) {
                                 javax.swing.JOptionPane.showMessageDialog(this, "Doctor's Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                             } else {
@@ -13035,7 +13136,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker12.getDate()));
                             pstmt2.setString(10, billNo);
                             pstmt2.setString(11, user);
-                            if (paymentModetxt.getText().startsWith("Scheme") || inpatientCheckBox.isSelected() == Boolean.TRUE) {
+                            if (paymentModeTxt.getText().startsWith("Scheme") || inpatientCheckBox.isSelected() == Boolean.TRUE) {
                                 pstmt2.setBoolean(12, true);
                             } else {
                                 pstmt2.setBoolean(12, false);
@@ -13077,7 +13178,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             pstmt1.setDouble(4, java.lang.Double.valueOf(pharmacyTable.getValueAt(n, 2).toString().replace(",", "")));
                             pstmt1.setDouble(3, java.lang.Double.valueOf(pharmacyTable.getValueAt(n, 1).toString()));
                             pstmt1.setObject(5, pharmacyTable.getValueAt(n, 0).toString());
-                            if (paymentModetxt.getText().startsWith("Scheme") || this.inpatientCheckBox.isSelected() == Boolean.TRUE) {
+                            if (paymentModeTxt.getText().startsWith("Scheme") || this.inpatientCheckBox.isSelected() == Boolean.TRUE) {
                                 pstmt1.setBoolean(6, true);
                             } else {
                                 pstmt1.setBoolean(6, false);
@@ -13092,7 +13193,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             pstmt1.setDate(13, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker12.getDate()));
                             pstmt1.setObject(14, Store);
                             pstmt1.setString(15, "");
-                            pstmt1.setString(16, paymentModetxt.getText());
+                            pstmt1.setString(16, paymentModeTxt.getText());
                             pstmt1.setObject(17, pharmacyTable.getValueAt(n, 8).toString());
                             pstmt1.setDouble(18, 0.00);
                             pstmt1.setString(19, user);

@@ -352,6 +352,7 @@ public class PatientCardPdf implements java.lang.Runnable {
                         String Hist = null;
                         String visit = null;
                         String reg = null;
+                        String treatmentPlan = null;
                         try {
                             java.sql.Statement st2T = connectDB.createStatement();
                             java.sql.Statement st2d = connectDB.createStatement();
@@ -546,13 +547,14 @@ public class PatientCardPdf implements java.lang.Runnable {
                                         + "ORDER BY 2");
                                 java.sql.ResultSet rset2c111 = st2c111.executeQuery("SELECT DISTINCT INITCAP(disease), date_of_entry::TIME(0)::varchar, initcap(user_name) as doctor from hp_patient_diagnosis "
                                         + "WHERE patient_no = '" + memNo + "' and date_recorded  = '" + listofStaffNos[j] + "' AND disease != '' AND disease IS NOT NULL  AND disease NOT ILIKE 'null%' ");
-                                java.sql.ResultSet rset2c = st2c.executeQuery("SELECT DISTINCT INITCAP(comments), INITCAP(treatment),INITCAP(doctor),input_date::TIME(0), '' as notes FROM hp_clinical_results "
+                                java.sql.ResultSet rset2c = st2c.executeQuery("SELECT DISTINCT INITCAP(comments), INITCAP(treatment), INITCAP(doctor),input_date::TIME(0), '' as notes,"
+                                        + "extra_oral, intra_oral, pdhx, pmhx, familysocial, review, treatmentplan FROM hp_clinical_results "
                                         + "where patient_no = '" + memNo + "' and date  = '" + listofStaffNos[j] + "' AND comments IS NOT NULL  AND comments != '' AND comments NOT ILIKE 'null%' "
                                         + " UNION ALL "
-                                        + " SELECT INITCAP(pc),INITCAP(plan),INITCAP(doctor),input_date::TIME(0), notes"
-                                        + " FROM hp_xray_results WHERE patient_no = '" + memNo + "' AND date  = '" + listofStaffNos[j] + "' "
+                                        + " SELECT INITCAP(pc),INITCAP(plan),INITCAP(doctor),input_date::TIME(0), notes,"
+                                        + " '' as extra_oral, '' as intra_oral, '' as pdhx, '' as pmhx, '' as familysocial, '' as review, '' as treatmentplan  FROM hp_xray_results WHERE patient_no = '" + memNo + "' AND date  = '" + listofStaffNos[j] + "' "
                                         + "  AND pc IS NOT NULL  AND pc != '' AND pc NOT ILIKE 'null%'"
-                                        + "GROUP BY 1,2,3,4,5");
+                                        + "GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12");
                                 java.sql.ResultSet rset2g = st2g.executeQuery("SELECT DISTINCT INITCAP(result),INITCAP(comm_reason),input_date::TIME(0),INITCAP(doctor) FROM hp_clinical_results where patient_no = '" + memNo + "' and date  = '" + listofStaffNos[j] + "' AND result != '' AND comm_reason != '' AND comments IS NOT NULL  ORDER BY input_date");
                                 //java.sql.ResultSet rsetTotals = st2.executeQuery("select  symptom,result,duration,description,doctor from hp_patients_hist where patient_no = '"+memNo+"' and date  = '"+listofStaffNos[j]+"' and hist_heading = '"+exam+"'")
                                 //  java.sql.ResultSet rset14 = st14.executeQuery("select initcap(description),date_curr::time,date_curr::time from hp_pharmacy where patient_no = '"+memNo+"' and date_prescribed BETWEEN '"+beginDate+"' AND '"+endDate+"' order by date_curr::time");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
@@ -633,7 +635,7 @@ public class PatientCardPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setColspan(4);
                                 table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
 
-                                phrase = new Phrase("COMPLAINTS ", pFontHeader11);
+                                phrase = new Phrase("HISTORY/COMPLAINTS ", pFontHeader11);
 
                                 table.addCell(phrase);
 
@@ -642,6 +644,7 @@ public class PatientCardPdf implements java.lang.Runnable {
 
                                 table.addCell(phrase);
                                 while (rset2c.next()) {
+                                    treatmentPlan = rset2c.getString("treatmentplan");
                                     table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
                                     table.getDefaultCell().setColspan(1);
                                     phrase = new Phrase(dbObject.getDBObject(rset2c.getObject(4), "-"), pFontHeader);
@@ -650,7 +653,21 @@ public class PatientCardPdf implements java.lang.Runnable {
                                     table.getDefaultCell().setColspan(4);
                                     table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
 
-                                    phrase = new Phrase(dbObject.getDBObject(rset2c.getObject(1), "-"), pFontHeader);
+                                    // "extra_oral, intra_oral, pdhx, pmhx, familysocial,review, treatmentplan
+                                    String extra_oral = rset2c.getString("extra_oral") != null ? rset2c.getString("extra_oral") : ""; 
+                                    String intra_oral = rset2c.getString("intra_oral") != null ? rset2c.getString("intra_oral") : ""; 
+                                    String pdhx = rset2c.getString("pdhx") != null ? rset2c.getString("pdhx") : ""; 
+                                    String pmhx = rset2c.getString("pmhx") != null ? rset2c.getString("pmhx") : ""; 
+                                    String familysocial = rset2c.getString("familysocial") != null ? rset2c.getString("familysocial") : "";
+                                    String review = rset2c.getString("review") != null ? rset2c.getString("review") : ""; 
+                                    String treatmentplan;
+                                    phrase = new Phrase(dbObject.getDBObject(rset2c.getObject(1) + "\nEXTRA ORAL: "
+                                            + extra_oral
+                                            + "\nINTRA ORAL: " + intra_oral
+                                            + "\nPDHX: " + pdhx  + "\nPMHX: "
+                                            + pmhx + "\nFAMILY SOCIAL: "
+                                            + familysocial
+                                            + "\nREVIEW: " + review , "-"), pFontHeader);
 
                                     table.addCell(phrase);
 
@@ -670,7 +687,7 @@ public class PatientCardPdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(4);
 
-                                phrase = new Phrase("GEN./E XAMINATION", pFontHeader11);
+                                phrase = new Phrase("GENERAL EXAMINATION", pFontHeader11);
 
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
@@ -1132,6 +1149,20 @@ public class PatientCardPdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(4);
                                 phrase = new Phrase("TREATMENT", pFontHeader11);
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+                                table.getDefaultCell().setColspan(1);
+                                phrase = new Phrase("", pFontHeader);
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+                                table.getDefaultCell().setColspan(1);
+                                phrase = new Phrase("", pFontHeader);
+
+                                table.addCell(phrase);
+                                table.getDefaultCell().setColspan(4);
+                                phrase = new Phrase("TREATMENT PLAN : \n"+treatmentPlan, pFontHeader);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);

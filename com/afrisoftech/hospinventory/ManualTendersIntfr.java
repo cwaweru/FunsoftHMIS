@@ -175,7 +175,7 @@ public class ManualTendersIntfr extends javax.swing.JInternalFrame {
         jPanel10 = new javax.swing.JPanel();
         jButton9 = new javax.swing.JButton();
         tenderedTxt = new javax.swing.JLabel();
-        jButton10 = new javax.swing.JButton();
+        previewUploadBtn = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         jPanel11 = new javax.swing.JPanel();
@@ -1661,18 +1661,18 @@ public class ManualTendersIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel10.add(tenderedTxt, gridBagConstraints);
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up-arrow.gif"))); // NOI18N
-        jButton10.setText("Preview & Upload");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        previewUploadBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up-arrow.gif"))); // NOI18N
+        previewUploadBtn.setText("Preview & Upload");
+        previewUploadBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                previewUploadBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weighty = 1.0;
-        jPanel10.add(jButton10, gridBagConstraints);
+        jPanel10.add(previewUploadBtn, gridBagConstraints);
 
         jScrollPane6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ensure Your Excel format is as  shown", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Abyssinica SIL", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
 
@@ -2157,7 +2157,7 @@ public class ManualTendersIntfr extends javax.swing.JInternalFrame {
 //        } else
 //
 //        {
-            tenderrecordstbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT tender_no Tender_No FROM st_item_to_quote where "
+            tenderrecordstbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT tender_no Tender_No FROM st_item_to_quote where "
                     + " tender_no ilike '%" + tenderrecordstxt.getText() + "%'  order by 1 desc;"));
             tenderrecordstbl.setShowHorizontalLines(false);
 
@@ -2336,10 +2336,10 @@ public class ManualTendersIntfr extends javax.swing.JInternalFrame {
 
             if (jCheckBox5.isSelected()) {
 
-                itemsuploadtbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct service_code,service,units_rate from services_list where service ilike '" + itemsuploadtxt.getText() + "%' and department ilike '" + storecmbx.getSelectedItem() + "'  order by 1 "));
+                itemsuploadtbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct service_code,service,units_rate from services_list where service ilike '" + itemsuploadtxt.getText() + "%' and department ilike '" + storecmbx.getSelectedItem() + "'  order by 1 "));
 
             } else {
-                itemsuploadtbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct item_code,description,units FROM st_stock_item where description ilike '" + itemsuploadtxt.getText() + "%' and department ilike '" + storecmbx.getSelectedItem() + "' and sub_cat_code ilike '" + categoryccmbx.getSelectedItem() + "' order by 1 "));
+                itemsuploadtbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,units FROM st_stock_item where description ilike '" + itemsuploadtxt.getText() + "%' and department ilike '" + storecmbx.getSelectedItem() + "' and sub_cat_code ilike '" + categoryccmbx.getSelectedItem() + "' order by 1 "));
             }
 
         }
@@ -2390,7 +2390,7 @@ public class ManualTendersIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (itemsuploadtxt1.getCaretPosition() > 3) {
 
-            itemsuploadtbl1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct item_code,item_description,units,quantity from st_item_to_quote where (item_description ilike '" + itemsuploadtxt1.getText() + "%' or item_code ilike '" + itemsuploadtxt1.getText() + "%') and tender_no ='" + tenderNumbertxt.getText() + "' order by 1 "));
+            itemsuploadtbl1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,item_description,units,quantity from st_item_to_quote where (item_description ilike '" + itemsuploadtxt1.getText() + "%' or item_code ilike '" + itemsuploadtxt1.getText() + "%') and tender_no ='" + tenderNumbertxt.getText() + "' order by 1 "));
 
         }
     }//GEN-LAST:event_itemsuploadtxt1CaretUpdate
@@ -2577,7 +2577,7 @@ public class ManualTendersIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tenderTxtActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void previewUploadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previewUploadBtnActionPerformed
 
         if (!tenderedTxt.getText().equalsIgnoreCase("filepath/tofile/file.xls")) {
             final String quail = "st_item_to_quote";
@@ -2599,7 +2599,7 @@ public class ManualTendersIntfr extends javax.swing.JInternalFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "Please select a file to upload", "Caution", JOptionPane.ERROR_MESSAGE);
         }
 
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_previewUploadBtnActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
@@ -2673,7 +2673,7 @@ public class ManualTendersIntfr extends javax.swing.JInternalFrame {
 
     private void tenderrecordstxt2CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_tenderrecordstxt2CaretUpdate
         // TODO add your handling code here:
-        unitsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT '-' UNION SELECT DISTINCT bulk_supply_unit FROM st_packing "));
+        unitsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT '-' UNION SELECT DISTINCT bulk_supply_unit FROM st_packing "));
 
     }//GEN-LAST:event_tenderrecordstxt2CaretUpdate
 
@@ -2712,7 +2712,6 @@ public class ManualTendersIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField itemsuploadtxt;
     private javax.swing.JTextField itemsuploadtxt1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
@@ -2768,6 +2767,7 @@ public class ManualTendersIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JButton nxtbtn;
+    private javax.swing.JButton previewUploadBtn;
     private javax.swing.JButton prvsbtn;
     private javax.swing.ButtonGroup quotOrTenderno;
     private javax.swing.JCheckBox rfqChk;

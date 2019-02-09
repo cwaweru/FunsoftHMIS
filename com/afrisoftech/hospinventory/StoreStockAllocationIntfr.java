@@ -1069,7 +1069,7 @@ public class StoreStockAllocationIntfr extends javax.swing.JInternalFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, ""));
+        jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""));
     }//GEN-LAST:event_jButton6ActionPerformed
     
     

@@ -658,7 +658,7 @@ public class SSOTenderEvaluationIntfr extends javax.swing.JInternalFrame {
         } else
 
         {
-            tenderrecordstbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT quotation_no Tender_No FROM st_floated_quotations where "
+            tenderrecordstbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT quotation_no Tender_No FROM st_floated_quotations where "
                 + "quotation_no ilike '%T%' and  quotation_no ilike '" +tenderrecordstxt.getText()+"%'  order by 1 desc;"));
         tenderrecordstbl.setShowHorizontalLines(false);
 

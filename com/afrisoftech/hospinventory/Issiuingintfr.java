@@ -1343,7 +1343,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
             System.out.print("Nothing");
         } else {
             setFixedColumns.DisallowReordering(requisitionNumberSearchTable);
-            requisitionNumberSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, ""
+            requisitionNumberSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                     + "SELECT DISTINCT requisition_no as rq_number,(date) as date, store_name, cost_center \n"
                     + "FROM st_receive_requisation WHERE requisition_no ILIKE '%" + requisitionNumberSearchTxt.getText() + "%'  and store_name ILIKE '%" + issuingStoreCmbx.getSelectedItem() + "%' \n"
                     + "group by requisition_no, date, store_name, cost_center having sum(qty_issued) = 0  ORDER BY requisition_no"));
@@ -1738,18 +1738,18 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         } else {
             com.afrisoftech.dbadmin.setFixedColumns.DisallowReordering(SearchTable);
             if (mainStoreCkbx.isSelected()) {
-                SearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select DISTINCT item_code,description,strength,units,packaging, round(buying_price * 1.33), round(buying_price/packaging) FROM stockitem WHERE (description ILIKE '%" + requisitionSearchTxt.getText() + "%' OR item_code ILIKE '%" + requisitionSearchTxt.getText() + "%' )AND department ILIKE '%" + issuingStoreCmbx.getSelectedItem() + "%' order by description"));
+                SearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT item_code,description,strength,units,packaging, round(buying_price * 1.33), round(buying_price/packaging) FROM stockitem WHERE (description ILIKE '%" + requisitionSearchTxt.getText() + "%' OR item_code ILIKE '%" + requisitionSearchTxt.getText() + "%' )AND department ILIKE '%" + issuingStoreCmbx.getSelectedItem() + "%' order by description"));
 
                 SearchTable.setShowHorizontalLines(false);
                 jSearchScrollPane.setViewportView(SearchTable);
             } else {
                 if (useCostPriceRdbtn.isSelected()) {
-                    SearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select DISTINCT product_id,product,strength,units,(1.00)::numeric(10,2) AS packing,transfer_price::numeric(10,2) FROM stockprices WHERE product ILIKE '%" + requisitionSearchTxt.getText() + "%' AND department ILIKE '%" + issuingStoreCmbx.getSelectedItem() + "%' ORDER BY product"));
+                    SearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT product_id,product,strength,units,(1.00)::numeric(10,2) AS packing,transfer_price::numeric(10,2) FROM stockprices WHERE product ILIKE '%" + requisitionSearchTxt.getText() + "%' AND department ILIKE '%" + issuingStoreCmbx.getSelectedItem() + "%' ORDER BY product"));
 
                     SearchTable.setShowHorizontalLines(false);
                     jSearchScrollPane.setViewportView(SearchTable);
                 } else {
-                    SearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select DISTINCT product_id,product,strength,units,(1.00)::numeric(10,2) AS packing,selling_price::numeric(10,2) FROM stockprices WHERE product ILIKE '%" + requisitionSearchTxt.getText() + "%' AND department ILIKE '%" + issuingStoreCmbx.getSelectedItem() + "%' ORDER BY product"));
+                    SearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT product_id,product,strength,units,(1.00)::numeric(10,2) AS packing,selling_price::numeric(10,2) FROM stockprices WHERE product ILIKE '%" + requisitionSearchTxt.getText() + "%' AND department ILIKE '%" + issuingStoreCmbx.getSelectedItem() + "%' ORDER BY product"));
 
                     SearchTable.setShowHorizontalLines(false);
                     jSearchScrollPane.setViewportView(SearchTable);
@@ -2112,7 +2112,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
     private void jTextField112CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField112CaretUpdate
 
-        jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, ""
+        jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                 + "SELECT transaction_no,store_name,user_name as Issued_by,  sub_store,issiued_to, manual_transfer_no"
                 + "  FROM st_sub_stores   where (transaction_no ilike '%" + jTextField112.getText() + "%' or manual_transfer_no ilike '%" + jTextField112.getText() + "%') and store_name ilike '" + issuingStoreCmbx.getSelectedItem().toString() + "' and "
                 + "sub_store ilike '" + recepientStoreCmbx.getSelectedItem().toString() + "' and "

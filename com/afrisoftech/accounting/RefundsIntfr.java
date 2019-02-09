@@ -1295,23 +1295,23 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
                         + " UNION "
                         + " SELECT distinct receipt_no, dealer  FROM ac_ledger where receipt_no ilike '" + jTextField111.getText() + "%' and (transaction_type ilike 'Revenue' or service_type ilike 'Receipt') and date::date > (current_date - 60) ORDER BY 1 ASC");
 
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT  distinct requisition_no  as Receipt_NO,patient_no FROM hp_patient_card \n"
+                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT  distinct requisition_no  as Receipt_NO,patient_no FROM hp_patient_card \n"
                         + "where requisition_no ilike '" + jTextField111.getText() + "%' and  main_service ilike 'Receipt' and date::date > (current_date - 60)  \n"
                         + " UNION "
                         + " SELECT distinct receipt_no, dealer  FROM ac_ledger where receipt_no ilike '" + jTextField111.getText() + "%' and (transaction_type ilike 'Revenue' or service_type ilike 'Receipt') and date::date > (current_date - 60) ORDER BY 1 ASC"));
                 jSearchScrollPane.setViewportView(jSearchTable);
             } else if (this.doctorscheckbx.isSelected() == true) {
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB,
+                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
                         "SELECT distinct pat_inv, doctor_name  FROM ac_doctors_ledger where  pat_inv ilike '" + jTextField111.getText() + "%' and transaction_type='RECEIPT' AND"
                         + " input_date::date > (current_date - 60) ORDER BY 1 ASC"));
                 jSearchScrollPane.setViewportView(jSearchTable);
             } else if (this.debtorscheckbx.isSelected() == true) {
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, ""
+                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                         + "SELECT distinct receipt_no, dealer  FROM ac_debtors where receipt_no ilike '" + jTextField111.getText() + "%'"
                         + " and  transaction_type ilike 'Receipts' and date::date > (current_date - 60) ORDER BY 1 ASC"));
                 jSearchScrollPane.setViewportView(jSearchTable);
             } else if (this.otherscheckbx.isSelected() == true) {
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, ""
+                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                         + "SELECT distinct receipt_no, dealer  FROM ac_ledger where receipt_no ilike '" + jTextField111.getText() + "%' and transaction_type ilike 'Receipts' and date::date > (current_date - 60) ORDER BY 1 ASC"));
                 jSearchScrollPane.setViewportView(jSearchTable);
             }

@@ -58,11 +58,11 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        patientsDialog = new javax.swing.JDialog();
-        jSearchPanel = new javax.swing.JPanel();
+        patientsSearchDialog = new javax.swing.JDialog();
+        patientsSearchPanel = new javax.swing.JPanel();
         searchNameTxt = new javax.swing.JTextField();
-        jSearchScrollPane = new javax.swing.JScrollPane();
-        jSearchTable = new com.afrisoftech.dbadmin.JTable();
+        patientsSearchScrollPane = new javax.swing.JScrollPane();
+        patientsSearchTable = new com.afrisoftech.dbadmin.JTable();
         jButton9 = new javax.swing.JButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
@@ -169,12 +169,12 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         changeTxt = new javax.swing.JTextField();
         utiliseDepositbtn = new javax.swing.JButton();
 
-        patientsDialog.setModal(true);
-        patientsDialog.setUndecorated(true);
-        patientsDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+        patientsSearchDialog.setModal(true);
+        patientsSearchDialog.setUndecorated(true);
+        patientsSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jSearchPanel.setLayout(new java.awt.GridBagLayout());
+        patientsSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        patientsSearchPanel.setLayout(new java.awt.GridBagLayout());
 
         searchNameTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -186,9 +186,9 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 10.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
-        jSearchPanel.add(searchNameTxt, gridBagConstraints);
+        patientsSearchPanel.add(searchNameTxt, gridBagConstraints);
 
-        jSearchTable.setShowHorizontalLines(false);
+        patientsSearchTable.setShowHorizontalLines(false);
         /*    try {
             searchRowSet.setCommand("select product,selling_price,gl_code FROM st_stock_prices WHERE department = 'Pharmacy' order by product");
             searchRowSet.setConnectionSource(pConnDB);
@@ -196,13 +196,13 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
             searchRowSet.execute();
 
             // crset2.setExecuteOnLoad(true);
-            jSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
+            patientsSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
                 new org.netbeans.lib.sql.models.TableModel.Column("product", "Description", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("selling_price", "Amount", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("gl_code", "Gl_code", false)
 
             }));
-            // jSearchScrollPane.setViewportView(jSearchTable);
+            // patientsSearchScrollPane.setViewportView(patientsSearchTable);
 
         } catch(java.sql.SQLException sqlex){
             javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -210,12 +210,12 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
             System.out.println(sqlex.getMessage());
         }
         */
-        jSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        patientsSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSearchTableMouseClicked(evt);
+                patientsSearchTableMouseClicked(evt);
             }
         });
-        jSearchScrollPane.setViewportView(jSearchTable);
+        patientsSearchScrollPane.setViewportView(patientsSearchTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -224,7 +224,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
-        jSearchPanel.add(jSearchScrollPane, gridBagConstraints);
+        patientsSearchPanel.add(patientsSearchScrollPane, gridBagConstraints);
 
         jButton9.setText("Dispose");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -235,7 +235,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchPanel.add(jButton9, gridBagConstraints);
+        patientsSearchPanel.add(jButton9, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -243,7 +243,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        patientsDialog.getContentPane().add(jSearchPanel, gridBagConstraints);
+        patientsSearchDialog.getContentPane().add(patientsSearchPanel, gridBagConstraints);
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -1374,10 +1374,10 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3111ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        this.patientsDialog.dispose();        // Add your handling code here:
+        this.patientsSearchDialog.dispose();        // Add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void jSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTableMouseClicked
+    private void patientsSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patientsSearchTableMouseClicked
 
         tenderedAmttxt.setText("0.00");
         changeTxt.setText("0.00");
@@ -1390,12 +1390,12 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         amountPaidTxt.setText("0.00");
         balanceTxt.setText("");
         payerMobileTelephoneNumberTxt.setText("254-7  -      ");
-        this.patientsDialog.dispose();
+        this.patientsSearchDialog.dispose();
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         int j = 0;
 
-        patientNumberTxt.setText(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0).toString());
-        patientNameTxt.setText(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 1).toString());
+        patientNumberTxt.setText(patientsSearchTable.getValueAt(patientsSearchTable.getSelectedRow(), 0).toString());
+        patientNameTxt.setText(patientsSearchTable.getValueAt(patientsSearchTable.getSelectedRow(), 1).toString());
         payerTxt.setText(patientNameTxt.getText());
         unUtilizedDepositTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.unUtelisedDeposit.getBalanceDeposit(connectDB, patientNumberTxt.getText().toString().trim())));
         System.out.println("\nQuerying required data about: [Number: " + patientNumberTxt.getText() + "] [Name: " + patientNameTxt.getText() + "]");
@@ -1510,7 +1510,7 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "You must enter a valid client Mpesa telephone number in the format : 254-7xxxxxxx on the Bill Payer Telephone No field");
         }
         // patientsDialog.dispose();         // Add your handling code here:
-    }//GEN-LAST:event_jSearchTableMouseClicked
+    }//GEN-LAST:event_patientsSearchTableMouseClicked
 
     private void searchNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchNameTxtCaretUpdate
         if (searchNameTxt.getCaretPosition() < 3) {
@@ -1520,42 +1520,42 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
             if (inPatientRbtn.isSelected()) {
 
                 if (this.patientNameChk.isSelected()) {
-                    jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT patient_no, name, unit_number from inpatient_list where name ILIKE '" + searchNameTxt.getText() + "%' or unit_number ILIKE '" + searchNameTxt.getText() + "%' "
+                    patientsSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, name, unit_number from inpatient_list where name ILIKE '%" + searchNameTxt.getText() + "%' or unit_number ILIKE '%" + searchNameTxt.getText() + "%' "
                             + "union SELECT annual_no as patient_no, patient_name as name, tag_no from hp_mortuary where annual_no ilike '%" + searchNameTxt.getText() + "%' or patient_name ilike '%" + searchNameTxt.getText() + "%' or tag_no ilike '%" + searchNameTxt.getText() + "%' order by name"));
 
-                    jSearchTable.setShowHorizontalLines(false);
-                    jSearchScrollPane.setViewportView(jSearchTable);
+                    patientsSearchTable.setShowHorizontalLines(false);
+                    patientsSearchScrollPane.setViewportView(patientsSearchTable);
 
                 } else {
 
                     if (this.patientNoChk.isSelected()) {
-                        jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(
-                                connectDB, "SELECT patient_no, name, unit_number from inpatient_list where patient_no ILIKE '" + searchNameTxt.getText() + "%' or unit_number ILIKE '" + searchNameTxt.getText() + "%' "
+                        patientsSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(
+                                connectDB, "SELECT patient_no, name, unit_number from inpatient_list where patient_no ILIKE '%" + searchNameTxt.getText() + "%' or unit_number ILIKE '%" + searchNameTxt.getText() + "%' "
                                 + "union SELECT annual_no as patient_no, patient_name as name, tag_no from hp_mortuary where annual_no ilike '%" + searchNameTxt.getText() + "%' or patient_name ilike '%" + searchNameTxt.getText() + "%' or tag_no ilike '%" + searchNameTxt.getText() + "%' order by patient_no"));
 
-                        jSearchTable.setShowHorizontalLines(false);
-                        jSearchScrollPane.setViewportView(jSearchTable);
+                        patientsSearchTable.setShowHorizontalLines(false);
+                        patientsSearchScrollPane.setViewportView(patientsSearchTable);
 
                     }
                 }
             } else if (OutpatientRbtn.isSelected()) {
                 if (this.patientNameChk.isSelected()) {
-                    jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT distinct patient_no, name, unit_number from patient_select where name ILIKE '%" + searchNameTxt.getText() + "%' or unit_number ILIKE '" + searchNameTxt.getText() + "%'   order by 2"));
-                    jSearchTable.setShowHorizontalLines(false);
-                    jSearchScrollPane.setViewportView(jSearchTable);
+                    patientsSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct patient_no, name, unit_number from patient_select where name ILIKE '%" + searchNameTxt.getText() + "%' or unit_number ILIKE '%" + searchNameTxt.getText() + "%'   order by 2"));
+                    patientsSearchTable.setShowHorizontalLines(false);
+                    patientsSearchScrollPane.setViewportView(patientsSearchTable);
 
                 } else {
                     if (this.patientNoChk.isSelected()) {
-                        jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT distinct patient_no, name, unit_number from patient_select where patient_no ILIKE '%" + searchNameTxt.getText() + "%'  or unit_number ILIKE '" + searchNameTxt.getText() + "%'   order by 1"));
-                        jSearchTable.setShowHorizontalLines(false);
-                        jSearchScrollPane.setViewportView(jSearchTable);
+                        patientsSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct patient_no, name, unit_number from patient_select where patient_no ILIKE '%" + searchNameTxt.getText() + "%'  or unit_number ILIKE '%" + searchNameTxt.getText() + "%'   order by 1"));
+                        patientsSearchTable.setShowHorizontalLines(false);
+                        patientsSearchScrollPane.setViewportView(patientsSearchTable);
 
                     }
                 }
             } else {
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select account_no,(scheme_name) as scheme, payer_name from ac_schemes where scheme_name ILIKE '" + searchNameTxt.getText().toString() + "%' or account_no ILIKE '" + searchNameTxt.getText().toString() + "%'"));
-                jSearchTable.setShowHorizontalLines(false);
-                jSearchScrollPane.setViewportView(jSearchTable);
+                patientsSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select account_no,(scheme_name) as scheme, payer_name from ac_schemes where scheme_name ILIKE '%" + searchNameTxt.getText().toString() + "%' or account_no ILIKE '%" + searchNameTxt.getText().toString() + "%'"));
+                patientsSearchTable.setShowHorizontalLines(false);
+                patientsSearchScrollPane.setViewportView(patientsSearchTable);
             }
         }
 
@@ -1573,11 +1573,11 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
         java.awt.Point point = this.patientNumberTxt.getLocationOnScreen();
 
-        patientsDialog.setSize(700, 200);
+        patientsSearchDialog.setSize(700, 200);
 
-        patientsDialog.setLocation(point);
+        patientsSearchDialog.setLocation(point);
 
-        patientsDialog.setVisible(true);
+        patientsSearchDialog.setVisible(true);
 
     }
     private void jButton1111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1111ActionPerformed
@@ -2821,9 +2821,6 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel711;
-    private javax.swing.JPanel jSearchPanel;
-    private javax.swing.JScrollPane jSearchScrollPane;
-    private javax.swing.JTable jSearchTable;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator1111;
     private javax.swing.JSeparator jSeparator2;
@@ -2843,7 +2840,10 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField patientNameTxt;
     private javax.swing.JCheckBox patientNoChk;
     private javax.swing.JTextField patientNumberTxt;
-    private javax.swing.JDialog patientsDialog;
+    private javax.swing.JDialog patientsSearchDialog;
+    private javax.swing.JPanel patientsSearchPanel;
+    private javax.swing.JScrollPane patientsSearchScrollPane;
+    private javax.swing.JTable patientsSearchTable;
     private javax.swing.JTextField payBillNumberTxt;
     private javax.swing.JButton payViaMobilePayBtn;
     private javax.swing.JFormattedTextField payerMobileTelephoneNumberTxt;

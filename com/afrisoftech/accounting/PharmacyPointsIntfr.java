@@ -2182,7 +2182,7 @@ public class PharmacyPointsIntfr extends javax.swing.JInternalFrame {
             System.out.println("Nothing");
         } else {
             //
-            jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, " SELECT department_name,income_account from pb_departments WHERE department_name IN(select store_name from st_stores)  AND department_name ilike '%" + jTextField11.getText() + "%'"
+            jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, " SELECT department_name,income_account from pb_departments WHERE department_name IN(select store_name from st_stores)  AND department_name ilike '%" + jTextField11.getText() + "%'"
                     + "UNION select store_name,cs_code from st_stores where store_name NOT LIKE '%PHARMACY%' AND cs_code ilike '600%' AND store_name ilike '%" + jTextField11.getText() + "%'"));
             //jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select activity, code FROM pb_activity WHERE (activity ILIKE '%pharm%' OR activity ILIKE '%supplies%' OR sub_category ILIKE '%stock%') AND activity ilike '%" + jTextField11.getText() + "%'"));
 

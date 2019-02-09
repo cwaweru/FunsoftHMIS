@@ -531,7 +531,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
 
                 System.out.println("Nothing");
             } else {
-                patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT patient_no, name,visit_id, unit_number from inpatient_list where name ILIKE '%" + patientSearchTxt.getText() + "%' or unit_number ILIKE '%" + patientSearchTxt.getText() + "%' or patient_no  ILIKE '%" + patientSearchTxt.getText() + "%'  order by name"));
+                patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, name,visit_id, unit_number from inpatient_list where name ILIKE '%" + patientSearchTxt.getText() + "%' or unit_number ILIKE '%" + patientSearchTxt.getText() + "%' or patient_no  ILIKE '%" + patientSearchTxt.getText() + "%'  order by name"));
 
                 patientSearchTbl.setShowHorizontalLines(false);
                 patientSearchScrollPane.setViewportView(patientSearchTbl);
@@ -544,7 +544,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
 
                     System.out.println("Nothing");
                 } else {
-                    patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT patient_no, name,'-' as visit_id, unit_number from patient_select where name ILIKE '%" + patientSearchTxt.getText() + "%' or unit_number ilike '%" + patientSearchTxt.getText() + "%' order by name"));
+                    patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, name,'-' as visit_id, unit_number from patient_select where name ILIKE '%" + patientSearchTxt.getText() + "%' or unit_number ilike '%" + patientSearchTxt.getText() + "%' order by name"));
 
                     patientSearchTbl.setShowHorizontalLines(false);
                     patientSearchScrollPane.setViewportView(patientSearchTbl);
@@ -557,7 +557,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
 
                         System.out.println("Nothing");
                     } else {
-                        patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT patient_no, name, visit_id, unit_number from inpatient_list where patient_no ILIKE '%" + patientSearchTxt.getText() + "%' or unit_number ILIKE '%" + patientSearchTxt.getText() + "%' order by patient_no"));
+                        patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, name, visit_id, unit_number from inpatient_list where patient_no ILIKE '%" + patientSearchTxt.getText() + "%' or unit_number ILIKE '%" + patientSearchTxt.getText() + "%' order by patient_no"));
 
                         patientSearchTbl.setShowHorizontalLines(false);
                         patientSearchScrollPane.setViewportView(patientSearchTbl);
@@ -570,7 +570,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
 
                             System.out.println("Nothing");
                         } else {
-                            patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT patient_no, name, '-' as visit_id, unit_number from patient_select where patient_no ILIKE '%" + patientSearchTxt.getText() + "%' or unit_number ILIKE '%" + patientSearchTxt.getText() + "%' order by patient_no"));
+                            patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, name, '-' as visit_id, unit_number from patient_select where patient_no ILIKE '%" + patientSearchTxt.getText() + "%' or unit_number ILIKE '%" + patientSearchTxt.getText() + "%' order by patient_no"));
 
                             patientSearchTbl.setShowHorizontalLines(false);
                             patientSearchScrollPane.setViewportView(patientSearchTbl);
@@ -584,7 +584,7 @@ public class SocialWorkServicesIntfr extends javax.swing.JInternalFrame {
                                 System.out.println("Nothing");
                             } else {
                                 //  jSearchTable2121.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"SELECT patient_no, name from patient_select where patient_no ILIKE '%"+jTextField113121.getText()+"%' order by patient_no"));
-                                patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT distinct(patient_no),(patient_name) as name from hp_pharmacy where patient_name ILIKE '%" + patientSearchTxt.getText() + "%' AND (patient_no ilike 'wk%') order by patient_name"));
+                                patientSearchTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct(patient_no),(patient_name) as name from hp_pharmacy where patient_name ILIKE '%" + patientSearchTxt.getText() + "%' AND (patient_no ilike 'wk%') order by patient_name"));
 
                                 patientSearchTbl.setShowHorizontalLines(false);
                                 patientSearchScrollPane.setViewportView(patientSearchTbl);

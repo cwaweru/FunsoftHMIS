@@ -3448,7 +3448,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             if (this.searchPatientTxt.getCaretPosition() > 4) {
 //                System.out.print("Nothing");
 //            } else {
-                loadPatientDateTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select patient_no as pat_no,(second_name||' '||first_name||' '||last_name) as name,account_no AS staff_no,description AS description from hp_patient_register  where second_name||' '||first_name||' '||last_name ILIKE '" + searchPatientTxt.getText() + "%' AND pay_mode = 'Scheme' order by second_name"));
+                loadPatientDateTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select patient_no as pat_no,(second_name||' '||first_name||' '||last_name) as name,account_no AS staff_no,description AS description from hp_patient_register  where second_name||' '||first_name||' '||last_name ILIKE '" + searchPatientTxt.getText() + "%' AND pay_mode = 'Scheme' order by second_name"));
 
                 loadPatientDateTable.setShowHorizontalLines(false);
                 jSearchScrollPane2.setViewportView(loadPatientDateTable);
@@ -4721,7 +4721,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         int j = 0;
 
         viewTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                + "select distinct date::date,patient_no,scheme, sum(debit-credit), upper(funsoft_get_patient_name(patient_no))   "
+                + "select distinct date::date,patient_no,scheme, sum(debit-credit) as bill_amount, upper(funsoft_get_patient_name(patient_no)) as patient_name   "
                 + " FROM hp_patient_card where (ip_no='OP' or ip_no = '') and scheme !='' and paid=false"
                 + " and date between '" + beginDate.getDate().toString() + "'::date and '" + endDate.getDate().toString() + "'::date  "
                 + "  group by 1,2,3 having sum(debit-credit)>0 order by patient_no"));

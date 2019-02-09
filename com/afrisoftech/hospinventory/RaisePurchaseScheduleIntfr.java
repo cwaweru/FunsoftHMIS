@@ -996,11 +996,11 @@ public class RaisePurchaseScheduleIntfr extends javax.swing.JInternalFrame {
 //        }
 //        else {
         if (goodsPrqChbx.isSelected() == true) {
-            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT item_code,description,units,buying_price,reorder_level FROM st_stock_item WHERE (description ILIKE '%" + itemsTxt.getText() + "%' OR item_code ILIKE '%" + itemsTxt.getText() + "%') AND department ILIKE '" + receivnCmbx.getSelectedItem().toString() + "' ORDER BY description"));
+            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT item_code,description,units,buying_price,reorder_level FROM st_stock_item WHERE (description ILIKE '%" + itemsTxt.getText() + "%' OR item_code ILIKE '%" + itemsTxt.getText() + "%') AND department ILIKE '" + receivnCmbx.getSelectedItem().toString() + "' ORDER BY description"));
             jSearchScrollPane1.setViewportView(jSearchTable1);
         } //you can change this query up here
         else if (servicesPrqChbx.isSelected() == true) {
-            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT service_code, service, units_rate, unit_price,specification  FROM services_list WHERE service ILIKE '%" + itemsTxt.getText() + "%'  and department='" + deptRaising.getSelectedItem() + "'  ORDER BY service_code asc"));
+            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_code, service, units_rate, unit_price,specification  FROM services_list WHERE service ILIKE '%" + itemsTxt.getText() + "%'  and department='" + deptRaising.getSelectedItem() + "'  ORDER BY service_code asc"));
             //SELECT DISTINCT service_code, service, specification  FROM services_list WHERE service ILIKE '%" + jTextField1111.getText() + "%'  and department='"+jComboBox2.getSelectedItem()+"'  ORDER BY service_code asc
 
             jSearchScrollPane1.setViewportView(jSearchTable1);
@@ -1040,7 +1040,7 @@ public class RaisePurchaseScheduleIntfr extends javax.swing.JInternalFrame {
         //      j = rset.getInt(1);
         //  }
         //  if (j > 0){
-        jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct requisition_no as Req_No from st_receive_requisation where requisition_no ILIKE '" + jTextField11111.getText().toString() + "%' and (requisition_no ilike 'PRQ%' OR requisition_no ilike 'SRQ%') AND analysed=FALSE ORDER BY requisition_no"));
+        jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct requisition_no as Req_No from st_receive_requisation where requisition_no ILIKE '" + jTextField11111.getText().toString() + "%' and (requisition_no ilike 'PRQ%' OR requisition_no ilike 'SRQ%') AND analysed=FALSE ORDER BY requisition_no"));
                 //   }
             /*   try {
          searchRowSet1.execute("select distinct order_no as scheme,(supplier) as name from st_orders where order_no ILIKE '"+jTextField1111.getText().toString()+"%' ORDER BY order_no");

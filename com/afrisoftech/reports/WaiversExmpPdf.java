@@ -412,11 +412,11 @@ public class WaiversExmpPdf implements java.lang.Runnable {
 
                         //     table.addCell("Reference No.");
 
-                        phrase = new Phrase("Receipt Amt", pFontHeader);
+                        phrase = new Phrase("Waiv/Exm Amt", pFontHeader);
                         table.addCell(phrase);
 
 
-                        phrase = new Phrase("Waiv/Exm Amt", pFontHeader);
+                        phrase = new Phrase("Receipt Amt", pFontHeader);
                         table.addCell(phrase);
                         phrase = new Phrase("Running " + ks, pFontHeader);
                         table.addCell(phrase);

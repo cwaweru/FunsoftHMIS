@@ -405,7 +405,7 @@
                       <KeyStroke key="Shift+Ctrl+B"/>
                     </Property>
                     <Property name="mnemonic" type="int" value="98"/>
-                    <Property name="text" type="java.lang.String" value="Raise Branch Requisitions"/>
+                    <Property name="text" type="java.lang.String" value="Raise Internal Requisitions (S11 Vouchers)"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rcvbrrequismnitActionPerformed"/>
@@ -417,7 +417,7 @@
                       <KeyStroke key="Shift+Ctrl+A"/>
                     </Property>
                     <Property name="mnemonic" type="int" value="97"/>
-                    <Property name="text" type="java.lang.String" value="Analyse Requisitions"/>
+                    <Property name="text" type="java.lang.String" value="Analyse Internal Requisitions"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="analysereqmnitActionPerformed"/>
@@ -441,7 +441,7 @@
                       <KeyStroke key="Shift+Ctrl+I"/>
                     </Property>
                     <Property name="mnemonic" type="int" value="73"/>
-                    <Property name="text" type="java.lang.String" value="Raise Internal Requisitions"/>
+                    <Property name="text" type="java.lang.String" value="Raise Purchase Requisitions"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="internalreqmnitActionPerformed"/>
@@ -453,7 +453,7 @@
                       <KeyStroke key="Shift+Ctrl+L"/>
                     </Property>
                     <Property name="mnemonic" type="int" value="108"/>
-                    <Property name="text" type="java.lang.String" value="Analyse Purchase Requisition"/>
+                    <Property name="text" type="java.lang.String" value="Analyse Purchase Requisitions"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="raiseprocreqmnitActionPerformed"/>

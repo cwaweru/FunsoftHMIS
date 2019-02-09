@@ -439,7 +439,7 @@ public class ShiftsTotalPerPointPdf implements java.lang.Runnable {
 
 
                         //    table.getDefaultCell().setBackgroundColor(java.awt.Color.LIGHT_GRAY);
-                        phrase = new Phrase("No", pFontHeader);
+                        phrase = new Phrase("Index", pFontHeader);
                         table.addCell(phrase);
                         phrase = new Phrase("Shift No", pFontHeader);
                         table.addCell(phrase);
@@ -463,11 +463,11 @@ public class ShiftsTotalPerPointPdf implements java.lang.Runnable {
                         phrase = new Phrase("Eft", pFontHeader);
                         table.addCell(phrase);
 
-                        phrase = new Phrase("Exemtions", pFontHeader);
+                        phrase = new Phrase("Exemptions", pFontHeader);
                         table.addCell(phrase);
 
 
-                        phrase = new Phrase("Waiver", pFontHeader);
+                        phrase = new Phrase("Waivers", pFontHeader);
                         table.addCell(phrase);
 
                         phrase = new Phrase("Refund", pFontHeader);

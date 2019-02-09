@@ -645,7 +645,7 @@ public class UnfinaliseInvIntfr extends javax.swing.JInternalFrame {
             System.out.print("Nothing");
         } else {
             //  jSearchTable22.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT invoice_no,admission_no as patient_no, date as invoice_date, dealer as scheme from ac_debtors  where invoice_no ilike '" + jTextField1132.getText() + "%' and debit > 0 order by invoice_no"));
-            jSearchTable22.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct invoice_no,patient_no,date as invoice_date,service as scheme from hp_patient_card where invoice_no ilike '" + jTextField1132.getText() + "%' group by 1 ,2,3,4  having sum(credit-debit) > 0 order by invoice_no asc "));
+            jSearchTable22.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct invoice_no,patient_no,date as invoice_date,service as scheme from hp_patient_card where invoice_no ilike '" + jTextField1132.getText() + "%' group by 1 ,2,3,4  having sum(credit-debit) > 0 order by invoice_no asc "));
             jSearchScrollPane22.setViewportView(jSearchTable22);
             System.out.println("Cannot sort out");
 

@@ -1434,9 +1434,9 @@ private void syncItemList(String refName){
 //        } else
 //
 //        {
-            //tenderrecordstbl3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT distinct a.quotation_no from st_technical_evaluation a,st_floated_quotations b where a.quotation_no= b.quotation_no and b.ordered=false and a.total_mark='100' and a.quotation_no ILIKE '%" + tenderrecordstxt3.getText() + "%' "));
-            tenderrecordstbl3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT quotation_no FROM st_technical_evaluation  WHERE quotation_no ILIKE '%" + tenderrecordstxt3.getText() + "%' " ));
-            //tenderrecordstbl3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT quotation_no FROM st_technical_evaluation  WHERE quotation_no ILIKE '%" + tenderrecordstxt3.getText() + "%'  AND quotation_no NOT IN( SELECT distinct quotation_no FROM st_recommendation WHERE agenda_approval=true) "));
+            //tenderrecordstbl3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct a.quotation_no from st_technical_evaluation a,st_floated_quotations b where a.quotation_no= b.quotation_no and b.ordered=false and a.total_mark='100' and a.quotation_no ILIKE '%" + tenderrecordstxt3.getText() + "%' "));
+            tenderrecordstbl3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT quotation_no FROM st_technical_evaluation  WHERE quotation_no ILIKE '%" + tenderrecordstxt3.getText() + "%' " ));
+            //tenderrecordstbl3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT quotation_no FROM st_technical_evaluation  WHERE quotation_no ILIKE '%" + tenderrecordstxt3.getText() + "%'  AND quotation_no NOT IN( SELECT distinct quotation_no FROM st_recommendation WHERE agenda_approval=true) "));
             tenderrecordstbl3.setShowHorizontalLines(false);
 
             tenderrecordsspnl3.setViewportView( tenderrecordstbl3);

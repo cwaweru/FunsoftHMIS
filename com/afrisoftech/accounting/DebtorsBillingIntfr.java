@@ -1133,7 +1133,7 @@ public class DebtorsBillingIntfr extends javax.swing.JInternalFrame {
             if (jTextField113.getCaretPosition() > 3) {
 //                System.out.println("Nothing");
 //            } else {
-                jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select trim(scheme_name) as scheme ,account_no,payer_name from ac_schemes where account_no ILIKE '%" + jTextField113.getText().toString() + "%' AND closed = false "));
+                jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select trim(scheme_name) as scheme ,account_no,payer_name from ac_schemes where account_no ILIKE '%" + jTextField113.getText().toString() + "%' AND closed = false "));
 
                 jSearchTable2.setShowHorizontalLines(false);
                 jSearchScrollPane2.setViewportView(jSearchTable2);
@@ -1145,7 +1145,7 @@ public class DebtorsBillingIntfr extends javax.swing.JInternalFrame {
 //                    System.out.println("Nothing");
 //                } else {
 
-                    jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select trim(scheme_name) as scheme ,account_no,payer_name from ac_schemes where scheme_name ILIKE '%" + jTextField113.getText().toString() + "%' AND closed = false "));
+                    jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select trim(scheme_name) as scheme ,account_no,payer_name from ac_schemes where scheme_name ILIKE '%" + jTextField113.getText().toString() + "%' AND closed = false "));
 
                     jSearchTable2.setShowHorizontalLines(false);
                     jSearchScrollPane2.setViewportView(jSearchTable2);

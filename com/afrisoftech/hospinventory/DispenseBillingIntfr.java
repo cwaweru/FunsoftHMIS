@@ -3706,6 +3706,19 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
             }
         }
 
+        javax.swing.table.TableColumn column = null;
+        for (int i = 0; i < patientSearchTable.getColumnCount(); i++) {
+            column = patientSearchTable.getColumnModel().getColumn(i);
+            if (i == 1) {
+
+                column.setPreferredWidth(500); // item description column is bigger
+            } else {
+
+                column.setPreferredWidth(100);
+
+            }
+        }
+        patientSearchScrollPane.setViewportView(patientSearchTable);
 //        if (this.jCheckBox3.isSelected() && this.jCheckBox31.isSelected()) {
 //
 //            if (jTextField113.getCaretPosition() < 3) {
@@ -4276,17 +4289,17 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
         patientNoTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 0).toString());
 
         try {
-                java.sql.Statement stmtTable1 = connectDB.createStatement();
-                java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select distinct category,pay_mode,(CURRENT_DATE - year_of_birth::DATE)/365 AS age, residence, (select round(weight) FROM hp_signs_record WHERE hp_patient_register.patient_no = hp_signs_record.patient_no ORDER BY date DESC LIMIT 1) as weight from hp_patient_register where patient_no='" + this.patientNoTxt.getText().toString() + "' ");
-                while (rsetTable1.next()) {
-                    this.paymentModeTxt.setText(rsetTable1.getString(2));
-                    this.residenceTxt.setText(rsetTable1.getString(1));
-                    ageTxt.setText(rsetTable1.getString(3));
-                    residenceTxt.setText(rsetTable1.getString(4));
-                    weightTxt.setText(rsetTable1.getString(5));
+            java.sql.Statement stmtTable1 = connectDB.createStatement();
+            java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select distinct category,pay_mode,(CURRENT_DATE - year_of_birth::DATE)/365 AS age, residence, (select round(weight) FROM hp_signs_record WHERE hp_patient_register.patient_no = hp_signs_record.patient_no ORDER BY date DESC LIMIT 1) as weight from hp_patient_register where patient_no='" + this.patientNoTxt.getText().toString() + "' ");
+            while (rsetTable1.next()) {
+                this.paymentModeTxt.setText(rsetTable1.getString(2));
+                this.residenceTxt.setText(rsetTable1.getString(1));
+                ageTxt.setText(rsetTable1.getString(3));
+                residenceTxt.setText(rsetTable1.getString(4));
+                weightTxt.setText(rsetTable1.getString(5));
 
-                    //jTextField141.setText(rsetTable1.toString());
-                }
+                //jTextField141.setText(rsetTable1.toString());
+            }
 
         } catch (java.sql.SQLException sqe) {
             sqe.printStackTrace();
@@ -4316,7 +4329,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
                 }
             }
             java.sql.Statement stmt1x = connectDB.createStatement();
-            java.sql.ResultSet rset1x = stmt1x.executeQuery("SELECT doctor, inv_no FROM pb_doctors_request WHERE patient_no  ='" + patientNoTxt.getText() + "' AND trans_date > (current_date - 2) AND collected = false AND inv_no = '"+patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 3).toString()+"' AND paid = false");
+            java.sql.ResultSet rset1x = stmt1x.executeQuery("SELECT doctor, inv_no FROM pb_doctors_request WHERE patient_no  ='" + patientNoTxt.getText() + "' AND trans_date > (current_date - 2) AND collected = false AND inv_no = '" + patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 3).toString() + "' AND paid = false");
             while (rset1x.next()) {
                 jTextField36.setText(rset1x.getObject(1).toString());
                 prescriptionNoTxt.setText(rset1x.getObject(2).toString());

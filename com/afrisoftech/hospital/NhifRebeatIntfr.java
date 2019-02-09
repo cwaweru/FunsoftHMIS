@@ -281,11 +281,12 @@ public class NhifRebeatIntfr extends javax.swing.JInternalFrame {
             connectDB.commit();
             connectDB.setAutoCommit(true);
 
-            javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully", "Confirmation", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, "Data saved successfully", "Confirmation", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
             jButton1.setText("Save Data");
         } catch (java.sql.SQLException sq) {
             javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+            sq.printStackTrace();
             try {
                 connectDB.rollback();
             } catch (java.sql.SQLException sql) {

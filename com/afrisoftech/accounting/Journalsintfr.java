@@ -3173,7 +3173,7 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 //            System.out.println("Nothing");
 //        }else{
 
-            jSearchTable13.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register WHERE second_name||' '||first_name||' '||last_name ILIKE '%" + patientCltrtxt.getText() + "%' UNION ALL SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_inpatient_register where patient_no ILIKE '%" + patientCltrtxt.getText() + "%' UNION ALL SELECT annual_no, upper(patient_name) as name,date_of_death::character varying dod,home_county from hp_mortuary where annual_no ilike '%" + patientCltrtxt.getText() + "%'  order by 2"));
+            jSearchTable13.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register WHERE second_name||' '||first_name||' '||last_name ILIKE '%" + patientCltrtxt.getText() + "%' UNION ALL SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_inpatient_register where patient_no ILIKE '%" + patientCltrtxt.getText() + "%' UNION ALL SELECT annual_no, upper(patient_name) as name,date_of_death::character varying dod,home_county from hp_mortuary where annual_no ilike '%" + patientCltrtxt.getText() + "%'  order by 2"));
 
             jSearchTable13.setShowHorizontalLines(false);
             jSearchScrollPane13.setViewportView(jSearchTable13);
@@ -3462,7 +3462,7 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 //            }
 //            else{
 
-                jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT account_no,scheme_name,payer_name from ac_schemes where scheme_name ILIKE '" + searchAccounttxt.getText() + "%'  order by scheme_name"));
+                jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT account_no,scheme_name,payer_name from ac_schemes where scheme_name ILIKE '" + searchAccounttxt.getText() + "%'  order by scheme_name"));
 
 
                 jSearchTable11.setShowHorizontalLines(false);
@@ -3477,7 +3477,7 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 
 //                    System.out.println("Nothing");
 //                }else{
-                    jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT staff_no,first_name||' '||middle_name as name from pb_doctors_list where first_name||' '||middle_name ILIKE '" + searchAccounttxt.getText() + "%' order by name"));
+                    jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT staff_no,first_name||' '||middle_name as name from pb_doctors_list where first_name||' '||middle_name ILIKE '" + searchAccounttxt.getText() + "%' order by name"));
 
 
 
@@ -4899,7 +4899,7 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
     private void patientCltrtxt1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_patientCltrtxt1CaretUpdate
         if (patientCltrtxt1.getCaretPosition() > 3) {
 
-            jSearchTable15.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register WHERE second_name||' '||first_name||' '||last_name ILIKE '%" + patientCltrtxt1.getText() + "%' UNION ALL SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_inpatient_register where patient_no ILIKE '%" + patientCltrtxt1.getText() + "%' UNION ALL SELECT annual_no, upper(patient_name) as name,date_of_death::character varying dod,home_county from hp_mortuary where annual_no ilike '%" + patientCltrtxt1.getText() + "%'  order by 2"));
+            jSearchTable15.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register WHERE second_name||' '||first_name||' '||last_name ILIKE '%" + patientCltrtxt1.getText() + "%' UNION ALL SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_inpatient_register where patient_no ILIKE '%" + patientCltrtxt1.getText() + "%' UNION ALL SELECT annual_no, upper(patient_name) as name,date_of_death::character varying dod,home_county from hp_mortuary where annual_no ilike '%" + patientCltrtxt1.getText() + "%'  order by 2"));
 
             jSearchTable15.setShowHorizontalLines(false);
             jSearchScrollPane15.setViewportView(jSearchTable15);

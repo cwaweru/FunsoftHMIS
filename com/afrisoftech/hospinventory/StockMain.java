@@ -937,7 +937,7 @@ public class StockMain extends javax.swing.JFrame {
 
         rcvbrrequismnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         rcvbrrequismnit.setMnemonic('b');
-        rcvbrrequismnit.setText("Raise Branch Requisitions");
+        rcvbrrequismnit.setText("Raise Internal Requisitions (S11 Vouchers)");
         rcvbrrequismnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rcvbrrequismnitActionPerformed(evt);
@@ -947,7 +947,7 @@ public class StockMain extends javax.swing.JFrame {
 
         analysereqmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         analysereqmnit.setMnemonic('a');
-        analysereqmnit.setText("Analyse Requisitions");
+        analysereqmnit.setText("Analyse Internal Requisitions");
         analysereqmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 analysereqmnitActionPerformed(evt);
@@ -967,7 +967,7 @@ public class StockMain extends javax.swing.JFrame {
 
         internalreqmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         internalreqmnit.setMnemonic('I');
-        internalreqmnit.setText("Raise Internal Requisitions");
+        internalreqmnit.setText("Raise Purchase Requisitions");
         internalreqmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 internalreqmnitActionPerformed(evt);
@@ -977,7 +977,7 @@ public class StockMain extends javax.swing.JFrame {
 
         raiseprocreqmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         raiseprocreqmnit.setMnemonic('l');
-        raiseprocreqmnit.setText("Analyse Purchase Requisition");
+        raiseprocreqmnit.setText("Analyse Purchase Requisitions");
         raiseprocreqmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 raiseprocreqmnitActionPerformed(evt);

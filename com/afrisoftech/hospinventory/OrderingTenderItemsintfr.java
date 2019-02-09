@@ -1908,7 +1908,7 @@ public class OrderingTenderItemsintfr extends javax.swing.JInternalFrame {
     }
     private void prqSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_prqSearchTxtCaretUpdate
         if (prqSearchTxt.getCaretPosition() > 5) {
-            prqSearchtbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct requisition_no  as Req_No from st_receive_requisation WHERE requisition_no ilike 'PRQ%' AND processed = true AND requisition_no ILIKE '" + prqSearchTxt.getText().toString() + "%' AND type_of_pr ilike 'Internal%' and cost_center ilike '" + jComboBox3.getSelectedItem() + "' ORDER BY requisition_no"));
+            prqSearchtbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct requisition_no  as Req_No from st_receive_requisation WHERE requisition_no ilike 'PRQ%' AND processed = true AND requisition_no ILIKE '" + prqSearchTxt.getText().toString() + "%' AND type_of_pr ilike 'Internal%' and cost_center ilike '" + jComboBox3.getSelectedItem() + "' ORDER BY requisition_no"));
 
             prqSearchtbl.setShowHorizontalLines(false);
             jSearchScrollPane11.setViewportView(prqSearchtbl);
@@ -2723,7 +2723,7 @@ public class OrderingTenderItemsintfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (searchtlpo.getCaretPosition() > 4) {
 
-            awardedtenderNostbl.setModel(TableModel.createTableVectorsCaret(connectDB, "select distinct a.quotation_no Tender_No from st_orders a, st_floated_quotations b WHERE a.quotation_no ilike '%T%' and a.quotation_no=b.quotation_no and a.ordered =false and b.ordered=true  and a.quotation_no ilike '%" + searchtlpo.getText() + "%' "));
+            awardedtenderNostbl.setModel(TableModel.createTableVectors(connectDB, "select distinct a.quotation_no Tender_No from st_orders a, st_floated_quotations b WHERE a.quotation_no ilike '%T%' and a.quotation_no=b.quotation_no and a.ordered =false and b.ordered=true  and a.quotation_no ilike '%" + searchtlpo.getText() + "%' "));
             jSearchScrollPane2.setViewportView(awardedtenderNostbl);
 
         }

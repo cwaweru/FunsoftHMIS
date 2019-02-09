@@ -481,7 +481,7 @@ public class ShiftsTotalPdf implements java.lang.Runnable {
                         table.addCell(phrase);
 
 
-                        phrase = new Phrase("Exemtions", pFontHeader);
+                        phrase = new Phrase("Exemptions", pFontHeader);
                         table.addCell(phrase);
 
 

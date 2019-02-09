@@ -1137,7 +1137,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         };
         */;
         saccopn = new kiwi.ui.KDesktopPane();
-        /*new javax.swing.JDesktopPane(){
+        new javax.swing.JDesktopPane(){
 
             public void paintComponent(java.awt.Graphics g) {
 
@@ -1152,7 +1152,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
 
         };
-        */;
+        ;
         jToolBar3 = new javax.swing.JToolBar();
         fmgrBttn = new javax.swing.JButton();
         calcBttn = new javax.swing.JButton();
@@ -1668,8 +1668,8 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         attsheetmnit = new javax.swing.JMenuItem();
         Attendancesummnit = new javax.swing.JMenuItem();
         attendancepaidupmnit = new javax.swing.JMenuItem();
-        AttendancePerDeptmnit = new javax.swing.JMenuItem();
         attdencebydptmnit = new javax.swing.JMenuItem();
+        AttendancePerDeptmnit = new javax.swing.JMenuItem();
         opmobidityundermnit = new javax.swing.JMenuItem();
         mohovermnit = new javax.swing.JMenuItem();
         patperdeptmnit = new javax.swing.JMenuItem();
@@ -1692,6 +1692,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         opworkloadmnit = new javax.swing.JMenuItem();
         jSeparator106 = new javax.swing.JPopupMenu.Separator();
         dailyWorkloadsmnit = new javax.swing.JMenuItem();
+        unhNHIFClaimmnit = new javax.swing.JMenuItem();
         inpatmn = new javax.swing.JMenu();
         Pregistermn = new javax.swing.JMenu();
         rpatientmnit = new javax.swing.JMenuItem();
@@ -5431,6 +5432,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         labmn.add(labpendingmnit);
 
         labregmnit.setText("Lab Register");
+        labregmnit.setEnabled(false);
         labregmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 labregmnitActionPerformed(evt);
@@ -5439,6 +5441,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         labmn.add(labregmnit);
 
         labprocmnit.setText("Lab Procedures");
+        labprocmnit.setEnabled(false);
         labprocmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 labprocmnitActionPerformed(evt);
@@ -5461,6 +5464,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         xray.add(xrayresults);
 
         xraysmnit.setText("Diagnostic Imaging Procedure");
+        xraysmnit.setEnabled(false);
         xraysmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 xraysmnitActionPerformed(evt);
@@ -5469,6 +5473,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         xray.add(xraysmnit);
 
         xraypendingReq.setText("Imaging/Xray Requests");
+        xraypendingReq.setEnabled(false);
         xraypendingReq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 xraypendingReqActionPerformed(evt);
@@ -5476,6 +5481,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         xray.add(xraypendingReq);
 
+        xraymnit.setEnabled(false);
         xraymnit.setLabel("Xray Reporting");
         xraymnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -5489,6 +5495,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         physiotherapy.setText("Physiotherapy");
 
         physioReqmnit.setText("Physiotherapy Requests");
+        physioReqmnit.setEnabled(false);
         physioReqmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 physioReqmnitActionPerformed(evt);
@@ -5505,6 +5512,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         physiotherapy.add(physioresultsmnit);
 
         rehabmnitmnit.setText("Rehab Procedure");
+        rehabmnitmnit.setEnabled(false);
         rehabmnitmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rehabmnitmnitActionPerformed(evt);
@@ -5533,6 +5541,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         Dental.add(dentalReqmnit);
 
         dentalresultsmnit.setText("Dental Results");
+        dentalresultsmnit.setEnabled(false);
         dentalresultsmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dentalresultsmnitActionPerformed(evt);
@@ -5542,6 +5551,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         Dentalmnit.setText("Dental Procedure");
         Dentalmnit.setActionCommand("Dental Module");
+        Dentalmnit.setEnabled(false);
         Dentalmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DentalmnitActionPerformed(evt);
@@ -6773,21 +6783,21 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         outpatmn.add(attendancepaidupmnit);
 
-        AttendancePerDeptmnit.setText("Departmental Attendance");
-        AttendancePerDeptmnit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AttendancePerDeptmnitActionPerformed(evt);
-            }
-        });
-        outpatmn.add(AttendancePerDeptmnit);
-
-        attdencebydptmnit.setText("Attendance By Department");
+        attdencebydptmnit.setText("Departmental Attendance Listing");
         attdencebydptmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 attdencebydptmnitActionPerformed(evt);
             }
         });
         outpatmn.add(attdencebydptmnit);
+
+        AttendancePerDeptmnit.setText("Departmental Attendance Summary");
+        AttendancePerDeptmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AttendancePerDeptmnitActionPerformed(evt);
+            }
+        });
+        outpatmn.add(AttendancePerDeptmnit);
 
         opmobidityundermnit.setText("MOH705A");
         opmobidityundermnit.addActionListener(new java.awt.event.ActionListener() {
@@ -6945,6 +6955,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         outpatmn.add(dailyWorkloadsmnit);
+
+        unhNHIFClaimmnit.setText("UHC NHIF Claim Form");
+        unhNHIFClaimmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unhNHIFClaimmnitActionPerformed(evt);
+            }
+        });
+        outpatmn.add(unhNHIFClaimmnit);
 
         reportsmn.add(outpatmn);
 
@@ -14048,9 +14066,13 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     }//GEN-LAST:event_weeklyrevCompmnitActionPerformed
 
     private void AttendancesummnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AttendancesummnitActionPerformed
-        com.afrisoftech.lib.HosDatePanel dates = new com.afrisoftech.lib.HosDatePanel(this, true, this.OpAttSumm, connectDB);
+ 
+        com.afrisoftech.lib.HosAttendanceDatePanel dates = new com.afrisoftech.lib.HosAttendanceDatePanel(this, true, this.OpAttSumm, connectDB);
 
-        dates.setVisible(true);    // Add your handling code here:
+        dates.setVisible(true); 
+//        com.afrisoftech.lib.HosDatePanel dates = new com.afrisoftech.lib.HosDatePanel(this, true, this.OpAttSumm, connectDB);
+//
+//        dates.setVisible(true);    // Add your handling code here:
     }//GEN-LAST:event_AttendancesummnitActionPerformed
 
     private void accabtexpiremnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accabtexpiremnitActionPerformed
@@ -17045,6 +17067,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     private void labtestsresultmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labtestsresultmnitActionPerformed
         com.afrisoftech.laboratory.LabResultsIntfr comp = new com.afrisoftech.laboratory.LabResultsIntfr(connectDB, pConnDB);
         saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        comp.setSize(saccopn.getSize());
         try {
             comp.setSelected(true);
         } catch (java.beans.PropertyVetoException pvt) {
@@ -18665,6 +18688,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     private void xrayresultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xrayresultsActionPerformed
         com.afrisoftech.laboratory.XrayResIntfr comp = new com.afrisoftech.laboratory.XrayResIntfr(connectDB, pConnDB);
         saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        comp.setSize(saccopn.getSize());
         try {
             comp.setSelected(true);
         } catch (java.beans.PropertyVetoException pvt) {
@@ -21562,6 +21586,13 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_urlRegistrationmnitActionPerformed
+
+    private void unhNHIFClaimmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unhNHIFClaimmnitActionPerformed
+        com.afrisoftech.lib.HosOUTPatientDatePanel dates = new com.afrisoftech.lib.HosOUTPatientDatePanel(this, pConnDB, true, 20012, connectDB);
+        dates.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_unhNHIFClaimmnitActionPerformed
 
     /**
      * Exit the Application
@@ -26353,6 +26384,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem unfinalisedOpmnit;
     private javax.swing.JMenuItem unfinalisedinvmnit;
     private javax.swing.JMenuItem unfinalizeInvoicemnit;
+    private javax.swing.JMenuItem unhNHIFClaimmnit;
     private javax.swing.JMenu universalHealthcareReportsmn;
     private javax.swing.JMenuItem universalHealthcareSalesAnalysismnit;
     private javax.swing.JMenuItem unlinkedgrnsmnit;

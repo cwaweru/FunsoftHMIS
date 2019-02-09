@@ -122,7 +122,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         patientSearchDialog = new javax.swing.JDialog();
         patientSearchMainPanel = new javax.swing.JPanel();
         patientSearchTxt = new javax.swing.JTextField();
-        patientSearchJscrl = new javax.swing.JScrollPane();
+        patientSearchJscrollPane = new javax.swing.JScrollPane();
         patientSearchTable = new com.afrisoftech.dbadmin.JTable();
         dispose = new javax.swing.JButton();
         jSearchDialog1 = new javax.swing.JDialog();
@@ -529,7 +529,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                 tableModel = patientSearchTable.getModel();
 
-                patientSearchJscrl.setViewportView(patientSearchTable);
+                patientSearchJscrollPane.setViewportView(patientSearchTable);
 
                 /*   }catch(java.sql.SQLException sqlex){
                 javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -559,7 +559,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                     patientSearchTableMouseClicked(evt);
                 }
             });
-            patientSearchJscrl.setViewportView(patientSearchTable);
+            patientSearchJscrollPane.setViewportView(patientSearchTable);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -568,7 +568,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 20.0;
-            patientSearchMainPanel.add(patientSearchJscrl, gridBagConstraints);
+            patientSearchMainPanel.add(patientSearchJscrollPane, gridBagConstraints);
 
             dispose.setText("Cancel");
             dispose.addActionListener(new java.awt.event.ActionListener() {
@@ -635,7 +635,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                     tableModel = patientSearchTable.getModel();
 
-                    patientSearchJscrl.setViewportView(patientSearchTable);
+                    patientSearchJscrollPane.setViewportView(patientSearchTable);
 
                     /*   }catch(java.sql.SQLException sqlex){
                     javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -742,7 +742,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                         tableModel = patientSearchTable.getModel();
 
-                        patientSearchJscrl.setViewportView(patientSearchTable);
+                        patientSearchJscrollPane.setViewportView(patientSearchTable);
 
                         /*   }catch(java.sql.SQLException sqlex){
                         javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -1043,7 +1043,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                             tableModel = patientSearchTable.getModel();
 
-                            patientSearchJscrl.setViewportView(patientSearchTable);
+                            patientSearchJscrollPane.setViewportView(patientSearchTable);
 
                             /*   }catch(java.sql.SQLException sqlex){
                             javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -1150,7 +1150,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                 tableModel = patientSearchTable.getModel();
 
-                                patientSearchJscrl.setViewportView(patientSearchTable);
+                                patientSearchJscrollPane.setViewportView(patientSearchTable);
 
                                 /*   }catch(java.sql.SQLException sqlex){
                                 javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -1344,7 +1344,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                     tableModel = patientSearchTable.getModel();
 
-                                    patientSearchJscrl.setViewportView(patientSearchTable);
+                                    patientSearchJscrollPane.setViewportView(patientSearchTable);
 
                                     /*   }catch(java.sql.SQLException sqlex){
                                     javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -1471,7 +1471,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                         tableModel = patientSearchTable.getModel();
 
-                                        patientSearchJscrl.setViewportView(patientSearchTable);
+                                        patientSearchJscrollPane.setViewportView(patientSearchTable);
 
                                         /*   }catch(java.sql.SQLException sqlex){
                                         javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -1547,6 +1547,11 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                     facilitySearchDialog.setUndecorated(true);
                                     facilitySearchDialog.setResizable(false);
+                                    facilitySearchDialog.addFocusListener(new java.awt.event.FocusAdapter() {
+                                        public void focusLost(java.awt.event.FocusEvent evt) {
+                                            facilitySearchDialogFocusLost(evt);
+                                        }
+                                    });
                                     facilitySearchDialog.addComponentListener(new java.awt.event.ComponentAdapter() {
                                         public void componentHidden(java.awt.event.ComponentEvent evt) {
                                             facilitySearchDialogComponentHidden(evt);
@@ -1568,7 +1573,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         }
                                     });
                                     gridBagConstraints = new java.awt.GridBagConstraints();
-                                    gridBagConstraints.gridx = 0;
+                                    gridBagConstraints.gridx = 1;
                                     gridBagConstraints.gridy = 0;
                                     gridBagConstraints.gridwidth = 2;
                                     gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -1601,7 +1606,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                             tableModel = patientSearchTable.getModel();
 
-                                            patientSearchJscrl.setViewportView(patientSearchTable);
+                                            patientSearchJscrollPane.setViewportView(patientSearchTable);
 
                                             /*   }catch(java.sql.SQLException sqlex){
                                             javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -1649,7 +1654,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                             }
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
-                                        gridBagConstraints.gridx = 2;
+                                        gridBagConstraints.gridx = 0;
                                         gridBagConstraints.gridy = 0;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
@@ -1689,31 +1694,31 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                             e1.printStackTrace();
                                         }
                                         setVisible(true);
-                                        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-                                            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                                        addFocusListener(new java.awt.event.FocusAdapter() {
+                                            public void focusGained(java.awt.event.FocusEvent evt) {
+                                                formFocusGained(evt);
                                             }
-                                            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+                                        });
+                                        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+                                            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                                             }
                                             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
                                                 formInternalFrameClosing(evt);
                                             }
-                                            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-                                            }
-                                            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+                                            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
                                             }
                                             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
                                             }
-                                            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                                            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+                                            }
+                                            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                                            }
+                                            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
                                             }
                                         });
                                         addComponentListener(new java.awt.event.ComponentAdapter() {
                                             public void componentShown(java.awt.event.ComponentEvent evt) {
                                                 formComponentShown(evt);
-                                            }
-                                        });
-                                        addFocusListener(new java.awt.event.FocusAdapter() {
-                                            public void focusGained(java.awt.event.FocusEvent evt) {
-                                                formFocusGained(evt);
                                             }
                                         });
                                         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -2037,7 +2042,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         bioDataPanel.setLayout(new java.awt.GridBagLayout());
 
                                         patientSearchPanel.setBackground(new java.awt.Color(153, 255, 204));
-                                        patientSearchPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 255), new java.awt.Color(102, 255, 51), null), "Patient Details (Highlighted fields MUST be filled.)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+                                        patientSearchPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 255), new java.awt.Color(102, 255, 51), null), "Patient Details (Highlighted fields MUST be filled.)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
                                         patientSearchPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
                                             public void mouseMoved(java.awt.event.MouseEvent evt) {
                                                 patientSearchPanelMouseMoved(evt);
@@ -2376,10 +2381,10 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                             }
                                         });
                                         datePickerYOB.addInputMethodListener(new java.awt.event.InputMethodListener() {
-                                            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                                            }
                                             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                                                 datePickerYOBInputMethodTextChanged(evt);
+                                            }
+                                            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
                                             }
                                         });
                                         datePickerYOB.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -2457,7 +2462,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         bioDataPanel.add(patientSearchPanel, gridBagConstraints);
 
                                         otherDetailsPanel.setBackground(new java.awt.Color(204, 255, 204));
-                                        otherDetailsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 102), null, null), "Other Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+                                        otherDetailsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 102), null, null), "Other Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
                                         otherDetailsPanel.setLayout(new java.awt.GridBagLayout());
 
                                         physicalResidenceLbl.setForeground(new java.awt.Color(255, 51, 153));
@@ -2490,7 +2495,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         otherDetailsPanel.add(residenceTxt, gridBagConstraints);
 
                                         nokDetails.setBackground(new java.awt.Color(153, 255, 204));
-                                        nokDetails.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Next of Kin (NOK)Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+                                        nokDetails.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Next of Kin (NOK)Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
                                         nokDetails.setLayout(new java.awt.GridBagLayout());
 
                                         jLabel28.setBackground(new java.awt.Color(255, 204, 255));
@@ -4210,7 +4215,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         jPanel1.add(billindDetailsTabbedPane, gridBagConstraints);
 
                                         payModePanel.setBackground(new java.awt.Color(204, 255, 255));
-                                        payModePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter patient details (You can search by Admission/Patient number, ID number, Telephone Number or Next of Kin details)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+                                        payModePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter patient details (You can search by Admission/Patient number, ID number, Telephone Number or Next of Kin details)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
                                         payModePanel.setLayout(new java.awt.GridBagLayout());
 
                                         branchTxt.setEditable(false);
@@ -6120,7 +6125,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                 patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence, tel_no as telephone_no, id_no, nok_telno as nok_tel_no, nok as next_of_kin from hp_patient_register where second_name||' '||first_name ILIKE '%" + patientSearchTxt.getText() + "%' or nok ILIKE '%" + patientSearchTxt.getText() + "%' order by second_name"));
 
                 patientSearchTable.setShowHorizontalLines(false);
-                patientSearchJscrl.setViewportView(patientSearchTable);
+                patientSearchJscrollPane.setViewportView(patientSearchTable);
             }
 
         } else if (searchbyNumberChkbx.isSelected()) {
@@ -6132,11 +6137,28 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                 patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence, patient_race as unit_number, tel_no as telephone_no, id_no, nok_telno as nok_tel_no, nok as next_of_kin from hp_patient_register where patient_no ILIKE '%" + patientSearchTxt.getText() + "%'  or patient_race ILIKE '" + patientSearchTxt.getText() + "%' or tel_no ILIKE '" + patientSearchTxt.getText() + "%' or nok_telno  ILIKE '" + patientSearchTxt.getText() + "%' or id_no ILIKE '" + patientSearchTxt.getText() + "%'  order by patient_no"));
 
                 patientSearchTable.setShowHorizontalLines(false);
-                patientSearchJscrl.setViewportView(patientSearchTable);
+                patientSearchJscrollPane.setViewportView(patientSearchTable);
 
             }
 
         }
+
+        javax.swing.table.TableColumn column = null;
+        for (int i = 0; i < patientSearchTable.getColumnCount(); i++) {
+            System.out.println("Resizing table ...");
+            column = this.patientSearchTable.getColumnModel().getColumn(i);
+            if (i == 1) {
+
+                column.setPreferredWidth(400); // item description column is bigger
+            } else if (i == 0) {
+                column.setPreferredWidth(200);
+            } else if (i == 2) {
+                column.setPreferredWidth(200);
+            } else {
+                column.setPreferredWidth(100);
+            }
+        }
+        patientSearchJscrollPane.setViewportView(patientSearchTable);
         // Add your handling code here:
     }//GEN-LAST:event_patientSearchTxtCaretUpdate
 
@@ -8869,6 +8891,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_facilitySearchTableMouseClicked
 
     private void dispose4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dispose4ActionPerformed
+
+        facilitySearchDialog.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_dispose4ActionPerformed
 
@@ -8893,49 +8917,55 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     private void firstNameTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_firstNameTxtFocusLost
 
         jSearchDialog4.dispose();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_firstNameTxtFocusLost
 
     private void servicePointCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_servicePointCmbxActionPerformed
 
         try {
-               java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(patient_no) FROM ac_ledger WHERE date = '"+datePicker2.getDate()+"' AND service_type ILIKE '%card%' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE UPPER(parameter) = '"+servicePointCmbx.getSelectedItem().toString().toUpperCase()+"' AND date = '"+datePicker2.getDate()+"')");
-               java.sql.ResultSet rset = pstmt.executeQuery();
-            while(rset.next()){
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(patient_no) FROM ac_ledger WHERE date = '" + datePicker2.getDate() + "' AND service_type ILIKE '%card%' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE UPPER(parameter) = '" + servicePointCmbx.getSelectedItem().toString().toUpperCase() + "' AND date = '" + datePicker2.getDate() + "')");
+            java.sql.ResultSet rset = pstmt.executeQuery();
+            while (rset.next()) {
                 cardsSoldTxt.setText(String.valueOf(rset.getInt(1)));
             }
             rset.close();
             pstmt.close();
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
-        
+
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(patient_no) FROM ac_ledger WHERE date = '"+datePicker2.getDate()+"' AND service_type ILIKE '%file%' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE UPPER(parameter) = '"+servicePointCmbx.getSelectedItem().toString().toUpperCase()+"' AND date = '"+datePicker2.getDate()+"' UNION SELECT patient_no FROM hp_admission WHERE UPPER(diagnosis3) = '"+servicePointCmbx.getSelectedItem().toString().toUpperCase()+"' AND date = '"+datePicker2.getDate()+"')");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(patient_no) FROM ac_ledger WHERE date = '" + datePicker2.getDate() + "' AND service_type ILIKE '%file%' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE UPPER(parameter) = '" + servicePointCmbx.getSelectedItem().toString().toUpperCase() + "' AND date = '" + datePicker2.getDate() + "' UNION SELECT patient_no FROM hp_admission WHERE UPPER(diagnosis3) = '" + servicePointCmbx.getSelectedItem().toString().toUpperCase() + "' AND date = '" + datePicker2.getDate() + "')");
             java.sql.ResultSet rset = pstmt.executeQuery();
-            while(rset.next()){
+            while (rset.next()) {
                 filesSoldTxt.setText(String.valueOf(rset.getInt(1)));
             }
             rset.close();
             pstmt.close();
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
+
 //        defaultServicePoint = servicePointCmbx.getSelectedItem().toString();
-            // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_servicePointCmbxActionPerformed
 
     private void fingerPrintReaderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fingerPrintReaderBtnActionPerformed
 
         com.afrisoftech.lib.biometric.SecuGen secugenFingerPrint = new com.afrisoftech.lib.biometric.SecuGen();
-        
+
         secugenFingerPrint.registerFingerPrint(connectDB, visitID);
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_fingerPrintReaderBtnActionPerformed
+
+    private void facilitySearchDialogFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_facilitySearchDialogFocusLost
+
+        facilitySearchDialog.dispose();
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_facilitySearchDialogFocusLost
     private void changeDate() {
         ageLabel.setText(com.afrisoftech.lib.PatientAge.getPatientActualAge(connectDB, this.datePickerYOB.getDate()));
         ageTxt.setText(String.valueOf(com.afrisoftech.lib.PatientAge.getPatientAge(connectDB, this.datePickerYOB.getDate())));
@@ -8967,7 +8997,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
         java.awt.Point point = this.patientNumberTxt.getLocationOnScreen();
 
-        patientSearchDialog.setSize(700, 200);
+        patientSearchDialog.setSize(800, 200);
 
         patientSearchDialog.setLocation(point);
 
@@ -9494,7 +9524,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox patientCategoryCmbx;
     private javax.swing.JTextField patientNumberTxt;
     private static javax.swing.JDialog patientSearchDialog;
-    private javax.swing.JScrollPane patientSearchJscrl;
+    private javax.swing.JScrollPane patientSearchJscrollPane;
     private javax.swing.JPanel patientSearchMainPanel;
     private javax.swing.JPanel patientSearchPanel;
     private javax.swing.JTable patientSearchTable;

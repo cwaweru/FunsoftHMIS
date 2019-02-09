@@ -1178,7 +1178,7 @@ public class HosDisposalIntfr extends javax.swing.JInternalFrame {
         if (jTextField113.getCaretPosition() < 3) {
             System.out.println("Nothing");
         } else {
-            jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT supplier_name, code as account_no from st_suppliers where supplier_name ILIKE '%" + jTextField113.getText() + "%' order by supplier_name"));
+            jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT supplier_name, code as account_no from st_suppliers where supplier_name ILIKE '%" + jTextField113.getText() + "%' order by supplier_name"));
 
             jSearchTable2.setShowHorizontalLines(false);
             jSearchScrollPane2.setViewportView(jSearchTable2);
@@ -1290,7 +1290,7 @@ public class HosDisposalIntfr extends javax.swing.JInternalFrame {
         if (this.jTextField111.getCaretPosition() < 1) {
             System.out.print("Nothing");
         } else {
-            jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, ""
+            jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                     + "select DISTINCT description,strength,packaging,buying_price,item_code FROM stockitem WHERE description ILIKE '%" + jTextField111.getText() + "%' and department ilike '" + jComboBox2.getSelectedItem() + "' order by description"));
             ///jSearchTable.setAutoResizeMode(AUTO_RESIZE_ALL_COLUMNS);
             jSearchScrollPane.setViewportView(jSearchTable);

@@ -1368,7 +1368,7 @@ public class preparingTendersIntfr extends javax.swing.JInternalFrame {
 //        } else
 //
 //        {
-            tenderrecordstbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT tender_no Tender_No FROM st_item_to_quote where "
+            tenderrecordstbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT tender_no Tender_No FROM st_item_to_quote where "
                 + " tender_no ilike '%" +tenderrecordstxt.getText()+"%'  order by 1 desc;"));
         tenderrecordstbl.setShowHorizontalLines(false);
 

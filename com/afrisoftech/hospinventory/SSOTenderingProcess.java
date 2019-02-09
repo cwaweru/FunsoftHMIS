@@ -4272,7 +4272,7 @@ System.out.println("Showing dialog");
 
         } else
         {
-            requisitiontbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT requisition_no, agenda_no, date_buyer_assigned \n" +
+            requisitiontbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT requisition_no, agenda_no, date_buyer_assigned \n" +
 "  FROM st_assign_buyers where pr_status= false order by date_buyer_assigned asc ;"));
             requisitiontbl.setShowHorizontalLines(false);
             requisitionspnl.setViewportView(requisitiontbl);

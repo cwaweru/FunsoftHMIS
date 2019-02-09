@@ -98,14 +98,14 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         ipSearchDialog = new javax.swing.JDialog();
         ipSearchPanel = new javax.swing.JPanel();
         ipSearchTxt = new javax.swing.JTextField();
-        jSearchScrollPane = new javax.swing.JScrollPane();
+        ipSearchScrollPane = new javax.swing.JScrollPane();
         ipSearchTable = new com.afrisoftech.dbadmin.JTable();
         jButton41 = new javax.swing.JButton();
         jButton51 = new javax.swing.JButton();
         opSearchDialog = new javax.swing.JDialog();
-        jSearchPanel1 = new javax.swing.JPanel();
+        opSearchPanel = new javax.swing.JPanel();
         opSearchFieldTxt = new javax.swing.JTextField();
-        jSearchScrollPane1 = new javax.swing.JScrollPane();
+        opSearchScrollPane1 = new javax.swing.JScrollPane();
         opSearchTable = new com.afrisoftech.dbadmin.JTable();
         jButton411 = new javax.swing.JButton();
         jButton511 = new javax.swing.JButton();
@@ -116,12 +116,12 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         jSearchTable11 = new com.afrisoftech.dbadmin.JTable();
         select1 = new javax.swing.JButton();
         dispose1 = new javax.swing.JButton();
-        jSearchDialog2 = new javax.swing.JDialog();
-        jSearchPanel2 = new javax.swing.JPanel();
-        jTextField1113 = new javax.swing.JTextField();
-        jSearchScrollPane2 = new javax.swing.JScrollPane();
-        jSearchTable2 = new com.afrisoftech.dbadmin.JTable();
-        jButton512 = new javax.swing.JButton();
+        schemeSearchDialog = new javax.swing.JDialog();
+        schemeSearchPanel = new javax.swing.JPanel();
+        schemeSearchTxt = new javax.swing.JTextField();
+        schemeSearchScrollPane = new javax.swing.JScrollPane();
+        schemeSearchTable = new com.afrisoftech.dbadmin.JTable();
+        schemeSearchBtn = new javax.swing.JButton();
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
         buttonGroup4 = new javax.swing.ButtonGroup();
@@ -698,7 +698,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 ipSearchTableMouseClicked(evt);
             }
         });
-        jSearchScrollPane.setViewportView(ipSearchTable);
+        ipSearchScrollPane.setViewportView(ipSearchTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -707,7 +707,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
-        ipSearchPanel.add(jSearchScrollPane, gridBagConstraints);
+        ipSearchPanel.add(ipSearchScrollPane, gridBagConstraints);
 
         jButton41.setText("Select");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -742,8 +742,8 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         opSearchDialog.setUndecorated(true);
         opSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jSearchPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jSearchPanel1.setLayout(new java.awt.GridBagLayout());
+        opSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        opSearchPanel.setLayout(new java.awt.GridBagLayout());
 
         opSearchFieldTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -762,7 +762,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 300.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-        jSearchPanel1.add(opSearchFieldTxt, gridBagConstraints);
+        opSearchPanel.add(opSearchFieldTxt, gridBagConstraints);
 
         opSearchTable.setToolTipText("Click on the target row to select the patient from the search.");
         opSearchTable.setShowHorizontalLines(false);
@@ -788,7 +788,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 opSearchTableMouseClicked(evt);
             }
         });
-        jSearchScrollPane1.setViewportView(opSearchTable);
+        opSearchScrollPane1.setViewportView(opSearchTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -797,7 +797,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
-        jSearchPanel1.add(jSearchScrollPane1, gridBagConstraints);
+        opSearchPanel.add(opSearchScrollPane1, gridBagConstraints);
 
         jButton411.setText("Select");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -805,7 +805,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchPanel1.add(jButton411, gridBagConstraints);
+        opSearchPanel.add(jButton411, gridBagConstraints);
 
         jButton511.setText("Close");
         jButton511.addActionListener(new java.awt.event.ActionListener() {
@@ -818,7 +818,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchPanel1.add(jButton511, gridBagConstraints);
+        opSearchPanel.add(jButton511, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -826,7 +826,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        opSearchDialog.getContentPane().add(jSearchPanel1, gridBagConstraints);
+        opSearchDialog.getContentPane().add(opSearchPanel, gridBagConstraints);
 
         jSearchDialog11.setUndecorated(true);
         jSearchDialog11.getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -872,7 +872,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
 
                 tableModel = ipSearchTable.getModel();
 
-                jSearchScrollPane.setViewportView(ipSearchTable);
+                ipSearchScrollPane.setViewportView(ipSearchTable);
 
                 /*   }catch(java.sql.SQLException sqlex){
                 javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -943,16 +943,16 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             jSearchDialog11.getContentPane().add(jSearchPanel11, gridBagConstraints);
 
-            jSearchDialog2.setModal(true);
-            jSearchDialog2.setUndecorated(true);
-            jSearchDialog2.getContentPane().setLayout(new java.awt.GridBagLayout());
+            schemeSearchDialog.setModal(true);
+            schemeSearchDialog.setUndecorated(true);
+            schemeSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-            jSearchPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-            jSearchPanel2.setLayout(new java.awt.GridBagLayout());
+            schemeSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+            schemeSearchPanel.setLayout(new java.awt.GridBagLayout());
 
-            jTextField1113.addCaretListener(new javax.swing.event.CaretListener() {
+            schemeSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
                 public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                    jTextField1113CaretUpdate(evt);
+                    schemeSearchTxtCaretUpdate(evt);
                 }
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -962,10 +962,10 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 300.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-            jSearchPanel2.add(jTextField1113, gridBagConstraints);
+            schemeSearchPanel.add(schemeSearchTxt, gridBagConstraints);
 
-            jSearchTable2.setToolTipText("Click on the target row to select the patient from the search.");
-            jSearchTable2.setShowHorizontalLines(false);
+            schemeSearchTable.setToolTipText("Click on the target row to select the patient from the search.");
+            schemeSearchTable.setShowHorizontalLines(false);
             /*javax.swing.table.TableColumn column = null;
 
             for (int i = 0; i < 4; i++) {
@@ -983,12 +983,12 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 }
             }
             */
-            jSearchTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            schemeSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    jSearchTable2MouseClicked(evt);
+                    schemeSearchTableMouseClicked(evt);
                 }
             });
-            jSearchScrollPane2.setViewportView(jSearchTable2);
+            schemeSearchScrollPane.setViewportView(schemeSearchTable);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -997,12 +997,12 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 20.0;
-            jSearchPanel2.add(jSearchScrollPane2, gridBagConstraints);
+            schemeSearchPanel.add(schemeSearchScrollPane, gridBagConstraints);
 
-            jButton512.setText("Close");
-            jButton512.addActionListener(new java.awt.event.ActionListener() {
+            schemeSearchBtn.setText("Close");
+            schemeSearchBtn.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButton512ActionPerformed(evt);
+                    schemeSearchBtnActionPerformed(evt);
                 }
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1010,7 +1010,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridy = 0;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jSearchPanel2.add(jButton512, gridBagConstraints);
+            schemeSearchPanel.add(schemeSearchBtn, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -1018,7 +1018,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jSearchDialog2.getContentPane().add(jSearchPanel2, gridBagConstraints);
+            schemeSearchDialog.getContentPane().add(schemeSearchPanel, gridBagConstraints);
 
             jSearchDialog21.setModal(true);
             jSearchDialog21.setUndecorated(true);
@@ -1587,7 +1587,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             getContentPane().add(jLabel33, gridBagConstraints);
 
-            jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter patient details (You can search by Admission/Patient number, ID number, Telephone Number or Next of Kin details)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
+            jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter patient details (You can search by Admission/Patient number, ID number, Telephone Number or Next of Kin details)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
             jPanel1.setForeground(new java.awt.Color(0, 255, 204));
             jPanel1.setLayout(new java.awt.GridBagLayout());
 
@@ -1817,7 +1817,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             });
             jPanel18.setLayout(new java.awt.GridBagLayout());
 
-            jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter date of birth or patient Age here ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 51, 153)));
+            jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter date of birth or patient Age here ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 51, 153))); // NOI18N
             jPanel15.setLayout(new java.awt.GridBagLayout());
 
             jLabel66.setText("Date of Birth");
@@ -1838,10 +1838,10 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             });
 
             datePickerYOB.addInputMethodListener(new java.awt.event.InputMethodListener() {
-                public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                }
                 public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                     datePickerYOBInputMethodTextChanged(evt);
+                }
+                public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
                 }
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -2710,7 +2710,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
             jPanel2.add(nhifChbx, gridBagConstraints);
 
-            jPanel81.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patient Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 255)));
+            jPanel81.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patient Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 255))); // NOI18N
             jPanel81.setLayout(new java.awt.GridBagLayout());
 
             buttonGroup1.add(jCheckBox221);
@@ -2816,7 +2816,6 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
             jPanel2.add(jLabel29, gridBagConstraints);
 
-            nokRelationShipCmbx.setEditable(true);
             nokRelationShipCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB,"SELECT DISTINCT relation_description FROM nok_relationship order by 1"));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
@@ -3995,7 +3994,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             System.out.println("Nothing");
         } else {
             if (this.searchbyPatientNameChkbx.isSelected()) {
-                jSearchTable3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, ""
+                jSearchTable3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                         + "SELECT hd.patient_no, (upper(hd.second_name||' '||hd.last_name)) as name, hd.first_name AS surname, "
                         + "(SELECT hp.sub_chief FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) as unit_number,"
                         + "(SELECT hp.visit_id FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 desc  LIMIT 1) as VisitId"
@@ -4005,7 +4004,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
 
             } else {
                 if (this.searchbyPatientNumberChkbx.isSelected()) {
-                    jSearchTable3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, ""
+                    jSearchTable3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                             + "SELECT hd.patient_no, (upper(hd.second_name||' '||hd.last_name)) as name,hd.first_name AS surname, "
                             + "(SELECT hp.sub_chief FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) as unit_number, "
                             + "(SELECT hp.visit_id FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 desc LIMIT 1) as VisitId "
@@ -4279,15 +4278,15 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         //    bank.setVisible(true);         // Add your handling code here:
     }//GEN-LAST:event_jButton1521ActionPerformed
 
-    private void jButton512ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton512ActionPerformed
-        jSearchDialog2.dispose();      // Add your handling code here:
-    }//GEN-LAST:event_jButton512ActionPerformed
+    private void schemeSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schemeSearchBtnActionPerformed
+        schemeSearchDialog.dispose();      // Add your handling code here:
+    }//GEN-LAST:event_schemeSearchBtnActionPerformed
 
-    private void jSearchTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable2MouseClicked
-        jTextField3611.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 1).toString());
-        jTextField15.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 0).toString());
-        jTextField23.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 2).toString());
-        jSearchDialog2.dispose();
+    private void schemeSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schemeSearchTableMouseClicked
+        jTextField3611.setText(schemeSearchTable.getValueAt(schemeSearchTable.getSelectedRow(), 1).toString());
+        jTextField15.setText(schemeSearchTable.getValueAt(schemeSearchTable.getSelectedRow(), 0).toString());
+        jTextField23.setText(schemeSearchTable.getValueAt(schemeSearchTable.getSelectedRow(), 2).toString());
+        schemeSearchDialog.dispose();
         try {
             connectDB.setAutoCommit(false);
 
@@ -4318,16 +4317,16 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
 
         }
 
-        jSearchDialog2.dispose();        // Add your handling code here:
-    }//GEN-LAST:event_jSearchTable2MouseClicked
+        schemeSearchDialog.dispose();        // Add your handling code here:
+    }//GEN-LAST:event_schemeSearchTableMouseClicked
 
-    private void jTextField1113CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1113CaretUpdate
-        if (jTextField1113.getCaretPosition() < 5) {
+    private void schemeSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_schemeSearchTxtCaretUpdate
+        if (schemeSearchTxt.getCaretPosition() < 1) {
 
             System.out.println("Nothing");
         } else {
 
-            jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT account_no,scheme_name,payer_name from ac_schemes where scheme_name ILIKE '" + jTextField1113.getText() + "%' and (allowed ilike 'Both' or allowed ilike 'IP%') order by scheme_name"));
+            schemeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT account_no,scheme_name,payer_name from ac_schemes where scheme_name ILIKE '" + schemeSearchTxt.getText() + "%' and (allowed ilike 'Both' or allowed ilike 'IP%') order by scheme_name"));
 
             /*
              * try {
@@ -4353,11 +4352,11 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
              *
              * }));
              */
-            jSearchTable2.setShowHorizontalLines(false);
-            jSearchScrollPane2.setViewportView(jSearchTable2);
+            schemeSearchTable.setShowHorizontalLines(false);
+            schemeSearchScrollPane.setViewportView(schemeSearchTable);
 
         }         // Add your handling code here:
-    }//GEN-LAST:event_jTextField1113CaretUpdate
+    }//GEN-LAST:event_schemeSearchTxtCaretUpdate
 
     private void searchButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton21ActionPerformed
         searchButton11aClicked();            // Add your handling code here:
@@ -4366,13 +4365,13 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
 
         System.out.println("Showing dialog");
 
-        jSearchDialog2.dispose();
+        schemeSearchDialog.dispose();
         java.awt.Point point = this.jTextField3611.getLocationOnScreen();
 
-        jSearchDialog2.setSize(700, 200);
+        schemeSearchDialog.setSize(700, 200);
 
-        jSearchDialog2.setLocation(point);
-        jSearchDialog2.setVisible(true);
+        schemeSearchDialog.setLocation(point);
+        schemeSearchDialog.setVisible(true);
 
     }
     private void jSearchTable11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable11MouseClicked
@@ -4645,9 +4644,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             System.out.println("Nothing");
         } else {
             if (this.searchbyPatientNameChkbx.isSelected()) {
-                opSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT patient_no, (upper(first_name||' '||second_name||' '||last_name)) as name, year_of_birth::date, residence, patient_race as unit_number from hp_patient_register where (upper(first_name||' '||second_name||' '||last_name)) ILIKE '%" + opSearchFieldTxt.getText().toString() + "%' or patient_race ILIKE '%" + opSearchFieldTxt.getText().toString() + "%'"));
+                opSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(first_name||' '||second_name||' '||last_name)) as name, year_of_birth::date, residence, patient_race as unit_number from hp_patient_register where (upper(first_name||' '||second_name||' '||last_name)) ILIKE '%" + opSearchFieldTxt.getText().toString() + "%' or patient_race ILIKE '%" + opSearchFieldTxt.getText().toString() + "%'"));
             } else {
-                opSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT patient_no, (upper(first_name||' '||second_name||' '||last_name)) as name, year_of_birth::date, residence, patient_race as unit_number from hp_patient_register where patient_no ILIKE '%" + opSearchFieldTxt.getText().toString() + "%' or patient_race ILIKE '%" + opSearchFieldTxt.getText().toString() + "%'"));
+                opSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(first_name||' '||second_name||' '||last_name)) as name, year_of_birth::date, residence, patient_race as unit_number from hp_patient_register where patient_no ILIKE '%" + opSearchFieldTxt.getText().toString() + "%' or patient_race ILIKE '%" + opSearchFieldTxt.getText().toString() + "%'"));
 
             }
             /*
@@ -4676,10 +4675,24 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
              * "Residence", false) }));
              */
             opSearchTable.setShowHorizontalLines(false);
-            jSearchScrollPane1.setViewportView(opSearchTable);
+            opSearchScrollPane1.setViewportView(opSearchTable);
 
         }
 
+        javax.swing.table.TableColumn column = null;
+        for (int i = 0; i < opSearchTable.getColumnCount(); i++) {
+            System.out.println("Resizing table ...");
+            column = this.opSearchTable.getColumnModel().getColumn(i);
+            if (i == 1) {
+
+                column.setPreferredWidth(500); // item description column is bigger
+            } else if(i == 0) {
+                column.setPreferredWidth(200);
+            } else {
+                column.setPreferredWidth(100); 
+            }
+        }
+        opSearchScrollPane1.setViewportView(opSearchTable);
         // Add your handling code here:
     }//GEN-LAST:event_opSearchFieldTxtCaretUpdate
 
@@ -4846,7 +4859,6 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         // Flagging patients whole accounts have outstanding bills
         javax.swing.JOptionPane.showMessageDialog(this, "Patient Number [" + admissionNumberTxt.getText() + "] outstanding bill status total : [" + com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.PatientAccountStatus.getOutstandillBill(connectDB, patientNo) + com.afrisoftech.lib.PatientAccountStatus.getPersonalDebtStatus(connectDB, patientNo)) + "], Abscondment status bill : [" + com.afrisoftech.lib.PatientAccountStatus.getAbscondmentStatus(connectDB, patientNo) + "]");
 
-
         ipSearchDialog.dispose();        // Add your handling code here:
     }//GEN-LAST:event_ipSearchTableMouseClicked
 
@@ -4860,19 +4872,35 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             System.out.println("Nothing");
         } else {
             if (this.searchbyPatientNameChkbx.isSelected()) {
-                ipSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT hd.patient_no, (upper(hd.second_name||' '||hd.last_name)) as name, hd.first_name AS surname, (SELECT hp.sub_chief FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) as unit_number, hd.tel_no as telephone_no, (SELECT hp.id_no FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) as id_no, hd.nok as next_of_kin from hp_inpatient_register hd where (upper(hd.second_name||' '||hd.first_name||' '||hd.last_name)) ILIKE '%" + ipSearchTxt.getText().toString() + "%' ORDER BY second_name"));
+                ipSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT hd.patient_no, (upper(hd.second_name||' '||hd.last_name)) as name, hd.first_name AS surname, (SELECT hp.sub_chief FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) as unit_number, hd.tel_no as telephone_no, (SELECT hp.id_no FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) as id_no, hd.nok as next_of_kin from hp_inpatient_register hd where (upper(hd.second_name||' '||hd.first_name||' '||hd.last_name)) ILIKE '%" + ipSearchTxt.getText().toString() + "%' ORDER BY second_name"));
                 ipSearchTable.setShowHorizontalLines(false);
-                jSearchScrollPane.setViewportView(ipSearchTable);
+                ipSearchScrollPane.setViewportView(ipSearchTable);
 
             } else {
                 if (this.searchbyPatientNumberChkbx.isSelected()) {
-                    ipSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT hd.patient_no, (upper(hd.second_name||' '||hd.last_name)) as name,hd.first_name AS surname, (SELECT hp.sub_chief FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) as unit_number, hd.tel_no as telephone_no, (SELECT hp.id_no FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) as id_no, hd.nok as next_of_kin from hp_inpatient_register hd where hd.patient_no ILIKE '%" + ipSearchTxt.getText().toString() + "%' or (SELECT hp.sub_chief FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) ilike '%" + ipSearchTxt.getText().toString() + "%'  or hd.nok ilike '%" + ipSearchTxt.getText().toString() + "%'  or (SELECT hp.id_no FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) ilike '%" + ipSearchTxt.getText().toString() + "%'  or hd.tel_no ilike '%" + ipSearchTxt.getText().toString() + "%' ORDER BY second_name"));
+                    ipSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT hd.patient_no, (upper(hd.second_name||' '||hd.last_name)) as name,hd.first_name AS surname, (SELECT hp.sub_chief FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) as unit_number, hd.tel_no as telephone_no, (SELECT hp.id_no FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) as id_no, hd.nok as next_of_kin from hp_inpatient_register hd where hd.patient_no ILIKE '%" + ipSearchTxt.getText().toString() + "%' or (SELECT hp.sub_chief FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) ilike '%" + ipSearchTxt.getText().toString() + "%'  or hd.nok ilike '%" + ipSearchTxt.getText().toString() + "%'  or (SELECT hp.id_no FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) ilike '%" + ipSearchTxt.getText().toString() + "%'  or hd.tel_no ilike '%" + ipSearchTxt.getText().toString() + "%' ORDER BY second_name"));
                     ipSearchTable.setShowHorizontalLines(false);
-                    jSearchScrollPane.setViewportView(ipSearchTable);
+                    ipSearchScrollPane.setViewportView(ipSearchTable);
 
                 }
             }
         }
+        javax.swing.table.TableColumn column = null;
+        for (int i = 0; i < ipSearchTable.getColumnCount(); i++) {
+            System.out.println("Resizing table ...");
+            column = this.ipSearchTable.getColumnModel().getColumn(i);
+            if (i == 1) {
+
+                column.setPreferredWidth(500); // item description column is bigger
+            } else if (i == 2) {
+
+                column.setPreferredWidth(300);
+
+            } else {
+                column.setPreferredWidth(100);
+            }
+        }
+        ipSearchScrollPane.setViewportView(ipSearchTable);
         // Add your handling code here:
     }//GEN-LAST:event_ipSearchTxtCaretUpdate
 
@@ -5362,7 +5390,6 @@ private void singleMaritalChkbxActionPerformed(java.awt.event.ActionEvent evt) {
 private void surNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_surNameTxtCaretUpdate
 
 //    searchbyPatientNameChkbx.setSelected(true);
-
     System.out.println("Showing dialog");
 
     java.awt.Point point = this.surNameTxt.getLocationOnScreen();
@@ -5382,14 +5409,12 @@ private void surNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRS
     }
 
 //    surNameTxt.requestFocusInWindow();
-
-     // TODO add your handling code here:
+    // TODO add your handling code here:
 }//GEN-LAST:event_surNameTxtCaretUpdate
 
 private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_firstNameTxtCaretUpdate
 
 //    searchbyPatientNameChkbx.setSelected(true);
-
     System.out.println("Showing dialog");
 
     java.awt.Point point = this.firstNameTxt.getLocationOnScreen();
@@ -5402,15 +5427,13 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
 
     jSearchDialog4.setVisible(true);
 
+    if (firstNameTxt.getCaretPosition() > 3) {
 
-        if (firstNameTxt.getCaretPosition() > 3) {
+        jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence from hp_inpatient_register where second_name||' '||first_name ILIKE '%" + firstNameTxt.getText() + "%' order by second_name"));
 
-            jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence from hp_inpatient_register where second_name||' '||first_name ILIKE '%" + firstNameTxt.getText() + "%' order by second_name"));
-
-        } 
+    }
 
 //    firstNameTxt.requestFocusInWindow();
-
     // TODO add your handling code here:
 }//GEN-LAST:event_firstNameTxtCaretUpdate
 
@@ -5936,6 +5959,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
     private javax.swing.JTextField idPassportTxt;
     private javax.swing.JDialog ipSearchDialog;
     private javax.swing.JPanel ipSearchPanel;
+    private javax.swing.JScrollPane ipSearchScrollPane;
     private javax.swing.JTable ipSearchTable;
     private javax.swing.JTextField ipSearchTxt;
     private javax.swing.JButton jButton1;
@@ -5953,7 +5977,6 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
     public static javax.swing.JButton jButton5;
     private javax.swing.JButton jButton51;
     private javax.swing.JButton jButton511;
-    private javax.swing.JButton jButton512;
     private javax.swing.JButton jButton5121;
     private javax.swing.JButton jButton513;
     private javax.swing.JButton jButton6;
@@ -6076,24 +6099,17 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JDialog jSearchDialog11;
-    private javax.swing.JDialog jSearchDialog2;
     private javax.swing.JDialog jSearchDialog21;
     private javax.swing.JDialog jSearchDialog4;
-    private javax.swing.JPanel jSearchPanel1;
     private javax.swing.JPanel jSearchPanel11;
-    private javax.swing.JPanel jSearchPanel2;
     private javax.swing.JPanel jSearchPanel21;
     private javax.swing.JPanel jSearchPanel3;
     private javax.swing.JPanel jSearchPanel5;
-    private javax.swing.JScrollPane jSearchScrollPane;
-    private javax.swing.JScrollPane jSearchScrollPane1;
     private javax.swing.JScrollPane jSearchScrollPane11;
-    private javax.swing.JScrollPane jSearchScrollPane2;
     private javax.swing.JScrollPane jSearchScrollPane21;
     private javax.swing.JScrollPane jSearchScrollPane3;
     private javax.swing.JScrollPane jSearchScrollPane4;
     private javax.swing.JTable jSearchTable11;
-    private javax.swing.JTable jSearchTable2;
     private javax.swing.JTable jSearchTable21;
     private javax.swing.JTable jSearchTable3;
     private javax.swing.JTable jSearchTable4;
@@ -6101,7 +6117,6 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
     private javax.swing.JSeparator jSeparator711;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1112;
-    private javax.swing.JTextField jTextField1113;
     private javax.swing.JTextField jTextField11131;
     private javax.swing.JTextField jTextField1114;
     private javax.swing.JTextField jTextField121;
@@ -6153,6 +6168,8 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
     private javax.swing.JTextField oldFileNumberTxt;
     private javax.swing.JDialog opSearchDialog;
     private javax.swing.JTextField opSearchFieldTxt;
+    private javax.swing.JPanel opSearchPanel;
+    private javax.swing.JScrollPane opSearchScrollPane1;
     private javax.swing.JTable opSearchTable;
     private javax.swing.JTextField patientDebtTxt;
     private javax.swing.JComboBox patientDisabilityCmbx;
@@ -6173,6 +6190,12 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
     private javax.swing.JComboBox religionCmbx;
     private javax.swing.JComboBox reportTypeChooserCmbx;
     private javax.swing.JComboBox reportTypeChooserCmbx1;
+    private javax.swing.JButton schemeSearchBtn;
+    private javax.swing.JDialog schemeSearchDialog;
+    private javax.swing.JPanel schemeSearchPanel;
+    private javax.swing.JScrollPane schemeSearchScrollPane;
+    private javax.swing.JTable schemeSearchTable;
+    private javax.swing.JTextField schemeSearchTxt;
     private javax.swing.JButton searchButton;
     private javax.swing.JButton searchButton1;
     private javax.swing.JButton searchButton2;

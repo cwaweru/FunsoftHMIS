@@ -1139,21 +1139,21 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
             }
             detailedStoreMonetaryValueTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(storeDetailedBalancesTable, 4)));
 
-            for (int i = 0; i < storeDetailedBalancesTable.getRowCount(); i++) {
-
-                String code = storeDetailedBalancesTable.getValueAt(i, 0).toString();
-                String store = storeNameCmbx.getSelectedItem().toString();
-                Date date = SQLDateFormat.getSQLDate(endDatePicker.getDate());
-
-                Double bal = GetItemInfo.itemBalance(connectDB, code, store, date);
-                Double price = GetItemInfo.itemPrice(connectDB, code);
-                String expiry = GetItemInfo.getExpiryByCode(code, connectDB);
-                
-                storeDetailedBalancesTable.setValueAt(bal, i, 3);
-                storeDetailedBalancesTable.setValueAt(bal * price, i, 4);                
-                storeDetailedBalancesTable.setValueAt(expiry, i, 5);                
-                System.err.println(code+" "+price);
-            }
+//            for (int i = 0; i < storeDetailedBalancesTable.getRowCount(); i++) {
+//
+//                String code = storeDetailedBalancesTable.getValueAt(i, 0).toString();
+//                String store = storeNameCmbx.getSelectedItem().toString();
+//                Date date = SQLDateFormat.getSQLDate(endDatePicker.getDate());
+//
+//                Double bal = GetItemInfo.itemBalance(connectDB, code, store, date);
+//                Double price = GetItemInfo.itemPrice(connectDB, code);
+//                String expiry = GetItemInfo.getExpiryByCode(code, connectDB);
+//                
+//                storeDetailedBalancesTable.setValueAt(bal, i, 3);
+//                storeDetailedBalancesTable.setValueAt(bal * price, i, 4);                
+//                storeDetailedBalancesTable.setValueAt(expiry, i, 5);                
+//                System.err.println(code+" "+price);
+//            }
             
             
             

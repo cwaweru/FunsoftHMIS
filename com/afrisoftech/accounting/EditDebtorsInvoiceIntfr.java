@@ -362,7 +362,7 @@ public class EditDebtorsInvoiceIntfr extends javax.swing.JInternalFrame {
 
     private void invoiceSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_invoiceSearchTxtCaretUpdate
         if(invoiceSearchTxt.getCaretPosition()>3){
-        this.invoiceSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT invoice_no, date, account_no, dealer as debtor, reason as invoice_detail, debit as invoice_amount FROM ac_debtors WHERE invoice_no ilike '%" + invoiceSearchTxt.getText() + "%'"));
+        this.invoiceSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT invoice_no, date, account_no, dealer as debtor, reason as invoice_detail, debit as invoice_amount FROM ac_debtors WHERE invoice_no ilike '%" + invoiceSearchTxt.getText() + "%'"));
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_invoiceSearchTxtCaretUpdate

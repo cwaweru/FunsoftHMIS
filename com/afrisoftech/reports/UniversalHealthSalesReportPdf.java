@@ -642,7 +642,7 @@ public class UniversalHealthSalesReportPdf implements java.lang.Runnable {
                                 // Get Farewell Home/ Mortuary sales
                                 double currentMOTTotal = 0.00;
 
-                                java.sql.PreparedStatement psetd = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND dealer = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'MOT'");
+                                java.sql.PreparedStatement psetd = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND payee = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'MOT'");
 
                                 java.sql.ResultSet rsetd = psetd.executeQuery();
 
@@ -654,7 +654,7 @@ public class UniversalHealthSalesReportPdf implements java.lang.Runnable {
                                 // Get pharmacy charges
                                 double currentPFTotal = 0.00;
 
-                                java.sql.PreparedStatement pstmtPharmacy = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND dealer = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'PF'");
+                                java.sql.PreparedStatement pstmtPharmacy = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND payee = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'PF'");
                                 java.sql.ResultSet rsetPharmacy = pstmtPharmacy.executeQuery();
 
                                 while (rsetPharmacy.next()) {
@@ -664,7 +664,7 @@ public class UniversalHealthSalesReportPdf implements java.lang.Runnable {
                                 // Get Laboratory charges
                                 double currentLABTotal = 0.00;
 
-                                java.sql.PreparedStatement psetLAB = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND dealer = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'LAB'");
+                                java.sql.PreparedStatement psetLAB = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND payee = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'LAB'");
                                 java.sql.ResultSet rsetLAB = psetLAB.executeQuery();
 
                                 while (rsetLAB.next()) {
@@ -674,7 +674,7 @@ public class UniversalHealthSalesReportPdf implements java.lang.Runnable {
                                 // Get Medical Records sales
                                 double currentEMRTotal = 0.00;
 
-                                java.sql.PreparedStatement psetEMR = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND dealer = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'EMR'");
+                                java.sql.PreparedStatement psetEMR = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND payee = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'EMR'");
                                 java.sql.ResultSet rsetEMR = psetEMR.executeQuery();
 
                                 while (rsetEMR.next()) {
@@ -684,7 +684,7 @@ public class UniversalHealthSalesReportPdf implements java.lang.Runnable {
                                 // Get OUT-Patient sales
                                 double currentOPPTotal = 0.00;
 
-                                java.sql.PreparedStatement psetOPP = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND dealer = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'OPP'");
+                                java.sql.PreparedStatement psetOPP = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND payee = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'OPP'");
                                 java.sql.ResultSet rsetOPP = psetOPP.executeQuery();
 
                                 while (rsetOPP.next()) {
@@ -694,7 +694,7 @@ public class UniversalHealthSalesReportPdf implements java.lang.Runnable {
                                 //Get Radiology/Xray sales
                                 double currentXRYTotal = 0.00;
 
-                                java.sql.PreparedStatement psetXRY = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND dealer = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'XRY'");
+                                java.sql.PreparedStatement psetXRY = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND payee = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'XRY'");
                                 java.sql.ResultSet rsetXRY = psetXRY.executeQuery();
 
                                 while (rsetXRY.next()) {
@@ -704,7 +704,7 @@ public class UniversalHealthSalesReportPdf implements java.lang.Runnable {
                                 //Get MOPC sales
                                 double currentMOPCTotal = 0.00;
 
-                                java.sql.PreparedStatement psetMOPC = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND dealer = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'MOPC'");
+                                java.sql.PreparedStatement psetMOPC = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND payee = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'MOPC'");
                                 java.sql.ResultSet rsetMOPC = psetMOPC.executeQuery();
 
                                 while (rsetMOPC.next()) {
@@ -714,7 +714,7 @@ public class UniversalHealthSalesReportPdf implements java.lang.Runnable {
                                 //Get In_patient sales
                                 double currentIPPTotal = 0.00;
 
-                                java.sql.PreparedStatement pset1 = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND dealer = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'IPP'");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
+                                java.sql.PreparedStatement pset1 = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND payee = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'IPP'");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by payee");
 
                                 java.sql.ResultSet rset1 = pset1.executeQuery();
                                 while (rset1.next()) {
@@ -726,7 +726,7 @@ public class UniversalHealthSalesReportPdf implements java.lang.Runnable {
                                 //Get Dental sales
                                 double currentDENTotal = 0.00;
 
-                                java.sql.PreparedStatement psetDEN = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND dealer = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'DEN'");
+                                java.sql.PreparedStatement psetDEN = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND payee = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'DEN'");
                                 java.sql.ResultSet rsetDEN = psetDEN.executeQuery();
 
                                 while (rsetDEN.next()) {
@@ -736,7 +736,7 @@ public class UniversalHealthSalesReportPdf implements java.lang.Runnable {
                                 //Get Physio sales
                                 double currentPHYTotal = 0.00;
 
-                                java.sql.PreparedStatement psetPHY = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND dealer = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'PHY'");
+                                java.sql.PreparedStatement psetPHY = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND payee = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'PHY'");
                                 java.sql.ResultSet rsetPHY = psetPHY.executeQuery();
 
                                 while (rsetPHY.next()) {
@@ -746,7 +746,7 @@ public class UniversalHealthSalesReportPdf implements java.lang.Runnable {
                                 //Get Occupational Therapy sales
                                 double currentOCCTotal = 0.00;
 
-                                java.sql.PreparedStatement psetOCC = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND dealer = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'OCC'");
+                                java.sql.PreparedStatement psetOCC = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND payee = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'OCC'");
                                 java.sql.ResultSet rsetOCC = psetOCC.executeQuery();
 
                                 while (rsetOCC.next()) {
@@ -756,7 +756,7 @@ public class UniversalHealthSalesReportPdf implements java.lang.Runnable {
                                 // Get Theater sales
                                 double currentTHETotal = 0.00;
 
-                                java.sql.PreparedStatement psetTHE = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND dealer = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'THE'");
+                                java.sql.PreparedStatement psetTHE = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND payee = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'THE'");
                                 java.sql.ResultSet rsetTHE = psetTHE.executeQuery();
 
                                 while (rsetTHE.next()) {
@@ -767,7 +767,7 @@ public class UniversalHealthSalesReportPdf implements java.lang.Runnable {
                                 // Get Maternity and Gyneacology sales
                                 double currentMATTotal = 0.00;
 
-                                java.sql.PreparedStatement psetj1 = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND dealer = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'GYN'");
+                                java.sql.PreparedStatement psetj1 = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND payee = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'GYN'");
                                 java.sql.ResultSet rsetj1 = psetj1.executeQuery();
 
                                 while (rsetj1.next()) {
@@ -777,7 +777,7 @@ public class UniversalHealthSalesReportPdf implements java.lang.Runnable {
                                 //Get Nutrition sales
                                 double currentNUTTotal = 0.00;
 
-                                java.sql.PreparedStatement psetNUT = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND dealer = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'NUT'");
+                                java.sql.PreparedStatement psetNUT = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND payee = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'NUT'");
                                 java.sql.ResultSet rsetNUT = psetNUT.executeQuery();
 
                                 while (rsetNUT.next()) {
@@ -787,7 +787,7 @@ public class UniversalHealthSalesReportPdf implements java.lang.Runnable {
                                 //Get Psychiatric sales
                                 double currentPSYTotal = 0.00;
 
-                                java.sql.PreparedStatement psetPSY = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND dealer = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'PSY'");
+                                java.sql.PreparedStatement psetPSY = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND payee = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'PSY'");
                                 java.sql.ResultSet rsetPSY = psetPSY.executeQuery();
 
                                 while (rsetPSY.next()) {
@@ -797,7 +797,7 @@ public class UniversalHealthSalesReportPdf implements java.lang.Runnable {
                                 //Get Referral sales
                                 double currentREFTotal = 0.00;
 
-                                java.sql.PreparedStatement psetREF = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND dealer = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'REF'");
+                                java.sql.PreparedStatement psetREF = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND payee = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND (SELECT DISTINCT department FROM pb_activity WHERE upper(hp_patient_card.main_service) = upper(pb_activity.activity)) = 'REF'");
                                 java.sql.ResultSet rsetREF = psetREF.executeQuery();
 
                                 while (rsetREF.next()) {
@@ -807,7 +807,7 @@ public class UniversalHealthSalesReportPdf implements java.lang.Runnable {
                                 // Get other all other charges
                                 double currentAOTTotal = 0.00;
 
-                                java.sql.PreparedStatement psetw = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND dealer = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND UPPER(main_service) IN (SELECT DISTINCT UPPER(activity) FROM pb_activity WHERE department = 'AOT')");
+                                java.sql.PreparedStatement psetw = connectDB.prepareStatement("SELECT sum(debit-credit) FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM ac_debtors WHERE date = '" + listofAct[i] + "' AND payee = upper('"+schemeName+"')) AND UPPER(transaction_type) = UPPER('Billing') AND UPPER(main_service) IN (SELECT DISTINCT UPPER(activity) FROM pb_activity WHERE department = 'AOT')");
                                 java.sql.ResultSet rsetw = psetw.executeQuery();
 
                                 while (rsetw.next()) {

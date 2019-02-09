@@ -469,7 +469,7 @@ public class ShiftsTotalPerCashierPdf implements java.lang.Runnable {
                         phrase = new Phrase("Direct-Deposits", pFontHeader);
                         table.addCell(phrase);
 
-                        phrase = new Phrase("Exemtions", pFontHeader);
+                        phrase = new Phrase("Exemptions", pFontHeader);
                         table.addCell(phrase);
 
 

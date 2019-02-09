@@ -120,8 +120,8 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
 
         labreportingTabbedPane = new javax.swing.JTabbedPane();
         clinicianOrdersWaitingPanel = new javax.swing.JPanel();
-        jScrollPane14 = new javax.swing.JScrollPane();
-        pendingTable = new com.afrisoftech.dbadmin.JTable();
+        pendingScrollPane = new javax.swing.JScrollPane();
+        pendingTable = new com.afrisoftech.dbadmin.JXTable();
         jTextField63 = new javax.swing.JTextField();
         jSeparator13 = new javax.swing.JSeparator();
         raiserequestsButton = new javax.swing.JButton();
@@ -129,7 +129,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         paidUpOrdersPanel = new javax.swing.JPanel();
         paidupPanel = new javax.swing.JPanel();
         paidupScrollPane = new javax.swing.JScrollPane();
-        paidTable = new com.afrisoftech.dbadmin.JTable();
+        paidTable = new com.afrisoftech.dbadmin.JXTable();
         jLabel71 = new javax.swing.JLabel();
         jTextField61 = new javax.swing.JTextField();
         jButton61 = new javax.swing.JButton();
@@ -257,7 +257,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         jPanel3 = new javax.swing.JPanel();
         jCheckBox3 = new javax.swing.JCheckBox();
         jCheckBox4 = new javax.swing.JCheckBox();
-        searchpatienttxtfld = new javax.swing.JTextField();
+        searchPatientTxt = new javax.swing.JTextField();
         refreshListingsBtn = new javax.swing.JButton();
 
         jSearchDialog2.setModal(true);
@@ -572,7 +572,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.weighty = 1.0;
         jSearchDialog211.getContentPane().add(jSearchPanel211, gridBagConstraints);
 
-        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "External Requests", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "External Requests", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
         jPanel12.setLayout(new java.awt.GridBagLayout());
 
         jTable111.setModel(new javax.swing.table.DefaultTableModel(
@@ -674,7 +674,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         clinicianOrdersWaitingPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lab Requests", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14), new java.awt.Color(0, 0, 255))); // NOI18N
         clinicianOrdersWaitingPanel.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane14.setAutoscrolls(true);
+        pendingScrollPane.setAutoscrolls(true);
 
         pendingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -899,7 +899,21 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
             }
         });
         pendingTable.setRowHeight(26);
-        jScrollPane14.setViewportView(pendingTable);
+        javax.swing.table.TableColumn column = null;
+        for (int i = 0; i < pendingTable.getColumnCount(); i++) {
+            column = pendingTable.getColumnModel().getColumn(i);
+            if (i == 2) {
+
+                column.setPreferredWidth(500); // item description column is bigger
+            } else {
+
+                column.setPreferredWidth(100);
+
+            }
+        }
+
+        pendingScrollPane.setViewportView(pendingTable);
+        pendingScrollPane.setViewportView(pendingTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -908,7 +922,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 200.0;
-        clinicianOrdersWaitingPanel.add(jScrollPane14, gridBagConstraints);
+        clinicianOrdersWaitingPanel.add(pendingScrollPane, gridBagConstraints);
 
         jTextField63.setEditable(false);
         jTextField63.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -1183,6 +1197,19 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
             }
         });
         paidTable.setRowHeight(26);
+        javax.swing.table.TableColumn column2 = null;
+        for (int i = 0; i < paidTable.getColumnCount(); i++) {
+            column2 = paidTable.getColumnModel().getColumn(i);
+            if (i == 2) {
+
+                column2.setPreferredWidth(500); // item description column is bigger
+            } else {
+
+                column2.setPreferredWidth(100);
+
+            }
+        }
+        paidupScrollPane.setViewportView(paidTable);
         paidTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 paidTableMouseClicked(evt);
@@ -2498,10 +2525,10 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel9.add(jPanel3, gridBagConstraints);
 
-        searchpatienttxtfld.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search patient laboratory requests (Type patient number or names)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 102, 255))); // NOI18N
-        searchpatienttxtfld.addCaretListener(new javax.swing.event.CaretListener() {
+        searchPatientTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search patient laboratory requests (Type patient number or names)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 255))); // NOI18N
+        searchPatientTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                searchpatienttxtfldCaretUpdate(evt);
+                searchPatientTxtCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -2510,7 +2537,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel9.add(searchpatienttxtfld, gridBagConstraints);
+        jPanel9.add(searchPatientTxt, gridBagConstraints);
 
         refreshListingsBtn.setBackground(new java.awt.Color(153, 255, 153));
         refreshListingsBtn.setForeground(new java.awt.Color(255, 0, 0));
@@ -2616,6 +2643,13 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                 }
 
                 if (this.pendingTable.getValueAt(t, 9) == Boolean.TRUE) {
+                    java.sql.PreparedStatement pstmt4611 = connectDB.prepareStatement("UPDATE hp_patient_billing"
+                            + " SET collected = true  "
+                            + " where inpatient_no = ? "
+                            + " AND upper(service) = ?");
+                    pstmt4611.setObject(1, pendingTable.getValueAt(t, 7).toString().trim());
+                    pstmt4611.setString(2, pendingTable.getValueAt(t, 4).toString().toUpperCase());
+                    pstmt4611.executeUpdate();
                     rse121 = stm121q.executeQuery("select activity from pb_activity where code ='" + pendingTable.getValueAt(t, 14).toString() + "'");
 
                     if (rse121.next()) {
@@ -2644,6 +2678,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                                     + " SET posted_to_lab='LAB POSTING' "
                                     + " where request_id = '" + pendingTable.getValueAt(t, 10).toString().trim() + "'");
                             pstmt46.executeUpdate();
+
                         } else if (pendingTable.getValueAt(t, 3).toString().trim().startsWith("Scheme")
                                 || (pendingTable.getValueAt(t, 7).toString().trim().startsWith("I") == Boolean.TRUE)) {
                             //in patient and outpatient scheme
@@ -2762,6 +2797,14 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                                     + " SET posted_to_lab='LAB POSTING',paid = true  "
                                     + " where request_id = '" + pendingTable.getValueAt(t, 10).toString().trim() + "'");
                             pstmt46.executeUpdate();
+
+                            java.sql.PreparedStatement pstmt461 = connectDB.prepareStatement("UPDATE hp_patient_billing"
+                                    + " SET collected = true  "
+                                    + " where inpatient_no = ? "
+                                    + " AND upper(service) = ?");
+                            pstmt461.setObject(1, pendingTable.getValueAt(t, 7).toString().trim());
+                            pstmt461.setString(2, pendingTable.getValueAt(t, 4).toString().toUpperCase());
+                            pstmt461.executeUpdate();
                         }
 
                     }
@@ -2823,11 +2866,30 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                 this.paidTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
                         "SELECT pb_doctors_request.trans_date,patient_no, patient_name, payment_mode,service,quantity,amount,inv_no,doctor,"
                         + "false as Carry_Test,request_id as Request_No,curr_date::time(0),visit_id,diagnosis as Specimen,notes as Test_notes, "
-                                + "(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb_doctors_request.patient_no AND pb_doctors_request.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,"
+                        + "(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb_doctors_request.patient_no AND pb_doctors_request.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,"
                         + " (CASE WHEN payment_mode ilike 'scheme' THEN (SELECT description FROM (select date,description from hp_patient_register WHERE hp_patient_register.patient_no = pb_doctors_request.patient_no UNION select date,description from hp_inpatient_register WHERE hp_inpatient_register.patient_no = pb_doctors_request.patient_no ORDER BY date DESC LIMIT 1) as foo) ELSE '' END) as scheme_name FROM pb_doctors_request where "
                         + "requisition_no='LAB' AND pb_doctors_request.trans_date='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker.getDate()) + "' and "
                         + "   pb_doctors_request.paid=true and \n"
-                        + "  pb_doctors_request.collected=false order by 1,12 "));
+                        + "  pb_doctors_request.collected=false "
+                        + " UNION "
+                        + " SELECT date::date as trans_date, patient_no, funsoft_get_patient_name(patient_no) as patient_name,"
+                        + " payment_mode, service, dosage as quantity, debit, reference, '' as doctor, false as Carry_test, "
+                        + " reference as Request_No, now()::time(0), visit_id, '' as Specimen, '' as Test_notes,"
+                        + "  reference as receipt_no, scheme as scheme_name FROM hp_patient_card WHERE main_service ilike '%Laboratory%' AND date >= now()::date - 2 "
+                        + " AND collected = false"
+                        + " UNION "
+                        + "SELECT date as trans_date, patient_no, dealer as patient_name, payment_mode, description, quantity, debit, transaction_no, '' as doctor, false as carry_test,"
+                        + "transaction_no as request_no, now()::time(0), patient_no, '' as specimen, '' as test_notes, receipt_no, 'Cash' AS scheme_name FROM ac_cash_collection WHERE date >= now()::date - 2 AND ac_cash_collection.activity_code::text = ((( SELECT DISTINCT pb_activity.code "
+                        + "           FROM pb_activity "
+                        + "          WHERE pb_activity.code = ac_cash_collection.activity_code AND pb_activity.activity::text ~~* '%LABORATORY%'::text "
+                        + "         LIMIT 1))::text) AND ac_cash_collection.date > (now()::date - 2) AND NOT "
+                        + "(ac_cash_collection.patient_no::text IN ( SELECT DISTINCT "
+                        + "pb_doctors_request.patient_no "
+                        + "           FROM pb_doctors_request "
+                        + "          WHERE pb_doctors_request.revenue_code::text ~~* '%laboratory%'::text AND "
+                        + "ac_cash_collection.patient_no::text = "
+                        + "pb_doctors_request.patient_no::text))"
+                        + " order by 1,12 "));
 
                 this.pendingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
                         "SELECT pb_doctors_request.trans_date,patient_no, patient_name, payment_mode,service,quantity,amount,inv_no,doctor,"
@@ -2846,6 +2908,38 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                         + "ORDER BY trans_date asc"));
 
             }
+            javax.swing.table.TableColumn column2 = null;
+            for (int i = 0; i < paidTable.getColumnCount(); i++) {
+                column2 = paidTable.getColumnModel().getColumn(i);
+                if (i == 2) {
+
+                    column2.setPreferredWidth(300); // item description column is bigger
+                } else if (i == 1 || i == 4) {
+
+                    column2.setPreferredWidth(150);
+
+                } else {
+                    column2.setPreferredWidth(100);
+                }
+            }
+            paidupScrollPane.setViewportView(paidTable);
+
+            javax.swing.table.TableColumn column = null;
+            for (int i = 0; i < pendingTable.getColumnCount(); i++) {
+                column = pendingTable.getColumnModel().getColumn(i);
+                if (i == 2) {
+
+                    column.setPreferredWidth(300); // item description column is bigger
+                } else if (i == 1 || i == 4) {
+
+                    column.setPreferredWidth(150);
+
+                } else {
+                    column.setPreferredWidth(100);
+                }
+            }
+
+            pendingScrollPane.setViewportView(pendingTable);
 
         } catch (Exception sqlExec) {
 
@@ -4098,14 +4192,16 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         // Add your handling code here:
     }//GEN-LAST:event_jSearchTable2MouseClicked
 
-    private void searchpatienttxtfldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchpatienttxtfldCaretUpdate
-        if (searchpatienttxtfld.getCaretPosition() >= 4) {
+    private void searchPatientTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchPatientTxtCaretUpdate
+        if (searchPatientTxt.getCaretPosition() >= 4) {
 
+//            this.paidTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
+//                    "SELECT * FROM funsoft_lab_requests('"+searchPatientTxt.getText()+"')"));
             this.paidTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
                     "SELECT pb_doctors_request.trans_date,patient_no, patient_name, payment_mode,service,quantity,amount,inv_no,doctor,false as Carry_Test,request_id as Request_No,curr_date::time(0),visit_id,notes as Test_notes\n"
                     + "  FROM pb_doctors_request where requisition_no='LAB' AND pb_doctors_request.trans_date>='(" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker.getDate()) + ")-1' and "
                     + "   pb_doctors_request.paid=true and \n"
-                    + "  pb_doctors_request.collected=false AND (patient_no ilike '" + this.searchpatienttxtfld.getText().trim() + "%' OR patient_name ilike '" + this.searchpatienttxtfld.getText().trim() + "%') "
+                    + "  pb_doctors_request.collected=false AND (patient_no ilike '" + this.searchPatientTxt.getText().trim() + "%' OR patient_name ilike '" + this.searchPatientTxt.getText().trim() + "%') "
                     + " order by 1,12 "));
 
             this.pendingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
@@ -4113,7 +4209,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                     + "false as Raise_Bill,request_id as Request_No,curr_date::time(0),visit_id,notes as Test_notes,gl_code  "
                     + "  FROM pb_doctors_request where posted_to_lab='DOC POSTING' and requisition_no='LAB' AND pb_doctors_request.trans_date>='(" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker.getDate()) + ")-1' and "
                     + "   pb_doctors_request.paid=false and \n"
-                    + "  pb_doctors_request.collected=false AND (patient_no ilike '" + this.searchpatienttxtfld.getText().trim() + "%' OR patient_name ilike '" + this.searchpatienttxtfld.getText().trim() + "%') "
+                    + "  pb_doctors_request.collected=false AND (patient_no ilike '" + this.searchPatientTxt.getText().trim() + "%' OR patient_name ilike '" + this.searchPatientTxt.getText().trim() + "%') "
                     + " order by 1,12 "));
 
             this.posted2verifyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT trans_date,patient_no,patient_name, payment_mode,service,quantity,amount,inv_no,doctor,false as Approve,request_id as Request_No,curr_date::time(0)       \n"
@@ -4122,11 +4218,11 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                     + " requisition_no='LAB' and results=true and "
                     + "paid=true and collected=true  "
                     + "and trans_date >='(" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker.getDate()) + ")-1' "
-                    + "and (patient_no ilike '" + this.searchpatienttxtfld.getText().trim() + "%' OR patient_name ilike '" + this.searchpatienttxtfld.getText().trim() + "%') "
+                    + "and (patient_no ilike '" + this.searchPatientTxt.getText().trim() + "%' OR patient_name ilike '" + this.searchPatientTxt.getText().trim() + "%') "
                     + " ORDER BY trans_date asc"));
 
         }
-    }//GEN-LAST:event_searchpatienttxtfldCaretUpdate
+    }//GEN-LAST:event_searchPatientTxtCaretUpdate
 
     private void jButton61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton61ActionPerformed
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
@@ -4649,7 +4745,6 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel411;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane21;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JDialog jSearchDialog;
@@ -4702,6 +4797,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
     private javax.swing.JTextField patientNameTxt;
     private javax.swing.JLabel patientNumberLabel;
     private javax.swing.JTextField patientNumberTxt;
+    private javax.swing.JScrollPane pendingScrollPane;
     private javax.swing.JTable pendingTable;
     private javax.swing.JTable posted2verifyTable;
     private javax.swing.JButton raiserequestsButton;
@@ -4725,7 +4821,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
     private javax.swing.JButton saveResultsBtn;
     private javax.swing.JButton searchButton;
     private javax.swing.JButton searchButton11;
-    private javax.swing.JTextField searchpatienttxtfld;
+    private javax.swing.JTextField searchPatientTxt;
     private javax.swing.JComboBox specimenCmbx;
     private javax.swing.JComboBox specimenConditionCmbx;
     private javax.swing.JComboBox specimenSourceCmbx;

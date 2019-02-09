@@ -1225,14 +1225,14 @@ public class ApproveReqsIntfr extends javax.swing.JInternalFrame {
     private void searchTransferNumberTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchTransferNumberTxtCaretUpdate
         if (searchTransferNumberTxt.getText().length() > 5 && mainStoreCkbx.isSelected()) {
 
-            searchTransferTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT requisition_no,cost_center,store_name,date FROM st_receive_requisation WHERE "
+            searchTransferTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT requisition_no,cost_center,store_name,date FROM st_receive_requisation WHERE "
                     + "requisition_no ILIKE '%" + searchTransferNumberTxt.getText() + "%' and store_name ILIKE '" + issuingStoreCmbx.getSelectedItem() + "' and  UPPER(cost_center) IN (SELECT distinct UPPER(stores) from store_allocation WHERE  user_name ILIKE current_user AND type ilike 'Approve IRQ') order by date desc "));
 
             searchTransferTable.setShowHorizontalLines(false);
             transferNumberScrollPane.setViewportView(searchTransferTable);
         } else {
             if (searchTransferNumberTxt.getText().length() > 5 && subStoreChkbx.isSelected()) {
-                searchTransferTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT requisition_no,cost_center,store_name,date FROM st_receive_requisation WHERE "
+                searchTransferTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT requisition_no,cost_center,store_name,date FROM st_receive_requisation WHERE "
                         + "requisition_no ILIKE '" + searchTransferNumberTxt.getText() + "%' and cost_center ilike '" + recepientStoreCmbx.getSelectedItem() + "' and UPPER(cost_center) IN (SELECT distinct UPPER(stores) from store_allocation WHERE  user_name ILIKE current_user AND type ilike 'Approve IRQ') order by date desc "));
             }
 
@@ -1441,18 +1441,18 @@ public class ApproveReqsIntfr extends javax.swing.JInternalFrame {
 //        } 
 //        else {
             if (mainStoreCkbx.isSelected()) {
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select DISTINCT item_code,description,strength,units,packaging, round(buying_price * 1.33), buying_price FROM stockitem WHERE (description ILIKE '%" + jTextField111.getText() + "%' OR item_code ILIKE '" + jTextField111.getText() + "%') AND department ILIKE '%" + issuingStoreCmbx.getSelectedItem() + "%' order by description"));
+                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT item_code,description,strength,units,packaging, round(buying_price * 1.33), buying_price FROM stockitem WHERE (description ILIKE '%" + jTextField111.getText() + "%' OR item_code ILIKE '" + jTextField111.getText() + "%') AND department ILIKE '%" + issuingStoreCmbx.getSelectedItem() + "%' order by description"));
 
                 jSearchTable.setShowHorizontalLines(false);
                 jSearchScrollPane.setViewportView(jSearchTable);
             } else {
                 if (1 == 2) {
-                    jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select DISTINCT product_id,product,strength,units,(1.00)::numeric(10,2) AS packing,transfer_price::numeric(10,2) FROM stockprices WHERE (product ILIKE '%" + jTextField111.getText() + "%'  OR product_id ILIKE '" + jTextField111.getText() + "%') AND department ILIKE '%" + issuingStoreCmbx.getSelectedItem() + "%' ORDER BY product"));
+                    jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT product_id,product,strength,units,(1.00)::numeric(10,2) AS packing,transfer_price::numeric(10,2) FROM stockprices WHERE (product ILIKE '%" + jTextField111.getText() + "%'  OR product_id ILIKE '" + jTextField111.getText() + "%') AND department ILIKE '%" + issuingStoreCmbx.getSelectedItem() + "%' ORDER BY product"));
 
                     jSearchTable.setShowHorizontalLines(false);
                     jSearchScrollPane.setViewportView(jSearchTable);
                 } else {
-                    jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select DISTINCT product_id,product,strength,units,(1.00)::numeric(10,2) AS packing,selling_price::numeric(10,2) FROM stockprices WHERE (product ILIKE '%" + jTextField111.getText() + "%' OR product_id ILIKE '" + jTextField111.getText() + "%') AND department ILIKE '%" + issuingStoreCmbx.getSelectedItem() + "%' ORDER BY product"));
+                    jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT product_id,product,strength,units,(1.00)::numeric(10,2) AS packing,selling_price::numeric(10,2) FROM stockprices WHERE (product ILIKE '%" + jTextField111.getText() + "%' OR product_id ILIKE '" + jTextField111.getText() + "%') AND department ILIKE '%" + issuingStoreCmbx.getSelectedItem() + "%' ORDER BY product"));
 
                     jSearchTable.setShowHorizontalLines(false);
                     jSearchScrollPane.setViewportView(jSearchTable);
@@ -1902,8 +1902,8 @@ public class ApproveReqsIntfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_saveTransactionBtnActionPerformed
     private void refresh() {
-        irqsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT requisition_no,date FROM st_receive_requisation WHERE "
-                + " upper(cost_center) IN (SELECT distinct upper(stores) from store_allocation WHERE  user_name ilike current_user AND type ilike 'Approve IRQ') and irq_approval=false  and requisition_no ilike 'IRQ%' and date::date>current_date-5 order by 2 desc "));
+        irqsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT requisition_no,date FROM st_receive_requisation WHERE "
+                + " upper(cost_center) IN (SELECT distinct upper(stores) from store_allocation WHERE  user_name ilike current_user AND type ilike 'Approve IRQ') and irq_approval=false and requisition_no ilike 'IRQ%' and date::date>current_date-5 order by 2 desc "));
     }
     private void searchIRQtxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchIRQtxtCaretUpdate
         // TODO add your handling code here:

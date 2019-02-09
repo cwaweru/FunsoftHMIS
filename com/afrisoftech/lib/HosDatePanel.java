@@ -31,11 +31,11 @@ public class HosDatePanel extends javax.swing.JDialog {
 
         initComponents();
         jCheckBox4.setVisible(false);
-        jComboBox1.setVisible(false);
+        clinicCmbx.setVisible(false);
 
         if (reportName == 82) {
             jCheckBox4.setVisible(true);
-            jComboBox1.setVisible(true);
+            clinicCmbx.setVisible(true);
         }
 
         //       return dateStartEnd;
@@ -57,7 +57,7 @@ public class HosDatePanel extends javax.swing.JDialog {
         datePicker1 = new com.afrisoftech.lib.DatePicker();
         datePicker2 = new com.afrisoftech.lib.DatePicker();
         jCheckBox4 = new javax.swing.JCheckBox();
-        jComboBox1 = new javax.swing.JComboBox();
+        clinicCmbx = new javax.swing.JComboBox();
         nodaysCmb = new javax.swing.JCheckBox();
         reportTypeCmbx = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
@@ -128,8 +128,8 @@ public class HosDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jCheckBox4, gridBagConstraints);
 
-        jComboBox1.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT point_name  FROM records_service_points ORDER BY 1"));
-        jComboBox1.setEnabled(false);
+        clinicCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT initcap(clinics) FROM pb_clinics ORDER BY 1"));
+        clinicCmbx.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -137,7 +137,7 @@ public class HosDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPanel1.add(jComboBox1, gridBagConstraints);
+        jPanel1.add(clinicCmbx, gridBagConstraints);
 
         nodaysCmb.setSelected(true);
         nodaysCmb.setText("No. of Days");
@@ -162,7 +162,6 @@ public class HosDatePanel extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 10.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 20, 10, 20);
         getContentPane().add(jPanel1, gridBagConstraints);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -221,7 +220,6 @@ public class HosDatePanel extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
         getContentPane().add(jPanel3, gridBagConstraints);
 
         setSize(new java.awt.Dimension(475, 259));
@@ -254,11 +252,11 @@ public class HosDatePanel extends javax.swing.JDialog {
 
     private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
         if (jCheckBox4.isSelected()) {
-            jComboBox1.setEnabled(true);
+            clinicCmbx.setEnabled(true);
             nodaysCmb.setSelected(false);
         } else {
-            jComboBox1.setEnabled(false);
-            jComboBox1.setSelectedItem("-");
+            clinicCmbx.setEnabled(false);
+            clinicCmbx.setSelectedItem("-");
             nodaysCmb.setSelected(true);
         }
         // TODO add your handling code here:
@@ -739,7 +737,7 @@ public class HosDatePanel extends javax.swing.JDialog {
 
                 } else {
                     com.afrisoftech.reports.PatientAdminPdf policy = new com.afrisoftech.reports.PatientAdminPdf();
-                    policy.PatientAdminPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(), jComboBox1.getSelectedItem().toString());
+                    policy.PatientAdminPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(), clinicCmbx.getSelectedItem().toString());
                 }
 
                 //this.dispose();
@@ -1551,7 +1549,7 @@ public class HosDatePanel extends javax.swing.JDialog {
             case 204: {
                 com.afrisoftech.records.reports.OutPatientStatementPdf policy = new com.afrisoftech.records.reports.OutPatientStatementPdf();
 
-                policy.OutPatientStatementPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
+                policy.OutPatientStatementPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(), clinicCmbx.getSelectedItem(), null, null);
 
                 // com.afrisoftech.reports.OpAttSheetSummPdf policy = new com.afrisoftech.reports.OpAttSheetSummPdf();
                 //policy.OpAttSheetSummPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
@@ -2314,12 +2312,12 @@ public class HosDatePanel extends javax.swing.JDialog {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox clinicCmbx;
     private com.afrisoftech.lib.DatePicker datePicker1;
     private com.afrisoftech.lib.DatePicker datePicker2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

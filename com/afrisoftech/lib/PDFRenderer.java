@@ -6,6 +6,9 @@ package com.afrisoftech.lib;
 
 import static com.afrisoftech.hospital.HospitalMain.PDFViewerIntfr;
 import static com.afrisoftech.hospital.HospitalMain.saccopn;
+import java.awt.BorderLayout;
+import javax.swing.JButton;
+import javax.swing.JToolBar;
 
 /**
  *
@@ -14,14 +17,41 @@ import static com.afrisoftech.hospital.HospitalMain.saccopn;
 public class PDFRenderer {
 
     public static javax.swing.JPanel viewerComponentPanel;
+    
+    static java.io.File file2Export = null;
 
     public static void renderPDF(java.io.File fileName) {
+        
+        file2Export = fileName;
 
         org.icepdf.ri.common.SwingController controller = new org.icepdf.ri.common.SwingController();
 
+        // controller.getViewerFrame().getContentPane().add
         org.icepdf.ri.common.SwingViewBuilder factory = new org.icepdf.ri.common.SwingViewBuilder(controller);
 
         javax.swing.JPanel viewerComponentPanel = factory.buildViewerPanel();
+
+        JToolBar toolBar = factory.buildCompleteToolBar(true);
+        toolBar.addSeparator();
+        com.afrisoftech.lib.IconFactory imageFactory = new com.afrisoftech.lib.IconFactory();
+
+        javax.swing.ImageIcon iconImage = imageFactory.getIconImage();
+
+        javax.swing.JButton excelButton = new JButton();
+        excelButton.setIcon(iconImage);
+        excelButton.setToolTipText("Export document to Excel");
+        excelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    com.afrisoftech.lib.PDF2ExcelConverter.convertPDf2Excel(file2Export.getPath());
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        toolBar.add(excelButton);
+
+        viewerComponentPanel.add(toolBar, BorderLayout.NORTH);
 
         //  viewerComponentPanel.setSize(com.afrisoftech.hospital.HospitalMain.saccopn.getParent().getSize());
         org.icepdf.ri.common.ComponentKeyBinding.install(controller, viewerComponentPanel);
@@ -69,6 +99,7 @@ public class PDFRenderer {
 
         component = factory.buildViewerPanel();
 
+        //factory.
         org.icepdf.ri.common.ComponentKeyBinding.install(controller, viewerComponentPanel);
 
         controller.getDocumentViewController().setAnnotationCallback(
@@ -77,7 +108,6 @@ public class PDFRenderer {
 
         controller.openDocument(fileName.getPath());
 
-      //  return viewerComponentPanel;
-
+        //  return viewerComponentPanel;
     }
 }

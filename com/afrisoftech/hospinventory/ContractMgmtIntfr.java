@@ -703,7 +703,7 @@ public class ContractMgmtIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (tenderrecordstxt4.getCaretPosition() > 1) {
         } else {
-            tenderrecordstbl4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT quotation_no FROM st_orders WHERE quotation_no ILIKE '%" + tenderrecordstxt4.getText().toString() + "%' "
+            tenderrecordstbl4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT quotation_no FROM st_orders WHERE quotation_no ILIKE '%" + tenderrecordstxt4.getText().toString() + "%' "
                     + "and ordered=false and order_no IS NULL  ORDER BY 1"));
             tenderrecordstbl4.setShowHorizontalLines(true);
             tenderrecordsspnl4.setViewportView(tenderrecordstbl4);

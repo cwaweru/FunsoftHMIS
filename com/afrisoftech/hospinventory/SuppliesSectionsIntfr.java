@@ -2021,7 +2021,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         if (jTextField11.getCaretPosition() > 3) {
 
             //
-            jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, " SELECT distinct upper(buyer_name) FROM st_buyers_register where buyer_name ilike '%" + jTextField11.getText() + "%'"));
+            jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, " SELECT distinct upper(buyer_name) FROM st_buyers_register where buyer_name ilike '%" + jTextField11.getText() + "%'"));
             //jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select activity, code FROM pb_activity WHERE (activity ILIKE '%pharm%' OR activity ILIKE '%supplies%' OR sub_category ILIKE '%stock%') AND activity ilike '%" + jTextField11.getText() + "%'"));
 
             jSearchScrollPane.setViewportView(jSearchTable);

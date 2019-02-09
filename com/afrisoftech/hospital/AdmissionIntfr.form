@@ -356,7 +356,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jSearchScrollPane">
+            <Container class="javax.swing.JScrollPane" name="ipSearchScrollPane">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                   <GridBagConstraints gridX="0" gridY="1" gridWidth="3" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="20.0"/>
@@ -416,7 +416,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jSearchPanel1">
+        <Container class="javax.swing.JPanel" name="opSearchPanel">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -443,7 +443,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jSearchScrollPane1">
+            <Container class="javax.swing.JScrollPane" name="opSearchScrollPane1">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                   <GridBagConstraints gridX="0" gridY="1" gridWidth="3" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="20.0"/>
@@ -548,7 +548,7 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable();"/>
                     <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value=""/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*int rowsNo = 0;&#xa;//try {&#xa;               &#xa;                crset1.setCommand(&quot;SELECT patient_no, (upper(first_name||&apos; &apos;||second_name||&apos; &apos;||last_name)) as name, year_of_birth, residence from hp_patient_register order by name&quot;);&#xa;&#xa;        &#xa;                crset1.setConnectionSource(pConnDB);&#xa;                &#xa;                // try {&#xa;                //crset1.execute();&#xa;&#xa;                &#xa;                // crset2.setExecuteOnLoad(true);&#xa;                ipSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(crset1, new org.netbeans.lib.sql.models.TableModel.Column[] {&#xa;                 new org.netbeans.lib.sql.models.TableModel.Column(&quot;patient_no&quot;, &quot;Patient No.&quot;, false),&#xa;                    new org.netbeans.lib.sql.models.TableModel.Column(&quot;name&quot;, &quot;Name&quot;, false),&#xa;                    &#xa;                    new org.netbeans.lib.sql.models.TableModel.Column(&quot;year_of_birth&quot;, &quot;Birth date&quot;, true),&#xa;                    new org.netbeans.lib.sql.models.TableModel.Column(&quot;residence&quot;, &quot;Residence&quot;, true)&#xa;                    &#xa;                }));&#xa;                &#xa;                tableModel = ipSearchTable.getModel();&#xa;                &#xa;                &#xa;                jSearchScrollPane.setViewportView(ipSearchTable);&#xa;                &#xa;            &#xa;            &#xa;     /*   }catch(java.sql.SQLException sqlex){&#xa;            javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),&quot;Error Message!&quot;,javax.swing.JOptionPane.ERROR_MESSAGE);&#xa;            &#xa;            System.out.println(sqlex.getMessage());&#xa;            &#xa;        }&#xa;&#xa;      &#xa;javax.swing.table.TableColumn column = null;&#xa;&#xa;              for (int i = 0; i &lt; 4; i++) {&#xa;                  &#xa;                  column = ipSearchTable.getColumnModel().getColumn(i);&#xa;                  &#xa;                  if (i == 1) {&#xa;                      &#xa;                      column.setPreferredWidth(400);&#xa;                      //sport column is bigger&#xa;                  } else {&#xa;                      &#xa;                      column.setPreferredWidth(200);&#xa;                      &#xa;                  } &#xa;              }*/"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*int rowsNo = 0;&#xa;//try {&#xa;               &#xa;                crset1.setCommand(&quot;SELECT patient_no, (upper(first_name||&apos; &apos;||second_name||&apos; &apos;||last_name)) as name, year_of_birth, residence from hp_patient_register order by name&quot;);&#xa;&#xa;        &#xa;                crset1.setConnectionSource(pConnDB);&#xa;                &#xa;                // try {&#xa;                //crset1.execute();&#xa;&#xa;                &#xa;                // crset2.setExecuteOnLoad(true);&#xa;                ipSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(crset1, new org.netbeans.lib.sql.models.TableModel.Column[] {&#xa;                 new org.netbeans.lib.sql.models.TableModel.Column(&quot;patient_no&quot;, &quot;Patient No.&quot;, false),&#xa;                    new org.netbeans.lib.sql.models.TableModel.Column(&quot;name&quot;, &quot;Name&quot;, false),&#xa;                    &#xa;                    new org.netbeans.lib.sql.models.TableModel.Column(&quot;year_of_birth&quot;, &quot;Birth date&quot;, true),&#xa;                    new org.netbeans.lib.sql.models.TableModel.Column(&quot;residence&quot;, &quot;Residence&quot;, true)&#xa;                    &#xa;                }));&#xa;                &#xa;                tableModel = ipSearchTable.getModel();&#xa;                &#xa;                &#xa;                ipSearchScrollPane.setViewportView(ipSearchTable);&#xa;                &#xa;            &#xa;            &#xa;     /*   }catch(java.sql.SQLException sqlex){&#xa;            javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),&quot;Error Message!&quot;,javax.swing.JOptionPane.ERROR_MESSAGE);&#xa;            &#xa;            System.out.println(sqlex.getMessage());&#xa;            &#xa;        }&#xa;&#xa;      &#xa;javax.swing.table.TableColumn column = null;&#xa;&#xa;              for (int i = 0; i &lt; 4; i++) {&#xa;                  &#xa;                  column = ipSearchTable.getColumnModel().getColumn(i);&#xa;                  &#xa;                  if (i == 1) {&#xa;                      &#xa;                      column.setPreferredWidth(400);&#xa;                      //sport column is bigger&#xa;                  } else {&#xa;                      &#xa;                      column.setPreferredWidth(200);&#xa;                      &#xa;                  } &#xa;              }*/"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
@@ -581,7 +581,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JDialog" name="jSearchDialog2">
+    <Container class="javax.swing.JDialog" name="schemeSearchDialog">
       <Properties>
         <Property name="modal" type="boolean" value="true"/>
         <Property name="undecorated" type="boolean" value="true"/>
@@ -589,7 +589,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jSearchPanel2">
+        <Container class="javax.swing.JPanel" name="schemeSearchPanel">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -605,9 +605,9 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="jTextField1113">
+            <Component class="javax.swing.JTextField" name="schemeSearchTxt">
               <Events>
-                <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="jTextField1113CaretUpdate"/>
+                <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="schemeSearchTxtCaretUpdate"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -615,7 +615,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jSearchScrollPane2">
+            <Container class="javax.swing.JScrollPane" name="schemeSearchScrollPane">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                   <GridBagConstraints gridX="0" gridY="1" gridWidth="3" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="20.0"/>
@@ -624,13 +624,13 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jSearchTable2">
+                <Component class="javax.swing.JTable" name="schemeSearchTable">
                   <Properties>
                     <Property name="toolTipText" type="java.lang.String" value="Click on the target row to select the patient from the search."/>
                     <Property name="showHorizontalLines" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jSearchTable2MouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="schemeSearchTableMouseClicked"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable();"/>
@@ -640,12 +640,12 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButton512">
+            <Component class="javax.swing.JButton" name="schemeSearchBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Close"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton512ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="schemeSearchBtnActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -2915,7 +2915,6 @@
                 </Component>
                 <Component class="javax.swing.JComboBox" name="nokRelationShipCmbx">
                   <Properties>
-                    <Property name="editable" type="boolean" value="true"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB,&quot;SELECT DISTINCT relation_description FROM nok_relationship order by 1&quot;)" type="code"/>
                     </Property>

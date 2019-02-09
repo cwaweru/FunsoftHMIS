@@ -200,10 +200,10 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     jButton42 = new javax.swing.JButton();
     jButton52 = new javax.swing.JButton();
     patientSearchDialog = new javax.swing.JDialog();
-    jSearchPanel21 = new javax.swing.JPanel();
+    patientSearchPanel = new javax.swing.JPanel();
     patientSearchTxt = new javax.swing.JTextField();
-    jSearchScrollPane21 = new javax.swing.JScrollPane();
-    jSearchTable21 = new com.afrisoftech.dbadmin.JTable();
+    patientSearchScrollPane = new javax.swing.JScrollPane();
+    patientSearchTable = new com.afrisoftech.dbadmin.JTable();
     jButton421 = new javax.swing.JButton();
     jButton521 = new javax.swing.JButton();
     jDialog31 = new javax.swing.JDialog();
@@ -250,9 +250,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     jComboBox111 = new javax.swing.JComboBox();
     jLabel2121 = new javax.swing.JLabel();
     jTextField151 = new javax.swing.JTextField();
-    jPanel61 = new javax.swing.JPanel();
+    searchPatientPanel = new javax.swing.JPanel();
     patientNameTxt = new javax.swing.JTextField();
-    searchButton1 = new javax.swing.JButton();
+    searchPatientButton = new javax.swing.JButton();
     jPanel14 = new javax.swing.JPanel();
     searchNoChbx = new javax.swing.JCheckBox();
     searchNameChbx = new javax.swing.JCheckBox();
@@ -270,9 +270,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     unitNumberTxt = new javax.swing.JTextField();
     mchfpChbx = new javax.swing.JCheckBox();
     payerMobileTelephoneNumberTxt = new javax.swing.JFormattedTextField();
-    jPanel62 = new javax.swing.JPanel();
+    searchMobilePayTxPanel = new javax.swing.JPanel();
     mobilepayTxNoTxt = new javax.swing.JTextField();
-    searchButton2 = new javax.swing.JButton();
+    searchMobileTxButton = new javax.swing.JButton();
     jLabel7 = new javax.swing.JLabel();
     jSeparator111 = new javax.swing.JSeparator();
     jPanel32 = new javax.swing.JPanel();
@@ -645,8 +645,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     patientSearchDialog.setUndecorated(true);
     patientSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-    jSearchPanel21.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-    jSearchPanel21.setLayout(new java.awt.GridBagLayout());
+    patientSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+    patientSearchPanel.setLayout(new java.awt.GridBagLayout());
 
     patientSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
         public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -660,10 +660,10 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     gridBagConstraints.weightx = 300.0;
     gridBagConstraints.weighty = 1.0;
     gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-    jSearchPanel21.add(patientSearchTxt, gridBagConstraints);
+    patientSearchPanel.add(patientSearchTxt, gridBagConstraints);
 
-    jSearchTable21.setToolTipText("Click on the target row to select the patient from the search.");
-    jSearchTable21.setShowHorizontalLines(false);
+    patientSearchTable.setToolTipText("Click on the target row to select the patient from the search.");
+    patientSearchTable.setShowHorizontalLines(false);
     /*javax.swing.table.TableColumn column = null;
 
     for (int i = 0; i < 4; i++) {
@@ -681,15 +681,15 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         }
     }
     */
-    jSearchTable21.addMouseListener(new java.awt.event.MouseAdapter() {
+    patientSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mouseClicked(java.awt.event.MouseEvent evt) {
-            jSearchTable21MouseClicked(evt);
+            patientSearchTableMouseClicked(evt);
         }
         public void mouseEntered(java.awt.event.MouseEvent evt) {
-            jSearchTable21MouseEntered(evt);
+            patientSearchTableMouseEntered(evt);
         }
     });
-    jSearchScrollPane21.setViewportView(jSearchTable21);
+    patientSearchScrollPane.setViewportView(patientSearchTable);
 
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
@@ -698,7 +698,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
     gridBagConstraints.weightx = 1.0;
     gridBagConstraints.weighty = 20.0;
-    jSearchPanel21.add(jSearchScrollPane21, gridBagConstraints);
+    patientSearchPanel.add(patientSearchScrollPane, gridBagConstraints);
 
     jButton421.setText("Select");
     gridBagConstraints = new java.awt.GridBagConstraints();
@@ -706,7 +706,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     gridBagConstraints.gridy = 0;
     gridBagConstraints.weightx = 1.0;
     gridBagConstraints.weighty = 1.0;
-    jSearchPanel21.add(jButton421, gridBagConstraints);
+    patientSearchPanel.add(jButton421, gridBagConstraints);
 
     jButton521.setText("Dispose");
     jButton521.addActionListener(new java.awt.event.ActionListener() {
@@ -719,7 +719,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     gridBagConstraints.gridy = 0;
     gridBagConstraints.weightx = 1.0;
     gridBagConstraints.weighty = 1.0;
-    jSearchPanel21.add(jButton521, gridBagConstraints);
+    patientSearchPanel.add(jButton521, gridBagConstraints);
 
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
@@ -727,7 +727,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
     gridBagConstraints.weightx = 1.0;
     gridBagConstraints.weighty = 1.0;
-    patientSearchDialog.getContentPane().add(jSearchPanel21, gridBagConstraints);
+    patientSearchDialog.getContentPane().add(patientSearchPanel, gridBagConstraints);
 
     jDialog31.setTitle("Enter Doctors Fee");
     jDialog31.setModal(true);
@@ -1094,11 +1094,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             e1.printStackTrace();
         }
         setVisible(true);
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentHidden(java.awt.event.ComponentEvent evt) {
-                formComponentHidden(evt);
-            }
-        });
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -1114,6 +1109,11 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                formComponentHidden(evt);
             }
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -1170,6 +1170,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel211.add(jComboBox111, gridBagConstraints);
 
         jLabel2121.setText("Revenue Code");
@@ -1189,13 +1190,12 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.gridy = 1;
         jPanel211.add(jTextField151, gridBagConstraints);
 
-        jPanel61.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel61.setMinimumSize(new java.awt.Dimension(82, 40));
-        jPanel61.setPreferredSize(new java.awt.Dimension(87, 40));
-        jPanel61.setLayout(new java.awt.GridBagLayout());
+        searchPatientPanel.setMinimumSize(new java.awt.Dimension(82, 40));
+        searchPatientPanel.setPreferredSize(new java.awt.Dimension(41, 27));
+        searchPatientPanel.setLayout(new java.awt.GridBagLayout());
 
         patientNameTxt.setEditable(false);
-        patientNameTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Please type at least 6 characters"));
+        patientNameTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         patientNameTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 patientNameTxtCaretUpdate(evt);
@@ -1212,19 +1212,19 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1000.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel61.add(patientNameTxt, gridBagConstraints);
+        searchPatientPanel.add(patientNameTxt, gridBagConstraints);
 
-        searchButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Find 2.png"))); // NOI18N
-        searchButton1.setToolTipText("Search");
-        searchButton1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        searchButton1.setIconTextGap(0);
-        searchButton1.setMaximumSize(new java.awt.Dimension(74, 53));
-        searchButton1.setMinimumSize(new java.awt.Dimension(74, 53));
-        searchButton1.setPreferredSize(new java.awt.Dimension(33, 23));
-        searchButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        searchButton1.addActionListener(new java.awt.event.ActionListener() {
+        searchPatientButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Find 2.png"))); // NOI18N
+        searchPatientButton.setToolTipText("Search");
+        searchPatientButton.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        searchPatientButton.setIconTextGap(0);
+        searchPatientButton.setMaximumSize(new java.awt.Dimension(74, 53));
+        searchPatientButton.setMinimumSize(new java.awt.Dimension(74, 53));
+        searchPatientButton.setPreferredSize(new java.awt.Dimension(33, 23));
+        searchPatientButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        searchPatientButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchButton1ActionPerformed(evt);
+                searchPatientButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1232,7 +1232,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel61.add(searchButton1, gridBagConstraints);
+        searchPatientPanel.add(searchPatientButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -1241,7 +1241,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel211.add(jPanel61, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        jPanel211.add(searchPatientPanel, gridBagConstraints);
 
         searchNoChbx.setBackground(new java.awt.Color(153, 255, 255));
         buttonGroup1.add(searchNoChbx);
@@ -1434,13 +1435,13 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel211.add(payerMobileTelephoneNumberTxt, gridBagConstraints);
 
-        jPanel62.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel62.setMinimumSize(new java.awt.Dimension(82, 40));
-        jPanel62.setPreferredSize(new java.awt.Dimension(87, 40));
-        jPanel62.setLayout(new java.awt.GridBagLayout());
+        searchMobilePayTxPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        searchMobilePayTxPanel.setMinimumSize(new java.awt.Dimension(82, 40));
+        searchMobilePayTxPanel.setPreferredSize(new java.awt.Dimension(41, 27));
+        searchMobilePayTxPanel.setLayout(new java.awt.GridBagLayout());
 
         mobilepayTxNoTxt.setEditable(false);
-        mobilepayTxNoTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Please type at least 6 characters"));
+        mobilepayTxNoTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         mobilepayTxNoTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 mobilepayTxNoTxtCaretUpdate(evt);
@@ -1457,19 +1458,19 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1000.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel62.add(mobilepayTxNoTxt, gridBagConstraints);
+        searchMobilePayTxPanel.add(mobilepayTxNoTxt, gridBagConstraints);
 
-        searchButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Find 2.png"))); // NOI18N
-        searchButton2.setToolTipText("Search");
-        searchButton2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        searchButton2.setIconTextGap(0);
-        searchButton2.setMaximumSize(new java.awt.Dimension(74, 53));
-        searchButton2.setMinimumSize(new java.awt.Dimension(74, 53));
-        searchButton2.setPreferredSize(new java.awt.Dimension(33, 23));
-        searchButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        searchButton2.addActionListener(new java.awt.event.ActionListener() {
+        searchMobileTxButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Find 2.png"))); // NOI18N
+        searchMobileTxButton.setToolTipText("Search");
+        searchMobileTxButton.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        searchMobileTxButton.setIconTextGap(0);
+        searchMobileTxButton.setMaximumSize(new java.awt.Dimension(74, 53));
+        searchMobileTxButton.setMinimumSize(new java.awt.Dimension(74, 53));
+        searchMobileTxButton.setPreferredSize(new java.awt.Dimension(33, 23));
+        searchMobileTxButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        searchMobileTxButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchButton2ActionPerformed(evt);
+                searchMobileTxButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1477,7 +1478,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel62.add(searchButton2, gridBagConstraints);
+        searchMobilePayTxPanel.add(searchMobileTxButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -1486,7 +1487,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel211.add(jPanel62, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        jPanel211.add(searchMobilePayTxPanel, gridBagConstraints);
 
         jLabel7.setText("Mobile Transaction No.");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -2606,15 +2608,15 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         jSearchDialog2.setVisible(true);
 
     }
-    private void jSearchTable21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable21MouseClicked
+    private void patientSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patientSearchTableMouseClicked
 
         com.afrisoftech.hospital.HospitalMain.mobileTxID = null;
         com.afrisoftech.hospital.HospitalMain.mobileTelephone = null;
         mobilepayTxNoTxt.setText(null);
 
-        patientNumberTxt.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 0).toString());
-        patientNameTxt.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 1).toString());
-        unitNumberTxt.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 2).toString());
+        patientNumberTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 0).toString());
+        patientNameTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 1).toString());
+        unitNumberTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 2).toString());
         payerMobileTelephoneNumberTxt.setText("254-7XX-XXXXXX");
         for (int s = 0; s < billTable.getRowCount(); s++) {
             for (int r = 0; r < billTable.getColumnCount(); r++) {
@@ -2650,11 +2652,11 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         }
         patientSearchDialog.dispose();
         // Add your handling code here:
-    }//GEN-LAST:event_jSearchTable21MouseClicked
+    }//GEN-LAST:event_patientSearchTableMouseClicked
 
-    private void searchButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton1ActionPerformed
+    private void searchPatientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchPatientButtonActionPerformed
         searchButton212Clicked();        // Add your handling code here:
-    }//GEN-LAST:event_searchButton1ActionPerformed
+    }//GEN-LAST:event_searchPatientButtonActionPerformed
     private void searchButton212Clicked() {
 
         com.afrisoftech.hospital.HospitalMain.mobileTxID = null;
@@ -2678,7 +2680,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private void patientSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_patientSearchTxtCaretUpdate
         if (this.mchfpChbx.isSelected()) {
             if (patientSearchTxt.getCaretPosition() > 3) {
-                jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT anc as anc_no, first_name||' '||middle_name||' '||last_name, telephone from rh.mother_details where anc ILIKE '%" + patientSearchTxt.getText() + "%' or first_name||' '||middle_name||' '||last_name  ILIKE '%" + patientSearchTxt.getText() + "%' "
+                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT anc as anc_no, first_name||' '||middle_name||' '||last_name, telephone from rh.mother_details where anc ILIKE '%" + patientSearchTxt.getText() + "%' or first_name||' '||middle_name||' '||last_name  ILIKE '%" + patientSearchTxt.getText() + "%' "
                         + " UNION SELECT DISTINCT fp_clinic_no as anc_no, full_name, telephone_no from rh.fp_services_register where fp_clinic_no ILIKE '%" + patientSearchTxt.getText() + "%' or full_name  ILIKE '%" + patientSearchTxt.getText() + "%'"
                         + " UNION SELECT DISTINCT pnc_no as anc_no, full_name, telephone from rh.post_natal_follow_up_register where pnc_no ILIKE '%" + patientSearchTxt.getText() + "%' or full_name  ILIKE '%" + patientSearchTxt.getText() + "%' ORDER BY 2"));
             }
@@ -2697,7 +2699,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                             + " discharge_date::DATE = ('now'::text)::date ORDER BY patient_no");
 //            } else {
 
-                    jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT "
+                    patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT "
                             + " DISTINCT patient_no,(second_name||' '||first_name) as patient_name, patient_race as unit_number FROM hp_patient_register "
                             + "WHERE patient_no ILIKE '%" + patientSearchTxt.getText() + "%' or patient_race ILIKE '%" + patientSearchTxt.getText() + "%' AND last_visit >= (current_date - 3) "
                             + " UNION ALL SELECT "
@@ -2707,9 +2709,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                             + " patient_no ILIKE '%" + patientSearchTxt.getText() + "%' or sub_chief ilike '%" + patientSearchTxt.getText() + "%'  AND  "
                             + " discharge_date::DATE = ('now'::text)::date ORDER BY patient_no"));
 
-                    jSearchTable21.setShowHorizontalLines(false);
+                    patientSearchTable.setShowHorizontalLines(false);
 
-                    jSearchScrollPane21.setViewportView(jSearchTable21);
+                    patientSearchScrollPane.setViewportView(patientSearchTable);
 
                 }
 
@@ -2727,7 +2729,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                             + "AND discharge_date::DATE = now() order by patient_name");
 //            } else {
                     // try {
-                    jSearchTable21.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT "
+                    patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT "
                             + "distinct patient_no, (second_name||' '||first_name)  as patient_name, patient_race as unit_number FROM hp_patient_register"
                             + " WHERE second_name||' '||first_name ILIKE '%" + patientSearchTxt.getText() + "%' and "
                             + "last_visit >= (current_date - 3) UNION ALL select DISTINCT patient_no,patient_name, '' as unit_number from hp_pharmacy "
@@ -2736,12 +2738,25 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                             + "patient_name, sub_chief as unit_number FROM hp_admission WHERE patient_name ILIKE '%" + patientSearchTxt.getText() + "%' or sub_chief ilike '%" + patientSearchTxt.getText() + "%'  "
                             + "AND discharge_date::DATE = now() order by patient_name"));
 
-                    jSearchTable21.setShowHorizontalLines(false);
-                    jSearchScrollPane21.setViewportView(jSearchTable21);
+                    patientSearchTable.setShowHorizontalLines(false);
+                    patientSearchScrollPane.setViewportView(patientSearchTable);
 
                 }
             }
-        }      // Add your handling code here:
+        } 
+        javax.swing.table.TableColumn column = null;
+        for (int i = 0; i < patientSearchTable.getColumnCount(); i++) {
+            System.out.println("Resizing table ...");
+            column = this.patientSearchTable.getColumnModel().getColumn(i);
+            if (i == 1) {
+
+                column.setPreferredWidth(500); // item description column is bigger
+            } else {
+                column.setPreferredWidth(200);
+            } 
+        }
+        patientSearchScrollPane.setViewportView(patientSearchTable);        
+// Add your handling code here:
     }//GEN-LAST:event_patientSearchTxtCaretUpdate
 
     public class ComboTextField extends javax.swing.JTextField implements javax.swing.ComboBoxEditor {
@@ -2875,13 +2890,13 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 } else {
                     // try {
                     if (patNationality.startsWith("NON")) {
-                        jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, ""
+                        jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                                 + "SELECT DINSTINCT service_type,other_prices::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + jTextField112.getText() + "%'  ORDER BY 1"));
                     } else {
                         if (patCateg.startsWith("PRI")) {
-                            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT service_type,anaesthetist_rate::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + jTextField112.getText() + "%'  ORDER BY 1"));
+                            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,anaesthetist_rate::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + jTextField112.getText() + "%'  ORDER BY 1"));
                         } else {
-                            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT service_type,rate::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + jTextField112.getText() + "%'  ORDER BY 1"));// UNION ALL select distinct product,selling_price,gl_code,product_id,department FROM st_stock_prices WHERE product_id ILIKE '" + jTextField112.getText() + "%' and gl_code = '" + jTextField7.getText() + "' ORDER BY 1 LIMIT 30"));
+                            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,rate::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + jTextField112.getText() + "%'  ORDER BY 1"));// UNION ALL select distinct product,selling_price,gl_code,product_id,department FROM st_stock_prices WHERE product_id ILIKE '" + jTextField112.getText() + "%' and gl_code = '" + jTextField7.getText() + "' ORDER BY 1 LIMIT 30"));
                         }
                     }
                     /*
@@ -2905,12 +2920,12 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 } else {
 
                     if (patNationality.startsWith("NON")) {
-                        jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT service_type,other_prices::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + jTextField112.getText() + "%'  ORDER BY 1"));
+                        jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,other_prices::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + jTextField112.getText() + "%'  ORDER BY 1"));
                     } else {
                         if (patCateg.startsWith("PRI")) {
-                            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT service_type,anaesthetist_rate::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + jTextField112.getText() + "%'  ORDER BY 1"));
+                            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,anaesthetist_rate::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + jTextField112.getText() + "%'  ORDER BY 1"));
                         } else {
-                            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT DISTINCT service_type,rate::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + jTextField112.getText() + "%'  ORDER BY 1"));// UNION ALL select distinct product,selling_price,gl_code,product_id,department FROM st_stock_prices WHERE product_id ILIKE '" + jTextField112.getText() + "%' and gl_code = '" + jTextField7.getText() + "' ORDER BY 1 LIMIT 30"));
+                            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,rate::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + jTextField112.getText() + "%'  ORDER BY 1"));// UNION ALL select distinct product,selling_price,gl_code,product_id,department FROM st_stock_prices WHERE product_id ILIKE '" + jTextField112.getText() + "%' and gl_code = '" + jTextField7.getText() + "' ORDER BY 1 LIMIT 30"));
                         }
                     }
                     //jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select service_type,rate::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + jTextField112.getText() + "%'"));// UNION ALL select product,selling_price,gl_code,product_id,department  FROM st_stock_prices WHERE product ILIKE '%" + jTextField112.getText() + "%'  order by service_type  LIMIT 30"));
@@ -3374,9 +3389,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jSearchTable21MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable21MouseEntered
+    private void patientSearchTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patientSearchTableMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jSearchTable21MouseEntered
+    }//GEN-LAST:event_patientSearchTableMouseEntered
 
     private void jSearchTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSearchTable1KeyReleased
         // for (int i = 0; i  < jTable111.getRowCount(); i++) {
@@ -3628,7 +3643,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         // TODO add your handling code here:
     }//GEN-LAST:event_mobilepayTxNoTxtFocusGained
 
-    private void searchButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton2ActionPerformed
+    private void searchMobileTxButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchMobileTxButtonActionPerformed
 
         com.afrisoftech.hospital.HospitalMain.mobileTxID = null;
         com.afrisoftech.hospital.HospitalMain.mobileTelephone = null;
@@ -3645,7 +3660,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         mobilepayTxSearchDialog.setVisible(true);
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchButton2ActionPerformed
+    }//GEN-LAST:event_searchMobileTxButtonActionPerformed
 
     private void mobilepayTxSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_mobilepayTxSearchTxtCaretUpdate
 
@@ -4073,7 +4088,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                     pstmt25.setDate(26, null);
                                     pstmt25.setDouble(27, java.lang.Double.valueOf(billTable.getValueAt(i, 1).toString()));
                                     pstmt25.setDate(28, null);
-                                    pstmt25.setTimestamp(29, datenowSql);
+                                    pstmt25.setTimestamp(29, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));
                                     pstmt25.setString(30, mdepartment);
                                     pstmt25.setBoolean(31, false);
                                     pstmt25.setObject(32, priceCategory);
@@ -4234,7 +4249,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                             pstmt212.setString(10, paymentModeCmbx.getSelectedItem().toString());
                                             pstmt212.setString(11, jTextField22.getText());
                                             pstmt212.setString(12, receiptNo1);
-                                            pstmt212.setString(13, "");
+                                            pstmt212.setObject(13, billTable.getValueAt(k, 6));
                                             pstmt212.setString(14, "Exemption");
                                             pstmt212.setString(15, "Exemption");
                                             pstmt212.setDouble(16, -1 * java.lang.Double.valueOf(billTable.getValueAt(k, 3).toString()));
@@ -4325,7 +4340,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                         pstmt212.setString(10, paymentModeCmbx.getSelectedItem().toString());
                                         pstmt212.setString(11, jTextField22.getText());
                                         pstmt212.setString(12, receiptNo1);
-                                        pstmt212.setString(13, "");
+                                        //pstmt212.setString(13, "");
+                                        pstmt212.setObject(13, billTable.getValueAt(k, 6));
                                         pstmt212.setString(14, "Exemption");
                                         pstmt212.setString(15, "Exemption");
                                         pstmt212.setDouble(16, java.lang.Double.valueOf(billTable.getValueAt(k, 3).toString()));
@@ -4451,7 +4467,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                                                 pstmt212.setString(10, paymentModeCmbx.getSelectedItem().toString());
                                                 pstmt212.setString(11, jTextField22.getText());
                                                 pstmt212.setString(12, receiptNo1);
-                                                pstmt212.setString(13, "");
+                                                pstmt212.setObject(13, billTable.getValueAt(k, 6));
                                                 pstmt212.setString(14, "Waiver");
                                                 pstmt212.setString(15, "Waiver");
                                                 pstmt212.setDouble(16, -1 * java.lang.Double.valueOf(billTable.getValueAt(k, 3).toString()));
@@ -4839,8 +4855,6 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JPanel jPanel32;
     private javax.swing.JPanel jPanel41;
     private javax.swing.JPanel jPanel51;
-    private javax.swing.JPanel jPanel61;
-    private javax.swing.JPanel jPanel62;
     private javax.swing.JPanel jPanel71;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
@@ -4854,19 +4868,16 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JPanel jSearchPanel1;
     private javax.swing.JPanel jSearchPanel11;
     private javax.swing.JPanel jSearchPanel2;
-    private javax.swing.JPanel jSearchPanel21;
     private javax.swing.JPanel jSearchPanel22;
     private javax.swing.JScrollPane jSearchScrollPane;
     private javax.swing.JScrollPane jSearchScrollPane1;
     private javax.swing.JScrollPane jSearchScrollPane11;
     private javax.swing.JScrollPane jSearchScrollPane2;
-    private javax.swing.JScrollPane jSearchScrollPane21;
     private javax.swing.JScrollPane jSearchScrollPane22;
     private javax.swing.JTable jSearchTable;
     private javax.swing.JTable jSearchTable1;
     private javax.swing.JTable jSearchTable11;
     private javax.swing.JTable jSearchTable2;
-    private javax.swing.JTable jSearchTable21;
     private javax.swing.JSeparator jSeparator111;
     private javax.swing.JSeparator jSeparator1111;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -4898,6 +4909,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JTextField patientNameTxt;
     private javax.swing.JTextField patientNumberTxt;
     private javax.swing.JDialog patientSearchDialog;
+    private javax.swing.JPanel patientSearchPanel;
+    private javax.swing.JScrollPane patientSearchScrollPane;
+    private javax.swing.JTable patientSearchTable;
     private javax.swing.JTextField patientSearchTxt;
     private javax.swing.JComboBox<String> paybillNumberCmbx;
     private javax.swing.JFormattedTextField payerMobileTelephoneNumberTxt;
@@ -4906,11 +4920,13 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JTextField receiptNumberTxt;
     private javax.swing.JButton removeRowBtn;
     private javax.swing.JButton reprintReceiptBtn;
-    private javax.swing.JButton searchButton1;
     private javax.swing.JButton searchButton13;
-    private javax.swing.JButton searchButton2;
+    private javax.swing.JPanel searchMobilePayTxPanel;
+    private javax.swing.JButton searchMobileTxButton;
     private javax.swing.JCheckBox searchNameChbx;
     private javax.swing.JCheckBox searchNoChbx;
+    private javax.swing.JButton searchPatientButton;
+    private javax.swing.JPanel searchPatientPanel;
     private javax.swing.JTextField shiftNoTxt;
     private javax.swing.JButton stkPushBtn;
     private javax.swing.JTextField totalBilledAmountTxt;

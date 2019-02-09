@@ -37,7 +37,7 @@ public class JTable extends org.jdesktop.swing.JXTable implements java.lang.Runn
         this.setRowSelectionAllowed(true);
         this.setColumnSelectionAllowed(true);
         this.setCellSelectionEnabled(true);
-        this.setSortable(true);
+    //    this.setSortable(true);
         this.createPopupMenu();
 
         this.addMouseListener(new java.awt.event.MouseAdapter() {

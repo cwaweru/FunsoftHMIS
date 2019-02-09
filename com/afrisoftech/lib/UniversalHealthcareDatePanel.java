@@ -1558,7 +1558,7 @@ public class UniversalHealthcareDatePanel extends javax.swing.JDialog {
             case 204: {
                 com.afrisoftech.records.reports.OutPatientStatementPdf policy = new com.afrisoftech.records.reports.OutPatientStatementPdf();
 
-                policy.OutPatientStatementPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
+               // policy.OutPatientStatementPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
 
                 // com.afrisoftech.reports.OpAttSheetSummPdf policy = new com.afrisoftech.reports.OpAttSheetSummPdf();
                 //policy.OpAttSheetSummPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());

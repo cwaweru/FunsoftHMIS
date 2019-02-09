@@ -469,7 +469,7 @@ public class TenderedItems extends javax.swing.JDialog {
     private void jTextField115CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField115CaretUpdate
         if (jTextField115.getCaretPosition() > 2) {
      
-            jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "select distinct tender_no from st_item_to_quote where tender_no ilike '%"+jTextField115.getText()+"%'"));
+            jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct tender_no from st_item_to_quote where tender_no ilike '%"+jTextField115.getText()+"%'"));
             jSearchScrollPane4.setViewportView(jSearchTable4);
             System.out.println("Cannot sort out");
             

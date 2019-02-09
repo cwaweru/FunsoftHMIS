@@ -3942,7 +3942,7 @@ revenueDeptCmb.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectD
 //            System.out.println("Nothing");
 //        }else{
             if(this.outPatientChk.isSelected() && this.patientNameChk.isSelected()){
-                jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB,"SELECT patient_no, name, year_of_birth, residence, unit_number from patient_select where name ILIKE '%"+searchNameTxt.getText()+"%' order by name"));
+                jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"SELECT patient_no, name, year_of_birth, residence, unit_number from patient_select where name ILIKE '%"+searchNameTxt.getText()+"%' order by name"));
             
                 jSearchTable2.setShowHorizontalLines(false);
                 jSearchScrollPane2.setViewportView(jSearchTable2);

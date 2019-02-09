@@ -1074,11 +1074,11 @@ private void searchButton3Clicked() {
         // TODO add your handling code here:
         if(lpotxt.getCaretPosition()>1){
             if(jChecklpo.isSelected()==true){
-                 lpotable.setModel(TableModel.createTableVectorsCaret(connectDB, "SELECT distinct invoice_no,voucher_no,order_no,sum(credit-debit) from ac_accounts_payable where dealer='"+dealerNameTxt.getText()+"' and  order_no ilike '%"+lpotxt.getText()+"%' group by 1,2,3 order by order_no asc"));
+                 lpotable.setModel(TableModel.createTableVectors(connectDB, "SELECT distinct invoice_no,voucher_no,order_no,sum(credit-debit) from ac_accounts_payable where dealer='"+dealerNameTxt.getText()+"' and  order_no ilike '%"+lpotxt.getText()+"%' group by 1,2,3 order by order_no asc"));
             }else if(jCheckInv.isSelected()==true){
-                 lpotable.setModel(TableModel.createTableVectorsCaret(connectDB, "SELECT distinct invoice_no,voucher_no,order_no,sum(credit-debit) from ac_accounts_payable where dealer='"+dealerNameTxt.getText()+"' and  invoice_no ilike '%"+lpotxt.getText()+"%' group by 1,2,3 order by invoice_no asc"));
+                 lpotable.setModel(TableModel.createTableVectors(connectDB, "SELECT distinct invoice_no,voucher_no,order_no,sum(credit-debit) from ac_accounts_payable where dealer='"+dealerNameTxt.getText()+"' and  invoice_no ilike '%"+lpotxt.getText()+"%' group by 1,2,3 order by invoice_no asc"));
             }else if(jCheckvoucher.isSelected()==true){
-                 lpotable.setModel(TableModel.createTableVectorsCaret(connectDB, "SELECT distinct invoice_no,voucher_no,order_no,sum(credit-debit) from ac_accounts_payable where dealer='"+dealerNameTxt.getText()+"' and  voucher_no ilike '%"+lpotxt.getText()+"%' group by 1,2,3 order by voucher_no asc"));
+                 lpotable.setModel(TableModel.createTableVectors(connectDB, "SELECT distinct invoice_no,voucher_no,order_no,sum(credit-debit) from ac_accounts_payable where dealer='"+dealerNameTxt.getText()+"' and  voucher_no ilike '%"+lpotxt.getText()+"%' group by 1,2,3 order by voucher_no asc"));
             }
            
 

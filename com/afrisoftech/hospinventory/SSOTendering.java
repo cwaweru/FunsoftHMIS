@@ -5772,7 +5772,7 @@ public class SSOTendering extends javax.swing.JPanel {
 //        } else
 //            
 //        {
-            searchsupplierstbl2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT distinct quotation_no FROM st_floated_quotations where  quotation_no ilike '%" + searchsuppliertxt2.getText() + "%' "));
+            searchsupplierstbl2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct quotation_no FROM st_floated_quotations where  quotation_no ilike '%" + searchsuppliertxt2.getText() + "%' "));
             searchsupplierstbl2.setShowHorizontalLines(false);
 
             searchsupplierspnl2.setViewportView(searchsupplierstbl2);

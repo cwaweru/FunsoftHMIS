@@ -955,7 +955,7 @@ public class AddendumIntfr extends javax.swing.JInternalFrame {
             //            requisitiontbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT requisition_no, agenda_no, date_buyer_assigned \n" +
                 //"  FROM st_assign_buyers where pr_status= false order by date_buyer_assigned asc ;"));
 
-    requisitiontbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectorsCaret(connectDB, "SELECT distinct quotation_no FROM st_floated_quotations where ordered=false and quotation_no  ilike '%"+requisitiontxt.getText()+"%'  order by 1"));
+    requisitiontbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct quotation_no FROM st_floated_quotations where ordered=false and quotation_no  ilike '%"+requisitiontxt.getText()+"%'  order by 1"));
 
     requisitiontbl.setShowHorizontalLines(false);
     requisitionspnl.setViewportView(requisitiontbl);
