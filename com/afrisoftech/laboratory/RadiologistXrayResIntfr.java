@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  *
  * @author root
  */
-public class XrayResIntfr extends javax.swing.JInternalFrame {
+public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
 
     com.afrisoftech.lib.DBObject dbObject;
     private javax.swing.JComboBox cmbox;
@@ -26,7 +26,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
     private String paidPatients;
     private String pendingPatients;
 
-    public XrayResIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
+    public RadiologistXrayResIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
         connectDB = connDb;
 
@@ -152,7 +152,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Radiology & Imaging requests and results processing - Radiographer Report");
+        setTitle("Radiology & Imaging requests and results processing  - Radiologist Report");
         setFrameIcon(null);
         try {
             setSelected(true);
@@ -765,6 +765,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
 
         jComboBox41.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT film_type_desc FROM xray_films ORDER BY 1")
         );
+        jComboBox41.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -774,6 +775,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         jPanel2.add(jComboBox41, gridBagConstraints);
 
         jLabel5.setText("Film Size");
+        jLabel5.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -837,6 +839,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         jPanel2.add(jScrollPane6, gridBagConstraints);
 
         jLabel13.setText("No. of Film");
+        jLabel13.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -844,6 +847,8 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel2.add(jLabel13, gridBagConstraints);
+
+        nooffilmTextField.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -993,7 +998,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         jPanel1.add(ageTextField, gridBagConstraints);
 
         saveresultsButton.setMnemonic('O');
-        saveresultsButton.setText("Save Radiology/Imaging procedure results");
+        saveresultsButton.setText("Save Radiologist Report");
         saveresultsButton.setToolTipText("Click here enter data");
         saveresultsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1229,7 +1234,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jPanel31.add(jPanel1, gridBagConstraints);
 
-        jTabbedPane1.addTab("POST X-Ray/Radiology Results", jPanel31);
+        jTabbedPane1.addTab("POST X-Ray/Radiology Results - Radiologist Report", jPanel31);
 
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
@@ -1599,7 +1604,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                                             pstmt.setString(11, Categ);
 
                                             if (jTextField3621.getText().equals("")) {
-                                                javax.swing.JOptionPane.showMessageDialog(this, "Radiologist Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                javax.swing.JOptionPane.showMessageDialog(this, "Radiologist name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                                             } else {
 
                                                 pstmt.setString(12, jTextField3621.getText());
@@ -1648,7 +1653,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                                             pstmtPatientCard.executeUpdate();
                                         } else {
                                             java.sql.PreparedStatement pstmtUpdate = connectDB.prepareStatement("UPDATE hp_xray_results SET = ? WHERE patient_no = ? AND doc_no = ? AND doc_no IS NOT NULL AND doc_no != ''");
-                                            pstmtUpdate.setString(1, radiographerReportTxt.getText());
+                                            pstmtUpdate.setString(1, radiologistReportTxt.getText());
                                             pstmtUpdate.setString(2, patientNoTxt.getText());
                                             pstmtUpdate.setString(3, receiptTxt.getText());
                                             pstmtUpdate.executeUpdate();
@@ -1660,7 +1665,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                             connectDB.setAutoCommit(true);
                             this.saveresultsButton.setEnabled(false);
 
-                            javax.swing.JOptionPane.showMessageDialog(this, "X-RAY report posted successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                            javax.swing.JOptionPane.showMessageDialog(this, "X-RAY RESULTS POSTED Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                             com.afrisoftech.reports.XrayResultPdf policy = new com.afrisoftech.reports.XrayResultPdf();
 
@@ -1702,7 +1707,9 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "YOU CANNOT SAVE WITHOUT PATIENT NUMBER \nand entered the number of films used", "Caution Message!", javax.swing.JOptionPane.WARNING_MESSAGE);
 
         }
-        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        this.setCursor(
+                new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_saveresultsButtonActionPerformed
 
     private void xraytestTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xraytestTableMouseClicked
@@ -2190,7 +2197,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                         + "false as Approve,request_id as Request_id,time_due,notes "
                         + " FROM pb_doctors_request pb WHERE"
                         + " (pb.revenue_code ilike 'X-RAY' OR pb.revenue_code ilike 'XRAY') and  paid = true AND"
-                        + " collected = false and trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 60 "
+                        + " trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 60 "
                         + "and patient_no ilike '%" + searchTextField.getText() + "%' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE patient_no ILIKE '%" + searchTextField.getText() + "%') "
                         + " UNION "
                         + "SELECT date as trans_date, patient_no, dealer as patient_name, payment_mode, description as service, quantity, debit, "
@@ -2300,8 +2307,10 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                     pstmt46.executeUpdate();
 
                     javax.swing.JOptionPane.showMessageDialog(this, "CANCEL Successful", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
                 } catch (SQLException ex) {
-                    Logger.getLogger(XrayResIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(RadiologistXrayResIntfr.class
+                            .getName()).log(Level.SEVERE, null, ex);
                 }
 
             }

@@ -1479,7 +1479,8 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         labregmnit = new javax.swing.JMenuItem();
         labprocmnit = new javax.swing.JMenuItem();
         xray = new javax.swing.JMenu();
-        xrayresults = new javax.swing.JMenuItem();
+        xrayresultsRadiographermnit = new javax.swing.JMenuItem();
+        radiologistReportmnit = new javax.swing.JMenuItem();
         xraysmnit = new javax.swing.JMenuItem();
         xraypendingReq = new javax.swing.JMenuItem();
         xraymnit = new javax.swing.JMenuItem();
@@ -1667,6 +1668,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         outpatmn = new javax.swing.JMenu();
         attsheetmnit = new javax.swing.JMenuItem();
         Attendancesummnit = new javax.swing.JMenuItem();
+        opAttendanceAnalyticsmnit = new javax.swing.JMenuItem();
         attendancepaidupmnit = new javax.swing.JMenuItem();
         attdencebydptmnit = new javax.swing.JMenuItem();
         AttendancePerDeptmnit = new javax.swing.JMenuItem();
@@ -5453,15 +5455,24 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         xray.setText("Radiology & Imaging");
 
-        xrayresults.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        xrayresults.setForeground(new java.awt.Color(0, 0, 255));
-        xrayresults.setText("Imaging/Xray Results");
-        xrayresults.addActionListener(new java.awt.event.ActionListener() {
+        xrayresultsRadiographermnit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        xrayresultsRadiographermnit.setForeground(new java.awt.Color(0, 0, 255));
+        xrayresultsRadiographermnit.setText("Imaging/Xray Results - Radiographer");
+        xrayresultsRadiographermnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                xrayresultsActionPerformed(evt);
+                xrayresultsRadiographermnitActionPerformed(evt);
             }
         });
-        xray.add(xrayresults);
+        xray.add(xrayresultsRadiographermnit);
+
+        radiologistReportmnit.setForeground(new java.awt.Color(0, 0, 255));
+        radiologistReportmnit.setText("Imaging/Xray Results - Radiologist");
+        radiologistReportmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radiologistReportmnitActionPerformed(evt);
+            }
+        });
+        xray.add(radiologistReportmnit);
 
         xraysmnit.setText("Diagnostic Imaging Procedure");
         xraysmnit.setEnabled(false);
@@ -6773,6 +6784,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         outpatmn.add(Attendancesummnit);
+
+        opAttendanceAnalyticsmnit.setText("OP Attendance Analytics");
+        opAttendanceAnalyticsmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opAttendanceAnalyticsmnitActionPerformed(evt);
+            }
+        });
+        outpatmn.add(opAttendanceAnalyticsmnit);
 
         attendancepaidupmnit.setText("Attendance Paid-up Confirmation");
         attendancepaidupmnit.setName("Attenance Paid-up Confirmation"); // NOI18N
@@ -14066,10 +14085,10 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     }//GEN-LAST:event_weeklyrevCompmnitActionPerformed
 
     private void AttendancesummnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AttendancesummnitActionPerformed
- 
+
         com.afrisoftech.lib.HosAttendanceDatePanel dates = new com.afrisoftech.lib.HosAttendanceDatePanel(this, true, this.OpAttSumm, connectDB);
 
-        dates.setVisible(true); 
+        dates.setVisible(true);
 //        com.afrisoftech.lib.HosDatePanel dates = new com.afrisoftech.lib.HosDatePanel(this, true, this.OpAttSumm, connectDB);
 //
 //        dates.setVisible(true);    // Add your handling code here:
@@ -18685,7 +18704,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         }   // Add your handling code here:
 }//GEN-LAST:event_xraypendingReqActionPerformed
 
-    private void xrayresultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xrayresultsActionPerformed
+    private void xrayresultsRadiographermnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xrayresultsRadiographermnitActionPerformed
         com.afrisoftech.laboratory.XrayResIntfr comp = new com.afrisoftech.laboratory.XrayResIntfr(connectDB, pConnDB);
         saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
         comp.setSize(saccopn.getSize());
@@ -18693,7 +18712,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             comp.setSelected(true);
         } catch (java.beans.PropertyVetoException pvt) {
         }   // Add your handling code here:
-}//GEN-LAST:event_xrayresultsActionPerformed
+}//GEN-LAST:event_xrayresultsRadiographermnitActionPerformed
 
     private void physioReqmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_physioReqmnitActionPerformed
         com.afrisoftech.laboratory.PhyPendingRequestsIntfr comp = new com.afrisoftech.laboratory.PhyPendingRequestsIntfr(connectDB, pConnDB);
@@ -21593,6 +21612,27 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
         // TODO add your handling code here:
     }//GEN-LAST:event_unhNHIFClaimmnitActionPerformed
+
+    private void radiologistReportmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiologistReportmnitActionPerformed
+        com.afrisoftech.laboratory.RadiologistXrayResIntfr comp = new com.afrisoftech.laboratory.RadiologistXrayResIntfr(connectDB, pConnDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        comp.setSize(saccopn.getSize());
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radiologistReportmnitActionPerformed
+
+    private void opAttendanceAnalyticsmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opAttendanceAnalyticsmnitActionPerformed
+        com.afrisoftech.reports.emr.AttendanceReportIntfr comp = new com.afrisoftech.reports.emr.AttendanceReportIntfr(connectDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        comp.setSize(saccopn.getSize());
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_opAttendanceAnalyticsmnitActionPerformed
 
     /**
      * Exit the Application
@@ -26046,6 +26086,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem occupationmnit;
     private javax.swing.JMenuItem office2003mn;
     private javax.swing.JMenuItem officexpmn;
+    private javax.swing.JMenuItem opAttendanceAnalyticsmnit;
     private javax.swing.JMenuItem opattendbydocmnit;
     private javax.swing.JButton openShift;
     private javax.swing.JMenuItem openperiodmnit2;
@@ -26196,6 +26237,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JPanel queryPane;
     private com.afrisoftech.lib.KiwiTextPanel querykiwiTextPanel;
     private javax.swing.JMenuItem quotationmnit;
+    private javax.swing.JMenuItem radiologistReportmnit;
     private javax.swing.JMenuItem radreqmnit;
     public javax.swing.JMenuItem raisecashVouchmnit;
     public javax.swing.JMenuItem raisevouchmnit;
@@ -26457,7 +26499,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem xraypendingReq;
     private javax.swing.JMenuItem xrayperfmnit;
     private javax.swing.JMenu xrayrep;
-    private javax.swing.JMenuItem xrayresults;
+    private javax.swing.JMenuItem xrayresultsRadiographermnit;
     private javax.swing.JMenuItem xraysmnit;
     private javax.swing.JRadioButton xyChart;
     private javax.swing.JRadioButton xyChart1;
