@@ -674,7 +674,7 @@ public class ShiftsCombinedTotalPdf implements java.lang.Runnable {
                             docPdf.add(table);
                             
                         } catch(java.sql.SQLException SqlExec) {
-                            
+                            SqlExec.printStackTrace();
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
                             
                         }

@@ -3804,8 +3804,8 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             java.sql.ResultSet rset112 = stmt112.executeQuery("select nationality,occupation,pat_religion,pat_district,sub_chief,nok_relationship,home_county,residence_county,education_level,id_no,pat_location,chief_name,speciality,nok_residence,marital_status from hp_admission where patient_no ='" + admissionNumberTxt.getText() + "' and  visit_id = '" + prevVisitIdtxt.getText() + "' ");
             while (rset112.next()) {
                 nationalityCmbx.setSelectedItem(rset112.getObject(1).toString().trim());
-                occupationCmbx.setSelectedItem(rset112.getObject(2).toString());
-                religionCmbx.setSelectedItem(rset112.getObject(3).toString());
+                occupationCmbx.setSelectedItem(rset112.getObject(2));
+                religionCmbx.setSelectedItem(rset112.getObject(3));
 
                 if (rset112.getObject(4).toString().equalsIgnoreCase("")) {
                     districtCmbx.setSelectedItem("-");
@@ -3815,10 +3815,10 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 //  districtCmbx.setSelectedItem( "-");
                 //districtCmbx.setSelectedItem(rset112.getObject(4).toString());
                 unitNumberTxt.setText(rset112.getObject(5).toString());
-                nokRelationShipCmbx.setSelectedItem(rset112.getObject(6).toString());
-                countyofBirthCmbx.setSelectedItem(rset112.getObject(7).toString());
-                countyofResidenceCmbx.setSelectedItem(rset112.getObject(8).toString());
-                educationLevelCmbx.setSelectedItem(rset112.getObject(9).toString());
+                nokRelationShipCmbx.setSelectedItem(rset112.getObject(6));
+                countyofBirthCmbx.setSelectedItem(rset112.getObject(7));
+                countyofResidenceCmbx.setSelectedItem(rset112.getObject(8));
+                educationLevelCmbx.setSelectedItem(rset112.getObject(9));
                 if (rset112.getObject(10).toString().equalsIgnoreCase("")) {
                     idPassportTxt.setText("-");
                 } else {

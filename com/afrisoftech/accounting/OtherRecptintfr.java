@@ -1051,7 +1051,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         buttonPanel.add(saveReceiptBtn, gridBagConstraints);
 
         reprintReceiptBtn.setText("RePrint");
-        reprintReceiptBtn.setEnabled(false);
         reprintReceiptBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reprintReceiptBtnActionPerformed(evt);
@@ -1448,7 +1447,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 
         java.awt.Point point = this.receiptDetailTxt.getLocationOnScreen();
 
-        jSearchDialog11.setSize(400, 200);
+        jSearchDialog11.setSize(600, 200);
 
         jSearchDialog11.setLocation(point);
 
@@ -1833,7 +1832,6 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
             }
             connectDB.commit();
             connectDB.setAutoCommit(true);
-            clearFormBtn.doClick();
 
         } catch (java.sql.SQLException sq) {
             sq.printStackTrace();
@@ -1857,37 +1855,38 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
             connectDB.setAutoCommit(false);
 
             receiptNo = receiptNoTxt.getText();
+            if (receiptNo.length() > 0) {
+                String nodetails = null;
+                String rct = null;
+                java.sql.Statement ps11 = connectDB.createStatement();
+                java.sql.ResultSet rst11 = ps11.executeQuery("select nodetails from receipt_pref");
+                while (rst11.next()) {
+                    nodetails = rst11.getObject(1).toString();
+                }
 
-            String nodetails = null;
-            String rct = null;
-            java.sql.Statement ps11 = connectDB.createStatement();
-            java.sql.ResultSet rst11 = ps11.executeQuery("select nodetails from receipt_pref");
-            while (rst11.next()) {
-                nodetails = rst11.getObject(1).toString();
-            }
+                java.sql.Statement ps112 = connectDB.createStatement();
+                java.sql.ResultSet rst112 = ps112.executeQuery("select rct_format from receipt_pref");
+                while (rst112.next()) {
+                    rct = rst112.getObject(1).toString();
+                }
+                if (nodetails.equalsIgnoreCase("NoDetails")) {
 
-            java.sql.Statement ps112 = connectDB.createStatement();
-            java.sql.ResultSet rst112 = ps112.executeQuery("select rct_format from receipt_pref");
-            while (rst112.next()) {
-                rct = rst112.getObject(1).toString();
-            }
-            if (nodetails.equalsIgnoreCase("NoDetails")) {
-
-                com.afrisoftech.txtreports.NoDetReceiptsTxt policy = new com.afrisoftech.txtreports.NoDetReceiptsTxt(connectDB, "-", receivedFromTxt.getText(), amountPaidTxt.getText(), receiptNo, this.paymentModeCmbx.getSelectedItem().toString());
-            } else {
-                if (nodetails.equalsIgnoreCase("Codes")) {
-                    com.afrisoftech.txtreports.CodeReceiptsTxt policy = new com.afrisoftech.txtreports.CodeReceiptsTxt(connectDB, "-", receivedFromTxt.getText(), amountPaidTxt.getText(), receiptNo, this.paymentModeCmbx.getSelectedItem().toString());
-
+                    com.afrisoftech.txtreports.NoDetReceiptsTxt policy = new com.afrisoftech.txtreports.NoDetReceiptsTxt(connectDB, "-", receivedFromTxt.getText(), amountPaidTxt.getText(), receiptNo, this.paymentModeCmbx.getSelectedItem().toString());
                 } else {
-                    if (nodetails.equalsIgnoreCase("dept")) {
-                        com.afrisoftech.txtreports.ReceiptsPerDeptTxt policy = new com.afrisoftech.txtreports.ReceiptsPerDeptTxt(connectDB, "-", receivedFromTxt.getText(), amountPaidTxt.getText(), receiptNo, this.paymentModeCmbx.getSelectedItem().toString());
+                    if (nodetails.equalsIgnoreCase("Codes")) {
+                        com.afrisoftech.txtreports.CodeReceiptsTxt policy = new com.afrisoftech.txtreports.CodeReceiptsTxt(connectDB, "-", receivedFromTxt.getText(), amountPaidTxt.getText(), receiptNo, this.paymentModeCmbx.getSelectedItem().toString());
 
                     } else {
-                        if (nodetails.equalsIgnoreCase("Prints") && rct.equalsIgnoreCase("Pdf")) {
-                            com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
-                            policy.ReceiptsPdf(connectDB, receiptNo);
+                        if (nodetails.equalsIgnoreCase("dept")) {
+                            com.afrisoftech.txtreports.ReceiptsPerDeptTxt policy = new com.afrisoftech.txtreports.ReceiptsPerDeptTxt(connectDB, "-", receivedFromTxt.getText(), amountPaidTxt.getText(), receiptNo, this.paymentModeCmbx.getSelectedItem().toString());
+
                         } else {
-                            com.afrisoftech.txtreports.ReceiptsTxt policy = new com.afrisoftech.txtreports.ReceiptsTxt(connectDB, "-", receivedFromTxt.getText(), amountPaidTxt.getText(), receiptNo, this.paymentModeCmbx.getSelectedItem().toString());
+                            if (nodetails.equalsIgnoreCase("Prints") && rct.equalsIgnoreCase("Pdf")) {
+                                com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
+                                policy.ReceiptsPdf(connectDB, receiptNo);
+                            } else {
+                                com.afrisoftech.txtreports.ReceiptsTxt policy = new com.afrisoftech.txtreports.ReceiptsTxt(connectDB, "-", receivedFromTxt.getText(), amountPaidTxt.getText(), receiptNo, this.paymentModeCmbx.getSelectedItem().toString());
+                            }
                         }
                     }
                 }
@@ -2038,19 +2037,20 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                 while (rst112.next()) {
                     rct = rst112.getObject(1).toString();
                 }
+                if (receiptNo.length() > 0) {
+                    if (nodetails.equalsIgnoreCase("NoDetails")) {
 
-                if (nodetails.equalsIgnoreCase("NoDetails")) {
-
-                    com.afrisoftech.txtreports.IPDebtorsReceiptsTxt policy = new com.afrisoftech.txtreports.IPDebtorsReceiptsTxt(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), searchTxt.getText(), amountPaidTxt.getText(), receiptNo, paymentModeCmbx.getSelectedItem().toString(), chequeNumberTxt.getText());
-                } else {
-                    if (nodetails.equalsIgnoreCase("Prints") && rct.equalsIgnoreCase("Pdf")) {
-                        com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
-                        policy.ReceiptsPdf(connectDB, receiptNo);
-                        com.afrisoftech.reports.OtherReceiptsBPdf policy1 = new com.afrisoftech.reports.OtherReceiptsBPdf();
-                        policy1.OtherReceiptsBPdf(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), amountPaidTxt.getText(), receiptNo, paymentModeCmbx.getSelectedItem().toString(), chequeNumberTxt.getText());
+                        com.afrisoftech.txtreports.IPDebtorsReceiptsTxt policy = new com.afrisoftech.txtreports.IPDebtorsReceiptsTxt(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), searchTxt.getText(), amountPaidTxt.getText(), receiptNo, paymentModeCmbx.getSelectedItem().toString(), chequeNumberTxt.getText());
                     } else {
-                        //    com.afrisoftech.txtreports.InpatientReceiptsTxt policy = new com.afrisoftech.txtreports.InpatientReceiptsTxt(connectDB, jTextField9.getText(), jTextField2.getText(), jTextField1.getText(), receiptNo, paymodCmbx.getSelectedItem().toString(), otherReceiptTxt.getText(), jTextField1.getText());
-                        com.afrisoftech.txtreports.DebtorsReceiptsTxt policy1 = new com.afrisoftech.txtreports.DebtorsReceiptsTxt(connectDB, receiptDetailTxt.getText() + ":" + otherReceiptTxt.getText(), receivedFromTxt.getText(), searchTxt.getText(), amountPaidTxt.getText(), receiptNo, paymentModeCmbx.getSelectedItem().toString(), chequeNumberTxt.getText());
+                        if (nodetails.equalsIgnoreCase("Prints") && rct.equalsIgnoreCase("Pdf")) {
+                            com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
+                            policy.ReceiptsPdf(connectDB, receiptNo);
+                            com.afrisoftech.reports.OtherReceiptsBPdf policy1 = new com.afrisoftech.reports.OtherReceiptsBPdf();
+                            policy1.OtherReceiptsBPdf(connectDB, receiptDetailTxt.getText(), receivedFromTxt.getText(), amountPaidTxt.getText(), receiptNo, paymentModeCmbx.getSelectedItem().toString(), chequeNumberTxt.getText());
+                        } else {
+                            //    com.afrisoftech.txtreports.InpatientReceiptsTxt policy = new com.afrisoftech.txtreports.InpatientReceiptsTxt(connectDB, jTextField9.getText(), jTextField2.getText(), jTextField1.getText(), receiptNo, paymodCmbx.getSelectedItem().toString(), otherReceiptTxt.getText(), jTextField1.getText());
+                            com.afrisoftech.txtreports.DebtorsReceiptsTxt policy1 = new com.afrisoftech.txtreports.DebtorsReceiptsTxt(connectDB, receiptDetailTxt.getText() + ":" + otherReceiptTxt.getText(), receivedFromTxt.getText(), searchTxt.getText(), amountPaidTxt.getText(), receiptNo, paymentModeCmbx.getSelectedItem().toString(), chequeNumberTxt.getText());
+                        }
                     }
                 }
 
@@ -2069,7 +2069,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
                 paymentModeCmbx.setSelectedItem(null);
                 saveReceiptBtn.setEnabled(false);
                 jButton11.setEnabled(false);
-
+                clearFormBtn.doClick();
                 javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Data Inserted Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (java.sql.SQLException sq) {
@@ -2350,7 +2350,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
     private void mobilepayTxSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_mobilepayTxSearchTxtCaretUpdate
 
         if (mobilepayTxSearchTxt.getText().length() > 5) {
-            mobilepayTxtSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_time::time(0), mobile_tx_id, account_no, date, paid_amount, upper(dealer) as client_name, journal_no as paybill_no, mobilepay_alert as processed FROM public.mobile_payments WHERE mobilepay_alert = false AND account_no ilike '%" + mobilepayTxSearchTxt.getText() + "%' ORDER BY account_no"));
+            mobilepayTxtSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_time::time(0), mobile_tx_id, account_no, date, paid_amount, upper(dealer) as client_name, journal_no as paybill_no, mobilepay_alert as processed FROM public.mobile_payments WHERE mobilepay_alert = false AND account_no ilike '%" + mobilepayTxSearchTxt.getText() + "%' AND date::date >= current_date - 5 ORDER BY account_no"));
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_mobilepayTxSearchTxtCaretUpdate
@@ -2366,9 +2366,9 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
         payerMobileTelephoneNumberTxt.setText(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 2).toString());
 
         amountPaidTxt.setText(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 4).toString());
-        
+
         amountPaidTxt.setEditable(false);
-        
+
         paymentModeCmbx.setSelectedItem("M-Pesa");
 
         paybillNumberCmbx.setSelectedItem(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 6).toString());

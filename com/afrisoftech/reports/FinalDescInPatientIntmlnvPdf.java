@@ -353,6 +353,7 @@ public class FinalDescInPatientIntmlnvPdf implements java.lang.Runnable {
                             table1.getDefaultCell().setFixedHeight(70);
                             table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                             table1.addCell(Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo()));
+                            System.out.println("Logo Path : ["+com.afrisoftech.lib.CompanyLogo.getPath2Logo()+"]");
                             table1.getDefaultCell().setFixedHeight(16);
                             java.sql.PreparedStatement st321 = connectDB.prepareStatement("select header_name from pb_header");
                             java.sql.ResultSet rset3 = st321.executeQuery();

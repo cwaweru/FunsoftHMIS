@@ -66,6 +66,8 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
     private String Age;
     private javax.swing.JComboBox cmBoxspecimen = new javax.swing.JComboBox();
     private String labNo;
+    private boolean underFive;
+    private boolean emergencyStatus;
 
     public ConsultationDentalIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB, com.afrisoftech.hospital.HospitalMain parentHospitalFrame) {
 
@@ -460,6 +462,9 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
         jPanel49 = new javax.swing.JPanel();
         treatmentplanScrollPane = new javax.swing.JScrollPane();
         treatmentplanEditorPane = new javax.swing.JEditorPane();
+        jPanel51 = new javax.swing.JPanel();
+        treatmentplanScrollPane1 = new javax.swing.JScrollPane();
+        treatmentEditorPane = new javax.swing.JEditorPane();
         requestspanel = new javax.swing.JPanel();
         jSplitPane3 = new javax.swing.JSplitPane();
         examinationpane = new javax.swing.JPanel();
@@ -3871,6 +3876,29 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
         gridBagConstraints.weightx = 1.5;
         gridBagConstraints.weighty = 1.0;
         jPanel45.add(jPanel49, gridBagConstraints);
+
+        jPanel51.setLayout(new java.awt.GridBagLayout());
+
+        treatmentplanScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Treatment Done"));
+        treatmentplanScrollPane1.setViewportView(treatmentEditorPane);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel51.add(treatmentplanScrollPane1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.5;
+        gridBagConstraints.weighty = 1.0;
+        jPanel45.add(jPanel51, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
@@ -9464,7 +9492,7 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-            ex.printStackTrace();             //ex.printStackTrace();
+            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
         Boolean patientPaid = false;
         switch (patType.toLowerCase().trim()) {
@@ -9479,7 +9507,8 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
                         patientPaid = true;
                     }
                     break;
-                    case "cash": {
+                    //case "cash": {
+                    default: {
                         switch (urgency.toLowerCase().trim()) {
                             case "urgent": {
                                 patientPaid = true;
@@ -9498,7 +9527,7 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
                                     java.sql.ResultSet rsetVector = pstmtVector.executeQuery();
 
                                     if (rsetVector.next()) {
-                                        if (rsetVector.getInt(1) > 0) {
+                                        if (rsetVector.getInt(1) > 0 || underFive) {
                                             patientPaid = true;
                                         } else {
                                             patientPaid = false;
@@ -9510,7 +9539,7 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
                                     patientPaid = false;
                                     javax.swing.JOptionPane.showMessageDialog(this, "The patient has not paid for this service", "Information Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
-                                    Logger.getLogger(ConsultationDentalIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                                    Logger.getLogger(ConsultationIntfr.class.getName()).log(Level.SEVERE, null, ex);
                                 }
 
                             }
@@ -9522,10 +9551,19 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
             }
             break;
         }
+
         return patientPaid;
     }
-    private void clerkingwaitingTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clerkingwaitingTableMouseClicked
 
+    private void clerkingwaitingTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clerkingwaitingTableMouseClicked
+        underFive = false;
+        if (clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4) != null) {
+            if (clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4).toString().contains("Emergency")) {
+                emergencyStatus = true;
+            } else {
+                emergencyStatus = false;
+            }
+        }
         receiptNos = "";
         services = "";
         //   java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select distinct hp_patient_visit.input_date::timestamp(0),hp_patient_visit.patient_no,hp_patient_visit.name,hp_patient_register.category,hp_patient_register.department,hp_patient_visit.comments,'false' as bill from hp_patient_visit,hp_patient_register where transaction_type ilike 'reg%' and hp_patient_visit.date = current_date and nature ='1' and hp_patient_visit.patient_no=hp_patient_register.patient_no ORDER BY input_date");
@@ -9845,7 +9883,7 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
         provisionalDiagnosistxt.setText("");
         complainstxt.setText("");
         complainsTextPane.setText("");
-        treatmentplanEditorPane.setText("");
+        treatmentEditorPane.setText("");
         extraOralEditorPane.setText("");
         intraOralEditorPane.setText("");
         pdhxEditorPane.setText("");
@@ -10035,9 +10073,9 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
     }//GEN-LAST:event_jButton912ActionPerformed
 
     private void searchDiseasesTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchDiseasesTxtCaretUpdate
-        if (searchDiseasesTxt.getText().length() >= 1) {
+        if (searchDiseasesTxt.getText().length() > 2) {
             this.complainsdialogtable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
-                    "SELECT (upper(disease_name)) as name,code from hp_diseases where disease_name ilike '%" + searchDiseasesTxt.getText().toString().trim() + "%' order by 1"));
+                    "SELECT (upper(disease_name)) as name,code from hp_diseases where disease_name ilike '%" + searchDiseasesTxt.getText().toString().trim() + "%'  ORDER BY 1, code LIMIT 50"));
         }
     }//GEN-LAST:event_searchDiseasesTxtCaretUpdate
 
@@ -10187,7 +10225,7 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
     }//GEN-LAST:event_clinicComboBoxActionPerformed
 
     private void complainstxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_complainstxtMouseClicked
-        
+
     }//GEN-LAST:event_complainstxtMouseClicked
 
     private void complainstxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_complainstxtKeyPressed
@@ -10545,7 +10583,7 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
                             + ",hpv.nature as Seen, '' as receipt_no "
-                            + " from  hp_patient_visit hpv  where hpv.patient_no ilike '%" + searchpatienttxtfld.getText() + "%' "
+                            + " from  hp_patient_visit hpv  where  ( hpv.patient_no ilike  '%" + searchpatienttxtfld.getText() + "%' OR  hpv.name ilike '%" + searchpatienttxtfld.getText() + "%' ) "
                             + "and hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - 2 "
                             + "   ORDER BY 2 "));
                 } else if (inpatientCheckBox.isSelected()) {
@@ -10637,7 +10675,7 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
                 pstmt21.setString(6, doctorTxt.getText());
                 pstmt21.setDate(7, com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()));
                 pstmt21.setString(8, "RST COMPLAINS");
-                pstmt21.setObject(9, complainsTextPane.getText());
+                pstmt21.setObject(9, complainstxt.getText() + " " + complainsTextPane.getText());
                 pstmt21.setTimestamp(10, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
 
                 pstmt21.setObject(11, provisionalDiagnosistxt.getText());
@@ -10652,7 +10690,7 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
                 pstmt21.setString(18, pmhxEditorPane.getText());
                 pstmt21.setString(19, familysocialEditorPane.getText());
                 pstmt21.setString(20, reviewEditorPane.getText());
-                pstmt21.setString(21, treatmentplanEditorPane.getText());
+                pstmt21.setString(21, treatmentplanEditorPane.getText() + '\n' + treatmentEditorPane.getText());
 
                 pstmt21.executeUpdate();
 
@@ -10692,7 +10730,7 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
                 pstmt.setString(6, desc);
                 pstmt.setString(7, parameter);
                 pstmt.setString(8, "");
-                pstmt.setString(9, treatmentplanEditorPane.getText());
+                pstmt.setString(9, treatmentplanEditorPane.getText() + '\n' + treatmentEditorPane.getText());
                 pstmt.setString(10, clinicalExamineditor.getText());
                 pstmt.setString(11, doctorTxt.getText());
                 pstmt.executeUpdate();
@@ -11309,10 +11347,10 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
     }//GEN-LAST:event_adultLowerJawCbxActionPerformed
 
     private void viewBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBillBtnActionPerformed
-        if(paymentModeTxt.getText().equalsIgnoreCase("Scheme")){
-        com.afrisoftech.reports.OutPatientBillPdf policy = new com.afrisoftech.reports.OutPatientBillPdf();
+        if (paymentModeTxt.getText().equalsIgnoreCase("Scheme")) {
+            com.afrisoftech.reports.OutPatientBillPdf policy = new com.afrisoftech.reports.OutPatientBillPdf();
 
-        policy.OutPatientBillPdf(connectDB, datePicker2.getDate(), transdatePicker.getDate(), nameNoTxt.getText());
+            policy.OutPatientBillPdf(connectDB, datePicker2.getDate(), transdatePicker.getDate(), nameNoTxt.getText());
 
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "The patient is not using medical insurance for billing.");
@@ -11321,7 +11359,7 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
     }//GEN-LAST:event_viewBillBtnActionPerformed
 
     private void provisionalDiagnosistxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_provisionalDiagnosistxtMouseClicked
-System.out.println("Showing dialog");
+        System.out.println("Showing dialog");
         java.awt.Point point = complainsTextPane.getLocationOnScreen();
         complainsDialog.setSize(600, 200);
         complainsDialog.setLocation(point);
@@ -11876,6 +11914,7 @@ System.out.println("Showing dialog");
     private javax.swing.JPanel jPanel49;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel50;
+    private javax.swing.JPanel jPanel51;
     private javax.swing.JPanel jPanel52;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel60;
@@ -12108,8 +12147,10 @@ System.out.println("Showing dialog");
     private com.afrisoftech.lib.DatePicker transdatePicker;
     private javax.swing.JTextField transreasonjTextField811;
     private javax.swing.JTextField transtechnicianjTextField181;
+    private javax.swing.JEditorPane treatmentEditorPane;
     private javax.swing.JEditorPane treatmentplanEditorPane;
     private javax.swing.JScrollPane treatmentplanScrollPane;
+    private javax.swing.JScrollPane treatmentplanScrollPane1;
     private javax.swing.JTextField triageTextField;
     private javax.swing.JComboBox urgencyComboBox;
     private javax.swing.JButton viewBillBtn;

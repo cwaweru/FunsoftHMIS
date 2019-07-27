@@ -44,11 +44,11 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jSearchDialog = new javax.swing.JDialog();
-        jSearchPanel = new javax.swing.JPanel();
-        jTextField111 = new javax.swing.JTextField();
-        jSearchScrollPane = new javax.swing.JScrollPane();
-        jSearchTable = new com.afrisoftech.dbadmin.JTable();
+        receiptSearchDialog = new javax.swing.JDialog();
+        receiptSearchPanel = new javax.swing.JPanel();
+        receiptSearchTxt = new javax.swing.JTextField();
+        receiptSearchScrollPane = new javax.swing.JScrollPane();
+        receiptSearchTable = new com.afrisoftech.dbadmin.JTable();
         jButton9 = new javax.swing.JButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel7 = new javax.swing.JLabel();
@@ -85,6 +85,9 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
         cashierName = new javax.swing.JTextField();
         receiptDate = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        reasonJscrl = new javax.swing.JScrollPane();
+        reasonTxt = new javax.swing.JTextPane();
+        jLabel11 = new javax.swing.JLabel();
         try {
             java.lang.Class.forName("org.postgresql.Driver");
         }catch (java.lang.ClassNotFoundException sl){
@@ -98,16 +101,16 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
 
-        jSearchDialog.setModal(true);
-        jSearchDialog.setUndecorated(true);
-        jSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+        receiptSearchDialog.setModal(true);
+        receiptSearchDialog.setUndecorated(true);
+        receiptSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jSearchPanel.setLayout(new java.awt.GridBagLayout());
+        receiptSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        receiptSearchPanel.setLayout(new java.awt.GridBagLayout());
 
-        jTextField111.addCaretListener(new javax.swing.event.CaretListener() {
+        receiptSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField111CaretUpdate(evt);
+                receiptSearchTxtCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -115,9 +118,9 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 10.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
-        jSearchPanel.add(jTextField111, gridBagConstraints);
+        receiptSearchPanel.add(receiptSearchTxt, gridBagConstraints);
 
-        jSearchTable.setShowHorizontalLines(false);
+        receiptSearchTable.setShowHorizontalLines(false);
         /*    try {
             searchRowSet.setCommand("select product,selling_price,gl_code FROM st_stock_prices WHERE department = 'Pharmacy' order by product");
             searchRowSet.setConnectionSource(pConnDB);
@@ -125,13 +128,13 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
             searchRowSet.execute();
 
             // crset2.setExecuteOnLoad(true);
-            jSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
+            receiptSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
                 new org.netbeans.lib.sql.models.TableModel.Column("product", "Description", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("selling_price", "Amount", false),
                 new org.netbeans.lib.sql.models.TableModel.Column("gl_code", "Gl_code", false)
 
             }));
-            // jSearchScrollPane.setViewportView(jSearchTable);
+            // receiptSearchScrollPane.setViewportView(receiptSearchTable);
 
         } catch(java.sql.SQLException sqlex){
             javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -139,12 +142,12 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
             System.out.println(sqlex.getMessage());
         }
         */
-        jSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        receiptSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSearchTableMouseClicked(evt);
+                receiptSearchTableMouseClicked(evt);
             }
         });
-        jSearchScrollPane.setViewportView(jSearchTable);
+        receiptSearchScrollPane.setViewportView(receiptSearchTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -153,7 +156,7 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
-        jSearchPanel.add(jSearchScrollPane, gridBagConstraints);
+        receiptSearchPanel.add(receiptSearchScrollPane, gridBagConstraints);
 
         jButton9.setText("Dispose");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +167,7 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchPanel.add(jButton9, gridBagConstraints);
+        receiptSearchPanel.add(jButton9, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -172,7 +175,7 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchDialog.getContentPane().add(jSearchPanel, gridBagConstraints);
+        receiptSearchDialog.getContentPane().add(receiptSearchPanel, gridBagConstraints);
 
         setClosable(true);
         setIconifiable(true);
@@ -1034,6 +1037,26 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel2.add(jButton2, gridBagConstraints);
 
+        reasonJscrl.setViewportView(reasonTxt);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        jPanel2.add(reasonJscrl, gridBagConstraints);
+
+        jLabel11.setText("Reason for cancellation");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
+        jPanel2.add(jLabel11, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -1151,12 +1174,12 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_patientcheckbxActionPerformed
 
-    private void jSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTableMouseClicked
+    private void receiptSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_receiptSearchTableMouseClicked
         this.cancelReceiptBtn.setEnabled(true);
         jLabel7.setText("");
         int count = 0;
         int countt = 0;
-        receiptNumber.setText(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0).toString());
+        receiptNumber.setText(receiptSearchTable.getValueAt(receiptSearchTable.getSelectedRow(), 0).toString());
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
@@ -1282,45 +1305,45 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
 //            else{
 //                   javax.swing.JOptionPane.showMessageDialog(this, "This Receipt cannot be cancelled.");
 //            }
-        jSearchDialog.dispose();
+        receiptSearchDialog.dispose();
         // Add your handling code here:
-    }//GEN-LAST:event_jSearchTableMouseClicked
+    }//GEN-LAST:event_receiptSearchTableMouseClicked
 
-    private void jTextField111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField111CaretUpdate
-        if (jTextField111.getText().length() > 4) {
+    private void receiptSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_receiptSearchTxtCaretUpdate
+        if (receiptSearchTxt.getText().length() > 4) {
             if (this.patientcheckbx.isSelected() == true) {
 
                 System.out.println("SELECT  distinct requisition_no  as Receipt_NO,patient_no FROM hp_patient_card \n"
-                        + "where requisition_no ilike '" + jTextField111.getText() + "%' and  main_service ilike 'Receipt' and date::date > (current_date - 60)  \n"
+                        + "where requisition_no ilike '" + receiptSearchTxt.getText() + "%' and  main_service ilike 'Receipt' \n"
                         + " UNION "
-                        + " SELECT distinct receipt_no, dealer  FROM ac_ledger where receipt_no ilike '" + jTextField111.getText() + "%' and (transaction_type ilike 'Revenue' or service_type ilike 'Receipt') and date::date > (current_date - 60) ORDER BY 1 ASC");
+                        + " SELECT distinct receipt_no, dealer  FROM ac_ledger where receipt_no ilike '" + receiptSearchTxt.getText() + "%' and (transaction_type ilike 'Revenue' or service_type ilike 'Receipt') ORDER BY 1 ASC");
 
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT  distinct requisition_no  as Receipt_NO,patient_no FROM hp_patient_card \n"
-                        + "where requisition_no ilike '" + jTextField111.getText() + "%' and  main_service ilike 'Receipt' and date::date > (current_date - 60)  \n"
+                receiptSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT  distinct requisition_no  as Receipt_NO,patient_no FROM hp_patient_card \n"
+                        + "where requisition_no ilike '" + receiptSearchTxt.getText() + "%' and  main_service ilike 'Receipt'   \n"
                         + " UNION "
-                        + " SELECT distinct receipt_no, dealer  FROM ac_ledger where receipt_no ilike '" + jTextField111.getText() + "%' and (transaction_type ilike 'Revenue' or service_type ilike 'Receipt') and date::date > (current_date - 60) ORDER BY 1 ASC"));
-                jSearchScrollPane.setViewportView(jSearchTable);
+                        + " SELECT distinct receipt_no, dealer  FROM ac_ledger where receipt_no ilike '" + receiptSearchTxt.getText() + "%' and (transaction_type ilike 'Revenue' or service_type ilike 'Receipt')  ORDER BY 1 ASC"));
+                receiptSearchScrollPane.setViewportView(receiptSearchTable);
             } else if (this.doctorscheckbx.isSelected() == true) {
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
-                        "SELECT distinct pat_inv, doctor_name  FROM ac_doctors_ledger where  pat_inv ilike '" + jTextField111.getText() + "%' and transaction_type='RECEIPT' AND"
+                receiptSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
+                        "SELECT distinct pat_inv, doctor_name  FROM ac_doctors_ledger where  pat_inv ilike '" + receiptSearchTxt.getText() + "%' and transaction_type='RECEIPT' AND"
                         + " input_date::date > (current_date - 60) ORDER BY 1 ASC"));
-                jSearchScrollPane.setViewportView(jSearchTable);
+                receiptSearchScrollPane.setViewportView(receiptSearchTable);
             } else if (this.debtorscheckbx.isSelected() == true) {
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                        + "SELECT distinct receipt_no, dealer  FROM ac_debtors where receipt_no ilike '" + jTextField111.getText() + "%'"
+                receiptSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+                        + "SELECT distinct receipt_no, dealer  FROM ac_debtors where receipt_no ilike '" + receiptSearchTxt.getText() + "%'"
                         + " and  transaction_type ilike 'Receipts' and date::date > (current_date - 60) ORDER BY 1 ASC"));
-                jSearchScrollPane.setViewportView(jSearchTable);
+                receiptSearchScrollPane.setViewportView(receiptSearchTable);
             } else if (this.otherscheckbx.isSelected() == true) {
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                        + "SELECT distinct receipt_no, dealer  FROM ac_ledger where receipt_no ilike '" + jTextField111.getText() + "%' and transaction_type ilike 'Receipts' and date::date > (current_date - 60) ORDER BY 1 ASC"));
-                jSearchScrollPane.setViewportView(jSearchTable);
+                receiptSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+                        + "SELECT distinct receipt_no, dealer  FROM ac_ledger where receipt_no ilike '" + receiptSearchTxt.getText() + "%' and transaction_type ilike 'Receipts' and date::date > (current_date - 60) ORDER BY 1 ASC"));
+                receiptSearchScrollPane.setViewportView(receiptSearchTable);
             }
         }
 
-    }//GEN-LAST:event_jTextField111CaretUpdate
+    }//GEN-LAST:event_receiptSearchTxtCaretUpdate
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        jSearchDialog.dispose();
+        receiptSearchDialog.dispose();
         // Add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -1334,10 +1357,10 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
         // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
         java.awt.Point point = this.receiptNumber.getLocationOnScreen();
 
-        jSearchDialog.setSize(700, 200);
+        receiptSearchDialog.setSize(700, 200);
 
-        jSearchDialog.setLocation(point);
-        jSearchDialog.setVisible(true);
+        receiptSearchDialog.setLocation(point);
+        receiptSearchDialog.setVisible(true);
     }
 
     private void cmboxActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1555,7 +1578,7 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
                             pstmt.setString(6, visitID.getText());
                             pstmt.setString(7, "");
                             pstmt.setString(8, "OP");
-                            pstmt.setString(9, "");
+                            pstmt.setString(9, reasonTxt.getText());
                             pstmt.setString(10, paymentMode.getText());
                             pstmt.setObject(11, cheqNo);
                             pstmt.setString(12, receiptNumber.getText());
@@ -1624,7 +1647,7 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
                             pstmt.setString(24, users);
                             pstmt.setString(25, "");
                             pstmt.setString(26, "");
-                            pstmt.setTimestamp(27, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+                            pstmt.setTimestamp(27, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));
                             pstmt.setString(28, visitID.getText());
                             pstmt.setString(29, receiptNumber.getText());
                             pstmt.executeUpdate();
@@ -1902,6 +1925,7 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1917,13 +1941,8 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel41;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JDialog jSearchDialog;
-    private javax.swing.JPanel jSearchPanel;
-    private javax.swing.JScrollPane jSearchScrollPane;
-    private javax.swing.JTable jSearchTable;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField111;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JCheckBox otherscheckbx;
@@ -1931,9 +1950,16 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField patientNumber;
     private javax.swing.JCheckBox patientcheckbx;
     private javax.swing.JTextField paymentMode;
+    private javax.swing.JScrollPane reasonJscrl;
+    private javax.swing.JTextPane reasonTxt;
     private javax.swing.JTextField receiptAmount;
     private javax.swing.JTextField receiptDate;
     private javax.swing.JTextField receiptNumber;
+    private javax.swing.JDialog receiptSearchDialog;
+    private javax.swing.JPanel receiptSearchPanel;
+    private javax.swing.JScrollPane receiptSearchScrollPane;
+    private javax.swing.JTable receiptSearchTable;
+    private javax.swing.JTextField receiptSearchTxt;
     private javax.swing.JButton searchButton1;
     private javax.swing.JTextField shiftNumber;
     private javax.swing.JTextField visitID;

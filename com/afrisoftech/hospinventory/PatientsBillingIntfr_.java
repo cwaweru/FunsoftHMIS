@@ -1481,12 +1481,12 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                 }
             }
             mainItemstbl.addAncestorListener(new javax.swing.event.AncestorListener() {
-                public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                    mainItemstblAncestorMoved(evt);
-                }
                 public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 }
                 public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+                }
+                public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                    mainItemstblAncestorMoved(evt);
                 }
             });
             mainItemstbl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2316,7 +2316,9 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
     private void pharmacyCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pharmacyCmbxActionPerformed
         try {
             java.sql.Statement ps11 = connectDB.createStatement();
-            java.sql.ResultSet rst11 = ps11.executeQuery("select code from pb_activity WHERE activity ilike '" + pharmacyCmbx.getSelectedItem() + "'");
+            java.sql.ResultSet rst11 = ps11.executeQuery("select income_account from pb_departments WHERE UPPER(department_name) = '" + pharmacyCmbx.getSelectedItem().toString().toUpperCase() + "'");
+//            java.sql.ResultSet rst11 = ps11.executeQuery("select code from pb_activity WHERE activity ilike '" + pharmacyCmbx.getSelectedItem() + "'");
+
             while (rst11.next()) {
 
                 gLCodeTxt.setText(rst11.getString(1));

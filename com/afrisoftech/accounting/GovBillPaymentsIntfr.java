@@ -274,6 +274,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     mobilepayTxNoTxt = new javax.swing.JTextField();
     searchMobileTxButton = new javax.swing.JButton();
     jLabel7 = new javax.swing.JLabel();
+    jLabel9 = new javax.swing.JLabel();
+    mobilePayTokenBalanceTxt = new javax.swing.JTextField();
     jSeparator111 = new javax.swing.JSeparator();
     jPanel32 = new javax.swing.JPanel();
     jPanel32.setVisible(false);
@@ -1497,6 +1499,30 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel211.add(jLabel7, gridBagConstraints);
+
+        jLabel9.setText("Token Balance");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        jPanel211.add(jLabel9, gridBagConstraints);
+
+        mobilePayTokenBalanceTxt.setEditable(false);
+        mobilePayTokenBalanceTxt.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        mobilePayTokenBalanceTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        mobilePayTokenBalanceTxt.setText("0.00");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        jPanel211.add(mobilePayTokenBalanceTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -2743,7 +2769,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
                 }
             }
-        } 
+        }
         javax.swing.table.TableColumn column = null;
         for (int i = 0; i < patientSearchTable.getColumnCount(); i++) {
             System.out.println("Resizing table ...");
@@ -2753,9 +2779,9 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 column.setPreferredWidth(500); // item description column is bigger
             } else {
                 column.setPreferredWidth(200);
-            } 
+            }
         }
-        patientSearchScrollPane.setViewportView(patientSearchTable);        
+        patientSearchScrollPane.setViewportView(patientSearchTable);
 // Add your handling code here:
     }//GEN-LAST:event_patientSearchTxtCaretUpdate
 
@@ -2891,12 +2917,12 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                     // try {
                     if (patNationality.startsWith("NON")) {
                         jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                                + "SELECT DINSTINCT service_type,other_prices::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + jTextField112.getText() + "%'  ORDER BY 1"));
+                                + "SELECT DINSTINCT service_type,other_prices::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + jTextField112.getText() + "%' and status = 'Active' ORDER BY 1"));
                     } else {
                         if (patCateg.startsWith("PRI")) {
-                            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,anaesthetist_rate::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + jTextField112.getText() + "%'  ORDER BY 1"));
+                            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,anaesthetist_rate::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + jTextField112.getText() + "%' and status = 'Active' ORDER BY 1"));
                         } else {
-                            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,rate::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + jTextField112.getText() + "%'  ORDER BY 1"));// UNION ALL select distinct product,selling_price,gl_code,product_id,department FROM st_stock_prices WHERE product_id ILIKE '" + jTextField112.getText() + "%' and gl_code = '" + jTextField7.getText() + "' ORDER BY 1 LIMIT 30"));
+                            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,rate::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE code ILIKE '%" + jTextField112.getText() + "%' and status = 'Active' ORDER BY 1"));// UNION ALL select distinct product,selling_price,gl_code,product_id,department FROM st_stock_prices WHERE product_id ILIKE '" + jTextField112.getText() + "%' and gl_code = '" + jTextField7.getText() + "' ORDER BY 1 LIMIT 30"));
                         }
                     }
                     /*
@@ -2920,12 +2946,12 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 } else {
 
                     if (patNationality.startsWith("NON")) {
-                        jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,other_prices::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + jTextField112.getText() + "%'  ORDER BY 1"));
+                        jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,other_prices::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + jTextField112.getText() + "%' and status = 'Active' ORDER BY 1"));
                     } else {
                         if (patCateg.startsWith("PRI")) {
-                            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,anaesthetist_rate::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + jTextField112.getText() + "%'  ORDER BY 1"));
+                            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,anaesthetist_rate::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + jTextField112.getText() + "%' and status = 'Active' ORDER BY 1"));
                         } else {
-                            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,rate::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + jTextField112.getText() + "%'  ORDER BY 1"));// UNION ALL select distinct product,selling_price,gl_code,product_id,department FROM st_stock_prices WHERE product_id ILIKE '" + jTextField112.getText() + "%' and gl_code = '" + jTextField7.getText() + "' ORDER BY 1 LIMIT 30"));
+                            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT service_type,rate::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + jTextField112.getText() + "%' and status = 'Active' ORDER BY 1"));// UNION ALL select distinct product,selling_price,gl_code,product_id,department FROM st_stock_prices WHERE product_id ILIKE '" + jTextField112.getText() + "%' and gl_code = '" + jTextField7.getText() + "' ORDER BY 1 LIMIT 30"));
                         }
                     }
                     //jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select service_type,rate::numeric,gl_account,code,main_service FROM pb_operating_parameters WHERE service_type ILIKE '%" + jTextField112.getText() + "%'"));// UNION ALL select product,selling_price,gl_code,product_id,department  FROM st_stock_prices WHERE product ILIKE '%" + jTextField112.getText() + "%'  order by service_type  LIMIT 30"));
@@ -3083,11 +3109,14 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 rct = rst112.getObject(1).toString();
             }
             if (rct.equalsIgnoreCase("Pdf")) {
-                com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
-                policy.ReceiptsPdf(connectDB, receiptNo1);
+                if (receiptNo1.length() > 1) {
+                    com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
+                    policy.ReceiptsPdf(connectDB, receiptNo1);
+                }
             } else {
-                com.afrisoftech.txtreports.GokReceiptsRTxt policy = new com.afrisoftech.txtreports.GokReceiptsRTxt(connectDB, clientReceipt, billAmountTxt.getText(), receiptNo1, this.paymentModeCmbx.getSelectedItem().toString(), amountPaidTxt.getText(), changeTxt.getText(), shiftNoTxt.getText());
-
+                if (receiptNo1.length() > 1) {
+                    com.afrisoftech.txtreports.GokReceiptsRTxt policy = new com.afrisoftech.txtreports.GokReceiptsRTxt(connectDB, clientReceipt, billAmountTxt.getText(), receiptNo1, this.paymentModeCmbx.getSelectedItem().toString(), amountPaidTxt.getText(), changeTxt.getText(), shiftNoTxt.getText());
+                }
             }
             rsetReprint.close();
             pstmtReprint.close();
@@ -3251,8 +3280,20 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                 //  thisgetParent().remove(this);
                 javax.swing.JOptionPane.showMessageDialog(this, "You MUST open a new shift in order to continue.\n Please close Front End Operations and open afresh.");
             } else {
+                if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+                    if (mobilepayTxNoTxt.getText().length() > 0) {
+                        if (com.afrisoftech.lib.MobilePayments.getTokenValue(connectDB, mobilepayTxNoTxt.getText()) >= Double.parseDouble(billAmountTxt.getText())) {
 
-                this.saveData();
+                            this.saveData();
+                        } else {
+                            javax.swing.JOptionPane.showMessageDialog(this, "The token amount is exhausted!");
+                        }
+                    } else {
+                        this.saveData();
+                    }
+                } else if (!paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+                    this.saveData();
+                }
                 //      dispatchThread = new DispatchThread();
 
                 //     dispatchThread.start();
@@ -3525,7 +3566,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
                     transNo = rst.getObject(1).toString();
                 }
-                
+
                 for (int j = 0; j < billTable.getRowCount(); j++) {
                     if (billTable.getValueAt(j, 0) != null) {
                         if (billTable.getValueAt(j, 7) == null) {
@@ -3564,8 +3605,8 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                     }
                 }
             } else {
-                if(!isBilled){
-                javax.swing.JOptionPane.showMessageDialog(this, "Please double check your entries");
+                if (!isBilled) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Please double check your entries");
                 }
             }
         } catch (java.sql.SQLException sqe) {
@@ -3616,11 +3657,13 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
 
                                     pstmtCheckout.executeUpdate();
                                     pstmtCheckout.close();
+
                                 }
                             }
 
                         } catch (SQLException ex) {
-                            Logger.getLogger(GovBillPaymentsIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(GovBillPaymentsIntfr.class
+                                    .getName()).log(Level.SEVERE, null, ex);
                         }
 
                     } else {
@@ -3665,7 +3708,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private void mobilepayTxSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_mobilepayTxSearchTxtCaretUpdate
 
         if (mobilepayTxSearchTxt.getText().length() > 5) {
-            mobilepayTxtSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_time::time(0), mobile_tx_id, account_no, date, paid_amount, upper(dealer) as client_name, journal_no as paybill_no, mobilepay_alert as processed FROM public.mobile_payments WHERE mobilepay_alert = false AND account_no ilike '%" + mobilepayTxSearchTxt.getText() + "%' ORDER BY account_no"));
+            mobilepayTxtSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_time::time(0), mobile_tx_id, account_no, date, paid_amount, upper(dealer) as client_name, journal_no as paybill_no, mobilepay_alert as processed FROM public.mobile_payments WHERE mobilepay_alert = false AND account_no ilike '%" + mobilepayTxSearchTxt.getText() + "%' AND date::date >= current_date - 5 ORDER BY account_no"));
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_mobilepayTxSearchTxtCaretUpdate
@@ -3681,9 +3724,11 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
         payerMobileTelephoneNumberTxt.setText(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 2).toString());
 
         paymentModeCmbx.setSelectedItem("M-Pesa");
-        
+
         paybillNumberCmbx.setSelectedItem(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 6).toString());
-        
+
+        mobilePayTokenBalanceTxt.setText(String.valueOf(com.afrisoftech.lib.MobilePayments.getTokenValue(connectDB, mobilepayTxNoTxt.getText())));
+
         mobilepayTxSearchDialog.dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_mobilepayTxtSearchTableMouseClicked
@@ -4666,12 +4711,14 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                             }
                         }
 
-                        java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("UPDATE mobile_payments SET mobilepay_alert = true WHERE mobile_tx_id = ?");
-                        pstmt2.setString(1, com.afrisoftech.hospital.HospitalMain.mobileTxID);
-                        pstmt2.executeUpdate();
-
-                        pstmt2.close();
-
+                        com.afrisoftech.lib.MobilePayments.updateTokenValue(connectDB, com.afrisoftech.hospital.HospitalMain.mobileTxID, Double.parseDouble(billAmountTxt.getText()));
+                        if (com.afrisoftech.lib.MobilePayments.getTokenValue(connectDB, com.afrisoftech.hospital.HospitalMain.mobileTxID) <= 1.00) {
+                            java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("UPDATE mobile_payments SET mobilepay_alert = true WHERE mobile_tx_id = ?");
+                            pstmt2.setString(1, com.afrisoftech.hospital.HospitalMain.mobileTxID);
+                            pstmt2.executeUpdate();
+                            pstmt2.close();
+                        }
+                        mobilePayTokenBalanceTxt.setText("0.00");
                         connectDB.commit();
                         connectDB.setAutoCommit(true);
                         if (processReceipt) {
@@ -4680,58 +4727,20 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
                             generateReceiptBtn.setEnabled(false);
                             reprintReceiptBtn.setEnabled(true);
                         }
-
-                        /*    pstmt112.close();
-                             pstmt112F.close();
-                             psr.close();
-                             ps1q.close();
-                             rst1q.close();
-                             rsts.close();
-                             pss1.close();
-                             pss.close();
-                             rss.close();
-                             stm1211.close();
-                             rse1211.close();
-                             stm12.close();
-                             rse12.close();
-                             stm12f.close();
-                             rse12f.close();
-                             stm12fx.close();
-                             rse12fx.close();
-                             stm1211.close();
-                             pss.close();
-                             pss1.close();
-                             stm121.close();
-
-                             pstmt212.close();
-                             pstmt25.close();
-                             stm121w.close();
-                             stm121r.close();
-                             rse121w.close();
-                             rse121r.close();
-                             ps.close();
-                             pstmt25.close();
-                             pstmt212.close();
-                             rse121r.close();
-                             stm121w.close();
-                             stm121r.close();
-                             // rse121w.close();
-                             pstmt25.close();
-                             pstmt41d.close();
-                             pstmt41.close();
-                             pstmt411.close();
-                             rse121.close();
-                             stm121.close();*/
-//                        rst.close();
-                        //  jTextField91.setEditable(false);
+                        
+                        // Forward LIMS requests
+                        if (com.afrisoftech.lib.LabRequestJSON.isLIMSEnabled(connectDB)) {
+                            com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendLabRequest(connectDB, "bGltc19hY2Nlc3M6MTJAITIzIzQk", receiptNo2, patientNumberTxt.getText(), patientNameTxt.getText(), paymentModeCmbx.getSelectedItem().toString(), null, com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, receiptNo2, patientNumberTxt.getText()), "OUT");
+                        }
+                        
                     } catch (java.sql.SQLException sq) {
-
+                        sq.printStackTrace();
                         try {
                             connectDB.rollback(registerSavePoint);
                         } catch (java.sql.SQLException sql) {
                             javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
                         }
-                        sq.printStackTrace();
+
                         System.out.println(sq.getMessage());
                         javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
@@ -4842,6 +4851,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel111;
     private javax.swing.JPanel jPanel1111;
@@ -4902,6 +4912,7 @@ public class GovBillPaymentsIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField lessDiscountedAmountTxt;
     private javax.swing.JCheckBox mchfpChbx;
+    private javax.swing.JTextField mobilePayTokenBalanceTxt;
     private javax.swing.JTextField mobilepayTxNoTxt;
     private javax.swing.JDialog mobilepayTxSearchDialog;
     private javax.swing.JTextField mobilepayTxSearchTxt;

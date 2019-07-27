@@ -9238,7 +9238,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
         this.initComponents();
 
-        this.setSize(this.getParent().getSize());
+        this.setSize(com.afrisoftech.hospital.HospitalMain.saccopn.getSize());
 
         startBtn.doClick();
     }

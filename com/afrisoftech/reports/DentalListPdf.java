@@ -387,7 +387,7 @@ public class DentalListPdf implements java.lang.Runnable {
 
                         com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(8);
 
-                        int headerwidths[] = {8, 7, 17, 8, 10, 20 , 35, 8};
+                        int headerwidths[] = {5, 9, 13, 20, 10, 20 , 30, 13};
 
                         table.setWidths(headerwidths);
 
@@ -455,10 +455,13 @@ public class DentalListPdf implements java.lang.Runnable {
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), psExec.getMessage());
 
                         }
+                        table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
 
                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
 
                         table.getDefaultCell().setColspan(1);
+                        phrase = new Phrase("No", pFontHeader);
+                        table.addCell(phrase);
                         phrase = new Phrase("Date", pFontHeader);
                         table.addCell(phrase);
 
@@ -468,20 +471,19 @@ public class DentalListPdf implements java.lang.Runnable {
 
                         phrase = new Phrase("Name", pFontHeader);
                         table.addCell(phrase);
-                        phrase = new Phrase("No", pFontHeader);
-                        table.addCell(phrase);
+                        
 
                         phrase = new Phrase("Doctor", pFontHeader);
                         table.addCell(phrase);
 
                         phrase = new Phrase("Exam", pFontHeader);
                         table.addCell(phrase);
-                        phrase = new Phrase("Notes", pFontHeader);
+                        phrase = new Phrase("Treatment", pFontHeader);
                         table.addCell(phrase);
                         phrase = new Phrase("Input BY", pFontHeader);
                         //table.addCell(phrase);
 
-                        phrase = new Phrase("Amount", pFontHeader);
+                        phrase = new Phrase("Total Amount Paid", pFontHeader);
                         table.addCell(phrase);
 
 
@@ -494,17 +496,24 @@ public class DentalListPdf implements java.lang.Runnable {
                             java.sql.Statement st = connectDB.createStatement();
 
 
-                            java.sql.ResultSet rset = st.executeQuery("select input_date::date,initcap(patient_no),INITCAP(patient_name),xray_no,doctor,INITCAP(pdhs),INITCAP(imp_inv),user_name,amount from hp_xray_results WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' and xray_no ilike 'D%' ORDER BY date");
+                              //java.sql.ResultSet rset = st.executeQuery("select  input_date::date,initcap(patient_no),INITCAP(patient_name),xray_no,doctor,INITCAP(pdhs),INITCAP(imp_inv),user_name,amount from hp_xray_results WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "' and xray_no ilike 'D%' ORDER BY date");
+                          
+                            java.sql.ResultSet rset = st.executeQuery("select DISTINCT input_date::date,patient_no,upper(patient_name),lab_no,user_name,'' as pdhs,'' as imp_inv,user_name,0 as amount from hp_dental_results WHERE input_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  ORDER BY input_date");
                             table.getDefaultCell().setBorder(Rectangle.LEFT | Rectangle.BOTTOM | Rectangle.RIGHT | Rectangle.TOP);
 
                             table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
 
 
-
+                            int p =1;
                             while (rset.next()) {
                                 table.getDefaultCell().setColspan(1);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                
+                                phrase = new Phrase(dbObject.getDBObject(p, "-"), pFontHeader1);
+                                table.addCell(phrase);
+                                
+                                
                                 phrase = new Phrase(dbObject.getDBObject(rset.getObject(1), "-"), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -515,27 +524,50 @@ public class DentalListPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase = new Phrase(dbObject.getDBObject(rset.getObject(3), "-"), pFontHeader1);
                                 table.addCell(phrase);
-                                phrase = new Phrase(dbObject.getDBObject(rset.getObject(4), "-"), pFontHeader1);
-                                table.addCell(phrase);
+                                
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase = new Phrase(dbObject.getDBObject(rset.getObject(5), "-"), pFontHeader1);
                                 table.addCell(phrase);
 
-                                phrase = new Phrase(dbObject.getDBObject(rset.getObject(6), "-"), pFontHeader1);
+                                java.sql.Statement st15 = connectDB.createStatement();
+                                String exam = "";
+                                String notes = "";
+                                System.err.println("SELECT DISTINCT typeof_test,treatmentplan "
+                                        + " FROM  hp_clinical_results WHERE patient_no = '" + rset.getString(2) + "' AND input_date::DATE  = '" + rset.getDate(1) + "'");
+                                java.sql.ResultSet rset2c1W = st15.executeQuery("SELECT DISTINCT typeof_test,treatmentplan "
+                                        + " FROM  hp_clinical_results WHERE patient_no = '" + rset.getString(2) + "' AND input_date::DATE  = '" + rset.getDate(1) + "'");
+
+                                while (rset2c1W.next()) {
+                                    exam = exam+rset2c1W.getString(1)+". ";
+                                    notes = notes+rset2c1W.getString(2)+". ";
+                                }
+                                
+                                phrase = new Phrase(dbObject.getDBObject(exam, "-"), pFontHeader1);
 
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase(dbObject.getDBObject(rset.getObject(7), "-"), pFontHeader1);
+                                phrase = new Phrase(dbObject.getDBObject(notes, "-"), pFontHeader1);
                                 table.addCell(phrase);
                                 phrase = new Phrase(dbObject.getDBObject(rset.getObject(8), "-"), pFontHeader1);
                                 //table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset.getString(9)), pFontHeader1);
-                                Credit = Credit + rset.getDouble(9);
+                                
+                                rset2c1W = st15.executeQuery("SELECT SUM(debit-credit)  "
+                                        + " FROM  ac_cash_collection WHERE patient_no = '" + rset.getString(2) + "' AND date::DATE  = '" + rset.getDate(1) + "'");
+                                System.err.println("SELECT SUM(debit-credit)  "
+                                        + " FROM  ac_cash_collection WHERE patient_no = '" + rset.getString(2) + "' AND date::DATE  = '" + rset.getDate(1) + "'");
+
+                                Double amount = 0.00;
+                                while (rset2c1W.next()) {
+                                    amount = rset2c1W.getDouble(1);
+                                }
+                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(String.valueOf(amount)), pFontHeader1);
+                                Credit = Credit + amount;
                                 //Credit1 = Credit1 + rset.getDouble(6);
 
                                 table.addCell(phrase);
+                                p++;
                             }
 
 

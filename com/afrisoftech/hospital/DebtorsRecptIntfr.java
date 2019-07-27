@@ -1308,18 +1308,23 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
                     rct = rst112.getObject(1).toString();
                 }
                 if (nodetails.equalsIgnoreCase("NoDetails")) {
-
-                    com.afrisoftech.txtreports.IPDebtorsReceiptsTxt policy = new com.afrisoftech.txtreports.IPDebtorsReceiptsTxt(connectDB, otherDetailsTxt.getText(), actualPayerTxt.getText().toString(), schemeNameTxt.getText().toString(), amountTxt.getText(), receiptNo, paymentModeCmbx.getSelectedItem().toString(), chequeNoTxt.getText());
+                    if (receiptNo.length() > 0) {
+                        com.afrisoftech.txtreports.IPDebtorsReceiptsTxt policy = new com.afrisoftech.txtreports.IPDebtorsReceiptsTxt(connectDB, otherDetailsTxt.getText(), actualPayerTxt.getText().toString(), schemeNameTxt.getText().toString(), amountTxt.getText(), receiptNo, paymentModeCmbx.getSelectedItem().toString(), chequeNoTxt.getText());
+                    }
                 } else {
                     if (nodetails.equalsIgnoreCase("Prints") && rct.equalsIgnoreCase("Pdf")) {
-                        com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
-                        policy.ReceiptsPdf(connectDB, receiptNo);
+                        if (receiptNo.length() > 0) {
+                            com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
+                            policy.ReceiptsPdf(connectDB, receiptNo);
+                        }
                         //  com.afrisoftech.accounting.OtherReceiptsPdf policy = new com.afrisoftech.accounting.OtherReceiptsPdf();
                         //  policy.OtherReceiptsPdf(connectDB,jTextField111.getText(), jTextField4.getText(),jTextField3.getText(),receiptNo,jComboBox11.getSelectedItem().toString(),jTextField2.getText());
 
                     } else {
                         //   com.afrisoftech.txtreports.InpatientReceiptsTxt policy = new com.afrisoftech.txtreports.InpatientReceiptsTxt(connectDB, jTextField9.getText(),jTextField20.getText(),jTextField17.getText(),receiptNo1,this.jComboBox411.getSelectedItem().toString(),jTextField221.getText(),this.jTextField1.getText());
-                        com.afrisoftech.txtreports.DebtorsReceiptsTxt policy = new com.afrisoftech.txtreports.DebtorsReceiptsTxt(connectDB, otherDetailsTxt.getText(), actualPayerTxt.getText().toString(), schemeNameTxt.getText().toString(), amountTxt.getText(), receiptNo, paymentModeCmbx.getSelectedItem().toString(), chequeNoTxt.getText());
+                        if (receiptNo.length() > 0) {
+                            com.afrisoftech.txtreports.DebtorsReceiptsTxt policy = new com.afrisoftech.txtreports.DebtorsReceiptsTxt(connectDB, otherDetailsTxt.getText(), actualPayerTxt.getText().toString(), schemeNameTxt.getText().toString(), amountTxt.getText(), receiptNo, paymentModeCmbx.getSelectedItem().toString(), chequeNoTxt.getText());
+                        }
                     }
                 }
 
@@ -1389,7 +1394,7 @@ public class DebtorsRecptIntfr extends javax.swing.JInternalFrame {
         } catch (java.sql.SQLException sqe) {
             sqe.printStackTrace();
         }
-        
+
         schemeSearchDialog.dispose();
         this.jButton11.setEnabled(true);
         this.jButton1.setEnabled(true);

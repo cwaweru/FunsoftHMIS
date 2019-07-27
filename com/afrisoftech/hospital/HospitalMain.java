@@ -1,6 +1,6 @@
 /*
  * HospitalMain.java,  Originally sacco.java
- *
+ * 
  * Created on August 13, 2002, 12:54 AM
  *
  * This is the Kernel of the Funsoft HMIS system
@@ -511,6 +511,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     int ShiftNoPerCashier = 5856991;
     int LabWorkload = 5856992;
     int OpWorkload = 5856993;
+    int UHCOpWorkload = 585699399;
     int WaiverExe = 5856994;
     int LabTime = 5856995;
     int VoteAllocation = 5856996;
@@ -1267,12 +1268,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         labtestsmnit = new javax.swing.JMenuItem();
         labresultsmnit = new javax.swing.JMenuItem();
         LabHierachymnit = new javax.swing.JMenuItem();
+        labservicesmanagermnit = new javax.swing.JMenuItem();
         laboratorymn1 = new javax.swing.JMenu();
         packagesmnit = new javax.swing.JMenuItem();
         packageslistmnit = new javax.swing.JMenuItem();
         automatedChargesmnit = new javax.swing.JMenuItem();
         clerkingServicesmnit = new javax.swing.JMenuItem();
         xrayFilmTypesmnit = new javax.swing.JMenuItem();
+        xrayservicesmanagermnit = new javax.swing.JMenuItem();
         jSeparator31 = new javax.swing.JSeparator();
         patientCategorymn = new javax.swing.JMenu();
         patcategmnit = new javax.swing.JMenuItem();
@@ -1695,6 +1698,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         jSeparator106 = new javax.swing.JPopupMenu.Separator();
         dailyWorkloadsmnit = new javax.swing.JMenuItem();
         unhNHIFClaimmnit = new javax.swing.JMenuItem();
+        departmentalreportMenuItemnit = new javax.swing.JMenuItem();
         inpatmn = new javax.swing.JMenu();
         Pregistermn = new javax.swing.JMenu();
         rpatientmnit = new javax.swing.JMenuItem();
@@ -1742,7 +1746,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         bedsoremn = new javax.swing.JMenuItem();
         patientrepotsmn = new javax.swing.JMenuItem();
         reportingdepartmentalMenuItemnit = new javax.swing.JMenuItem();
-        departmentalreportMenuItemnit = new javax.swing.JMenuItem();
+        triagesheetreportMenuItemnit = new javax.swing.JMenuItem();
         incidenceMenumn = new javax.swing.JMenu();
         reportincidenceMenuItemnit = new javax.swing.JMenuItem();
         approveincidenceMenuItemnit = new javax.swing.JMenuItem();
@@ -1943,6 +1947,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         creditSalesDepartmentDetailedReportsmnit = new javax.swing.JMenuItem();
         exmptionsWaiversRefundsmnit = new javax.swing.JMenuItem();
         universalHealthcareSalesAnalysismnit = new javax.swing.JMenuItem();
+        uhcWorkloadReportmnit = new javax.swing.JMenuItem();
         jSeparator45 = new javax.swing.JSeparator();
         RevRepotmd = new javax.swing.JMenu();
         dailyrevmnit = new javax.swing.JMenuItem();
@@ -2190,6 +2195,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         Bookingsmnit = new javax.swing.JMenuItem();
         ConfirmedBookingsmnit = new javax.swing.JMenuItem();
         deathsmnit = new javax.swing.JMenuItem();
+        sickoffreprintmnit = new javax.swing.JMenuItem();
         sickoffsmnit = new javax.swing.JMenuItem();
         fprepmn = new javax.swing.JMenu();
         fpsummarymnit = new javax.swing.JMenuItem();
@@ -3991,6 +3997,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         laboratorymn.add(LabHierachymnit);
 
+        labservicesmanagermnit.setText("Lab Services Manager");
+        labservicesmanagermnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                labservicesmanagermnitActionPerformed(evt);
+            }
+        });
+        laboratorymn.add(labservicesmanagermnit);
+
         departmentalmn.add(laboratorymn);
 
         laboratorymn1.setText("Packages Setup");
@@ -4041,6 +4055,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         departmentalmn.add(xrayFilmTypesmnit);
+
+        xrayservicesmanagermnit.setText("Xray Services Manager");
+        xrayservicesmanagermnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xrayservicesmanagermnitActionPerformed(evt);
+            }
+        });
+        departmentalmn.add(xrayservicesmanagermnit);
 
         setupmn.add(departmentalmn);
         setupmn.add(jSeparator31);
@@ -6985,6 +7007,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         reportsmn.add(outpatmn);
 
+        departmentalreportMenuItemnit.setText("Departmental Report");
+        departmentalreportMenuItemnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                departmentalreportMenuItemnitActionPerformed(evt);
+            }
+        });
+        reportsmn.add(departmentalreportMenuItemnit);
+
         inpatmn.setText("IN-Patient");
 
         Pregistermn.setText("Patients Attendance");
@@ -7327,13 +7357,13 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         nursingReportermn.add(reportingdepartmentalMenuItemnit);
 
-        departmentalreportMenuItemnit.setText("Departmental Report");
-        departmentalreportMenuItemnit.addActionListener(new java.awt.event.ActionListener() {
+        triagesheetreportMenuItemnit.setText("Triage Sheet");
+        triagesheetreportMenuItemnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                departmentalreportMenuItemnitActionPerformed(evt);
+                triagesheetreportMenuItemnitActionPerformed(evt);
             }
         });
-        nursingReportermn.add(departmentalreportMenuItemnit);
+        nursingReportermn.add(triagesheetreportMenuItemnit);
 
         reportsmn.add(nursingReportermn);
 
@@ -8683,6 +8713,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         universalHealthcareReportsmn.add(universalHealthcareSalesAnalysismnit);
+
+        uhcWorkloadReportmnit.setText("UHC Monthly Workload Report");
+        uhcWorkloadReportmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uhcWorkloadReportmnitActionPerformed(evt);
+            }
+        });
+        universalHealthcareReportsmn.add(uhcWorkloadReportmnit);
 
         Salesmn.add(universalHealthcareReportsmn);
 
@@ -10377,6 +10415,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         PatientRecordsmn.add(deathsmnit);
+
+        sickoffreprintmnit.setText("Sick Off Reprint");
+        sickoffreprintmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sickoffreprintmnitActionPerformed(evt);
+            }
+        });
+        PatientRecordsmn.add(sickoffreprintmnit);
 
         sickoffsmnit.setText("Sick Offs");
         sickoffsmnit.addActionListener(new java.awt.event.ActionListener() {
@@ -21634,6 +21680,45 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         }        // TODO add your handling code here:
     }//GEN-LAST:event_opAttendanceAnalyticsmnitActionPerformed
 
+    private void uhcWorkloadReportmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uhcWorkloadReportmnitActionPerformed
+        
+        com.afrisoftech.lib.UHCHosDatePanel dates = new com.afrisoftech.lib.UHCHosDatePanel(this, true, this.UHCOpWorkload, connectDB);
+
+        dates.setVisible(true); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_uhcWorkloadReportmnitActionPerformed
+
+    private void triagesheetreportMenuItemnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_triagesheetreportMenuItemnitActionPerformed
+        com.afrisoftech.lib.HosDatePanel dates = new com.afrisoftech.lib.HosDatePanel(this, true, 345123, connectDB);
+        dates.setVisible(true);  // TODO add your handling code here:
+    }//GEN-LAST:event_triagesheetreportMenuItemnitActionPerformed
+
+    private void sickoffreprintmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sickoffreprintmnitActionPerformed
+        com.afrisoftech.lib.HosPatientDatePanelSickOff dates = new com.afrisoftech.lib.HosPatientDatePanelSickOff(this, pConnDB, true, 12, connectDB);
+
+        dates.setVisible(true);  // TODO add your handling code here:
+    }//GEN-LAST:event_sickoffreprintmnitActionPerformed
+
+    private void labservicesmanagermnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labservicesmanagermnitActionPerformed
+     com.afrisoftech.hospital.ServicesManagerIntfr comp = new com.afrisoftech.hospital.ServicesManagerIntfr(connectDB,"LAB");
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        //comp.setSize(saccopn.getSize());
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }   // TODO add your handling code here:
+    }//GEN-LAST:event_labservicesmanagermnitActionPerformed
+
+    private void xrayservicesmanagermnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xrayservicesmanagermnitActionPerformed
+    com.afrisoftech.hospital.ServicesManagerIntfr comp = new com.afrisoftech.hospital.ServicesManagerIntfr(connectDB,"XRAY");
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        //comp.setSize(saccopn.getSize());
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }         // TODO add your handling code here:
+    }//GEN-LAST:event_xrayservicesmanagermnitActionPerformed
+
     /**
      * Exit the Application
      */
@@ -25135,7 +25220,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                                 if (mobileTxType == "OPD") {
                                     com.afrisoftech.accounting.GovBillPaymentsIntfr.generateReceiptBtn.doClick();
                                 } else if (mobileTxType == "IPD") {
-                                    com.afrisoftech.accounting.InpatientRecpIntfr.jButton1111.doClick();
+                                    com.afrisoftech.accounting.InpatientRecpIntfr.saveBtn.doClick();
                                 }
                                 //                                // We print the receipt from mobile payment at this stage
 //                                String rct = null;
@@ -25993,6 +26078,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem labregmnit;
     private javax.swing.JMenuItem labresultsindmnit;
     private javax.swing.JMenuItem labresultsmnit;
+    private javax.swing.JMenuItem labservicesmanagermnit;
     private javax.swing.JMenuItem labspecimensmnit;
     private javax.swing.JMenuItem labsspecimensmnit;
     private javax.swing.JMenuItem labtestsmnit;
@@ -26342,6 +26428,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem shiftsurrendermnit;
     private javax.swing.JMenuItem shifttotalpercashpointmnit;
     private javax.swing.JMenuItem sickleavemnit;
+    private javax.swing.JMenuItem sickoffreprintmnit;
     private javax.swing.JMenuItem sickoffsmnit;
     private javax.swing.JMenu skinmn;
     private javax.swing.JButton smsBroadcastBtn;
@@ -26414,11 +26501,13 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem transperaccmnit;
     private javax.swing.JPanel treePane;
     private javax.swing.JMenuItem triagemnit;
+    private javax.swing.JMenuItem triagesheetreportMenuItemnit;
     private javax.swing.JMenuItem trialbalancemnit;
     private javax.swing.JMenuItem turnchartmnit;
     private javax.swing.JMenuItem typesOfHospitalsmnit;
     private javax.swing.JMenuItem typesOfUIDsmnit;
     private javax.swing.JMenuItem typesofMilkmnit;
+    private javax.swing.JMenuItem uhcWorkloadReportmnit;
     private javax.swing.JMenuItem unallocpymmnit;
     private javax.swing.JMenu unapprovedinvmn;
     private javax.swing.JMenuItem uncollectedshiftsmnit;
@@ -26500,6 +26589,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem xrayperfmnit;
     private javax.swing.JMenu xrayrep;
     private javax.swing.JMenuItem xrayresultsRadiographermnit;
+    private javax.swing.JMenuItem xrayservicesmanagermnit;
     private javax.swing.JMenuItem xraysmnit;
     private javax.swing.JRadioButton xyChart;
     private javax.swing.JRadioButton xyChart1;

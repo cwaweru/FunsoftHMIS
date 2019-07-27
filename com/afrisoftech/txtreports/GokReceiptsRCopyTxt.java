@@ -15,7 +15,9 @@ package biz.systempartners.txtreports;
 public class GokReceiptsRCopyTxt implements java.lang.Runnable {
 
     java.io.RandomAccessFile txtReportFile = null;
-    /** Creates a new instance of SampleTxtReport */
+    /**
+     * Creates a new instance of SampleTxtReport
+     */
     com.afrisoftech.lib.DBObject dbObject;
     java.lang.String MNo = "";
     java.lang.String Name = "";
@@ -46,22 +48,16 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
 
         dbObject = new com.afrisoftech.lib.DBObject();
 
-       // MNo = combox;
-
-       // Amount = amount;
-
+        // MNo = combox;
+        // Amount = amount;
         Receipt = receipt;
 
-       // shiftNumber = shiftNo;
-
+        // shiftNumber = shiftNo;
         connectDB = connDb;
 
         //Paymode = paymode;
-
-       // Cash = cash;
-
+        // Cash = cash;
         //Refund = refund;
-
         String ks;
         //       java.lang.Process wait_for_Pdf2Show;
 
@@ -91,12 +87,8 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
             //   }
 
             //  beginDate = inv1;
-
             //  endDate = inv2;
-
-
             //    try {
-
             txtReportFile = new java.io.RandomAccessFile(tempFile, "rw");
 
             threadSample = new java.lang.Thread(this, "Plain Text Report Writer");
@@ -107,10 +99,7 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
 
             System.out.println("threadSample fired");
 
-
-        //  writeReport(txtReportFile);
-
-
+            //  writeReport(txtReportFile);
         } catch (java.io.FileNotFoundException fnf) {
 
             fnf.printStackTrace();
@@ -122,10 +111,7 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
     private void writeReport(java.io.RandomAccessFile txtRandomAccessFile) {
 
         // java.lang.Object listofStaffNos[] = this.getListofStaffNos();
-
-
         // for (int j = 0; j < listofStaffNos.length; j++) {
-
         double osBalance = 0.00;
 
         System.setProperty("phrase.separator", "  ");
@@ -174,7 +160,6 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
             System.out.println(colSizes[i]);
         }
 
-
         double floats2[] = {50, 50};
 
         int colSizes2[] = textReport.createTableHeader(2, floats2);
@@ -198,7 +183,6 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
         for (int i = 0; i < colSizes3.length; i++) {
             // System.out.println(colSizes2[i]);
         }
-
 
         double floats4[] = {50, 50};
 
@@ -249,7 +233,6 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
 
             }
 
-
         } catch (java.sql.SQLException SqlExec) {
 
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
@@ -267,13 +250,9 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
 
             table22.addCell("Tel : " + Tel.toUpperCase());
 
-        // table22.addCell("Fax : "+Fax.toUpperCase());
-
-        //  table22.addCell("Email : "+Email);
-
-
+            // table22.addCell("Fax : "+Fax.toUpperCase());
+            //  table22.addCell("Email : "+Email);
         } else {
-
 
             table22.addCell("  ");
 
@@ -294,7 +273,6 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
 
         int horizontalAlignmentsTitle[] = {biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_CENTER};
 
-
         javax.swing.table.DefaultTableModel headerCompany = new javax.swing.table.DefaultTableModel(companyName, 1);
 
         for (int i = 0; i < companyName.length; i++) {
@@ -302,11 +280,9 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
         }
         //String ColumnModelTitle3[] = {"","","",""};
 
-
         // String ColumnModelTitle4[] = { "    ", "   ", "   " };
         String ColumnModelTitle4[] = {"RCPT No", "Date"};
         Object reportName[] = {"RECEIPT [REPRINT - NOT ORIGINAL!]"};
-
 
         javax.swing.table.DefaultTableModel headerTitle = new javax.swing.table.DefaultTableModel(reportName, 1);
 
@@ -314,10 +290,8 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
             headerTitle.setValueAt(reportName[i], 0, i);
         }
 
-
         String columnModel1[] = {"    ", "     "};
         //  String columnModel1[] = {"Rev.Code","Description", "Qty", "Price @", "Amt"};
-
 
         String columnModel[] = {"This", "That", "Then", "when"};
 
@@ -331,8 +305,6 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
         for (int i = 0; i < ColumnModelTitle.length; i++) {
             headerTableModel.setValueAt(ColumnModelTitle[i], 0, i);
         }
-
-
 
         int integers[] = colSizes;
 
@@ -351,7 +323,6 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
         biz.systempartners.txtreports.PlainTextTable table4 = new biz.systempartners.txtreports.PlainTextTable(2);
 
         biz.systempartners.txtreports.PlainTextTable tableF = new biz.systempartners.txtreports.PlainTextTable(2);
-
 
         String Cashpoint = null;
 
@@ -377,8 +348,6 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
 
         double credits = 0.00;
 
-
-
         try {
 
             java.sql.Statement st = connectDB.createStatement();
@@ -389,9 +358,9 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
             java.sql.Statement st6 = connectDB.createStatement();
             java.sql.Statement st7 = connectDB.createStatement();
             java.sql.Statement st3 = connectDB.createStatement();
-            
+
             java.sql.ResultSet rset3 = st3.executeQuery("SELECT DISTINCT header,footer from ac_receipt_header");
-            java.sql.ResultSet rset1 = st1.executeQuery("select date_part('day', receipt_time)||'-'||date_part('month', receipt_time)||'-'||date_part('year', receipt_time)||'@'||date_part('hour', receipt_time)||':'||date_part('minute', receipt_time) as receipt_time from ac_cash_collection where receipt_no = '"+Receipt+"'");
+            java.sql.ResultSet rset1 = st1.executeQuery("select date_part('day', receipt_time)||'-'||date_part('month', receipt_time)||'-'||date_part('year', receipt_time)||'@'||date_part('hour', receipt_time)||':'||date_part('minute', receipt_time) as receipt_time from ac_cash_collection where receipt_no = '" + Receipt + "'");
             java.sql.ResultSet rset5 = st5.executeQuery("select initcap(description),sum(quantity),sum(debit)::numeric(30,2),round(sum(debit/quantity))::numeric(30,2) from ac_cash_collection where receipt_no = '" + Receipt + "' and debit > 0 group by description");
             java.sql.ResultSet rset6 = st6.executeQuery("select distinct user_name,cash_point,journal_no,patient_no,dealer,shift_no,payment_mode from ac_cash_collection where receipt_no = '" + Receipt + "'");
             java.sql.ResultSet rset51 = st51.executeQuery("select sum(credit) from ac_cash_collection where receipt_no = '" + Receipt + "' and credit > 0 AND (transaction_type ILIKE 'Waive%' OR transaction_type ILIKE 'Exempti%')");
@@ -399,36 +368,23 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
             if (rHeader.equalsIgnoreCase("True")) {
 
                 // table11.addCell("CODE ");
-
-
                 table11.addCell("DESCRIPTION    QTY");
 
                 //  table1.addCell(dbObject.getDBObject(rset5.getObject(2), "-"));
-
                 //   table1.addCell(dbObject.getDBObject(rset5.getObject(4), "-"));
-
                 // table11.addCell("  ");
-
                 // table11.addCell("   ");
-
-                table11.addCell("AMT(" + ks+")");
-
+                table11.addCell("AMT(" + ks + ")");
 
                 while (rset5.next()) {
 
                     // table1.addCell("  ");
-
-
-                    table1.addCell(dbObject.getDBObject(rset5.getObject(1)+" "+rset5.getObject(2), "-"));
+                    table1.addCell(dbObject.getDBObject(rset5.getObject(1) + " " + rset5.getObject(2), "-"));
 
                     //  table1.addCell(dbObject.getDBObject(rset5.getObject(2), "-"));
-
                     //   table1.addCell(dbObject.getDBObject(rset5.getObject(4), "-"));
-
                     // table1.addCell("  ");
-
                     // table1.addCell("   ");
-
                     table1.addCell(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset5.getString(3)));
 
                     total = total + rset5.getDouble(3);
@@ -444,29 +400,24 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
 
                     Cashpoint = dbObject.getDBObject(rset6.getObject(2), "-");
 
-                   exemptionNumber = dbObject.getDBObject(rset6.getObject(3), "-");
+                    exemptionNumber = dbObject.getDBObject(rset6.getObject(3), "-");
 
-                   pNumber = dbObject.getDBObject(rset6.getObject(4), "-");
-                   MNo = dbObject.getDBObject(rset6.getObject(5), "-");
-                   shiftNumber = dbObject.getDBObject(rset6.getObject(6), "-");
-                   Paymode = dbObject.getDBObject(rset6.getObject(7), "-");
+                    pNumber = dbObject.getDBObject(rset6.getObject(4), "-");
+                    MNo = dbObject.getDBObject(rset6.getObject(5), "-");
+                    shiftNumber = dbObject.getDBObject(rset6.getObject(6), "-");
+                    Paymode = dbObject.getDBObject(rset6.getObject(7), "-");
                 }
 
                 while (rset51.next()) {
 
                     // table1.addCell("  ");
-
-
                     //   table1.addCell("Waiver");
                     table1.addCell("Waiver/Exemption, Ref/No: " + exemptionNumber);
                     //  table1.addCell(dbObject.getDBObject(rset5.getObject(2), "-"));
 
                     //   table1.addCell(dbObject.getDBObject(rset5.getObject(4), "-"));
-
                     // table1.addCell("  ");
-
                     // table1.addCell("   ");
-
                     table1.addCell(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset51.getString(1)));
 
                     waiver = rset51.getDouble(1);
@@ -479,12 +430,9 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
                     dates = dbObject.getDBObject(rset1.getObject(1), "-");
                 }
 
-
-
                 table4.addCell("RCPT No.: " + Receipt);
 
                 //  table4.addCell(" ");
-
                 table4.addCell("Date : " + dates);
 
                 table21.addCell("Patient No : " + pNumber.toUpperCase());
@@ -494,8 +442,6 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
                 // table21.addCell("A sum of Kshs : ");
                 java.sql.ResultSet rset_cash = st7.executeQuery("SELECT DISTINCT initcap(replace(cash_words('" + total + "'),'dollars','" + ks + "'))");
 
-
-
                 while (rset_cash.next()) {
 
                     cash_words = dbObject.getDBObject(rset_cash.getString(1), "-");
@@ -503,33 +449,24 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
                 }
 
                 //  table21.addCell(" - ");
-
                 // table21.addCell("A sum of " +cash_words);
-
                 // table21.addCell("In respect of :- "+MNo+ "  " +Name.toUpperCase());
-
                 //  table3.addCell("");
-
                 //  table3.addCell("");
-
                 table3.addCell("Total");
 
                 //  table3.addCell("");
-
                 table3.addCell(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(java.lang.String.valueOf(total - waiver), "0.00")));
 
                 table3.addCell("Tendered Amount");
 
                 //  table3.addCell("");
-
                 table3.addCell(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(java.lang.String.valueOf(total - waiver), "0.00")));
 
                 table3.addCell("Change");
 
                 //  table3.addCell("");
-
                 table3.addCell(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(java.lang.String.valueOf("0"), "0.00")));
-
 
                 tableF.addCell("Pymt Mode: " + Paymode);
 
@@ -537,7 +474,7 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
 
                 tableF.addCell("Cashier: " + Cashier.toUpperCase());
 
-                tableF.addCell("Shift No: "+shiftNumber);
+                tableF.addCell("Shift No: " + shiftNumber);
 
                 tableF.addCell(" ");
                 tableF.addCell(" ");
@@ -559,25 +496,19 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
                 tableF.addCell(" ");
                 tableF.addCell(" ");
 
-
-            //            simpleReportFooter = "Payment Mode: "+Paymode+"        Cash Point:    "+Cashpoint+ /*"\n"*/+ "   Cashier: "+  Cashier;
-            //  simpleReportFooter = "Payment Mode: "+Paymode+"        Cash Point:    "+Cashpoint+  "   Cashier: "+  Cashier;
-
+                //            simpleReportFooter = "Payment Mode: "+Paymode+"        Cash Point:    "+Cashpoint+ /*"\n"*/+ "   Cashier: "+  Cashier;
+                //  simpleReportFooter = "Payment Mode: "+Paymode+"        Cash Point:    "+Cashpoint+  "   Cashier: "+  Cashier;
             } else {
                 while (rset5.next()) {
 
                     //table1.addCell("  ");
-
-
                     table1.addCell(dbObject.getDBObject("              " + rset5.getObject(1), "-"));
 
-
                     // table1.addCell("  ");
-
                     // table1.addCell("   ");
-                    System.out.println("............................................."+new com.afrisoftech.sys.Format2Currency().Format2Currency(rset5.getString(3)));
+                    System.out.println("............................................." + new com.afrisoftech.sys.Format2Currency().Format2Currency(rset5.getString(3)));
                     table1.addCell(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset5.getString(3)));
-                    System.out.println("i was here"+new com.afrisoftech.sys.Format2Currency().Format2Currency(rset5.getString(3)));
+                    System.out.println("i was here" + new com.afrisoftech.sys.Format2Currency().Format2Currency(rset5.getString(3)));
                     osBalance = osBalance + rset5.getDouble(3);
 
                     System.out.println("This is the description 3 " + rset5.getString(1));
@@ -588,7 +519,6 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
                     dates = dbObject.getDBObject(rset1.getObject(1), "-");
                 }
 
-
                 while (rset6.next()) {
                     System.out.println("Cashier = " + Cashier);
                     System.out.println("Cashpoint " + Cashpoint);
@@ -596,21 +526,16 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
 
                     Cashpoint = dbObject.getDBObject(rset6.getObject(2), "-");
 
-
                 }
-
 
                 table4.addCell("          " + Receipt);
 
                 //  table4.addCell();
-
                 table4.addCell("          " + dates);
 
                 table21.addCell("              " + Name);
 
                 java.sql.ResultSet rset_cash = st7.executeQuery("select replace(cash_words('" + total + "'),'dollars','" + ks + "')");
-
-
 
                 while (rset_cash.next()) {
 
@@ -619,29 +544,21 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
                 }
 
                 //  table21.addCell(" - ");
-
                 table21.addCell("              " + cash_words);
-
 
                 table21.addCell("  ");
 
                 table21.addCell("              " + MNo + "  " + Name.toUpperCase());
 
                 // table3.addCell("");
-
                 // table3.addCell("");
-
                 table3.addCell("                      Total");
 
                 // table3.addCell("");
-
                 table3.addCell(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance)));
 
-
-
-
                 simpleReportFooter = "               " + Paymode + "                                      " + Cashpoint + "\n" + "                                                                          " + Cashier.toUpperCase();
-            //  simpleReportFooter = "Payment Mode: "+Paymode+"    Cash Point:    "+Cashpoint+ "\n"+ "   Cashier: "+  Cashier.toUpperCase();
+                //  simpleReportFooter = "Payment Mode: "+Paymode+"    Cash Point:    "+Cashpoint+ "\n"+ "   Cashier: "+  Cashier.toUpperCase();
 
             }
 
@@ -658,15 +575,12 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
             textReport.addTable(headerTitle, colSizeTitle, ColumnModelTitle, horizontalAlignmentsTitle);
 
             //   textReport.drawHorizontalLine(integers);
-
             textReport.addTable(table4, colSizes4, ColumnModelTitle4, horizontalAlignments4);
 
             //    textReport.drawHorizontalLine(integers);
-
             textReport.addTable(table21, colSizes21, ColumnModelTitle, horizontalAlignments21);
 
             //     textReport.drawHorizontalLine(integers);
-
             //     textReport.addTable(headerTableModel, integers, columnModel, horizontalAlignments);
             textReport.addTable(table11, colSizes5, columnModel1, horizontalAlignments1);
 
@@ -681,40 +595,32 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
             textReport.drawHorizontalLine(integers);
             textReport.addTable(tableF, colSizes4, ColumnModelTitle3, horizontalAlignments3);
 
-        // textReport.addTable(table23, colSizes2, ColumnModelTitle2, horizontalAlignments2);
-        //  textReport.writeSimpleReportFooter(simpleReportFooter, false);
-        //  textReport.drawHorizontalLine(integers);
-
+            // textReport.addTable(table23, colSizes2, ColumnModelTitle2, horizontalAlignments2);
+            //  textReport.writeSimpleReportFooter(simpleReportFooter, false);
+            //  textReport.drawHorizontalLine(integers);
         } else {
-
 
             textReport.addTable(table22, colSizeTitle, ColumnModelTitle, horizontalAlignmentsTitle);
 
             // textReport.drawHorizontalLine(integers);
-
             textReport.addTable(table4, colSizes4, ColumnModelTitle4, horizontalAlignments4);
 
             // textReport.drawHorizontalLine(integers);
-
             textReport.addTable(table21, colSizes21, ColumnModelTitle, horizontalAlignments21);
 
             // textReport.drawHorizontalLine(integers);
-
             textReport.addTable(headerTableModel, integers, columnModel, horizontalAlignments);
 
             // textReport.drawHorizontalLine(integers);
-
             textReport.addTable(table1, colSizes5, columnModel1, horizontalAlignments1);
 
             // textReport.drawHorizontalLine(integers);
-
             textReport.addTable(table3, colSizes3, ColumnModelTitle3, horizontalAlignments3);
 
             //  textReport.drawHorizontalLine(integers);
-
             //  textReport.addTable(table23, colSizes2, ColumnModelTitle2, horizontalAlignments2);
             textReport.writeSimpleReportFooter(simpleReportFooter, false);
-        //  textReport.drawHorizontalLine(integers);
+            //  textReport.drawHorizontalLine(integers);
 
         }
 
@@ -726,26 +632,25 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
         //  try{
 
         //      try {
-
         if (System.getProperty("os.name").equalsIgnoreCase("Linux")) {
 
             System.out.println(tempFile);
-            com.afrisoftech.lib.PrintTextFiles.printReceiptTextFile(tempFile.getPath());
-        //   wait_for_Pdf2Show = rt.exec("kwrite "+tempFile+"");
+            if (Receipt.length() > 1) {
+                com.afrisoftech.lib.PrintTextFiles.printReceiptTextFile(tempFile.getPath());
+            }
+            //   wait_for_Pdf2Show = rt.exec("kwrite "+tempFile+"");
 
-        //   wait_for_Pdf2Show.waitFor();
-
+            //   wait_for_Pdf2Show.waitFor();
         } else {
+            if (Receipt.length() > 1) {
             com.afrisoftech.lib.PrintTextFiles.printReceiptTextFile(tempFile.getPath());
-
-        // // wait_for_Pdf2Show = rt.exec("wordpad "+tempFile);
-        // print directly to printer in dos
-        // wait_for_Pdf2Show = rt.exec("print "+tempFile);
-
-        //  wait_for_Pdf2Show.waitFor();
-
+            }
+            // // wait_for_Pdf2Show = rt.exec("wordpad "+tempFile);
+            // print directly to printer in dos
+            // wait_for_Pdf2Show = rt.exec("print "+tempFile);
+            //  wait_for_Pdf2Show.waitFor();
         }
-    /*
+        /*
     } catch(java.lang.InterruptedException intrExec) {
 
     javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), intrExec.getMessage());
@@ -758,7 +663,7 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
     javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ioEx.getMessage());
 
     }
-     */
+         */
 
     }
 
@@ -789,14 +694,11 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
 
             threadCheck = false;
 
-
             System.out.println("We shall be lucky to get back to start in one piece");
 
         }
 
         if (!threadCheck) {
-
-
 
             Thread.currentThread().stop();
 

@@ -107,7 +107,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         storeNameCmbx = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        storeGLCodeTxt = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         broadMainPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -1005,7 +1005,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
         jPanel9.add(jLabel5, gridBagConstraints);
 
-        jTextField1.setEditable(false);
+        storeGLCodeTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
@@ -1013,7 +1013,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        jPanel9.add(jTextField1, gridBagConstraints);
+        jPanel9.add(storeGLCodeTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -2414,7 +2414,10 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void storeNameCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeNameCmbxActionPerformed
+        
         saveBtn.setEnabled(true);
+        
+        storeGLCodeTxt.setText(com.afrisoftech.lib.GLCodesFactory.getStoreSalesGLCode(connectDB, storeNameCmbx.getSelectedItem().toString()));
         // Add your handling code here:
     }//GEN-LAST:event_storeNameCmbxActionPerformed
 
@@ -3077,7 +3080,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
             System.out.println("selection not successful");
         }
 
-        jTextField1.setText("");
+        storeGLCodeTxt.setText("");
 
         // Add your handling code here:
     }//GEN-LAST:event_jComboBox11ActionPerformed
@@ -3574,7 +3577,6 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable11;
     private javax.swing.JTable jTable111;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField21;
@@ -3583,6 +3585,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton saveTypeofStoresBtn;
     private javax.swing.ButtonGroup servOrStock;
+    private javax.swing.JTextField storeGLCodeTxt;
     private javax.swing.JComboBox storeNameCmbx;
     private javax.swing.JTable storesTypeTable;
     private javax.swing.JLabel typesClearLbl;

@@ -2,7 +2,7 @@
 
 <Form version="1.2" maxVersion="1.2" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <NonVisualComponents>
-    <Container class="javax.swing.JDialog" name="jSearchDialog">
+    <Container class="javax.swing.JDialog" name="receiptSearchDialog">
       <Properties>
         <Property name="modal" type="boolean" value="true"/>
         <Property name="undecorated" type="boolean" value="true"/>
@@ -10,7 +10,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jSearchPanel">
+        <Container class="javax.swing.JPanel" name="receiptSearchPanel">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -26,9 +26,9 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="jTextField111">
+            <Component class="javax.swing.JTextField" name="receiptSearchTxt">
               <Events>
-                <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="jTextField111CaretUpdate"/>
+                <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="receiptSearchTxtCaretUpdate"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -36,7 +36,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jSearchScrollPane">
+            <Container class="javax.swing.JScrollPane" name="receiptSearchScrollPane">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                   <GridBagConstraints gridX="0" gridY="1" gridWidth="2" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="20.0"/>
@@ -45,17 +45,17 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jSearchTable">
+                <Component class="javax.swing.JTable" name="receiptSearchTable">
                   <Properties>
                     <Property name="showHorizontalLines" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jSearchTableMouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="receiptSearchTableMouseClicked"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable();"/>
                     <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value=""/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="   /*    try {&#xa;            searchRowSet.setCommand(&quot;select product,selling_price,gl_code FROM st_stock_prices WHERE department = &apos;Pharmacy&apos; order by product&quot;);&#xa;            searchRowSet.setConnectionSource(pConnDB);&#xa;            &#xa;            searchRowSet.execute();&#xa;            &#xa;            // crset2.setExecuteOnLoad(true);&#xa;            jSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {&#xa;                new org.netbeans.lib.sql.models.TableModel.Column(&quot;product&quot;, &quot;Description&quot;, false),&#xa;                new org.netbeans.lib.sql.models.TableModel.Column(&quot;selling_price&quot;, &quot;Amount&quot;, false),&#xa;                new org.netbeans.lib.sql.models.TableModel.Column(&quot;gl_code&quot;, &quot;Gl_code&quot;, false)&#xa;                &#xa;                &#xa;            }));&#xa;           // jSearchScrollPane.setViewportView(jSearchTable);&#xa;            &#xa;        } catch(java.sql.SQLException sqlex){&#xa;            javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),&quot;Error Message!&quot;,javax.swing.JOptionPane.ERROR_MESSAGE);&#xa;            &#xa;            System.out.println(sqlex.getMessage());&#xa;        }&#xa;    */"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="   /*    try {&#xa;            searchRowSet.setCommand(&quot;select product,selling_price,gl_code FROM st_stock_prices WHERE department = &apos;Pharmacy&apos; order by product&quot;);&#xa;            searchRowSet.setConnectionSource(pConnDB);&#xa;            &#xa;            searchRowSet.execute();&#xa;            &#xa;            // crset2.setExecuteOnLoad(true);&#xa;            receiptSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {&#xa;                new org.netbeans.lib.sql.models.TableModel.Column(&quot;product&quot;, &quot;Description&quot;, false),&#xa;                new org.netbeans.lib.sql.models.TableModel.Column(&quot;selling_price&quot;, &quot;Amount&quot;, false),&#xa;                new org.netbeans.lib.sql.models.TableModel.Column(&quot;gl_code&quot;, &quot;Gl_code&quot;, false)&#xa;                &#xa;                &#xa;            }));&#xa;           // receiptSearchScrollPane.setViewportView(receiptSearchTable);&#xa;            &#xa;        } catch(java.sql.SQLException sqlex){&#xa;            javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),&quot;Error Message!&quot;,javax.swing.JOptionPane.ERROR_MESSAGE);&#xa;            &#xa;            System.out.println(sqlex.getMessage());&#xa;        }&#xa;    */"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
@@ -571,6 +571,32 @@
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                       <GridBagConstraints gridX="1" gridY="5" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="reasonJscrl">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                      <GridBagConstraints gridX="1" gridY="6" gridWidth="4" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="10" anchor="10" weightX="0.0" weightY="0.0"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTextPane" name="reasonTxt">
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JLabel" name="jLabel11">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Reason for cancellation"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                      <GridBagConstraints gridX="0" gridY="6" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="30" insetsBottom="0" insetsRight="0" anchor="17" weightX="1.0" weightY="1.0"/>
                     </Constraint>
                   </Constraints>
                 </Component>

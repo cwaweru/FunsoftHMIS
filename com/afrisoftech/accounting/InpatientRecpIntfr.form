@@ -451,14 +451,14 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton1111">
+            <Component class="javax.swing.JButton" name="saveBtn">
               <Properties>
                 <Property name="mnemonic" type="int" value="79"/>
                 <Property name="text" type="java.lang.String" value="Save &amp; Print Receipt"/>
                 <Property name="toolTipText" type="java.lang.String" value="Click here enter data"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1111ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveBtnActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value=" try {&#xa;            java.lang.Class.forName(&quot;org.postgresql.Driver&quot;);&#xa;        }catch (java.lang.ClassNotFoundException sl){&#xa;            System.out.println(sl.getMessage());&#xa;        }&#xa;     "/>
@@ -1653,7 +1653,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Mobile Tx Amount"/>
+                <Property name="text" type="java.lang.String" value="Token Balance"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

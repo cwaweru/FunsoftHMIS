@@ -78,9 +78,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
         dailySeries = new com.afrisoftech.timeseries.DailyAgeing(iterations + 1, endate);
 
         // long enDate = java.util.Date.parse(endDate);
-
-
-
         threadSample = new java.lang.Thread(this, "SampleThread");
 
         System.out.println("threadSample created");
@@ -121,14 +118,11 @@ public class CashDailyRevPdf implements java.lang.Runnable {
 
             threadCheck = false;
 
-
             System.out.println("We shall be lucky to get back to start in one piece");
 
         }
 
         if (!threadCheck) {
-
-
 
             Thread.currentThread().stop();
 
@@ -296,7 +290,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
         java.lang.Object[][] dailyDates = dailySeries.getAgeingDateSeries();
 
         // ageingDates = ageingSeries.getAgeingDateSeries();
-
         double columnTotals[] = new double[rangeDates.length];
 
         java.lang.Process wait_for_Pdf2Show;
@@ -323,7 +316,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
             java.lang.String creditTotal = null;
 
             //   com.lowagie.text.Document docPdf = new com.lowagie.text.Document();
-
             com.lowagie.text.Document docPdf = new com.lowagie.text.Document();
 
             java.util.Calendar calendar = java.util.Calendar.getInstance();
@@ -333,7 +325,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
             java.sql.Date datenowSql = new java.sql.Date(dateNow);
 
             System.out.println(datenowSql.toString());
-
 
             try {
 
@@ -346,7 +337,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                     try {
 
                         //   java.sql.Connection conDb = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-
                         java.sql.Statement st3 = connectDB.createStatement();
                         java.sql.Statement st4 = connectDB.createStatement();
                         java.sql.Statement st4x = connectDB.createStatement();
@@ -359,22 +349,22 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                             date = rset4.getObject(1).toString();
                         }
 
-                       float mints = 0;
-                       java.sql.ResultSet rset4x = st4x.executeQuery("SELECT EXTRACT(MINUTE FROM(current_time::time - report_time::time)) FROM moh_reports");
+                        float mints = 0;
+                        java.sql.ResultSet rset4x = st4x.executeQuery("SELECT EXTRACT(MINUTE FROM(current_time::time - report_time::time)) FROM moh_reports");
 
-                       while (rset4x.next()) {
+                        while (rset4x.next()) {
                             mints = rset4x.getFloat(1);
                         }
-                       if(mints > 7 || mints <= 0){
-                         java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("DELETE FROM moh_reports");
-                        pstmt31.executeUpdate();
+                        if (mints > 7 || mints <= 0) {
+                            java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("DELETE FROM moh_reports");
+                            pstmt31.executeUpdate();
 
-                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO moh_reports("
-                                + "receipt_time, exempted_amt, amt, amt_paid, transaction_type,"
-                                + "activity_code, debit, waived)   "
-                                + "SELECT receipt_time, exempted_amt, amt, amt_paid, transaction_type, "
-                                + "activity_code, debit, waived  FROM moh_report");
-                         pstmt.executeUpdate();
+                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO moh_reports("
+                                    + "receipt_time, exempted_amt, amt, amt_paid, transaction_type,"
+                                    + "activity_code, debit, waived)   "
+                                    + "SELECT receipt_time, exempted_amt, amt, amt_paid, transaction_type, "
+                                    + "activity_code, debit, waived  FROM moh_report");
+                            pstmt.executeUpdate();
                         }
                         com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase("" + compName, pFontHeader2), false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
 
@@ -391,103 +381,83 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                     com.lowagie.text.HeaderFooter footer = new com.lowagie.text.HeaderFooter(new Phrase("Cash Monthly Collection  Page: ", pFontHeader), true);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 12, Font.BOLDITALIC,java.awt.Color.blue));
 
                     // docPdf.setFooter(footer);
-
-
                     docPdf.open();
-
 
                     double Totals = 0.00;
                     double OS = 0.00;
                     try {
 
-
                         //com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(rangeDates.length+1);
-                        
-
                         //    for (int p = 1; p <= 31 ; p++) {
-
                         // java.sql.PreparedStatement pset111 = connectDB.prepareStatement("select gl_account from pb_operating_parameters WHERE category ilike 'LAB'");
                         // java.sql.ResultSet rset111 = pset111.executeQuery();
                         // while (rset111.next()){
                         //     lab = rset111.getString(1);
                         // }
-                         java.lang.Object[] listofAct = this.getListofActivities();
+                        java.lang.Object[] listofAct = this.getListofActivities();
                         java.lang.Object[] listofAct1 = this.getListofActivities1();
-                      
 
                         //for ( int w = 0; w < listofAct1.length; w++){
                         for (int i = 0; i < listofAct.length; i++) {
                             double Uexemp = 0.00;
-                             int numberSeq = 0;
-   
+                            int numberSeq = 0;
 
-                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(5);
+                            com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(5);
 
-                        String headerWidths = null;
+                            String headerWidths = null;
 
-                        java.util.Vector headerVector = new java.util.Vector(1, 1);
+                            java.util.Vector headerVector = new java.util.Vector(1, 1);
 
-                        int z = rangeDates.length;
+                            int z = rangeDates.length;
 
+                            int headerwidths[] = {10, 20, 20, 20, 20};//,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10};
 
-                        int headerwidths[] = {10, 20, 20, 20, 20};//,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10};
+                            table.setWidths(headerwidths);
 
+                            table.setWidthPercentage((100));
 
-                        table.setWidths(headerwidths);
+                            table.setHeaderRows(2);
 
-                        table.setWidthPercentage((100));
+                            table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.LEFT | Rectangle.RIGHT | Rectangle.TOP);
 
-                        table.setHeaderRows(2);
+                            table.getDefaultCell().setColspan(1);
+                            Phrase phrase = new Phrase("");
+                            //for (int x = 0; x < rangeDates.length; x++) {
 
-                        table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.LEFT | Rectangle.RIGHT | Rectangle.TOP);
+                            //table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
+                            // try {
+                            double GrandTotal = 0.00;
+                            double Over120Total = 0.00;
+                            double TurnOver = 0.00;
+                            double Over120 = 0.00;
+                            double TotalCount = 0.00;
 
-                        table.getDefaultCell().setColspan(1);
-                        Phrase phrase = new Phrase("");
-                        //for (int x = 0; x < rangeDates.length; x++) {
+                            double nhifdebts1 = 0.00;
+                            double exedebts1 = 0.00;
+                            double absdebts1 = 0.00;
+                            double othdebts1 = 0.00;
 
-                        //table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
+                            table.getDefaultCell().setColspan(1);
 
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                            table.getDefaultCell().setColspan(1);
 
-                        // try {
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-                        double GrandTotal = 0.00;
-                        double Over120Total = 0.00;
-                         double TurnOver = 0.00;
-                        double Over120 = 0.00;
-                        double TotalCount = 0.00;
-
-                        double nhifdebts1 = 0.00;
-                        double exedebts1 = 0.00;
-                        double absdebts1 = 0.00;
-                        double othdebts1 = 0.00;
-
-
-
-                        table.getDefaultCell().setColspan(1);
-
-                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                        table.getDefaultCell().setColspan(1);
-
-
-
-
-                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-
-
-                        int dayTotal = 0;
-                        String mot = null;
-                        String opp = null;
-                        String the = null;
-                        String lab = null;
-                        String xray = null;
-                        String pha = null;
-                        String ip = null;
-                        String mat = null;
-                        String aot = null;
-                        String pmo = null;
-                        String fct = null;
-                        String dbt = null;
-                        String nhifs = null;
+                            int dayTotal = 0;
+                            String mot = null;
+                            String opp = null;
+                            String the = null;
+                            String lab = null;
+                            String xray = null;
+                            String pha = null;
+                            String ip = null;
+                            String mat = null;
+                            String aot = null;
+                            String pmo = null;
+                            String fct = null;
+                            String dbt = null;
+                            String nhifs = null;
                             try {
                                 try {
 
@@ -525,7 +495,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                     phrase = new Phrase("Month :   " + monthString.toUpperCase(), pFontHeader2);
 
                                     // table.addCell(phrase);
-
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                                     table.getDefaultCell().setColspan(1);
                                     phrase = new Phrase("Year :   " + yearString.toUpperCase(), pFontHeader2);
@@ -686,8 +655,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 double absdebts = 0.00;
                                 double othdebts = 0.00;
 
-
-
                                 java.sql.Statement stmta1 = connectDB.createStatement();
 
                                 java.sql.Statement st2 = connectDB.createStatement();
@@ -703,7 +670,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 java.sql.Statement stc = connectDB.createStatement();
                                 java.sql.Statement st01 = connectDB.createStatement();
 
-
                                 java.sql.PreparedStatement pset = connectDB.prepareStatement("SELECT sum(debit-waived)FROM moh_reports WHERE receipt_time = '" + listofAct[i] + "'");
                                 // java.sql.PreparedStatement pset = connectDB.prepareStatement("select sum(debit-credit) from ac_cash_collection WHERE receipt_time::DATE = '" + listofAct[i] + "' AND transaction_type != 'Banking'");
 
@@ -713,11 +679,9 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                     janu = rset.getDouble(1);
                                     Tsales = Tsales + janu;
 
-
                                 }
 
                                 //java.sql.PreparedStatement psetwav = connectDB.prepareStatement("select sum(credit-debit) from ac_cash_collection WHERE receipt_time::DATE = '" + listofAct[i] + "' AND transaction_type ilike 'waiver'");
-
                                 java.sql.PreparedStatement psetwav = connectDB.prepareStatement("select sum(waived-debit) from moh_reports WHERE receipt_time = '" + listofAct[i] + "' AND transaction_type ilike 'waiver'");
 
                                 java.sql.ResultSet rsetwav = psetwav.executeQuery();
@@ -753,7 +717,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 while (rsetj.next()) {
                                     mat = rsetj.getString(1);
 
-
                                     //java.sql.PreparedStatement psetj1 = connectDB.prepareStatement("select sum(debit-credit) from ac_cash_collection WHERE receipt_time::DATE = '" + listofAct[i] + "' AND activity_code = '" + mat + "' AND transaction_type != 'Banking'");
                                     java.sql.PreparedStatement psetj1 = connectDB.prepareStatement("select sum(debit-waived) from moh_reports WHERE receipt_time = '" + listofAct[i] + "' AND activity_code = '" + mat + "'");
 
@@ -770,7 +733,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 while (rset11.next()) {
                                     xray = rset11.getString(1);
 
-
                                     java.sql.PreparedStatement pset12 = connectDB.prepareStatement("select sum(debit-waived) from moh_reports WHERE receipt_time = '" + listofAct[i] + "' AND activity_code = '" + xray + "'");
                                     //java.sql.PreparedStatement pset12 = connectDB.prepareStatement("select sum(debit-credit) from ac_cash_collection WHERE receipt_time::DATE = '" + listofAct[i] + "' AND activity_code = '" + xray + "' AND transaction_type != 'Banking'");
 
@@ -783,7 +745,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
 
                                 java.sql.PreparedStatement pset111 = connectDB.prepareStatement("SELECT DISTINCT code FROM pb_activity WHERE department ILIKE 'LAB' ORDER BY code");
                                 java.sql.ResultSet rset111 = pset111.executeQuery();
-
 
                                 double currentLABTotal = 0.00;
 
@@ -827,7 +788,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 while (rsetd1.next()) {
                                     mot = rsetd1.getString(1);
 
-
                                     java.sql.PreparedStatement psetd = connectDB.prepareStatement("select sum(debit-waived) from moh_reports WHERE receipt_time = '" + listofAct[i] + "' AND activity_code = '" + mot + "'");
                                     // java.sql.PreparedStatement psetd = connectDB.prepareStatement("select sum(debit-credit) from ac_cash_collection WHERE receipt_time::DATE = '" + listofAct[i] + "' AND activity_code = '" + mot + "' AND transaction_type != 'Banking'");
 
@@ -845,7 +805,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 while (rsetp.next()) {
                                     opp = rsetp.getString(1);
 
-
                                     java.sql.PreparedStatement psetp1 = connectDB.prepareStatement("select sum(debit-waived) from moh_reports WHERE receipt_time = '" + listofAct[i] + "' AND activity_code = '" + opp + "'");
                                     // java.sql.PreparedStatement psetp1 = connectDB.prepareStatement("select sum(debit-credit) from ac_cash_collection WHERE receipt_time::DATE = '" + listofAct[i] + "' AND activity_code = '" + opp + "' AND transaction_type != 'Banking'");
 
@@ -859,12 +818,10 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 java.sql.PreparedStatement pseth = connectDB.prepareStatement("SELECT DISTINCT code FROM pb_activity WHERE department ILIKE 'PF' ORDER BY code");
                                 java.sql.ResultSet rseth = pseth.executeQuery();
 
-
                                 double currentPFTotal = 0.00;
 
                                 while (rseth.next()) {
                                     pha = rseth.getString(1);
-
 
                                     java.sql.PreparedStatement pseth1 = connectDB.prepareStatement("select sum(debit-waived) from moh_reports WHERE receipt_time = '" + listofAct[i] + "' AND activity_code = '" + pha + "'");
                                     // java.sql.PreparedStatement pseth1 = connectDB.prepareStatement("select sum(debit-credit) from ac_cash_collection WHERE receipt_time::DATE = '" + listofAct[i] + "' AND activity_code = '" + pha + "' AND transaction_type != 'Banking'");
@@ -878,17 +835,13 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                     }
                                 }
 
-
-
                                 java.sql.PreparedStatement psethb = connectDB.prepareStatement("SELECT DISTINCT code FROM pb_activity WHERE (department ILIKE 'AOT' OR department ILIKE 'OTH') ORDER BY code");
                                 java.sql.ResultSet rsethb = psethb.executeQuery();
-
 
                                 double currentAOTTotal = 0.00;
 
                                 while (rsethb.next()) {
                                     aot = rsethb.getString(1);
-
 
                                     java.sql.PreparedStatement psetw = connectDB.prepareStatement("select sum(debit-waived) from moh_reports WHERE receipt_time = '" + listofAct[i] + "' AND activity_code = '" + aot + "'");//(activity_code NOT LIKE '"+pha+"' OR activity_code NOT LIKE '"+opp+"' OR activity_code NOT LIKE '"+mot+"' OR activity_code NOT LIKE '"+the+"' OR activity_code NOT LIKE '"+xray+"' OR activity_code NOT LIKE '"+mot+"')");
                                     // java.sql.PreparedStatement psetw = connectDB.prepareStatement("select sum(debit-credit) from ac_cash_collection WHERE receipt_time::DATE = '" + listofAct[i] + "' AND activity_code = '" + aot + "' AND transaction_type != 'Banking'");//(activity_code NOT LIKE '"+pha+"' OR activity_code NOT LIKE '"+opp+"' OR activity_code NOT LIKE '"+mot+"' OR activity_code NOT LIKE '"+the+"' OR activity_code NOT LIKE '"+xray+"' OR activity_code NOT LIKE '"+mot+"')");
@@ -900,7 +853,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                     }
                                 }
 
-
                                 String aotDesc = null;
                                 String aotother = null;
                                 java.sql.PreparedStatement psethb1 = connectDB.prepareStatement("SELECT DISTINCT code FROM pb_activity WHERE (department ILIKE 'AOT' OR department ILIKE 'OTH') ORDER BY code");
@@ -910,7 +862,7 @@ public class CashDailyRevPdf implements java.lang.Runnable {
 
                                 //  while (rsethb1.next()){
                                 //     aotother = rsethb1.getString(1);
-                            /*    if (i < listofAct1.length) {
+                                /*    if (i < listofAct1.length) {
                                 java.sql.PreparedStatement psetcw = connectDB.prepareStatement("select sum(debit-credit) from ac_cash_collection WHERE activity_code = '" + listofAct1[i] + "' AND DATE between '" + beginDate + "' AND '" + endDate + "'");
                                 java.sql.ResultSet rsetcw = psetcw.executeQuery();
 
@@ -939,9 +891,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 Unhif = Unhif + Uexemp;
                                 // }
 
-
-
-
                                 java.sql.PreparedStatement psethbF = connectDB.prepareStatement("select distinct gl_code from ac_banks_setup WHERE branch_name ilike 'FACILITY%'");
                                 java.sql.ResultSet rsethbF = psethbF.executeQuery();
 
@@ -958,7 +907,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                     }
 
                                 }
-
 
                                 java.sql.PreparedStatement psethbp = connectDB.prepareStatement("select distinct gl_code from ac_banks_setup WHERE branch_name ilike 'PMO%'");
                                 java.sql.ResultSet rsethbp = psethbp.executeQuery();
@@ -977,17 +925,13 @@ public class CashDailyRevPdf implements java.lang.Runnable {
 
                                 }
 
-
-
                                 java.sql.PreparedStatement psetod = connectDB.prepareStatement("SELECT DISTINCT code FROM pb_activity WHERE department ILIKE 'DR' ORDER BY code");
                                 java.sql.ResultSet rsetod = psetod.executeQuery();
-
 
                                 double currentDRTotal = 0.00;
 
                                 while (rsetod.next()) {
                                     dbt = rsetod.getString(1);
-
 
                                     java.sql.PreparedStatement psethdt = connectDB.prepareStatement("select sum(debit-credit) from ac_cash_collection WHERE date = '" + listofAct[i] + "' AND activity_code = '" + dbt + "'");
                                     java.sql.ResultSet rsethdt = psethdt.executeQuery();
@@ -999,11 +943,8 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                     }
                                 }
 
-
-
                                 java.sql.PreparedStatement psethnh = connectDB.prepareStatement("SELECT DISTINCT code FROM pb_activity WHERE (department ILIKE 'NHIF' OR department ILIKE 'N H I F') ORDER BY code");
                                 java.sql.ResultSet rsethnh = psethnh.executeQuery();
-
 
                                 double currentNHIFTotal = 0.00;
 
@@ -1036,7 +977,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
 
                                 // java.sql.PreparedStatement psetr = connectDB.prepareStatement("select sum(debit-credit) from ac_cash_collection WHERE date = '"+listofAct[i]+"' AND (receipt_no NOT LIKE 'AC%' OR receipt_no NOT LIKE '' OR receipt_no IS NOT NULL) AND transaction_type != 'Banking'");
                                 // java.sql.ResultSet rsetr = psetr.executeQuery();
-
                                 java.sql.PreparedStatement psetz = connectDB.prepareStatement("select sum(credit-debit) from ac_debtors WHERE date = '" + listofAct[i] + "' AND transaction_type ILIKE 'Receipts' AND (payee ILIKE 'nhif%' OR payee ILIKE 'n.h.i.f%' OR payee ILIKE 'n h i%')");
                                 java.sql.ResultSet rsetz = psetz.executeQuery();
 
@@ -1058,9 +998,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 //  table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                                 //  phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(java.lang.String.valueOf(janu+Twaivers),"0.00")),pFontHeader1);
                                 //  table.addCell(phrase);
-
-
-
                                 //  while (rset1.next()){
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                                 table.getDefaultCell().setColspan(1);
@@ -1074,7 +1011,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 table.addCell(phrase);
 
                                 // }
-
                                 // Maternity Cash
                                 numberSeq = numberSeq + 1;
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
@@ -1166,7 +1102,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
 
-
                                 Tmot = Tmot + currentMOTTotal;
                                 Cashs = Cashs + currentMOTTotal;
                                 phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(java.lang.String.valueOf(currentMOTTotal), "0.00")), pFontHeader1);
@@ -1185,14 +1120,12 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
 
-
                                 Top = Top + currentOPPTotal;
                                 Cashs = Cashs + currentOPPTotal;
                                 phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(java.lang.String.valueOf(currentOPPTotal), "0.00")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 // Pharmacy
-
                                 numberSeq = numberSeq + 1;
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                                 phrase = new Phrase("" + numberSeq + "   ", pFontHeader);
@@ -1206,23 +1139,17 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
 
-
                                 Tpha = Tpha + currentPFTotal;
                                 Cashs = Cashs + currentPFTotal;
                                 phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(java.lang.String.valueOf(currentPFTotal), "0.00")), pFontHeader1);
                                 table.addCell(phrase);
 
-
-
                                 table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-
-
 
                                 //    Tcash = Tcash + (Cashs-Twaivers);
                                 //    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(java.lang.String.valueOf(Cashs-Twaivers),"0.00")),pFontHeader1);
                                 //    table.addCell(phrase);
-
                                 // NHIF Receipts
                                 numberSeq = numberSeq + 1;
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
@@ -1243,7 +1170,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 table.addCell(phrase);
 
                                 //Other Debtors
-
                                 numberSeq = numberSeq + 1;
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                                 phrase = new Phrase("" + numberSeq + "   ", pFontHeader);
@@ -1263,9 +1189,8 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 table.addCell(phrase);
 
                                 // Deal with all waivers for the period
-
                                 while (rsetwn.next()) {
-                                     waivers = rsetwn.getDouble(1);
+                                    waivers = rsetwn.getDouble(1);
                                 }
                                 numberSeq = numberSeq + 1;
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
@@ -1280,8 +1205,8 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
 
-                               // Cashs = Cashs - waivers;
-                                 Cashs = Cashs;
+                                // Cashs = Cashs - waivers;
+                                Cashs = Cashs;
 
                                 phrase = new Phrase("(" + new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(java.lang.String.valueOf(waivers), "0.00")) + ")", pFontHeader1);
                                 table.addCell(phrase);
@@ -1292,7 +1217,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 phrase = new Phrase("" + numberSeq + "", pFontHeader);
                                 table.addCell(phrase);
 
-
                                 table.getDefaultCell().setColspan(3);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                                 phrase = new Phrase("OTHER INCOME", pFontHeader1);
@@ -1301,14 +1225,12 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
 
-
                                 Tother = Tother + currentAOTTotal;
                                 Cashs = Cashs + currentAOTTotal;
                                 phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(java.lang.String.valueOf(currentAOTTotal), "0.00")), pFontHeader1);
                                 table.addCell(phrase);
 
                                 // Print detailed information for other(Miscellaneous) income departments
-
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                                 phrase = new Phrase("", pFontHeaderDetail);
                                 table.addCell(phrase);
@@ -1338,47 +1260,45 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 table.addCell(phrase);
 
                                 //if (i < listofAct1.length) {
-                                    for (int k = 0; k < listofAct1.length; k++) {
-                                        Uexemp = 0.00;
+                                for (int k = 0; k < listofAct1.length; k++) {
+                                    Uexemp = 0.00;
 
-                                        java.sql.PreparedStatement psetcw = connectDB.prepareStatement("select sum(debit-credit) from ac_cash_collection WHERE activity_code = '" + listofAct1[k] + "' AND date::DATE = '" + listofAct[i] + "'");
-                                        java.sql.ResultSet rsetcw = psetcw.executeQuery();
+                                    java.sql.PreparedStatement psetcw = connectDB.prepareStatement("select sum(debit-credit) from ac_cash_collection WHERE activity_code = '" + listofAct1[k] + "' AND date::DATE = '" + listofAct[i] + "'");
+                                    java.sql.ResultSet rsetcw = psetcw.executeQuery();
 
-                                        java.sql.PreparedStatement psetc1w = connectDB.prepareStatement("select initcap(activity) from pb_activity WHERE code = '" + listofAct1[k] + "'");
-                                        java.sql.ResultSet rsetc1w = psetc1w.executeQuery();
-                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                                    java.sql.PreparedStatement psetc1w = connectDB.prepareStatement("select initcap(activity) from pb_activity WHERE code = '" + listofAct1[k] + "'");
+                                    java.sql.ResultSet rsetc1w = psetc1w.executeQuery();
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                                    phrase = new Phrase("", pFontHeaderDetail);
+                                    table.addCell(phrase);
+                                    while (rsetc1w.next()) {
+                                        aotDesc = rsetc1w.getString(1);
+                                        table.getDefaultCell().setColspan(2);
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                        phrase = new Phrase(aotDesc, pFontHeaderDetail);
+                                        table.addCell(phrase);
+                                    }
+                                    while (rsetcw.next()) {
+                                        //   table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                                        Uexemp = rsetcw.getDouble(1);
+                                        //Cashs = Cashs + Uexemp;
+
+                                        table.getDefaultCell().setColspan(1);
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                                        phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(java.lang.String.valueOf(Uexemp), "0.00")), pFontHeaderDetail);
+                                        table.addCell(phrase);
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                         phrase = new Phrase("", pFontHeaderDetail);
                                         table.addCell(phrase);
-                                        while (rsetc1w.next()) {
-                                            aotDesc = rsetc1w.getString(1);
-                                            table.getDefaultCell().setColspan(2);
-                                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                            phrase = new Phrase(aotDesc, pFontHeaderDetail);
-                                            table.addCell(phrase);
-                                        }
-                                        while (rsetcw.next()) {
-                                            //   table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                                            Uexemp = rsetcw.getDouble(1);
-                                            //Cashs = Cashs + Uexemp;
-
-                                            table.getDefaultCell().setColspan(1);
-                                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(java.lang.String.valueOf(Uexemp), "0.00")), pFontHeaderDetail);
-                                            table.addCell(phrase);
-                                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                            phrase = new Phrase("", pFontHeaderDetail);
-                                            table.addCell(phrase);
-                                        }
-                                        //  Unhif = Unhif + Uexemp;
-
                                     }
-                               /* } else {
+                                    //  Unhif = Unhif + Uexemp;
+
+                                }
+                                /* } else {
                                     aotDesc = "-";
                                     Uexemp = 0.00;
                                     // Unhif = Unhif + Uexemp;
                                 }*/
-
-
 
                                 table.getDefaultCell().setColspan(1);
 
@@ -1396,10 +1316,6 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                                 phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(java.lang.String.valueOf(Cashs/*Tsales + nhifdebts1 + othdebts1 + exedebts1 + absdebts1*/), "0.00")), pFontHeader2);
                                 table.addCell(phrase);
 
-
-
-
-
                                 docPdf.add(table);
 
                             } catch (java.sql.SQLException SqlExec) {
@@ -1415,12 +1331,9 @@ public class CashDailyRevPdf implements java.lang.Runnable {
                     } catch (com.lowagie.text.BadElementException BadElExec) {
 
                         // Bad
-
                         javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), BadElExec.getMessage());
 
                     }
-
-
 
                 } catch (java.io.FileNotFoundException fnfExec) {
 
@@ -1433,41 +1346,15 @@ public class CashDailyRevPdf implements java.lang.Runnable {
 
             }
 
-             
-
-            try {
-
-                if (System.getProperty("os.name").equalsIgnoreCase("Linux")) {
-
-                    System.out.println(tempFile);
-
-                    wait_for_Pdf2Show = rt.exec("xpdf " + tempFile + "");
-
-                    wait_for_Pdf2Show.waitFor();
-
-                } else {
-
-                    wait_for_Pdf2Show = rt.exec("c:/Program Files/Adobe/Acrobat 5.0/Reader/AcroRd32.exe " + tempFile);
-
-                    wait_for_Pdf2Show.waitFor();
-
-                }
-
-            } catch (java.lang.InterruptedException intrExec) {
-
-                javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), intrExec.getMessage());
-
-            }
-
-
+            docPdf.close();
+            
+            com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
         } catch (java.io.IOException IOexec) {
 
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), IOexec.getMessage());
 
         }
-
-
 
     }
 
@@ -1480,10 +1367,7 @@ public class CashDailyRevPdf implements java.lang.Runnable {
 
         java.util.Vector listActVector = new java.util.Vector(1, 1);
 
-
         //for (int k = 0;  k < monthDates.length; k++){
-
-
         for (int k = monthDates.length - 1; k
                 >= 0; k--) {
 
@@ -1492,18 +1376,13 @@ public class CashDailyRevPdf implements java.lang.Runnable {
 
                 listActVector.addElement(rangeDates[t][k]);
 
-
-
             }
         }
 
         listofActivities = listActVector.toArray();
         System.out.println("Done list of activities ...");
 
-
         return listofActivities;
-
-
 
     }
 
@@ -1513,40 +1392,30 @@ public class CashDailyRevPdf implements java.lang.Runnable {
 
         java.util.Vector listActVector1 = new java.util.Vector(1, 1);
 
-
-
-
         try {
 
             //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-
             java.sql.Statement stmt1 = connectDB.createStatement();
 
             java.sql.PreparedStatement pSet1 = connectDB.prepareStatement("SELECT DISTINCT code FROM pb_activity WHERE (department ILIKE 'AOT' OR department ILIKE 'OTH') ORDER BY code");
 
-
             java.sql.ResultSet rSet1 = pSet1.executeQuery();
-
-
 
             while (rSet1.next()) {
                 System.out.println(rSet1.getObject(1).toString());
                 listActVector1.addElement(rSet1.getObject(1).toString());
 
-
-
             } //System.out.println(rSet1.getObject(1).toString());
         } catch (java.sql.SQLException sqlExec) {
 
+            sqlExec.printStackTrace();
+
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
-
-
 
         }
 
         listofActivities1 = listActVector1.toArray();
         System.out.println("Done list of activities ...");
-
 
         return listofActivities1;
 

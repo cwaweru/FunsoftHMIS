@@ -417,11 +417,11 @@ public class SthirteenPdf implements java.lang.Runnable {
                             
                             java.sql.Statement st = connectDB.createStatement();
 
-                            java.sql.ResultSet rset = st.executeQuery("select DISTINCT invoice_no,store,date,supplier,delivery_note_no,order_no,requisition_no from st_stock_cardex "
+                            java.sql.ResultSet rset = st.executeQuery("select DISTINCT invoice_no,store,date,supplier,delivery_note_no,order_no,requisition_no,inv_no from st_stock_cardex "
                                                                     + "WHERE  invoice_no = '" + invNo + "' AND supplier = '" + suppName + "' "
                                                                     + "AND requisition_no='"+transactionNo+"' AND (transaction_type NOT LIKE 'Stock Returns' OR delivery_note_no NOT LIKE 'PCRT%') ORDER BY requisition_no");
 
-
+                            String type = "";
                             while (rset.next()) {
 
 
@@ -434,6 +434,7 @@ public class SthirteenPdf implements java.lang.Runnable {
                                 //grnNumber = rset.getObject(7).toString();
                                 inv_date=rset.getObject(3).toString();
                                 delivery_date=rset.getObject("date").toString();
+                                type = rset.getString(8);
 
                             }
                             table.getDefaultCell().setColspan(6);
@@ -447,12 +448,21 @@ public class SthirteenPdf implements java.lang.Runnable {
                                 phrase = new Phrase("GRN No.: " + transactionNo, pFontHeader);
                                 table.addCell(phrase);
                                 
-                                table.getDefaultCell().setColspan(6);
+                                table.getDefaultCell().setColspan(3);
                                 //table.getDefaultCell().setFixedHeight(18);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase = new Phrase("Supplier :" + suppName + "", pFontHeader);
 
                                 table.addCell(phrase);
+                                
+                                table.getDefaultCell().setColspan(3);
+                                //table.getDefaultCell().setFixedHeight(18);
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                phrase = new Phrase("Type :" + type + "", pFontHeader);
+
+                                table.addCell(phrase);
+                                
+                                
                                 table.getDefaultCell().setColspan(3);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase = new Phrase("Delivery Note No. " + deliveryNo, pFontHeader);

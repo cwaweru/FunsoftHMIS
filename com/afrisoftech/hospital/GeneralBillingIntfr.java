@@ -158,6 +158,20 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         buttonGroup5 = new javax.swing.ButtonGroup();
         jCheckBox5 = new javax.swing.JCheckBox();
         genderButtonGroup = new javax.swing.ButtonGroup();
+        creditSlipDialog = new javax.swing.JDialog();
+        headerPanel = new javax.swing.JPanel();
+        creditSlipBillNoTxt = new javax.swing.JTextField();
+        creditSlipPatientNameTxt = new javax.swing.JTextField();
+        creditSlipPatientTxt = new javax.swing.JTextField();
+        bodyPanel = new javax.swing.JPanel();
+        creditSlipScrollPane = new javax.swing.JScrollPane();
+        creditSlipTable = new com.afrisoftech.dbadmin.JTable();
+        actionPanel = new javax.swing.JPanel();
+        creditSlipPrintBtn = new javax.swing.JButton();
+        creditSlipCloseBtn = new javax.swing.JButton();
+        creditSlipSpacerLbl = new javax.swing.JLabel();
+        billSummaryScrollPane = new javax.swing.JScrollPane();
+        billSummaryTable = new com.afrisoftech.dbadmin.JTable();
         jLabel7 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         billingPanel = new javax.swing.JTabbedPane();
@@ -278,6 +292,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         payBillNumberTxt = new javax.swing.JTextField();
+        creditSlipBtn = new javax.swing.JButton();
         chargeRatesCategoriesPanel = new javax.swing.JPanel();
         searchbyCodeChkbx = new javax.swing.JCheckBox();
         searchbyNameChkbx = new javax.swing.JCheckBox();
@@ -1408,6 +1423,139 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                     jCheckBox5ActionPerformed(evt);
                 }
             });
+
+            creditSlipDialog.setTitle("Scheme Bills Credit printing dialog");
+            creditSlipDialog.setModal(true);
+            creditSlipDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+            headerPanel.setLayout(new java.awt.GridBagLayout());
+
+            creditSlipBillNoTxt.setEditable(false);
+            creditSlipBillNoTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Credit Slip No"));
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 2;
+            gridBagConstraints.gridy = 0;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            headerPanel.add(creditSlipBillNoTxt, gridBagConstraints);
+
+            creditSlipPatientNameTxt.setEditable(false);
+            creditSlipPatientNameTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Patient Name"));
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 1;
+            gridBagConstraints.gridy = 0;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+            gridBagConstraints.weightx = 3.0;
+            gridBagConstraints.weighty = 1.0;
+            headerPanel.add(creditSlipPatientNameTxt, gridBagConstraints);
+
+            creditSlipPatientTxt.setEditable(false);
+            creditSlipPatientTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Patient No"));
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 0;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            headerPanel.add(creditSlipPatientTxt, gridBagConstraints);
+
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            creditSlipDialog.getContentPane().add(headerPanel, gridBagConstraints);
+
+            bodyPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Billing Details"));
+            bodyPanel.setLayout(new java.awt.GridBagLayout());
+
+            creditSlipTable.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+
+                },
+                new String [] {
+
+                }
+            ));
+            creditSlipScrollPane.setViewportView(creditSlipTable);
+
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            bodyPanel.add(creditSlipScrollPane, gridBagConstraints);
+
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 2;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 100.0;
+            creditSlipDialog.getContentPane().add(bodyPanel, gridBagConstraints);
+
+            actionPanel.setLayout(new java.awt.GridBagLayout());
+
+            creditSlipPrintBtn.setText("Print Credit Slip");
+            creditSlipPrintBtn.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    creditSlipPrintBtnActionPerformed(evt);
+                }
+            });
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 2;
+            gridBagConstraints.gridy = 0;
+            actionPanel.add(creditSlipPrintBtn, gridBagConstraints);
+
+            creditSlipCloseBtn.setText("Close Dialog");
+            creditSlipCloseBtn.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    creditSlipCloseBtnActionPerformed(evt);
+                }
+            });
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 3;
+            gridBagConstraints.gridy = 0;
+            actionPanel.add(creditSlipCloseBtn, gridBagConstraints);
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 0;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            actionPanel.add(creditSlipSpacerLbl, gridBagConstraints);
+
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 3;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            creditSlipDialog.getContentPane().add(actionPanel, gridBagConstraints);
+
+            billSummaryScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Bills Summary Listing"));
+
+            billSummaryTable.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+
+                },
+                new String [] {
+
+                }
+            ));
+            billSummaryTable.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    billSummaryTableMouseClicked(evt);
+                }
+            });
+            billSummaryScrollPane.setViewportView(billSummaryTable);
+
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 1;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 25.0;
+            creditSlipDialog.getContentPane().add(billSummaryScrollPane, gridBagConstraints);
 
             setClosable(true);
             setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -3317,7 +3465,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 1;
+            gridBagConstraints.gridy = 2;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -3331,7 +3479,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 2;
+            gridBagConstraints.gridy = 3;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -3408,7 +3556,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 3;
+            gridBagConstraints.gridy = 4;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -3429,7 +3577,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 4;
+            gridBagConstraints.gridy = 5;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -3443,7 +3591,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 5;
+            gridBagConstraints.gridy = 7;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -3456,11 +3604,25 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             payBillNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PayBill Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 7;
+            gridBagConstraints.gridy = 8;
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             billingActionButtonsPanel.add(payBillNumberTxt, gridBagConstraints);
+
+            creditSlipBtn.setText("Credit Slip");
+            creditSlipBtn.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    creditSlipBtnActionPerformed(evt);
+                }
+            });
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 1;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            billingActionButtonsPanel.add(creditSlipBtn, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 7;
@@ -3634,6 +3796,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             buttonGroup1.add(opdChkbx);
             opdChkbx.setForeground(new java.awt.Color(51, 51, 255));
             opdChkbx.setMnemonic('o');
+            opdChkbx.setSelected(true);
             opdChkbx.setText("OUT- Patients");
             opdChkbx.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4599,7 +4762,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             getContentPane().add(billingPanel, gridBagConstraints);
 
-            setBounds(0, 0, 850, 506);
+            setBounds(0, 0, 1226, 506);
         }// </editor-fold>//GEN-END:initComponents
 
     private void packageAmountTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_packageAmountTxtActionPerformed
@@ -7650,6 +7813,52 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_femaleChkbxActionPerformed
 
+    private void creditSlipBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditSlipBtnActionPerformed
+        if (!patientNumberTxt.getText().isEmpty()) {
+            if (paymentModeCmbx.getSelectedItem().toString().contains("Scheme")) {
+
+                java.awt.Point point = this.patientNumberTxt.getLocationOnScreen();
+
+                creditSlipDialog.setSize(800, 500);
+
+                creditSlipDialog.setLocation(point);
+                creditSlipDialog.setVisible(true);
+                //creditSlipDialog.setSize(800, 500);
+                creditSlipPatientTxt.setText(patientNumberTxt.getText());
+                creditSlipPatientNameTxt.setText(patientNameTxt.getText());
+                billSummaryTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date::date, reference as  credit_slip_no, scheme, isurer as payer, sum(debit-credit) as credit_amount FROM hp_patient_card WHERE patient_no = '" + creditSlipPatientTxt.getText() + "' AND collected = false AND date::date >= now()::date -2 group by 1,2,3,4 ORDER BY 1,2"));
+            }
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_creditSlipBtnActionPerformed
+
+    private void billSummaryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billSummaryTableMouseClicked
+        creditSlipBillNoTxt.setText(billSummaryTable.getValueAt(billSummaryTable.getSelectedRow(), 1).toString());
+        creditSlipTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date::date, reference as  credit_slip_no, scheme, isurer as payer, main_service as service_department, service, sum(debit-credit) as credit_amount FROM hp_patient_card WHERE patient_no = '" + creditSlipPatientTxt.getText() + "' AND collected = false AND reference = '" + creditSlipBillNoTxt.getText() + "' AND date::date >= now()::date -2 group by 1,2,3,4,5,6 ORDER BY 1,2"));
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_billSummaryTableMouseClicked
+
+    private void creditSlipPrintBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditSlipPrintBtnActionPerformed
+
+        // Printout for the bill if connected to athermal printer or other printer only for scheme/insurance patients
+        if (paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
+            if (!creditSlipBillNoTxt.getText().isEmpty()) {
+                com.afrisoftech.txtreports.GokBillingTxt billPrint = new com.afrisoftech.txtreports.GokBillingTxt(connectDB, creditSlipPatientNameTxt.getText(), String.valueOf(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(creditSlipTable, 6)), creditSlipBillNoTxt.getText(), "Scheme");
+            }
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_creditSlipPrintBtnActionPerformed
+
+    private void creditSlipCloseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditSlipCloseBtnActionPerformed
+
+        creditSlipDialog.dispose();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_creditSlipCloseBtnActionPerformed
+
     private void packagesBilling() {
 
         System.out.println("Showing dialog");
@@ -8675,10 +8884,20 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 connectDB.commit();
                 connectDB.setAutoCommit(true);
 
-                // Printout for the bill if connected to athermal printer or other printer only for scheme/insurance patients
-                if (paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
+                // Printout for the bill if connected to a thermal printer or other printer only for scheme/insurance patients
+                if (paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme") && opdChkbx.isSelected()) {
                     com.afrisoftech.txtreports.GokBillingTxt billPrint = new com.afrisoftech.txtreports.GokBillingTxt(connectDB, patientNameTxt.getText(), billTotalTxt.getText(), transNo, "Scheme");
                 }
+
+                // Forward LIMS requets
+                if (ipdChkbx.isSelected() || paymentModeCmbx.getSelectedItem().toString().contains("Scheme") && com.afrisoftech.lib.LabRequestJSON.isLIMSEnabled(connectDB)) {
+                    if (opdChkbx.isEnabled()) {
+                        com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendLabRequest(connectDB, "bGltc19hY2Nlc3M6MTJAITIzIzQk", transNo, patientNumberTxt.getText(), patientNameTxt.getText(), paymentModeCmbx.getSelectedItem().toString(), schemeNameTxt.getText(), com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, transNo, patientNumberTxt.getText()), "OUT");
+                    } else {
+                        com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendLabRequest(connectDB, "bGltc19hY2Nlc3M6MTJAITIzIzQk", transNo, patientNumberTxt.getText(), patientNameTxt.getText(), paymentModeCmbx.getSelectedItem().toString(), schemeNameTxt.getText(), com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, transNo, patientNumberTxt.getText()), "IN");
+                    }
+                }
+
                 patientNameTxt.setText("");
                 patientCategoryTxt.setText("");
                 billTotalTxt.setText("");
@@ -8714,14 +8933,18 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel actionPanel;
     private javax.swing.JCheckBox applyPackagesBillingChkbx;
     private javax.swing.JCheckBox back2ServicesTableChkbx;
     public static javax.swing.JTextField bedAmountTxt;
+    private javax.swing.JScrollPane billSummaryScrollPane;
+    private javax.swing.JTable billSummaryTable;
     public static javax.swing.JTextField billTotalTxt;
     private javax.swing.JPanel billingActionButtonsPanel;
     private javax.swing.JTabbedPane billingPanel;
     private javax.swing.JTextField billingStationTxt;
     private javax.swing.JScrollPane billingTablesJscrl;
+    private javax.swing.JPanel bodyPanel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
@@ -8743,6 +8966,16 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTable consultantBillingTable;
     private javax.swing.JTextField consultantPatientCategoryTxt;
     private javax.swing.JPanel consultantsBillingPanel;
+    private javax.swing.JTextField creditSlipBillNoTxt;
+    private javax.swing.JButton creditSlipBtn;
+    private javax.swing.JButton creditSlipCloseBtn;
+    private javax.swing.JDialog creditSlipDialog;
+    private javax.swing.JTextField creditSlipPatientNameTxt;
+    private javax.swing.JTextField creditSlipPatientTxt;
+    private javax.swing.JButton creditSlipPrintBtn;
+    private javax.swing.JScrollPane creditSlipScrollPane;
+    private javax.swing.JLabel creditSlipSpacerLbl;
+    private javax.swing.JTable creditSlipTable;
     private com.afrisoftech.lib.DatePicker datePicker1;
     private com.afrisoftech.lib.DatePicker datePicker2;
     private javax.swing.JTable discreetServicesTbl;
@@ -8758,6 +8991,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel generalBillingPanel;
     private javax.swing.JDialog generalBillingPatientSearchDialog;
     private javax.swing.JTextField glcodeTxt;
+    private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel imgPanel;
     public static javax.swing.JDialog inpatientRegisterSearchDialog;
     private javax.swing.JCheckBox ipdChkbx;

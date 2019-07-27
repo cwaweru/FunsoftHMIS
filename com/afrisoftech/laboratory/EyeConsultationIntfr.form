@@ -2247,9 +2247,9 @@
                                 <Property name="rowHeight" type="int" value="22"/>
                               </Properties>
                               <Events>
-                                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="clerkingwaitingTableMouseEntered"/>
                                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="clerkingwaitingTableMouseClicked"/>
                                 <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="clerkingwaitingTableMouseExited"/>
+                                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="clerkingwaitingTableMouseEntered"/>
                               </Events>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JXTable()"/>

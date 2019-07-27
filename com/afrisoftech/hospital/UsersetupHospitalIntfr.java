@@ -2392,7 +2392,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
             //    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("DROP USER " + user2del);
             java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("DELETE FROM secure_menu_access WHERE login_name = '" + user2del + "'");
 
-            java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("DELETE FROM secure_passwd WHERE login_name = '" + user2del + "'");
+            java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("DELETE FROM secure_password WHERE login_name = '" + user2del + "'");
 
             pstmt1.executeUpdate();
 
@@ -2833,7 +2833,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
                         }
 
-                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("CREATE USER " + logonNameTxt.getText() + " WITH PASSWORD '" + newPasswordField.getText() + "'");
+                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("CREATE USER " + logonNameTxt.getText() + " WITH PASSWORD '" + newPasswordField.getText() + "' SUPERUSER");
 
                         pstmt.execute();
 
@@ -2845,9 +2845,9 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
                         java.sql.PreparedStatement pstmt6 = connectDB.prepareStatement("INSERT INTO secure_menu_access(login_name, menu_list, f_name, l_name, department, sys_name, group_name) VALUES (lower(?),?,?,?,?,?,?)");
 
-                        java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO secure_passwd values(lower(?),?,?,?,?,?)");
+                        java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO secure_password values(lower(?),?,?,?,?,?)");
 
-                        // java.sql.PreparedStatement pstmt3 = connectDB.prepareStatement("GRANT SELECT ON secure_passwd TO " + jTextField582.getText());
+                        // java.sql.PreparedStatement pstmt3 = connectDB.prepareStatement("GRANT SELECT ON secure_password TO " + jTextField582.getText());
                         pstmt1.setObject(1, logonNameTxt.getText());
                         pstmt1.setArray(2, arraySet);
                         pstmt1.setObject(3, jTextField2.getText());
@@ -2919,7 +2919,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
                         connectDB.commit();
                         connectDB.setAutoCommit(true);
 
-                        com.afrisoftech.lib.SecuritySettings.setUserAccessControl(connectDB, logonNameTxt.getText());
+                       // com.afrisoftech.lib.SecuritySettings.setUserAccessControl(connectDB, logonNameTxt.getText());
 
                         javax.swing.JOptionPane.showMessageDialog(this, "Successfully created new user : [" + logonNameTxt.getText() + "]");
 

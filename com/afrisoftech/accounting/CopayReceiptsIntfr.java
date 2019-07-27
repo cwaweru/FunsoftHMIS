@@ -793,7 +793,7 @@ public class CopayReceiptsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         jPanel212.add(jLabel4, gridBagConstraints);
 
-        jLabel5.setText("Receipt No");
+        jLabel5.setText("Receipt No.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;

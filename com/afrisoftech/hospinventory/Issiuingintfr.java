@@ -1491,7 +1491,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
     private void subStoreChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subStoreChkbxActionPerformed
         //select st.store_name from st_stores st, store_allocation sa where st.store_name=sa.stores and sa.user_name=current_user
-        issuingStoreCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select distinct st.store_name from st_stores st, store_allocation sa where st.store_name=sa.stores and sa.user_name=current_user"));// and type ilike 'Issuing Stock%'"));
+        issuingStoreCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select distinct st.store_name from st_stores st, store_allocation sa where UPPER(st.store_name) = UPPER(sa.stores) and sa.user_name=current_user"));// and type ilike 'Issuing Stock%'"));
         //issuingStoreCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select DISTINCT stores from store_allocation where user_name = current_user"));// and type ilike 'Issuing Stock%'"));
         issuingStoreCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

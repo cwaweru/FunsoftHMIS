@@ -291,7 +291,7 @@ public class DiagByDocPdf implements java.lang.Runnable {
                         docPdf.setHeader(headerFoter);
 
                     } catch (java.sql.SQLException SqlExec) {
-
+                        SqlExec.printStackTrace();
                         javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
                     }
@@ -374,7 +374,7 @@ public class DiagByDocPdf implements java.lang.Runnable {
 
                         try {
 
-                            java.sql.PreparedStatement st = connectDB.prepareStatement("select DISTINCT (patient_no) as patient_no,date_recorded::date,initcap(patient_name),initcap(disease), comments from hp_patient_diagnosis WHERE date_recorded::date BETWEEN ? AND ? and (UPPER(user_name) = UPPER(?) or UPPER(user_name) = (SELECT DISTINCT UPPER(login_name) from secure_menu_access where UPPER(f_name || ' '|| l_name) = UPPER(?) LIMIT 1)) order by 2");
+                            java.sql.PreparedStatement st = connectDB.prepareStatement("select DISTINCT (patient_no) as patient_no,date_recorded::date,initcap(patient_name),initcap(disease), comments from hp_patient_diagnosis WHERE date_recorded::date BETWEEN ? AND ? and ((UPPER(user_name) = UPPER(?) or UPPER(user_name) = (SELECT DISTINCT UPPER(login_name) from secure_menu_access where UPPER(f_name || ' '|| l_name) = UPPER(?) LIMIT 1))) order by 2");
 
                             st.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
 
@@ -386,7 +386,7 @@ public class DiagByDocPdf implements java.lang.Runnable {
 
                             java.sql.ResultSet rset = st.executeQuery();
 
-                            java.sql.PreparedStatement st1 = connectDB.prepareStatement("select COUNT ( DISTINCT patient_no) from hp_patient_diagnosis WHERE date_recorded BETWEEN ? AND ? and (UPPER(user_name) = UPPER(?) or UPPER(user_name) = (SELECT DISTINCT UPPER(login_name) from secure_menu_access where UPPER(f_name || ' '|| l_name) = UPPER(?) LIMIT 1))");
+                            java.sql.PreparedStatement st1 = connectDB.prepareStatement("select COUNT ( DISTINCT patient_no) from hp_patient_diagnosis WHERE date_recorded BETWEEN ? AND ? and ((UPPER(user_name) = UPPER(?) or UPPER(user_name) = (SELECT DISTINCT UPPER(login_name) from secure_menu_access where UPPER(f_name || ' '|| l_name) = UPPER(?) LIMIT 1)))");
 
                             st1.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
 

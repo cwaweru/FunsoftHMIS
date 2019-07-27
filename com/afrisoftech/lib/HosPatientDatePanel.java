@@ -73,6 +73,7 @@ public class HosPatientDatePanel extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -317,25 +318,32 @@ public class HosPatientDatePanel extends javax.swing.JDialog {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jButton2, gridBagConstraints);
 
         jButton1.setMnemonic('P');
-        jButton1.setText("Preview Detailed Statement");
+        jButton1.setText("Preview Detailed Card/Statement");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jButton1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 100.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jLabel3, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -346,7 +354,7 @@ public class HosPatientDatePanel extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
         getContentPane().add(jPanel3, gridBagConstraints);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select Patient here", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select Patient here", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
         jLabel4.setText("Patient No.");
@@ -416,6 +424,7 @@ public class HosPatientDatePanel extends javax.swing.JDialog {
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         buttonGroup2.add(jRadioButton1);
+        jRadioButton1.setSelected(true);
         jRadioButton1.setText("Out Patient");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -434,7 +443,6 @@ public class HosPatientDatePanel extends javax.swing.JDialog {
         jPanel2.add(nochkbx, gridBagConstraints);
 
         buttonGroup2.add(jRadioButton2);
-        jRadioButton2.setSelected(true);
         jRadioButton2.setText("In Patient");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -482,7 +490,7 @@ public class HosPatientDatePanel extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton51ActionPerformed
 
     private void jTextField1111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1111CaretUpdate
-        if (this.jTextField1111.getCaretPosition() < 3) {
+        if (this.jTextField1111.getCaretPosition() < 6) {
             System.out.print("Nothing");
         } else {
             if (this.nochkbx.isSelected()) {
@@ -573,7 +581,7 @@ public class HosPatientDatePanel extends javax.swing.JDialog {
                 java.awt.Point point = this.jTextField11.getLocationOnScreen();
                 previousVisitIDDialog.setLocation(point);
             }
-            previousVisitIDDialog.setSize(400, 200);
+            previousVisitIDDialog.setSize(600, 200);
 
             previousVisitIDDialog.setVisible(true);
         } else {
@@ -599,7 +607,7 @@ public class HosPatientDatePanel extends javax.swing.JDialog {
             java.awt.Point point = this.jTextField11.getLocationOnScreen();
             jSearchDialog1.setLocation(point);
         }
-        jSearchDialog1.setSize(400, 200);
+        jSearchDialog1.setSize(600, 200);
 
         jSearchDialog1.setVisible(true);
 
@@ -788,6 +796,7 @@ public class HosPatientDatePanel extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

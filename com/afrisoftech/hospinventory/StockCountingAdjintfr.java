@@ -931,20 +931,20 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                 }
                 if (range1txt.getText().equalsIgnoreCase("-")) {
                     if (centralStorerbtn.isSelected()) {
-                        stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments FROM stockitem WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by description"));
+                        stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,0 as balance,0 as saleable, 0 as damaged, 0 as expired, null as comments FROM stockitem WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by description"));
                   // stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,item, null as strength, null as units,null as balance,null as saleable, null as damaged, null as expired, null as comments from st_stock_cardex  WHERE store ilike '" + storeCmbx.getSelectedItem().toString() + "' order by 2"));
 
                     } else {
 
-                      stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct (product_id), (product),strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments FROM stockprices WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by product"));
+                      stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct (product_id), (product),strength,units,0 as balance,0 as saleable, 0 as damaged, 0 as expired, null as comments FROM stockprices WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by product"));
                   //      stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct (item_code),null as product, null as strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments FROM st_stock_cardex WHERE store ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by item_code"));
 
                     }
                 } else {
                     if (centralStorerbtn.isSelected()) {
-                        stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments FROM stockitem WHERE (description ILIKE '" + range1txt.getText() + "%' OR description ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by description"));
+                        stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,description,strength,units,0 as balance,0 as saleable, 0 as damaged, 0 as expired, null as comments FROM stockitem WHERE (description ILIKE '" + range1txt.getText() + "%' OR description ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by description"));
                     } else {
-                        stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct product_id,product,strength,units,null as balance,null as saleable, null as damaged, null as expired, null as comments FROM stockprices WHERE (product ILIKE '" + range1txt.getText() + "%' OR product ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by product"));
+                        stockCountTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct product_id,product,strength,units,0 as balance,0 as saleable, 0 as damaged, 0 as expired, null as comments FROM stockprices WHERE (product ILIKE '" + range1txt.getText() + "%' OR product ILIKE '" + range2txt.getText() + "%') AND department ilike '" + storeCmbx.getSelectedItem().toString() + "%' order by product"));
 
                     }
                 }
@@ -979,6 +979,13 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
                 try {
                     for (int i = 0; i < stockCountTable.getRowCount(); i++) {
                         Object qty = 0.00;
+                        
+//                        stockCountTable.setValueAt(0.00, i, 4);
+//                        stockCountTable.setValueAt(0.00, i, 5);
+//                        stockCountTable.setValueAt(0.00, i, 6);
+//                        stockCountTable.setValueAt(0.00, i, 7);
+                        
+                        
                         //  float qty = 0;
                         java.sql.Statement stmt1 = connectDB.createStatement();
                         java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT sum(qty) FROM stock_balance_qty  WHERE department ilike '" + storeCmbx.getSelectedItem().toString() + "' AND item_code ilike '" + stockCountTable.getValueAt(i, 0) + "' AND dates <= '" + reconcileDtpckr.getDate() + "'");

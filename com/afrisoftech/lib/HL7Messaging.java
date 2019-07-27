@@ -7,14 +7,50 @@ package com.afrisoftech.lib;
 import ca.uhn.hl7v2.DefaultHapiContext;
 import ca.uhn.hl7v2.HL7Exception;
 import ca.uhn.hl7v2.HapiContext;
+import ca.uhn.hl7v2.model.DataTypeException;
+import ca.uhn.hl7v2.model.v24.datatype.XCN;
+import ca.uhn.hl7v2.model.v24.group.ADT_A01_INSURANCE;
 import ca.uhn.hl7v2.model.v24.message.ADT_A01;
+import ca.uhn.hl7v2.model.v25.message.ORM_O01;
+import ca.uhn.hl7v2.model.v24.message.ORU_R01;
 import ca.uhn.hl7v2.model.v24.segment.MSH;
 import ca.uhn.hl7v2.model.v24.segment.PID;
 import ca.uhn.hl7v2.model.v24.segment.OBR;
 import ca.uhn.hl7v2.model.v24.segment.OBX;
+import ca.uhn.hl7v2.model.v24.segment.PV1;
+import ca.uhn.hl7v2.model.v26.message.ADT_A60;
+import ca.uhn.hl7v2.HL7Exception;
+import ca.uhn.hl7v2.app.Connection;
+import ca.uhn.hl7v2.app.ConnectionHub;
+import ca.uhn.hl7v2.app.Initiator;
+import ca.uhn.hl7v2.llp.LLPException;
+import ca.uhn.hl7v2.llp.MinLowerLayerProtocol;
+import ca.uhn.hl7v2.model.Message;
+import ca.uhn.hl7v2.model.Varies;
+import ca.uhn.hl7v2.model.v24.group.ORM_O01_PATIENT;
+import ca.uhn.hl7v2.model.v24.segment.ORC;
+import ca.uhn.hl7v2.model.v25.datatype.CE;
+import ca.uhn.hl7v2.model.v25.datatype.ST;
+import ca.uhn.hl7v2.model.v25.datatype.TX;
+import ca.uhn.hl7v2.model.v25.group.ORU_R01_OBSERVATION;
+import ca.uhn.hl7v2.model.v25.group.ORU_R01_ORDER_OBSERVATION;
 import ca.uhn.hl7v2.parser.Parser;
+import ca.uhn.hl7v2.parser.PipeParser;
+import static com.afrisoftech.lib.HL7Utils.getHl7DateFormat;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.Socket;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import org.apache.log4j.Logger;
 //import org.openide.util.Exceptions;
 
 /**
@@ -23,6 +59,7 @@ import java.sql.SQLException;
  */
 public class HL7Messaging {
 
+    private static final org.apache.log4j.Logger log = Logger.getLogger(HL7Messaging.class);
     private static String PATIENT_ID = null;
     private static String PATIENT_FAMILY_SURNAME = null;
     private static String PATIENT_GIVEN_NAME = null;
@@ -78,14 +115,21 @@ public class HL7Messaging {
     private static String PATIENT_ADMISSION_WARD = null;
     private static String PATIENT_ADMISSION_OUTCOME = null;
     private static String VICTIM_OF_GENDER_VIOLENCE = null;
-public static void main(String args[]){
-    HL7Messaging hl7Messaging = new HL7Messaging();
+    ADT_A01 adt = null;
+    HapiContext context = null;
+    Parser parser = null;
+    MSH mshSegment = null;
+
+    public static void main(String args[]) throws LLPException {
+        HL7Messaging hl7Messaging = new HL7Messaging();
         try {
-            hl7Messaging.generateHL7Message(java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5433/funsoft", "admin", "funsoft"), "32534");
+            hl7Messaging.generateHL7Message(java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/funsoft", "admin", "funsoft"), "32534");
+
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
-}
+    }
+
     /**
      * @return the PATIENT_ID
      */
@@ -845,47 +889,99 @@ public static void main(String args[]){
         PATIENT_VISIT_ID = aPATIENT_VISIT_ID;
     }
 
-    public  ADT_A01 generateHL7Message(java.sql.Connection connectDB, String patientNo) {
-  
-        ADT_A01 adt = new ADT_A01();
+    public ADT_A01 generateHL7Message(java.sql.Connection connectDB, String patientNo) throws LLPException {
+
+        adt = new ADT_A01();
+        ORU_R01 oru = new ORU_R01();
+        ORM_O01 orm = new ORM_O01();
         try {
+            PATIENT_ID = "OP000099";
+            setFACILITY_ID("MOH001");
+            setFACILITY_NAME("FUNSOFT DEMO HOSPITAL");
+            setPATIENT_FAMILY_SURNAME("TESTING");
+            setPATIENT_GIVEN_NAME("OTHER PATIENT");
+            setPATIENT_CITIZENSHIP("KENYA");
             adt.initQuickstart("ADT", "A01", "P");
             // Populate the MSH Segment
-            MSH mshSegment = adt.getMSH();
+            mshSegment = adt.getMSH();
             mshSegment.getSendingApplication().getNamespaceID().setValue("Funsoft I-HMIS HL7 Messaging System");
             mshSegment.getSequenceNumber().setValue(getHL7SequenceNumber(connectDB));
-            // mshSegment.getSendingFacility()
+            mshSegment.getCountryCode().setValue("254");
+            mshSegment.getSendingFacility().getUniversalID().setValue("FUNSOFT DEMO HOSPITAL");
+            mshSegment.getMsh3_SendingApplication().getUniversalID().setValue("FUNSOFT I-HMIS");
             // Populate the PID Segment
             PID pid = adt.getPID();
             pid.getPatientName(0).getFamilyName().getSurname().setValue(getPATIENT_FAMILY_SURNAME());
             pid.getPatientName(0).getGivenName().setValue(getPATIENT_GIVEN_NAME());
             pid.getPatientIdentifierList(0).getID().setValue(getPATIENT_ID());
             pid.getCitizenship(0).getCe1_Identifier().setValue(getPATIENT_CITIZENSHIP());
+            pid.getLastUpdateFacility().getUniversalID().setValue(FACILITY_ID);
+            pid.getAdministrativeSex().setValue("F");
+            pid.getBirthOrder().setValue("2");
+            pid.getDateTimeOfBirth().getTs2_DegreeOfPrecision().setValue("20110302");
+            pid.getPatientAddress(0).getStreetAddress().getStreetName().setValue("Ngong Lane");
+            pid.getPatientAddress(0).getZipOrPostalCode().setValue("10001-00200");
+            pid.getPatientAddress(0).getCity().setValue("DEMO CITY");
+            pid.getMaritalStatus().getText().setValue("SINGLE");
+            pid.getPhoneNumberHome(0).getPhoneNumber().setValue("254719999999");
+            //     pid.
+            //pid.getCitizenship(0).
+            createPv1Segment();
+//            OBX obx = adt.getOBX();
+//            obx.getObservationMethod(0).getText().setValue("TRIAGE_TEMPERATURE");
 
+            ADT_A01_INSURANCE adt_ins = adt.getINSURANCE(0);
+            adt_ins.getIN1().getGroupName(0).getOrganizationName().setValue("MY INSURERANCE GROUP");
+            adt_ins.getIN1().getAuthorizationInformation().getAuthorizationNumber().setValue("INS001");
+            adt_ins.getIN1().getPlanType().setValue("FULL PLAN");
+            adt_ins.getIN1().insertIn116_NameOfInsured(0).getGivenName().setValue("DEMO PATIENT");
+            adt_ins.getIN1().getIn119_InsuredSAddress(0).getZipOrPostalCode().setValue("0001-00200");
             //adt.insertAL1(PATIENT_AGE).
             // Now, let's encode the message and look at the output
-            HapiContext context = new DefaultHapiContext();
-            Parser parser = context.getPipeParser();
+            //ADT_A01_O
+            context = new DefaultHapiContext();
+            parser = context.getPipeParser();
             String encodedMessage = parser.encode(adt);
             System.out.println("Printing ER7 Encoded Message:");
             System.out.println(encodedMessage);
+            writeToFile(encodedMessage, "/root/ADTMessage.er7");
             // Next, let's use the XML parser to encode as XML
             parser = context.getXMLParser();
             encodedMessage = parser.encode(adt);
             System.out.println("Printing XML Encoded Message:");
             System.out.println(encodedMessage);
 
-            OBX obx = adt.getOBX();
-          //  obx.
+            //http://www.dicomserver.co.uk/
+            // generateORUMessage(connectDB);
+            //generateORMessage(connectDB);
+            //createRadiologyOrderMessage();
+            // createRemoteOrder("www.dicomserver.co.uk", 104);
+            createRemoteOrder("localhost", 1080);
+            //  obx.
         } catch (HL7Exception ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
         } catch (IOException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
         }
         return adt;
 
+    }
+
+    private void createPv1Segment() throws DataTypeException {
+        PV1 pv1 = adt.getPV1();
+        pv1.getPatientClass().setValue("O"); // to represent an 'Outpatient'
+//            PL assignedPatientLocation = pv1.getAssignedPatientLocation();
+//            assignedPatientLocation.getFacility().getNamespaceID().setValue("Some Treatment Facility Name");
+//            assignedPatientLocation.getPointOfCare().setValue("Some Point of Care");
+        pv1.getAdmissionType().setValue("ALERT");
+        XCN referringDoctor = pv1.getReferringDoctor(0);
+        referringDoctor.getIDNumber().setValue("99999999");
+        referringDoctor.getFamilyName().getSurname().setValue("Smith");
+        referringDoctor.getGivenName().setValue("Jack");
+        referringDoctor.getIdentifierTypeCode().setValue("456789");
+        pv1.getAdmitDateTime().getTimeOfAnEvent().setValue(getCurrentTimeStamp());
     }
 
     private static String getHL7SequenceNumber(java.sql.Connection connectDB) {
@@ -900,7 +996,7 @@ public static void main(String args[]){
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex);
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
 
         return (String.valueOf(hl7SequenceID));
@@ -919,5 +1015,385 @@ public static void main(String args[]){
      */
     public static void setPATIENT_CITIZENSHIP(String aPATIENT_CITIZENSHIP) {
         PATIENT_CITIZENSHIP = aPATIENT_CITIZENSHIP;
+    }
+
+    private String getCurrentTimeStamp() {
+        return new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+    }
+
+    private void generateORUMessage(java.sql.Connection connectDB) throws HL7Exception, IOException {
+
+        ORU_R01 message = new ORU_R01();
+
+        mshSegment = message.getMSH();
+        //        mshSegment = adt.getMSH();
+        mshSegment.getSendingApplication().getNamespaceID().setValue("Funsoft I-HMIS HL7 Messaging System");
+        mshSegment.getSequenceNumber().setValue(getHL7SequenceNumber(connectDB));
+        mshSegment.getCountryCode().setValue("254");
+        mshSegment.getSendingFacility().getUniversalID().setValue("FUNSOFT DEMO HOSPITAL");
+        mshSegment.getMsh3_SendingApplication().getUniversalID().setValue("FUNSOFT I-HMIS");
+
+        message.initQuickstart("ORU", "R01", "T");
+
+        ca.uhn.hl7v2.model.v24.group.ORU_R01_ORDER_OBSERVATION orderObservation = message.getPATIENT_RESULT().getORDER_OBSERVATION();
+
+        // Populate the OBR
+        OBR obr = orderObservation.getOBR();
+        obr.getSetIDOBR().setValue("1");
+        obr.getFillerOrderNumber().getEntityIdentifier().setValue("1234");
+        obr.getFillerOrderNumber().getNamespaceID().setValue("XRAY");
+        obr.getUniversalServiceIdentifier().getIdentifier().setValue("XRY0088304");
+
+        ca.uhn.hl7v2.model.v24.group.ORU_R01_OBSERVATION observation = orderObservation.getOBSERVATION(0);
+        // Populate the first OBX
+        OBX obx = observation.getOBX();
+        obx.getSetIDOBX().setValue("1");
+        obx.getObservationIdentifier().getIdentifier().setValue("88304");
+        obx.getObservationSubId().setValue("1");
+
+        // The first OBX has a value type of CE. So first, we populate OBX-2 with "CE"...
+        obx.getValueType().setValue("CE");
+
+        // ... then we create a CE instance to put in OBX-5.
+        CE ce = new CE(message);
+        ce.getIdentifier().setValue("T57000");
+        ce.getText().setValue("CHEST LUNGS");
+        ce.getNameOfCodingSystem().setValue("SNM");
+        Varies value = obx.getObservationValue(0);
+        value.setData(ce);
+
+        // Now we populate the second OBX
+        obx = orderObservation.getOBSERVATION(1).getOBX();
+        obx.getSetIDOBX().setValue("2");
+        obx.getObservationSubId().setValue("1");
+
+        // The second OBX in the sample message has an extra subcomponent at
+        // OBX-3-1. This component is actually an ST, but the HL7 specification allows
+        // extra subcomponents to be tacked on to the end of a component. This is
+        // uncommon, but HAPI nontheless allows it.
+        ca.uhn.hl7v2.model.v24.datatype.ST observationIdentifier = obx.getObservationIdentifier().getIdentifier();
+        observationIdentifier.setValue("88304");
+        ST extraSubcomponent = new ST(message);
+        extraSubcomponent.setValue("MDT");
+        observationIdentifier.getExtraComponents().getComponent(0).setData(extraSubcomponent);
+
+        // The first OBX has a value type of TX. So first, we populate OBX-2 with "TX"...
+        obx.getValueType().setValue("TX");
+
+        // ... then we create a CE instance to put in OBX-5.
+        TX tx = new TX(message);
+        tx.setValue("XRAY SHOWS HAZY PATCHMENTATION");
+        value = obx.getObservationValue(0);
+        value.setData(tx);
+
+        // Print the message (remember, the MSH segment was not fully or correctly populated)
+        parser = context.getXMLParser();
+        String encodedMessage = parser.encode(message);
+        System.out.println("Printing ORU XML Encoded Message:");
+        System.out.println(encodedMessage);
+
+        // Print the message (remember, the MSH segment was not fully or correctly populated)
+        parser = context.getGenericParser();
+        encodedMessage = parser.encode(message);
+        System.out.println("Printing ORU ER7 Encoded Message:");
+        System.out.println(encodedMessage);
+        // System.out.println(message.encode());
+        writeToFile(encodedMessage, "/root/ORUMessage.er7");
+    }
+
+    private void generateORMessage(java.sql.Connection connectDB) throws HL7Exception, IOException {
+
+        // ORU_R01 message = new ORU_R01();
+        ORM_O01 message = new ORM_O01();
+
+        // mshSegment = message.getMSH();
+        //        mshSegment = adt.getMSH();
+        mshSegment.getSendingApplication().getNamespaceID().setValue("Funsoft I-HMIS HL7 Messaging System");
+        mshSegment.getSequenceNumber().setValue(getHL7SequenceNumber(connectDB));
+        mshSegment.getCountryCode().setValue("254");
+        mshSegment.getSendingFacility().getUniversalID().setValue("FUNSOFT DEMO HOSPITAL");
+        mshSegment.getMsh3_SendingApplication().getUniversalID().setValue("FUNSOFT I-HMIS");
+
+        message.initQuickstart("ORM", "R01", "T");
+
+        //    message.getORDER(1).getORC().getPlacerOrderNumber().getUniversalID().setValue("XR0001");
+        // Now we populate the second OBX
+//        obx = orderObservation.getOBSERVATION(1).getOBX();
+//        obx.getSetIDOBX().setValue("2");
+//        obx.getObservationSubId().setValue("1");
+        //obr.getExtraComponents().getComponent(0).setData(extraSubcomponent);
+        // The first OBX has a value type of TX. So first, we populate OBX-2 with "TX"...
+        // obx.getValueType().setValue("TX");
+        // ... then we create a CE instance to put in OBX-5.
+        TX tx = new TX(message);
+        tx.setValue("XRAY SHOWS HAZY PATCHMENTATION");
+        // value = obx.getObservationValue(0);
+        // value.setData(tx);
+
+        // Print the message (remember, the MSH segment was not fully or correctly populated)
+        parser = context.getXMLParser();
+        String encodedMessage = parser.encode(message);
+        System.out.println("Printing ORM XML Encoded Message:");
+        System.out.println(encodedMessage);
+
+        // Print the message (remember, the MSH segment was not fully or correctly populated)
+        parser = context.getGenericParser();
+        encodedMessage = parser.encode(message);
+        System.out.println("Printing ORM ER7 Encoded Message:");
+        System.out.println(encodedMessage);
+        // System.out.println(message.encode());
+        writeToFile(encodedMessage, "/root/ORMMessage.er7");
+    }
+
+    public void writeObjectToFile(Object serObj, String fileName) {
+
+        try {
+
+            FileOutputStream fileOut = new FileOutputStream(fileName);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(serObj);
+            objectOut.close();
+            System.out.println("The Object  was succesfully written to a file");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void writeToFile(String message, String fileName) {
+        try {
+            File file = new File(fileName);
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(message);
+            bw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void createRemoteOrder(String remoteHost, int remotePort) throws HL7Exception, LLPException, IOException {
+        //Creating client to accept Message i.e PACS server here
+        Socket socket = new Socket(remoteHost, remotePort);
+        //Message response = initiator.sendAndReceive(createRadiologyOrderMessage());
+        createRadiologyOrderMessage(socket);
+         createRadiologyOrderMessage();
+//        Connection newClientConnection = null;
+//        try {
+//            ConnectionHub connectionHub;
+//            connectionHub = ConnectionHub.getNewInstance(context);
+//            newClientConnection = connectionHub.attach(remoteHost, remotePort, new PipeParser(), MinLowerLayerProtocol.class);
+//            Initiator initiator = newClientConnection.getInitiator();
+////            Socket sockect;
+////            //Message response = initiator.sendAndReceive(createRadiologyOrderMessage());
+////            createRadiologyOrderMessage(new Socket(remoteHost, remotePort));
+//            //String responseString = new PipeParser().encode(response);
+//
+//           // log.info("Received response:\n" + responseString);
+//        } finally {
+//            if (newClientConnection != null) {
+//                newClientConnection.close();
+//            }
+//        }
+    }
+
+    public ORM_O01 createRadiologyOrderMessage() throws HL7Exception, IOException {
+        ORM_O01 message = new ORM_O01();
+
+        // handle the MSH component
+        ca.uhn.hl7v2.model.v25.segment.MSH msh = message.getMSH();
+        msh.getMessageControlID().setValue("MESSAGE_CONTROL_ID_1");
+        HL7Utils.populateMessageHeader(msh, new Date(), "ORM", "O01", "Funsoft EMR");
+        //message.initQuickstart("ORM", "001", "FUNSOFT EMR");
+
+        // handle the patient PID component
+        ca.uhn.hl7v2.model.v25.group.ORM_O01_PATIENT patient = message.getPATIENT();
+        ca.uhn.hl7v2.model.v25.segment.PID pid = patient.getPID();
+        //pid.getPatientID().getIDNumber().setValue("GAN00001");
+        pid.getPatientIdentifierList(0).getIDNumber().setValue("PAT004");
+        pid.getPatientName(0).getFamilyName().getSurname().setValue("Bowen");
+        pid.getPatientName(0).getGivenName().setValue("William");
+        pid.getDateTimeOfBirth().getTime().setValue(getHl7DateFormat().format(new Date()));
+        pid.getAdministrativeSex().setValue("M");
+        // TODO: do we need patient admission ID / account number
+
+        patient.getNTE(0).insertComment(0).setValue("Radiology Order Remarks/Nursing");
+        patient.getNTE(0).getSourceOfComment().setValue("L");
+        patient.getNTE(0).getSetIDNTE().setValue("0");
+
+        patient.getNTE(1).insertComment(0).setValue("Mpre Comment/Clinician");
+        patient.getNTE(1).getSourceOfComment().setValue("P");
+        patient.getNTE(1).getSetIDNTE().setValue("1");
+
+        // handle patient visit component
+        ca.uhn.hl7v2.model.v25.segment.PV1 pv1 = patient.getPATIENT_VISIT().getPV1();
+        pv1.getAssignedPatientLocation().getPointOfCare().setValue("OPD");
+        pv1.getAssignedPatientLocation().getPersonLocationType().setValue("Funsoft EMR");
+        pv1.getReferringDoctor(0).getIDNumber().setValue("1");
+        pv1.getReferringDoctor(0).getFamilyName().getSurname().setValue("Clinician");
+        pv1.getReferringDoctor(0).getGivenName().setValue("Expert");
+
+        // handle ORC component
+        ca.uhn.hl7v2.model.v25.segment.ORC orc = message.getORDER().getORC();
+        orc.getPlacerOrderNumber().getEntityIdentifier().setValue("A00");
+        orc.getFillerOrderNumber().getEntityIdentifier().setValue("OP00000123"); // Accession number in Imagesuite
+        orc.getEnteredBy(0).getGivenName().setValue("");
+        orc.getOrderControl().setValue("NW");
+
+//        orc.getOrderControl().setValue("CA");
+//        orc.getOrderStatus().setValue("DC");
+        orc.getOrderingProvider(0).getGivenName().setValue("Radiology");
+        orc.getOrderingProvider(0).getIDNumber().setValue("1");
+        orc.getOrderingProvider(0).getFamilyName().getSurname().setValue("Officer");
+
+        // handle OBR component
+        ca.uhn.hl7v2.model.v25.segment.OBR obr = message.getORDER().getORDER_DETAIL().getOBR(); // http://www.mexi.be/documents/hl7/ch400024.htm  http://www.mexi.be/documents/hl7/ch700010.htm
+        obr.getUniversalServiceIdentifier().getIdentifier().setValue("X00022");
+        obr.getUniversalServiceIdentifier().getText().setValue("Chest Xray");
+        //obr.getUniversalServiceIdentifier().getNameOfCodingSystem().setValue("");
+        obr.getProcedureCode().getIdentifier().setValue("XR0001");
+
+//        obr.getFillerOrderNumber().getEntityIdentifier().setValue("ORNO1");
+        // note that we are just sending modality here, not the device location
+        obr.getPlacerField2().setValue("CR");
+        obr.getQuantityTiming(0).getPriority().setValue("STAT");
+        obr.getScheduledDateTime().getTime().setValue(HL7Utils.getHl7DateFormat().format(new Date()));
+
+        // break the reason for study up by lines
+        obr.getReasonForStudy(0).getText().setValue("This is a test order");
+        obr.getReasonForStudy(1).getText().setValue("Other remarks");
+
+        obr.getCollectorSComment(0).getText().setValue("My remarks");
+
+        parser = context.getPipeParser();
+        String encodedMessage = parser.encode(message);
+        System.out.println("Printing ER7 Encoded Message:");
+        System.out.println(encodedMessage);
+        writeToFile(encodedMessage, "/root/ORMMessage.er7");
+        return message;
+
+    }
+
+    public void createRadiologyOrderMessage(Socket socket) throws HL7Exception, IOException {
+
+        final char END_OF_BLOCK = '\u001c';
+        final char START_OF_BLOCK = '\u000b';
+        final char CARRIAGE_RETURN = 13;
+
+        StringBuilder testHL7MessageToTransmit = new StringBuilder();
+
+        ORM_O01 message = new ORM_O01();
+
+        // handle the MSH component
+        ca.uhn.hl7v2.model.v25.segment.MSH msh = message.getMSH();
+        msh.getMessageControlID().setValue("MESSAGE_CONTROL_ID_1");
+        HL7Utils.populateMessageHeader(msh, new Date(), "ORM", "O01", "Funsoft EMR");
+        //message.initQuickstart("ORM", "001", "FUNSOFT EMR");
+
+        // handle the patient PID component
+        ca.uhn.hl7v2.model.v25.group.ORM_O01_PATIENT patient = message.getPATIENT();
+        ca.uhn.hl7v2.model.v25.segment.PID pid = patient.getPID();
+        //pid.getPatientID().getIDNumber().setValue("GAN00001");
+        pid.getPatientIdentifierList(0).getIDNumber().setValue("PAT004");
+        pid.getPatientName(0).getFamilyName().getSurname().setValue("Bowen");
+        pid.getPatientName(0).getGivenName().setValue("William");
+        pid.getDateTimeOfBirth().getTime().setValue(getHl7DateFormat().format(new Date()));
+        pid.getAdministrativeSex().setValue("M");
+        // TODO: do we need patient admission ID / account number
+
+        patient.getNTE(0).insertComment(0).setValue("Radiology Order Remarks/Nursing");
+        patient.getNTE(0).getSourceOfComment().setValue("L");
+        patient.getNTE(0).getSetIDNTE().setValue("0");
+
+        patient.getNTE(1).insertComment(0).setValue("Mpre Comment/Clinician");
+        patient.getNTE(1).getSourceOfComment().setValue("P");
+        patient.getNTE(1).getSetIDNTE().setValue("1");
+
+        // handle patient visit component
+        ca.uhn.hl7v2.model.v25.segment.PV1 pv1 = patient.getPATIENT_VISIT().getPV1();
+        pv1.getAssignedPatientLocation().getPointOfCare().setValue("OPD");
+        pv1.getAssignedPatientLocation().getPersonLocationType().setValue("Funsoft EMR");
+        pv1.getReferringDoctor(0).getIDNumber().setValue("1");
+        pv1.getReferringDoctor(0).getFamilyName().getSurname().setValue("Clinician");
+        pv1.getReferringDoctor(0).getGivenName().setValue("Expert");
+
+        // handle ORC component
+        ca.uhn.hl7v2.model.v25.segment.ORC orc = message.getORDER().getORC();
+        orc.getPlacerOrderNumber().getEntityIdentifier().setValue("A00");
+        orc.getFillerOrderNumber().getEntityIdentifier().setValue("OP00000123"); // Accession number in Imagesuite
+        orc.getEnteredBy(0).getGivenName().setValue("");
+        orc.getOrderControl().setValue("NW");
+
+//        orc.getOrderControl().setValue("CA");
+//        orc.getOrderStatus().setValue("DC");
+        orc.getOrderingProvider(0).getGivenName().setValue("Radiology");
+        orc.getOrderingProvider(0).getIDNumber().setValue("1");
+        orc.getOrderingProvider(0).getFamilyName().getSurname().setValue("Officer");
+
+        // handle OBR component
+        ca.uhn.hl7v2.model.v25.segment.OBR obr = message.getORDER().getORDER_DETAIL().getOBR(); // http://www.mexi.be/documents/hl7/ch400024.htm  http://www.mexi.be/documents/hl7/ch700010.htm
+        obr.getUniversalServiceIdentifier().getIdentifier().setValue("X00022");
+        obr.getUniversalServiceIdentifier().getText().setValue("Chest Xray");
+        //obr.getUniversalServiceIdentifier().getNameOfCodingSystem().setValue("");
+        obr.getProcedureCode().getIdentifier().setValue("XR0001");
+
+//        obr.getFillerOrderNumber().getEntityIdentifier().setValue("ORNO1");
+        // note that we are just sending modality here, not the device location
+        obr.getPlacerField2().setValue("CR");
+        obr.getQuantityTiming(0).getPriority().setValue("STAT");
+        obr.getScheduledDateTime().getTime().setValue(HL7Utils.getHl7DateFormat().format(new Date()));
+
+        // break the reason for study up by lines
+        obr.getReasonForStudy(0).getText().setValue("This is a test order");
+        obr.getReasonForStudy(1).getText().setValue("Other remarks");
+
+        obr.getCollectorSComment(0).getText().setValue("My remarks");
+
+        parser = context.getPipeParser();
+        String encodedMessage = parser.encode(message);
+        testHL7MessageToTransmit.append(START_OF_BLOCK)
+                .append(encodedMessage)
+                //        .append(CARRIAGE_RETURN)
+                .append(END_OF_BLOCK);
+        //        .append(CARRIAGE_RETURN);
+        System.out.println("Printing ER7 Encoded Message:");
+//        System.out.println(encodedMessage);
+        System.out.println("Printing MLLP Encoded Message: " + new String(testHL7MessageToTransmit.toString().getBytes()));
+        writeToFile(testHL7MessageToTransmit.toString(), "/root/ORMMessage.er7");
+        // testHL7MessageToTransmit.toString();
+        InputStream in = socket.getInputStream();
+        OutputStream out = socket.getOutputStream();
+        // Send the MLLP-wrapped HL7 message to the server
+        out.write(testHL7MessageToTransmit.toString().getBytes());
+
+        byte[] byteBuffer = new byte[200];
+        in.read(byteBuffer);
+
+        System.out.println("Received from Server: " + new String(byteBuffer));
+        // Close the socket and its streams
+        socket.close();
+        //  return testHL7MessageToTransmit.toString();
+
+    }
+
+    public static Message editRadiologyOrderMessage(ORM_O01 message) throws DataTypeException {
+        ca.uhn.hl7v2.model.v25.segment.ORC orc = message.getORDER().getORC();
+        orc.getOrderControl().setValue("XO");
+
+        return message;
+    }
+
+    public static Message changeStatusRadiologyOrderMessage(ORM_O01 message) throws DataTypeException {
+        ca.uhn.hl7v2.model.v25.segment.ORC orc = message.getORDER().getORC(); //http://www.mexi.be/documents/hl7/ch400009.htm
+        orc.getOrderControl().setValue("SC");
+        orc.getOrderStatus().setValue("CM"); //CM Order is complete
+        return message;
+    }
+
+    public static Message cancelRadiologyOrderMessage(ORM_O01 message) throws DataTypeException {
+        ca.uhn.hl7v2.model.v25.segment.ORC orc = message.getORDER().getORC();
+        orc.getOrderControl().setValue("CA");
+        return message;
     }
 }

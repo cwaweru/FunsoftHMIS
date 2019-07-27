@@ -61,12 +61,13 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jTextField36 = new javax.swing.JTextField();
+        staffNameTxt = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
-        jTextField361 = new javax.swing.JTextField();
+        loginAccountTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -159,7 +160,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         jSearchDialog1.getContentPane().add(jSearchPanel1, gridBagConstraints);
 
-        setTitle("Reporting data filter dialog");
+        setTitle("Begin & End Date");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -179,7 +180,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -194,11 +195,18 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jButton1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jLabel5, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -206,10 +214,9 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
         getContentPane().add(jPanel3, gridBagConstraints);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select Doc. Name here", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select Doc. Name here", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
         jLabel4.setText("Doctor's Name");
@@ -223,14 +230,14 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
         jPanel6.setMinimumSize(new java.awt.Dimension(82, 37));
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
-        jTextField36.setEditable(false);
+        staffNameTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel6.add(jTextField36, gridBagConstraints);
+        jPanel6.add(staffNameTxt, gridBagConstraints);
 
         searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
         searchButton.setToolTipText("Search Patient's Name");
@@ -253,9 +260,10 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         jPanel4.add(jPanel6, gridBagConstraints);
 
-        jTextField361.setEditable(false);
+        loginAccountTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -263,9 +271,9 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
-        jPanel4.add(jTextField361, gridBagConstraints);
+        jPanel4.add(loginAccountTxt, gridBagConstraints);
 
-        jLabel3.setText("Account No.");
+        jLabel3.setText("Login Account");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -278,7 +286,6 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
         getContentPane().add(jPanel4, gridBagConstraints);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Select Dates"));
@@ -315,11 +322,11 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.weighty = 50.0;
         getContentPane().add(jPanel1, gridBagConstraints);
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-546)/2, (screenSize.height-261)/2, 546, 261);
+        setSize(new java.awt.Dimension(546, 261));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
     private void jButton51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton51ActionPerformed
@@ -327,15 +334,15 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton51ActionPerformed
     
     private void jSearchTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable1MouseClicked
-        jTextField36.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 0).toString());
-        jTextField361.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 1).toString());
+        staffNameTxt.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 0).toString());
+        loginAccountTxt.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 1).toString());
         
         jSearchDialog1.dispose();        // Add your handling code here:
     }//GEN-LAST:event_jSearchTable1MouseClicked
     
     private void jTextField1111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1111CaretUpdate
-        jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select DISTINCT (f_name||' '||l_name) as name,'' as staff_no FROM secure_menu_access where f_name||' '||l_name ILIKE '%"+jTextField1111.getText().toString()+"%' UNION ALL "
-                + "SELECT DISTINCT first_name||' '||middle_name as name,staff_no FROM pb_doctors_list WHERE first_name||' '||middle_name ILIKE '%"+jTextField1111.getText().toString()+"%' ORDER BY 1"));
+        jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select DISTINCT UPPER(f_name||' '||l_name) as staff_name, UPPER(login_name) as login_account FROM secure_menu_access where f_name||' '||l_name ILIKE '%"+jTextField1111.getText().toString()+"%' "
+                + " ORDER BY 1"));
         
                   /*  searchRowSet1.execute("select (staff_no) as scheme,(first_name||' '||middle_name) as name from pb_doctors_list where first_name||' '||middle_name ILIKE '"+jTextField1111.getText().toString()+"%' ORDER BY first_name");
                    
@@ -367,7 +374,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
         System.out.println("Showing dialog");
         
         jSearchDialog1.dispose();
-        java.awt.Point point = this.jTextField36.getLocationOnScreen();
+        java.awt.Point point = this.staffNameTxt.getLocationOnScreen();
         
         jSearchDialog1.setSize(400,200);
         
@@ -447,7 +454,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.reports.DoctorStmPdf policy = new com.afrisoftech.reports.DoctorStmPdf();
                 
-                policy.DoctorStmPdf(connectDB,jTextField361.getText(),this.datePicker1.getDate(), this.datePicker2.getDate());
+                policy.DoctorStmPdf(connectDB,loginAccountTxt.getText(),this.datePicker1.getDate(), this.datePicker2.getDate());
                 
                 
                 // this.dispose();
@@ -459,7 +466,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.reports.DoctorStmPaidPdf policy = new com.afrisoftech.reports.DoctorStmPaidPdf();
                 
-                policy.DoctorStmPaidPdf(connectDB,jTextField361.getText());
+                policy.DoctorStmPaidPdf(connectDB,loginAccountTxt.getText());
                 
                 
                 // this.dispose();
@@ -472,7 +479,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.reports.DoctorStmCashPaidPdf policy = new com.afrisoftech.reports.DoctorStmCashPaidPdf();
                 
-                policy.DoctorStmCashPaidPdf(connectDB,jTextField361.getText());
+                policy.DoctorStmCashPaidPdf(connectDB,loginAccountTxt.getText());
                 
                 
                 // this.dispose();
@@ -485,7 +492,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.hospinventory.PrescriptionsPerDocPdf policy = new com.afrisoftech.hospinventory.PrescriptionsPerDocPdf();
                 
-                policy.PrescriptionsPerDocPdf(connectDB,this.datePicker1.getDate(), this.datePicker2.getDate(),jTextField36.getText());
+                policy.PrescriptionsPerDocPdf(connectDB,this.datePicker1.getDate(), this.datePicker2.getDate(),staffNameTxt.getText());
                 
                 
                 // this.dispose();
@@ -498,7 +505,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.reports.DoctorStmsPdf policy = new com.afrisoftech.reports.DoctorStmsPdf();
                 
-                policy.DoctorStmsPdf(connectDB,jTextField361.getText());
+                policy.DoctorStmsPdf(connectDB,loginAccountTxt.getText());
                 
                 
                 // this.dispose();
@@ -510,7 +517,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.reports.PaymentsPerDocPdf policy = new com.afrisoftech.reports.PaymentsPerDocPdf();
                 
-                policy.PaymentsPerDocPdf(connectDB,jTextField361.getText(),this.datePicker1.getDate(), this.datePicker2.getDate());
+                policy.PaymentsPerDocPdf(connectDB,loginAccountTxt.getText(),this.datePicker1.getDate(), this.datePicker2.getDate());
                 
                 
                 // this.dispose();
@@ -522,7 +529,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.reports.WhtPerDocPdf policy = new com.afrisoftech.reports.WhtPerDocPdf();
                 
-                policy.WhtPerDocPdf(connectDB,jTextField361.getText(),this.datePicker1.getDate(), this.datePicker2.getDate());
+                policy.WhtPerDocPdf(connectDB,loginAccountTxt.getText(),this.datePicker1.getDate(), this.datePicker2.getDate());
                 
                 
                 // this.dispose();
@@ -534,7 +541,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.reports.PaymentsPerDocSummPdf policy = new com.afrisoftech.reports.PaymentsPerDocSummPdf();
                 
-                policy.PaymentsPerDocSummPdf(connectDB,jTextField361.getText(),this.datePicker1.getDate(), this.datePicker2.getDate());
+                policy.PaymentsPerDocSummPdf(connectDB,loginAccountTxt.getText(),this.datePicker1.getDate(), this.datePicker2.getDate());
                 
                 
                 //  this.dispose();
@@ -546,7 +553,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.reports.DoctorStmUnPaidPdf policy = new com.afrisoftech.reports.DoctorStmUnPaidPdf();
                 
-                policy.DoctorStmUnPaidPdf(connectDB,jTextField361.getText());
+                policy.DoctorStmUnPaidPdf(connectDB,loginAccountTxt.getText());
                 
                 
                 // this.dispose();
@@ -558,7 +565,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.reports.DoctorStmWithScmPdf policy = new com.afrisoftech.reports.DoctorStmWithScmPdf();
                 
-                policy.DoctorStmWithScmPdf(connectDB,jTextField361.getText(),this.datePicker1.getDate(), this.datePicker2.getDate());
+                policy.DoctorStmWithScmPdf(connectDB,loginAccountTxt.getText(),this.datePicker1.getDate(), this.datePicker2.getDate());
                 
                 
                 // this.dispose();
@@ -570,7 +577,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.reports.DocStmtPerDebtorPdf policy = new com.afrisoftech.reports.DocStmtPerDebtorPdf();
                 
-                policy.DocStmtPerDebtorPdf(connectDB,jTextField361.getText(),this.datePicker1.getDate(), this.datePicker2.getDate());
+                policy.DocStmtPerDebtorPdf(connectDB,loginAccountTxt.getText(),this.datePicker1.getDate(), this.datePicker2.getDate());
                 
                 
                 // this.dispose();
@@ -583,7 +590,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.reports.DocPaidupPerDebtorPdf policy = new com.afrisoftech.reports.DocPaidupPerDebtorPdf();
                 
-                policy.DocPaidupPerDebtorPdf(connectDB,jTextField361.getText());
+                policy.DocPaidupPerDebtorPdf(connectDB,loginAccountTxt.getText());
                 
                 
                 // this.dispose();
@@ -595,7 +602,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.reports.DocPaidupPerScmPdf policy = new com.afrisoftech.reports.DocPaidupPerScmPdf();
                 
-                policy.DocPaidupPerScmPdf(connectDB,jTextField361.getText());
+                policy.DocPaidupPerScmPdf(connectDB,loginAccountTxt.getText());
                 
                 
                 // this.dispose();
@@ -607,7 +614,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.reports.DocProvPerScmPdf policy = new com.afrisoftech.reports.DocProvPerScmPdf();
                 
-                policy.DocProvPerScmPdf(connectDB,jTextField361.getText());
+                policy.DocProvPerScmPdf(connectDB,loginAccountTxt.getText());
                 
                 
                 // this.dispose();
@@ -619,7 +626,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.reports.DiagByDocPdf policy = new com.afrisoftech.reports.DiagByDocPdf();
                 
-                policy.DiagByDocPdf(connectDB,jTextField36.getText(),this.datePicker1.getDate(), this.datePicker2.getDate());
+                policy.DiagByDocPdf(connectDB, loginAccountTxt.getText(),this.datePicker1.getDate(), this.datePicker2.getDate());
                 
                 
                 this.dispose();
@@ -630,7 +637,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.reports.DoctorAllocationPdf policy = new com.afrisoftech.reports.DoctorAllocationPdf();
                 
-                policy.DoctorAllocationPdf(connectDB,jTextField361.getText(),this.datePicker1.getDate(), this.datePicker2.getDate());
+                policy.DoctorAllocationPdf(connectDB,loginAccountTxt.getText(),this.datePicker1.getDate(), this.datePicker2.getDate());
                 
                 
                 this.dispose();
@@ -641,7 +648,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.reports.DoctorStmsOffPdf policy = new com.afrisoftech.reports.DoctorStmsOffPdf();
                 
-                policy.DoctorStmsOffPdf(connectDB,jTextField361.getText(),this.datePicker1.getDate(), this.datePicker2.getDate());
+                policy.DoctorStmsOffPdf(connectDB,loginAccountTxt.getText(),this.datePicker1.getDate(), this.datePicker2.getDate());
                 
                 
                 this.dispose();
@@ -687,6 +694,7 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -696,9 +704,9 @@ public class HosDoctorsPanel extends javax.swing.JDialog {
     private javax.swing.JScrollPane jSearchScrollPane1;
     private javax.swing.JTable jSearchTable1;
     private javax.swing.JTextField jTextField1111;
-    private javax.swing.JTextField jTextField36;
-    private javax.swing.JTextField jTextField361;
+    private javax.swing.JTextField loginAccountTxt;
     private javax.swing.JButton searchButton;
+    private javax.swing.JTextField staffNameTxt;
     // End of variables declaration//GEN-END:variables
     
 }

@@ -84,11 +84,11 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         jSearchTable212 = new com.afrisoftech.dbadmin.JTable();
         jButton4212 = new javax.swing.JButton();
         jButton5212 = new javax.swing.JButton();
-        jSearchDialog2121 = new javax.swing.JDialog();
-        jSearchPanel2121 = new javax.swing.JPanel();
-        jTextField113121 = new javax.swing.JTextField();
-        jSearchScrollPane2121 = new javax.swing.JScrollPane();
-        jSearchTable2121 = new com.afrisoftech.dbadmin.JTable();
+        patientSearchDialog = new javax.swing.JDialog();
+        patientSearchPanel = new javax.swing.JPanel();
+        patientSearchTxt = new javax.swing.JTextField();
+        patientSearchScrollPane = new javax.swing.JScrollPane();
+        patientSearchTable = new com.afrisoftech.dbadmin.JTable();
         jButton42121 = new javax.swing.JButton();
         jButton52121 = new javax.swing.JButton();
         jSearchDialog3 = new javax.swing.JDialog();
@@ -283,15 +283,15 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jSearchDialog212.getContentPane().add(jSearchPanel212, gridBagConstraints);
 
-        jSearchDialog2121.setUndecorated(true);
-        jSearchDialog2121.getContentPane().setLayout(new java.awt.GridBagLayout());
+        patientSearchDialog.setUndecorated(true);
+        patientSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jSearchPanel2121.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jSearchPanel2121.setLayout(new java.awt.GridBagLayout());
+        patientSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        patientSearchPanel.setLayout(new java.awt.GridBagLayout());
 
-        jTextField113121.addCaretListener(new javax.swing.event.CaretListener() {
+        patientSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField113121CaretUpdate(evt);
+                patientSearchTxtCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -301,10 +301,10 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 300.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-        jSearchPanel2121.add(jTextField113121, gridBagConstraints);
+        patientSearchPanel.add(patientSearchTxt, gridBagConstraints);
 
-        jSearchTable2121.setToolTipText("Click on the target row to select the patient from the search.");
-        jSearchTable2121.setShowHorizontalLines(false);
+        patientSearchTable.setToolTipText("Click on the target row to select the patient from the search.");
+        patientSearchTable.setShowHorizontalLines(false);
         /*javax.swing.table.TableColumn column = null;
 
         for (int i = 0; i < 4; i++) {
@@ -322,15 +322,15 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
             }
         }
         */
-        jSearchTable2121.addMouseListener(new java.awt.event.MouseAdapter() {
+        patientSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSearchTable2121MouseClicked(evt);
+                patientSearchTableMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jSearchTable2121MouseEntered(evt);
+                patientSearchTableMouseEntered(evt);
             }
         });
-        jSearchScrollPane2121.setViewportView(jSearchTable2121);
+        patientSearchScrollPane.setViewportView(patientSearchTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -339,7 +339,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
-        jSearchPanel2121.add(jSearchScrollPane2121, gridBagConstraints);
+        patientSearchPanel.add(patientSearchScrollPane, gridBagConstraints);
 
         jButton42121.setText("Select");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -347,7 +347,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchPanel2121.add(jButton42121, gridBagConstraints);
+        patientSearchPanel.add(jButton42121, gridBagConstraints);
 
         jButton52121.setText("Close");
         jButton52121.addActionListener(new java.awt.event.ActionListener() {
@@ -360,7 +360,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchPanel2121.add(jButton52121, gridBagConstraints);
+        patientSearchPanel.add(jButton52121, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -368,7 +368,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchDialog2121.getContentPane().add(jSearchPanel2121, gridBagConstraints);
+        patientSearchDialog.getContentPane().add(patientSearchPanel, gridBagConstraints);
 
         jSearchDialog3.setUndecorated(true);
         jSearchDialog3.getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -538,21 +538,21 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         }
         setVisible(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameActivated(evt);
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameOpened(evt);
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -816,12 +816,12 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
             }
         });
         pharmacyReturnsTbl.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                pharmacyReturnsTblAncestorMoved(evt);
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                pharmacyReturnsTblAncestorMoved(evt);
             }
         });
         pharmacyReturnsTbl.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -844,7 +844,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         jPanel13.add(jScrollPane22, gridBagConstraints);
 
         jPanel23.setBackground(new java.awt.Color(204, 255, 204));
-        jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Confirm Quantities Before Returning", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 102))); // NOI18N
+        jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Confirm Quantities Before Returning", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 102))); // NOI18N
         jPanel23.setLayout(new java.awt.GridBagLayout());
 
         jLabel91.setText("Patient No.");
@@ -947,7 +947,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         jPanel23.add(jLabel61, gridBagConstraints);
 
-        jPanel42.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "At least 5 characters", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 102, 102))); // NOI18N
+        jPanel42.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "At least 5 characters", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 102, 102))); // NOI18N
         jPanel42.setLayout(new java.awt.GridBagLayout());
 
         patientNumberTxt.setEditable(false);
@@ -2854,21 +2854,21 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_pharmacyReturnsTblMouseClicked
 
     private void jButton52121ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton52121ActionPerformed
-        this.jSearchDialog2121.dispose(); // Add your handling code here:
+        this.patientSearchDialog.dispose(); // Add your handling code here:
     }//GEN-LAST:event_jButton52121ActionPerformed
 
-    private void jSearchTable2121MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable2121MouseClicked
+    private void patientSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patientSearchTableMouseClicked
         jTextField32.setText("0.00");
 
         // jTextField32.setText("0.00");
         for (int k = 0; k < pharmacyReturnsTbl.getRowCount(); k++) {
             for (int r = 0; r < pharmacyReturnsTbl.getColumnCount(); r++) {
-                pharmacyReturnsTbl.getModel().setValueAt(null, k, r);
+                pharmacyReturnsTbl.setValueAt(null, k, r);
             }
         }
 
-        patientNumberTxt.setText(jSearchTable2121.getValueAt(jSearchTable2121.getSelectedRow(), 0).toString());
-        patientNameTxt.setText(jSearchTable2121.getValueAt(jSearchTable2121.getSelectedRow(), 1).toString());
+        patientNumberTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 0).toString());
+        patientNameTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 1).toString());
 
         int j = 0;
         try {
@@ -2919,7 +2919,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 //          pharmacyReturnsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
 //                "SELECT service AS DESCRIPTION, dosage as QTY, false as RETURN, debit/dosage as UNITPRICE, 0 AS DISCOUNT, debit as TOTAL, main_service as DEPARTMENT, (select item_code FROM st_stock_item WHERE description=hp_patient_card.service) as item_code FROM hp_patient_card where patient_no = '" + patientNumberTxt.getText() + "' AND visit_id = '" + jTextField1.getText() + "' AND main_service ilike '%pharmacy%'"));
 
-        jSearchDialog2121.dispose();
+        patientSearchDialog.dispose();
 
 // int control=pharmacyReturnsTbl.getRowCount();
 //
@@ -2997,74 +2997,74 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         // This part has been stopped temporaly
         //  this.populateTable1(this.jTextField92.getText());
 
-        jSearchDialog2121.dispose();
+        patientSearchDialog.dispose();
 
 // Add your handling code here:
-    }//GEN-LAST:event_jSearchTable2121MouseClicked
+    }//GEN-LAST:event_patientSearchTableMouseClicked
 
-    private void jTextField113121CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField113121CaretUpdate
+    private void patientSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_patientSearchTxtCaretUpdate
         if (this.inPtChbx.isSelected() && this.searchnameChbx.isSelected()) {
-            if (jTextField113121.getCaretPosition() < 3) {
+            if (patientSearchTxt.getCaretPosition() < 3) {
 
                 System.out.println("Nothing");
             } else {
-                jSearchTable2121.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, name from inpatient_list where name ILIKE '%" + jTextField113121.getText() + "%' order by name"));
+                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, name from inpatient_list where name ILIKE '%" + patientSearchTxt.getText() + "%' order by name"));
 
-                jSearchTable2121.setShowHorizontalLines(false);
-                jSearchScrollPane2121.setViewportView(jSearchTable2121);
+                patientSearchTable.setShowHorizontalLines(false);
+                patientSearchScrollPane.setViewportView(patientSearchTable);
 
             }
         } else {
 
             if (this.outPtChbx.isSelected() && this.searchnameChbx.isSelected()) {
-                if (jTextField113121.getCaretPosition() < 3) {
+                if (patientSearchTxt.getCaretPosition() < 3) {
 
                     System.out.println("Nothing");
                 } else {
-                    jSearchTable2121.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, name from patient_select where name ILIKE '%" + jTextField113121.getText() + "%' order by name"));
+                    patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, name from patient_select where name ILIKE '%" + patientSearchTxt.getText() + "%' order by name"));
 
-                    jSearchTable2121.setShowHorizontalLines(false);
-                    jSearchScrollPane2121.setViewportView(jSearchTable2121);
+                    patientSearchTable.setShowHorizontalLines(false);
+                    patientSearchScrollPane.setViewportView(patientSearchTable);
 
                 }
 
             } else {
                 if (this.inPtChbx.isSelected() && this.SearchNoChbx.isSelected()) {
-                    if (jTextField113121.getCaretPosition() < 6) {
+                    if (patientSearchTxt.getCaretPosition() < 6) {
 
                         System.out.println("Nothing");
                     } else {
-                        jSearchTable2121.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, name from inpatient_list where patient_no ILIKE '%" + jTextField113121.getText() + "%' OR unit_number ILIKE '%" + jTextField113121.getText() + "%' order by patient_no"));
+                        patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, name from inpatient_list where patient_no ILIKE '%" + patientSearchTxt.getText() + "%' OR unit_number ILIKE '%" + patientSearchTxt.getText() + "%' order by patient_no"));
 
-                        jSearchTable2121.setShowHorizontalLines(false);
-                        jSearchScrollPane2121.setViewportView(jSearchTable2121);
+                        patientSearchTable.setShowHorizontalLines(false);
+                        patientSearchScrollPane.setViewportView(patientSearchTable);
 
                     }
                 } else {
 
                     if (this.outPtChbx.isSelected() && this.SearchNoChbx.isSelected()) {
-                        if (jTextField113121.getCaretPosition() < 6) {
+                        if (patientSearchTxt.getCaretPosition() < 6) {
 
                             System.out.println("Nothing");
                         } else {
-                            jSearchTable2121.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, name from patient_select where patient_no ILIKE '%" + jTextField113121.getText() + "%' order by patient_no"));
+                            patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, name from patient_select where patient_no ILIKE '%" + patientSearchTxt.getText() + "%' order by patient_no"));
 
-                            jSearchTable2121.setShowHorizontalLines(false);
-                            jSearchScrollPane2121.setViewportView(jSearchTable2121);
+                            patientSearchTable.setShowHorizontalLines(false);
+                            patientSearchScrollPane.setViewportView(patientSearchTable);
 
                         }
 
                     } else {
                         if (this.walkinPtChbx.isSelected()) {
-                            if (jTextField113121.getCaretPosition() < 5) {
+                            if (patientSearchTxt.getCaretPosition() < 5) {
 
                                 System.out.println("Nothing");
                             } else {
                                 //  jSearchTable2121.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"SELECT patient_no, name from patient_select where patient_no ILIKE '%"+jTextField113121.getText()+"%' order by patient_no"));
-                                jSearchTable2121.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct(patient_no),(patient_name) as name from hp_pharmacy where patient_no ILIKE '%" + jTextField113121.getText() + "%' AND (patient_no ilike 'wk%') order by patient_name"));
+                                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct(patient_no),(patient_name) as name from hp_pharmacy where patient_no ILIKE '%" + patientSearchTxt.getText() + "%' AND (patient_no ilike 'wk%') order by patient_name"));
 
-                                jSearchTable2121.setShowHorizontalLines(false);
-                                jSearchScrollPane2121.setViewportView(jSearchTable2121);
+                                patientSearchTable.setShowHorizontalLines(false);
+                                patientSearchScrollPane.setViewportView(patientSearchTable);
 
                             }
                         }
@@ -3073,7 +3073,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
             }
         }
         // Add your handling code here:
-    }//GEN-LAST:event_jTextField113121CaretUpdate
+    }//GEN-LAST:event_patientSearchTxtCaretUpdate
 
     private void searchButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton2ActionPerformed
         searchButton2121Clicked(); // Add your handling code here:
@@ -3087,11 +3087,11 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
         java.awt.Point point = this.patientNumberTxt.getLocationOnScreen();
 
-        jSearchDialog2121.setSize(400, 200);
+        patientSearchDialog.setSize(400, 200);
 
-        jSearchDialog2121.setLocation(point);
+        patientSearchDialog.setLocation(point);
 
-        jSearchDialog2121.setVisible(true);
+        patientSearchDialog.setVisible(true);
     }
     private void inPtChbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inPtChbxActionPerformed
         //jPanel1.setVisible(false);
@@ -3610,9 +3610,9 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         amountTxt.setText("0.00");
     }//GEN-LAST:event_transNocmbxActionPerformed
 
-    private void jSearchTable2121MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable2121MouseEntered
+    private void patientSearchTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patientSearchTableMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jSearchTable2121MouseEntered
+    }//GEN-LAST:event_patientSearchTableMouseEntered
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         // TODO add your handling code here:
@@ -4035,26 +4035,21 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JDialog jSearchDialog212;
-    private javax.swing.JDialog jSearchDialog2121;
     private javax.swing.JDialog jSearchDialog3;
     private javax.swing.JDialog jSearchDialog4;
     private javax.swing.JPanel jSearchPanel212;
-    private javax.swing.JPanel jSearchPanel2121;
     private javax.swing.JPanel jSearchPanel213;
     private javax.swing.JPanel jSearchPanel3;
     private javax.swing.JScrollPane jSearchScrollPane212;
-    private javax.swing.JScrollPane jSearchScrollPane2121;
     private javax.swing.JScrollPane jSearchScrollPane3;
     private javax.swing.JScrollPane jSearchScrollPane4;
     private javax.swing.JTable jSearchTable212;
-    private javax.swing.JTable jSearchTable2121;
     private javax.swing.JTable jSearchTable3;
     private javax.swing.JTable jSearchTable4;
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField11312;
-    private javax.swing.JTextField jTextField113121;
     private javax.swing.JTextField jTextField114;
     private javax.swing.JTextField jTextField115;
     private javax.swing.JTextField jTextField3;
@@ -4066,6 +4061,11 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField patientCategoryTxt;
     private javax.swing.JTextField patientNameTxt;
     private javax.swing.JTextField patientNumberTxt;
+    private javax.swing.JDialog patientSearchDialog;
+    private javax.swing.JPanel patientSearchPanel;
+    private javax.swing.JScrollPane patientSearchScrollPane;
+    private javax.swing.JTable patientSearchTable;
+    private javax.swing.JTextField patientSearchTxt;
     private com.afrisoftech.lib.DatePicker pharmReturnDate;
     private javax.swing.JCheckBox pharmacyChbx;
     private javax.swing.JTable pharmacyReturnsTbl;

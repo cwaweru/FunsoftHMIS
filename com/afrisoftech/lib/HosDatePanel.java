@@ -65,6 +65,7 @@ public class HosDatePanel extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setTitle("Begin & End Date");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -194,7 +195,7 @@ public class HosDatePanel extends javax.swing.JDialog {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -208,11 +209,18 @@ public class HosDatePanel extends javax.swing.JDialog {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jButton1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 100.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jLabel4, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -375,7 +383,7 @@ public class HosDatePanel extends javax.swing.JDialog {
             case 96: {
                 com.afrisoftech.reports.UnutilizedDepositsRepPdf policy = new com.afrisoftech.reports.UnutilizedDepositsRepPdf();
 
-               // policy.UnutilizedDepositsRepPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
+                // policy.UnutilizedDepositsRepPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
                 this.dispose();
 
             }
@@ -408,6 +416,15 @@ public class HosDatePanel extends javax.swing.JDialog {
 
                 this.dispose();
                 //
+
+            }
+            break;
+            
+             case 345123: {
+                com.afrisoftech.reports.TriageSheetPdf policy = new com.afrisoftech.reports.TriageSheetPdf();
+
+                policy.TriageSheetPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),"-");
+
 
             }
             break;
@@ -1801,7 +1818,6 @@ public class HosDatePanel extends javax.swing.JDialog {
                 com.afrisoftech.reports.UniversalHealthSalesReportPdf policy = new com.afrisoftech.reports.UniversalHealthSalesReportPdf();
 
 //                policy.UniversalHealthSalesReportPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
-
                 ///this.dispose();
             }
             break;
@@ -2219,6 +2235,15 @@ public class HosDatePanel extends javax.swing.JDialog {
             }
             break;
 
+//            case 585699399: {
+//                com.afrisoftech.records.reports.UHCMonthlyOPWorkLoadPdf policy = new com.afrisoftech.records.reports.UHCMonthlyOPWorkLoadPdf();
+//
+//                policy.UHCMonthlyOPWorkLoadPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(), );
+//                //this.dispose();
+//
+//            }
+//            break;
+
             case 5856995: {
                 com.afrisoftech.reports.LabWorkTimePdf policy = new com.afrisoftech.reports.LabWorkTimePdf();
 
@@ -2321,6 +2346,7 @@ public class HosDatePanel extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

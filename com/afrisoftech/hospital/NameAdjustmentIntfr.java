@@ -1318,4 +1318,5 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
         this.newBodySurNameTxt.setText(null);
         this.reasonforBodyChangeTxt.setText(null);
     }
+        
 }

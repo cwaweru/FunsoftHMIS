@@ -91,9 +91,9 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        SchemeDataTable = new com.afrisoftech.dbadmin.JTable(){
+        schemeDataTable = new com.afrisoftech.dbadmin.JTable(){
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -720,118 +720,118 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
                 jPanel1.setLayout(new java.awt.GridBagLayout());
 
-                SchemeDataTable.setModel(new javax.swing.table.DefaultTableModel(
+                schemeDataTable.setModel(new javax.swing.table.DefaultTableModel(
                     new Object [][] {
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null}
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null, null}
                     },
                     new String [] {
-                        "Date", "Description", "Quantity", "Rate", "Discount", "Total Disc.", "Amount", "Gl Code", "Items To Claim"
+                        "Date", "Description", "Quantity", "Rate", "Discount", "Total Disc.", "Amount", "Gl Code", "Items To Claim", "Reference"
                     }
                 ) {
                     Class[] types = new Class [] {
-                        java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Boolean.class
+                        java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
                     };
                     boolean[] canEdit = new boolean [] {
-                        false, false, false, false, false, false, false, false, false
+                        false, false, false, false, false, false, false, false, false, false
                     };
 
                     public Class getColumnClass(int columnIndex) {
@@ -842,10 +842,10 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                         return canEdit [columnIndex];
                     }
                 });
-                SchemeDataTable.setShowHorizontalLines(false);
+                schemeDataTable.setShowHorizontalLines(false);
                 cmbox = new javax.swing.JComboBox();
-                javax.swing.table.TableColumn dateEditor = SchemeDataTable.getColumnModel().getColumn(0);
-                com.afrisoftech.lib.DateCellEditor dateCellEditor = new com.afrisoftech.lib.DateCellEditor(new com.afrisoftech.lib.DatePicker(), SchemeDataTable);
+                javax.swing.table.TableColumn dateEditor = schemeDataTable.getColumnModel().getColumn(0);
+                com.afrisoftech.lib.DateCellEditor dateCellEditor = new com.afrisoftech.lib.DateCellEditor(new com.afrisoftech.lib.DatePicker(), schemeDataTable);
                 dateEditor.setCellEditor(dateCellEditor);
                 //jTable1.setRowHeight(30);
                 javax.swing.table.DefaultTableCellRenderer cellRenderer = new javax.swing.table.DefaultTableCellRenderer();
@@ -854,7 +854,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
                 javax.swing.table.TableColumn column = null;
                 for (int i = 0; i < 8; i++) {
-                    column = SchemeDataTable.getColumnModel().getColumn(i);
+                    column = schemeDataTable.getColumnModel().getColumn(i);
                     if (i == 0) {
 
                         column.setPreferredWidth(100); //sport column is bigger
@@ -870,17 +870,17 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                         }
                     }
                 }
-                SchemeDataTable.addMouseListener(new java.awt.event.MouseAdapter() {
+                schemeDataTable.addMouseListener(new java.awt.event.MouseAdapter() {
                     public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        SchemeDataTableMouseClicked(evt);
+                        schemeDataTableMouseClicked(evt);
                     }
                 });
-                SchemeDataTable.addKeyListener(new java.awt.event.KeyAdapter() {
+                schemeDataTable.addKeyListener(new java.awt.event.KeyAdapter() {
                     public void keyReleased(java.awt.event.KeyEvent evt) {
-                        SchemeDataTableKeyReleased(evt);
+                        schemeDataTableKeyReleased(evt);
                     }
                 });
-                jScrollPane1.setViewportView(SchemeDataTable);
+                jScrollPane1.setViewportView(schemeDataTable);
 
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 0;
@@ -2120,7 +2120,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
                 javax.swing.table.TableColumn column1 = null;
                 for (int i = 0; i < 4; i++) {
-                    column1 = SchemeDataTable.getColumnModel().getColumn(i);
+                    column1 = schemeDataTable.getColumnModel().getColumn(i);
                     if (i == 0) {
 
                         column1.setPreferredWidth(200); //sport column is bigger
@@ -3104,22 +3104,28 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
         jSearchDialog21.setVisible(true);
     }
-    private void SchemeDataTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SchemeDataTableKeyReleased
-        if (SchemeDataTable.getModel().getValueAt(SchemeDataTable.getSelectedRow(), 2) != null) {
-            if (SchemeDataTable.getSelectedColumn() == SchemeDataTable.getSelectedColumn()) {
-                float qty = java.lang.Float.parseFloat(SchemeDataTable.getValueAt(SchemeDataTable.getSelectedRow(), 2).toString());
-                float price = java.lang.Float.parseFloat(SchemeDataTable.getValueAt(SchemeDataTable.getSelectedRow(), 3).toString());
-                float Disc = java.lang.Float.parseFloat(SchemeDataTable.getValueAt(SchemeDataTable.getSelectedRow(), 4).toString());
+    private void schemeDataTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_schemeDataTableKeyReleased
+        if (schemeDataTable.getModel().getValueAt(schemeDataTable.getSelectedRow(), 2) != null) {
+            if (schemeDataTable.getSelectedColumn() == schemeDataTable.getSelectedColumn()) {
+                float qty = java.lang.Float.parseFloat(schemeDataTable.getValueAt(schemeDataTable.getSelectedRow(), 2).toString());
+                float price = java.lang.Float.parseFloat(schemeDataTable.getValueAt(schemeDataTable.getSelectedRow(), 3).toString());
+                float Disc = java.lang.Float.parseFloat(schemeDataTable.getValueAt(schemeDataTable.getSelectedRow(), 4).toString());
 
                 float total = qty * price;
                 float totalDisc = (qty * price) * Disc / 100;
-                SchemeDataTable.setValueAt(total, SchemeDataTable.getSelectedRow(), 6);
-                SchemeDataTable.setValueAt(totalDisc, SchemeDataTable.getSelectedRow(), 5);
-                double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(SchemeDataTable, 6);
-                double totalSumDisc = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(SchemeDataTable, 5);
+                schemeDataTable.setValueAt(total, schemeDataTable.getSelectedRow(), 6);
+                schemeDataTable.setValueAt(totalDisc, schemeDataTable.getSelectedRow(), 5);
+                double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeDataTable, 6);
+                double totalSumDisc = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeDataTable, 5);
                 totalDiscountTxt.setText(java.lang.String.valueOf(totalSumDisc));
                 totalAmountTxt.setText(java.lang.String.valueOf(totalSum));
-
+                double totalNetSum = 0;
+                for (int i = 0; i < schemeDataTable.getRowCount(); i++) {
+                    if (Boolean.parseBoolean(schemeDataTable.getValueAt(i, 8).toString())) {
+                        totalNetSum = totalNetSum + Double.parseDouble(schemeDataTable.getValueAt(i, 6).toString());
+                    }
+                }
+                totalNetTxt.setText(java.lang.String.valueOf(totalNetSum));
                 if (java.lang.Double.valueOf(totalDepositBalTxt.getText()) > 0) {
                     calculateRefund();
                 }
@@ -3128,22 +3134,22 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         }
 
         // Add your handling code here:
-    }//GEN-LAST:event_SchemeDataTableKeyReleased
+    }//GEN-LAST:event_schemeDataTableKeyReleased
     public void tableModelTableChanged() {
         System.out.println("Calculating totals for table 11 and 2.");
         //        double resFloat = 0.00;
         double resFloat = 0.00;
 
-        for (int i = 0; i < SchemeDataTable.getRowCount(); i++) {
+        for (int i = 0; i < schemeDataTable.getRowCount(); i++) {
 
-            if (SchemeDataTable.getModel().getValueAt(i, 0) != null) {
+            if (schemeDataTable.getModel().getValueAt(i, 0) != null) {
 
-                resFloat = resFloat + Double.parseDouble(SchemeDataTable.getModel().getValueAt(i, 3).toString());
+                resFloat = resFloat + Double.parseDouble(schemeDataTable.getModel().getValueAt(i, 3).toString());
 
                 totalAmountTxt.setText(java.lang.String.valueOf(resFloat));
 
             } else {
-                resFloat = resFloat + Double.parseDouble(SchemeDataTable.getModel().getValueAt(i, 3).toString());
+                resFloat = resFloat + Double.parseDouble(schemeDataTable.getModel().getValueAt(i, 3).toString());
 
                 totalAmountTxt.setText(java.lang.String.valueOf(resFloat));
 
@@ -3154,14 +3160,14 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
     private void jSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTableMouseClicked
         //jTextField11.setText("");
-        SchemeDataTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0), SchemeDataTable.getSelectedRow(), 1);
-        SchemeDataTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 1), SchemeDataTable.getSelectedRow(), 3);
-        SchemeDataTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 2), SchemeDataTable.getSelectedRow(), 7);
-        SchemeDataTable.setValueAt(0, SchemeDataTable.getSelectedRow(), 4);
+        schemeDataTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0), schemeDataTable.getSelectedRow(), 1);
+        schemeDataTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 1), schemeDataTable.getSelectedRow(), 3);
+        schemeDataTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 2), schemeDataTable.getSelectedRow(), 7);
+        schemeDataTable.setValueAt(0, schemeDataTable.getSelectedRow(), 4);
 
         jSearchDialog.dispose();
-        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(SchemeDataTable, 6);
-        double totalSumDisc = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(SchemeDataTable, 5);
+        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeDataTable, 6);
+        double totalSumDisc = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeDataTable, 5);
         totalDiscountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSumDisc));
         totalAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
 
@@ -3186,39 +3192,46 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         }  // Add your handling code here:
     }//GEN-LAST:event_jTextField111CaretUpdate
 
-    private void SchemeDataTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SchemeDataTableMouseClicked
-        if (SchemeDataTable.getSelectedColumn() == 1) {
+    private void schemeDataTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schemeDataTableMouseClicked
+        if (schemeDataTable.getSelectedColumn() == 1) {
             //this.cmboxMouseClicked();
         } else {
 
-            if (SchemeDataTable.getSelectedColumn() == 8) {
+            if (schemeDataTable.getSelectedColumn() == 8) {
 
-                if (Boolean.valueOf(SchemeDataTable.getValueAt(SchemeDataTable.getSelectedRow(), 8).toString()) == java.lang.Boolean.TRUE) {
+                if (Boolean.valueOf(schemeDataTable.getValueAt(schemeDataTable.getSelectedRow(), 8).toString()) == java.lang.Boolean.TRUE) {
 
-                    float qty = java.lang.Float.parseFloat(SchemeDataTable.getValueAt(SchemeDataTable.getSelectedRow(), 2).toString());
-                    float price = java.lang.Float.parseFloat(SchemeDataTable.getValueAt(SchemeDataTable.getSelectedRow(), 3).toString());
-                    SchemeDataTable.setValueAt(qty * price, SchemeDataTable.getSelectedRow(), 6);
-                    if (SchemeDataTable.isEditing()) {
-                        SchemeDataTable.getCellEditor().stopCellEditing();
+                    float qty = java.lang.Float.parseFloat(schemeDataTable.getValueAt(schemeDataTable.getSelectedRow(), 2).toString());
+                    float price = java.lang.Float.parseFloat(schemeDataTable.getValueAt(schemeDataTable.getSelectedRow(), 3).toString());
+                    schemeDataTable.setValueAt(qty * price, schemeDataTable.getSelectedRow(), 6);
+                    if (schemeDataTable.isEditing()) {
+                        schemeDataTable.getCellEditor().stopCellEditing();
                     }
 
-                    double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(SchemeDataTable, 6);
+                    double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeDataTable, 6);
                     this.totalNetTxt.setText(java.lang.String.valueOf(totalSum));
 
                 } else {
-                    SchemeDataTable.setValueAt(0, SchemeDataTable.getSelectedRow(), 6);
-                    double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(SchemeDataTable, 6);
+                    schemeDataTable.setValueAt(0, schemeDataTable.getSelectedRow(), 6);
+                    double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeDataTable, 6);
                     this.totalNetTxt.setText(java.lang.String.valueOf(totalSum));
                 }
             }
         }
-
+        
+        double totalNetSum = 0;
+        for (int i = 0; i < schemeDataTable.getRowCount(); i++) {
+            if (Boolean.parseBoolean(schemeDataTable.getValueAt(i, 8).toString())) {
+                totalNetSum = totalNetSum + Double.parseDouble(schemeDataTable.getValueAt(i, 6).toString());
+            }
+        }
+        totalNetTxt.setText(java.lang.String.valueOf(totalNetSum));
         // Add your handling code here:
-    }//GEN-LAST:event_SchemeDataTableMouseClicked
+    }//GEN-LAST:event_schemeDataTableMouseClicked
     private void cmboxMouseClicked() {
 
         System.out.println("Showing dialog");
-        java.awt.Point point = SchemeDataTable.getLocationOnScreen();
+        java.awt.Point point = schemeDataTable.getLocationOnScreen();
         jSearchDialog.setSize(400, 200);
         jSearchDialog.setLocation(point);
         jSearchDialog.setVisible(true);
@@ -3291,7 +3304,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             java.sql.PreparedStatement pstmtCopay = connectDB.prepareStatement("SELECT sum(credit-debit) FROM hp_patient_card WHERE patient_no = ? AND (service ilike 'copay%' OR service ilike 'co-pay%') AND date::date = ?::date");
             pstmtCopay.setString(1, patientNotxt.getText());
             pstmtCopay.setObject(2, serviceDate);
-            
+
             java.sql.ResultSet rsetCopay = pstmtCopay.executeQuery();
 
             while (rsetCopay.next()) {
@@ -3318,9 +3331,9 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             }
         }
 
-        for (int k = 0; k < SchemeDataTable.getRowCount(); k++) {
-            for (int r = 0; r < SchemeDataTable.getColumnCount(); r++) {
-                SchemeDataTable.getModel().setValueAt(null, k, r);
+        for (int k = 0; k < schemeDataTable.getRowCount(); k++) {
+            for (int r = 0; r < schemeDataTable.getColumnCount(); r++) {
+                schemeDataTable.getModel().setValueAt(null, k, r);
             }
         }
 
@@ -3332,7 +3345,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 + " FROM hp_patient_card where ip_no='OP' and scheme !='' and paid=false"
                 + " and upper(scheme) = upper('" + schemeNameTxt1.getText() + "') and date between '" + beginDate.getDate().toString() + "'::date and '" + endDate.getDate().toString() + "'::date  "
                 + "  group by 1,2,3 having sum(debit-credit)>0 order by patient_no"));
-        
+
         System.err.println(""
                 + "select distinct date::date,patient_no,scheme,sum(debit-credit)   "
                 + " FROM hp_patient_card where ip_no='OP' and scheme !='' and paid=false"
@@ -3387,9 +3400,9 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
     }
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        int rows2Delete = SchemeDataTable.getSelectedRowCount();
+        int rows2Delete = schemeDataTable.getSelectedRowCount();
 
-        int[] selectedRows = SchemeDataTable.getSelectedRows();
+        int[] selectedRows = schemeDataTable.getSelectedRows();
 
         if (rows2Delete < 1) {
 
@@ -3403,7 +3416,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
                 for (int i = 0; i < selectedRows.length; i++) {
 
-                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) SchemeDataTable.getModel();
+                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) schemeDataTable.getModel();
 
                     defTableModel.removeRow(selectedRows[i]);
 
@@ -3411,15 +3424,15 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
             } else {
 
-                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) SchemeDataTable.getModel();
+                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) schemeDataTable.getModel();
 
-                defTableModel.removeRow(SchemeDataTable.getSelectedRow());
+                defTableModel.removeRow(schemeDataTable.getSelectedRow());
             }
         }
         // double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 3);
         //jTextField3.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
-        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(SchemeDataTable, 6);
-        double totalSumDisc = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(SchemeDataTable, 5);
+        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeDataTable, 6);
+        double totalSumDisc = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeDataTable, 5);
         totalDiscountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSumDisc));
         totalAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
         //  txtNetTotal.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum - totalSumDisc));
@@ -3497,9 +3510,9 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         this.dmuBalanceTxt.setText("0.00");
         this.refundTxt.setText("0.00");
         this.schemeBalAfterUtilisationTxt.setText("0.00");
-        for (int k = 0; k < SchemeDataTable.getRowCount(); k++) {
-            for (int r = 0; r < SchemeDataTable.getColumnCount(); r++) {
-                SchemeDataTable.getModel().setValueAt(null, k, r);
+        for (int k = 0; k < schemeDataTable.getRowCount(); k++) {
+            for (int r = 0; r < schemeDataTable.getColumnCount(); r++) {
+                schemeDataTable.getModel().setValueAt(null, k, r);
             }
         }
         accountNoTxt.setText("");
@@ -3598,9 +3611,9 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_loadPatientDateTableMouseClicked
     private void populateTable1(java.lang.String patient_no) {
-        for (int k = 0; k < SchemeDataTable.getRowCount(); k++) {
-            for (int r = 0; r < SchemeDataTable.getColumnCount(); r++) {
-                SchemeDataTable.getModel().setValueAt(null, k, r);
+        for (int k = 0; k < schemeDataTable.getRowCount(); k++) {
+            for (int r = 0; r < schemeDataTable.getColumnCount(); r++) {
+                schemeDataTable.getModel().setValueAt(null, k, r);
             }
         }
 
@@ -3619,10 +3632,10 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 java.sql.Statement stmtTable1 = connectDB.createStatement();
 
                 totalDepositBalTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.unUtelisedDeposit.getBalanceDeposit(connectDB, patientNotxt.getText().toString().trim())));
-                this.SchemeDataTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select date::date,service as Description,sum(dosage) as Qty,(sum(debit-credit)/sum(dosage))::numeric(15,2) as rate,"
-                        + "0.0 as Discount,0.0 as Total_Discount,sum(debit-credit) as amount,main_service,false as Items_Approved  "
+                this.schemeDataTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select date::date,service as Description,sum(dosage) as Qty,(sum(debit-credit)/sum(dosage))::numeric(15,2) as rate,"
+                        + "0.0 as Discount,0.0 as Total_Discount,sum(debit-credit) as amount,main_service,false as Items_Approved,oid  "
                         + " FROM hp_patient_card where paid=false and date::date='" + todays + "'::date  and   patient_no ='" + patientNotxt.getText() + "' and transaction_type not ilike 'Receipts' "
-                        + " group by 1,2,main_service  having sum(debit-credit) > 0"));
+                        + " group by 1,2,main_service,oid  having sum(debit-credit) > 0"));
 
             }
 
@@ -3644,7 +3657,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
     //    private void cmbox2ActionPerformed(java.awt.event.ActionEvent evt){
-       /*
+    /*
      * java.lang.Object selectedGuaran = cmbox2.getSelectedItem(); int i =
      * jTable1.getSelectedRow();
      *
@@ -3668,15 +3681,15 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
     private void finalizeInvoiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizeInvoiceBtnActionPerformed
         if (Double.parseDouble(totalNetTxt.getText()) == 0.0) {
-            javax.swing.JOptionPane.showMessageDialog(this, "You cannot save unless you tick all".toUpperCase(), "Caution Message", javax.swing.JOptionPane.ERROR_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, "You cannot save unless you tick select at least one bill.".toUpperCase(), "Caution Message", javax.swing.JOptionPane.ERROR_MESSAGE);
         } else if (Double.parseDouble(totalNetTxt.getText()) > 0.0) {
             java.util.Date periodFrom = null;
             java.util.Date periodTo = null;
 
-            java.sql.Savepoint registerSavePoint = null;
+            //java.sql.Savepoint registerSavePoint = null;
             try {
                 connectDB.setAutoCommit(false);
-                registerSavePoint = connectDB.setSavepoint("registration");
+                // registerSavePoint = connectDB.setSavepoint("registration");
 
                 java.sql.Statement stmtf = connectDB.createStatement();
                 java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + endDate.getDate() + "' BETWEEN period_from AND period_to");
@@ -3689,8 +3702,8 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                     javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
-                    if (SchemeDataTable.isEditing()) {
-                        SchemeDataTable.getCellEditor().stopCellEditing();
+                    if (schemeDataTable.isEditing()) {
+                        schemeDataTable.getCellEditor().stopCellEditing();
                     }
                     java.util.Calendar calendar = java.util.Calendar.getInstance();
 
@@ -3758,31 +3771,31 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                         user = rsts111.getObject(1).toString();
                     }
 
-                    for (int i = 0; i < SchemeDataTable.getRowCount(); i++) {
+                    for (int i = 0; i < schemeDataTable.getRowCount(); i++) {
 
-                        if (SchemeDataTable.getModel().getValueAt(i, 8) != null) {
+                        if (schemeDataTable.getModel().getValueAt(i, 8) != null) {
                             System.out.println("Started from the bottom........2");
 
                             java.sql.Statement pssq = connectDB.createStatement();
-                            java.sql.ResultSet rse121 = pssq.executeQuery("select main_service from patient_bill where description = '" + SchemeDataTable.getModel().getValueAt(i, 1).toString() + "'");
+                            java.sql.ResultSet rse121 = pssq.executeQuery("select main_service from patient_bill where description = '" + schemeDataTable.getModel().getValueAt(i, 1).toString() + "'");
 
                             while (rse121.next()) {
                                 glCode = dbObject.getDBObject(rse121.getObject(1), "-");
                             }
 
-                            float amts = java.lang.Float.parseFloat(SchemeDataTable.getValueAt(i, 6).toString());
+                            float amts = java.lang.Float.parseFloat(schemeDataTable.getValueAt(i, 6).toString());
 
-                            if (Boolean.valueOf(SchemeDataTable.getValueAt(i, 8).toString()) == java.lang.Boolean.TRUE && amts != 0) {
+                            if (Boolean.valueOf(schemeDataTable.getValueAt(i, 8).toString()) == java.lang.Boolean.TRUE && amts != 0) {
 
-                                java.sql.PreparedStatement pstmt22a = connectDB.prepareStatement("UPDATE hp_patient_card set paid = true,invoice_no = '" + invoiceNo + "' WHERE patient_no = '" + patientNotxt.getText() + "' and date::date = '" + SchemeDataTable.getValueAt(i, 0).toString() + "' and service = '" + SchemeDataTable.getValueAt(i, 1).toString() + "' AND paid = false");
+                                java.sql.PreparedStatement pstmt22a = connectDB.prepareStatement("UPDATE hp_patient_card set paid = true,invoice_no = '" + invoiceNo + "' WHERE patient_no = '" + patientNotxt.getText() + "' and date::date = '" + schemeDataTable.getValueAt(i, 0).toString() + "' and service = '" + schemeDataTable.getValueAt(i, 1).toString() + "' AND paid = false AND oid = '" + schemeDataTable.getValueAt(i, 9).toString() + "'");
                                 pstmt22a.executeUpdate();
-                                java.sql.PreparedStatement pstmt222a = connectDB.prepareStatement("UPDATE hp_patient_card set paid = true,invoice_no = '" + invoiceNo + "' WHERE patient_no = '" + patientNotxt.getText() + "' and date::date = '" + SchemeDataTable.getValueAt(i, 0).toString() + "' and (service ilike '%copay%' OR service ilike '%co-pay%') AND invoice_no = '' AND paid = false");
+                                java.sql.PreparedStatement pstmt222a = connectDB.prepareStatement("UPDATE hp_patient_card set paid = true,invoice_no = '" + invoiceNo + "' WHERE patient_no = '" + patientNotxt.getText() + "' and date::date = '" + schemeDataTable.getValueAt(i, 0).toString() + "' and (service ilike '%copay%' OR service ilike '%co-pay%') AND invoice_no = '' AND paid = false");
                                 pstmt222a.executeUpdate();
-                                java.sql.PreparedStatement pstmt22 = connectDB.prepareStatement("UPDATE hp_patient_billing set paid = true WHERE patient_no = '" + patientNotxt.getText() + "' and trans_date = '" + SchemeDataTable.getValueAt(i, 0).toString() + "' and service = '" + SchemeDataTable.getValueAt(i, 1).toString() + "'");
+                                java.sql.PreparedStatement pstmt22 = connectDB.prepareStatement("UPDATE hp_patient_billing set paid = true WHERE patient_no = '" + patientNotxt.getText() + "' and trans_date = '" + schemeDataTable.getValueAt(i, 0).toString() + "' and service = '" + schemeDataTable.getValueAt(i, 1).toString() + "'");
                                 pstmt22.executeUpdate();
-                                java.sql.PreparedStatement pstmt21 = connectDB.prepareStatement("UPDATE hp_pharmacy set paid = true WHERE patient_no = '" + patientNotxt.getText() + "'  and date_prescribed = '" + SchemeDataTable.getValueAt(i, 0).toString() + "' and description = '" + SchemeDataTable.getValueAt(i, 1).toString() + "'");
+                                java.sql.PreparedStatement pstmt21 = connectDB.prepareStatement("UPDATE hp_pharmacy set paid = true WHERE patient_no = '" + patientNotxt.getText() + "'  and date_prescribed = '" + schemeDataTable.getValueAt(i, 0).toString() + "' and description = '" + schemeDataTable.getValueAt(i, 1).toString() + "'");
                                 pstmt21.executeUpdate();
-                                java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("UPDATE ac_doctors_ledger SET pat_inv = '" + invoiceNo + "' where patient_no = '" + this.patientNotxt.getText() + "' and input_date = '" + SchemeDataTable.getValueAt(i, 0).toString() + "' AND pat_inv not ilike 'O%'");
+                                java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("UPDATE ac_doctors_ledger SET pat_inv = '" + invoiceNo + "' where patient_no = '" + this.patientNotxt.getText() + "' and input_date = '" + schemeDataTable.getValueAt(i, 0).toString() + "' AND pat_inv not ilike 'O%'");
                                 pstmt11.executeUpdate();
                             }
 
@@ -4277,11 +4290,11 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 //}
             } catch (java.lang.Exception sq) {
                 sq.printStackTrace();
-                try {
-                    connectDB.rollback(registerSavePoint);
-                } catch (java.sql.SQLException sql) {
-                    javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                }
+//                try {
+//                    connectDB.rollback(registerSavePoint);
+//                } catch (java.sql.SQLException sql) {
+//                    javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+//                }
                 System.out.println(sq.getMessage());
                 javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
@@ -4424,19 +4437,19 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         double total = 0.0;
         double totalSum = 0.0;
         if (tickChk.isSelected()) {
-            for (int k = 0; k < SchemeDataTable.getRowCount(); k++) {
-                if (SchemeDataTable.getValueAt(k, 0) != null) {
+            for (int k = 0; k < schemeDataTable.getRowCount(); k++) {
+                if (schemeDataTable.getValueAt(k, 0) != null) {
 
-                    float qty = java.lang.Float.parseFloat(SchemeDataTable.getValueAt(k, 2).toString());
-                    float price = java.lang.Float.parseFloat(SchemeDataTable.getValueAt(k, 3).toString());
-                    SchemeDataTable.setValueAt(qty * price, k, 6);
-                    if (SchemeDataTable.isEditing()) {
-                        SchemeDataTable.getCellEditor().stopCellEditing();
+                    float qty = java.lang.Float.parseFloat(schemeDataTable.getValueAt(k, 2).toString());
+                    float price = java.lang.Float.parseFloat(schemeDataTable.getValueAt(k, 3).toString());
+                    schemeDataTable.setValueAt(qty * price, k, 6);
+                    if (schemeDataTable.isEditing()) {
+                        schemeDataTable.getCellEditor().stopCellEditing();
                     }
 
-                    totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(SchemeDataTable, 6);
+                    totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeDataTable, 6);
                     this.totalNetTxt.setText(java.lang.String.valueOf(totalSum));
-                    SchemeDataTable.setValueAt(true, k, 8);
+                    schemeDataTable.setValueAt(true, k, 8);
 
                     if (java.lang.Double.valueOf(totalDepositBalTxt.getText()) > 0) {
                         calculateRefund();
@@ -4445,12 +4458,12 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 }
             }
         } else {
-            for (int k = 0; k < SchemeDataTable.getRowCount(); k++) {
-                if (SchemeDataTable.getValueAt(k, 0) != null) {
-                    SchemeDataTable.setValueAt(0, k, 6);
-                    totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(SchemeDataTable, 6);
+            for (int k = 0; k < schemeDataTable.getRowCount(); k++) {
+                if (schemeDataTable.getValueAt(k, 0) != null) {
+                    schemeDataTable.setValueAt(0, k, 6);
+                    totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeDataTable, 6);
                     this.totalNetTxt.setText(java.lang.String.valueOf(totalSum));
-                    SchemeDataTable.setValueAt(false, k, 8);
+                    schemeDataTable.setValueAt(false, k, 8);
 
                 }
             }
@@ -4711,9 +4724,9 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             }
         }
 
-        for (int k = 0; k < SchemeDataTable.getRowCount(); k++) {
-            for (int r = 0; r < SchemeDataTable.getColumnCount(); r++) {
-                SchemeDataTable.getModel().setValueAt(null, k, r);
+        for (int k = 0; k < schemeDataTable.getRowCount(); k++) {
+            for (int r = 0; r < schemeDataTable.getColumnCount(); r++) {
+                schemeDataTable.getModel().setValueAt(null, k, r);
             }
         }
 
@@ -4721,11 +4734,11 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         int j = 0;
 
         viewTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                + "select distinct date::date,patient_no,scheme, sum(debit-credit) as bill_amount, upper(funsoft_get_patient_name(patient_no)) as patient_name   "
+                + "select distinct date::date, patient_no, scheme, sum(debit-credit) as bill_amount, upper(funsoft_get_patient_name(patient_no)) as patient_name   "
                 + " FROM hp_patient_card where (ip_no='OP' or ip_no = '') and scheme !='' and paid=false"
-                + " and date between '" + beginDate.getDate().toString() + "'::date and '" + endDate.getDate().toString() + "'::date  "
-                + "  group by 1,2,3 having sum(debit-credit)>0 order by patient_no"));
-        
+                + " and date between '" + beginDate.getDate().toString() + "'::date and '" + endDate.getDate().toString() + "'::date "
+                + "  group by 1,2,3 having sum(debit-credit) > 0 order by patient_no"));
+
         System.err.println(""
                 + "select distinct date::date,patient_no,scheme, sum(debit-credit), upper(funsoft_get_patient_name(patient_no))   "
                 + " FROM hp_patient_card where (ip_no='OP' or ip_no = '') and scheme !='' and paid=false"
@@ -4809,7 +4822,6 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable SchemeDataTable;
     private javax.swing.JTextField accountNoTxt;
     private com.afrisoftech.lib.DatePicker beginDate;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -4933,6 +4945,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField patientNotxt;
     private javax.swing.JTextField refundTxt;
     private javax.swing.JTextField schemeBalAfterUtilisationTxt;
+    private javax.swing.JTable schemeDataTable;
     private javax.swing.JTextField schemeNameTxt;
     private javax.swing.JTextField schemeNameTxt1;
     private javax.swing.JTextField schemePayerTxt;

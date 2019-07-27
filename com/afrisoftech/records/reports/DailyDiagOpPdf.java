@@ -697,12 +697,12 @@ public class DailyDiagOpPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Referrals in".toUpperCase(), pFontHeader111);
+                                phrase = new Phrase("Referrals IN".toUpperCase(), pFontHeader111);
                                 table.addCell(phrase);
                                 for (int s = 0; s < rangeDates.length; s++) {
 
 
-                                    java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[s][0] + "' AND '" + rangeDates[s][1] + "' AND comments = 'Ref In' AND age >= 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
+                                    java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[s][0] + "' AND '" + rangeDates[s][1] + "' AND referral_type != '-' AND referral_facility != '' AND age >= 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetr = psetr.executeQuery();
 
 
@@ -730,12 +730,12 @@ public class DailyDiagOpPdf implements java.lang.Runnable {
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Referrals out".toUpperCase(), pFontHeader111);
+                                phrase = new Phrase("Referrals OUT".toUpperCase(), pFontHeader111);
                                 table.addCell(phrase);
 
                                 for (int o = 0; o < rangeDates.length; o++) {
-
-                                    java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[o][0] + "' AND '" + rangeDates[o][1] + "' AND comments = 'Ref out' AND age >= 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
+                                   java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_refferal_ext WHERE input_date between '" + rangeDates[o][0] + "' AND '" + rangeDates[o][1] + "' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE date between '" + rangeDates[o][0] + "' AND '" + rangeDates[o][1] + "' AND age >= 5)");
+                                //    java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[o][0] + "' AND '" + rangeDates[o][1] + "' AND comments = 'Ref out' AND age >= 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetr = psetr.executeQuery();
 
 
@@ -2357,13 +2357,13 @@ public class DailyDiagOpPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
                                 table.getDefaultCell().setColspan(28);
-                                phrase = new Phrase("Referrals in".toUpperCase(), pFontHeader111);
+                                phrase = new Phrase("Referrals IN".toUpperCase(), pFontHeader111);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 for (int s = 30; s < 31; s++) {
 
-
-                                    java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[s][0] + "' AND '" + rangeDates[s][1] + "' AND comments = 'Ref In' AND age >= 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
+                                    System.out.println("Date ranges ["+rangeDates[s][0]+"] and ["+rangeDates[s][1]+"]");
+                                    java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[s][0] + "'::date AND '" + rangeDates[s][1] + "'::date AND referral_type != '-' AND referral_facility != ''  AND age >= 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetr = psetr.executeQuery();
 
 
@@ -2381,6 +2381,7 @@ public class DailyDiagOpPdf implements java.lang.Runnable {
                                     }
 
                                 }
+                                
                                 phrase = new Phrase("" + referralIn, pFontHeader111);
                                 table.addCell(phrase);
 
@@ -2392,7 +2393,7 @@ public class DailyDiagOpPdf implements java.lang.Runnable {
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 table.getDefaultCell().setColspan(28);
-                                phrase = new Phrase("Referrals out".toUpperCase(), pFontHeader111);
+                                phrase = new Phrase("Referrals OUT".toUpperCase(), pFontHeader111);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(1);
                                 for (int o = 30; o < 31; o++) {

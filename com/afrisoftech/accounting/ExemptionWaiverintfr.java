@@ -55,7 +55,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable1 = new com.afrisoftech.dbadmin.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -82,7 +82,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
             System.out.println(sl.getMessage());
         }
 
-        jButton1 = new javax.swing.JButton();
+        saveBtn = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -735,20 +735,20 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jPanel2, gridBagConstraints);
 
-        jButton1.setMnemonic('O');
-        jButton1.setText("Save Data");
-        jButton1.setToolTipText("Click here enter data");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        saveBtn.setMnemonic('O');
+        saveBtn.setText("Save Data");
+        saveBtn.setToolTipText("Click here enter data");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                saveBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jButton1, gridBagConstraints);
+        jPanel1.add(saveBtn, gridBagConstraints);
 
         jButton6.setMnemonic('r');
         jButton6.setText("Remove Row");
@@ -1032,15 +1032,16 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
     private void populateTable3(java.lang.String patient_no) {
 
         int i = 0;
-        int j = 0;
+        double j = 0.00;
         try {
             if (ipChkbx.isSelected()) {
                 java.sql.Statement stmt = connectDB.createStatement();
 
-                java.sql.ResultSet rset = stmt.executeQuery("SELECT count(service) FROM hp_patient_card WHERE patient_no = '" + patient_no + "' AND visit_id = '"+visitIDTxt.getText()+"'");
+    //                java.sql.ResultSet rset = stmt.executeQuery("SELECT count(service) FROM hp_patient_card WHERE patient_no = '" + patient_no + "' AND visit_id = '"+visitIDTxt.getText()+"'");
+                java.sql.ResultSet rset = stmt.executeQuery("SELECT SUM(debit - credit) FROM hp_patient_card WHERE patient_no = '" + patient_no + "' AND visit_id = '"+visitIDTxt.getText()+"'");
 
                 while (rset.next()) {
-                    j = rset.getInt(1);
+                    j = rset.getDouble(1);
                 }
                 if (j > 0) {
 
@@ -1054,35 +1055,48 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                     // System.out.println(jComboBox1.getSelectedItem());
 //                    System.out.println("Date1 : " + datePicker1.getDate().toString());
                     System.out.println("Date2 : " + datePicker3.getDate().toString());
-
-                    java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT date::date, service, sum(dosage), Sum(debit-credit), sum(0),main_service FROM hp_patient_card WHERE patient_no = '" + patient_no + "' AND  paid = false AND visit_id = '"+visitIDTxt.getText()+"' GROUP BY 1,2,6 ORDER BY 1");
-
-                    while (rsetTable1.next()) {
-
-                        rsetTable1x = stmtTable1x.executeQuery("SELECT DISTINCT gl_account FROM pb_operating_parameters WHERE upper(main_service) = '" + rsetTable1.getObject(6).toString().toUpperCase() + "' UNION SELECT DISTINCT gl_code FROM st_stock_prices WHERE upper(department) = '" + rsetTable1.getObject(6).toString().toUpperCase() + "'");
-                        while (rsetTable1x.next()) {
-                            rsetx = stmtTable111.executeQuery("SELECT sum(debit-credit),sum(quantity) FROM ac_cash_collection WHERE upper(description) = '" + rsetTable1.getObject(2).toString().toUpperCase() + "' AND activity_code = '" + rsetTable1x.getObject(1) + "' AND journal_no = '" + visitIDTxt.getText() + "'");
-                            while (rsetx.next()) {
-                                double amount = rsetTable1.getDouble(4);
-                                double receipts = rsetx.getDouble(1);
-                                double qty = rsetTable1.getDouble(3);
-                                double paidQty = rsetx.getDouble(2);
-                                if ((amount - receipts) == 0) {
-                                } else {
-                                    System.out.println("Working at table row " + i);
-                                    jTable1.setValueAt(rsetTable1.getObject(1), i, 0);
-                                    jTable1.setValueAt(rsetTable1.getObject(2), i, 1);
-                                    jTable1.setValueAt(java.lang.Double.valueOf(qty - paidQty), i, 2);
-                                    jTable1.setValueAt(java.lang.Double.valueOf(amount - receipts), i, 3);
-                                    jTable1.setValueAt(rsetTable1.getObject(5), i, 4);
-
-                                    jTable1.setValueAt(rsetTable1x.getObject(1), i, 6);
-
-                                    i++;
-                                }
-                            }
-                        }
-                    }
+                    
+                    jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date::date, service, (sum(dosage) - COALESCE((SELECT sum(quantity) FROM ac_cash_collection WHERE upper(description) ilike hp_patient_card.service \n" +
+                        " AND activity_code = (SELECT code FROM pb_activity WHERE UPPER(pb_activity.activity) = UPPER(hp_patient_card.main_service)) AND journal_no = hp_patient_card.visit_id),0) ) as quantity, \n" +
+                        " (Sum(debit-credit) - COALESCE((SELECT sum(debit-credit) FROM ac_cash_collection WHERE upper(description) = UPPER(hp_patient_card.service) \n" +
+                        " AND activity_code = (SELECT code FROM pb_activity WHERE UPPER(pb_activity.activity) = UPPER(hp_patient_card.main_service)) AND journal_no = hp_patient_card.visit_id),0 ) ) as Total, sum(0) as \"exempted/waived\", false as \"waive?\",\n" +
+                        "(SELECT DISTINCT gl_account FROM pb_operating_parameters WHERE upper(main_service) = UPPER(hp_patient_card.main_service)\n" +
+                        " UNION SELECT DISTINCT gl_code FROM st_stock_prices WHERE upper(department) = UPPER(hp_patient_card.main_service) ) as gl_code    \n" +
+                        " FROM hp_patient_card WHERE patient_no = \n" +
+                        " '" + patient_no + "' AND  paid = false AND visit_id = '"+visitIDTxt.getText()+"' GROUP BY 1,2,6, hp_patient_card.visit_id, hp_patient_card.main_service having (Sum(debit-credit) - \n" +
+                        "COALESCE((SELECT sum(debit-credit) FROM ac_cash_collection WHERE upper(description) = UPPER(hp_patient_card.service) \n" +
+                        " AND activity_code = (SELECT code FROM pb_activity WHERE UPPER(pb_activity.activity) = UPPER(hp_patient_card.main_service)) AND journal_no = hp_patient_card.visit_id),0)) > 0 OR UPPER(hp_patient_card.main_service) = 'WAIVERS'  OR hp_patient_card.service = 'Invoice'  OR UPPER(hp_patient_card.main_service) = 'RECEIPT' OR UPPER(hp_patient_card.main_service) = 'EXEMPTIONS' ORDER BY 1"));
+               
+//                    java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT date::date, service, sum(dosage), Sum(debit-credit), sum(0),main_service FROM hp_patient_card WHERE patient_no = '" + patient_no + "' AND  paid = false AND visit_id = '"+visitIDTxt.getText()+"' GROUP BY 1,2,6 ORDER BY 1");
+//
+//                    while (rsetTable1.next()) {
+//
+//                        rsetTable1x = stmtTable1x.executeQuery("SELECT DISTINCT gl_account FROM pb_operating_parameters WHERE upper(main_service) ilike '" + rsetTable1.getString(6) + "' UNION SELECT DISTINCT gl_code FROM st_stock_prices WHERE upper(department) ilike '" + rsetTable1.getString(6) + "'");
+//                        while (rsetTable1x.next()) {
+//                            rsetx = stmtTable111.executeQuery("SELECT sum(debit-credit),sum(quantity) FROM ac_cash_collection WHERE upper(description) ilike '" + rsetTable1.getString(2) + "' AND activity_code = '" + rsetTable1x.getObject(1) + "' AND journal_no = '" + visitIDTxt.getText() + "'");
+//                            while (rsetx.next()) {
+//                                double amount = rsetTable1.getDouble(4);
+//                                double receipts = rsetx.getDouble(1);
+//                                double qty = rsetTable1.getDouble(3);
+//                                double paidQty = rsetx.getDouble(2);
+//                                if ((amount - receipts) == 0) {
+//                                } else {
+//                                    System.out.println("Working at table row " + i);
+//                                    jTable1.setValueAt(rsetTable1.getObject(1), i, 0);
+//                                    jTable1.setValueAt(rsetTable1.getObject(2), i, 1);
+//                                    jTable1.setValueAt(java.lang.Double.valueOf(qty - paidQty), i, 2);
+//                                    jTable1.setValueAt(java.lang.Double.valueOf(amount - receipts), i, 3);
+//                                    jTable1.setValueAt(rsetTable1.getObject(5), i, 4);
+//
+//                                    jTable1.setValueAt(rsetTable1x.getObject(1), i, 6);
+//
+//                                    i++;
+//                                }
+//                            }
+//                        }
+//                    }
+                }else{
+                     javax.swing.JOptionPane.showMessageDialog(this, "This patient does not have a pending bill.");
                 }
             }
             //}
@@ -1226,6 +1240,20 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                 //  System.out.println("Insert not successful");
             }
         }
+        if(Double.valueOf(jTextField3.getText()) > 0  || opdChkbx.isSelected()){
+            jTextField11.setEnabled(true);
+            exemptionsChkbx.setEnabled(true);
+            jCheckBox5.setEnabled(true);
+            jCheckBox6.setEnabled(true);
+            saveBtn.setEnabled(true);
+        } else {
+            jTextField11.setEnabled(false);
+            exemptionsChkbx.setEnabled(false);
+            jCheckBox5.setEnabled(false);
+            jCheckBox6.setEnabled(false);
+            saveBtn.setEnabled(false);
+           // javax.swing.JOptionPane.showMessageDialog(this, "This patient does not have a pending bill.");
+        }
         patientSearchDialog.dispose();
         exemptionsChkbx.setSelected(false);
         // Add your handling code here:
@@ -1235,7 +1263,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
 
         if (this.opdChkbx.isSelected() && this.searchByNoChkbx.isSelected()) {
 
-            if (patientSearchTxt.getCaretPosition() < 3) {
+            if (patientSearchTxt.getCaretPosition() < 5) {
                 System.out.println("Nothing");
             } else {
                 patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where patient_no ILIKE '" + patientSearchTxt.getText() + "%'  order by second_name"));
@@ -1254,7 +1282,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
             }
         } else {
             if (this.opdChkbx.isSelected() && this.searchByNameChkbx.isSelected()) {
-                if (patientSearchTxt.getCaretPosition() < 3) {
+                if (patientSearchTxt.getCaretPosition() < 5) {
                     System.out.println("Nothing");
                 } else {
                     patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where second_name||' '||first_name||' '||last_name ILIKE '" + patientSearchTxt.getText() + "%'  order by second_name"));
@@ -1279,7 +1307,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
 
             // if(this.jCheckBox21.isSelected()){
             //   if( jTextField113.getCaretPosition() > 3){
-            if (patientSearchTxt.getCaretPosition() < 3) {
+            if (patientSearchTxt.getCaretPosition() < 5) {
                 System.out.println("Nothing");
             } else {
                 patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no,patient_name,visit_id FROM hp_admission WHERE patient_no ILIKE '" + patientSearchTxt.getText() + "%' AND check_out = false UNION ALL SELECT annual_no,patient_name,annual_no FROM hp_mortuary WHERE (patient_no ILIKE '" + patientSearchTxt.getText() + "%' or annual_no ILIKE '" + patientSearchTxt.getText() + "%')  AND discharged = false ORDER BY patient_name"));
@@ -1321,7 +1349,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
         java.awt.Point point = this.patientNumberTxt.getLocationOnScreen();
 
-        patientSearchDialog.setSize(400, 200);
+        patientSearchDialog.setSize(600, 200);
 
         patientSearchDialog.setLocation(point);
 
@@ -1507,7 +1535,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
 
     }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
 
         java.util.Calendar calendar = java.util.Calendar.getInstance();
 
@@ -1660,7 +1688,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                                 }
                                 pstmt.setDouble(13, java.lang.Double.valueOf(jTable1.getValueAt(i, 4).toString()));
                                 pstmt.setDouble(12, 0.00);
-                                pstmt.setDate(14, java.sql.Date.valueOf(jTable1.getValueAt(i, 0).toString()));
+                                pstmt.setDate(14, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
                                 pstmt.setObject(15, patientAcc);
 
                                 pstmt.setDouble(17, -1 * java.lang.Double.valueOf(jTable1.getValueAt(i, 2).toString()));
@@ -1673,7 +1701,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                                 pstmt.setString(24, user);
                                 pstmt.setString(25, billNo);
                                 pstmt.setString(26, "IP");
-                                pstmt.setTimestamp(27, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+                                pstmt.setTimestamp(27, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));
                                 pstmt.setString(28, visitid);
                                 pstmt.setString(29, billNo);
                                 pstmt.executeUpdate();
@@ -1710,7 +1738,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                                 }
                                 pstmt2.setDouble(17, 0.00);
                                 pstmt2.setDouble(16, java.lang.Double.valueOf(jTable1.getValueAt(i, 4).toString()));
-                                pstmt2.setDate(18, java.sql.Date.valueOf(jTable1.getValueAt(i, 0).toString()));
+                                pstmt2.setDate(18, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
                                 pstmt2.setString(19, transNo);
                                 pstmt2.setBoolean(20, false);
                                 pstmt2.setBoolean(21, false);
@@ -1733,6 +1761,9 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
             jTextField1.setText("");
             jTextField7.setText("");
             jTextField3.setText("0.00");
+            jTextField5.setText("0.00");
+            jTextField8.setText("0.00");
+            jTextField11.setText("0.00");
             for (int k = 0; k < jTable1.getRowCount(); k++) {
                 for (int r = 0; r < jTable1.getColumnCount(); r++) {
                     jTable1.getModel().setValueAt(null, k, r);
@@ -1753,7 +1784,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
             javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
         }   // Add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_saveBtnActionPerformed
 
     private void exemptionsChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exemptionsChkbxActionPerformed
         for (int k = 0; k < jTable1.getRowCount(); k++) {
@@ -1866,7 +1897,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         } else {
             com.afrisoftech.reports.FinalDescInPatientIntmlnvPdf policy = new com.afrisoftech.reports.FinalDescInPatientIntmlnvPdf();
 
-            policy.FinalDescInPatientIntmlnvPdf(connectDB, "", patientNumberTxt.getText());
+            policy.FinalDescInPatientIntmlnvPdf(connectDB, visitIDTxt.getText(), patientNumberTxt.getText());
 
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -1878,7 +1909,6 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
     private com.afrisoftech.lib.DatePicker datePicker3;
     private javax.swing.JCheckBox exemptionsChkbx;
     private javax.swing.JCheckBox ipChkbx;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton42;
@@ -1922,6 +1952,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel patientSearchPanel;
     private javax.swing.JTable patientSearchTable;
     private javax.swing.JTextField patientSearchTxt;
+    private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchButton;
     private javax.swing.JCheckBox searchByNameChkbx;
     private javax.swing.JCheckBox searchByNoChkbx;

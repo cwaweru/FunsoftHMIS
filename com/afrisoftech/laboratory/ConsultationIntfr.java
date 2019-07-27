@@ -26,6 +26,8 @@ import javax.swing.JTextField;
 import org.jdesktop.swingx.decorator.ColorHighlighter;
 import com.inet.jortho.SpellChecker;
 import com.inet.jortho.FileUserDictionary;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 //import org.openide.util.Exceptions;
 
 /**
@@ -33,9 +35,10 @@ import com.inet.jortho.FileUserDictionary;
  * @author SPL
  */
 //public class ConsultationIntfr extends javax.swing.JInternalFrame{
-public class ConsultationIntfr extends javax.swing.JInternalFrame implements java.lang.Runnable {
+public class ConsultationIntfr extends javax.swing.JInternalFrame implements java.lang.Runnable, CaretListener {
 
     com.afrisoftech.lib.DBObject dbObject;
+    Boolean clear = true;
     javax.swing.table.TableModel tableModel = null;
     public Vector symps = new Vector();
     java.sql.Connection connectDB = null;
@@ -341,6 +344,11 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         tbScreeningChestXrayResultCmbx = new javax.swing.JComboBox();
         jScrollPane24 = new javax.swing.JScrollPane();
         screeningResultsTxt = new javax.swing.JEditorPane();
+        symptomsDialog = new javax.swing.JDialog();
+        symptomsSearchPanel = new javax.swing.JPanel();
+        symptomsSearchScrollPane = new javax.swing.JScrollPane();
+        symptomsDialogTable = new com.afrisoftech.dbadmin.JTable();
+        symptomsCloseButton = new javax.swing.JButton();
         consultationTabbedPane = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -2315,6 +2323,79 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         gridBagConstraints.weighty = 1.0;
         tbScreeningDialog.getContentPane().add(tbScreeningResultsPanel, gridBagConstraints);
 
+        symptomsDialog.setAutoRequestFocus(false);
+        symptomsDialog.setFocusable(false);
+        symptomsDialog.setFocusableWindowState(false);
+        symptomsDialog.setUndecorated(true);
+        symptomsDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        symptomsSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        symptomsSearchPanel.setLayout(new java.awt.GridBagLayout());
+
+        symptomsSearchScrollPane.setDoubleBuffered(true);
+
+        symptomsDialogTable.setDoubleBuffered(true);
+        symptomsDialogTable.setShowHorizontalLines(false);
+        /*    try {
+            searchRowSet.setCommand("select product,selling_price,gl_code FROM st_stock_prices WHERE department = 'Pharmacy' order by product");
+            searchRowSet.setConnectionSource(pConnDB);
+
+            searchRowSet.execute();
+
+            // crset2.setExecuteOnLoad(true);
+            jSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet, new org.netbeans.lib.sql.models.TableModel.Column[] {
+                new org.netbeans.lib.sql.models.TableModel.Column("product", "Description", false),
+                new org.netbeans.lib.sql.models.TableModel.Column("selling_price", "Amount", false),
+                new org.netbeans.lib.sql.models.TableModel.Column("gl_code", "Gl_code", false)
+
+            }));
+            // jSearchScrollPane.setViewportView(jSearchTable);
+
+        } catch(java.sql.SQLException sqlex){
+            javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
+
+            System.out.println(sqlex.getMessage());
+        }
+        */
+        symptomsDialogTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                symptomsDialogTableMouseClicked(evt);
+            }
+        });
+        symptomsSearchScrollPane.setViewportView(symptomsDialogTable);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 200.0;
+        symptomsSearchPanel.add(symptomsSearchScrollPane, gridBagConstraints);
+
+        symptomsCloseButton.setText("Dispose");
+        symptomsCloseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                symptomsCloseButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        symptomsSearchPanel.add(symptomsCloseButton, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        symptomsDialog.getContentPane().add(symptomsSearchPanel, gridBagConstraints);
+
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
@@ -4000,11 +4081,6 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         complainsTextPaneTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 complainsTextPaneTxtCaretUpdate(evt);
-            }
-        });
-        complainsTextPaneTxt.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                complainsTextPaneTxtMouseClicked(evt);
             }
         });
         jScrollPane6.setViewportView(complainsTextPaneTxt);
@@ -9710,6 +9786,11 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         } else if (this.inpatientCheckBox.isSelected() == Boolean.TRUE) {
             patType = "ip";
         }
+
+        System.out.println("Patient Type : " + patType);
+        System.out.println("Testing clerking eligibility : [" + checkPayment(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 0).toString(), clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 6).toString(), patType, clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4).toString()) + "]");
+        System.out.println("Patient Type : " + patType + " and " + clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 6).toString() + " and " + clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4).toString() + " for patient no " + clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 0).toString());
+
         if (evt.getClickCount() == 1) {
             if (Objects.equals(checkPayment(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 0).toString(), clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 6).toString(), patType, clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4).toString()), Boolean.TRUE)) {
 
@@ -10046,26 +10127,28 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
     private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
 
-        jEditorPane2.setText("");
-        notesTextField.setText(null);
-        clinicalExamineditorTxt.setText("");
-        provisionalDiagnosistxt.setText("");
-        complainstxt.setText("");
-        complainsTextPaneTxt.setText("");
-        jTextPane1.setText("");
-        referalCheckbox.setSelected(false);
+        if (clear) {
+            jEditorPane2.setText("");
+            notesTextField.setText(null);
+            clinicalExamineditorTxt.setText("");
+            provisionalDiagnosistxt.setText("");
+            complainstxt.setText("");
+            complainsTextPaneTxt.setText("");
+            jTextPane1.setText("");
+            referalCheckbox.setSelected(false);
 
-        for (int k = 0; k < diagnosisTable.getRowCount(); k++) {
-            for (int r = 0; r < diagnosisTable.getColumnCount(); r++) {
-                diagnosisTable.getModel().setValueAt(null, k, r);
+            for (int k = 0; k < diagnosisTable.getRowCount(); k++) {
+                for (int r = 0; r < diagnosisTable.getColumnCount(); r++) {
+                    diagnosisTable.getModel().setValueAt(null, k, r);
+                }
             }
+            com.afrisoftech.lib.ClearTable.clearthisTable(jTable13);
+            com.afrisoftech.lib.ClearTable.clearthisTable(jTable14);
+            com.afrisoftech.lib.ClearTable.clearthisTable(pharmacyTable);
+            com.afrisoftech.lib.ClearTable.clearthisTable(symptomsTable);
+            com.afrisoftech.lib.ClearTable.clearthisTable(rxplanTable);
+            com.afrisoftech.lib.ClearTable.clearthisTable(diagnosisTable);
         }
-        com.afrisoftech.lib.ClearTable.clearthisTable(jTable13);
-        com.afrisoftech.lib.ClearTable.clearthisTable(jTable14);
-        com.afrisoftech.lib.ClearTable.clearthisTable(pharmacyTable);
-        com.afrisoftech.lib.ClearTable.clearthisTable(symptomsTable);
-        com.afrisoftech.lib.ClearTable.clearthisTable(rxplanTable);
-        com.afrisoftech.lib.ClearTable.clearthisTable(diagnosisTable);
         /*        for (int k = 0; k < jTable3.getRowCount(); k++) {
          for (int r = 0; r < jTable3.getColumnCount(); r++) {
          jTable3.getModel().setValueAt(null, k, r);
@@ -10241,10 +10324,16 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     }//GEN-LAST:event_jButton912ActionPerformed
 
     private void searchDiseasesTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchDiseasesTxtCaretUpdate
-        if (searchDiseasesTxt.getText().length() >= 1) {
-            this.complainsdialogtable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
-                    "SELECT (upper(disease_name)) as name,code from hp_diseases where disease_name ilike '%" + searchDiseasesTxt.getText().toString().trim() + "%' order by 1"));
+        if (searchDiseasesTxt.getText().length() > 2) {
+
+            complainsdialogtable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT (upper(disease_name)) as name,code from hp_diseases where  (disease_name ILIKE '%" + searchDiseasesTxt.getText() + "%' OR code ILIKE '%" + searchDiseasesTxt.getText() + "%')  ORDER BY 1, code LIMIT 50"));
+
+            //  System.out.println("SELECT (upper(disease_name)) as name,code from hp_diseases where code='" + icdCode + "' and  disease_name ILIKE '%" + icd10SearchTxt.getText() + "%' ORDER BY code,1  LIMIT 50");
         }
+//        if (searchDiseasesTxt.getText().length() >= 3) {
+//            this.complainsdialogtable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
+//                    "SELECT (upper(disease_name)) as name,code from hp_diseases where disease_name ilike '%" + searchDiseasesTxt.getText().toString() + "%' order by 1"));
+//        }
     }//GEN-LAST:event_searchDiseasesTxtCaretUpdate
 
     private void urgencyComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_urgencyComboBoxItemStateChanged
@@ -10393,6 +10482,22 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     }//GEN-LAST:event_clinicComboBoxActionPerformed
 
     private void complainsTextPaneTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_complainsTextPaneTxtCaretUpdate
+        if (complainsTextPaneTxt.getText().replaceAll("^.*?(\\w+)\\W*$", "$1").length() > 4) {
+            java.awt.Point point = this.complainsTextPaneTxt.getLocationOnScreen();
+            point.setLocation(complainsTextPaneTxt.getLocationOnScreen().x, complainsTextPaneTxt .getLocationOnScreen().y + 120);
+
+            System.out.println("Showing dialog");
+            // java.awt.Point point = complainsTextPaneTxt.getLocationOnScreen();
+            symptomsDialog.setSize(600, 200);
+            symptomsDialog.setLocation(point);
+            symptomsDialog.setVisible(true);
+
+            symptomsDialogTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT symptom FROM hp_symptoms WHERE symptom ILIKE '%" + complainsTextPaneTxt.getText().replaceAll("^.*?(\\w+)\\W*$", "$1") + "%' ORDER BY 1"));
+            complainsTextPaneTxt.requestFocusInWindow();;
+        } else {
+            symptomsDialog.dispose();
+        }
+//complainsTextPaneTxt.getText().replaceAll("^.*?(\\w+)\\W*$", "$1");
     }//GEN-LAST:event_complainsTextPaneTxtCaretUpdate
 
     private void complainstxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_complainstxtMouseClicked
@@ -10627,7 +10732,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 + " FROM clerking_requests,pb_operating_parameters "
                 + " where"
                 + " clerking_requests.request_category ilike '" + diagnosticsServicesTable.getValueAt(diagnosticsServicesTable.getSelectedRow(), 1).toString().trim() + "'"
-                + " and pb_operating_parameters.service_type=clerking_requests.request order by 2 asc; "));
+                + " and pb_operating_parameters.service_type=clerking_requests.request  order by 2 asc; ")); //AND pb_operating_parameters.status = 'Active'
 
         if (lablatoryCheck.isSelected() == Boolean.TRUE) {
 
@@ -10924,6 +11029,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                     pstmt46x.executeUpdate();
                     javax.swing.JOptionPane.showMessageDialog(this, "Data Inserted Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                 } else {
+                    clear = false;
                     javax.swing.JOptionPane.showMessageDialog(this, "The client history/complaints, physical examination and provisional diagnosis MUST be indicated before proceeding to save the info.");
                 }
             } else if (clerkingTabbedPane.getSelectedIndex() == 2) {
@@ -11041,6 +11147,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             connectDB.setAutoCommit(true);
 
             this.jButton37.doClick();
+            clear = true;
         } catch (java.sql.SQLException sq) {
             sq.printStackTrace();
             try {
@@ -11388,10 +11495,6 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         }
     }//GEN-LAST:event_loadTRIAGEDpatientsbtnActionPerformed
-
-    private void complainsTextPaneTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_complainsTextPaneTxtMouseClicked
-
-    }//GEN-LAST:event_complainsTextPaneTxtMouseClicked
 
     private void allpatCheckBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_allpatCheckBoxItemStateChanged
         if (allpatCheckBox.isSelected() == Boolean.TRUE) {
@@ -11761,7 +11864,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
     private void internalReferralBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_internalReferralBtnActionPerformed
         if (waitingclinicscmbx.getSelectedItem() != null && internalReferralCmbx.getSelectedItem() != null) {
-            if (waitingclinicscmbx.getSelectedItem().toString().toUpperCase() != internalReferralCmbx.getSelectedItem().toString().toUpperCase() && nameNoTxt.getText().length() > 0 ){
+            if (waitingclinicscmbx.getSelectedItem().toString().toUpperCase() != internalReferralCmbx.getSelectedItem().toString().toUpperCase() && nameNoTxt.getText().length() > 0) {
                 try {
                     java.sql.PreparedStatement pstmtInternalReferral = connectDB.prepareStatement("INSERT INTO public.hp_patient_visit("
                             + "            patient_no, name, ip_no, payment, visit_no, services, quantity, "
@@ -11796,7 +11899,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     }//GEN-LAST:event_internalReferralBtnActionPerformed
 
     private void viewBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBillBtnActionPerformed
-        if(paymentModeTxt.getText().equalsIgnoreCase("Scheme")){
+        if (paymentModeTxt.getText().equalsIgnoreCase("Scheme")) {
             com.afrisoftech.reports.OutPatientBillPdf policy = new com.afrisoftech.reports.OutPatientBillPdf();
 
             policy.OutPatientBillPdf(connectDB, datePicker2.getDate(), transdatePicker.getDate(), nameNoTxt.getText());
@@ -11806,6 +11909,29 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_viewBillBtnActionPerformed
+
+    private void symptomsDialogTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_symptomsDialogTableMouseClicked
+        if (!complainsTextPaneTxt.getText().contains(" ")) {
+
+            System.out.println("One word ...");
+//            if (symptomsDialogTable.getValueAt(symptomsDialogTable.getSelectedRow(), 0) != null) {
+            System.out.println("Replace One word ..." + symptomsDialogTable.getSelectedRow());
+            String selectedSymptom = symptomsDialogTable.getValueAt(symptomsDialogTable.getSelectedRow(), 0).toString();
+            complainsTextPaneTxt.setText(null);
+            complainsTextPaneTxt.setText(selectedSymptom);
+//            } complainsTextPaneTxt.setText(null);
+        } else {
+            complainsTextPaneTxt.setText(complainsTextPaneTxt.getText().replaceAll(" \\S*$", "") + ", " + symptomsDialogTable.getValueAt(symptomsDialogTable.getSelectedRow(), 0));
+        }
+        symptomsDialog.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_symptomsDialogTableMouseClicked
+
+    private void symptomsCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_symptomsCloseButtonActionPerformed
+
+        symptomsDialog.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_symptomsCloseButtonActionPerformed
 
     private void populateTable1(java.lang.String patient_no) {
     }
@@ -12576,6 +12702,11 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     private javax.swing.JLabel spacerlabels;
     private com.afrisoftech.lib.DatePicker startdatePicker111;
     private javax.swing.JTable surgeryhistoryTable;
+    private javax.swing.JButton symptomsCloseButton;
+    private javax.swing.JDialog symptomsDialog;
+    private javax.swing.JTable symptomsDialogTable;
+    private javax.swing.JPanel symptomsSearchPanel;
+    private javax.swing.JScrollPane symptomsSearchScrollPane;
     private javax.swing.JTable symptomsTable;
     private javax.swing.JTabbedPane tabbedpaneAll;
     private javax.swing.JCheckBox tbScreeeningGeneExpertChkbx;
@@ -13092,6 +13223,14 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
                     }
 
+                    // Forward request to LIMS
+                    if ((paymentModeTxt.getText().contains("Scheme") || inpatientCheckBox.isSelected()) && com.afrisoftech.lib.LabRequestJSON.isLIMSEnabled(connectDB)) {
+                        if (outpatientCheckBox.isSelected()) {
+                            com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendLabRequest(connectDB, "bGltc19hY2Nlc3M6MTJAITIzIzQk", String.valueOf(transNo), nameNoTxt.getText(), patientNameTxt.getText(), paymentModeTxt.getText(), schemeNameTxt.getText(), com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, String.valueOf(transNo), nameNoTxt.getText()), "OUT");
+                        } else {
+                            com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendLabRequest(connectDB, "bGltc19hY2Nlc3M6MTJAITIzIzQk", String.valueOf(transNo), nameNoTxt.getText(), patientNameTxt.getText(), paymentModeTxt.getText(), schemeNameTxt.getText(), com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, String.valueOf(transNo), nameNoTxt.getText()), "IN");
+                        }
+                    }
 //                    } else {
 //                        javax.swing.JOptionPane.showMessageDialog(this, "You MUST record patient history before proceeding to diagnostics/investigations.");
 //                    }
@@ -13358,6 +13497,13 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         }
         // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void caretUpdate(CaretEvent e) {
+
+        e.getDot();
+        //To change body of generated methods, choose Tools | Templates.
     }
 
 //    class WaitingPatientsThread extends Thread {

@@ -9009,7 +9009,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
             java.sql.Statement stmt1 = connectDB.createStatement();
             java.sql.ResultSet rset1 = null;
 
-            rset1 = stmt1.executeQuery("select gender,age::int,department from hp_patient_visit where patient_no ='" + occupancyTable.getValueAt(occupancyTable.getSelectedRow(), 0).toString() + "' ORDER BY age desc LIMIT 1 ");
+            rset1 = stmt1.executeQuery("select gender,age::int,department from hp_patient_visit where patient_no ='" + jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 0).toString() + "' ORDER BY age desc LIMIT 1 ");
 
             while (rset1.next()) {
 
@@ -9113,7 +9113,11 @@ public class NursingTriage extends javax.swing.JInternalFrame {
             pstmt.setObject(19, new com.afrisoftech.nursing.NursingObject().NursingObject(txtUrinary.getText()));
             pstmt.setObject(20, patient_name);
             pstmt.setObject(21, new com.afrisoftech.nursing.NursingObject().NursingObject(urgencyComboBox.getSelectedItem().toString()));
-            pstmt.setDouble(22, Double.parseDouble(bloodglucosetxt.getText()));
+            if(bloodglucosetxt.getText().trim().isEmpty()){
+                pstmt.setObject(22, null);
+            }else{
+                pstmt.setDouble(22, Double.parseDouble(bloodglucosetxt.getText()));
+            }
 
             pstmt.executeUpdate();
 

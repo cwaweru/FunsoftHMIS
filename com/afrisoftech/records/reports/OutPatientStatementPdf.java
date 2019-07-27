@@ -386,12 +386,14 @@ public class OutPatientStatementPdf implements java.lang.Runnable {
                         table.getDefaultCell().setColspan(6);
 
                         Phrase phrase = new Phrase("", pFontHeader);
-
+                        String schemsString = "";
                         try {
 
                             if (paymentMode.equalsIgnoreCase("Scheme")) {
-                                paymentMode = paymentMode.toUpperCase() + " : " + schemesName.toUpperCase();
-                            } 
+                                schemsString = paymentMode.toUpperCase() + " : " + schemesName.toUpperCase();
+                            } else {
+                                schemsString = paymentMode.toUpperCase();
+                            }
                             java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);//MEDIUM);
 
                             java.util.Date endDate1 = dateFormat.parse(endDate.toLocaleString());//dateInstance.toLocaleString());
@@ -444,7 +446,7 @@ public class OutPatientStatementPdf implements java.lang.Runnable {
                             table.getDefaultCell().setColspan(7);
                             table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                            phrase = new Phrase("A. OUT - PATIENTS : " + paymentMode, pFontHeader);
+                            phrase = new Phrase("A. OUT - PATIENTS : " + schemsString, pFontHeader);
                             table.addCell(phrase);
 
                             table.getDefaultCell().setColspan(1);
@@ -534,23 +536,47 @@ public class OutPatientStatementPdf implements java.lang.Runnable {
                                     lowerAge = rsetAge.getDouble(1);
                                     upperAge = rsetAge.getDouble(2);
                                 }
-
-                                if (clinic == null) {
-                                    if (schemesName == null) {
+                                System.out.println("Payment mode selection : [" + paymentMode + "]");
+                                
+                                if (clinic.toString().contains("--ALL--")) {
+                                    if (paymentMode.contains("--ALL--")) {
+                                        System.out.println("Counting for all patients");
                                         rset = st.executeQuery("SELECT count(patient_no),TRIM(gender) AS gender FROM hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND comments ilike 'new' GROUP BY 2 ORDER BY gender DESC");
                                         rset1 = st1.executeQuery("SELECT count(patient_no),TRIM(gender) AS gender FROM hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND comments ilike 'old' GROUP BY 2 ORDER BY gender DESC");
-                                    } else {
-                                        rset = st.executeQuery("SELECT count(pb.patient_no),TRIM(pb.gender) AS gender FROM hp_patient_visit pb, hp_patient_card hp WHERE hp.patient_no = pb.patient_no AND hp.date::date = pb.date::date AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pb.age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND pb.comments ilike 'new' GROUP BY 2 ORDER BY 2 DESC");
-                                        rset1 = st1.executeQuery("SELECT count(pb.patient_no),TRIM(pb.gender) AS gender FROM hp_patient_visit pb, hp_patient_card hp WHERE hp.patient_no = pb.patient_no AND hp.date::date = pb.date::date AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "'  AND  pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pb.age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND pb.comments ilike 'old' GROUP BY 2 ORDER BY 2 DESC");
+
+                                    } else if (paymentMode.contains("Scheme") && schemesName.contains("--ALL--")) {
+                                        System.out.println("Counting for scheme all schemes patients");
+                                        rset = st.executeQuery("SELECT count(pb.patient_no),TRIM(pb.gender) AS gender FROM hp_patient_visit pb WHERE pb.payment ILIKE 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pb.age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND pb.comments ilike 'new' GROUP BY 2 ORDER BY 2 DESC");
+                                        rset1 = st1.executeQuery("SELECT count(pb.patient_no),TRIM(pb.gender) AS gender FROM hp_patient_visit pb WHERE pb.payment ILIKE 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pb.age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND pb.comments ilike 'old' GROUP BY 2 ORDER BY 2 DESC");
+
+                                    } else if (paymentMode.contains("Scheme") && !schemesName.contains("--ALL--")) {
+                                        System.out.println("Counting for scheme particular schemes patients");
+                                        rset = st.executeQuery("SELECT count(pb.patient_no),TRIM(pb.gender) AS gender FROM hp_patient_visit pb, credit_acc_slip cs  WHERE pb.payment ILIKE 'Scheme' AND cs.patient_no = pb.patient_no AND cs.date::date = pb.date::date AND UPPER(cs.scheme) = '" + schemesName.toUpperCase() + "' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pb.age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND pb.comments ilike 'new' GROUP BY 2 ORDER BY 2 DESC");
+                                        rset1 = st1.executeQuery("SELECT count(pb.patient_no),TRIM(pb.gender) AS gender FROM hp_patient_visit pb, credit_acc_slip cs  WHERE pb.payment ILIKE 'Scheme' AND  cs.patient_no = pb.patient_no AND cs.date::date = pb.date::date AND UPPER(cs.scheme) = '" + schemesName.toUpperCase() + "'  AND  pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pb.age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND pb.comments ilike 'old' GROUP BY 2 ORDER BY 2 DESC");
+
+                                    } else if (paymentMode.contains("Cash")) {
+                                        System.out.println("Counting for cash patients");
+                                        rset = st.executeQuery("SELECT count(patient_no),TRIM(gender) AS gender FROM hp_patient_visit WHERE payment NOT ILIKE 'Scheme' AND date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND comments ilike 'new' GROUP BY 2 ORDER BY gender DESC");
+                                        rset1 = st1.executeQuery("SELECT count(patient_no),TRIM(gender) AS gender FROM hp_patient_visit WHERE payment NOT ILIKE 'Scheme' AND  date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND comments ilike 'old' GROUP BY 2 ORDER BY gender DESC");
 
                                     }
                                 } else {
-                                    if (schemesName != null) {
-                                        rset = st.executeQuery("SELECT count(patient_no),TRIM(gender) AS gender FROM hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND upper(comments) =  upper('new') AND upper(clinic) ilike '" + clinic.toString().toUpperCase() + "' GROUP BY 2 ORDER BY gender DESC");
-                                        rset1 = st1.executeQuery("SELECT count(patient_no),TRIM(gender) AS gender FROM hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND upper(comments) ilike upper('old') AND upper(clinic) ilike '" + clinic.toString().toUpperCase() + "'  GROUP BY 2 ORDER BY gender DESC");
+                                    if (paymentMode.contains("--ALL--")) {
+                                        rset = st.executeQuery("SELECT count(patient_no),TRIM(gender) AS gender FROM hp_patient_visit WHERE clinic ILIKE '" + clinic + "' AND date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND comments ilike 'new' GROUP BY 2 ORDER BY gender DESC");
+                                        rset1 = st1.executeQuery("SELECT count(patient_no),TRIM(gender) AS gender FROM hp_patient_visit WHERE clinic ILIKE '" + clinic + "' AND  date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND comments ilike 'old' GROUP BY 2 ORDER BY gender DESC");
+
+                                    } else if (paymentMode.contains("Scheme") && schemesName.contains("--ALL--")) {
+                                        rset = st.executeQuery("SELECT count(pb.patient_no),TRIM(pb.gender) AS gender FROM hp_patient_visit pb WHERE  clinic ILIKE '" + clinic + "' AND  pb.payment ILIKE 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pb.age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND pb.comments ilike 'new' GROUP BY 2 ORDER BY 2 DESC");
+                                        rset1 = st1.executeQuery("SELECT count(pb.patient_no),TRIM(pb.gender) AS gender FROM hp_patient_visit pb WHERE  clinic ILIKE '" + clinic + "' AND pb.payment ILIKE 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pb.age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND pb.comments ilike 'old' GROUP BY 2 ORDER BY 2 DESC");
+
+                                    } else if (paymentMode.contains("Scheme") && !schemesName.contains("--ALL--")) {
+                                        rset = st.executeQuery("SELECT count(pb.patient_no),TRIM(pb.gender) AS gender FROM hp_patient_visit pb, credit_acc_slip cs WHERE  pb.clinic ILIKE '" + clinic + "' AND  pb.payment ILIKE 'Scheme' AND cs.patient_no = pb.patient_no AND cs.date::date = pb.date::date AND UPPER(cs.scheme) = '" + schemesName.toUpperCase() + "' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pb.age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND pb.comments ilike 'new' GROUP BY 2 ORDER BY 2 DESC");
+                                        rset1 = st1.executeQuery("SELECT count(pb.patient_no),TRIM(pb.gender) AS gender FROM hp_patient_visit pb, credit_acc_slip cs WHERE pb.clinic ILIKE '" + clinic + "' AND pb.payment ILIKE 'Scheme' AND cs.patient_no = pb.patient_no AND cs.date::date = pb.date::date AND UPPER(cs.scheme) = '" + schemesName.toUpperCase() + "'  AND  pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND pb.age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND pb.comments ilike 'old' GROUP BY 2 ORDER BY 2 DESC");
+
                                     } else {
-                                        rset = st.executeQuery("SELECT count(pb.patient_no),TRIM(pb.gender) AS gender FROM hp_patient_visit pb, hp_patient_card hp WHERE hp.patient_no = pb.patient_no AND hp.date::date = pb.date::date AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "'  AND   pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND upper(pb.comments) =  upper('new') AND upper(pb.clinic) ilike '" + clinic.toString().toUpperCase() + "' GROUP BY 2 ORDER BY 2 DESC");
-                                        rset1 = st1.executeQuery("SELECT count(pb.patient_no),TRIM(pb.gender) AS gender FROM hp_patient_visit pb, hp_patient_card hp WHERE hp.patient_no = pb.patient_no AND hp.date::date = pb.date::date AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "'  AND   pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND upper(pb.comments) ilike upper('old') AND upper(pb.clinic) ilike '" + clinic.toString().toUpperCase() + "'  GROUP BY 2 ORDER BY 2 DESC");
+                                        rset = st.executeQuery("SELECT count(patient_no),TRIM(gender) AS gender FROM hp_patient_visit WHERE clinic ILIKE '" + clinic + "' AND  payment NOT ILIKE 'Scheme' AND date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND comments ilike 'new' GROUP BY 2 ORDER BY gender DESC");
+                                        rset1 = st1.executeQuery("SELECT count(patient_no),TRIM(gender) AS gender FROM hp_patient_visit WHERE clinic ILIKE '" + clinic + "' AND  payment NOT ILIKE 'Scheme' AND  date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) BETWEEN '" + lowerAge + "' AND '" + upperAge + "' AND comments ilike 'old' GROUP BY 2 ORDER BY gender DESC");
+
                                     }
                                 }
                                 table.getDefaultCell().setColspan(1);

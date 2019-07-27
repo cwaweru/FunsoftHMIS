@@ -57,8 +57,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
         ageingSeries = new com.afrisoftech.timeseries.DailyAgeing(31, endate);
         // long enDate = java.util.Date.parse(endDate);
 
-
-
         threadSample = new java.lang.Thread(this, "SampleThread");
 
         System.out.println("threadSample created");
@@ -99,14 +97,11 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
             threadCheck = false;
 
-
             System.out.println("We shall be lucky to get back to start in one piece");
 
         }
 
         if (!threadCheck) {
-
-
 
             Thread.currentThread().stop();
 
@@ -272,7 +267,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
         java.lang.Object[][] rangeDates = ageingSeries.getAgeingDateSeries();
 
         // ageingDates = ageingSeries.getAgeingDateSeries();
-
         double columnTotals[] = new double[rangeDates.length];
 
         java.lang.Process wait_for_Pdf2Show;
@@ -299,7 +293,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
             java.lang.String creditTotal = null;
 
             //   com.lowagie.text.Document docPdf = new com.lowagie.text.Document();
-
             com.lowagie.text.Document docPdf = new com.lowagie.text.Document(PageSize.A3.rotate());
 
             java.util.Calendar calendar = java.util.Calendar.getInstance();
@@ -309,7 +302,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
             java.sql.Date datenowSql = new java.sql.Date(dateNow);
 
             System.out.println(datenowSql.toString());
-
 
             try {
 
@@ -323,7 +315,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                     try {
 
                         //   java.sql.Connection conDb = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-
                         java.sql.Statement st3 = connectDB.createStatement();
                         java.sql.Statement st4 = connectDB.createStatement();
                         java.sql.Statement st4s = connectDB.createStatement();
@@ -338,8 +329,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                         while (rset4.next()) {
                             date = rset4.getObject(1).toString();
                         }
-
-
 
                         java.sql.ResultSet rset4s = st4s.executeQuery("SELECT '" + endDate + "'::date - '" + beginDate + "'::date + 1");
 
@@ -361,17 +350,13 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                     com.lowagie.text.HeaderFooter footer = new com.lowagie.text.HeaderFooter(new Phrase("Daily Diagnosis  Page: ", pFontHeader), true);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 12, Font.BOLDITALIC,java.awt.Color.blue));
 
                     //docPdf.setFooter(footer);
-
-
                     docPdf.open();
-
 
                     double Totals = 0.00;
                     double OS = 0.00;
                     System.out.println(dayInMonth);
                     if (dayInMonth == 31) {
                         try {
-
 
                             com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(rangeDates.length + 3);
 
@@ -381,9 +366,7 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                             int z = rangeDates.length;
 
-
                             int headerwidths[] = {5, 42, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 12};//,13,13};
-
 
                             table.setWidths(headerwidths);
 
@@ -397,7 +380,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                             try {
                                 //table.getDefaultCell().setBorder(Rectangle.BOTTOM);
                                 java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);//MEDIUM);
-
 
                                 java.util.Date endDate1 = dateFormat.parse(endDate.toLocaleString());//dateInstance.toLocaleString());
 
@@ -434,9 +416,7 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.getDefaultCell().setColspan(25);
 
                                 //java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);//MEDIUM);
-
                                 // java.util.Date endDate2 = dateFormat.parse(endDate.toLocaleString());
-
 //.toUpperCase() + dateFormat.format(endDate2)
                                 phrase = new Phrase("Days of The Month ", pFontHeader111);
 
@@ -451,7 +431,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), psExec.getMessage());
 
                             }
-
 
                             table.getDefaultCell().setColspan(2);
 
@@ -468,7 +447,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 try {
 
                                     // Date parser
-
                                     java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
                                     com.afrisoftech.lib.DateFormatter dateFormatter = new com.afrisoftech.lib.DateFormatter(dateFormat.parse(rangeDates[x][0].toString().trim()), "dd");
 
@@ -478,9 +456,7 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     //  if (x < 1) {
 
                                     //       com.afrisoftech.lib.DateFormatter dateFormatterCurrent = new com.afrisoftech.lib.DateFormatter(endDate, "dd");
-
                                     //       java.lang.String monthStringCurrent = dateFormatterCurrent.getDateString();
-
                                     //       phrase = new Phrase(monthStringCurrent ,pFontHeader);
                                     //  } else {
                                     phrase = new Phrase(monthString, pFontHeader);
@@ -491,7 +467,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     table.addCell(phrase);
 
                                     // Catch java.text.parse exception.
-
                                 } catch (java.text.ParseException prs) {
                                     prs.printStackTrace();
                                 }
@@ -507,7 +482,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 java.lang.Object[] listofAct = this.getListofActivities();
 
                                 //    java.sql.Connection conDb1 = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-
                                 System.out.println(listofAct.length);
                                 int firstVisit = 0;
                                 int newCases = 0;
@@ -518,8 +492,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     double TurnOver = 0.00;
                                     double Over120 = 0.00;
                                     int TotalCount = 0;
-
-
 
                                     table.getDefaultCell().setColspan(1);
 
@@ -533,7 +505,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     // java.sql.ResultSet rset22 = pset22.executeQuery();
                                     //table.addCell(phrase);
                                     // while (rset22.next()){
-
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                                     seq = seq + 1;
                                     table.getDefaultCell().setColspan(1);
@@ -546,11 +517,8 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     table.addCell(phrase);
 
                                     // }
-
-
                                     for (int t = 0; t < rangeDates.length; t++) {
                                         java.sql.Statement st01 = connectDB.createStatement();
-
 
                                         java.sql.PreparedStatement pset = connectDB.prepareStatement("SELECT count(scrub_nurse) from hp_patient_diagnosis where scrub_nurse = ?  AND date_discharged between '" + rangeDates[t][0] + "' AND '" + rangeDates[t][1] + "' AND pat_age < 5 AND pat_category = 'OP'");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
 
@@ -562,7 +530,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                                         java.sql.PreparedStatement pseto = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[t][0] + "' AND '" + rangeDates[t][1] + "' AND comments = 'Old' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                         java.sql.ResultSet rseto = pseto.executeQuery();
-
 
                                         while (rset.next()) {
 
@@ -601,8 +568,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     java.sql.PreparedStatement psetns = connectDB.prepareStatement("SELECT count(scrub_nurse) from hp_patient_diagnosis WHERE date_discharged between '" + rangeDates[g][0] + "' AND '" + rangeDates[g][1] + "'  AND pat_age < 5 AND pat_category = 'OP' ");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetns = psetns.executeQuery();
 
-
-
                                     while (rsetns.next()) {
 
                                         table.getDefaultCell().setColspan(1);
@@ -619,7 +584,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 }
                                 phrase = new Phrase("" + newCases, pFontHeader111);
                                 table.addCell(phrase);
-
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                                 seq = seq + 1;
@@ -638,8 +602,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                                     java.sql.PreparedStatement psetn = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[n][0] + "' AND '" + rangeDates[n][1] + "' AND comments = 'New' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetn = psetn.executeQuery();
-
-
 
                                     while (rsetn.next()) {
 
@@ -677,7 +639,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[r][0] + "' AND '" + rangeDates[r][1] + "' AND comments = 'Old' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetr = psetr.executeQuery();
 
-
                                     while (rsetr.next()) {
 
                                         table.getDefaultCell().setColspan(1);
@@ -691,7 +652,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                         reVisit = reVisit + rsetr.getInt(1);
                                     }
 
-
                                 }
                                 phrase = new Phrase("" + reVisit, pFontHeader111);
                                 table.addCell(phrase);
@@ -703,18 +663,15 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Referrals in".toUpperCase(), pFontHeader111);
+                                phrase = new Phrase("Referrals IN".toUpperCase(), pFontHeader111);
                                 table.addCell(phrase);
                                 for (int s = 0; s < rangeDates.length; s++) {
 
-
-                                    java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[s][0] + "' AND '" + rangeDates[s][1] + "' AND comments = 'Ref In' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
+                                    java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[s][0] + "' AND '" + rangeDates[s][1] + "'  AND referral_type != '-' AND referral_facility != '' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetr = psetr.executeQuery();
-
 
                                     while (rsetr.next()) {
 
@@ -740,17 +697,17 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Referrals out".toUpperCase(), pFontHeader111);
+                                phrase = new Phrase("Referrals OUT".toUpperCase(), pFontHeader111);
                                 table.addCell(phrase);
 
                                 for (int o = 0; o < rangeDates.length; o++) {
 
-                                    java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[o][0] + "' AND '" + rangeDates[o][1] + "' AND comments = 'Ref out' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
-                                    java.sql.ResultSet rsetr = psetr.executeQuery();
+                                                   java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_refferal_ext WHERE input_date between '" + rangeDates[o][0] + "' AND '" + rangeDates[o][1] + "' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE date between '" + rangeDates[o][0] + "' AND '" + rangeDates[o][1] + "' AND age < 5)");
 
+                                  //  java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(hr.patient_no) FROM hp_patient_visit hv, hp_refferal_ext hr WHERE hr.input_date between '" + rangeDates[o][0] + "' AND '" + rangeDates[o][1] + "' AND  hv.date between '" + rangeDates[o][0] + "' AND '" + rangeDates[o][1] + "' AND hv.age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
+                                    java.sql.ResultSet rsetr = psetr.executeQuery();
 
                                     while (rsetr.next()) {
 
@@ -765,16 +722,12 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                         referralOut = referralOut + rsetr.getInt(1);
                                     }
 
-
                                 }
                                 phrase = new Phrase("" + referralOut, pFontHeader111);
                                 table.addCell(phrase);
                                 //table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
 
                                 //table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP);
-
-
-
                                 docPdf.add(table);
 
                             } catch (java.sql.SQLException SqlExec) {
@@ -785,19 +738,15 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                             }
 
-
-
                         } catch (com.lowagie.text.BadElementException BadElExec) {
 
                             // Bad
-
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), BadElExec.getMessage());
 
                         }
                     }
                     if (dayInMonth == 30) {
                         try {
-
 
                             com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(33);
 
@@ -807,9 +756,7 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                             int z = rangeDates.length;
 
-
                             int headerwidths[] = {5, 42, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 12};//,13,13};
-
 
                             table.setWidths(headerwidths);
 
@@ -818,14 +765,12 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                             table.setHeaderRows(3);
 
                             //table.getDefaultCell().setBorder(Rectangle.BOTTOM);
-
                             table.getDefaultCell().setColspan(33);
                             Phrase phrase = new Phrase("");
                             //table.getDefaultCell().setColspan(24);
                             try {
                                 //table.getDefaultCell().setBorder(Rectangle.BOTTOM);
                                 java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);//MEDIUM);
-
 
                                 java.util.Date endDate1 = dateFormat.parse(endDate.toLocaleString());//dateInstance.toLocaleString());
 
@@ -862,9 +807,7 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.getDefaultCell().setColspan(24);
 
                                 //java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);//MEDIUM);
-
                                 // java.util.Date endDate2 = dateFormat.parse(endDate.toLocaleString());
-
 //.toUpperCase() + dateFormat.format(endDate2)
                                 phrase = new Phrase("Days of The Month ", pFontHeader111);
 
@@ -881,8 +824,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                             }
                             // }
 
-
-
                             table.getDefaultCell().setColspan(2);
 
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -897,7 +838,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 try {
 
                                     // Date parser
-
                                     java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
                                     com.afrisoftech.lib.DateFormatter dateFormatter = new com.afrisoftech.lib.DateFormatter(dateFormat.parse(rangeDates[x][0].toString().trim()), "dd");
 
@@ -907,9 +847,7 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     //  if (x < 1) {
 
                                     //       com.afrisoftech.lib.DateFormatter dateFormatterCurrent = new com.afrisoftech.lib.DateFormatter(endDate, "dd");
-
                                     //       java.lang.String monthStringCurrent = dateFormatterCurrent.getDateString();
-
                                     //       phrase = new Phrase(monthStringCurrent ,pFontHeader);
                                     //  } else {
                                     phrase = new Phrase(monthString, pFontHeader);
@@ -920,7 +858,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     table.addCell(phrase);
 
                                     // Catch java.text.parse exception.
-
                                 } catch (java.text.ParseException prs) {
                                     prs.printStackTrace();
                                 }
@@ -936,7 +873,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 java.lang.Object[] listofAct = this.getListofActivities();
 
                                 //    java.sql.Connection conDb1 = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-
                                 System.out.println(listofAct.length);
                                 int firstVisit = 0;
                                 int newCases = 0;
@@ -947,8 +883,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     double TurnOver = 0.00;
                                     double Over120 = 0.00;
                                     int TotalCount = 0;
-
-
 
                                     table.getDefaultCell().setColspan(1);
 
@@ -962,23 +896,15 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     table.addCell(phrase);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
                                     table.getDefaultCell().setColspan(1);
                                     phrase = new Phrase(listofAct[i].toString().toUpperCase(), pFontHeader1);
                                     table.addCell(phrase);
 
                                     // }
-
-
-
-
                                     System.out.println("Dealer Is : [" + listofAct[i] + "].");
-
-
 
                                     for (int t = 1; t < 31; t++) {
                                         java.sql.Statement st01 = connectDB.createStatement();
-
 
                                         java.sql.PreparedStatement pset = connectDB.prepareStatement("SELECT count(scrub_nurse) from hp_patient_diagnosis where scrub_nurse = ?  AND date_discharged between '" + rangeDates[t][0] + "' AND '" + rangeDates[t][1] + "' AND pat_age < 5 AND pat_category = 'OP' ");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
 
@@ -990,7 +916,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                                         java.sql.PreparedStatement pseto = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[t][0] + "' AND '" + rangeDates[t][1] + "' AND comments = 'Old' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                         java.sql.ResultSet rseto = pseto.executeQuery();
-
 
                                         while (rset.next()) {
 
@@ -1012,14 +937,12 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     table.addCell(phrase);
                                 }
 
-
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                                 seq = seq + 1;
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase("" + seq, pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-
 
                                 table.getDefaultCell().setColspan(1);
 
@@ -1031,8 +954,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                                     java.sql.PreparedStatement psetns = connectDB.prepareStatement("SELECT count(scrub_nurse) from hp_patient_diagnosis WHERE date_discharged between '" + rangeDates[g][0] + "' AND '" + rangeDates[g][1] + "'  AND pat_age < 5 AND pat_category = 'OP' ");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetns = psetns.executeQuery();
-
-
 
                                     while (rsetns.next()) {
 
@@ -1058,7 +979,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
                                 table.getDefaultCell().setColspan(1);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -1069,8 +989,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                                     java.sql.PreparedStatement psetn = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[n][0] + "' AND '" + rangeDates[n][1] + "' AND comments = 'New' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetn = psetn.executeQuery();
-
-
 
                                     while (rsetn.next()) {
 
@@ -1096,7 +1014,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
                                 table.getDefaultCell().setColspan(1);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -1108,7 +1025,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                                     java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[r][0] + "' AND '" + rangeDates[r][1] + "' AND comments = 'Old' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetr = psetr.executeQuery();
-
 
                                     while (rsetr.next()) {
 
@@ -1123,7 +1039,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                         reVisit = reVisit + rsetr.getInt(1);
                                     }
 
-
                                 }
                                 phrase = new Phrase("" + reVisit, pFontHeader111);
                                 table.addCell(phrase);
@@ -1135,7 +1050,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1143,10 +1057,8 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 for (int s = 1; s < 31; s++) {
 
-
                                     java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[s][0] + "' AND '" + rangeDates[s][1] + "' AND comments = 'Ref In' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetr = psetr.executeQuery();
-
 
                                     while (rsetr.next()) {
 
@@ -1172,8 +1084,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
-
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase("Referrals out".toUpperCase(), pFontHeader111);
@@ -1183,7 +1093,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                                     java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[o][0] + "' AND '" + rangeDates[o][1] + "' AND comments = 'Ref out' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetr = psetr.executeQuery();
-
 
                                     while (rsetr.next()) {
 
@@ -1198,16 +1107,12 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                         referralOut = referralOut + rsetr.getInt(1);
                                     }
 
-
                                 }
                                 phrase = new Phrase("" + referralOut, pFontHeader111);
                                 table.addCell(phrase);
                                 //table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
 
                                 //table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP);
-
-
-
                                 docPdf.add(table);
 
                             } catch (java.sql.SQLException SqlExec) {
@@ -1218,12 +1123,9 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                             }
 
-
-
                         } catch (com.lowagie.text.BadElementException BadElExec) {
 
                             // Bad
-
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), BadElExec.getMessage());
 
                         }
@@ -1231,7 +1133,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                     if (dayInMonth == 29) {
                         try {
-
 
                             com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(32);
 
@@ -1241,9 +1142,7 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                             int z = rangeDates.length;
 
-
                             int headerwidths[] = {5, 42, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 12};//,13,13};
-
 
                             table.setWidths(headerwidths);
 
@@ -1252,14 +1151,12 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                             table.setHeaderRows(2);
 
                             //table.getDefaultCell().setBorder(Rectangle.BOTTOM);
-
                             table.getDefaultCell().setColspan(32);
                             Phrase phrase = new Phrase("");
                             table.getDefaultCell().setColspan(24);
                             try {
                                 //table.getDefaultCell().setBorder(Rectangle.BOTTOM);
                                 java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);//MEDIUM);
-
 
                                 java.util.Date endDate1 = dateFormat.parse(endDate.toLocaleString());//dateInstance.toLocaleString());
 
@@ -1296,9 +1193,7 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.getDefaultCell().setColspan(23);
 
                                 //java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);//MEDIUM);
-
                                 // java.util.Date endDate2 = dateFormat.parse(endDate.toLocaleString());
-
 //.toUpperCase() + dateFormat.format(endDate2)
                                 phrase = new Phrase("Days of The Month ", pFontHeader111);
 
@@ -1329,7 +1224,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 try {
 
                                     // Date parser
-
                                     java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
                                     com.afrisoftech.lib.DateFormatter dateFormatter = new com.afrisoftech.lib.DateFormatter(dateFormat.parse(rangeDates[x][0].toString().trim()), "dd");
 
@@ -1339,9 +1233,7 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     //  if (x < 1) {
 
                                     //       com.afrisoftech.lib.DateFormatter dateFormatterCurrent = new com.afrisoftech.lib.DateFormatter(endDate, "dd");
-
                                     //       java.lang.String monthStringCurrent = dateFormatterCurrent.getDateString();
-
                                     //       phrase = new Phrase(monthStringCurrent ,pFontHeader);
                                     //  } else {
                                     phrase = new Phrase(monthString, pFontHeader);
@@ -1352,7 +1244,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     table.addCell(phrase);
 
                                     // Catch java.text.parse exception.
-
                                 } catch (java.text.ParseException prs) {
                                     prs.printStackTrace();
                                 }
@@ -1368,7 +1259,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 java.lang.Object[] listofAct = this.getListofActivities();
 
                                 //    java.sql.Connection conDb1 = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-
                                 System.out.println(listofAct.length);
                                 int firstVisit = 0;
                                 int newCases = 0;
@@ -1380,8 +1270,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     double Over120 = 0.00;
                                     int TotalCount = 0;
 
-
-
                                     table.getDefaultCell().setColspan(1);
 
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
@@ -1390,7 +1278,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     phrase = new Phrase("" + seq, pFontHeader1);
                                     table.addCell(phrase);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-
 
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                     table.getDefaultCell().setColspan(1);
@@ -1401,24 +1288,15 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     table.addCell(phrase);
 
                                     // }
-
-
-
-
                                     System.out.println("Dealer Is : [" + listofAct[i] + "].");
-
-
 
                                     for (int t = 2; t < 31; t++) {
                                         java.sql.Statement st01 = connectDB.createStatement();
-
 
                                         java.sql.PreparedStatement pset = connectDB.prepareStatement("SELECT count(scrub_nurse) from hp_patient_diagnosis WHERE scrub_nurse = ?  AND date_discharged between '" + rangeDates[t][0] + "' AND '" + rangeDates[t][1] + "'  AND pat_age < 5 AND pat_category = 'OP' ");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
 
                                         pset.setString(1, listofAct[i].toString());
                                         java.sql.ResultSet rset = pset.executeQuery();
-
-
 
                                         while (rset.next()) {
 
@@ -1440,14 +1318,12 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     table.addCell(phrase);
                                 }
 
-
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                                 seq = seq + 1;
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase("" + seq, pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-
 
                                 table.getDefaultCell().setColspan(1);
 
@@ -1459,8 +1335,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                                     java.sql.PreparedStatement psetns = connectDB.prepareStatement("SELECT count(scrub_nurse) from hp_patient_diagnosis WHERE date_discharged between '" + rangeDates[g][0] + "' AND '" + rangeDates[g][1] + "'  AND pat_age < 5 AND pat_category = 'OP' ");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetns = psetns.executeQuery();
-
-
 
                                     while (rsetns.next()) {
 
@@ -1486,10 +1360,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
-
-
-
                                 table.getDefaultCell().setColspan(1);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -1500,8 +1370,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                                     java.sql.PreparedStatement psetn = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[n][0] + "' AND '" + rangeDates[n][1] + "' AND comments = 'New' and age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetn = psetn.executeQuery();
-
-
 
                                     while (rsetn.next()) {
 
@@ -1527,7 +1395,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
                                 table.getDefaultCell().setColspan(1);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -1539,7 +1406,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                                     java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[r][0] + "' AND '" + rangeDates[r][1] + "' AND comments = 'Old' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetr = psetr.executeQuery();
-
 
                                     while (rsetr.next()) {
 
@@ -1554,7 +1420,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                         reVisit = reVisit + rsetr.getInt(1);
                                     }
 
-
                                 }
                                 phrase = new Phrase("" + reVisit, pFontHeader111);
                                 table.addCell(phrase);
@@ -1566,7 +1431,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
                                 table.getDefaultCell().setColspan(1);
@@ -1574,10 +1438,8 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 for (int s = 2; s < 31; s++) {
 
-
                                     java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[s][0] + "' AND '" + rangeDates[s][1] + "' AND comments = 'Ref In' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetr = psetr.executeQuery();
-
 
                                     while (rsetr.next()) {
 
@@ -1596,15 +1458,12 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 phrase = new Phrase("" + referralIn, pFontHeader111);
                                 table.addCell(phrase);
 
-
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                                 seq = seq + 1;
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase("" + seq, pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-
-
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 table.getDefaultCell().setColspan(1);
@@ -1615,7 +1474,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                                     java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[o][0] + "' AND '" + rangeDates[o][1] + "' AND comments = 'Ref out' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetr = psetr.executeQuery();
-
 
                                     while (rsetr.next()) {
 
@@ -1630,16 +1488,12 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                         referralOut = referralOut + rsetr.getInt(1);
                                     }
 
-
                                 }
                                 phrase = new Phrase("" + referralOut, pFontHeader111);
                                 table.addCell(phrase);
                                 //table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
 
                                 //table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP);
-
-
-
                                 docPdf.add(table);
 
                             } catch (java.sql.SQLException SqlExec) {
@@ -1650,19 +1504,15 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                             }
 
-
-
                         } catch (com.lowagie.text.BadElementException BadElExec) {
 
                             // Bad
-
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), BadElExec.getMessage());
 
                         }
                     }
                     if (dayInMonth == 28) {
                         try {
-
 
                             com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(31);
 
@@ -1672,9 +1522,7 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                             int z = rangeDates.length;
 
-
                             int headerwidths[] = {5, 42, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 12};//,13,13};
-
 
                             table.setWidths(headerwidths);
 
@@ -1683,14 +1531,12 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                             table.setHeaderRows(2);
 
                             //table.getDefaultCell().setBorder(Rectangle.BOTTOM);
-
                             table.getDefaultCell().setColspan(31);
                             Phrase phrase = new Phrase("");
                             table.getDefaultCell().setColspan(23);
                             try {
                                 //table.getDefaultCell().setBorder(Rectangle.BOTTOM);
                                 java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);//MEDIUM);
-
 
                                 java.util.Date endDate1 = dateFormat.parse(endDate.toLocaleString());//dateInstance.toLocaleString());
 
@@ -1727,9 +1573,7 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.getDefaultCell().setColspan(23);
 
                                 //java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);//MEDIUM);
-
                                 // java.util.Date endDate2 = dateFormat.parse(endDate.toLocaleString());
-
 //.toUpperCase() + dateFormat.format(endDate2)
                                 phrase = new Phrase("Days of The Month ", pFontHeader111);
 
@@ -1759,7 +1603,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 try {
 
                                     // Date parser
-
                                     java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
                                     com.afrisoftech.lib.DateFormatter dateFormatter = new com.afrisoftech.lib.DateFormatter(dateFormat.parse(rangeDates[x][0].toString().trim()), "dd");
 
@@ -1769,9 +1612,7 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     //  if (x < 1) {
 
                                     //       com.afrisoftech.lib.DateFormatter dateFormatterCurrent = new com.afrisoftech.lib.DateFormatter(endDate, "dd");
-
                                     //       java.lang.String monthStringCurrent = dateFormatterCurrent.getDateString();
-
                                     //       phrase = new Phrase(monthStringCurrent ,pFontHeader);
                                     //  } else {
                                     phrase = new Phrase(monthString, pFontHeader);
@@ -1782,7 +1623,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     table.addCell(phrase);
 
                                     // Catch java.text.parse exception.
-
                                 } catch (java.text.ParseException prs) {
                                     prs.printStackTrace();
                                 }
@@ -1798,7 +1638,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 java.lang.Object[] listofAct = this.getListofActivities();
 
                                 //    java.sql.Connection conDb1 = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-
                                 System.out.println(listofAct.length);
                                 int firstVisit = 0;
                                 int newCases = 0;
@@ -1810,15 +1649,12 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     double Over120 = 0.00;
                                     int TotalCount = 0;
 
-
-
                                     table.getDefaultCell().setColspan(1);
 
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                     table.getDefaultCell().setColspan(1);
                                     java.sql.Statement stmta1 = connectDB.createStatement();
                                     //   java.sql.PreparedStatement pSeta1 = connectDB.prepareStatement("SELECT count(activity_code) FROM ac_ledger where  activity_code = '"+listofAct[i]+"'");
-
 
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                                     seq = seq + 1;
@@ -1827,23 +1663,15 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     table.addCell(phrase);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
                                     table.getDefaultCell().setColspan(1);
                                     phrase = new Phrase(listofAct[i].toString().toUpperCase(), pFontHeader1);
                                     table.addCell(phrase);
 
                                     // }
-
-
-
-
                                     System.out.println("Dealer Is : [" + listofAct[i] + "].");
-
-
 
                                     for (int t = 3; t < 31; t++) {
                                         java.sql.Statement st01 = connectDB.createStatement();
-
 
                                         java.sql.PreparedStatement pset = connectDB.prepareStatement("SELECT count(scrub_nurse) from hp_patient_diagnosis where scrub_nurse = ?  AND date_discharged between '" + rangeDates[t][0] + "' AND '" + rangeDates[t][1] + "' AND pat_age < 5 AND pat_category = 'OP' ");//< '"+endDate+"'::date and date < '"+endDate+"'::date - 30 group by dealer");
 
@@ -1855,7 +1683,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                                         java.sql.PreparedStatement pseto = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[t][0] + "' AND '" + rangeDates[t][1] + "' AND comments = 'Old' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                         java.sql.ResultSet rseto = pseto.executeQuery();
-
 
                                         while (rset.next()) {
 
@@ -1884,7 +1711,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
                                 table.getDefaultCell().setColspan(1);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -1895,8 +1721,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                                     java.sql.PreparedStatement psetns = connectDB.prepareStatement("SELECT count(scrub_nurse) from hp_patient_diagnosis WHERE date_discharged between '" + rangeDates[g][0] + "' AND '" + rangeDates[g][1] + "'  AND pat_age < 5 AND pat_category = 'OP' ");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetns = psetns.executeQuery();
-
-
 
                                     while (rsetns.next()) {
 
@@ -1922,7 +1746,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
                                 table.getDefaultCell().setColspan(1);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -1933,8 +1756,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                                     java.sql.PreparedStatement psetn = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[n][0] + "' AND '" + rangeDates[n][1] + "' AND comments = 'New' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetn = psetn.executeQuery();
-
-
 
                                     while (rsetn.next()) {
 
@@ -1960,7 +1781,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
                                 table.getDefaultCell().setColspan(1);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -1972,7 +1792,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                                     java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[r][0] + "' AND '" + rangeDates[r][1] + "' AND comments = 'Old' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetr = psetr.executeQuery();
-
 
                                     while (rsetr.next()) {
 
@@ -1987,11 +1806,9 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                         reVisit = reVisit + rsetr.getInt(1);
                                     }
 
-
                                 }
                                 phrase = new Phrase("" + reVisit, pFontHeader111);
                                 table.addCell(phrase);
-
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                                 seq = seq + 1;
@@ -2000,8 +1817,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
-
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
                                 table.getDefaultCell().setColspan(1);
@@ -2009,10 +1824,8 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 for (int s = 3; s < 31; s++) {
 
-
                                     java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[s][0] + "' AND '" + rangeDates[s][1] + "' AND comments = 'Ref In' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetr = psetr.executeQuery();
-
 
                                     while (rsetr.next()) {
 
@@ -2038,7 +1851,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase("Referrals out".toUpperCase(), pFontHeader111);
@@ -2048,7 +1860,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                                     java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[o][0] + "' AND '" + rangeDates[o][1] + "' AND comments = 'Ref out' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetr = psetr.executeQuery();
-
 
                                     while (rsetr.next()) {
 
@@ -2063,16 +1874,12 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                         referralOut = referralOut + rsetr.getInt(1);
                                     }
 
-
                                 }
                                 phrase = new Phrase("" + referralOut, pFontHeader111);
                                 table.addCell(phrase);
                                 //table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
 
                                 //table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP);
-
-
-
                                 docPdf.add(table);
 
                             } catch (java.sql.SQLException SqlExec) {
@@ -2083,19 +1890,15 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                             }
 
-
-
                         } catch (com.lowagie.text.BadElementException BadElExec) {
 
                             // Bad
-
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), BadElExec.getMessage());
 
                         }
                     }
                     if (dayInMonth == 1) {
                         try {
-
 
                             com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(31);
 
@@ -2105,9 +1908,7 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
 
                             int z = rangeDates.length;
 
-
                             int headerwidths[] = {5, 42, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 12};//,13,13};
-
 
                             table.setWidths(headerwidths);
 
@@ -2116,14 +1917,12 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                             table.setHeaderRows(2);
 
                             //table.getDefaultCell().setBorder(Rectangle.BOTTOM);
-
                             table.getDefaultCell().setColspan(31);
                             Phrase phrase = new Phrase("");
                             table.getDefaultCell().setColspan(23);
                             try {
                                 //table.getDefaultCell().setBorder(Rectangle.BOTTOM);
                                 java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);//MEDIUM);
-
 
                                 java.util.Date endDate1 = dateFormat.parse(endDate.toLocaleString());//dateInstance.toLocaleString());
 
@@ -2160,9 +1959,7 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 table.getDefaultCell().setColspan(23);
 
                                 //java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);//MEDIUM);
-
                                 // java.util.Date endDate2 = dateFormat.parse(endDate.toLocaleString());
-
 //.toUpperCase() + dateFormat.format(endDate2)
                                 phrase = new Phrase("Days of The Month ", pFontHeader111);
 
@@ -2192,7 +1989,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 try {
 
                                     // Date parser
-
                                     java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
                                     com.afrisoftech.lib.DateFormatter dateFormatter = new com.afrisoftech.lib.DateFormatter(dateFormat.parse(rangeDates[x][0].toString().trim()), "dd");
 
@@ -2202,9 +1998,7 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     //  if (x < 1) {
 
                                     //       com.afrisoftech.lib.DateFormatter dateFormatterCurrent = new com.afrisoftech.lib.DateFormatter(endDate, "dd");
-
                                     //       java.lang.String monthStringCurrent = dateFormatterCurrent.getDateString();
-
                                     //       phrase = new Phrase(monthStringCurrent ,pFontHeader);
                                     //  } else {
                                     phrase = new Phrase(monthString, pFontHeader);
@@ -2215,7 +2009,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     table.addCell(phrase);
 
                                     // Catch java.text.parse exception.
-
                                 } catch (java.text.ParseException prs) {
                                     prs.printStackTrace();
                                 }
@@ -2231,7 +2024,6 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                 java.lang.Object[] listofAct = this.getListofActivities();
 
                                 //    java.sql.Connection conDb1 = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-
                                 System.out.println(listofAct.length);
                                 int firstVisit = 0;
                                 int newCases = 0;
@@ -2243,15 +2035,12 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     double Over120 = 0.00;
                                     int TotalCount = 0;
 
-
-
                                     table.getDefaultCell().setColspan(1);
 
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                     table.getDefaultCell().setColspan(1);
                                     java.sql.Statement stmta1 = connectDB.createStatement();
                                     //   java.sql.PreparedStatement pSeta1 = connectDB.prepareStatement("SELECT count(activity_code) FROM ac_ledger where  activity_code = '"+listofAct[i]+"'");
-
 
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                                     seq = seq + 1;
@@ -2260,23 +2049,17 @@ public class DailyDiagOpuUnderFivePdf implements java.lang.Runnable {
                                     table.addCell(phrase);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
                                     table.getDefaultCell().setColspan(28);
                                     phrase = new Phrase(listofAct[i].toString().toUpperCase(), pFontHeader1);
                                     table.addCell(phrase);
 
                                     // }
-
-
-
-
                                     System.out.println("Dealer Is : [" + listofAct[i] + "].");
 
-table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setColspan(1);
 
                                     for (int t = 30; t < 31; t++) {
                                         java.sql.Statement st01 = connectDB.createStatement();
-
 
                                         java.sql.PreparedStatement pset = connectDB.prepareStatement("SELECT count(scrub_nurse) from hp_patient_diagnosis where scrub_nurse = ?  AND date_discharged between '" + rangeDates[t][0] + "' AND '" + rangeDates[t][1] + "' AND pat_age < 5 AND pat_category = 'OP'");//< '"+endDate+"'::date and date < '"+endDate+"'::date - 30 group by dealer");
 
@@ -2288,7 +2071,6 @@ table.getDefaultCell().setColspan(1);
 
                                         java.sql.PreparedStatement pseto = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[t][0] + "' AND '" + rangeDates[t][1] + "' AND comments = 'Old' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                         java.sql.ResultSet rseto = pseto.executeQuery();
-
 
                                         while (rset.next()) {
 
@@ -2317,7 +2099,6 @@ table.getDefaultCell().setColspan(1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
                                 table.getDefaultCell().setColspan(28);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -2329,8 +2110,6 @@ table.getDefaultCell().setColspan(1);
 
                                     java.sql.PreparedStatement psetns = connectDB.prepareStatement("SELECT count(scrub_nurse) from hp_patient_diagnosis WHERE date_discharged between '" + rangeDates[g][0] + "' AND '" + rangeDates[g][1] + "'  AND pat_age < 5 AND pat_category = 'OP'");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetns = psetns.executeQuery();
-
-
 
                                     while (rsetns.next()) {
 
@@ -2356,7 +2135,6 @@ table.getDefaultCell().setColspan(1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
                                 table.getDefaultCell().setColspan(28);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -2368,8 +2146,6 @@ table.getDefaultCell().setColspan(1);
 
                                     java.sql.PreparedStatement psetn = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[n][0] + "' AND '" + rangeDates[n][1] + "' AND comments = 'New' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetn = psetn.executeQuery();
-
-
 
                                     while (rsetn.next()) {
 
@@ -2395,19 +2171,17 @@ table.getDefaultCell().setColspan(1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
                                 table.getDefaultCell().setColspan(28);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
                                 phrase = new Phrase("Re-Attendances".toUpperCase(), pFontHeader111);
                                 table.addCell(phrase);
-table.getDefaultCell().setColspan(1);
+                                table.getDefaultCell().setColspan(1);
                                 for (int r = 30; r < 31; r++) {
 
                                     java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[r][0] + "' AND '" + rangeDates[r][1] + "' AND comments = 'Old' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetr = psetr.executeQuery();
-
 
                                     while (rsetr.next()) {
 
@@ -2422,11 +2196,9 @@ table.getDefaultCell().setColspan(1);
                                         reVisit = reVisit + rsetr.getInt(1);
                                     }
 
-
                                 }
                                 phrase = new Phrase("" + reVisit, pFontHeader111);
                                 table.addCell(phrase);
-
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                                 seq = seq + 1;
@@ -2434,8 +2206,6 @@ table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase("" + seq, pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-
-
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
@@ -2445,10 +2215,8 @@ table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setColspan(1);
                                 for (int s = 30; s < 31; s++) {
 
-
-                                    java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[s][0] + "' AND '" + rangeDates[s][1] + "' AND comments = 'Ref In' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
+                                    java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[s][0] + "' AND '" + rangeDates[s][1] + "' AND referral_type != '-' AND referral_facility != '' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetr = psetr.executeQuery();
-
 
                                     while (rsetr.next()) {
 
@@ -2474,17 +2242,15 @@ table.getDefaultCell().setColspan(1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 table.getDefaultCell().setColspan(28);
                                 phrase = new Phrase("Referrals out".toUpperCase(), pFontHeader111);
                                 table.addCell(phrase);
-table.getDefaultCell().setColspan(1);
+                                table.getDefaultCell().setColspan(1);
                                 for (int o = 30; o < 31; o++) {
 
                                     java.sql.PreparedStatement psetr = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_patient_visit WHERE date between '" + rangeDates[o][0] + "' AND '" + rangeDates[o][1] + "' AND comments = 'Ref out' AND age < 5");//< '"+endDate+"'::date and date > '"+endDate+"'::date - 30 group by dealer");
                                     java.sql.ResultSet rsetr = psetr.executeQuery();
-
 
                                     while (rsetr.next()) {
 
@@ -2499,16 +2265,12 @@ table.getDefaultCell().setColspan(1);
                                         referralOut = referralOut + rsetr.getInt(1);
                                     }
 
-
                                 }
                                 phrase = new Phrase("" + referralOut, pFontHeader111);
                                 table.addCell(phrase);
                                 //table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
 
                                 //table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP);
-
-
-
                                 docPdf.add(table);
 
                             } catch (java.sql.SQLException SqlExec) {
@@ -2519,19 +2281,13 @@ table.getDefaultCell().setColspan(1);
 
                             }
 
-
-
                         } catch (com.lowagie.text.BadElementException BadElExec) {
 
                             // Bad
-
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), BadElExec.getMessage());
 
                         }
                     }
-
-
-
 
                 } catch (java.io.FileNotFoundException fnfExec) {
 
@@ -2544,18 +2300,14 @@ table.getDefaultCell().setColspan(1);
 
             }
 
-             
-docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
-
-
+            docPdf.close();
+            com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
         } catch (java.io.IOException IOexec) {
 
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), IOexec.getMessage());
 
         }
-
-
 
     }
 
@@ -2565,15 +2317,12 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
         java.util.Vector listActVector = new java.util.Vector(1, 1);
 
-
         try {
 
             //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-
             java.sql.Statement stmt1 = connectDB.createStatement();
 
             java.sql.PreparedStatement pSet1 = connectDB.prepareStatement("SELECT DISTINCT classification,cate_no FROM hp_opdisease_underfive ORDER BY 2");
-
 
             java.sql.ResultSet rSet1 = pSet1.executeQuery();
 
@@ -2586,6 +2335,7 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
             //System.out.println(rSet1.getObject(1).toString());
         } catch (java.sql.SQLException sqlExec) {
 
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
 
         }

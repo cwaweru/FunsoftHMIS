@@ -352,7 +352,7 @@ public class PatientCardPdf implements java.lang.Runnable {
                         String Hist = null;
                         String visit = null;
                         String reg = null;
-                        String treatmentPlan = null;
+                        String treatmentPlan = "";
                         try {
                             java.sql.Statement st2T = connectDB.createStatement();
                             java.sql.Statement st2d = connectDB.createStatement();
@@ -375,6 +375,7 @@ public class PatientCardPdf implements java.lang.Runnable {
                             java.sql.Statement sth2 = connectDB.createStatement();
                             java.sql.Statement sth22 = connectDB.createStatement();
                             java.sql.Statement st2c1 = connectDB.createStatement();
+                            java.sql.Statement st2c1c = connectDB.createStatement();
                             java.sql.Statement st2c11 = connectDB.createStatement();
                             java.sql.Statement st2c111 = connectDB.createStatement();
                             java.sql.Statement st2e1 = connectDB.createStatement();
@@ -538,7 +539,10 @@ public class PatientCardPdf implements java.lang.Runnable {
                                         + " FROM hp_clinical_results where patient_no = '" + memNo + "' and date  = '" + listofStaffNos[j] + "' AND treatment != '' AND comments IS NOT NULL  "
                                         + " UNION ALL SELECT DISTINCT INITCAP(examination),input_date::TIME(0), INITCAP(doctor), notes"
                                         + " FROM hp_xray_results WHERE patient_no = '" + memNo + "' AND date  = '" + listofStaffNos[j] + "' "
-                                        + " UNION SELECT INITCAP(service), curr_date::TIME(0), initcap(doctor), '' as notes FROM pb_doctors_request WHERE revenue_code not ilike '%pharmacy%' AND patient_no = '" + memNo + "' AND trans_date  = '" + listofStaffNos[j] + "' ORDER BY 2 ");
+                                        + " UNION SELECT INITCAP(service), curr_date::TIME(0), initcap(doctor), '' as notes FROM pb_doctors_request WHERE ( revenue_code  ilike '%lab%' OR  revenue_code  ilike '%xray%' OR revenue_code  ilike '%radio%' OR revenue_code  ilike '%xray%' OR revenue_code  ilike '%Imagi%') AND patient_no = '" + memNo + "' AND trans_date  = '" + listofStaffNos[j] + "' ORDER BY 2 ");
+                                java.sql.ResultSet rset2c1c = st2c1c.executeQuery(" SELECT INITCAP(service), curr_date::TIME(0), initcap(doctor), '' as notes FROM pb_doctors_request WHERE ( revenue_code not ilike '%pharmacy%' and revenue_code not ilike '%lab%' and  revenue_code not ilike '%xray%' and revenue_code not ilike '%radio%' and revenue_code not ilike '%xray%' and revenue_code not ilike '%Imagi%') AND patient_no = '" + memNo + "' AND trans_date  = '" + listofStaffNos[j] + "' ORDER BY 2 ");
+                                
+                                
                                 java.sql.ResultSet rset2c11 = st2c11.executeQuery("SELECT DISTINCT INITCAP(description),input_date::TIME(0), initcap(doctor), '' as notes from hp_clinical_results "
                                         + "WHERE patient_no = '" + memNo + "' and date  = '" + listofStaffNos[j] + "' AND description != '' AND DESCRIPTION IS NOT NULL  AND description NOT ILIKE 'null%' "
                                         + " UNION ALL "
@@ -1162,6 +1166,7 @@ public class PatientCardPdf implements java.lang.Runnable {
 
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(4);
+                                if(treatmentPlan == null) treatmentPlan = "";
                                 phrase = new Phrase("TREATMENT PLAN : \n"+treatmentPlan, pFontHeader);
                                 table.addCell(phrase);
 
@@ -1169,6 +1174,35 @@ public class PatientCardPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase("", pFontHeader);
                                 table.addCell(phrase);
+                                
+                                
+                                while (rset2c1c.next()) {
+
+                                    table.getDefaultCell().setColspan(1);
+                                    //  table.getDefaultCell().setBorderColor(com.itextpdf.text.BaseColor.WHITE);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
+
+                                    phrase = new Phrase(dbObject.getDBObject(rset2c1c.getObject(2), "-"), pFontHeader);
+
+                                    table.addCell(phrase);
+                                    table.getDefaultCell().setColspan(4);
+                                    //  table.getDefaultCell().setBorderColor(com.itextpdf.text.BaseColor.WHITE);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+
+                                    phrase = new Phrase(dbObject.getDBObject(rset2c1c.getObject(1), "-") , pFontHeader); //+ " RESULTS : " + dbObject.getDBObject(rset2c1.getObject("notes"), "-")
+
+                                    table.addCell(phrase);
+
+                                    // table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setColspan(1);
+                                    //  table.getDefaultCell().setBorderColor(com.itextpdf.text.BaseColor.WHITE);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+
+                                    phrase = new Phrase(dbObject.getDBObject(rset2c1c.getObject(3), "-"), pFontHeader);
+
+                                    table.addCell(phrase);
+
+                                }
 
                                 while (rset14.next()) {
 

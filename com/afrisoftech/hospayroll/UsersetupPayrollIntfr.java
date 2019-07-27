@@ -1010,7 +1010,7 @@ public class UsersetupPayrollIntfr extends javax.swing.JInternalFrame {
             
             java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("DELETE FROM secure_menu_access WHERE login_name = '"+user2del+"'");
             
-            java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("DELETE FROM secure_passwd WHERE login_name = '"+user2del+"'");
+            java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("DELETE FROM secure_password WHERE login_name = '"+user2del+"'");
             
             
             pstmt.executeUpdate();
@@ -1333,9 +1333,9 @@ public class UsersetupPayrollIntfr extends javax.swing.JInternalFrame {
                 
                 java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO secure_menu_access values(lower(?),?,?,?,?)");
                 
-                java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO secure_passwd values(lower(?),?,?,?,?,?)");
+                java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO secure_password values(lower(?),?,?,?,?,?)");
                 
-                java.sql.PreparedStatement pstmt3 = connectDB.prepareStatement("GRANT SELECT ON secure_passwd TO "+jTextField582.getText());
+                java.sql.PreparedStatement pstmt3 = connectDB.prepareStatement("GRANT SELECT ON secure_password TO "+jTextField582.getText());
                 
                 
                 pstmt1.setObject(1, jTextField582.getText());

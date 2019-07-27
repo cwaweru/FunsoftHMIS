@@ -1043,12 +1043,12 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             }
 
             mainItemstbl.addAncestorListener(new javax.swing.event.AncestorListener() {
-                public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                    mainItemstblAncestorMoved(evt);
-                }
                 public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 }
                 public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+                }
+                public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                    mainItemstblAncestorMoved(evt);
                 }
             });
             mainItemstbl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1219,6 +1219,11 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
 
             paymentModeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT payment_mode FROM pb_paymentmodes ORDER BY 1"));
             paymentModeCmbx.setEnabled(false);
+            paymentModeCmbx.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    paymentModeCmbxActionPerformed(evt);
+                }
+            });
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 4;
@@ -1331,7 +1336,6 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
 
             storeNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select stores from store_allocation where user_name = current_user and type ilike 'bill'"));
             storeNameCmbx.setSelectedIndex(0);
-            storeNameCmbx.setEnabled(false);
             storeNameCmbx.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     storeNameCmbxActionPerformed(evt);
@@ -1793,7 +1797,9 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
     private void storeNameCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeNameCmbxActionPerformed
         try {
             java.sql.Statement ps11 = connectDB.createStatement();
-            java.sql.ResultSet rst11 = ps11.executeQuery("select code from pb_activity WHERE activity ilike '" + storeNameCmbx.getSelectedItem() + "'");
+//            java.sql.ResultSet rst11 = ps11.executeQuery("select code from pb_activity WHERE activity ilike '" + storeNameCmbx.getSelectedItem() + "'");
+            java.sql.ResultSet rst11 = ps11.executeQuery("select income_account from pb_departments WHERE UPPER(department_name) = '" + storeNameCmbx.getSelectedItem().toString().toUpperCase() + "'");
+
             while (rst11.next()) {
 
                 gLCodeTxt.setText(rst11.getString(1));
@@ -3246,7 +3252,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
                 //jSearchTable3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select product,round(selling_price, 0) as selling_price, gl_code FROM st_stock_prices WHERE product ILIKE '%"+jTextField114.getText()+"%' AND department =  '"+jTextField42.getText()+"' order by product"));
                 medicinesSearchScrollPane.setViewportView(medicinesSearchTable);
             } else {
-                medicinesSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT product AS product,selling_price, '" + gLCodeTxt.getText() + "' AS gl_code,product_id, strength FROM stockprices WHERE product ILIKE '" + medicinesSearchTxt.getText() + "%' AND department ilike  '" + storeNameCmbx.getSelectedItem().toString() + "' AND product not ilike '%dispensing%' order by product"));
+                medicinesSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT product AS product,selling_price, '" + gLCodeTxt.getText() + "' AS gl_code,product_id, strength FROM stockprices WHERE product ILIKE '%" + medicinesSearchTxt.getText() + "%' AND department ilike  '" + storeNameCmbx.getSelectedItem().toString() + "' AND product not ilike '%dispensing%' order by product"));
                 // jSearchTable3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select product AS product,selling_price, '" + jTextField4.getText() + "' AS gl_code,product_id, strength FROM stockprices WHERE product ILIKE 'all%' AND department ilike  'casualty pharmacy' order by product"));
 
                 //jSearchTable3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select product,round(selling_price, 0) as selling_price, gl_code FROM st_stock_prices WHERE product ILIKE '%"+jTextField114.getText()+"%' AND department =  '"+jTextField42.getText()+"' order by product"));
@@ -4375,6 +4381,10 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_patientCradBtnActionPerformed
+
+    private void paymentModeCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentModeCmbxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_paymentModeCmbxActionPerformed
     private void populateTable1(java.lang.String patient_no) {
         int j = 0;
         int i = 0;
@@ -4411,8 +4421,8 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
                     mainItemstbl.setValueAt(rsetTable1.getObject(8), i, 8);
 
                     Object balance = 0;
-                    
-                    System.out.println("prescription item displayed ["+rsetTable1.getObject(1)+"]");
+
+                    System.out.println("prescription item displayed [" + rsetTable1.getObject(1) + "]");
 
                     java.sql.ResultSet rsetTable111 = stmtTable111.executeQuery("select sum(receiving-issuing) from st_sub_stores where item_code = '" + mainItemstbl.getValueAt(i, 7).toString() + "' AND store_name ilike '" + storeNameCmbx.getSelectedItem().toString() + "'");
                     while (rsetTable111.next()) {
@@ -4421,20 +4431,20 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
                         //jTable1.setValueAt(new java.lang.String(dbObject.getDBObject(rsetTable111.getObject(1), i, 2), "0.00"));
 
                     }
-                    
-                    if(balance == null){
+
+                    if (balance == null) {
                         balance = 0;
                     }
 
                     mainItemstbl.setValueAt(balance, i, 2);
-                   
+
                     i++;
                 }
             }
         } catch (java.sql.SQLException sqlExec) {
 
             sqlExec.printStackTrace();
-            
+
             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
 
         }

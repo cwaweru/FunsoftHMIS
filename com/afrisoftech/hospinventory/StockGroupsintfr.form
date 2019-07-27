@@ -975,7 +975,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField1">
+                <Component class="javax.swing.JTextField" name="storeGLCodeTxt">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>

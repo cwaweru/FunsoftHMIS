@@ -4246,7 +4246,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             getContentPane().add(rhCreateFilePanel, gridBagConstraints);
 
-            setBounds(0, 0, 782, 542);
+            setBounds(0, 0, 905, 542);
         }// </editor-fold>//GEN-END:initComponents
 
     private void pnWithPhycisianChbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pnWithPhycisianChbxActionPerformed
@@ -4448,7 +4448,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
 
             System.out.println("Nothing");
         } else {
-            patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, patient_name,visit_id, sub_chief as unit_number, ward as ward_name, date_admitted as admission_date FROM hp_admission WHERE (patient_name ILIKE '%" + searchPatientTxt.getText() + "%' or patient_no ILIKE '%" + searchPatientTxt.getText() + "%' or sub_chief ILIKE '%" + searchPatientTxt.getText() + "%') AND check_out = false AND gender ilike 'female' AND ward IN (SELECT ward FROM hp_wards WHERE ward_type ilike 'maternity') ORDER BY patient_name"));
+            patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, patient_name,visit_id, sub_chief as unit_number, ward as ward_name, date_admitted as admission_date FROM hp_admission WHERE (patient_name ILIKE '%" + searchPatientTxt.getText() + "%' or patient_no ILIKE '%" + searchPatientTxt.getText() + "%' or sub_chief ILIKE '%" + searchPatientTxt.getText() + "%') AND check_out = true AND gender ilike 'female' AND ward IN (SELECT ward FROM hp_wards WHERE ward_type ilike 'maternity') ORDER BY patient_name"));
             patientSearchTable.setShowHorizontalLines(false);
             patientSearchScrollPane.setViewportView(patientSearchTable);
 

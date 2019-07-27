@@ -48,7 +48,7 @@ public class FunsoftUser {
         java.sql.PreparedStatement pstmtMail;
         
         try {
-            pstmtMail = connexion.prepareStatement("SELECT email_address FROM secure_passwd WHERE login_name = current_user");
+            pstmtMail = connexion.prepareStatement("SELECT email_address FROM secure_password WHERE login_name = current_user");
 
         
         java.sql.ResultSet rsetMail = pstmtMail.executeQuery();

@@ -1371,6 +1371,14 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LabHierachymnitActionPerformed"/>
                       </Events>
                     </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="labservicesmanagermnit">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Lab Services Manager"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="labservicesmanagermnitActionPerformed"/>
+                      </Events>
+                    </MenuItem>
                   </SubComponents>
                 </Menu>
                 <Menu class="javax.swing.JMenu" name="laboratorymn1">
@@ -1421,6 +1429,14 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="xrayFilmTypesmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="xrayservicesmanagermnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Xray Services Manager"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="xrayservicesmanagermnitActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>
@@ -4757,6 +4773,14 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
+            <MenuItem class="javax.swing.JMenuItem" name="departmentalreportMenuItemnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Departmental Report"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="departmentalreportMenuItemnitActionPerformed"/>
+              </Events>
+            </MenuItem>
             <Menu class="javax.swing.JMenu" name="inpatmn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="IN-Patient"/>
@@ -5117,12 +5141,12 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reportingdepartmentalMenuItemnitActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="departmentalreportMenuItemnit">
+                <MenuItem class="javax.swing.JMenuItem" name="triagesheetreportMenuItemnit">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Departmental Report"/>
+                    <Property name="text" type="java.lang.String" value="Triage Sheet"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="departmentalreportMenuItemnitActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="triagesheetreportMenuItemnitActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>
@@ -6570,6 +6594,14 @@
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="universalHealthcareSalesAnalysismnitActionPerformed"/>
+                          </Events>
+                        </MenuItem>
+                        <MenuItem class="javax.swing.JMenuItem" name="uhcWorkloadReportmnit">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="UHC Monthly Workload Report"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="uhcWorkloadReportmnitActionPerformed"/>
                           </Events>
                         </MenuItem>
                       </SubComponents>
@@ -8378,6 +8410,14 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deathsmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="sickoffreprintmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Sick Off Reprint"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sickoffreprintmnitActionPerformed"/>
                   </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="sickoffsmnit">

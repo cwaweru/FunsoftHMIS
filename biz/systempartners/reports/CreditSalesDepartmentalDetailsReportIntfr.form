@@ -136,7 +136,7 @@
         <Component class="javax.swing.JComboBox" name="schemeNameCmbx">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT DISTINCT scheme FROM hp_patient_card WHERE scheme is not null and scheme != &apos;&apos; ORDER BY 1&quot;)&#xd;&#xa;" type="code"/>
+              <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT DISTINCT initcap(scheme_name) FROM ac_schemes ORDER BY 1&quot;)" type="code"/>
             </Property>
           </Properties>
           <Constraints>
@@ -189,16 +189,17 @@
                   <Color blue="ff" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="0">
+                  <Table columnCount="5" rowCount="0">
                     <Column editable="false" title="Service_GL_Code" type="java.lang.Object"/>
                     <Column editable="false" title="Service Department" type="java.lang.Object"/>
                     <Column editable="false" title="Services" type="java.lang.Object"/>
+                    <Column editable="false" title="Workload" type="java.lang.Double"/>
                     <Column editable="false" title="Amount" type="java.lang.Double"/>
                   </Table>
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable(){&#xd;&#xa;    Class[] types = new Class [] {&#xd;&#xa;        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class&#xd;&#xa;    };&#xd;&#xa;    boolean[] canEdit = new boolean [] {&#xd;&#xa;        false, false, false, false&#xd;&#xa;    };&#xd;&#xa;    &#xd;&#xa;    public Class getColumnClass(int columnIndex) {&#xd;&#xa;        return types [columnIndex];&#xd;&#xa;    }&#xd;&#xa;    &#xd;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xd;&#xa;        return canEdit [columnIndex];&#xd;&#xa;    }&#xd;&#xa;};"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable(){&#xd;&#xa;    Class[] types = new Class [] {&#xd;&#xa;        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class&#xd;&#xa;    };&#xd;&#xa;    boolean[] canEdit = new boolean [] {&#xd;&#xa;        false, false, false, false, false&#xd;&#xa;    };&#xd;&#xa;    &#xd;&#xa;    public Class getColumnClass(int columnIndex) {&#xd;&#xa;        return types [columnIndex];&#xd;&#xa;    }&#xd;&#xa;    &#xd;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xd;&#xa;        return canEdit [columnIndex];&#xd;&#xa;    }&#xd;&#xa;};"/>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>

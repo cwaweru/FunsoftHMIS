@@ -27,6 +27,7 @@ import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.crypto.BadPaddingException;
@@ -439,6 +440,97 @@ public class MobilePayAPI {
         return checkoutRequestStatus;
     }
 
+    public static boolean sendLabRequest(java.sql.Connection connectDB, String accessToken, String requestNo, String patientNo, String patientName, String paymentMode, String schemeName, String requesterAccount, String patientType) {
+        boolean checkoutRequestStatus = true;
+        OkHttpClient client = new OkHttpClient();
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        dateFormat.setCalendar(calendar);
+        String timeStamp = dateFormat.format(calendar.getTime());
+        System.out.println("Timestamp : [" + dateFormat.format(calendar.getTime()) + "]");
+        MediaType mediaType = MediaType.parse("application/json");
+
+        String message = null;
+        JSONObject json = new JSONObject();
+
+        try {
+            json.put("OrderID", requestNo);
+//            json.put("Password", encodedPassword);
+            json.put("Timestamp", timeStamp);
+//            json.put("TransactionType", "CustomerPayBillOnline");
+            json.put("patientNumber", patientNo);
+            json.put("age", com.afrisoftech.lib.LabRequestJSON.getPatientAge(connectDB, patientNo, patientType));
+            json.put("gender", "Male");
+            json.put("physician", requesterAccount);
+            if (!paymentMode.contains("Scheme")) {
+                json.put("payment", paymentMode);
+            } else {
+                HashMap schemeMap = new HashMap();
+                schemeMap.put("scheme", schemeName);
+                json.put("payment", schemeMap);
+            }
+            json.put("paymentStatus", 1);
+            json.put("patientName", patientName);
+            json.put("amount", com.afrisoftech.lib.LabRequestJSON.getLimsRequestTotal(connectDB, requestNo, patientNo));
+            json.put("tests", (Object) com.afrisoftech.lib.LabRequestJSON.getLimsRequestMap(connectDB, requestNo, patientNo));
+            message = json.toString();
+            System.out.println("This is the LIMS request JSON String : " + message);
+
+        } catch (JSONException ex) {
+            Logger.getLogger(MobilePayAPI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        RequestBody body = RequestBody.create(mediaType, message);
+        Request request = null;
+
+        request = new Request.Builder()
+                .url("http://116.203.22.203:8890/lims/tests/makeTestOrder") // for sandbox test cases        
+                .post(body)
+                .addHeader("authorization", "Bearer " + accessToken)
+                .addHeader("content-type", "application/json")
+                .build();
+
+        try {
+            Response response = client.newCall(request).execute();
+            JSONObject myJsonObject = null;
+            try {
+                myJsonObject = new JSONObject(response.body().string());
+            } catch (JSONException ex) {
+                Logger.getLogger(MobilePayAPI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            if (myJsonObject.toString().contains("error")) {
+                try {
+//                    checkoutRequestID = myJsonObject.getString("errorMessage");
+                    checkoutRequestStatus = false;
+                    System.out.println("Checkout Request ID : [" + myJsonObject.getString("errorMessage") + "]");
+                    javax.swing.JOptionPane.showMessageDialog(null, "Payment Request Error : " + myJsonObject.getString("errorMessage") + ". Try again.");
+                } catch (JSONException ex) {
+                    ex.printStackTrace();
+                }
+            } else if (myJsonObject.toString().contains("Success")) {
+                try {
+                    checkoutRequestStatus = true;
+                    com.afrisoftech.hospital.GeneralBillingIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
+                    com.afrisoftech.hospinventory.PatientsBillingIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
+                    com.afrisoftech.accounting.InpatientDepositIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
+                    com.afrisoftech.accounting.InpatientRecpIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
+                    com.afrisoftech.hospital.HospitalMain.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
+                    com.afrisoftech.accounting.GovBillPaymentsIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
+                    System.out.println("Checout Request ID : [" + myJsonObject.getString("CheckoutRequestID") + "]");
+
+                } catch (JSONException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            System.out.println("Response for Process Request : [" + myJsonObject.toString() + "]");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        return checkoutRequestStatus;
+    }
+
     public static void sendProcessRequestStatus(String accessToken, String checkoutRequestID) {
 
         OkHttpClient client = new OkHttpClient();
@@ -562,7 +654,7 @@ public class MobilePayAPI {
 //    }
     public static boolean registerCallbackURL(String accessToken, String shortCode, String callBackURL, String validationURL) {
         boolean checkoutRequestStatus = true;
-        
+
         OkHttpClient client = new OkHttpClient();
 
         MediaType mediaType = MediaType.parse("application/json");

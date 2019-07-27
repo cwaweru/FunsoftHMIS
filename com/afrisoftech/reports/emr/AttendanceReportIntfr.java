@@ -93,6 +93,7 @@ public class AttendanceReportIntfr extends javax.swing.JInternalFrame {
         schemeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '--ALL--' as scheme_name UNION SELECT DISTINCT scheme_name FROM ac_schemes ORDER BY 1")
         );
         schemeCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Scheme Name"));
+        schemeCmbx.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -138,7 +139,7 @@ public class AttendanceReportIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         actionPanel.add(spacerLbl, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(refreshBtn, "Generate report");
+        refreshBtn.setText("Generate report");
         refreshBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshBtnActionPerformed(evt);
@@ -149,7 +150,7 @@ public class AttendanceReportIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         actionPanel.add(refreshBtn, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(closeBtn, "Close form");
+        closeBtn.setText("Close form");
         closeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeBtnActionPerformed(evt);
@@ -181,9 +182,9 @@ public class AttendanceReportIntfr extends javax.swing.JInternalFrame {
     private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
 
         AttendanceThread attThread = new AttendanceThread();
-        
+
         attThread.start();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_refreshBtnActionPerformed
 
@@ -223,76 +224,167 @@ public class AttendanceReportIntfr extends javax.swing.JInternalFrame {
 
         columnVector.addElement("CASH");
 
-        columnVector.addElement("NHIF");
+        columnVector.addElement("SCHEME");
+
+        java.util.Vector rowVectors = new java.util.Vector();
+        rowVectors.addElement("");
+        rowVectors.addElement("Attendance Report");
+        rowVectors.addElement("for period : ");
+        rowVectors.addElement(begindate.toString() + " to ");
+        rowVectors.addElement(endDate.toString());
+        dataVector.addElement(rowVectors);
+
+        int totalNew = 0;
+        int totalReatt = 0;
+        int totalAll = 0;
+        int totalCash = 0;
+        int totalScheme = 0;
 
         for (int i = 0; i < listofAct.length; i++) {
 
             java.util.Vector rowVector = new java.util.Vector();
 
-            rowVector.addElement(i+1);
+            rowVector.addElement(i + 1);
 
             try {
-                java.sql.PreparedStatement pstmtNew = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date = '"+listofAct[i]+"' AND UPPER(comments) = UPPER(?)");
-              //  pstmtNew.setObject(1, );
-                pstmtNew.setString(1, "New");
-                int countNew = 0;
-                java.sql.ResultSet rsetNew = pstmtNew.executeQuery();
-                while (rsetNew.next()) {
-                    countNew = rsetNew.getInt(1);
-                }
-                rowVector.addElement(countNew);
-                pstmtNew.close();
-                rsetNew.close();
+                if (clinicsCmbx.getSelectedItem().toString().contains("--ALL--")) {
+                    java.sql.PreparedStatement pstmtNew = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date = '" + listofAct[i] + "' AND UPPER(comments) = UPPER(?)");
+                    //  pstmtNew.setObject(1, );
+                    pstmtNew.setString(1, "New");
+                    int countNew = 0;
+                    java.sql.ResultSet rsetNew = pstmtNew.executeQuery();
+                    while (rsetNew.next()) {
+                        countNew = rsetNew.getInt(1);
+                    }
+                    rowVector.addElement(countNew);
+                    totalNew = totalNew + countNew;
+                    pstmtNew.close();
+                    rsetNew.close();
 
-                java.sql.PreparedStatement pstmtOld = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date = '"+listofAct[i]+"' AND UPPER(comments) = UPPER(?)");
-                //pstmtOld.setObject(1, listofAct[i]);
-                pstmtOld.setObject(1, "Old");
-                int countOld = 0;
-                java.sql.ResultSet rsetOld = pstmtOld.executeQuery();
-                while (rsetOld.next()) {
-                    countOld = rsetOld.getInt(1);
-                }
-                rowVector.addElement(countOld);
-                pstmtOld.close();
-                rsetOld.close();
+                    java.sql.PreparedStatement pstmtOld = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date = '" + listofAct[i] + "' AND UPPER(comments) = UPPER(?)");
+                    //pstmtOld.setObject(1, listofAct[i]);
+                    pstmtOld.setObject(1, "Old");
+                    int countOld = 0;
+                    java.sql.ResultSet rsetOld = pstmtOld.executeQuery();
+                    while (rsetOld.next()) {
+                        countOld = rsetOld.getInt(1);
+                    }
+                    rowVector.addElement(countOld);
+                    totalReatt = totalReatt + countOld;
+                    pstmtOld.close();
+                    rsetOld.close();
 
-                java.sql.PreparedStatement pstmtTotal = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date =  '"+listofAct[i]+"'");
-                //pstmtTotal.setObject(1, listofAct[i]);
-                int countTotal = 0;
-                java.sql.ResultSet rsetTotal = pstmtTotal.executeQuery();
-                while (rsetTotal.next()) {
-                    countTotal = rsetTotal.getInt(1);
-                }
-                rowVector.addElement(countTotal);
-                pstmtTotal.close();
-                rsetTotal.close();
+                    java.sql.PreparedStatement pstmtTotal = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date =  '" + listofAct[i] + "'");
+                    //pstmtTotal.setObject(1, listofAct[i]);
+                    int countTotal = 0;
+                    java.sql.ResultSet rsetTotal = pstmtTotal.executeQuery();
+                    while (rsetTotal.next()) {
+                        countTotal = rsetTotal.getInt(1);
+                    }
+                    rowVector.addElement(countTotal);
+                    totalAll = totalAll + countTotal;
+                    pstmtTotal.close();
+                    rsetTotal.close();
 
-                java.sql.PreparedStatement pstmtCash = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date =  '"+listofAct[i]+"' AND UPPER(payment) NOT LIKE UPPER(?)");
-                //pstmtCash.setObject(1, listofAct[i]);
-                pstmtCash.setObject(1, "Scheme");
-                int countCash = 0;
-                java.sql.ResultSet rsetCash = pstmtCash.executeQuery();
-                while (rsetCash.next()) {
-                    countCash = rsetCash.getInt(1);
-                }
-                rowVector.addElement(countCash);
-                pstmtCash.close();
-                rsetCash.close();
+                    java.sql.PreparedStatement pstmtCash = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date =  '" + listofAct[i] + "' AND UPPER(payment) NOT LIKE UPPER(?)");
+                    //pstmtCash.setObject(1, listofAct[i]);
+                    pstmtCash.setObject(1, "Scheme");
+                    int countCash = 0;
+                    java.sql.ResultSet rsetCash = pstmtCash.executeQuery();
+                    while (rsetCash.next()) {
+                        countCash = rsetCash.getInt(1);
+                    }
+                    rowVector.addElement(countCash);
+                    totalCash = totalCash + countCash;
+                    pstmtCash.close();
+                    rsetCash.close();
 
-                java.sql.PreparedStatement pstmtScheme = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date =  '"+listofAct[i]+"' AND UPPER(payment) = UPPER(?)");
-               // pstmtScheme.setObject(1, listofAct[i]);
-                pstmtScheme.setObject(1, "Scheme");
-                int countScheme = 0;
-                java.sql.ResultSet rsetScheme = pstmtScheme.executeQuery();
-                while (rsetScheme.next()) {
-                    countScheme = rsetScheme.getInt(1);
-                }
-                rowVector.addElement(countScheme);
-                pstmtScheme.close();
-                rsetScheme.close();
-                
-                dataVector.addElement(rowVector);
+                    java.sql.PreparedStatement pstmtScheme = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date =  '" + listofAct[i] + "' AND UPPER(payment) = UPPER(?)");
+                    // pstmtScheme.setObject(1, listofAct[i]);
+                    pstmtScheme.setObject(1, "Scheme");
+                    int countScheme = 0;
+                    java.sql.ResultSet rsetScheme = pstmtScheme.executeQuery();
+                    while (rsetScheme.next()) {
+                        countScheme = rsetScheme.getInt(1);
+                    }
+                    rowVector.addElement(countScheme);
+                    totalScheme = totalScheme + countScheme;
+                    pstmtScheme.close();
+                    rsetScheme.close();
 
+                    dataVector.addElement(rowVector);
+                } else {
+                    java.sql.PreparedStatement pstmtNew = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date = '" + listofAct[i] + "' AND UPPER(comments) = UPPER(?) AND UPPER(clinic) = ?");
+                    //  pstmtNew.setObject(1, );
+                    pstmtNew.setString(1, "New");
+                    pstmtNew.setString(2, clinicsCmbx.getSelectedItem().toString().toUpperCase());
+                    int countNew = 0;
+                    java.sql.ResultSet rsetNew = pstmtNew.executeQuery();
+                    while (rsetNew.next()) {
+                        countNew = rsetNew.getInt(1);
+                    }
+                    rowVector.addElement(countNew);
+                    totalNew = totalNew + countNew;
+                    pstmtNew.close();
+                    rsetNew.close();
+
+                    java.sql.PreparedStatement pstmtOld = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date = '" + listofAct[i] + "' AND UPPER(comments) = UPPER(?) AND UPPER(clinic) = ?");
+                    //pstmtOld.setObject(1, listofAct[i]);
+                    pstmtOld.setObject(1, "Old");
+                    pstmtOld.setString(2, clinicsCmbx.getSelectedItem().toString().toUpperCase());
+                    int countOld = 0;
+                    java.sql.ResultSet rsetOld = pstmtOld.executeQuery();
+                    while (rsetOld.next()) {
+                        countOld = rsetOld.getInt(1);
+                    }
+                    rowVector.addElement(countOld);
+                    totalReatt = totalReatt + countOld;
+                    pstmtOld.close();
+                    rsetOld.close();
+
+                    java.sql.PreparedStatement pstmtTotal = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date =  '" + listofAct[i] + "' AND UPPER(clinic) = ?");
+                    //pstmtTotal.setObject(1, listofAct[i]);
+                    pstmtTotal.setString(1, clinicsCmbx.getSelectedItem().toString().toUpperCase());
+                    int countTotal = 0;
+                    java.sql.ResultSet rsetTotal = pstmtTotal.executeQuery();
+                    while (rsetTotal.next()) {
+                        countTotal = rsetTotal.getInt(1);
+                    }
+                    rowVector.addElement(countTotal);
+                    totalAll = totalAll + countTotal;
+                    pstmtTotal.close();
+                    rsetTotal.close();
+
+                    java.sql.PreparedStatement pstmtCash = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date =  '" + listofAct[i] + "' AND UPPER(payment) NOT LIKE UPPER(?) AND UPPER(clinic) = ?");
+                    //pstmtCash.setObject(1, listofAct[i]);
+                    pstmtCash.setObject(1, "Scheme");
+                    pstmtCash.setString(2, clinicsCmbx.getSelectedItem().toString().toUpperCase());
+                    int countCash = 0;
+                    java.sql.ResultSet rsetCash = pstmtCash.executeQuery();
+                    while (rsetCash.next()) {
+                        countCash = rsetCash.getInt(1);
+                    }
+                    rowVector.addElement(countCash);
+                    totalCash = totalCash + countCash;
+                    pstmtCash.close();
+                    rsetCash.close();
+
+                    java.sql.PreparedStatement pstmtScheme = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date =  '" + listofAct[i] + "' AND UPPER(payment) = UPPER(?) AND UPPER(clinic) = ?");
+                    // pstmtScheme.setObject(1, listofAct[i]);
+                    pstmtScheme.setObject(1, "Scheme");
+                    pstmtScheme.setString(2, clinicsCmbx.getSelectedItem().toString().toUpperCase());
+                    int countScheme = 0;
+                    java.sql.ResultSet rsetScheme = pstmtScheme.executeQuery();
+                    while (rsetScheme.next()) {
+                        countScheme = rsetScheme.getInt(1);
+                    }
+                    rowVector.addElement(countScheme);
+                    totalScheme = totalScheme + countScheme;
+                    pstmtScheme.close();
+                    rsetScheme.close();
+
+                    dataVector.addElement(rowVector);
+                }
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -300,8 +392,17 @@ public class AttendanceReportIntfr extends javax.swing.JInternalFrame {
 
         }
 
+        java.util.Vector rowVector = new java.util.Vector();
+        rowVector.addElement("Total");
+        rowVector.addElement(totalNew);
+        rowVector.addElement(totalReatt);
+        rowVector.addElement(totalAll);
+        rowVector.addElement(totalCash);
+        rowVector.addElement(totalScheme);
+        dataVector.addElement(rowVector);
+
         reportTable.setModel(new javax.swing.table.DefaultTableModel(dataVector, columnVector));
-        
+
     }
 
     public java.lang.Object[] getListofActivities() {

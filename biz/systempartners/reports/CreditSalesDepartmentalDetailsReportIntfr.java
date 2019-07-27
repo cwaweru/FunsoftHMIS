@@ -45,10 +45,10 @@ public class CreditSalesDepartmentalDetailsReportIntfr extends javax.swing.JInte
         reportBodyJscrollPane = new javax.swing.JScrollPane();
         reportBodyTable = new com.afrisoftech.dbadmin.JTable(){
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -157,8 +157,7 @@ public class CreditSalesDepartmentalDetailsReportIntfr extends javax.swing.JInte
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(saveReportBtn, gridBagConstraints);
 
-        schemeNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT scheme FROM hp_patient_card WHERE scheme is not null and scheme != '' ORDER BY 1")
-        );
+        schemeNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT initcap(scheme_name) FROM ac_schemes ORDER BY 1"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -182,14 +181,14 @@ public class CreditSalesDepartmentalDetailsReportIntfr extends javax.swing.JInte
 
             },
             new String [] {
-                "Service_GL_Code", "Service Department", "Services", "Amount"
+                "Service_GL_Code", "Service Department", "Services", "Workload", "Amount"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -307,7 +306,7 @@ public class CreditSalesDepartmentalDetailsReportIntfr extends javax.swing.JInte
         
         reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM public.funsoft_departmental_detailed_credit_sales('"+beginDatePicker.getDate()+"','"+endDatePicker.getDate()+"', '"+schemeNameCmbx.getSelectedItem().toString()+"') order by 1"));
         
-        this.totalCreditSalesTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyTable, 3)));
+        this.totalCreditSalesTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyTable, 4)));
         
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
        // biz.systempartners.reports.TrialBalanceRpt trialBalanceReport = new biz.systempartners.reports.TrialBalanceRpt(connectDB, this.beginDatePicker.getDate(), this.endDatePicker.getDate());

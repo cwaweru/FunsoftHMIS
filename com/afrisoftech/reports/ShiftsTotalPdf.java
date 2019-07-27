@@ -530,6 +530,10 @@ public class ShiftsTotalPdf implements java.lang.Runnable {
 
                                 double RctCancelled = 0.00;
                                 double RctCash = 0.00;
+                                double rowGrossAmount = 0.00;
+                                double rowRefunds = 0.00;
+                                double rowWaivers = 0.00;
+                                double rowExemptions = 0.00;
 
                                 java.sql.Statement st1 = connectDB.createStatement();
 
@@ -609,6 +613,7 @@ public class ShiftsTotalPdf implements java.lang.Runnable {
                                     // phrase = new Phrase(dbObject.getDBObject(rset15.getObject(1), "0.0"), pFontNum);
                                     RctCancelled = rset15.getDouble(1);
                                     Refund = Refund + rset15.getDouble(1);
+                                    rowRefunds = rset15.getDouble(1);
                                     //table.addCell(phrase);
                                 }
 
@@ -618,6 +623,7 @@ public class ShiftsTotalPdf implements java.lang.Runnable {
                                     // Netrow = Netrow + Double.valueOf(dbObject.getDBObject(rsetGross.getDouble(1), "0"));
                                     phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(rsetGross.getDouble(1))), pFontHeader);
                                     grossAmount = grossAmount + rsetGross.getDouble(1);
+                                    rowGrossAmount = rsetGross.getDouble(1);
                                     table.addCell(phrase);
                                 }
 
@@ -688,8 +694,9 @@ public class ShiftsTotalPdf implements java.lang.Runnable {
                                     //phrase = new Phrase(dbObject.getDBObject(rset12.getObject(1), "0.0"), pFontNum);
                                     phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(dbObject.getDBObject(rset12.getObject(1), "0.0"))), pFontNum);
 
-                                    Netrow = Netrow + Double.valueOf(dbObject.getDBObject(rset12.getObject(1), "0"));
+                                    Netrow = Netrow - Double.valueOf(dbObject.getDBObject(rset12.getObject(1), "0"));
                                     Chq = Chq + rset12.getDouble(1);
+                                    rowExemptions = rset12.getDouble(1);
                                     table.addCell(phrase);
 
                                 }
@@ -699,19 +706,22 @@ public class ShiftsTotalPdf implements java.lang.Runnable {
                                   //  phrase = new Phrase(dbObject.getDBObject(rset13.getObject(1), "0.0"), pFontNum);
                                     phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(dbObject.getDBObject(rset13.getObject(1), "0.0"))), pFontNum);
              
-                                    Netrow = Netrow + Double.valueOf(dbObject.getDBObject(rset13.getObject(1), "0"));
+                                    Netrow = Netrow - Double.valueOf(dbObject.getDBObject(rset13.getObject(1), "0"));
                                     Card = Card + rset13.getDouble(1);
+                                    rowWaivers = rset13.getDouble(1);
                                     table.addCell(phrase);
                                 }
                                 Netrow = Netrow;  //+ Double.valueOf(RctCancelled);
 
                                 phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(RctCancelled)), pFontNum);
                                 table.addCell(phrase);
-
+                                
+                                double rowNet = rowGrossAmount - rowExemptions - rowRefunds - rowWaivers;
+                                
                                 while (rset16.next()) {
                                     //  table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                     /// phrase = new Phrase(dbObject.getDBObject(rset16.getObject(1), "0.0"), pFontNum);
-                                    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(dbObject.getDBObject(Netrow, "0.0"))), pFontHeader);
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(dbObject.getDBObject(rowNet, "0.0"))), pFontHeader);
                      
                                    // phrase = new Phrase(dbObject.getDBObject(Netrow, "0.0"), pFontHeader);
                                     Net = Net + rset16.getDouble(1);

@@ -50,7 +50,7 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
         } else if (payMode.equalsIgnoreCase("Cash")) {
             payMode = "Cash";
         } else {
-            payMode = "ALL";
+            payMode = "--ALL--";
         }
 
         if (schemeName != null) {
@@ -357,23 +357,24 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
                             //  phrase = new Phrase(bank +" Report: " +dateFormat.format(formattedDate), pFontHeader);
 
                             //  table.addCell(phrase);
+                            String paymentModes = "";
                             if (schemesName != null) {
-                                payMode = payMode + " - " + schemesName;
+                                paymentModes = payMode + " - " + schemesName;
                             }
                             table.getDefaultCell().setColspan(7);
-                            if (servicepnt.equalsIgnoreCase("-")) {
+                            if (servicepnt.equalsIgnoreCase("--ALL--")) {
                                 if (patCat.equalsIgnoreCase("New")) {
-                                    phrase = new Phrase("Patient List [New]: Pay MODE :" + payMode.toUpperCase() + "   Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1), pFontHeader);
+                                    phrase = new Phrase("Patient List [New]: Pay MODE :" + paymentModes.toUpperCase() + "   Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1), pFontHeader);
 
                                     table.addCell(phrase);
                                 } else {
                                     if (patCat.equalsIgnoreCase("Old")) {
-                                        phrase = new Phrase("Patient List [Revisit]: Pay MODE :" + payMode.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1), pFontHeader);
+                                        phrase = new Phrase("Patient List [Revisit]: Pay MODE :" + paymentModes.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1), pFontHeader);
 
                                         table.addCell(phrase);
                                     } else {
-                                        if (patCat.equalsIgnoreCase("All")) {
-                                            phrase = new Phrase("Patient List [New & Revisit]: Pay MODE :" + payMode.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1), pFontHeader);
+                                        if (patCat.equalsIgnoreCase("--All--")) {
+                                            phrase = new Phrase("Patient List [New & Revisit]: Pay MODE :" + paymentModes.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1), pFontHeader);
 
                                             table.addCell(phrase);
                                         }
@@ -383,17 +384,17 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
 
                                 if (patCat.equalsIgnoreCase("New")) {
 
-                                    phrase = new Phrase("Patient List [New]: Pay MODE :" + payMode.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1) + "  at " + servicepnt, pFontHeader);
+                                    phrase = new Phrase("Patient List [New]: Pay MODE :" + paymentModes.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1) + "  at " + servicepnt, pFontHeader);
 
                                     table.addCell(phrase);
                                 } else {
                                     if (patCat.equalsIgnoreCase("Old")) {
-                                        phrase = new Phrase("Patient List [Revisit]: Pay MODE :" + payMode.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1) + "  at " + servicepnt, pFontHeader);
+                                        phrase = new Phrase("Patient List [Revisit]: Pay MODE :" + paymentModes.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1) + "  at " + servicepnt, pFontHeader);
 
                                         table.addCell(phrase);
                                     } else {
-                                        if (patCat.equalsIgnoreCase("All")) {
-                                            phrase = new Phrase("Patient List [New & Revisit]: Pay MODE :" + payMode.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1) + "  at " + servicepnt, pFontHeader);
+                                        if (patCat.equalsIgnoreCase("--All--")) {
+                                            phrase = new Phrase("Patient List [New & Revisit]: Pay MODE :" + paymentModes.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1) + "  at " + servicepnt, pFontHeader);
 
                                             table.addCell(phrase);
                                         }
@@ -481,12 +482,13 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
 
                             double ages = 0;
                             System.out.println("THIS IS THE LENGTH  " + listofAct.length);
+                            System.out.println("Paymode  [" + payMode+"]");
                             for (int i = 0; i < listofAct.length; i++) {
                                 String coTime = "-";
                                 String diagnosis = "-";
                                 System.out.println("item" + listofAct[i]);
-                                if (payMode == "ALL") {
-                                    if (patCat.equalsIgnoreCase("All")) {
+                                if (payMode == "--ALL--") {
+                                    if (patCat.equalsIgnoreCase("--ALL--")) {
                                         st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                     } else {
                                         if (patCat.equalsIgnoreCase("New")) {
@@ -498,8 +500,8 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
                                         }
                                     }
                                 } else if (payMode == "Scheme") {
-                                    if (schemesName == null) {
-                                        if (patCat.equalsIgnoreCase("All")) {
+                                    if (schemesName == "--ALL--") {
+                                        if (patCat.equalsIgnoreCase("--ALL--")) {
                                             st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.payment = 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                         } else {
                                             if (patCat.equalsIgnoreCase("New")) {
@@ -513,21 +515,21 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
                                         }
                                     } else {
                                         // Fetch for particular scheme
-                                        if (patCat.equalsIgnoreCase("All")) {
-                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date, hp.scheme FROM hp_patient_register pr,hp_patient_visit pb, hp_patient_card hp WHERE pb.payment = 'Scheme' AND pb.date::date = hp.date::date AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "' and pb.patient_no = pr.patient_no AND pb.patient_no = hp.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                        if (patCat.equalsIgnoreCase("--ALL--")) {
+                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date, hp.scheme FROM hp_patient_register pr,hp_patient_visit pb, credit_acc_slip hp WHERE pb.payment = 'Scheme' AND pb.date::date = hp.date::date AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "' and pb.patient_no = pr.patient_no AND pb.patient_no = hp.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                         } else {
                                             if (patCat.equalsIgnoreCase("New")) {
-                                                st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date, hp.scheme FROM hp_patient_register pr,hp_patient_visit pb, hp_patient_card hp WHERE  pb.payment = 'Scheme' AND pb.date::date = hp.date::date AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "'  and pb.patient_no = pr.patient_no AND pb.patient_no = hp.patient_no  AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                                st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date, hp.scheme FROM hp_patient_register pr,hp_patient_visit pb, credit_acc_slip hp WHERE  pb.payment = 'Scheme' AND pb.date::date = hp.date::date AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "'  and pb.patient_no = pr.patient_no AND pb.patient_no = hp.patient_no  AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                             } else {
                                                 if (patCat.equalsIgnoreCase("Old")) {
-                                                    st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date, hp.scheme FROM hp_patient_register pr,hp_patient_visit pb, hp_aptient_card hp WHERE  pb.payment = 'Scheme' AND pb.date::date = hp.date::date AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "'  and pb.patient_no = pr.patient_no AND pb.patient_no = hp.patient_no  AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                                    st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date, hp.scheme FROM hp_patient_register pr,hp_patient_visit pb, credit_acc_slip hp WHERE  pb.payment = 'Scheme' AND pb.date::date = hp.date::date AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "'  and pb.patient_no = pr.patient_no AND pb.patient_no = hp.patient_no  AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                                 }
                                             }
 
                                         }
                                     }
                                 } else {
-                                    if (patCat.equalsIgnoreCase("All")) {
+                                    if (patCat.equalsIgnoreCase("--ALL--")) {
                                         st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.payment != 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                     } else {
                                         if (patCat.equalsIgnoreCase("New")) {
@@ -691,9 +693,9 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
             //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
             java.sql.Statement stmt1 = connectDB.createStatement();
             java.sql.ResultSet rSet1 = null;
-            if (payMode == "ALL") {
-                if (servicepnt.equalsIgnoreCase("-")) {
-                    if (patCat.equalsIgnoreCase("All")) {
+            if (payMode == "--ALL--") {
+                if (servicepnt.equalsIgnoreCase("--ALL--")) {
+                    if (patCat.equalsIgnoreCase("--ALL--")) {
                         rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  order by 2 ASC");
                     } else {
                         if (patCat.equalsIgnoreCase("New")) {
@@ -705,7 +707,7 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
                         }
                     }
                 } else {
-                    if (patCat.equalsIgnoreCase("All")) {
+                    if (patCat.equalsIgnoreCase("--ALL--")) {
                         rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "' and clinic='" + servicepnt + "' order by 2 ASC");
                     } else {
                         if (patCat.equalsIgnoreCase("New")) {
@@ -718,8 +720,8 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
                     }
                 }
             } else if (payMode == "Scheme") {
-                if (servicepnt.equalsIgnoreCase("-")) {
-                    if (patCat.equalsIgnoreCase("All")) {
+                if (servicepnt.equalsIgnoreCase("--ALL--")) {
+                    if (patCat.equalsIgnoreCase("--ALL--")) {
                         rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE payment = '" + payMode + "' AND input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  order by 2 ASC");
                     } else {
                         if (patCat.equalsIgnoreCase("New")) {
@@ -731,7 +733,7 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
                         }
                     }
                 } else {
-                    if (patCat.equalsIgnoreCase("All")) {
+                    if (patCat.equalsIgnoreCase("--ALL--")) {
                         rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE payment = '" + payMode + "' AND  input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "' and clinic='" + servicepnt + "' order by 2 ASC");
                     } else {
                         if (patCat.equalsIgnoreCase("New")) {
@@ -744,8 +746,8 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
                     }
                 }
             } else {
-                if (servicepnt.equalsIgnoreCase("-")) {
-                    if (patCat.equalsIgnoreCase("All")) {
+                if (servicepnt.equalsIgnoreCase("--ALL--")) {
+                    if (patCat.equalsIgnoreCase("--ALL--")) {
                         rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE payment != 'Scheme' AND input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  order by 2 ASC");
                     } else {
                         if (patCat.equalsIgnoreCase("New")) {
@@ -757,7 +759,7 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
                         }
                     }
                 } else {
-                    if (patCat.equalsIgnoreCase("All")) {
+                    if (patCat.equalsIgnoreCase("--ALL--")) {
                         rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE payment != 'Scheme' AND input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "' and clinic = '" + servicepnt + "' order by 2 ASC");
                     } else {
                         if (patCat.equalsIgnoreCase("New")) {

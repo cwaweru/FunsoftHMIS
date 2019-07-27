@@ -33,6 +33,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JTextField;
 import org.jdesktop.swingx.decorator.ColorHighlighter;
+import org.openide.util.Exceptions;
 //import org.openide.util.Exceptions;
 
 /**
@@ -77,6 +78,8 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
     private javax.swing.JComponent drawPanel = null;
     com.afrisoftech.lib.BasicPaint basicPaintCanvas = null;
     String cat = null;
+    private boolean underFive;
+    private boolean emergencyStatus;
 
     public EyeConsultationIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB, com.afrisoftech.hospital.HospitalMain parentHospitalFrame) {
 
@@ -2815,14 +2818,14 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
         ));
         clerkingwaitingTable.setRowHeight(22);
         clerkingwaitingTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                clerkingwaitingTableMouseEntered(evt);
-            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 clerkingwaitingTableMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 clerkingwaitingTableMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                clerkingwaitingTableMouseEntered(evt);
             }
         });
         jScrollPane1.setViewportView(clerkingwaitingTable);
@@ -7042,7 +7045,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
 
         laboratoryResultsDisplayTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT parameter, units, out_come, lower_limit, upper_limit, (CASE WHEN result::varchar ~ '^[0-9]*.?[0-9]*$' AND (result < lower_limit or result > upper_limit) THEN true  ELSE false END) AS exceptional_results from hp_lab_results WHERE lab_no = '" + labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 3) + "'"));
@@ -7095,7 +7098,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
     private void jSearchTable213MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable213MouseClicked
         //   jTextField92.setText(jSearchTable213.getValueAt(jSearchTable213.getSelectedRow(), 0).toString());
         //        jTextField3.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 1).toString());
-       /* for (int k = 0; k < jTable12.getRowCount(); k++ ) {
+        /* for (int k = 0; k < jTable12.getRowCount(); k++ ) {
          for (int r = 0; r < jTable12.getColumnCount(); r++ ) {
          jTable12.getModel().setValueAt(null,k,r);
          }
@@ -7182,8 +7185,6 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
 
     private void clerkingSavingbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clerkingSavingbtnActionPerformed
 
-        
-        
         jButton1.doClick();
 
 //
@@ -8852,7 +8853,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
                     System.out.println("Inserting pharmacy items ...11");
                     if (pharmacyTable.getValueAt(n, 0) != null) {
                         System.out.println("Inserting pharmacy items ...");
-                    // this.jTable111.setCellSelectionEnabled(false);
+                        // this.jTable111.setCellSelectionEnabled(false);
 
                         //this.jTextField922.setHighlighter().;
                         //this.jTextField922.setOpaque(true);
@@ -9542,7 +9543,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
                             + ",hpv.nature as Seen, (SELECT receipt_no FROM ac_cash_collection WHERE (ac_cash_collection.description ILIKE '%consultation%' OR ac_cash_collection.description ILIKE '%card%' OR ac_cash_collection.description ILIKE '%attend%') AND ac_cash_collection.patient_no = hpv.patient_no AND ac_cash_collection.date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1) ORDER BY ac_cash_collection.date DESC LIMIT 1) as receipt_no "
-                                    + " from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)    "
+                            + " from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)    "
                             + "  ORDER BY hpv.input_date::time(0)"));
                 } else {
                     this.clerkingwaitingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
@@ -9551,7 +9552,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
                             + ",hpv.nature as Seen, (SELECT receipt_no FROM ac_cash_collection WHERE (ac_cash_collection.description ILIKE '%consultation%' OR ac_cash_collection.description ILIKE '%card%' OR ac_cash_collection.description ILIKE '%attend%') AND ac_cash_collection.patient_no = hpv.patient_no AND ac_cash_collection.date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1) ORDER BY ac_cash_collection.date DESC LIMIT 1) as receipt_no "
-                                    + " from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'    "
+                            + " from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'    "
                             + "and hpv.clinic ='" + this.waitingclinicscmbx.getSelectedItem().toString() + "'  ORDER BY hpv.input_date::time(0)"));
 
                 }
@@ -9584,7 +9585,10 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
         }
         // Add your handling code here:
     }//GEN-LAST:event_loadALLpatientsbtnActionPerformed
-    private java.lang.Boolean checkPayment(String patientNo, String paymentMode, String patType, String urgency) {
+    
+    
+    
+        private java.lang.Boolean checkPayment(String patientNo, String paymentMode, String patType, String urgency) {
 
         int gracePariodDays = 2;
 
@@ -9601,7 +9605,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
         }
         Boolean patientPaid = false;
         switch (patType.toLowerCase().trim()) {
@@ -9616,7 +9620,8 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
                         patientPaid = true;
                     }
                     break;
-                    case "cash": {
+                    //case "cash": {
+                    default: {
                         switch (urgency.toLowerCase().trim()) {
                             case "urgent": {
                                 patientPaid = true;
@@ -9628,7 +9633,6 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
                             break;
                             case "normal": {
                                 try {
-                                    System.out.println("Being tried for normal patient");
                                     java.sql.PreparedStatement pstmtVector = connectDB.prepareStatement(""
                                             + "SELECT COUNT(patient_no) FROM ac_cash_collection WHERE patient_no ='" + patientNo + "' "
                                             + " and receipt_time::date >= (select current_timestamp(0)::date - " + gracePariodDays + ") ");
@@ -9636,7 +9640,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
                                     java.sql.ResultSet rsetVector = pstmtVector.executeQuery();
 
                                     if (rsetVector.next()) {
-                                        if (rsetVector.getInt(1) > 0) {
+                                        if (rsetVector.getInt(1) > 0 || underFive) {
                                             patientPaid = true;
                                         } else {
                                             patientPaid = false;
@@ -9660,10 +9664,20 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
             }
             break;
         }
+
         return patientPaid;
     }
+        
     private void clerkingwaitingTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clerkingwaitingTableMouseClicked
         basicPaintCanvas.activeTool = 1;
+        underFive = false;
+        if (clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4) != null) {
+            if (clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4).toString().contains("Emergency")) {
+                emergencyStatus = true;
+            } else {
+                emergencyStatus = false;
+            }
+        }
         System.out.println("CLERKING PATIENTS!!!");
         if (outpatientCheckBox.isSelected()) {
             visitTypeTxt.setText(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 5).toString());
@@ -9679,14 +9693,17 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
         String patType = null;
         if (outpatientCheckBox.isSelected()) {
             patType = "op";
-        } else if (this.inpatientCheckBox.isSelected() == Boolean.TRUE) {
+        } else if (this.inpatientCheckBox.isSelected()) {
             patType = "ip";
         }
 
+        System.out.println("Patient Type : [" + patType + "] and [" + clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 6).toString() + "] and [" + clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4).toString() + "] for patient no [" + clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 0).toString()+"]");
+
         System.out.println("Testing clerking eligibility : [" + checkPayment(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 0).toString(), clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 6).toString(), patType, clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4).toString()) + "]");
-        //    if (evt.getClickCount() == 1) {
+        //    if (evt.getClickCount() == 1) { +
         if (Objects.equals(checkPayment(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 0).toString(), clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 6).toString(), patType, clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4).toString()), Boolean.TRUE)) {
 
+            // if (checkPayment(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 0).toString(), clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 6).toString(), patType, clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4).toString())) {
             jButton121.setEnabled(true);
             requestbtn.setEnabled(true);
             jButton22.setEnabled(true);
@@ -10016,7 +10033,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
         rightEyeUpperCmbx.setSelectedItem(null);
         rightEyeLowerCmbx.setSelectedItem(null);
         eyeConditionCmbx.setSelectedItem(null);
-        
+
         /*        for (int k = 0; k < jTable3.getRowCount(); k++) {
          for (int r = 0; r < jTable3.getColumnCount(); r++) {
          jTable3.getModel().setValueAt(null, k, r);
@@ -10183,9 +10200,9 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
     }//GEN-LAST:event_jButton912ActionPerformed
 
     private void searchDiseasesTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchDiseasesTxtCaretUpdate
-        if (searchDiseasesTxt.getText().length() >= 1) {
+        if (searchDiseasesTxt.getText().length() > 2) {
             this.complainsdialogtable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
-                    "SELECT (upper(disease_name)) as name,code from hp_diseases where disease_name ilike '%" + searchDiseasesTxt.getText().toString().trim() + "%' order by 1"));
+                    "SELECT (upper(disease_name)) as name,code from hp_diseases where disease_name ilike '%" + searchDiseasesTxt.getText().toString().trim() + "%' order by 1,code limit 50"));
         }
     }//GEN-LAST:event_searchDiseasesTxtCaretUpdate
 
@@ -10718,7 +10735,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
                             + ",hpv.nature as Seen, (SELECT receipt_no FROM ac_cash_collection WHERE (ac_cash_collection.description ILIKE '%consultation%' OR ac_cash_collection.description ILIKE '%card%' OR ac_cash_collection.description ILIKE '%attend%') AND ac_cash_collection.patient_no = hpv.patient_no AND ac_cash_collection.date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1) ORDER BY ac_cash_collection.date DESC LIMIT 1) as receipt_no "
-                                    + " from  hp_patient_visit hpv  where (hpv.patient_no ilike '%" + searchpatienttxtfld.getText() + "%' OR hpv.name ilike '%" + searchpatienttxtfld.getText() + "%') "
+                            + " from  hp_patient_visit hpv  where (hpv.patient_no ilike '%" + searchpatienttxtfld.getText() + "%' OR hpv.name ilike '%" + searchpatienttxtfld.getText() + "%') "
                             + "and hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)    "
                             + "   ORDER BY hpv.input_date::time(0) "));
                 } else if (inpatientCheckBox.isSelected()) {
@@ -10738,7 +10755,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
                             + ",hpv.nature as Seen, (SELECT receipt_no FROM ac_cash_collection WHERE (ac_cash_collection.description ILIKE '%consultation%' OR ac_cash_collection.description ILIKE '%card%' OR ac_cash_collection.description ILIKE '%attend%') AND ac_cash_collection.patient_no = hpv.patient_no AND ac_cash_collection.date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1) ORDER BY ac_cash_collection.date DESC LIMIT 1) as receipt_no "
-                                    + " from  hp_patient_visit hpv  where  "
+                            + " from  hp_patient_visit hpv  where  "
                             + "   (hpv.name ilike '%" + searchpatienttxtfld.getText() + "%' OR hpv.patient_no ilike '%" + searchpatienttxtfld.getText() + "%') "
                             + "and hpv.input_date::date='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)   "
                             + "and hpv.clinic ='" + this.waitingclinicscmbx.getSelectedItem().toString() + "'  ORDER BY hpv.input_date::time(0)  "));
@@ -10901,9 +10918,9 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
                 javax.swing.JOptionPane.showMessageDialog(this, "Data Inserted Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
             }
-            File imageFile = new File(String.format(nameNoTxt.getText().replace("/", "") + "-%d.png", System.currentTimeMillis()));
-            save(imageFile, drawPanel);
-            com.afrisoftech.lib.SaveBytea2DB.insertBytea(connectDB, imageFile, "JPG", "image/png", nameNoTxt.getText(), imageFile.getName(), "PATIENT_DIAGNOSTICS");
+//            File imageFile = new File(String.format(nameNoTxt.getText().replace("/", "") + "-%d.png", System.currentTimeMillis()));
+//            save(imageFile, drawPanel);
+//            com.afrisoftech.lib.SaveBytea2DB.insertBytea(connectDB, imageFile, "JPG", "image/png", nameNoTxt.getText(), imageFile.getName(), "PATIENT_DIAGNOSTICS");
 
             connectDB.commit();
             connectDB.setAutoCommit(true);
@@ -11403,7 +11420,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
                 connectDB.setAutoCommit(false);
                 savedPoint = connectDB.setSavepoint("EYE_DATA");
             } catch (SQLException ex) {
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                 javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
             }
             try {
@@ -11446,13 +11463,21 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
                 pstmtEyeData.setString(15, complainsTextPane.getText());
                 pstmtEyeData.setString(16, clinicalExamineditor.getText());
                 pstmtEyeData.execute();
-                
-                if(basicPaintCanvas.activeTool > 0){
-                File imageFile = new File(String.format(nameNoTxt.getText().replace("/", "") + "-%d.png", System.currentTimeMillis()));
-                save(imageFile, drawPanel);
-                com.afrisoftech.lib.SaveBytea2DB.insertBytea(connectDB, imageFile, "JPG", "image/png", nameNoTxt.getText(), imageFile.getName(), "EYE_UNIT_ILLUSTRATION");
-                }
-                
+
+                // Saving illustrations commented by CWW pending further testing for centralised deployment/file system access issue
+//                if (basicPaintCanvas.activeTool > 0) {
+//                    java.io.File imageFile = null;
+//                    try {
+//                        imageFile = java.io.File.createTempFile(String.format(nameNoTxt.getText().replace("/", "") + "-%d.png", System.currentTimeMillis()), ".png");
+//                    } catch (IOException ex) {
+//                        Exceptions.printStackTrace(ex);
+//                    }
+//
+//                    imageFile.deleteOnExit();
+//                    //File imageFile = new File(String.format(nameNoTxt.getText().replace("/", "") + "-%d.png", System.currentTimeMillis()));
+//                    save(imageFile, drawPanel);
+//                    com.afrisoftech.lib.SaveBytea2DB.insertBytea(connectDB, imageFile, "JPG", "image/png", nameNoTxt.getText(), imageFile.getName(), "EYE_UNIT_ILLUSTRATION");
+//                }
                 otherLeftEyeDetails = "";
                 for (int i = 0; i < leftEyeDetailsTable.getRowCount(); i++) {
                     if (leftEyeDetailsTable.getValueAt(i, 1) != null) {
@@ -11466,7 +11491,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
                         pstmtEyeDetailsDataLeftStmt.setString(3, "LEFT");
                         pstmtEyeDetailsDataLeftStmt.setObject(4, leftEyeDetailsTable.getValueAt(i, 0));
                         pstmtEyeDetailsDataLeftStmt.setObject(5, leftEyeDetailsTable.getValueAt(i, 1));
-                        otherLeftEyeDetails = otherLeftEyeDetails + leftEyeDetailsTable.getValueAt(i, 0) + " : " + leftEyeDetailsTable.getValueAt(i, 1)+"\n";
+                        otherLeftEyeDetails = otherLeftEyeDetails + leftEyeDetailsTable.getValueAt(i, 0) + " : " + leftEyeDetailsTable.getValueAt(i, 1) + "\n";
                         pstmtEyeDetailsDataLeftStmt.execute();
                     }
                 }
@@ -11483,7 +11508,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
                         pstmtEyeDetailsDataRightStmt.setString(3, "RIGHT");
                         pstmtEyeDetailsDataRightStmt.setObject(4, rightEyeDetailsTable.getValueAt(i, 0));
                         pstmtEyeDetailsDataRightStmt.setObject(5, rightEyeDetailsTable.getValueAt(i, 1));
-                        otherRightEyeDetails = otherRightEyeDetails + rightEyeDetailsTable.getValueAt(i, 0) + " : " + rightEyeDetailsTable.getValueAt(i, 1)+"\n";
+                        otherRightEyeDetails = otherRightEyeDetails + rightEyeDetailsTable.getValueAt(i, 0) + " : " + rightEyeDetailsTable.getValueAt(i, 1) + "\n";
                         pstmtEyeDetailsDataRightStmt.execute();
                     }
                 }
@@ -11566,7 +11591,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
                 try {
                     connectDB.rollback(savedPoint);
                 } catch (SQLException ex) {
-                                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                    ex.printStackTrace();             //Exceptions.printStackTrace(ex);
                 }
                 sqe.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(this, sqe.getMessage());
@@ -11614,7 +11639,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void viewBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBillBtnActionPerformed
-        if(paymentModeTxt.getText().equalsIgnoreCase("Scheme")){
+        if (paymentModeTxt.getText().equalsIgnoreCase("Scheme")) {
             com.afrisoftech.reports.OutPatientBillPdf policy = new com.afrisoftech.reports.OutPatientBillPdf();
 
             policy.OutPatientBillPdf(connectDB, datePicker2.getDate(), transdatePicker.getDate(), nameNoTxt.getText());
@@ -11837,7 +11862,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
         //  if(patNo>=patNo+1){
         // if(labNo.equalsIgnoreCase(null)){
         // }else{
-       /* 
+        /* 
          if(labNo1>0){
          java.awt.Toolkit.getDefaultToolkit().beep();
          //  javax.swing.JOptionPane.showMessageDialog(this, "Result No. '"+labNo+"' for '"+patientNo+"' are out","Information Message!",javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -13451,21 +13476,18 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
     }
 
     // take the current contents of the panel and write them to a file
-    public void save(File fileName, javax.swing.JComponent panel) {
-       // String extension = filename.substring(filename.lastIndexOf(".") + 1);
-
-        // create second image so we get the background color
-        BufferedImage image2 = new BufferedImage(panel.getWidth(), panel.getHeight(), BufferedImage.TYPE_INT_RGB);
-        try {
-//                            File f = ch.getSelectedFile();
-            ImageIO.write(basicPaintCanvas.getCanvasImage(), "png", fileName);
-            Graphics g = image2.getGraphics();
-            g.setColor(panel.getBackground());
-            // BasicPaint.this.originalImage = BasicPaint.this.getCanvasImage();
-            //// dirty = false;
-        } catch (IOException ioe) {
-
-            ioe.printStackTrace();
-        }
-    }
+//    public void save(File fileName, javax.swing.JComponent panel) {
+//
+//        BufferedImage image2 = new BufferedImage(panel.getWidth(), panel.getHeight(), BufferedImage.TYPE_INT_RGB);
+//        try {
+//
+//            ImageIO.write(basicPaintCanvas.getCanvasImage(), "png", fileName);
+//            Graphics g = image2.getGraphics();
+//            g.setColor(panel.getBackground());
+//
+//        } catch (IOException ioe) {
+//
+//            ioe.printStackTrace();
+//        }
+//    }
 }

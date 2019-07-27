@@ -5,6 +5,7 @@
  */
 package com.afrisoftech.hospinventory;
 
+import com.afrisoftech.lib.GetItemInfo;
 import com.afrisoftech.lib.SQLDateFormat;
 import com.lowagie.text.DocumentException;
 import java.io.File;
@@ -18,6 +19,33 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 //import org.openide.util.Exceptions;
+import java.io.IOException;
+
+//import com.asprise.imaging.core.Imaging;
+//import com.asprise.imaging.core.Request;
+//import com.asprise.imaging.core.Result;
+import com.lowagie.text.BadElementException;
+import com.lowagie.text.Document;
+//import com.itextpdf.text.Document;
+import com.lowagie.text.pdf.PdfContentByte;
+import com.lowagie.text.pdf.PdfWriter;
+import com.lowagie.text.pdf.PdfCopy;
+import com.lowagie.text.pdf.PdfReader;
+import eu.gnome.morena.Device;
+import eu.gnome.morena.Manager;
+import eu.gnome.morena.Scanner;
+import eu.gnome.morena.Camera;
+import eu.gnome.morena.Configuration;
+import br.sysdoc.morena.ScanSession;
+import com.itextpdf.text.pdf.BadPdfFormatException;
+//import com.itextpdf.text.pdf.PdfCopy;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
+import javax.imageio.ImageIO;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -33,13 +61,17 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
     private int row;
     private int col;
     private String ref;
+    java.io.File tempFile = null;
 
     public DocumentationIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
         connectDB = connDb;
 
         pConnDB = pconnDB;
+
         initComponents();
+
+        //docmanage.refNotxt.setText(prno.getText());
     }
 
     /**
@@ -69,6 +101,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         pathTofile = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         dataTbl = new com.afrisoftech.dbadmin.JTable();
@@ -76,15 +109,16 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         keySearch = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        beginPckr = new com.afrisoftech.lib.DatePicker();
-        endPckr = new com.afrisoftech.lib.DatePicker();
         jLabel4 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        viewBtn = new javax.swing.JRadioButton();
+        endPckr = new com.afrisoftech.lib.DatePicker();
+        beginPckr = new com.afrisoftech.lib.DatePicker();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Funsoft document management system - Reference documents upload and review");
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
@@ -94,8 +128,8 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder("Bidders' Documentation"));
         jPanel29.setLayout(new java.awt.GridBagLayout());
 
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32x32/pdf1.jpg"))); // NOI18N
-        jButton13.setText("Upload pdf to database");
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/48x48/Internet Connections 1.png"))); // NOI18N
+        jButton13.setText("Upload document to database");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
@@ -103,7 +137,8 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel29.add(jButton13, gridBagConstraints);
@@ -118,7 +153,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         jPanel29.add(jLabel30, gridBagConstraints);
 
         jLabel32.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel32.setText("Doc Ref_No (e.g PC/23)");
+        jLabel32.setText("Doc Ref_No (e.g LPO/LSO, PRQ number, Patient No)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -128,7 +163,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
 
         detailsPane.setColumns(20);
         detailsPane.setRows(5);
-        detailsPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Comment  on Documentation"));
+        detailsPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Commenst on documentation"));
         jScrollPane15.setViewportView(detailsPane);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -156,7 +191,8 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel29.add(refNotxt, gridBagConstraints);
 
-        jButton34.setText("Preview Document ");
+        jButton34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/48x48/Document.png"))); // NOI18N
+        jButton34.setText("Preview Document Before Upload ");
         jButton34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton34ActionPerformed(evt);
@@ -164,7 +200,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 8;
         jPanel29.add(jButton34, gridBagConstraints);
 
         jLabel1.setText("File Path");
@@ -180,11 +216,12 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel4.add(pathTofile, gridBagConstraints);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Folders/Folder Yellow Documents.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -202,6 +239,21 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPanel29.add(jPanel4, gridBagConstraints);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/48x48/Pics 2.png"))); // NOI18N
+        jButton2.setText("Scan new document");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel29.add(jButton2, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -279,22 +331,6 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel5.add(jLabel3, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel5.add(beginPckr, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel5.add(endPckr, gridBagConstraints);
 
         jLabel4.setText("End Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -305,13 +341,30 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel5.add(jLabel4, gridBagConstraints);
 
-        jRadioButton1.setText("null");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        viewBtn.setText("View");
+        viewBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                viewBtnActionPerformed(evt);
             }
         });
-        jPanel5.add(jRadioButton1, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        jPanel5.add(viewBtn, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel5.add(endPckr, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel5.add(beginPckr, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -336,47 +389,55 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        try {
-            // TODO add your handling code here:
-
-            File file = new File(pathTofile.getText());
-            java.io.FileInputStream fis = null;
+        // TODO add your handling code here:
+        if (!pathTofile.getText().contains("pathtofile/file.pdf")) {
             try {
-                fis = new java.io.FileInputStream(file);
-            } catch (FileNotFoundException ex) {
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                File file = new File(pathTofile.getText());
+                java.io.FileInputStream fis = null;
+                try {
+                    fis = new java.io.FileInputStream(file);
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
+                }
+                connectDB.setAutoCommit(false);
+                PreparedStatement pst = connectDB.prepareStatement("INSERT INTO st_scm_docs(ref_no, document_name,  other_details,uploaded_file) VALUES (?, ?, ?, ? )");
+
+                pst.setObject(1, refNotxt.getText());
+                pst.setObject(2, docNametxt.getText());
+                pst.setObject(3, detailsPane.getText());
+                pst.setBinaryStream(4, fis, (int) file.length());
+
+                pst.executeUpdate();
+
+                //  connectDB.setAutoCommit(true);
+                connectDB.commit();
+                JOptionPane.showMessageDialog(this, "Reference document uploaded successfully.");
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error uploading reference document", JOptionPane.ERROR_MESSAGE);
+                try {
+                    connectDB.rollback();
+                } catch (SQLException ex1) {
+                    ex1.printStackTrace();
+                }
             }
 
-            PreparedStatement pst = connectDB.prepareStatement("INSERT INTO st_scm_docs(ref_no, document_name,  other_details,uploaded_file) VALUES (?, ?, ?, ? )");
-
-            pst.setObject(1, refNotxt.getText());
-            pst.setObject(2, docNametxt.getText());
-            pst.setObject(3, detailsPane.getText());
-            pst.setBinaryStream(4, fis, (int) file.length());
-
-            pst.executeUpdate();
-
-            connectDB.commit();
-            JOptionPane.showMessageDialog(this, "Done");
-        } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-
+        } else {
+            JOptionPane.showMessageDialog(this, pathTofile.getText() + " Not a valid filename");
         }
-
-
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         // TODO add your handling code here:
 
-        if (!pathTofile.getText().contains("pathTofile")) {
+        if (!pathTofile.getText().contains("pathtofile/file.pdf")) {
+
             File file = new File(pathTofile.getText());
 
             com.afrisoftech.lib.PDFRenderer.renderPDF(file);
 
         } else {
-            JOptionPane.showMessageDialog(this, pathTofile.getText() + "Not a valid filename");
+            JOptionPane.showMessageDialog(this, pathTofile.getText() + " Not a valid filename");
         }
     }//GEN-LAST:event_jButton34ActionPerformed
 
@@ -412,15 +473,15 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
 
-            dataTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT ref_no,document_name,entered_by,input_date , FALSE AS Remove_Entry FROM st_scm_docs WHERE ref_no ilike '" + keySearch.getText() + "'"));
+            dataTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT ref_no,document_name,entered_by,input_date , FALSE AS Remove_Entry FROM st_scm_docs WHERE (ref_no ilike '%" + keySearch.getText() + "%' or document_name ilike '%" + keySearch.getText() + "%') "));
         }
     }//GEN-LAST:event_keySearchKeyTyped
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
         // TODO add your handling code here:
         dataTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT ref_no,document_name,entered_by,input_date , FALSE AS Remove_Entry "
                 + "FROM st_scm_docs WHERE input_date::date BETWEEN  '" + SQLDateFormat.getSQLDate(beginPckr.getDate()) + "' AND '" + SQLDateFormat.getSQLDate(endPckr.getDate()) + "'"));
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_viewBtnActionPerformed
 
     private void dataTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataTblMouseClicked
         // TODO add your handling code here:
@@ -434,9 +495,9 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
             try {
                 file = getStoredPDF(connectDB, ref);
             } catch (FileNotFoundException ex) {
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                ex.printStackTrace();
             } catch (DocumentException ex) {
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                ex.printStackTrace();
             }
 
             if (file != null) {
@@ -454,15 +515,27 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         //     if (dataTbl.getSelectedColumn() == 4 && dataTbl.getValueAt(dataTbl.getSelectedRow(), 0) != null) {
 
         if (dataTbl.getSelectedColumn() == 4 || dataTbl.getValueAt(dataTbl.getSelectedRow(), 4) == Boolean.TRUE) {
-            int exitOption = javax.swing.JOptionPane.showConfirmDialog(this, "Are you Sure To delete" + dataTbl.getValueAt(dataTbl.getSelectedRow(), 1) + "\n this action is irreversible", "CONFIRMATION", javax.swing.JOptionPane.YES_NO_CANCEL_OPTION);
+            int exitOption = javax.swing.JOptionPane.showConfirmDialog(this, "Are you Sure To delete " + dataTbl.getValueAt(dataTbl.getSelectedRow(), 1) + "\n this action is irreversible", "CONFIRMATION", javax.swing.JOptionPane.YES_NO_CANCEL_OPTION);
             if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
                 try {
+                    connectDB.setAutoCommit(false);
                     PreparedStatement pst = connectDB.prepareStatement("DELETE FROM st_scm_docs WHERE ref_no ilike '" + dataTbl.getValueAt(dataTbl.getSelectedRow(), 0) + "'");
                     pst.executeUpdate();
+
                     JOptionPane.showMessageDialog(this, "Done");
+                    connectDB.setAutoCommit(true);
+                    connectDB.commit();
+
+                    GetItemInfo.updateTrail("Deleted document ref: " + dataTbl.getValueAt(dataTbl.getSelectedRow(), 0), connectDB);
+                    viewBtn.doClick();
 
                 } catch (SQLException ex) {
-                                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                    ex.printStackTrace();
+                    try {
+                        connectDB.rollback();
+                    } catch (SQLException ex1) {
+                        ex1.printStackTrace();
+                    }
                 }
 
             }
@@ -476,51 +549,221 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
             keySearch.setText(null);
         }
     }//GEN-LAST:event_keySearchMouseClicked
-    public java.io.File getStoredPDF(java.sql.Connection connDB, String documentRefNumber) throws FileNotFoundException, DocumentException {
-        java.io.File tempFile = null;
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        Document document = new Document();
+        PdfWriter writer = null;
 
         try {
-            java.sql.PreparedStatement pstmtR = connectDB.prepareStatement("SELECT DISTINCT uploaded_file FROM st_scm_docs  WHERE ref_no = ?  LIMIT 1");
-            pstmtR.setString(1, documentRefNumber);
-            java.sql.ResultSet rs = pstmtR.executeQuery();
-            while (rs.next()) {
-                byte[] imgBytes = rs.getBytes(1);
+            tempFile = java.io.File.createTempFile("REP" + com.afrisoftech.lib.DateLables.getDateLabel() + "_", ".pdf");
+        } catch (IOException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+        tempFile.deleteOnExit();
 
-                java.io.ByteArrayOutputStream byteaStream = new java.io.ByteArrayOutputStream();
+        try {
+            try {
+                writer = PdfWriter.getInstance(document, new java.io.FileOutputStream(tempFile));
+            } catch (DocumentException ex) {
+                Exceptions.printStackTrace(ex);
+            }
+        } catch (FileNotFoundException ex) {
+            Exceptions.printStackTrace(ex);
+        }
 
-                try {
-                    byteaStream.write(imgBytes);
+        document.open();
 
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+        Manager manager = Manager.getInstance();
 
+        List<? extends Device> devices = manager.listDevices();
+        List<File> filesToDelete = new ArrayList<File>();
+        if (devices.size() > 0) {
+            Device device = devices.get(0);
+
+            if (device != null) {
+
+                // for scanner device set the scanning parameters
+                if (device instanceof Scanner) {
+                    Scanner scanner = (Scanner) device;
+                    scanner.setMode(Scanner.RGB_8);
+                    scanner.setResolution(200);
+                    // find feeder unit
+                    int feederUnit = scanner.getFeederFunctionalUnit();
+                    System.out.println("Feeder unit : " + (feederUnit >= 0 ? feederUnit : "none found - trying 0"));
+                    if (feederUnit < 0) {
+                        feederUnit = 0; // 0 designates a default unit
+                    }
+                    if (scanner.isDuplexSupported()) {
+                        scanner.setDuplexEnabled(true);
+                    }
+
+                    int pageNo = 1;
+                    ScanSession session = new ScanSession();
+                    // start batch scan
+                    try {
+                        session.startSession(device, feederUnit);
+                        File file = null;
+                        while (null != (file = session.getImageFile())) {
+                            filesToDelete.add(file);
+                            // image processing - image file is transformed to JPEG format
+                            BufferedImage image = ImageIO.read(file);
+                            System.out.println("scanned image " + file.getPath() + " : size=(" + image.getWidth() + ", " + image.getHeight() + ")   bit mode=" + image.getColorModel().getPixelSize());
+                            if (!"jpg".equalsIgnoreCase(ScanSession.getExt(file))) { // convert to jpeg if not already in jpeg format
+                                File jpgFile = new File(file.getParent(), "Morena_example_img_" + (pageNo++) + ".jpg");
+                                FileOutputStream fout = new FileOutputStream(jpgFile);
+                                ImageIO.write(image, "jpeg", fout);
+                                fout.close();
+                                filesToDelete.add(jpgFile);
+                                //Image image2 = Toolkit.getDefaultToolkit().createImage(jpgFile.getPath());
+
+                                com.lowagie.text.Image iTextImage = null;
+                                try {
+                                    iTextImage = com.lowagie.text.Image.getInstance(image, null);
+                                } catch (BadElementException ex) {
+                                    Exceptions.printStackTrace(ex);
+                                } catch (IOException ex) {
+                                    Exceptions.printStackTrace(ex);
+                                }
+                                iTextImage.setAbsolutePosition(0, 0);
+
+                                PdfContentByte cb = writer.getDirectContent();
+                                try {
+                                    cb.addImage(iTextImage);
+                                } catch (DocumentException ex) {
+                                    Exceptions.printStackTrace(ex);
+                                }
+                            }
+                        }
+
+                    } catch (Exception ex) { // check if error is related to empty ADF
+                        if (session.isEmptyFeeder()) {
+                            System.out.println("No more sheets in the document feeder");
+                        } else {
+                            ex.printStackTrace();
+                        }
+                    }
                 }
+            }
+            System.out.println("Scanning completed - check the images ... waiting 15 seconds");
+            try {
+                Thread.sleep(15000);
+            } catch (InterruptedException ex) {
+                Exceptions.printStackTrace(ex);
+            }
 
-                try {
+            // all files are deleted on the exit
+            for (File file : filesToDelete) {
+                // file.deleteOnExit();
+            }
+        } else {
+            System.out.println("No device connected!!!");
+        }
+
+        document.close();
+
+        pathTofile.setText(tempFile.getPath());
+//        Imaging imaging = new Imaging("Funsoft document management scan utility", 0);
+//        Result result;
+//        try {
+//            result = imaging.scan(Request.fromJson(
+//                    "{"
+//                    + "\"output_settings\" : [ {"
+//                    + "  \"type\" : \"save\","
+//                    + "  \"format\" : \"pdf\","
+//                    + "  \"save_path\" : \"${TMP}\\\\${TMS}${EXT}\""
+//                    + "} ]"
+//                    + "}"), "select", false, false);
+//            System.out.println(result == null ? "(null)" : result.toJson(true));
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+    public java.io.File getStoredPDF(java.sql.Connection connDB, String documentRefNumber) throws FileNotFoundException, DocumentException {
+        java.io.File tempFile = null;
+        java.io.File tempFile2 = null;
+        try {
+            //           tempFile = java.io.File.createTempFile("REP" + com.afrisoftech.lib.DateLables.getDateLabel() + "_", ".pdf");
+            tempFile2 = java.io.File.createTempFile("REP" + com.afrisoftech.lib.DateLables.getDateLabel() + "_", ".pdf");
+
+//            tempFile.deleteOnExit();
+//            java.io.OutputStream fileIS = null;
+////                    fileIS.flush();
+//            fileIS = new java.io.FileOutputStream(tempFile);
+
+            com.itextpdf.text.Document document = new com.itextpdf.text.Document();
+            // step 2
+            com.itextpdf.text.pdf.PdfCopy copy = null;
+            try {
+                copy = new com.itextpdf.text.pdf.PdfCopy(document, new FileOutputStream(tempFile2));
+            } catch (com.itextpdf.text.DocumentException ex) {
+                Exceptions.printStackTrace(ex);
+            }
+            // step 3
+            document.open();
+            // step 4
+            com.itextpdf.text.pdf.PdfReader reader = null;
+            try {
+                // java.io.ByteArrayOutputStream byteaStream = new java.io.ByteArrayOutputStream();
+                int bytePos = 0;
+                java.sql.PreparedStatement pstmtR = connectDB.prepareStatement("SELECT DISTINCT uploaded_file, input_date FROM st_scm_docs  WHERE ref_no = ? ORDER BY 2");
+                pstmtR.setString(1, documentRefNumber);
+                java.sql.ResultSet rs = pstmtR.executeQuery();
+                while (rs.next()) {
                     tempFile = java.io.File.createTempFile("REP" + com.afrisoftech.lib.DateLables.getDateLabel() + "_", ".pdf");
-                    tempFile.deleteOnExit();
                     java.io.OutputStream fileIS = null;
-//                    fileIS.flush();
-                    fileIS= new java.io.FileOutputStream(tempFile);
+                    tempFile.deleteOnExit();
+////                    fileIS.flush();
+                    fileIS = new java.io.FileOutputStream(tempFile);
+                    java.io.ByteArrayOutputStream byteaStream = new java.io.ByteArrayOutputStream();
+                    byte[] imgBytes = rs.getBytes(1);
+
+//                    try {
+                    byteaStream.write(imgBytes);
+                    //byteaStream.write(imgBytes, bytePos, imgBytes.length); //ite(imgBytes);
+
+                    //bytePos = bytePos + imgBytes.length + 1;
+//                    } catch (IOException ex) {
+//                        ex.printStackTrace();
+//
+//                    }
                     fileIS.write(imgBytes);
-                    
+
                     fileIS.close();
                     System.out.println(tempFile.getPath());
                     // this is where i am trying to display the file
                     //  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+                    reader = new com.itextpdf.text.pdf.PdfReader(tempFile.getPath());
+                    // loop over the pages in that document
+                    int n = reader.getNumberOfPages();
+                    for (int page = 0; page < n;) {
+                        try {
+                            copy.addPage(copy.getImportedPage(reader, ++page));
+                        } catch (BadPdfFormatException ex) {
+                            Exceptions.printStackTrace(ex);
+                        }
+                    }
+                    copy.freeReader(reader);
+                    reader.close();
+                    //}
 
                 }
 
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+
             }
 
-        } catch (SQLException ex) {
+            document.close();
+
+        } catch (IOException ex) {
             ex.printStackTrace();
 
         }
 
-        return tempFile;
+        return tempFile2;
 
     }
 
@@ -532,6 +775,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
     private com.afrisoftech.lib.DatePicker endPckr;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton34;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
@@ -546,12 +790,12 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField keySearch;
     private javax.swing.JTextField pathTofile;
-    private javax.swing.JTextField refNotxt;
+    public static javax.swing.JTextField refNotxt;
+    private javax.swing.JRadioButton viewBtn;
     // End of variables declaration//GEN-END:variables
 }

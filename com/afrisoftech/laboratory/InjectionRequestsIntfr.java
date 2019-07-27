@@ -156,7 +156,7 @@ public class InjectionRequestsIntfr extends javax.swing.JInternalFrame implement
         gridBagConstraints.weighty = 20.0;
         jSearchPanel2.add(jSearchScrollPane2, gridBagConstraints);
 
-        jButton52.setText("Cancel");
+        jButton52.setText("Dispose");
         jButton52.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton52ActionPerformed(evt);
@@ -279,7 +279,7 @@ public class InjectionRequestsIntfr extends javax.swing.JInternalFrame implement
                 {null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Date", "Pat No.", "Pat Name", "Mode", "Service", "Qty", "Amount", "No", "Doctor", "Bill", "Bed No", "Time", "Total Bill"
+                "Date", "Pat No.", "Pat Name", "Mode", "Service", "Qty", "Amount", "No", "Doctor", "Administer", "Bed No", "Time", "Total Bill"
             }
         ) {
             Class[] types = new Class [] {
@@ -434,7 +434,7 @@ public class InjectionRequestsIntfr extends javax.swing.JInternalFrame implement
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jTextField5, gridBagConstraints);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 255, 153), 2), "Patient category", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 0, 255))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 255, 153), 2), "Patient category", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 0, 255))); // NOI18N
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
         jCheckBox1.setSelected(true);
@@ -596,7 +596,7 @@ public class InjectionRequestsIntfr extends javax.swing.JInternalFrame implement
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jPanel2, gridBagConstraints);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18));
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
@@ -926,7 +926,14 @@ public class InjectionRequestsIntfr extends javax.swing.JInternalFrame implement
                     pstmt2v.setString(23, user);
                     pstmt2v.executeUpdate();*/
                     //}
-                    boolean paid = false;
+                    
+                    java.sql.PreparedStatement pstmt46c = connectDB.prepareStatement("UPDATE hp_patient_billing SET collected = true , service_administrator_username = current_user,service_administration_time=now() where patient_no = '" + jTextField9.getText() + "' AND service = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString() + "'");
+                        pstmt46c.executeUpdate();
+                        java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request SET paid = true,collected = true,amount = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 6).toString() + "',quantity = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 5).toString() + "' where inv_no = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 7).toString() + "' AND service = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString() + "'");
+                        pstmt46.executeUpdate();
+                   
+                        
+                        boolean paid = false;
                     java.sql.Statement stmtTable1 = connectDB.createStatement();
 
                     java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT paid FROM hp_patient_billing " +
@@ -939,25 +946,29 @@ public class InjectionRequestsIntfr extends javax.swing.JInternalFrame implement
                     }
 
                     if (paid) {
-                        java.sql.PreparedStatement pstmt46c = connectDB.prepareStatement("UPDATE hp_patient_billing SET collected = true where inpatient_no = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 7).toString() + "' AND service = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString() + "'");
+                         pstmt46c = connectDB.prepareStatement("UPDATE hp_patient_billing SET collected = true where patient_no = '" + jTextField9.getText() + "' AND service = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString() + "'");
                         pstmt46c.executeUpdate();
-                        java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request SET paid = true,collected = true,amount = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 6).toString() + "',quantity = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 5).toString() + "' where inv_no = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 7).toString() + "' AND service = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString() + "'");
+                         pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request SET paid = true,collected = true,amount = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 6).toString() + "',quantity = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 5).toString() + "' where inv_no = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 7).toString() + "' AND service = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString() + "'");
                         pstmt46.executeUpdate();
                     } else {
-                        java.sql.PreparedStatement pstmt46c = connectDB.prepareStatement("UPDATE hp_patient_billing SET quantity = '" + jTable1.getValueAt(i, 5) + "', amount = '" + jTable1.getValueAt(i, 12) + "'  where inpatient_no = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 7).toString() + "' AND service = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString() + "'");
+                        pstmt46c = connectDB.prepareStatement("UPDATE hp_patient_billing SET quantity = '" + jTable1.getValueAt(i, 5) + "', amount = '" + jTable1.getValueAt(i, 12) + "'  where inpatient_no = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 7).toString() + "' AND service = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString() + "'");
                         pstmt46c.executeUpdate();
-                        java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request SET paid = false,collected = false,amount = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 6).toString() + "',quantity = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 5).toString() + "' where inv_no = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 7).toString() + "' AND service = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString() + "'");
+                         pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request SET paid = false,collected = false,amount = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 6).toString() + "',quantity = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 5).toString() + "' where inv_no = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 7).toString() + "' AND service = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString() + "'");
                         pstmt46.executeUpdate();
                     }
                 // }
                 //}
                 }
                 javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                for (int k = 0; k < jTable1.getRowCount(); k++) {
-                    for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                        jTable1.getModel().setValueAt(null, k, r);
-                    }
-                }
+//                for (int k = 0; k < jTable1.getRowCount(); k++) {
+//                    for (int r = 0; r < jTable1.getColumnCount(); r++) {
+//                        jTable1.getModel().setValueAt(null, k, r);
+//                    }
+//                }
+                
+                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+
+                defTableModel.removeRow(jTable1.getSelectedRow());
             } else {
             }
             // }
@@ -1067,7 +1078,7 @@ public class InjectionRequestsIntfr extends javax.swing.JInternalFrame implement
             if (jTextField113.getCaretPosition() < 5) {
                 System.out.println("Nothing");
             } else {
-                jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register where patient_no ILIKE '" + jTextField113.getText() + "%' AND last_visit >= (current_date-1) order by patient_no LIMIT 10"));
+                jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, dealer as name, date, '' as residence from ac_cash_collection where date > current_date -2 AND (patient_no ILIKE '%" + jTextField113.getText() + "%' OR receipt_no ilike '" + jTextField113.getText() + "%' ) order by patient_no LIMIT 30"));
 
                 /* try {
 
@@ -1229,6 +1240,12 @@ public class InjectionRequestsIntfr extends javax.swing.JInternalFrame implement
         //  System.out.println("Insert not successful");
         }
          */
+        
+        for (int k = 0; k < jTable1.getRowCount(); k++) {
+                    for (int r = 0; r < jTable1.getColumnCount(); r++) {
+                        jTable1.getModel().setValueAt(null, k, r);
+                    }
+                }
         this.populateTable1(this.jTextField9.getText());
 
     // Add your handling code here:
@@ -1291,7 +1308,9 @@ public class InjectionRequestsIntfr extends javax.swing.JInternalFrame implement
             java.sql.Statement stmtTable1 = connectDB.createStatement();
 
             // java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select trans_date,patient_no,patient_name,payment_mode,service,quantity,amount,inv_no,doctor,'false' as bill,bed_no,time_due from pb_doctors_request pb, pb_operating_parameters op WHERE pb.service = op.service_type AND op.category ILIKE 'Pop' AND paid = false AND collected = false and trans_date>=current_date -2 ORDER BY trans_date asc");
-            java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select trans_date,patient_no,patient_name,payment_mode,service,quantity,amount/quantity,inpatient_no,user_name,paid as seen,visit_id,trans_date,amount from hp_patient_billing pb, pb_operating_parameters op WHERE pb.service = op.service_type AND op.category ILIKE 'INJ' AND collected = false AND pb.trans_date > (current_date - 2) AND patient_no = '" + jTextField9.getText() + "' ORDER BY trans_date asc");
+            java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select DISTINCT pb.date,pb.patient_no,pb.dealer,pb.payment_mode,pb.description,pb.quantity,debit,pb.patient_no,pb.user_name,collected as seen,\n" +
+"receipt_no,pb.date,debit from ac_cash_collection pb, hp_patient_billing op WHERE ( (pb.description = op.service  AND  pb.patient_no  = op.patient_no) or pb.patient_no ilike 'W%' ) \n" +
+"AND  pb.date > (current_date - 2)  AND collected = false and pb.patient_no = '"+jTextField9.getText()+"' ORDER BY pb.date asc");
 
 
             while (rsetTable1.next()) {

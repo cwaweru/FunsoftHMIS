@@ -90,7 +90,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
             System.out.println(sl.getMessage());
         }
 
-        jButton1111 = new javax.swing.JButton();
+        saveBtn = new javax.swing.JButton();
         clearBtn = new javax.swing.JButton();
         jButton4111 = new javax.swing.JButton();
         jButton5111 = new javax.swing.JButton();
@@ -536,12 +536,12 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
 
         jPanel1111.setLayout(new java.awt.GridBagLayout());
 
-        jButton1111.setMnemonic('O');
-        jButton1111.setText("Save & Print Receipt");
-        jButton1111.setToolTipText("Click here enter data");
-        jButton1111.addActionListener(new java.awt.event.ActionListener() {
+        saveBtn.setMnemonic('O');
+        saveBtn.setText("Save & Print Receipt");
+        saveBtn.setToolTipText("Click here enter data");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1111ActionPerformed(evt);
+                saveBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -549,7 +549,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 8;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1111.add(jButton1111, gridBagConstraints);
+        jPanel1111.add(saveBtn, gridBagConstraints);
 
         clearBtn.setMnemonic('l');
         clearBtn.setText("Clear form data");
@@ -1750,7 +1750,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel2.add(jLabel17, gridBagConstraints);
 
-        jLabel4.setText("Mobile Tx Amount");
+        jLabel4.setText("Token Balance");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 5;
@@ -1856,8 +1856,9 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
             while (rsetReprint.next()) {
                 clientReceipt = rsetReprint.getString(1);
             }
-            com.afrisoftech.txtreports.GokReceiptsRTxt policy = new com.afrisoftech.txtreports.GokReceiptsRTxt(connectDB, clientReceipt, amountPaidTxt.getText(), receiptNo1, this.paymentModeCmbx.getSelectedItem().toString(), "0.00", "0.00", shiftNumberTxt.getText());
-
+            if (receiptNo1.length() > 1) {
+                com.afrisoftech.txtreports.GokReceiptsRTxt policy = new com.afrisoftech.txtreports.GokReceiptsRTxt(connectDB, clientReceipt, amountPaidTxt.getText(), receiptNo1, this.paymentModeCmbx.getSelectedItem().toString(), "0.00", "0.00", shiftNumberTxt.getText());
+            }
         } catch (java.sql.SQLException sq) {
 
             try {
@@ -1916,7 +1917,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         com.afrisoftech.hospital.HospitalMain.mobileTxID = null;
         com.afrisoftech.hospital.HospitalMain.mobileTelephone = null;
         payerMobileTelephoneNumberTxt.setText("254-7  -      ");
-        this.jButton1111.setEnabled(true);
+        this.saveBtn.setEnabled(true);
         patientNameTxt.setText("");
         visitIDTxt.setText("");
         patientCategoryTxt.setText("");
@@ -2056,7 +2057,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
                         rsetTable1x = stmtTable11.executeQuery("SELECT DISTINCT code FROM pb_activity WHERE upper(activity) = '" + rsetTable1.getObject(1).toString().toUpperCase() + "'");
                         while (rsetTable1x.next()) {
                             rsetx = stmtTable111.executeQuery("SELECT sum(debit-credit),sum(quantity) FROM ac_cash_collection WHERE upper(description) = '" + rsetTable1.getObject(3).toString().toUpperCase() + "' AND activity_code = '" + rsetTable1x.getObject(1) + "' AND journal_no = '" + visitIDTxt.getText() + "'");
-                            rsetx1 = stmtTable1111.executeQuery("SELECT product_id FROM st_stock_prices WHERE upper(product) = '" + rsetTable1.getObject(3).toString().toUpperCase() + "' AND gl_code = '" + rsetTable1x.getObject(1) + "' UNION "
+                            rsetx1 = stmtTable1111.executeQuery("SELECT product_id FROM st_stock_prices WHERE ( upper(product) = '" + rsetTable1.getObject(3).toString().toUpperCase() + "' OR upper(product || ' ' || strength) = '" + rsetTable1.getObject(3).toString().toUpperCase() + "') AND gl_code = '" + rsetTable1x.getObject(1) + "' UNION "
                                     + "SELECT code FROM pb_operating_parameters WHERE upper(service_type) = '" + rsetTable1.getObject(3).toString().toUpperCase() + "' AND gl_account = '" + rsetTable1x.getObject(1) + "' ");
 
                             while (rsetx.next()) {
@@ -2182,452 +2183,24 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
 
     }
 
-    private void jButton1111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1111ActionPerformed
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
 
-        try {
-            java.util.Date periodFrom = null;
-            java.util.Date periodTo = null;
-            java.sql.Date dates = null;
+        if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+            if (mobilepayTxNoTxt.getText().length() > 0) {
+                if (com.afrisoftech.lib.MobilePayments.getTokenValue(connectDB, mobilepayTxNoTxt.getText()) >= Double.parseDouble(amountPaidTxt.getText())) {
 
-            java.sql.Savepoint registerSavePoint = null;
-            try {
-                connectDB.setAutoCommit(false);
-                registerSavePoint = connectDB.setSavepoint("registration");
-            } catch (java.sql.SQLException ex) {
-                ex.printStackTrace();
-            }
-
-            try {
-
-                java.sql.Statement stmtf = connectDB.createStatement();
-                java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + datePicker2.getDate() + "' BETWEEN period_from AND period_to");
-                while (rsetf.next()) {
-                    periodFrom = rsetf.getDate(1);
-                    periodTo = rsetf.getDate(2);
-                }
-
-                if (datePicker2.getDate().before(periodFrom) || datePicker2.getDate().after(periodTo)) {
-                    javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
+                    this.saveData();
                 } else {
-                    if (patientNameTxt.getText().equalsIgnoreCase("")) {
-                        javax.swing.JOptionPane.showMessageDialog(this, "You cannot save without the name", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-                    } else {
-
-                        // if (java.lang.Float.parseFloat(jTextField17.getText().toString()) > 0) {
-                        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(billTable, 6);
-                        double totalSumDisc = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(billTable, 4);
-                        // jTextField17.setText(java.lang.String.valueOf(totalSumDisc));
-                        //jTextField17.setText(java.lang.String.valueOf(totalSum - totalSumDisc));
-                        System.out.println("This is the total sum" + totalSum);
-//if(totalSum > 1){
-                        //try{
-                        String glAcc = null;
-                        String receiptNo1 = null;
-                        String receiptNo2 = null;
-                        String actCode1 = null;
-                        String glCode1 = null;
-                        String transNo1 = null;
-                        String actNames1 = null;
-                        String patientAcc = null;
-                        String user = null;
-                        String AccDesc = null;
-                        String name = null;
-                        String rcode = null;
-                        String rname = null;
-                        //   String glAcc = null;
-                        String Activity = null;
-                        // String userName = null;
-                        String code = null;
-                        String visitid = "-";
-                        String mdepartment = null;
-                        String voucNo = null;
-                        String accountCode = null;
-                        String TransNo = null;
-                        String glType = null;
-                        String nodetails = null;
-                        String priceCategory = null;
-                        int vid = 0;
-                        String rct = null;
-
-                        java.util.Calendar calendar = java.util.Calendar.getInstance();
-
-                        long dateNow = calendar.getTimeInMillis();
-
-                        java.sql.Date datenowSql1 = new java.sql.Date(dateNow);
-                        java.sql.Statement stm121xx = connectDB.createStatement();
-                        java.sql.ResultSet rse121xx = stm121xx.executeQuery("select shift_no from ac_shifts WHERE user_name = current_user and status = 'Running' AND cash_point = '" + cashPointTxt.getText() + "'");
-                        while (rse121xx.next()) {
-
-                            shiftNumberTxt.setText(rse121xx.getString(1));
-
-                        }
-
-                        java.sql.Statement stm12fx = connectDB.createStatement();
-                        java.sql.ResultSet rse12fx = stm12fx.executeQuery("select cash_point,start_date::DATE from ac_shifts WHERE shift_no = '" + shiftNumberTxt.getText() + "'");
-                        while (rse12fx.next()) {
-                            // jTextField141.setText(rse12fx.getString(1));
-                            dates = rse12fx.getDate(2);
-                        }
-                        java.sql.Statement stm12 = connectDB.createStatement();
-                        java.sql.ResultSet rse12 = stm12.executeQuery("select code,activity from pb_activity where activity_category ='PR'");
-                        while (rse12.next()) {
-
-                            patientAcc = rse12.getObject(1).toString();
-                            AccDesc = rse12.getObject(2).toString();
-                        }
-                        java.sql.Statement stm12z = connectDB.createStatement();
-                        java.sql.ResultSet rse12z = stm12z.executeQuery("select current_user");
-                        while (rse12z.next()) {
-                            user = rse12z.getObject(1).toString();
-                        }
-                        java.sql.Statement stm1211 = connectDB.createStatement();
-                        java.sql.ResultSet rse1211 = stm1211.executeQuery("select activity,code from pb_activity where activity_category ='RC'");
-                        while (rse1211.next()) {
-                            rname = rse1211.getObject(1).toString();
-                            rcode = rse1211.getObject(2).toString();
-                        }
-
-                        java.sql.Timestamp datenowSql = new java.sql.Timestamp(dateNow);
-                        //receiptNo1 = com.afrisoftech.lib.DateLables.getDateLabel();
-                        java.sql.Statement stm12f = connectDB.createStatement();
-                        java.sql.ResultSet rse12f = stm12f.executeQuery("select now()");
-                        while (rse12f.next()) {
-                            datenowSql = rse12f.getTimestamp(1);
-                        }
-                        // receiptNo1 = datenowSql.toString();
-                        java.sql.Statement pss = connectDB.createStatement();
-                        java.sql.ResultSet rss = pss.executeQuery("select nextval('transaction_no_seq')");
-                        while (rss.next()) {
-                            transNo1 = rss.getObject(1).toString();
-                            receiptNo1 = "R" + rss.getObject(1).toString();
-
-                        }
-                        System.out.println("This is the receipt Temp No - " + receiptNo1);
-                        System.out.println(actNames1);
-
-                        boolean dataSave = false;
-                        java.sql.Statement stm121s = connectDB.createStatement();
-                        java.sql.ResultSet rse121s = null;
-                        for (int i = 0; i < billTable.getRowCount(); i++) {
-                            if (billTable.getModel().getValueAt(i, 6) != null && billTable.getModel().getValueAt(i, 0) != null && billTable.getModel().getValueAt(i, 7) != null) {
-                                if (billTable.getModel().getValueAt(i, 9) == null) {
-                                    code = "0";
-                                } else {
-                                    code = billTable.getValueAt(i, 9).toString();
-                                }
-                                java.sql.Statement stm121 = connectDB.createStatement();
-                                java.sql.ResultSet rse121 = stm121.executeQuery("select activity,code,department from pb_activity where code ='" + billTable.getModel().getValueAt(i, 8).toString() + "'");
-                                while (rse121.next()) {
-
-                                    glAcc = rse121.getObject(1).toString();
-                                    mdepartment = rse121.getObject(3).toString();
-                                }
-                                if (billTable.getModel().getValueAt(i, 9) == null) {
-                                    priceCategory = "0";
-                                } else {
-                                    rse121s = stm121s.executeQuery("SELECT prov_code FROM st_stock_item WHERE item_code = '" + billTable.getModel().getValueAt(i, 9).toString() + "'");
-                                    while (rse121s.next()) {
-
-                                        priceCategory = rse121s.getObject(1).toString();
-                                    }
-                                }
-                                double negative = java.lang.Double.valueOf(billTable.getValueAt(i, 6).toString());
-                                if (negative > 0) {
-                                    java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT "
-                                            + "INTO ac_cash_collection VALUES(?,?,?,initcap(?),?,?, ?, "
-                                            + "initcap(?), initcap(?), ?, ?, ?, initcap(?), ?, ?, ?, ?, ?, ?, "
-                                            + "?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                                    pstmt2.setObject(1, billTable.getValueAt(i, 8).toString());
-                                    pstmt2.setObject(5, paymentModeCmbx.getSelectedItem().toString());
-                                    pstmt2.setString(2, billTable.getValueAt(i, 0).toString());
-                                    pstmt2.setString(3, patientNumberTxt.getText());
-                                    pstmt2.setString(4, patientNameTxt.getText());
-                                    pstmt2.setString(6, jTextField2121.getText());
-                                    pstmt2.setString(7, jTextField5211.getText());
-                                    pstmt2.setString(8, jTextField421.getText());
-                                    pstmt2.setString(9, jTextField512.getText());
-                                    pstmt2.setString(10, rcode);
-                                    pstmt2.setString(12, receiptNo1);
-                                    pstmt2.setString(11, jTextField221.getText());
-                                    if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
-                                        pstmt2.setString(13, com.afrisoftech.hospital.HospitalMain.mobileTxID);
-                                        pstmt2.setString(14, com.afrisoftech.hospital.HospitalMain.mobileTelephone);
-                                    } else {
-                                        pstmt2.setString(13, visitIDTxt.getText());
-                                        pstmt2.setString(14, payerTxt.getText());
-                                    }
-                                    pstmt2.setObject(15, "Receipts");
-                                    pstmt2.setDouble(16, java.lang.Double.valueOf(billTable.getValueAt(i, 6).toString()));
-                                    pstmt2.setDouble(17, 0.00);
-                                    pstmt2.setDate(18, dates);//com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker2.getDate()));
-                                    pstmt2.setString(19, transNo1);
-                                    pstmt2.setBoolean(20, false);
-                                    pstmt2.setBoolean(21, false);
-                                    pstmt2.setBoolean(22, false);
-                                    pstmt2.setString(23, user);
-                                    pstmt2.setString(25, shiftNumberTxt.getText());
-                                    pstmt2.setString(24, cashPointTxt.getText());
-                                    pstmt2.setDate(26, null);
-                                    pstmt2.setDouble(27, java.lang.Double.valueOf(billTable.getValueAt(i, 1).toString()));
-                                    pstmt2.setDate(28, null);
-                                    pstmt2.setTimestamp(29, datenowSql);
-                                    pstmt2.setString(30, mdepartment);
-                                    pstmt2.setBoolean(31, false);
-                                    pstmt2.setObject(32, priceCategory);
-                                    pstmt2.setObject(33, code);
-                                    pstmt2.setDouble(34, java.lang.Double.valueOf(billTable.getValueAt(i, 6).toString()) / java.lang.Double.valueOf(billTable.getValueAt(i, 1).toString()));
-                                    if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
-                                        pstmt2.setObject(35, checkoutRequestID);
-                                        pstmt2.setObject(36, payBillNumberTxt.getText());
-                                    } else {
-                                        pstmt2.setObject(35, priceCategory);
-                                        pstmt2.setObject(36, code);
-                                    }
-                                    pstmt2.executeUpdate();
-
-                                } else {
-                                    if (negative < 0) {
-                                        String waivNumber = "-";
-                                        String mainService = "-";
-                                        rse121s = stm121s.executeQuery("SELECT prov_code FROM st_stock_item WHERE item_code = '" + billTable.getModel().getValueAt(i, 9).toString() + "'");
-                                        while (rse121s.next()) {
-
-                                            if (priceCategory == null) {
-                                                priceCategory = "0";
-                                            } else {
-                                                priceCategory = rse121s.getObject(1).toString();
-                                            }
-                                        }
-                                        java.sql.Statement pssg = connectDB.createStatement();
-                                        java.sql.ResultSet rssg = pssg.executeQuery("SELECT requisition_no,main_service FROM hp_patient_card WHERE service = '" + billTable.getValueAt(i, 0) + "' AND visit_id = '" + visitIDTxt.getText() + "' AND credit > 0");
-                                        while (rssg.next()) {
-                                            waivNumber = rssg.getObject(1).toString();
-                                            mainService = rssg.getObject(2).toString();
-                                        }
-                                        if (mainService.equalsIgnoreCase("-")) {
-                                            mainService = "Receipts";
-                                        } else {
-                                            mainService = mainService;
-                                        }
-
-                                        java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO "
-                                                + "ac_cash_collection VALUES(?,?,?,initcap(?),?,?, ?, initcap(?), "
-                                                + "initcap(?), ?, ?, ?, initcap(?), ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,"
-                                                + "?,?,?,?,?,?,?,?,?)");
-                                        pstmt2.setObject(1, billTable.getValueAt(i, 8).toString());
-                                        pstmt2.setObject(5, paymentModeCmbx.getSelectedItem().toString());
-                                        pstmt2.setString(2, billTable.getValueAt(i, 0).toString());
-                                        pstmt2.setString(3, patientNumberTxt.getText());
-                                        pstmt2.setString(4, patientNameTxt.getText());
-                                        pstmt2.setString(6, jTextField2121.getText());
-                                        pstmt2.setString(7, jTextField5211.getText());
-                                        pstmt2.setString(8, jTextField421.getText());
-                                        pstmt2.setString(9, jTextField512.getText());
-                                        pstmt2.setString(10, rcode);
-                                        pstmt2.setString(12, receiptNo1);
-                                        pstmt2.setString(11, jTextField221.getText());
-                                        pstmt2.setString(13, waivNumber);
-                                        pstmt2.setString(14, payerTxt.getText());
-                                        pstmt2.setObject(15, mainService);
-                                        pstmt2.setDouble(16, 0.00);
-                                        pstmt2.setDouble(17, java.lang.Double.valueOf(billTable.getValueAt(i, 6).toString()) * -1);
-                                        pstmt2.setDate(18, dates); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker2.getDate()));
-                                        pstmt2.setString(19, transNo1);
-                                        pstmt2.setBoolean(20, false);
-                                        pstmt2.setBoolean(21, false);
-                                        pstmt2.setBoolean(22, false);
-                                        pstmt2.setString(23, user);
-                                        pstmt2.setString(25, shiftNumberTxt.getText());
-                                        pstmt2.setString(24, cashPointTxt.getText());
-                                        pstmt2.setDate(26, null);
-                                        pstmt2.setDouble(27, java.lang.Double.valueOf(billTable.getValueAt(i, 1).toString()));
-                                        pstmt2.setDate(28, null);
-                                        pstmt2.setTimestamp(29, datenowSql);
-                                        pstmt2.setString(30, mdepartment);
-                                        pstmt2.setBoolean(31, false);
-                                        pstmt2.setObject(32, priceCategory);
-                                        pstmt2.setObject(33, code);
-                                        pstmt2.setDouble(34, java.lang.Double.valueOf(billTable.getValueAt(i, 6).toString()) / java.lang.Double.valueOf(billTable.getValueAt(i, 1).toString()));
-                                        pstmt2.executeUpdate();
-
-                                    }
-
-                                }
-                                dataSave = true;
-                            }
-                        }
-                        if (dataSave) {
-                            java.sql.PreparedStatement pstmtx = connectDB.prepareStatement("INSERT INTO hp_patient_card VALUES(?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
-                            pstmtx.setString(1, patientNumberTxt.getText());
-                            pstmtx.setObject(2, "Receipt");
-                            pstmtx.setObject(3, patientCategoryTxt.getText());
-                            pstmtx.setObject(4, paymentModeCmbx.getSelectedItem().toString());
-                            pstmtx.setString(5, transNo1);
-                            pstmtx.setString(7, "");
-                            pstmtx.setString(6, jTextField2121.getText());
-                            pstmtx.setString(8, jTextField5211.getText());
-                            pstmtx.setString(9, jTextField4111.getText());
-                            pstmtx.setDate(10, dates); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker2.getDate()));
-                            pstmtx.setString(11, "");
-                            pstmtx.setDouble(13, totalSum);
-                            pstmtx.setDouble(12, 0.0);
-                            pstmtx.setDate(14, dates); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker2.getDate()));
-                            pstmtx.setObject(15, patientAcc);
-                            pstmtx.setString(16, "Receipt");
-                            pstmtx.setDouble(17, 1);
-                            pstmtx.setObject(18, "");
-                            pstmtx.setBoolean(19, true);
-                            pstmtx.setString(20, "Receipt");
-                            pstmtx.setBoolean(21, true);
-                            pstmtx.setString(22, AccDesc);
-                            pstmtx.setString(23, visitid);
-                            pstmtx.setString(24, user);
-                            pstmtx.setString(25, cashPointTxt.getText());
-                            pstmtx.setString(26, "IP");
-                            pstmtx.setTimestamp(27, datenowSql);
-                            pstmtx.setString(28, visitIDTxt.getText());
-                            pstmtx.setString(29, receiptNo1);
-                            pstmtx.executeUpdate();
-
-                            /*
-                                 * java.sql.Statement ps1 =
-                                 * connectDB.createStatement(); java.sql.ResultSet
-                                 * rst1 = ps1.executeQuery("select
-                                 * nextval('receipt_no_seq')"); while (rst1.next())
-                                 * { receiptNo2 = rst1.getObject(1).toString(); }
-                             */
-                            java.sql.PreparedStatement psr = connectDB.prepareStatement("INSERT INTO ac_receipts_no("
-                                    + "account_no, account_name, date, amount, shift_no, "
-                                    + "cash_point, reference, user_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-                            psr.setString(1, patientNumberTxt.getText());
-                            psr.setString(2, patientNameTxt.getText());
-                            psr.setDate(3, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker2.getDate()));
-                            psr.setDouble(4, totalSum);
-                            psr.setInt(5, java.lang.Integer.valueOf(shiftNumberTxt.getText()));
-                            psr.setString(6, cashPointTxt.getText());
-                            psr.setString(7, receiptNo1);
-                            psr.setString(8, user);
-                            psr.executeUpdate();
-
-                            java.sql.Statement ps1q = connectDB.createStatement();
-                            //java.sql.ResultSet rst1q = ps1q.executeQuery("SELECT receipt_no FROM ac_receipts_no WHERE reference = '" + receiptNo1 + "'");
-
-                            java.sql.ResultSet rst1q = ps1q.executeQuery("SELECT LPAD(receipt_no::TEXT,8,'0'::TEXT) FROM ac_receipts_no WHERE reference = '" + receiptNo1 + "'");
-                            while (rst1q.next()) {
-                                receiptNo2 = rst1q.getObject(1).toString();
-                            }
-                            java.sql.PreparedStatement pstmt112 = connectDB.prepareStatement("UPDATE ac_cash_collection SET receipt_no = '" + receiptNo2 + "' WHERE receipt_no = '" + receiptNo1 + "'");
-                            pstmt112.executeUpdate();
-                            java.sql.PreparedStatement pstmt112z = connectDB.prepareStatement("UPDATE hp_patient_card SET requisition_no = '" + receiptNo2 + "' WHERE requisition_no = '" + receiptNo1 + "'");
-                            pstmt112z.executeUpdate();
-
-                            receiptNumberTxt.setText(receiptNo2);
-
-                            java.sql.Statement ps11 = connectDB.createStatement();
-                            java.sql.ResultSet rst11 = ps11.executeQuery("select nodetails from receipt_pref");
-                            while (rst11.next()) {
-                                nodetails = rst11.getObject(1).toString();
-                            }
-                            java.sql.Statement ps112 = connectDB.createStatement();
-                            java.sql.ResultSet rst112 = ps112.executeQuery("select rct_format from receipt_pref");
-                            while (rst112.next()) {
-                                rct = rst112.getObject(1).toString();
-                            }
-
-
-                            /*
-                                 * java.sql.Statement ps1 =
-                                 * connectDB.createStatement(); java.sql.ResultSet
-                                 * rst1 = ps1.executeQuery("select
-                                 * currval('receipt_no_seq')"); while (rst1.next()){
-                             */
-                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("");
-
-                            receiptNo1 = receiptNumberTxt.getText();
-                            // }
-                            //            CashReceiptsPdf policy = new CashReceiptsPdf();
-                            //            policy.CashReceiptsPdf(connectDB, jTextField91.getText().toUpperCase(),jTextField311.getText(),receiptNo1,this.jComboBox41.getSelectedItem().toString(),jTextField121.getText(),jTextField131.getText());
-
-                            String clientReceipt = null;
-
-                            java.sql.PreparedStatement pstmtReprint = connectDB.prepareStatement("SELECT dealer FROM ac_cash_collection WHERE receipt_no = ?");
-
-                            pstmtReprint.setString(1, receiptNumberTxt.getText());
-                            java.sql.ResultSet rsetReprint = pstmtReprint.executeQuery();
-
-                            while (rsetReprint.next()) {
-                                clientReceipt = rsetReprint.getString(1);
-                            }
-
-                            //////  searchButtonClicked2();
-                            //  com.afrisoftech.txtreports.GokIpReceiptsTxt policy = new com.afrisoftech.txtreports.GokIpReceiptsTxt(connectDB, clientReceipt, jTextField17.getText(), receiptNo1, this.jComboBox411.getSelectedItem().toString(), "0.00", "0.00", jTextField81.getText());
-//                            java.sql.Statement ps112 = connectDB.createStatement();
-//                            java.sql.ResultSet rst112 = ps112.executeQuery("select rct_format from receipt_pref");
-                            while (rst112.next()) {
-                                rct = rst112.getObject(1).toString();
-                            }
-                            if (rct.equalsIgnoreCase("Pdf")) {
-                                com.afrisoftech.reports.ReceiptsPdf policy1 = new com.afrisoftech.reports.ReceiptsPdf();
-                                policy1.ReceiptsPdf(connectDB, receiptNo2);
-                            } else {
-                                com.afrisoftech.txtreports.GokIpReceiptsTxt policy = new com.afrisoftech.txtreports.GokIpReceiptsTxt(connectDB, clientReceipt, amountPaidTxt.getText(), receiptNo1, this.paymentModeCmbx.getSelectedItem().toString(), "0.00", "0.00", shiftNumberTxt.getText());
-
-                                //                             com.afrisoftech.txtreports.GokReceiptsTxt policy = new com.afrisoftech.txtreports.GokReceiptsTxt(connectDB, jTextField91.getText(), jTextField311.getText(), receiptNo2, this.jComboBox41.getSelectedItem().toString(), jTextField121.getText(), jTextField131.getText(), jTextField811.getText());
-                            }
-
-                            //Discharge and check out patient if "Discharge" button is selected
-//                            if (dischargeRdbtn.isSelected()) {
-//                                java.sql.PreparedStatement pstmt12d = connectDB.prepareStatement("UPDATE hp_admission SET check_out = true,discharged_by = current_user WHERE patient_no = '" + this.patientNumberTxt.getText() + "' AND visit_id = '" + visitIDTxt.getText() + "'");
-//                                pstmt12d.executeUpdate();
-//                            }
-                            java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("UPDATE mobile_payments SET mobilepay_alert = true WHERE mobile_tx_id = ?");
-                            pstmt2.setString(1, com.afrisoftech.hospital.HospitalMain.mobileTxID);
-                            pstmt2.executeUpdate();
-
-                            pstmt2.close();
-
-                            connectDB.commit();
-                            connectDB.setAutoCommit(true);
-
-                            this.jButton1111.setEnabled(false);
-
-                            dischargeRdbtn.setSelected(true);
-                            clearBtn.doClick();
-                            javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                            for (int k = 0; k < billTable.getRowCount(); k++) {
-                                for (int r = 0; r < billTable.getColumnCount(); r++) {
-                                    billTable.setValueAt(null, k, r);
-                                }
-                            }
-                        }
-                    }
+                    javax.swing.JOptionPane.showMessageDialog(this, "The token amount is exhausted!");
                 }
-                //}
-
-            } catch (java.sql.SQLException sq) {
-                sq.printStackTrace();
-                javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage());
-                try {
-                    connectDB.rollback(registerSavePoint);
-                } catch (java.sql.SQLException sql) {
-                    javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                }
-                System.out.println(sq.getMessage());
-                javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-
+            } else {
+                this.saveData();
             }
-
-        } catch (java.lang.Exception ex) {
-            System.out.println(ex.getMessage());
-            javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-
+        } else if (!paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+            this.saveData();
         }
-        //    }
 
-        // Add your handling code here:
-    }//GEN-LAST:event_jButton1111ActionPerformed
+    }//GEN-LAST:event_saveBtnActionPerformed
 
     private void paymentModeCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentModeCmbxActionPerformed
         try {
@@ -2649,6 +2222,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
             jTextField2121.setText("");
             jTextField5211.setText("");
             jTextField4111.setText("");
+            presentedAmountTxt.setEditable(true);
 
         } else {
             if (paymentModeCmbx.getSelectedItem().equals("Cheque")) {
@@ -2658,6 +2232,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
                 jTextField221.setText("");
                 jTextField512.setText("");
                 jTextField421.setText("");
+                presentedAmountTxt.setEditable(true);
                 // jPanel321.setVisible(false);
             } else {
                 // jPanel4.setVisible(false);
@@ -2670,10 +2245,17 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
                 jTextField2121.setText("");
                 //                jTextField5511.setText("");
                 jTextField4111.setText("");
+                presentedAmountTxt.setEditable(true);
             }
         }
         if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
-            javax.swing.JOptionPane.showMessageDialog(this, "You must enter a valid client Mpesa telephone number in the format : 254-7xx-xxxxxx on the Bill Payer Telephone No field");
+            if (mobilepayTxNoTxt.getText().length() > 0) {
+                presentedAmountTxt.setEditable(false);
+                javax.swing.JOptionPane.showMessageDialog(this, "You must enter a valid client Mpesa telephone number in the format : 254-7xx-xxxxxx on the Bill Payer Telephone No field");
+
+            } else {
+                presentedAmountTxt.setEditable(true);
+            }
         }
 // Add your handling code here:
     }//GEN-LAST:event_paymentModeCmbxActionPerformed
@@ -3200,7 +2782,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
     private void mobilepayTxSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_mobilepayTxSearchTxtCaretUpdate
 
         if (mobilepayTxSearchTxt.getText().length() > 5) {
-            mobilepayTxtSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_time::time(0), mobile_tx_id, account_no, date, paid_amount, upper(dealer) as client_name, journal_no as paybill_no, mobilepay_alert as processed FROM public.mobile_payments WHERE mobilepay_alert = false AND account_no ilike '%" + mobilepayTxSearchTxt.getText() + "%' ORDER BY account_no"));
+            mobilepayTxtSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_time::time(0), mobile_tx_id, account_no, date, paid_amount, upper(dealer) as client_name, journal_no as paybill_no, mobilepay_alert as processed FROM public.mobile_payments WHERE mobilepay_alert = false AND account_no ilike '%" + mobilepayTxSearchTxt.getText() + "%' AND date::date >= current_date - 5  ORDER BY account_no"));
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_mobilepayTxSearchTxtCaretUpdate
@@ -3215,11 +2797,13 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
 
         payerMobileTelephoneNumberTxt.setText(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 2).toString());
 
-        mobileTxAmountTxt.setText(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 4).toString());
+        mobileTxAmountTxt.setText(String.valueOf(com.afrisoftech.lib.MobilePayments.getTokenValue(connectDB, mobilepayTxNoTxt.getText())));
+        if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+            presentedAmountTxt.setText(String.valueOf(com.afrisoftech.lib.MobilePayments.getTokenValue(connectDB, mobilepayTxNoTxt.getText())));
 
-        presentedAmountTxt.setText(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 4).toString());
-
-        presentedAmountTxt.setEditable(false);
+        } else {
+            presentedAmountTxt.setEditable(true);
+        }
 
         paymentModeCmbx.setSelectedItem("M-Pesa");
 
@@ -3313,6 +2897,457 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         return cash_no;
 
     }
+
+    public void saveData() {
+
+        try {
+            java.util.Date periodFrom = null;
+            java.util.Date periodTo = null;
+            java.sql.Date dates = null;
+
+            java.sql.Savepoint registerSavePoint = null;
+            try {
+                connectDB.setAutoCommit(false);
+                registerSavePoint = connectDB.setSavepoint("registration");
+            } catch (java.sql.SQLException ex) {
+                ex.printStackTrace();
+            }
+
+            try {
+
+                java.sql.Statement stmtf = connectDB.createStatement();
+                java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + datePicker2.getDate() + "' BETWEEN period_from AND period_to");
+                while (rsetf.next()) {
+                    periodFrom = rsetf.getDate(1);
+                    periodTo = rsetf.getDate(2);
+                }
+
+                if (datePicker2.getDate().before(periodFrom) || datePicker2.getDate().after(periodTo)) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                } else {
+                    if (patientNameTxt.getText().equalsIgnoreCase("")) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "You cannot save without the name", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                    } else {
+
+                        // if (java.lang.Float.parseFloat(jTextField17.getText().toString()) > 0) {
+                        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(billTable, 6);
+                        double totalSumDisc = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(billTable, 4);
+                        // jTextField17.setText(java.lang.String.valueOf(totalSumDisc));
+                        //jTextField17.setText(java.lang.String.valueOf(totalSum - totalSumDisc));
+                        System.out.println("This is the total sum" + totalSum);
+//if(totalSum > 1){
+                        //try{
+                        String glAcc = null;
+                        String receiptNo1 = null;
+                        String receiptNo2 = null;
+                        String actCode1 = null;
+                        String glCode1 = null;
+                        String transNo1 = null;
+                        String actNames1 = null;
+                        String patientAcc = null;
+                        String user = null;
+                        String AccDesc = null;
+                        String name = null;
+                        String rcode = null;
+                        String rname = null;
+                        //   String glAcc = null;
+                        String Activity = null;
+                        // String userName = null;
+                        String code = null;
+                        String visitid = "-";
+                        String mdepartment = null;
+                        String voucNo = null;
+                        String accountCode = null;
+                        String TransNo = null;
+                        String glType = null;
+                        String nodetails = null;
+                        String priceCategory = null;
+                        int vid = 0;
+                        String rct = null;
+
+                        java.util.Calendar calendar = java.util.Calendar.getInstance();
+
+                        long dateNow = calendar.getTimeInMillis();
+
+                        java.sql.Date datenowSql1 = new java.sql.Date(dateNow);
+                        java.sql.Statement stm121xx = connectDB.createStatement();
+                        java.sql.ResultSet rse121xx = stm121xx.executeQuery("select shift_no from ac_shifts WHERE user_name = current_user and status = 'Running' AND cash_point = '" + cashPointTxt.getText() + "'");
+                        while (rse121xx.next()) {
+
+                            shiftNumberTxt.setText(rse121xx.getString(1));
+
+                        }
+
+                        java.sql.Statement stm12fx = connectDB.createStatement();
+                        java.sql.ResultSet rse12fx = stm12fx.executeQuery("select cash_point,start_date::DATE from ac_shifts WHERE shift_no = '" + shiftNumberTxt.getText() + "'");
+                        while (rse12fx.next()) {
+                            // jTextField141.setText(rse12fx.getString(1));
+                            dates = rse12fx.getDate(2);
+                        }
+                        java.sql.Statement stm12 = connectDB.createStatement();
+                        java.sql.ResultSet rse12 = stm12.executeQuery("select code,activity from pb_activity where activity_category ='PR'");
+                        while (rse12.next()) {
+
+                            patientAcc = rse12.getObject(1).toString();
+                            AccDesc = rse12.getObject(2).toString();
+                        }
+                        java.sql.Statement stm12z = connectDB.createStatement();
+                        java.sql.ResultSet rse12z = stm12z.executeQuery("select current_user");
+                        while (rse12z.next()) {
+                            user = rse12z.getObject(1).toString();
+                        }
+                        java.sql.Statement stm1211 = connectDB.createStatement();
+                        java.sql.ResultSet rse1211 = stm1211.executeQuery("select activity,code from pb_activity where activity_category ='RC'");
+                        while (rse1211.next()) {
+                            rname = rse1211.getObject(1).toString();
+                            rcode = rse1211.getObject(2).toString();
+                        }
+
+                        java.sql.Timestamp datenowSql = new java.sql.Timestamp(dateNow);
+                        //receiptNo1 = com.afrisoftech.lib.DateLables.getDateLabel();
+                        java.sql.Statement stm12f = connectDB.createStatement();
+                        java.sql.ResultSet rse12f = stm12f.executeQuery("select now()");
+                        while (rse12f.next()) {
+                            datenowSql = rse12f.getTimestamp(1);
+                        }
+                        // receiptNo1 = datenowSql.toString();
+                        java.sql.Statement pss = connectDB.createStatement();
+                        java.sql.ResultSet rss = pss.executeQuery("select nextval('transaction_no_seq')");
+                        while (rss.next()) {
+                            transNo1 = rss.getObject(1).toString();
+                            receiptNo1 = "R" + rss.getObject(1).toString();
+
+                        }
+                        System.out.println("This is the receipt Temp No - " + receiptNo1);
+                        System.out.println(actNames1);
+
+                        boolean dataSave = false;
+                        java.sql.Statement stm121s = connectDB.createStatement();
+                        java.sql.ResultSet rse121s = null;
+                        for (int i = 0; i < billTable.getRowCount(); i++) {
+                            if (billTable.getModel().getValueAt(i, 6) != null && billTable.getModel().getValueAt(i, 0) != null && billTable.getModel().getValueAt(i, 7) != null) {
+                                if (billTable.getModel().getValueAt(i, 9) == null) {
+                                    code = "0";
+                                } else {
+                                    code = billTable.getValueAt(i, 9).toString();
+                                }
+                                java.sql.Statement stm121 = connectDB.createStatement();
+                                java.sql.ResultSet rse121 = stm121.executeQuery("select activity,code,department from pb_activity where code ='" + billTable.getModel().getValueAt(i, 8).toString() + "'");
+                                while (rse121.next()) {
+
+                                    glAcc = rse121.getObject(1).toString();
+                                    mdepartment = rse121.getObject(3).toString();
+                                }
+                                if (billTable.getModel().getValueAt(i, 9) == null) {
+                                    priceCategory = "0";
+                                } else {
+                                    rse121s = stm121s.executeQuery("SELECT prov_code FROM st_stock_item WHERE item_code = '" + billTable.getModel().getValueAt(i, 9).toString() + "'");
+                                    while (rse121s.next()) {
+
+                                        priceCategory = rse121s.getObject(1).toString();
+                                    }
+                                }
+                                double negative = java.lang.Double.valueOf(billTable.getValueAt(i, 6).toString());
+                                if (negative > 0) {
+                                    java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT "
+                                            + "INTO ac_cash_collection VALUES(?,?,?,initcap(?),?,?, ?, "
+                                            + "initcap(?), initcap(?), ?, ?, ?, initcap(?), ?, ?, ?, ?, ?, ?, "
+                                            + "?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                    pstmt2.setObject(1, billTable.getValueAt(i, 8).toString());
+                                    pstmt2.setObject(5, paymentModeCmbx.getSelectedItem().toString());
+                                    pstmt2.setString(2, billTable.getValueAt(i, 0).toString());
+                                    pstmt2.setString(3, patientNumberTxt.getText());
+                                    pstmt2.setString(4, patientNameTxt.getText());
+                                    pstmt2.setString(6, jTextField2121.getText());
+                                    pstmt2.setString(7, jTextField5211.getText());
+                                    pstmt2.setString(8, jTextField421.getText());
+                                    pstmt2.setString(9, jTextField512.getText());
+                                    pstmt2.setString(10, rcode);
+                                    pstmt2.setString(12, receiptNo1);
+                                    pstmt2.setString(11, jTextField221.getText());
+                                    if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+                                        pstmt2.setString(13, com.afrisoftech.hospital.HospitalMain.mobileTxID);
+                                        pstmt2.setString(14, com.afrisoftech.hospital.HospitalMain.mobileTelephone);
+                                    } else {
+                                        pstmt2.setString(13, visitIDTxt.getText());
+                                        pstmt2.setString(14, payerTxt.getText());
+                                    }
+                                    pstmt2.setObject(15, "Receipts");
+                                    pstmt2.setDouble(16, java.lang.Double.valueOf(billTable.getValueAt(i, 6).toString()));
+                                    pstmt2.setDouble(17, 0.00);
+                                    pstmt2.setDate(18, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));//com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker2.getDate()));
+                                    pstmt2.setString(19, transNo1);
+                                    pstmt2.setBoolean(20, false);
+                                    pstmt2.setBoolean(21, false);
+                                    pstmt2.setBoolean(22, false);
+                                    pstmt2.setString(23, user);
+                                    pstmt2.setString(25, shiftNumberTxt.getText());
+                                    pstmt2.setString(24, cashPointTxt.getText());
+                                    pstmt2.setDate(26, null);
+                                    pstmt2.setDouble(27, java.lang.Double.valueOf(billTable.getValueAt(i, 1).toString()));
+                                    pstmt2.setDate(28, null);
+                                    pstmt2.setTimestamp(29, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));
+                                    pstmt2.setString(30, mdepartment);
+                                    pstmt2.setBoolean(31, false);
+                                    pstmt2.setObject(32, priceCategory);
+                                    pstmt2.setObject(33, code);
+                                    pstmt2.setDouble(34, java.lang.Double.valueOf(billTable.getValueAt(i, 6).toString()) / java.lang.Double.valueOf(billTable.getValueAt(i, 1).toString()));
+                                    if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+                                        pstmt2.setObject(35, checkoutRequestID);
+                                        pstmt2.setObject(36, payBillNumberTxt.getText());
+                                    } else {
+                                        pstmt2.setObject(35, priceCategory);
+                                        pstmt2.setObject(36, code);
+                                    }
+                                    pstmt2.executeUpdate();
+
+                                } else {
+                                    if (negative < 0) {
+                                        String waivNumber = "-";
+                                        String mainService = "-";
+                                        rse121s = stm121s.executeQuery("SELECT prov_code FROM st_stock_item WHERE item_code = '" + billTable.getModel().getValueAt(i, 9).toString() + "'");
+                                        while (rse121s.next()) {
+
+                                            if (priceCategory == null) {
+                                                priceCategory = "0";
+                                            } else {
+                                                priceCategory = rse121s.getObject(1).toString();
+                                            }
+                                        }
+                                        java.sql.Statement pssg = connectDB.createStatement();
+                                        java.sql.ResultSet rssg = pssg.executeQuery("SELECT requisition_no,main_service FROM hp_patient_card WHERE service = '" + billTable.getValueAt(i, 0) + "' AND visit_id = '" + visitIDTxt.getText() + "' AND credit > 0");
+                                        while (rssg.next()) {
+                                            waivNumber = rssg.getObject(1).toString();
+                                            mainService = rssg.getObject(2).toString();
+                                        }
+                                        if (mainService.equalsIgnoreCase("-")) {
+                                            mainService = "Receipts";
+                                        } else {
+                                            mainService = mainService;
+                                        }
+
+                                        java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO "
+                                                + "ac_cash_collection VALUES(?,?,?,initcap(?),?,?, ?, initcap(?), "
+                                                + "initcap(?), ?, ?, ?, initcap(?), ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,"
+                                                + "?,?,?,?,?,?,?,?,?)");
+                                        pstmt2.setObject(1, billTable.getValueAt(i, 8).toString());
+                                        pstmt2.setObject(5, paymentModeCmbx.getSelectedItem().toString());
+                                        pstmt2.setString(2, billTable.getValueAt(i, 0).toString());
+                                        pstmt2.setString(3, patientNumberTxt.getText());
+                                        pstmt2.setString(4, patientNameTxt.getText());
+                                        pstmt2.setString(6, jTextField2121.getText());
+                                        pstmt2.setString(7, jTextField5211.getText());
+                                        pstmt2.setString(8, jTextField421.getText());
+                                        pstmt2.setString(9, jTextField512.getText());
+                                        pstmt2.setString(10, rcode);
+                                        pstmt2.setString(12, receiptNo1);
+                                        pstmt2.setString(11, jTextField221.getText());
+                                        pstmt2.setString(13, waivNumber);
+                                        pstmt2.setString(14, payerTxt.getText());
+                                        pstmt2.setObject(15, mainService);
+                                        pstmt2.setDouble(16, 0.00);
+                                        pstmt2.setDouble(17, java.lang.Double.valueOf(billTable.getValueAt(i, 6).toString()) * -1);
+                                        pstmt2.setDate(18, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker2.getDate()));
+                                        pstmt2.setString(19, transNo1);
+                                        pstmt2.setBoolean(20, false);
+                                        pstmt2.setBoolean(21, false);
+                                        pstmt2.setBoolean(22, false);
+                                        pstmt2.setString(23, user);
+                                        pstmt2.setString(25, shiftNumberTxt.getText());
+                                        pstmt2.setString(24, cashPointTxt.getText());
+                                        pstmt2.setDate(26, null);
+                                        pstmt2.setDouble(27, java.lang.Double.valueOf(billTable.getValueAt(i, 1).toString()));
+                                        pstmt2.setDate(28, null);
+                                        pstmt2.setTimestamp(29, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));
+                                        pstmt2.setString(30, mdepartment);
+                                        pstmt2.setBoolean(31, false);
+                                        pstmt2.setObject(32, priceCategory);
+                                        pstmt2.setObject(33, code);
+                                        pstmt2.setDouble(34, java.lang.Double.valueOf(billTable.getValueAt(i, 6).toString()) / java.lang.Double.valueOf(billTable.getValueAt(i, 1).toString()));
+                                        pstmt2.executeUpdate();
+
+                                    }
+
+                                }
+                                dataSave = true;
+                            }
+                        }
+                        if (dataSave) {
+                            java.sql.PreparedStatement pstmtx = connectDB.prepareStatement("INSERT INTO hp_patient_card VALUES(?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
+                            pstmtx.setString(1, patientNumberTxt.getText());
+                            pstmtx.setObject(2, "Receipt");
+                            pstmtx.setObject(3, patientCategoryTxt.getText());
+                            pstmtx.setObject(4, paymentModeCmbx.getSelectedItem().toString());
+                            pstmtx.setString(5, transNo1);
+                            pstmtx.setString(7, "");
+                            pstmtx.setString(6, jTextField2121.getText());
+                            pstmtx.setString(8, jTextField5211.getText());
+                            pstmtx.setString(9, jTextField4111.getText());
+                            pstmtx.setDate(10, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker2.getDate()));
+                            pstmtx.setString(11, "");
+                            pstmtx.setDouble(13, totalSum);
+                            pstmtx.setDouble(12, 0.0);
+                            pstmtx.setDate(14, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker2.getDate()));
+                            pstmtx.setObject(15, patientAcc);
+                            pstmtx.setString(16, "Receipt");
+                            pstmtx.setDouble(17, 1);
+                            pstmtx.setObject(18, "");
+                            pstmtx.setBoolean(19, true);
+                            pstmtx.setString(20, "Receipt");
+                            pstmtx.setBoolean(21, true);
+                            pstmtx.setString(22, AccDesc);
+                            pstmtx.setString(23, visitid);
+                            pstmtx.setString(24, user);
+                            pstmtx.setString(25, cashPointTxt.getText());
+                            pstmtx.setString(26, "IP");
+                            pstmtx.setTimestamp(27, datenowSql);
+                            pstmtx.setString(28, visitIDTxt.getText());
+                            pstmtx.setString(29, receiptNo1);
+                            pstmtx.executeUpdate();
+
+                            /*
+                                 * java.sql.Statement ps1 =
+                                 * connectDB.createStatement(); java.sql.ResultSet
+                                 * rst1 = ps1.executeQuery("select
+                                 * nextval('receipt_no_seq')"); while (rst1.next())
+                                 * { receiptNo2 = rst1.getObject(1).toString(); }
+                             */
+                            java.sql.PreparedStatement psr = connectDB.prepareStatement("INSERT INTO ac_receipts_no("
+                                    + "account_no, account_name, date, amount, shift_no, "
+                                    + "cash_point, reference, user_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                            psr.setString(1, patientNumberTxt.getText());
+                            psr.setString(2, patientNameTxt.getText());
+                            psr.setDate(3, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
+                            psr.setDouble(4, totalSum);
+                            psr.setInt(5, java.lang.Integer.valueOf(shiftNumberTxt.getText()));
+                            psr.setString(6, cashPointTxt.getText());
+                            psr.setString(7, receiptNo1);
+                            psr.setString(8, user);
+                            psr.executeUpdate();
+
+                            java.sql.Statement ps1q = connectDB.createStatement();
+                            //java.sql.ResultSet rst1q = ps1q.executeQuery("SELECT receipt_no FROM ac_receipts_no WHERE reference = '" + receiptNo1 + "'");
+
+                            java.sql.ResultSet rst1q = ps1q.executeQuery("SELECT LPAD(receipt_no::TEXT,8,'0'::TEXT) FROM ac_receipts_no WHERE reference = '" + receiptNo1 + "'");
+                            while (rst1q.next()) {
+                                receiptNo2 = rst1q.getObject(1).toString();
+                            }
+                            java.sql.PreparedStatement pstmt112 = connectDB.prepareStatement("UPDATE ac_cash_collection SET receipt_no = '" + receiptNo2 + "' WHERE receipt_no = '" + receiptNo1 + "'");
+                            pstmt112.executeUpdate();
+                            java.sql.PreparedStatement pstmt112z = connectDB.prepareStatement("UPDATE hp_patient_card SET requisition_no = '" + receiptNo2 + "' WHERE requisition_no = '" + receiptNo1 + "'");
+                            pstmt112z.executeUpdate();
+
+                            receiptNumberTxt.setText(receiptNo2);
+
+                            java.sql.Statement ps11 = connectDB.createStatement();
+                            java.sql.ResultSet rst11 = ps11.executeQuery("select nodetails from receipt_pref");
+                            while (rst11.next()) {
+                                nodetails = rst11.getObject(1).toString();
+                            }
+                            java.sql.Statement ps112 = connectDB.createStatement();
+                            java.sql.ResultSet rst112 = ps112.executeQuery("select rct_format from receipt_pref");
+                            while (rst112.next()) {
+                                rct = rst112.getObject(1).toString();
+                            }
+
+
+                            /*
+                                 * java.sql.Statement ps1 =
+                                 * connectDB.createStatement(); java.sql.ResultSet
+                                 * rst1 = ps1.executeQuery("select
+                                 * currval('receipt_no_seq')"); while (rst1.next()){
+                             */
+                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("");
+
+                            receiptNo1 = receiptNumberTxt.getText();
+                            // }
+                            //            CashReceiptsPdf policy = new CashReceiptsPdf();
+                            //            policy.CashReceiptsPdf(connectDB, jTextField91.getText().toUpperCase(),jTextField311.getText(),receiptNo1,this.jComboBox41.getSelectedItem().toString(),jTextField121.getText(),jTextField131.getText());
+
+                            String clientReceipt = null;
+
+                            java.sql.PreparedStatement pstmtReprint = connectDB.prepareStatement("SELECT dealer FROM ac_cash_collection WHERE receipt_no = ?");
+
+                            pstmtReprint.setString(1, receiptNumberTxt.getText());
+                            java.sql.ResultSet rsetReprint = pstmtReprint.executeQuery();
+
+                            while (rsetReprint.next()) {
+                                clientReceipt = rsetReprint.getString(1);
+                            }
+
+                            //////  searchButtonClicked2();
+                            //  com.afrisoftech.txtreports.GokIpReceiptsTxt policy = new com.afrisoftech.txtreports.GokIpReceiptsTxt(connectDB, clientReceipt, jTextField17.getText(), receiptNo1, this.jComboBox411.getSelectedItem().toString(), "0.00", "0.00", jTextField81.getText());
+//                            java.sql.Statement ps112 = connectDB.createStatement();
+//                            java.sql.ResultSet rst112 = ps112.executeQuery("select rct_format from receipt_pref");
+                            while (rst112.next()) {
+                                rct = rst112.getObject(1).toString();
+                            }
+                            if (rct.equalsIgnoreCase("Pdf")) {
+                                if (receiptNo2.length() > 0) {
+                                    com.afrisoftech.reports.ReceiptsPdf policy1 = new com.afrisoftech.reports.ReceiptsPdf();
+                                    policy1.ReceiptsPdf(connectDB, receiptNo2);
+                                }
+                            } else {
+                                if (receiptNo1.length() > 0) {
+                                    com.afrisoftech.txtreports.GokIpReceiptsTxt policy = new com.afrisoftech.txtreports.GokIpReceiptsTxt(connectDB, clientReceipt, amountPaidTxt.getText(), receiptNo1, this.paymentModeCmbx.getSelectedItem().toString(), "0.00", "0.00", shiftNumberTxt.getText());
+                                }
+                                //                             com.afrisoftech.txtreports.GokReceiptsTxt policy = new com.afrisoftech.txtreports.GokReceiptsTxt(connectDB, jTextField91.getText(), jTextField311.getText(), receiptNo2, this.jComboBox41.getSelectedItem().toString(), jTextField121.getText(), jTextField131.getText(), jTextField811.getText());
+                            }
+
+                            //Discharge and check out patient if "Discharge" button is selected
+//                            if (dischargeRdbtn.isSelected()) {
+//                                java.sql.PreparedStatement pstmt12d = connectDB.prepareStatement("UPDATE hp_admission SET check_out = true,discharged_by = current_user WHERE patient_no = '" + this.patientNumberTxt.getText() + "' AND visit_id = '" + visitIDTxt.getText() + "'");
+//                                pstmt12d.executeUpdate();
+//                            }
+                            com.afrisoftech.lib.MobilePayments.updateTokenValue(connectDB, com.afrisoftech.hospital.HospitalMain.mobileTxID, Double.parseDouble(amountPaidTxt.getText()));
+                            if (com.afrisoftech.lib.MobilePayments.getTokenValue(connectDB, com.afrisoftech.hospital.HospitalMain.mobileTxID) <= 1.00) {
+                                java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("UPDATE mobile_payments SET mobilepay_alert = true WHERE mobile_tx_id = ?");
+                                pstmt2.setString(1, com.afrisoftech.hospital.HospitalMain.mobileTxID);
+                                pstmt2.executeUpdate();
+                                pstmt2.close();
+                            }
+
+                            mobileTxAmountTxt.setText("0.00");
+                            connectDB.commit();
+                            connectDB.setAutoCommit(true);
+
+                            this.saveBtn.setEnabled(false);
+
+                            dischargeRdbtn.setSelected(true);
+                            clearBtn.doClick();
+                            javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                            for (int k = 0; k < billTable.getRowCount(); k++) {
+                                for (int r = 0; r < billTable.getColumnCount(); r++) {
+                                    billTable.setValueAt(null, k, r);
+                                }
+                            }
+                        }
+                    }
+                }
+                //}
+
+            } catch (java.sql.SQLException sq) {
+                sq.printStackTrace();
+                javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage());
+                try {
+                    connectDB.rollback(registerSavePoint);
+                } catch (java.sql.SQLException sql) {
+                    javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                }
+                System.out.println(sq.getMessage());
+                javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+            }
+
+        } catch (java.lang.Exception ex) {
+            System.out.println(ex.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+        }
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amountPaidTxt;
     private javax.swing.JTextField billBalanceTxt;
@@ -3333,7 +3368,6 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField invoiceNumberTxt;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    public static javax.swing.JButton jButton1111;
     private javax.swing.JButton jButton221;
     public javax.swing.JButton jButton4111;
     private javax.swing.JButton jButton422;
@@ -3429,6 +3463,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox paymentModeCmbx;
     private javax.swing.JTextField presentedAmountTxt;
     private javax.swing.JTextField receiptNumberTxt;
+    public static javax.swing.JButton saveBtn;
     private javax.swing.JButton searchButton;
     private javax.swing.JButton searchButton2;
     private javax.swing.JTextField shiftNumberTxt;

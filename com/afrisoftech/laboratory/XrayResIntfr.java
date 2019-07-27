@@ -76,7 +76,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         jComboBox41 = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        xraytestTable = new com.afrisoftech.dbadmin.JTable();
+        xrayTestTable = new com.afrisoftech.dbadmin.JTable();
         jLabel13 = new javax.swing.JLabel();
         nooffilmTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -93,18 +93,6 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         femaleCheckBox = new javax.swing.JCheckBox();
         jLabel8 = new javax.swing.JLabel();
         ageTextField = new javax.swing.JTextField();
-        try {
-            java.lang.Class.forName("org.postgresql.Driver");
-        }catch (java.lang.ClassNotFoundException sl){
-            System.out.println(sl.getMessage());
-        }
-
-        saveresultsButton = new javax.swing.JButton();
-        clearButton = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        radiologistReportTxt = new javax.swing.JEditorPane();
         jLabel10 = new javax.swing.JLabel();
         receiptTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -127,7 +115,6 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
             //  System.out.println("Insert not successful");
         }
         jLabel7 = new javax.swing.JLabel();
-        patientCardBtn = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         clinicalHistoryTxt = new javax.swing.JTextArea();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -136,6 +123,18 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         provisionalDiagnosisTxt = new javax.swing.JTextArea();
         jScrollPane9 = new javax.swing.JScrollPane();
         otherInformationTxt = new javax.swing.JTextArea();
+        actionPanel = new javax.swing.JPanel();
+        try {
+            java.lang.Class.forName("org.postgresql.Driver");
+        }catch (java.lang.ClassNotFoundException sl){
+            System.out.println(sl.getMessage());
+        }
+
+        saveresultsButton = new javax.swing.JButton();
+        patientCardBtn = new javax.swing.JButton();
+        clearButton = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         radiologyResultsTable = new com.afrisoftech.dbadmin.JXTable();
@@ -784,7 +783,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
 
         jScrollPane6.setBorder(javax.swing.BorderFactory.createTitledBorder("Xray Test Requested"));
 
-        xraytestTable.setModel(new javax.swing.table.DefaultTableModel(
+        xrayTestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -816,13 +815,13 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        xraytestTable.setRowHeight(22);
-        xraytestTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        xrayTestTable.setRowHeight(22);
+        xrayTestTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                xraytestTableMouseClicked(evt);
+                xrayTestTableMouseClicked(evt);
             }
         });
-        jScrollPane6.setViewportView(xraytestTable);
+        jScrollPane6.setViewportView(xrayTestTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -874,7 +873,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 10.0;
@@ -895,10 +894,10 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 5.0;
+        gridBagConstraints.weighty = 10.0;
         jPanel1.add(jPanel3, gridBagConstraints);
 
         jLabel9.setText("Patient No.");
@@ -992,75 +991,6 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(ageTextField, gridBagConstraints);
 
-        saveresultsButton.setMnemonic('O');
-        saveresultsButton.setText("Save Radiology/Imaging procedure results");
-        saveresultsButton.setToolTipText("Click here enter data");
-        saveresultsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveresultsButtonActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel1.add(saveresultsButton, gridBagConstraints);
-
-        clearButton.setMnemonic('l');
-        clearButton.setText("Clear form");
-        clearButton.setToolTipText("Click here to clear textfields");
-        clearButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearButtonActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel1.add(clearButton, gridBagConstraints);
-
-        jButton4.setMnemonic('C');
-        jButton4.setText("Close form");
-        jButton4.setToolTipText("Click here to close window");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jButton4, gridBagConstraints);
-
-        jButton5.setMnemonic('h');
-        jButton5.setText("Help");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jButton5, gridBagConstraints);
-
-        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Radiologist Notes/Diagnosis", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14), new java.awt.Color(255, 0, 51))); // NOI18N
-
-        radiologistReportTxt.setAutoscrolls(false);
-        radiologistReportTxt.setMinimumSize(new java.awt.Dimension(80, 47));
-        radiologistReportTxt.setPreferredSize(new java.awt.Dimension(80, 47));
-        jScrollPane2.setViewportView(radiologistReportTxt);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.gridheight = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        jPanel1.add(jScrollPane2, gridBagConstraints);
-
         jLabel10.setText("Receipt No");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
@@ -1150,19 +1080,6 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jLabel7, gridBagConstraints);
 
-        patientCardBtn.setText("Patient Card");
-        patientCardBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientCardBtnActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel1.add(patientCardBtn, gridBagConstraints);
-
         jScrollPane5.setViewportBorder(javax.swing.BorderFactory.createTitledBorder("Clinical History"));
 
         clinicalHistoryTxt.setColumns(20);
@@ -1219,6 +1136,81 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 5.0;
         jPanel1.add(jScrollPane9, gridBagConstraints);
 
+        actionPanel.setLayout(new java.awt.GridBagLayout());
+
+        saveresultsButton.setMnemonic('O');
+        saveresultsButton.setText("Save Radiology/Imaging procedure results");
+        saveresultsButton.setToolTipText("Click here enter data");
+        saveresultsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveresultsButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        actionPanel.add(saveresultsButton, gridBagConstraints);
+
+        patientCardBtn.setText("Patient Card");
+        patientCardBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientCardBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        actionPanel.add(patientCardBtn, gridBagConstraints);
+
+        clearButton.setMnemonic('l');
+        clearButton.setText("Clear form");
+        clearButton.setToolTipText("Click here to clear textfields");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        actionPanel.add(clearButton, gridBagConstraints);
+
+        jButton4.setMnemonic('C');
+        jButton4.setText("Close form");
+        jButton4.setToolTipText("Click here to close window");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        actionPanel.add(jButton4, gridBagConstraints);
+
+        jButton5.setMnemonic('h');
+        jButton5.setText("Help");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        actionPanel.add(jButton5, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridwidth = 7;
+        jPanel1.add(actionPanel, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -1229,7 +1221,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 20.0;
         jPanel31.add(jPanel1, gridBagConstraints);
 
-        jTabbedPane1.addTab("POST X-Ray/Radiology Results", jPanel31);
+        jTabbedPane1.addTab("POST X-Ray/Radiology Results - Radiographer Report", jPanel31);
 
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
@@ -1343,12 +1335,8 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
 
     private void paidResultsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paidResultsTableMouseClicked
         patientNoTxt.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 1).toString());
-        //  searchTextField.setText(pendingresultsTable.getValueAt(pendingresultsTable.getSelectedRow(), 1).toString());
-
-        //   this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         jTextField1.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 2).toString());
-        radiologistReportTxt.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 12).toString() + "\n");
-        receiptTxt.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 10).toString());
+        receiptTxt.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 12).toString());
         xrayTextField.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 7).toString());
         doctorTextField.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 8).toString());
         getList = false;
@@ -1421,12 +1409,12 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
 
                 //    connectDB.commit();
                 //    connectDB.setAutoCommit(true);
-                this.xraytestTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                        + "SELECT service,amount,false as Report,request_id as Request_ID,bed_no as Order "
+                this.xrayTestTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+                        + "SELECT service,amount,true as Report,request_id as Request_ID,bed_no as Order "
                         + " FROM pb_doctors_request  WHERE    request_id  = '" + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 10).toString().trim() + "' UNION "
-                        + " SELECT description as service, debit as amount,false as Report,receipt_no as Request_ID, receipt_no as Order "
+                        + " SELECT description as service, debit as amount,true as Report,receipt_no as Request_ID, receipt_no as Order "
                         + " FROM ac_cash_collection  WHERE    receipt_no  = '" + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 10).toString().trim() + "' UNION"
-                        + " SELECT service, debit as amount, false as Report, reference as Request_ID, reference as Order "
+                        + " SELECT service, debit as amount, true as Report, reference as Request_ID, reference as Order "
                         + " FROM hp_patient_card  WHERE (main_service ILIKE '%ray%' OR main_service ILIKE '%rad%') AND  reference  = '" + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 10).toString().trim() + "'"));
 
                 for (int k = 0; k < paidResultsTable.getRowCount(); k++) {
@@ -1440,8 +1428,8 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
             java.sql.ResultSet rsetClinical = pstmtClinicals.executeQuery();
 
             while (rsetClinical.next()) {
-                clinicalHistoryTxt.setText(rsetClinical.getString(1));
-                physicalExamTxt.setText(rsetClinical.getString(2));
+                clinicalHistoryTxt.setText(rsetClinical.getString(2));
+                physicalExamTxt.setText(rsetClinical.getString(1));
                 provisionalDiagnosisTxt.setText(rsetClinical.getString(3));
             }
         } catch (Exception sq) {
@@ -1502,210 +1490,202 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
 
     private void saveresultsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveresultsButtonActionPerformed
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
-        try {
-            if (java.lang.Double.valueOf(nooffilmTextField.getText()) > 0) {
+//        try {
+//            if (java.lang.Double.valueOf(nooffilmTextField.getText()) > 0) {
 
-                if (patientNoTxt.getText().isEmpty() == Boolean.FALSE) {
+        if (!patientNoTxt.getText().isEmpty()) {
 
-                    {
-                        java.util.Calendar calendar = java.util.Calendar.getInstance();
+            {
+                java.util.Calendar calendar = java.util.Calendar.getInstance();
 
-                        long dateNow = calendar.getTimeInMillis();
+                long dateNow = calendar.getTimeInMillis();
 
-                        java.sql.Date datenowSql1 = new java.sql.Date(dateNow);
+                java.sql.Date datenowSql1 = new java.sql.Date(dateNow);
 
-                        System.out.println(datenowSql1.toString());
+                System.out.println(datenowSql1.toString());
 
-                        java.sql.Timestamp datenowSql = new java.sql.Timestamp(dateNow);
+                java.sql.Timestamp datenowSql = new java.sql.Timestamp(dateNow);
 
-                        System.out.println(datenowSql.toString());
+                System.out.println(datenowSql.toString());
 
-                        String billNo = null;
+                String billNo = null;
 
-                        String transNo = null;
-                        String User = null;
-                        String patientAcc = null;
-                        String cardNo = null;
-                        String AccDesc = null;
-                        String scheme = null;
-                        String cardName = null;
-                        String isurer = null;
-                        String expDate = null;
-                        String code = null;
+                String transNo = null;
+                String User = null;
+                String patientAcc = null;
+                String cardNo = null;
+                String AccDesc = null;
+                String scheme = null;
+                String cardName = null;
+                String isurer = null;
+                String expDate = null;
+                String code = null;
 
-                        String Categ = null;
-                        String Sex = null, request = xrayTextField.getText();
-                        if (this.femaleCheckBox.isSelected()) {
-                            Sex = this.femaleCheckBox.getText();
-                        } else {
-                            Sex = this.maleCheckBox.getText();
-                        }
-
-                        if ((request.startsWith("O"))) {
-                            Categ = "OP";
-                        } else if ((request.startsWith("I"))) {
-                            Categ = "IP";
-
-                        }
-
-                        try {
-                            connectDB.setAutoCommit(false);
-
-                            java.sql.Statement stm121 = connectDB.createStatement();
-                            java.sql.Statement ps11 = connectDB.createStatement();
-                            java.sql.ResultSet rst11 = ps11.executeQuery("select 'X'||nextval('xray_no_seq'),current_user");
-                            while (rst11.next()) {
-                                rst11.getObject(1).toString();
-
-                                billNo = rst11.getObject(1).toString();
-                                User = rst11.getObject(2).toString();
-                            }
-                            if (xraytestTable.isEditing()) {
-                                xraytestTable.getCellEditor().stopCellEditing();
-                            }
-
-                            for (int i = 0; i < xraytestTable.getRowCount(); i++) {
-                                if (xraytestTable.getModel().getValueAt(i, 2) != null) {
-                                    if (xraytestTable.getModel().getValueAt(i, 2) == java.lang.Boolean.TRUE) {
-                                        int docCount = 0;
-                                        java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_xray_results WHERE patient_no = ? AND doc_no = ? AND doc_no IS NOT NULL AND doc_no != ''");
-                                        pstmt1.setString(1, patientNoTxt.getText());
-                                        pstmt1.setString(2, receiptTxt.getText());
-                                        java.sql.ResultSet rset1 = pstmt1.executeQuery();
-                                        while (rset1.next()) {
-                                            docCount = rset1.getInt(1);
-                                        }
-                                        if (docCount < 1) {
-                                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_xray_results VALUES("
-                                                    + "?,?,?,?,?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-                                            pstmt.setString(1, patientNoTxt.getText());
-                                            if (jTextField1.getText().equals("")) {
-                                                javax.swing.JOptionPane.showMessageDialog(this, "Patient Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                            } else {
-
-                                                pstmt.setString(2, jTextField1.getText());
-                                            }
-
-                                            pstmt.setString(3, billNo);
-                                            pstmt.setObject(4, ageTextField.getText());
-                                            pstmt.setObject(5, Sex);
-                                            pstmt.setString(6, radiographerReportTxt.getText());
-                                            pstmt.setString(7, xraytestTable.getValueAt(i, 0).toString());
-                                            pstmt.setDate(8, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
-                                            //                           pstmt.setDate(8, com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()));
-                                            pstmt.setTimestamp(9, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
-                                            pstmt.setDouble(10, java.lang.Double.valueOf(xraytestTable.getValueAt(i, 1).toString()));
-                                            pstmt.setString(11, Categ);
-
-                                            if (jTextField3621.getText().equals("")) {
-                                                javax.swing.JOptionPane.showMessageDialog(this, "Radiologist Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                            } else {
-
-                                                pstmt.setString(12, jTextField3621.getText());
-                                            }
-                                            pstmt.setString(13, User);
-                                            pstmt.setString(14, doctorTextField.getText());
-                                            pstmt.setBoolean(15, false);
-                                            pstmt.setBoolean(16, false);
-                                            pstmt.setString(17, receiptTxt.getText());
-                                            pstmt.setDouble(18, java.lang.Double.valueOf(nooffilmTextField.getText()));
-                                            pstmt.setString(19, jComboBox41.getSelectedItem().toString());
-                                            pstmt.setObject(20, null);
-                                            pstmt.setObject(21, null);
-                                            pstmt.setObject(22, null);
-                                            pstmt.setObject(23, null);
-                                            pstmt.setObject(24, null);
-                                            pstmt.setObject(25, null);
-                                            pstmt.setObject(26, null);
-                                            pstmt.setObject(27, null);
-                                            pstmt.setObject(28, null);
-                                            pstmt.setObject(29, null);
-                                            pstmt.setObject(30, radiologistReportTxt.getText());
-                                            pstmt.execute();
-
-                                            System.out.println("\n\n\n\n\n\n\n\n\nUPDATE pb_doctors_request "
-                                                    + "SET results = true,posted_to_lab='" + xrayTextField.getText() + "' WHERE "
-                                                    + " requisition_no='X-RAY' and request_id  = '" + xraytestTable.getValueAt(xraytestTable.getSelectedRow(), 3).toString().trim() + "'");
-
-                                            java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request "
-                                                    + "SET results = true,posted_to_lab='" + xrayTextField.getText() + "' WHERE "
-                                                    + " requisition_no='X-RAY'  and request_id  = '" + xraytestTable.getValueAt(xraytestTable.getSelectedRow(), 3).toString().trim() + "'");
-                                            pstmt46.executeUpdate();
-
-                                            java.sql.PreparedStatement pstmt462 = connectDB.prepareStatement("UPDATE hp_patient_billing SET collected = true "
-                                                    + "WHERE "
-                                                    + " service = '" + xraytestTable.getValueAt(i, 0).toString() + "' "
-                                                    + "AND patient_no = '" + patientNoTxt.getText() + "' and "
-                                                    + " doctor = '" + xraytestTable.getValueAt(i, 4).toString() + "' ");
-                                            pstmt462.executeUpdate();
-
-                                            java.sql.PreparedStatement pstmtPatientCard = connectDB.prepareStatement("UPDATE hp_patient_card SET collected = true "
-                                                    + "WHERE "
-                                                    + " upper(service) = '" + xraytestTable.getValueAt(i, 0).toString().toUpperCase() + "' "
-                                                    + "AND patient_no = '" + patientNoTxt.getText() + "' AND reference = '" + xraytestTable.getValueAt(i, 3).toString() + "' "
-                                                    + "  ");
-                                            pstmtPatientCard.executeUpdate();
-                                        } else {
-                                            java.sql.PreparedStatement pstmtUpdate = connectDB.prepareStatement("UPDATE hp_xray_results SET = ? WHERE patient_no = ? AND doc_no = ? AND doc_no IS NOT NULL AND doc_no != ''");
-                                            pstmtUpdate.setString(1, radiographerReportTxt.getText());
-                                            pstmtUpdate.setString(2, patientNoTxt.getText());
-                                            pstmtUpdate.setString(3, receiptTxt.getText());
-                                            pstmtUpdate.executeUpdate();
-                                        }
-                                    }
-                                }
-                            }
-                            connectDB.commit();
-                            connectDB.setAutoCommit(true);
-                            this.saveresultsButton.setEnabled(false);
-
-                            javax.swing.JOptionPane.showMessageDialog(this, "X-RAY report posted successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-                            com.afrisoftech.reports.XrayResultPdf policy = new com.afrisoftech.reports.XrayResultPdf();
-
-                            policy.XrayResultPdf(connectDB, xraydatePicker.getDate(), xraydatePicker.getDate(), patientNoTxt.getText());
-
-                            this.saveresultsButton.setEnabled(true);
-                            patientNoTxt.setText("");
-
-                            jTextField1.setText("");
-                            //jTextField2.setText("");
-
-                            ageTextField.setText("");
-                            nooffilmTextField.setText("");
-                            // clearButton.doClick();
-                        } catch (Exception sq) {
-                            this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-                            clearButton.doClick();
-                            try {
-                                connectDB.rollback();
-                            } catch (java.sql.SQLException sql) {
-                                javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                            }
-                            sq.printStackTrace();
-                            javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-
-                        }
-                    }
-
+                String Categ = null;
+                String Sex = null, request = xrayTextField.getText();
+                if (this.femaleCheckBox.isSelected()) {
+                    Sex = this.femaleCheckBox.getText();
                 } else {
-                    javax.swing.JOptionPane.showMessageDialog(this, "YOU CANNOT SAVE WITHOUT PATIENT NUMBER  ", "Caution Message!", javax.swing.JOptionPane.WARNING_MESSAGE);
+                    Sex = this.maleCheckBox.getText();
+                }
+
+                if ((request.startsWith("O"))) {
+                    Categ = "OP";
+                } else if ((request.startsWith("I"))) {
+                    Categ = "IP";
 
                 }
-            } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "Enter a digit numbers without characterrs for no of films", "Caution Message!", javax.swing.JOptionPane.WARNING_MESSAGE);
 
+                try {
+                    connectDB.setAutoCommit(false);
+
+                    java.sql.Statement stm121 = connectDB.createStatement();
+                    java.sql.Statement ps11 = connectDB.createStatement();
+                    java.sql.ResultSet rst11 = ps11.executeQuery("select 'X'||nextval('xray_no_seq'),current_user");
+                    while (rst11.next()) {
+                        rst11.getObject(1).toString();
+
+                        billNo = rst11.getObject(1).toString();
+                        User = rst11.getObject(2).toString();
+                    }
+                    if (xrayTestTable.isEditing()) {
+                        xrayTestTable.getCellEditor().stopCellEditing();
+                    }
+
+                    for (int i = 0; i < xrayTestTable.getRowCount(); i++) {
+                        if (xrayTestTable.getModel().getValueAt(0, 2) != null) {
+                            if (Boolean.parseBoolean(xrayTestTable.getValueAt(0, 2).toString())) {
+                                int docCount = 0;
+                                java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_xray_results WHERE patient_no = ? AND doc_no = ? AND examination ilike ? AND doc_no != '' AND notes IS NULL");
+                                pstmt1.setString(1, patientNoTxt.getText());
+                                pstmt1.setString(2, receiptTxt.getText());
+                                pstmt1.setObject(3, xrayTestTable.getValueAt(0, 0));
+                                java.sql.ResultSet rset1 = pstmt1.executeQuery();
+                                while (rset1.next()) {
+                                    docCount = rset1.getInt(1);
+                                }
+                                System.out.println("Doc Count : [" + docCount + "]");
+                                if (docCount < 1) {
+                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_xray_results VALUES("
+                                            + "?,?,?,?,?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+                                    pstmt.setString(1, patientNoTxt.getText());
+                                    pstmt.setString(2, jTextField1.getText());
+                                    pstmt.setString(3, billNo);
+                                    pstmt.setObject(4, ageTextField.getText());
+                                    pstmt.setObject(5, Sex);
+                                    pstmt.setString(6, radiographerReportTxt.getText());
+                                    pstmt.setString(7, xrayTestTable.getValueAt(i, 0).toString());
+                                    pstmt.setDate(8, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
+                                    //                           pstmt.setDate(8, com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()));
+                                    pstmt.setTimestamp(9, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));
+                                    pstmt.setDouble(10, java.lang.Double.valueOf(xrayTestTable.getValueAt(0, 1).toString()));
+                                    pstmt.setString(11, Categ);
+                                    pstmt.setString(12, jTextField3621.getText());
+                                    pstmt.setString(13, User);
+                                    pstmt.setString(14, doctorTextField.getText());
+                                    pstmt.setBoolean(15, false);
+                                    pstmt.setBoolean(16, false);
+                                    pstmt.setString(17, receiptTxt.getText());
+                                    pstmt.setDouble(18, java.lang.Double.valueOf(nooffilmTextField.getText()));
+                                    pstmt.setString(19, jComboBox41.getSelectedItem().toString());
+                                    pstmt.setObject(20, null);
+                                    pstmt.setObject(21, null);
+                                    pstmt.setObject(22, null);
+                                    pstmt.setObject(23, null);
+                                    pstmt.setObject(24, null);
+                                    pstmt.setObject(25, null);
+                                    pstmt.setObject(26, null);
+                                    pstmt.setObject(27, null);
+                                    pstmt.setObject(28, null);
+                                    pstmt.setObject(29, null);
+                                    pstmt.setObject(30, null);
+                                    pstmt.execute();
+
+                                } else {
+                                    java.sql.PreparedStatement pstmtUpdate = connectDB.prepareStatement("UPDATE hp_xray_results SET notes = ? WHERE patient_no = ? AND doc_no = ? AND doc_no IS NOT NULL AND doc_no != ''");
+                                    pstmtUpdate.setString(1, radiographerReportTxt.getText());
+                                    pstmtUpdate.setString(2, patientNoTxt.getText());
+                                    pstmtUpdate.setString(3, receiptTxt.getText());
+                                    pstmtUpdate.executeUpdate();
+
+                                    System.out.println("\n\n\n\n\n\n\n\n\nUPDATE pb_doctors_request "
+                                            + "SET results = true,posted_to_lab='" + xrayTextField.getText() + "' WHERE "
+                                            + " requisition_no='X-RAY' and request_id  = '" + xrayTestTable.getValueAt(0, 3).toString().trim() + "'");
+
+                                    java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request "
+                                            + "SET results = true,posted_to_lab='" + xrayTextField.getText() + "' WHERE "
+                                            + " requisition_no='X-RAY'  and request_id  = '" + xrayTestTable.getValueAt(0, 3).toString().trim() + "'");
+                                    pstmt46.executeUpdate();
+
+                                    java.sql.PreparedStatement pstmt462 = connectDB.prepareStatement("UPDATE hp_patient_billing SET collected = true "
+                                            + "WHERE "
+                                            + " service = '" + xrayTestTable.getValueAt(0, 0).toString() + "' "
+                                            + "AND patient_no = '" + patientNoTxt.getText() + "' and "
+                                            + " doctor = '" + xrayTestTable.getValueAt(0, 4).toString() + "' ");
+                                    pstmt462.executeUpdate();
+
+                                    java.sql.PreparedStatement pstmtPatientCard = connectDB.prepareStatement("UPDATE hp_patient_card SET collected = true "
+                                            + "WHERE "
+                                            + " upper(service) = '" + xrayTestTable.getValueAt(0, 0).toString().toUpperCase() + "' "
+                                            + "AND patient_no = '" + patientNoTxt.getText() + "' AND reference = '" + xrayTestTable.getValueAt(0, 3).toString() + "' "
+                                            + "  ");
+                                    pstmtPatientCard.executeUpdate();
+
+                                }
+                            }
+                        }
+                    }
+                    connectDB.commit();
+                    connectDB.setAutoCommit(true);
+                    this.saveresultsButton.setEnabled(false);
+
+                    javax.swing.JOptionPane.showMessageDialog(this, "X-RAY report posted successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                    com.afrisoftech.reports.XrayResultPdf policy = new com.afrisoftech.reports.XrayResultPdf();
+
+                    policy.XrayResultPdf(connectDB, xraydatePicker.getDate(), xraydatePicker.getDate(), patientNoTxt.getText());
+
+                    this.saveresultsButton.setEnabled(true);
+                    patientNoTxt.setText("");
+
+                    jTextField1.setText("");
+                    //jTextField2.setText("");
+
+                    ageTextField.setText("");
+                    nooffilmTextField.setText("");
+                    // clearButton.doClick();
+                } catch (Exception sq) {
+                    this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+                    clearButton.doClick();
+                    try {
+                        connectDB.rollback();
+                    } catch (java.sql.SQLException sql) {
+                        javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                    }
+                    sq.printStackTrace();
+                    javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+                }
             }
-        } catch (Exception numberformat) {
-            numberformat.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(this, "YOU CANNOT SAVE WITHOUT PATIENT NUMBER \nand entered the number of films used", "Caution Message!", javax.swing.JOptionPane.WARNING_MESSAGE);
+
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "YOU CANNOT SAVE WITHOUT PATIENT NUMBER  ", "Caution Message!", javax.swing.JOptionPane.WARNING_MESSAGE);
 
         }
+//            } else {
+//                javax.swing.JOptionPane.showMessageDialog(this, "Enter a digit numbers without characterrs for no of films", "Caution Message!", javax.swing.JOptionPane.WARNING_MESSAGE);
+//
+//            }
+//        } catch (Exception numberformat) {
+//            numberformat.printStackTrace();
+//            javax.swing.JOptionPane.showMessageDialog(this, "YOU CANNOT SAVE WITHOUT PATIENT NUMBER \nand entered the number of films used", "Caution Message!", javax.swing.JOptionPane.WARNING_MESSAGE);
+//
+//        }
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_saveresultsButtonActionPerformed
 
-    private void xraytestTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xraytestTableMouseClicked
+    private void xrayTestTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xrayTestTableMouseClicked
         // jTextField1.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 1).toString());
         //        jTextField91.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 0).toString());
         //   jTextField10.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 2).toString());
@@ -1799,7 +1779,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
 
          }
          }   */     // TODO add your handling code here:
-}//GEN-LAST:event_xraytestTableMouseClicked
+}//GEN-LAST:event_xrayTestTableMouseClicked
 
     private void confirmRequestsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmRequestsTableMouseClicked
 //        this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
@@ -2490,6 +2470,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel actionPanel;
     private javax.swing.JTextField ageTextField;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -2532,7 +2513,6 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel621;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
@@ -2554,7 +2534,6 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea physicalExamTxt;
     private javax.swing.JTextArea provisionalDiagnosisTxt;
     private javax.swing.JTextArea radiographerReportTxt;
-    private javax.swing.JEditorPane radiologistReportTxt;
     private javax.swing.JTable radiologyResultsTable;
     private javax.swing.JTextField receiptTxt;
     private javax.swing.JButton refreshbutton;
@@ -2562,8 +2541,8 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField searchTextField;
     private javax.swing.JButton submitForPayBtn;
     private javax.swing.JPanel waitingListActionsPanel;
+    private javax.swing.JTable xrayTestTable;
     private javax.swing.JTextField xrayTextField;
     private com.afrisoftech.lib.DatePicker xraydatePicker;
-    private javax.swing.JTable xraytestTable;
     // End of variables declaration//GEN-END:variables
 }

@@ -39,21 +39,25 @@ public class SecuritySettings {
             //      for (int j = 0; j < noofUsers; j++) {
             for (int k = 0; k < noofTables; k++) {
 
+                java.sql.PreparedStatement pstmtRename = connectDB.prepareStatement("ALTER TABLE " + dbTables[k] + " RENAME TO " +dbTables[k].toString().toLowerCase());
+
+                pstmtRename.execute();
+
                 System.err.println("Changing DB security settings for User : [" + userName + "] on table [" + dbTables[k] + "]");
 
-                java.sql.PreparedStatement pstmtRevoke = connectDB.prepareStatement("REVOKE DELETE ON \"" + dbTables[k] + "\" FROM \"" + userName + "\"");
+                java.sql.PreparedStatement pstmtRevoke = connectDB.prepareStatement("REVOKE DELETE ON " + dbTables[k] + " FROM " + userName);
 
                 pstmtRevoke.execute();
 
-                java.sql.PreparedStatement pstmtInsert = connectDB.prepareStatement("GRANT INSERT ON \"" + dbTables[k] + "\" TO \"" + userName + "\"");
+                java.sql.PreparedStatement pstmtInsert = connectDB.prepareStatement("GRANT INSERT ON " + dbTables[k] + " TO " + userName);
 
                 pstmtInsert.execute();
 
-                java.sql.PreparedStatement pstmtUpdate = connectDB.prepareStatement("GRANT UPDATE ON \"" + dbTables[k] + "\" TO \"" + userName + "\"");
+                java.sql.PreparedStatement pstmtUpdate = connectDB.prepareStatement("GRANT UPDATE ON  " + dbTables[k] + " TO " + userName);
 
                 pstmtUpdate.execute();
 
-                java.sql.PreparedStatement pstmtSelect = connectDB.prepareStatement("GRANT SELECT ON \"" + dbTables[k] + "\" TO \"" + userName + "\"");
+                java.sql.PreparedStatement pstmtSelect = connectDB.prepareStatement("GRANT SELECT ON  " + dbTables[k] + " TO " + userName);
 
                 pstmtSelect.execute();
 
@@ -65,7 +69,6 @@ public class SecuritySettings {
 
                 pstmtSelect.close();
 
-                //     }
             }
 
         } catch (java.sql.SQLException sqlEx) {
@@ -88,8 +91,7 @@ public class SecuritySettings {
 
         int noofSequences = getDBSequences(connectDB).length;
 
-    //    int noofFunctions = getDBFunctions(connectDB).length;
-
+        //    int noofFunctions = getDBFunctions(connectDB).length;
         Object dbTables[] = getDBTables(connectDB);
 
         Object dbViews[] = getDBViews(connectDB);
@@ -98,8 +100,7 @@ public class SecuritySettings {
 
         Object dbUsers[] = getDBUsers(connectDB);
 
-    //    Object dbFunctions[] = getDBFunctions(connectDB);
-
+        //    Object dbFunctions[] = getDBFunctions(connectDB);
         try {
 
             for (int i = 0; i < noofUsers; i++) {
@@ -161,7 +162,6 @@ public class SecuritySettings {
 //                pstmtSelect.close();
 //
 //            }
-
         } catch (java.sql.SQLException sqlEx) {
 
             sqlEx.printStackTrace();

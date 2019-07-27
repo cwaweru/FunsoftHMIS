@@ -59,7 +59,7 @@ public class HosReceiptsPatDatePanel extends javax.swing.JDialog {
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jTextField36 = new javax.swing.JTextField();
+        receiptNoTxt = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
 
         jSearchDialog1.setModal(true);
@@ -69,14 +69,14 @@ public class HosReceiptsPatDatePanel extends javax.swing.JDialog {
         jSearchPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jSearchPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jTextField1111.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1111ActionPerformed(evt);
-            }
-        });
         jTextField1111.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 jTextField1111CaretUpdate(evt);
+            }
+        });
+        jTextField1111.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1111ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -144,7 +144,7 @@ public class HosReceiptsPatDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         jSearchDialog1.getContentPane().add(jSearchPanel1, gridBagConstraints);
 
-        setTitle("Reporting data filter dialog");
+        setTitle("Begin & End Date");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -221,14 +221,14 @@ public class HosReceiptsPatDatePanel extends javax.swing.JDialog {
         jPanel6.setMinimumSize(new java.awt.Dimension(82, 37));
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
-        jTextField36.setEditable(false);
+        receiptNoTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel6.add(jTextField36, gridBagConstraints);
+        jPanel6.add(receiptNoTxt, gridBagConstraints);
 
         searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
         searchButton.setToolTipText("Search");
@@ -263,8 +263,8 @@ public class HosReceiptsPatDatePanel extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
         getContentPane().add(jPanel4, gridBagConstraints);
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-370)/2, (screenSize.height-212)/2, 370, 212);
+        setSize(new java.awt.Dimension(370, 212));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -274,7 +274,7 @@ public class HosReceiptsPatDatePanel extends javax.swing.JDialog {
     private void jTextField1111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1111CaretUpdate
         jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct (trim(receipt_no)) as receipt_no,date from ac_cash_collection where receipt_no = '" + jTextField1111.getText().toString() + "' ORDER BY receipt_no"));
 ///        jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select distinct (trim(receipt_no)) as receipt_no,date from ac_cash_collection where receipt_no ILIKE '"+jTextField1111.getText().toString()+"%' and receipt_no is not null and receipt_no !='' and receipt_no !='-' ORDER BY receipt_no"));        
-      /*  try {
+        /*  try {
          searchRowSet1.execute("select trim(receipt_no) as scheme,date from ac_cash_collection where receipt_no ilike 'A%' and receipt_no ILIKE '"+jTextField1111.getText().toString()+"%' ORDER BY receipt_no");
        
          jSearchTable1.setModel(new org.netbeans.lib.sql.models.TableModel(searchRowSet1, new org.netbeans.lib.sql.models.TableModel.Column[] {
@@ -325,7 +325,7 @@ public class HosReceiptsPatDatePanel extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton51ActionPerformed
 
     private void jSearchTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable1MouseClicked
-        jTextField36.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 0).toString());
+        receiptNoTxt.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 0).toString());
         //jTextField2.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 1).toString());
 
         /* try {
@@ -357,13 +357,12 @@ public class HosReceiptsPatDatePanel extends javax.swing.JDialog {
         System.out.println("Showing dialog");
 
         jSearchDialog1.dispose();
-        java.awt.Point point = this.jTextField36.getLocationOnScreen();
+        java.awt.Point point = this.receiptNoTxt.getLocationOnScreen();
 
         jSearchDialog1.setSize(600, 200);
 
         jSearchDialog1.setLocation(point);
         jSearchDialog1.setVisible(true);
-
 
     }
     private void jTextField1111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1111ActionPerformed
@@ -377,8 +376,6 @@ public class HosReceiptsPatDatePanel extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         this.getReport(reportName, false);
-
-
 
         // Add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -436,29 +433,33 @@ public class HosReceiptsPatDatePanel extends javax.swing.JDialog {
                         rct = rst112.getObject(1).toString();
                     }
 
-
                     if (nodetails.equalsIgnoreCase("NoDetails")) {
-                        com.afrisoftech.txtreports.RctOutCopyTxt policy = new com.afrisoftech.txtreports.RctOutCopyTxt(connectDB, jTextField36.getText());
+                        if (receiptNoTxt.getText().length() > 0) {
+                            com.afrisoftech.txtreports.RctOutCopyTxt policy = new com.afrisoftech.txtreports.RctOutCopyTxt(connectDB, receiptNoTxt.getText());
+                        }
                     } else {
-                        if (nodetails.equalsIgnoreCase("Codes")) {
-                            //com.afrisoftech.txtreports.ReceiptsCopyTxt policy = new com.afrisoftech.txtreports.ReceiptsCopyTxt(connectDB,jTextField36.getText(),printState);
-                            com.afrisoftech.txtreports.GokReceiptsRCopyTxt policy = new com.afrisoftech.txtreports.GokReceiptsRCopyTxt(connectDB, jTextField36.getText());
-
-                        } else {
-                            if (nodetails.equalsIgnoreCase("Dept")) {
-                                com.afrisoftech.txtreports.ReceiptsPerDeptCopyTxt policy = new com.afrisoftech.txtreports.ReceiptsPerDeptCopyTxt(connectDB, jTextField36.getText(), printState);
+                        if (receiptNoTxt.getText().length() > 0) {
+                            if (nodetails.equalsIgnoreCase("Codes")) {
+                                //com.afrisoftech.txtreports.ReceiptsCopyTxt policy = new com.afrisoftech.txtreports.ReceiptsCopyTxt(connectDB,jTextField36.getText(),printState);
+                                com.afrisoftech.txtreports.GokReceiptsRCopyTxt policy = new com.afrisoftech.txtreports.GokReceiptsRCopyTxt(connectDB, receiptNoTxt.getText());
 
                             } else {
-                                if (nodetails.equalsIgnoreCase("Prints") && rct.equalsIgnoreCase("Pdf")) {
-                                    com.afrisoftech.reports.ReceiptsCopyPdf policy = new com.afrisoftech.reports.ReceiptsCopyPdf();
+                                if (nodetails.equalsIgnoreCase("Dept")) {
+                                    com.afrisoftech.txtreports.ReceiptsPerDeptCopyTxt policy = new com.afrisoftech.txtreports.ReceiptsPerDeptCopyTxt(connectDB, receiptNoTxt.getText(), printState);
 
-                                    policy.ReceiptsCopyPdf(connectDB, jTextField36.getText());
                                 } else {
-                                    //com.afrisoftech.txtreports.ReceiptsCopyTxt policy = new com.afrisoftech.txtreports.ReceiptsCopyTxt(connectDB,jTextField36.getText(),printState);
-                                    com.afrisoftech.txtreports.GokReceiptsRCopyTxt policy = new com.afrisoftech.txtreports.GokReceiptsRCopyTxt(connectDB, jTextField36.getText());
-                               
+                                    if (nodetails.equalsIgnoreCase("Prints") && rct.equalsIgnoreCase("Pdf")) {
+                                        com.afrisoftech.reports.ReceiptsCopyPdf policy = new com.afrisoftech.reports.ReceiptsCopyPdf();
+
+                                        policy.ReceiptsCopyPdf(connectDB, receiptNoTxt.getText());
+                                    } else {
+                                        //com.afrisoftech.txtreports.ReceiptsCopyTxt policy = new com.afrisoftech.txtreports.ReceiptsCopyTxt(connectDB,jTextField36.getText(),printState);
+                                        com.afrisoftech.txtreports.GokReceiptsRCopyTxt policy = new com.afrisoftech.txtreports.GokReceiptsRCopyTxt(connectDB, receiptNoTxt.getText());
+
+                                    }
                                 }
                             }
+
                         }
                     }
                 } catch (java.sql.SQLException sq) {
@@ -474,32 +475,20 @@ public class HosReceiptsPatDatePanel extends javax.swing.JDialog {
                 }
 
                 // com.afrisoftech.reports.ReceiptsCopyPdf policy = new com.afrisoftech.reports.ReceiptsCopyPdf();
-
                 // policy.ReceiptsCopyPdf(connectDB,jTextField36.getText());
-
-
                 this.dispose();
 
             }
             break;
-
-
 
             case 521: {
 
-                com.afrisoftech.txtreports.PharCopyReceiptsTxt policy = new com.afrisoftech.txtreports.PharCopyReceiptsTxt(connectDB, jTextField36.getText());
-
+                com.afrisoftech.txtreports.PharCopyReceiptsTxt policy = new com.afrisoftech.txtreports.PharCopyReceiptsTxt(connectDB, receiptNoTxt.getText());
 
                 this.dispose();
 
             }
             break;
-
-
-
-
-
-
 
             /*   case 26:
            
@@ -566,7 +555,7 @@ public class HosReceiptsPatDatePanel extends javax.swing.JDialog {
     private javax.swing.JScrollPane jSearchScrollPane1;
     private javax.swing.JTable jSearchTable1;
     private javax.swing.JTextField jTextField1111;
-    private javax.swing.JTextField jTextField36;
+    private javax.swing.JTextField receiptNoTxt;
     private javax.swing.JButton searchButton;
     // End of variables declaration//GEN-END:variables
 }

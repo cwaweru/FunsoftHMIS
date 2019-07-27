@@ -35,11 +35,11 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jSearchDialog1 = new javax.swing.JDialog();
-        jSearchPanel1 = new javax.swing.JPanel();
-        jTextField111 = new javax.swing.JTextField();
-        jSearchScrollPane1 = new javax.swing.JScrollPane();
-        jSearchTable1 = new com.afrisoftech.dbadmin.JTable();
+        patientSearchDialog = new javax.swing.JDialog();
+        patientSearchPanel = new javax.swing.JPanel();
+        patientSearchTxt = new javax.swing.JTextField();
+        patientSearchScrollPane = new javax.swing.JScrollPane();
+        patientSearchTable = new com.afrisoftech.dbadmin.JTable();
         jButton9 = new javax.swing.JButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
@@ -76,7 +76,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         mainserviceCMBX = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jTextField36 = new javax.swing.JTextField();
+        patientNumberTxt = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
@@ -88,37 +88,37 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jComboBox4 = new javax.swing.JComboBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
+        normalBookingChkbx = new javax.swing.JCheckBox();
+        urgentBookingChkbx = new javax.swing.JCheckBox();
         jLabel10 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        unitNumberTxt = new javax.swing.JTextField();
         datePicker1 = new com.afrisoftech.lib.DatePicker();
-        jCheckBox9 = new javax.swing.JCheckBox();
+        rescheduleBookingChkbx = new javax.swing.JCheckBox();
         jLabel12 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox31 = new javax.swing.JCheckBox();
+        searchOutPatientChkbx = new javax.swing.JCheckBox();
+        searchInPatientChkbx = new javax.swing.JCheckBox();
+        searchByNameChkbx = new javax.swing.JCheckBox();
+        searchByNoChkbx = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
-        wardbooking = new javax.swing.JCheckBox();
-        newBooking = new javax.swing.JCheckBox();
+        wardBookingChkbx = new javax.swing.JCheckBox();
+        newBookingChkbx = new javax.swing.JCheckBox();
         theatreBooking = new javax.swing.JCheckBox();
-        oldbooking = new javax.swing.JCheckBox();
+        oldBookingChkbx = new javax.swing.JCheckBox();
 
-        jSearchDialog1.setModal(true);
-        jSearchDialog1.setUndecorated(true);
-        jSearchDialog1.getContentPane().setLayout(new java.awt.GridBagLayout());
+        patientSearchDialog.setModal(true);
+        patientSearchDialog.setUndecorated(true);
+        patientSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jSearchPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jSearchPanel1.setLayout(new java.awt.GridBagLayout());
+        patientSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        patientSearchPanel.setLayout(new java.awt.GridBagLayout());
 
-        jTextField111.addCaretListener(new javax.swing.event.CaretListener() {
+        patientSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField111CaretUpdate(evt);
+                patientSearchTxtCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -126,9 +126,9 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 10.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
-        jSearchPanel1.add(jTextField111, gridBagConstraints);
+        patientSearchPanel.add(patientSearchTxt, gridBagConstraints);
 
-        jSearchTable1.setShowHorizontalLines(false);
+        patientSearchTable.setShowHorizontalLines(false);
         /*    try {
             searchRowSet.setCommand("select product,selling_price,gl_code FROM st_stock_prices WHERE department = 'Pharmacy' order by product");
             searchRowSet.setConnectionSource(pConnDB);
@@ -150,12 +150,12 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
             System.out.println(sqlex.getMessage());
         }
         */
-        jSearchTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        patientSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSearchTable1MouseClicked(evt);
+                patientSearchTableMouseClicked(evt);
             }
         });
-        jSearchScrollPane1.setViewportView(jSearchTable1);
+        patientSearchScrollPane.setViewportView(patientSearchTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -164,7 +164,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
-        jSearchPanel1.add(jSearchScrollPane1, gridBagConstraints);
+        patientSearchPanel.add(patientSearchScrollPane, gridBagConstraints);
 
         jButton9.setText("Dispose");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -175,7 +175,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchPanel1.add(jButton9, gridBagConstraints);
+        patientSearchPanel.add(jButton9, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -183,7 +183,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchDialog1.getContentPane().add(jSearchPanel1, gridBagConstraints);
+        patientSearchDialog.getContentPane().add(patientSearchPanel, gridBagConstraints);
 
         jDialog1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         jDialog1.setTitle("service search");
@@ -192,7 +192,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         jSplitPane1.setDividerLocation(50);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        searchservicetxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Service", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 204))); // NOI18N
+        searchservicetxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Service", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 153, 204))); // NOI18N
         searchservicetxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 searchservicetxtCaretUpdate(evt);
@@ -526,14 +526,19 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         jPanel6.setPreferredSize(new java.awt.Dimension(82, 37));
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
-        jTextField36.setEditable(false);
+        patientNumberTxt.setEditable(false);
+        patientNumberTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientNumberTxtActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 100.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel6.add(jTextField36, gridBagConstraints);
+        jPanel6.add(patientNumberTxt, gridBagConstraints);
 
         searchButton.setToolTipText("Search");
         searchButton.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
@@ -666,24 +671,25 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 30, 0, 0);
         jPanel1.add(jComboBox4, gridBagConstraints);
 
-        buttonGroup1.add(jCheckBox3);
-        jCheckBox3.setText("Normal");
+        buttonGroup1.add(normalBookingChkbx);
+        normalBookingChkbx.setSelected(true);
+        normalBookingChkbx.setText("Normal");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(19, 8, 0, 0);
-        jPanel1.add(jCheckBox3, gridBagConstraints);
+        jPanel1.add(normalBookingChkbx, gridBagConstraints);
 
-        buttonGroup1.add(jCheckBox5);
-        jCheckBox5.setText("Urgent");
+        buttonGroup1.add(urgentBookingChkbx);
+        urgentBookingChkbx.setText("Urgent");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(19, 7, 0, 0);
-        jPanel1.add(jCheckBox5, gridBagConstraints);
+        jPanel1.add(urgentBookingChkbx, gridBagConstraints);
 
         jLabel10.setText("Unit No");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -699,8 +705,8 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 90;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(19, 30, 0, 0);
-        jPanel1.add(jTextField5, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(15, 30, 0, 0);
+        jPanel1.add(unitNumberTxt, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 15;
         gridBagConstraints.gridy = 4;
@@ -709,10 +715,10 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 30, 0, 0);
         jPanel1.add(datePicker1, gridBagConstraints);
 
-        jCheckBox9.setText("Reschedule");
-        jCheckBox9.addActionListener(new java.awt.event.ActionListener() {
+        rescheduleBookingChkbx.setText("Reschedule");
+        rescheduleBookingChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox9ActionPerformed(evt);
+                rescheduleBookingChkbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -720,7 +726,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(19, 10, 0, 0);
-        jPanel1.add(jCheckBox9, gridBagConstraints);
+        jPanel1.add(rescheduleBookingChkbx, gridBagConstraints);
 
         jLabel12.setText("Total Booked Patients");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -783,11 +789,12 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.orange, java.awt.Color.pink, null, java.awt.Color.blue));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        buttonGroup2.add(jCheckBox1);
-        jCheckBox1.setText("Out Patient");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup2.add(searchOutPatientChkbx);
+        searchOutPatientChkbx.setSelected(true);
+        searchOutPatientChkbx.setText("Out Patient");
+        searchOutPatientChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                searchOutPatientChkbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -796,13 +803,13 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jCheckBox1, gridBagConstraints);
+        jPanel3.add(searchOutPatientChkbx, gridBagConstraints);
 
-        buttonGroup2.add(jCheckBox2);
-        jCheckBox2.setText("In Patient");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup2.add(searchInPatientChkbx);
+        searchInPatientChkbx.setText("In Patient");
+        searchInPatientChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                searchInPatientChkbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -810,35 +817,41 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
-        jPanel3.add(jCheckBox2, gridBagConstraints);
+        jPanel3.add(searchInPatientChkbx, gridBagConstraints);
 
-        buttonGroup3.add(jCheckBox4);
-        jCheckBox4.setText("Search By name");
+        buttonGroup3.add(searchByNameChkbx);
+        searchByNameChkbx.setText("Search By name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        jPanel3.add(jCheckBox4, gridBagConstraints);
+        jPanel3.add(searchByNameChkbx, gridBagConstraints);
 
-        buttonGroup3.add(jCheckBox31);
-        jCheckBox31.setText("Search By No.");
+        buttonGroup3.add(searchByNoChkbx);
+        searchByNoChkbx.setSelected(true);
+        searchByNoChkbx.setText("Search By No.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jCheckBox31, gridBagConstraints);
+        jPanel3.add(searchByNoChkbx, gridBagConstraints);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Type of Booking", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
         jPanel2.setForeground(new java.awt.Color(255, 0, 51));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        buttonGroup4.add(wardbooking);
-        wardbooking.setText("Ward Booking");
-        wardbooking.addItemListener(new java.awt.event.ItemListener() {
+        buttonGroup4.add(wardBookingChkbx);
+        wardBookingChkbx.setText("Ward Booking");
+        wardBookingChkbx.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                wardbookingItemStateChanged(evt);
+                wardBookingChkbxItemStateChanged(evt);
+            }
+        });
+        wardBookingChkbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wardBookingChkbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -847,18 +860,19 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel2.add(wardbooking, gridBagConstraints);
+        jPanel2.add(wardBookingChkbx, gridBagConstraints);
 
-        buttonGroup4.add(newBooking);
-        newBooking.setText("New Booking");
-        newBooking.addItemListener(new java.awt.event.ItemListener() {
+        buttonGroup4.add(newBookingChkbx);
+        newBookingChkbx.setSelected(true);
+        newBookingChkbx.setText("New Booking");
+        newBookingChkbx.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                newBookingItemStateChanged(evt);
+                newBookingChkbxItemStateChanged(evt);
             }
         });
-        newBooking.addActionListener(new java.awt.event.ActionListener() {
+        newBookingChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newBookingActionPerformed(evt);
+                newBookingChkbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -867,7 +881,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel2.add(newBooking, gridBagConstraints);
+        jPanel2.add(newBookingChkbx, gridBagConstraints);
 
         buttonGroup4.add(theatreBooking);
         theatreBooking.setText("Theatre Booking");
@@ -889,15 +903,15 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel2.add(theatreBooking, gridBagConstraints);
 
-        buttonGroup4.add(oldbooking);
-        oldbooking.setText("Old Booking");
+        buttonGroup4.add(oldBookingChkbx);
+        oldBookingChkbx.setText("Old Booking");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel2.add(oldbooking, gridBagConstraints);
+        jPanel2.add(oldBookingChkbx, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -924,7 +938,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         searchButton11Clicked();         // Add your handling code here:
     }//GEN-LAST:event_searchButtonActionPerformed
 
-    private void jSearchTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable1MouseClicked
+    private void patientSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patientSearchTableMouseClicked
 
         jTextField1.setText("");
         //  jTextField2.setText("");
@@ -937,40 +951,41 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
                 servicesTable.getModel().setValueAt(null, k, r);
             }
         }
-        this.jSearchDialog1.dispose();
-        jTextField36.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 0).toString());
-        jTextField11.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 1).toString());
-        jTextField2.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 2).toString());
-        jTextField1.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 3).toString());
+        this.patientSearchDialog.dispose();
+        patientNumberTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 0).toString());
+        unitNumberTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 0).toString());
+        jTextField11.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 1).toString());
+        jTextField2.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 2).toString());
+        jTextField1.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 3).toString());
 
-        if (this.jCheckBox1.isSelected() == true) {
+        if (this.searchOutPatientChkbx.isSelected() == true) {
 
-            jTextField5.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 4).toString());
+            unitNumberTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 4).toString());
         }
-        if (this.jCheckBox2.isSelected() == true) {
-            jTextField3.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 4).toString());
+        if (this.searchInPatientChkbx.isSelected() == true) {
+            jTextField3.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 4).toString());
         }
 
-        if (jCheckBox9.isSelected()) {
+        if (rescheduleBookingChkbx.isSelected()) {
             System.out.println("It is executing 1");
 
-            if (this.jCheckBox1.isSelected() && this.jCheckBox31.isSelected()) {
+            if (this.searchOutPatientChkbx.isSelected() && this.searchByNoChkbx.isSelected()) {
 
-                if (jTextField111.getCaretPosition() < 3) {
+                if (patientSearchTxt.getCaretPosition() < 3) {
                     System.out.println("Nothing");
                 } else {
-                    jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, p_name as name,'' as address,telno,unit_no from pb_bookings where patient_no ILIKE '" + jTextField111.getText() + "%' OR unit_no ilike '" + jTextField111.getText() + "%'  order by p_name"));
-                    jSearchTable1.setShowHorizontalLines(false);
-                    jSearchScrollPane1.setViewportView(jSearchTable1);
+                    patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, p_name as name,'' as address,telno,unit_no from pb_bookings where patient_no ILIKE '" + patientSearchTxt.getText() + "%' OR unit_no ilike '" + patientSearchTxt.getText() + "%'  order by p_name"));
+                    patientSearchTable.setShowHorizontalLines(false);
+                    patientSearchScrollPane.setViewportView(patientSearchTable);
 
                 }
-            } else if (this.jCheckBox1.isSelected() && this.jCheckBox4.isSelected()) {
-                if (jTextField111.getCaretPosition() < 3) {
+            } else if (this.searchOutPatientChkbx.isSelected() && this.searchByNameChkbx.isSelected()) {
+                if (patientSearchTxt.getCaretPosition() < 3) {
                     System.out.println("Nothing");
                 } else {
-                    jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, p_name as name,'' as address,telno,unit_no from pb_bookings p_name ILIKE '" + jTextField111.getText() + "%' order by p_name"));
-                    jSearchTable1.setShowHorizontalLines(false);
-                    jSearchScrollPane1.setViewportView(jSearchTable1);
+                    patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, p_name as name,'' as address,telno,unit_no from pb_bookings p_name ILIKE '" + patientSearchTxt.getText() + "%' order by p_name"));
+                    patientSearchTable.setShowHorizontalLines(false);
+                    patientSearchScrollPane.setViewportView(patientSearchTable);
 
                 }
             }
@@ -983,7 +998,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
                 java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT p_name, service, quantity, status, booking_date, booking_no, \n"
                         + "       appointment_date, patient_no, doctor_req, telno, email, clinic, \n"
                         + "       patient_source, booking_type, type_of_booking, unit_no\n"
-                        + "  FROM pb_bookings where patient_no='" + jTextField36.getText() + "' and appointment_date>current_date ");
+                        + "  FROM pb_bookings where patient_no='" + patientNumberTxt.getText() + "' and appointment_date>current_date ");
                 while (rsetf.next()) {
                    // periodFrom = rsetf.getDate(1);
                     // periodTo = rsetf.getDate(2);
@@ -1002,109 +1017,109 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         }
 
         // Add your handling code here:
-    }//GEN-LAST:event_jSearchTable1MouseClicked
+    }//GEN-LAST:event_patientSearchTableMouseClicked
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        this.jSearchDialog1.dispose();     // Add your handling code here:
+        this.patientSearchDialog.dispose();     // Add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
     private void searchButton11Clicked() {
 
         System.out.println("Showing dialog");
-        if (jCheckBox1.isSelected()) {
+        if (searchOutPatientChkbx.isSelected()) {
             // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
-            java.awt.Point point = this.jTextField36.getLocationOnScreen();
+            java.awt.Point point = this.patientNumberTxt.getLocationOnScreen();
 
-            jSearchDialog1.setSize(400, 200);
+            patientSearchDialog.setSize(700, 200);
 
-            jSearchDialog1.setLocation(point);
-            jSearchDialog1.setVisible(true);
-        } else if (jCheckBox2.isSelected()) {
-            jSearchDialog1.dispose();
-            java.awt.Point point = this.jTextField36.getLocationOnScreen();
+            patientSearchDialog.setLocation(point);
+            patientSearchDialog.setVisible(true);
+        } else if (searchInPatientChkbx.isSelected()) {
+            patientSearchDialog.dispose();
+            java.awt.Point point = this.patientNumberTxt.getLocationOnScreen();
 
-            jSearchDialog1.setSize(400, 200);
+            patientSearchDialog.setSize(700, 200);
 
-            jSearchDialog1.setLocation(point);
-            jSearchDialog1.setVisible(true);
+            patientSearchDialog.setLocation(point);
+            patientSearchDialog.setVisible(true);
         }
 
     }
-    private void jTextField111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField111CaretUpdate
+    private void patientSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_patientSearchTxtCaretUpdate
 
-        if (this.jCheckBox1.isSelected() && this.jCheckBox31.isSelected()) {
+        if (this.searchOutPatientChkbx.isSelected() && this.searchByNoChkbx.isSelected()) {
 
-            if (jTextField111.getCaretPosition() < 3) {
+            if (patientSearchTxt.getCaretPosition() < 6) {
                 System.out.println("Nothing");
             } else {
-                jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name,address,tel_no,patient_race as unit_no from hp_patient_register where patient_no ILIKE '" + jTextField111.getText() + "%' OR patient_race ilike '" + jTextField111.getText() + "%'  order by second_name"));
+                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name,address,tel_no,patient_race as unit_no from hp_patient_register where patient_no ILIKE '" + patientSearchTxt.getText() + "%' OR patient_race ilike '" + patientSearchTxt.getText() + "%'  order by second_name"));
 
-                jSearchTable1.setShowHorizontalLines(false);
-                jSearchScrollPane1.setViewportView(jSearchTable1);
+                patientSearchTable.setShowHorizontalLines(false);
+                patientSearchScrollPane.setViewportView(patientSearchTable);
 
             }
         } else {
-            if (this.jCheckBox1.isSelected() && this.jCheckBox4.isSelected()) {
-                if (jTextField111.getCaretPosition() < 3) {
+            if (this.searchOutPatientChkbx.isSelected() && this.searchByNameChkbx.isSelected()) {
+                if (patientSearchTxt.getCaretPosition() < 6) {
                     System.out.println("Nothing");
                 } else {
-                    jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, address,tel_no,patient_race as unit_no  from hp_patient_register where second_name||' '||first_name||' '||last_name ILIKE '" + jTextField111.getText() + "%' order by second_name"));
+                    patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, address,tel_no,patient_race as unit_no  from hp_patient_register where second_name||' '||first_name||' '||last_name ILIKE '" + patientSearchTxt.getText() + "%' order by second_name"));
 
-                    jSearchTable1.setShowHorizontalLines(false);
-                    jSearchScrollPane1.setViewportView(jSearchTable1);
+                    patientSearchTable.setShowHorizontalLines(false);
+                    patientSearchScrollPane.setViewportView(patientSearchTable);
 
                 }
             }
         }
         // }else{
-        if ((this.jCheckBox2.isSelected()) && this.jCheckBox31.isSelected()) {
+        if ((this.searchInPatientChkbx.isSelected()) && this.searchByNoChkbx.isSelected()) {
 
-            if (jTextField111.getCaretPosition() < 3) {
+            if (patientSearchTxt.getCaretPosition() < 6) {
                 System.out.println("Nothing");
             } else {
                 System.out.println("SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name,address,tel_no,"
-                        + "(SELECT ward  FROM hp_admission WHERE patient_no ILIKE '%" + jTextField111.getText() + "%' and discharge=false order by date_admitted desc) as ward"
-                        + " from hp_inpatient_register where patient_no ILIKE '%" + jTextField111.getText() + "%' order by second_name");
+                        + "(SELECT ward  FROM hp_admission WHERE patient_no ILIKE '%" + patientSearchTxt.getText() + "%' and discharge=false order by date_admitted desc) as ward"
+                        + " from hp_inpatient_register where patient_no ILIKE '%" + patientSearchTxt.getText() + "%' order by second_name");
 
-                jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                         + "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name,address,tel_no,"
-                        + "(SELECT ward  FROM hp_admission WHERE patient_no ILIKE '%" + jTextField111.getText() + "%' and discharge=false order by date_admitted desc limit 1) as ward"
-                        + " from hp_inpatient_register where patient_no ILIKE '%" + jTextField111.getText() + "%' order by second_name"));
+                        + "(SELECT ward  FROM hp_admission WHERE patient_no ILIKE '%" + patientSearchTxt.getText() + "%' and discharge=false order by date_admitted desc limit 1) as ward"
+                        + " from hp_inpatient_register where patient_no ILIKE '%" + patientSearchTxt.getText() + "%' order by second_name"));
 
-                jSearchTable1.setShowHorizontalLines(false);
-                jSearchScrollPane1.setViewportView(jSearchTable1);
+                patientSearchTable.setShowHorizontalLines(false);
+                patientSearchScrollPane.setViewportView(patientSearchTable);
 
             }
-        } else if ((this.jCheckBox2.isSelected()) && this.jCheckBox4.isSelected()) {
-            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+        } else if ((this.searchInPatientChkbx.isSelected()) && this.searchByNameChkbx.isSelected()) {
+            patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                     + "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, address,tel_no ,\n"
                     + "(SELECT ward  FROM hp_admission WHERE patient_name ILIKE (second_name||' '||first_name||' '||last_name)  and discharge=false order by date_admitted desc) as ward\n"
-                    + "FROM hp_inpatient_register WHERE second_name||' '||first_name||' '||last_name ILIKE '%" + jTextField111.getText() + "%' ORDER BY second_name"));
+                    + "FROM hp_inpatient_register WHERE second_name||' '||first_name||' '||last_name ILIKE '%" + patientSearchTxt.getText() + "%' ORDER BY second_name"));
 
-            jSearchTable1.setShowHorizontalLines(false);
-            jSearchScrollPane1.setViewportView(jSearchTable1);
+            patientSearchTable.setShowHorizontalLines(false);
+            patientSearchScrollPane.setViewportView(patientSearchTable);
 
         }
 
-        if (jCheckBox9.isSelected()) {
+        if (rescheduleBookingChkbx.isSelected()) {
 
-            if (this.jCheckBox1.isSelected() && this.jCheckBox31.isSelected()) {
+            if (this.searchOutPatientChkbx.isSelected() && this.searchByNoChkbx.isSelected()) {
 
-                if (jTextField111.getCaretPosition() < 3) {
+                if (patientSearchTxt.getCaretPosition() < 6) {
                     System.out.println("Nothing");
                 } else {
-                    jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, p_name as name,'' as address,telno,unit_no from pb_bookings where patient_no ILIKE '" + jTextField111.getText() + "%' OR unit_no ilike '" + jTextField111.getText() + "%' and appointment_date>current_date  order by p_name"));
-                    jSearchTable1.setShowHorizontalLines(false);
-                    jSearchScrollPane1.setViewportView(jSearchTable1);
+                    patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, p_name as name,'' as address,telno,unit_no from pb_bookings where patient_no ILIKE '" + patientSearchTxt.getText() + "%' OR unit_no ilike '" + patientSearchTxt.getText() + "%' and appointment_date>current_date  order by p_name"));
+                    patientSearchTable.setShowHorizontalLines(false);
+                    patientSearchScrollPane.setViewportView(patientSearchTable);
 
                 }
             } else {
-                if (this.jCheckBox1.isSelected() && this.jCheckBox4.isSelected()) {
-                    if (jTextField111.getCaretPosition() < 3) {
+                if (this.searchOutPatientChkbx.isSelected() && this.searchByNameChkbx.isSelected()) {
+                    if (patientSearchTxt.getCaretPosition() < 6) {
                         System.out.println("Nothing");
                     } else {
-                        jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, p_name as name,'' as address,telno,unit_no from pb_bookings p_name ILIKE '" + jTextField111.getText() + "%' order by p_name"));
-                        jSearchTable1.setShowHorizontalLines(false);
-                        jSearchScrollPane1.setViewportView(jSearchTable1);
+                        patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, p_name as name,'' as address,telno,unit_no from pb_bookings p_name ILIKE '" + patientSearchTxt.getText() + "%' order by p_name"));
+                        patientSearchTable.setShowHorizontalLines(false);
+                        patientSearchScrollPane.setViewportView(patientSearchTable);
 
                     }
                 }
@@ -1112,7 +1127,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         }
 
         // Add your handling code here:
-    }//GEN-LAST:event_jTextField111CaretUpdate
+    }//GEN-LAST:event_patientSearchTxtCaretUpdate
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 
@@ -1257,7 +1272,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         try {
             java.sql.Statement ps114 = connectDB.createStatement();
             java.sql.ResultSet rst114 = ps114.executeQuery("SELECT confirmation,booking_no FROM pb_bookings WHERE "
-                    + "patient_no='" + jTextField36.getText() + "'");
+                    + "patient_no='" + patientNumberTxt.getText() + "'");
             while (rst114.next()) {
                 status = rst114.getBoolean(1);
                 bookingNO = rst114.getString(2);
@@ -1294,36 +1309,36 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
             try {
                 connectDB.setAutoCommit(false);
 
-                if (jCheckBox3.isSelected()) {
+                if (normalBookingChkbx.isSelected()) {
                     bookingType = "Normal";
                 } else {
                     bookingType = "Urgent";
                 }
 
-                if (newBooking.isSelected()) {
+                if (newBookingChkbx.isSelected()) {
                     bookingstatus = "New Booking";
-                } else if (oldbooking.isSelected()) {
+                } else if (oldBookingChkbx.isSelected()) {
                     bookingstatus = "Old Booking";
                 } else if (theatreBooking.isSelected()) {
                     bookingstatus = "Theatre Booking";
-                } else if (wardbooking.isSelected()) {
+                } else if (wardBookingChkbx.isSelected()) {
                     bookingstatus = "Ward Booking";
                 }
-                if (jTextField36.getText().equalsIgnoreCase("") || jTextField11.getText().equalsIgnoreCase("") || jTextField5.getText().equalsIgnoreCase("")) {
+                if (patientNumberTxt.getText().equalsIgnoreCase("") || jTextField11.getText().equalsIgnoreCase("") || unitNumberTxt.getText().equalsIgnoreCase("")) {
                     javax.swing.JOptionPane.showMessageDialog(this, "You need to enter the patient Information", "Comfirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
                     if (jButton1.getText().equalsIgnoreCase("Update Booking")) {
 
-                        java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("UPDATE pb_bookings set appointment_date='" + datePicker1.getDate() + "' where patient_no='" + jTextField36.getText() + "' and appointment_date>current_date ");
+                        java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("UPDATE pb_bookings set appointment_date='" + datePicker1.getDate() + "' where patient_no='" + patientNumberTxt.getText() + "' and appointment_date>current_date ");
                         System.out.println(datePicker1.getDate());
-                        System.out.println(jTextField36.getText());
+                        System.out.println(patientNumberTxt.getText());
 
                         pstmt1.executeUpdate();
 
                     } else {
 
-                        if (jCheckBox1.isSelected()) {
+                        if (searchOutPatientChkbx.isSelected()) {
 
                             java.sql.Statement ps114 = connectDB.createStatement();
                             java.sql.ResultSet rst114 = ps114.executeQuery("SELECT COUNT(patient_no) FROM pb_bookings WHERE "
@@ -1338,7 +1353,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
                                 bookings = rst1141.getInt(1);
                             }
                         } else {
-                            if (jCheckBox2.isSelected()) {
+                            if (searchInPatientChkbx.isSelected()) {
                                 java.sql.Statement ps114 = connectDB.createStatement();
                                 java.sql.ResultSet rst114 = ps114.executeQuery("SELECT COUNT(patient_no) FROM pb_bookings WHERE "
                                         + "clinic ILIKE '" + jComboBox4.getSelectedItem() + "' AND appointment_date = '" + datePicker1.getDate() + "'  AND patient_source = 'IP'");
@@ -1351,7 +1366,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
                                     bookings = rst1141.getInt(1);
                                 }
                             } else {
-                                if (newBooking.isSelected()) {
+                                if (newBookingChkbx.isSelected()) {
                                     java.sql.Statement ps114 = connectDB.createStatement();
                                     java.sql.ResultSet rst114 = ps114.executeQuery("SELECT COUNT(patient_no) FROM pb_bookings WHERE "
                                             + "clinic ILIKE '" + jComboBox4.getSelectedItem() + "' AND appointment_date = '" + datePicker1.getDate() + "'  AND patient_source = 'NP'");
@@ -1392,7 +1407,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
                                         pstmt.setTimestamp(5, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
                                         pstmt.setString(6, billNo);
                                         pstmt.setDate(7, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                                        pstmt.setString(8, jTextField36.getText());
+                                        pstmt.setString(8, patientNumberTxt.getText());
                                         pstmt.setString(9, user);
                                         pstmt.setString(10, jTextField1.getText());
                                         pstmt.setObject(11, jTextField2.getText());
@@ -1400,7 +1415,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
                                         pstmt.setObject(13, jTextField3.getText());
                                         pstmt.setObject(14, bookingType);
                                         pstmt.setObject(15, bookingstatus);
-                                        pstmt.setObject(16, jTextField5.getText());
+                                        pstmt.setObject(16, unitNumberTxt.getText());
                                         pstmt.executeUpdate();
                                     }
                                 }
@@ -1415,7 +1430,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
                     jLabel7.setForeground(java.awt.Color.blue);
                     jLabel7.setText("");
                     jTextPane1.setText("");
-                    jTextField36.setText("");
+                    patientNumberTxt.setText("");
                     jTextField1.setText("");
                     jTextField11.setText("");
 
@@ -1440,7 +1455,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
 
             }
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "The Patient NO : " + jTextField36.getText() + " has an active Booking No " + bookingNO + "", null, javax.swing.JOptionPane.ERROR_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, "The Patient NO : " + patientNumberTxt.getText() + " has an active Booking No " + bookingNO + "", null, javax.swing.JOptionPane.ERROR_MESSAGE);
         }
 
 // Add your handling code here:
@@ -1468,30 +1483,30 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4CaretUpdate
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void searchOutPatientChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchOutPatientChkbxActionPerformed
         jTextField3.setText("OP");
 // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_searchOutPatientChkbxActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void searchInPatientChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInPatientChkbxActionPerformed
         jTextField3.setText("IP");
 // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_searchInPatientChkbxActionPerformed
 
-    private void newBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBookingActionPerformed
+    private void newBookingChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBookingChkbxActionPerformed
         jTextField3.setText("NP");
         // TODO add your handling code here:
-    }//GEN-LAST:event_newBookingActionPerformed
+    }//GEN-LAST:event_newBookingChkbxActionPerformed
 
-    private void jCheckBox9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox9ActionPerformed
-        if (jCheckBox9.isSelected()) {
+    private void rescheduleBookingChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rescheduleBookingChkbxActionPerformed
+        if (rescheduleBookingChkbx.isSelected()) {
             jButton1.setText("Update Booking");
         } else {
             jButton1.setText("Save Booking");
         }
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox9ActionPerformed
+    }//GEN-LAST:event_rescheduleBookingChkbxActionPerformed
 
     private void servicesTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_servicesTableKeyPressed
         // TODO add your handling code here:
@@ -1512,18 +1527,18 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_theatreBookingItemStateChanged
 
-    private void wardbookingItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_wardbookingItemStateChanged
-        if (wardbooking.isSelected() == true) {
+    private void wardBookingChkbxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_wardBookingChkbxItemStateChanged
+        if (wardBookingChkbx.isSelected() == true) {
             jComboBox4.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, ""
                     + "SELECT '0SELECT' UNION (select distinct ward_name  from hp_wards ORDER BY 1 asc)  order by 1"));
         }
-    }//GEN-LAST:event_wardbookingItemStateChanged
+    }//GEN-LAST:event_wardBookingChkbxItemStateChanged
 
-    private void newBookingItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_newBookingItemStateChanged
-        if (newBooking.isSelected() == true) {
+    private void newBookingChkbxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_newBookingChkbxItemStateChanged
+        if (newBookingChkbx.isSelected() == true) {
             jComboBox4.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '0SELECT' UNION (SELECT Clinics FROM pb_clinics WHERE patients_per_day > 0 ORDER BY 1 asc)  order by 1"));
         }
-    }//GEN-LAST:event_newBookingItemStateChanged
+    }//GEN-LAST:event_newBookingChkbxItemStateChanged
 
     private void searchservicetxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchservicetxtCaretUpdate
         if (searchservicetxt.getText().length() > 3) {
@@ -1576,6 +1591,14 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void patientNumberTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientNumberTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_patientNumberTxtActionPerformed
+
+    private void wardBookingChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wardBookingChkbxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_wardBookingChkbxActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -1588,13 +1611,6 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton9;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox31;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox9;
     private javax.swing.JComboBox jComboBox11;
     private javax.swing.JComboBox jComboBox4;
     private javax.swing.JDialog jDialog1;
@@ -1618,31 +1634,38 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JDialog jSearchDialog1;
-    private javax.swing.JPanel jSearchPanel1;
-    private javax.swing.JScrollPane jSearchScrollPane1;
-    private javax.swing.JTable jSearchTable1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField111;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField36;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JComboBox mainserviceCMBX;
-    private javax.swing.JCheckBox newBooking;
-    private javax.swing.JCheckBox oldbooking;
+    private javax.swing.JCheckBox newBookingChkbx;
+    private javax.swing.JCheckBox normalBookingChkbx;
+    private javax.swing.JCheckBox oldBookingChkbx;
+    private javax.swing.JTextField patientNumberTxt;
+    private javax.swing.JDialog patientSearchDialog;
+    private javax.swing.JPanel patientSearchPanel;
+    private javax.swing.JScrollPane patientSearchScrollPane;
+    private javax.swing.JTable patientSearchTable;
+    private javax.swing.JTextField patientSearchTxt;
+    private javax.swing.JCheckBox rescheduleBookingChkbx;
     private javax.swing.JButton searchButton;
+    private javax.swing.JCheckBox searchByNameChkbx;
+    private javax.swing.JCheckBox searchByNoChkbx;
+    private javax.swing.JCheckBox searchInPatientChkbx;
+    private javax.swing.JCheckBox searchOutPatientChkbx;
     private javax.swing.JTextField searchservicetxt;
     private javax.swing.JTable serviceSearchTable;
     private javax.swing.JTable servicesTable;
     private javax.swing.JCheckBox theatreBooking;
-    private javax.swing.JCheckBox wardbooking;
+    private javax.swing.JTextField unitNumberTxt;
+    private javax.swing.JCheckBox urgentBookingChkbx;
+    private javax.swing.JCheckBox wardBookingChkbx;
     // End of variables declaration//GEN-END:variables
 }

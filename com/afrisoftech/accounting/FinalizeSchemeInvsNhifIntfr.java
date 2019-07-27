@@ -25,7 +25,7 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
     private String discglAcc;
     double sam = 0.0;
     double ledgerAmount = 0.0;
-    double determineBill =0.0;
+    double determineBill = 0.0;
 
     public FinalizeSchemeInvsNhifIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
@@ -2666,7 +2666,7 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                 }
             }
         }
-        
+
         /*
          * float nhifDiff = 0; float net = 0; float refund =
          * java.lang.Float.parseFloat(jTextField24.getText()); float bill =
@@ -2711,15 +2711,11 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
 
                     for (int i = 0; i < selectedRows.length; i++) {
 
-
-
                         javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) schemeInvoicingTable.getModel();
 
                         defTableModel.removeRow(selectedRows[i]);
 
                     }
-
-
 
                 } else {
 
@@ -2779,7 +2775,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
             jSearchTable13.setShowHorizontalLines(false);
             jSearchScrollPane13.setViewportView(jSearchTable13);
 
-
         }         // Add your handling code here:
     }//GEN-LAST:event_jTextField1113CaretUpdate
 
@@ -2792,7 +2787,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
     private void searchButton11bClicked() {
 
         System.out.println("Showing dialog");
-
 
         java.awt.Point point = this.schemeInvoicingJscrl.getLocationOnScreen();
 
@@ -2916,7 +2910,7 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
         String date = null;
         String cat = null;
         String code = null;
-        
+
         patientRefundTxt.setText("0.00");
         claimNumberTxt.setText("");
         schemeCardNumberTxt.setText("");
@@ -2936,8 +2930,8 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
 
         try {
             admissionDatePicker.setDate(sdf.parse(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 3).toString()));
-            if(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 4) != null && patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 4) != ""){
-            dischargeDatePicker.setDate(sdf.parse(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 4).toString()));
+            if (patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 4) != null && patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 4) != "") {
+                dischargeDatePicker.setDate(sdf.parse(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 4).toString()));
             }
         } catch (java.text.ParseException pe) {
             pe.printStackTrace();
@@ -2945,7 +2939,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
         }
         //jTextField21.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 2).toString());
         //jTextField71.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 3).toString());
-
 
         try {
             double noofDays = 0.00;
@@ -2996,10 +2989,9 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
             while (rss11.next()) {
                 // jTextField2.setText(rss1.getObject(1).toString());
                 billTotalTxt.setText(dbObject.getDBObject(rss11.getObject(1), "0.00"));
-               
+
             }
-            
-            
+
 //            java.sql.Statement pss11sam = connectDB.createStatement();
 //            java.sql.ResultSet rss11sam = pss11sam.executeQuery("select round(sum(debit-credit),2),round(sum(credit-debit),2) from hp_patient_card where patient_no = '" + patientNumberTxt.getText() + "' AND visit_id = '" + visitIDTxt.getText() + "' AND (invoice_no NOT LIKE 'I%' OR invoice_no NOT LIKE 'O%')");
 //            while (rss11sam.next()) {
@@ -3013,39 +3005,37 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
 //                }
 //            }
 //0166479
-
             java.sql.Statement pss11s = connectDB.createStatement();
             java.sql.ResultSet rss11s = pss11s.executeQuery("select round(sum(debit-credit),2),round(sum(credit-debit),2) from hp_patient_card where patient_no = '" + patientNumberTxt.getText() + "' AND visit_id = '" + visitIDTxt.getText() + "' AND (invoice_no NOT LIKE 'I%' OR invoice_no NOT LIKE 'O%')");
             while (rss11s.next()) {
                 sam = rss11s.getDouble(1);
-               
+
             }
 
-            
             java.sql.Statement pstDeposit = connectDB.createStatement();
             java.sql.ResultSet rsetDeposit = pstDeposit.executeQuery("select round(sum(credit-debit),2) from ac_ledger where patient_no = '" + patientNumberTxt.getText() + "' AND voucher_no = '" + visitIDTxt.getText() + "' AND transaction_type='Unutilized patient deposit' ");
-            while (rsetDeposit.next()){
+            while (rsetDeposit.next()) {
                 ledgerAmount = rsetDeposit.getDouble(1); //java.lang.Double.valueOf(dbObject.getDBObject(rsetDeposit.getObject(1), "0.00"));
                 totalDepositsTxt.setText(dbObject.getDBObject(rsetDeposit.getObject(1), "0.00"));
             }
-            determineBill = ledgerAmount-sam;
-            if(ledgerAmount>0){
-                if(determineBill>0){
-                System.out.println("deposit - patient card is "+determineBill);
-                patientRefundTxt.setText(java.lang.String.valueOf(determineBill));
-                netBillValueTxt.setText("0.00");
-                
-            }else if(determineBill<0){
-            netBillValueTxt.setText(dbObject.getDBObject((java.lang.String.valueOf(sam-ledgerAmount)), "0.00").toString());
-            System.out.println("ledger amount "+ledgerAmount+" sum from card " +sam+" Difference is" +(sam-ledgerAmount));
-            }else if(determineBill==0){
-            netBillValueTxt.setText("0.00"); 
-            System.out.println("Bill is equal " +ledgerAmount);
-            determineBill = ledgerAmount;
-            System.out.println("Bill is equal " +determineBill);
-            }
-            }else{
-             netBillValueTxt.setText(dbObject.getDBObject((java.lang.String.valueOf(sam)), "0.00").toString());   
+            determineBill = ledgerAmount - sam;
+            if (ledgerAmount > 0) {
+                if (determineBill > 0) {
+                    System.out.println("deposit - patient card is " + determineBill);
+                    patientRefundTxt.setText(java.lang.String.valueOf(determineBill));
+                    netBillValueTxt.setText("0.00");
+
+                } else if (determineBill < 0) {
+                    netBillValueTxt.setText(dbObject.getDBObject((java.lang.String.valueOf(sam - ledgerAmount)), "0.00").toString());
+                    System.out.println("ledger amount " + ledgerAmount + " sum from card " + sam + " Difference is" + (sam - ledgerAmount));
+                } else if (determineBill == 0) {
+                    netBillValueTxt.setText("0.00");
+                    System.out.println("Bill is equal " + ledgerAmount);
+                    determineBill = ledgerAmount;
+                    System.out.println("Bill is equal " + determineBill);
+                }
+            } else {
+                netBillValueTxt.setText(dbObject.getDBObject((java.lang.String.valueOf(sam)), "0.00").toString());
             }
         } catch (java.sql.SQLException sqlex) {
             sqlex.printStackTrace();
@@ -3066,11 +3056,10 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
         }
         this.populateTable2(patientNumberTxt.getText());
 
-
         patientSearchDialog.dispose();   // Add your handling code here:
     }//GEN-LAST:event_patientSearchTableMouseClicked
     private void populateTable2(java.lang.String patient_no) {
- 
+
         int i = 0;
         int j = 0;
         try {
@@ -3085,7 +3074,7 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                 java.sql.Statement stmtTable1 = connectDB.createStatement();
                 java.sql.Statement stmtTable11 = connectDB.createStatement();
 
-               java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select "
+                java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select "
                         + "main_service,sum(debit-credit) as amount FROM hp_patient_card "
                         + "WHERE patient_no ='" + patientNumberTxt.getText() + "' AND "
                         + "(invoice_no NOT ILIKE 'O%' OR invoice_no NOT ILIKE 'I%')  AND "
@@ -3101,19 +3090,16 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                     i++;
 
                 }
- 
+
             }
 
-
-
         } catch (java.sql.SQLException sqlExec) {
-            
+
             sqlExec.printStackTrace();
 
             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
 
         }
-
 
     }
     private void patientSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_patientSearchTxtCaretUpdate
@@ -3123,13 +3109,12 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                 + "WHERE ha.patient_no ILIKE '" + patientSearchTxt.getText() + "%' AND ha.check_out = false "
                 + "UNION ALL SELECT annual_no AS patient_no,patient_name,annual_no as visit_id,date_received,discharge_date, "
                 + "invoice_no FROM "
-                + "hp_mortuary WHERE annual_no ILIKE '" + patientSearchTxt.getText() + "%' AND discharged = false"                
+                + "hp_mortuary WHERE annual_no ILIKE '" + patientSearchTxt.getText() + "%' AND discharged = false"
                 + " ORDER BY 1"));
         //+ " ha.invoice_no notnull order by ha.patient_no,ha.date_admitted"));
 
         jSearchScrollPane21.setViewportView(patientSearchTable);
         System.out.println("Cannot sort out");
-
 
         // Add your handling code here:
     }//GEN-LAST:event_patientSearchTxtCaretUpdate
@@ -3150,8 +3135,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
             float refund = java.lang.Float.parseFloat(patientRefundTxt.getText());
             try {
 
-                
-                
                 java.sql.Statement stmtf = connectDB.createStatement();
                 java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open'");
                 while (rsetf.next()) {
@@ -3215,37 +3198,34 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                 String AccDesc = null;
                 String rnamex = null;
                 String rcodex = null;
-                
+
                 com.afrisoftech.lib.InvoiceNumbers.invoiceType = true;
                 int exitOption = javax.swing.JOptionPane.showConfirmDialog(this, "Do you want to Finalise Invoice?", "Caution before Finalising Invoice!", javax.swing.JOptionPane.YES_NO_CANCEL_OPTION);
 
                 if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
 
-
-
                     try {
                         connectDB.setAutoCommit(false);
-                java.sql.Statement pss = connectDB.createStatement();
-                java.sql.ResultSet rss = pss.executeQuery("select nextval('transaction_no_seq')");
+                        java.sql.Statement pss = connectDB.createStatement();
+                        java.sql.ResultSet rss = pss.executeQuery("select nextval('transaction_no_seq')");
 
-                while (rss.next()) {
-                    transNo = rss.getObject(1).toString();
-                }
-                java.sql.Statement stm12 = connectDB.createStatement();
-                java.sql.ResultSet rse12 = stm12.executeQuery("select code,activity from pb_activity where activity_category ='PR'");
-                while (rse12.next()) {
+                        while (rss.next()) {
+                            transNo = rss.getObject(1).toString();
+                        }
+                        java.sql.Statement stm12 = connectDB.createStatement();
+                        java.sql.ResultSet rse12 = stm12.executeQuery("select code,activity from pb_activity where activity_category ='PR'");
+                        while (rse12.next()) {
 
-                    patientAcc = rse12.getObject(1).toString();
-                    AccDesc = rse12.getObject(2).toString();
-                }
+                            patientAcc = rse12.getObject(1).toString();
+                            AccDesc = rse12.getObject(2).toString();
+                        }
                         java.sql.Statement pss1 = connectDB.createStatement();
                         if (payModeTxt.getText().toString().equalsIgnoreCase("Cash") && Double.parseDouble(netBillValueTxt.getText()) <= 1 && invoiceNoTxt.getText().equalsIgnoreCase("")) {
-                          //  java.sql.ResultSet rss1 = pss1.executeQuery("select 'I'||(nextval('ipinvoice_no_seq'))");
-                          //  while (rss1.next()) {
-                          //      invoiceNo = rss1.getObject(1).toString();
-                           
-                          ///  }
+                            //  java.sql.ResultSet rss1 = pss1.executeQuery("select 'I'||(nextval('ipinvoice_no_seq'))");
+                            //  while (rss1.next()) {
+                            //      invoiceNo = rss1.getObject(1).toString();
 
+                            ///  }
                             java.sql.Statement stmtf = connectDB.createStatement();
                             java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT ward,ward_code,bed_no FROM hp_admission where patient_no "
                                     + "ILIKE '" + patientNumberTxt.getText() + "%' AND visit_id = '" + visitIDTxt.getText() + "' "
@@ -3264,7 +3244,7 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                                 disno = rst.getObject(1).toString();
                                 UserName = rst.getObject(2).toString();
                             }
-                             invoiceNo = com.afrisoftech.lib.InvoiceNumbers.getInvoiceNumber();    
+                            invoiceNo = com.afrisoftech.lib.InvoiceNumbers.getInvoiceNumber();
                             this.invoiceNoTxt.setText(invoiceNo);
                             java.sql.PreparedStatement pstmtx = connectDB.prepareStatement("INSERT INTO hp_patient_discharge VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                             pstmtx.setString(1, patientNumberTxt.getText());
@@ -3278,10 +3258,10 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                             pstmtx.setString(9, "");
                             pstmtx.setString(10, "");
                             pstmtx.setString(11, "");
-                            if(java.lang.Double.valueOf(totalDepositsTxt.getText())>0){
-                            pstmtx.setDouble(12, determineBill);    
-                            }else{
-                            pstmtx.setDouble(12, java.lang.Double.valueOf(netBillValueTxt.getText()));
+                            if (java.lang.Double.valueOf(totalDepositsTxt.getText()) > 0) {
+                                pstmtx.setDouble(12, determineBill);
+                            } else {
+                                pstmtx.setDouble(12, java.lang.Double.valueOf(netBillValueTxt.getText()));
                             }
                             pstmtx.setString(13, "");
                             pstmtx.setString(14, invoiceNo);
@@ -3291,110 +3271,109 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                             pstmtx.setString(18, UserName);
                             pstmtx.executeUpdate();
 
-    if(Double.valueOf(totalDepositsTxt.getText())>0) {                                                      
-    java.sql.PreparedStatement pstmtx1 = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?::date, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
-    pstmtx1.setString(1, patientNumberTxt.getText());
-    pstmtx1.setObject(2, "Receipt");
-    pstmtx1.setObject(3, "");
-    pstmtx1.setObject(4, payModeTxt.getText().toString());
-    pstmtx1.setString(5, transNo);
-    pstmtx1.setString(7, schemeCardNumberTxt.getText());
-    pstmtx1.setString(6, "");
-    pstmtx1.setString(8, claimNumberTxt.getText().toString());
-    pstmtx1.setString(9, "");
-    pstmtx1.setObject(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dischargeDatePicker.getDate()));//expiry date
-    pstmtx1.setString(11, "");
-    //if(determineBill)
-    if(java.lang.Double.valueOf(totalDepositsTxt.getText())>0){
-    pstmtx1.setDouble(13, determineBill);    
-    }else{
-    pstmtx1.setDouble(13, java.lang.Double.valueOf(netBillValueTxt.getText()));
-    }
-    //pstmtx1.setDouble(13, determineBill);//credit
-    pstmtx1.setDouble(12, 0.0);//debit
-    pstmtx1.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dischargeDatePicker.getDate()));
-    pstmtx1.setObject(15, patientAcc);
-    pstmtx1.setObject(16, AccDesc);
-    //}
-    pstmtx1.setDouble(17, 1);
-    pstmtx1.setObject(18, "");
-    pstmtx1.setBoolean(19, true);
-    pstmtx1.setString(20, "Receipt");
-    pstmtx1.setBoolean(21, true);
-    pstmtx1.setString(22, AccDesc);
-    if (patientNumberTxt.getText().startsWith("INT") || patientNumberTxt.getText().startsWith("BID")) {
-        pstmtx1.setString(23, patientNumberTxt.getText());
-    } else {
-        pstmtx1.setString(23, visitid);
-    }
-    pstmtx1.setString(24, user);
-    pstmtx1.setString(25, jTextField14.getText());
+                            if (Double.valueOf(totalDepositsTxt.getText()) > 0) {
+                                java.sql.PreparedStatement pstmtx1 = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?::date, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
+                                pstmtx1.setString(1, patientNumberTxt.getText());
+                                pstmtx1.setObject(2, "Receipt");
+                                pstmtx1.setObject(3, "");
+                                pstmtx1.setObject(4, payModeTxt.getText().toString());
+                                pstmtx1.setString(5, transNo);
+                                pstmtx1.setString(7, schemeCardNumberTxt.getText());
+                                pstmtx1.setString(6, "");
+                                pstmtx1.setString(8, claimNumberTxt.getText().toString());
+                                pstmtx1.setString(9, "");
+                                pstmtx1.setObject(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dischargeDatePicker.getDate()));//expiry date
+                                pstmtx1.setString(11, "");
+                                //if(determineBill)
+                                if (java.lang.Double.valueOf(totalDepositsTxt.getText()) > 0) {
+                                    pstmtx1.setDouble(13, determineBill);
+                                } else {
+                                    pstmtx1.setDouble(13, java.lang.Double.valueOf(netBillValueTxt.getText()));
+                                }
+                                //pstmtx1.setDouble(13, determineBill);//credit
+                                pstmtx1.setDouble(12, 0.0);//debit
+                                pstmtx1.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dischargeDatePicker.getDate()));
+                                pstmtx1.setObject(15, patientAcc);
+                                pstmtx1.setObject(16, AccDesc);
+                                //}
+                                pstmtx1.setDouble(17, 1);
+                                pstmtx1.setObject(18, "");
+                                pstmtx1.setBoolean(19, true);
+                                pstmtx1.setString(20, "Receipt");
+                                pstmtx1.setBoolean(21, true);
+                                pstmtx1.setString(22, AccDesc);
+                                if (patientNumberTxt.getText().startsWith("INT") || patientNumberTxt.getText().startsWith("BID")) {
+                                    pstmtx1.setString(23, patientNumberTxt.getText());
+                                } else {
+                                    pstmtx1.setString(23, visitid);
+                                }
+                                pstmtx1.setString(24, user);
+                                pstmtx1.setString(25, jTextField14.getText());
 
-    pstmtx1.setString(26, "IP");
+                                pstmtx1.setString(26, "IP");
 
-    pstmtx1.setTimestamp(27, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));//new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+                                pstmtx1.setTimestamp(27, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));//new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
 
-    if (patientNumberTxt.getText().startsWith("INT") || patientNumberTxt.getText().startsWith("BID")) {
-        pstmtx1.setString(28, patientNumberTxt.getText());
-    } else {
-        pstmtx1.setString(28, visitIDTxt.getText());
-    }
-    pstmtx1.setString(29, receiptNo);
-    pstmtx1.executeUpdate();    
-                
+                                if (patientNumberTxt.getText().startsWith("INT") || patientNumberTxt.getText().startsWith("BID")) {
+                                    pstmtx1.setString(28, patientNumberTxt.getText());
+                                } else {
+                                    pstmtx1.setString(28, visitIDTxt.getText());
+                                }
+                                pstmtx1.setString(29, receiptNo);
+                                pstmtx1.executeUpdate();
 
-                    java.sql.Statement stm1211x = connectDB.createStatement();                            
-                    java.sql.ResultSet rse1211x = stm1211x.executeQuery("SELECT distinct description, activity_code FROM ac_ledger WHERE patient_no = '"+patientNumberTxt.getText()+"' and transaction_type = 'Unutilized patient deposit'");
-                    while (rse1211x.next()) {
-                        rnamex = rse1211x.getObject(1).toString();
-                        rcodex = rse1211x.getObject(2).toString();
-                    }
-    java.sql.PreparedStatement pstmt1q1 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
-                                    pstmt1q1.setObject(1,rcodex);
-                                    pstmt1q1.setString(2, rnamex);
-                                    pstmt1q1.setString(3,patientNumberTxt.getText());
-                                    pstmt1q1.setString(4,patientNameTxt.getText());
-                                    pstmt1q1.setObject(6, visitIDTxt.getText());
-                                    pstmt1q1.setString(5, "Patient deposit");
-                                    pstmt1q1.setString(7, visitid);
-                                   // if(inPatientRbtn.isSelected()){
-                                      pstmt1q1.setString(8, "IP");  
+                                java.sql.Statement stm1211x = connectDB.createStatement();
+                                java.sql.ResultSet rse1211x = stm1211x.executeQuery("SELECT distinct description, activity_code FROM ac_ledger WHERE patient_no = '" + patientNumberTxt.getText() + "' and transaction_type = 'Unutilized patient deposit'");
+                                while (rse1211x.next()) {
+                                    rnamex = rse1211x.getObject(1).toString();
+                                    rcodex = rse1211x.getObject(2).toString();
+                                }
+                                java.sql.PreparedStatement pstmt1q1 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
+                                pstmt1q1.setObject(1, rcodex);
+                                pstmt1q1.setString(2, rnamex);
+                                pstmt1q1.setString(3, patientNumberTxt.getText());
+                                pstmt1q1.setString(4, patientNameTxt.getText());
+                                pstmt1q1.setObject(6, visitIDTxt.getText());
+                                pstmt1q1.setString(5, "Patient deposit");
+                                pstmt1q1.setString(7, visitid);
+                                // if(inPatientRbtn.isSelected()){
+                                pstmt1q1.setString(8, "IP");
 //                                    }else{
 //                                     pstmt1q1.setString(8, "OP");   
 //                                    }
-                                    
-                                    pstmt1q1.setString(9,"");
-                                    pstmt1q1.setString(10,payModeTxt.getText().toString() );
-                                    pstmt1q1.setString(11, "");
-                                    pstmt1q1.setString(12, receiptNo);
-                                    pstmt1q1.setString(13, "");
-                                    pstmt1q1.setString(14, "Receipt");
-                                    pstmt1q1.setString(15, "Unutilized patient deposit");
-                                    pstmt1q1.setDouble(17, 0.00);
-                                    if(java.lang.Double.valueOf(totalDepositsTxt.getText())>0){
-                                    pstmt1q1.setDouble(16, determineBill);    
-                                    }else{
+
+                                pstmt1q1.setString(9, "");
+                                pstmt1q1.setString(10, payModeTxt.getText().toString());
+                                pstmt1q1.setString(11, "");
+                                pstmt1q1.setString(12, receiptNo);
+                                pstmt1q1.setString(13, "");
+                                pstmt1q1.setString(14, "Receipt");
+                                pstmt1q1.setString(15, "Unutilized patient deposit");
+                                pstmt1q1.setDouble(17, 0.00);
+                                if (java.lang.Double.valueOf(totalDepositsTxt.getText()) > 0) {
+                                    pstmt1q1.setDouble(16, determineBill);
+                                } else {
                                     pstmt1q1.setDouble(16, java.lang.Double.valueOf(netBillValueTxt.getText()));
-                                    }
-                                    pstmt1q1.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dischargeDatePicker.getDate()));
-                                    pstmt1q1.setString(19, transNo);
-                                    pstmt1q1.setBoolean(20, false);
-                                    pstmt1q1.setBoolean(21, true);
-                                    pstmt1q1.setBoolean(22, false);
-                                    pstmt1q1.setString(23, user);
-                                    pstmt1q1.setString(24, "");//cash point
-                                    pstmt1q1.setString(25, "");//shift
-                                    pstmt1q1.setTimestamp(26, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
-                                    pstmt1q1.executeUpdate();
-                            
- }          
-              System.out.println("The invoice is currently::"+invoiceNo);
+                                }
+                                pstmt1q1.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dischargeDatePicker.getDate()));
+                                pstmt1q1.setString(19, transNo);
+                                pstmt1q1.setBoolean(20, false);
+                                pstmt1q1.setBoolean(21, true);
+                                pstmt1q1.setBoolean(22, false);
+                                pstmt1q1.setString(23, user);
+                                pstmt1q1.setString(24, "");//cash point
+                                pstmt1q1.setString(25, "");//shift
+                                pstmt1q1.setTimestamp(26, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+                                pstmt1q1.executeUpdate();
+
+                            }
+                            System.out.println("The invoice is currently::" + invoiceNo);
                             java.sql.PreparedStatement pstmt12 = connectDB.prepareStatement("UPDATE hp_admission SET invoice_no = '" + invoiceNo + "',balance = '" + netBillValueTxt.getText() + "',discharge = true,check_out = true,date_admitted = '" + admissionDatePicker.getDate() + "',discharge_date = '" + dischargeDatePicker.getDate() + "'  WHERE patient_no = '" + this.patientNumberTxt.getText() + "' AND visit_id = '" + visitIDTxt.getText() + "'");
                             pstmt12.executeUpdate();
-                            
+
                             java.sql.PreparedStatement pstmt12f = connectDB.prepareStatement("UPDATE hp_mortuary SET invoice_no = '" + invoiceNo + "',check_out = true,date_received = '" + admissionDatePicker.getDate() + "',discharge_date = '" + dischargeDatePicker.getDate() + "'  WHERE annual_no = '" + this.patientNumberTxt.getText() + "'");
                             pstmt12f.executeUpdate();
-                            
+
                             System.out.println("UPDATE hp_patient_card set paid = true,invoice_no = '" + invoiceNo + "' WHERE patient_no = '" + patientNumberTxt.getText() + "' AND visit_id = '" + visitIDTxt.getText() + "' AND (invoice_no NOT ILIKE 'I%' or  invoice_no is null)");
                             java.sql.PreparedStatement pstmt21 = connectDB.prepareStatement("UPDATE hp_patient_card set paid = true,invoice_no = '" + invoiceNo + "' WHERE patient_no = '" + patientNumberTxt.getText() + "' AND visit_id = '" + visitIDTxt.getText() + "' AND (invoice_no NOT ILIKE 'I%' or  invoice_no is null)");
                             pstmt21.executeUpdate();
@@ -3402,26 +3381,23 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                             java.sql.PreparedStatement pstmt21x = connectDB.prepareStatement("UPDATE ac_doctors_ledger set pat_inv = '" + invoiceNo + "',paid = true WHERE patient_no = '" + patientNumberTxt.getText() + "' AND input_date between '" + admissionDatePicker.getDate() + "' AND '" + dischargeDatePicker.getDate() + "'");
                             pstmt21x.executeUpdate();
 
-                            java.sql.PreparedStatement pstmt12d = connectDB.prepareStatement("UPDATE hp_admission SET check_out = true,discharged_by = '"+UserName+"' WHERE patient_no = '" + this.patientNumberTxt.getText() + "' AND visit_id = '" + visitIDTxt.getText() + "'");
+                            java.sql.PreparedStatement pstmt12d = connectDB.prepareStatement("UPDATE hp_admission SET check_out = true,discharged_by = '" + UserName + "' WHERE patient_no = '" + this.patientNumberTxt.getText() + "' AND visit_id = '" + visitIDTxt.getText() + "'");
                             pstmt12d.executeUpdate();
-
 
                             javax.swing.JOptionPane.showMessageDialog(this, "Data Inserted Successfully \n  Inv. No. is " + invoiceNo + " ", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                         }
 
-                        java.sql.PreparedStatement pstmt12d = connectDB.prepareStatement("UPDATE hp_admission SET discharge = true,check_out = true,discharged_by = '"+UserName+"' WHERE patient_no = '" + this.patientNumberTxt.getText() + "' AND visit_id = '" + visitIDTxt.getText() + "'");
+                        java.sql.PreparedStatement pstmt12d = connectDB.prepareStatement("UPDATE hp_admission SET discharge = true,check_out = true,discharged_by = '" + UserName + "' WHERE patient_no = '" + this.patientNumberTxt.getText() + "' AND visit_id = '" + visitIDTxt.getText() + "'");
                         pstmt12d.executeUpdate();
-                        
-                        java.sql.PreparedStatement pstmt12da = connectDB.prepareStatement("UPDATE hp_mortuary SET check_out = true,discharged_by = '"+UserName+"' WHERE annual_no = '" + this.patientNumberTxt.getText() + "'");
+
+                        java.sql.PreparedStatement pstmt12da = connectDB.prepareStatement("UPDATE hp_mortuary SET check_out = true,discharged_by = '" + UserName + "' WHERE annual_no = '" + this.patientNumberTxt.getText() + "'");
                         pstmt12da.executeUpdate();
-                            
+
                         javax.swing.JOptionPane.showMessageDialog(this, "Patient [" + patientNameTxt.getText().toUpperCase() + "] released.\n  Inv. No. is " + invoiceNoTxt.getText() + ". The final invoice form and release letter shall be printed shortly.", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
-                         
-
                         java.sql.Statement ps1 = connectDB.createStatement();
-                        java.sql.ResultSet rst1 = ps1.executeQuery("SELECT discharge_no FROM hp_patient_discharge WHERE inv_no = '"+invoiceNoTxt.getText()+"'");
+                        java.sql.ResultSet rst1 = ps1.executeQuery("SELECT discharge_no FROM hp_patient_discharge WHERE inv_no = '" + invoiceNoTxt.getText() + "'");
                         while (rst1.next()) {
                             rst1.getObject(1).toString();
 
@@ -3429,23 +3405,26 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
 //                            UserName = rst1.getObject(2).toString();
                         }
                         //com.afrisoftech.txtreports.GatePassTxt policy = new com.afrisoftech.txtreports.GatePassTxt(connectDB, disno);
+                        if (invoiceNoTxt.getText().length() > 0) {
+                            com.afrisoftech.reports.FinalInPatientInvSummPdf policy = new com.afrisoftech.reports.FinalInPatientInvSummPdf();
+                            policy.FinalInPatientInvSummPdf(connectDB, invoiceNoTxt.getText());
+                        }
 
-                        com.afrisoftech.reports.FinalInPatientInvSummPdf policy = new com.afrisoftech.reports.FinalInPatientInvSummPdf();
-                        policy.FinalInPatientInvSummPdf(connectDB, invoiceNoTxt.getText());
-                        
-                        com.afrisoftech.reports.GatePassPdf policy2 = new com.afrisoftech.reports.GatePassPdf();
-                        policy2.GatePassPdf(connectDB, disno, invoiceNoTxt.getText(), patientNumberTxt.getText());
-                        
+                        if (disno.length() > 0 && invoiceNoTxt.getText().length() > 0 && patientNumberTxt.getText().length() > 0) {
+                            com.afrisoftech.reports.GatePassPdf policy2 = new com.afrisoftech.reports.GatePassPdf();
+                            policy2.GatePassPdf(connectDB, disno, invoiceNoTxt.getText(), patientNumberTxt.getText());
+                        }
+
                         java.sql.PreparedStatement pstmtNHIF = connectDB.prepareStatement("SELECT count(*) FROM hp_patient_card where patient_no = ? and visit_id = ? and main_service ilike '%nhif%'");
                         pstmtNHIF.setString(1, patientNumberTxt.getText());
                         pstmtNHIF.setString(2, visitIDTxt.getText());
                         java.sql.ResultSet rsetNHIF = pstmtNHIF.executeQuery();
                         int claimNumber = 0;
-                        while (rsetNHIF.next()){
+                        while (rsetNHIF.next()) {
                             claimNumber = rsetNHIF.getInt(1);
-                            if(claimNumber > 0){
+                            if (claimNumber > 0) {
                                 com.afrisoftech.reports.NHIFInvoicePdf nhifInvoice = new com.afrisoftech.reports.NHIFInvoicePdf();
-                                nhifInvoice.NHIFInvoicePdf(connectDB, invoiceNoTxt.getText(), admissionDatePicker.getDate(), dischargeDatePicker.getDate(), patientNumberTxt.getText(),"NHIF");
+                                nhifInvoice.NHIFInvoicePdf(connectDB, invoiceNoTxt.getText(), admissionDatePicker.getDate(), dischargeDatePicker.getDate(), patientNumberTxt.getText(), "NHIF");
                             }
                         }
 
@@ -3528,14 +3507,12 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
 
         }
 
-
         // Add your handling code here:
     }//GEN-LAST:event_jTable1KeyReleased
     public void tableModelTableChanged() {
         System.out.println("Calculating totals for table 11 and 2.");
         //        double resFloat = 0.00;
         double resFloat = 0.00;
-
 
         for (int i = 0; i < jTable1.getRowCount(); i++) {
 
@@ -3586,7 +3563,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
             jSearchTable.setShowHorizontalLines(false);
             jSearchScrollPane.setViewportView(jSearchTable);
 
-
         }  // Add your handling code here:
     }//GEN-LAST:event_jTextField111CaretUpdate
 
@@ -3622,7 +3598,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                     //jTextField2.setText(rset.getObject(2).toString());
                     jTextField7.setText(rset.getObject(3).toString());
 
-
                 }
             } catch (java.sql.SQLException sqe) {
                 sqe.printStackTrace();
@@ -3651,7 +3626,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                 while (rset11.next()) {
                     Code = dbObject.getDBObject(rset11.getObject(1), "-");
 
-
                     jTextField8.setText(Code);
                     jTextField4.setText(rset11.getObject(2).toString());
                 }
@@ -3674,7 +3648,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
 
                 System.out.println(sqlex.getMessage());
             }
-
 
             this.populateTable1(jTextField9.getText());
             //  jSearchTable2MouseClicked(evt);
@@ -3737,10 +3710,7 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
 
         }
 
-
         jTextField8.setText("");
-
-
 
         //  this.populateTable1(jTextField9.getText());        // Add your handling code here:
     }//GEN-LAST:event_jCheckBox2ActionPerformed
@@ -3804,15 +3774,11 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
 
                 for (int i = 0; i < selectedRows.length; i++) {
 
-
-
                     javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) jTable1.getModel();
 
                     defTableModel.removeRow(selectedRows[i]);
 
                 }
-
-
 
             } else {
 
@@ -3855,14 +3821,10 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
             } else {
                 jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select patient_no as pat_no,(second_name||' '||first_name||' '||last_name) as name,account_no AS staff_no,description AS description from hp_patient_register  where second_name||' '||first_name||' '||last_name ILIKE '" + jTextField113.getText() + "%' AND pay_mode = 'Scheme' order by second_name"));
 
-
                 jSearchTable2.setShowHorizontalLines(false);
                 jSearchScrollPane2.setViewportView(jSearchTable2);
 
-
-
             }
-
 
         } else {
 
@@ -3876,10 +3838,7 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                     jSearchTable2.setShowHorizontalLines(false);
                     jSearchScrollPane2.setViewportView(jSearchTable2);
 
-
-
                 }
-
 
             }
         }
@@ -4085,7 +4044,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
 
         }
 
-
     }
 
     private void jButton52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton52ActionPerformed
@@ -4098,7 +4056,7 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
     //    private void cmbox2ActionPerformed(java.awt.event.ActionEvent evt){
-       /*
+    /*
      * java.lang.Object selectedGuaran = cmbox2.getSelectedItem(); int i =
      * jTable1.getSelectedRow();
      *
@@ -4132,8 +4090,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
-
-
         try {
 
             java.sql.Statement stmtf = connectDB.createStatement();
@@ -4142,8 +4098,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                 periodFrom = rsetf.getDate(1);
                 periodTo = rsetf.getDate(2);
             }
-
-
 
             if (datePicker1.getDate().before(periodFrom) || datePicker3.getDate().after(periodTo)) {
                 javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -4188,7 +4142,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
 
                 double credits = java.lang.Double.parseDouble(jTextField15.getText());
 
-
                 java.sql.Statement stm1 = connectDB.createStatement();
                 if (jTextField12.getText().equalsIgnoreCase("-")) {
                     java.sql.Statement pss1 = connectDB.createStatement();
@@ -4199,7 +4152,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                 } else {
                     invoiceNo = jTextField12.getText();
                 }
-
 
                 java.sql.Statement pss12 = connectDB.createStatement();
                 java.sql.ResultSet rsts11 = pss12.executeQuery("select code,activity from pb_activity where activity_category ='PR'");
@@ -4226,7 +4178,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                     user = rsts111.getObject(1).toString();
                 }
                 for (int i = 0; i < jTable1.getRowCount(); i++) {
-
 
                     if (jTable1.getModel().getValueAt(i, 0) != null) {
 
@@ -4266,7 +4217,7 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                          * pstmt.setString(26,""); pstmt.executeUpdate();
                          *
                          */
-                      /* java.sql.PreparedStatement pstmt2 =
+ /* java.sql.PreparedStatement pstmt2 =
                          * connectDB.prepareStatement("insert into ac_ledger
                          * values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
                          * ?, ?, ?,?,?,?)");
@@ -4354,8 +4305,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                 pstmt.setString(35, jTextField2.getText());
                 pstmt.executeUpdate();
 
-
-
                 java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
                 pstmt1.setString(1, jTextField9.getText());
                 pstmt1.setObject(2, "Invoice");
@@ -4424,7 +4373,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                     pstmt1f.setString(23, invoiceNo);
                     pstmt1f.setString(24, user);
                     pstmt1f.executeUpdate();
-
 
                     java.sql.PreparedStatement pstmt2v = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
                     pstmt2v.setString(1, discode);
@@ -4600,7 +4548,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_nhifCategoryCmbxActionPerformed
     public java.lang.String getShiftNumber() {
 
-
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
@@ -4613,9 +4560,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                 shift_no = rset.getString(1);
 
             }
-
-
-
 
         } catch (java.sql.SQLException sqlExec) {
 
@@ -4653,9 +4597,6 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                 cash_no = rset.getString(1);
 
             }
-
-
-
 
         } catch (java.sql.SQLException sqlExec) {
 

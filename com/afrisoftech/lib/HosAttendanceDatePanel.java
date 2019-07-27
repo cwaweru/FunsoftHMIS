@@ -152,6 +152,7 @@ public class HosAttendanceDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         bodyPanel.add(selectPatientsPanel, gridBagConstraints);
 
+        servicePointChkbx.setSelected(true);
         servicePointChkbx.setText("Service Point");
         servicePointChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,8 +166,8 @@ public class HosAttendanceDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         bodyPanel.add(servicePointChkbx, gridBagConstraints);
 
-        clinicCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT initcap(clinics) FROM pb_clinics ORDER BY 1"));
-        clinicCmbx.setEnabled(false);
+        clinicCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '--ALL--' as clinics UNION SELECT DISTINCT initcap(clinics) as clinics FROM pb_clinics WHERE clinics IS NOT NULL ORDER BY 1"));
+        clinicCmbx.setSelectedItem("--ALL--");
         clinicCmbx.setSelectedItem(null);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -185,7 +186,7 @@ public class HosAttendanceDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         bodyPanel.add(paymentModeLbl, gridBagConstraints);
 
-        paymentModeCmbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL", "Cash", "Scheme" }));
+        paymentModeCmbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--ALL--", "Cash", "Scheme" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -203,8 +204,9 @@ public class HosAttendanceDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         bodyPanel.add(schemeNameLbl, gridBagConstraints);
 
-        schemeNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT scheme_name FROM ac_schemes ORDER BY 1")
+        schemeNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '--ALL--' as scheme_name UNION SELECT scheme_name FROM ac_schemes ORDER BY 1")
         );
+        schemeNameCmbx.setSelectedItem("--ALL--");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -287,7 +289,7 @@ public class HosAttendanceDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanel3, gridBagConstraints);
 
-        setSize(new java.awt.Dimension(465, 282));
+        setSize(new java.awt.Dimension(571, 333));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -355,7 +357,7 @@ public class HosAttendanceDatePanel extends javax.swing.JDialog {
                 Categ = "Old";
             } else {
                 if (this.allPatientsChkbx.isSelected()) {
-                    Categ = "All";
+                    Categ = "--All--";
                 }
             }
         }

@@ -1322,28 +1322,32 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
             while (rst112.next()) {
                 rct = rst112.getObject(1).toString();
             }
-            if (nodetails.equalsIgnoreCase("NoDetails")) {
 
-                com.afrisoftech.txtreports.NoDetReceiptsTxt policy = new com.afrisoftech.txtreports.NoDetReceiptsTxt(connectDB, patientNumberTxt.getText(), patientNameTxt.getText(), amountPaidTxt.getText(), receiptNo1, this.paymentModeCmbx.getSelectedItem().toString());
-            } else {
-                if (nodetails.equalsIgnoreCase("Codes")) {
-                    com.afrisoftech.txtreports.CodeReceiptsTxt policy = new com.afrisoftech.txtreports.CodeReceiptsTxt(connectDB, patientNumberTxt.getText(), patientNameTxt.getText(), amountPaidTxt.getText(), receiptNo1, this.paymentModeCmbx.getSelectedItem().toString());
+            if (receiptNo1.length() > 0) {
+                if (nodetails.equalsIgnoreCase("NoDetails")) {
 
+                    com.afrisoftech.txtreports.NoDetReceiptsTxt policy = new com.afrisoftech.txtreports.NoDetReceiptsTxt(connectDB, patientNumberTxt.getText(), patientNameTxt.getText(), amountPaidTxt.getText(), receiptNo1, this.paymentModeCmbx.getSelectedItem().toString());
                 } else {
-                    if (nodetails.equalsIgnoreCase("dept")) {
-                        com.afrisoftech.txtreports.ReceiptsPerDeptTxt policy = new com.afrisoftech.txtreports.ReceiptsPerDeptTxt(connectDB, patientNumberTxt.getText(), patientNameTxt.getText(), amountPaidTxt.getText(), receiptNo1, this.paymentModeCmbx.getSelectedItem().toString());
+                    if (nodetails.equalsIgnoreCase("Codes")) {
+                        com.afrisoftech.txtreports.CodeReceiptsTxt policy = new com.afrisoftech.txtreports.CodeReceiptsTxt(connectDB, patientNumberTxt.getText(), patientNameTxt.getText(), amountPaidTxt.getText(), receiptNo1, this.paymentModeCmbx.getSelectedItem().toString());
 
                     } else {
-                        if (nodetails.equalsIgnoreCase("Prints") && rct.equalsIgnoreCase("Pdf")) {
-                            com.afrisoftech.reports.ReceiptsReprintPdf policy = new com.afrisoftech.reports.ReceiptsReprintPdf();
-                            policy.ReceiptsReprintPdf(connectDB, receiptNo1);
-                        } else {
-                            com.afrisoftech.txtreports.GokReceiptsRTxt policy = new com.afrisoftech.txtreports.GokReceiptsRTxt(connectDB, clientReceipt, amountPaidTxt.getText(), receiptNo1, this.paymentModeCmbx.getSelectedItem().toString(), "0.00", "0.00", shiftNoTxt.getText());
+                        if (nodetails.equalsIgnoreCase("dept")) {
+                            com.afrisoftech.txtreports.ReceiptsPerDeptTxt policy = new com.afrisoftech.txtreports.ReceiptsPerDeptTxt(connectDB, patientNumberTxt.getText(), patientNameTxt.getText(), amountPaidTxt.getText(), receiptNo1, this.paymentModeCmbx.getSelectedItem().toString());
 
-                            //com.afrisoftech.txtreports.ReceiptsTxt policy = new com.afrisoftech.txtreports.ReceiptsTxt(connectDB, jTextField9.getText(),jTextField20.getText(),jTextField17.getText(),receiptNo1,this.jComboBox411.getSelectedItem().toString());
+                        } else {
+                            if (nodetails.equalsIgnoreCase("Prints") && rct.equalsIgnoreCase("Pdf")) {
+                                com.afrisoftech.reports.ReceiptsReprintPdf policy = new com.afrisoftech.reports.ReceiptsReprintPdf();
+                                policy.ReceiptsReprintPdf(connectDB, receiptNo1);
+                            } else {
+                                com.afrisoftech.txtreports.GokReceiptsRTxt policy = new com.afrisoftech.txtreports.GokReceiptsRTxt(connectDB, clientReceipt, amountPaidTxt.getText(), receiptNo1, this.paymentModeCmbx.getSelectedItem().toString(), "0.00", "0.00", shiftNoTxt.getText());
+
+                                //com.afrisoftech.txtreports.ReceiptsTxt policy = new com.afrisoftech.txtreports.ReceiptsTxt(connectDB, jTextField9.getText(),jTextField20.getText(),jTextField17.getText(),receiptNo1,this.jComboBox411.getSelectedItem().toString());
+                            }
                         }
                     }
                 }
+
             }
 
         } catch (java.sql.SQLException sq) {
@@ -1919,11 +1923,14 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
                                     rct = rst112x.getObject(1).toString();
                                 }
                                 if (rct.equalsIgnoreCase("Pdf")) {
-                                    com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
-                                    policy.ReceiptsPdf(connectDB, receiptNo2);
+                                    if (receiptNo2.length() > 0) {
+                                        com.afrisoftech.reports.ReceiptsPdf policy = new com.afrisoftech.reports.ReceiptsPdf();
+                                        policy.ReceiptsPdf(connectDB, receiptNo2);
+                                    }
                                 } else {
-                                    com.afrisoftech.txtreports.GokReceiptsTxt policy = new com.afrisoftech.txtreports.GokReceiptsTxt(connectDB, patientNameTxt.getText(), amountPaidTxt.getText(), receiptNo2, this.paymentModeCmbx.getSelectedItem().toString(), amountPaidTxt.getText(), changeTxt.getText(), shiftNoTxt.getText(), unitNumberTxt.getText());
-
+                                    if (receiptNo2.length() > 0) {
+                                        com.afrisoftech.txtreports.GokReceiptsTxt policy = new com.afrisoftech.txtreports.GokReceiptsTxt(connectDB, patientNameTxt.getText(), amountPaidTxt.getText(), receiptNo2, this.paymentModeCmbx.getSelectedItem().toString(), amountPaidTxt.getText(), changeTxt.getText(), shiftNoTxt.getText(), unitNumberTxt.getText());
+                                    }
                                 }
                                 connectDB.commit();
                                 connectDB.setAutoCommit(true);

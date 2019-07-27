@@ -500,8 +500,8 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             java.sql.Statement st1 = connectDB.createStatement();
                             //java.sql.ResultSet rset = st.executeQuery("SELECT DISTINCT COUNT(patient_no) from hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND comments ilike 'new' AND TRIM(gender) ilike 'MALE' AND clinic ILIKE 'OPD%'");
                             //java.sql.ResultSet rset1 = st1.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND comments ilike 'old' AND TRIM(gender) ilike 'MALE' AND clinic ILIKE 'OPD%'");
-                            java.sql.ResultSet rset = st.executeQuery("SELECT DISTINCT COUNT(patient_no) from hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND comments ilike 'new' AND TRIM(gender) ilike 'MALE' AND (clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
-                            java.sql.ResultSet rset1 = st1.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND comments ilike 'old' AND TRIM(gender) ilike 'MALE' AND (clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
+                            java.sql.ResultSet rset = st.executeQuery("SELECT DISTINCT COUNT(patient_no) from hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND comments ilike 'new' AND TRIM(gender) ilike 'MALE' AND (clinic ILIKE 'OUTPATIENT%' OR clinic ILIKE 'OPD%' OR  clinic ILIKE 'MCH')");
+                            java.sql.ResultSet rset1 = st1.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND comments ilike 'old' AND TRIM(gender) ilike 'MALE' AND (clinic ILIKE 'OUTPATIENT%' OR  clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
                             while (rset.next()) {
                                 while (rset1.next()) {
                                     newCount = 0;
@@ -530,8 +530,8 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                             java.sql.Statement st21 = connectDB.createStatement();
                             java.sql.Statement st12 = connectDB.createStatement();
-                            java.sql.ResultSet rset2 = st21.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND comments ilike 'new' AND TRIM(gender) ilike 'FEMALE' AND (clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
-                            java.sql.ResultSet rset12 = st12.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND comments ilike 'old' AND TRIM(gender) ilike 'FEMALE' AND (clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
+                            java.sql.ResultSet rset2 = st21.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND comments ilike 'new' AND TRIM(gender) ilike 'FEMALE' AND (clinic ILIKE 'OUTPATIENT%' OR  clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
+                            java.sql.ResultSet rset12 = st12.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) >= 5 AND comments ilike 'old' AND TRIM(gender) ilike 'FEMALE' AND (clinic ILIKE 'OUTPATIENT%' OR  clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
                             while (rset2.next()) {
                                 while (rset12.next()) {
                                     newCount = 0;
@@ -560,8 +560,8 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                             java.sql.Statement st212 = connectDB.createStatement();
                             java.sql.Statement st122 = connectDB.createStatement();
-                            java.sql.ResultSet rset22 = st212.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date  BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) < 5 AND comments ilike 'new' AND TRIM(gender) ilike 'MALE' AND (clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
-                            java.sql.ResultSet rset122 = st122.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date  BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) < 5 AND comments ilike 'old' AND TRIM(gender) ilike 'MALE' AND (clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
+                            java.sql.ResultSet rset22 = st212.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date  BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) < 5 AND comments ilike 'new' AND TRIM(gender) ilike 'MALE' AND (clinic ILIKE 'OUTPATIENT%' OR  clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
+                            java.sql.ResultSet rset122 = st122.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date  BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) < 5 AND comments ilike 'old' AND TRIM(gender) ilike 'MALE' AND (clinic ILIKE 'OUTPATIENT%' OR  clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
                             while (rset22.next()) {
                                 while (rset122.next()) {
                                     newCount = 0;
@@ -590,8 +590,8 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
 
                             java.sql.Statement st2121 = connectDB.createStatement();
                             java.sql.Statement st1221 = connectDB.createStatement();
-                            java.sql.ResultSet rset221 = st2121.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date  BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) < 5 AND comments ilike 'new' AND TRIM(gender) ilike 'FEMALE' AND (clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
-                            java.sql.ResultSet rset1221 = st1221.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date  BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) < 5 AND comments ilike 'old' AND TRIM(gender) ilike 'FEMALE' AND (clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
+                            java.sql.ResultSet rset221 = st2121.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date  BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) < 5 AND comments ilike 'new' AND TRIM(gender) ilike 'FEMALE' AND (clinic ILIKE 'OUTPATIENT%' OR  clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
+                            java.sql.ResultSet rset1221 = st1221.executeQuery("SELECT DISTINCT COUNT(patient_no) FROM hp_patient_visit WHERE date::date  BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::numeric(10,2) < 5 AND comments ilike 'old' AND TRIM(gender) ilike 'FEMALE' AND (clinic ILIKE 'OUTPATIENT%' OR  clinic ILIKE 'OPD%' OR clinic ILIKE 'MCH')");
                             while (rset221.next()) {
                                 while (rset1221.next()) {
                                     newCount = 0;
