@@ -31,6 +31,23 @@ public class TableColumnTotal {
         return columnTotal;
         
     }
+    
+    public static double getTableColumnTotalByQtyUnitPrice(javax.swing.JTable table, int qtyColumn, int unitColumn) {
+        
+        columnTotal = 0.00;
+        
+        for(int i = 0; i < table.getRowCount(); i++){
+            
+            if(table.getValueAt(i, qtyColumn) != null && table.getValueAt(i, unitColumn) != null ){
+                
+                columnTotal = columnTotal + (java.lang.Double.parseDouble(table.getValueAt(i, qtyColumn).toString().replace(",", "")) * java.lang.Double.parseDouble(table.getValueAt(i, qtyColumn).toString().replace(",", "")) );
+                
+            }
+        }
+        
+        return columnTotal;
+        
+    }
      public static double getGrossTableColumnTotal(javax.swing.JTable table, int column2Total) {
         
         columnTotal = 0.00;

@@ -393,7 +393,7 @@ public class HosStoresWithCategory extends javax.swing.JDialog {
             {
                 com.afrisoftech.hospinventory.MainStoresAuditPdf policy = new com.afrisoftech.hospinventory.MainStoresAuditPdf();
                 
-                policy.MainStoresAuditPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),jComboBox1.getSelectedItem().toString());
+                policy.MainStoresAuditPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),jComboBox1.getSelectedItem().toString(),"");
                 
                 
                 //this.dispose();

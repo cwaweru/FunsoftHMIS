@@ -23,7 +23,7 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
 
     javax.swing.JSpinner endDateSpinner = null;
 
-    /**
+    /** 
      * Creates new form DatePanel
      */
     public HosInPatientDatePanel(java.awt.Frame parent, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB, boolean modal, int repName, java.sql.Connection connectDb) {

@@ -41,7 +41,7 @@ public class RcvBranchRequisintfr extends javax.swing.JInternalFrame {
         initComponents();
         setFixedColumns.DisallowReordering(itemSearchtbl);
 
-        recipientStoreCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' union select distinct stores from store_allocation where user_name = current_user and type ilike 'Raise Requisitions'"));
+        recipientStoreCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' union select distinct stores from store_allocation where user_name ilike current_user and type ilike 'Raise Requisitions'"));
     }
 
     /**

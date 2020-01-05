@@ -555,6 +555,18 @@ this.dispose();        // Add your handling code here:
                 
             } break;
             
+             case 222222:
+                
+            {
+                com.afrisoftech.reports.SchemeStatementAccPdf policy = new com.afrisoftech.reports.SchemeStatementAccPdf();
+                
+                policy.NHIFStatementAccPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),jTextField36.getText(),this.jTextField2.getText());
+                
+                
+                this.dispose();
+                
+            } break;
+            
                 case 42:
                 
             {

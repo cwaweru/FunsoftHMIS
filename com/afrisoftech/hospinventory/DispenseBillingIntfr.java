@@ -2418,7 +2418,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(prescriptionsTabbedPane, gridBagConstraints);
 
-        setBounds(0, 0, 826, 447);
+        setBounds(0, 0, 1257, 447);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
@@ -3084,7 +3084,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
     private void printPrescriptionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printPrescriptionBtnActionPerformed
         if (prescriptionNoTxt.getText().length() > 1) {
-
+            
             com.afrisoftech.txtreports.PrescriptionTxt policy = new com.afrisoftech.txtreports.PrescriptionTxt(connectDB, patientNoTxt.getText(), nameTxt.getText(), prescriptionNoTxt.getText(), paymentModeTxt.getText());
 
             com.afrisoftech.reports.PrescPdf policy1 = new com.afrisoftech.reports.PrescPdf();

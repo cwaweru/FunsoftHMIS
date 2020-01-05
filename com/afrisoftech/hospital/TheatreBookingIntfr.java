@@ -1000,7 +1000,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
                         + "       patient_source, booking_type, type_of_booking, unit_no\n"
                         + "  FROM pb_bookings where patient_no='" + patientNumberTxt.getText() + "' and appointment_date>current_date ");
                 while (rsetf.next()) {
-                   // periodFrom = rsetf.getDate(1);
+                    // periodFrom = rsetf.getDate(1);
                     // periodTo = rsetf.getDate(2);
                     datePicker1.setDate(rsetf.getDate(7));
                     System.out.println(rsetf.getDate(7));
@@ -1170,7 +1170,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
             try {
                 float floatCol2 = java.lang.Float.parseFloat(servicesTable.getValueAt(servicesTable.getSelectedRow(), 1).toString());
 
-               // float floatCol3 = java.lang.Float.parseFloat(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+                // float floatCol3 = java.lang.Float.parseFloat(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
                 float resVal = floatCol2;
 
                 java.lang.Float resFloat = new java.lang.Float(resVal);
@@ -1305,6 +1305,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
             String user = null;
             String bookingType = null;
             String bookingstatus = null;
+            boolean booked = true;
 
             try {
                 connectDB.setAutoCommit(false);
@@ -1338,11 +1339,11 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
 
                     } else {
 
-                        if (searchOutPatientChkbx.isSelected()) {
+//                        if (searchOutPatientChkbx.isSelected()) {
 
                             java.sql.Statement ps114 = connectDB.createStatement();
                             java.sql.ResultSet rst114 = ps114.executeQuery("SELECT COUNT(patient_no) FROM pb_bookings WHERE "
-                                    + "clinic ILIKE '" + jComboBox4.getSelectedItem() + "' AND appointment_date = '" + datePicker1.getDate() + "' AND patient_source = 'OP'");
+                                    + "clinic ILIKE '" + jComboBox4.getSelectedItem() + "' AND appointment_date = '" + datePicker1.getDate() + "' ");
                             while (rst114.next()) {
                                 patients = rst114.getInt(1);
                             }
@@ -1352,36 +1353,36 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
                             while (rst1141.next()) {
                                 bookings = rst1141.getInt(1);
                             }
-                        } else {
-                            if (searchInPatientChkbx.isSelected()) {
-                                java.sql.Statement ps114 = connectDB.createStatement();
-                                java.sql.ResultSet rst114 = ps114.executeQuery("SELECT COUNT(patient_no) FROM pb_bookings WHERE "
-                                        + "clinic ILIKE '" + jComboBox4.getSelectedItem() + "' AND appointment_date = '" + datePicker1.getDate() + "'  AND patient_source = 'IP'");
-                                while (rst114.next()) {
-                                    patients = rst114.getInt(1);
-                                }
-                                java.sql.Statement ps1141 = connectDB.createStatement();
-                                java.sql.ResultSet rst1141 = ps1141.executeQuery("SELECT ip_number FROM pb_clinics WHERE clinics ILIKE '" + jComboBox4.getSelectedItem() + "'");
-                                while (rst1141.next()) {
-                                    bookings = rst1141.getInt(1);
-                                }
-                            } else {
-                                if (newBookingChkbx.isSelected()) {
-                                    java.sql.Statement ps114 = connectDB.createStatement();
-                                    java.sql.ResultSet rst114 = ps114.executeQuery("SELECT COUNT(patient_no) FROM pb_bookings WHERE "
-                                            + "clinic ILIKE '" + jComboBox4.getSelectedItem() + "' AND appointment_date = '" + datePicker1.getDate() + "'  AND patient_source = 'NP'");
-                                    while (rst114.next()) {
-                                        patients = rst114.getInt(1);
-                                    }
-                                    java.sql.Statement ps1141 = connectDB.createStatement();
-                                    java.sql.ResultSet rst1141 = ps1141.executeQuery("SELECT discharged_no FROM pb_clinics WHERE clinics ILIKE '" + jComboBox4.getSelectedItem() + "'");
-                                    while (rst1141.next()) {
-                                        bookings = rst1141.getInt(1);
-                                    }
-                                }
-                            }
-                        }
-                        {
+//                        } else {
+//                            if (searchInPatientChkbx.isSelected()) {
+//                                java.sql.Statement ps114 = connectDB.createStatement();
+//                                java.sql.ResultSet rst114 = ps114.executeQuery("SELECT COUNT(patient_no) FROM pb_bookings WHERE "
+//                                        + "clinic ILIKE '" + jComboBox4.getSelectedItem() + "' AND appointment_date = '" + datePicker1.getDate() + "'  AND patient_source = 'IP'");
+//                                while (rst114.next()) {
+//                                    patients = rst114.getInt(1);
+//                                }
+//                                java.sql.Statement ps1141 = connectDB.createStatement();
+//                                java.sql.ResultSet rst1141 = ps1141.executeQuery("SELECT ip_number FROM pb_clinics WHERE clinics ILIKE '" + jComboBox4.getSelectedItem() + "'");
+//                                while (rst1141.next()) {
+//                                    bookings = rst1141.getInt(1);
+//                                }
+//                            } else {
+//                                if (newBookingChkbx.isSelected()) {
+//                                    java.sql.Statement ps114 = connectDB.createStatement();
+//                                    java.sql.ResultSet rst114 = ps114.executeQuery("SELECT COUNT(patient_no) FROM pb_bookings WHERE "
+//                                            + "clinic ILIKE '" + jComboBox4.getSelectedItem() + "' AND appointment_date = '" + datePicker1.getDate() + "'  AND patient_source = 'NP'");
+//                                    while (rst114.next()) {
+//                                        patients = rst114.getInt(1);
+//                                    }
+//                                    java.sql.Statement ps1141 = connectDB.createStatement();
+//                                    java.sql.ResultSet rst1141 = ps1141.executeQuery("SELECT discharged_no FROM pb_clinics WHERE clinics ILIKE '" + jComboBox4.getSelectedItem() + "'");
+//                                    while (rst1141.next()) {
+//                                        bookings = rst1141.getInt(1);
+//                                    }
+//                                }
+//                            }
+//                        }
+                        if (patients < bookings) {
                             java.sql.Statement ps11 = connectDB.createStatement();
                             java.sql.ResultSet rst11 = ps11.executeQuery("select nextval('booking_no_seq')");
                             while (rst11.next()) {
@@ -1393,6 +1394,14 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
                             while (rst11x.next()) {
                                 user = rst11x.getObject(1).toString();
                             }
+                            int patCount =0;
+                            java.sql.Statement ps114c = connectDB.createStatement();
+                            java.sql.ResultSet rst114c = ps114c.executeQuery("SELECT COUNT(patient_no) FROM pb_bookings WHERE "
+                                    + "clinic ILIKE '" + jComboBox4.getSelectedItem() + "' AND appointment_date = '" + datePicker1.getDate() + "' and patient_no = '"+patientNumberTxt.getText()+"' ");
+                            while (rst114c.next()) {
+                                patCount = rst114c.getInt(1);
+                            }
+                            if (patCount < 1) {
                             if (bookingstatus.length() > 0) {
                                 for (int i = 0; i < servicesTable.getRowCount(); i++) {
                                     if (servicesTable.getModel().getValueAt(i, 0) != null) {
@@ -1420,11 +1429,20 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
                                     }
                                 }
                             }
+                        }else{
+                                booked = false;
+                                javax.swing.JOptionPane.showMessageDialog(this, " Patient already booked for the selected clinic ", null, javax.swing.JOptionPane.ERROR_MESSAGE);
+                            
+                        }
+                        } else {
+                            booked = false;
+                            javax.swing.JOptionPane.showMessageDialog(this, "The Clinic is Fully Booked. No of patients booked : "+patients+". Clinic Capacity "+bookings, null, javax.swing.JOptionPane.ERROR_MESSAGE);
                         }
                     }
 
                     connectDB.commit();
                     connectDB.setAutoCommit(true);
+                    if(booked)
                     javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully", "Comfirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                     jLabel7.setForeground(java.awt.Color.blue);

@@ -459,10 +459,10 @@ public class DetailedCashSummaryPdf implements java.lang.Runnable {
                                     java.sql.Statement st5 = connectDB.createStatement();
 
 
-                                    java.sql.ResultSet rset = st5.executeQuery("select TRIM(initcap(description)),sum(quantity)::numeric(10,0),sum(debit-credit) from ac_cash_collection where date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND activity_code = '" + listofAct[i].toString() + "' AND transaction_type not ilike 'Bank%' group by description order by description");
+                                    java.sql.ResultSet rset = st5.executeQuery("select TRIM(initcap(description)),sum(quantity)::numeric(10,0),sum(debit-credit) from ac_cash_collection where date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +" AND activity_code = '" + listofAct[i].toString() + "' AND transaction_type not ilike 'Bank%' group by description order by description");
                                     java.sql.Statement st52 = connectDB.createStatement();
 
-                                    java.sql.ResultSet rset2 = st52.executeQuery("select count(description) from ac_cash_collection where date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND activity_code  = '" + listofAct[i].toString() + "' AND transaction_type not ilike 'Bank%' group by description order by description");
+                                    java.sql.ResultSet rset2 = st52.executeQuery("select count(description) from ac_cash_collection where date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND activity_code  = '" + listofAct[i].toString() + "'  AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +" AND transaction_type not ilike 'Bank%' group by description order by description");
                                     while (rset2.next()) {
                                         descr = rset2.getInt(1);
                                     }
@@ -719,7 +719,7 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
             java.sql.Statement stmt1 = connectDB.createStatement();
 
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT date FROM ac_cash_collection where date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND transaction_type not ilike 'Bank%' ORDER BY date");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT date FROM ac_cash_collection where date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +" AND transaction_type not ilike 'Bank%' ORDER BY date");
 
             while (rSet1.next()) {
 
@@ -750,7 +750,7 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
             java.sql.Statement stmt1 = connectDB.createStatement();
 
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT activity_code FROM ac_cash_collection where date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND transaction_type not ilike 'Bank%' AND cash_point not ilike 'Phar%' ORDER BY activity_code");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT activity_code FROM ac_cash_collection where date BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +" AND transaction_type not ilike 'Bank%' AND cash_point not ilike 'Phar%' ORDER BY activity_code");
 
             while (rSet1.next()) {
 

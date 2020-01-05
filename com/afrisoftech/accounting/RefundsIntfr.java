@@ -1331,7 +1331,7 @@ public class RefundsIntfr extends javax.swing.JInternalFrame {
             } else if (this.debtorscheckbx.isSelected() == true) {
                 receiptSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                         + "SELECT distinct receipt_no, dealer  FROM ac_debtors where receipt_no ilike '" + receiptSearchTxt.getText() + "%'"
-                        + " and  transaction_type ilike 'Receipts' and date::date > (current_date - 60) ORDER BY 1 ASC"));
+                        + " and transaction_type ilike 'Debt Payments' and date::date > (current_date - 60) ORDER BY 1 ASC"));
                 receiptSearchScrollPane.setViewportView(receiptSearchTable);
             } else if (this.otherscheckbx.isSelected() == true) {
                 receiptSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""

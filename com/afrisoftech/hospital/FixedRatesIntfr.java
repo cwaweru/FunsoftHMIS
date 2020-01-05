@@ -40,8 +40,7 @@ public class FixedRatesIntfr extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-
+        jTable1 = new com.afrisoftech.dbadmin.JTable();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
@@ -96,113 +95,113 @@ public class FixedRatesIntfr extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Service Code", "Item/Service", "Normal Rate", "Special Rate", "OtherPrices", "Waiting Time (Mins)"
+                "Service Code", "Item/Service", "Normal Rate", "Special Rate", "OtherPrices", "Waiting Time (Mins)", "Direct Cash Payment", "OID"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Integer.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -210,7 +209,6 @@ public class FixedRatesIntfr extends javax.swing.JInternalFrame {
             }
         });
         jTable1.setShowHorizontalLines(false);
-
         javax.swing.table.TableColumn column = null;
         for (int i = 0; i < 6; i++) {
             column = jTable1.getColumnModel().getColumn(i);
@@ -226,14 +224,13 @@ public class FixedRatesIntfr extends javax.swing.JInternalFrame {
 
             }
         }
-
         jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jTable1AncestorMoved(evt);
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jTable1AncestorMoved(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -448,7 +445,8 @@ public class FixedRatesIntfr extends javax.swing.JInternalFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         try {
             connectDB.setAutoCommit(false);
-            java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("DELETE from pb_operating_parameters WHERE code = '" + jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0).toString() + "' AND main_service ilike  '" + jComboBox1.getSelectedItem() + "'");
+            java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("DELETE from pb_operating_parameters WHERE code = '" + jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0).toString() + "' AND main_service ilike  '" + jComboBox1.getSelectedItem() + "' AND oid = '" + jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 7).toString() + "' ");
+            System.err.println("DELETE from pb_operating_parameters WHERE code = '" + jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0).toString() + "' AND main_service ilike  '" + jComboBox1.getSelectedItem() + "' AND oid = '" + jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 7).toString() + "'");
             pstmt31.executeUpdate();
 
             connectDB.commit();
@@ -611,7 +609,7 @@ public class FixedRatesIntfr extends javax.swing.JInternalFrame {
         }
         int i = 0;
         jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT code,service_type,"
-                + "rate as general,anaesthetist_rate as special_rate, other_prices, waiting_time FROM "
+                + "rate as general,anaesthetist_rate as special_rate, other_prices, waiting_time,direct_cash_payment,oid FROM "
                 + "pb_operating_parameters WHERE gl_account ILIKE '" + jTextField1.getText() + "' ORDER BY service_type"));
         jButton1.setText("Update");  // Add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -634,12 +632,13 @@ public class FixedRatesIntfr extends javax.swing.JInternalFrame {
                 if (jTable1.getModel().getValueAt(i, 1) != null) {
 
                     if (jButton1.getText().equalsIgnoreCase("Update")) {
-                        java.sql.PreparedStatement pstmt311 = connectDB.prepareStatement("UPDATE pb_operating_parameters SET service_type =  ? ,rate = ? ,anaesthetist_rate = ?, waiting_time = ?, other_prices = ? WHERE code = ? AND gl_account = ?");
+                        java.sql.PreparedStatement pstmt311 = connectDB.prepareStatement("UPDATE pb_operating_parameters SET service_type =  ? ,rate = ? ,anaesthetist_rate = ?, waiting_time = ?, other_prices = ?,direct_cash_payment = ? WHERE code = ? AND gl_account = ?");
                         pstmt311.setString(1, jTable1.getValueAt(i, 1).toString());
                         pstmt311.setDouble(2, java.lang.Double.valueOf(jTable1.getValueAt(i, 2).toString()));
                         pstmt311.setDouble(3, java.lang.Double.valueOf(jTable1.getValueAt(i, 3).toString()));
-                        pstmt311.setString(6, jTable1.getValueAt(i, 0).toString());
-                        pstmt311.setString(7, jTextField1.getText());
+                        pstmt311.setBoolean(6, Boolean.valueOf(jTable1.getValueAt(i, 6).toString()));
+                        pstmt311.setString(7, jTable1.getValueAt(i, 0).toString());
+                        pstmt311.setString(8, jTextField1.getText());
                         pstmt311.setDouble(4, java.lang.Double.valueOf(jTable1.getValueAt(i, 5).toString()));
                         pstmt311.setDouble(5, java.lang.Double.valueOf(jTable1.getValueAt(i, 4).toString()));
                          //pstmt311.setDouble(7, java.lang.Double.valueOf(jTable1.getValueAt(i, 4).toString()));

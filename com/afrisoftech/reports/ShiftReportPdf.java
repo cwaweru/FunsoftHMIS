@@ -435,7 +435,7 @@ public class ShiftReportPdf implements java.lang.Runnable {
                             phrase = new Phrase("Balance " + ks, pFontHeader);
 
                             table.addCell(phrase);
-                            java.sql.ResultSet rsetTotals1 = st2.executeQuery("SELECT SUM(debit),sum(credit),sum(debit-credit) from ac_cash_collection WHERE shift_no = '" + memNo + "'");
+                            java.sql.ResultSet rsetTotals1 = st2.executeQuery("SELECT SUM(debit),sum(credit),sum(debit-credit) from ac_cash_collection WHERE shift_no = '" + memNo + "' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +" ");
 
                             for (int i = 0; i < receiptNos.length; i++) {
 
@@ -777,14 +777,14 @@ public class ShiftReportPdf implements java.lang.Runnable {
                             // table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
                             // table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP);
                             java.sql.Statement st3s = connectDB.createStatement();
-                            java.sql.ResultSet setTotals1 = st3s.executeQuery("SELECT SUM(debit - credit) from ac_cash_collection WHERE  shift_no = '" + memNo + "'  ");
+                            java.sql.ResultSet setTotals1 = st3s.executeQuery("SELECT SUM(debit - credit) from ac_cash_collection WHERE  shift_no = '" + memNo + "' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"   ");
 
                             for (int x = 0; x < listofAct1.length; x++) {
 
                                 java.sql.Statement sts = connectDB.createStatement();
                                 java.sql.Statement stsw = connectDB.createStatement();
 
-                                java.sql.ResultSet rsets = sts.executeQuery("select upper(activity_code),SUM(debit-credit) from ac_cash_collection where shift_no = '" + memNo + "'  AND activity_code = '" + listofAct1[x].toString() + "' GROUP BY activity_code ");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                                java.sql.ResultSet rsets = sts.executeQuery("select upper(activity_code),SUM(debit-credit) from ac_cash_collection where shift_no = '" + memNo + "'  AND activity_code = '" + listofAct1[x].toString() + "' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  GROUP BY activity_code ");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
                                 java.sql.ResultSet rsetsw = stsw.executeQuery("select upper(activity) from pb_activity where code = '" + listofAct1[x].toString() + "' ");
                                 table.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
                                 table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
@@ -1164,7 +1164,8 @@ public class ShiftReportPdf implements java.lang.Runnable {
             //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
             java.sql.Statement stmt1 = connectDB.createStatement();
 
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT receipt_no FROM ac_cash_collection where shift_no = '" + memNo + "' order by receipt_no");
+            System.err.println("SELECT DISTINCT receipt_no FROM ac_cash_collection where shift_no = '" + memNo + "' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  order by receipt_no");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT receipt_no FROM ac_cash_collection where shift_no = '" + memNo + "' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  order by receipt_no");
 
             while (rSet1.next()) {
 
@@ -1173,8 +1174,9 @@ public class ShiftReportPdf implements java.lang.Runnable {
             }
 
         } catch (java.sql.SQLException sqlExec) {
-
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
+            
 
         }
 

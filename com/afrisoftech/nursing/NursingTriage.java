@@ -30,6 +30,8 @@ import org.jdalbey.timechooser.TimeChooser;
 import test.testing;
 import com.afrisoftech.lib.DBObject;
 import java.util.Objects;
+import static java.util.regex.Pattern.CASE_INSENSITIVE;
+import org.jdesktop.swingx.decorator.ColorHighlighter;
 
 /**
  *
@@ -82,12 +84,32 @@ public class NursingTriage extends javax.swing.JInternalFrame {
         System.out.println("the ward is this one " + ward);
         initComponents();
         this.setTitle(ward);
+        
+         
+//         com.afrisoftech.dbadmin.JTable predicateTable1 = (com.afrisoftech.dbadmin.JTable) occupancyTable;
+//            predicateTable1.setHighlighterPipeline(predicateTable1, new org.jdesktop.swing.decorator.PatternHighlighter[]{
+//                new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.ORANGE, java.awt.Color.BLACK, "Normal", 5, 5),
+//                new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.RED, java.awt.Color.BLACK, "Emergency", 5, 5)
+//            });
+
+java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = new java.util.Vector<org.jdesktop.swingx.decorator.Highlighter>(1, 1);
+        //org.jdesktop.swingx.decorator.Highlighter tableHighlighterArray[] ;// = new org.jdesktop.swingx.decorator.Highlighter()[];
+        com.afrisoftech.dbadmin.JXTable predicateTable = (com.afrisoftech.dbadmin.JXTable) occupancyTable;
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate = new org.jdesktop.swingx.decorator.PatternPredicate("Normal", 5, 5);
+        ColorHighlighter yellow = new ColorHighlighter(patternPredicate, Color.ORANGE, null, Color.ORANGE, null);
+        tableHighlighters.addElement(yellow);
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate1 = new org.jdesktop.swingx.decorator.PatternPredicate("Emergency", 5, 5);
+        ColorHighlighter pink = new ColorHighlighter(patternPredicate1, Color.RED, null, Color.RED, null);
+        tableHighlighters.add(pink);
+        // Highlighter shading = new ShadingColorHighlighter(new HighlightPredicate.ColumnHighlightPredicate(6));
+        ColorHighlighter tableHighlightersArray[] = new ColorHighlighter[]{yellow, pink};
+        predicateTable.setHighlighterPipeline(predicateTable, tableHighlightersArray);
 
         //
         occupancyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                + "SELECT patient_no AS Patient_No, name AS Name,comments as Patient_Visist,age,gender,urgency,nature,date::date,payment\n"
+                + "SELECT patient_no AS Patient_No, name AS Name,comments as Patient_Visist,age,gender,urgency,nature,date::date,payment,input_date::TIME(0) AS arrival_time\n"
                 + " From  hp_patient_visit   \n"
-                + " where date::date >= now()::date - 2 AND discharge is null ORDER BY 1"
+                + " where date::date >= now()::date - 2 AND discharge is null ORDER BY 6,8,10 "
         ));
 //                occupancytable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
 //                + "SELECT patient_no AS Patient_No, name AS Name,comments as Patient_Visist,age,gender,urgency,nature,date::date,payment\n"
@@ -95,6 +117,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
 //                + " where date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(headerDatePicker.getDate()) + "'  and hp_patient_visit.clinic='" + ward + "'   AND discharge is null ORDER BY 1"
 //        ));
         occupyno.setText("No of Patients in " + ward + " is :" + occupancyTable.getRowCount());
+       
 
         coluorTable();
         litrestxt.setEnabled(false);
@@ -515,7 +538,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
         jPanel39 = new javax.swing.JPanel();
         jSeparator3 = new javax.swing.JSeparator();
         jScrollPane11 = new javax.swing.JScrollPane();
-        occupancyTable = new com.afrisoftech.dbadmin.JTable();
+        occupancyTable = new com.afrisoftech.dbadmin.JXTable();
         occupyno = new javax.swing.JLabel();
         currentOccupRbtn = new javax.swing.JCheckBox();
         urgencycmbx = new javax.swing.JComboBox();
@@ -1605,7 +1628,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 1;
         jPanel3.add(jLabel46, gridBagConstraints);
 
-        urgencyComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Normal", "Urgent" }));
+        urgencyComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Normal", "Emergency" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -9122,18 +9145,18 @@ public class NursingTriage extends javax.swing.JInternalFrame {
             pstmt.executeUpdate();
 
             ////update hp patient visit
-//            if (this.urgencyComboBox.getSelectedIndex() > 0) {
-//
-//                System.out.println("UPDATE hp_patient_visit"
-//                        + "   SET  urgency='" + urgencyComboBox.getSelectedItem() + "'"
-//                        + " WHERE patient_no='" + nameNoTxt.getText().trim() + "' and ip_no='OP' and input_date::date>='(" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(headerDatePicker.getDate()) + ")-2' ;");
-//
-//                java.sql.PreparedStatement pstmtupdate = connectDB.prepareStatement(
-//                        "UPDATE hp_patient_visit"
-//                        + "   SET  urgency='" + urgencyComboBox.getSelectedItem() + "'"
-//                        + " WHERE patient_no='" + nameNoTxt.getText().trim() + "' and ip_no='OP' and input_date::date>='(" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(headerDatePicker.getDate()) + ")-2' ;");
-//                pstmtupdate.executeUpdate();
-//            }
+            if (this.urgencyComboBox.getSelectedIndex() > 0) {
+
+                System.out.println("UPDATE hp_patient_visit"
+                        + "   SET  urgency='" + urgencyComboBox.getSelectedItem() + "'"
+                        + " WHERE patient_no='" + nameNoTxt.getText().trim() + "' and ip_no='OP' and input_date::date>='(" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(headerDatePicker.getDate()) + ")-1' ;");
+
+                java.sql.PreparedStatement pstmtupdate = connectDB.prepareStatement(
+                        "UPDATE hp_patient_visit"
+                        + "   SET  urgency='" + urgencyComboBox.getSelectedItem() + "'"
+                        + " WHERE patient_no='" + nameNoTxt.getText().trim() + "' and ip_no='OP' and input_date::date>='(" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(headerDatePicker.getDate()) + ")-1' ;");
+                pstmtupdate.executeUpdate();
+            }
             connectDB.commit();
             connectDB.setAutoCommit(true);
 
@@ -9925,7 +9948,7 @@ public class NursingTriage extends javax.swing.JInternalFrame {
             ));
             occupyno.setText("No of Patients in " + ward + " is :" + occupancyTable.getRowCount());
 
-            coluorTable();
+            //coluorTable();
         }
     }//GEN-LAST:event_currentOccupRbtnItemStateChanged
 
@@ -14240,44 +14263,50 @@ public class NursingTriage extends javax.swing.JInternalFrame {
     }
 
     private void coluorTable() {
-        com.afrisoftech.dbadmin.JTable predicateTable = (com.afrisoftech.dbadmin.JTable) occupancyTable;
-        com.afrisoftech.lib.DBObject dbObject = new com.afrisoftech.lib.DBObject();
-        try {
-            java.sql.PreparedStatement pstmtVector = connectDB.prepareStatement("SELECT distinct patient_no   FROM pb_doctors_request where requisition_no='X-RAY' and collected = true and paid=true and results=true  ");
-
-            java.sql.ResultSet rsetVector = pstmtVector.executeQuery();
-            predicateTable.setHighlighterPipeline(predicateTable, new org.jdesktop.swing.decorator.PatternHighlighter[]{
-                new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.PINK, java.awt.Color.BLACK, "triage", 6, 6, 0),
-                new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.PINK, java.awt.Color.BLACK, "Cons", 6, 6, 0),
-                new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.CYAN, java.awt.Color.BLACK, "Cons", 6, 6, 1)
-            });
-
-            while (rsetVector.next()) {
-
-                predicateTable.setHighlighterPipeline(predicateTable, new org.jdesktop.swing.decorator.PatternHighlighter[]{
-                    new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.MAGENTA, java.awt.Color.BLACK, dbObject.getDBObject(rsetVector.getString(1), ""), 0, 0, 3)});
-            }
-
-        } catch (Exception req) {
-            req.printStackTrace();
-
-        }
-        try {
-            java.sql.PreparedStatement pstmtVector = connectDB.prepareStatement(" "
-                    + "SELECT distinct patient_no   FROM pb_doctors_request where requisition_no='LAB' and collected = true and paid=true and results=true ");
-
-            java.sql.ResultSet rsetVector = pstmtVector.executeQuery();
-            while (rsetVector.next()) {
-
-                predicateTable.setHighlighterPipeline(predicateTable, new org.jdesktop.swing.decorator.PatternHighlighter[]{
-                    new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.GREEN, java.awt.Color.BLACK, dbObject.getDBObject(rsetVector.getString(1), ""), 0, 0, 2)
-
-                });
-            }
-        } catch (Exception req) {
-            req.printStackTrace();
-
-        }
+//        com.afrisoftech.dbadmin.JXTable predicateTable = (com.afrisoftech.dbadmin.JXTable) occupancyTable;
+//        com.afrisoftech.lib.DBObject dbObject = new com.afrisoftech.lib.DBObject();
+//        try {
+//            java.sql.PreparedStatement pstmtVector = connectDB.prepareStatement("SELECT distinct patient_no   FROM pb_doctors_request where requisition_no='X-RAY' and collected = true and paid=true and results=true  ");
+//
+////            java.sql.ResultSet rsetVector = pstmtVector.executeQuery();
+////            predicateTable.setHighlighterPipeline(predicateTable, new org.jdesktop.swingx.decorator.Highlighter[]{
+////                new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.PINK, java.awt.Color.BLACK, "triage", 6, 6, 0),
+////                new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.PINK, java.awt.Color.BLACK, "Cons", 6, 6, 0),
+////                new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.CYAN, java.awt.Color.BLACK, "Cons", 6, 6, 1)
+////            });
+//            
+//            
+//           
+//
+////            while (rsetVector.next()) {
+////
+////                predicateTable.setHighlighterPipeline(predicateTable, new org.jdesktop.swing.decorator.PatternHighlighter[]{
+////                    new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.MAGENTA, java.awt.Color.BLACK, dbObject.getDBObject(rsetVector.getString(1), ""), 0, 0, 3)});
+////            }
+//
+//        } catch (Exception req) {
+//            req.printStackTrace();
+//
+//        }
+//        
+//        
+//        
+//        try {
+//            java.sql.PreparedStatement pstmtVector = connectDB.prepareStatement(" "
+//                    + "SELECT distinct patient_no   FROM pb_doctors_request where requisition_no='LAB' and collected = true and paid=true and results=true ");
+//
+//            java.sql.ResultSet rsetVector = pstmtVector.executeQuery();
+//            while (rsetVector.next()) {
+//
+//                predicateTable.setHighlighterPipeline(predicateTable, new org.jdesktop.swing.decorator.PatternHighlighter[]{
+//                    new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.GREEN, java.awt.Color.BLACK, dbObject.getDBObject(rsetVector.getString(1), ""), 0, 0, 2)
+//
+//                });
+//            }
+//        } catch (Exception req) {
+//            req.printStackTrace();
+//
+//        }
     }
 
 }

@@ -31,4 +31,16 @@ public class DBObject {
         
     }
     
+    public static java.lang.String addColumnCondition(String column, String dataType){
+    
+        if(dataType.equalsIgnoreCase("Numeric")){
+            return column + " ~ '^([0-9]+[.]?[0-9]*|[.][0-9]+)$' " ;
+        }else if(dataType.equalsIgnoreCase("Text")){
+            return column + " !~ '^([0-9]+[.]?[0-9]*|[.][0-9]+)$' " ;
+        }else{
+           return "(" + column + " ~ '^([0-9]+[.]?[0-9]*|[.][0-9]+)$' OR " + column + " !~ '^([0-9]+[.]?[0-9]*|[.][0-9]+)$' )" ; 
+        }
+        
+    }
+    
 }

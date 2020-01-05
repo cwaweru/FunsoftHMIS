@@ -3491,7 +3491,7 @@ public class InvAmmendIntfr extends javax.swing.JInternalFrame {
                     originalInvoiceTable.setValueAt(rsetTable1.getObject(5), i, 4);
                     originalInvoiceTable.setValueAt(rsetTable1.getObject(6), i, 5);
 
-                    java.sql.ResultSet rsetTable111 = stmtTable111.executeQuery(" select gl_code from pricelist where service_type ILIKE '" + newInvoiceTable.getModel().getValueAt(i, 1).toString() + "%' UNION all select gl_account from pb_operating_parameters where service_type ILIKE '" + newInvoiceTable.getModel().getValueAt(i, 1).toString() + "%'");
+                    java.sql.ResultSet rsetTable111 = stmtTable111.executeQuery(" select gl_code from pricelist where trim(service_type) ILIKE '" + newInvoiceTable.getModel().getValueAt(i, 1).toString().trim() + "%'  UNION all select gl_account from pb_operating_parameters where trim(service_type) ILIKE '" + newInvoiceTable.getModel().getValueAt(i, 1).toString().trim() + "%'");
 
                     while (rsetTable111.next()) {
 
@@ -3818,7 +3818,7 @@ public class InvAmmendIntfr extends javax.swing.JInternalFrame {
                 pstmt.setBoolean(19, false);
                 pstmt.setString(20, user);
                 pstmt.setString(21, "");
-                pstmt.setDouble(22, java.lang.Double.valueOf(originalInvoiceAmountTxt.getText()));
+                pstmt.setDouble(22, java.lang.Double.valueOf(originalInvoiceAmountTxt.getText()) );
                 pstmt.setBoolean(23, false);
                 pstmt.setDouble(24, 0.00);
                 pstmt.setObject(25, "");

@@ -2060,41 +2060,46 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
                             rsetx1 = stmtTable1111.executeQuery("SELECT product_id FROM st_stock_prices WHERE ( upper(product) = '" + rsetTable1.getObject(3).toString().toUpperCase() + "' OR upper(product || ' ' || strength) = '" + rsetTable1.getObject(3).toString().toUpperCase() + "') AND gl_code = '" + rsetTable1x.getObject(1) + "' UNION "
                                     + "SELECT code FROM pb_operating_parameters WHERE upper(service_type) = '" + rsetTable1.getObject(3).toString().toUpperCase() + "' AND gl_account = '" + rsetTable1x.getObject(1) + "' ");
 
+                            double amount = rsetTable1.getDouble(5);
+                            double qty = rsetTable1.getDouble(4);
+                            double receipts = 0.00;
+                            double paidQty = 0.00;
                             while (rsetx.next()) {
-                                double amount = rsetTable1.getDouble(5);
-                                double receipts = rsetx.getDouble(1);
-                                double qty = rsetTable1.getDouble(4);
-                                double paidQty = rsetx.getDouble(2);
-                                if ((amount - receipts) == 0) {
-                                } else {
-                                    if (qty - paidQty > 0.00) {
 
-                                        System.out.println("Working at table row " + i);
-                                        billTable.setValueAt(rsetTable1.getObject(3), i, 0);
-                                        billTable.setValueAt(java.lang.Double.valueOf(qty - paidQty), i, 1);
-                                        billTable.setValueAt(java.lang.Double.valueOf((amount - receipts) / (qty - paidQty)), i, 2);
-                                        billTable.setValueAt(0.00, i, 3);
-                                        billTable.setValueAt(0.00, i, 4);
-                                        billTable.setValueAt(java.lang.Double.valueOf(amount - receipts), i, 5);
-                                        //jTable11.setValueAt(rsetTable1.getObject(5), i, 5);
-                                        billTable.setValueAt(rsetTable1x.getObject(1), i, 8);
-                                        billTable.setValueAt(rsetTable1.getObject(8), i, 10);
-                                        billTable.setValueAt(rsetTable1.getObject(9), i, 11);
-                                        String code = null;
-                                        while (rsetx1.next()) {
+                                receipts = rsetx.getDouble(1);
 
-                                            code = rsetx1.getObject(1).toString();
-                                            if (code != null) {
-                                                billTable.setValueAt(rsetx1.getObject(1), i, 9);
-                                            } else {
-                                                billTable.setValueAt('0', i, 9);
-                                            }
-                                            i++;
-                                        }
-                                    } //                i = i + i;
-                                }
-                                //            jTable1.setValueAt(rsetTable1.getObject(1), i, 0);
+                                paidQty = rsetx.getDouble(2);
                             }
+                            if ((amount - receipts) == 0) {
+                            } else {
+                                if (qty - paidQty > 0.00) {
+
+                                    System.out.println("Working at table row " + i);
+                                    billTable.setValueAt(rsetTable1.getObject(3), i, 0);
+                                    billTable.setValueAt(java.lang.Double.valueOf(qty - paidQty), i, 1);
+                                    billTable.setValueAt(java.lang.Double.valueOf((amount - receipts) / (qty - paidQty)), i, 2);
+                                    billTable.setValueAt(0.00, i, 3);
+                                    billTable.setValueAt(0.00, i, 4);
+                                    billTable.setValueAt(java.lang.Double.valueOf(amount - receipts), i, 5);
+                                    //jTable11.setValueAt(rsetTable1.getObject(5), i, 5);
+                                    billTable.setValueAt(rsetTable1x.getObject(1), i, 8);
+                                    billTable.setValueAt(rsetTable1.getObject(8), i, 10);
+                                    billTable.setValueAt(rsetTable1.getObject(9), i, 11);
+                                    String code = null;
+                                    while (rsetx1.next()) {
+
+                                        code = rsetx1.getObject(1).toString();
+                                        if (code != null) {
+                                            billTable.setValueAt(rsetx1.getObject(1), i, 9);
+                                        } else {
+                                            billTable.setValueAt('0', i, 9);
+                                        }
+                                        i++;
+                                    }
+                                } //                i = i + i;
+                            }
+                            //            jTable1.setValueAt(rsetTable1.getObject(1), i, 0);
+                            // }
                         }
 
                     }
@@ -2188,8 +2193,26 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
         if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
             if (mobilepayTxNoTxt.getText().length() > 0) {
                 if (com.afrisoftech.lib.MobilePayments.getTokenValue(connectDB, mobilepayTxNoTxt.getText()) >= Double.parseDouble(amountPaidTxt.getText())) {
+                    if (com.afrisoftech.lib.MobilePayments.isTokenAuthentic(connectDB, mobilepayTxNoTxt.getText())) {
 
-                    this.saveData();
+                        this.saveData();
+
+                    } else {
+
+                        String phoneNumber = "254714433693";
+
+                        //    if (com.afrisoftech.hospital.HospitalMain.getAbsoluteCompanyName().toUpperCase().contains("COAST")) {
+                        biz.systempartners.claims.SendSMS.SendSMS(phoneNumber, "Funsoft I-HMIS Messaging:\n\n" + "This is an alert for suspect token! Patient No.:" + patientNumberTxt.getText() + " Name: " + patientNameTxt.getText().toUpperCase() + "Token: " + mobilepayTxNoTxt.getText() + "\n\nFrom:\n" + com.afrisoftech.hospital.HospitalMain.getAbsoluteCompanyName().toUpperCase());
+
+                        String phoneNumberAdmin = "254721425877";
+
+                        if (com.afrisoftech.hospital.HospitalMain.getAbsoluteCompanyName().toUpperCase().contains("COAST")) {
+
+                            biz.systempartners.claims.SendSMS.SendSMS(phoneNumberAdmin, "Funsoft I-HMIS Messaging:\n\n" + "This is an alert for suspect token! Patient No.:" + patientNumberTxt.getText() + " Name: " + patientNameTxt.getText().toUpperCase() + "Token: " + mobilepayTxNoTxt.getText() + "\n\nFrom:\n" + com.afrisoftech.hospital.HospitalMain.getAbsoluteCompanyName().toUpperCase());
+
+                        }
+                    }
+
                 } else {
                     javax.swing.JOptionPane.showMessageDialog(this, "The token amount is exhausted!");
                 }
@@ -2782,7 +2805,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
     private void mobilepayTxSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_mobilepayTxSearchTxtCaretUpdate
 
         if (mobilepayTxSearchTxt.getText().length() > 5) {
-            mobilepayTxtSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_time::time(0), mobile_tx_id, account_no, date, paid_amount, upper(dealer) as client_name, journal_no as paybill_no, mobilepay_alert as processed FROM public.mobile_payments WHERE mobilepay_alert = false AND account_no ilike '%" + mobilepayTxSearchTxt.getText() + "%' AND date::date >= current_date - 5  ORDER BY account_no"));
+            mobilepayTxtSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_time::time(0), mobile_tx_id, account_no, date, paid_amount, upper(dealer) as client_name, journal_no as paybill_no, mobilepay_alert as processed FROM public.mobile_payments WHERE mobilepay_alert = false AND account_no ilike '%" + mobilepayTxSearchTxt.getText() + "%' AND ( date::date >= current_date - 1 OR mobile_tx_id IN (SELECT transaction_id FROM mobile_payament_activations WHERE date_active = current_date)) ORDER BY account_no"));
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_mobilepayTxSearchTxtCaretUpdate
@@ -3026,6 +3049,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
                         boolean dataSave = false;
                         java.sql.Statement stm121s = connectDB.createStatement();
                         java.sql.ResultSet rse121s = null;
+                        System.err.println("Auto commit status " + connectDB.getAutoCommit());
                         for (int i = 0; i < billTable.getRowCount(); i++) {
                             if (billTable.getModel().getValueAt(i, 6) != null && billTable.getModel().getValueAt(i, 0) != null && billTable.getModel().getValueAt(i, 7) != null) {
                                 if (billTable.getModel().getValueAt(i, 9) == null) {
@@ -3049,6 +3073,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
                                         priceCategory = rse121s.getObject(1).toString();
                                     }
                                 }
+                                System.err.println("Auto commit status 1 " + connectDB.getAutoCommit());
                                 double negative = java.lang.Double.valueOf(billTable.getValueAt(i, 6).toString());
                                 if (negative > 0) {
                                     java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT "
@@ -3128,6 +3153,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
                                             mainService = mainService;
                                         }
 
+                                        System.err.println("Auto commit status 2 " + connectDB.getAutoCommit());
                                         java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO "
                                                 + "ac_cash_collection VALUES(?,?,?,initcap(?),?,?, ?, initcap(?), "
                                                 + "initcap(?), ?, ?, ?, initcap(?), ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,"
@@ -3174,6 +3200,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
                                 dataSave = true;
                             }
                         }
+                        System.err.println("Auto commit status 4 " + connectDB.getAutoCommit());
                         if (dataSave) {
                             java.sql.PreparedStatement pstmtx = connectDB.prepareStatement("INSERT INTO hp_patient_card VALUES(?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
                             pstmtx.setString(1, patientNumberTxt.getText());
@@ -3313,6 +3340,8 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
                             connectDB.commit();
                             connectDB.setAutoCommit(true);
 
+                            System.err.println("Auto commit status 5 " + connectDB.getAutoCommit());
+
                             this.saveBtn.setEnabled(false);
 
                             dischargeRdbtn.setSelected(true);
@@ -3343,6 +3372,7 @@ public class InpatientRecpIntfr extends javax.swing.JInternalFrame {
 
         } catch (java.lang.Exception ex) {
             System.out.println(ex.getMessage());
+            ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
         }

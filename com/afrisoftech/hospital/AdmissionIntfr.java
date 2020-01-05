@@ -148,198 +148,199 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         ageTxt = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel12 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
+        admissionPanel = new javax.swing.JPanel();
+        urgencyPanel = new javax.swing.JPanel();
         hospitalCategoryChkbx = new javax.swing.JCheckBox();
         privateCategoryChkbx = new javax.swing.JCheckBox();
         patientUrgencyCMBX = new javax.swing.JComboBox();
-        jPanel101 = new javax.swing.JPanel();
+        admissionHeaderDetailPanel = new javax.swing.JPanel();
         newAdimissionRbtn = new javax.swing.JRadioButton();
         reAdmissionRbtn = new javax.swing.JRadioButton();
         createManualNumbersRbtn = new javax.swing.JRadioButton();
-        jPanel7 = new javax.swing.JPanel();
+        searchModelPanel = new javax.swing.JPanel();
         searchbyPatientNameChkbx = new javax.swing.JCheckBox();
         searchbyPatientNumberChkbx = new javax.swing.JCheckBox();
-        jPanel10 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        actionsPanel = new javax.swing.JPanel();
+        admitBtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         admitPrintBtn = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        reprintFileBtn = new javax.swing.JButton();
+        editReprintBtn = new javax.swing.JRadioButton();
         admissionsReportBtn = new javax.swing.JButton();
         jLabel33 = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel12 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jPanel17 = new javax.swing.JPanel();
-        jLabel38 = new javax.swing.JLabel();
+        admissionsTabbedPane = new javax.swing.JTabbedPane();
+        admissionsMainPanel = new javax.swing.JPanel();
+        bioDataPanel = new javax.swing.JPanel();
+        diagnosisScrollPane = new javax.swing.JScrollPane();
+        diagnosisTextPane = new javax.swing.JTextPane();
+        demographicsPanel = new javax.swing.JPanel();
+        religionLbl = new javax.swing.JLabel();
         religionCmbx = new javax.swing.JComboBox();
-        jLabel19 = new javax.swing.JLabel();
+        placeofBirthLbl = new javax.swing.JLabel();
         districtCmbx = new javax.swing.JComboBox();
-        jLabel39 = new javax.swing.JLabel();
+        locationLbl = new javax.swing.JLabel();
         locationTxt = new javax.swing.JTextField();
-        jLabel40 = new javax.swing.JLabel();
-        jTextField27 = new javax.swing.JTextField();
-        jLabel42 = new javax.swing.JLabel();
-        unitNumberTxt = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
+        nameofChiefLbl = new javax.swing.JLabel();
+        nameofChiefTxt = new javax.swing.JTextField();
+        nationalityLbl = new javax.swing.JLabel();
         nationalityCmbx = new javax.swing.JComboBox();
-        jLabel35 = new javax.swing.JLabel();
-        occupationCmbx = new javax.swing.JComboBox();
-        jLabel30 = new javax.swing.JLabel();
-        idPassportTxt = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
+        residencelbl = new javax.swing.JLabel();
         currentResidence = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        nokTelephoneTxt = new javax.swing.JTextField();
-        jPanel18 = new javax.swing.JPanel();
-        jPanel15 = new javax.swing.JPanel();
-        jLabel66 = new javax.swing.JLabel();
+        biodataSubPanel = new javax.swing.JPanel();
+        birthDatePanel = new javax.swing.JPanel();
+        birthDateLbl = new javax.swing.JLabel();
         datePickerYOB = new com.afrisoftech.lib.DatePicker();
-        jLabel36 = new javax.swing.JLabel();
+        patientAgeLbl = new javax.swing.JLabel();
         agelabel = new javax.swing.JLabel();
-        jLabel53 = new javax.swing.JLabel();
+        patientAgeInputLbl = new javax.swing.JLabel();
         ageYrsTxt = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jTextField361 = new javax.swing.JTextField();
-        searchButton1 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        opdNoLbl = new javax.swing.JLabel();
+        opdNoPanel = new javax.swing.JPanel();
+        opdNoTxt = new javax.swing.JTextField();
+        opdSearchButton = new javax.swing.JButton();
+        admissionNoPanel = new javax.swing.JPanel();
         admissionNumberTxt = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        admissionNolbl = new javax.swing.JLabel();
+        surNameLbl = new javax.swing.JLabel();
         surNameTxt = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
+        otherNamesLbl = new javax.swing.JLabel();
         firstNameTxt = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        jPanel13 = new javax.swing.JPanel();
+        genderLbl = new javax.swing.JLabel();
+        genderpanel = new javax.swing.JPanel();
         maleChkbx = new javax.swing.JCheckBox();
         femaleChkbx = new javax.swing.JCheckBox();
-        jPanel4113 = new javax.swing.JPanel();
+        maritalStatusPanel = new javax.swing.JPanel();
         singleMaritalChkbx = new javax.swing.JCheckBox();
         marriedMaritalChkbx = new javax.swing.JCheckBox();
         divorcedMaritalChkbx = new javax.swing.JCheckBox();
         widowedMaritalChkbx = new javax.swing.JCheckBox();
-        jLabel27 = new javax.swing.JLabel();
-        jPanel16 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        maritalStatusLbl = new javax.swing.JLabel();
+        admissionInstancePanel = new javax.swing.JPanel();
+        wardLbl = new javax.swing.JLabel();
         admissionWardCmbx = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
+        wardCodeLbl = new javax.swing.JLabel();
         wardCodeTxt = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        bedNoLbl = new javax.swing.JLabel();
         bedNumberCmbx = new javax.swing.JComboBox();
-        jLabel141 = new javax.swing.JLabel();
+        bedCategoryLbl = new javax.swing.JLabel();
         bedCategoryCmbx = new javax.swing.JComboBox();
-        jLabel20 = new javax.swing.JLabel();
+        bedRateLbl = new javax.swing.JLabel();
         bedRateTxt = new javax.swing.JTextField();
-        jPanel31 = new javax.swing.JPanel();
-        jTextField121 = new javax.swing.JTextField();
-        searchButton3 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel1411 = new javax.swing.JLabel();
+        admittedByPanel = new javax.swing.JPanel();
+        admittedByTxt = new javax.swing.JTextField();
+        admittedByBtn = new javax.swing.JButton();
+        admittedByLbl = new javax.swing.JLabel();
+        specialityLbl = new javax.swing.JLabel();
         specialtyClinicCmbx = new javax.swing.JComboBox();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel142 = new javax.swing.JLabel();
-        jTextField32 = new javax.swing.JTextField();
-        jLabel110 = new javax.swing.JLabel();
-        jTextField42 = new javax.swing.JTextField();
-        jLabel82 = new javax.swing.JLabel();
-        jTextField72 = new javax.swing.JTextField();
-        jLabel24 = new javax.swing.JLabel();
-        datePicker1 = new com.afrisoftech.lib.DatePicker();
-        jLabel92 = new javax.swing.JLabel();
-        jPanel32 = new javax.swing.JPanel();
-        prevVisitIdtxt = new javax.swing.JTextField();
-        searchButton4 = new javax.swing.JButton();
-        jTextField82 = new javax.swing.JTextField();
-        jLabel72 = new javax.swing.JLabel();
-        jLabel56 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
-        jLabel50 = new javax.swing.JLabel();
-        jLabel52 = new javax.swing.JLabel();
+        referredFromLbl = new javax.swing.JLabel();
+        wardAdmittedLbl = new javax.swing.JLabel();
+        wardAdmittedTxt = new javax.swing.JTextField();
+        bedOccupiedLbl = new javax.swing.JLabel();
+        bedoccupiedTxt = new javax.swing.JTextField();
+        previousDischargeDateLbl = new javax.swing.JLabel();
+        previousDischargeDateTxt = new javax.swing.JTextField();
+        admissionDateLbl = new javax.swing.JLabel();
+        admissionDatePicker = new com.afrisoftech.lib.DatePicker();
+        previousVisitIDLbl = new javax.swing.JLabel();
+        previousVisitIDPanel = new javax.swing.JPanel();
+        previousVisitIDTxt = new javax.swing.JTextField();
+        previousVisitSearchButton = new javax.swing.JButton();
+        previousAdmissionDateTxt = new javax.swing.JTextField();
+        previousAdmissionDateLbl = new javax.swing.JLabel();
+        registrationPointLbl = new javax.swing.JLabel();
+        registrationPointCmbx = new javax.swing.JComboBox();
+        previousAdmissionsLbl = new javax.swing.JLabel();
+        disabilityStatusLbl = new javax.swing.JLabel();
         patientDisabilityCmbx = new javax.swing.JComboBox();
         patientDebtTxt = new javax.swing.JTextField();
         referredcombo = new javax.swing.JComboBox();
+        otherDetailsPanel = new javax.swing.JPanel();
+        oldFileNumberLbl = new javax.swing.JLabel();
+        unitNumberTxt = new javax.swing.JTextField();
+        occupationLbl = new javax.swing.JLabel();
+        occupationCmbx = new javax.swing.JComboBox();
+        idNumberLbl = new javax.swing.JLabel();
+        idPassportTxt = new javax.swing.JTextField();
+        telephoneNoLbl = new javax.swing.JLabel();
+        nokTelephoneTxt = new javax.swing.JTextField();
         jPanel14 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        nokNameLbl = new javax.swing.JLabel();
         nokNameTxt = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        postalAddressLbl = new javax.swing.JLabel();
+        postalAddressTxt = new javax.swing.JTextField();
+        modeofPaymentLbl = new javax.swing.JLabel();
+        billPayerTxt = new javax.swing.JTextField();
+        billPayerLbl = new javax.swing.JLabel();
         paymentModeCmbx = new javax.swing.JComboBox();
         nhifChbx = new javax.swing.JCheckBox();
-        jPanel81 = new javax.swing.JPanel();
-        jCheckBox221 = new javax.swing.JCheckBox();
-        jCheckBox311 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jLabel26 = new javax.swing.JLabel();
-        datePicker2 = new com.afrisoftech.lib.DatePicker();
-        jLabel29 = new javax.swing.JLabel();
+        patientStatusPanel = new javax.swing.JPanel();
+        admittedChbx = new javax.swing.JCheckBox();
+        dischargedChkbx = new javax.swing.JCheckBox();
+        hasInterimBillChkbx = new javax.swing.JCheckBox();
+        suspendBillChkbx = new javax.swing.JCheckBox();
+        mergeOPBillChkbx = new javax.swing.JCheckBox();
+        cardMaturityDateLbl = new javax.swing.JLabel();
+        cardMaturityDatePicker = new com.afrisoftech.lib.DatePicker();
+        nokRelationLbl = new javax.swing.JLabel();
         nokRelationShipCmbx = new javax.swing.JComboBox();
-        idNoLbl2 = new javax.swing.JLabel();
+        nokResidenceLbl = new javax.swing.JLabel();
         nokResidenceTxt = new javax.swing.JTextField();
-        jLabel23 = new javax.swing.JLabel();
-        oldFileNumberTxt = new javax.swing.JTextField();
-        jLabel28 = new javax.swing.JLabel();
+        clinicNumberLbl = new javax.swing.JLabel();
+        clinicFileNumberTxt = new javax.swing.JTextField();
+        nhifReferenceNoLbl = new javax.swing.JLabel();
         nhifClaimNumberTxt = new javax.swing.JTextField();
-        jLabel37 = new javax.swing.JLabel();
-        jLabel43 = new javax.swing.JLabel();
+        countyofBirthLbl = new javax.swing.JLabel();
+        countyofResidenceLbl = new javax.swing.JLabel();
         countyofBirthCmbx = new javax.swing.JComboBox();
         countyofResidenceCmbx = new javax.swing.JComboBox();
-        jLabel44 = new javax.swing.JLabel();
+        employerNameLbl = new javax.swing.JLabel();
         employerTxt = new javax.swing.JTextField();
-        jLabel45 = new javax.swing.JLabel();
+        employerTelLbl = new javax.swing.JLabel();
         employerTelTxt = new javax.swing.JTextField();
-        jLabel46 = new javax.swing.JLabel();
+        chargeSheetNoLbl = new javax.swing.JLabel();
         cSheetNoTxt = new javax.swing.JTextField();
-        jLabel47 = new javax.swing.JLabel();
+        educationLevelLbl = new javax.swing.JLabel();
         educationLevelCmbx = new javax.swing.JComboBox();
-        jLabel48 = new javax.swing.JLabel();
+        nhifCardNoLbl = new javax.swing.JLabel();
         nhifCardMemberNumberTxt = new javax.swing.JTextField();
-        jLabel34 = new javax.swing.JLabel();
+        nokTelLbl = new javax.swing.JLabel();
         nokteltxt = new javax.swing.JTextField();
-        jPanel21 = new javax.swing.JPanel();
-        jPanel21.setVisible(false);
-        jLabel71 = new javax.swing.JLabel();
-        jComboBox31 = new javax.swing.JComboBox();
-        jTextField71 = new javax.swing.JTextField();
-        jLabel81 = new javax.swing.JLabel();
-        jLabel91 = new javax.swing.JLabel();
+        bankCardsPanel = new javax.swing.JPanel();
+        bankCardsPanel.setVisible(false);
+        cardNameLbl = new javax.swing.JLabel();
+        cardNameCmbx = new javax.swing.JComboBox();
+        cardIssurerTxt = new javax.swing.JTextField();
+        cardUssurerLbl = new javax.swing.JLabel();
+        cardNoLbl = new javax.swing.JLabel();
         cardNumberTxt = new javax.swing.JTextField();
-        jLabel151 = new javax.swing.JLabel();
-        datePicker21 = new com.afrisoftech.lib.DatePicker();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel5.setVisible(false);
-        jLabel102 = new javax.swing.JLabel();
-        jLabel122 = new javax.swing.JLabel();
-        jLabel172 = new javax.swing.JLabel();
-        jLabel143 = new javax.swing.JLabel();
-        jTextField23 = new javax.swing.JTextField();
-        jLabel182 = new javax.swing.JLabel();
-        jPanel64 = new javax.swing.JPanel();
-        jTextField36 = new javax.swing.JTextField();
-        searchButton2 = new javax.swing.JButton();
+        cardExpiryDateLbl = new javax.swing.JLabel();
+        cardExpiryDatePicker = new com.afrisoftech.lib.DatePicker();
+        schemePanel = new javax.swing.JPanel();
+        schemePanel.setVisible(false);
+        memberNameLbl = new javax.swing.JLabel();
+        memberNoLbl = new javax.swing.JLabel();
+        schemeExpiryDateLbl = new javax.swing.JLabel();
+        schemeManagerLbl = new javax.swing.JLabel();
+        schemeMangerTxt = new javax.swing.JTextField();
+        schemeNameLbl = new javax.swing.JLabel();
+        schemeMemberNamePanel = new javax.swing.JPanel();
+        memberNameTxt = new javax.swing.JTextField();
+        memberNameSearchButton = new javax.swing.JButton();
         memberNumberTxt = new javax.swing.JTextField();
-        jPanel641 = new javax.swing.JPanel();
-        jTextField3611 = new javax.swing.JTextField();
-        searchButton21 = new javax.swing.JButton();
-        jLabel22 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
-        jLabel25 = new javax.swing.JLabel();
-        jTextField16 = new javax.swing.JTextField();
-        datePicker11 = new com.afrisoftech.lib.DatePicker();
+        schemeSearchNamePanel = new javax.swing.JPanel();
+        schemeNameTxt = new javax.swing.JTextField();
+        schemeSearchButton = new javax.swing.JButton();
+        schemeAccNoLbl = new javax.swing.JLabel();
+        schemeAccNoTxt = new javax.swing.JTextField();
+        memberBalanceLbl = new javax.swing.JLabel();
+        memberBalanceTxt = new javax.swing.JTextField();
+        schemeExpiryDatePicker = new com.afrisoftech.lib.DatePicker();
         admissionListingPanel = new javax.swing.JPanel();
         refreshScrollPane = new javax.swing.JScrollPane();
         admissionListingTable = new com.afrisoftech.dbadmin.JTable();
@@ -1266,13 +1267,13 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             getContentPane().add(jLabel12, gridBagConstraints);
 
-            jPanel9.setBackground(new java.awt.Color(255, 239, 255));
-            jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-            jPanel9.setLayout(new java.awt.GridBagLayout());
+            admissionPanel.setBackground(new java.awt.Color(255, 239, 255));
+            admissionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+            admissionPanel.setLayout(new java.awt.GridBagLayout());
 
-            jPanel8.setBackground(new java.awt.Color(255, 239, 255));
-            jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Category", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(255, 0, 255))); // NOI18N
-            jPanel8.setLayout(new java.awt.GridBagLayout());
+            urgencyPanel.setBackground(new java.awt.Color(255, 239, 255));
+            urgencyPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Category", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(255, 0, 255))); // NOI18N
+            urgencyPanel.setLayout(new java.awt.GridBagLayout());
 
             hospitalCategoryChkbx.setBackground(new java.awt.Color(255, 239, 255));
             buttonGroup3.add(hospitalCategoryChkbx);
@@ -1284,7 +1285,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-            jPanel8.add(hospitalCategoryChkbx, gridBagConstraints);
+            urgencyPanel.add(hospitalCategoryChkbx, gridBagConstraints);
 
             privateCategoryChkbx.setBackground(new java.awt.Color(255, 239, 255));
             buttonGroup3.add(privateCategoryChkbx);
@@ -1295,7 +1296,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridx = 2;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-            jPanel8.add(privateCategoryChkbx, gridBagConstraints);
+            urgencyPanel.add(privateCategoryChkbx, gridBagConstraints);
 
             patientUrgencyCMBX.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
             patientUrgencyCMBX.setForeground(new java.awt.Color(255, 0, 51));
@@ -1304,17 +1305,17 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-            jPanel8.add(patientUrgencyCMBX, gridBagConstraints);
+            urgencyPanel.add(patientUrgencyCMBX, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 5;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.weightx = 1.0;
-            jPanel9.add(jPanel8, gridBagConstraints);
+            admissionPanel.add(urgencyPanel, gridBagConstraints);
 
-            jPanel101.setBackground(new java.awt.Color(255, 239, 255));
-            jPanel101.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tick where appropriate", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 10))); // NOI18N
-            jPanel101.setLayout(new java.awt.GridBagLayout());
+            admissionHeaderDetailPanel.setBackground(new java.awt.Color(255, 239, 255));
+            admissionHeaderDetailPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tick where appropriate", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 10))); // NOI18N
+            admissionHeaderDetailPanel.setLayout(new java.awt.GridBagLayout());
 
             newAdimissionRbtn.setBackground(new java.awt.Color(255, 239, 255));
             buttonGroup5.add(newAdimissionRbtn);
@@ -1330,7 +1331,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-            jPanel101.add(newAdimissionRbtn, gridBagConstraints);
+            admissionHeaderDetailPanel.add(newAdimissionRbtn, gridBagConstraints);
 
             reAdmissionRbtn.setBackground(new java.awt.Color(255, 239, 255));
             buttonGroup5.add(reAdmissionRbtn);
@@ -1346,7 +1347,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-            jPanel101.add(reAdmissionRbtn, gridBagConstraints);
+            admissionHeaderDetailPanel.add(reAdmissionRbtn, gridBagConstraints);
 
             createManualNumbersRbtn.setVisible(false);
             createManualNumbersRbtn.setBackground(new java.awt.Color(204, 204, 204));
@@ -1366,7 +1367,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-            jPanel101.add(createManualNumbersRbtn, gridBagConstraints);
+            admissionHeaderDetailPanel.add(createManualNumbersRbtn, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -1374,11 +1375,11 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridwidth = 2;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
-            jPanel9.add(jPanel101, gridBagConstraints);
+            admissionPanel.add(admissionHeaderDetailPanel, gridBagConstraints);
 
-            jPanel7.setBackground(new java.awt.Color(255, 239, 255));
-            jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search By", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 0, 255))); // NOI18N
-            jPanel7.setLayout(new java.awt.GridBagLayout());
+            searchModelPanel.setBackground(new java.awt.Color(255, 239, 255));
+            searchModelPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search By", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 0, 255))); // NOI18N
+            searchModelPanel.setLayout(new java.awt.GridBagLayout());
 
             searchbyPatientNameChkbx.setBackground(new java.awt.Color(255, 239, 255));
             buttonGroup2.add(searchbyPatientNameChkbx);
@@ -1389,7 +1390,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 1;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-            jPanel7.add(searchbyPatientNameChkbx, gridBagConstraints);
+            searchModelPanel.add(searchbyPatientNameChkbx, gridBagConstraints);
 
             searchbyPatientNumberChkbx.setBackground(new java.awt.Color(255, 239, 255));
             buttonGroup2.add(searchbyPatientNumberChkbx);
@@ -1401,13 +1402,13 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 1;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-            jPanel7.add(searchbyPatientNumberChkbx, gridBagConstraints);
+            searchModelPanel.add(searchbyPatientNumberChkbx, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.weightx = 1.0;
-            jPanel9.add(jPanel7, gridBagConstraints);
+            admissionPanel.add(searchModelPanel, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -1415,19 +1416,19 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridwidth = 5;
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.weightx = 1.0;
-            getContentPane().add(jPanel9, gridBagConstraints);
+            getContentPane().add(admissionPanel, gridBagConstraints);
 
-            jPanel10.setBackground(new java.awt.Color(255, 204, 204));
-            jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-            jPanel10.setLayout(new java.awt.GridBagLayout());
+            actionsPanel.setBackground(new java.awt.Color(255, 204, 204));
+            actionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+            actionsPanel.setLayout(new java.awt.GridBagLayout());
 
-            jButton1.setMnemonic('A');
-            jButton1.setText("Admit");
-            jButton1.setToolTipText("click to store data");
-            jButton1.setEnabled(false);
-            jButton1.addActionListener(new java.awt.event.ActionListener() {
+            admitBtn.setMnemonic('A');
+            admitBtn.setText("Admit");
+            admitBtn.setToolTipText("click to store data");
+            admitBtn.setEnabled(false);
+            admitBtn.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButton1ActionPerformed(evt);
+                    admitBtnActionPerformed(evt);
                 }
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1436,7 +1437,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel10.add(jButton1, gridBagConstraints);
+            actionsPanel.add(admitBtn, gridBagConstraints);
 
             jButton2.setMnemonic('E');
             jButton2.setText("Edit");
@@ -1453,7 +1454,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel10.add(jButton2, gridBagConstraints);
+            actionsPanel.add(jButton2, gridBagConstraints);
 
             jButton3.setMnemonic('n');
             jButton3.setText("Cancel");
@@ -1469,7 +1470,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel10.add(jButton3, gridBagConstraints);
+            actionsPanel.add(jButton3, gridBagConstraints);
 
             jButton4.setMnemonic('C');
             jButton4.setText("Close");
@@ -1486,7 +1487,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel10.add(jButton4, gridBagConstraints);
+            actionsPanel.add(jButton4, gridBagConstraints);
 
             jButton9.setText("Help");
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1495,7 +1496,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel10.add(jButton9, gridBagConstraints);
+            actionsPanel.add(jButton9, gridBagConstraints);
 
             jButton5.setMnemonic('S');
             jButton5.setText("Read Smart Card");
@@ -1512,7 +1513,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel10.add(jButton5, gridBagConstraints);
+            actionsPanel.add(jButton5, gridBagConstraints);
 
             admitPrintBtn.setText("Admit & Print");
             admitPrintBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -1526,12 +1527,12 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel10.add(admitPrintBtn, gridBagConstraints);
+            actionsPanel.add(admitPrintBtn, gridBagConstraints);
 
-            jButton6.setText("Reprint File");
-            jButton6.addActionListener(new java.awt.event.ActionListener() {
+            reprintFileBtn.setText("Reprint File");
+            reprintFileBtn.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButton6ActionPerformed(evt);
+                    reprintFileBtnActionPerformed(evt);
                 }
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1540,22 +1541,22 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel10.add(jButton6, gridBagConstraints);
+            actionsPanel.add(reprintFileBtn, gridBagConstraints);
 
-            buttonGroup5.add(jRadioButton1);
-            jRadioButton1.setText("Edit / Reprint File");
-            jRadioButton1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-            jRadioButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-            jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            buttonGroup5.add(editReprintBtn);
+            editReprintBtn.setText("Edit / Reprint File");
+            editReprintBtn.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+            editReprintBtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+            editReprintBtn.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jRadioButton1ActionPerformed(evt);
+                    editReprintBtnActionPerformed(evt);
                 }
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 3;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-            jPanel10.add(jRadioButton1, gridBagConstraints);
+            actionsPanel.add(editReprintBtn, gridBagConstraints);
 
             admissionsReportBtn.setText("Admissions Report");
             admissionsReportBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -1569,7 +1570,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel10.add(admissionsReportBtn, gridBagConstraints);
+            actionsPanel.add(admissionsReportBtn, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 5;
@@ -1577,7 +1578,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridheight = 6;
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.weightx = 1.0;
-            getContentPane().add(jPanel10, gridBagConstraints);
+            getContentPane().add(actionsPanel, gridBagConstraints);
 
             jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1587,16 +1588,16 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             getContentPane().add(jLabel33, gridBagConstraints);
 
-            jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter patient details (You can search by Admission/Patient number, ID number, Telephone Number or Next of Kin details)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
-            jPanel1.setForeground(new java.awt.Color(0, 255, 204));
-            jPanel1.setLayout(new java.awt.GridBagLayout());
+            admissionsMainPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter patient details (You can search by Admission/Patient number, ID number, Telephone Number or Next of Kin details)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
+            admissionsMainPanel.setForeground(new java.awt.Color(0, 255, 204));
+            admissionsMainPanel.setLayout(new java.awt.GridBagLayout());
 
-            jPanel12.setLayout(new java.awt.GridBagLayout());
+            bioDataPanel.setLayout(new java.awt.GridBagLayout());
 
-            jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Provisional Diagnosis", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(255, 51, 153))); // NOI18N
+            diagnosisScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Provisional Diagnosis", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(255, 51, 153))); // NOI18N
 
-            jTextPane1.setText("N/A");
-            jScrollPane1.setViewportView(jTextPane1);
+            diagnosisTextPane.setText("N/A");
+            diagnosisScrollPane.setViewportView(diagnosisTextPane);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -1607,19 +1608,19 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel12.add(jScrollPane1, gridBagConstraints);
+            bioDataPanel.add(diagnosisScrollPane, gridBagConstraints);
 
-            jPanel17.setBackground(new java.awt.Color(204, 255, 204));
-            jPanel17.setLayout(new java.awt.GridBagLayout());
+            demographicsPanel.setBackground(new java.awt.Color(204, 255, 204));
+            demographicsPanel.setLayout(new java.awt.GridBagLayout());
 
-            jLabel38.setText("Religion");
+            religionLbl.setText("Religion");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 1;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel17.add(jLabel38, gridBagConstraints);
+            demographicsPanel.add(religionLbl, gridBagConstraints);
 
             religionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT religion_name FROM pb_religion union select '-' as religion_name ORDER BY religion_name"));
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1629,15 +1630,15 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel17.add(religionCmbx, gridBagConstraints);
+            demographicsPanel.add(religionCmbx, gridBagConstraints);
 
-            jLabel19.setText("Place of Birth");
+            placeofBirthLbl.setText("Place of Birth");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 4;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel17.add(jLabel19, gridBagConstraints);
+            demographicsPanel.add(placeofBirthLbl, gridBagConstraints);
 
             districtCmbx.setEditable(true);
             districtCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT district_name FROM pb_district ORDER BY district_name"));
@@ -1649,15 +1650,15 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel17.add(districtCmbx, gridBagConstraints);
+            demographicsPanel.add(districtCmbx, gridBagConstraints);
 
-            jLabel39.setText("Location");
+            locationLbl.setText("Location");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 5;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel17.add(jLabel39, gridBagConstraints);
+            demographicsPanel.add(locationLbl, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 5;
@@ -1665,15 +1666,15 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel17.add(locationTxt, gridBagConstraints);
+            demographicsPanel.add(locationTxt, gridBagConstraints);
 
-            jLabel40.setText("Name of Chief");
+            nameofChiefLbl.setText("Name of Chief");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 6;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel17.add(jLabel40, gridBagConstraints);
+            demographicsPanel.add(nameofChiefLbl, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 6;
@@ -1681,33 +1682,10 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel17.add(jTextField27, gridBagConstraints);
+            demographicsPanel.add(nameofChiefTxt, gridBagConstraints);
 
-            jLabel42.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel42.setText("Old File Number(Unit Number)");
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 7;
-            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-            gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel17.add(jLabel42, gridBagConstraints);
-
-            unitNumberTxt.addCaretListener(new javax.swing.event.CaretListener() {
-                public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                    unitNumberTxtCaretUpdate(evt);
-                }
-            });
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 7;
-            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.weighty = 1.0;
-            gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel17.add(unitNumberTxt, gridBagConstraints);
-
-            jLabel17.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel17.setText("Nationality");
+            nationalityLbl.setForeground(new java.awt.Color(255, 51, 153));
+            nationalityLbl.setText("Nationality");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 2;
@@ -1715,7 +1693,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel17.add(jLabel17, gridBagConstraints);
+            demographicsPanel.add(nationalityLbl, gridBagConstraints);
 
             nationalityCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT country_name FROM pb_country ORDER BY 1"));
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1725,47 +1703,10 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel17.add(nationalityCmbx, gridBagConstraints);
+            demographicsPanel.add(nationalityCmbx, gridBagConstraints);
 
-            jLabel35.setText("Occupation");
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 9;
-            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-            gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel17.add(jLabel35, gridBagConstraints);
-
-            occupationCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT occupations FROM pb_occupation ORDER BY occupations"));
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 9;
-            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.weighty = 0.3;
-            gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel17.add(occupationCmbx, gridBagConstraints);
-
-            jLabel30.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel30.setText("ID No / Passport No");
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 10;
-            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-            gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.weighty = 0.3;
-            gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel17.add(jLabel30, gridBagConstraints);
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 10;
-            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel17.add(idPassportTxt, gridBagConstraints);
-
-            jLabel14.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel14.setText("Residence (Village)");
+            residencelbl.setForeground(new java.awt.Color(255, 51, 153));
+            residencelbl.setText("Residence (Village)");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 0;
@@ -1773,7 +1714,13 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel17.add(jLabel14, gridBagConstraints);
+            demographicsPanel.add(residencelbl, gridBagConstraints);
+
+            currentResidence.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    currentResidenceActionPerformed(evt);
+                }
+            });
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 0;
@@ -1781,25 +1728,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.8;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel17.add(currentResidence, gridBagConstraints);
-
-            jLabel8.setText("Telephone No");
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 3;
-            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-            gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.weighty = 1.0;
-            gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel17.add(jLabel8, gridBagConstraints);
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 3;
-            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.weighty = 1.0;
-            gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel17.add(nokTelephoneTxt, gridBagConstraints);
+            demographicsPanel.add(currentResidence, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -1807,27 +1736,27 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridwidth = 2;
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.weighty = 1.0;
-            jPanel12.add(jPanel17, gridBagConstraints);
+            bioDataPanel.add(demographicsPanel, gridBagConstraints);
 
-            jPanel18.setBackground(new java.awt.Color(204, 255, 204));
-            jPanel18.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            biodataSubPanel.setBackground(new java.awt.Color(204, 255, 204));
+            biodataSubPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
                 public void mouseMoved(java.awt.event.MouseEvent evt) {
-                    jPanel18MouseMoved(evt);
+                    biodataSubPanelMouseMoved(evt);
                 }
             });
-            jPanel18.setLayout(new java.awt.GridBagLayout());
+            biodataSubPanel.setLayout(new java.awt.GridBagLayout());
 
-            jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter date of birth or patient Age here ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 51, 153))); // NOI18N
-            jPanel15.setLayout(new java.awt.GridBagLayout());
+            birthDatePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter date of birth or patient Age here ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 51, 153))); // NOI18N
+            birthDatePanel.setLayout(new java.awt.GridBagLayout());
 
-            jLabel66.setText("Date of Birth");
+            birthDateLbl.setText("Date of Birth");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel15.add(jLabel66, gridBagConstraints);
+            birthDatePanel.add(birthDateLbl, gridBagConstraints);
 
             this.datePickerYOB.getDateEditor().addPropertyChangeListener(new java.beans.PropertyChangeListener() {
 
@@ -1851,27 +1780,27 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
-            jPanel15.add(datePickerYOB, gridBagConstraints);
+            birthDatePanel.add(datePickerYOB, gridBagConstraints);
 
-            jLabel36.setText("Patient Real Age");
+            patientAgeLbl.setText("Patient Real Age");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 1;
-            jPanel15.add(jLabel36, gridBagConstraints);
+            birthDatePanel.add(patientAgeLbl, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 1;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
-            jPanel15.add(agelabel, gridBagConstraints);
+            birthDatePanel.add(agelabel, gridBagConstraints);
 
-            jLabel53.setText("Patient Age (Years)");
+            patientAgeInputLbl.setText("Patient Age (Years)");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 2;
             gridBagConstraints.gridy = 1;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel15.add(jLabel53, gridBagConstraints);
+            birthDatePanel.add(patientAgeInputLbl, gridBagConstraints);
 
             ageYrsTxt.addCaretListener(new javax.swing.event.CaretListener() {
                 public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -1884,7 +1813,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel15.add(ageYrsTxt, gridBagConstraints);
+            birthDatePanel.add(ageYrsTxt, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -1892,9 +1821,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridwidth = 2;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 5.0;
-            jPanel18.add(jPanel15, gridBagConstraints);
+            biodataSubPanel.add(birthDatePanel, gridBagConstraints);
 
-            jLabel3.setText("Out Patient No.");
+            opdNoLbl.setText("Out Patient No.");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 1;
@@ -1902,31 +1831,31 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel18.add(jLabel3, gridBagConstraints);
+            biodataSubPanel.add(opdNoLbl, gridBagConstraints);
 
-            jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-            jPanel6.setPreferredSize(new java.awt.Dimension(48, 24));
-            jPanel6.setLayout(new java.awt.GridBagLayout());
+            opdNoPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+            opdNoPanel.setPreferredSize(new java.awt.Dimension(48, 24));
+            opdNoPanel.setLayout(new java.awt.GridBagLayout());
 
-            jTextField361.setEditable(false);
+            opdNoTxt.setEditable(false);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel6.add(jTextField361, gridBagConstraints);
+            opdNoPanel.add(opdNoTxt, gridBagConstraints);
 
-            searchButton1.setToolTipText("Search");
-            searchButton1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-            searchButton1.setMaximumSize(new java.awt.Dimension(40, 25));
-            searchButton1.setMinimumSize(new java.awt.Dimension(40, 25));
-            searchButton1.setPreferredSize(new java.awt.Dimension(30, 22));
-            searchButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-            searchButton1.addActionListener(new java.awt.event.ActionListener() {
+            opdSearchButton.setToolTipText("Search");
+            opdSearchButton.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+            opdSearchButton.setMaximumSize(new java.awt.Dimension(40, 25));
+            opdSearchButton.setMinimumSize(new java.awt.Dimension(40, 25));
+            opdSearchButton.setPreferredSize(new java.awt.Dimension(30, 22));
+            opdSearchButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+            opdSearchButton.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    searchButton1ActionPerformed(evt);
+                    opdSearchButtonActionPerformed(evt);
                 }
             });
-            jPanel6.add(searchButton1, new java.awt.GridBagConstraints());
+            opdNoPanel.add(opdSearchButton, new java.awt.GridBagConstraints());
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
@@ -1935,11 +1864,11 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel18.add(jPanel6, gridBagConstraints);
+            biodataSubPanel.add(opdNoPanel, gridBagConstraints);
 
-            jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-            jPanel3.setPreferredSize(new java.awt.Dimension(48, 24));
-            jPanel3.setLayout(new java.awt.GridBagLayout());
+            admissionNoPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+            admissionNoPanel.setPreferredSize(new java.awt.Dimension(48, 24));
+            admissionNoPanel.setLayout(new java.awt.GridBagLayout());
 
             admissionNumberTxt.setEditable(false);
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1948,7 +1877,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel3.add(admissionNumberTxt, gridBagConstraints);
+            admissionNoPanel.add(admissionNumberTxt, gridBagConstraints);
 
             searchButton.setToolTipText("Search");
             searchButton.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
@@ -1961,7 +1890,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                     searchButtonActionPerformed(evt);
                 }
             });
-            jPanel3.add(searchButton, new java.awt.GridBagConstraints());
+            admissionNoPanel.add(searchButton, new java.awt.GridBagConstraints());
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
@@ -1971,10 +1900,10 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel18.add(jPanel3, gridBagConstraints);
+            biodataSubPanel.add(admissionNoPanel, gridBagConstraints);
 
-            jLabel11.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel11.setText("Admission No.");
+            admissionNolbl.setForeground(new java.awt.Color(255, 51, 153));
+            admissionNolbl.setText("Admission No.");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 2;
@@ -1982,10 +1911,10 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel18.add(jLabel11, gridBagConstraints);
+            biodataSubPanel.add(admissionNolbl, gridBagConstraints);
 
-            jLabel2.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel2.setText("Surname Name");
+            surNameLbl.setForeground(new java.awt.Color(255, 51, 153));
+            surNameLbl.setText("Surname Name");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 3;
@@ -1993,7 +1922,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel18.add(jLabel2, gridBagConstraints);
+            biodataSubPanel.add(surNameLbl, gridBagConstraints);
 
             surNameTxt.setEditable(false);
             surNameTxt.addCaretListener(new javax.swing.event.CaretListener() {
@@ -2008,10 +1937,10 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel18.add(surNameTxt, gridBagConstraints);
+            biodataSubPanel.add(surNameTxt, gridBagConstraints);
 
-            jLabel21.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel21.setText("Other Name(s)");
+            otherNamesLbl.setForeground(new java.awt.Color(255, 51, 153));
+            otherNamesLbl.setText("Other Name(s)");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 4;
@@ -2019,7 +1948,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel18.add(jLabel21, gridBagConstraints);
+            biodataSubPanel.add(otherNamesLbl, gridBagConstraints);
 
             firstNameTxt.setEditable(false);
             firstNameTxt.addCaretListener(new javax.swing.event.CaretListener() {
@@ -2034,10 +1963,10 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel18.add(firstNameTxt, gridBagConstraints);
+            biodataSubPanel.add(firstNameTxt, gridBagConstraints);
 
-            jLabel18.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel18.setText("Gender");
+            genderLbl.setForeground(new java.awt.Color(255, 51, 153));
+            genderLbl.setText("Gender");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 5;
@@ -2045,12 +1974,11 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel18.add(jLabel18, gridBagConstraints);
+            biodataSubPanel.add(genderLbl, gridBagConstraints);
 
-            jPanel13.setLayout(new java.awt.GridBagLayout());
+            genderpanel.setLayout(new java.awt.GridBagLayout());
 
             buttonGroup4.add(maleChkbx);
-            maleChkbx.setSelected(true);
             maleChkbx.setText("Male");
             maleChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -2058,7 +1986,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridy = 0;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
-            jPanel13.add(maleChkbx, gridBagConstraints);
+            genderpanel.add(maleChkbx, gridBagConstraints);
 
             buttonGroup4.add(femaleChkbx);
             femaleChkbx.setText("Female");
@@ -2068,7 +1996,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridy = 0;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
-            jPanel13.add(femaleChkbx, gridBagConstraints);
+            genderpanel.add(femaleChkbx, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
@@ -2076,9 +2004,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel18.add(jPanel13, gridBagConstraints);
+            biodataSubPanel.add(genderpanel, gridBagConstraints);
 
-            jPanel4113.setLayout(new java.awt.GridBagLayout());
+            maritalStatusPanel.setLayout(new java.awt.GridBagLayout());
 
             buttonGroup6.add(singleMaritalChkbx);
             singleMaritalChkbx.setSelected(true);
@@ -2096,7 +2024,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
-            jPanel4113.add(singleMaritalChkbx, gridBagConstraints);
+            maritalStatusPanel.add(singleMaritalChkbx, gridBagConstraints);
 
             buttonGroup6.add(marriedMaritalChkbx);
             marriedMaritalChkbx.setText("Married");
@@ -2109,7 +2037,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
-            jPanel4113.add(marriedMaritalChkbx, gridBagConstraints);
+            maritalStatusPanel.add(marriedMaritalChkbx, gridBagConstraints);
 
             buttonGroup6.add(divorcedMaritalChkbx);
             divorcedMaritalChkbx.setText("Divorced");
@@ -2121,7 +2049,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
-            jPanel4113.add(divorcedMaritalChkbx, gridBagConstraints);
+            maritalStatusPanel.add(divorcedMaritalChkbx, gridBagConstraints);
 
             buttonGroup6.add(widowedMaritalChkbx);
             widowedMaritalChkbx.setText("Widowed");
@@ -2135,7 +2063,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
             gridBagConstraints.weightx = 1.0;
-            jPanel4113.add(widowedMaritalChkbx, gridBagConstraints);
+            maritalStatusPanel.add(widowedMaritalChkbx, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
@@ -2143,10 +2071,10 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel18.add(jPanel4113, gridBagConstraints);
+            biodataSubPanel.add(maritalStatusPanel, gridBagConstraints);
 
-            jLabel27.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel27.setText("Marital Status");
+            maritalStatusLbl.setForeground(new java.awt.Color(255, 51, 153));
+            maritalStatusLbl.setText("Marital Status");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 6;
@@ -2154,7 +2082,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel18.add(jLabel27, gridBagConstraints);
+            biodataSubPanel.add(maritalStatusLbl, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -2163,7 +2091,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.weightx = 2.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel12.add(jPanel18, gridBagConstraints);
+            bioDataPanel.add(biodataSubPanel, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -2171,17 +2099,17 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridwidth = 2;
             gridBagConstraints.gridheight = 5;
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-            gridBagConstraints.weightx = 5.0;
+            gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel1.add(jPanel12, gridBagConstraints);
+            admissionsMainPanel.add(bioDataPanel, gridBagConstraints);
 
-            jPanel16.setBackground(new java.awt.Color(255, 255, 255));
-            jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder("Admission details"));
-            jPanel16.setForeground(new java.awt.Color(255, 0, 51));
-            jPanel16.setLayout(new java.awt.GridBagLayout());
+            admissionInstancePanel.setBackground(new java.awt.Color(255, 255, 255));
+            admissionInstancePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Admission details"));
+            admissionInstancePanel.setForeground(new java.awt.Color(255, 0, 51));
+            admissionInstancePanel.setLayout(new java.awt.GridBagLayout());
 
-            jLabel4.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel4.setText("Ward");
+            wardLbl.setForeground(new java.awt.Color(255, 51, 153));
+            wardLbl.setText("Ward");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 1;
@@ -2189,7 +2117,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel16.add(jLabel4, gridBagConstraints);
+            admissionInstancePanel.add(wardLbl, gridBagConstraints);
 
             admissionWardCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "(select '0select-')  UNION (SELECT distinct ward_name FROM hp_wards) ORDER BY 1 asc"));
             admissionWardCmbx.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2208,9 +2136,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel16.add(admissionWardCmbx, gridBagConstraints);
+            admissionInstancePanel.add(admissionWardCmbx, gridBagConstraints);
 
-            jLabel5.setText("Ward Code");
+            wardCodeLbl.setText("Ward Code");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 2;
@@ -2218,7 +2146,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel16.add(jLabel5, gridBagConstraints);
+            admissionInstancePanel.add(wardCodeLbl, gridBagConstraints);
 
             wardCodeTxt.setEditable(false);
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -2227,10 +2155,10 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel16.add(wardCodeTxt, gridBagConstraints);
+            admissionInstancePanel.add(wardCodeTxt, gridBagConstraints);
 
-            jLabel6.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel6.setText("Bed No");
+            bedNoLbl.setForeground(new java.awt.Color(0, 0, 0));
+            bedNoLbl.setText("Bed No");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 3;
@@ -2238,7 +2166,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel16.add(jLabel6, gridBagConstraints);
+            admissionInstancePanel.add(bedNoLbl, gridBagConstraints);
 
             bedNumberCmbx.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2251,17 +2179,17 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel16.add(bedNumberCmbx, gridBagConstraints);
+            admissionInstancePanel.add(bedNumberCmbx, gridBagConstraints);
 
-            jLabel141.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel141.setText("Bed Category");
+            bedCategoryLbl.setForeground(new java.awt.Color(255, 51, 153));
+            bedCategoryLbl.setText("Bed Category");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 4;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel16.add(jLabel141, gridBagConstraints);
+            admissionInstancePanel.add(bedCategoryLbl, gridBagConstraints);
 
             bedCategoryCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select category from hp_bed_category order by category"));
             bedCategoryCmbx.addActionListener(new java.awt.event.ActionListener() {
@@ -2276,17 +2204,17 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel16.add(bedCategoryCmbx, gridBagConstraints);
+            admissionInstancePanel.add(bedCategoryCmbx, gridBagConstraints);
 
-            jLabel20.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel20.setText("Bed Rate");
+            bedRateLbl.setForeground(new java.awt.Color(255, 51, 153));
+            bedRateLbl.setText("Bed Rate");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 5;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel16.add(jLabel20, gridBagConstraints);
+            admissionInstancePanel.add(bedRateLbl, gridBagConstraints);
 
             bedRateTxt.setEditable(false);
             bedRateTxt.setBackground(new java.awt.Color(204, 204, 204));
@@ -2299,33 +2227,33 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 10);
-            jPanel16.add(bedRateTxt, gridBagConstraints);
+            admissionInstancePanel.add(bedRateTxt, gridBagConstraints);
 
-            jPanel31.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-            jPanel31.setPreferredSize(new java.awt.Dimension(48, 24));
-            jPanel31.setLayout(new java.awt.GridBagLayout());
+            admittedByPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+            admittedByPanel.setPreferredSize(new java.awt.Dimension(48, 24));
+            admittedByPanel.setLayout(new java.awt.GridBagLayout());
 
-            jTextField121.setEditable(false);
+            admittedByTxt.setEditable(false);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel31.add(jTextField121, gridBagConstraints);
+            admittedByPanel.add(admittedByTxt, gridBagConstraints);
 
-            searchButton3.setToolTipText("Search");
-            searchButton3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-            searchButton3.setMaximumSize(new java.awt.Dimension(40, 25));
-            searchButton3.setMinimumSize(new java.awt.Dimension(40, 25));
-            searchButton3.setPreferredSize(new java.awt.Dimension(30, 22));
-            searchButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-            searchButton3.addActionListener(new java.awt.event.ActionListener() {
+            admittedByBtn.setToolTipText("Search");
+            admittedByBtn.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+            admittedByBtn.setMaximumSize(new java.awt.Dimension(40, 25));
+            admittedByBtn.setMinimumSize(new java.awt.Dimension(40, 25));
+            admittedByBtn.setPreferredSize(new java.awt.Dimension(30, 22));
+            admittedByBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+            admittedByBtn.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    searchButton3ActionPerformed(evt);
+                    admittedByBtnActionPerformed(evt);
                 }
             });
-            jPanel31.add(searchButton3, new java.awt.GridBagConstraints());
+            admittedByPanel.add(admittedByBtn, new java.awt.GridBagConstraints());
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 5;
@@ -2335,20 +2263,20 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel16.add(jPanel31, gridBagConstraints);
+            admissionInstancePanel.add(admittedByPanel, gridBagConstraints);
 
-            jLabel10.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel10.setText("Admitted By");
+            admittedByLbl.setForeground(new java.awt.Color(0, 0, 0));
+            admittedByLbl.setText("Admitted By");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 6;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel16.add(jLabel10, gridBagConstraints);
+            admissionInstancePanel.add(admittedByLbl, gridBagConstraints);
 
-            jLabel1411.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel1411.setText("Speciality");
+            specialityLbl.setForeground(new java.awt.Color(255, 51, 153));
+            specialityLbl.setText("Speciality");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 7;
@@ -2356,7 +2284,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel16.add(jLabel1411, gridBagConstraints);
+            admissionInstancePanel.add(specialityLbl, gridBagConstraints);
 
             specialtyClinicCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT patient_type FROM pb_patient_categories ORDER BY 1"));
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -2365,9 +2293,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel16.add(specialtyClinicCmbx, gridBagConstraints);
+            admissionInstancePanel.add(specialtyClinicCmbx, gridBagConstraints);
 
-            jLabel16.setText("Reffered From");
+            referredFromLbl.setText("Reffered From");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 8;
@@ -2375,9 +2303,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel16.add(jLabel16, gridBagConstraints);
+            admissionInstancePanel.add(referredFromLbl, gridBagConstraints);
 
-            jLabel142.setText("Ward Admitted");
+            wardAdmittedLbl.setText("Ward Admitted");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 13;
@@ -2385,18 +2313,18 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel16.add(jLabel142, gridBagConstraints);
+            admissionInstancePanel.add(wardAdmittedLbl, gridBagConstraints);
 
-            jTextField32.setEditable(false);
+            wardAdmittedTxt.setEditable(false);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 5;
             gridBagConstraints.gridy = 13;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.8;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel16.add(jTextField32, gridBagConstraints);
+            admissionInstancePanel.add(wardAdmittedTxt, gridBagConstraints);
 
-            jLabel110.setText("Bed  Occupied");
+            bedOccupiedLbl.setText("Bed  Occupied");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 14;
@@ -2404,18 +2332,18 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel16.add(jLabel110, gridBagConstraints);
+            admissionInstancePanel.add(bedOccupiedLbl, gridBagConstraints);
 
-            jTextField42.setEditable(false);
+            bedoccupiedTxt.setEditable(false);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 5;
             gridBagConstraints.gridy = 14;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel16.add(jTextField42, gridBagConstraints);
+            admissionInstancePanel.add(bedoccupiedTxt, gridBagConstraints);
 
-            jLabel82.setText("Previous Discharge Date");
+            previousDischargeDateLbl.setText("Previous Discharge Date");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 12;
@@ -2423,19 +2351,20 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel16.add(jLabel82, gridBagConstraints);
+            admissionInstancePanel.add(previousDischargeDateLbl, gridBagConstraints);
 
-            jTextField72.setEditable(false);
-            jTextField72.setPreferredSize(new java.awt.Dimension(4, 17));
+            previousDischargeDateTxt.setEditable(false);
+            previousDischargeDateTxt.setPreferredSize(new java.awt.Dimension(4, 17));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 5;
             gridBagConstraints.gridy = 12;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel16.add(jTextField72, gridBagConstraints);
+            admissionInstancePanel.add(previousDischargeDateTxt, gridBagConstraints);
 
-            jLabel24.setText("Admission Date");
+            admissionDateLbl.setForeground(new java.awt.Color(255, 0, 0));
+            admissionDateLbl.setText("Admission Date");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 0;
@@ -2443,7 +2372,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel16.add(jLabel24, gridBagConstraints);
+            admissionInstancePanel.add(admissionDateLbl, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 5;
             gridBagConstraints.gridy = 0;
@@ -2451,9 +2380,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel16.add(datePicker1, gridBagConstraints);
+            admissionInstancePanel.add(admissionDatePicker, gridBagConstraints);
 
-            jLabel92.setText("Previous Visit Id");
+            previousVisitIDLbl.setText("Previous Visit Id");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 10;
@@ -2461,33 +2390,33 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel16.add(jLabel92, gridBagConstraints);
+            admissionInstancePanel.add(previousVisitIDLbl, gridBagConstraints);
 
-            jPanel32.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-            jPanel32.setPreferredSize(new java.awt.Dimension(48, 24));
-            jPanel32.setLayout(new java.awt.GridBagLayout());
+            previousVisitIDPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+            previousVisitIDPanel.setPreferredSize(new java.awt.Dimension(48, 24));
+            previousVisitIDPanel.setLayout(new java.awt.GridBagLayout());
 
-            prevVisitIdtxt.setEditable(false);
+            previousVisitIDTxt.setEditable(false);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel32.add(prevVisitIdtxt, gridBagConstraints);
+            previousVisitIDPanel.add(previousVisitIDTxt, gridBagConstraints);
 
-            searchButton4.setToolTipText("Search");
-            searchButton4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-            searchButton4.setMaximumSize(new java.awt.Dimension(40, 25));
-            searchButton4.setMinimumSize(new java.awt.Dimension(40, 25));
-            searchButton4.setPreferredSize(new java.awt.Dimension(30, 22));
-            searchButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-            searchButton4.addActionListener(new java.awt.event.ActionListener() {
+            previousVisitSearchButton.setToolTipText("Search");
+            previousVisitSearchButton.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+            previousVisitSearchButton.setMaximumSize(new java.awt.Dimension(40, 25));
+            previousVisitSearchButton.setMinimumSize(new java.awt.Dimension(40, 25));
+            previousVisitSearchButton.setPreferredSize(new java.awt.Dimension(30, 22));
+            previousVisitSearchButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+            previousVisitSearchButton.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    searchButton4ActionPerformed(evt);
+                    previousVisitSearchButtonActionPerformed(evt);
                 }
             });
-            jPanel32.add(searchButton4, new java.awt.GridBagConstraints());
+            previousVisitIDPanel.add(previousVisitSearchButton, new java.awt.GridBagConstraints());
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 5;
@@ -2496,19 +2425,19 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.ipadx = 10;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel16.add(jPanel32, gridBagConstraints);
+            admissionInstancePanel.add(previousVisitIDPanel, gridBagConstraints);
 
-            jTextField82.setEditable(false);
-            jTextField82.setPreferredSize(new java.awt.Dimension(4, 17));
+            previousAdmissionDateTxt.setEditable(false);
+            previousAdmissionDateTxt.setPreferredSize(new java.awt.Dimension(4, 17));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 5;
             gridBagConstraints.gridy = 11;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel16.add(jTextField82, gridBagConstraints);
+            admissionInstancePanel.add(previousAdmissionDateTxt, gridBagConstraints);
 
-            jLabel72.setText("Previous Admission Date");
+            previousAdmissionDateLbl.setText("Previous Admission Date");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 11;
@@ -2516,9 +2445,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 0.3;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel16.add(jLabel72, gridBagConstraints);
+            admissionInstancePanel.add(previousAdmissionDateLbl, gridBagConstraints);
 
-            jLabel56.setText("Service Point");
+            registrationPointLbl.setText("Service Point");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 15;
@@ -2526,9 +2455,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel16.add(jLabel56, gridBagConstraints);
+            admissionInstancePanel.add(registrationPointLbl, gridBagConstraints);
 
-            jComboBox2.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT point_name  FROM records_service_points ORDER BY 1"));
+            registrationPointCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT point_name  FROM records_service_points ORDER BY 1"));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 5;
             gridBagConstraints.gridy = 15;
@@ -2536,10 +2465,10 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel16.add(jComboBox2, gridBagConstraints);
+            admissionInstancePanel.add(registrationPointCmbx, gridBagConstraints);
 
-            jLabel50.setForeground(new java.awt.Color(51, 51, 255));
-            jLabel50.setText("Billing Report on previous admissions");
+            previousAdmissionsLbl.setForeground(new java.awt.Color(51, 51, 255));
+            previousAdmissionsLbl.setText("Billing Report on previous admissions");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 17;
@@ -2547,9 +2476,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel16.add(jLabel50, gridBagConstraints);
+            admissionInstancePanel.add(previousAdmissionsLbl, gridBagConstraints);
 
-            jLabel52.setText("Patient with disability");
+            disabilityStatusLbl.setText("Patient with disability");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 16;
@@ -2557,7 +2486,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-            jPanel16.add(jLabel52, gridBagConstraints);
+            admissionInstancePanel.add(disabilityStatusLbl, gridBagConstraints);
 
             patientDisabilityCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N", "Y" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -2566,7 +2495,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel16.add(patientDisabilityCmbx, gridBagConstraints);
+            admissionInstancePanel.add(patientDisabilityCmbx, gridBagConstraints);
 
             patientDebtTxt.setEditable(false);
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -2576,7 +2505,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel16.add(patientDebtTxt, gridBagConstraints);
+            admissionInstancePanel.add(patientDebtTxt, gridBagConstraints);
 
             referredcombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "County Hospital", "Health Center(Outside County)", "Health Center(Within County)", "Private Facility or Doctor", "NGO Facility", "Outside country", "Casualty dept at This Facility", "Other dept at This Facility", "Not Refered/Unknown Status" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -2584,7 +2513,95 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridy = 8;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel16.add(referredcombo, gridBagConstraints);
+            admissionInstancePanel.add(referredcombo, gridBagConstraints);
+
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 4;
+            gridBagConstraints.gridy = 0;
+            gridBagConstraints.gridwidth = 2;
+            gridBagConstraints.gridheight = 5;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            admissionsMainPanel.add(admissionInstancePanel, gridBagConstraints);
+
+            otherDetailsPanel.setLayout(new java.awt.GridBagLayout());
+
+            oldFileNumberLbl.setForeground(new java.awt.Color(255, 51, 153));
+            oldFileNumberLbl.setText("Unit Number");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 7;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+            otherDetailsPanel.add(oldFileNumberLbl, gridBagConstraints);
+
+            unitNumberTxt.addCaretListener(new javax.swing.event.CaretListener() {
+                public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                    unitNumberTxtCaretUpdate(evt);
+                }
+            });
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 1;
+            gridBagConstraints.gridy = 7;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            otherDetailsPanel.add(unitNumberTxt, gridBagConstraints);
+
+            occupationLbl.setText("Occupation");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 9;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+            otherDetailsPanel.add(occupationLbl, gridBagConstraints);
+
+            occupationCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT occupations FROM pb_occupation ORDER BY occupations"));
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 1;
+            gridBagConstraints.gridy = 9;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            otherDetailsPanel.add(occupationCmbx, gridBagConstraints);
+
+            idNumberLbl.setForeground(new java.awt.Color(255, 51, 153));
+            idNumberLbl.setText("ID No / Passport No");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 10;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 0.3;
+            gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+            otherDetailsPanel.add(idNumberLbl, gridBagConstraints);
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 1;
+            gridBagConstraints.gridy = 10;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            otherDetailsPanel.add(idPassportTxt, gridBagConstraints);
+
+            telephoneNoLbl.setForeground(new java.awt.Color(255, 51, 51));
+            telephoneNoLbl.setText("Telephone No");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 3;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+            otherDetailsPanel.add(telephoneNoLbl, gridBagConstraints);
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 1;
+            gridBagConstraints.gridy = 3;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.weightx = 5.0;
+            gridBagConstraints.weighty = 1.0;
+            otherDetailsPanel.add(nokTelephoneTxt, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 2;
@@ -2594,9 +2611,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel1.add(jPanel16, gridBagConstraints);
+            admissionsMainPanel.add(otherDetailsPanel, gridBagConstraints);
 
-            jTabbedPane1.addTab("Patient Details", jPanel1);
+            admissionsTabbedPane.addTab("Patient Details", admissionsMainPanel);
 
             jPanel14.setLayout(new java.awt.GridBagLayout());
 
@@ -2604,8 +2621,8 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Other details"));
             jPanel2.setLayout(new java.awt.GridBagLayout());
 
-            jLabel7.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel7.setText("Next of Kin");
+            nokNameLbl.setForeground(new java.awt.Color(255, 51, 153));
+            nokNameLbl.setText("Next of Kin (NOK) Name");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 1;
@@ -2613,7 +2630,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel2.add(jLabel7, gridBagConstraints);
+            jPanel2.add(nokNameLbl, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 1;
@@ -2622,7 +2639,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             jPanel2.add(nokNameTxt, gridBagConstraints);
 
-            jLabel9.setText("Address");
+            postalAddressLbl.setText("Postal Address");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 4;
@@ -2630,17 +2647,17 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel2.add(jLabel9, gridBagConstraints);
+            jPanel2.add(postalAddressLbl, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 4;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel2.add(jTextField9, gridBagConstraints);
+            jPanel2.add(postalAddressTxt, gridBagConstraints);
 
-            jLabel15.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel15.setText("Mode of Payment");
+            modeofPaymentLbl.setForeground(new java.awt.Color(255, 51, 153));
+            modeofPaymentLbl.setText("Mode of Payment");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 2;
@@ -2648,7 +2665,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel2.add(jLabel15, gridBagConstraints);
+            jPanel2.add(modeofPaymentLbl, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 4;
             gridBagConstraints.gridy = 3;
@@ -2656,9 +2673,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel2.add(jTextField4, gridBagConstraints);
+            jPanel2.add(billPayerTxt, gridBagConstraints);
 
-            jLabel1.setText("Person Paying Bill");
+            billPayerLbl.setText("Person Paying Bill");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 3;
@@ -2666,7 +2683,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel2.add(jLabel1, gridBagConstraints);
+            jPanel2.add(billPayerLbl, gridBagConstraints);
 
             paymentModeCmbx.setSelectedItem(null);
             // javax.swing.JComboBox strCmb;
@@ -2710,45 +2727,45 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
             jPanel2.add(nhifChbx, gridBagConstraints);
 
-            jPanel81.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patient Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 255))); // NOI18N
-            jPanel81.setLayout(new java.awt.GridBagLayout());
+            patientStatusPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patient Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 255))); // NOI18N
+            patientStatusPanel.setLayout(new java.awt.GridBagLayout());
 
-            buttonGroup1.add(jCheckBox221);
-            jCheckBox221.setText("Admitted");
+            buttonGroup1.add(admittedChbx);
+            admittedChbx.setText("Admitted");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel81.add(jCheckBox221, gridBagConstraints);
+            patientStatusPanel.add(admittedChbx, gridBagConstraints);
 
-            buttonGroup1.add(jCheckBox311);
-            jCheckBox311.setText("Discharged");
+            buttonGroup1.add(dischargedChkbx);
+            dischargedChkbx.setText("Discharged");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 2;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel81.add(jCheckBox311, gridBagConstraints);
+            patientStatusPanel.add(dischargedChkbx, gridBagConstraints);
 
-            jCheckBox7.setText("Has Interim Bill");
-            jCheckBox7.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+            hasInterimBillChkbx.setText("Has Interim Bill");
+            hasInterimBillChkbx.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel81.add(jCheckBox7, gridBagConstraints);
+            patientStatusPanel.add(hasInterimBillChkbx, gridBagConstraints);
 
-            this.jCheckBox8.setEnabled(false);
-            jCheckBox8.setText("Check to suspend existing interim Bill");
-            jCheckBox8.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-            jCheckBox8.addActionListener(new java.awt.event.ActionListener() {
+            this.suspendBillChkbx.setEnabled(false);
+            suspendBillChkbx.setText("Check to suspend existing interim Bill");
+            suspendBillChkbx.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+            suspendBillChkbx.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jCheckBox8ActionPerformed(evt);
+                    suspendBillChkbxActionPerformed(evt);
                 }
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -2758,7 +2775,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel81.add(jCheckBox8, gridBagConstraints);
+            patientStatusPanel.add(suspendBillChkbx, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -2768,15 +2785,15 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel2.add(jPanel81, gridBagConstraints);
+            jPanel2.add(patientStatusPanel, gridBagConstraints);
 
-            jCheckBox6.setForeground(new java.awt.Color(250, 127, 5));
-            jCheckBox6.setText("Merge OP Bill ?");
-            jCheckBox6.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-            jCheckBox6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-            jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
+            mergeOPBillChkbx.setForeground(new java.awt.Color(250, 127, 5));
+            mergeOPBillChkbx.setText("Merge OP Bill ?");
+            mergeOPBillChkbx.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+            mergeOPBillChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+            mergeOPBillChkbx.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jCheckBox6ActionPerformed(evt);
+                    mergeOPBillChkbxActionPerformed(evt);
                 }
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -2784,10 +2801,10 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.gridy = 10;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel2.add(jCheckBox6, gridBagConstraints);
+            jPanel2.add(mergeOPBillChkbx, gridBagConstraints);
 
-            jLabel26.setBackground(new java.awt.Color(204, 0, 51));
-            jLabel26.setText("Card Maturity Date");
+            cardMaturityDateLbl.setBackground(new java.awt.Color(204, 0, 51));
+            cardMaturityDateLbl.setText("Card Maturity Date");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 10;
@@ -2795,18 +2812,18 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel2.add(jLabel26, gridBagConstraints);
+            jPanel2.add(cardMaturityDateLbl, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 10;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel2.add(datePicker2, gridBagConstraints);
+            jPanel2.add(cardMaturityDatePicker, gridBagConstraints);
 
-            jLabel29.setBackground(new java.awt.Color(255, 204, 255));
-            jLabel29.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel29.setText("Relationship");
+            nokRelationLbl.setBackground(new java.awt.Color(255, 204, 255));
+            nokRelationLbl.setForeground(new java.awt.Color(255, 51, 153));
+            nokRelationLbl.setText("NOK Relationship");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 2;
@@ -2814,7 +2831,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel2.add(jLabel29, gridBagConstraints);
+            jPanel2.add(nokRelationLbl, gridBagConstraints);
 
             nokRelationShipCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB,"SELECT DISTINCT relation_description FROM nok_relationship order by 1"));
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -2827,7 +2844,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
             jPanel2.add(nokRelationShipCmbx, gridBagConstraints);
 
-            idNoLbl2.setText("NoK Residence");
+            nokResidenceLbl.setText("NOK Residence");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 1;
@@ -2835,7 +2852,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel2.add(idNoLbl2, gridBagConstraints);
+            jPanel2.add(nokResidenceLbl, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 4;
             gridBagConstraints.gridy = 1;
@@ -2845,7 +2862,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
             jPanel2.add(nokResidenceTxt, gridBagConstraints);
 
-            jLabel23.setText("Clinic Number");
+            clinicNumberLbl.setText("Clinic Number");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 4;
@@ -2854,7 +2871,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel2.add(jLabel23, gridBagConstraints);
+            jPanel2.add(clinicNumberLbl, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 4;
             gridBagConstraints.gridy = 4;
@@ -2863,16 +2880,16 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel2.add(oldFileNumberTxt, gridBagConstraints);
+            jPanel2.add(clinicFileNumberTxt, gridBagConstraints);
 
-            jLabel28.setText("NHIF / Claim/Reference Number");
+            nhifReferenceNoLbl.setText("NHIF / Claim/Reference Number");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 11;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel2.add(jLabel28, gridBagConstraints);
+            jPanel2.add(nhifReferenceNoLbl, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 11;
@@ -2881,7 +2898,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             jPanel2.add(nhifClaimNumberTxt, gridBagConstraints);
 
-            jLabel37.setText("County of Birth");
+            countyofBirthLbl.setText("County of Birth");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 5;
@@ -2890,9 +2907,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel2.add(jLabel37, gridBagConstraints);
+            jPanel2.add(countyofBirthLbl, gridBagConstraints);
 
-            jLabel43.setText("County of Residence");
+            countyofResidenceLbl.setText("County of Residence");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 5;
@@ -2901,7 +2918,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel2.add(jLabel43, gridBagConstraints);
+            jPanel2.add(countyofResidenceLbl, gridBagConstraints);
 
             countyofBirthCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' UNION SELECT DISTINCT county_name FROM pb_county ORDER BY 1"));
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -2923,7 +2940,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
             jPanel2.add(countyofResidenceCmbx, gridBagConstraints);
 
-            jLabel44.setText("Employer");
+            employerNameLbl.setText("Employer Name");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 6;
@@ -2932,7 +2949,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel2.add(jLabel44, gridBagConstraints);
+            jPanel2.add(employerNameLbl, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 6;
@@ -2942,7 +2959,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             jPanel2.add(employerTxt, gridBagConstraints);
 
-            jLabel45.setText("Employer Telephone");
+            employerTelLbl.setText("Employer Telephone");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 6;
@@ -2951,7 +2968,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel2.add(jLabel45, gridBagConstraints);
+            jPanel2.add(employerTelLbl, gridBagConstraints);
 
             employerTelTxt.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2966,8 +2983,8 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             jPanel2.add(employerTelTxt, gridBagConstraints);
 
-            jLabel46.setForeground(new java.awt.Color(255, 51, 153));
-            jLabel46.setText("C-Sheet No.");
+            chargeSheetNoLbl.setForeground(new java.awt.Color(255, 51, 153));
+            chargeSheetNoLbl.setText("C-Sheet No.");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 7;
@@ -2976,7 +2993,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel2.add(jLabel46, gridBagConstraints);
+            jPanel2.add(chargeSheetNoLbl, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 4;
             gridBagConstraints.gridy = 7;
@@ -2985,7 +3002,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             jPanel2.add(cSheetNoTxt, gridBagConstraints);
 
-            jLabel47.setText("Education Level");
+            educationLevelLbl.setText("Education Level");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 7;
@@ -2994,7 +3011,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel2.add(jLabel47, gridBagConstraints);
+            jPanel2.add(educationLevelLbl, gridBagConstraints);
 
             educationLevelCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT edu_name FROM pb_education ORDER BY edu_name"));
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -3007,7 +3024,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
             jPanel2.add(educationLevelCmbx, gridBagConstraints);
 
-            jLabel48.setText("NHIF Card Number");
+            nhifCardNoLbl.setText("NHIF Card Number");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 12;
@@ -3015,7 +3032,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-            jPanel2.add(jLabel48, gridBagConstraints);
+            jPanel2.add(nhifCardNoLbl, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 12;
@@ -3024,12 +3041,13 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             jPanel2.add(nhifCardMemberNumberTxt, gridBagConstraints);
 
-            jLabel34.setText("Next of kin Telephone");
+            nokTelLbl.setForeground(new java.awt.Color(255, 51, 51));
+            nokTelLbl.setText("Next of kin Telephone");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 3;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-            jPanel2.add(jLabel34, gridBagConstraints);
+            jPanel2.add(nokTelLbl, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 3;
@@ -3046,23 +3064,23 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
             jPanel14.add(jPanel2, gridBagConstraints);
 
-            jPanel21.setBackground(new java.awt.Color(219, 243, 255));
-            jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder("Select card name then enter card No.and the expiry date "));
-            jPanel21.setEnabled(false);
-            jPanel21.setLayout(new java.awt.GridBagLayout());
+            bankCardsPanel.setBackground(new java.awt.Color(219, 243, 255));
+            bankCardsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Select card name then enter card No.and the expiry date "));
+            bankCardsPanel.setEnabled(false);
+            bankCardsPanel.setLayout(new java.awt.GridBagLayout());
 
-            jLabel71.setText("Card Name");
+            cardNameLbl.setText("Card Name");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 1;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel21.add(jLabel71, gridBagConstraints);
+            bankCardsPanel.add(cardNameLbl, gridBagConstraints);
 
-            jComboBox31.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT card_name FROM pb_creditcard_types ORDER By card_name"));
-            jComboBox31.addActionListener(new java.awt.event.ActionListener() {
+            cardNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT card_name FROM pb_creditcard_types ORDER By card_name"));
+            cardNameCmbx.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jComboBox31ActionPerformed(evt);
+                    cardNameCmbxActionPerformed(evt);
                 }
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -3071,32 +3089,32 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel21.add(jComboBox31, gridBagConstraints);
+            bankCardsPanel.add(cardNameCmbx, gridBagConstraints);
 
-            jTextField71.setEditable(false);
+            cardIssurerTxt.setEditable(false);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 2;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel21.add(jTextField71, gridBagConstraints);
+            bankCardsPanel.add(cardIssurerTxt, gridBagConstraints);
 
-            jLabel81.setText("Issurer");
+            cardUssurerLbl.setText("Issurer");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 2;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel21.add(jLabel81, gridBagConstraints);
+            bankCardsPanel.add(cardUssurerLbl, gridBagConstraints);
 
-            jLabel91.setText("Card No.");
+            cardNoLbl.setText("Card No.");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 2;
             gridBagConstraints.gridy = 1;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel21.add(jLabel91, gridBagConstraints);
+            bankCardsPanel.add(cardNoLbl, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 1;
@@ -3104,20 +3122,20 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel21.add(cardNumberTxt, gridBagConstraints);
+            bankCardsPanel.add(cardNumberTxt, gridBagConstraints);
 
-            jLabel151.setText("Expiry Date");
+            cardExpiryDateLbl.setText("Expiry Date");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 2;
             gridBagConstraints.gridy = 2;
-            jPanel21.add(jLabel151, gridBagConstraints);
+            bankCardsPanel.add(cardExpiryDateLbl, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 2;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel21.add(datePicker21, gridBagConstraints);
+            bankCardsPanel.add(cardExpiryDatePicker, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -3127,22 +3145,22 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 5.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
-            jPanel14.add(jPanel21, gridBagConstraints);
+            jPanel14.add(bankCardsPanel, gridBagConstraints);
 
-            jPanel5.setBackground(new java.awt.Color(255, 239, 255));
-            jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Select type of scheme & then select staff no"));
-            jPanel5.setLayout(new java.awt.GridBagLayout());
+            schemePanel.setBackground(new java.awt.Color(255, 239, 255));
+            schemePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Select type of scheme & then select staff no"));
+            schemePanel.setLayout(new java.awt.GridBagLayout());
 
-            jLabel102.setText("Member Name");
+            memberNameLbl.setText("Member Name");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 2;
             gridBagConstraints.gridy = 1;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-            jPanel5.add(jLabel102, gridBagConstraints);
+            schemePanel.add(memberNameLbl, gridBagConstraints);
 
-            jLabel122.setText("Member No.");
+            memberNoLbl.setText("Member No.");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 2;
             gridBagConstraints.gridy = 2;
@@ -3150,66 +3168,66 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-            jPanel5.add(jLabel122, gridBagConstraints);
+            schemePanel.add(memberNoLbl, gridBagConstraints);
 
-            jLabel172.setText("Expiry Date");
+            schemeExpiryDateLbl.setText("Expiry Date");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 4;
             gridBagConstraints.gridy = 2;
             gridBagConstraints.weightx = 1.0;
-            jPanel5.add(jLabel172, gridBagConstraints);
+            schemePanel.add(schemeExpiryDateLbl, gridBagConstraints);
 
-            jLabel143.setText("Scheme Manager");
+            schemeManagerLbl.setText("Scheme Manager");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 2;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-            jPanel5.add(jLabel143, gridBagConstraints);
+            schemePanel.add(schemeManagerLbl, gridBagConstraints);
 
-            jTextField23.setEditable(false);
+            schemeMangerTxt.setEditable(false);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 2;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 2);
-            jPanel5.add(jTextField23, gridBagConstraints);
+            schemePanel.add(schemeMangerTxt, gridBagConstraints);
 
-            jLabel182.setText("Scheme Name");
+            schemeNameLbl.setText("Scheme Name");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 1;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-            jPanel5.add(jLabel182, gridBagConstraints);
+            schemePanel.add(schemeNameLbl, gridBagConstraints);
 
-            jPanel64.setMinimumSize(new java.awt.Dimension(82, 37));
-            jPanel64.setLayout(new java.awt.GridBagLayout());
+            schemeMemberNamePanel.setMinimumSize(new java.awt.Dimension(82, 37));
+            schemeMemberNamePanel.setLayout(new java.awt.GridBagLayout());
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 1;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel64.add(jTextField36, gridBagConstraints);
+            schemeMemberNamePanel.add(memberNameTxt, gridBagConstraints);
 
-            searchButton2.setToolTipText("Search");
-            searchButton2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-            searchButton2.setMaximumSize(new java.awt.Dimension(74, 53));
-            searchButton2.setMinimumSize(new java.awt.Dimension(74, 53));
-            searchButton2.setPreferredSize(new java.awt.Dimension(40, 22));
-            searchButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-            searchButton2.addActionListener(new java.awt.event.ActionListener() {
+            memberNameSearchButton.setToolTipText("Search");
+            memberNameSearchButton.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+            memberNameSearchButton.setMaximumSize(new java.awt.Dimension(74, 53));
+            memberNameSearchButton.setMinimumSize(new java.awt.Dimension(74, 53));
+            memberNameSearchButton.setPreferredSize(new java.awt.Dimension(40, 22));
+            memberNameSearchButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+            memberNameSearchButton.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    searchButton2ActionPerformed(evt);
+                    memberNameSearchButtonActionPerformed(evt);
                 }
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 2;
             gridBagConstraints.gridy = 1;
-            jPanel64.add(searchButton2, gridBagConstraints);
+            schemeMemberNamePanel.add(memberNameSearchButton, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 4;
@@ -3218,42 +3236,42 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-            jPanel5.add(jPanel64, gridBagConstraints);
+            schemePanel.add(schemeMemberNamePanel, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 2;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 2);
-            jPanel5.add(memberNumberTxt, gridBagConstraints);
+            schemePanel.add(memberNumberTxt, gridBagConstraints);
 
-            jPanel641.setMinimumSize(new java.awt.Dimension(82, 37));
-            jPanel641.setLayout(new java.awt.GridBagLayout());
+            schemeSearchNamePanel.setMinimumSize(new java.awt.Dimension(82, 37));
+            schemeSearchNamePanel.setLayout(new java.awt.GridBagLayout());
 
-            jTextField3611.setEditable(false);
+            schemeNameTxt.setEditable(false);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 1;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel641.add(jTextField3611, gridBagConstraints);
+            schemeSearchNamePanel.add(schemeNameTxt, gridBagConstraints);
 
-            searchButton21.setToolTipText("Search");
-            searchButton21.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-            searchButton21.setMaximumSize(new java.awt.Dimension(74, 53));
-            searchButton21.setMinimumSize(new java.awt.Dimension(74, 53));
-            searchButton21.setPreferredSize(new java.awt.Dimension(40, 22));
-            searchButton21.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-            searchButton21.addActionListener(new java.awt.event.ActionListener() {
+            schemeSearchButton.setToolTipText("Search");
+            schemeSearchButton.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+            schemeSearchButton.setMaximumSize(new java.awt.Dimension(74, 53));
+            schemeSearchButton.setMinimumSize(new java.awt.Dimension(74, 53));
+            schemeSearchButton.setPreferredSize(new java.awt.Dimension(40, 22));
+            schemeSearchButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+            schemeSearchButton.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    searchButton21ActionPerformed(evt);
+                    schemeSearchButtonActionPerformed(evt);
                 }
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 2;
             gridBagConstraints.gridy = 1;
-            jPanel641.add(searchButton21, gridBagConstraints);
+            schemeSearchNamePanel.add(schemeSearchButton, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
@@ -3261,49 +3279,49 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 3.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 2);
-            jPanel5.add(jPanel641, gridBagConstraints);
+            schemePanel.add(schemeSearchNamePanel, gridBagConstraints);
 
-            jLabel22.setText("A/C No");
+            schemeAccNoLbl.setText("Scheme A/C No");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 3;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-            jPanel5.add(jLabel22, gridBagConstraints);
+            schemePanel.add(schemeAccNoLbl, gridBagConstraints);
 
-            jTextField15.setEditable(false);
+            schemeAccNoTxt.setEditable(false);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 3;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
-            jPanel5.add(jTextField15, gridBagConstraints);
+            schemePanel.add(schemeAccNoTxt, gridBagConstraints);
 
-            jLabel25.setText("Member Balance");
+            memberBalanceLbl.setText("Member Balance");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 4;
             gridBagConstraints.gridy = 3;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-            jPanel5.add(jLabel25, gridBagConstraints);
+            schemePanel.add(memberBalanceLbl, gridBagConstraints);
 
-            jTextField16.setEditable(false);
-            jTextField16.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+            memberBalanceTxt.setEditable(false);
+            memberBalanceTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 5;
             gridBagConstraints.gridy = 3;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-            jPanel5.add(jTextField16, gridBagConstraints);
+            schemePanel.add(memberBalanceTxt, gridBagConstraints);
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 5;
             gridBagConstraints.gridy = 2;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
-            jPanel5.add(datePicker11, gridBagConstraints);
+            schemePanel.add(schemeExpiryDatePicker, gridBagConstraints);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
@@ -3313,9 +3331,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 5.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
-            jPanel14.add(jPanel5, gridBagConstraints);
+            jPanel14.add(schemePanel, gridBagConstraints);
 
-            jTabbedPane1.addTab("Payment Information and Other details", jPanel14);
+            admissionsTabbedPane.addTab("Payment Information and Other details", jPanel14);
 
             admissionListingPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -3392,7 +3410,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             admissionListingPanel.add(spacerLabel, gridBagConstraints);
 
-            jTabbedPane1.addTab("Admission Report", admissionListingPanel);
+            admissionsTabbedPane.addTab("Admission Report", admissionListingPanel);
 
             admissionAnalysisPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -3469,7 +3487,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             admissionAnalysisPanel.add(spacerLabel1, gridBagConstraints);
 
-            jTabbedPane1.addTab("Admission analysis", admissionAnalysisPanel);
+            admissionsTabbedPane.addTab("Admission analysis", admissionAnalysisPanel);
 
             occupancyReportPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -3628,7 +3646,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             occupancyReportPanel.add(occupationButtonPanel, gridBagConstraints);
 
-            jTabbedPane1.addTab("Wards Occupancy Report", occupancyReportPanel);
+            admissionsTabbedPane.addTab("Wards Occupancy Report", occupancyReportPanel);
 
             previousPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -3648,7 +3666,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             previousPanel.add(previousVisitsScrollPane, gridBagConstraints);
 
-            jTabbedPane1.addTab("Previous Visits", previousPanel);
+            admissionsTabbedPane.addTab("Previous Visits", previousPanel);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
@@ -3657,14 +3675,14 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.weightx = 20.0;
             gridBagConstraints.weighty = 100.0;
-            getContentPane().add(jTabbedPane1, gridBagConstraints);
+            getContentPane().add(admissionsTabbedPane, gridBagConstraints);
 
-            setBounds(0, 0, 1097, 679);
+            setBounds(0, 0, 1247, 679);
         }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
+    private void suspendBillChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suspendBillChkbxActionPerformed
         String selectedchkbx;
-        if (this.jCheckBox8.isSelected()) {
+        if (this.suspendBillChkbx.isSelected()) {
             int exitOption = javax.swing.JOptionPane.showConfirmDialog(this, "Do you want to suspend existing unfinalised bill?", "Caution before Saving!", javax.swing.JOptionPane.YES_NO_CANCEL_OPTION);
 
             if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
@@ -3687,7 +3705,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         } else {
         }
 // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox8ActionPerformed
+    }//GEN-LAST:event_suspendBillChkbxActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 //    System.setProperty("docsdir",System.getProperty("user.dir"));
@@ -3708,7 +3726,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         surNameTxt.setText(claimFile.patientSurName);
         firstNameTxt.setText(claimFile.patientForenames);
         paymentModeCmbx.setSelectedItem("Scheme");
-        jTextField9.setText(claimFile.patientAddress);
+        postalAddressTxt.setText(claimFile.patientAddress);
         nokTelephoneTxt.setText(claimFile.patientTelephone);
         //  emailAddTxt.setText(claimFile.patientEmail);
         java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat();//.getInstance();
@@ -3725,13 +3743,13 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         }
 
         memberNumberTxt.setText(claimFile.cardNumber);
-        jTextField36.setText(claimFile.patientSurName + " " + claimFile.patientForenames);
-        jTextField3611.setText(claimFile.medicalAidCode);
-        jTextField23.setText(claimFile.medicalAidPlan);
+        memberNameTxt.setText(claimFile.patientSurName + " " + claimFile.patientForenames);
+        schemeNameTxt.setText(claimFile.medicalAidCode);
+        schemeMangerTxt.setText(claimFile.medicalAidPlan);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
+    private void mergeOPBillChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mergeOPBillChkbxActionPerformed
         com.afrisoftech.accounting.MergingPatientBillIntfr other = new com.afrisoftech.accounting.MergingPatientBillIntfr(connectDB, pConnDB);
         this.getParent().add(other, javax.swing.JLayeredPane.DEFAULT_LAYER);
         try {
@@ -3739,7 +3757,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         } catch (java.beans.PropertyVetoException pvt) {
         }
         other.setVisible(true);// TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox6ActionPerformed
+    }//GEN-LAST:event_mergeOPBillChkbxActionPerformed
 
     private void admissionWardCmbxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admissionWardCmbxMouseClicked
     }//GEN-LAST:event_admissionWardCmbxMouseClicked
@@ -3751,7 +3769,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         String patientNo = null;
         int pNo = 0;
         //   referredFromTxt.setText("");
-        jTextField9.setText("");
+        postalAddressTxt.setText("");
         nokTelephoneTxt.setText("");
         nokNameTxt.setText("");
         firstNameTxt.setText("");
@@ -3761,20 +3779,20 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         // jTextField12.setText("");
         memberNumberTxt.setText("");
         currentResidence.setText("");
-        jTextField4.setText("");
+        billPayerTxt.setText("");
         bedRateTxt.setText("");
-        jTextField3611.setText("");
-        jTextField23.setText("");
-        jTextField36.setText("");
-        prevVisitIdtxt.setText("");
-        searchButton1.setEnabled(false);
+        schemeNameTxt.setText("");
+        schemeMangerTxt.setText("");
+        memberNameTxt.setText("");
+        previousVisitIDTxt.setText("");
+        opdSearchButton.setEnabled(false);
         searchButton.setEnabled(true);
 //        searchbyPatientNameChkbx.setEnabled(true);
 //        searchbyPatientNumberChkbx.setEnabled(true);
-        jCheckBox311.setEnabled(true);
-        jCheckBox221.setEnabled(true);
+        dischargedChkbx.setEnabled(true);
+        admittedChbx.setEnabled(true);
 //        referredFromTxt.setEditable(true);
-        jTextField9.setEditable(true);
+        postalAddressTxt.setEditable(true);
         nokTelephoneTxt.setEditable(true);
         nokNameTxt.setEditable(true);
         firstNameTxt.setEditable(true);
@@ -3783,11 +3801,11 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         admissionNumberTxt.setEditable(true);
         memberNumberTxt.setEditable(true);
         currentResidence.setEditable(true);
-        jTextField4.setEditable(true);
-        jTextField3611.setEditable(true);
-        jTextField361.setEditable(false);
-        jTextField23.setEditable(true);
-        jTextField36.setEditable(true);
+        billPayerTxt.setEditable(true);
+        schemeNameTxt.setEditable(true);
+        opdNoTxt.setEditable(false);
+        schemeMangerTxt.setEditable(true);
+        memberNameTxt.setEditable(true);
 //        admissionNumber.setText(jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 0).toString());
 //        jTextField122.setText(jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 2).toString());
 //        surNameTxt.setText(jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 1).toString());
@@ -3795,13 +3813,13 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         admissionNumberTxt.setText(jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 0).toString());
         firstNameTxt.setText(jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 1).toString());
         surNameTxt.setText(jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 2).toString());
-        prevVisitIdtxt.setText(jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 4).toString());
+        previousVisitIDTxt.setText(jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(), 4).toString());
 
         System.out.println("Finished Populating Form\n Starting Patient Query, Please wait...");
         try {
 
             java.sql.Statement stmt112 = connectDB.createStatement();
-            java.sql.ResultSet rset112 = stmt112.executeQuery("select nationality,occupation,pat_religion,pat_district,sub_chief,nok_relationship,home_county,residence_county,education_level,id_no,pat_location,chief_name,speciality,nok_residence,marital_status from hp_admission where patient_no ='" + admissionNumberTxt.getText() + "' and  visit_id = '" + prevVisitIdtxt.getText() + "' ");
+            java.sql.ResultSet rset112 = stmt112.executeQuery("select nationality,occupation,pat_religion,pat_district,sub_chief,nok_relationship,home_county,residence_county,education_level,id_no,pat_location,chief_name,speciality,nok_residence,marital_status from hp_admission where patient_no ='" + admissionNumberTxt.getText() + "' and  visit_id = '" + previousVisitIDTxt.getText() + "' ");
             while (rset112.next()) {
                 nationalityCmbx.setSelectedItem(rset112.getObject(1).toString().trim());
                 occupationCmbx.setSelectedItem(rset112.getObject(2));
@@ -3832,9 +3850,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 }
 
                 if (rset112.getObject(12).toString().equalsIgnoreCase("")) {
-                    jTextField27.setText("-");
+                    nameofChiefTxt.setText("-");
                 } else {
-                    jTextField27.setText(rset112.getObject(12).toString());
+                    nameofChiefTxt.setText(rset112.getObject(12).toString());
                 }
 
                 specialtyClinicCmbx.setSelectedItem(rset112.getObject(13).toString());
@@ -3871,7 +3889,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 } catch (java.text.ParseException pe) {
                     javax.swing.JOptionPane.showMessageDialog(this, pe.getMessage());
                 }
-                jTextField9.setText(rset.getObject(4).toString());
+                postalAddressTxt.setText(rset.getObject(4).toString());
                 nokTelephoneTxt.setText(rset.getObject(6).toString());
                 if (rset.getObject(5).toString().startsWith("M")) {
                     maleChkbx.setSelected(true);
@@ -3900,7 +3918,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
 
             System.out.println("We are Almost Finishing to load, Please wait...");
             //  jComboBox6.setSelectedItem(jTextField17.getText().toString());
-            if (!jRadioButton1.isSelected()) {
+            if (!editReprintBtn.isSelected()) {
                 if (admissionNumberTxt.getText().equalsIgnoreCase(name)) {
                     javax.swing.JOptionPane.showMessageDialog(this, " Patient already admitted ", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
@@ -3925,9 +3943,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 // jComboBox1.setSelectedItem(rset11.getObject(1).toString());
                 //  name = rset11f.getObject(1).toString();
                 if (rset11f.getBoolean(2) == false) {
-                    jCheckBox7.setSelected(true);
+                    hasInterimBillChkbx.setSelected(true);
                 } else {
-                    jCheckBox7.setSelected(false);
+                    hasInterimBillChkbx.setSelected(false);
                 }
             }
 
@@ -3942,11 +3960,11 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 java.sql.Statement stmt1111 = connectDB.createStatement();
                 java.sql.ResultSet rset1111 = stmt1111.executeQuery("select date_admitted::date,discharge_date::date,CASE WHEN (visit_id IS NULL) THEN '-' ELSE visit_id END AS visit_id,ward,bed_no from hp_admission where patient_no ='" + admissionNumberTxt.getText() + "' order by date_admitted DESC LIMIT 1");
                 while (rset1111.next()) {
-                    jTextField72.setText(rset1111.getObject(2).toString());
-                    jTextField82.setText(rset1111.getObject(1).toString());
-                    prevVisitIdtxt.setText(rset1111.getObject(3).toString());
-                    jTextField32.setText(rset1111.getObject(4).toString());
-                    jTextField42.setText(rset1111.getObject(5).toString());
+                    previousDischargeDateTxt.setText(rset1111.getObject(2).toString());
+                    previousAdmissionDateTxt.setText(rset1111.getObject(1).toString());
+                    previousVisitIDTxt.setText(rset1111.getObject(3).toString());
+                    wardAdmittedTxt.setText(rset1111.getObject(4).toString());
+                    bedoccupiedTxt.setText(rset1111.getObject(5).toString());
                 }
             }
             //  }
@@ -3966,18 +3984,18 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         previousVisitIDDialog.dispose();    // Add your handling code here:
     }//GEN-LAST:event_jButton513ActionPerformed
 
-    private void searchButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton4ActionPerformed
-        this.jButton1.setVisible(true);
-        this.jButton1.setText("Update");
+    private void previousVisitSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousVisitSearchButtonActionPerformed
+        this.admitBtn.setVisible(true);
+        this.admitBtn.setText("Update");
         searchButtonClicked3(); // Add your handling code here:
 
         // Add your handling code here:
-    }//GEN-LAST:event_searchButton4ActionPerformed
+    }//GEN-LAST:event_previousVisitSearchButtonActionPerformed
     private void searchButtonClicked3() {
 
         System.out.println("Showing dialog");
 
-        java.awt.Point point = this.jLabel92.getLocationOnScreen();
+        java.awt.Point point = this.previousVisitIDLbl.getLocationOnScreen();
 
         previousVisitIDDialog.setSize(700, 200);
 
@@ -4051,16 +4069,16 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         }          // Add your handling code here:
     }//GEN-LAST:event_bedCategoryCmbxActionPerformed
 
-    private void searchButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton3ActionPerformed
+    private void admittedByBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admittedByBtnActionPerformed
         searchButton11bClicked();    // Add your handling code here:
-    }//GEN-LAST:event_searchButton3ActionPerformed
+    }//GEN-LAST:event_admittedByBtnActionPerformed
 
     private void jButton5121ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5121ActionPerformed
         jSearchDialog21.dispose();   // Add your handling code here:
     }//GEN-LAST:event_jButton5121ActionPerformed
 
     private void jSearchTable21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable21MouseClicked
-        jTextField121.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 0).toString());
+        admittedByTxt.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 0).toString());
         //jTextField13.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 0).toString());
         //jTextField23.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 2).toString());
         jSearchDialog21.dispose();   // Add your handling code here:
@@ -4084,7 +4102,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         System.out.println("Showing dialog");
 
         jSearchDialog21.dispose();
-        java.awt.Point point = this.jTextField121.getLocationOnScreen();
+        java.awt.Point point = this.admittedByTxt.getLocationOnScreen();
 
         jSearchDialog21.setSize(700, 200);
 
@@ -4094,13 +4112,13 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
     }
     private void reAdmissionRbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reAdmissionRbtnActionPerformed
         admitPrintBtn.setEnabled(true);
-        jButton6.setEnabled(false);
+        reprintFileBtn.setEnabled(false);
         jButton2.setEnabled(true);
-        this.jButton1.setText("Admit");
+        this.admitBtn.setText("Admit");
         admitPrintBtn.setText("Admit & Print");
-        this.jButton1.setVisible(true);
+        this.admitBtn.setVisible(true);
 //        referredFromTxt.setEditable(false);
-        jTextField9.setEditable(false);
+        postalAddressTxt.setEditable(false);
         nokTelephoneTxt.setEditable(true);
         nokNameTxt.setEditable(true);
         firstNameTxt.setEditable(false);
@@ -4108,17 +4126,17 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         //jTextField6.setEditable(false);
         admissionNumberTxt.setEditable(false);
         memberNumberTxt.setEditable(false);
-        currentResidence.setEditable(false);
-        jTextField4.setText("");
-        jTextField3611.setEditable(false);
-        jTextField23.setEditable(false);
-        jTextField36.setEditable(false);
+        currentResidence.setEditable(true);
+        billPayerTxt.setText("");
+        schemeNameTxt.setEditable(false);
+        schemeMangerTxt.setEditable(false);
+        memberNameTxt.setEditable(false);
         searchButton.setEnabled(true);
-        searchButton1.setEnabled(false);
+        opdSearchButton.setEnabled(false);
 //        searchbyPatientNameChkbx.setEnabled(true);
 //        searchbyPatientNumberChkbx.setEnabled(true);
-        jCheckBox311.setEnabled(false);
-        jCheckBox221.setEnabled(false);
+        dischargedChkbx.setEnabled(false);
+        admittedChbx.setEnabled(false);
         religionCmbx.setSelectedIndex(-1);
         nationalityCmbx.setSelectedIndex(-1);
         districtCmbx.setSelectedIndex(-1);
@@ -4141,7 +4159,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         currentResidence.setText("");
         unitNumberTxt.setText("");
         idPassportTxt.setText("");
-        jTextField27.setText("");
+        nameofChiefTxt.setText("");
         locationTxt.setText("");
         firstNameTxt.setText("");
         try {
@@ -4154,7 +4172,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             java.sql.ResultSet rsetx2 = stmtx2.executeQuery("SELECT CURRENT_DATE::DATE");
             try {
                 while (rsetx2.next()) {
-                    datePicker1.setDate(sdf.parse(rsetx2.getObject(1).toString()));
+                    admissionDatePicker.setDate(sdf.parse(rsetx2.getObject(1).toString()));
                 }
             } catch (java.text.ParseException pe) {
                 javax.swing.JOptionPane.showMessageDialog(this, pe.getMessage());
@@ -4173,7 +4191,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         admitPrintBtn.setEnabled(true);
         admitPrintBtn.setText("Admit & Print");
         jButton2.setEnabled(true);
-        jButton6.setEnabled(false);
+        reprintFileBtn.setEnabled(false);
         /*
          this.admitPrintBtn.setEnabled(true);
          this.jButton1.setVisible(true);
@@ -4283,21 +4301,21 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_schemeSearchBtnActionPerformed
 
     private void schemeSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schemeSearchTableMouseClicked
-        jTextField3611.setText(schemeSearchTable.getValueAt(schemeSearchTable.getSelectedRow(), 1).toString());
-        jTextField15.setText(schemeSearchTable.getValueAt(schemeSearchTable.getSelectedRow(), 0).toString());
-        jTextField23.setText(schemeSearchTable.getValueAt(schemeSearchTable.getSelectedRow(), 2).toString());
+        schemeNameTxt.setText(schemeSearchTable.getValueAt(schemeSearchTable.getSelectedRow(), 1).toString());
+        schemeAccNoTxt.setText(schemeSearchTable.getValueAt(schemeSearchTable.getSelectedRow(), 0).toString());
+        schemeMangerTxt.setText(schemeSearchTable.getValueAt(schemeSearchTable.getSelectedRow(), 2).toString());
         schemeSearchDialog.dispose();
         try {
             connectDB.setAutoCommit(false);
 
             java.sql.Statement stmt = connectDB.createStatement();
-            java.sql.ResultSet rset = stmt.executeQuery("select suspended, closed from ac_schemes where scheme_name = '" + jTextField3611.getText() + "' and payer_name = '" + jTextField23.getText() + "'");
+            java.sql.ResultSet rset = stmt.executeQuery("select suspended, closed from ac_schemes where scheme_name = '" + schemeNameTxt.getText() + "' and payer_name = '" + schemeMangerTxt.getText() + "'");
             while (rset.next()) {
                 if (rset.getObject(1).toString().equalsIgnoreCase("true")) {
 
                     javax.swing.JOptionPane.showMessageDialog(this, "SCHEME SUSPENDED !!", "Error MESSAGE", javax.swing.JOptionPane.ERROR_MESSAGE);
-                    jTextField3611.setText("");
-                    jTextField23.setText("");
+                    schemeNameTxt.setText("");
+                    schemeMangerTxt.setText("");
                 } else {
                     // jTextField361.setText("");
                 }
@@ -4306,8 +4324,8 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 if (rset.getObject(2).toString().equalsIgnoreCase("true")) {
 
                     javax.swing.JOptionPane.showMessageDialog(this, "SCHEME CLOSED !!", "Error MESSAGE", javax.swing.JOptionPane.ERROR_MESSAGE);
-                    jTextField3611.setText("");
-                    jTextField23.setText("");
+                    schemeNameTxt.setText("");
+                    schemeMangerTxt.setText("");
                 } else {
                 }
             }
@@ -4358,15 +4376,15 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         }         // Add your handling code here:
     }//GEN-LAST:event_schemeSearchTxtCaretUpdate
 
-    private void searchButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton21ActionPerformed
+    private void schemeSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schemeSearchButtonActionPerformed
         searchButton11aClicked();            // Add your handling code here:
-    }//GEN-LAST:event_searchButton21ActionPerformed
+    }//GEN-LAST:event_schemeSearchButtonActionPerformed
     private void searchButton11aClicked() {
 
         System.out.println("Showing dialog");
 
         schemeSearchDialog.dispose();
-        java.awt.Point point = this.jTextField3611.getLocationOnScreen();
+        java.awt.Point point = this.schemeNameTxt.getLocationOnScreen();
 
         schemeSearchDialog.setSize(700, 200);
 
@@ -4375,7 +4393,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
 
     }
     private void jSearchTable11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable11MouseClicked
-        jTextField36.setText(jSearchTable11.getValueAt(jSearchTable11.getSelectedRow(), 1).toString());
+        memberNameTxt.setText(jSearchTable11.getValueAt(jSearchTable11.getSelectedRow(), 1).toString());
         memberNumberTxt.setText(jSearchTable11.getValueAt(jSearchTable11.getSelectedRow(), 0).toString());
         //   jTextField2.setText(jSearchTable11.getValueAt(jSearchTable11.getSelectedRow(), 2).toString());
         int interval = 0;
@@ -4389,19 +4407,19 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
-            java.sql.ResultSet rset = stmt.executeQuery("select payer_name from ac_schemes where scheme_name ='" + jTextField3611.getText() + "'");
+            java.sql.ResultSet rset = stmt.executeQuery("select payer_name from ac_schemes where scheme_name ='" + schemeNameTxt.getText() + "'");
             while (rset.next()) {
-                jTextField23.setText(rset.getObject(1).toString());
+                schemeMangerTxt.setText(rset.getObject(1).toString());
             }
             if (paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
                 java.sql.Statement stmt1cz = connectDB.createStatement();
-                java.sql.ResultSet rset1cz = stmt1cz.executeQuery("select applylimit from hp_schemestaff where staff_no  ='" + memberNumberTxt.getText() + "' and applylimit = true AND account_no = '" + jTextField15.getText() + "'");
+                java.sql.ResultSet rset1cz = stmt1cz.executeQuery("select applylimit from hp_schemestaff where staff_no  ='" + memberNumberTxt.getText() + "' and applylimit = true AND account_no = '" + schemeAccNoTxt.getText() + "'");
                 while (rset1cz.next()) {
                     appLimit = rset1cz.getBoolean(1);
                 }
                 System.out.println(appLimit);
                 if (appLimit) {
-                    ageingSeries = new com.afrisoftech.timeseries.YearyAgeing(1, datePicker1.getDate());
+                    ageingSeries = new com.afrisoftech.timeseries.YearyAgeing(1, admissionDatePicker.getDate());
 
                     java.lang.Object[][] rangeDates = ageingSeries.getAgeingDateSeries();
 
@@ -4430,14 +4448,14 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                     System.out.println(limit);
                     for (int t = 0; t < rangeDates.length; t++) {
                         java.sql.Statement stmt1cxz = connectDB.createStatement();
-                        java.sql.ResultSet rset1cxz = stmt1cxz.executeQuery("select count(member_no) from ac_debtors where member_no  ='" + memberNumberTxt.getText() + "' AND date between '" + rangeDates[t][0] + "' AND '" + rangeDates[t][1] + "' AND account_no ilike '" + jTextField15.getText() + "'");
+                        java.sql.ResultSet rset1cxz = stmt1cxz.executeQuery("select count(member_no) from ac_debtors where member_no  ='" + memberNumberTxt.getText() + "' AND date between '" + rangeDates[t][0] + "' AND '" + rangeDates[t][1] + "' AND account_no ilike '" + schemeAccNoTxt.getText() + "'");
                         while (rset1cxz.next()) {
                             occ = rset1cxz.getInt(1);
                         }
                         if (occ > 0) {
                             java.sql.Statement stmt1cx = connectDB.createStatement();
                             System.out.println("Dates between : " + rangeDates[t][0] + " AND " + rangeDates[t][1]);
-                            java.sql.ResultSet rset1cx = stmt1cx.executeQuery("select sum(balance) from ac_debtors where member_no  ='" + memberNumberTxt.getText() + "' AND date between '" + rangeDates[t][0] + "' AND '" + rangeDates[t][1] + "' AND account_no ilike '" + jTextField15.getText() + "'");
+                            java.sql.ResultSet rset1cx = stmt1cx.executeQuery("select sum(balance) from ac_debtors where member_no  ='" + memberNumberTxt.getText() + "' AND date between '" + rangeDates[t][0] + "' AND '" + rangeDates[t][1] + "' AND account_no ilike '" + schemeAccNoTxt.getText() + "'");
                             while (rset1cx.next()) {
                                 bal = rset1cx.getDouble(1);
                                 System.out.println(bal);
@@ -4447,7 +4465,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                         }
                     }
                     outstanding = limit - bal;
-                    jTextField16.setText(java.lang.String.valueOf(outstanding));
+                    memberBalanceTxt.setText(java.lang.String.valueOf(outstanding));
                     if (bal >= limit) {
                         javax.swing.JOptionPane.showMessageDialog(this, "The patient has exausted the member limit", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
                     } else {
@@ -4475,7 +4493,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             System.out.println("Nothing");
         } else {
 
-            jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select trim(staff_no) as scheme, staff_name as name,sheme_name from scheme_members_view where staff_name ILIKE '" + jTextField1112.getText().toString() + "%' and sheme_name = '" + jTextField3611.getText().toString() + "' ORDER BY staff_name"));
+            jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select trim(staff_no) as scheme, staff_name as name,sheme_name from scheme_members_view where suspended = 'false' AND staff_name ILIKE '" + jTextField1112.getText().toString() + "%' and sheme_name = '" + schemeNameTxt.getText().toString() + "' ORDER BY staff_name"));
 
             /*
              * try { searchRowSet11.execute("select trim(staff_no) as scheme,
@@ -4502,15 +4520,15 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         }        // Add your handling code here:
     }//GEN-LAST:event_jTextField1112CaretUpdate
 
-    private void searchButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton2ActionPerformed
+    private void memberNameSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberNameSearchButtonActionPerformed
         searchButton11Clicked();        // Add your handling code here:
-    }//GEN-LAST:event_searchButton2ActionPerformed
+    }//GEN-LAST:event_memberNameSearchButtonActionPerformed
     private void searchButton11Clicked() {
 
         System.out.println("Showing dialog");
 
         jSearchDialog11.dispose();
-        java.awt.Point point = this.jTextField36.getLocationOnScreen();
+        java.awt.Point point = this.memberNameTxt.getLocationOnScreen();
 
         jSearchDialog11.setSize(700, 200);
 
@@ -4525,7 +4543,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
 
         System.out.println("Showing dialog");
 
-        java.awt.Point point = this.jTextField361.getLocationOnScreen();
+        java.awt.Point point = this.opdNoTxt.getLocationOnScreen();
 
         opSearchDialog.setSize(700, 200);
 
@@ -4539,7 +4557,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton511ActionPerformed
 
     private void opSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opSearchTableMouseClicked
-        jTextField361.setText(opSearchTable.getValueAt(opSearchTable.getSelectedRow(), 0).toString());
+        opdNoTxt.setText(opSearchTable.getValueAt(opSearchTable.getSelectedRow(), 0).toString());
 
         opSearchDialog.dispose();
         String useonenumber = null;
@@ -4555,7 +4573,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 admissionNumberTxt.setText(opSearchTable.getValueAt(opSearchTable.getSelectedRow(), 0).toString());
             }
             java.sql.Statement stmt = connectDB.createStatement();
-            java.sql.ResultSet rset = stmt.executeQuery("SELECT first_name,second_name,nok,residence,year_of_birth::date,tel_no,address,sex,pat_marital_status,pat_nationality,nok_relationship,education_level,residence_county,pat_religion,home_county,district,nok_residence,occupation, nhif_status,nhif_number,nok_telno,tribe,charge_sheet_no,id_no,patient_race,locations,sub_location,patient_disability FROM hp_patient_register WHERE patient_no ='" + jTextField361.getText() + "'");
+            java.sql.ResultSet rset = stmt.executeQuery("SELECT first_name,second_name,nok,residence,year_of_birth::date,tel_no,address,sex,pat_marital_status,pat_nationality,nok_relationship,education_level,residence_county,pat_religion,home_county,district,nok_residence,occupation, nhif_status,nhif_number,nok_telno,tribe,charge_sheet_no,id_no,patient_race,locations,sub_location,patient_disability FROM hp_patient_register WHERE patient_no ='" + opdNoTxt.getText() + "'");
             while (rset.next()) {
                 // jComboBox6.setSelectedItem(rset.getObject(1).toString());
                 surNameTxt.setText(dbObject.getDBObject(rset.getObject(1), "-"));
@@ -4577,7 +4595,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 idPassportTxt.setText(rset.getString("id_no"));
                 locationTxt.setText(rset.getString("locations"));
                 districtCmbx.setSelectedItem(rset.getString("sub_location"));
-                oldFileNumberTxt.setText(rset.getString("tribe"));
+                clinicFileNumberTxt.setText(rset.getString("tribe"));
                 if (rset.getBoolean("nhif_status")) {
                     nhifChbx.setSelected(true);
                 } else {
@@ -4596,7 +4614,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                     javax.swing.JOptionPane.showMessageDialog(this, pe.getMessage());
                 }
                 nokTelephoneTxt.setText(dbObject.getDBObject(rset.getObject(6), "-"));
-                jTextField9.setText(dbObject.getDBObject(rset.getObject(7), "-"));
+                postalAddressTxt.setText(dbObject.getDBObject(rset.getObject(7), "-"));
                 if (rset.getObject(8).toString().startsWith("M")) {
                     maleChkbx.setSelected(true);
 
@@ -4633,10 +4651,10 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         opSearchDialog.dispose();   // Add your handling code here:
     }//GEN-LAST:event_opSearchTableMouseClicked
 
-    private void searchButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton1ActionPerformed
+    private void opdSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opdSearchButtonActionPerformed
         searchButton1Clicked();
-        this.jButton1.setVisible(true);// Add your handling code here:
-    }//GEN-LAST:event_searchButton1ActionPerformed
+        this.admitBtn.setVisible(true);// Add your handling code here:
+    }//GEN-LAST:event_opdSearchButtonActionPerformed
 
     private void opSearchFieldTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_opSearchFieldTxtCaretUpdate
         if (opSearchFieldTxt.getCaretPosition() < 5) {
@@ -4686,10 +4704,10 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             if (i == 1) {
 
                 column.setPreferredWidth(500); // item description column is bigger
-            } else if(i == 0) {
+            } else if (i == 0) {
                 column.setPreferredWidth(200);
             } else {
-                column.setPreferredWidth(100); 
+                column.setPreferredWidth(100);
             }
         }
         opSearchScrollPane1.setViewportView(opSearchTable);
@@ -4705,11 +4723,11 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         String patientNo = null;
         int pNo = 0;
 
-        jTextField72.setText("");
-        jTextField82.setText("");
-        prevVisitIdtxt.setText("");
-        jTextField32.setText("");
-        jTextField42.setText("");
+        previousDischargeDateTxt.setText("");
+        previousAdmissionDateTxt.setText("");
+        previousVisitIDTxt.setText("");
+        wardAdmittedTxt.setText("");
+        bedoccupiedTxt.setText("");
 
         admissionNumberTxt.setText(ipSearchTable.getValueAt(ipSearchTable.getSelectedRow(), 0).toString());
         firstNameTxt.setText(ipSearchTable.getValueAt(ipSearchTable.getSelectedRow(), 1).toString());
@@ -4742,9 +4760,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 }
 
                 if (rset112.getObject(12).toString().equalsIgnoreCase("")) {
-                    jTextField27.setText("-");
+                    nameofChiefTxt.setText("-");
                 } else {
-                    jTextField27.setText(rset112.getString(12));
+                    nameofChiefTxt.setText(rset112.getString(12));
                 }
 
                 specialtyClinicCmbx.setSelectedItem(rset112.getObject(13));
@@ -4780,7 +4798,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 } catch (java.text.ParseException pe) {
                     javax.swing.JOptionPane.showMessageDialog(this, pe.getMessage());
                 }
-                jTextField9.setText(rset.getObject(4).toString());
+                postalAddressTxt.setText(rset.getObject(4).toString());
                 nokTelephoneTxt.setText(rset.getObject(6).toString());
                 if (rset.getObject(5).toString().startsWith("M")) {
                     maleChkbx.setSelected(true);
@@ -4801,7 +4819,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 checkOut = rset1111x.getBoolean(1);
             }
 
-            if (!jRadioButton1.isSelected()) {
+            if (!editReprintBtn.isSelected()) {
                 if (admissionNumberTxt.getText().equalsIgnoreCase(name)) {
                     javax.swing.JOptionPane.showMessageDialog(this, " Patient already admitted ", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
@@ -4823,9 +4841,9 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 // jComboBox1.setSelectedItem(rset11.getObject(1).toString());
                 //  name = rset11f.getObject(1).toString();
                 if (rset11f.getBoolean(2) == false) {
-                    jCheckBox7.setSelected(true);
+                    hasInterimBillChkbx.setSelected(true);
                 } else {
-                    jCheckBox7.setSelected(false);
+                    hasInterimBillChkbx.setSelected(false);
                 }
             }
 
@@ -4840,11 +4858,11 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 java.sql.Statement stmt1111 = connectDB.createStatement();
                 java.sql.ResultSet rset1111 = stmt1111.executeQuery("select date_admitted::date,discharge_date::date,CASE WHEN (visit_id IS NULL) THEN '-' ELSE visit_id END AS visit_id,ward,bed_no from hp_admission where patient_no ='" + admissionNumberTxt.getText() + "' order by date_admitted DESC LIMIT 1");
                 while (rset1111.next()) {
-                    jTextField72.setText(rset1111.getObject(2).toString());
-                    jTextField82.setText(rset1111.getObject(1).toString());
-                    prevVisitIdtxt.setText(rset1111.getObject(3).toString());
-                    jTextField32.setText(rset1111.getObject(4).toString());
-                    jTextField42.setText(rset1111.getObject(5).toString());
+                    previousDischargeDateTxt.setText(rset1111.getObject(2).toString());
+                    previousAdmissionDateTxt.setText(rset1111.getObject(1).toString());
+                    previousVisitIDTxt.setText(rset1111.getObject(3).toString());
+                    wardAdmittedTxt.setText(rset1111.getObject(4).toString());
+                    bedoccupiedTxt.setText(rset1111.getObject(5).toString());
                 }
             }
 
@@ -4905,7 +4923,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ipSearchTxtCaretUpdate
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        this.jButton1.setVisible(true);
+        this.admitBtn.setVisible(true);
         searchButtonClicked(); // Add your handling code here:
     }//GEN-LAST:event_searchButtonActionPerformed
     private void searchButtonClicked() {
@@ -4944,13 +4962,13 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jComboBox7ActionPerformed
 
-    private void jComboBox31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox31ActionPerformed
+    private void cardNameCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardNameCmbxActionPerformed
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
-            java.sql.ResultSet rset = stmt.executeQuery("select insurer from pb_creditcard_types where card_name ='" + jComboBox31.getSelectedItem() + "'");
+            java.sql.ResultSet rset = stmt.executeQuery("select insurer from pb_creditcard_types where card_name ='" + cardNameCmbx.getSelectedItem() + "'");
             while (rset.next()) {
-                jTextField71.setText(rset.getObject(1).toString());
+                cardIssurerTxt.setText(rset.getObject(1).toString());
 
             }
         } catch (java.sql.SQLException sqe) {
@@ -4958,19 +4976,19 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             System.out.println("Insert not successful");
             javax.swing.JOptionPane.showMessageDialog(this, sqe.getMessage());
         }        // Add your handling code here:
-    }//GEN-LAST:event_jComboBox31ActionPerformed
+    }//GEN-LAST:event_cardNameCmbxActionPerformed
 
     private void paymentModeCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentModeCmbxActionPerformed
         if (paymentModeCmbx.getSelectedItem().equals("Credit Card")) {
-            jPanel5.setVisible(false);
-            jPanel21.setVisible(true);
+            schemePanel.setVisible(false);
+            bankCardsPanel.setVisible(true);
         } else {
             if (paymentModeCmbx.getSelectedItem().equals("Scheme")) {
-                jPanel21.setVisible(false);
-                jPanel5.setVisible(true);
+                bankCardsPanel.setVisible(false);
+                schemePanel.setVisible(true);
             } else {
-                jPanel21.setVisible(false);
-                jPanel5.setVisible(false);
+                bankCardsPanel.setVisible(false);
+                schemePanel.setVisible(false);
             }
         }
 
@@ -5087,7 +5105,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3011ActionPerformed
 
     private void admissionWardCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admissionWardCmbxActionPerformed
-        this.jButton1.setVisible(true);
+        this.admitBtn.setVisible(true);
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
@@ -5104,8 +5122,8 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         // crset4.setCommand("select bed_no from hp_bed_setup where ward ='"+jComboBox2.getSelectedItem()+"' and occupied = 'f' and available = 'Available' order by bed_no asc");
         // try {
         // crset4.execute();
-        if (jButton1.getText().equalsIgnoreCase("Update")) {
-            bedNumberCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '" + jTextField42.getText() + "' as bed_no UNION ALL select bed_no from hp_bed_setup where ward ='" + admissionWardCmbx.getSelectedItem() + "' and occupied = false and available = 'Available' order by bed_no asc"));
+        if (admitBtn.getText().equalsIgnoreCase("Update")) {
+            bedNumberCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '" + bedoccupiedTxt.getText() + "' as bed_no UNION ALL select bed_no from hp_bed_setup where ward ='" + admissionWardCmbx.getSelectedItem() + "' and occupied = false and available = 'Available' order by bed_no asc"));
 
         } else {
             bedNumberCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' as bed_no UNION ALL select bed_no from hp_bed_setup where ward ='" + admissionWardCmbx.getSelectedItem() + "' and occupied = false and available = 'Available' order by bed_no asc"));
@@ -5122,30 +5140,30 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
 //        referredFromTxt.setText("");
-        jTextField9.setText("");
+        postalAddressTxt.setText("");
         nokTelephoneTxt.setText("");
         nokNameTxt.setText("");
         wardCodeTxt.setText("");
         surNameTxt.setText("");
 //        referredFromTxt.setText("");
         currentResidence.setText("");
-        jTextField4.setText("");
-        jTextField3611.setText("");
-        jTextField23.setText("");
-        jTextField36.setText("");
+        billPayerTxt.setText("");
+        schemeNameTxt.setText("");
+        schemeMangerTxt.setText("");
+        memberNameTxt.setText("");
         nhifClaimNumberTxt.setText("");
         cSheetNoTxt.setText("");
         countyofResidenceCmbx.setSelectedItem(null);
         countyofBirthCmbx.setSelectedItem(null);
         educationLevelCmbx.setSelectedItem(null);
-        oldFileNumberTxt.setText("");
+        clinicFileNumberTxt.setText("");
         employerTxt.setText("");
         employerTelTxt.setText("");
-        this.jButton1.setEnabled(false);
+        this.admitBtn.setEnabled(false);
         this.admitPrintBtn.setEnabled(false);
 
         referredcombo.setSelectedItem("-");
-        jTextField9.setText("");
+        postalAddressTxt.setText("");
         nokTelephoneTxt.setText("");
         nokNameTxt.setText("");
         // jTextField6.setText("");
@@ -5154,10 +5172,10 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
 //        referredFromTxt.setText("");
         //        jTextField12.setText("");
         currentResidence.setText("");
-        jTextField4.setText("");
-        jTextField3611.setText("");
-        jTextField23.setText("");
-        jTextField36.setText("");
+        billPayerTxt.setText("");
+        schemeNameTxt.setText("");
+        schemeMangerTxt.setText("");
+        memberNameTxt.setText("");
         // jTextField4.setText("");
         // Add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -5167,7 +5185,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         if (admissionNumberTxt.getText().length() > 3) {
             admitPrintBtn.setText("Update File");
             referredcombo.setSelectedItem("-");
-            jTextField9.setText("");
+            postalAddressTxt.setText("");
             nokTelephoneTxt.setText("");
             nokNameTxt.setText("");
             firstNameTxt.setText("");
@@ -5177,19 +5195,19 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             // jTextField12.setText("");
             memberNumberTxt.setText("");
             currentResidence.setText("");
-            jTextField4.setText("");
+            billPayerTxt.setText("");
             bedRateTxt.setText("");
-            jTextField3611.setText("");
-            jTextField23.setText("");
-            jTextField36.setText("");
-            searchButton1.setEnabled(false);
+            schemeNameTxt.setText("");
+            schemeMangerTxt.setText("");
+            memberNameTxt.setText("");
+            opdSearchButton.setEnabled(false);
             searchButton.setEnabled(true);
 //        searchbyPatientNameChkbx.setEnabled(true);
 //        searchbyPatientNumberChkbx.setEnabled(true);
-            jCheckBox311.setEnabled(true);
-            jCheckBox221.setEnabled(true);
+            dischargedChkbx.setEnabled(true);
+            admittedChbx.setEnabled(true);
 //            referredFromTxt.setEditable(true);
-            jTextField9.setEditable(true);
+            postalAddressTxt.setEditable(true);
             nokTelephoneTxt.setEditable(true);
             nokNameTxt.setEditable(true);
             firstNameTxt.setEditable(true);
@@ -5198,11 +5216,11 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             admissionNumberTxt.setEditable(false);
             memberNumberTxt.setEditable(true);
             currentResidence.setEditable(true);
-            jTextField4.setEditable(true);
-            jTextField3611.setEditable(true);
-            jTextField361.setEditable(false);
-            jTextField23.setEditable(true);
-            jTextField36.setEditable(true);
+            billPayerTxt.setEditable(true);
+            schemeNameTxt.setEditable(true);
+            opdNoTxt.setEditable(false);
+            schemeMangerTxt.setEditable(true);
+            memberNameTxt.setEditable(true);
 
             try {
                 java.sql.Statement stmt = connectDB.createStatement();
@@ -5220,7 +5238,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                     } catch (java.text.ParseException pe) {
                         javax.swing.JOptionPane.showMessageDialog(this, pe.getMessage());
                     }
-                    jTextField9.setText(rset.getObject(4).toString());
+                    postalAddressTxt.setText(rset.getObject(4).toString());
                     nokTelephoneTxt.setText(rset.getObject(6).toString());
                     if (rset.getObject(5).toString().startsWith("M")) {
                         maleChkbx.setSelected(true);
@@ -5236,17 +5254,17 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 java.sql.ResultSet rset11 = stmt11.executeQuery("select visit_id,date_admitted,ward,bed_no,CASE WHEN (discharge = false) THEN '-' ELSE discharge_date END AS discharge_date,discharge,admission_reason,deposit from hp_admission where patient_no  ilike '" + admissionNumberTxt.getText() + "%' ORDER BY visit_id DESC");
                 while (rset11.next()) {
                     //  jTextField2.setText(rset.getObject(1).toString());
-                    prevVisitIdtxt.setText(rset11.getObject(1).toString());
-                    jTextField82.setText(rset11.getObject(2).toString());
-                    jTextField32.setText(rset11.getObject(3).toString());
-                    jTextField42.setText(rset11.getObject(4).toString());
-                    jTextField72.setText(rset11.getObject(5).toString());
+                    previousVisitIDTxt.setText(rset11.getObject(1).toString());
+                    previousAdmissionDateTxt.setText(rset11.getObject(2).toString());
+                    wardAdmittedTxt.setText(rset11.getObject(3).toString());
+                    bedoccupiedTxt.setText(rset11.getObject(4).toString());
+                    previousDischargeDateTxt.setText(rset11.getObject(5).toString());
                     bedRateTxt.setText(rset11.getObject(8).toString());
-                    jTextPane1.setText(rset11.getObject(7).toString());
+                    diagnosisTextPane.setText(rset11.getObject(7).toString());
                     if (rset11.getBoolean(6) == true) {
-                        jCheckBox311.setSelected(true);
+                        dischargedChkbx.setSelected(true);
                     } else {
-                        jCheckBox221.setSelected(true);
+                        admittedChbx.setSelected(true);
                     }
                 }
             } catch (java.sql.SQLException sq) {
@@ -5267,7 +5285,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void admitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admitBtnActionPerformed
         if (unitNumberTxt.getText().length() > 1) {
             if (surNameTxt.getText().length() > 1) {
                 if (firstNameTxt.getText().length() > 1) {
@@ -5342,7 +5360,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         }
 
 // Add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_admitBtnActionPerformed
 
 private void ageTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_ageTxtCaretUpdate
 //    if (ageTxt.getText().equalsIgnoreCase("")) {
@@ -5378,7 +5396,7 @@ private void ageTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:ev
 private void createManualNumbersRbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createManualNumbersRbtnActionPerformed
     newAdimissionRbtnActionPerformed(evt);
     admissionNumberTxt.setEditable(true);
-    this.jButton1.setEnabled(true);
+    this.admitBtn.setEnabled(true);
     this.admitPrintBtn.setEnabled(true);
 // TODO add your handling code here:
 }//GEN-LAST:event_createManualNumbersRbtnActionPerformed
@@ -5462,10 +5480,10 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
             String adm = null;
             String sex = null;
 
-            if (jCheckBox221.isSelected()) {
+            if (admittedChbx.isSelected()) {
                 adm = "false";
             } else {
-                if (jCheckBox311.isSelected()) {
+                if (dischargedChkbx.isSelected()) {
                     adm = "true";
                 }
             }
@@ -5507,9 +5525,9 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                     ageYrs = rsnzab.getDouble(1);
                 }
 
-                java.sql.PreparedStatement pstmt811x = connectDB.prepareStatement("UPDATE hp_admission SET  patient_name = '" + firstNameTxt.getText() + " " + surNameTxt.getText() + "',residence ='" + currentResidence.getText() + "',nok = '" + nokNameTxt.getText() + "',tel = '" + nokTelephoneTxt.getText() + "',address = '" + jTextField9.getText() + "',pat_age = '" + ageYrs + "',gender = '" + sex + "',"
-                        + "marital_status = '" + selectedStatus + "',id_no='" + idPassportTxt.getText() + "', nationality='" + nationalityCmbx.getSelectedItem() + "',  speciality='" + specialtyClinicCmbx.getSelectedItem() + "', occupation='" + occupationCmbx.getSelectedItem() + "', pat_religion='" + religionCmbx.getSelectedItem() + "', pat_district='" + districtCmbx.getSelectedItem() + "',pat_location='" + locationTxt.getText() + "', chief_name='" + jTextField27.getText() + "', sub_chief='" + unitNumberTxt.getText() + "', nok_residence='" + nokResidenceTxt.getText() + "', nok_relationship='" + nokRelationShipCmbx.getSelectedItem() + "', \n"
-                        + "       home_county='" + countyofBirthCmbx.getSelectedItem() + "',comments='" + patientUrgencyCMBX.getSelectedItem().toString() + "', residence_county='" + countyofResidenceCmbx.getSelectedItem() + "', education_level='" + educationLevelCmbx.getSelectedItem() + "', date_admitted = '" + datePicker1.getDate() + "' WHERE  patient_no = '" + admissionNumberTxt.getText() + "' AND check_out = false AND discharge_date is null");
+                java.sql.PreparedStatement pstmt811x = connectDB.prepareStatement("UPDATE hp_admission SET  patient_name = '" + firstNameTxt.getText() + " " + surNameTxt.getText() + "',residence ='" + currentResidence.getText() + "',nok = '" + nokNameTxt.getText() + "',tel = '" + nokTelephoneTxt.getText() + "',address = '" + postalAddressTxt.getText() + "',pat_age = '" + ageYrs + "',gender = '" + sex + "',"
+                        + "marital_status = '" + selectedStatus + "',id_no='" + idPassportTxt.getText() + "', nationality='" + nationalityCmbx.getSelectedItem() + "',  speciality='" + specialtyClinicCmbx.getSelectedItem() + "', occupation='" + occupationCmbx.getSelectedItem() + "', pat_religion='" + religionCmbx.getSelectedItem() + "', pat_district='" + districtCmbx.getSelectedItem() + "',pat_location='" + locationTxt.getText() + "', chief_name='" + nameofChiefTxt.getText() + "', sub_chief='" + unitNumberTxt.getText() + "', nok_residence='" + nokResidenceTxt.getText() + "', nok_relationship='" + nokRelationShipCmbx.getSelectedItem() + "', \n"
+                        + "       home_county='" + countyofBirthCmbx.getSelectedItem() + "',comments='" + patientUrgencyCMBX.getSelectedItem().toString() + "', residence_county='" + countyofResidenceCmbx.getSelectedItem() + "', education_level='" + educationLevelCmbx.getSelectedItem() + "', date_admitted = '" + admissionDatePicker.getDate() + "' WHERE  patient_no = '" + admissionNumberTxt.getText() + "' AND check_out = false AND discharge_date is null");
                 //visit_id = '" + jTextField122.getText() + "' and 
                 pstmt811x.executeUpdate();
 
@@ -5517,7 +5535,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
 //                                    + "marital_status = '" + selectedStatus + "',id_no='"+idPassportTxt.getText()+"', nationality='"+nationalityCmbx.getSelectedItem()+"',  speciality='"+specialtyClinicCmbx.getSelectedItem()+"', occupation='"+occupationCmbx.getSelectedItem()+"', pat_religion='"+religionCmbx.getSelectedItem()+"', pat_district='"+districtCmbx.getSelectedItem()+"',pat_location='"+locationTxt.getText()+"', chief_name='"+jTextField27.getText()+"', sub_chief='"+unitNumberTxt.getText()+"', nok_residence='"+nokResidenceTxt.getText()+"', nok_relationship='"+nokRelationShipCmbx.getSelectedItem()+"', \n" +
 //"       home_county='"+countyofBirthCmbx.getSelectedItem()+"',comments='"+ patientUrgencyCMBX.getSelectedItem().toString()+"', residence_county='"+countyofResidenceCmbx.getSelectedItem()+"', education_level='"+educationLevelCmbx.getSelectedItem()+"' WHERE visit_id = '" + jTextField122.getText() + "' and patient_no = '" + admissionNumber.getText() + "'");
 //                            pstmt811x.executeUpdate();
-                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("UPDATE hp_inpatient_register SET  first_name = '" + surNameTxt.getText() + "',second_name = '" + firstNameTxt.getText() + "',adm_date = '" + datePicker1.getDate().toString() + "',residence ='" + currentResidence.getText() + "',nok = '" + nokNameTxt.getText() + "',tel_no = '" + nokTelephoneTxt.getText() + "',address = '" + jTextField9.getText() + "',sex = '" + sex + "',year_of_birth = '" + dateOfBirth + "',payer = '" + jTextField4.getText() + "'  where patient_no = '" + admissionNumberTxt.getText() + "'");
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("UPDATE hp_inpatient_register SET  first_name = '" + surNameTxt.getText() + "',second_name = '" + firstNameTxt.getText() + "',adm_date = '" + admissionDatePicker.getDate().toString() + "',residence ='" + currentResidence.getText() + "',nok = '" + nokNameTxt.getText() + "',tel_no = '" + nokTelephoneTxt.getText() + "',address = '" + postalAddressTxt.getText() + "',sex = '" + sex + "',year_of_birth = '" + dateOfBirth + "',payer = '" + billPayerTxt.getText() + "'  where patient_no = '" + admissionNumberTxt.getText() + "'");
                 pstmt.executeUpdate();
 
                 java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("UPDATE hp_patient_register set first_name = '" + surNameTxt.getText() + "',"
@@ -5550,26 +5568,27 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
 
         } else {
 
-            if (nationalityCmbx.getSelectedItem() != null) {
+            if (maleChkbx.isSelected() || femaleChkbx.isSelected()) {
+                if (nationalityCmbx.getSelectedItem() != null) {
 //            if (unitNumberTxt.getText().length() > 1) {
 //                if (cSheetNoTxt.getText().length() > 1) {
-                if (surNameTxt.getText().length() > 1) {
-                    if (firstNameTxt.getText().length() > 1) {
-                        if (currentResidence.getText().length() > 1) {
-                            if (admissionWardCmbx.getSelectedItem() != null) {
-                                if (bedCategoryCmbx.getSelectedItem() != null) {
-                                    if (specialtyClinicCmbx.getSelectedItem() != null) {
-                                        if (!paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
-                                            if (bedNumberCmbx.getSelectedItem() != null) {
-                                                if (bedRateTxt.getText().length() > 0) {
-                                                    if (nokNameTxt.getText().length() > 1) {
-                                                        if (nhif == true) {
-                                                            if (nokRelationShipCmbx.getSelectedItem() != null) {
-                                                                if (nokTelephoneTxt.getText().length() > 6) {
+                    if (surNameTxt.getText().length() > 1) {
+                        if (firstNameTxt.getText().length() > 1) {
+                            if (currentResidence.getText().length() > 1) {
+                                if (admissionWardCmbx.getSelectedItem() != null) {
+                                    if (bedCategoryCmbx.getSelectedItem() != null) {
+                                        if (specialtyClinicCmbx.getSelectedItem() != null) {
+                                            if (!paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                                                if (bedNumberCmbx.getSelectedItem() != null) {
+                                                    if (bedRateTxt.getText().length() > 0) {
+                                                        if (nokNameTxt.getText().length() > 1) {
+                                                            if (nhif == true) {
+                                                                if (nokRelationShipCmbx.getSelectedItem() != null) {
+                                                                    if (nokTelephoneTxt.getText().length() > 6) {
 
-                                                                    int unitNo = 0;
-                                                                    boolean status = true;
-                                                                    if (newAdimissionRbtn.isSelected()) {
+                                                                        int unitNo = 0;
+                                                                        boolean status = true;
+                                                                        if (newAdimissionRbtn.isSelected()) {
 
 //                                                                            try {
 //                                                                                java.sql.Statement stmtx = connectDB.createStatement();
@@ -5588,69 +5607,69 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
 //                                                                                sql.printStackTrace();
 //                                                                                javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
 //                                                                            }
-                                                                    }
-
-                                                                    if (status == true) {
-
-                                                                        //  else 
-                                                                        if (admitPrintBtn.getText().equalsIgnoreCase("Admit & Print")) {
-                                                                            adminPrint();
                                                                         }
+
+                                                                        if (status == true) {
+
+                                                                            //  else 
+                                                                            if (admitPrintBtn.getText().equalsIgnoreCase("Admit & Print")) {
+                                                                                adminPrint();
+                                                                            }
+
+                                                                        }
+                                                                    } else {
+                                                                        javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : NOK Telephone Number is mandatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
                                                                     }
                                                                 } else {
-                                                                    javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : NOK Telephone Number is mandatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                                    javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : NOK Relationship is mandatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
                                                                 }
                                                             } else {
-                                                                javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : NOK Relationship is mandatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                                javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS :"
+                                                                        + " You MUST provide a card number for NHIF beneficiary", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
                                                             }
                                                         } else {
-                                                            javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS :"
-                                                                    + " You MUST provide a card number for NHIF beneficiary", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                            javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : Next of Kin name is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
                                                         }
                                                     } else {
-                                                        javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : Next of Kin name is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                        javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : Bed Rate is manadatory, You MUST set rate through setting the \"Bed Category\"", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
                                                     }
                                                 } else {
-                                                    javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : Bed Rate is manadatory, You MUST set rate through setting the \"Bed Category\"", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                    javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : Bed Number is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
                                                 }
                                             } else {
-                                                javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : Bed Number is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : Payment Mode is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
                                             }
                                         } else {
-                                            javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : Payment Mode is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                            javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : Specialty Clinic is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
                                         }
                                     } else {
-                                        javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : Specialty Clinic is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                        javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : Bed category is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
                                     }
                                 } else {
-                                    javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : Bed category is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                    javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS :  Admission ward is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
                                 }
                             } else {
-                                javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS :  Admission ward is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : Current residence is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
                             }
                         } else {
-                            javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : Current residence is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                            javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : First name is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
                         }
                     } else {
-                        javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : First name is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                        javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS :  Surname is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
                     }
-                } else {
-                    javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS :  Surname is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-
-                }
 
 //                } else {
 //                    javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS :  Charge Sheet Number is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -5660,8 +5679,12 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
 //                javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS :  Unit Number is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 //
 //            }
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS :  Nationality field is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+                }
             } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS :  Nationality field is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS :  Gender field is manadatory", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
             }
 
@@ -5687,20 +5710,20 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
         // TODO add your handling code here:
     }//GEN-LAST:event_unitNumberTxtCaretUpdate
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void editReprintBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editReprintBtnActionPerformed
         admitPrintBtn.setText("Update File");
         admitPrintBtn.setEnabled(true);
-        searchButton1.setEnabled(false);
+        opdSearchButton.setEnabled(false);
 //jButton2.doClick();
-        jTextField361.setEnabled(false);
+        opdNoTxt.setEnabled(false);
 
         jButton2.setEnabled(true);
-        jButton6.setEnabled(true);
+        reprintFileBtn.setEnabled(true);
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_editReprintBtnActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void reprintFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reprintFileBtnActionPerformed
         String nhifStatusTxt = null;
 
         if (nhifChbx.isSelected()) {
@@ -5745,15 +5768,15 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                     .getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_reprintFileBtnActionPerformed
     private void changeDate() {
         agelabel.setText(com.afrisoftech.lib.PatientAge.getPatientActualAge(connectDB, this.datePickerYOB.getDate()));
         ageTxt.setText(String.valueOf(com.afrisoftech.lib.PatientAge.getPatientAge(connectDB, this.datePickerYOB.getDate())));
 
     }
-    private void jPanel18MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel18MouseMoved
+    private void biodataSubPanelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_biodataSubPanelMouseMoved
 //       changeDate();
-    }//GEN-LAST:event_jPanel18MouseMoved
+    }//GEN-LAST:event_biodataSubPanelMouseMoved
 
     private void admissionsReportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admissionsReportBtnActionPerformed
         com.afrisoftech.reports.PatientAdminPdf_ policy = new com.afrisoftech.reports.PatientAdminPdf_();
@@ -5908,22 +5931,54 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
         }        // TODO add your handling code here:
     }//GEN-LAST:event_ageYrsTxtCaretUpdate
 
+    private void currentResidenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentResidenceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_currentResidenceActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel actionsPanel;
     private javax.swing.JPanel admissionAnalysisPanel;
     private javax.swing.JTable admissionAnalysisTable;
+    private javax.swing.JLabel admissionDateLbl;
+    private com.afrisoftech.lib.DatePicker admissionDatePicker;
+    private javax.swing.JPanel admissionHeaderDetailPanel;
+    private javax.swing.JPanel admissionInstancePanel;
     private javax.swing.JPanel admissionListingPanel;
     private javax.swing.JTable admissionListingTable;
+    private javax.swing.JPanel admissionNoPanel;
+    private javax.swing.JLabel admissionNolbl;
     private javax.swing.JTextField admissionNumberTxt;
+    private javax.swing.JPanel admissionPanel;
     private javax.swing.JScrollPane admissionScrollPane;
     private javax.swing.JComboBox admissionWardCmbx;
+    private javax.swing.JPanel admissionsMainPanel;
     private javax.swing.JButton admissionsReportBtn;
+    private javax.swing.JTabbedPane admissionsTabbedPane;
+    private javax.swing.JButton admitBtn;
     private javax.swing.JButton admitPrintBtn;
+    private javax.swing.JButton admittedByBtn;
+    private javax.swing.JLabel admittedByLbl;
+    private javax.swing.JPanel admittedByPanel;
+    private javax.swing.JTextField admittedByTxt;
+    private javax.swing.JCheckBox admittedChbx;
     private javax.swing.JTextField ageTxt;
     private javax.swing.JTextField ageYrsTxt;
     private javax.swing.JLabel agelabel;
+    private javax.swing.JPanel bankCardsPanel;
     private javax.swing.JComboBox bedCategoryCmbx;
+    private javax.swing.JLabel bedCategoryLbl;
+    private javax.swing.JLabel bedNoLbl;
     private javax.swing.JComboBox bedNumberCmbx;
+    private javax.swing.JLabel bedOccupiedLbl;
+    private javax.swing.JLabel bedRateLbl;
     private javax.swing.JTextField bedRateTxt;
+    private javax.swing.JTextField bedoccupiedTxt;
+    private javax.swing.JLabel billPayerLbl;
+    private javax.swing.JTextField billPayerTxt;
+    private javax.swing.JPanel bioDataPanel;
+    private javax.swing.JPanel biodataSubPanel;
+    private javax.swing.JLabel birthDateLbl;
+    private javax.swing.JPanel birthDatePanel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
@@ -5931,21 +5986,40 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
     private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.ButtonGroup buttonGroup6;
     private javax.swing.JTextField cSheetNoTxt;
+    private javax.swing.JLabel cardExpiryDateLbl;
+    private com.afrisoftech.lib.DatePicker cardExpiryDatePicker;
+    private javax.swing.JTextField cardIssurerTxt;
+    private javax.swing.JLabel cardMaturityDateLbl;
+    private com.afrisoftech.lib.DatePicker cardMaturityDatePicker;
+    private javax.swing.JComboBox cardNameCmbx;
+    private javax.swing.JLabel cardNameLbl;
+    private javax.swing.JLabel cardNoLbl;
     private javax.swing.JTextField cardNumberTxt;
+    private javax.swing.JLabel cardUssurerLbl;
+    private javax.swing.JLabel chargeSheetNoLbl;
+    private javax.swing.JTextField clinicFileNumberTxt;
+    private javax.swing.JLabel clinicNumberLbl;
     private javax.swing.JComboBox countyofBirthCmbx;
+    private javax.swing.JLabel countyofBirthLbl;
     private javax.swing.JComboBox countyofResidenceCmbx;
+    private javax.swing.JLabel countyofResidenceLbl;
     public javax.swing.JRadioButton createManualNumbersRbtn;
     private javax.swing.JTextField currentResidence;
-    private com.afrisoftech.lib.DatePicker datePicker1;
-    private com.afrisoftech.lib.DatePicker datePicker11;
-    private com.afrisoftech.lib.DatePicker datePicker2;
-    private com.afrisoftech.lib.DatePicker datePicker21;
     private com.afrisoftech.lib.DatePicker datePickerYOB;
+    private javax.swing.JPanel demographicsPanel;
+    private javax.swing.JScrollPane diagnosisScrollPane;
+    private javax.swing.JTextPane diagnosisTextPane;
+    private javax.swing.JLabel disabilityStatusLbl;
+    private javax.swing.JCheckBox dischargedChkbx;
     private javax.swing.JButton dispose1;
     private javax.swing.JButton disposeBtn;
     private javax.swing.JComboBox districtCmbx;
     private javax.swing.JCheckBox divorcedMaritalChkbx;
+    private javax.swing.JRadioButton editReprintBtn;
     private javax.swing.JComboBox educationLevelCmbx;
+    private javax.swing.JLabel educationLevelLbl;
+    private javax.swing.JLabel employerNameLbl;
+    private javax.swing.JLabel employerTelLbl;
     private javax.swing.JTextField employerTelTxt;
     private javax.swing.JTextField employerTxt;
     private javax.swing.JLabel endDateLbl;
@@ -5954,15 +6028,17 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
     private com.afrisoftech.lib.DatePicker endDatePicker1;
     private javax.swing.JCheckBox femaleChkbx;
     private javax.swing.JTextField firstNameTxt;
+    private javax.swing.JLabel genderLbl;
+    private javax.swing.JPanel genderpanel;
+    private javax.swing.JCheckBox hasInterimBillChkbx;
     private javax.swing.JCheckBox hospitalCategoryChkbx;
-    private javax.swing.JLabel idNoLbl2;
+    private javax.swing.JLabel idNumberLbl;
     private javax.swing.JTextField idPassportTxt;
     private javax.swing.JDialog ipSearchDialog;
     private javax.swing.JPanel ipSearchPanel;
     private javax.swing.JScrollPane ipSearchScrollPane;
     private javax.swing.JTable ipSearchTable;
     private javax.swing.JTextField ipSearchTxt;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton1521;
@@ -5979,125 +6055,30 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
     private javax.swing.JButton jButton511;
     private javax.swing.JButton jButton5121;
     private javax.swing.JButton jButton513;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox11;
     private javax.swing.JCheckBox jCheckBox21;
-    private javax.swing.JCheckBox jCheckBox221;
-    private javax.swing.JCheckBox jCheckBox311;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox31;
     private javax.swing.JDialog jDialog2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel102;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel110;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel122;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel141;
-    private javax.swing.JLabel jLabel1411;
-    private javax.swing.JLabel jLabel142;
-    private javax.swing.JLabel jLabel143;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel151;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel172;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel182;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57211;
     private javax.swing.JLabel jLabel58211;
     private javax.swing.JLabel jLabel5822;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel62;
-    private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel661;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel71;
-    private javax.swing.JLabel jLabel72;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel81;
-    private javax.swing.JLabel jLabel82;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabel91;
-    private javax.swing.JLabel jLabel92;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel101;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel21;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel31;
-    private javax.swing.JPanel jPanel32;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel41;
-    private javax.swing.JPanel jPanel4113;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel64;
-    private javax.swing.JPanel jPanel641;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel81;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JDialog jSearchDialog11;
     private javax.swing.JDialog jSearchDialog21;
     private javax.swing.JDialog jSearchDialog4;
@@ -6115,109 +6096,156 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
     private javax.swing.JTable jSearchTable4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator711;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1112;
     private javax.swing.JTextField jTextField11131;
     private javax.swing.JTextField jTextField1114;
-    private javax.swing.JTextField jTextField121;
     private javax.swing.JTextField jTextField141;
-    private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField151;
-    private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField161;
     private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField23;
-    private javax.swing.JTextField jTextField27;
     private javax.swing.JTextField jTextField28;
     private javax.swing.JTextField jTextField31;
-    private javax.swing.JTextField jTextField32;
-    private javax.swing.JTextField jTextField36;
-    private javax.swing.JTextField jTextField361;
-    private javax.swing.JTextField jTextField3611;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField41;
-    private javax.swing.JTextField jTextField42;
     private javax.swing.JTextField jTextField51;
     private javax.swing.JTextField jTextField58211;
-    private javax.swing.JTextField jTextField71;
-    private javax.swing.JTextField jTextField72;
-    private javax.swing.JTextField jTextField82;
-    private javax.swing.JTextField jTextField9;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JLabel locationLbl;
     private javax.swing.JTextField locationTxt;
     private javax.swing.JCheckBox maleChkbx;
+    private javax.swing.JLabel maritalStatusLbl;
+    private javax.swing.JPanel maritalStatusPanel;
     private javax.swing.JCheckBox marriedMaritalChkbx;
+    private javax.swing.JLabel memberBalanceLbl;
+    private javax.swing.JTextField memberBalanceTxt;
+    private javax.swing.JLabel memberNameLbl;
+    private javax.swing.JButton memberNameSearchButton;
+    private javax.swing.JTextField memberNameTxt;
+    private javax.swing.JLabel memberNoLbl;
     private javax.swing.JTextField memberNumberTxt;
+    private javax.swing.JCheckBox mergeOPBillChkbx;
+    private javax.swing.JLabel modeofPaymentLbl;
+    private javax.swing.JLabel nameofChiefLbl;
+    private javax.swing.JTextField nameofChiefTxt;
     private javax.swing.JComboBox nationalityCmbx;
+    private javax.swing.JLabel nationalityLbl;
     private javax.swing.JRadioButton newAdimissionRbtn;
     private javax.swing.JTextField nhifCardMemberNumberTxt;
+    private javax.swing.JLabel nhifCardNoLbl;
     private javax.swing.JCheckBox nhifChbx;
     private javax.swing.JTextField nhifClaimNumberTxt;
+    private javax.swing.JLabel nhifReferenceNoLbl;
+    private javax.swing.JLabel nokNameLbl;
     private javax.swing.JTextField nokNameTxt;
+    private javax.swing.JLabel nokRelationLbl;
     private javax.swing.JComboBox nokRelationShipCmbx;
+    private javax.swing.JLabel nokResidenceLbl;
     private javax.swing.JTextField nokResidenceTxt;
+    private javax.swing.JLabel nokTelLbl;
     private javax.swing.JTextField nokTelephoneTxt;
     private javax.swing.JTextField nokteltxt;
     private javax.swing.JPanel occupancyReportPanel;
     private javax.swing.JPanel occupationButtonPanel;
     private javax.swing.JComboBox occupationCmbx;
     private javax.swing.JScrollPane occupationJScrl;
+    private javax.swing.JLabel occupationLbl;
     private javax.swing.JTable occupationTable;
     private javax.swing.JPanel occupationsHeaderTable;
     private javax.swing.JPanel occupationsPanel;
-    private javax.swing.JTextField oldFileNumberTxt;
+    private javax.swing.JLabel oldFileNumberLbl;
     private javax.swing.JDialog opSearchDialog;
     private javax.swing.JTextField opSearchFieldTxt;
     private javax.swing.JPanel opSearchPanel;
     private javax.swing.JScrollPane opSearchScrollPane1;
     private javax.swing.JTable opSearchTable;
+    private javax.swing.JLabel opdNoLbl;
+    private javax.swing.JPanel opdNoPanel;
+    private javax.swing.JTextField opdNoTxt;
+    private javax.swing.JButton opdSearchButton;
+    private javax.swing.JPanel otherDetailsPanel;
+    private javax.swing.JLabel otherNamesLbl;
+    private javax.swing.JLabel patientAgeInputLbl;
+    private javax.swing.JLabel patientAgeLbl;
     private javax.swing.JTextField patientDebtTxt;
     private javax.swing.JComboBox patientDisabilityCmbx;
     private javax.swing.JTextField patientNumber;
+    private javax.swing.JPanel patientStatusPanel;
     private javax.swing.JComboBox patientUrgencyCMBX;
     private javax.swing.JComboBox paymentModeCmbx;
-    private javax.swing.JTextField prevVisitIdtxt;
+    private javax.swing.JLabel placeofBirthLbl;
+    private javax.swing.JLabel postalAddressLbl;
+    private javax.swing.JTextField postalAddressTxt;
+    private javax.swing.JLabel previousAdmissionDateLbl;
+    private javax.swing.JTextField previousAdmissionDateTxt;
+    private javax.swing.JLabel previousAdmissionsLbl;
+    private javax.swing.JLabel previousDischargeDateLbl;
+    private javax.swing.JTextField previousDischargeDateTxt;
     private javax.swing.JPanel previousPanel;
     private javax.swing.JDialog previousVisitIDDialog;
+    private javax.swing.JLabel previousVisitIDLbl;
+    private javax.swing.JPanel previousVisitIDPanel;
+    private javax.swing.JTextField previousVisitIDTxt;
+    private javax.swing.JButton previousVisitSearchButton;
     private javax.swing.JScrollPane previousVisitsScrollPane;
     private javax.swing.JTable previousVisitsTable;
     private javax.swing.JCheckBox privateCategoryChkbx;
     private javax.swing.JRadioButton reAdmissionRbtn;
+    private javax.swing.JLabel referredFromLbl;
     private javax.swing.JComboBox referredcombo;
     private javax.swing.JButton refreshBtn;
     private javax.swing.JButton refreshBtn1;
     private javax.swing.JScrollPane refreshScrollPane;
+    private javax.swing.JComboBox registrationPointCmbx;
+    private javax.swing.JLabel registrationPointLbl;
     private javax.swing.JComboBox religionCmbx;
+    private javax.swing.JLabel religionLbl;
     private javax.swing.JComboBox reportTypeChooserCmbx;
     private javax.swing.JComboBox reportTypeChooserCmbx1;
+    private javax.swing.JButton reprintFileBtn;
+    private javax.swing.JLabel residencelbl;
+    private javax.swing.JLabel schemeAccNoLbl;
+    private javax.swing.JTextField schemeAccNoTxt;
+    private javax.swing.JLabel schemeExpiryDateLbl;
+    private com.afrisoftech.lib.DatePicker schemeExpiryDatePicker;
+    private javax.swing.JLabel schemeManagerLbl;
+    private javax.swing.JTextField schemeMangerTxt;
+    private javax.swing.JPanel schemeMemberNamePanel;
+    private javax.swing.JLabel schemeNameLbl;
+    private javax.swing.JTextField schemeNameTxt;
+    private javax.swing.JPanel schemePanel;
     private javax.swing.JButton schemeSearchBtn;
+    private javax.swing.JButton schemeSearchButton;
     private javax.swing.JDialog schemeSearchDialog;
+    private javax.swing.JPanel schemeSearchNamePanel;
     private javax.swing.JPanel schemeSearchPanel;
     private javax.swing.JScrollPane schemeSearchScrollPane;
     private javax.swing.JTable schemeSearchTable;
     private javax.swing.JTextField schemeSearchTxt;
     private javax.swing.JButton searchButton;
-    private javax.swing.JButton searchButton1;
-    private javax.swing.JButton searchButton2;
-    private javax.swing.JButton searchButton21;
-    private javax.swing.JButton searchButton3;
-    private javax.swing.JButton searchButton4;
     private javax.swing.JButton searchFileBtn;
+    private javax.swing.JPanel searchModelPanel;
     private javax.swing.JCheckBox searchbyPatientNameChkbx;
     private javax.swing.JCheckBox searchbyPatientNumberChkbx;
     private javax.swing.JButton select1;
     private javax.swing.JCheckBox singleMaritalChkbx;
     private javax.swing.JLabel spacerLabel;
     private javax.swing.JLabel spacerLabel1;
+    private javax.swing.JLabel specialityLbl;
     private javax.swing.JComboBox specialtyClinicCmbx;
     private javax.swing.JLabel startDateLbl;
     private javax.swing.JLabel startDateLbl1;
     private com.afrisoftech.lib.DatePicker startDatePicker;
     private com.afrisoftech.lib.DatePicker startDatePicker1;
+    private javax.swing.JLabel surNameLbl;
     private javax.swing.JTextField surNameTxt;
+    private javax.swing.JCheckBox suspendBillChkbx;
+    private javax.swing.JLabel telephoneNoLbl;
     private javax.swing.JLabel totalsLabel;
     private javax.swing.JTextField unitNumberTxt;
+    private javax.swing.JPanel urgencyPanel;
+    private javax.swing.JLabel wardAdmittedLbl;
+    private javax.swing.JTextField wardAdmittedTxt;
+    private javax.swing.JLabel wardCodeLbl;
     private javax.swing.JTextField wardCodeTxt;
+    private javax.swing.JLabel wardLbl;
     private javax.swing.JComboBox wardNameCmbx;
     private javax.swing.JCheckBox widowedMaritalChkbx;
     // End of variables declaration//GEN-END:variables
@@ -6240,7 +6268,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
 
             // Date parser
             java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yy");
-            com.afrisoftech.lib.DateFormatter dateFormatter = new com.afrisoftech.lib.DateFormatter(dateFormat.parse(datePicker1.getDate().toString().trim()), "yy");
+            com.afrisoftech.lib.DateFormatter dateFormatter = new com.afrisoftech.lib.DateFormatter(dateFormat.parse(admissionDatePicker.getDate().toString().trim()), "yy");
 
             java.lang.String monthString = dateFormatter.getDateString();
 
@@ -6256,7 +6284,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                 connectDB.setAutoCommit(false);
                 registerSavePoint = connectDB.setSavepoint("registration");
                 java.sql.Statement stmtf = connectDB.createStatement();
-                java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + datePicker1.getDate() + "' BETWEEN period_from AND period_to");
+                java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + admissionDatePicker.getDate() + "' BETWEEN period_from AND period_to");
                 while (rsetf.next()) {
                     periodFrom = rsetf.getDate(1);
                     periodTo = rsetf.getDate(2);
@@ -6268,7 +6296,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
 
                 }
 
-                if (datePicker1.getDate().before(periodFrom) || datePicker1.getDate().after(periodTo)) {
+                if (admissionDatePicker.getDate().before(periodFrom) || admissionDatePicker.getDate().after(periodTo)) {
                     javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
@@ -6369,15 +6397,15 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                         javax.swing.JOptionPane.showMessageDialog(this, "You must enter Patient No.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
                     } else {
-                        if (jButton1.getText().equalsIgnoreCase("Update")) {
+                        if (admitBtn.getText().equalsIgnoreCase("Update")) {
 
                             String adm = null;
                             String sex = null;
 
-                            if (jCheckBox221.isSelected()) {
+                            if (admittedChbx.isSelected()) {
                                 adm = "false";
                             } else {
-                                if (jCheckBox311.isSelected()) {
+                                if (dischargedChkbx.isSelected()) {
                                     adm = "true";
                                 }
                             }
@@ -6388,10 +6416,10 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                 sex = femaleChkbx.getText();
                             }
 
-                            java.sql.PreparedStatement pstmt811x = connectDB.prepareStatement("UPDATE hp_admission SET  patient_name = '" + firstNameTxt.getText() + " " + surNameTxt.getText() + "',date_admitted = '" + datePicker1.getDate().toString() + "',bed_no = '" + bedNumberCmbx.getSelectedItem() + "',ward = '" + admissionWardCmbx.getSelectedItem() + "',wing = '" + bedCategoryCmbx.getSelectedItem() + "', deposit = '" + bedRateTxt.getText() + "',residence ='" + currentResidence.getText() + "',nok = '" + nokNameTxt.getText() + "',tel = '" + nokTelephoneTxt.getText() + "',address = '" + jTextField9.getText() + "',discharge = '" + adm + "',pat_age = '" + ageYrs + "',gender = '" + selectedchkbx + "',marital_status = '" + selectedStatus + "' WHERE visit_id = '" + prevVisitIdtxt.getText() + "'");
+                            java.sql.PreparedStatement pstmt811x = connectDB.prepareStatement("UPDATE hp_admission SET  patient_name = '" + firstNameTxt.getText() + " " + surNameTxt.getText() + "',date_admitted = '" + admissionDatePicker.getDate().toString() + "',bed_no = '" + bedNumberCmbx.getSelectedItem() + "',ward = '" + admissionWardCmbx.getSelectedItem() + "',wing = '" + bedCategoryCmbx.getSelectedItem() + "', deposit = '" + bedRateTxt.getText() + "',residence ='" + currentResidence.getText() + "',nok = '" + nokNameTxt.getText() + "',tel = '" + nokTelephoneTxt.getText() + "',address = '" + postalAddressTxt.getText() + "',discharge = '" + adm + "',pat_age = '" + ageYrs + "',gender = '" + selectedchkbx + "',marital_status = '" + selectedStatus + "' WHERE visit_id = '" + previousVisitIDTxt.getText() + "'");
                             pstmt811x.executeUpdate();
 
-                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("UPDATE hp_inpatient_register SET  first_name = '" + surNameTxt.getText() + "',second_name = '" + firstNameTxt.getText() + "',adm_date = '" + datePicker1.getDate().toString() + "',residence ='" + currentResidence.getText() + "',nok = '" + nokNameTxt.getText() + "',tel_no = '" + nokTelephoneTxt.getText() + "',address = '" + jTextField9.getText() + "',sex = '" + sex + "',year_of_birth = '" + dateOfBirth + "',payer = '" + jTextField4.getText() + "'  where patient_no = '" + admissionNumberTxt.getText() + "'");
+                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("UPDATE hp_inpatient_register SET  first_name = '" + surNameTxt.getText() + "',second_name = '" + firstNameTxt.getText() + "',adm_date = '" + admissionDatePicker.getDate().toString() + "',residence ='" + currentResidence.getText() + "',nok = '" + nokNameTxt.getText() + "',tel_no = '" + nokTelephoneTxt.getText() + "',address = '" + postalAddressTxt.getText() + "',sex = '" + sex + "',year_of_birth = '" + dateOfBirth + "',payer = '" + billPayerTxt.getText() + "'  where patient_no = '" + admissionNumberTxt.getText() + "'");
                             pstmt.executeUpdate();
 
                             javax.swing.JOptionPane.showConfirmDialog(this, "File updated for patient no [" + admissionNumberTxt.getText() + "]", "Information", javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -6416,9 +6444,9 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                     // jComboBox1.setSelectedItem(rset11.getObject(1).toString());
                                     name = rset11.getObject(1).toString();
                                     if (rset11.getBoolean(2) == false) {
-                                        jCheckBox7.setSelected(true);
+                                        hasInterimBillChkbx.setSelected(true);
                                     } else {
-                                        jCheckBox7.setSelected(false);
+                                        hasInterimBillChkbx.setSelected(false);
                                     }
                                 }
 
@@ -6452,7 +6480,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                     pstmt.setString(4, "");
                                     pstmt.setString(5, nokNameTxt.getText());
                                     pstmt.setString(8, dateOfBirth);
-                                    pstmt.setString(7, jTextField9.getText());
+                                    pstmt.setString(7, postalAddressTxt.getText());
                                     if (currentResidence.getText().equals("")) {
                                         javax.swing.JOptionPane.showMessageDialog(this, "You must enter residence", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                                     } else {
@@ -6467,7 +6495,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                     }
 
                                     pstmt.executeUpdate();
-                                    this.jButton1.setVisible(false);
+                                    this.admitBtn.setVisible(false);
                                     //   javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully","Comfirmation Message",javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                                 }
@@ -6482,13 +6510,13 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                         // Checking the presence of out patient number in hp_patient_register
                                         int opNos = 0;
                                         java.sql.Statement stmnz1c = connectDB.createStatement();
-                                        java.sql.ResultSet rsnz1c = stmnz1c.executeQuery("SELECT COUNT(patient_no) FROM hp_patient_register WHERE patient_no = '" + jTextField361.getText() + "'");
+                                        java.sql.ResultSet rsnz1c = stmnz1c.executeQuery("SELECT COUNT(patient_no) FROM hp_patient_register WHERE patient_no = '" + opdNoTxt.getText() + "'");
                                         while (rsnz1c.next()) {
                                             opNos = rsnz1c.getInt(1);
                                         }
                                         if (opNos > 0) {
-                                            patientNo = jTextField361.getText();
-                                            admissionNumberTxt.setText(jTextField361.getText());
+                                            patientNo = opdNoTxt.getText();
+                                            admissionNumberTxt.setText(opdNoTxt.getText());
                                         } else {
                                             java.sql.Statement stmnz1 = connectDB.createStatement();
                                             java.sql.ResultSet rsnz1 = stmnz1.executeQuery("select prefix_item,digit_no,yr_end,inc_year from pb_patient_names");
@@ -6698,7 +6726,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                 java.sql.PreparedStatement pstmt27 = connectDB.prepareStatement("update hp_bed_setup set occupied = true where bed_no ='" + bedNumberCmbx.getSelectedItem() + "' and ward = '" + admissionWardCmbx.getSelectedItem() + "'");
                                 pstmt27.execute();
 
-                                java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("UPDATE hp_inpatient_register set pay_mode = '" + paymentModeCmbx.getSelectedItem().toString() + "',category = '" + bedCategoryCmbx.getSelectedItem().toString() + "',adm_date = '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()) + "',payer = '" + jTextField4.getText() + "'  WHERE patient_no = '" + admissionNumberTxt.getText() + "'");
+                                java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("UPDATE hp_inpatient_register set pay_mode = '" + paymentModeCmbx.getSelectedItem().toString() + "',category = '" + bedCategoryCmbx.getSelectedItem().toString() + "',adm_date = '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()) + "',payer = '" + billPayerTxt.getText() + "'  WHERE patient_no = '" + admissionNumberTxt.getText() + "'");
                                 pstmt11.executeUpdate();
 
                                 //  java.sql.PreparedStatement pstmt81x = connectDB.prepareStatement("UPDATE hp_patient_card SET invoice_no = '"+visitid+"', visit_id = '"+visitid+"' where patient_no = '"+jTextField12.getText()+"' and visit_id = 'Booking'");
@@ -6706,12 +6734,12 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                 java.sql.PreparedStatement pstmt811x = connectDB.prepareStatement("UPDATE hp_patient_card SET visit_id = '" + visitid + "' where patient_no = '" + admissionNumberTxt.getText() + "' and service ilike 'Receip%' AND invoice_no not ilike 'I%' and date::date BETWEEN (current_date - 200) AND CURRENT_DATE and (visit_id = '' or visit_id = '-')");
                                 pstmt811x.executeUpdate();
 
-                                if (jPanel5.isVisible()) {
-                                    java.sql.PreparedStatement pstmt111 = connectDB.prepareStatement("UPDATE hp_inpatient_register set description = '" + jTextField3611.getText() + "',payer = '" + jTextField23.getText() + "',account_no ='" + memberNumberTxt.getText() + "',expiry_date = '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker21.getDate()) + "', member_no = '" + memberNumberTxt.getText() + "',member_name = '" + jTextField36.getText() + "' WHERE patient_no = '" + admissionNumberTxt.getText() + "'");
+                                if (schemePanel.isVisible()) {
+                                    java.sql.PreparedStatement pstmt111 = connectDB.prepareStatement("UPDATE hp_inpatient_register set description = '" + schemeNameTxt.getText() + "',payer = '" + schemeMangerTxt.getText() + "',account_no ='" + memberNumberTxt.getText() + "',expiry_date = '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(cardExpiryDatePicker.getDate()) + "', member_no = '" + memberNumberTxt.getText() + "',member_name = '" + memberNameTxt.getText() + "' WHERE patient_no = '" + admissionNumberTxt.getText() + "'");
                                     pstmt111.executeUpdate();
                                 } else {
-                                    if (jPanel21.isVisible()) {
-                                        java.sql.PreparedStatement pstmta = connectDB.prepareStatement("UPDATE hp_inpatient_register set description = '" + jComboBox31.getSelectedItem().toString() + "',payer = '" + jTextField71.getText() + "',account_no ='" + cardNumberTxt.getText() + "',expiry_date = '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker11.getDate()) + "' WHERE patient_no = '" + admissionNumberTxt.getText() + "'");
+                                    if (bankCardsPanel.isVisible()) {
+                                        java.sql.PreparedStatement pstmta = connectDB.prepareStatement("UPDATE hp_inpatient_register set description = '" + cardNameCmbx.getSelectedItem().toString() + "',payer = '" + cardIssurerTxt.getText() + "',account_no ='" + cardNumberTxt.getText() + "',expiry_date = '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(schemeExpiryDatePicker.getDate()) + "' WHERE patient_no = '" + admissionNumberTxt.getText() + "'");
 
                                         pstmta.executeUpdate();
                                     }
@@ -6724,7 +6752,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                 pstmt.setString(1, admissionNumberTxt.getText());
 
                                 pstmt.setString(2, firstNameTxt.getText().toUpperCase() + " " + surNameTxt.getText().toUpperCase());
-                                pstmt.setString(3, jTextPane1.getText());
+                                pstmt.setString(3, diagnosisTextPane.getText());
                                 if (admissionWardCmbx.getSelectedItem() == null) {
                                     javax.swing.JOptionPane.showMessageDialog(this, "You must Select Ward Name", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                                 } else {
@@ -6732,16 +6760,16 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                     pstmt.setString(5, admissionWardCmbx.getSelectedItem().toString());
                                 }
                                 if (paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
-                                    pstmt.setString(4, jTextField3611.getText());
+                                    pstmt.setString(4, schemeNameTxt.getText());
                                 } else {
                                     pstmt.setString(4, "Self");
                                 }
                                 pstmt.setString(6, bedNumberCmbx.getSelectedItem().toString());
-                                pstmt.setString(7, jTextField121.getText().toString());
+                                pstmt.setString(7, admittedByTxt.getText().toString());
                                 pstmt.setString(8, bedCategoryCmbx.getSelectedItem().toString());
                                 pstmt.setString(9, nokNameTxt.getText());
                                 pstmt.setString(10, nokTelephoneTxt.getText());
-                                pstmt.setString(11, jTextField9.getText());
+                                pstmt.setString(11, postalAddressTxt.getText());
                                 pstmt.setString(12, idPassportTxt.getText());
                                 pstmt.setString(13, paymentModeCmbx.getSelectedItem().toString());
                                 pstmt.setString(14, Categ);
@@ -6752,7 +6780,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                 pstmt.setString(19, currentResidence.getText());
                                 pstmt.setString(20, "");
                                 pstmt.setString(21, nhifChbx.getText());
-                                pstmt.setDate(22, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                pstmt.setDate(22, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
 
                                 pstmt.setString(23, admissionNumberTxt.getText());
 
@@ -6766,7 +6794,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                 pstmt.setBoolean(31, false);
                                 pstmt.setString(32, "");
                                 pstmt.setString(33, "");
-                                pstmt.setString(34, jComboBox2.getSelectedItem().toString());
+                                pstmt.setString(34, registrationPointCmbx.getSelectedItem().toString());
                                 pstmt.setString(35, "");
                                 pstmt.setDouble(36, ageYrs);
                                 pstmt.setObject(37, selectedchkbx);
@@ -6821,7 +6849,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                 pstmt2.setString(15, "Revenue");
                                 pstmt2.setDouble(16, 0.00);
                                 pstmt2.setDouble(17, adrate);
-                                pstmt2.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                pstmt2.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
                                 pstmt2.setString(19, "" + transNo + "");
                                 pstmt2.setBoolean(20, false);
                                 pstmt2.setBoolean(21, false);
@@ -6841,37 +6869,37 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                     pstmt1.setString(7, "");
                                     pstmt1.setString(8, "");
                                     pstmt1.setString(9, "");
-                                    pstmt1.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                    pstmt1.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
                                     pstmt1.setString(15, patientAcc);
                                     pstmt1.setString(18, "");
                                     // pstmt1.setString(22,AccDesc);
                                 } else {
-                                    if (jPanel5.isVisible()) {
+                                    if (schemePanel.isVisible()) {
                                         //  if(jComboBox5.getSelectedItem().toString().equalsIgnoreCase(jTextField6.getText())){
 
                                         pstmt1.setString(6, "");
                                         pstmt1.setString(8, "");
-                                        pstmt1.setString(7, jTextField3611.getText());
-                                        pstmt1.setString(9, jTextField23.getText());
-                                        pstmt1.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker21.getDate()));
+                                        pstmt1.setString(7, schemeNameTxt.getText());
+                                        pstmt1.setString(9, schemeMangerTxt.getText());
+                                        pstmt1.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(cardExpiryDatePicker.getDate()));
                                         pstmt1.setString(15, insAcc);
                                         pstmt1.setString(18, memberNumberTxt.getText());
 
                                     } else {
                                         pstmt1.setString(6, cardNumberTxt.getText());
                                         pstmt1.setString(7, "");
-                                        pstmt1.setString(8, jComboBox31.getSelectedItem().toString());
-                                        pstmt1.setString(9, jTextField71.getText());
-                                        pstmt1.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker11.getDate()));
+                                        pstmt1.setString(8, cardNameCmbx.getSelectedItem().toString());
+                                        pstmt1.setString(9, cardIssurerTxt.getText());
+                                        pstmt1.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(schemeExpiryDatePicker.getDate()));
                                         pstmt1.setString(15, cardAcc);
                                         pstmt1.setString(18, "");
                                         //  pstmt1.setString(22,cardName);
                                     }
                                 }
-                                pstmt1.setString(11, jTextField121.getText());
+                                pstmt1.setString(11, admittedByTxt.getText());
                                 pstmt1.setDouble(12, adrate);
                                 pstmt1.setDouble(13, 0.00);
-                                pstmt1.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                pstmt1.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
                                 pstmt1.setString(16, Main);
                                 pstmt1.setDouble(17, 1);
                                 pstmt1.setBoolean(19, false);
@@ -6907,7 +6935,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                     pstmt2n.setString(15, "Revenue");
                                     pstmt2n.setDouble(16, 0.00);
                                     pstmt2n.setDouble(17, nursing);
-                                    pstmt2n.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                    pstmt2n.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
                                     pstmt2n.setString(19, "" + transNo + "");
                                     pstmt2n.setBoolean(20, false);
                                     pstmt2n.setBoolean(21, false);
@@ -6927,37 +6955,37 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                         pstmt1m.setString(7, "");
                                         pstmt1m.setString(8, "");
                                         pstmt1m.setString(9, "");
-                                        pstmt1m.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                        pstmt1m.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
                                         pstmt1m.setString(15, patientAcc);
                                         pstmt1m.setString(18, "");
                                         // pstmt1.setString(22,AccDesc);
                                     } else {
-                                        if (jPanel5.isVisible()) {
+                                        if (schemePanel.isVisible()) {
                                             //  if(jComboBox5.getSelectedItem().toString().equalsIgnoreCase(jTextField6.getText())){
 
                                             pstmt1m.setString(6, "");
                                             pstmt1m.setString(8, "");
-                                            pstmt1m.setString(7, jTextField3611.getText());
-                                            pstmt1m.setString(9, jTextField23.getText());
-                                            pstmt1m.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker21.getDate()));
+                                            pstmt1m.setString(7, schemeNameTxt.getText());
+                                            pstmt1m.setString(9, schemeMangerTxt.getText());
+                                            pstmt1m.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(cardExpiryDatePicker.getDate()));
                                             pstmt1m.setString(15, insAcc);
                                             pstmt1m.setString(18, memberNumberTxt.getText());
 
                                         } else {
                                             pstmt1m.setString(6, cardNumberTxt.getText());
                                             pstmt1m.setString(7, "");
-                                            pstmt1m.setString(8, jComboBox31.getSelectedItem().toString());
-                                            pstmt1m.setString(9, jTextField71.getText());
-                                            pstmt1m.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker11.getDate()));
+                                            pstmt1m.setString(8, cardNameCmbx.getSelectedItem().toString());
+                                            pstmt1m.setString(9, cardIssurerTxt.getText());
+                                            pstmt1m.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(schemeExpiryDatePicker.getDate()));
                                             pstmt1m.setString(15, cardAcc);
                                             pstmt1m.setString(18, "");
                                             //  pstmt1.setString(22,cardName);
                                         }
                                     }
-                                    pstmt1m.setString(11, jTextField121.getText());
+                                    pstmt1m.setString(11, admittedByTxt.getText());
                                     pstmt1m.setDouble(12, nursing);
                                     pstmt1m.setDouble(13, 0.00);
-                                    pstmt1m.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                    pstmt1m.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
                                     pstmt1m.setString(16, Main);
                                     pstmt1m.setDouble(17, 1);
                                     pstmt1m.setBoolean(19, false);
@@ -6993,7 +7021,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                     pstmt2bed.setString(15, "Revenue");
                                     pstmt2bed.setDouble(16, 0.00);
                                     pstmt2bed.setDouble(17, bedfees);
-                                    pstmt2bed.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                    pstmt2bed.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
                                     pstmt2bed.setString(19, "" + transNo + "");
                                     pstmt2bed.setBoolean(20, false);
                                     pstmt2bed.setBoolean(21, false);
@@ -7013,37 +7041,37 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                         pstmt1bedhp.setString(7, "");
                                         pstmt1bedhp.setString(8, "");
                                         pstmt1bedhp.setString(9, "");
-                                        pstmt1bedhp.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                        pstmt1bedhp.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
                                         pstmt1bedhp.setString(15, patientAcc);
                                         pstmt1bedhp.setString(18, "");
                                         // pstmt1.setString(22,AccDesc);
                                     } else {
-                                        if (jPanel5.isVisible()) {
+                                        if (schemePanel.isVisible()) {
                                             //  if(jComboBox5.getSelectedItem().toString().equalsIgnoreCase(jTextField6.getText())){
 
                                             pstmt1bedhp.setString(6, "");
                                             pstmt1bedhp.setString(8, "");
-                                            pstmt1bedhp.setString(7, jTextField3611.getText());
-                                            pstmt1bedhp.setString(9, jTextField23.getText());
-                                            pstmt1bedhp.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker21.getDate()));
+                                            pstmt1bedhp.setString(7, schemeNameTxt.getText());
+                                            pstmt1bedhp.setString(9, schemeMangerTxt.getText());
+                                            pstmt1bedhp.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(cardExpiryDatePicker.getDate()));
                                             pstmt1bedhp.setString(15, insAcc);
                                             pstmt1bedhp.setString(18, memberNumberTxt.getText());
 
                                         } else {
                                             pstmt1bedhp.setString(6, cardNumberTxt.getText());
                                             pstmt1bedhp.setString(7, "");
-                                            pstmt1bedhp.setString(8, jComboBox31.getSelectedItem().toString());
-                                            pstmt1bedhp.setString(9, jTextField71.getText());
-                                            pstmt1bedhp.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker11.getDate()));
+                                            pstmt1bedhp.setString(8, cardNameCmbx.getSelectedItem().toString());
+                                            pstmt1bedhp.setString(9, cardIssurerTxt.getText());
+                                            pstmt1bedhp.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(schemeExpiryDatePicker.getDate()));
                                             pstmt1bedhp.setString(15, cardAcc);
                                             pstmt1bedhp.setString(18, "");
                                             //  pstmt1.setString(22,cardName);
                                         }
                                     }
-                                    pstmt1bedhp.setString(11, jTextField121.getText());
+                                    pstmt1bedhp.setString(11, admittedByTxt.getText());
                                     pstmt1bedhp.setDouble(12, bedfees);
                                     pstmt1bedhp.setDouble(13, 0.00);
-                                    pstmt1bedhp.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                    pstmt1bedhp.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
                                     pstmt1bedhp.setString(16, Main);
                                     pstmt1bedhp.setDouble(17, 1);
                                     pstmt1bedhp.setBoolean(19, false);
@@ -7062,28 +7090,28 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
 
                                 java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE hp_inpatient_register SET iplimit = " + Limit + "  WHERE patient_no = '" + admissionNumberTxt.getText() + "'");
                                 pstmt31.executeUpdate();
-                                if (jCheckBox6.isSelected()) {
-                                    if (jTextField361.getText().toString().equalsIgnoreCase("") | jTextField361.getText().toString().equalsIgnoreCase(" ") | jTextField361.getText().toString().equalsIgnoreCase("  ")) {
+                                if (mergeOPBillChkbx.isSelected()) {
+                                    if (opdNoTxt.getText().toString().equalsIgnoreCase("") | opdNoTxt.getText().toString().equalsIgnoreCase(" ") | opdNoTxt.getText().toString().equalsIgnoreCase("  ")) {
                                         javax.swing.JOptionPane.showMessageDialog(this, "You Must select patient details from out patient", "Comfirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                                     } else {
 
-                                        java.sql.PreparedStatement pstmt221 = connectDB.prepareStatement("UPDATE hp_patient_billing set paid = 'true' WHERE patient_no = '" + jTextField361.getText() + "' AND trans_date ='" + datePicker1.getDate() + "'");
+                                        java.sql.PreparedStatement pstmt221 = connectDB.prepareStatement("UPDATE hp_patient_billing set paid = 'true' WHERE patient_no = '" + opdNoTxt.getText() + "' AND trans_date ='" + admissionDatePicker.getDate() + "'");
                                         pstmt221.executeUpdate();
 
-                                        java.sql.PreparedStatement pstmt2221 = connectDB.prepareStatement("UPDATE ac_ledger set patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + jTextField361.getText() + "' AND date ='" + datePicker1.getDate() + "'");
+                                        java.sql.PreparedStatement pstmt2221 = connectDB.prepareStatement("UPDATE ac_ledger set patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + opdNoTxt.getText() + "' AND date ='" + admissionDatePicker.getDate() + "'");
                                         pstmt2221.executeUpdate();
 
-                                        java.sql.PreparedStatement pstmt2223 = connectDB.prepareStatement("UPDATE ac_cash_collection set patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + jTextField361.getText() + "' AND date ='" + datePicker1.getDate() + "'");
+                                        java.sql.PreparedStatement pstmt2223 = connectDB.prepareStatement("UPDATE ac_cash_collection set patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + opdNoTxt.getText() + "' AND date ='" + admissionDatePicker.getDate() + "'");
                                         pstmt2223.executeUpdate();
 
-                                        java.sql.PreparedStatement pstmt2224 = connectDB.prepareStatement("UPDATE ac_doctors_ledger set patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + jTextField361.getText() + "' AND input_date ='" + datePicker1.getDate() + "'");
+                                        java.sql.PreparedStatement pstmt2224 = connectDB.prepareStatement("UPDATE ac_doctors_ledger set patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + opdNoTxt.getText() + "' AND input_date ='" + admissionDatePicker.getDate() + "'");
                                         pstmt2224.executeUpdate();
 
-                                        java.sql.PreparedStatement pstmt221111 = connectDB.prepareStatement("UPDATE hp_pharmacy set patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + jTextField361.getText() + "' AND date_prescribed ='" + datePicker1.getDate() + "'");
+                                        java.sql.PreparedStatement pstmt221111 = connectDB.prepareStatement("UPDATE hp_pharmacy set patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + opdNoTxt.getText() + "' AND date_prescribed ='" + admissionDatePicker.getDate() + "'");
                                         pstmt221111.executeUpdate();
 
-                                        java.sql.PreparedStatement pstmtz = connectDB.prepareStatement("UPDATE hp_patient_card set visit_id = '" + visitid + "',patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + jTextField361.getText() + "' AND date::date ='" + datePicker1.getDate() + "'");
+                                        java.sql.PreparedStatement pstmtz = connectDB.prepareStatement("UPDATE hp_patient_card set visit_id = '" + visitid + "',patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + opdNoTxt.getText() + "' AND date::date ='" + admissionDatePicker.getDate() + "'");
                                         pstmtz.executeUpdate();
                                     }
                                 }
@@ -7101,31 +7129,31 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                         connectDB.commit();
                         connectDB.setAutoCommit(true);
                         referredcombo.setSelectedItem("-");
-                        jTextField9.setText("");
+                        postalAddressTxt.setText("");
                         nokTelephoneTxt.setText("");
                         nokNameTxt.setText("");
                         wardCodeTxt.setText("");
                         surNameTxt.setText("");
 //                        referredFromTxt.setText("");
                         currentResidence.setText("");
-                        jTextField4.setText("");
-                        jTextField3611.setText("");
-                        jTextField23.setText("");
-                        jTextField36.setText("");
+                        billPayerTxt.setText("");
+                        schemeNameTxt.setText("");
+                        schemeMangerTxt.setText("");
+                        memberNameTxt.setText("");
                         nhifClaimNumberTxt.setText("");
                         cSheetNoTxt.setText("");
                         countyofResidenceCmbx.setSelectedItem(null);
                         countyofBirthCmbx.setSelectedItem(null);
                         educationLevelCmbx.setSelectedItem(null);
-                        oldFileNumberTxt.setText("");
+                        clinicFileNumberTxt.setText("");
                         employerTxt.setText("");
                         employerTelTxt.setText("");
-                        this.jButton1.setEnabled(false);
+                        this.admitBtn.setEnabled(false);
                         this.admitPrintBtn.setEnabled(false);
                     }
                 }
                 // connectDB.releaseSavepoint(registerSavePoint);
-                jButton1.setText("Admit");
+                admitBtn.setText("Admit");
 
             } catch (java.lang.Exception sq) {
 
@@ -7217,7 +7245,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
 
                 // Date parser
                 java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yy");
-                com.afrisoftech.lib.DateFormatter dateFormatter = new com.afrisoftech.lib.DateFormatter(dateFormat.parse(datePicker1.getDate().toString().trim()), "yy");
+                com.afrisoftech.lib.DateFormatter dateFormatter = new com.afrisoftech.lib.DateFormatter(dateFormat.parse(admissionDatePicker.getDate().toString().trim()), "yy");
 
                 java.lang.String monthString = dateFormatter.getDateString();
 
@@ -7235,7 +7263,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                 registerSavePoint = connectDB.setSavepoint("registration");
 
                 java.sql.Statement stmtf = connectDB.createStatement();
-                java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + datePicker1.getDate() + "' BETWEEN period_from AND period_to");
+                java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + admissionDatePicker.getDate() + "' BETWEEN period_from AND period_to");
                 while (rsetf.next()) {
                     periodFrom = rsetf.getDate(1);
                     periodTo = rsetf.getDate(2);
@@ -7247,7 +7275,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
 
                 }
 
-                if (datePicker1.getDate().before(periodFrom) || datePicker1.getDate().after(periodTo)) {
+                if (admissionDatePicker.getDate().before(periodFrom) || admissionDatePicker.getDate().after(periodTo)) {
                     javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
@@ -7333,9 +7361,9 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                 // jComboBox1.setSelectedItem(rset11.getObject(1).toString());
                                 name = rset11.getObject(1).toString();
                                 if (rset11.getBoolean(2) == false) {
-                                    jCheckBox7.setSelected(true);
+                                    hasInterimBillChkbx.setSelected(true);
                                 } else {
-                                    jCheckBox7.setSelected(false);
+                                    hasInterimBillChkbx.setSelected(false);
                                 }
                             }
 
@@ -7369,7 +7397,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                 pstmt.setString(4, "");
                                 pstmt.setString(5, nokNameTxt.getText());
                                 pstmt.setString(8, dateOfBirth);
-                                pstmt.setString(7, jTextField9.getText());
+                                pstmt.setString(7, postalAddressTxt.getText());
                                 if (currentResidence.getText().equals("")) {
                                     javax.swing.JOptionPane.showMessageDialog(this, "You must enter residence", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                                 } else {
@@ -7384,7 +7412,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                 }
 
                                 pstmt.executeUpdate();
-                                this.jButton1.setVisible(false);
+                                this.admitBtn.setVisible(false);
                                 //   javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully","Comfirmation Message",javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                             }
@@ -7399,13 +7427,13 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                     // Checking the presence of out patient number in hp_patient_register
                                     int opNos = 0;
                                     java.sql.Statement stmnz1c = connectDB.createStatement();
-                                    java.sql.ResultSet rsnz1c = stmnz1c.executeQuery("SELECT COUNT(patient_no) FROM hp_patient_register WHERE patient_no = '" + jTextField361.getText() + "'");
+                                    java.sql.ResultSet rsnz1c = stmnz1c.executeQuery("SELECT COUNT(patient_no) FROM hp_patient_register WHERE patient_no = '" + opdNoTxt.getText() + "'");
                                     while (rsnz1c.next()) {
                                         opNos = rsnz1c.getInt(1);
                                     }
                                     if (opNos > 0) {
-                                        patientNo = jTextField361.getText();
-                                        admissionNumberTxt.setText(jTextField361.getText());
+                                        patientNo = opdNoTxt.getText();
+                                        admissionNumberTxt.setText(opdNoTxt.getText());
                                     } else {
                                         java.sql.Statement stmnz1 = connectDB.createStatement();
                                         java.sql.ResultSet rsnz1 = stmnz1.executeQuery("select prefix_item,digit_no,yr_end,inc_year from pb_patient_names");
@@ -7615,7 +7643,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                             java.sql.PreparedStatement pstmt27 = connectDB.prepareStatement("update hp_bed_setup set occupied = true where bed_no ='" + bedNumberCmbx.getSelectedItem() + "' and ward = '" + admissionWardCmbx.getSelectedItem() + "'");
                             pstmt27.execute();
 
-                            java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("UPDATE hp_inpatient_register set pay_mode = '" + paymentModeCmbx.getSelectedItem().toString() + "',category = '" + bedCategoryCmbx.getSelectedItem().toString() + "',adm_date = '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()) + "',payer = '" + jTextField4.getText() + "'  WHERE patient_no = '" + admissionNumberTxt.getText() + "'");
+                            java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("UPDATE hp_inpatient_register set pay_mode = '" + paymentModeCmbx.getSelectedItem().toString() + "',category = '" + bedCategoryCmbx.getSelectedItem().toString() + "',adm_date = '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()) + "',payer = '" + billPayerTxt.getText() + "'  WHERE patient_no = '" + admissionNumberTxt.getText() + "'");
                             pstmt11.executeUpdate();
 
                             //  java.sql.PreparedStatement pstmt81x = connectDB.prepareStatement("UPDATE hp_patient_card SET invoice_no = '"+visitid+"', visit_id = '"+visitid+"' where patient_no = '"+jTextField12.getText()+"' and visit_id = 'Booking'");
@@ -7623,12 +7651,12 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                             java.sql.PreparedStatement pstmt811x = connectDB.prepareStatement("UPDATE hp_patient_card SET visit_id = '" + visitid + "' where patient_no = '" + admissionNumberTxt.getText() + "' and service ilike 'Receip%' AND invoice_no not ilike 'I%' and date::date BETWEEN (current_date - 200) AND CURRENT_DATE and (visit_id = '' or visit_id = '-')");
                             pstmt811x.executeUpdate();
 
-                            if (jPanel5.isVisible()) {
-                                java.sql.PreparedStatement pstmt111 = connectDB.prepareStatement("UPDATE hp_inpatient_register set description = '" + jTextField3611.getText() + "',payer = '" + jTextField23.getText() + "',account_no ='" + memberNumberTxt.getText() + "',expiry_date = '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker21.getDate()) + "', member_no = '" + memberNumberTxt.getText() + "',member_name = '" + jTextField36.getText() + "' WHERE patient_no = '" + admissionNumberTxt.getText() + "'");
+                            if (schemePanel.isVisible()) {
+                                java.sql.PreparedStatement pstmt111 = connectDB.prepareStatement("UPDATE hp_inpatient_register set description = '" + schemeNameTxt.getText() + "',payer = '" + schemeMangerTxt.getText() + "',account_no ='" + memberNumberTxt.getText() + "',expiry_date = '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(cardExpiryDatePicker.getDate()) + "', member_no = '" + memberNumberTxt.getText() + "',member_name = '" + memberNameTxt.getText() + "' WHERE patient_no = '" + admissionNumberTxt.getText() + "'");
                                 pstmt111.executeUpdate();
                             } else {
-                                if (jPanel21.isVisible()) {
-                                    java.sql.PreparedStatement pstmta = connectDB.prepareStatement("UPDATE hp_inpatient_register set description = '" + jComboBox31.getSelectedItem().toString() + "',payer = '" + jTextField71.getText() + "',account_no ='" + cardNumberTxt.getText() + "',expiry_date = '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker11.getDate()) + "' WHERE patient_no = '" + admissionNumberTxt.getText() + "'");
+                                if (bankCardsPanel.isVisible()) {
+                                    java.sql.PreparedStatement pstmta = connectDB.prepareStatement("UPDATE hp_inpatient_register set description = '" + cardNameCmbx.getSelectedItem().toString() + "',payer = '" + cardIssurerTxt.getText() + "',account_no ='" + cardNumberTxt.getText() + "',expiry_date = '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(schemeExpiryDatePicker.getDate()) + "' WHERE patient_no = '" + admissionNumberTxt.getText() + "'");
 
                                     pstmta.executeUpdate();
                                 }
@@ -7641,7 +7669,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                             pstmt.setString(1, admissionNumberTxt.getText());
 
                             pstmt.setString(2, firstNameTxt.getText().toUpperCase() + " " + surNameTxt.getText().toUpperCase());
-                            pstmt.setString(3, jTextPane1.getText());
+                            pstmt.setString(3, diagnosisTextPane.getText());
                             if (admissionWardCmbx.getSelectedItem() == null) {
                                 javax.swing.JOptionPane.showMessageDialog(this, "You must Select Ward Name", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                             } else {
@@ -7649,16 +7677,16 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                 pstmt.setString(5, admissionWardCmbx.getSelectedItem().toString());
                             }
                             if (paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
-                                pstmt.setString(4, jTextField3611.getText());
+                                pstmt.setString(4, schemeNameTxt.getText());
                             } else {
                                 pstmt.setString(4, "Self");
                             }
                             pstmt.setString(6, bedNumberCmbx.getSelectedItem().toString());
-                            pstmt.setString(7, jTextField121.getText().toString());
+                            pstmt.setString(7, admittedByTxt.getText().toString());
                             pstmt.setString(8, bedCategoryCmbx.getSelectedItem().toString());
                             pstmt.setString(9, nokNameTxt.getText());
                             pstmt.setString(10, nokTelephoneTxt.getText());
-                            pstmt.setString(11, jTextField9.getText());
+                            pstmt.setString(11, postalAddressTxt.getText());
                             pstmt.setString(12, idPassportTxt.getText());
                             pstmt.setString(13, paymentModeCmbx.getSelectedItem().toString());
                             pstmt.setString(14, Categ);
@@ -7669,7 +7697,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                             pstmt.setString(19, currentResidence.getText());
                             pstmt.setString(20, "");
                             pstmt.setString(21, nhifChbx.getText());
-                            pstmt.setDate(22, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                            pstmt.setDate(22, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
 
                             pstmt.setString(23, admissionNumberTxt.getText());
 
@@ -7682,8 +7710,8 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                             pstmt.setDouble(30, nursing);
                             pstmt.setBoolean(31, false);
                             pstmt.setString(32, "");
-                            pstmt.setString(33, oldFileNumberTxt.getText());
-                            pstmt.setObject(34, jComboBox2.getSelectedItem());
+                            pstmt.setString(33, clinicFileNumberTxt.getText());
+                            pstmt.setObject(34, registrationPointCmbx.getSelectedItem());
                             pstmt.setObject(35, patientUrgencyCMBX.getSelectedItem());
                             pstmt.setDouble(36, ageYrs);
                             pstmt.setObject(37, selectedchkbx);
@@ -7738,7 +7766,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                             pstmt2.setString(15, "Revenue");
                             pstmt2.setDouble(16, 0.00);
                             pstmt2.setDouble(17, adrate);
-                            pstmt2.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                            pstmt2.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
                             pstmt2.setString(19, "" + transNo + "");
                             pstmt2.setBoolean(20, false);
                             pstmt2.setBoolean(21, false);
@@ -7758,37 +7786,37 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                 pstmt1.setString(7, "");
                                 pstmt1.setString(8, "");
                                 pstmt1.setString(9, "");
-                                pstmt1.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                pstmt1.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
                                 pstmt1.setString(15, patientAcc);
                                 pstmt1.setString(18, "");
                                 // pstmt1.setString(22,AccDesc);
                             } else {
-                                if (jPanel5.isVisible()) {
+                                if (schemePanel.isVisible()) {
                                     //  if(jComboBox5.getSelectedItem().toString().equalsIgnoreCase(jTextField6.getText())){
 
                                     pstmt1.setString(6, "");
                                     pstmt1.setString(8, "");
-                                    pstmt1.setString(7, jTextField3611.getText());
-                                    pstmt1.setString(9, jTextField23.getText());
-                                    pstmt1.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker21.getDate()));
+                                    pstmt1.setString(7, schemeNameTxt.getText());
+                                    pstmt1.setString(9, schemeMangerTxt.getText());
+                                    pstmt1.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(cardExpiryDatePicker.getDate()));
                                     pstmt1.setString(15, insAcc);
                                     pstmt1.setString(18, memberNumberTxt.getText());
 
                                 } else {
                                     pstmt1.setString(6, cardNumberTxt.getText());
                                     pstmt1.setString(7, "");
-                                    pstmt1.setString(8, jComboBox31.getSelectedItem().toString());
-                                    pstmt1.setString(9, jTextField71.getText());
-                                    pstmt1.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker11.getDate()));
+                                    pstmt1.setString(8, cardNameCmbx.getSelectedItem().toString());
+                                    pstmt1.setString(9, cardIssurerTxt.getText());
+                                    pstmt1.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(schemeExpiryDatePicker.getDate()));
                                     pstmt1.setString(15, cardAcc);
                                     pstmt1.setString(18, "");
                                     //  pstmt1.setString(22,cardName);
                                 }
                             }
-                            pstmt1.setString(11, jTextField121.getText());
+                            pstmt1.setString(11, admittedByTxt.getText());
                             pstmt1.setDouble(12, adrate);
                             pstmt1.setDouble(13, 0.00);
-                            pstmt1.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                            pstmt1.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
                             pstmt1.setString(16, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connectDB, com.afrisoftech.lib.WardGLAccountsFactory.getAdmissionChargesGLAccount(connectDB, admissionWardCmbx.getSelectedItem().toString())));
                             pstmt1.setDouble(17, 1);
                             pstmt1.setBoolean(19, false);
@@ -7823,7 +7851,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                 pstmt2n.setString(15, "Revenue");
                                 pstmt2n.setDouble(16, 0.00);
                                 pstmt2n.setDouble(17, nursing);
-                                pstmt2n.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                pstmt2n.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
                                 pstmt2n.setString(19, "" + transNo + "");
                                 pstmt2n.setBoolean(20, false);
                                 pstmt2n.setBoolean(21, false);
@@ -7843,37 +7871,37 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                     pstmt1m.setString(7, "");
                                     pstmt1m.setString(8, "");
                                     pstmt1m.setString(9, "");
-                                    pstmt1m.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                    pstmt1m.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
                                     pstmt1m.setString(15, patientAcc);
                                     pstmt1m.setString(18, "");
                                     // pstmt1.setString(22,AccDesc);
                                 } else {
-                                    if (jPanel5.isVisible()) {
+                                    if (schemePanel.isVisible()) {
                                         //  if(jComboBox5.getSelectedItem().toString().equalsIgnoreCase(jTextField6.getText())){
 
                                         pstmt1m.setString(6, "");
                                         pstmt1m.setString(8, "");
-                                        pstmt1m.setString(7, jTextField3611.getText());
-                                        pstmt1m.setString(9, jTextField23.getText());
-                                        pstmt1m.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker21.getDate()));
+                                        pstmt1m.setString(7, schemeNameTxt.getText());
+                                        pstmt1m.setString(9, schemeMangerTxt.getText());
+                                        pstmt1m.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(cardExpiryDatePicker.getDate()));
                                         pstmt1m.setString(15, insAcc);
                                         pstmt1m.setString(18, memberNumberTxt.getText());
 
                                     } else {
                                         pstmt1m.setString(6, cardNumberTxt.getText());
                                         pstmt1m.setString(7, "");
-                                        pstmt1m.setString(8, jComboBox31.getSelectedItem().toString());
-                                        pstmt1m.setString(9, jTextField71.getText());
-                                        pstmt1m.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker11.getDate()));
+                                        pstmt1m.setString(8, cardNameCmbx.getSelectedItem().toString());
+                                        pstmt1m.setString(9, cardIssurerTxt.getText());
+                                        pstmt1m.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(schemeExpiryDatePicker.getDate()));
                                         pstmt1m.setString(15, cardAcc);
                                         pstmt1m.setString(18, "");
                                         //  pstmt1.setString(22,cardName);
                                     }
                                 }
-                                pstmt1m.setString(11, jTextField121.getText());
+                                pstmt1m.setString(11, admittedByTxt.getText());
                                 pstmt1m.setDouble(12, nursing);
                                 pstmt1m.setDouble(13, 0.00);
-                                pstmt1m.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                pstmt1m.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
                                 pstmt1m.setString(16, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connectDB, com.afrisoftech.lib.WardGLAccountsFactory.getNursingChargesGLAccount(connectDB, admissionWardCmbx.getSelectedItem().toString())));
                                 pstmt1m.setDouble(17, 1);
                                 pstmt1m.setBoolean(19, false);
@@ -7909,7 +7937,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                 pstmt2bed.setString(15, "Revenue");
                                 pstmt2bed.setDouble(16, 0.00);
                                 pstmt2bed.setDouble(17, bedfees);
-                                pstmt2bed.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                pstmt2bed.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
                                 pstmt2bed.setString(19, "" + transNo + "");
                                 pstmt2bed.setBoolean(20, false);
                                 pstmt2bed.setBoolean(21, false);
@@ -7929,37 +7957,37 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                     pstmt1bedhp.setString(7, "");
                                     pstmt1bedhp.setString(8, "");
                                     pstmt1bedhp.setString(9, "");
-                                    pstmt1bedhp.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                    pstmt1bedhp.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
                                     pstmt1bedhp.setString(15, patientAcc);
                                     pstmt1bedhp.setString(18, "");
                                     // pstmt1.setString(22,AccDesc);
                                 } else {
-                                    if (jPanel5.isVisible()) {
+                                    if (schemePanel.isVisible()) {
                                         //  if(jComboBox5.getSelectedItem().toString().equalsIgnoreCase(jTextField6.getText())){
 
                                         pstmt1bedhp.setString(6, "");
                                         pstmt1bedhp.setString(8, "");
-                                        pstmt1bedhp.setString(7, jTextField3611.getText());
-                                        pstmt1bedhp.setString(9, jTextField23.getText());
-                                        pstmt1bedhp.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker21.getDate()));
+                                        pstmt1bedhp.setString(7, schemeNameTxt.getText());
+                                        pstmt1bedhp.setString(9, schemeMangerTxt.getText());
+                                        pstmt1bedhp.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(cardExpiryDatePicker.getDate()));
                                         pstmt1bedhp.setString(15, insAcc);
                                         pstmt1bedhp.setString(18, memberNumberTxt.getText());
 
                                     } else {
                                         pstmt1bedhp.setString(6, cardNumberTxt.getText());
                                         pstmt1bedhp.setString(7, "");
-                                        pstmt1bedhp.setString(8, jComboBox31.getSelectedItem().toString());
-                                        pstmt1bedhp.setString(9, jTextField71.getText());
-                                        pstmt1bedhp.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker11.getDate()));
+                                        pstmt1bedhp.setString(8, cardNameCmbx.getSelectedItem().toString());
+                                        pstmt1bedhp.setString(9, cardIssurerTxt.getText());
+                                        pstmt1bedhp.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(schemeExpiryDatePicker.getDate()));
                                         pstmt1bedhp.setString(15, cardAcc);
                                         pstmt1bedhp.setString(18, "");
                                         //  pstmt1.setString(22,cardName);
                                     }
                                 }
-                                pstmt1bedhp.setString(11, jTextField121.getText());
+                                pstmt1bedhp.setString(11, admittedByTxt.getText());
                                 pstmt1bedhp.setDouble(12, bedfees);
                                 pstmt1bedhp.setDouble(13, 0.00);
-                                pstmt1bedhp.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                pstmt1bedhp.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(admissionDatePicker.getDate()));
                                 pstmt1bedhp.setString(16, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connectDB, com.afrisoftech.lib.WardGLAccountsFactory.getBedChargesGLAccount(connectDB, admissionWardCmbx.getSelectedItem().toString())));
                                 pstmt1bedhp.setDouble(17, 1);
                                 pstmt1bedhp.setBoolean(19, false);
@@ -7978,28 +8006,28 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
 
                             java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE hp_inpatient_register SET iplimit = " + Limit + "  WHERE patient_no = '" + admissionNumberTxt.getText() + "'");
                             pstmt31.executeUpdate();
-                            if (jCheckBox6.isSelected()) {
-                                if (jTextField361.getText().toString().equalsIgnoreCase("") | jTextField361.getText().toString().equalsIgnoreCase(" ") | jTextField361.getText().toString().equalsIgnoreCase("  ")) {
+                            if (mergeOPBillChkbx.isSelected()) {
+                                if (opdNoTxt.getText().toString().equalsIgnoreCase("") | opdNoTxt.getText().toString().equalsIgnoreCase(" ") | opdNoTxt.getText().toString().equalsIgnoreCase("  ")) {
                                     javax.swing.JOptionPane.showMessageDialog(this, "You Must select patient details from out patient", "Comfirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                                 } else {
 
-                                    java.sql.PreparedStatement pstmt221 = connectDB.prepareStatement("UPDATE hp_patient_billing set paid = 'true' WHERE patient_no = '" + jTextField361.getText() + "' AND trans_date ='" + datePicker1.getDate() + "'");
+                                    java.sql.PreparedStatement pstmt221 = connectDB.prepareStatement("UPDATE hp_patient_billing set paid = 'true' WHERE patient_no = '" + opdNoTxt.getText() + "' AND trans_date ='" + admissionDatePicker.getDate() + "'");
                                     pstmt221.executeUpdate();
 
-                                    java.sql.PreparedStatement pstmt2221 = connectDB.prepareStatement("UPDATE ac_ledger set patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + jTextField361.getText() + "' AND date ='" + datePicker1.getDate() + "'");
+                                    java.sql.PreparedStatement pstmt2221 = connectDB.prepareStatement("UPDATE ac_ledger set patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + opdNoTxt.getText() + "' AND date ='" + admissionDatePicker.getDate() + "'");
                                     pstmt2221.executeUpdate();
 
-                                    java.sql.PreparedStatement pstmt2223 = connectDB.prepareStatement("UPDATE ac_cash_collection set patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + jTextField361.getText() + "' AND date ='" + datePicker1.getDate() + "'");
+                                    java.sql.PreparedStatement pstmt2223 = connectDB.prepareStatement("UPDATE ac_cash_collection set patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + opdNoTxt.getText() + "' AND date ='" + admissionDatePicker.getDate() + "'");
                                     pstmt2223.executeUpdate();
 
-                                    java.sql.PreparedStatement pstmt2224 = connectDB.prepareStatement("UPDATE ac_doctors_ledger set patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + jTextField361.getText() + "' AND input_date ='" + datePicker1.getDate() + "'");
+                                    java.sql.PreparedStatement pstmt2224 = connectDB.prepareStatement("UPDATE ac_doctors_ledger set patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + opdNoTxt.getText() + "' AND input_date ='" + admissionDatePicker.getDate() + "'");
                                     pstmt2224.executeUpdate();
 
-                                    java.sql.PreparedStatement pstmt221111 = connectDB.prepareStatement("UPDATE hp_pharmacy set patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + jTextField361.getText() + "' AND date_prescribed ='" + datePicker1.getDate() + "'");
+                                    java.sql.PreparedStatement pstmt221111 = connectDB.prepareStatement("UPDATE hp_pharmacy set patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + opdNoTxt.getText() + "' AND date_prescribed ='" + admissionDatePicker.getDate() + "'");
                                     pstmt221111.executeUpdate();
 
-                                    java.sql.PreparedStatement pstmtz = connectDB.prepareStatement("UPDATE hp_patient_card set visit_id = '" + visitid + "',patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + jTextField361.getText() + "' AND date::date ='" + datePicker1.getDate() + "'");
+                                    java.sql.PreparedStatement pstmtz = connectDB.prepareStatement("UPDATE hp_patient_card set visit_id = '" + visitid + "',patient_no = '" + admissionNumberTxt.getText() + "' WHERE patient_no = '" + opdNoTxt.getText() + "' AND date::date ='" + admissionDatePicker.getDate() + "'");
                                     pstmtz.executeUpdate();
                                 }
                             }
@@ -8079,7 +8107,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
 //                            com.afrisoftech.lib.ServerTime.serverTimeStamp(connectDB), bedCategoryCmbx.getSelectedItem().toString(), nhifClaimNumberTxt.getText(), datePicker1.getDate(), selectgender,
 //                            "", "", "", "", "", "", "", "", "", "");
 
-                jButton1.setText("Admit");
+                admitBtn.setText("Admit");
 
             } catch (java.sql.SQLException sq) {
                 sq.printStackTrace();
@@ -8095,7 +8123,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
 
             }
 
-            this.jButton1.setVisible(true);
+            this.admitBtn.setVisible(true);
 
 //        }catch (java.lang.Exception ex) {
 //                ex.printStackTrace();
@@ -8113,11 +8141,11 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
     private void resetFields() {
 
         this.admitPrintBtn.setEnabled(true);
-        this.jButton1.setVisible(true);
-        this.jButton1.setText("Admit");
+        this.admitBtn.setVisible(true);
+        this.admitBtn.setText("Admit");
         admitPrintBtn.setText("Admit & Print");
         referredcombo.setSelectedItem("-");
-        jTextField9.setText("");
+        postalAddressTxt.setText("");
         nokTelephoneTxt.setText("");
         nokNameTxt.setText("");
         firstNameTxt.setText("");
@@ -8127,19 +8155,19 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
         admissionNumberTxt.setText("");
         memberNumberTxt.setText("");
         currentResidence.setText("");
-        jTextField4.setText("");
-        jTextField3611.setText("");
-        jTextField361.setText("");
-        jTextField23.setText("");
-        jTextField36.setText("");
-        searchButton1.setEnabled(true);
+        billPayerTxt.setText("");
+        schemeNameTxt.setText("");
+        opdNoTxt.setText("");
+        schemeMangerTxt.setText("");
+        memberNameTxt.setText("");
+        opdSearchButton.setEnabled(true);
         searchButton.setEnabled(true);
 //        searchbyPatientNameChkbx.setEnabled(true);
 //        searchbyPatientNumberChkbx.setEnabled(true);
-        jCheckBox311.setEnabled(false);
-        jCheckBox221.setEnabled(false);
+        dischargedChkbx.setEnabled(false);
+        admittedChbx.setEnabled(false);
 //        referredFromTxt.setEditable(true);
-        jTextField9.setEditable(true);
+        postalAddressTxt.setEditable(true);
         nokTelephoneTxt.setEditable(true);
         nokNameTxt.setEditable(true);
         firstNameTxt.setEditable(true);
@@ -8148,11 +8176,11 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
         admissionNumberTxt.setEditable(true);
         memberNumberTxt.setEditable(true);
         currentResidence.setEditable(true);
-        jTextField4.setEditable(true);
-        jTextField3611.setEditable(true);
-        jTextField361.setEditable(false);
-        jTextField23.setEditable(true);
-        jTextField36.setEditable(true);
+        billPayerTxt.setEditable(true);
+        schemeNameTxt.setEditable(true);
+        opdNoTxt.setEditable(false);
+        schemeMangerTxt.setEditable(true);
+        memberNameTxt.setEditable(true);
         String useonenumber = null;
         religionCmbx.setSelectedIndex(-1);
         nationalityCmbx.setSelectedIndex(-1);
@@ -8167,6 +8195,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
         educationLevelCmbx.setSelectedIndex(-1);
         paymentModeCmbx.setSelectedItem("-");
         countyofResidenceCmbx.setSelectedIndex(-1);
+        buttonGroup4.clearSelection();
         try {
 
             java.text.DateFormat df = java.text.DateFormat.getDateInstance();
@@ -8178,7 +8207,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
             java.sql.ResultSet rsetx2 = stmtx2.executeQuery("SELECT CURRENT_DATE::DATE");
             try {
                 while (rsetx2.next()) {
-                    datePicker1.setDate(sdf.parse(rsetx2.getObject(1).toString()));
+                    admissionDatePicker.setDate(sdf.parse(rsetx2.getObject(1).toString()));
                 }
             } catch (java.text.ParseException pe) {
                 javax.swing.JOptionPane.showMessageDialog(this, pe.getMessage());

@@ -1672,7 +1672,9 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         issuingItemsTable.setValueAt(SearchTable.getValueAt(SearchTable.getSelectedRow(), 2), issuingItemsTable.getSelectedRow(), 2);
         issuingItemsTable.setValueAt(SearchTable.getValueAt(SearchTable.getSelectedRow(), 3), issuingItemsTable.getSelectedRow(), 3);
         issuingItemsTable.setValueAt(SearchTable.getValueAt(SearchTable.getSelectedRow(), 4), issuingItemsTable.getSelectedRow(), 6);
-        issuingItemsTable.setValueAt(SearchTable.getValueAt(SearchTable.getSelectedRow(), 5), issuingItemsTable.getSelectedRow(), 8);
+        issuingItemsTable.setValueAt(SearchTable.getValueAt(SearchTable.getSelectedRow(), 5), issuingItemsTable.getSelectedRow(), 9);
+        issuingItemsTable.setValueAt(SearchTable.getValueAt(SearchTable.getSelectedRow(), 5), issuingItemsTable.getSelectedRow(), 10);
+         issuingItemsTable.setValueAt(0 , issuingItemsTable.getSelectedRow(), 7);
 
         itemSearchDialog.dispose();
         System.out.println("Starting To Obtain The Stock Balance Quantity");
@@ -2597,6 +2599,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
                     h = issuingItemsTable.getModel().getRowCount();
                 }
+                
             }
 //
 //            } else {

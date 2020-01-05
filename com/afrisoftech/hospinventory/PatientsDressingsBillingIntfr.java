@@ -132,6 +132,7 @@ public class PatientsDressingsBillingIntfr extends javax.swing.JInternalFrame {
         jSearchScrollPane14 = new javax.swing.JScrollPane();
         usersTbl = new com.afrisoftech.dbadmin.JTable();
         dispose12 = new javax.swing.JButton();
+        buttonGroup6 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -208,6 +209,8 @@ public class PatientsDressingsBillingIntfr extends javax.swing.JInternalFrame {
         schemeMemberNumberTxt = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         procurementMethodCmbx = new javax.swing.JComboBox<>();
+        indivudualItemsCbx = new javax.swing.JRadioButton();
+        packagesCbx = new javax.swing.JRadioButton();
         jSeparator12 = new javax.swing.JSeparator();
         jLabel532 = new javax.swing.JLabel();
         jTextField32 = new javax.swing.JTextField();
@@ -1556,12 +1559,12 @@ public class PatientsDressingsBillingIntfr extends javax.swing.JInternalFrame {
                 }
 
                 dressingsBillingTable.addAncestorListener(new javax.swing.event.AncestorListener() {
+                    public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                        dressingsBillingTableAncestorMoved(evt);
+                    }
                     public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                     }
                     public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-                    }
-                    public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                        dressingsBillingTableAncestorMoved(evt);
                     }
                 });
                 dressingsBillingTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1654,6 +1657,21 @@ public class PatientsDressingsBillingIntfr extends javax.swing.JInternalFrame {
                 gridBagConstraints.weighty = 1.0;
                 gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
                 jPanel23.add(procurementMethodCmbx, gridBagConstraints);
+
+                buttonGroup6.add(indivudualItemsCbx);
+                indivudualItemsCbx.setSelected(true);
+                indivudualItemsCbx.setText("Individual Items");
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 0;
+                gridBagConstraints.gridy = 11;
+                jPanel23.add(indivudualItemsCbx, gridBagConstraints);
+
+                buttonGroup6.add(packagesCbx);
+                packagesCbx.setText("Packages");
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 1;
+                gridBagConstraints.gridy = 11;
+                jPanel23.add(packagesCbx, gridBagConstraints);
 
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 0;
@@ -3929,8 +3947,12 @@ public class PatientsDressingsBillingIntfr extends javax.swing.JInternalFrame {
 //                itemSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select description AS product, ((buying_price/packaging)*1.30)::numeric(15,0) as selling_price,'" + storeGLCodeTxt.getText() + "' AS gl_code, item_code as product_id, strength  from st_stock_item WHERE (description ilike '%" + itemSearchTxt.getText() + "%' OR item_code ILIKE '%" + itemSearchTxt.getText() + "%') AND (department ilike '%dressing%' OR department ilike '%suture%') AND (item_code ilike 'mdr%' or item_code ilike 'np%') GROUP BY st_stock_item.description,st_stock_item.item_code, st_stock_item.strength, st_stock_item.buying_price, st_stock_item.packaging HAVING ((buying_price/packaging)*1.30)::numeric(15,0) > 0.00  ORDER BY 1"));
 //            } else {
             if (dressingsChkbx.isSelected()) {
-                itemSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT description AS product, ((funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + storeCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) as selling_price,'" + storeGLCodeTxt.getText() + "' AS gl_code, (item_code) as product_id, strength, '" + procurementMethodCmbx.getSelectedItem().toString() + "' AS Procurement_Method  from st_stock_item WHERE packaging >= 1 AND (description ilike '%" + itemSearchTxt.getText() + "%' OR item_code ILIKE '%" + itemSearchTxt.getText() + "%') AND (department ilike '%dressing%' OR department ilike '%suture%' OR upper(department) IN (SELECT upper(store_name) FROM st_main_stores WHERE classification IN (SELECT classification FROM st_stores WHERE upper(store_name) = '"+storeCmbx.getSelectedItem().toString().toUpperCase()+"'))) GROUP BY st_stock_item.description,st_stock_item.item_code, st_stock_item.strength, st_stock_item.buying_price, st_stock_item.packaging HAVING ((funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + storeCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) > 0.00"));// UNION "
-                //    + " SELECT DISTINCT description AS product, ((funsoft_item_price(item_code, 'Direct Procurement'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + storeCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) as selling_price,'" + storeGLCodeTxt.getText() + "' AS gl_code, (item_code) as product_id, strength, 'Direct Procurement' AS Procurement_Method  from st_stock_item WHERE packaging >= 1 AND (description ilike '%" + itemSearchTxt.getText() + "%' OR item_code ILIKE '%" + itemSearchTxt.getText() + "%') AND (department ilike '%dressing%' OR department ilike '%suture%') AND (item_code ilike 'dr%' or item_code ilike 'np%') GROUP BY st_stock_item.description,st_stock_item.item_code, st_stock_item.strength, st_stock_item.buying_price, st_stock_item.packaging HAVING ((funsoft_item_price(item_code, 'Direct Procurement'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + storeCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) > 0.00 ORDER BY 1"));
+                if(packagesCbx.isSelected()){
+                   itemSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT package AS product, SUM(total) as selling_price,'" + storeGLCodeTxt.getText() + "' AS gl_code, (package_code) as product_id, '' as strength, '" + procurementMethodCmbx.getSelectedItem().toString() + "' AS Procurement_Method  from packages WHERE (package ilike '%" + itemSearchTxt.getText() + "%' OR package_code ILIKE '%" + itemSearchTxt.getText() + "%') AND (department ilike '%dressing%' OR department ilike '%suture%' OR upper(department) IN (SELECT upper(store_name) FROM st_main_stores WHERE classification IN (SELECT classification FROM st_stores WHERE upper(store_name) = '"+storeCmbx.getSelectedItem().toString().toUpperCase()+"'))) GROUP BY package,package_code "));// UNION "
+                 
+                }else{
+                    itemSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT description AS product, ((funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + storeCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) as selling_price,'" + storeGLCodeTxt.getText() + "' AS gl_code, (item_code) as product_id, strength, '" + procurementMethodCmbx.getSelectedItem().toString() + "' AS Procurement_Method  from st_stock_item WHERE packaging >= 1 AND (description ilike '%" + itemSearchTxt.getText() + "%' OR item_code ILIKE '%" + itemSearchTxt.getText() + "%') AND (department ilike '%dressing%' OR department ilike '%suture%' OR upper(department) IN (SELECT upper(store_name) FROM st_main_stores WHERE classification IN (SELECT classification FROM st_stores WHERE upper(store_name) = '"+storeCmbx.getSelectedItem().toString().toUpperCase()+"'))) GROUP BY st_stock_item.description,st_stock_item.item_code, st_stock_item.strength, st_stock_item.buying_price, st_stock_item.packaging HAVING ((funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + storeCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) > 0.00"));// UNION "
+                }//    + " SELECT DISTINCT description AS product, ((funsoft_item_price(item_code, 'Direct Procurement'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + storeCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) as selling_price,'" + storeGLCodeTxt.getText() + "' AS gl_code, (item_code) as product_id, strength, 'Direct Procurement' AS Procurement_Method  from st_stock_item WHERE packaging >= 1 AND (description ilike '%" + itemSearchTxt.getText() + "%' OR item_code ILIKE '%" + itemSearchTxt.getText() + "%') AND (department ilike '%dressing%' OR department ilike '%suture%') AND (item_code ilike 'dr%' or item_code ilike 'np%') GROUP BY st_stock_item.description,st_stock_item.item_code, st_stock_item.strength, st_stock_item.buying_price, st_stock_item.packaging HAVING ((funsoft_item_price(item_code, 'Direct Procurement'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + storeCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) > 0.00 ORDER BY 1"));
 //                itemSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select description AS product, ((buying_price/packaging)*1.30)::numeric(15,0) as selling_price,'" + storeGLCodeTxt.getText() + "' AS gl_code, item_code as product_id, strength  from st_stock_item WHERE (description ilike '%" + itemSearchTxt.getText() + "%' OR item_code ILIKE '%" + itemSearchTxt.getText() + "%') AND (department ilike '%dressing%' OR department ilike '%suture%')  GROUP BY st_stock_item.description,st_stock_item.item_code, st_stock_item.strength, st_stock_item.buying_price, st_stock_item.packaging HAVING ((buying_price/packaging)*1.30)::numeric(15,0) > 0.00  ORDER BY 1"));
 
                 System.err.println("SELECT DISTINCT description AS product, (funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "')*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + storeCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) as selling_price,'" + storeGLCodeTxt.getText() + "' AS gl_code, (item_code) as product_id, strength, '" + procurementMethodCmbx.getSelectedItem().toString() + "' AS Procurement_Method  from st_stock_item WHERE packaging >= 1 AND (description ilike '%" + itemSearchTxt.getText() + "%' OR item_code ILIKE '%" + itemSearchTxt.getText() + "%') AND (department ilike '%dressing%' OR department ilike '%suture%') AND (item_code ilike 'dr%' or item_code ilike 'np%') GROUP BY st_stock_item.description,st_stock_item.item_code, st_stock_item.strength, st_stock_item.buying_price, st_stock_item.packaging HAVING ((buying_price/packaging)*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + storeCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) > 0.00  ORDER BY 1");
@@ -3964,7 +3986,11 @@ public class PatientsDressingsBillingIntfr extends javax.swing.JInternalFrame {
 
     private void itemSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemSearchTableMouseClicked
         this.itemSearchTxt.setText("");
-        String itemCode = itemSearchTable.getValueAt(itemSearchTable.getSelectedRow(), 3).toString();
+        String itemCode = "";
+        String itemName= "" ; 
+        try{
+        if(indivudualItemsCbx.isSelected()){
+         itemCode = itemSearchTable.getValueAt(itemSearchTable.getSelectedRow(), 3).toString();
         dressingsBillingTable.setValueAt(itemSearchTable.getValueAt(itemSearchTable.getSelectedRow(), 0), dressingsBillingTable.getSelectedRow(), 0);
         dressingsBillingTable.setValueAt(itemSearchTable.getValueAt(itemSearchTable.getSelectedRow(), 1), dressingsBillingTable.getSelectedRow(), 3);
         dressingsBillingTable.setValueAt(itemSearchTable.getValueAt(itemSearchTable.getSelectedRow(), 2), dressingsBillingTable.getSelectedRow(), 6);
@@ -3975,7 +4001,6 @@ public class PatientsDressingsBillingIntfr extends javax.swing.JInternalFrame {
         int j = 0;
 
         double Qty = 0.00;
-        try {
             java.sql.Statement pstmt = connectDB.createStatement();
             java.sql.Statement pstmt1 = connectDB.createStatement();
 
@@ -3993,29 +4018,33 @@ public class PatientsDressingsBillingIntfr extends javax.swing.JInternalFrame {
                 dressingsBillingTable.setValueAt(Qty, dressingsBillingTable.getSelectedRow(), 2);
 
             }
-
+        }else{
             // Check for items included in a packaged billing
-            int combiItemCount = 0;
+            itemCode = itemSearchTable.getValueAt(itemSearchTable.getSelectedRow(), 3).toString();
+            itemName = itemSearchTable.getValueAt(itemSearchTable.getSelectedRow(), 0).toString();
+            
+            int combiItemCount = 1;
             int currentRow = dressingsBillingTable.getSelectedRow();
-            java.sql.PreparedStatement pstmtCombiItem = connectDB.prepareStatement("SELECT count(master_item_code) FROM packages WHERE master_item_code = ? and dependancy_type = ?");
-            pstmtCombiItem.setObject(1, itemCode);
-            pstmtCombiItem.setObject(2, "MAIN");
-            java.sql.ResultSet rsetCombiItem = pstmtCombiItem.executeQuery();
-            while (rsetCombiItem.next()) {
-                combiItemCount = rsetCombiItem.getInt(1);
-            }
+//            java.sql.PreparedStatement pstmtCombiItem = connectDB.prepareStatement("SELECT count(master_item_code) FROM packages WHERE master_item_code = ? and dependancy_type = ?");
+//            pstmtCombiItem.setObject(1, itemCode);
+//            pstmtCombiItem.setObject(2, "MAIN");
+//            java.sql.ResultSet rsetCombiItem = pstmtCombiItem.executeQuery();
+//            while (rsetCombiItem.next()) {
+//                combiItemCount = rsetCombiItem.getInt(1);
+//            }
             // Bill items included in a package with the master item selected earlier for billing
             if (combiItemCount > 0) {
                 String packageID = null;
-                java.sql.PreparedStatement pstmtBillCombiItems = connectDB.prepareStatement("SELECT package_id FROM packages WHERE master_item_code = ? AND dependancy_type = ?");
+                java.sql.PreparedStatement pstmtBillCombiItems = connectDB.prepareStatement("SELECT  DISTINCT package_id FROM packages WHERE package_code ilike ? and package ilike ? ");
                 pstmtBillCombiItems.setObject(1, itemCode);
-                pstmtBillCombiItems.setObject(2, "MAIN");
+                pstmtBillCombiItems.setObject(2, itemName);
+                //pstmtBillCombiItems.setObject(2, "MAIN");
                 java.sql.ResultSet rsetBillCombiItems = pstmtBillCombiItems.executeQuery();
-                dressingsBillingTable.setValueAt(1, currentRow, 1);
-                dressingsBillingTable.setValueAt(Double.parseDouble(dressingsBillingTable.getValueAt(currentRow, 1).toString()) * Double.parseDouble(dressingsBillingTable.getValueAt(currentRow, 3).toString()), currentRow, 5);
+                //dressingsBillingTable.setValueAt(1, currentRow, 1);
+                //dressingsBillingTable.setValueAt(Double.parseDouble(dressingsBillingTable.getValueAt(currentRow, 1).toString()) * Double.parseDouble(dressingsBillingTable.getValueAt(currentRow, 3).toString()), currentRow, 5);
                 while (rsetBillCombiItems.next()) {
                     packageID = rsetBillCombiItems.getString(1);
-                    java.sql.PreparedStatement pstmtSetCombiItems = connectDB.prepareStatement("SELECT master_item_code,qty FROM packages WHERE package_id = ? AND dependancy_type NOT ILIKE 'MAIN'");
+                    java.sql.PreparedStatement pstmtSetCombiItems = connectDB.prepareStatement("SELECT master_item_code,qty FROM packages WHERE package_id = ? ");
                     pstmtSetCombiItems.setObject(1, packageID);
                     java.sql.ResultSet rsetSetCombiItems = pstmtSetCombiItems.executeQuery();
                     while (rsetSetCombiItems.next()) {
@@ -4027,22 +4056,22 @@ public class PatientsDressingsBillingIntfr extends javax.swing.JInternalFrame {
 
                         java.sql.ResultSet rsetSetBillingVariables = pstmtSetBillingVariables.executeQuery();
                         while (rsetSetBillingVariables.next()) {
-                            dressingsBillingTable.setValueAt(rsetSetBillingVariables.getString(1), currentRow + 1, 0);
-                            dressingsBillingTable.setValueAt(rsetSetCombiItems.getDouble(2), currentRow + 1, 1);
+                            dressingsBillingTable.setValueAt(rsetSetBillingVariables.getString(1), currentRow, 0);
+                            dressingsBillingTable.setValueAt(rsetSetCombiItems.getDouble(2), currentRow, 1);
                             if (rsetSetBillingVariables.getInt(3) > 1) {
-                                dressingsBillingTable.setValueAt(rsetSetBillingVariables.getInt(3), currentRow + 1, 2);
-                                //dressingsBillingTable.setValueAt(rsetSetBillingVariables.getDouble(2), currentRow + 1, 5);
+                                dressingsBillingTable.setValueAt(rsetSetBillingVariables.getInt(3), currentRow , 2);
+                                //dressingsBillingTable.setValueAt(rsetSetBillingVariables.getDouble(2), currentRow, 5);
                             } else {
-                                dressingsBillingTable.setValueAt(0, currentRow + 1, 2);
-                                dressingsBillingTable.setValueAt(0, currentRow + 1, 5);
+                                dressingsBillingTable.setValueAt(0, currentRow, 2);
+                                dressingsBillingTable.setValueAt(0, currentRow, 5);
                                 javax.swing.JOptionPane.showMessageDialog(this, "You cannot dispense more than the items available in this store. Please check item level.");
                             }
-                            dressingsBillingTable.setValueAt(rsetSetBillingVariables.getDouble(2), currentRow + 1, 3);
-                            dressingsBillingTable.setValueAt(0.00, currentRow + 1, 4);
-                            dressingsBillingTable.setValueAt(Math.round(rsetSetBillingVariables.getDouble(2) * rsetSetCombiItems.getDouble(2)), currentRow + 1, 5);
-                            dressingsBillingTable.setValueAt(rsetSetBillingVariables.getString(4), currentRow + 1, 6);
-                            dressingsBillingTable.setValueAt(rsetSetCombiItems.getString(1), currentRow + 1, 7);
-                            dressingsBillingTable.setValueAt(rsetSetBillingVariables.getString(5), currentRow + 1, 8);
+                            dressingsBillingTable.setValueAt(rsetSetBillingVariables.getDouble(2), currentRow, 3);
+                            dressingsBillingTable.setValueAt(0.00, currentRow, 4);
+                            dressingsBillingTable.setValueAt(Math.round(rsetSetBillingVariables.getDouble(2) * rsetSetCombiItems.getDouble(2)), currentRow, 5);
+                            dressingsBillingTable.setValueAt(rsetSetBillingVariables.getString(4), currentRow, 6);
+                            dressingsBillingTable.setValueAt(rsetSetCombiItems.getString(1), currentRow, 7);
+                            dressingsBillingTable.setValueAt(rsetSetBillingVariables.getString(5), currentRow, 8);
 
                         }
                         currentRow++;
@@ -4053,6 +4082,7 @@ public class PatientsDressingsBillingIntfr extends javax.swing.JInternalFrame {
                 }
 
             }
+        }
         } catch (java.sql.SQLException sqlex) {
             System.out.println(sqlex.getMessage());
             sqlex.printStackTrace();
@@ -5430,22 +5460,22 @@ public class PatientsDressingsBillingIntfr extends javax.swing.JInternalFrame {
 
                             java.sql.ResultSet rsetSetBillingVariables = pstmtSetBillingVariables.executeQuery();
                             while (rsetSetBillingVariables.next()) {
-                                dressingsBillingTable.setValueAt(rsetSetBillingVariables.getString(1), currentRow + 1, 0);
-                                dressingsBillingTable.setValueAt(rsetSetCombiItems.getDouble(2), currentRow + 1, 1);
+                                dressingsBillingTable.setValueAt(rsetSetBillingVariables.getString(1), currentRow, 0);
+                                dressingsBillingTable.setValueAt(rsetSetCombiItems.getDouble(2), currentRow, 1);
                                 if (rsetSetBillingVariables.getInt(3) > 1) {
-                                    dressingsBillingTable.setValueAt(rsetSetBillingVariables.getInt(3), currentRow + 1, 2);
-                                    //dressingsBillingTable.setValueAt(rsetSetBillingVariables.getDouble(2), currentRow + 1, 5);
+                                    dressingsBillingTable.setValueAt(rsetSetBillingVariables.getInt(3), currentRow, 2);
+                                    //dressingsBillingTable.setValueAt(rsetSetBillingVariables.getDouble(2), currentRow, 5);
                                 } else {
-                                    dressingsBillingTable.setValueAt(0, currentRow + 1, 2);
-                                    dressingsBillingTable.setValueAt(0, currentRow + 1, 5);
+                                    dressingsBillingTable.setValueAt(0, currentRow, 2);
+                                    dressingsBillingTable.setValueAt(0, currentRow, 5);
                                     javax.swing.JOptionPane.showMessageDialog(this, "You cannot dispense more than the items available in this store. Please check item level.");
                                 }
-                                dressingsBillingTable.setValueAt(rsetSetBillingVariables.getDouble(2), currentRow + 1, 3);
-                                dressingsBillingTable.setValueAt(0.00, currentRow + 1, 4);
-                                dressingsBillingTable.setValueAt(Math.round(rsetSetBillingVariables.getDouble(2) * rsetSetCombiItems.getDouble(2)), currentRow + 1, 5);
-                                dressingsBillingTable.setValueAt(rsetSetBillingVariables.getString(4), currentRow + 1, 6);
-                                dressingsBillingTable.setValueAt(rsetSetCombiItems.getString(1), currentRow + 1, 7);
-                                dressingsBillingTable.setValueAt(rsetSetBillingVariables.getString(5), currentRow + 1, 8);
+                                dressingsBillingTable.setValueAt(rsetSetBillingVariables.getDouble(2), currentRow, 3);
+                                dressingsBillingTable.setValueAt(0.00, currentRow, 4);
+                                dressingsBillingTable.setValueAt(Math.round(rsetSetBillingVariables.getDouble(2) * rsetSetCombiItems.getDouble(2)), currentRow, 5);
+                                dressingsBillingTable.setValueAt(rsetSetBillingVariables.getString(4), currentRow, 6);
+                                dressingsBillingTable.setValueAt(rsetSetCombiItems.getString(1), currentRow, 7);
+                                dressingsBillingTable.setValueAt(rsetSetBillingVariables.getString(5), currentRow, 8);
 
                             }
                             currentRow++;
@@ -5621,6 +5651,7 @@ public class PatientsDressingsBillingIntfr extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.ButtonGroup buttonGroup5;
+    private javax.swing.ButtonGroup buttonGroup6;
     private javax.swing.JTextField categoryWardTxt;
     private javax.swing.JCheckBox currentUserChBx;
     private com.afrisoftech.lib.DatePicker datePicker1;
@@ -5632,6 +5663,7 @@ public class PatientsDressingsBillingIntfr extends javax.swing.JInternalFrame {
     private com.afrisoftech.lib.DatePicker endworkloadDate;
     private javax.swing.JCheckBox fluidsChkbx;
     private javax.swing.JCheckBox inPatient;
+    private javax.swing.JRadioButton indivudualItemsCbx;
     private javax.swing.JTextField inpatientsTXT;
     private javax.swing.JButton itemSearchCloseBtn;
     private javax.swing.JPanel itemSearchPanel;
@@ -5752,6 +5784,7 @@ public class PatientsDressingsBillingIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField82;
     private javax.swing.JCheckBox outPatient;
     private javax.swing.JTextField outpatientTxt;
+    private javax.swing.JRadioButton packagesCbx;
     private javax.swing.JTable patientBilltbl;
     private javax.swing.JTextField patientCountTxt;
     public static javax.swing.JTextField patientNumberTxt;

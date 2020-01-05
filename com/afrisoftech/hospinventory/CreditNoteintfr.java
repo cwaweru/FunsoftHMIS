@@ -816,6 +816,10 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         jPanel1.add(jLabel16, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
@@ -1682,7 +1686,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
                 + "store ilike '%" + storeNameCmbx.getSelectedItem().toString() + "%'  and "
                 + "delivery_note_no='" + DnoteNoTxt.getText() + "' and invoice_no='" + DnoteNoTxt.getText() + "' ");
         try {
-            java.sql.PreparedStatement pstmtc = connectDB.prepareStatement("SELECT sum(debit-quantity_ordered) FROM st_stock_cardex WHERE grn_no = ? AND store = ?");
+            java.sql.PreparedStatement pstmtc = connectDB.prepareStatement("SELECT sum(debit-quantity_ordered) FROM st_stock_cardex WHERE UPPER(grn_no) = UPPER(?) AND UPPER(store) = UPPER(?)");
             pstmtc.setObject(1, S13NumberTxt.getText());
             pstmtc.setObject(2, storeNameCmbx.getSelectedItem());
             java.sql.ResultSet rsetc = pstmtc.executeQuery();
@@ -1703,10 +1707,10 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
 
                 java.sql.ResultSet rs12 = pstmt1.executeQuery("select item,quantity_received,PRICE_PER_ITEM ,debit ,item_code,order_no,oid "
                         + "                                     FROM st_stock_cardex WHERE "
-                        + "order_no='" + LPONO.getText() + "' and approved=false AND "
-                        + "grn_no='" + S13NumberTxt.getText() + "' AND "
-                        + "store ilike '" + storeNameCmbx.getSelectedItem().toString() + "'  and "
-                        + "delivery_note_no='" + DnoteNoTxt.getText() + "' and invoice_no='" + DnoteNoTxt.getText() + "' ");
+                        + " UPPER(order_no) = UPPER('" + LPONO.getText() + "') and approved=false AND "
+                        + " UPPER(grn_no) = UPPER('" + S13NumberTxt.getText() + "') AND "
+                        + " UPPER(store) = UPPER('" + storeNameCmbx.getSelectedItem().toString() + "')  and "
+                        + " UPPER(delivery_note_no) = UPPER('" + DnoteNoTxt.getText() + "') and UPPER(invoice_no) = '" + DnoteNoTxt.getText().toUpperCase() + "' ");
                 int k = 0;
 
                 while (rs12.next()) {
@@ -1817,7 +1821,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
                     + "GROUP BY grn_no,invoice_no,supplier,date,order_no having sum(debit-quantity_ordered)>=0 ORDER BY invoice_no"));
 
             dnoteSearchScrollPane.setViewportView(dnoteSearchTable);
-            System.out.println("Cannot sort out");
+           // System.out.println();
         }
         // Add your handling code here:
     }//GEN-LAST:event_searchDnoteTxtCaretUpdate

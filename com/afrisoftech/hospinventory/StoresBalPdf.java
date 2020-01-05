@@ -39,10 +39,11 @@ public class StoresBalPdf implements java.lang.Runnable {
     java.lang.Runtime rtThreadSample = java.lang.Runtime.getRuntime();
     
     java.lang.Process prThread;
+    Boolean itemsAboveZeroo = false;
     
     
     //public void OrderedItemsPdf(java.sql.Connection connDb,java.lang.String begindate,java.lang.String endate) {
-    public void StoresBalPdf(java.sql.Connection connDb,java.lang.String begindate, java.lang.String endate, java.lang.String cbox, java.lang.String stores) {
+    public void StoresBalPdf(java.sql.Connection connDb,java.lang.String begindate, java.lang.String endate, java.lang.String cbox, java.lang.String stores, Boolean itemsAboveZero) {
         
         connectDB = connDb;
         
@@ -51,6 +52,7 @@ public class StoresBalPdf implements java.lang.Runnable {
         endDate = endate;
         
         Store = stores;
+        itemsAboveZeroo =itemsAboveZero;
         
         threadSample = new java.lang.Thread(this,"SampleThread");
         
@@ -390,13 +392,16 @@ public class StoresBalPdf implements java.lang.Runnable {
                             for (int i = 0; i < listofAct.length; i++) {
                                 double amount = 0.00;
                                 double qty = 0.00;
+                                
                                 if(Store.equalsIgnoreCase("SubStore")){
+                                    String condition = "";
+                                    if(itemsAboveZeroo) condition = "HAVING sum(qty)::NUMERIC(15,0) > 0";
                                     //java.sql.ResultSet rset = st.executeQuery("SELECT sum(qty)::NUMERIC(15,0) AS BALANCE FROM stock_balance_qty where department = '"+CBox+"' AND item_code = '"+listofAct[i]+"' AND dates <= '"+endDate+"'");
                                     
                                     //java.sql.ResultSet rset = st.executeQuery("SELECT sum(qty)::NUMERIC(15,0) AS BALANCE FROM stock_balance_qty where department = '"+CBox+"' AND item_code = '"+listofAct[i]+"' AND dates <= '"+endDate+"'");
-                                    java.sql.ResultSet rset = st.executeQuery("SELECT sum(qty)::NUMERIC(15,0) AS BALANCE FROM stock_balance_qty where department ilike '"+CBox+"%' AND upper(item_code) ilike '"+listofAct[i]+"%' AND dates::date <= '"+endDate+"'");
+                                    java.sql.ResultSet rset = st.executeQuery("SELECT sum(qty)::NUMERIC(15,0) AS BALANCE FROM stock_balance_qty where department ilike '"+CBox+"%' AND upper(item_code) ilike '"+listofAct[i]+"%' AND dates::date <= '"+endDate+"'"+condition);
                                     //java.sql.ResultSet rset3 = st3.executeQuery("SELECT product_id,initcap(product),initcap(strength) FROM st_stock_prices WHERE department ilike '"+CBox+"' AND product_id = '"+listofAct[i]+"'");
-                                    java.sql.ResultSet rset3 = st3.executeQuery("SELECT DISTINCT product_id,initcap(product),initcap(strength) FROM st_stock_prices WHERE department = '"+CBox+"' AND product_id = '"+listofAct[i]+"'");
+                                    java.sql.ResultSet rset3 = st3.executeQuery("SELECT DISTINCT product_id,initcap(product),initcap(strength) FROM st_stock_prices WHERE UPPER(department) = UPPER('"+CBox+"') AND product_id = '"+listofAct[i]+"'");
                                     //java.sql.ResultSet rset2 = st2.executeQuery("SELECT transfer_price FROM stockprices WHERE product_id =  '"+listofAct[i]+"' AND department = '"+CBox+"'");
                                     //java.sql.ResultSet rset2 = st2.executeQuery("SELECT transfer_price FROM stockprices WHERE product_id =  '"+listofAct[i]+"' AND department ilike '"+CBox+"'");
                                     java.sql.ResultSet rset2 = st2.executeQuery("SELECT DISTINCT transfer_price FROM stockprices WHERE product_id =  '"+listofAct[i]+"' AND department ilike '"+CBox+"'");
@@ -432,13 +437,14 @@ public class StoresBalPdf implements java.lang.Runnable {
                                             }
                                         }
                                     }
-                                }
-                                else{
+                                }else{
                                     double pkge = 0.00;
+                                    String condition = "";
+                                    if(itemsAboveZeroo) condition = "HAVING sum(qty)::NUMERIC(15,0) > 0";
                                     //java.sql.ResultSet rset = st.executeQuery("SELECT sum(qty)::NUMERIC(15,0) AS BALANCE FROM stock_balance_qty where department = '"+CBox+"' AND item_code = '"+listofAct[i]+"' AND dates <= '"+endDate+"'");
-                                    java.sql.ResultSet rset = st.executeQuery("SELECT sum(qty)::NUMERIC(15,0) AS BALANCE FROM stock_balance_qty where initcap(department) = '"+CBox+"' AND  item_code = '"+listofAct[i]+"' AND dates::date <= '"+endDate+"'");//OKAY
+                                    java.sql.ResultSet rset = st.executeQuery("SELECT sum(qty)::NUMERIC(15,0) AS BALANCE FROM stock_balance_qty where initcap(department) = '"+CBox+"' AND  item_code = '"+listofAct[i]+"' AND dates::date <= '"+endDate+"' "+condition);//OKAY
                                     //java.sql.ResultSet rset3 = st3.executeQuery("SELECT item_code,initcap(description),initcap(strength) FROM st_stock_item WHERE department = '"+CBox+"' AND item_code = '"+listofAct[i]+"'"); --ORIGINAL QUERY BROUGHT DUPLICATES IN REPORT
-                                    java.sql.ResultSet rset3 = st3.executeQuery("SELECT DISTINCT item_code,initcap(description),initcap(strength) FROM st_stock_item WHERE initcap(department) = '"+CBox+"' AND item_code = '"+listofAct[i]+"'");
+                                    java.sql.ResultSet rset3 = st3.executeQuery("SELECT DISTINCT item_code,initcap(description),initcap(strength) FROM st_stock_item WHERE initcap(department) = initcap('"+CBox+"') AND item_code = '"+listofAct[i]+"'");
                                     //java.sql.ResultSet rset2 = st2.executeQuery("SELECT buying_price,packaging FROM stockitem WHERE item_code =  '"+listofAct[i]+"' AND department = '"+CBox+"'"); --ORIGINAL QUERY BROUGHT DUPLICATES IN REPORT
                                     java.sql.ResultSet rset2 = st2.executeQuery("SELECT DISTINCT buying_price,packaging FROM stockitem WHERE item_code =  '"+listofAct[i]+"' AND initcap(department) = '"+CBox+"'");
                                     

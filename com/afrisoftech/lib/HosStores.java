@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 public class HosStores extends javax.swing.JDialog {
 
     int reportName;
-    org.netbeans.lib.sql.pool.PooledConnectionSource pConnDB = null;
+    org.netbeans.lib.sql.pool.PooledConnectionSource pConnDB = null; 
     java.sql.Connection connectDB = null;
     java.util.Vector dateStartEnd = null;
     javax.swing.JSpinner beginDateSpinner = null;
@@ -60,6 +60,9 @@ public class HosStores extends javax.swing.JDialog {
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jLabel4 = new javax.swing.JLabel();
+        storeTypeCmbx = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -121,7 +124,7 @@ public class HosStores extends javax.swing.JDialog {
         jLabel3.setText("Store Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -134,7 +137,7 @@ public class HosStores extends javax.swing.JDialog {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 20;
@@ -179,6 +182,35 @@ public class HosStores extends javax.swing.JDialog {
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         jPanel4.add(jRadioButton3, gridBagConstraints);
+
+        jCheckBox1.setText("Show Items with Balances Only");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jCheckBox1, gridBagConstraints);
+
+        jLabel4.setText("Store Type");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel4.add(jLabel4, gridBagConstraints);
+
+        storeTypeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '--ALL--' UNION SELECT DISTINCT store_type_description FROM st_stores_type ORDER BY 1"));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        jPanel4.add(storeTypeCmbx, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -315,9 +347,9 @@ public class HosStores extends javax.swing.JDialog {
             case 8: {
                 com.afrisoftech.hospinventory.StoresBalPdf policy = new com.afrisoftech.hospinventory.StoresBalPdf();
                 if (!StoreName.contains("All Stores")) {
-                    policy.StoresBalPdf(connectDB, this.beginDpckr.getDate().toString(), this.endDpckr.getDate().toString(), storeNamecmbx.getSelectedItem().toString(), StoreName.toString());
+                    policy.StoresBalPdf(connectDB, this.beginDpckr.getDate().toString(), this.endDpckr.getDate().toString(), storeNamecmbx.getSelectedItem().toString(), StoreName.toString(),jCheckBox1.isSelected());
                 } else {
-                    policy.StoresBalPdf(connectDB, this.beginDpckr.getDate().toString(), this.endDpckr.getDate().toString(), "", StoreName.toString());
+                    policy.StoresBalPdf(connectDB, this.beginDpckr.getDate().toString(), this.endDpckr.getDate().toString(), "", StoreName.toString(),jCheckBox1.isSelected());
                 }
 
             }
@@ -326,7 +358,7 @@ public class HosStores extends javax.swing.JDialog {
             case 29: {
                 com.afrisoftech.hospinventory.MainStoresAuditPdf policy = new com.afrisoftech.hospinventory.MainStoresAuditPdf();
 
-                policy.MainStoresAuditPdf(connectDB, this.beginDpckr.getDate(), this.endDpckr.getDate(), storeNamecmbx.getSelectedItem().toString());
+                policy.MainStoresAuditPdf(connectDB, this.beginDpckr.getDate(), this.endDpckr.getDate(), storeNamecmbx.getSelectedItem().toString(),storeTypeCmbx.getSelectedItem().toString());
 
                 //this.dispose();
             }
@@ -354,9 +386,11 @@ public class HosStores extends javax.swing.JDialog {
     private com.afrisoftech.lib.DatePicker endDpckr;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -364,5 +398,6 @@ public class HosStores extends javax.swing.JDialog {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JComboBox storeNamecmbx;
+    private javax.swing.JComboBox<String> storeTypeCmbx;
     // End of variables declaration//GEN-END:variables
 }

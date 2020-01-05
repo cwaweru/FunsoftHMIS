@@ -708,13 +708,13 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
                     }
                 } else {
                     if (patCat.equalsIgnoreCase("--ALL--")) {
-                        rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "' and clinic='" + servicepnt + "' order by 2 ASC");
+                        rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "' and upper(clinic)='" + servicepnt.toUpperCase() + "' order by 2 ASC");
                     } else {
                         if (patCat.equalsIgnoreCase("New")) {
-                            rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'New' and clinic='" + servicepnt + "' order by 2 ASC");
+                            rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'New' and upper(clinic)='" + servicepnt.toUpperCase() + "' order by 2 ASC");
                         } else {
                             if (patCat.equalsIgnoreCase("Old")) {
-                                rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'Old' and clinic='" + servicepnt + "' order by 2 ASC");
+                                rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'Old' and upper(clinic)='" + servicepnt.toUpperCase() + "' order by 2 ASC");
                             }
                         }
                     }
@@ -734,13 +734,13 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
                     }
                 } else {
                     if (patCat.equalsIgnoreCase("--ALL--")) {
-                        rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE payment = '" + payMode + "' AND  input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "' and clinic='" + servicepnt + "' order by 2 ASC");
+                        rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE payment = '" + payMode + "' AND  input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "' and upper(clinic)='" + servicepnt.toUpperCase() + "' order by 2 ASC");
                     } else {
                         if (patCat.equalsIgnoreCase("New")) {
-                            rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE payment = '" + payMode + "' AND input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'New' and clinic='" + servicepnt + "' order by 2 ASC");
+                            rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE payment = '" + payMode + "' AND input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'New' and upper(clinic)='" + servicepnt.toUpperCase() + "' order by 2 ASC");
                         } else {
                             if (patCat.equalsIgnoreCase("Old")) {
-                                rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE payment = '" + payMode + "' AND input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'Old' and clinic='" + servicepnt + "' order by 2 ASC");
+                                rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE payment = '" + payMode + "' AND input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'Old' and upper(clinic)='" + servicepnt.toUpperCase() + "' order by 2 ASC");
                             }
                         }
                     }
@@ -760,13 +760,13 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
                     }
                 } else {
                     if (patCat.equalsIgnoreCase("--ALL--")) {
-                        rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE payment != 'Scheme' AND input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "' and clinic = '" + servicepnt + "' order by 2 ASC");
+                        rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit WHERE payment != 'Scheme' AND input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "' and upper(clinic) = '" + servicepnt.toUpperCase() + "' order by 2 ASC");
                     } else {
                         if (patCat.equalsIgnoreCase("New")) {
-                            rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit payment != 'Scheme' AND WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'New' and clinic='" + servicepnt + "' order by 2 ASC");
+                            rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit payment != 'Scheme' AND WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'New' and upper(clinic)='" + servicepnt.toUpperCase() + "' order by 2 ASC");
                         } else {
                             if (patCat.equalsIgnoreCase("Old")) {
-                                rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit payment != 'Scheme' AND WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'Old' and clinic='" + servicepnt + "' order by 2 ASC");
+                                rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no,input_date FROM hp_patient_visit payment != 'Scheme' AND WHERE input_date::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "'  AND comments = 'Old' and upper(clinic)='" + servicepnt.toUpperCase() + "' order by 2 ASC");
                             }
                         }
                     }

@@ -141,6 +141,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         jSeparator13 = new javax.swing.JSeparator();
         raiserequestsButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        patientCardBtn1 = new javax.swing.JButton();
         paidUpOrdersPanel = new javax.swing.JPanel();
         paidupPanel = new javax.swing.JPanel();
         paidupScrollPane = new javax.swing.JScrollPane();
@@ -149,6 +150,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         jTextField61 = new javax.swing.JTextField();
         jButton61 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
+        patientCardBtn2 = new javax.swing.JButton();
         labReportingTabPanel = new javax.swing.JPanel();
         reportingHeaderPanel = new javax.swing.JPanel();
         patientNumberLabel = new javax.swing.JLabel();
@@ -969,6 +971,20 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.weighty = 1.0;
         clinicianOrdersWaitingPanel.add(jLabel7, gridBagConstraints);
 
+        patientCardBtn1.setText("Patient Card");
+        patientCardBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientCardBtn1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        clinicianOrdersWaitingPanel.add(patientCardBtn1, gridBagConstraints);
+
         labreportingTabbedPane.addTab("Wait-listed and pending Requests", clinicianOrdersWaitingPanel);
 
         paidUpOrdersPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -1284,6 +1300,20 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.weightx = 200.0;
         gridBagConstraints.weighty = 1.0;
         paidUpOrdersPanel.add(jLabel19, gridBagConstraints);
+
+        patientCardBtn2.setText("Patient Card");
+        patientCardBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientCardBtn2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        paidUpOrdersPanel.add(patientCardBtn2, gridBagConstraints);
 
         labreportingTabbedPane.addTab("Paid up requests", paidUpOrdersPanel);
 
@@ -2654,14 +2684,14 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         String receiptNo = null;
 
         // if (Boolean.valueOf(jTable1.getModel().getValueAt(jTable1.getSelectedRow(),4).toString()) == java.lang.Boolean.TRUE) {
-        receiptNo = releasedResultsTable.getValueAt(releasedResultsTable.getSelectedRow(), 3).toString();
+        receiptNo = releasedResultsTable.getValueAt(releasedResultsTable.getSelectedRow(), 4).toString();
         com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
         policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo);  // Add your handling code here:
     }//GEN-LAST:event_releasedResultsTableMouseClicked
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        releasedResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct date,patient_no,patient_name,lab_no, false as results_read from hp_lab_results where date  BETWEEN '" + verifiedDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "'  ORDER BY date,lab_no"));
+        releasedResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct date,patient_no,patient_name,typeof_test as procedure_name, lab_no, false as results_read from hp_lab_results where date  BETWEEN '" + verifiedDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "'  ORDER BY date,lab_no"));
         // Add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
@@ -4113,7 +4143,7 @@ System.out.println("Doing outpatient lab");
 
                 java.sql.Statement stmtTable1 = connectDB.createStatement();
 
-                java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT typeof_test,units,lower_limit,upper_limit FROM pb_lab_standards WHERE code = '" + this.labTestTable.getValueAt(labTestTable.getSelectedRow(), 1) + "' AND status = true ORDER BY oid asc");
+                java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT typeof_test,units,lower_limit,upper_limit,parameter_order FROM pb_lab_standards WHERE code = '" + this.labTestTable.getValueAt(labTestTable.getSelectedRow(), 1) + "' AND status = true ORDER BY parameter_order asc");
 
                 while (rsetTable1.next()) {
                     System.out.println("Working at table row " + i);
@@ -4138,7 +4168,7 @@ System.out.println("Doing outpatient lab");
 
                 java.sql.Statement stmtTable1 = connectDB.createStatement();
 
-                java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT typeof_test,status FROM pb_lab_standards where code = '" + this.labTestTable.getValueAt(labTestTable.getSelectedRow(), 1) + "' and status = false");
+                java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT typeof_test,status,parameter_order FROM pb_lab_standards where code = '" + this.labTestTable.getValueAt(labTestTable.getSelectedRow(), 1) + "' and status = false ORDER BY parameter_order");
 
                 while (rsetTable1.next()) {
                     System.out.println("Working at table row " + i);
@@ -4569,6 +4599,25 @@ System.out.println("Doing outpatient lab");
     private void culturedChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_culturedChkbxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_culturedChkbxActionPerformed
+
+    private void patientCardBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientCardBtn1ActionPerformed
+     if (pendingTable.getSelectedRow() != -1 ) {
+            com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
+            policyReport.PatientCardPdf(connectDB, mainDatePicker.getDate(), mainDatePicker.getDate(), pendingTable.getValueAt(pendingTable.getSelectedRow(), 1).toString());
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a patient file in order to view the patient card.");
+        }    // TODO add your handling code here:
+    }//GEN-LAST:event_patientCardBtn1ActionPerformed
+
+    private void patientCardBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientCardBtn2ActionPerformed
+      if (paidTable.getSelectedRow() != -1 ) {
+            com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
+            policyReport.PatientCardPdf(connectDB, mainDatePicker.getDate(), mainDatePicker.getDate(), paidTable.getValueAt(paidTable.getSelectedRow(), 1).toString());
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a patient file in order to view the patient card.");
+        }    // TODO add your handling code here:
+       // TODO add your handling code here:
+    }//GEN-LAST:event_patientCardBtn2ActionPerformed
     private class SearchThread extends java.lang.Thread {
 
         public void SearchThread() {
@@ -4886,6 +4935,8 @@ System.out.println("Doing outpatient lab");
     private javax.swing.JScrollPane paidupScrollPane;
     private javax.swing.JEditorPane pathologistCommentsTxt;
     private javax.swing.JButton patientCardBtn;
+    private javax.swing.JButton patientCardBtn1;
+    private javax.swing.JButton patientCardBtn2;
     private javax.swing.JLabel patientNameLabel;
     private javax.swing.JTextField patientNameTxt;
     private javax.swing.JLabel patientNumberLabel;

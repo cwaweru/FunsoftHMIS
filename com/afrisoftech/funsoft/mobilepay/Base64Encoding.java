@@ -99,7 +99,7 @@ public class Base64Encoding {
         String appKeySecret = stringtoEncode;
         //    String appKeySecret = app_key + ":" + app_secret;
         //System.out.println("Consumer Secret keys : [" + com.afrisoftech.hospital.HospitalMain.oAuthKey + "]");
-        byte[] bytes = null;
+        byte[] bytes = null; 
         try {
             bytes = appKeySecret.getBytes("ISO-8859-1");
         } catch (UnsupportedEncodingException ex) {
@@ -112,9 +112,12 @@ public class Base64Encoding {
 
         Request request = null;
         System.out.println("OkHttpClient : [" + client + "]");
+        
+//        String limsServerIP = com.afrisoftech.lib.LabRequestJSON.getLimsServerIPAdd(connectDB);
+//        String limsPort = com.afrisoftech.lib.LabRequestJSON.getLimsServerPort(connectDB); 
 
             request = new Request.Builder()
-                    .url("http://116.203.22.203:8890/lims/v1/auth")
+                    .url("http://192.168.1.234:8890/lims/v1/auth")
                     .get()
                     .addHeader("authorization", "Basic " + auth)
                     .addHeader("cache-control", "no-cache")

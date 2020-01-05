@@ -844,7 +844,7 @@ public class HosDatePanel extends javax.swing.JDialog {
             case 94: {
                 com.afrisoftech.hospinventory.DrugsPrescribedPdf policy = new com.afrisoftech.hospinventory.DrugsPrescribedPdf();
 
-                policy.DrugsPrescribedPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
+                policy.DrugsPrescribedPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),"");
 
                 this.dispose();
 

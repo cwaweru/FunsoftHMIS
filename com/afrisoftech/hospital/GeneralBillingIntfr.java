@@ -7415,7 +7415,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                             // saveAndPrintBillBtn.setEnabled(true);
                             rePrintBillBtn.setEnabled(true);
 
-                            if (java.lang.Double.valueOf(billTotalTxt.getText()) > 0.00 && patientNumberTxt.getText().toCharArray().length > 0) {
+                            if (java.lang.Double.valueOf(billTotalTxt.getText()) > 0.00 && (patientNumberTxt.getText().toCharArray().length > 0 || walkinChkbx.isSelected())) {
                                 double bill = java.lang.Double.valueOf(billTotalTxt.getText());
                                 // if(bill > 0){
                                 java.util.Date periodFrom = null;
@@ -7467,7 +7467,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
                 } else {
 
-                    if (java.lang.Double.valueOf(billTotalTxt.getText()) > 0.00 && patientNumberTxt.getText().toCharArray().length > 0) {
+                    if (java.lang.Double.valueOf(billTotalTxt.getText()) > 0.00 && (patientNumberTxt.getText().toCharArray().length > 0 || walkinChkbx.isSelected())) {
                         double bill = java.lang.Double.valueOf(billTotalTxt.getText());
                         // if(bill > 0){
                         java.util.Date periodFrom = null;
@@ -7536,7 +7536,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                         // saveAndPrintBillBtn.setEnabled(true);
                         rePrintBillBtn.setEnabled(true);
 
-                        if (java.lang.Double.valueOf(billTotalTxt.getText()) > 0.00 && patientNumberTxt.getText().toCharArray().length > 0) {
+                        if (java.lang.Double.valueOf(billTotalTxt.getText()) > 0.00 && (patientNumberTxt.getText().toCharArray().length > 0 || walkinChkbx.isSelected())) {
                             double bill = java.lang.Double.valueOf(billTotalTxt.getText());
                             // if(bill > 0){
                             java.util.Date periodFrom = null;
@@ -7588,7 +7588,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
             } else {
 
-                if (java.lang.Double.valueOf(billTotalTxt.getText()) > 0.00 && patientNumberTxt.getText().toCharArray().length > 0) {
+                if (java.lang.Double.valueOf(billTotalTxt.getText()) > 0.00 && (patientNumberTxt.getText().toCharArray().length > 0 || walkinChkbx.isSelected())) {
                     double bill = java.lang.Double.valueOf(billTotalTxt.getText());
                     // if(bill > 0){
                     java.util.Date periodFrom = null;
@@ -8304,7 +8304,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                             } else {
                                 if (DirectRev) {
                                     if (walkinChkbx.isSelected() || mchfpChkbx.isSelected()) {
-                                        java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into hp_patient_billing values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?))");
+                                        java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into hp_patient_billing values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?),?)");
                                         pstmt2.setString(1, patientNumberTxt.getText());
                                         pstmt2.setString(10, transNo);
                                         pstmt2.setString(2, patientNameTxt.getText());
@@ -8320,9 +8320,10 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                         pstmt2.setString(13, glAcc);
                                         pstmt2.setInt(14, visitid);
                                         pstmt2.setString(15, doctorNameTxt.getText().toString());
+                                        pstmt2.setBoolean(16, true);
                                         pstmt2.executeUpdate();
                                     } else {
-                                        java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into hp_patient_billing values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?))");
+                                        java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into hp_patient_billing values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?),?)");
                                         pstmt2.setString(1, patientNumberTxt.getText());
                                         pstmt2.setString(10, transNo);
                                         pstmt2.setString(2, patientNameTxt.getText());
@@ -8338,6 +8339,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                         pstmt2.setString(13, glAcc);
                                         pstmt2.setInt(14, visitid);
                                         pstmt2.setString(15, doctorNameTxt.getText().toString());
+                                        pstmt2.setBoolean(16, true);
                                         pstmt2.executeUpdate();
                                     }
                                     java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
@@ -8398,7 +8400,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                     pstmt24.executeUpdate();
 
                                 } else {
-                                    java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into hp_patient_billing values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?))");
+                                    java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into hp_patient_billing values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?),?)");
                                     pstmt2.setString(1, patientNumberTxt.getText());
                                     pstmt2.setString(2, patientNameTxt.getText());
                                     pstmt2.setString(3, paymentModeCmbx.getSelectedItem().toString());
@@ -8414,6 +8416,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                     pstmt2.setString(13, glAcc);
                                     pstmt2.setInt(14, visitid);
                                     pstmt2.setString(15, doctorNameTxt.getText().toString());
+                                    pstmt2.setBoolean(16, true);
                                     pstmt2.executeUpdate();
                                 }
                                 //  }
@@ -8470,7 +8473,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                                 pstmt2.setString(5, discreetServicesTbl.getValueAt(i, 0).toString());
                                 pstmt2.setDouble(6, java.lang.Double.valueOf(discreetServicesTbl.getValueAt(i, 1).toString()));
                                 pstmt2.setDouble(7, java.lang.Double.valueOf(discreetServicesTbl.getValueAt(i, 2).toString()));
-                                pstmt2.setObject(8, discreetServicesTbl.getValueAt(i, 5).toString());
+                                pstmt2.setObject(8, discreetServicesTbl.getValueAt(i, 4).toString());
                                 pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
                                 pstmt2.setString(10, billNo);
                                 pstmt2.setBoolean(12, false);
@@ -8886,15 +8889,27 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
                 // Printout for the bill if connected to a thermal printer or other printer only for scheme/insurance patients
                 if (paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme") && opdChkbx.isSelected()) {
-                    com.afrisoftech.txtreports.GokBillingTxt billPrint = new com.afrisoftech.txtreports.GokBillingTxt(connectDB, patientNameTxt.getText(), billTotalTxt.getText(), transNo, "Scheme");
+                      com.afrisoftech.txtreports.GokBillingTxt billPrint = new com.afrisoftech.txtreports.GokBillingTxt(connectDB, patientNameTxt.getText(), billTotalTxt.getText(), transNo, "Scheme");
                 }
 
                 // Forward LIMS requets
                 if (ipdChkbx.isSelected() || paymentModeCmbx.getSelectedItem().toString().contains("Scheme") && com.afrisoftech.lib.LabRequestJSON.isLIMSEnabled(connectDB)) {
-                    if (opdChkbx.isEnabled()) {
-                        com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendLabRequest(connectDB, "bGltc19hY2Nlc3M6MTJAITIzIzQk", transNo, patientNumberTxt.getText(), patientNameTxt.getText(), paymentModeCmbx.getSelectedItem().toString(), schemeNameTxt.getText(), com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, transNo, patientNumberTxt.getText()), "OUT");
-                    } else {
-                        com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendLabRequest(connectDB, "bGltc19hY2Nlc3M6MTJAITIzIzQk", transNo, patientNumberTxt.getText(), patientNameTxt.getText(), paymentModeCmbx.getSelectedItem().toString(), schemeNameTxt.getText(), com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, transNo, patientNumberTxt.getText()), "IN");
+                    if (com.afrisoftech.lib.GetItemInfo.checkLabItems(transNo, patientNumberTxt.getText(), connectDB)) {
+                        String limsSystem = com.afrisoftech.lib.LabRequestJSON.getLIMSSystemName(connectDB);
+                        if (opdChkbx.isSelected()) {
+                            if (limsSystem.equalsIgnoreCase("BLIS")) {
+                                com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendLabRequestBlis(connectDB, "eJGuuIQvhjHiqM5W1f9cFavsH39Wjcs3", transNo, patientNumberTxt.getText(), patientNameTxt.getText(), paymentModeCmbx.getSelectedItem().toString(), schemeNameTxt.getText(), com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, transNo, patientNumberTxt.getText()), "OP");
+                            } else {
+                                com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendLabRequest(connectDB, "bGltc19hY2Nlc3M6MTJAITIzIzQk", transNo, patientNumberTxt.getText(), patientNameTxt.getText(), paymentModeCmbx.getSelectedItem().toString(), schemeNameTxt.getText(), com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, transNo, patientNumberTxt.getText()), "OUT");
+                            }
+                        } else {
+                            
+                            if (limsSystem.equalsIgnoreCase("BLIS")) {
+                                com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendLabRequestBlis(connectDB, "eJGuuIQvhjHiqM5W1f9cFavsH39Wjcs3", transNo, patientNumberTxt.getText(), patientNameTxt.getText(), paymentModeCmbx.getSelectedItem().toString(), schemeNameTxt.getText(), com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, transNo, patientNumberTxt.getText()), "IP");
+                            }else{
+                                com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendLabRequest(connectDB, "bGltc19hY2Nlc3M6MTJAITIzIzQk", transNo, patientNumberTxt.getText(), patientNameTxt.getText(), paymentModeCmbx.getSelectedItem().toString(), schemeNameTxt.getText(), com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, transNo, patientNumberTxt.getText()), "IN");
+                            }
+                        }
                     }
                 }
 

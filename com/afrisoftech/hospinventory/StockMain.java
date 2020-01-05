@@ -115,6 +115,9 @@ public class StockMain extends javax.swing.JFrame {
     int NutritionDepReport = 5555;
     int NutritionistReport = 6666;
     int NutritionCompReport = 7777;
+    int presciptionSumm=76867701; 
+    int presciptionSummgender=76867702; 
+    int presciptionSummage=76867703;
 
     /**
      * Creates new form medic
@@ -408,6 +411,11 @@ public class StockMain extends javax.swing.JFrame {
         statisticalsmnit = new javax.swing.JMenu();
         stocksConsmnit = new javax.swing.JMenuItem();
         stockvariancesmnit = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        patientperstoremnit = new javax.swing.JMenuItem();
+        dispensationsummarymnit = new javax.swing.JMenuItem();
+        dispensationbygendermnit = new javax.swing.JMenuItem();
+        dispensationbyagemnit = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem32 = new javax.swing.JMenuItem();
@@ -2400,6 +2408,42 @@ public class StockMain extends javax.swing.JFrame {
         });
         statisticalsmnit.add(stockvariancesmnit);
 
+        jMenu5.setText("Pharmacy Reports");
+
+        patientperstoremnit.setText("Patient Per Store");
+        patientperstoremnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientperstoremnitActionPerformed(evt);
+            }
+        });
+        jMenu5.add(patientperstoremnit);
+
+        dispensationsummarymnit.setText("Dispensation Summary");
+        dispensationsummarymnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dispensationsummarymnitActionPerformed(evt);
+            }
+        });
+        jMenu5.add(dispensationsummarymnit);
+
+        dispensationbygendermnit.setText("Dispensation By Gender");
+        dispensationbygendermnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dispensationbygendermnitActionPerformed(evt);
+            }
+        });
+        jMenu5.add(dispensationbygendermnit);
+
+        dispensationbyagemnit.setText("Dispensation By Age");
+        dispensationbyagemnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dispensationbyagemnitActionPerformed(evt);
+            }
+        });
+        jMenu5.add(dispensationbyagemnit);
+
+        statisticalsmnit.add(jMenu5);
+
         reportsmn.add(statisticalsmnit);
 
         jMenuItem7.setText("F.O.58 REPORT");
@@ -3182,7 +3226,7 @@ public class StockMain extends javax.swing.JFrame {
         // com.afrisoftech.lib.HosStoresDatePanel dates = new com.afrisoftech.lib.HosStoresDatePanel(this,pConnDB, true, this.DailyPrs, connectDB);
 
         // dates.setVisible(true);
-        com.afrisoftech.lib.HosDatePanel dates = new com.afrisoftech.lib.HosDatePanel(this, true, this.DailyPrs, connectDB);
+        com.afrisoftech.lib.HosDatePanelPrescription dates = new com.afrisoftech.lib.HosDatePanelPrescription(this, true, this.DailyPrs, connectDB);
 
         dates.setVisible(true);
 
@@ -5507,6 +5551,53 @@ public class StockMain extends javax.swing.JFrame {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void patientperpharmacymnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientperpharmacymnitActionPerformed
+     com.afrisoftech.lib.ReportPerStore dates = new com.afrisoftech.lib.ReportPerStore(this, pConnDB, true, 1234, connectDB);
+
+        dates.setVisible(true);   // TODO add your handling code here:
+    }//GEN-LAST:event_patientperpharmacymnitActionPerformed
+
+    private void pharmreptmn itActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pharmreptmn itActionPerformed
+    com.afrisoftech.lib.HospharmDatePanel dates = new com.afrisoftech.lib.HospharmDatePanel(this, true, this.presciptionSumm, connectDB);
+
+        dates.setVisible(true);
+    // TODO add your handling code here:
+    }//GEN-LAST:event_pharmreptmn itActionPerformed
+
+    private void agedispensationmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agedispensationmnitActionPerformed
+       com.afrisoftech.lib.HospharmDatePanel dates = new com.afrisoftech.lib.HospharmDatePanel(this, true, this.presciptionSummage, connectDB);
+        dates.setVisible(true);  // TODO add your handling code here:
+    }//GEN-LAST:event_agedispensationmnitActionPerformed
+
+    private void genderdispensationmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderdispensationmnitActionPerformed
+       com.afrisoftech.lib.HospharmDatePanel dates = new com.afrisoftech.lib.HospharmDatePanel(this, true, this.presciptionSummgender, connectDB);
+        dates.setVisible(true); // TODO add your handling code here:
+    }//GEN-LAST:event_genderdispensationmnitActionPerformed
+
+    private void dispensationsummarymnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dispensationsummarymnitActionPerformed
+com.afrisoftech.lib.HospharmDatePanel dates = new com.afrisoftech.lib.HospharmDatePanel(this, true, this.presciptionSumm, connectDB);
+
+        dates.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_dispensationsummarymnitActionPerformed
+
+    private void dispensationbygendermnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dispensationbygendermnitActionPerformed
+     com.afrisoftech.lib.HospharmDatePanel dates = new com.afrisoftech.lib.HospharmDatePanel(this, true, this.presciptionSummgender, connectDB);
+
+        dates.setVisible(true);   // TODO add your handling code here:
+    }//GEN-LAST:event_dispensationbygendermnitActionPerformed
+
+    private void dispensationbyagemnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dispensationbyagemnitActionPerformed
+      com.afrisoftech.lib.HospharmDatePanel dates = new com.afrisoftech.lib.HospharmDatePanel(this, true, this.presciptionSummage, connectDB);
+
+        dates.setVisible(true); // TODO add your handling code here:
+    }//GEN-LAST:event_dispensationbyagemnitActionPerformed
+
+    private void patientperstoremnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientperstoremnitActionPerformed
+      com.afrisoftech.lib.ReportPerStore dates = new com.afrisoftech.lib.ReportPerStore(this,pConnDB,true, 1234, connectDB);
+
+        dates.setVisible(true);   // TODO add your handling code here:
+    }//GEN-LAST:event_patientperstoremnitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -6056,6 +6147,9 @@ public class StockMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem directPriceAdjustmentmnit;
     public static javax.swing.JMenuItem directordermnit;
     private javax.swing.JMenuItem directpurchmnit;
+    private javax.swing.JMenuItem dispensationbyagemnit;
+    private javax.swing.JMenuItem dispensationbygendermnit;
+    private javax.swing.JMenuItem dispensationsummarymnit;
     private javax.swing.JMenuItem dispensepaidmnit;
     private javax.swing.JMenuItem dispenseprescriptionsmnit;
     private javax.swing.JMenu disposalmn;
@@ -6112,6 +6206,7 @@ public class StockMain extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem30;
@@ -6200,6 +6295,7 @@ public class StockMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem packingmnit;
     public static javax.swing.JMenuItem patientbillingmnit;
     private javax.swing.JMenuItem patientmnit;
+    private javax.swing.JMenuItem patientperstoremnit;
     private javax.swing.JMenuItem pendreqbydepmnit;
     private javax.swing.JMenu pharmacymn;
     public static javax.swing.JMenuItem pharmacyoperatinsmnit;

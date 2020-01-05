@@ -1,4 +1,4 @@
-/*******************************************************************************
+/** *****************************************************************************
  * Copyright (c) 2008, 2012 Stepan Rutz.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,9 +7,9 @@
  *
  * Contributors:
  *    Stepan Rutz - initial implementation
- *******************************************************************************/
-
+ ****************************************************************************** */
 package com.roots.map;
+
 import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -91,41 +91,55 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-
 /**
- * MapPanel display tiles from openstreetmap as is. This simple minimal viewer supports zoom around mouse-click center and has a simple api.
- * A number of tiles are cached. See {@link #CACHE_SIZE} constant. If you use this it will create traffic on the tileserver you are
- * using. Please be conscious about this.
+ * MapPanel display tiles from openstreetmap as is. This simple minimal viewer
+ * supports zoom around mouse-click center and has a simple api. A number of
+ * tiles are cached. See {@link #CACHE_SIZE} constant. If you use this it will
+ * create traffic on the tileserver you are using. Please be conscious about
+ * this.
  *
- * This class is a JPanel which can be integrated into any swing app just by creating an instance and adding like a JLabel.
+ * This class is a JPanel which can be integrated into any swing app just by
+ * creating an instance and adding like a JLabel.
  *
- * The map has the size <code>256*1<<zoomlevel</code>. This measure is referred to as map-coordinates. Geometric locations
- * like longitude and latitude can be obtained by helper methods. Note that a point in map-coordinates corresponds to a given
- * geometric position but also depending on the current zoom level.
+ * The map has the size <code>256*1<<zoomlevel</code>. This measure is referred
+ * to as map-coordinates. Geometric locations like longitude and latitude can be
+ * obtained by helper methods. Note that a point in map-coordinates corresponds
+ * to a given geometric position but also depending on the current zoom level.
  *
- * You can zoomIn around current mouse position by left double click. Left right click zooms out.
+ * You can zoomIn around current mouse position by left double click. Left right
+ * click zooms out.
  *
  * <p>
  * Methods of interest are
  * <ul>
- * <li>{@link #setZoom(int)} which sets the map's zoom level. Values between 1 and 18 are allowed.</li>
- * <li>{@link #setMapPosition(Point)} which sets the map's top left corner. (In map coordinates)</li>
- * <li>{@link #setCenterPosition(Point)} which sets the map's center position. (In map coordinates)</li>
- * <li>{@link #computePosition(java.awt.geom.Point2D.Double)} returns the position in the map panels coordinate system
- * for the given longitude and latitude. If you want to center the map around this geometric location you need
- * to pass the result to the method</li>
+ * <li>{@link #setZoom(int)} which sets the map's zoom level. Values between 1
+ * and 18 are allowed.</li>
+ * <li>{@link #setMapPosition(Point)} which sets the map's top left corner. (In
+ * map coordinates)</li>
+ * <li>{@link #setCenterPosition(Point)} which sets the map's center position.
+ * (In map coordinates)</li>
+ * <li>{@link #computePosition(java.awt.geom.Point2D.Double)} returns the
+ * position in the map panels coordinate system for the given longitude and
+ * latitude. If you want to center the map around this geometric location you
+ * need to pass the result to the method</li>
  * </ul>
  * </p>
  *
- * <p>As mentioned above Longitude/Latitude functionality is available via the method {@link #computePosition(java.awt.geom.Point2D.Double)}.
- * If you have a GIS database you can get this info out of it for a given town/location, invoke {@link #computePosition(java.awt.geom.Point2D.Double)} to
- * translate to a position for the given zoom level and center the view around this position using {@link #setCenterPosition(Point)}.
+ * <p>
+ * As mentioned above Longitude/Latitude functionality is available via the
+ * method {@link #computePosition(java.awt.geom.Point2D.Double)}. If you have a
+ * GIS database you can get this info out of it for a given town/location,
+ * invoke {@link #computePosition(java.awt.geom.Point2D.Double)} to translate to
+ * a position for the given zoom level and center the view around this position
+ * using {@link #setCenterPosition(Point)}.
  * </p>
  *
- * <p>The properties <code>zoom</code> and <code>mapPosition</code> are bound and can be tracked via
- * regular {@link PropertyChangeListener}s.</p>
+ * <p>
+ * The properties <code>zoom</code> and <code>mapPosition</code> are bound and
+ * can be tracked via regular {@link PropertyChangeListener}s.</p>
  *
- * <p>License is EPL (Eclipse Public License).  Contact at stepan.rutz@gmx.de</p>
+ * <p>
+ * License is EPL (Eclipse Public License). Contact at stepan.rutz@gmx.de</p>
  *
  * @author stepan.rutz
  * @version $Revision$
@@ -135,6 +149,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
     private static final Logger log = Logger.getLogger(MapPanel.class.getName());
 
     public static final class TileServer {
+
         private final String url;
         private final int maxZoom;
         private boolean broken;
@@ -151,6 +166,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
         public int getMaxZoom() {
             return maxZoom;
         }
+
         public String getURL() {
             return url;
         }
@@ -166,9 +182,15 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
 
     /* constants ... */
     private static final TileServer[] TILESERVERS = {
-        new TileServer("http://tile.openstreetmap.org/", 18),
-        new TileServer("http://tah.openstreetmap.org/Tiles/tile/", 17),
-    };
+        //        new TileServer("http://tile.openstreetmap.org/", 18),
+        //        new TileServer("http://tah.openstreetmap.org/Tiles/tile/", 17),
+        //   https://maps.wikimedia.org/osm-intl
+        //                new TileServer("https://maps.wikimedia.org/osm-intl", 18),
+        // https://1.base.maps.api.here.com/maptile/2.1/maptile/newest/normal.day/13/4400/2686/256/png8?app_id=aqV3H4z609XLRLsGC180&app_code=YJJ-fu2Z5ZvqYNHpJN-yXg
+        //  new TileServer("https://1.base.maps.api.here.com/maptile/2.1/maptile/newest/normal.day/13/4400/2686/256/png8", 18),
+        new TileServer("https://tile.thunderforest.com/outdoors/", 18), //working
+        new TileServer("http://tile.thunderforest.com/cycle/", 18),
+        new TileServer("http://a.tile.opentopomap.org/", 17),};
 
     private static final String NAMEFINDER_URL = "http://nominatim.openstreetmap.org/search";
     private static final int PREFERRED_WIDTH = 320;
@@ -176,38 +198,36 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
 
     private Object animationRenderingHints = RenderingHints.VALUE_INTERPOLATION_BILINEAR;
     private static final int ANIMATION_FPS = 15, ANIMATION_DURARTION_MS = 500;
-    
-
 
     /* basically not be changed */
     private static final int TILE_SIZE = 256;
     private static final int CACHE_SIZE = 256;
-    private static final String ABOUT_MSG =
-        "MapPanel - Minimal Openstreetmap/Maptile Viewer\r\n" +
-        "Web: http://mappanel.sourceforge.net\r\n" +
-        "Written by stepan.rutz. Contact stepan.rutz@gmx.de\r\n\r\n" +
-        "Tileserver-URLs: " + Arrays.toString(TILESERVERS) + "\r\n" +
-        "Namefinder-URL: " + NAMEFINDER_URL + "\r\n" +
-        "Tileserver and Namefinder are part of Openstreetmap or associated projects.\r\n\r\n" +
-        "MapPanel gets its data from these servers.\r\n\r\n" +
-        "Please visit and support the actual projects at http://www.openstreetmap.org/.\r\n" +
-        "And keep in mind this application is just a simple alternative renderer for swing.\r\n";
+    private static final String ABOUT_MSG
+            = "MapPanel - Minimal Openstreetmap/Maptile Viewer\r\n"
+            + "Web: http://mappanel.sourceforge.net\r\n"
+            + "Written by stepan.rutz. Contact stepan.rutz@gmx.de\r\n\r\n"
+            + "Tileserver-URLs: " + Arrays.toString(TILESERVERS) + "\r\n"
+            + "Namefinder-URL: " + NAMEFINDER_URL + "\r\n"
+            + "Tileserver and Namefinder are part of Openstreetmap or associated projects.\r\n\r\n"
+            + "MapPanel gets its data from these servers.\r\n\r\n"
+            + "Please visit and support the actual projects at http://www.openstreetmap.org/.\r\n"
+            + "And keep in mind this application is just a simple alternative renderer for swing.\r\n";
 
     private static final int MAGNIFIER_SIZE = 100;
 
     //-------------------------------------------------------------------------
     // tile url construction.
     // change here to support some other tile
-
     public static String getTileString(TileServer tileServer, int xtile, int ytile, int zoom) {
         String number = ("" + zoom + "/" + xtile + "/" + ytile);
-        String url = tileServer.getURL() + number + ".png";
+        // ?app_id=aqV3H4z609XLRLsGC180&app_code=YJJ-fu2Z5ZvqYNHpJN-yXg
+        //  String url = tileServer.getURL() + number + "?apikey=d7436e0c3c1f444abc231c9eaa206e34";
+        String url = tileServer.getURL() + number + ".png?apikey=d7436e0c3c1f444abc231c9eaa206e34"; //working
         return url;
     }
 
     //-------------------------------------------------------------------------
     // map impl.
-
     private Dimension mapSize = new Dimension(0, 0);
     private Point mapPosition = new Point(0, 0);
     private int zoom;
@@ -234,7 +254,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
     }
 
     public MapPanel(Point mapPosition, int zoom) {
-        
+
         try {
             // disable animation on windows7 for now
             useAnimations = !("Windows Vista".equals(System.getProperty("os.name")) && "6.1".equals(System.getProperty("os.version")));
@@ -242,7 +262,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
             // be defensive here
             log.log(Level.INFO, "failed to check for win7", e);
         }
-        
+
         setLayout(new MapLayout());
         setOpaque(true);
         setBackground(new Color(0xc0, 0xc0, 0xc0));
@@ -264,8 +284,10 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
 //        }
 
         searchPanel = new SearchPanel();
-     ////   checkTileServers();     Map tile server commented by Charles
-     ////   checkActiveTileServer();
+        
+        System.out.println("Initialized search panel");
+        ////   checkTileServers();     Map tile server commented by Charles
+        ////   checkActiveTileServer();
     }
 
     private void checkTileServers() {
@@ -296,8 +318,9 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
 
     public void nextTileServer() {
         int index = Arrays.asList(TILESERVERS).indexOf(getTileServer());
-        if (index == -1)
+        if (index == -1) {
             return;
+        }
         setTileServer(TILESERVERS[(index + 1) % TILESERVERS.length]);
         repaint();
     }
@@ -307,22 +330,25 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
     }
 
     public void setTileServer(TileServer tileServer) {
-        if(this.tileServer == tileServer)
+        if (this.tileServer == tileServer) {
             return;
+        }
         this.tileServer = tileServer;
-        while (getZoom() > tileServer.getMaxZoom())
+        while (getZoom() > tileServer.getMaxZoom()) {
             zoomOut(new Point(getWidth() / 2, getHeight() / 2));
+        }
         checkActiveTileServer();
     }
-    
+
     /**
-     * Iff animations are used, during the animation this method
-     * will return <code>true</code>. One might use this state to disable
-     * own overlay drawing during animations.
+     * Iff animations are used, during the animation this method will return
+     * <code>true</code>. One might use this state to disable own overlay
+     * drawing during animations.
+     *
      * @return <code>true</code> if animation is in progress
      */
     public boolean isCurrenlyInAnimationTransition() {
-        return smoothPosition != null; 
+        return smoothPosition != null;
     }
 
     public boolean isUseAnimations() {
@@ -344,11 +370,11 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
     public SearchPanel getSearchPanel() {
         return searchPanel;
     }
-    
+
     public TileCache getCache() {
         return cache;
     }
-    
+
     public Stats getStats() {
         return stats;
     }
@@ -362,8 +388,9 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
     }
 
     public void setMapPosition(int x, int y) {
-        if (mapPosition.x == x && mapPosition.y == y)
+        if (mapPosition.x == x && mapPosition.y == y) {
             return;
+        }
         Point oldMapPosition = getMapPosition();
         mapPosition.x = x;
         mapPosition.y = y;
@@ -379,8 +406,9 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
     }
 
     public void setZoom(int zoom) {
-        if (zoom == this.zoom)
+        if (zoom == this.zoom) {
             return;
+        }
         int oldZoom = this.zoom;
         this.zoom = Math.min(getTileServer().getMaxZoom(), zoom);
         mapSize.width = getXMax();
@@ -397,8 +425,9 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
             zoomIn(pivot);
             return;
         }
-        if (animation != null)
+        if (animation != null) {
             return;
+        }
         mouseListener.downCoords = null;
         animation = new Animation(AnimationType.ZOOM_IN, ANIMATION_FPS, ANIMATION_DURARTION_MS) {
             protected void onComplete() {
@@ -408,6 +437,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                 animation = null;
                 repaint();
             }
+
             protected void onFrame() {
                 smoothScale = 1.0 + getFactor();
                 repaint();
@@ -426,8 +456,9 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
             zoomOut(pivot);
             return;
         }
-        if (animation != null)
+        if (animation != null) {
             return;
+        }
         mouseListener.downCoords = null;
         animation = new Animation(AnimationType.ZOOM_OUT, ANIMATION_FPS, ANIMATION_DURARTION_MS) {
             protected void onComplete() {
@@ -437,6 +468,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                 animation = null;
                 repaint();
             }
+
             protected void onFrame() {
                 smoothScale = 1 - .5 * getFactor();
                 repaint();
@@ -451,8 +483,9 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
     }
 
     public void zoomIn(Point pivot) {
-        if (getZoom() >= getTileServer().getMaxZoom())
+        if (getZoom() >= getTileServer().getMaxZoom()) {
             return;
+        }
         Point mapPosition = getMapPosition();
         int dx = pivot.x;
         int dy = pivot.y;
@@ -462,8 +495,9 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
     }
 
     public void zoomOut(Point pivot) {
-        if (getZoom() <= 1)
+        if (getZoom() <= 1) {
             return;
+        }
         Point mapPosition = getMapPosition();
         int dx = pivot.x;
         int dy = pivot.y;
@@ -493,7 +527,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
     }
 
     public Point getTile(Point position) {
-        return new Point((int) Math.floor(((double) position.x) / TILE_SIZE),(int) Math.floor(((double) position.y) / TILE_SIZE));
+        return new Point((int) Math.floor(((double) position.x) / TILE_SIZE), (int) Math.floor(((double) position.y) / TILE_SIZE));
     }
 
     public Point getCenterPosition() {
@@ -509,7 +543,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                 position2lon(position.x, getZoom()),
                 position2lat(position.y, getZoom()));
     }
-    
+
     public Point computePosition(Point.Double coords) {
         int x = lon2position(coords.x, getZoom());
         int y = lat2position(coords.y, getZoom());
@@ -517,10 +551,11 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
     }
 
     /**
-     * Gets the coordinates to use for overdraw rendering, eg the swing coordinates
-     * that you could use in paintComponent or a glasspane.
+     * Gets the coordinates to use for overdraw rendering, eg the swing
+     * coordinates that you could use in paintComponent or a glasspane.
+     *
      * @param coords lon and lat as a Point
-     * @return the screen coords 
+     * @return the screen coords
      */
     public Point getScreenCoordinates(Point.Double coords) {
         Point position = computePosition(coords);
@@ -529,18 +564,19 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
         position.y -= mapPosition.y;
         return position;
     }
-    
+
     /**
-     * Gets the coordinates to use for overdraw rendering, eg the swing coordinates
-     * that you could use in paintComponent or a glasspane.
+     * Gets the coordinates to use for overdraw rendering, eg the swing
+     * coordinates that you could use in paintComponent or a glasspane.
+     *
      * @param lon longitude
      * @param lon latitude
-     * @return the screen coords 
+     * @return the screen coords
      */
     public Point getScreenCoordinates(double lon, double lat) {
         return getScreenCoordinates(new Point.Double(lon, lat));
     }
-    
+
     protected void paintComponent(Graphics gOrig) {
         super.paintComponent(gOrig);
         Graphics2D g = (Graphics2D) gOrig.create();
@@ -552,6 +588,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
     }
 
     private static final class Painter {
+
         private final int zoom;
         private float transparency = 1F;
         private double scale = 1d;
@@ -592,7 +629,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                     xform.scale(scale, scale);
                     xform.translate(-scalePosition.x, -scalePosition.y);
                     g.transform(xform);
-                    g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, mapPanel.animationRenderingHints );
+                    g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, mapPanel.animationRenderingHints);
                 }
                 int width = mapPanel.getWidth();
                 int height = mapPanel.getHeight();
@@ -611,7 +648,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                     }
                     dy += TILE_SIZE;
                 }
-                
+
                 if (getScale() == 1d && mapPanel.magnifyRegion != null) {
                     Rectangle magnifyRegion = new Rectangle(mapPanel.magnifyRegion);
                     magnifyRegion.translate(-mapPosition.x, -mapPosition.y);
@@ -643,8 +680,9 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                     } catch (Exception e) {
                         log.log(Level.SEVERE, "failed to load url \"" + url + "\"", e);
                     }
-                    if (image != null)
+                    if (image != null) {
                         cache.put(tileServer, x, y, zoom, image);
+                    }
                 }
                 if (image != null) {
                     g.drawImage(image, dx, dy, mapPanel);
@@ -656,10 +694,9 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                 g.fillRect(dx + 4, dy + 4, TILE_SIZE - 8, TILE_SIZE - 8);
                 g.setColor(Color.gray);
                 String s = "T " + x + ", " + y + (!tileInBounds ? " #" : "");
-                g.drawString(s, dx + 4+ 8, dy + 4 + 12);
+                g.drawString(s, dx + 4 + 8, dy + 4 + 12);
             }
         }
-
 
     }
 
@@ -676,7 +713,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
             Point position = new Point(smoothPosition.x, smoothPosition.y);
             Painter painter = new Painter(this, getZoom() + smoothOffset);
             painter.setScale(smoothScale);
-            
+
             float t = (float) (animation == null ? 1f : 1 - animation.getFactor());
             painter.setTransparency(t);
             painter.paint(g, position, smoothPivot);
@@ -703,22 +740,24 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
         }
     }
 
-
     private void drawScaledRect(Graphics2D g, int cx, int cy, double f, double scale) {
         AffineTransform oldTransform = g.getTransform();
         g.translate(cx, cy);
         g.scale(scale, scale);
         g.translate(-cx, -cy);
         int c = 0x80 + (int) Math.floor(f * 0x60);
-        if (c < 0) c = 0;
-        else if (c > 255) c = 255;
+        if (c < 0) {
+            c = 0;
+        } else if (c > 255) {
+            c = 255;
+        }
         Color color = new Color(c, c, c);
         g.setColor(color);
         g.drawRect(cx - 40, cy - 30, 80, 60);
         g.setTransform(oldTransform);
     }
 
-   //-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
     // utils
     public static String format(double d) {
         return String.format("%.5f", d);
@@ -811,9 +850,11 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
     private static BufferedImage makeIcon(Color background) {
         final int WIDTH = 16, HEIGHT = 16;
         BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
-        for (int y = 0; y < HEIGHT; ++y)
-            for (int x = 0; x < WIDTH; ++x)
+        for (int y = 0; y < HEIGHT; ++y) {
+            for (int x = 0; x < WIDTH; ++x) {
                 image.setRGB(x, y, 0);
+            }
+        }
         Graphics2D g2d = (Graphics2D) image.getGraphics();
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setColor(background);
@@ -823,20 +864,20 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
         double hy = 4;
         for (int y = 0; y < HEIGHT; ++y) {
             for (int x = 0; x < WIDTH; ++x) {
-              double dx = x - hx;
-              double dy = y - hy;
-              double dist = Math.sqrt(dx * dx + dy * dy);
-              if (dist > WIDTH) {
-                 dist = WIDTH;
-              }
-              int color = image.getRGB(x, y);
-              int a = (color >>> 24) & 0xff;
-              int r = (color >>> 16) & 0xff;
-              int g = (color >>> 8) & 0xff;
-              int b = (color >>> 0) & 0xff;
-              double coef = 0.7 - 0.7 * dist / WIDTH;
-              image.setRGB(x, y, (a << 24) | ((int) (r + coef * (255 - r)) << 16) | ((int) (g + coef * (255 - g)) << 8) | (int) (b + coef * (255 - b)));
-           }
+                double dx = x - hx;
+                double dy = y - hy;
+                double dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist > WIDTH) {
+                    dist = WIDTH;
+                }
+                int color = image.getRGB(x, y);
+                int a = (color >>> 24) & 0xff;
+                int r = (color >>> 16) & 0xff;
+                int g = (color >>> 8) & 0xff;
+                int b = (color >>> 0) & 0xff;
+                double coef = 0.7 - 0.7 * dist / WIDTH;
+                image.setRGB(x, y, (a << 24) | ((int) (r + coef * (255 - r)) << 16) | ((int) (g + coef * (255 - g)) << 8) | (int) (b + coef * (255 - b)));
+            }
         }
         g2d.setColor(Color.gray);
         g2d.drawOval(0, 0, WIDTH - 1, HEIGHT - 1);
@@ -847,19 +888,21 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
         BufferedImage image = makeIcon(background);
         Graphics2D g = (Graphics2D) image.getGraphics();
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g.fillPolygon(new int[] { 10, 4, 10} , new int[] { 5, 8, 11 }, 3);
+        g.fillPolygon(new int[]{10, 4, 10}, new int[]{5, 8, 11}, 3);
         image.flush();
         return image;
 
     }
+
     private static BufferedImage makeYArrow(Color background) {
         BufferedImage image = makeIcon(background);
         Graphics2D g = (Graphics2D) image.getGraphics();
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g.fillPolygon(new int[] { 5, 8, 11} , new int[] { 10, 4, 10 }, 3);
+        g.fillPolygon(new int[]{5, 8, 11}, new int[]{10, 4, 10}, 3);
         image.flush();
         return image;
     }
+
     private static BufferedImage makePlus(Color background) {
         BufferedImage image = makeIcon(background);
         Graphics2D g = (Graphics2D) image.getGraphics();
@@ -869,6 +912,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
         image.flush();
         return image;
     }
+
     private static BufferedImage makeMinus(Color background) {
         BufferedImage image = makeIcon(background);
         Graphics2D g = (Graphics2D) image.getGraphics();
@@ -878,13 +922,12 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
         return image;
     }
 
-
     //-------------------------------------------------------------------------
     // helpers
     private enum AnimationType {
         ZOOM_IN, ZOOM_OUT
     }
-    
+
     private static abstract class Animation implements ActionListener {
 
         private final AnimationType type;
@@ -902,7 +945,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
             timer.setInitialDelay(0);
             timer.setRepeats(true);
         }
-        
+
         public AnimationType getType() {
             return type;
         }
@@ -929,37 +972,44 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
         }
 
         public long getDt() {
-            if (!timer.isRunning())
+            if (!timer.isRunning()) {
                 return dt;
+            }
             long now = System.currentTimeMillis();
-            if (t0 < 0)
+            if (t0 < 0) {
                 t0 = now;
+            }
             return now - t0 + dt;
         }
 
         public void run() {
-            if (timer.isRunning())
+            if (timer.isRunning()) {
                 return;
+            }
             timer.start();
         }
 
         public void kill() {
-            if (!timer.isRunning())
+            if (!timer.isRunning()) {
                 return;
+            }
             dt = getDt();
             timer.stop();
         }
     }
 
     private static class Tile {
+
         private final String key;
         public final int x, y, z;
+
         public Tile(String tileServer, int x, int y, int z) {
             this.key = tileServer;
             this.x = x;
             this.y = y;
             this.z = z;
         }
+
         public int hashCode() {
             final int prime = 31;
             int result = 1;
@@ -969,80 +1019,98 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
             result = prime * result + z;
             return result;
         }
+
         public boolean equals(Object obj) {
-            if (this == obj)
+            if (this == obj) {
                 return true;
-            if (obj == null)
+            }
+            if (obj == null) {
                 return false;
-            if (getClass() != obj.getClass())
+            }
+            if (getClass() != obj.getClass()) {
                 return false;
+            }
             Tile other = (Tile) obj;
             if (key == null) {
-                if (other.key != null)
+                if (other.key != null) {
                     return false;
-            } else if (!key.equals(other.key))
+                }
+            } else if (!key.equals(other.key)) {
                 return false;
-            if (x != other.x)
+            }
+            if (x != other.x) {
                 return false;
-            if (y != other.y)
+            }
+            if (y != other.y) {
                 return false;
-            if (z != other.z)
+            }
+            if (z != other.z) {
                 return false;
+            }
             return true;
         }
 
     }
 
     private static class TileCache {
-        private LinkedHashMap<Tile,Image> map = new LinkedHashMap<Tile,Image>(CACHE_SIZE, 0.75f, true) {
-            protected boolean removeEldestEntry(java.util.Map.Entry<Tile,Image> eldest) {
+
+        private LinkedHashMap<Tile, Image> map = new LinkedHashMap<Tile, Image>(CACHE_SIZE, 0.75f, true) {
+            protected boolean removeEldestEntry(java.util.Map.Entry<Tile, Image> eldest) {
                 boolean remove = size() > CACHE_SIZE;
                 return remove;
             }
         };
+
         public void put(TileServer tileServer, int x, int y, int z, Image image) {
             map.put(new Tile(tileServer.getURL(), x, y, z), image);
         }
+
         public Image get(TileServer tileServer, int x, int y, int z) {
             //return map.get(new Tile(x, y, z));
             Image image = map.get(new Tile(tileServer.getURL(), x, y, z));
             return image;
         }
+
         public int getSize() {
             return map.size();
         }
     }
 
     private static class Stats {
+
         private int tileCount;
         private long dt;
+
         private Stats() {
             reset();
         }
+
         private void reset() {
             tileCount = 0;
             dt = 0;
         }
     }
-    
-    public static class CustomSplitPane extends JComponent  {
+
+    public static class CustomSplitPane extends JComponent {
+
         private static final int SPACER_SIZE = 4;
         private final boolean horizonal;
         private final JComponent spacer;
-        
+
         private double split = 0.5;
         private int dx, dy;
         private Component componentOne, componentTwo;
-        
+
         public CustomSplitPane(boolean horizonal) {
             this.spacer = new JPanel();
             this.spacer.setOpaque(false);
             this.spacer.setCursor(horizonal ? Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR) : Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR));
             this.dx = this.dy = -1;
             this.horizonal = horizonal;
-            
+
             /* because of jdk1.5, javafx */
             class SpacerMouseAdapter extends MouseAdapter implements MouseMotionListener {
+
                 public void mouseReleased(MouseEvent e) {
                     Insets insets = getInsets();
                     int width = getWidth();
@@ -1058,9 +1126,9 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                     spacer.setOpaque(false);
                     repaint();
                 }
-                
+
                 public void mouseDragged(MouseEvent e) {
-                    dx = e.getX() + spacer.getX(); 
+                    dx = e.getX() + spacer.getX();
                     dy = e.getY() + spacer.getY();
                     spacer.setOpaque(true);
                     if (dx != -1 && CustomSplitPane.this.horizonal) {
@@ -1070,36 +1138,36 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                     }
                     repaint();
                 }
-                
+
                 public void mouseMoved(MouseEvent e) {
                 }
             };
             SpacerMouseAdapter mouseAdapter = new SpacerMouseAdapter();
             spacer.addMouseListener(mouseAdapter);
             spacer.addMouseMotionListener(mouseAdapter);
-            
+
             setLayout(new LayoutManager() {
                 public void addLayoutComponent(String name, Component comp) {
                 }
-                
+
                 public void removeLayoutComponent(Component comp) {
                 }
-                
+
                 public Dimension minimumLayoutSize(Container parent) {
                     return new Dimension(1, 1);
                 }
-                
+
                 public Dimension preferredLayoutSize(Container parent) {
                     return new Dimension(128, 128);
                 }
-                
+
                 public void layoutContainer(Container parent) {
                     Insets insets = parent.getInsets();
                     int width = parent.getWidth();
                     int height = parent.getHeight();
                     int availw = width - insets.left - insets.right;
                     int availh = height - insets.top - insets.bottom;
-                    
+
                     if (CustomSplitPane.this.horizonal) {
                         availw -= SPACER_SIZE;
                         int width1 = Math.max(0, (int) Math.floor(split * availw));
@@ -1135,35 +1203,39 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
             });
             add(spacer);
         }
-        
+
         public double getSplit() {
             return split;
         }
-        
+
         public void setSplit(double split) {
-            if (split < 0)
+            if (split < 0) {
                 split = 0;
-            else if (split > 1)
+            } else if (split > 1) {
                 split = 1;
+            }
             this.split = split;
             invalidate();
             validate();
         }
-        
+
         public void setComponentOne(Component component) {
             this.componentOne = component;
-            if (componentOne != null)
+            if (componentOne != null) {
                 add(componentOne);
+            }
         }
 
         public void setComponentTwo(Component component) {
             this.componentTwo = component;
-            if (componentTwo != null)
+            if (componentTwo != null) {
                 add(componentTwo);
+            }
         }
     }
 
     private class DragListener extends MouseAdapter implements MouseMotionListener, MouseWheelListener {
+
         private Point mouseCoords;
         private Point downCoords;
         private Point downPosition;
@@ -1210,15 +1282,16 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
             handlePosition(e);
             handleDrag(e);
         }
- 
+
         public void mouseEntered(MouseEvent me) {
             super.mouseEntered(me);
         }
 
         private void handlePosition(MouseEvent e) {
             mouseCoords = e.getPoint();
-            if (overlayPanel.isVisible())
+            if (overlayPanel.isVisible()) {
                 MapPanel.this.repaint();
+            }
         }
 
         private void handleDrag(MouseEvent e) {
@@ -1237,10 +1310,11 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
 
         public void mouseWheelMoved(MouseWheelEvent e) {
             int rotation = e.getWheelRotation();
-            if (rotation < 0)
+            if (rotation < 0) {
                 zoomInAnimated(new Point(mouseCoords.x, mouseCoords.y));
-            else
+            } else {
                 zoomOutAnimated(new Point(mouseCoords.x, mouseCoords.y));
+            }
         }
     }
 
@@ -1260,7 +1334,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                 g.dispose();
             }
         }
-        
+
         private void paintOverlay(Graphics2D g) {
             drawBackground(g, getWidth(), getHeight());
             g.setColor(Color.black);
@@ -1269,7 +1343,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
             drawString(g, 2, "MapPosition", mapPosition.x + ", " + mapPosition.y);
             drawString(g, 3, "CursorPosition", (mapPosition.x + getCursorPosition().x) + ", " + (mapPosition.y + getCursorPosition().y));
             drawString(g, 4, "CenterPosition", (mapPosition.x + getWidth() / 2) + ", " + (mapPosition.y + getHeight() / 2));
-            drawString(g, 5, "Tilescount", getXTileCount() + ", " + getYTileCount() + " (" + (NumberFormat.getIntegerInstance().format((long)getXTileCount() * getYTileCount())) + " total)");
+            drawString(g, 5, "Tilescount", getXTileCount() + ", " + getYTileCount() + " (" + (NumberFormat.getIntegerInstance().format((long) getXTileCount() * getYTileCount())) + " total)");
             drawString(g, 6, "Painted-Tilescount", Integer.toString(stats.tileCount));
             drawString(g, 7, "Paint-Time", stats.dt + " ms.");
             drawString(g, 8, "Active Tile", getTile(getCursorPosition()).x + ", " + getTile(getCursorPosition()).y);
@@ -1295,7 +1369,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
             b.setText(null);
             b.setContentAreaFilled(false);
             b.setBorder(BorderFactory.createEmptyBorder());
-            BufferedImage image = (BufferedImage) ((ImageIcon)b.getIcon()).getImage();
+            BufferedImage image = (BufferedImage) ((ImageIcon) b.getIcon()).getImage();
             BufferedImage hl = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
             Graphics2D g = (Graphics2D) hl.getGraphics();
             g.drawImage(image, 0, 0, null);
@@ -1415,19 +1489,22 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
         }
     }
 
-
     private final class MapLayout implements LayoutManager {
 
         public void addLayoutComponent(String name, Component comp) {
         }
+
         public void removeLayoutComponent(Component comp) {
         }
+
         public Dimension minimumLayoutSize(Container parent) {
             return new Dimension(1, 1);
         }
+
         public Dimension preferredLayoutSize(Container parent) {
             return new Dimension(PREFERRED_WIDTH, PREFERRED_HEIGHT);
         }
+
         public void layoutContainer(Container parent) {
             int width = parent.getWidth();
             {
@@ -1444,9 +1521,9 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
     private static final class EditorPane extends JEditorPane {
 
         private final Font font = new JLabel().getFont();
-        private final String stylesheet =
-            "body { color:#808080; margin-top:0; margin-left:0; margin-bottom:0; margin-right:0; font-family:" + font.getName() + "; font-size:" + font.getSize()+ "pt;}" +
-            "a    { color:#4040D9; margin-top:0; margin-left:0; margin-bottom:0; margin-right:0; font-family:" + font.getName() + "; font-size:" + font.getSize() + "pt;}";
+        private final String stylesheet
+                = "body { color:#808080; margin-top:0; margin-left:0; margin-bottom:0; margin-right:0; font-family:" + font.getName() + "; font-size:" + font.getSize() + "pt;}"
+                + "a    { color:#4040D9; margin-top:0; margin-left:0; margin-bottom:0; margin-right:0; font-family:" + font.getName() + "; font-size:" + font.getSize() + "pt;}";
 
         public EditorPane() {
             super("text/html", "");
@@ -1456,7 +1533,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
             setEditorKit(kit);
             setEditable(false);
             setOpaque(false);
-            HTMLDocument htmlDocument = (HTMLDocument)getDocument();
+            HTMLDocument htmlDocument = (HTMLDocument) getDocument();
             StyleSheet sheet = new StyleSheet();
             try {
                 sheet.loadRules(new StringReader(stylesheet), null);
@@ -1469,6 +1546,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
     }
 
     public static final class SearchResult {
+
         private String type;
         private double lat, lon;
         private String name;
@@ -1478,48 +1556,63 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
 
         public SearchResult() {
         }
+
         public String getType() {
             return type;
         }
+
         public void setType(String type) {
             this.type = type;
         }
+
         public double getLat() {
             return lat;
         }
+
         public void setLat(double lat) {
             this.lat = lat;
         }
+
         public double getLon() {
             return lon;
         }
+
         public void setLon(double lon) {
             this.lon = lon;
         }
+
         public String getName() {
             return name;
         }
+
         public void setName(String name) {
             this.name = name;
         }
+
         public String getCategory() {
             return category;
         }
+
         public void setCategory(String category) {
             this.category = category;
         }
+
         public int getZoom() {
             return zoom;
         }
+
         public void setZoom(int zoom) {
             this.zoom = zoom;
         }
+
         public String getDescription() {
             return description;
         }
+
         public void setDescription(String description) {
             this.description = description;
         }
+
         public String toString() {
             return "SearchResult [category=" + category + ", lat=" + lat + ", lon=" + lon
                     + ", name=" + name + ", type=" + type + ", zoom=" + zoom + ", description=" + description + "]";
@@ -1583,11 +1676,13 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
         }
 
         public void doSearch(Object selectedItem) {
-            if (searching)
+            if (searching) {
                 return;
+            }
             final String newSearch = selectedItem == null ? "" : selectedItem.toString();
-            if (oldSearch.equals(newSearch))
+            if (oldSearch.equals(newSearch)) {
                 return;
+            }
             oldSearch = newSearch;
             Runnable r = new Runnable() {
                 public void run() {
@@ -1595,12 +1690,12 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                 }
             };
             searching = true;
-            searchBox.setEnabled(false);
+            searchBox.setEnabled(true);
             editorPane.setText("<html><body><i>searching...</i></body></html>");
             searchBox.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             editorPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-            Thread t = new Thread(r, "searcher "+ newSearch);
+            Thread t = new Thread(r, "searcher " + newSearch);
             t.start();
         }
 
@@ -1616,6 +1711,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                     private final ArrayList<String> pathStack = new ArrayList<String>();
                     private final ArrayList<SearchResult> namedStack = new ArrayList<SearchResult>();
                     private StringBuilder chars;
+
                     public void startElement(String uri, String localName, String qName, Attributes attributes) {
                         pathStack.add(qName);
                         String path = getPath();
@@ -1627,12 +1723,14 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                             result.setName(attributes.getValue("display_name"));
                             result.setZoom(tryInteger(attributes.getValue("zoom")));
                             namedStack.add(result);
-                            if (pathStack.size() == 2)
+                            if (pathStack.size() == 2) {
                                 results.add(result);
+                            }
                         } else if ("description".equals(qName)) {
                             chars = new StringBuilder();
                         }
                     }
+
                     public void endElement(String uri, String localName, String qName) throws SAXException {
                         if ("place".equals(qName)) {
                             namedStack.remove(namedStack.size() - 1);
@@ -1641,16 +1739,21 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                         }
                         pathStack.remove(pathStack.size() - 1);
                     }
+
                     public void characters(char[] ch, int start, int length) throws SAXException {
-                        if(chars != null)
+                        if (chars != null) {
                             chars.append(ch, start, length);
+                        }
                     }
+
                     private String getPath() {
                         StringBuilder sb = new StringBuilder();
-                        for (String p : pathStack)
+                        for (String p : pathStack) {
                             sb.append("/").append(p);
+                        }
                         return sb.toString();
                     }
+
                     private double tryDouble(String s) {
                         try {
                             return Double.valueOf(s);
@@ -1658,6 +1761,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                             return 0d;
                         }
                     }
+
                     private int tryInteger(String s) {
                         try {
                             return Integer.valueOf(s);
@@ -1676,8 +1780,9 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                 SearchResult result = results.get(i);
                 String description = result.getDescription();
                 description = description.replaceAll("\\[.*?\\]", "");
-                if (description.length() == 0)
+                if (description.length() == 0) {
                     description = result.getName();
+                }
                 String shortName = result.getName();
                 shortName = shortName.replaceAll("\\s(.*)$", "");
                 String linkBody = shortName + (result.getCategory() != null && result.getCategory().length() > 0
@@ -1694,7 +1799,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                     try {
                         editorPane.setText(html_);
                         editorPane.setCaretPosition(0);
-                        DefaultComboBoxModel comboBoxModel = (DefaultComboBoxModel)searchBox.getModel();
+                        DefaultComboBoxModel comboBoxModel = (DefaultComboBoxModel) searchBox.getModel();
                         comboBoxModel.removeElement(newSearch);
                         comboBoxModel.addElement(newSearch);
                     } finally {
@@ -1724,7 +1829,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
             mapPanel.getOverlayPanel().setVisible(false);
             mapPanel.setMinimumSize(new Dimension(1, 1));
             mapPanel.getSearchPanel().setMinimumSize(new Dimension(1, 1));
-            
+
             customSplitPane.setSplit(.3);
             customSplitPane.setComponentOne(mapPanel.getSearchPanel());
             customSplitPane.setComponentTwo(mapPanel);
@@ -1741,8 +1846,9 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
 
         public JMenuBar createMenuBar() {
             JFrame frame = null;
-            if (SwingUtilities.getWindowAncestor(mapPanel) instanceof JFrame)
+            if (SwingUtilities.getWindowAncestor(mapPanel) instanceof JFrame) {
                 frame = (JFrame) SwingUtilities.getWindowAncestor(mapPanel);
+            }
             final JFrame frame_ = frame;
             JMenuBar menuBar = new JMenuBar();
             {
@@ -1754,9 +1860,11 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                         putValue(Action.MNEMONIC_KEY, KeyEvent.VK_X);
                         setEnabled(frame_ != null);
                     }
+
                     public void actionPerformed(ActionEvent e) {
-                        if (frame_ != null)
+                        if (frame_ != null) {
                             frame_.dispose();
+                        }
                     }
                 });
                 menuBar.add(fileMenu);
@@ -1770,6 +1878,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                         putValue(Action.NAME, "Use Animations");
                         putValue(Action.MNEMONIC_KEY, KeyEvent.VK_A);
                     }
+
                     public void actionPerformed(ActionEvent e) {
                         mapPanel.setUseAnimations(!mapPanel.isUseAnimations());
                     }
@@ -1781,11 +1890,13 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                 viewMenu.add(new JCheckBoxMenuItem(new AbstractAction() {
                     JFrame floatFrame;
                     Container oldParent;
+
                     {
                         putValue(Action.NAME, "Float In a Frame");
                         putValue(Action.MNEMONIC_KEY, KeyEvent.VK_X);
                         setEnabled(frame_ == null);
                     }
+
                     public void actionPerformed(ActionEvent e) {
                         if (floatFrame == null) {
                             floatFrame = new JFrame("Floating MapPanel");
@@ -1808,6 +1919,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                             unfloat();
                         }
                     }
+
                     private void unfloat() {
                         floatFrame.setVisible(false);
                         oldParent.add(Gui.this);
@@ -1820,6 +1932,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                         putValue(Action.NAME, "Show Infopanel");
                         putValue(Action.MNEMONIC_KEY, KeyEvent.VK_I);
                     }
+
                     public void actionPerformed(ActionEvent e) {
                         mapPanel.getOverlayPanel().setVisible(!mapPanel.getOverlayPanel().isVisible());
                     }
@@ -1830,6 +1943,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                         putValue(Action.NAME, "Show Controlpanel");
                         putValue(Action.MNEMONIC_KEY, KeyEvent.VK_C);
                     }
+
                     public void actionPerformed(ActionEvent e) {
                         mapPanel.getControlPanel().setVisible(!mapPanel.getControlPanel().isVisible());
                     }
@@ -1841,6 +1955,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                         putValue(Action.NAME, "Show SearchPanel");
                         putValue(Action.MNEMONIC_KEY, KeyEvent.VK_S);
                     }
+
                     public void actionPerformed(ActionEvent e) {
                         mapPanel.getSearchPanel().setVisible(!mapPanel.getSearchPanel().isVisible());
                     }
@@ -1864,8 +1979,9 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                             mapPanel.repaint();
                         }
                     });
-                    if (index < 9)
+                    if (index < 9) {
                         item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1 + index, InputEvent.CTRL_DOWN_MASK));
+                    }
                     tileServerMenu.add(item);
                     ++index;
                 }
@@ -1879,6 +1995,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
                         putValue(Action.NAME, "About");
                         putValue(Action.MNEMONIC_KEY, KeyEvent.VK_A);
                     }
+
                     public void actionPerformed(ActionEvent e) {
                         JOptionPane.showMessageDialog(mapPanel, ABOUT_MSG, "About MapPanel ...", JOptionPane.PLAIN_MESSAGE);
                     }
@@ -1897,7 +2014,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
     public static MapPanel createMapPanel(Point mapPosition, int zoom) {
         MapPanel mapPanel = new MapPanel(mapPosition, zoom);
         mapPanel.getOverlayPanel().setVisible(false);
-        ((JComponent)mapPanel.getControlPanel()).setVisible(false);
+        ((JComponent) mapPanel.getControlPanel()).setVisible(false);
         return mapPanel;
     }
 
@@ -1905,7 +2022,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
         MapPanel mapPanel = createMapPanel(mapPosition, zoom);
         return new MapPanel.Gui(mapPanel);
     }
-    
+
     public static void launchUI() {
 
         final JFrame frame = new JFrame();
@@ -1913,7 +2030,7 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Dimension sz = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setSize(800, 600);
-        frame.setLocation((sz.width - frame.getWidth()) / 2, (sz.height - frame.getHeight())/2);
+        frame.setLocation((sz.width - frame.getWidth()) / 2, (sz.height - frame.getHeight()) / 2);
 
         Gui gui = new Gui();
         frame.getContentPane().add(gui, BorderLayout.CENTER);

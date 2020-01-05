@@ -2398,6 +2398,27 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             table2.getDefaultCell().setColspan(1);
                             phrase = new Phrase("", pFontHeader1);
                             table2.addCell(phrase);
+                            
+                             int under5 = 0;
+                             int over5 = 0;
+                            
+                             java.sql.Statement stu1 = connectDB.createStatement();
+                            java.sql.ResultSet rsetu1 = stu1.executeQuery("SELECT  count(h.patient_no) FROM st_sub_stores h,hp_patient_register p where (patient_source  ilike 'OP%'   ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and (trans_date::date-year_of_birth::date)/365 <= 5 and h.item_code IN (SELECT item_code from st_stock_item WHERE item_classification ilike '%common%')  UNION " 
+                                        + "SELECT  count(h.patient_no) FROM st_sub_stores h,hp_inpatient_register p where (patient_source  ilike 'IP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and  (trans_date::date-year_of_birth::date)/365 <= 5 and  h.item_code IN (SELECT item_code from st_stock_item WHERE item_classification ilike '%common%') ");
+                                
+                            while (rsetu1.next()) {
+                                        under5 += rsetu1.getInt(1);
+
+                                    }
+                            
+                            stu1 = connectDB.createStatement();
+                            rsetu1 = stu1.executeQuery("SELECT  count(h.patient_no) FROM st_sub_stores h,hp_patient_register p where (patient_source  ilike 'OP%'   ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and (trans_date::date-year_of_birth::date)/365 > 5 and  h.item_code IN (SELECT item_code from st_stock_item WHERE item_classification ilike '%common%')  UNION "
+                                        + "SELECT  count(h.patient_no) FROM st_sub_stores h,hp_inpatient_register p where (patient_source  ilike 'IP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and  (trans_date::date-year_of_birth::date)/365 > 5 and  h.item_code IN (SELECT item_code from st_stock_item WHERE item_classification ilike '%common%') ");
+                                
+                            while (rsetu1.next()) {
+                                        over5 += rsetu1.getInt(1);
+
+                                    }
 
                             table2.getDefaultCell().setColspan(1);
                             table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -2407,11 +2428,11 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             table2.addCell(phrase);
                             table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
 
-                            phrase = new Phrase("", pFontHeader1);
+                            phrase = new Phrase(String.valueOf(under5), pFontHeader1);
                             table2.addCell(phrase);
-                            phrase = new Phrase("", pFontHeader1);
+                            phrase = new Phrase(String.valueOf(over5), pFontHeader1);
                             table2.addCell(phrase);
-                            phrase = new Phrase("", pFontHeader1);
+                            phrase = new Phrase(String.valueOf(under5+over5), pFontHeader1);
                             table2.addCell(phrase);
                             table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
@@ -2433,6 +2454,28 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             table2.getDefaultCell().setColspan(1);
                             phrase = new Phrase("", pFontHeader1);
                             table2.addCell(phrase);
+                            
+                             under5 = 0;
+                            over5 = 0;
+                            
+                            stu1 = connectDB.createStatement();
+                            rsetu1 = stu1.executeQuery("SELECT  count(h.patient_no) FROM st_sub_stores h,hp_patient_register p where (patient_source  ilike 'OP%'   ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and (trans_date::date-year_of_birth::date)/365 <= 5 and h.item_code IN (SELECT item_code from st_stock_item WHERE item_classification ilike '%antibio%')  UNION " 
+                                        + "SELECT  count(h.patient_no) FROM st_sub_stores h,hp_inpatient_register p where (patient_source  ilike 'IP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and  (trans_date::date-year_of_birth::date)/365 <= 5 and  h.item_code IN (SELECT item_code from st_stock_item WHERE item_classification ilike '%antibio%') ");
+                                
+                            while (rsetu1.next()) {
+                                        under5 += rsetu1.getInt(1);
+
+                                    }
+                            
+                            
+                            stu1 = connectDB.createStatement();
+                            rsetu1 = stu1.executeQuery("SELECT  count(h.patient_no) FROM st_sub_stores h,hp_patient_register p where (patient_source  ilike 'OP%'   ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and (trans_date::date-year_of_birth::date)/365 > 5 and h.item_code IN (SELECT item_code from st_stock_item WHERE item_classification ilike '%antibio%')   UNION "
+                                        + "SELECT  count(h.patient_no) FROM st_sub_stores h,hp_inpatient_register p where (patient_source  ilike 'IP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and  (trans_date::date-year_of_birth::date)/365 > 5 and h.item_code IN (SELECT item_code from st_stock_item WHERE item_classification ilike '%antibio%')  ");
+                                
+                            while (rsetu1.next()) {
+                                        over5 += rsetu1.getInt(1);
+
+                                    }
 
                             table2.getDefaultCell().setColspan(1);
                             table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -2442,11 +2485,11 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             table2.addCell(phrase);
                             table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
 
-                            phrase = new Phrase("", pFontHeader1);
+                            phrase = new Phrase(String.valueOf(under5), pFontHeader1);
                             table2.addCell(phrase);
-                            phrase = new Phrase("", pFontHeader1);
+                            phrase = new Phrase(String.valueOf(over5), pFontHeader1);
                             table2.addCell(phrase);
-                            phrase = new Phrase("", pFontHeader1);
+                            phrase = new Phrase(String.valueOf(under5+over5), pFontHeader1);
                             table2.addCell(phrase);
                             table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
@@ -2459,6 +2502,33 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             table2.getDefaultCell().setColspan(1);
                             phrase = new Phrase("", pFontHeader1);
                             table2.addCell(phrase);
+                            
+                            
+                            
+                            
+                            under5 = 0;
+                            over5 = 0;
+                            
+                            stu1 = connectDB.createStatement();
+                            rsetu1 = stu1.executeQuery("SELECT  count(h.patient_no) FROM st_sub_stores h,hp_patient_register p where (patient_source  ilike 'OP%'   ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and (trans_date::date-year_of_birth::date)/365 <= 5 and h.item_code IN (SELECT item_code from st_stock_item WHERE item_classification ilike '%Special%')  UNION " 
+                                        + "SELECT  count(h.patient_no) FROM st_sub_stores h,hp_inpatient_register p where (patient_source  ilike 'IP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and  (trans_date::date-year_of_birth::date)/365 <= 5 and  h.item_code IN (SELECT item_code from st_stock_item WHERE item_classification ilike '%Special%') ");
+                                
+                            while (rsetu1.next()) {
+                                        under5 += rsetu1.getInt(1);
+
+                                    }
+                            
+                            
+                            stu1 = connectDB.createStatement();
+                            rsetu1 = stu1.executeQuery("SELECT  count(h.patient_no) FROM st_sub_stores h,hp_patient_register p where (patient_source  ilike 'OP%'   ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and (trans_date::date-year_of_birth::date)/365 > 5 and h.item_code IN (SELECT item_code from st_stock_item WHERE item_classification ilike '%Special%')  UNION "
+                                        + "SELECT  count(h.patient_no) FROM st_sub_stores h,hp_inpatient_register p where (patient_source  ilike 'IP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and  (trans_date::date-year_of_birth::date)/365 > 5 and h.item_code IN (SELECT item_code from st_stock_item WHERE item_classification ilike '%Special%') ");
+                                
+                            while (rsetu1.next()) {
+                                        over5 += rsetu1.getInt(1);
+
+                                    }
+                            
+                            
 
                             table2.getDefaultCell().setColspan(1);
                             table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -2467,12 +2537,12 @@ public class MonthlyOPWorkLoadPdf implements java.lang.Runnable {
                             phrase = new Phrase("Special Drugs", pFontHeader1);
                             table2.addCell(phrase);
                             table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                            phrase = new Phrase("", pFontHeader1);
+                            phrase = new Phrase(String.valueOf(under5), pFontHeader1);
                             table2.addCell(phrase);
-                            phrase = new Phrase("", pFontHeader1);
+                            phrase = new Phrase(String.valueOf(under5), pFontHeader1);
                             table2.addCell(phrase);
 
-                            phrase = new Phrase("", pFontHeader1);
+                            phrase = new Phrase(String.valueOf(under5+over5), pFontHeader1);
                             table2.addCell(phrase);
                             table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             table2.getDefaultCell().setColspan(2);

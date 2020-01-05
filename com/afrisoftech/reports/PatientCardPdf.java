@@ -367,6 +367,7 @@ public class PatientCardPdf implements java.lang.Runnable {
                             java.sql.Statement st2 = connectDB.createStatement();
                             java.sql.Statement st3 = connectDB.createStatement();
                             java.sql.Statement st14 = connectDB.createStatement();
+                            java.sql.Statement st14xx = connectDB.createStatement();
                             java.sql.Statement st15 = connectDB.createStatement();
                             java.sql.Statement sth = connectDB.createStatement();
                             java.sql.Statement stp = connectDB.createStatement();
@@ -506,6 +507,10 @@ public class PatientCardPdf implements java.lang.Runnable {
                                 java.sql.ResultSet rset14 = st14.executeQuery("select DISTINCT initcap(service),requisition_no,bed_no||'    '||time_due,dosage,curr_date::TIME(0),INITCAP(doctor) "
                                         + "FROM pb_doctors_request where patient_no = '" + memNo + "' and revenue_code ilike '%Pharm%' and trans_date  = '" + listofStaffNos[j] + "' ORDER BY curr_date::TIME(0) ");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
 
+                                java.sql.ResultSet rset14xx = st14xx.executeQuery("select data_capture_time::TIME(0), item,  issuing,     INITCAP(user_name) "
+                                        + "FROM st_sub_stores where issiued_to ilike  '" + memNo + "%' and trans_date  = '" + listofStaffNos[j] + "' ");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
+
+                                
                                 java.sql.ResultSet rset2e = st2e.executeQuery("SELECT Distinct initcap(typeof_test), "
                                         + "initcap(comments),initcap(description),initcap(doctor),'',input_date::TIME(0) "
                                         + "FROM hp_clinical_results WHERE patient_no = '" + memNo + "' AND "
@@ -1249,6 +1254,47 @@ public class PatientCardPdf implements java.lang.Runnable {
                                     //table.addCell(phrase);
                                     //table.addCell(phrase);
                                 }
+                                
+                                
+                                table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+                                table.getDefaultCell().setColspan(1);
+                                phrase = new Phrase("", pFontHeader);
+
+                                table.addCell(phrase);
+                                table.getDefaultCell().setColspan(4);
+                                phrase = new Phrase("DISPENSED PRESCRIPTION ", pFontHeader);
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+                                table.getDefaultCell().setColspan(1);
+                                phrase = new Phrase("", pFontHeader);
+                                table.addCell(phrase);
+                                
+                                
+                                while (rset14xx.next()) {
+
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
+                                    phrase = new Phrase(dbObject.getDBObject(rset14xx.getObject(1), "-"), pFontHeader);
+                                    table.addCell(phrase);
+                                    
+                                    table.getDefaultCell().setColspan(3);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+                                    phrase = new Phrase(dbObject.getDBObject(rset14xx.getObject(2), "-"), pFontHeader);
+                                    table.addCell(phrase);
+                                    
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+                                    phrase = new Phrase(dbObject.getDBObject(rset14xx.getObject(3), "-"), pFontHeader);
+                                    table.addCell(phrase);
+                                    
+                                    phrase = new Phrase(dbObject.getDBObject(rset14xx.getObject(4), "-"), pFontHeader);
+                                    table.addCell(phrase);
+                                    
+                                }
+                                
+                                
+                                
                                 table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
                                 table.getDefaultCell().setColspan(1);
                                 phrase = new Phrase(" ", pFontHeader11);
@@ -1396,7 +1442,7 @@ public class PatientCardPdf implements java.lang.Runnable {
             java.sql.Statement stmt1 = connectDB.createStatement();
 
             // java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no FROM hp_patient_card WHERE date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND payment_mode = 'Scheme' AND isurer = '"+memNo+"' order by patient_no");
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT date FROM hp_patient_visit where patient_no = '" + MNo + "' UNION SELECT date_admitted::date as date FROM hp_admission WHERE patient_no = '" + MNo + "' AND patient_no IS NOT NULL order by date DESC");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT date FROM hp_patient_visit where patient_no = '" + MNo + "' UNION SELECT date_admitted::date as date FROM hp_admission WHERE patient_no = '" + MNo + "' AND patient_no IS NOT NULL UNION SELECT distinct date::date as date FROM hp_lab_results WHERE patient_no = '" + MNo + "' UNION SELECT distinct trans_date::date as date FROM pb_doctors_request WHERE patient_no = '" + MNo + "' UNION SELECT distinct date::date as date FROM hp_lab_results WHERE patient_no = '" + MNo + "' UNION SELECT distinct date::date as date FROM hp_signs_record WHERE patient_no = '" + MNo + "' order by date DESC");
 //            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT trans_date FROM pb_doctors_request WHERE patient_no = '" + MNo + "'  ORDER by 1");
 
             while (rSet1.next()) {

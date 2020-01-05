@@ -385,7 +385,7 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
                             java.sql.Statement st2 = connectDB.createStatement();
                             java.sql.Statement st3 = connectDB.createStatement();
                             
-                            java.sql.ResultSet rsetTotals1 = st2.executeQuery("SELECT SUM(debit),sum(credit),sum(debit-credit) from ac_cash_collection WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND transaction_type not ilike 'Bank%'");
+                            java.sql.ResultSet rsetTotals1 = st2.executeQuery("SELECT SUM(debit),sum(credit),sum(debit-credit) from ac_cash_collection WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  AND transaction_type not ilike 'Bank%'");
                             
                             
                             table.getDefaultCell().setBorder(Rectangle.BOTTOM);
@@ -430,7 +430,7 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
                                     
                                     java.sql.Statement st1 = connectDB.createStatement();
                                     
-                                    java.sql.ResultSet rset1 = st1.executeQuery("select distinct date,receipt_no,initcap(dealer),sum(debit-credit) from ac_cash_collection where date BETWEEN '"+beginDate+"' AND '"+endDate+"' and receipt_no ILIKE '"+listofAct[i].toString()+"' AND transaction_type not ilike 'Bank%' group by date,receipt_no,dealer");
+                                    java.sql.ResultSet rset1 = st1.executeQuery("select distinct date,receipt_no,initcap(dealer),sum(debit-credit) from ac_cash_collection where date BETWEEN '"+beginDate+"' AND '"+endDate+"' and receipt_no ILIKE '"+listofAct[i].toString()+"' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  AND transaction_type not ilike 'Bank%' group by date,receipt_no,dealer");
                                     if(i == 0){
                                         
                                         while (rset1.next()){
@@ -458,7 +458,7 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
                                             java.sql.Statement st22 = connectDB.createStatement();
                                             java.sql.Statement st5 = connectDB.createStatement();
                                             
-                                            java.sql.ResultSet rset = st5.executeQuery("select initcap(description),sum(debit-credit) from ac_cash_collection where date BETWEEN '"+beginDate+"' AND '"+endDate+"' and receipt_no = '"+listofAct[i].toString()+"' AND transaction_type not ilike 'Bank%' group by description order by description");
+                                            java.sql.ResultSet rset = st5.executeQuery("select initcap(description),sum(debit-credit) from ac_cash_collection where date BETWEEN '"+beginDate+"' AND '"+endDate+"' and receipt_no = '"+listofAct[i].toString()+"' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  AND transaction_type not ilike 'Bank%' group by description order by description");
                                             
                                             // while (rset22.next()) {
                                             while (rset.next()) {
@@ -530,7 +530,7 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
                                             java.sql.Statement st22 = connectDB.createStatement();
                                             java.sql.Statement st5 = connectDB.createStatement();
                                             
-                                            java.sql.ResultSet rset = st5.executeQuery("select initcap(description),sum(debit-credit) from ac_cash_collection where date BETWEEN '"+beginDate+"' AND '"+endDate+"' and receipt_no = '"+listofAct[i].toString()+"' AND transaction_type not ilike 'Bank%' group by description order by description");
+                                            java.sql.ResultSet rset = st5.executeQuery("select initcap(description),sum(debit-credit) from ac_cash_collection where date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  and receipt_no = '"+listofAct[i].toString()+"' AND transaction_type not ilike 'Bank%' group by description order by description");
                                             
                                             // while (rset22.next()) {
                                             while (rset.next()) {
@@ -673,7 +673,7 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
             
             java.sql.Statement stmt1 = connectDB.createStatement();
             
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT date::date FROM ac_cash_collection where date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND transaction_type not ilike 'Bank%' ORDER BY date");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT date::date FROM ac_cash_collection where date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  AND transaction_type not ilike 'Bank%' ORDER BY date");
             
             while (rSet1.next()) {
                 
@@ -705,7 +705,7 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
             
             java.sql.Statement stmt1 = connectDB.createStatement();
             
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT receipt_no FROM ac_cash_collection where date = '"+dayDate+"' AND transaction_type not ilike 'Bank%' order by receipt_no");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT receipt_no FROM ac_cash_collection where date = '"+dayDate+"' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  AND  transaction_type not ilike 'Bank%' order by receipt_no");
             
             while (rSet1.next()) {
                 

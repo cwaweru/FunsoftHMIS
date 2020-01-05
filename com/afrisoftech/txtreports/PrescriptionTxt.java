@@ -377,7 +377,7 @@ public class PrescriptionTxt implements java.lang.Runnable {
             System.out.println("This is the no " + Receipt);
             java.sql.ResultSet rset3 = st3.executeQuery("select header,footer from ac_receipt_header");
             java.sql.ResultSet rset1 = st1.executeQuery("select CURRENT_TIMESTAMP(0)::date");
-            java.sql.ResultSet rset5 = st5.executeQuery("select initcap(service),requisition_no,bed_no,dosage,time_due from pb_doctors_request where inv_no = '" + Receipt + "' AND paid = false group by service,requisition_no,bed_no,dosage,time_due");
+            java.sql.ResultSet rset5 = st5.executeQuery("select initcap(service),requisition_no,bed_no,dosage,time_due from pb_doctors_request where inv_no = '" + Receipt + "'  group by service,requisition_no,bed_no,dosage,time_due");
             java.sql.ResultSet rset6 = st6.executeQuery("select distinct current_user");
             if (rHeader.equalsIgnoreCase("True")) {
 

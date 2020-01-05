@@ -68,5 +68,39 @@ public class MobilePayments {
         }
 
     }
+     public static boolean isTokenAuthentic(java.sql.Connection connectDB, String txID) {
+
+        boolean tokenAuthentic = false;
+
+        try {
+            java.sql.PreparedStatement pstmtToken = connectDB.prepareStatement("SELECT count(checkout_request_id) FROM mobile_payments WHERE mobile_tx_id = ? AND checkout_request_id IS NOT NULL AND credit = 0");
+
+            pstmtToken.setString(1, txID);
+
+            java.sql.ResultSet rsetToken = pstmtToken.executeQuery();
+
+            while (rsetToken.next()) {
+                
+                int tokenCount = 0;
+                
+                tokenCount = rsetToken.getInt(1);
+                
+                if(tokenCount < 1){
+                    
+                    tokenAuthentic = true;
+                    
+                }
+                
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+
+        return tokenAuthentic;
+
+    }   
+    
 
 }

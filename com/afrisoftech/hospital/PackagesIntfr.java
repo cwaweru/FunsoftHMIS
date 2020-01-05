@@ -226,9 +226,9 @@ public class PackagesIntfr extends javax.swing.JInternalFrame {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
                 packagesTableAncestorMoved(evt);
             }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         jScrollPane1.setViewportView(packagesTable);
@@ -391,7 +391,7 @@ public class PackagesIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jPanel2, gridBagConstraints);
 
-        setBounds(0, 0, 698, 350);
+        setBounds(0, 0, 934, 350);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

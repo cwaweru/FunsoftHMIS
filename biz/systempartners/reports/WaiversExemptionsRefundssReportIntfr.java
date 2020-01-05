@@ -5,6 +5,9 @@
  */
 package biz.systempartners.reports;
 
+import java.sql.SQLException;
+import org.openide.util.Exceptions;
+
 /**
  *
  * @author funsoft
@@ -46,10 +49,10 @@ public class WaiversExemptionsRefundssReportIntfr extends javax.swing.JInternalF
         reportBodyJscrollPane = new javax.swing.JScrollPane();
         reportBodyTable = new com.afrisoftech.dbadmin.JTable(){
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false,false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -308,7 +311,7 @@ public class WaiversExemptionsRefundssReportIntfr extends javax.swing.JInternalF
 
             if (patientTypeCmbx.getSelectedItem().toString().contains("--ALL--")) {
 
-                reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as exempted_amount, user_name as operator FROM ac_cash_collection WHERE transaction_type ilike 'Exemption%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5 UNION SELECT date::date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as exempted_amount, user_name as operator FROM hp_patient_card WHERE main_service ilike 'Exemption%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5 order by 1,2"));
+                reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as exempted_amount, user_name as operator,journal_no as Exemp_no FROM ac_cash_collection WHERE transaction_type ilike 'Exemption%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5,6 UNION SELECT date::date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as exempted_amount, user_name as operator,requisition_no FROM hp_patient_card WHERE main_service ilike 'Exemption%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5,6 order by 1,2"));
 
                 this.totalCreditSalesTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyTable, 3)));
 
@@ -316,25 +319,41 @@ public class WaiversExemptionsRefundssReportIntfr extends javax.swing.JInternalF
 
             } else if (patientTypeCmbx.getSelectedItem().toString().contains("OUT")) {
 
-                reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as exempted_amount, user_name as operator FROM ac_cash_collection WHERE transaction_type ilike 'Exemption%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5 order by 1,2"));
+                reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as exempted_amount, user_name as operator, journal_no as Exemp_no FROM ac_cash_collection WHERE transaction_type ilike 'Exemption%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5,6 order by 1,2"));
 
                 this.totalCreditSalesTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyTable, 3)));
 
                 this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
             } else {
-                reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date::date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as exempted_amount, user_name as operator FROM hp_patient_card WHERE main_service ilike 'Exemption%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5 order by 1,2"));
+                reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date::date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as exempted_amount, user_name as operator,requisition_no FROM hp_patient_card WHERE main_service ilike 'Exemption%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5,6 order by 1,2"));
 
                 this.totalCreditSalesTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyTable, 3)));
 
                 this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            }
+            try {
+                for (int i = 0; i < reportBodyTable.getRowCount(); i++) {
+                    java.sql.Statement stmt = connectDB.createStatement();
+
+                    //                java.sql.ResultSet rset = stmt.executeQuery("SELECT count(service) FROM hp_patient_card WHERE patient_no = '" + patient_no + "' AND visit_id = '"+visitIDTxt.getText()+"'");
+                    java.sql.ResultSet rset = stmt.executeQuery("SELECT DISTINCT user_name FROM hp_patient_billing WHERE patient_no = '" + reportBodyTable.getValueAt(i, 1).toString() + "' AND visit_id = '" + reportBodyTable.getValueAt(i, 5) + "'");
+
+                    while (rset.next()) {
+                        if (rset.getString(1) != null && !rset.getString(1).equalsIgnoreCase("")) {
+                            reportBodyTable.setValueAt(rset.getString(1), i, 4);
+                        }
+                    }
+                }
+            } catch (SQLException ex) {
+                Exceptions.printStackTrace(ex);
             }
 
         } else if (schemeNameCmbx.getSelectedItem().toString().contains("Waivers")) {
 
             if (patientTypeCmbx.getSelectedItem().toString().contains("--ALL--")) {
 
-                reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as waived_amount, user_name as operator FROM ac_cash_collection WHERE transaction_type ilike 'Waiver%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5 UNION SELECT date::date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as waived_amount, user_name as operator FROM hp_patient_card WHERE main_service ilike 'Waiver%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5 order by 1,2"));
+                reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as waived_amount, user_name as operator,journal_no as Exemp_no FROM ac_cash_collection WHERE transaction_type ilike 'Waiver%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5,6 UNION SELECT date::date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as waived_amount, user_name as operator,requisition_no FROM hp_patient_card WHERE main_service ilike 'Waiver%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5,6 order by 1,2"));
 
                 this.totalCreditSalesTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyTable, 3)));
 
@@ -342,18 +361,35 @@ public class WaiversExemptionsRefundssReportIntfr extends javax.swing.JInternalF
 
             } else if (patientTypeCmbx.getSelectedItem().toString().contains("OUT")) {
 
-                reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as waived_amount, user_name as operator FROM ac_cash_collection WHERE transaction_type ilike 'Waiver%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5 order by 1,2"));
+                reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as waived_amount, user_name as operator,journal_no as Exemp_no FROM ac_cash_collection WHERE transaction_type ilike 'Waiver%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5,6 order by 1,2"));
 
                 this.totalCreditSalesTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyTable, 3)));
 
                 this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
             } else {
-                reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date::date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as waived_amount, user_name as operator FROM hp_patient_card WHERE main_service ilike 'Waiver%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5 order by 1,2"));
+                reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date::date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as waived_amount, user_name as operator,requisition_no FROM hp_patient_card WHERE main_service ilike 'Waiver%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5,6 order by 1,2"));
 
                 this.totalCreditSalesTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyTable, 3)));
 
                 this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            }
+            
+            try {
+                for (int i = 0; i < reportBodyTable.getRowCount(); i++) {
+                    java.sql.Statement stmt = connectDB.createStatement();
+
+                    //                java.sql.ResultSet rset = stmt.executeQuery("SELECT count(service) FROM hp_patient_card WHERE patient_no = '" + patient_no + "' AND visit_id = '"+visitIDTxt.getText()+"'");
+                    java.sql.ResultSet rset = stmt.executeQuery("SELECT DISTINCT user_name FROM hp_patient_billing WHERE patient_no = '" + reportBodyTable.getValueAt(i, 1).toString() + "' AND visit_id = '" + reportBodyTable.getValueAt(i, 5) + "'");
+
+                    while (rset.next()) {
+                        if (rset.getString(1) != null && !rset.getString(1).equalsIgnoreCase("")) {
+                            reportBodyTable.setValueAt(rset.getString(1), i, 4);
+                        }
+                    }
+                }
+            } catch (SQLException ex) {
+                Exceptions.printStackTrace(ex);
             }
 
         } else if (schemeNameCmbx.getSelectedItem().toString().contains("Refunds")) {
@@ -375,7 +411,7 @@ public class WaiversExemptionsRefundssReportIntfr extends javax.swing.JInternalF
                 this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
             } else {
-                
+
                 reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date::date,  patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as refund_amount, user_name as operator FROM hp_patient_card WHERE transaction_type ilike '%cancel%'  AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5 order by 1,2"));
 
                 this.totalCreditSalesTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyTable, 3)));

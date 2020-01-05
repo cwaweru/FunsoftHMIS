@@ -458,8 +458,8 @@ public class PatientBillPdf implements java.lang.Runnable {
                                     + "UNION ALL SELECT DISTINCT CASE WHEN (discharge_date::date IS NULL) THEN ('now'::date  - date_received) ELSE (discharge_date::date - date_received) END AS date from hp_mortuary WHERE "
                                     + " annual_no = '"+VisitId+"' GROUP BY 1");
                             
-                            java.sql.ResultSet rseta = sta.executeQuery("SELECT DISTINCT ad.ward,ad.bed_no,ad.doctor ,ad.date_admitted,ad.discharge_date::date from hp_admission ad where ad.patient_no = '"+memNo+"'  AND visit_id = '"+VisitId+"' "
-                                    + "  UNION ALL SELECT DISTINCT ad.deseased_sourse,'',ad.certified_by ,ad.date_received,ad.discharge_date::date FROM hp_mortuary ad WHERE  annual_no = '"+VisitId+"'");
+                            java.sql.ResultSet rseta = sta.executeQuery("SELECT DISTINCT ad.ward,ad.bed_no,ad.doctor ,ad.date_admitted,ad.discharge_date::date,check_out from hp_admission ad where ad.patient_no = '"+memNo+"'  AND visit_id = '"+VisitId+"' "
+                                    + "  UNION ALL SELECT DISTINCT ad.deseased_sourse,'',ad.certified_by ,ad.date_received,ad.discharge_date::date, check_out FROM hp_mortuary ad WHERE  annual_no = '"+VisitId+"'");
                             java.sql.ResultSet rset = st.executeQuery("SELECT DISTINCT patient_no,initcap(second_name||' '||first_name||' '||last_name),address,residence,tel_no,payer,description,category FROM hp_inpatient_register where patient_no = '"+memNo+"' "
                                     + "UNION ALL SELECT DISTINCT annual_no,initcap(patient_name),address,residence,tel,broughtby,'',deseased_sourse FROM hp_mortuary WHERE annual_no = '"+memNo+"'");
                             java.sql.ResultSet rset1 = st1.executeQuery(" select date::date,initcap(service) as service,dosage::int4,reference,sum(debit-credit) from hp_patient_card where patient_no = '"+memNo+"' "
@@ -479,6 +479,7 @@ public class PatientBillPdf implements java.lang.Runnable {
 //                                table.addCell(phrase);
 //                                
 //                            }
+                            String status = "";
                             table.getDefaultCell().setColspan(6);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                             phrase = new Phrase("Interim Invoice".toUpperCase(), pFontHeader11);
@@ -551,6 +552,15 @@ public class PatientBillPdf implements java.lang.Runnable {
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                     phrase = new Phrase("Scheme Name : "+dbObject.getDBObject(rset.getObject(7), "-"), pFontHeader1);
                                     table.addCell(phrase);
+                                    
+                                    table.getDefaultCell().setColspan(3);
+                                   
+                                    if(rseta.getBoolean(6)) {
+                                        status = "YES";
+                                    }else{
+                                        status = "NO";
+                                    }
+                                    
                                 }
                             }
                             //      if(rsetc.getBoolean(1) == true){
@@ -561,6 +571,18 @@ public class PatientBillPdf implements java.lang.Runnable {
                                 phrase = new Phrase("No.of Days : "+dbObject.getDBObject(rsetb.getObject(1), "-"), pFontHeader1);
                                 table.addCell(phrase);
                             }
+                            
+                            
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                            phrase = new Phrase("Released : "+dbObject.getDBObject(status, "-"), pFontHeader1);
+                            table.addCell(phrase);
+                            table.getDefaultCell().setColspan(3);
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                            phrase = new Phrase("", pFontHeader1);
+                            table.addCell(phrase);
+                            
+                            
+                            
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
                             table.getDefaultCell().setBorderWidth(Rectangle.TOP);

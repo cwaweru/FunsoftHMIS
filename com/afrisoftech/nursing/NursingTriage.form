@@ -920,7 +920,7 @@
                   <StringArray count="3">
                     <StringItem index="0" value="-"/>
                     <StringItem index="1" value="Normal"/>
-                    <StringItem index="2" value="Urgent"/>
+                    <StringItem index="2" value="Emergency"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -5599,7 +5599,7 @@
                                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="occupancyTableMouseClicked"/>
                                       </Events>
                                       <AuxValues>
-                                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable()"/>
+                                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JXTable()"/>
                                       </AuxValues>
                                     </Component>
                                   </SubComponents>

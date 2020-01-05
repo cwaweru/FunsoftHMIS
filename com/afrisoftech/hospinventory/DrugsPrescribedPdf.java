@@ -46,13 +46,15 @@ public class DrugsPrescribedPdf implements java.lang.Runnable {
     java.lang.Runtime rtThreadSample = java.lang.Runtime.getRuntime();
     
     java.lang.Process prThread;
+    String typee = null;
     
-    public void DrugsPrescribedPdf(java.sql.Connection connDb,java.util.Date begindate, java.util.Date endate) {
+    public void DrugsPrescribedPdf(java.sql.Connection connDb,java.util.Date begindate, java.util.Date endate,String type) {
         
         dbObject = new com.afrisoftech.lib.DBObject();
         connectDB = connDb;
         beginDate = begindate;
         endDate = endate;
+        typee =type;
         
         threadSample = new java.lang.Thread(this,"SampleThread");
         
@@ -395,9 +397,17 @@ public class DrugsPrescribedPdf implements java.lang.Runnable {
                         try {
                             
                             java.sql.Statement st = connectDB.createStatement();
+                            java.sql.ResultSet rset = null;
                             
-                            java.sql.ResultSet rset = st.executeQuery("select patient_no,initcap(patient_name),prescription_no,initcap(description),quantity,'',amount from hp_pharmacy where date_prescribed between '"+beginDate+"' and '"+endDate+"' and main_service ilike '%pharmacy%' AND paid = true order by prescription_no,description");
-                            
+                            if(typee.equalsIgnoreCase("Paid")){
+                                rset = st.executeQuery("select patient_no,initcap(patient_name),prescription_no,initcap(description),quantity,'',amount from hp_pharmacy where date_prescribed between '"+beginDate+"' and '"+endDate+"' and main_service ilike '%pharmacy%' AND paid = true order by prescription_no,description");
+                            }else if(typee.equalsIgnoreCase("Unpaid")){
+                              rset = st.executeQuery("select patient_no,initcap(patient_name),prescription_no,initcap(description),quantity,'',amount from hp_pharmacy where date_prescribed between '"+beginDate+"' and '"+endDate+"' and main_service ilike '%pharmacy%' AND paid = false order by prescription_no,description");
+                             
+                            }else{
+                                rset = st.executeQuery("select patient_no,initcap(patient_name),prescription_no,initcap(description),quantity,'',amount from hp_pharmacy where date_prescribed between '"+beginDate+"' and '"+endDate+"' and main_service ilike '%pharmacy%'  order by prescription_no,description");
+                           
+                            }
                             
                             while (rset.next()) {
                                 

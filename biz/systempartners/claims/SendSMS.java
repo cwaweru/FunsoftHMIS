@@ -67,6 +67,11 @@ public class SendSMS {
     public void SendSMS() {
         
     }
+    public static void SendSMS(java.lang.String phoneNumber, java.lang.String smsMessage) {
+    
+        com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendSMS("8df85dfa28771124422a74399e3734d42595701bpA531y9YXg23DIbKZMTg7jhCN", phoneNumber, smsMessage);
+    
+    }
     
     public static void SendSMS(java.lang.String invoiceNo, java.lang.String phoneNumber, java.lang.String smsMessage) {
 /*

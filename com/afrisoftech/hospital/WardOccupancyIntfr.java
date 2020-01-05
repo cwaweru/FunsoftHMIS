@@ -32,6 +32,7 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
         org.jdesktop.swingx.decorator.PatternPredicate patternPredicate = new org.jdesktop.swingx.decorator.PatternPredicate("HDU", 4, 4);
         ColorHighlighter yellow = new ColorHighlighter(patternPredicate, Color.YELLOW, null, Color.YELLOW, null);
         tableHighlighters.addElement(yellow);
+        
         org.jdesktop.swingx.decorator.PatternPredicate patternPredicate1 = new org.jdesktop.swingx.decorator.PatternPredicate("ACUTE ROOM", 4, 4);
         ColorHighlighter red = new ColorHighlighter(patternPredicate1, Color.RED, null, Color.RED, null);
         tableHighlighters.add(red);

@@ -3299,7 +3299,10 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
             nhifCategoryCmbx.setEnabled(false);
             javax.swing.JOptionPane.showMessageDialog(this, "Please Ensure the Card is Mature", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
 
-        } else if (cardMaturityDatePicker.getDate().before(dischargeDatePicker.getDate())) {
+        } else if (patientNumberTxt.getText().length() > 0 && tickAllChk.isSelected() == false) {
+                  javax.swing.JOptionPane.showMessageDialog(this, "Select a patient first and tick all", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+       
+        }else if (cardMaturityDatePicker.getDate().before(dischargeDatePicker.getDate())) {
             nhifCategoryCmbx.setEnabled(true);
         }
 
@@ -4507,9 +4510,9 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                             java.sql.PreparedStatement pstmt12 = null;
 
                             if (typeRenal.contains("Renal")) {
-                                pstmt12 = connectDB.prepareStatement("UPDATE hp_admission SET invoice_no = '" + invoiceNo + "',balance = '" + netAmountTxt.getText() + "',discharge = true,check_out = false,date_admitted = '" + dialysisDatePicker.getDate() + "',discharge_date = '" + dischargeDatePicker.getDate() + "',discharged_by = '" + UserName + "'  WHERE patient_no = '" + this.patientNumberTxt.getText() + "' AND visit_id = '" + visitIDTxt.getText() + "'");
+                                pstmt12 = connectDB.prepareStatement("UPDATE hp_admission SET invoice_no = '" + invoiceNo + "',balance = '" + netAmountTxt.getText() + "',discharge = true,check_out = true, date_admitted = '" + dialysisDatePicker.getDate() + "',discharge_date = '" + dischargeDatePicker.getDate() + "',discharged_by = '" + UserName + "'  WHERE patient_no = '" + this.patientNumberTxt.getText() + "' AND visit_id = '" + visitIDTxt.getText() + "'");
                             } else {
-                                pstmt12 = connectDB.prepareStatement("UPDATE hp_admission SET invoice_no = '" + invoiceNo + "',balance = '" + netAmountTxt.getText() + "',discharge = true,check_out = false,date_admitted = '" + admissionDatePicker.getDate() + "',discharge_date = '" + dischargeDatePicker.getDate() + "',discharged_by = '" + UserName + "'  WHERE patient_no = '" + this.patientNumberTxt.getText() + "' AND visit_id = '" + visitIDTxt.getText() + "'");
+                                pstmt12 = connectDB.prepareStatement("UPDATE hp_admission SET invoice_no = '" + invoiceNo + "',balance = '" + netAmountTxt.getText() + "',discharge = true,check_out = true, date_admitted = '" + admissionDatePicker.getDate() + "',discharge_date = '" + dischargeDatePicker.getDate() + "',discharged_by = '" + UserName + "'  WHERE patient_no = '" + this.patientNumberTxt.getText() + "' AND visit_id = '" + visitIDTxt.getText() + "'");
                             }
 
                             pstmt12.executeUpdate();
@@ -4575,7 +4578,6 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                             java.sql.ResultSet rst1 = ps1.executeQuery("SELECT discharge_no FROM hp_patient_discharge WHERE inv_no = '"+invoiceNo+"'");
                             while (rst1.next()) {
                                 rst1.getObject(1).toString();
-
                                 disno = rst1.getObject(1).toString();
     //                            UserName = rst1.getObject(2).toString();
                             }

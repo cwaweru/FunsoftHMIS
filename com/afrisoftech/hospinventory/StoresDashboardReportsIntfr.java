@@ -81,12 +81,14 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
         itemSearchScrollPane1 = new javax.swing.JScrollPane();
         itemSearchTable1 = new com.afrisoftech.dbadmin.JTable();
         itemSearchCloseBtn1 = new javax.swing.JButton();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         headerPanel = new javax.swing.JPanel();
         storeTypeCmbx = new javax.swing.JComboBox();
         startDatePicker = new com.afrisoftech.lib.DatePicker();
         endDatePicker = new com.afrisoftech.lib.DatePicker();
         jLabel18 = new javax.swing.JLabel();
-        procurementMethodCmbx = new javax.swing.JComboBox<String>();
+        procurementMethodCmbx = new javax.swing.JComboBox<>();
         bodyPanel = new javax.swing.JPanel();
         storeDashboardTabbedPane = new javax.swing.JTabbedPane();
         StoreBalancesPanel = new javax.swing.JPanel();
@@ -159,6 +161,16 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
         consumptionScrollPane = new javax.swing.JScrollPane();
         consumptionTable = new com.afrisoftech.dbadmin.JXTable();
         consumptionStoreNameCmbx = new javax.swing.JComboBox();
+        stockissuesPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        storesInetoryIssueTbl = new com.afrisoftech.dbadmin.JXTable();
+        issuingStoreCbx = new javax.swing.JComboBox();
+        receipientStoreCbx = new javax.swing.JComboBox();
+        jPanel1 = new javax.swing.JPanel();
+        issuingChx = new javax.swing.JCheckBox();
+        recivingCbx = new javax.swing.JCheckBox();
+        summaryCbx = new javax.swing.JCheckBox();
+        detailedCbx = new javax.swing.JCheckBox();
         buttonPanel = new javax.swing.JPanel();
         generateReportBtn = new javax.swing.JButton();
         refreshReportBtn = new javax.swing.JButton();
@@ -512,11 +524,11 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 storesAuditTrailTableMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                storesAuditTrailTableMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 storesAuditTrailTableMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                storesAuditTrailTableMouseEntered(evt);
             }
         });
         storesAuditScrollPane.setViewportView(storesAuditTrailTable);
@@ -727,10 +739,10 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 200.0;
         abcAnalysisPanel.add(abcAnalysisJscrl, gridBagConstraints);
 
-        abcPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "The A  and C - Threshold figures MUST be set before the generating the report ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 51, 51))); // NOI18N
+        abcPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "The A  and C - Threshold figures MUST be set before the generating the report ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 51, 51))); // NOI18N
         abcPanel.setLayout(new java.awt.GridBagLayout());
 
-        aThresholdTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "A Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
+        aThresholdTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "A Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
         aThresholdTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
         aThresholdTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -739,7 +751,7 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         abcPanel.add(aThresholdTxt, gridBagConstraints);
 
-        bThresholdTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "B Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+        bThresholdTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "B Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
         bThresholdTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
         bThresholdTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -748,7 +760,7 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         abcPanel.add(bThresholdTxt, gridBagConstraints);
 
-        cThresholdTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "C Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 255, 0))); // NOI18N
+        cThresholdTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "C Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 255, 0))); // NOI18N
         cThresholdTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
         cThresholdTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -827,10 +839,10 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 300.0;
         movementAnalysisPanel.add(movementAnalysisJscrl, gridBagConstraints);
 
-        abcPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "The A  and C - Threshold figures MUST be set before the generating the report ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 51, 51))); // NOI18N
+        abcPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "The A  and C - Threshold figures MUST be set before the generating the report ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 51, 51))); // NOI18N
         abcPanel1.setLayout(new java.awt.GridBagLayout());
 
-        aThresholdTxt1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "A Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
+        aThresholdTxt1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "A Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
         aThresholdTxt1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
         aThresholdTxt1.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -839,7 +851,7 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         abcPanel1.add(aThresholdTxt1, gridBagConstraints);
 
-        bThresholdTxt1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "B Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+        bThresholdTxt1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "B Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
         bThresholdTxt1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
         bThresholdTxt1.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -848,7 +860,7 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         abcPanel1.add(bThresholdTxt1, gridBagConstraints);
 
-        cThresholdTxt1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "C Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 255, 0))); // NOI18N
+        cThresholdTxt1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "C Threshold", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 255, 0))); // NOI18N
         cThresholdTxt1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
         cThresholdTxt1.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1041,6 +1053,90 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
         consumptionPanel.add(consumptionStoreNameCmbx, gridBagConstraints);
 
         storeDashboardTabbedPane.addTab("Inventory Consumption Analysis", consumptionPanel);
+
+        stockissuesPanel.setLayout(new java.awt.GridBagLayout());
+
+        storesInetoryIssueTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(storesInetoryIssueTbl);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 20.0;
+        stockissuesPanel.add(jScrollPane1, gridBagConstraints);
+
+        issuingStoreCbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' UNION SELECT DISTINCT initcap(store_name) FROM st_stores ORDER BY 1"));
+        issuingStoreCbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Issuing Store Name"));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        stockissuesPanel.add(issuingStoreCbx, gridBagConstraints);
+
+        receipientStoreCbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' UNION SELECT DISTINCT initcap(store_name) FROM st_stores  ORDER BY 1"));
+        receipientStoreCbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Recipient Store Name"));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        stockissuesPanel.add(receipientStoreCbx, gridBagConstraints);
+
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        buttonGroup2.add(issuingChx);
+        issuingChx.setSelected(true);
+        issuingChx.setText("Issuing");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        jPanel1.add(issuingChx, gridBagConstraints);
+
+        buttonGroup2.add(recivingCbx);
+        recivingCbx.setText("Receiving");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        jPanel1.add(recivingCbx, gridBagConstraints);
+
+        buttonGroup1.add(summaryCbx);
+        summaryCbx.setSelected(true);
+        summaryCbx.setText("Summary");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        jPanel1.add(summaryCbx, gridBagConstraints);
+
+        buttonGroup1.add(detailedCbx);
+        detailedCbx.setText("Detailed");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        jPanel1.add(detailedCbx, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        stockissuesPanel.add(jPanel1, gridBagConstraints);
+
+        storeDashboardTabbedPane.addTab("Stores Inventory Issues", stockissuesPanel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -1259,6 +1355,67 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
             } else {
                 consumptionTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT  initcap(item) as item_name, item_code, (SELECT DISTINCT strength FROM st_stock_item WHERE st_sub_stores.item_code = st_stock_item.item_code LIMIT 1) as strength, sum(receiving)::numeric(15,0) as received_quantity, sum(issuing)::numeric(15,0) as consumption, (sum(issuing)/" + interval + ")::numeric(15,0) as daily_consumption_average,(sum(issuing)*30/" + interval + ")::numeric(15,0) as monthly_consumption_average, (sum(issuing)::numeric(15,0)*(SELECT buying_price/packaging FROM st_stock_item WHERE st_sub_stores.item_code = st_stock_item.item_code LIMIT 1))::numeric(15,0) as consumption_monetary_value FROM st_sub_stores WHERE upper(store_name) = '" + consumptionStoreNameCmbx.getSelectedItem().toString().toUpperCase() + "' AND trans_date::date BETWEEN '" + this.startDatePicker.getDate() + "'::date AND '" + this.endDatePicker.getDate() + "'::date AND issiued_to not ilike 'stock%' AND item_code is not null GROUP BY 1,2,3 ORDER BY 1"));
             }
+        }else if (storeDashboardTabbedPane.getSelectedIndex() == 11) {
+
+            if (detailedCbx.isSelected() && issuingChx.isSelected()) {
+                if (receipientStoreCbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                    storesInetoryIssueTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT item_code, item,issuing AS quantity, buying_price, total, transaction_no,  trans_date::DATE, user_name, issiued_to,   manual_transfer_no,sub_store\n"
+                            + "FROM st_sub_stores WHERE store_name = '" + issuingStoreCbx.getSelectedItem().toString() + "'  and transaction_no ilike 'T%'  and trans_date::date BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' AND issuing >0"));;
+                            
+                            System.err.println("SELECT item_code, item,issuing AS quantity, buying_price, total, transaction_no,  trans_date::DATE, user_name, issiued_to,   manual_transfer_no,sub_store\n"
+                            + "FROM st_sub_stores WHERE store_name = '" + issuingStoreCbx.getSelectedItem().toString() + "'   and trans_date::date BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' AND issuing >0");
+
+                } else {
+                    storesInetoryIssueTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT item_code, item,issuing AS quantity, buying_price, total, transaction_no,  trans_date::DATE, user_name, issiued_to,   manual_transfer_no\n"
+                            + "FROM st_sub_stores WHERE store_name = '" + issuingStoreCbx.getSelectedItem().toString() + "' and sub_store = '" + receipientStoreCbx.getSelectedItem().toString() + "'   and trans_date::date BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' AND issuing >0"));;
+                            System.err.println("SELECT item_code, item,issuing AS quantity, buying_price, total, transaction_no,  trans_date::DATE, user_name, issiued_to,   manual_transfer_no\n"
+                            + "FROM st_sub_stores WHERE store_name = '" + issuingStoreCbx.getSelectedItem().toString() + "' and sub_store = '" + receipientStoreCbx.getSelectedItem().toString() + "'   and trans_date::date BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' AND issuing >0");
+                }
+            } else if (issuingChx.isSelected() && summaryCbx.isSelected()) {
+                if (receipientStoreCbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                    storesInetoryIssueTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT item_code, item,SUM(issuing) AS quantity, buying_price, SUM(total) AS total,sub_store\n"
+                            + "FROM st_sub_stores WHERE store_name = '" + issuingStoreCbx.getSelectedItem().toString() + "' and transaction_no ilike 'T%'  and trans_date::date BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' AND issuing >0 GROUP BY 1,2,4,6 "));;
+                            
+                            System.err.println("SELECT item_code, item,SUM(issuing) AS quantity, buying_price, SUM(total) AS total,sub_store\n"
+                            + "FROM st_sub_stores WHERE store_name = '" + issuingStoreCbx.getSelectedItem().toString() + "'   and trans_date::date BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' AND issuing >0 GROUP BY 1,2,4,6");
+
+                } else {
+                    storesInetoryIssueTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT item_code, item,SUM (issuing) AS quantity, buying_price, SUM(total) AS total \n"
+                            + "FROM st_sub_stores WHERE store_name = '" + issuingStoreCbx.getSelectedItem().toString() + "' and sub_store = '" + receipientStoreCbx.getSelectedItem().toString() + "'   and trans_date::date BETWEEN "
+                                    + "'" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' AND issuing >0 GROUP BY 1,2,4 "));;
+                                    
+                                    System.err.println("SELECT item_code, item,SUM (issuing) AS quantity, buying_price, SUM(total) AS total \n"
+                            + "FROM st_sub_stores WHERE store_name = '" + issuingStoreCbx.getSelectedItem().toString() + "' and sub_store = '" + receipientStoreCbx.getSelectedItem().toString() + "'   and trans_date::date BETWEEN "
+                                    + "'" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' AND issuing >0 GROUP BY 1,2,4");
+                }
+            } 
+            
+            
+            
+            if (detailedCbx.isSelected() && recivingCbx.isSelected()) {
+                if (receipientStoreCbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                    storesInetoryIssueTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT item_code, item,receiving AS quantity, buying_price, total, transaction_no,  trans_date::DATE, user_name, issiued_to,   manual_transfer_no,sub_store\n"
+                            + "FROM st_sub_stores WHERE store_name = '" + receipientStoreCbx.getSelectedItem().toString() + "'  and transaction_no ilike 'T%'  and trans_date::date BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' AND receiving >0"));;
+                            
+                          
+                } else {
+                    storesInetoryIssueTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT item_code, item,receiving AS quantity, buying_price, total, transaction_no,  trans_date::DATE, user_name, issiued_to\n"
+                            + "FROM st_sub_stores WHERE store_name = '" + receipientStoreCbx.getSelectedItem().toString() + "' and sub_store = '" + issuingStoreCbx.getSelectedItem().toString() + "'   and trans_date::date BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' AND receiving >0"));;
+                            }
+            } else if (recivingCbx.isSelected() && summaryCbx.isSelected()) {
+                if (receipientStoreCbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                    storesInetoryIssueTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT item_code, item,SUM(receiving) AS quantity, buying_price, SUM(total) AS total,sub_store\n"
+                            + "FROM st_sub_stores WHERE store_name = '" + receipientStoreCbx.getSelectedItem().toString() + "' and transaction_no ilike 'T%'  and trans_date::date BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' AND receiving >0 GROUP BY 1,2,4,6 "));;
+                            
+                           
+                } else {
+                    storesInetoryIssueTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT item_code, item,SUM (receiving) AS quantity, buying_price, SUM(total) AS total \n"
+                            + "FROM st_sub_stores WHERE store_name = '" + receipientStoreCbx.getSelectedItem().toString() + "' and sub_store = '" + issuingStoreCbx.getSelectedItem().toString() + "'   and trans_date::date BETWEEN "
+                                    + "'" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' AND receiving >0 GROUP BY 1,2,4 "));;
+                                    
+                                   }
+            }
+
         } else {
             movementAnalysisTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT "
                     + " initcap(trim((SELECT DISTINCT st_stock_item.description FROM st_stock_item WHERE "
@@ -1551,6 +1708,8 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField bThresholdTxt;
     private javax.swing.JFormattedTextField bThresholdTxt1;
     private javax.swing.JPanel bodyPanel;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JFormattedTextField cThresholdTxt;
     private javax.swing.JFormattedTextField cThresholdTxt1;
@@ -1559,6 +1718,7 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane consumptionScrollPane;
     private javax.swing.JComboBox consumptionStoreNameCmbx;
     private javax.swing.JTable consumptionTable;
+    private javax.swing.JCheckBox detailedCbx;
     private javax.swing.JTextField detailedStoreMonetaryValueTxt;
     private com.afrisoftech.lib.DatePicker endDatePicker;
     private javax.swing.JPanel expiryReportPanel;
@@ -1571,6 +1731,8 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox grnStoreNameCmbx;
     private javax.swing.JTextField grnTotalsTxt;
     private javax.swing.JPanel headerPanel;
+    private javax.swing.JCheckBox issuingChx;
+    private javax.swing.JComboBox issuingStoreCbx;
     private javax.swing.JPanel itemBalancesPanel;
     private javax.swing.JScrollPane itemBalancesScrollPane;
     private javax.swing.JTable itemBalancesTable;
@@ -1597,12 +1759,16 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel61;
     private javax.swing.JPanel jPanel62;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane movementAnalysisJscrl;
     private javax.swing.JPanel movementAnalysisPanel;
     private javax.swing.JTable movementAnalysisTable;
     private javax.swing.JComboBox<String> procurementMethodCmbx;
+    private javax.swing.JComboBox receipientStoreCbx;
+    private javax.swing.JCheckBox recivingCbx;
     private javax.swing.JButton refreshReportBtn;
     private javax.swing.JScrollPane reorderLevelJscrl;
     private javax.swing.JPanel reorderLevelPanel;
@@ -1617,6 +1783,7 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel stockAuditTrailPanel;
     private javax.swing.JScrollPane stockValuationScrollPane;
     private javax.swing.JTable stockValuationTable;
+    private javax.swing.JPanel stockissuesPanel;
     private javax.swing.JTabbedPane storeDashboardTabbedPane;
     private javax.swing.JPanel storeDetailedBalancesPanel;
     private javax.swing.JScrollPane storeDetailedBalancesScrollPane;
@@ -1630,9 +1797,11 @@ public class StoresDashboardReportsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTable storesAuditTrailTable;
     private javax.swing.JTextField storesBalancesTxt;
     private javax.swing.JComboBox storesCmbx;
+    private javax.swing.JTable storesInetoryIssueTbl;
     private javax.swing.JLabel storesNameLbl;
     private javax.swing.JLabel storesNameReorderLbl;
     private javax.swing.JComboBox storesReorderCmbx;
+    private javax.swing.JCheckBox summaryCbx;
     private javax.swing.JComboBox supplierNameCmbx;
     private javax.swing.JLabel totalDeliveriesLbl;
     // End of variables declaration//GEN-END:variables

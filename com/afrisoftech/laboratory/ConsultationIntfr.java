@@ -3,7 +3,7 @@
  *
  * Created on August 13, 2002, 1:09 PM
  */
-package com.afrisoftech.laboratory;
+package com.afrisoftech.laboratory; 
 
 import biz.systempartners.claims.XMLClaimFile;
 import com.afrisoftech.hospital.VitalSignRecIntfr;
@@ -117,6 +117,37 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 //            predicateTable0.setHighlighterPipeline(predicateTable0, new org.jdesktop.swing.decorator.PatternHighlighter[]{
 //              
 //            });
+        java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters5 = new java.util.Vector<org.jdesktop.swingx.decorator.Highlighter>(1, 1);
+        //org.jdesktop.swingx.decorator.Highlighter tableHighlighterArray[] ;// = new org.jdesktop.swingx.decorator.Highlighter()[];
+        com.afrisoftech.dbadmin.JXTable predicateTable5 = (com.afrisoftech.dbadmin.JXTable) clerkingwaitingTable;
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate5x = new org.jdesktop.swingx.decorator.PatternPredicate("1", 9, 9);
+        ColorHighlighter pink5 = new ColorHighlighter(patternPredicate5x, Color.PINK, null, Color.PINK, null);
+        tableHighlighters5.addElement(pink5);
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate5 = new org.jdesktop.swingx.decorator.PatternPredicate("Cons", 9, 9);
+        ColorHighlighter cyan5 = new ColorHighlighter(patternPredicate5, Color.CYAN, null, Color.CYAN, null);
+        tableHighlighters5.add(cyan5);
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate4x = new org.jdesktop.swingx.decorator.PatternPredicate("Normal", 4, 4);
+        ColorHighlighter green4 = new ColorHighlighter(patternPredicate4x, Color.ORANGE, null, Color.ORANGE, null);
+        tableHighlighters5.addElement(green4);
+        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate4 = new org.jdesktop.swingx.decorator.PatternPredicate("Emergency", 4, 4);
+        ColorHighlighter redd = new ColorHighlighter(patternPredicate4, Color.RED, null, Color.RED, null);
+        tableHighlighters5.add(redd);
+        // Highlighter shading = new ShadingColorHighlighter(new HighlightPredicate.ColumnHighlightPredicate(6));
+        ColorHighlighter tableHighlightersArray5[] = new ColorHighlighter[]{pink5, cyan5, green4, redd};
+        predicateTable5.setHighlighterPipeline(predicateTable5, tableHighlightersArray5);
+
+//        java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters4 = new java.util.Vector<org.jdesktop.swingx.decorator.Highlighter>(1, 1);
+//        //org.jdesktop.swingx.decorator.Highlighter tableHighlighterArray[] ;// = new org.jdesktop.swingx.decorator.Highlighter()[];
+//        com.afrisoftech.dbadmin.JXTable predicateTable4 = (com.afrisoftech.dbadmin.JXTable) clerkingwaitingTable;
+//        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate4x = new org.jdesktop.swingx.decorator.PatternPredicate("Normal", 4, 4);
+//        ColorHighlighter green4 = new ColorHighlighter(patternPredicate4x, Color.ORANGE, null, Color.ORANGE, null);
+//        tableHighlighters4.addElement(green4);
+//        org.jdesktop.swingx.decorator.PatternPredicate patternPredicate4 = new org.jdesktop.swingx.decorator.PatternPredicate("Emergency", 4, 4);
+//        ColorHighlighter redd = new ColorHighlighter(patternPredicate4, Color.RED, null, Color.RED, null);
+//        tableHighlighters4.add(redd);
+//        // Highlighter shading = new ShadingColorHighlighter(new HighlightPredicate.ColumnHighlightPredicate(6));
+//        ColorHighlighter tableHighlightersArray4[] = new ColorHighlighter[]{green4, redd};
+//        predicateTable4.setHighlighterPipeline(predicateTable4, tableHighlightersArray4);
         java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = new java.util.Vector<org.jdesktop.swingx.decorator.Highlighter>(1, 1);
         //org.jdesktop.swingx.decorator.Highlighter tableHighlighterArray[] ;// = new org.jdesktop.swingx.decorator.Highlighter()[];
         com.afrisoftech.dbadmin.JXTable predicateTable = (com.afrisoftech.dbadmin.JXTable) labresultsTable;
@@ -142,6 +173,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         // Highlighter shading = new ShadingColorHighlighter(new HighlightPredicate.ColumnHighlightPredicate(6));
         ColorHighlighter tableHighlightersArray1[] = new ColorHighlighter[]{red, green};
         predicateTable1.setHighlighterPipeline(predicateTable1, tableHighlightersArray1);
+
     }
 
     private String getUser() {
@@ -398,7 +430,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         jPanel2 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        clerkingwaitingTable = new com.afrisoftech.dbadmin.JTable();
+        clerkingwaitingTable = new com.afrisoftech.dbadmin.JXTable();
         jPanel41 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -4330,33 +4362,33 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         pharmacyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Drug", "Qty ", "Cost", "Route", "Freqcy", "No.of Days", "Dosage", "Gl Code", "Code", "Pharmacy Balances"
+                "Drug", "Qty ", "Cost", "Route", "Freqcy", "No.of Days", "Dosage", "Gl Code", "Code", "Pharmacy Balances", "Units"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, true, true, true, true, false, false, false
+                false, true, false, true, true, true, true, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -4401,11 +4433,23 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
         javax.swing.table.TableColumn teditor1 = this.pharmacyTable.getColumn("Freqcy");
 
+        cmBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmBox1ActionPerformed(evt);
+            }
+        });
+
         teditor1.setCellEditor(new javax.swing.DefaultCellEditor(cmBox1));
 
         java.lang.Object[] strCmb3 = {"Once", "1", "3", "5", "7", "10", "14", "30", "90"};
 
         javax.swing.JComboBox cmBox3 = new javax.swing.JComboBox(strCmb3);
+
+        cmBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmBox3ActionPerformed(evt);
+            }
+        });
         cmBox3.setEditable(true);
         javax.swing.table.TableColumn teditor3 = this.pharmacyTable.getColumn("No.of Days");
 
@@ -5148,6 +5192,11 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         allpatCheckBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 allpatCheckBoxItemStateChanged(evt);
+            }
+        });
+        allpatCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allpatCheckBoxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -7348,13 +7397,13 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 //        /*        if (jTable3.isEditing()) {
 //         jTable3.getCellEditor().stopCellEditing();
 //         }*/
-//        if (jTable111.isEditing()) {
-//            jTable111.getCellEditor().stopCellEditing();
+//        if (pharmacyTable.isEditing()) {
+//            pharmacyTable.getCellEditor().stopCellEditing();
 //        }
 //        symptoms = this.complainsTextPane.getText() + " " + jEditorPane2.getText();//jTable3.getValueAt(0, 0) + " " + jTable3.getValueAt(1, 0) + " " + jTable3.getValueAt(2, 0) + " " + jTable3.getValueAt(3, 0);
 //        diagnosis = diagnosisTable.getValueAt(0, 1) + " " + diagnosisTable.getValueAt(1, 1) + " ";
 //        if (pharmacyCheckBox.isSelected()) {
-//            plans = jTable111.getValueAt(0, 0) + " " + jTable111.getValueAt(1, 0) + " " + jTable111.getValueAt(2, 0);
+//            plans = pharmacyTable.getValueAt(0, 0) + " " + pharmacyTable.getValueAt(1, 0) + " " + pharmacyTable.getValueAt(2, 0);
 //        } else {
 //            plans = jTable13.getValueAt(0, 0) + " " + jTable13.getValueAt(1, 0) + " " + jTable13.getValueAt(2, 0);
 //
@@ -7378,8 +7427,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 //        if (jTable13.isEditing()) {
 //            jTable13.getCellEditor().stopCellEditing();
 //        }
-//        if (jTable111.isEditing()) {
-//            jTable111.getCellEditor().stopCellEditing();
+//        if (pharmacyTable.isEditing()) {
+//            pharmacyTable.getCellEditor().stopCellEditing();
 //        }
 //        requestbtn.doClick();
 //        // requestbtnActionPerformed(evt);
@@ -8531,6 +8580,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         pharmacyTable.setValueAt(pharmacySearchTable.getValueAt(pharmacySearchTable.getSelectedRow(), 1), pharmacyTable.getSelectedRow(), 2);
         pharmacyTable.setValueAt(pharmacySearchTable.getValueAt(pharmacySearchTable.getSelectedRow(), 2), pharmacyTable.getSelectedRow(), 7);
         pharmacyTable.setValueAt(pharmacySearchTable.getValueAt(pharmacySearchTable.getSelectedRow(), 3), pharmacyTable.getSelectedRow(), 8);
+        pharmacyTable.setValueAt(pharmacySearchTable.getValueAt(pharmacySearchTable.getSelectedRow(), 4), pharmacyTable.getSelectedRow(), 10);
 
         jTextField10.setText(pharmacySearchTable.getValueAt(pharmacySearchTable.getSelectedRow(), 3).toString());
 
@@ -8938,7 +8988,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                     System.out.println("Inserting pharmacy items ...11");
                     if (pharmacyTable.getValueAt(n, 0) != null) {
                         System.out.println("Inserting pharmacy items ...");
-                        // this.jTable111.setCellSelectionEnabled(false);
+                        // this.pharmacyTable.setCellSelectionEnabled(false);
 
                         //this.jTextField922.setHighlighter().;
                         //this.jTextField922.setOpaque(true);
@@ -9238,15 +9288,15 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             }
 //            System.out.println("Inserting pharmacy items ..11.11");
 //            ///jtable111 operations
-//            for (int n = 0; n < jTable111.getRowCount(); n++) {
+//            for (int n = 0; n < pharmacyTable.getRowCount(); n++) {
 //                System.out.println("Inserting pharmacy items ...11");
-//                if (jTable111.getValueAt(n, 0) != null) {
+//                if (pharmacyTable.getValueAt(n, 0) != null) {
 //                    System.out.println("Inserting pharmacy items ...");
-//                    // this.jTable111.setCellSelectionEnabled(false);
+//                    // this.pharmacyTable.setCellSelectionEnabled(false);
 //
 //                    //this.jTextField922.setHighlighter().;
 //                    //this.jTextField922.setOpaque(true);
-//                    rse121 = stm121q.executeQuery("select activity from pb_activity where code ='" + jTable111.getValueAt(n, 7).toString().trim() + "'");
+//                    rse121 = stm121q.executeQuery("select activity from pb_activity where code ='" + pharmacyTable.getValueAt(n, 7).toString().trim() + "'");
 //
 //                    while (rse121.next()) {
 //
@@ -9267,9 +9317,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 //
 //                            pstmt2.setString(4, jTextField8.getText());
 //                        }
-//                        pstmt2.setString(5, jTable111.getValueAt(n, 0).toString());
+//                        pstmt2.setString(5, pharmacyTable.getValueAt(n, 0).toString());
 //                        pstmt2.setDouble(6, 1);
-//                        pstmt2.setDouble(7, java.lang.Double.valueOf(jTable111.getValueAt(n, 2).toString()));
+//                        pstmt2.setDouble(7, java.lang.Double.valueOf(pharmacyTable.getValueAt(n, 2).toString()));
 //                        pstmt2.setString(8, jTextField10.getText());
 //                        pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker12.getDate()));
 //                        pstmt2.setString(10, billNo);
@@ -9281,13 +9331,13 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 //                        }
 //                        pstmt2.setString(13, glAcc);
 //                        pstmt2.setString(14, billNo);
-//                        pstmt2.setString(15, jTable111.getValueAt(n, 3).toString());
+//                        pstmt2.setString(15, pharmacyTable.getValueAt(n, 3).toString());
 //                        pstmt2.setBoolean(16, false);
 //                        pstmt2.setBoolean(17, false);
-//                        pstmt2.setObject(18, jTable111.getValueAt(n, 4).toString());
-//                        pstmt2.setString(19, jTable111.getValueAt(n, 5).toString());
+//                        pstmt2.setObject(18, pharmacyTable.getValueAt(n, 4).toString());
+//                        pstmt2.setString(19, pharmacyTable.getValueAt(n, 5).toString());
 //                        pstmt2.setTimestamp(20, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
-//                        pstmt2.setObject(21, jTable111.getValueAt(n, 6).toString());
+//                        pstmt2.setObject(21, pharmacyTable.getValueAt(n, 6).toString());
 //                        pstmt2.setString(22, rank);
 //                        pstmt2.setString(23, jTextField15.getText().toString());
 //                        pstmt2.setString(24, clinicalExamineditor.getText().toString());
@@ -9297,7 +9347,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 //
 //                        pstmt2.execute();
 //
-//                        rsB = pstB.executeQuery("SELECT transfer_price,units,department,product_id FROM st_stock_prices WHERE product_id = '" + jTable111.getValueAt(n, 8) + "' and gl_code =  '" + jTable111.getValueAt(n, 7) + "'");
+//                        rsB = pstB.executeQuery("SELECT transfer_price,units,department,product_id FROM st_stock_prices WHERE product_id = '" + pharmacyTable.getValueAt(n, 8) + "' and gl_code =  '" + pharmacyTable.getValueAt(n, 7) + "'");
 //
 //                        while (rsB.next()) {
 //                            price = rsB.getDouble(1);
@@ -9309,17 +9359,17 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 //                        pstmt1 = connectDB.prepareStatement("INSERT INTO hp_pharmacy VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 //                        pstmt1.setString(1, nameNoTxt.getText());
 //                        pstmt1.setString(2, patientNametxt.getText());
-//                        pstmt1.setDouble(4, java.lang.Double.valueOf(jTable111.getValueAt(n, 2).toString()));
+//                        pstmt1.setDouble(4, java.lang.Double.valueOf(pharmacyTable.getValueAt(n, 2).toString()));
 //                        pstmt1.setDouble(3, 1);
-//                        pstmt1.setObject(5, jTable111.getValueAt(n, 0).toString());
+//                        pstmt1.setObject(5, pharmacyTable.getValueAt(n, 0).toString());
 //                        if (paymentModetxt.getText().startsWith("Scheme")) {
 //                            pstmt1.setBoolean(6, true);
 //                        } else {
 //                            pstmt1.setBoolean(6, false);
 //                        }
 //
-//                        pstmt1.setDouble(7, java.lang.Double.valueOf(jTable111.getValueAt(n, 2).toString()));
-//                        pstmt1.setObject(8, jTable111.getValueAt(n, 7).toString());
+//                        pstmt1.setDouble(7, java.lang.Double.valueOf(pharmacyTable.getValueAt(n, 2).toString()));
+//                        pstmt1.setObject(8, pharmacyTable.getValueAt(n, 7).toString());
 //                        pstmt1.setString(9, "" + transNo);
 //                        pstmt1.setObject(10, jTextField8.getText());
 //                        pstmt1.setBoolean(11, false);
@@ -9328,7 +9378,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 //                        pstmt1.setObject(14, Store);
 //                        pstmt1.setString(15, "");
 //                        pstmt1.setString(16, paymentModetxt.getText());
-//                        pstmt1.setObject(17, jTable111.getValueAt(n, 8).toString());
+//                        pstmt1.setObject(17, pharmacyTable.getValueAt(n, 8).toString());
 //                        pstmt1.setDouble(18, 0.00);
 //                        pstmt1.setString(19, user);
 //                        pstmt1.setObject(20, jTextField9111.getText());
@@ -9353,12 +9403,12 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 //                            pstmtdrug.setObject(2, "");
 //                        }
 //                        pstmtdrug.setObject(3, com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()));
-//                        pstmtdrug.setObject(4, jTable111.getValueAt(n, 8).toString());
-//                        pstmtdrug.setObject(5, jTable111.getValueAt(n, 0).toString());
-//                        pstmtdrug.setObject(6, jTable111.getValueAt(n, 6).toString());
-//                        pstmtdrug.setObject(7, jTable111.getValueAt(n, 3).toString());
-//                        pstmtdrug.setObject(8, jTable111.getValueAt(n, 4).toString());
-//                        pstmtdrug.setObject(9, jTable111.getValueAt(n, 5).toString());
+//                        pstmtdrug.setObject(4, pharmacyTable.getValueAt(n, 8).toString());
+//                        pstmtdrug.setObject(5, pharmacyTable.getValueAt(n, 0).toString());
+//                        pstmtdrug.setObject(6, pharmacyTable.getValueAt(n, 6).toString());
+//                        pstmtdrug.setObject(7, pharmacyTable.getValueAt(n, 3).toString());
+//                        pstmtdrug.setObject(8, pharmacyTable.getValueAt(n, 4).toString());
+//                        pstmtdrug.setObject(9, pharmacyTable.getValueAt(n, 5).toString());
 //                        pstmtdrug.setObject(10, jTextField9111.getText());
 //                        pstmtdrug.setBoolean(11, false);
 //                        pstmtdrug.setBoolean(12, false);
@@ -9502,7 +9552,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         } else {
 
             pharmacySearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                    + "select distinct product||' '||st_stock_prices.strength as Drug_Prescribing,selling_price as price,gl_code,product_id FROM st_stock_prices,st_stock_item WHERE product||' '||st_stock_prices.strength ILIKE '%" + pharmacySearchTxt.getText() + "%' and opd = true AND product_id = item_code AND (st_stock_prices.department ilike '%pharmacy%' or st_stock_prices.department ilike '%nutrition%') ORDER BY 1"));
+                    + "select distinct product||' '||st_stock_prices.strength as Drug_Prescribing,selling_price as price,gl_code,product_id,st_stock_prices.units FROM st_stock_prices,st_stock_item WHERE product||' '||st_stock_prices.strength ILIKE '%" + pharmacySearchTxt.getText() + "%' and opd = true AND product_id = item_code AND (st_stock_prices.department ilike '%pharmacy%' or st_stock_prices.department ilike '%nutrition%') ORDER BY 1"));
 
             pharmacySearchScrollPane.setViewportView(pharmacySearchTable);
             System.out.println("Cannot sort out");
@@ -9620,7 +9670,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                         + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                         + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
                         + "from  hp_patient_visit hpv  where   hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)   "
-                        + "and hpv.clinic ='" + this.waitingclinicscmbx.getSelectedItem().toString() + "'  ORDER BY hpv.input_date::time(0)");
+                        + "and hpv.clinic ='" + this.waitingclinicscmbx.getSelectedItem().toString() + "'  ORDER BY hpv.urgency, hpv.input_date::time(0)");
                 if (waitingclinicscmbx.getSelectedItem().toString().equalsIgnoreCase("--ALL--")) {
                     this.clerkingwaitingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
                             "select distinct "
@@ -9628,7 +9678,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             + "UPPER(hpv.name) as name,hpv.clinic,hpv.urgency,hpv.comments as New_Old,hpv.payment,"
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
                             + ",hpv.nature as Seen, '' as receipt_no from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)    "
-                            + "  ORDER BY hpv.input_date::time(0)"));
+                            + "  ORDER BY hpv.urgency,hpv.input_date::time(0)"));
+                    //coluorTable();
                 } else {
                     this.clerkingwaitingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
                             "select distinct "
@@ -9637,8 +9688,8 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             + "(select refer_source from hp_patient_register where patient_no=hpv.patient_no )as ReferredFrom, hpv.input_date::date as Visit_Date"
                             + ",hpv.nature as Seen, '' as receipt_no from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)    "
                             //+ ",hpv.nature as Seen, (SELECT receipt_no FROM ac_cash_collection WHERE (ac_cash_collection.description ILIKE '%consultation%' OR ac_cash_collection.description ILIKE '%card%' OR ac_cash_collection.description ILIKE '%attend%') AND ac_cash_collection.patient_no = hpv.patient_no AND ac_cash_collection.date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1) ORDER BY ac_cash_collection.date DESC LIMIT 1) as receipt_no from  hp_patient_visit hpv  where hpv.input_date::date>='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()) + "'::date  - (SELECT review_grace_period FROM pb_patient_names LIMIT 1)    "
-                            + "and hpv.clinic ='" + this.waitingclinicscmbx.getSelectedItem().toString() + "'  ORDER BY hpv.input_date::time(0)"));
-
+                            + "and hpv.clinic ='" + this.waitingclinicscmbx.getSelectedItem().toString() + "'  ORDER BY hpv.urgency,hpv.input_date::time(0)"));
+                    //coluorTable();
                 }
             }
             if (inpatientCheckBox.isSelected()) {
@@ -9750,6 +9801,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
     }
     private void clerkingwaitingTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clerkingwaitingTableMouseClicked
         underFive = false;
+        String clinn = clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 3).toString();
         if (clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4) != null) {
             if (clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4).toString().contains("Emergency")) {
                 emergencyStatus = true;
@@ -9999,7 +10051,14 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         try {
             // Establish whether the clinic requires tb-screening
             java.sql.PreparedStatement pstmtScreening = connectDB.prepareStatement("SELECT has_screening FROM pb_clinics WHERE upper(clinics) = ?");
-            pstmtScreening.setString(1, waitingclinicscmbx.getSelectedItem().toString().toUpperCase());
+            System.err.println("Clinic "+waitingclinicscmbx.getSelectedItem().toString());
+            if(waitingclinicscmbx.getSelectedItem().toString().equalsIgnoreCase("--ALL--")){
+                pstmtScreening.setString(1, clinn);
+                System.err.println("Clinnnn "+clinn);
+            }else{
+                pstmtScreening.setString(1, waitingclinicscmbx.getSelectedItem().toString().toUpperCase());
+            
+            }
             java.sql.ResultSet rsetScreening = pstmtScreening.executeQuery();
             while (rsetScreening.next()) {
                 hasScreening = rsetScreening.getBoolean(1);
@@ -10620,7 +10679,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         } catch (SQLException ex) {
             Logger.getLogger(ConsultationIntfr.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (hasHistory > 0) {
+        if (hasHistory > 0 || inpatientCheckBox.isSelected()) {
             this.searchservicesTextField.setEditable(true);
             query = "Laboratory";
             this.generalServicesOrderingPanel.setVisible(false);
@@ -10662,7 +10721,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
         }
 
-        if (number > 0) {
+        if (number > 0 || inpatientCheckBox.isSelected()) {
             this.generalServicesOrderingPanel.setVisible(false);
             this.pharmacyRequestsPanel.setVisible(true);
             this.servicesOrderHeaderPanel.setVisible(false);
@@ -10695,7 +10754,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         } catch (SQLException ex) {
             Logger.getLogger(ConsultationIntfr.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (hasHistory > 0) {
+        if (hasHistory > 0 || inpatientCheckBox.isSelected()) {
             this.searchservicesTextField.setEditable(true);
             this.generalServicesOrderingPanel.setVisible(false);
             query = "X-Ray";
@@ -10754,12 +10813,12 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         //" and pb_operating_parameters.service_type=clerking_requests.request order by 1 asc; ");
         //                java.sql.ResultSet rse12 = stm12.executeQuery();
         //
-        //                    for (int i = 0; i < jTable111.getRowCount(); i++) {
+        //                    for (int i = 0; i < pharmacyTable.getRowCount(); i++) {
         //                        while (rse12.next()) {
         //                            System.out.println("niko hapa ajez");
-        //                for (int j = 0; j < jTable111.getColumnCount(); j++) {
+        //                for (int j = 0; j < pharmacyTable.getColumnCount(); j++) {
         //
-        //                    this.jTable111.setValueAt(rse12.getObject(j), i, j);
+        //                    this.pharmacyTable.setValueAt(rse12.getObject(j), i, j);
         //
         //                        }
         //                }
@@ -11002,7 +11061,16 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 marital = rset24a.getString(1);
             }
             if (clerkingTabbedPane.getSelectedIndex() == 0) {
-                if (clinicalExamineditorTxt.getText().length() > 5 && complainsTextPaneTxt.getText().length() > 5 && provisionalDiagnosistxt.getText().length() > 3) {
+                float history = 0;
+
+                java.sql.Statement stm121bx = connectDB.createStatement();
+
+                java.sql.ResultSet rset24bx1 = stm121bx.executeQuery("SELECT COUNT(patient_no) FROM hp_clinical_results WHERE patient_no = '" + nameNoTxt.getText() + "' AND typeof_test IS NOT NULL AND comments IS NOT NULL AND date = '" + transdatePicker.getDate() + "'");
+
+                while (rset24bx1.next()) {
+                    history = rset24bx1.getFloat(1);
+                }
+                if ((clinicalExamineditorTxt.getText().length() > 5 && complainsTextPaneTxt.getText().length() > 5 && provisionalDiagnosistxt.getText().length() > 3) || history > 0  ) {
                     PreparedStatement pstmt21 = connectDB.prepareStatement("INSERT INTO hp_clinical_results VALUES(?,?,?,?,?,?,?, ?, ?, ?, current_user, ?,?,?)");
 
                     pstmt21.setString(1, jTextField922.getText());
@@ -11114,13 +11182,31 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 javax.swing.JOptionPane.showMessageDialog(this, "Data Inserted Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
             } else if (clerkingTabbedPane.getSelectedIndex() == 1) {
-                if (jTable13.isEditing()) {
-                    jTable13.getCellEditor().stopCellEditing();
+                Boolean cultureTestPresent = false;
+                if(lablatoryCheck.isSelected()){
+                    for (int i = 0; i < jTable13.getRowCount(); i++) {
+                        if (jTable13.getValueAt(i, 0) == Boolean.TRUE) {
+                            if(jTable13.getValueAt(i, 1).toString().toLowerCase().contains("culture")){
+                                cultureTestPresent = true;
+                            }
+
+                        }
+                    }
                 }
-                if (pharmacyTable.isEditing()) {
-                    pharmacyTable.getCellEditor().stopCellEditing();
+                
+                if(lablatoryCheck.isSelected() && notesTextField.getText().length() < 3 && cultureTestPresent){
+                     javax.swing.JOptionPane.showMessageDialog(this, "You MUST capture Notes on antibiotics Used before sending the lAB CULTURE Requests.");
+                     notesTextField.requestFocusInWindow();
+                     clear = false;
+                }else{
+                    if (jTable13.isEditing()) {
+                        jTable13.getCellEditor().stopCellEditing();
+                    }
+                    if (pharmacyTable.isEditing()) {
+                        pharmacyTable.getCellEditor().stopCellEditing();
+                    }
+                    saverequest(Sex);
                 }
-                saverequest(Sex);
 
             } else if (clerkingTabbedPane.getSelectedIndex() == 3) {
 
@@ -11169,7 +11255,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 //                        + "FROM clerking_requests_category "
 //                        + "where department ilike 'Laboratory' and request_name ilike '%" + jTextField1.getText() + "%' order by 1 asc"));
                 this.jTable13.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                        + "SELECT  false as Approve,clerking_requests.request,'1' as Quantity,pb_operating_parameters.rate,pb_operating_parameters.rate as Amount,pb_operating_parameters.gl_account "
+                        + "SELECT  false as Approve,clerking_requests.request,'1' as Quantity,pb_operating_parameters.rate,pb_operating_parameters.rate as Amount,pb_operating_parameters.gl_account,'' as specimen "
                         + "FROM clerking_requests,pb_operating_parameters "
                         + "where"
                         + " clerking_requests.request ilike '%" + searchservicesTextField.getText() + "%'"
@@ -11180,7 +11266,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 //                        + "FROM clerking_requests_category "
 //                        + "where department ilike 'X-Ray' and request_name ilike '%" + jTextField1.getText() + "%' order by 1 asc"));
                 this.jTable13.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                        + "SELECT  false as Approve,clerking_requests.request,'1' as Quantity,pb_operating_parameters.rate,pb_operating_parameters.rate as Amount,pb_operating_parameters.gl_account "
+                        + "SELECT  false as Approve,clerking_requests.request,'1' as Quantity,pb_operating_parameters.rate,pb_operating_parameters.rate as Amount,pb_operating_parameters.gl_account ,'' as part_"
                         + "FROM clerking_requests,pb_operating_parameters "
                         + "where"
                         + " clerking_requests.request ilike '%" + searchservicesTextField.getText() + "%'"
@@ -11932,6 +12018,10 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         symptomsDialog.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_symptomsCloseButtonActionPerformed
+
+    private void allpatCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allpatCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_allpatCheckBoxActionPerformed
 
     private void populateTable1(java.lang.String patient_no) {
     }
@@ -13223,17 +13313,28 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 
                     }
 
-                    // Forward request to LIMS
-                    if ((paymentModeTxt.getText().contains("Scheme") || inpatientCheckBox.isSelected()) && com.afrisoftech.lib.LabRequestJSON.isLIMSEnabled(connectDB)) {
-                        if (outpatientCheckBox.isSelected()) {
-                            com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendLabRequest(connectDB, "bGltc19hY2Nlc3M6MTJAITIzIzQk", String.valueOf(transNo), nameNoTxt.getText(), patientNameTxt.getText(), paymentModeTxt.getText(), schemeNameTxt.getText(), com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, String.valueOf(transNo), nameNoTxt.getText()), "OUT");
-                        } else {
-                            com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendLabRequest(connectDB, "bGltc19hY2Nlc3M6MTJAITIzIzQk", String.valueOf(transNo), nameNoTxt.getText(), patientNameTxt.getText(), paymentModeTxt.getText(), schemeNameTxt.getText(), com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, String.valueOf(transNo), nameNoTxt.getText()), "IN");
-                        }
-                    }
 //                    } else {
 //                        javax.swing.JOptionPane.showMessageDialog(this, "You MUST record patient history before proceeding to diagnostics/investigations.");
 //                    }
+                }
+            }
+            // Forward request to LIMS
+            if ((paymentModeTxt.getText().contains("Scheme") || inpatientCheckBox.isSelected()) && com.afrisoftech.lib.LabRequestJSON.isLIMSEnabled(connectDB)) {
+                if(com.afrisoftech.lib.GetItemInfo.checkLabItems(String.valueOf(transNo), nameNoTxt.getText(), connectDB)){
+                    String limsSystem = com.afrisoftech.lib.LabRequestJSON.getLIMSSystemName(connectDB);
+                    if (outpatientCheckBox.isSelected()) {
+                        if (limsSystem.equalsIgnoreCase("BLIS")) {
+                            com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendLabRequestBlis(connectDB, "eJGuuIQvhjHiqM5W1f9cFavsH39Wjcs3", String.valueOf(transNo), nameNoTxt.getText(), patientNameTxt.getText(), paymentModeTxt.getText(), schemeNameTxt.getText(), com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, String.valueOf(transNo), nameNoTxt.getText()), "OP");
+                        }else{
+                            com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendLabRequest(connectDB, "bGltc19hY2Nlc3M6MTJAITIzIzQk", String.valueOf(transNo), nameNoTxt.getText(), patientNameTxt.getText(), paymentModeTxt.getText(), schemeNameTxt.getText(), com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, String.valueOf(transNo), nameNoTxt.getText()), "OUT");
+                        }
+                    } else {
+                        if (limsSystem.equalsIgnoreCase("BLIS")) {
+                            com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendLabRequestBlis(connectDB, "eJGuuIQvhjHiqM5W1f9cFavsH39Wjcs3", String.valueOf(transNo), nameNoTxt.getText(), patientNameTxt.getText(), paymentModeTxt.getText(), schemeNameTxt.getText(), com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, String.valueOf(transNo), nameNoTxt.getText()), "IP");
+                        }else{
+                            com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendLabRequest(connectDB, "bGltc19hY2Nlc3M6MTJAITIzIzQk", String.valueOf(transNo), nameNoTxt.getText(), patientNameTxt.getText(), paymentModeTxt.getText(), schemeNameTxt.getText(), com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, String.valueOf(transNo), nameNoTxt.getText()), "IN");
+                        }
+                    }
                 }
             }
             ///END OF JTABLE13 OPERATIONS
@@ -13253,7 +13354,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                         while (rse121.next()) {
                             glAcc = rse121.getObject(1).toString();
 
-                            pstmt2 = connectDB.prepareStatement("INSERT INTO pb_doctors_request VALUES(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?),?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?)");
+                            pstmt2 = connectDB.prepareStatement("INSERT INTO pb_doctors_request VALUES(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,trim(?),?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?)");
                             pstmt2.setString(1, nameNoTxt.getText());
                             if (patientNameTxt.getText().equals("")) {
                                 javax.swing.JOptionPane.showMessageDialog(this, "Patient Name missing", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -13297,6 +13398,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                             pstmt2.setString(27, Sex);
                             pstmt2.setString(28, "DOC POSTING");
                             pstmt2.setString(29, billNo + "-" + n);
+                            pstmt2.setString(30, ""+transNo);
                             pstmt2.executeUpdate();
 
                             rsB = pstB.executeQuery("SELECT transfer_price,units,department,product_id, (SELECT strength FROM st_stock_item WHERE st_stock_item.item_code = st_stock_prices.product_id ORDER BY 1 DESC LIMIT 1) AS strength FROM st_stock_prices WHERE product_id = '" + pharmacyTable.getValueAt(n, 8) + "' and gl_code =  '" + pharmacyTable.getValueAt(n, 7) + "'");
@@ -13419,25 +13521,25 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             this.normalTextField.setText("NORMAL :-" + normal);
             this.triageTextField.setText("TRIAGED :-" + triage);
             this.seenTextField.setText("SEEN BY DR. :-" + seen);
-            com.afrisoftech.dbadmin.JTable predicateTable0 = (com.afrisoftech.dbadmin.JTable) clerkingwaitingTable;
-            predicateTable0.setHighlighterPipeline(predicateTable0, new org.jdesktop.swing.decorator.PatternHighlighter[]{
-                new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.PINK, java.awt.Color.BLACK, "triage", 9, 9, 1),
-                new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.PINK, java.awt.Color.BLACK, "Cons", 9, 9, 1),
-                new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.CYAN, java.awt.Color.BLACK, "Cons", 9, 9, 2)
-            });
+//            com.afrisoftech.dbadmin.JTable predicateTable0 = (com.afrisoftech.dbadmin.JTable) clerkingwaitingTable;
+//            predicateTable0.setHighlighterPipeline(predicateTable0, new org.jdesktop.swing.decorator.PatternHighlighter[]{
+//                new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.PINK, java.awt.Color.BLACK, "triage", 9, 9, 1),
+//                new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.PINK, java.awt.Color.BLACK, "Cons", 9, 9, 1),
+//                new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.CYAN, java.awt.Color.BLACK, "Cons", 9, 9, 2)
+//            });
         }
 
-        try {
-            com.afrisoftech.dbadmin.JTable predicateTable = (com.afrisoftech.dbadmin.JTable) clerkingwaitingTable;
-            predicateTable.setHighlighterPipeline(predicateTable, new org.jdesktop.swing.decorator.PatternHighlighter[]{
-                new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.ORANGE, java.awt.Color.BLACK, "Normal", 4, 4, 0),
-                new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.RED, java.awt.Color.BLACK, "Emergency", 4, 4, 0)
-            });
-            System.out.println("this is triage and seen checking");
-        } catch (Exception es) {
-            es.printStackTrace();
-
-        }
+//        try {
+//            com.afrisoftech.dbadmin.JTable predicateTable = (com.afrisoftech.dbadmin.JTable) clerkingwaitingTable;
+//            predicateTable.setHighlighterPipeline(predicateTable, new org.jdesktop.swing.decorator.PatternHighlighter[]{
+//                new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.ORANGE, java.awt.Color.BLACK, "Normal", 4, 4, 4),
+//                new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.RED, java.awt.Color.BLACK, "Emergency", 4, 4, 4)
+//            });
+//            System.out.println("this is triage and seen checking");
+//        } catch (Exception es) {
+//            es.printStackTrace();
+//
+//        }
         try {
             int xray = 0;
 
@@ -13447,9 +13549,9 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             java.sql.ResultSet rsetVector = pstmtVector.executeQuery();
             while (rsetVector.next()) {
                 xray++;
-                com.afrisoftech.dbadmin.JTable predicateTablexray = (com.afrisoftech.dbadmin.JTable) clerkingwaitingTable;
-                predicateTablexray.setHighlighterPipeline(predicateTablexray, new org.jdesktop.swing.decorator.PatternHighlighter[]{
-                    new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.MAGENTA, java.awt.Color.BLACK, dbObject.getDBObject(rsetVector.getString(1), ""), 0, 0, 4)});
+//                com.afrisoftech.dbadmin.JTable predicateTablexray = (com.afrisoftech.dbadmin.JTable) clerkingwaitingTable;
+//                predicateTablexray.setHighlighterPipeline(predicateTablexray, new org.jdesktop.swing.decorator.PatternHighlighter[]{
+//                    new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.MAGENTA, java.awt.Color.BLACK, dbObject.getDBObject(rsetVector.getString(1), ""), 0, 0, 4)});
             }
             this.x_rayresultsTextField.setText("X-RAY RESULTS :-" + xray);
 
@@ -13471,10 +13573,10 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
             java.sql.ResultSet rsetVector = pstmtVector.executeQuery();
             while (rsetVector.next()) {
                 lab++;
-                com.afrisoftech.dbadmin.JTable predicateTablelab = (com.afrisoftech.dbadmin.JTable) clerkingwaitingTable;
-                predicateTablelab.setHighlighterPipeline(predicateTablelab, new org.jdesktop.swing.decorator.PatternHighlighter[]{
-                    new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.GREEN, java.awt.Color.BLACK, dbObject.getDBObject(rsetVector.getString(1), ""), 0, 0, 3)
-                });
+//                com.afrisoftech.dbadmin.JTable predicateTablelab = (com.afrisoftech.dbadmin.JTable) clerkingwaitingTable;
+//                predicateTablelab.setHighlighterPipeline(predicateTablelab, new org.jdesktop.swing.decorator.PatternHighlighter[]{
+//                    new org.jdesktop.swing.decorator.PatternHighlighter(java.awt.Color.GREEN, java.awt.Color.BLACK, dbObject.getDBObject(rsetVector.getString(1), ""), 0, 0, 3)
+//                });
             }
             this.labTextField.setText("LAB RESULTS :-" + lab);
         } catch (Exception req) {
@@ -13489,7 +13591,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 float qty = java.lang.Float.parseFloat(pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 1).toString().trim().replace(",", ""));;
                 float price = java.lang.Float.parseFloat(pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 2).toString().trim().replace(",", ""));
                 float total = qty * price;
-                //jTable111.setValueAt(total, jTable111.getSelectedRow(), 3);
+                //pharmacyTable.setValueAt(total, pharmacyTable.getSelectedRow(), 3);
                 double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(pharmacyTable, 2);
                 jTextField3.setText(java.lang.String.valueOf(totalSum));
 
@@ -13817,4 +13919,106 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
         SpellChecker.registerDictionaries(getClass().getResource(userDictionaryPath), "en");
 
     }
+    private void cmBox1ActionPerformed(java.awt.event.ActionEvent evt) {
+        calculateDrugQty();
+
+    }
+    
+    private void cmBox3ActionPerformed(java.awt.event.ActionEvent evt) {
+        calculateDrugQty();
+
+    }
+    
+    
+    private void calculateDrugQty() {
+        System.err.println("Values " + pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 4));
+        System.err.println("Values " + pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 5));
+        if (pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 4) != null && pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 5) != null && !pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 5).toString().isEmpty() && !pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 5).toString().isEmpty()) {
+            pharmacyTable.setValueAt(calculateQuantity(), pharmacyTable.getSelectedRow(), 1);
+
+            boolean neg = true;
+            try {
+
+                java.sql.Statement pstmt1 = connectDB.createStatement();
+//                java.sql.ResultSet rs1 = pstmt1.executeQuery("select neg_allow_doc from st_stock_control"); //from orders where supplier ='"+jTable1.getValueAt(i,4).toString()+"'");
+//
+//                while (rs1.next()) {
+//
+//                    neg = rs1.getBoolean(1);
+//                }
+
+                float bal = java.lang.Float.parseFloat(pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 9).toString());
+                float qty = calculateQuantity();
+
+                if (neg == false && qty > bal) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "The quantity for the drug is more than the remaining quantity.", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                    pharmacyTable.setValueAt(0, pharmacyTable.getSelectedRow(), 1);
+
+//                    for (int r = 0; r < pharmacyTable.getColumnCount(); r++) {
+//                        pharmacyTable.getModel().setValueAt("", pharmacyTable.getSelectedRow(), r);
+//
+//                    }
+                }
+
+            } catch (java.sql.SQLException sq) {
+                javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                sq.printStackTrace();
+                System.out.println(sq.getMessage());
+
+            }
+
+           // pharmacyTable.setValueAt(Double.valueOf(pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 1).toString()) * Double.valueOf(pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 2).toString()), pharmacyTable.getSelectedRow(), 11);
+
+            double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotalByQtyUnitPrice(pharmacyTable, 1,2);
+            jTextField3.setText(java.lang.String.valueOf(totalSum));
+
+            System.err.println("Total is " + totalSum);
+
+        }
+
+    }
+
+    private int calculateQuantity() {
+        int qty = 0;
+        int freq = 0;
+        int noOfDays = 0;
+
+        if (pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 0).toString().toLowerCase().contains("sus")
+                || pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 0).toString().toLowerCase().contains("syrup")
+                || pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 0).toString().toLowerCase().contains("cream")
+                || pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 0).toString().toLowerCase().contains("tube")
+                || pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 0).toString().toLowerCase().contains("bottle")
+                || pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 0).toString().toLowerCase().contains("drop")
+                || pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 10).toString().toLowerCase().contains("cream")
+                || pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 10).toString().toLowerCase().contains("syrup")
+                || pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 10).toString().toLowerCase().contains("susp")
+                || pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 10).toString().toLowerCase().contains("bottle")
+                || pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 10).toString().toLowerCase().contains("Tube")
+                || pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 10).toString().toLowerCase().contains("drop")
+                || pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 10).toString().toLowerCase().contains("pack")) {
+            qty = 1;
+        } else {
+            if (pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 4).toString().equalsIgnoreCase("OD")) {
+                freq = 1;
+            } else if (pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 4).toString().equalsIgnoreCase("BD")) {
+                freq = 2;
+            } else if (pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 4).toString().equalsIgnoreCase("TID")) {
+                freq = 3;
+            } else if (pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 4).toString().equalsIgnoreCase("QID")) {
+                freq = 4;
+            } else {
+                freq = 1;
+            }
+
+            if (pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 5).toString().equalsIgnoreCase("Once")) {
+                noOfDays = 1;
+            } else {
+                noOfDays = Integer.valueOf(pharmacyTable.getValueAt(pharmacyTable.getSelectedRow(), 5).toString());
+            }
+            qty = noOfDays * freq;
+        }
+
+        return qty;
+    }
+    
 }

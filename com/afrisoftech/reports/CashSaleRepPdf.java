@@ -413,10 +413,10 @@ public class CashSaleRepPdf implements java.lang.Runnable {
                             
                             java.sql.Statement st3 = connectDB.createStatement();
                             
-                            rsetTotals1 = st3.executeQuery("SELECT payment_mode,sum(debit-credit) as amt from ac_cash_collection WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND transaction_type NOT ILIKE 'Banking%' group by payment_mode order by amt desc");
+                            rsetTotals1 = st3.executeQuery("SELECT payment_mode,sum(debit-credit) as amt from ac_cash_collection WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"'  AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +" AND transaction_type NOT ILIKE 'Banking%' group by payment_mode order by amt desc");
                              
                             System.out.println("Statements Created ...");
-                            java.sql.ResultSet rset = st.executeQuery("select pb.activity,SUM(ac.debit-ac.credit) as amt,ac.activity_code from ac_cash_collection ac ,pb_activity pb where ac.date BETWEEN '"+beginDate+"' AND '"+endDate+"' and ac.transaction_type NOT ILIKE 'Banking%' and pb.code = ac.activity_code  GROUP BY pb.activity,ac.activity_code order by amt desc");
+                            java.sql.ResultSet rset = st.executeQuery("select pb.activity,SUM(ac.debit-ac.credit) as amt,ac.activity_code from ac_cash_collection ac ,pb_activity pb where ac.date BETWEEN '"+beginDate+"' AND '"+endDate+"'  AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +" and ac.transaction_type NOT ILIKE 'Banking%' and pb.code = ac.activity_code  GROUP BY pb.activity,ac.activity_code order by amt desc");
                             System.out.println("Select A done ...");
                             while (rsetTotals1.next()) {
                                 table.getDefaultCell().setColspan(2);

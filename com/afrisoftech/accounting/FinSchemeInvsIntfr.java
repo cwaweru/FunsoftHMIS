@@ -1866,6 +1866,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 jTabbedPane1.addTab("Out Patients", jPanel1);
 
                 jPanel11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+                jPanel11.setEnabled(false);
                 jPanel11.setLayout(new java.awt.GridBagLayout());
 
                 jTable11.setModel(new javax.swing.table.DefaultTableModel(
@@ -2532,7 +2533,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 gridBagConstraints.weightx = 1.0;
                 jPanel11.add(jTextField18, gridBagConstraints);
 
-                jTabbedPane1.addTab("Inpatients", jPanel11);
+                jTabbedPane1.addTab("0", jPanel11);
 
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;

@@ -1991,7 +1991,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
 
                                         pstmt2.executeUpdate();
 
-                                        java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("insert into hp_pharmacy values( ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                        java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("insert into hp_pharmacy values( ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                                         pstmt1.setString(1, patientNumberTxt.getText());
                                         pstmt1.setString(2, patientNameTxt.getText());
                                         pstmt1.setDouble(3, java.lang.Double.parseDouble(pharmacyReturnsTbl.getValueAt(i, 1).toString()) * -1);
@@ -2013,7 +2013,8 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
                                         pstmt1.setDouble(18, TotalPrice - amount1);
                                         pstmt1.setString(19, user);
                                         pstmt1.setString(20, prescriptionTxt.getText());
-                                        pstmt1.setObject(21, pharmacyReturnsTbl.getValueAt(i, 7).toString());
+                                        pstmt1.setObject(21, null);
+                                        pstmt1.setObject(22, pharmacyReturnsTbl.getValueAt(i, 7).toString());
                                         //  pstmt1.setObject(22, pharmacyReturnsTbl.getValueAt(i, 8).toString());
                                         pstmt1.executeUpdate();
 

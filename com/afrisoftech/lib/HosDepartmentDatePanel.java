@@ -257,6 +257,15 @@ public class HosDepartmentDatePanel extends javax.swing.JDialog {
         switch (reportName) {
 
 
+            case 5856961: {
+                com.afrisoftech.records.reports.PatientsDiagnosisSheetByDepPdf policy = new com.afrisoftech.records.reports.PatientsDiagnosisSheetByDepPdf();
+
+                policy.PatientsDiagnosisSheetByDepPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(), jComboBox1.getSelectedItem().toString());
+
+                // this.dispose();
+
+            }
+            break;
 
             case 585696: {
                 com.afrisoftech.records.reports.PatientsAttSheetByDepPdf policy = new com.afrisoftech.records.reports.PatientsAttSheetByDepPdf();
