@@ -132,11 +132,10 @@ public class SendSMSDialog extends javax.swing.JDialog {
         phoneNumberTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Receiver Telephone No.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
         phoneNumberTxt.setForeground(new java.awt.Color(0, 0, 255));
         try {
-            phoneNumberTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("254-7##-######")));
+            phoneNumberTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("254-###-######")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        phoneNumberTxt.setText("+254-7  -      ");
         phoneNumberTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 phoneNumberTxtActionPerformed(evt);

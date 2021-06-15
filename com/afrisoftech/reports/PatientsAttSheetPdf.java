@@ -337,7 +337,7 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
 
                         com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(11);
 
-                        int headerwidths[] = {7, 13, 25, 6, 8, 30, 15, 10, 10, 10, 10};
+                        int headerwidths[] = {7, 15, 25, 15, 8, 30, 15, 10, 10, 10, 10};
 
                         table.setWidths(headerwidths);
                         table.setHeaderRows(2);
@@ -482,33 +482,33 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
 
                             double ages = 0;
                             System.out.println("THIS IS THE LENGTH  " + listofAct.length);
-                            System.out.println("Paymode  [" + payMode+"]");
+                            System.out.println("Paymode  [" + payMode + "]");
                             for (int i = 0; i < listofAct.length; i++) {
                                 String coTime = "-";
                                 String diagnosis = "-";
                                 System.out.println("item" + listofAct[i]);
                                 if (payMode == "--ALL--") {
                                     if (patCat.equalsIgnoreCase("--ALL--")) {
-                                        st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                        st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                     } else {
                                         if (patCat.equalsIgnoreCase("New")) {
-                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                         } else {
                                             if (patCat.equalsIgnoreCase("Old")) {
-                                                st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                                st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                             }
                                         }
                                     }
                                 } else if (payMode == "Scheme") {
                                     if (schemesName == "--ALL--") {
                                         if (patCat.equalsIgnoreCase("--ALL--")) {
-                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.payment = 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.payment = 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                         } else {
                                             if (patCat.equalsIgnoreCase("New")) {
-                                                st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.payment = 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                                st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.payment = 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                             } else {
                                                 if (patCat.equalsIgnoreCase("Old")) {
-                                                    st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.payment = 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                                    st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.payment = 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                                 }
                                             }
 
@@ -516,13 +516,13 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
                                     } else {
                                         // Fetch for particular scheme
                                         if (patCat.equalsIgnoreCase("--ALL--")) {
-                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date, hp.scheme FROM hp_patient_register pr,hp_patient_visit pb, credit_acc_slip hp WHERE pb.payment = 'Scheme' AND pb.date::date = hp.date::date AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "' and pb.patient_no = pr.patient_no AND pb.patient_no = hp.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date, hp.scheme FROM hp_patient_register pr,hp_patient_visit pb, credit_acc_slip hp WHERE pb.payment = 'Scheme' AND pb.date::date = hp.date::date AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "' and pb.patient_no = pr.patient_no AND pb.patient_no = hp.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                         } else {
                                             if (patCat.equalsIgnoreCase("New")) {
-                                                st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date, hp.scheme FROM hp_patient_register pr,hp_patient_visit pb, credit_acc_slip hp WHERE  pb.payment = 'Scheme' AND pb.date::date = hp.date::date AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "'  and pb.patient_no = pr.patient_no AND pb.patient_no = hp.patient_no  AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                                st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date, hp.scheme FROM hp_patient_register pr,hp_patient_visit pb, credit_acc_slip hp WHERE  pb.payment = 'Scheme' AND pb.date::date = hp.date::date AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "'  and pb.patient_no = pr.patient_no AND pb.patient_no = hp.patient_no  AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                             } else {
                                                 if (patCat.equalsIgnoreCase("Old")) {
-                                                    st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date, hp.scheme FROM hp_patient_register pr,hp_patient_visit pb, credit_acc_slip hp WHERE  pb.payment = 'Scheme' AND pb.date::date = hp.date::date AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "'  and pb.patient_no = pr.patient_no AND pb.patient_no = hp.patient_no  AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                                    st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date, hp.scheme FROM hp_patient_register pr,hp_patient_visit pb, credit_acc_slip hp WHERE  pb.payment = 'Scheme' AND pb.date::date = hp.date::date AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "'  and pb.patient_no = pr.patient_no AND pb.patient_no = hp.patient_no  AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                                 }
                                             }
 
@@ -530,13 +530,13 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
                                     }
                                 } else {
                                     if (patCat.equalsIgnoreCase("--ALL--")) {
-                                        st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.payment != 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                        st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.payment != 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                     } else {
                                         if (patCat.equalsIgnoreCase("New")) {
-                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.payment != 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.payment != 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                         } else {
                                             if (patCat.equalsIgnoreCase("Old")) {
-                                                st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),pb.age, pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.payment != 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                                st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.payment != 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                             }
                                         }
                                     }
@@ -587,18 +587,21 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
 
                                     table.addCell(phrase);
                                     table.getDefaultCell().setColspan(1);
-                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                                    ages = rset.getDouble(3);
-                                    if (ages < 1) {
-                                        phrase = new Phrase("<1", pFontHeader1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+//                                    ages = rset.getString(3);
+//                                    if (ages < 1) {
+//                                        phrase = new Phrase("<1", pFontHeader1);
+//
+//                                        table.addCell(phrase);
+//                                    } else {
+//                                        //     phrase = new Phrase(dbObject.getDBObject(rset.getObject(3), "-"), pFontHeader1);
+//                                        phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(ages)), pFontHeader1);
+//
+//                                        table.addCell(phrase);
+//                                    }
+                                    phrase = new Phrase(dbObject.getDBObject(rset.getObject(3), "-"), pFontHeader1);
+                                    table.addCell(phrase);
 
-                                        table.addCell(phrase);
-                                    } else {
-                                        //     phrase = new Phrase(dbObject.getDBObject(rset.getObject(3), "-"), pFontHeader1);
-                                        phrase = new Phrase(new com.afrisoftech.sys.Format2IntCurrency().Format2IntCurrency(java.lang.String.valueOf(ages)), pFontHeader1);
-
-                                        table.addCell(phrase);
-                                    }
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                     table.getDefaultCell().setColspan(1);
 

@@ -40,8 +40,9 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
     
     java.lang.Thread threadSample;
     
-    com.lowagie.text.Font pFontHeader = FontFactory.getFont(FontFactory.HELVETICA, 10, Font.BOLD);
+    com.lowagie.text.Font pFontHeader = FontFactory.getFont(FontFactory.HELVETICA, 9, Font.BOLD);
     com.lowagie.text.Font pFontHeader1 = FontFactory.getFont(FontFactory.HELVETICA, 10, Font.NORMAL);
+    String dept = null;
     
     //   com.lowagie.text.ParagraphFont pgraph = Paragraph();
     
@@ -49,7 +50,7 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
     java.lang.Runtime rtThreadSample = java.lang.Runtime.getRuntime();
     
     java.lang.Process prThread;
-    public void DetailedCashReportPdf(java.sql.Connection connDb, java.util.Date begindate, java.util.Date endate) {
+    public void DetailedCashReportPdf(java.sql.Connection connDb, java.util.Date begindate, java.util.Date endate, String department) {
         
         //  public void ShiftReportDetailedPdf(java.sql.Connection connDb, java.lang.String combox, java.lang.String cashPoint) {
         //     memNo = combox;
@@ -57,6 +58,7 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
         endDate = endate;
         
         connectDB = connDb;
+        dept = department;
         
         //  beginDate = begindate;
         
@@ -332,9 +334,9 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
                     try {
                         
                         
-                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(7);
+                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(8);
                         
-                        int headerwidths[] = {11,10,18,10,17,10,13};
+                        int headerwidths[] = {11,10,10,18,10,17,10,13};
                         
                         table.setWidths(headerwidths);
                         
@@ -359,9 +361,12 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
                             //  phrase = new Phrase(bank +" Report: " +dateFormat.format(formattedDate), pFontHeader);
                             
                             //  table.addCell(phrase);
-                            table.getDefaultCell().setColspan(5);
+                            table.getDefaultCell().setColspan(6);
                             
-                            phrase = new Phrase("RECEIPTS BREAKDOWN REPORT - Period : "  +dateFormat.format(endDate11)+"' - '"+dateFormat.format(endDate1), pFontHeader);
+                            String title = "";
+                            if(!dept.equalsIgnoreCase("-")) title = dept.toUpperCase();
+                            
+                            phrase = new Phrase(title+" RECEIPTS BREAKDOWN REPORT - Period : "  +dateFormat.format(endDate11)+"' - '"+dateFormat.format(endDate1), pFontHeader);
                             
                             table.addCell(phrase);
                             table.getDefaultCell().setColspan(2);
@@ -401,6 +406,9 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
                             phrase = new Phrase("Receipt No.", pFontHeader);
                             table.addCell(phrase);
                             
+                            phrase = new Phrase("Patient No.", pFontHeader);
+                            table.addCell(phrase);
+                            
                             table.getDefaultCell().setColspan(2);
                             phrase = new Phrase("Payer", pFontHeader);
                             table.addCell(phrase);
@@ -413,16 +421,22 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
                             phrase = new Phrase("Amount "+ks, pFontHeader);
                             table.addCell(phrase);
                             
+                            String condition = "";
+                            if(!dept.equalsIgnoreCase("-")){
+                                dept = com.afrisoftech.lib.GLCodesFactory.getGlCode(connectDB, dept);
+                                condition = "AND activity_code = '"+dept+"' ";
+                            }
+                            
                             
                             
                             table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
-                            java.lang.Object[] listofAct1 = this.getDates();
+                            java.lang.Object[] listofAct1 = this.getDates(condition);
                             for (int k = 0; k < listofAct1.length; k++) {
                                 table.getDefaultCell().setColspan(1);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase = new Phrase(listofAct1[k].toString().toUpperCase(), pFontHeader);
                                 table.addCell(phrase);
-                                java.lang.Object[] listofAct = this.getListofActivities(listofAct1[k]);
+                                java.lang.Object[] listofAct = this.getListofActivities(listofAct1[k], condition);
                                 
                                 for (int i = 0; i < listofAct.length; i++) {
                                     
@@ -430,7 +444,7 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
                                     
                                     java.sql.Statement st1 = connectDB.createStatement();
                                     
-                                    java.sql.ResultSet rset1 = st1.executeQuery("select distinct date,receipt_no,initcap(dealer),sum(debit-credit) from ac_cash_collection where date BETWEEN '"+beginDate+"' AND '"+endDate+"' and receipt_no ILIKE '"+listofAct[i].toString()+"' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  AND transaction_type not ilike 'Bank%' group by date,receipt_no,dealer");
+                                    java.sql.ResultSet rset1 = st1.executeQuery("select distinct date,receipt_no,initcap(dealer),sum(debit-credit),patient_no from ac_cash_collection where date BETWEEN '"+beginDate+"' AND '"+endDate+"' and receipt_no ILIKE '"+listofAct[i].toString()+"' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  AND transaction_type not ilike 'Bank%' "+condition+" group by date,receipt_no,dealer, patient_no");
                                     if(i == 0){
                                         
                                         while (rset1.next()){
@@ -445,6 +459,10 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
                                             //table.addCell(phrase);
                                             phrase = new Phrase(rset1.getObject(2).toString(), pFontHeader);
                                             table.addCell(phrase);
+                                            
+                                            phrase = new Phrase(rset1.getObject(5).toString(), pFontHeader);
+                                            table.addCell(phrase);
+                                            
                                             table.getDefaultCell().setColspan(2);
                                             phrase = new Phrase(rset1.getObject(3).toString(), pFontHeader);
                                             table.addCell(phrase);
@@ -458,12 +476,12 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
                                             java.sql.Statement st22 = connectDB.createStatement();
                                             java.sql.Statement st5 = connectDB.createStatement();
                                             
-                                            java.sql.ResultSet rset = st5.executeQuery("select initcap(description),sum(debit-credit) from ac_cash_collection where date BETWEEN '"+beginDate+"' AND '"+endDate+"' and receipt_no = '"+listofAct[i].toString()+"' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  AND transaction_type not ilike 'Bank%' group by description order by description");
+                                            java.sql.ResultSet rset = st5.executeQuery("select initcap(description),sum(debit-credit) from ac_cash_collection where date BETWEEN '"+beginDate+"' AND '"+endDate+"' and receipt_no = '"+listofAct[i].toString()+"' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  AND transaction_type not ilike 'Bank%' "+condition+" group by description order by description");
                                             
                                             // while (rset22.next()) {
                                             while (rset.next()) {
                                                 table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
-                                                table.getDefaultCell().setColspan(4);
+                                                table.getDefaultCell().setColspan(5);
                                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                                 phrase = new Phrase("  ", pFontHeader);
                                                 
@@ -479,7 +497,7 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
                                                 table.addCell(phrase);
                                             }
                                             
-                                            table.getDefaultCell().setColspan(4);
+                                            table.getDefaultCell().setColspan(5);
                                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                             phrase = new Phrase("  ", pFontHeader);
                                             
@@ -516,6 +534,13 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
                                             
                                             table.addCell(phrase);
                                             phrase = new Phrase(rset1.getObject(2).toString(), pFontHeader);
+                                            
+                                           
+                                            
+                                            table.addCell(phrase);
+                                            
+                                             
+                                            phrase = new Phrase(rset1.getObject(5).toString(), pFontHeader);
                                             table.addCell(phrase);
                                             table.getDefaultCell().setColspan(2);
                                             phrase = new Phrase(rset1.getObject(3).toString(), pFontHeader);
@@ -530,12 +555,12 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
                                             java.sql.Statement st22 = connectDB.createStatement();
                                             java.sql.Statement st5 = connectDB.createStatement();
                                             
-                                            java.sql.ResultSet rset = st5.executeQuery("select initcap(description),sum(debit-credit) from ac_cash_collection where date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  and receipt_no = '"+listofAct[i].toString()+"' AND transaction_type not ilike 'Bank%' group by description order by description");
+                                            java.sql.ResultSet rset = st5.executeQuery("select initcap(description),sum(debit-credit) from ac_cash_collection where date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  and receipt_no = '"+listofAct[i].toString()+"' AND transaction_type not ilike 'Bank%' "+condition+" group by description order by description");
                                             
                                             // while (rset22.next()) {
                                             while (rset.next()) {
                                                 table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
-                                                table.getDefaultCell().setColspan(4);
+                                                table.getDefaultCell().setColspan(5);
                                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                                 phrase = new Phrase("  ", pFontHeader);
                                                 
@@ -551,7 +576,7 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
                                                 table.addCell(phrase);
                                             }
                                             
-                                            table.getDefaultCell().setColspan(4);
+                                            table.getDefaultCell().setColspan(5);
                                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                             phrase = new Phrase("  ", pFontHeader);
                                             
@@ -584,7 +609,7 @@ public class DetailedCashReportPdf implements java.lang.Runnable {
                             table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP);
                             
                             
-                            table.getDefaultCell().setColspan(4);
+                            table.getDefaultCell().setColspan(5);
                             
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             phrase = new Phrase("Grand Total", pFontHeader);
@@ -660,7 +685,7 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
         
     }
     
-    public java.lang.Object[] getDates() {
+    public java.lang.Object[] getDates(String condition) {
         
         java.lang.Object[] listofDates = null;
         
@@ -673,7 +698,7 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
             
             java.sql.Statement stmt1 = connectDB.createStatement();
             
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT date::date FROM ac_cash_collection where date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  AND transaction_type not ilike 'Bank%' ORDER BY date");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT date::date FROM ac_cash_collection where date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  AND transaction_type not ilike 'Bank%' "+condition+" ORDER BY date");
             
             while (rSet1.next()) {
                 
@@ -692,7 +717,7 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
         return listofDates;
     }
     
-    public java.lang.Object[] getListofActivities(java.lang.Object dayDate) {
+    public java.lang.Object[] getListofActivities(java.lang.Object dayDate, String condition) {
         
         java.lang.Object[] listofActivities = null;
         
@@ -705,7 +730,7 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
             
             java.sql.Statement stmt1 = connectDB.createStatement();
             
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT receipt_no FROM ac_cash_collection where date = '"+dayDate+"' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  AND  transaction_type not ilike 'Bank%' order by receipt_no");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT receipt_no FROM ac_cash_collection where date = '"+dayDate+"' AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +"  AND  transaction_type not ilike 'Bank%' "+condition+" order by receipt_no");
             
             while (rSet1.next()) {
                 

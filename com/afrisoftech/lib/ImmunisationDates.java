@@ -6,7 +6,7 @@
 package com.afrisoftech.lib;
 
 import java.sql.SQLException;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -35,7 +35,7 @@ public class ImmunisationDates {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return dateofImmunisation;
@@ -64,7 +64,7 @@ public class ImmunisationDates {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return immunisationCount;
@@ -93,7 +93,7 @@ public class ImmunisationDates {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return immunisationCount;
@@ -121,7 +121,7 @@ public class ImmunisationDates {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return immunisationCount;
@@ -149,7 +149,7 @@ public class ImmunisationDates {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return immunisationCount;
@@ -178,7 +178,7 @@ public class ImmunisationDates {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return immunisationCount;
@@ -209,7 +209,7 @@ public class ImmunisationDates {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return immunisationCount;

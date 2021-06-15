@@ -3525,7 +3525,7 @@
                 <Component class="javax.swing.JTable" name="admissionListingTable">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, &quot;SELECT patient_no, sub_chief as unit_number, visit_id, patient_name, gender, pat_age as patient_age, ward, wing, mode_of_payment, data_capture_time from hp_admission where user_name = current_user and date_admitted = now()::date order by data_capture_time&quot;)" type="code"/>
+                      <Connection code="com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, &quot;SELECT patient_no, sub_chief as unit_number, date_admitted,visit_id, patient_name, gender, pat_age as patient_age, ward, wing, mode_of_payment, data_capture_time,user_name AS registrar from hp_admission where user_name = current_user and date_admitted = now()::date order by data_capture_time&quot;)" type="code"/>
                     </Property>
                   </Properties>
                   <AuxValues>

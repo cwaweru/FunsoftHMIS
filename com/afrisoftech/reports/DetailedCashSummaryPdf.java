@@ -470,11 +470,12 @@ public class DetailedCashSummaryPdf implements java.lang.Runnable {
                                     while (rset.next()) {
                                         String itemCode = null;
                                         double itemPrice = 0.00;
-                                        java.sql.PreparedStatement pstmtItemCode = connectDB.prepareStatement("SELECT code, rate FROM pb_operating_parameters WHERE service_type ilike ? AND gl_account = ? UNION ALL select product_id,selling_price FROM st_stock_prices where product = ? and gl_code = ?");
+                                        java.sql.PreparedStatement pstmtItemCode = connectDB.prepareStatement("SELECT code, rate FROM pb_operating_parameters WHERE service_type ilike ? AND gl_account = ? UNION ALL select product_id,selling_price FROM st_stock_prices where product ILIKE ? or product || ' ' || strength  ILIKE ? and selling_price > 0 ");
                                         pstmtItemCode.setString(1, rset.getString(1));
                                         pstmtItemCode.setString(2, listofAct[i].toString());
                                         pstmtItemCode.setString(3, rset.getString(1));
-                                        pstmtItemCode.setString(4, listofAct[i].toString());
+                                        pstmtItemCode.setString(4, rset.getString(1));
+                                        //pstmtItemCode.setString(4, listofAct[i].toString());
 
                                         java.sql.ResultSet rsetItemCode = pstmtItemCode.executeQuery();
                                         while (rsetItemCode.next()) {

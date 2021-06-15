@@ -69,7 +69,9 @@ public class SendSMS {
     }
     public static void SendSMS(java.lang.String phoneNumber, java.lang.String smsMessage) {
     
-        com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendSMS("8df85dfa28771124422a74399e3734d42595701bpA531y9YXg23DIbKZMTg7jhCN", phoneNumber, smsMessage);
+        com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendSMS("ZmI1OWE0MWQzODY2MjVhNTI0MTAzZWY0ZmUxMmRl", phoneNumber, smsMessage);
+       
+        ////com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendSMS("8df85dfa28771124422a74399e3734d42595701bpA531y9YXg23DIbKZMTg7jhCN", phoneNumber, smsMessage);
     
     }
     

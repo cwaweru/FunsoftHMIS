@@ -18,6 +18,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
     String todays = null;
     javax.swing.JComboBox cmbox2 = null;
+    int clickedTable = 1;
     java.sql.Connection connectDB = null;
     private javax.swing.JComboBox cmbox;
     com.afrisoftech.lib.DBObject dbObject;
@@ -87,6 +88,12 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         schemeSearchScrollPane = new javax.swing.JScrollPane();
         schemeSearchTable = new com.afrisoftech.dbadmin.JTable();
         dispose12 = new javax.swing.JButton();
+        jSearchDialog13 = new javax.swing.JDialog();
+        jSearchPanel13 = new javax.swing.JPanel();
+        jTextField1113 = new javax.swing.JTextField();
+        jSearchScrollPane13 = new javax.swing.JScrollPane();
+        jSearchTable13 = new com.afrisoftech.dbadmin.JTable();
+        dispose13 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -142,6 +149,8 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         utilizeDepositChkbx = new javax.swing.JCheckBox();
         jLabel16 = new javax.swing.JLabel();
         coPaymentsTxt = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        schemeInvoicingTable = new com.afrisoftech.dbadmin.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         totalAmountTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -190,6 +199,8 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         searchButton3 = new javax.swing.JButton();
         schemeNameTxt1 = new javax.swing.JTextField();
         viewAllChkbx = new javax.swing.JCheckBox();
+        jLabel27 = new javax.swing.JLabel();
+        diffTxt = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane11 = new javax.swing.JScrollPane();
         jTable11 = new javax.swing.JTable();
@@ -700,1849 +711,2047 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 gridBagConstraints.weighty = 1.0;
                 schemeSearchDialog.getContentPane().add(jSearchPanel12, gridBagConstraints);
 
-                setClosable(true);
-                setIconifiable(true);
-                setMaximizable(true);
-                setResizable(true);
-                setTitle("Scheme Invoice");
-                setPreferredSize(new java.awt.Dimension(650, 700));
-                setVisible(true);
-                getContentPane().setLayout(new java.awt.GridBagLayout());
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 4;
-                gridBagConstraints.gridwidth = 3;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                getContentPane().add(jLabel5, gridBagConstraints);
+                jSearchDialog13.setModal(true);
+                jSearchDialog13.setUndecorated(true);
+                jSearchDialog13.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-                jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-                jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-                jPanel1.setLayout(new java.awt.GridBagLayout());
+                jSearchPanel13.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+                jSearchPanel13.setLayout(new java.awt.GridBagLayout());
 
-                schemeDataTable.setModel(new javax.swing.table.DefaultTableModel(
-                    new Object [][] {
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null}
-                    },
-                    new String [] {
-                        "Date", "Description", "Quantity", "Rate", "Discount", "Total Disc.", "Amount", "Gl Code", "Items To Claim", "Reference"
-                    }
-                ) {
-                    Class[] types = new Class [] {
-                        java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
-                    };
-                    boolean[] canEdit = new boolean [] {
-                        false, false, false, false, false, false, false, false, false, false
-                    };
-
-                    public Class getColumnClass(int columnIndex) {
-                        return types [columnIndex];
-                    }
-
-                    public boolean isCellEditable(int rowIndex, int columnIndex) {
-                        return canEdit [columnIndex];
-                    }
-                });
-                schemeDataTable.setShowHorizontalLines(false);
-                cmbox = new javax.swing.JComboBox();
-                javax.swing.table.TableColumn dateEditor = schemeDataTable.getColumnModel().getColumn(0);
-                com.afrisoftech.lib.DateCellEditor dateCellEditor = new com.afrisoftech.lib.DateCellEditor(new com.afrisoftech.lib.DatePicker(), schemeDataTable);
-                dateEditor.setCellEditor(dateCellEditor);
-                //jTable1.setRowHeight(30);
-                javax.swing.table.DefaultTableCellRenderer cellRenderer = new javax.swing.table.DefaultTableCellRenderer();
-                cellRenderer.setHorizontalAlignment(cellRenderer.TRAILING);
-                dateEditor.setCellRenderer(cellRenderer);
-
-                javax.swing.table.TableColumn column = null;
-                for (int i = 0; i < 8; i++) {
-                    column = schemeDataTable.getColumnModel().getColumn(i);
-                    if (i == 0) {
-
-                        column.setPreferredWidth(100); //sport column is bigger
-                    } else {
-                        if (i == 1) {
-                            column.setPreferredWidth(200);
-                        } else {
-                            if (i == 2) {
-                                column.setPreferredWidth(100);
-                            }  else
-                            column.setPreferredWidth(100);
-
-                        }
-                    }
-                }
-                schemeDataTable.addMouseListener(new java.awt.event.MouseAdapter() {
-                    public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        schemeDataTableMouseClicked(evt);
-                    }
-                });
-                schemeDataTable.addKeyListener(new java.awt.event.KeyAdapter() {
-                    public void keyReleased(java.awt.event.KeyEvent evt) {
-                        schemeDataTableKeyReleased(evt);
-                    }
-                });
-                jScrollPane1.setViewportView(schemeDataTable);
-
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 4;
-                gridBagConstraints.gridwidth = 8;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 500.0;
-                gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-                jPanel1.add(jScrollPane1, gridBagConstraints);
-
-                jPanel2.setBackground(new java.awt.Color(255, 204, 204));
-                jPanel2.setLayout(new java.awt.GridBagLayout());
-
-                jLabel1.setText("Scheme Name");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 3;
-                gridBagConstraints.gridy = 1;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-                jPanel2.add(jLabel1, gridBagConstraints);
-
-                jLabel2.setText("Scheme Member No.");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
-                jPanel2.add(jLabel2, gridBagConstraints);
-
-                patientNameTxt.setEditable(false);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                jPanel2.add(patientNameTxt, gridBagConstraints);
-
-                jLabel3.setText("Patient No.");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 1;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
-                jPanel2.add(jLabel3, gridBagConstraints);
-
-                jLabel4.setText("Patient Name");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
-                jPanel2.add(jLabel4, gridBagConstraints);
-
-                memberNoTxt.setEditable(false);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                jPanel2.add(memberNoTxt, gridBagConstraints);
-
-                jLabel7.setText("Scheme Payer");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 3;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-                jPanel2.add(jLabel7, gridBagConstraints);
-
-                schemePayerTxt.setEditable(false);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-                jPanel2.add(schemePayerTxt, gridBagConstraints);
-
-                jTextField5.setEditable(false);
-                jTextField5.setMinimumSize(new java.awt.Dimension(0, 0));
-                jTextField5.setPreferredSize(new java.awt.Dimension(0, 0));
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 2;
-                gridBagConstraints.gridy = 6;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                jPanel2.add(jTextField5, gridBagConstraints);
-
-                jTextField6.setEditable(false);
-                jTextField6.setMinimumSize(new java.awt.Dimension(0, 0));
-                jTextField6.setPreferredSize(new java.awt.Dimension(0, 0));
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 2;
-                gridBagConstraints.gridy = 7;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                jPanel2.add(jTextField6, gridBagConstraints);
-
-                jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-                jPanel4.setLayout(new java.awt.GridBagLayout());
-
-                patientNotxt.setEditable(false);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel4.add(patientNotxt, gridBagConstraints);
-
-                searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
-                searchButton.setToolTipText("Search");
-                searchButton.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-                searchButton.setMaximumSize(new java.awt.Dimension(74, 53));
-                searchButton.setMinimumSize(new java.awt.Dimension(74, 53));
-                searchButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-                searchButton.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        searchButtonActionPerformed(evt);
+                jTextField1113.addCaretListener(new javax.swing.event.CaretListener() {
+                    public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                        jTextField1113CaretUpdate(evt);
                     }
                 });
                 gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 2;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-                jPanel4.add(searchButton, gridBagConstraints);
-
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 1;
+                gridBagConstraints.gridx = 0;
+                gridBagConstraints.gridy = 0;
                 gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel2.add(jPanel4, gridBagConstraints);
-
-                jPanel641.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-                jPanel641.setMinimumSize(new java.awt.Dimension(82, 37));
-                jPanel641.setLayout(new java.awt.GridBagLayout());
-
-                searchButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
-                searchButton2.setToolTipText("Search");
-                searchButton2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-                searchButton2.setMaximumSize(new java.awt.Dimension(74, 53));
-                searchButton2.setMinimumSize(new java.awt.Dimension(74, 53));
-                searchButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-                searchButton2.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        searchButton2ActionPerformed(evt);
-                    }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 2;
-                gridBagConstraints.gridy = 1;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-                jPanel641.add(searchButton2, gridBagConstraints);
-
-                schemeNameTxt.setEditable(false);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 1;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel641.add(schemeNameTxt, gridBagConstraints);
-
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 1;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-                jPanel2.add(jPanel641, gridBagConstraints);
-
-                jLabel10.setText("Account No.");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 3;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-                jPanel2.add(jLabel10, gridBagConstraints);
-
-                accountNoTxt.setEditable(false);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
+                gridBagConstraints.weightx = 300.0;
                 gridBagConstraints.weighty = 1.0;
                 gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-                jPanel2.add(accountNoTxt, gridBagConstraints);
+                jSearchPanel13.add(jTextField1113, gridBagConstraints);
 
-                jLabel8.setText("Invoice No");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 3;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-                jPanel2.add(jLabel8, gridBagConstraints);
+                jSearchTable13.setToolTipText("Click on the target row to select the patient from the search.");
+                jSearchTable13.setShowHorizontalLines(false);
+                /*int rowsNo = 0;
+                //try {
 
-                invoiceNoTxt.setText("-");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-                jPanel2.add(invoiceNoTxt, gridBagConstraints);
-
-                jLabel19.setText("Claim Number");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 4;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
-                jPanel2.add(jLabel19, gridBagConstraints);
-
-                jLabel20.setText("Unutilised Scheme Deposit");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 5;
-                gridBagConstraints.gridy = 1;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-                jPanel2.add(jLabel20, gridBagConstraints);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 4;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                jPanel2.add(claimNumberTxt, gridBagConstraints);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 4;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-                jPanel2.add(cardNumberTxt, gridBagConstraints);
-
-                tickChk.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-                tickChk.setForeground(new java.awt.Color(204, 0, 0));
-                tickChk.setText("Tick ALL");
-                tickChk.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-                tickChk.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        tickChkActionPerformed(evt);
-                    }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 6;
-                gridBagConstraints.gridy = 5;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel2.add(tickChk, gridBagConstraints);
-
-                jLabel22.setText("Patient DMU Debt");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 5;
-                gridBagConstraints.gridy = 4;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
-                jPanel2.add(jLabel22, gridBagConstraints);
-
-                totalDepositBalTxt.setEditable(false);
-                totalDepositBalTxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-                totalDepositBalTxt.setForeground(new java.awt.Color(0, 0, 204));
-                totalDepositBalTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-                totalDepositBalTxt.setText("0.00");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 6;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                jPanel2.add(totalDepositBalTxt, gridBagConstraints);
-
-                jLabel23.setText("Patient's Unutilized Deposit");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 5;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
-                jPanel2.add(jLabel23, gridBagConstraints);
-
-                refundTxt.setEditable(false);
-                refundTxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-                refundTxt.setForeground(new java.awt.Color(0, 0, 204));
-                refundTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-                refundTxt.setText("0.00");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 6;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                jPanel2.add(refundTxt, gridBagConstraints);
-
-                jPanel6.setBackground(new java.awt.Color(255, 204, 204));
-                jPanel6.setLayout(new java.awt.GridBagLayout());
-
-                searchByNameChk.setBackground(new java.awt.Color(255, 204, 204));
-                buttonGroup1.add(searchByNameChk);
-                searchByNameChk.setText("Search By Name");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
-                jPanel6.add(searchByNameChk, gridBagConstraints);
-
-                searchByNoChk.setBackground(new java.awt.Color(255, 204, 204));
-                buttonGroup1.add(searchByNoChk);
-                searchByNoChk.setSelected(true);
-                searchByNoChk.setText("Search By No.");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel6.add(searchByNoChk, gridBagConstraints);
-
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.gridwidth = 2;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                gridBagConstraints.weightx = 1.0;
-                jPanel2.add(jPanel6, gridBagConstraints);
-
-                jLabel24.setText("Scheme Balance After Utilisation");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 5;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-                jPanel2.add(jLabel24, gridBagConstraints);
-
-                jLabel25.setText("Card/Referral No.");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 3;
-                gridBagConstraints.gridy = 4;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-                jPanel2.add(jLabel25, gridBagConstraints);
-
-                unutilisedSchemeDepositTxt.setEditable(false);
-                unutilisedSchemeDepositTxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-                unutilisedSchemeDepositTxt.setForeground(new java.awt.Color(0, 0, 204));
-                unutilisedSchemeDepositTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-                unutilisedSchemeDepositTxt.setText("0.00");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 6;
-                gridBagConstraints.gridy = 1;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                jPanel2.add(unutilisedSchemeDepositTxt, gridBagConstraints);
-
-                schemeBalAfterUtilisationTxt.setEditable(false);
-                schemeBalAfterUtilisationTxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-                schemeBalAfterUtilisationTxt.setForeground(new java.awt.Color(0, 0, 204));
-                schemeBalAfterUtilisationTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-                schemeBalAfterUtilisationTxt.setText("0.00");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 6;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                jPanel2.add(schemeBalAfterUtilisationTxt, gridBagConstraints);
-
-                jLabel26.setText("Patient Refund");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 5;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
-                jPanel2.add(jLabel26, gridBagConstraints);
-
-                dmuBalanceTxt.setEditable(false);
-                dmuBalanceTxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-                dmuBalanceTxt.setForeground(new java.awt.Color(204, 0, 0));
-                dmuBalanceTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-                dmuBalanceTxt.setText("0.00");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 6;
-                gridBagConstraints.gridy = 4;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                jPanel2.add(dmuBalanceTxt, gridBagConstraints);
-
-                utilizeDepositChkbx.setText("Utilize Deposit");
-                utilizeDepositChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 5;
-                gridBagConstraints.gridy = 5;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel2.add(utilizeDepositChkbx, gridBagConstraints);
-
-                jLabel16.setText("Co-Payments");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 3;
-                gridBagConstraints.gridy = 5;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-                jPanel2.add(jLabel16, gridBagConstraints);
-
-                coPaymentsTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-                coPaymentsTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-                coPaymentsTxt.setText("0.00");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 5;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-                jPanel2.add(coPaymentsTxt, gridBagConstraints);
-
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.gridwidth = 8;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                gridBagConstraints.ipady = -10;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel1.add(jPanel2, gridBagConstraints);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 6;
-                gridBagConstraints.gridwidth = 6;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                jPanel1.add(jSeparator1, gridBagConstraints);
-
-                totalAmountTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-                totalAmountTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-                totalAmountTxt.setText("0.00");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 3;
-                gridBagConstraints.gridy = 5;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 10);
-                jPanel1.add(totalAmountTxt, gridBagConstraints);
-
-                jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-                jLabel6.setText("Total Amount");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 2;
-                gridBagConstraints.gridy = 5;
-                jPanel1.add(jLabel6, gridBagConstraints);
-
-                viewTable.setModel(new javax.swing.table.DefaultTableModel(
-                    new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                    },
-                    new String [] {
-                        "Date", "Patient No", "Scheme", "Amount"
-                    }
-                ) {
-                    Class[] types = new Class [] {
-                        java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
-                    };
-
-                    public Class getColumnClass(int columnIndex) {
-                        return types [columnIndex];
-                    }
-                });
-                viewTable.setShowHorizontalLines(false);
-                javax.swing.table.TableColumn column12 = null;
-                for (int i = 0; i < 4; i++) {
-                    column12 = viewTable.getColumnModel().getColumn(i);
-                    if (i == 0) {
-
-                        column12.setPreferredWidth(100); //sport column is bigger
-                    } else {
-                        if (i == 1) {
-                            column12.setPreferredWidth(200);
-                        } else {
-                            if (i == 2) {
-                                column12.setPreferredWidth(300);
-                            }  else
-                            column12.setPreferredWidth(100);
-
-                        }
-                    }
-                }
-                viewTable.addMouseListener(new java.awt.event.MouseAdapter() {
-                    public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        viewTableMouseClicked(evt);
-                    }
-                });
-                jScrollPane12.setViewportView(viewTable);
-
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.gridwidth = 8;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 500.0;
-                gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-                jPanel1.add(jScrollPane12, gridBagConstraints);
-
-                jLabel51.setText("Start Date");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 2;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-                jPanel1.add(jLabel51, gridBagConstraints);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 3;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.ipadx = 20;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel1.add(beginDate, gridBagConstraints);
-
-                jLabel62.setText("End Date");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-                jPanel1.add(jLabel62, gridBagConstraints);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 5;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel1.add(endDate, gridBagConstraints);
-
-                jCheckBox2.setForeground(new java.awt.Color(0, 0, 255));
-                jCheckBox2.setText("View by Scheme");
-                jCheckBox2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-                jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        jCheckBox2ActionPerformed(evt);
-                    }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 6;
-                gridBagConstraints.gridy = 0;
-                jPanel1.add(jCheckBox2, gridBagConstraints);
-
-                jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("For Deposit utilization,type the amount to be utilized and click \"Utilize Patient Deposit/Print Final Invoice\""));
-                jPanel3.setLayout(new java.awt.GridBagLayout());
-
-                finalizeInvoiceBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-                finalizeInvoiceBtn.setMnemonic('O');
-                finalizeInvoiceBtn.setText("Finalise Invoice");
-                finalizeInvoiceBtn.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        finalizeInvoiceBtnActionPerformed(evt);
-                    }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 2;
-                gridBagConstraints.gridy = 6;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel3.add(finalizeInvoiceBtn, gridBagConstraints);
-
-                jButton3.setMnemonic('R');
-                jButton3.setText("Refresh");
-                jButton3.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        jButton3ActionPerformed(evt);
-                    }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 3;
-                gridBagConstraints.gridy = 6;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel3.add(jButton3, gridBagConstraints);
-
-                jButton6.setMnemonic('r');
-                jButton6.setText("Remove Row");
-                jButton6.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        jButton6ActionPerformed(evt);
-                    }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 6;
-                gridBagConstraints.weightx = 1.0;
-                jPanel3.add(jButton6, gridBagConstraints);
-
-                jButton4.setMnemonic('C');
-                jButton4.setText("Close");
-                jButton4.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        jButton4ActionPerformed(evt);
-                    }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 5;
-                gridBagConstraints.gridy = 6;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel3.add(jButton4, gridBagConstraints);
-
-                jButton5.setMnemonic('h');
-                jButton5.setText("Help");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 6;
-                gridBagConstraints.gridy = 6;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel3.add(jButton5, gridBagConstraints);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 6;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 500.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel3.add(jLabel18, gridBagConstraints);
-
-                utlizeDepositBtn.setText("Utilize Patient Deposit/Print Final Invoice");
-                utlizeDepositBtn.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        utlizeDepositBtnActionPerformed(evt);
-                    }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 6;
-                jPanel3.add(utlizeDepositBtn, gridBagConstraints);
-
-                utilizedepositTxt.setForeground(new java.awt.Color(255, 0, 0));
-                utilizedepositTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-                utilizedepositTxt.setText("0.00");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 6;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel3.add(utilizedepositTxt, gridBagConstraints);
-
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 7;
-                gridBagConstraints.gridwidth = 8;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                jPanel1.add(jPanel3, gridBagConstraints);
-
-                totalDiscountTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-                totalDiscountTxt.setText("0.00");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 5;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-                jPanel1.add(totalDiscountTxt, gridBagConstraints);
-
-                jLabel9.setText("Discount");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 5;
-                jPanel1.add(jLabel9, gridBagConstraints);
-
-                jLabel12.setText("Net Total");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 5;
-                gridBagConstraints.weightx = 1.0;
-                jPanel1.add(jLabel12, gridBagConstraints);
-
-                totalNetTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-                totalNetTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-                totalNetTxt.setText("0.00");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 6;
-                gridBagConstraints.gridy = 5;
-                gridBagConstraints.gridwidth = 2;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.ipadx = 3;
-                gridBagConstraints.weightx = 1.0;
-                jPanel1.add(totalNetTxt, gridBagConstraints);
-
-                jPanel642.setBorder(javax.swing.BorderFactory.createTitledBorder("Select Scheme/Debtor"));
-                jPanel642.setMinimumSize(new java.awt.Dimension(82, 37));
-                jPanel642.setLayout(new java.awt.GridBagLayout());
-
-                searchButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
-                searchButton3.setToolTipText("Search");
-                searchButton3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-                searchButton3.setMaximumSize(new java.awt.Dimension(74, 53));
-                searchButton3.setMinimumSize(new java.awt.Dimension(74, 53));
-                searchButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-                searchButton3.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        searchButton3ActionPerformed(evt);
-                    }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 2;
-                gridBagConstraints.gridy = 1;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-                jPanel642.add(searchButton3, gridBagConstraints);
-
-                schemeNameTxt1.setEditable(false);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 1;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel642.add(schemeNameTxt1, gridBagConstraints);
-
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.gridwidth = 2;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 2.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-                jPanel1.add(jPanel642, gridBagConstraints);
-
-                viewAllChkbx.setForeground(new java.awt.Color(255, 0, 51));
-                viewAllChkbx.setText("View ALL");
-                viewAllChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-                viewAllChkbx.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        viewAllChkbxActionPerformed(evt);
-                    }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 7;
-                gridBagConstraints.gridy = 0;
-                jPanel1.add(viewAllChkbx, gridBagConstraints);
-
-                jTabbedPane1.addTab("Out Patients", jPanel1);
-
-                jPanel11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-                jPanel11.setEnabled(false);
-                jPanel11.setLayout(new java.awt.GridBagLayout());
-
-                jTable11.setModel(new javax.swing.table.DefaultTableModel(
-                    new Object [][] {
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null}
-                    },
-                    new String [] {
-                        "Description", "Gross", "Discount", "Disc. Amt", "Net Amt.", "Items To Claim"
-                    }
-                ) {
-                    Class[] types = new Class [] {
-                        java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Boolean.class
-                    };
-                    boolean[] canEdit = new boolean [] {
-                        false, false, true, true, false, true
-                    };
-
-                    public Class getColumnClass(int columnIndex) {
-                        return types [columnIndex];
-                    }
-
-                    public boolean isCellEditable(int rowIndex, int columnIndex) {
-                        return canEdit [columnIndex];
-                    }
-                });
-                jTable11.setShowHorizontalLines(false);
-                /*       cmbox2 = new javax.swing.JComboBox();
-
-                try {
+                    crset1.setCommand("SELECT patient_no, (upper(first_name||' '||second_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register order by name");
 
                     crset1.setConnectionSource(pConnDB);
-                    crset1.execute("select description from st_stock_item");
 
-                    cmbox2.setModel(new org.netbeans.lib.sql.models.ComboBoxModel(crset1, "description", null, null,null));
+                    // try {
+                        //crset1.execute();
 
-                    javax.swing.table.TableColumn seditor = this.jTable1.getColumn("Product");
+                        // crset2.setExecuteOnLoad(true);
+                        jSearchTable.setModel(new org.netbeans.lib.sql.models.TableModel(crset1, new org.netbeans.lib.sql.models.TableModel.Column[] {
+                            new org.netbeans.lib.sql.models.TableModel.Column("patient_no", "Patient No.", false),
+                            new org.netbeans.lib.sql.models.TableModel.Column("name", "Name", false),
 
-                    seditor.setCellEditor(new javax.swing.DefaultCellEditor(cmbox2));
+                            new org.netbeans.lib.sql.models.TableModel.Column("year_of_birth", "Birth date", true),
+                            new org.netbeans.lib.sql.models.TableModel.Column("residence", "Residence", true)
 
-                    cmbox2.addActionListener(new java.awt.event.ActionListener() {
+                        }));
 
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        tableModel = jSearchTable.getModel();
 
-                            cmbox2ActionPerformed(evt);
+                        jSearchScrollPane.setViewportView(jSearchTable);
+
+                        /*   }catch(java.sql.SQLException sqlex){
+                        javax.swing.JOptionPane.showMessageDialog(this,sqlex.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
+
+                        System.out.println(sqlex.getMessage());
+
+                    }
+
+                    javax.swing.table.TableColumn column = null;
+
+                    for (int i = 0; i < 4; i++) {
+
+                        column = jSearchTable.getColumnModel().getColumn(i);
+
+                        if (i == 1) {
+
+                            column.setPreferredWidth(400);
+                            //sport column is bigger
+                        } else {
+
+                            column.setPreferredWidth(200);
+
+                        }
+                    }*/
+                    jSearchTable13.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                            jSearchTable13MouseClicked(evt);
                         }
                     });
-                } catch(java.sql.SQLException sqlExec) {
+                    jSearchScrollPane13.setViewportView(jSearchTable13);
 
-                    javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 1;
+                    gridBagConstraints.gridwidth = 3;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 20.0;
+                    jSearchPanel13.add(jSearchScrollPane13, gridBagConstraints);
 
-                }
-                */
+                    dispose13.setMnemonic('l');
+                    dispose13.setText("Close");
+                    dispose13.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            dispose13ActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 2;
+                    gridBagConstraints.gridy = 0;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jSearchPanel13.add(dispose13, gridBagConstraints);
 
-                javax.swing.table.TableColumn column1 = null;
-                for (int i = 0; i < 4; i++) {
-                    column1 = schemeDataTable.getColumnModel().getColumn(i);
-                    if (i == 0) {
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 1;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jSearchDialog13.getContentPane().add(jSearchPanel13, gridBagConstraints);
 
-                        column1.setPreferredWidth(200); //sport column is bigger
-                    } else {
-                        if (i == 1) {
-                            column1.setPreferredWidth(200);
+                    setClosable(true);
+                    setIconifiable(true);
+                    setMaximizable(true);
+                    setResizable(true);
+                    setTitle("Scheme Invoice");
+                    setPreferredSize(new java.awt.Dimension(650, 700));
+                    setVisible(true);
+                    getContentPane().setLayout(new java.awt.GridBagLayout());
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 4;
+                    gridBagConstraints.gridwidth = 3;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    getContentPane().add(jLabel5, gridBagConstraints);
+
+                    jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+                    jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+                    jPanel1.setLayout(new java.awt.GridBagLayout());
+
+                    schemeDataTable.setModel(new javax.swing.table.DefaultTableModel(
+                        new Object [][] {
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null, null, null, null}
+                        },
+                        new String [] {
+                            "Date", "Description", "Quantity", "Rate", "Discount", "Total Disc.", "Amount", "Gl Code", "Items To Claim", "Reference"
+                        }
+                    ) {
+                        Class[] types = new Class [] {
+                            java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
+                        };
+                        boolean[] canEdit = new boolean [] {
+                            false, false, false, false, false, false, false, false, false, false
+                        };
+
+                        public Class getColumnClass(int columnIndex) {
+                            return types [columnIndex];
+                        }
+
+                        public boolean isCellEditable(int rowIndex, int columnIndex) {
+                            return canEdit [columnIndex];
+                        }
+                    });
+                    schemeDataTable.setShowHorizontalLines(false);
+                    cmbox = new javax.swing.JComboBox();
+                    javax.swing.table.TableColumn dateEditor = schemeDataTable.getColumnModel().getColumn(0);
+                    com.afrisoftech.lib.DateCellEditor dateCellEditor = new com.afrisoftech.lib.DateCellEditor(new com.afrisoftech.lib.DatePicker(), schemeDataTable);
+                    dateEditor.setCellEditor(dateCellEditor);
+                    //jTable1.setRowHeight(30);
+                    javax.swing.table.DefaultTableCellRenderer cellRenderer = new javax.swing.table.DefaultTableCellRenderer();
+                    cellRenderer.setHorizontalAlignment(cellRenderer.TRAILING);
+                    dateEditor.setCellRenderer(cellRenderer);
+
+                    javax.swing.table.TableColumn column = null;
+                    for (int i = 0; i < 8; i++) {
+                        column = schemeDataTable.getColumnModel().getColumn(i);
+                        if (i == 0) {
+
+                            column.setPreferredWidth(100); //sport column is bigger
                         } else {
-                            if (i == 2) {
-                                column1.setPreferredWidth(100);
-                            }  else
-                            column1.setPreferredWidth(100);
+                            if (i == 1) {
+                                column.setPreferredWidth(200);
+                            } else {
+                                if (i == 2) {
+                                    column.setPreferredWidth(100);
+                                }  else
+                                column.setPreferredWidth(100);
 
+                            }
                         }
                     }
-                }
-                jTable11.addMouseListener(new java.awt.event.MouseAdapter() {
-                    public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        jTable11MouseClicked(evt);
+                    schemeDataTable.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                            schemeDataTableMouseClicked(evt);
+                        }
+                    });
+                    schemeDataTable.addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyReleased(java.awt.event.KeyEvent evt) {
+                            schemeDataTableKeyReleased(evt);
+                        }
+                    });
+                    jScrollPane1.setViewportView(schemeDataTable);
+
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 4;
+                    gridBagConstraints.gridwidth = 10;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 500.0;
+                    gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+                    jPanel1.add(jScrollPane1, gridBagConstraints);
+
+                    jPanel2.setBackground(new java.awt.Color(255, 204, 204));
+                    jPanel2.setLayout(new java.awt.GridBagLayout());
+
+                    jLabel1.setText("Scheme Name");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 3;
+                    gridBagConstraints.gridy = 1;
+                    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+                    jPanel2.add(jLabel1, gridBagConstraints);
+
+                    jLabel2.setText("Scheme Member No.");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 3;
+                    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
+                    jPanel2.add(jLabel2, gridBagConstraints);
+
+                    patientNameTxt.setEditable(false);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 2;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel2.add(patientNameTxt, gridBagConstraints);
+
+                    jLabel3.setText("Patient No.");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 1;
+                    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
+                    jPanel2.add(jLabel3, gridBagConstraints);
+
+                    jLabel4.setText("Patient Name");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 2;
+                    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
+                    jPanel2.add(jLabel4, gridBagConstraints);
+
+                    memberNoTxt.setEditable(false);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 3;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel2.add(memberNoTxt, gridBagConstraints);
+
+                    jLabel7.setText("Scheme Payer");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 3;
+                    gridBagConstraints.gridy = 2;
+                    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+                    jPanel2.add(jLabel7, gridBagConstraints);
+
+                    schemePayerTxt.setEditable(false);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 4;
+                    gridBagConstraints.gridy = 2;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    jPanel2.add(schemePayerTxt, gridBagConstraints);
+
+                    jTextField5.setEditable(false);
+                    jTextField5.setMinimumSize(new java.awt.Dimension(0, 0));
+                    jTextField5.setPreferredSize(new java.awt.Dimension(0, 0));
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 2;
+                    gridBagConstraints.gridy = 6;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    jPanel2.add(jTextField5, gridBagConstraints);
+
+                    jTextField6.setEditable(false);
+                    jTextField6.setMinimumSize(new java.awt.Dimension(0, 0));
+                    jTextField6.setPreferredSize(new java.awt.Dimension(0, 0));
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 2;
+                    gridBagConstraints.gridy = 7;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+                    jPanel2.add(jTextField6, gridBagConstraints);
+
+                    jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+                    jPanel4.setPreferredSize(new java.awt.Dimension(12, 19));
+                    jPanel4.setLayout(new java.awt.GridBagLayout());
+
+                    patientNotxt.setEditable(false);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 2;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel4.add(patientNotxt, gridBagConstraints);
+
+                    searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
+                    searchButton.setToolTipText("Search");
+                    searchButton.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+                    searchButton.setMaximumSize(new java.awt.Dimension(4, 19));
+                    searchButton.setMinimumSize(new java.awt.Dimension(19, 19));
+                    searchButton.setPreferredSize(new java.awt.Dimension(15, 19));
+                    searchButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+                    searchButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            searchButtonActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 2;
+                    gridBagConstraints.gridy = 2;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+                    jPanel4.add(searchButton, gridBagConstraints);
+
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 1;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel2.add(jPanel4, gridBagConstraints);
+
+                    jPanel641.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+                    jPanel641.setMaximumSize(new java.awt.Dimension(82, 19));
+                    jPanel641.setMinimumSize(new java.awt.Dimension(82, 20));
+                    jPanel641.setPreferredSize(new java.awt.Dimension(20, 19));
+                    jPanel641.setLayout(new java.awt.GridBagLayout());
+
+                    searchButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
+                    searchButton2.setToolTipText("Search");
+                    searchButton2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+                    searchButton2.setMaximumSize(new java.awt.Dimension(20, 19));
+                    searchButton2.setMinimumSize(new java.awt.Dimension(15, 19));
+                    searchButton2.setPreferredSize(new java.awt.Dimension(15, 19));
+                    searchButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+                    searchButton2.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            searchButton2ActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 2;
+                    gridBagConstraints.gridy = 1;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+                    jPanel641.add(searchButton2, gridBagConstraints);
+
+                    schemeNameTxt.setEditable(false);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 1;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel641.add(schemeNameTxt, gridBagConstraints);
+
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 4;
+                    gridBagConstraints.gridy = 1;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel2.add(jPanel641, gridBagConstraints);
+
+                    jLabel10.setText("Account No.");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 3;
+                    gridBagConstraints.gridy = 3;
+                    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+                    jPanel2.add(jLabel10, gridBagConstraints);
+
+                    accountNoTxt.setEditable(false);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 4;
+                    gridBagConstraints.gridy = 3;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel2.add(accountNoTxt, gridBagConstraints);
+
+                    jLabel8.setText("Invoice No");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 3;
+                    gridBagConstraints.gridy = 0;
+                    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+                    jPanel2.add(jLabel8, gridBagConstraints);
+
+                    invoiceNoTxt.setText("-");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 4;
+                    gridBagConstraints.gridy = 0;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel2.add(invoiceNoTxt, gridBagConstraints);
+
+                    jLabel19.setText("Claim Number");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 4;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
+                    jPanel2.add(jLabel19, gridBagConstraints);
+
+                    jLabel20.setText("Unutilised Scheme Deposit");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 6;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+                    jPanel2.add(jLabel20, gridBagConstraints);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 4;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel2.add(claimNumberTxt, gridBagConstraints);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 4;
+                    gridBagConstraints.gridy = 4;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel2.add(cardNumberTxt, gridBagConstraints);
+
+                    tickChk.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+                    tickChk.setForeground(new java.awt.Color(204, 0, 0));
+                    tickChk.setText("Tick ALL");
+                    tickChk.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+                    tickChk.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            tickChkActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 6;
+                    gridBagConstraints.gridy = 5;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel2.add(tickChk, gridBagConstraints);
+
+                    jLabel22.setText("Patient DMU Debt");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 5;
+                    gridBagConstraints.gridy = 4;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
+                    jPanel2.add(jLabel22, gridBagConstraints);
+
+                    totalDepositBalTxt.setEditable(false);
+                    totalDepositBalTxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+                    totalDepositBalTxt.setForeground(new java.awt.Color(0, 0, 204));
+                    totalDepositBalTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+                    totalDepositBalTxt.setText("0.00");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 5;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel2.add(totalDepositBalTxt, gridBagConstraints);
+
+                    jLabel23.setText("Patient's Unutilized Deposit");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 5;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
+                    jPanel2.add(jLabel23, gridBagConstraints);
+
+                    refundTxt.setEditable(false);
+                    refundTxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+                    refundTxt.setForeground(new java.awt.Color(0, 0, 204));
+                    refundTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+                    refundTxt.setText("0.00");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 4;
+                    gridBagConstraints.gridy = 6;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel2.add(refundTxt, gridBagConstraints);
+
+                    jPanel6.setBackground(new java.awt.Color(255, 204, 204));
+                    jPanel6.setLayout(new java.awt.GridBagLayout());
+
+                    searchByNameChk.setBackground(new java.awt.Color(255, 204, 204));
+                    buttonGroup1.add(searchByNameChk);
+                    searchByNameChk.setText("Search By Name");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 0;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
+                    jPanel6.add(searchByNameChk, gridBagConstraints);
+
+                    searchByNoChk.setBackground(new java.awt.Color(255, 204, 204));
+                    buttonGroup1.add(searchByNoChk);
+                    searchByNoChk.setSelected(true);
+                    searchByNoChk.setText("Search By No.");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel6.add(searchByNoChk, gridBagConstraints);
+
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 0;
+                    gridBagConstraints.gridwidth = 2;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                    gridBagConstraints.weightx = 1.0;
+                    jPanel2.add(jPanel6, gridBagConstraints);
+
+                    jLabel24.setText("Scheme Balance After Utilisation");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 5;
+                    gridBagConstraints.gridy = 3;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+                    jPanel2.add(jLabel24, gridBagConstraints);
+
+                    jLabel25.setText("Card/Referral No.");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 3;
+                    gridBagConstraints.gridy = 4;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+                    jPanel2.add(jLabel25, gridBagConstraints);
+
+                    unutilisedSchemeDepositTxt.setEditable(false);
+                    unutilisedSchemeDepositTxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+                    unutilisedSchemeDepositTxt.setForeground(new java.awt.Color(0, 0, 204));
+                    unutilisedSchemeDepositTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+                    unutilisedSchemeDepositTxt.setText("0.00");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 6;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel2.add(unutilisedSchemeDepositTxt, gridBagConstraints);
+
+                    schemeBalAfterUtilisationTxt.setEditable(false);
+                    schemeBalAfterUtilisationTxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+                    schemeBalAfterUtilisationTxt.setForeground(new java.awt.Color(0, 0, 204));
+                    schemeBalAfterUtilisationTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+                    schemeBalAfterUtilisationTxt.setText("0.00");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 6;
+                    gridBagConstraints.gridy = 3;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+                    jPanel2.add(schemeBalAfterUtilisationTxt, gridBagConstraints);
+
+                    jLabel26.setText("Patient Refund");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 3;
+                    gridBagConstraints.gridy = 6;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
+                    jPanel2.add(jLabel26, gridBagConstraints);
+
+                    dmuBalanceTxt.setEditable(false);
+                    dmuBalanceTxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+                    dmuBalanceTxt.setForeground(new java.awt.Color(204, 0, 0));
+                    dmuBalanceTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+                    dmuBalanceTxt.setText("0.00");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 6;
+                    gridBagConstraints.gridy = 4;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+                    jPanel2.add(dmuBalanceTxt, gridBagConstraints);
+
+                    utilizeDepositChkbx.setText("Utilize Deposit");
+                    utilizeDepositChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 5;
+                    gridBagConstraints.gridy = 5;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel2.add(utilizeDepositChkbx, gridBagConstraints);
+
+                    jLabel16.setText("Co-Payments");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 3;
+                    gridBagConstraints.gridy = 5;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+                    jPanel2.add(jLabel16, gridBagConstraints);
+
+                    coPaymentsTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+                    coPaymentsTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+                    coPaymentsTxt.setText("0.00");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 4;
+                    gridBagConstraints.gridy = 5;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel2.add(coPaymentsTxt, gridBagConstraints);
+
+                    schemeInvoicingTable.setModel(new javax.swing.table.DefaultTableModel(
+                        new Object [][] {
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null},
+                            {null, null, null, null, null}
+                        },
+                        new String [] {
+                            "A/C No", "Name", "AMT", "Unutilised Deposit", "Deposit Bal"
+                        }
+                    ) {
+                        Class[] types = new Class [] {
+                            java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                        };
+                        boolean[] canEdit = new boolean [] {
+                            false, true, true, false, false
+                        };
+
+                        public Class getColumnClass(int columnIndex) {
+                            return types [columnIndex];
+                        }
+
+                        public boolean isCellEditable(int rowIndex, int columnIndex) {
+                            return canEdit [columnIndex];
+                        }
+                    });
+                    schemeInvoicingTable.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                            schemeInvoicingTableMouseClicked(evt);
+                        }
+                    });
+                    schemeInvoicingTable.addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyPressed(java.awt.event.KeyEvent evt) {
+                            schemeInvoicingTableKeyPressed(evt);
+                        }
+                        public void keyReleased(java.awt.event.KeyEvent evt) {
+                            schemeInvoicingTableKeyReleased(evt);
+                        }
+                    });
+                    jScrollPane2.setViewportView(schemeInvoicingTable);
+
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 5;
+                    gridBagConstraints.gridy = 0;
+                    gridBagConstraints.gridwidth = 2;
+                    gridBagConstraints.gridheight = 3;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                    gridBagConstraints.weightx = 1.2;
+                    gridBagConstraints.weighty = 3.0;
+                    jPanel2.add(jScrollPane2, gridBagConstraints);
+
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 3;
+                    gridBagConstraints.gridwidth = 10;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                    gridBagConstraints.ipady = -10;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel1.add(jPanel2, gridBagConstraints);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 6;
+                    gridBagConstraints.gridwidth = 8;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    jPanel1.add(jSeparator1, gridBagConstraints);
+
+                    totalAmountTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+                    totalAmountTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+                    totalAmountTxt.setText("0.00");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 5;
+                    gridBagConstraints.gridy = 5;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 10);
+                    jPanel1.add(totalAmountTxt, gridBagConstraints);
+
+                    jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+                    jLabel6.setText("Total Amount");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 4;
+                    gridBagConstraints.gridy = 5;
+                    jPanel1.add(jLabel6, gridBagConstraints);
+
+                    viewTable.setModel(new javax.swing.table.DefaultTableModel(
+                        new Object [][] {
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null},
+                            {null, null, null, null}
+                        },
+                        new String [] {
+                            "Date", "Patient No", "Scheme", "Amount"
+                        }
+                    ) {
+                        Class[] types = new Class [] {
+                            java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
+                        };
+
+                        public Class getColumnClass(int columnIndex) {
+                            return types [columnIndex];
+                        }
+                    });
+                    viewTable.setShowHorizontalLines(false);
+                    javax.swing.table.TableColumn column12 = null;
+                    for (int i = 0; i < 4; i++) {
+                        column12 = viewTable.getColumnModel().getColumn(i);
+                        if (i == 0) {
+
+                            column12.setPreferredWidth(100); //sport column is bigger
+                        } else {
+                            if (i == 1) {
+                                column12.setPreferredWidth(200);
+                            } else {
+                                if (i == 2) {
+                                    column12.setPreferredWidth(300);
+                                }  else
+                                column12.setPreferredWidth(100);
+
+                            }
+                        }
                     }
-                });
-                jTable11.addKeyListener(new java.awt.event.KeyAdapter() {
-                    public void keyReleased(java.awt.event.KeyEvent evt) {
-                        jTable11KeyReleased(evt);
+                    viewTable.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                            viewTableMouseClicked(evt);
+                        }
+                    });
+                    jScrollPane12.setViewportView(viewTable);
+
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 2;
+                    gridBagConstraints.gridwidth = 10;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 500.0;
+                    gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+                    jPanel1.add(jScrollPane12, gridBagConstraints);
+
+                    jLabel51.setText("Start Date");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 4;
+                    gridBagConstraints.gridy = 0;
+                    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+                    jPanel1.add(jLabel51, gridBagConstraints);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 5;
+                    gridBagConstraints.gridy = 0;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.ipadx = 20;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel1.add(beginDate, gridBagConstraints);
+
+                    jLabel62.setText("End Date");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 6;
+                    gridBagConstraints.gridy = 0;
+                    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+                    jPanel1.add(jLabel62, gridBagConstraints);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 7;
+                    gridBagConstraints.gridy = 0;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel1.add(endDate, gridBagConstraints);
+
+                    jCheckBox2.setForeground(new java.awt.Color(0, 0, 255));
+                    jCheckBox2.setText("View by Scheme");
+                    jCheckBox2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+                    jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            jCheckBox2ActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 8;
+                    gridBagConstraints.gridy = 0;
+                    jPanel1.add(jCheckBox2, gridBagConstraints);
+
+                    jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("For Deposit utilization,type the amount to be utilized and click \"Utilize Patient Deposit/Print Final Invoice\""));
+                    jPanel3.setLayout(new java.awt.GridBagLayout());
+
+                    finalizeInvoiceBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+                    finalizeInvoiceBtn.setMnemonic('O');
+                    finalizeInvoiceBtn.setText("Finalise Invoice");
+                    finalizeInvoiceBtn.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            finalizeInvoiceBtnActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 2;
+                    gridBagConstraints.gridy = 6;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel3.add(finalizeInvoiceBtn, gridBagConstraints);
+
+                    jButton3.setMnemonic('R');
+                    jButton3.setText("Refresh");
+                    jButton3.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            jButton3ActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 3;
+                    gridBagConstraints.gridy = 6;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel3.add(jButton3, gridBagConstraints);
+
+                    jButton6.setMnemonic('r');
+                    jButton6.setText("Remove Row");
+                    jButton6.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            jButton6ActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 4;
+                    gridBagConstraints.gridy = 6;
+                    gridBagConstraints.weightx = 1.0;
+                    jPanel3.add(jButton6, gridBagConstraints);
+
+                    jButton4.setMnemonic('C');
+                    jButton4.setText("Close");
+                    jButton4.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            jButton4ActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 5;
+                    gridBagConstraints.gridy = 6;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel3.add(jButton4, gridBagConstraints);
+
+                    jButton5.setMnemonic('h');
+                    jButton5.setText("Help");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 6;
+                    gridBagConstraints.gridy = 6;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel3.add(jButton5, gridBagConstraints);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 6;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 500.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel3.add(jLabel18, gridBagConstraints);
+
+                    utlizeDepositBtn.setText("Utilize Patient Deposit/Print Final Invoice");
+                    utlizeDepositBtn.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            utlizeDepositBtnActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 6;
+                    jPanel3.add(utlizeDepositBtn, gridBagConstraints);
+
+                    utilizedepositTxt.setForeground(new java.awt.Color(255, 0, 0));
+                    utilizedepositTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+                    utilizedepositTxt.setText("0.00");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 6;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel3.add(utilizedepositTxt, gridBagConstraints);
+
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 7;
+                    gridBagConstraints.gridwidth = 10;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    jPanel1.add(jPanel3, gridBagConstraints);
+
+                    totalDiscountTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+                    totalDiscountTxt.setText("0.00");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 5;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+                    jPanel1.add(totalDiscountTxt, gridBagConstraints);
+
+                    jLabel9.setText("Discount");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 5;
+                    jPanel1.add(jLabel9, gridBagConstraints);
+
+                    jLabel12.setText("Net Total");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 6;
+                    gridBagConstraints.gridy = 5;
+                    gridBagConstraints.weightx = 1.0;
+                    jPanel1.add(jLabel12, gridBagConstraints);
+
+                    totalNetTxt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+                    totalNetTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+                    totalNetTxt.setText("0.00");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 8;
+                    gridBagConstraints.gridy = 5;
+                    gridBagConstraints.gridwidth = 2;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.ipadx = 3;
+                    gridBagConstraints.weightx = 1.0;
+                    jPanel1.add(totalNetTxt, gridBagConstraints);
+
+                    jPanel642.setBorder(javax.swing.BorderFactory.createTitledBorder("Select Scheme/Debtor"));
+                    jPanel642.setMinimumSize(new java.awt.Dimension(82, 37));
+                    jPanel642.setLayout(new java.awt.GridBagLayout());
+
+                    searchButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
+                    searchButton3.setToolTipText("Search");
+                    searchButton3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+                    searchButton3.setMaximumSize(new java.awt.Dimension(74, 53));
+                    searchButton3.setMinimumSize(new java.awt.Dimension(74, 53));
+                    searchButton3.setPreferredSize(new java.awt.Dimension(15, 20));
+                    searchButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+                    searchButton3.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            searchButton3ActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 2;
+                    gridBagConstraints.gridy = 1;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+                    jPanel642.add(searchButton3, gridBagConstraints);
+
+                    schemeNameTxt1.setEditable(false);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 1;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel642.add(schemeNameTxt1, gridBagConstraints);
+
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 0;
+                    gridBagConstraints.gridwidth = 2;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 2.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+                    jPanel1.add(jPanel642, gridBagConstraints);
+
+                    viewAllChkbx.setForeground(new java.awt.Color(255, 0, 51));
+                    viewAllChkbx.setText("View ALL");
+                    viewAllChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+                    viewAllChkbx.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            viewAllChkbxActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 9;
+                    gridBagConstraints.gridy = 0;
+                    jPanel1.add(viewAllChkbx, gridBagConstraints);
+
+                    jLabel27.setText("Scheme Diff.");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 2;
+                    gridBagConstraints.gridy = 5;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel1.add(jLabel27, gridBagConstraints);
+
+                    diffTxt.setEditable(false);
+                    diffTxt.setText("0.00");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 3;
+                    gridBagConstraints.gridy = 5;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 3.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel1.add(diffTxt, gridBagConstraints);
+
+                    jTabbedPane1.addTab("Out Patients", jPanel1);
+
+                    jPanel11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+                    jPanel11.setEnabled(false);
+                    jPanel11.setLayout(new java.awt.GridBagLayout());
+
+                    jTable11.setModel(new javax.swing.table.DefaultTableModel(
+                        new Object [][] {
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null},
+                            {null, null, null, null, null, null}
+                        },
+                        new String [] {
+                            "Description", "Gross", "Discount", "Disc. Amt", "Net Amt.", "Items To Claim"
+                        }
+                    ) {
+                        Class[] types = new Class [] {
+                            java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Boolean.class
+                        };
+                        boolean[] canEdit = new boolean [] {
+                            false, false, true, true, false, true
+                        };
+
+                        public Class getColumnClass(int columnIndex) {
+                            return types [columnIndex];
+                        }
+
+                        public boolean isCellEditable(int rowIndex, int columnIndex) {
+                            return canEdit [columnIndex];
+                        }
+                    });
+                    jTable11.setShowHorizontalLines(false);
+                    /*       cmbox2 = new javax.swing.JComboBox();
+
+                    try {
+
+                        crset1.setConnectionSource(pConnDB);
+                        crset1.execute("select description from st_stock_item");
+
+                        cmbox2.setModel(new org.netbeans.lib.sql.models.ComboBoxModel(crset1, "description", null, null,null));
+
+                        javax.swing.table.TableColumn seditor = this.jTable1.getColumn("Product");
+
+                        seditor.setCellEditor(new javax.swing.DefaultCellEditor(cmbox2));
+
+                        cmbox2.addActionListener(new java.awt.event.ActionListener() {
+
+                            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                                cmbox2ActionPerformed(evt);
+                            }
+                        });
+                    } catch(java.sql.SQLException sqlExec) {
+
+                        javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
+
                     }
-                });
-                jScrollPane11.setViewportView(jTable11);
+                    */
 
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.gridwidth = 6;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 15.0;
-                gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-                jPanel11.add(jScrollPane11, gridBagConstraints);
+                    javax.swing.table.TableColumn column1 = null;
+                    for (int i = 0; i < 4; i++) {
+                        column1 = schemeDataTable.getColumnModel().getColumn(i);
+                        if (i == 0) {
 
-                jPanel21.setLayout(new java.awt.GridBagLayout());
+                            column1.setPreferredWidth(200); //sport column is bigger
+                        } else {
+                            if (i == 1) {
+                                column1.setPreferredWidth(200);
+                            } else {
+                                if (i == 2) {
+                                    column1.setPreferredWidth(100);
+                                }  else
+                                column1.setPreferredWidth(100);
 
-                jLabel11.setText("Scheme Name");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 3;
-                gridBagConstraints.gridy = 1;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel21.add(jLabel11, gridBagConstraints);
-
-                jLabel21.setText("Scheme Member No.");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 4;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-                jPanel21.add(jLabel21, gridBagConstraints);
-
-                jTextField11.setEditable(false);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                jPanel21.add(jTextField11, gridBagConstraints);
-
-                jLabel31.setText("Patient No.");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 1;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-                jPanel21.add(jLabel31, gridBagConstraints);
-
-                jLabel41.setText("Patient Name");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-                jPanel21.add(jLabel41, gridBagConstraints);
-
-                jTextField21.setEditable(false);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 4;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                jPanel21.add(jTextField21, gridBagConstraints);
-
-                jLabel71.setText("Scheme Payer");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 3;
-                gridBagConstraints.gridy = 2;
-                jPanel21.add(jLabel71, gridBagConstraints);
-
-                jTextField41.setEditable(false);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                jPanel21.add(jTextField41, gridBagConstraints);
-
-                jLabel81.setText("Department");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 3;
-                gridBagConstraints.gridy = 4;
-                jPanel21.add(jLabel81, gridBagConstraints);
-
-                jTextField51.setEditable(false);
-                jTextField51.setMinimumSize(new java.awt.Dimension(0, 0));
-                jTextField51.setPreferredSize(new java.awt.Dimension(0, 0));
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 3;
-                jPanel21.add(jTextField51, gridBagConstraints);
-
-                jLabel91.setText("Acc No.");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 3;
-                gridBagConstraints.gridy = 3;
-                jPanel21.add(jLabel91, gridBagConstraints);
-
-                jTextField61.setEditable(false);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 4;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                jPanel21.add(jTextField61, gridBagConstraints);
-
-                jPanel41.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-                jPanel41.setLayout(new java.awt.GridBagLayout());
-
-                jTextField91.setEditable(false);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel41.add(jTextField91, gridBagConstraints);
-
-                searchButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
-                searchButton1.setToolTipText("Search");
-                searchButton1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-                searchButton1.setMaximumSize(new java.awt.Dimension(74, 53));
-                searchButton1.setMinimumSize(new java.awt.Dimension(74, 53));
-                searchButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-                searchButton1.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        searchButton1ActionPerformed(evt);
+                            }
+                        }
                     }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 2;
-                gridBagConstraints.gridy = 2;
-                jPanel41.add(searchButton1, gridBagConstraints);
+                    jTable11.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                            jTable11MouseClicked(evt);
+                        }
+                    });
+                    jTable11.addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyReleased(java.awt.event.KeyEvent evt) {
+                            jTable11KeyReleased(evt);
+                        }
+                    });
+                    jScrollPane11.setViewportView(jTable11);
 
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 1;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                jPanel21.add(jPanel41, gridBagConstraints);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 2;
+                    gridBagConstraints.gridwidth = 6;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 15.0;
+                    gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+                    jPanel11.add(jScrollPane11, gridBagConstraints);
 
-                jTextField71.setEditable(false);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 1;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                jPanel21.add(jTextField71, gridBagConstraints);
+                    jPanel21.setLayout(new java.awt.GridBagLayout());
 
-                jTextField10.setEditable(false);
-                jTextField10.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        jTextField10ActionPerformed(evt);
-                    }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                jPanel21.add(jTextField10, gridBagConstraints);
+                    jLabel11.setText("Scheme Name");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 3;
+                    gridBagConstraints.gridy = 1;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel21.add(jLabel11, gridBagConstraints);
 
-                jLabel13.setText("Admission Date");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-                jPanel21.add(jLabel13, gridBagConstraints);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                jPanel21.add(datePicker11, gridBagConstraints);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                jPanel21.add(datePicker12, gridBagConstraints);
+                    jLabel21.setText("Scheme Member No.");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 4;
+                    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+                    jPanel21.add(jLabel21, gridBagConstraints);
 
-                jLabel14.setText("Discharge date");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 3;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.weightx = 1.0;
-                jPanel21.add(jLabel14, gridBagConstraints);
+                    jTextField11.setEditable(false);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 3;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+                    jPanel21.add(jTextField11, gridBagConstraints);
 
-                jLabel2122.setText("Visit No.");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-                jPanel21.add(jLabel2122, gridBagConstraints);
+                    jLabel31.setText("Patient No.");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 1;
+                    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+                    jPanel21.add(jLabel31, gridBagConstraints);
 
-                jTextField16.setEditable(false);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                jPanel21.add(jTextField16, gridBagConstraints);
+                    jLabel41.setText("Patient Name");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 3;
+                    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+                    jPanel21.add(jLabel41, gridBagConstraints);
 
-                buttonGroup2.add(jCheckBox6);
-                jCheckBox6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-                jCheckBox6.setForeground(new java.awt.Color(102, 0, 102));
-                jCheckBox6.setText("Un Tick All");
-                jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        jCheckBox6ActionPerformed(evt);
-                    }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 6;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.weightx = 1.0;
-                jPanel21.add(jCheckBox6, gridBagConstraints);
+                    jTextField21.setEditable(false);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 4;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+                    jPanel21.add(jTextField21, gridBagConstraints);
 
-                buttonGroup2.add(jCheckBox4);
-                jCheckBox4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-                jCheckBox4.setForeground(new java.awt.Color(0, 0, 255));
-                jCheckBox4.setText("Tick All");
-                jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        jCheckBox4ActionPerformed(evt);
-                    }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 6;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-                gridBagConstraints.weightx = 1.0;
-                jPanel21.add(jCheckBox4, gridBagConstraints);
+                    jLabel71.setText("Scheme Payer");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 3;
+                    gridBagConstraints.gridy = 2;
+                    jPanel21.add(jLabel71, gridBagConstraints);
 
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridwidth = 6;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 5.0;
-                jPanel11.add(jPanel21, gridBagConstraints);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 4;
-                gridBagConstraints.gridwidth = 6;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                jPanel11.add(jSeparator11, gridBagConstraints);
+                    jTextField41.setEditable(false);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 4;
+                    gridBagConstraints.gridy = 2;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+                    jPanel21.add(jTextField41, gridBagConstraints);
 
-                jTextField31.setEditable(false);
-                jTextField31.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-                jTextField31.setText("0.00");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 3;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel11.add(jTextField31, gridBagConstraints);
+                    jLabel81.setText("Department");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 3;
+                    gridBagConstraints.gridy = 4;
+                    jPanel21.add(jLabel81, gridBagConstraints);
 
-                jLabel61.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-                jLabel61.setText("Total");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 2;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.weightx = 1.0;
-                jPanel11.add(jLabel61, gridBagConstraints);
+                    jTextField51.setEditable(false);
+                    jTextField51.setMinimumSize(new java.awt.Dimension(0, 0));
+                    jTextField51.setPreferredSize(new java.awt.Dimension(0, 0));
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 4;
+                    gridBagConstraints.gridy = 3;
+                    jPanel21.add(jTextField51, gridBagConstraints);
 
-                jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-                jPanel5.setLayout(new java.awt.GridBagLayout());
+                    jLabel91.setText("Acc No.");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 3;
+                    gridBagConstraints.gridy = 3;
+                    jPanel21.add(jLabel91, gridBagConstraints);
 
-                jButton11.setMnemonic('O');
-                jButton11.setText("Finalise Invoice");
-                jButton11.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        jButton11ActionPerformed(evt);
-                    }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 5;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel5.add(jButton11, gridBagConstraints);
+                    jTextField61.setEditable(false);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 4;
+                    gridBagConstraints.gridy = 4;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+                    jPanel21.add(jTextField61, gridBagConstraints);
 
-                jButton31.setMnemonic('R');
-                jButton31.setText("Refresh");
-                jButton31.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        jButton31ActionPerformed(evt);
-                    }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 2;
-                gridBagConstraints.gridy = 5;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel5.add(jButton31, gridBagConstraints);
+                    jPanel41.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+                    jPanel41.setLayout(new java.awt.GridBagLayout());
 
-                jButton41.setMnemonic('C');
-                jButton41.setText("Close");
-                jButton41.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        jButton41ActionPerformed(evt);
-                    }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 5;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel5.add(jButton41, gridBagConstraints);
+                    jTextField91.setEditable(false);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 2;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel41.add(jTextField91, gridBagConstraints);
 
-                jButton51.setMnemonic('h');
-                jButton51.setText("Help");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 5;
-                gridBagConstraints.gridy = 5;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel5.add(jButton51, gridBagConstraints);
+                    searchButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
+                    searchButton1.setToolTipText("Search");
+                    searchButton1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+                    searchButton1.setMaximumSize(new java.awt.Dimension(74, 53));
+                    searchButton1.setMinimumSize(new java.awt.Dimension(74, 53));
+                    searchButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+                    searchButton1.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            searchButton1ActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 2;
+                    gridBagConstraints.gridy = 2;
+                    jPanel41.add(searchButton1, gridBagConstraints);
 
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 6;
-                gridBagConstraints.gridwidth = 6;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                jPanel11.add(jPanel5, gridBagConstraints);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 1;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+                    jPanel21.add(jPanel41, gridBagConstraints);
 
-                jLabel15.setText("Discount Amt");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.weightx = 1.0;
-                jPanel11.add(jLabel15, gridBagConstraints);
+                    jTextField71.setEditable(false);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 4;
+                    gridBagConstraints.gridy = 1;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+                    jPanel21.add(jTextField71, gridBagConstraints);
 
-                jTextField17.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-                jTextField17.setText("0.00");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                jPanel11.add(jTextField17, gridBagConstraints);
+                    jTextField10.setEditable(false);
+                    jTextField10.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            jTextField10ActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 4;
+                    gridBagConstraints.gridy = 3;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    jPanel21.add(jTextField10, gridBagConstraints);
 
-                jLabel17.setText("Net value");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.weightx = 1.0;
-                jPanel11.add(jLabel17, gridBagConstraints);
+                    jLabel13.setText("Admission Date");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+                    jPanel21.add(jLabel13, gridBagConstraints);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 4;
+                    gridBagConstraints.gridy = 0;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+                    jPanel21.add(datePicker11, gridBagConstraints);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 0;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+                    jPanel21.add(datePicker12, gridBagConstraints);
 
-                jTextField18.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-                jTextField18.setText("0.00");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 5;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.weightx = 1.0;
-                jPanel11.add(jTextField18, gridBagConstraints);
+                    jLabel14.setText("Discharge date");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 3;
+                    gridBagConstraints.gridy = 0;
+                    gridBagConstraints.weightx = 1.0;
+                    jPanel21.add(jLabel14, gridBagConstraints);
 
-                jTabbedPane1.addTab("0", jPanel11);
+                    jLabel2122.setText("Visit No.");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 2;
+                    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+                    jPanel21.add(jLabel2122, gridBagConstraints);
 
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 1.0;
-                getContentPane().add(jTabbedPane1, gridBagConstraints);
+                    jTextField16.setEditable(false);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 2;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+                    jPanel21.add(jTextField16, gridBagConstraints);
 
-                setBounds(0, 0, 1260, 510);
-            }// </editor-fold>//GEN-END:initComponents
+                    buttonGroup2.add(jCheckBox6);
+                    jCheckBox6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+                    jCheckBox6.setForeground(new java.awt.Color(102, 0, 102));
+                    jCheckBox6.setText("Un Tick All");
+                    jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            jCheckBox6ActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 6;
+                    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                    gridBagConstraints.weightx = 1.0;
+                    jPanel21.add(jCheckBox6, gridBagConstraints);
+
+                    buttonGroup2.add(jCheckBox4);
+                    jCheckBox4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+                    jCheckBox4.setForeground(new java.awt.Color(0, 0, 255));
+                    jCheckBox4.setText("Tick All");
+                    jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            jCheckBox4ActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 6;
+                    gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+                    gridBagConstraints.weightx = 1.0;
+                    jPanel21.add(jCheckBox4, gridBagConstraints);
+
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridwidth = 6;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 5.0;
+                    jPanel11.add(jPanel21, gridBagConstraints);
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 4;
+                    gridBagConstraints.gridwidth = 6;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    jPanel11.add(jSeparator11, gridBagConstraints);
+
+                    jTextField31.setEditable(false);
+                    jTextField31.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+                    jTextField31.setText("0.00");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 3;
+                    gridBagConstraints.gridy = 3;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel11.add(jTextField31, gridBagConstraints);
+
+                    jLabel61.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+                    jLabel61.setText("Total");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 2;
+                    gridBagConstraints.gridy = 3;
+                    gridBagConstraints.weightx = 1.0;
+                    jPanel11.add(jLabel61, gridBagConstraints);
+
+                    jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+                    jPanel5.setLayout(new java.awt.GridBagLayout());
+
+                    jButton11.setMnemonic('O');
+                    jButton11.setText("Finalise Invoice");
+                    jButton11.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            jButton11ActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 5;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel5.add(jButton11, gridBagConstraints);
+
+                    jButton31.setMnemonic('R');
+                    jButton31.setText("Refresh");
+                    jButton31.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            jButton31ActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 2;
+                    gridBagConstraints.gridy = 5;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel5.add(jButton31, gridBagConstraints);
+
+                    jButton41.setMnemonic('C');
+                    jButton41.setText("Close");
+                    jButton41.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            jButton41ActionPerformed(evt);
+                        }
+                    });
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 4;
+                    gridBagConstraints.gridy = 5;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel5.add(jButton41, gridBagConstraints);
+
+                    jButton51.setMnemonic('h');
+                    jButton51.setText("Help");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 5;
+                    gridBagConstraints.gridy = 5;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel5.add(jButton51, gridBagConstraints);
+
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 6;
+                    gridBagConstraints.gridwidth = 6;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    jPanel11.add(jPanel5, gridBagConstraints);
+
+                    jLabel15.setText("Discount Amt");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 3;
+                    gridBagConstraints.weightx = 1.0;
+                    jPanel11.add(jLabel15, gridBagConstraints);
+
+                    jTextField17.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+                    jTextField17.setText("0.00");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 1;
+                    gridBagConstraints.gridy = 3;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    jPanel11.add(jTextField17, gridBagConstraints);
+
+                    jLabel17.setText("Net value");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 4;
+                    gridBagConstraints.gridy = 3;
+                    gridBagConstraints.weightx = 1.0;
+                    jPanel11.add(jLabel17, gridBagConstraints);
+
+                    jTextField18.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+                    jTextField18.setText("0.00");
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 5;
+                    gridBagConstraints.gridy = 3;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                    gridBagConstraints.weightx = 1.0;
+                    jPanel11.add(jTextField18, gridBagConstraints);
+
+                    jTabbedPane1.addTab("0", jPanel11);
+
+                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                    gridBagConstraints.weightx = 1.0;
+                    gridBagConstraints.weighty = 1.0;
+                    getContentPane().add(jTabbedPane1, gridBagConstraints);
+
+                    setBounds(0, 0, 1260, 510);
+                }// </editor-fold>//GEN-END:initComponents
 
     private void jTable11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable11KeyReleased
         if (jTable11.getValueAt(jTable11.getSelectedRow(), 2) != null) {
@@ -3194,6 +3403,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField111CaretUpdate
 
     private void schemeDataTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schemeDataTableMouseClicked
+        clickedTable = 1;
         if (schemeDataTable.getSelectedColumn() == 1) {
             //this.cmboxMouseClicked();
         } else {
@@ -3219,7 +3429,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                 }
             }
         }
-        
+
         double totalNetSum = 0;
         for (int i = 0; i < schemeDataTable.getRowCount(); i++) {
             if (Boolean.parseBoolean(schemeDataTable.getValueAt(i, 8).toString())) {
@@ -3268,6 +3478,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
             }
         } catch (java.sql.SQLException sqe) {
             sqe.printStackTrace();
+            javax.swing.JOptionPane.showConfirmDialog(this, sqe.getMessage());
             System.out.println("Select not successful");
         }
 
@@ -3281,6 +3492,8 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
 
                 accountNoTxt.setText(Code);
                 schemePayerTxt.setText(rset11.getObject(2).toString());
+                schemeInvoicingTable.setValueAt(Code, 0, 0);
+                schemeInvoicingTable.setValueAt(rset11.getObject(2).toString(), 0, 1);
             }
         } catch (java.sql.SQLException sqe) {
             sqe.printStackTrace();
@@ -3401,42 +3614,78 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
     }
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        int rows2Delete = schemeDataTable.getSelectedRowCount();
+        if (clickedTable == 1) {
+            int rows2Delete = schemeDataTable.getSelectedRowCount();
 
-        int[] selectedRows = schemeDataTable.getSelectedRows();
+            int[] selectedRows = schemeDataTable.getSelectedRows();
 
-        if (rows2Delete < 1) {
+            if (rows2Delete < 1) {
 
-            java.awt.Toolkit.getDefaultToolkit().beep();
+                java.awt.Toolkit.getDefaultToolkit().beep();
 
-            javax.swing.JOptionPane.showMessageDialog(this, "There are no selected rows to delete!");
-
-        } else {
-
-            if (rows2Delete > 1) {
-
-                for (int i = 0; i < selectedRows.length; i++) {
-
-                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) schemeDataTable.getModel();
-
-                    defTableModel.removeRow(selectedRows[i]);
-
-                }
+                javax.swing.JOptionPane.showMessageDialog(this, "There are no selected rows to delete!");
 
             } else {
 
-                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) schemeDataTable.getModel();
+                if (rows2Delete > 1) {
 
-                defTableModel.removeRow(schemeDataTable.getSelectedRow());
+                    for (int i = 0; i < selectedRows.length; i++) {
+
+                        javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) schemeDataTable.getModel();
+
+                        defTableModel.removeRow(selectedRows[i]);
+
+                    }
+
+                } else {
+
+                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) schemeDataTable.getModel();
+
+                    defTableModel.removeRow(schemeDataTable.getSelectedRow());
+                }
+            }
+            // double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 3);
+            //jTextField3.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
+            double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeDataTable, 6);
+            double totalSumDisc = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeDataTable, 5);
+            totalDiscountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSumDisc));
+            totalAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
+            //  txtNetTotal.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum - totalSumDisc));
+        } else {
+            if (schemeInvoicingTable.isRowSelected(schemeInvoicingTable.getSelectedRow())) {
+                int rows2Delete = schemeInvoicingTable.getSelectedRowCount();
+
+                int[] selectedRows = schemeInvoicingTable.getSelectedRows();
+
+                if (rows2Delete < 1) {
+
+                    java.awt.Toolkit.getDefaultToolkit().beep();
+
+                    javax.swing.JOptionPane.showMessageDialog(this, "There are no selected rows to delete!");
+
+                } else {
+
+                    if (rows2Delete > 1) {
+
+                        for (int i = 0; i < selectedRows.length; i++) {
+
+                            javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) schemeInvoicingTable.getModel();
+
+                            defTableModel.removeRow(selectedRows[i]);
+
+                        }
+
+                    } else {
+
+                        javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) schemeInvoicingTable.getModel();
+
+                        defTableModel.removeRow(schemeInvoicingTable.getSelectedRow());
+
+                        //calculateTotals();
+                    }
+                }
             }
         }
-        // double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 3);
-        //jTextField3.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
-        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeDataTable, 6);
-        double totalSumDisc = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeDataTable, 5);
-        totalDiscountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSumDisc));
-        totalAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
-        //  txtNetTotal.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum - totalSumDisc));
 
         // Add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -3681,7 +3930,21 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void finalizeInvoiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizeInvoiceBtnActionPerformed
-        if (Double.parseDouble(totalNetTxt.getText()) == 0.0) {
+        boolean schemePayer = false;
+        for (int i = 0; i < schemeInvoicingTable.getRowCount(); i++) {
+            if (schemeInvoicingTable.getValueAt(i, 0) != null) {
+                if (schemeInvoicingTable.getValueAt(i, 2) != null) {
+                    if (Double.valueOf(schemeInvoicingTable.getValueAt(i, 2).toString()) > 0) {
+                        schemePayer = true;
+                    }
+                }
+            }
+        }
+
+        if (!schemePayer) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please ensure that the scheme(s) and the amount to be settled are populated.", "Caution Message", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+        } else if (Double.parseDouble(totalNetTxt.getText()) == 0.0) {
             javax.swing.JOptionPane.showMessageDialog(this, "You cannot save unless you tick select at least one bill.".toUpperCase(), "Caution Message", javax.swing.JOptionPane.ERROR_MESSAGE);
         } else if (Double.parseDouble(totalNetTxt.getText()) > 0.0) {
             java.util.Date periodFrom = null;
@@ -3778,7 +4041,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                             System.out.println("Started from the bottom........2");
 
                             java.sql.Statement pssq = connectDB.createStatement();
-                            java.sql.ResultSet rse121 = pssq.executeQuery("select main_service from patient_bill where description = '" + schemeDataTable.getModel().getValueAt(i, 1).toString() + "'");
+                            java.sql.ResultSet rse121 = pssq.executeQuery("select main_service from patient_bill where description = '" + schemeDataTable.getModel().getValueAt(i, 1).toString() + "' and patient_no = '" + patientNotxt.getText() + "' ");
 
                             while (rse121.next()) {
                                 glCode = dbObject.getDBObject(rse121.getObject(1), "-");
@@ -4116,90 +4379,198 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
                         }
 
                     } else {
+                        String claimNo = com.afrisoftech.lib.ClaimNumberFactory.getClaimNumber(connectDB);
+                        for (int i = 0; i < schemeInvoicingTable.getRowCount(); i++) {
+                            if (schemeInvoicingTable.getValueAt(i, 0) != null) {
+                                if (Double.valueOf(schemeInvoicingTable.getValueAt(i, 2).toString()) > 0) {
+                                    
+                                    String name = null;
+                                String payer = null;
+                                credits = java.lang.Double.valueOf(schemeInvoicingTable.getValueAt(i, 2).toString());
 
-                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into ac_debtors values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                        pstmt.setObject(1, actCode1);
-                        pstmt.setString(2, schemePayerTxt.getText());
-                        pstmt.setString(3, patientNameTxt.getText());
-                        pstmt.setString(4, patientNotxt.getText());
-                        pstmt.setString(5, schemeNameTxt.getText());
-                        pstmt.setString(6, "");
-                        if (this.accountNoTxt.getText() == null || this.accountNoTxt.getText().equals("-")) {
-                            javax.swing.JOptionPane.showMessageDialog(this, "Account NO. MISSING !!!", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                        } else {
-                            pstmt.setString(7, accountNoTxt.getText());
-                        }
-                        pstmt.setString(8, "");
-                        pstmt.setString(9, "");
-                        pstmt.setString(10, this.cardNumberTxt.getText());
-                        pstmt.setString(11, transNo);
-                        pstmt.setString(12, "Raise Invoice");
-                        if (credits > 0) {
-                            pstmt.setDouble(13, java.lang.Double.valueOf(totalNetTxt.getText()));
-                        } else {
-                            pstmt.setDouble(13, credits * -1);
-                        }
-                        pstmt.setDouble(14, 0.00);
-                        pstmt.setObject(15, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
-                        pstmt.setObject(16, invoiceNo);
-                        pstmt.setString(17, actNames1);
-                        pstmt.setBoolean(18, false);
-                        pstmt.setBoolean(19, false);
-                        pstmt.setString(20, user);
-                        pstmt.setString(21, "");
-                        if (credits > 0) {
-                            pstmt.setDouble(22, java.lang.Double.valueOf(totalNetTxt.getText()));
-                        } else {
-                            pstmt.setDouble(22, credits * -1);
-                        }
-                        pstmt.setBoolean(23, false);
-                        pstmt.setDouble(24, 0.00);
-                        pstmt.setObject(25, "");
-                        pstmt.setObject(26, null);
-                        pstmt.setBoolean(27, false);
-                        pstmt.setDouble(28, 0.00);
-                        pstmt.setObject(29, null);
-                        pstmt.setString(30, "");
-                        pstmt.setBoolean(31, false);
-                        pstmt.setDouble(32, 0.00);
-                        pstmt.setObject(33, null);
-                        pstmt.setString(34, "");
-                        pstmt.setString(35, memberNoTxt.getText());
-                        pstmt.setString(36, com.afrisoftech.lib.ClaimNumberFactory.getClaimNumber(connectDB)); //this.claimNumberTxt.getText());
-                        pstmt.executeUpdate();
+                                java.sql.Statement pss11h = connectDB.createStatement();
+                                java.sql.ResultSet rsts1h = pss11h.executeQuery("SELECT scheme_name,payer_name,gl_code,gl_name FROM ac_schemes WHERE account_no = '" + schemeInvoicingTable.getValueAt(i, 0) + "'");
+                                while (rsts1h.next()) {
+                                    name = rsts1h.getObject(1).toString();
+                                    payer = rsts1h.getObject(2).toString();
+                                    actCode1 = rsts1h.getObject(3).toString();
+                                    actNames1 = rsts1h.getObject(4).toString();
+                                }
 
-                        java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO hp_patient_card VALUES(?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-                        pstmt1.setString(1, patientNotxt.getText());
-                        pstmt1.setObject(2, "Invoice");
-                        pstmt1.setString(3, "");
-                        pstmt1.setString(4, "Scheme");
-                        pstmt1.setString(5, transNo);
-                        pstmt1.setString(7, schemeNameTxt.getText());
-                        pstmt1.setString(6, "");
-                        pstmt1.setString(8, "");
-                        pstmt1.setString(9, schemePayerTxt.getText());
-                        pstmt1.setObject(10, null);
-                        pstmt1.setString(11, "");
-                        if (credits > 0) {
-                            pstmt1.setDouble(13, java.lang.Double.valueOf(totalNetTxt.getText()));
-                        } else {
-                            pstmt1.setDouble(13, credits * -1);
+                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into ac_debtors values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                    pstmt.setObject(1, actCode1);
+                                    pstmt.setString(2, payer);
+                                    pstmt.setString(3, patientNameTxt.getText());
+                                    pstmt.setString(4, patientNotxt.getText());
+                                    pstmt.setString(5, name);
+                                    pstmt.setString(6, "");
+                                    if (this.accountNoTxt.getText() == null || this.accountNoTxt.getText().equals("-")) {
+                                        javax.swing.JOptionPane.showMessageDialog(this, "Account NO. MISSING !!!", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                    } else {
+                                        pstmt.setString(7, schemeInvoicingTable.getValueAt(i, 0).toString());
+                                    }
+                                    pstmt.setString(8, "");
+                                    pstmt.setString(9, "");
+                                    pstmt.setString(10, this.cardNumberTxt.getText());
+                                    pstmt.setString(11, transNo);
+                                    pstmt.setString(12, "Raise Invoice");
+                                    if (credits > 0) {
+                                        pstmt.setDouble(13, credits);
+                                    } else {
+                                        pstmt.setDouble(13, credits * -1);
+                                    }
+                                    pstmt.setDouble(14, 0.00);
+                                    pstmt.setObject(15, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
+                                    pstmt.setObject(16, invoiceNo);
+                                    pstmt.setString(17, actNames1);
+                                    pstmt.setBoolean(18, false);
+                                    pstmt.setBoolean(19, false);
+                                    pstmt.setString(20, user);
+                                    pstmt.setString(21, "");
+                                    if (credits > 0) {
+                                        pstmt.setDouble(22, credits);
+                                    } else {
+                                        pstmt.setDouble(22, credits * -1);
+                                    }
+                                    pstmt.setBoolean(23, false);
+                                    pstmt.setDouble(24, 0.00);
+                                    pstmt.setObject(25, "");
+                                    pstmt.setObject(26, null);
+                                    pstmt.setBoolean(27, false);
+                                    pstmt.setDouble(28, 0.00);
+                                    pstmt.setObject(29, null);
+                                    pstmt.setString(30, "");
+                                    pstmt.setBoolean(31, false);
+                                    pstmt.setDouble(32, 0.00);
+                                    pstmt.setObject(33, null);
+                                    pstmt.setString(34, "");
+                                    pstmt.setString(35, memberNoTxt.getText());
+                                    pstmt.setString(36, claimNo) ;//com.afrisoftech.lib.ClaimNumberFactory.getClaimNumber(connectDB)); //this.claimNumberTxt.getText());
+                                    pstmt.executeUpdate();
+
+                                    java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO hp_patient_card VALUES(?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+                                    pstmt1.setString(1, patientNotxt.getText());
+                                    pstmt1.setObject(2, "Invoice");
+                                    pstmt1.setString(3, "");
+                                    pstmt1.setString(4, "Scheme");
+                                    pstmt1.setString(5, transNo);
+                                    pstmt1.setString(7, name);
+                                    pstmt1.setString(6, "");
+                                    pstmt1.setString(8, "");
+                                    pstmt1.setString(9, payer);
+                                    pstmt1.setObject(10, null);
+                                    pstmt1.setString(11, "");
+                                    if (credits > 0) {
+                                        pstmt1.setDouble(13, credits);
+                                    } else {
+                                        pstmt1.setDouble(13, credits * -1);
+
+                                    }
+                                    pstmt1.setDouble(12, 0.00);
+                                    pstmt1.setDate(14, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
+                                    pstmt1.setObject(15, actCode);
+                                    pstmt1.setString(16, "Invoice");
+                                    pstmt1.setDouble(17, 1);
+                                    pstmt1.setObject(18, memberNoTxt.getText());
+                                    pstmt1.setBoolean(19, true);
+                                    pstmt1.setString(20, "Receipts");
+                                    pstmt1.setBoolean(21, true);
+                                    pstmt1.setString(22, actNames);
+                                    pstmt1.setString(23, invoiceNo);
+                                    pstmt1.setString(24, user);
+                                    pstmt1.executeUpdate();
+                                }
+                            }
+                        }
+
+                    }
+
+                    double nhifDiff = java.lang.Double.valueOf(diffTxt.getText());
+
+                    if (nhifDiff != 0) {
+                        String diffCode = null;
+                        String diffDesc = null;
+                        java.sql.Statement pss11u = connectDB.createStatement();
+                        java.sql.ResultSet rsts1u = pss11u.executeQuery("SELECT code,activity FROM pb_activity WHERE activity_category ilike 'NH'");
+                        while (rsts1u.next()) {
+                            diffCode = rsts1u.getObject(1).toString();
+                            diffDesc = rsts1u.getObject(2).toString();
 
                         }
-                        pstmt1.setDouble(12, 0.00);
-                        pstmt1.setDate(14, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(SchemeDataTable.getValueAt(0, 0).toString())));
-                        pstmt1.setObject(15, actCode);
-                        pstmt1.setString(16, glCode);
-                        pstmt1.setDouble(17, 1);
-                        pstmt1.setObject(18, memberNoTxt.getText());
-                        pstmt1.setBoolean(19, true);
-                        pstmt1.setString(20, "Receipts");
-                        pstmt1.setBoolean(21, true);
-                        pstmt1.setString(22, actNames);
-                        pstmt1.setString(23, invoiceNo);
-                        pstmt1.setString(24, user);
-                        pstmt1.executeUpdate();
+//                        java.sql.Statement pss = connectDB.createStatement();
+//                        java.sql.ResultSet rss = pss.executeQuery("select nextval('transaction_no_seq')");
+//                        while (rss.next()) {
+//                            transNo = rss.getObject(1).toString();
+//                        }
+                        java.sql.PreparedStatement pstmtp = connectDB.prepareStatement("INSERT INTO hp_patient_card VALUES(?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
+                        pstmtp.setString(1, patientNotxt.getText());
+                        pstmtp.setObject(2, "NHIF DIFF ");
+                        pstmtp.setString(3, patCat);
+                        pstmtp.setString(4, "Scheme");
+                        pstmtp.setString(5, transNo);
+                        pstmtp.setString(7, "N.H.I.F");
+                        pstmtp.setString(6, cardNumberTxt.getText());
+                        pstmtp.setString(8, "N.H.I.F");
+                        pstmtp.setString(9, "N.H.I.F");
+                        pstmtp.setDate(10, null);
+                        pstmtp.setString(11, "");
+                        if (nhifDiff > 0) {
+                            pstmtp.setDouble(13, java.lang.Double.valueOf(diffTxt.getText()));
+                            pstmtp.setDouble(12, 0.00);
+                        } else {
+                            pstmtp.setDouble(12, java.lang.Double.valueOf(diffTxt.getText()) * -1);
+                            pstmtp.setDouble(13, 0.00);
+                        }
+                        pstmtp.setDate(14, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
+                        // pstmtp.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dischargeDatePicker.getDate()));
+                        pstmtp.setObject(15, actCode);
+                        //      pstmtp.setObject(15, actCode);
+                        pstmtp.setString(16, "NHIF DIFF");
+                        pstmtp.setDouble(17, 1);
+                        pstmtp.setObject(18, patientNameTxt.getText());
+                        pstmtp.setBoolean(19, true);
+                        pstmtp.setString(23, invoiceNo);
+                        pstmtp.setString(20, "Remittance");
+                        pstmtp.setBoolean(21, false);
+                        pstmtp.setString(22, actNames);
+                        pstmtp.setString(24, user);
+                        pstmtp.setString(25, "-");
+                        pstmtp.setString(26, "IP");
+                        pstmtp.setTimestamp(27, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+                        pstmtp.setObject(28, "");
+                        pstmtp.executeUpdate();
 
+                        java.sql.PreparedStatement pstmt2x = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+                        pstmt2x.setObject(1, diffCode);
+                        pstmt2x.setObject(2, diffDesc);
+                        pstmt2x.setString(3, patientNotxt.getText());
+                        pstmt2x.setString(4, patientNameTxt.getText());
+                        pstmt2x.setString(5, "Nhif Diff");
+                        pstmt2x.setString(6, "");
+                        pstmt2x.setString(7, "");
+                        pstmt2x.setString(10, "Scheme");
+                        pstmt2x.setString(9, "");
+                        pstmt2x.setString(8, "IP");
+                        pstmt2x.setString(11, "");
+                        pstmt2x.setString(12, "");
+                        pstmt2x.setString(13, "");
+                        pstmt2x.setString(14, "Nhif Diff");
+                        pstmt2x.setString(15, "Nhif Rebate");
+                        if (nhifDiff > 0) {
+                            pstmt2x.setDouble(16, java.lang.Double.valueOf(diffTxt.getText()));
+                            pstmt2x.setDouble(17, 0.00);
+                        } else {
+                            pstmt2x.setDouble(17, java.lang.Double.valueOf(diffTxt.getText()) * -1);
+                            pstmt2x.setDouble(16, 0.00);
+                        }
+                        pstmt2x.setDate(18, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
+                        //pstmt2x.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dischargeDatePicker.getDate()));
+                        pstmt2x.setString(19, transNo);
+                        pstmt2x.setBoolean(20, false);
+                        pstmt2x.setBoolean(21, false);
+                        pstmt2x.setBoolean(22, false);
+                        pstmt2x.setString(23, user);
+                        pstmt2x.executeUpdate();
                     }
                     double Disc = java.lang.Double.valueOf(totalDiscountTxt.getText());
                     if (Disc > 0) {
@@ -4749,6 +5120,213 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
         accountNoTxt.setText("");
         // TODO add your handling code here:
     }//GEN-LAST:event_viewAllChkbxActionPerformed
+
+    private void schemeInvoicingTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schemeInvoicingTableMouseClicked
+        if (patientNotxt.getText().length() > 0 && tickChk.isSelected() == true) {
+            if (schemeInvoicingTable.getSelectedColumn() == 0) {
+
+                searchButton11bClicked();
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Select a patient first and tick all", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+        clickedTable = 2;
+        // TODO add your handling code here:
+    }//GEN-LAST:event_schemeInvoicingTableMouseClicked
+    private void searchButton11bClicked() {
+
+        System.out.println("Showing dialog");
+
+        java.awt.Point point = this.jScrollPane2.getLocationOnScreen();
+
+        jSearchDialog13.setSize(600, 200);
+
+        jSearchDialog13.setLocation(point);
+
+        jSearchDialog13.setVisible(true);
+        // jSearchDialog13.dispose();
+
+    }
+    private void schemeInvoicingTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_schemeInvoicingTableKeyPressed
+        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeInvoicingTable, 2);
+        double diff = Double.parseDouble(this.totalNetTxt.getText().replace(",", "")) - totalSum;
+        diffTxt.setText(String.valueOf(diff));
+
+        /*boolean rebateType = false;
+        try {
+
+            if (schemeInvoicingTable.getValueAt(schemeInvoicingTable.getSelectedRow(), 0) != null) {
+                java.sql.PreparedStatement pstmtRT = connectDB.prepareStatement("SELECT rebate_type_invoicing FROM ac_schemes WHERE account_no = ?");
+                pstmtRT.setString(1, schemeInvoicingTable.getValueAt(schemeInvoicingTable.getSelectedRow(), 0).toString());
+                java.sql.ResultSet rsetRT = pstmtRT.executeQuery();
+                while (rsetRT.next()) {
+                    rebateType = rsetRT.getBoolean(1);
+
+                }
+            }
+        } catch (java.sql.SQLException sq) {
+
+            sq.printStackTrace();
+            System.out.println(sq.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+        }
+
+        if (schemeInvoicingTable.getModel().getValueAt(schemeInvoicingTable.getSelectedRow(), 2) != null) {
+            if (schemeInvoicingTable.getSelectedColumn() == schemeInvoicingTable.getSelectedColumn()) {
+                float realdeposits = java.lang.Float.parseFloat(totalDepositRealTxt.getText());
+                float disc = java.lang.Float.parseFloat(netAmountTxt.getText());
+                float deposit = java.lang.Float.parseFloat(totalDepositsTxt.getText());
+                float rebate = java.lang.Float.parseFloat(nhifRebateTxt.getText());
+                double bill = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(billTable, 4);
+                double bill1 = Double.parseDouble(this.billbeforeCardMaturityTxt.getText().replace(",", ""));
+                double bill2 = Double.parseDouble(this.billAfterClinicalDischargeTxt.getText().replaceAll(",", ""));
+
+                //this.jTextField17.setText(java.lang.String.valueOf(totalSum));
+                //float bill = java.lang.Float.parseFloat(jTextField31.getText());
+                double totalSum = 0.00;
+                if (nhifRebateRdi.isSelected()) {
+
+                    totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeInvoicingTable, 2);
+                    // netAmountTxt.setText(java.lang.String.valueOf(bill - (totalSum + deposit + rebate)));
+                    netAmountTxt.setText(java.lang.String.valueOf(bill1 + bill2 - (totalSum + deposit + realdeposits)));
+                    discountAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
+                } else {
+                    totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeInvoicingTable, 2);
+                    netAmountTxt.setText(java.lang.String.valueOf(bill - (totalSum + deposit + realdeposits)));
+                    discountAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
+
+                    // netAmountTxt.setText(java.lang.String.valueOf(bill1 + bill2 - (totalSum + deposit)));
+                }
+            }
+
+            grossDueAmt();
+            netAmount();
+            if (rebateType) {
+                if(Double.valueOf(netAmountTxt.getText()) != 0 ){
+                    schemediff = Double.parseDouble(netAmountTxt.getText());
+                    System.err.println("Scheme diff is pos");
+                }else{
+                    schemediff = Double.parseDouble(refundTxt.getText()) * -1;
+                    System.err.println("Scheme diff is neg");
+                }
+                System.out.println("\n\n\n\n\n\n\n\n\nthe scheme diff is " + schemediff + "\t" + schemediff);
+                netAmountTxt.setText("0.00");
+            }
+        }*/
+    }//GEN-LAST:event_schemeInvoicingTableKeyPressed
+
+    private void schemeInvoicingTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_schemeInvoicingTableKeyReleased
+        double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeInvoicingTable, 2);
+        double diff = Double.parseDouble(this.totalNetTxt.getText().replace(",", "")) - totalSum;
+        diffTxt.setText(String.valueOf(diff));
+
+        /*boolean rebateType = false;
+        try {
+
+            if (schemeInvoicingTable.getValueAt(schemeInvoicingTable.getSelectedRow(), 0) != null) {
+                java.sql.PreparedStatement pstmtRT = connectDB.prepareStatement("SELECT rebate_type_invoicing FROM ac_schemes WHERE account_no = ?");
+                pstmtRT.setString(1, schemeInvoicingTable.getValueAt(schemeInvoicingTable.getSelectedRow(), 0).toString());
+                java.sql.ResultSet rsetRT = pstmtRT.executeQuery();
+                while (rsetRT.next()) {
+                    rebateType = rsetRT.getBoolean(1);
+
+                }
+            }
+        } catch (java.sql.SQLException sq) {
+
+            sq.printStackTrace();
+            System.out.println(sq.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+        }
+
+        if (schemeInvoicingTable.getModel().getValueAt(schemeInvoicingTable.getSelectedRow(), 2) != null) {
+            if (schemeInvoicingTable.getSelectedColumn() == schemeInvoicingTable.getSelectedColumn()) {
+                float realdeposits = java.lang.Float.parseFloat(totalDepositRealTxt.getText());
+                float disc = java.lang.Float.parseFloat(netAmountTxt.getText());
+                float deposit = java.lang.Float.parseFloat(totalDepositsTxt.getText());
+                float rebate = java.lang.Float.parseFloat(nhifRebateTxt.getText());
+                double bill = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(billTable, 4);
+                double bill1 = Double.parseDouble(this.billbeforeCardMaturityTxt.getText().replace(",", ""));
+                double bill2 = Double.parseDouble(this.billAfterClinicalDischargeTxt.getText().replaceAll(",", ""));
+                if (schemeInvoicingTable.getModel().getValueAt(schemeInvoicingTable.getSelectedRow(), 3) != null) {
+
+                    double payingAmt = Double.parseDouble(this.schemeInvoicingTable.getModel().getValueAt(schemeInvoicingTable.getSelectedRow(), 2).toString().replaceAll(",", ""));
+                    //Double.parseDouble(this.schemeInvoicingTable.getModel().getValueAt(schemeInvoicingTable.getSelectedRow(), 2).toString().replaceAll(",", ""));
+                    utilisedAmt = balDeposit - payingAmt;
+
+                    if (utilisedAmt > 0) {
+                        this.schemeInvoicingTable.getModel().setValueAt(utilisedAmt, schemeInvoicingTable.getSelectedRow(), 4);
+                    } else {
+                        this.schemeInvoicingTable.getModel().setValueAt(0.00, schemeInvoicingTable.getSelectedRow(), 4);
+                    }
+                }
+                double totalSum = 0.00;
+                if (nhifRebateRdi.isSelected()) {
+
+                    totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeInvoicingTable, 2);
+                    netAmountTxt.setText(java.lang.String.valueOf(bill1 + bill2 - (totalSum + deposit + realdeposits)));
+                    discountAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
+                    /// calculateNhifCtegory();
+                } else {
+                    totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(schemeInvoicingTable, 2);
+                    netAmountTxt.setText(java.lang.String.valueOf(bill - (totalSum + deposit + realdeposits)));
+                    discountAmountTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
+
+                    // netAmountTxt.setText(java.lang.String.valueOf(bill1 + bill2 - (totalSum + deposit)));
+                }
+            }
+
+            ///-----added by sam to recalculate the diff
+            if(nhifRebateRdi.isSelected()){
+                double nhif=java.lang.Double.valueOf(nhifRebateTxt.getText());
+                double otherDebtors = java.lang.Double.valueOf(discountAmountTxt.getText().toString().replace(",", ""));
+                double notNHIF = java.lang.Double.valueOf(billAfterClinicalDischargeTxt.getText()) + java.lang.Double.valueOf(billbeforeCardMaturityTxt.getText());
+                double deposits = java.lang.Double.valueOf(totalDepositsTxt.getText());
+                nhifDiffTxt.setText(java.lang.String.valueOf(java.lang.Double.valueOf(totalBillTxt.getText()) - deposits - otherDebtors - notNHIF - nhif));
+            }
+            ///-----
+
+            grossDueAmt();
+            netAmount();
+            //                          if(rebateType){
+                //                                        schemediff=Double.parseDouble(netAmountTxt.getText());
+                System.out.println("\n\n\n\n\n\n\n\n\nthe scheme diff is " + schemediff);
+                //                                        netAmountTxt.setText("0.00");
+                //                                    }
+        }*/
+        // TODO add your handling code here:
+    }//GEN-LAST:event_schemeInvoicingTableKeyReleased
+
+    private void jTextField1113CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1113CaretUpdate
+        if (jTextField1113.getCaretPosition() < 1) {
+
+            System.out.println("Nothing");
+        } else {
+
+            jSearchTable13.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT account_no,scheme_name,payer_name from ac_schemes where scheme_name ILIKE '" + jTextField1113.getText() + "%' order by scheme_name"));
+
+            jSearchTable13.setShowHorizontalLines(false);
+            jSearchScrollPane13.setViewportView(jSearchTable13);
+
+        }         // Add your handling code here:
+    }//GEN-LAST:event_jTextField1113CaretUpdate
+
+    private void jSearchTable13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable13MouseClicked
+
+        //balDeposit = com.afrisoftech.lib.unUtelisedDeposit.getBalanceDeposit(connectDB, jSearchTable13.getValueAt(jSearchTable13.getSelectedRow(), 0).toString());
+        schemeInvoicingTable.setValueAt(jSearchTable13.getValueAt(jSearchTable13.getSelectedRow(), 0), schemeInvoicingTable.getSelectedRow(), 0);
+        schemeInvoicingTable.setValueAt(jSearchTable13.getValueAt(jSearchTable13.getSelectedRow(), 1), schemeInvoicingTable.getSelectedRow(), 1);
+        //schemeInvoicingTable.setValueAt(balDeposit, schemeInvoicingTable.getSelectedRow(), 3);
+        schemeInvoicingTable.setValueAt(0, schemeInvoicingTable.getSelectedRow(), 3);
+        jSearchDialog13.dispose();
+        // Add your handling code here:
+    }//GEN-LAST:event_jSearchTable13MouseClicked
+
+    private void dispose13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dispose13ActionPerformed
+        jSearchDialog13.dispose(); // Add your handling code here:
+    }//GEN-LAST:event_dispose13ActionPerformed
     public java.lang.String getShiftNumber() {
 
         /*
@@ -4832,8 +5410,10 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField coPaymentsTxt;
     private com.afrisoftech.lib.DatePicker datePicker11;
     private com.afrisoftech.lib.DatePicker datePicker12;
+    private javax.swing.JTextField diffTxt;
     private javax.swing.JButton dispose11;
     private javax.swing.JButton dispose12;
+    private javax.swing.JButton dispose13;
     private javax.swing.JTextField dmuBalanceTxt;
     private com.afrisoftech.lib.DatePicker endDate;
     public static javax.swing.JButton finalizeInvoiceBtn;
@@ -4874,6 +5454,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
@@ -4903,20 +5484,25 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JDialog jSearchDialog;
     private javax.swing.JDialog jSearchDialog11;
+    private javax.swing.JDialog jSearchDialog13;
     private javax.swing.JDialog jSearchDialog21;
     private javax.swing.JPanel jSearchPanel;
     private javax.swing.JPanel jSearchPanel11;
     private javax.swing.JPanel jSearchPanel12;
+    private javax.swing.JPanel jSearchPanel13;
     private javax.swing.JPanel jSearchPanel2;
     private javax.swing.JPanel jSearchPanel21;
     private javax.swing.JScrollPane jSearchScrollPane;
     private javax.swing.JScrollPane jSearchScrollPane11;
+    private javax.swing.JScrollPane jSearchScrollPane13;
     private javax.swing.JScrollPane jSearchScrollPane2;
     private javax.swing.JScrollPane jSearchScrollPane21;
     private javax.swing.JTable jSearchTable;
     private javax.swing.JTable jSearchTable11;
+    private javax.swing.JTable jSearchTable13;
     private javax.swing.JTable jSearchTable21;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator11;
@@ -4926,6 +5512,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField111;
     private javax.swing.JTextField jTextField1111;
+    private javax.swing.JTextField jTextField1113;
     private javax.swing.JTextField jTextField1131;
     private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
@@ -4947,6 +5534,7 @@ public class FinSchemeInvsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField refundTxt;
     private javax.swing.JTextField schemeBalAfterUtilisationTxt;
     private javax.swing.JTable schemeDataTable;
+    private javax.swing.JTable schemeInvoicingTable;
     private javax.swing.JTextField schemeNameTxt;
     private javax.swing.JTextField schemeNameTxt1;
     private javax.swing.JTextField schemePayerTxt;

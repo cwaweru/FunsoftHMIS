@@ -602,7 +602,7 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
                                             table.getDefaultCell().setColspan(3);
 
                                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                            phrase = new Phrase(dbObject.getDBObject(rset1.getObject(2), "-"), pFontHeader);
+                                            phrase = new Phrase(dbObject.getDBObject(rset1.getObject(5), "-"), pFontHeader);
 
                                             table.addCell(phrase);
 

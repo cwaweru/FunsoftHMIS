@@ -17,7 +17,7 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-//import org.openide.util.Exceptions;
+//
 
 
 public class HRDutyRostertPdf implements java.lang.Runnable {
@@ -389,7 +389,7 @@ public class HRDutyRostertPdf implements java.lang.Runnable {
                         }
                     } catch (SQLException ex) {
                         javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
-                                    ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                                    ex.printStackTrace();             //ex.printStackTrace();
                     }
                     table.getDefaultCell().setColspan(15);
                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);

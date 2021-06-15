@@ -141,6 +141,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
         jSearchScrollPane11 = new javax.swing.JScrollPane();
         jSearchTable11 = new com.afrisoftech.dbadmin.JTable();
         jButton511 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
         prescriptionsTabbedPane = new javax.swing.JTabbedPane();
         jPanel22 = new javax.swing.JPanel();
         jPanel211 = new javax.swing.JPanel();
@@ -223,7 +224,6 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
         this.setVisible(false);
         reprintPrescriptionBtn = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
         jTextField15 = new javax.swing.JTextField();
         sendBillBtn = new javax.swing.JButton();
         jTextField6 = new javax.swing.JTextField();
@@ -971,6 +971,16 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jSearchDialog11.getContentPane().add(jSearchPanel11, gridBagConstraints);
+
+        jButton14.setBackground(new java.awt.Color(204, 204, 255));
+        jButton14.setMnemonic('O');
+        jButton14.setText("Dispense & Print");
+        jButton14.setToolTipText("Click here enter data");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -1759,7 +1769,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.weighty = 1.0;
         ageWeightPanel.add(ageTxt, gridBagConstraints);
 
-        jLabel131.setText("Age (Yrs)");
+        jLabel131.setText("Age");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -1949,22 +1959,6 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jButton13, gridBagConstraints);
-
-        jButton14.setBackground(new java.awt.Color(204, 204, 255));
-        jButton14.setMnemonic('O');
-        jButton14.setText("Dispense & Print");
-        jButton14.setToolTipText("Click here enter data");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jButton14, gridBagConstraints);
 
         jTextField15.setEditable(false);
         jTextField15.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -2463,7 +2457,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
         com.afrisoftech.reports.PrescPdf policy = new com.afrisoftech.reports.PrescPdf();
 
-        policy.PrescPdf(connectDB, receiptNo);
+        policy.PrescPdf(connectDB, receiptNo,false);
 
         // Add your handling code here:
     }//GEN-LAST:event_prescriptionBillingTableMouseClicked
@@ -2492,7 +2486,17 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
     }
     private void doctorPrescriptionListingTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doctorPrescriptionListingTableMouseClicked
-
+        if(doctorPrescriptionListingTable.getValueAt(doctorPrescriptionListingTable.getSelectedRow(), 6).toString().equalsIgnoreCase("Scheme")){
+            System.err.println(">>>"+doctorPrescriptionListingTable.getSelectedRow());
+//            System.err.println(">>"+doctorPrescriptionListingTable.getValueAt(doctorPrescriptionListingTable.getSelectedRow(), 1).toString());
+           
+            //com.afrisoftech.hospinventory.PatientsBillingIntfr_.patientNumberTxt.setText(doctorPrescriptionListingTable.getValueAt(doctorPrescriptionListingTable.getSelectedRow(), 1).toString());
+            com.afrisoftech.hospinventory.PatientsBillingIntfr_.setPatDetails(doctorPrescriptionListingTable.getValueAt(doctorPrescriptionListingTable.getSelectedRow(), 1).toString(),doctorPrescriptionListingTable.getValueAt(doctorPrescriptionListingTable.getSelectedRow(), 2).toString());
+            com.afrisoftech.hospinventory.PatientsBillingIntfr_.populateTable1( doctorPrescriptionListingTable.getValueAt(doctorPrescriptionListingTable.getSelectedRow(), 1).toString());
+             com.afrisoftech.hospinventory.PatientsBillingIntfr_.pharmacyTabbedPane.setSelectedIndex(2);
+             com.afrisoftech.hospinventory.PatientsBillingIntfr_.prescriptionNoTxt.setText(doctorPrescriptionListingTable.getValueAt(doctorPrescriptionListingTable.getSelectedRow(), 3).toString());
+            
+        }else{
         for (int k = 0; k < prescriptionsTable.getRowCount(); k++) {
             for (int r = 0; r < prescriptionsTable.getColumnCount(); r++) {
                 prescriptionsTable.getModel().setValueAt(null, k, r);
@@ -2528,7 +2532,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
             try {
                 connectDB.setAutoCommit(false);
                 java.sql.Statement stmtTable1 = connectDB.createStatement();
-                java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select distinct category,pay_mode,(CURRENT_DATE - year_of_birth::DATE)/365 AS age, residence, (select round(weight::numeric(5,0)) FROM hp_signs_record WHERE hp_patient_register.patient_no = hp_signs_record.patient_no ORDER BY date DESC LIMIT 1) as weight from hp_patient_register where patient_no='" + this.patientNoTxt.getText().toString() + "' ");
+                java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select distinct category,pay_mode,funsoft_patient_age(year_of_birth::date) AS age, residence, (select round(weight::numeric(5,0)) FROM hp_signs_record WHERE hp_patient_register.patient_no = hp_signs_record.patient_no ORDER BY date DESC LIMIT 1) as weight from hp_patient_register where patient_no='" + this.patientNoTxt.getText().toString() + "' ");
                 while (rsetTable1.next()) {
                     this.paymentModeTxt.setText(rsetTable1.getString(2));
                     this.residenceTxt.setText(rsetTable1.getString(1));
@@ -2560,14 +2564,14 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
                         javax.swing.JOptionPane.showMessageDialog(this, "Slip Missing Ask for Reactivation from the Reception", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
                         this.reprintPrescriptionBtn.setVisible(false);
-                        this.printPrescriptionBtn.setVisible(false);
+                        //this.printPrescriptionBtn.setVisible(false);
                         //    this.jButton2.setVisible(false);
                         this.sendBillBtn.setVisible(false);
                         this.jButton13.setVisible(false);
                         this.jButton14.setVisible(false);
                     } else {
                         this.reprintPrescriptionBtn.setVisible(true);
-                        this.printPrescriptionBtn.setVisible(true);
+                        //this.printPrescriptionBtn.setVisible(true);
                         //    this.jButton2.setVisible(true);
                         this.sendBillBtn.setVisible(false);
                         this.jButton13.setVisible(false);
@@ -2577,7 +2581,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
                 if (!this.paymentModeTxt.getText().equals("Scheme")) {
                     //    this.jButton2.setVisible(false);
-                    this.printPrescriptionBtn.setVisible(false);
+                    //this.printPrescriptionBtn.setVisible(false);
                     this.reprintPrescriptionBtn.setVisible(false);
                     this.sendBillBtn.setVisible(true);
                     this.jButton13.setVisible(true);
@@ -2660,7 +2664,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
                         com.afrisoftech.reports.PrescPdf policy = new com.afrisoftech.reports.PrescPdf();
 
-                        policy.PrescPdf(connectDB, receiptNo);
+                        policy.PrescPdf(connectDB, receiptNo,false);
 
                         java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request SET paid = false, collected = false where inv_no = '" + doctorPrescriptionListingTable.getValueAt(doctorPrescriptionListingTable.getSelectedRow(), 3).toString() + "'");
                         pstmt46.executeUpdate();
@@ -2718,6 +2722,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
         sendBillBtn.setVisible(true);
 
         prescriptionsTabbedPane.setSelectedIndex(1);
+    }
         // Add your handling code here:
     }//GEN-LAST:event_doctorPrescriptionListingTableMouseClicked
 
@@ -3089,7 +3094,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
             com.afrisoftech.reports.PrescPdf policy1 = new com.afrisoftech.reports.PrescPdf();
 
-            policy1.PrescPdf(connectDB, prescriptionNoTxt.getText());
+            policy1.PrescPdf(connectDB, prescriptionNoTxt.getText(),false);
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "The prescription number MUST be set in order to print the prescription.");
         }
@@ -3901,7 +3906,13 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
         if (prescriptionsTable.getSelectedColumn() == 0) {
 
             this.cmboxMouseClicked();
-        }        // Add your handling code here:
+        }  
+    if (prescriptionsTable.getSelectedColumn() == 7) {
+    
+calculateTota();
+    }
+
+// Add your handling code here:
     }//GEN-LAST:event_prescriptionsTableMouseClicked
     private void cmboxMouseClicked() {
 
@@ -3977,20 +3988,30 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
         // Add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void prescriptionsTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_prescriptionsTableKeyReleased
-        if (prescriptionsTable.getModel().getValueAt(prescriptionsTable.getSelectedRow(), 1) != null) {
+    private void calculateTota(){
+        double totalSum =00.00;
+        for (int i = 0; i < prescriptionsTable.getRowCount(); i++) {
+            
+        
+        if (prescriptionsTable.getModel().getValueAt(i, 1) != null) {
+            if (Boolean.valueOf(prescriptionsTable.getModel().getValueAt(i, 7).toString())) {
             if (prescriptionsTable.getSelectedColumn() == prescriptionsTable.getSelectedColumn()) {
-                float qty = java.lang.Float.parseFloat(prescriptionsTable.getValueAt(prescriptionsTable.getSelectedRow(), 1).toString());
-                float price = java.lang.Float.parseFloat(prescriptionsTable.getValueAt(prescriptionsTable.getSelectedRow(), 8).toString());
+                float qty = java.lang.Float.parseFloat(prescriptionsTable.getValueAt(i, 1).toString());
+                float price = java.lang.Float.parseFloat(prescriptionsTable.getValueAt(i, 8).toString());
                 float total = qty * price;
-                prescriptionsTable.setValueAt(total, prescriptionsTable.getSelectedRow(), 9);
-                double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(prescriptionsTable, 9);
+                prescriptionsTable.setValueAt(total, i, 9);
+                totalSum += total;
                 jTextField15.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
                 jTextField15.setText(java.lang.String.valueOf(totalSum));
                 jTextField15.setText(java.lang.String.valueOf(totalSum));
             }
+            }
+        }
 
         }
+    }
+    private void prescriptionsTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_prescriptionsTableKeyReleased
+        calculateTota();
 
         // Add your handling code here:
     }//GEN-LAST:event_prescriptionsTableKeyReleased
@@ -4014,7 +4035,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
                     java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT "
                             + "service, quantity,inv_no,requisition_no,"
-                            + "bed_no,time_due,dosage,paid::boolean,ROUND(amount/quantity) AS amount,amount "
+                            + "bed_no,time_due,dosage,paid::boolean,ROUND(amount*quantity) AS amount,amount "
                             + "FROM pb_doctors_request WHERE patient_no = '" + patient_no + "' "
                             + " AND trans_date > (CURRENT_DATE - 2) AND inv_no = '" + prescriptionNoTxt.getText() + "' "
                             + " AND revenue_code ilike '%pharmacy%'AND paid = false AND collected = false group by service, quantity,inv_no,requisition_no,bed_no,time_due,dosage,paid,amount");
@@ -4028,8 +4049,8 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
                         prescriptionsTable.setValueAt(rsetTable1.getObject(6), i, 5);
                         prescriptionsTable.setValueAt(rsetTable1.getObject(7), i, 6);
                         prescriptionsTable.setValueAt(rsetTable1.getBoolean(8), i, 7);
-                        prescriptionsTable.setValueAt(rsetTable1.getObject(9), i, 8);
-                        prescriptionsTable.setValueAt(rsetTable1.getObject(10), i, 9);
+                        prescriptionsTable.setValueAt(rsetTable1.getObject(10), i, 8);
+                        prescriptionsTable.setValueAt(rsetTable1.getObject(9), i, 9);
 
                         prescriptionsTable.setValueAt(getItemCode(rsetTable1.getObject(1).toString()), i, 10);
                         i++;
@@ -4270,7 +4291,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
     }//GEN-LAST:event_sendBillBtnActionPerformed
 
     private void refreshPrescriptionsListBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshPrescriptionsListBtnActionPerformed
-        doctorPrescriptionListingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT trans_date,patient_no,patient_name,inv_no,doctor, false as paid, payment_mode  from pb_doctors_request where revenue_code ilike '%pharm%' AND trans_date >= current_date - 1 and (paid = false or payment_mode ilike 'Scheme')  group by trans_date,patient_no,patient_name,inv_no,doctor,paid,payment_mode ORDER BY inv_no asc"));
+        doctorPrescriptionListingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT trans_date,patient_no,patient_name,inv_no,doctor, false as paid, payment_mode  from pb_doctors_request where revenue_code ilike '%pharm%' AND trans_date >= current_date - 1 and (paid = false or (payment_mode ilike 'Scheme' and collected = false) )  group by trans_date,patient_no,patient_name,inv_no,doctor,paid,payment_mode ORDER BY inv_no asc"));
 
 //        int i = 0;
 //        try {
@@ -4325,7 +4346,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
         try {
             java.sql.Statement stmtTable1 = connectDB.createStatement();
-            java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select distinct category,pay_mode,(CURRENT_DATE - year_of_birth::DATE)/365 AS age, residence, (select round(weight::numeric(5,0)) FROM hp_signs_record WHERE hp_patient_register.patient_no = hp_signs_record.patient_no ORDER BY date DESC LIMIT 1) as weight from hp_patient_register where patient_no='" + this.patientNoTxt.getText().toString() + "' ");
+            java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select distinct category,pay_mode,funsoft_patient_age(year_of_birth::date) as age, residence, (select round(weight::numeric(5,0)) FROM hp_signs_record WHERE hp_patient_register.patient_no = hp_signs_record.patient_no ORDER BY date DESC LIMIT 1) as weight from hp_patient_register where patient_no='" + this.patientNoTxt.getText().toString() + "' ");
             while (rsetTable1.next()) {
                 this.paymentModeTxt.setText(rsetTable1.getString(2));
                 this.residenceTxt.setText(rsetTable1.getString(1));
@@ -4409,7 +4430,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
             this.sendBillBtn.setVisible(true);
         }
         //this.jButton2.setVisible(false);
-        this.printPrescriptionBtn.setVisible(false);
+        //this.printPrescriptionBtn.setVisible(false);
         this.reprintPrescriptionBtn.setVisible(false);
 
         this.jButton13.setVisible(true);
@@ -4427,7 +4448,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
     private void searchPatientPrescriptionTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchPatientPrescriptionTxtCaretUpdate
         if (searchPatientPrescriptionTxt.getText().length() > 4) {
-            doctorPrescriptionListingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT trans_date,patient_no,patient_name,inv_no,doctor,false as paid, payment_mode  from pb_doctors_request where (patient_no ilike '%" + searchPatientPrescriptionTxt.getText() + "%' or patient_name ilike '%" + searchPatientPrescriptionTxt.getText() + "%') AND  revenue_code ilike '%pharm%' AND trans_date >= current_date - 1 and (paid = false or payment_mode ilike 'Scheme')  group by trans_date,patient_no,patient_name,inv_no,doctor,paid,payment_mode ORDER BY inv_no asc"));
+            doctorPrescriptionListingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT trans_date,patient_no,patient_name,inv_no,doctor,false as paid, payment_mode  from pb_doctors_request where (patient_no ilike '%" + searchPatientPrescriptionTxt.getText() + "%' or patient_name ilike '%" + searchPatientPrescriptionTxt.getText() + "%') AND  revenue_code ilike '%pharm%' AND trans_date >= current_date - 1 and (paid = false or(payment_mode ilike 'Scheme' and collected = false) )  group by trans_date,patient_no,patient_name,inv_no,doctor,paid,payment_mode ORDER BY inv_no asc"));
 
         }
         // TODO add your handling code here:
@@ -4635,7 +4656,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
         int j = 0;
         int i = 0;
         int n = 0;
-        doctorPrescriptionListingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT trans_date,patient_no,patient_name,inv_no,doctor,false as paid, payment_mode  from pb_doctors_request where revenue_code ilike '%pharm%' AND trans_date >= current_date - 1 and (paid = false or payment_mode ilike 'Scheme')  group by trans_date,patient_no,patient_name,inv_no,doctor,paid,payment_mode ORDER BY inv_no asc"));
+        doctorPrescriptionListingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT trans_date,patient_no,patient_name,inv_no,doctor,false as paid, payment_mode  from pb_doctors_request where revenue_code ilike '%pharm%' AND trans_date >= current_date - 1 and (paid = false or (payment_mode ilike 'Scheme' and collected = false) )  group by trans_date,patient_no,patient_name,inv_no,doctor,paid,payment_mode ORDER BY inv_no asc"));
 //
 //        try {
 //

@@ -22,14 +22,14 @@ public class AutomatedIPCharges {
 
     public void AutomatedIPCharges(java.sql.Connection connDb) {
 
-          connectDB = connDb;
+        connectDB = connDb;
 
         System.out.println("Connection object : [" + connectDB + "]");
 
         datePicker1.setDate(java.util.Calendar.getInstance().getTime());
 
         this.chargeDailyFees(connectDB);
-        
+
         this.billMortCharges(connectDB);
 
     }
@@ -82,7 +82,6 @@ public class AutomatedIPCharges {
                     user = rse12q1.getString(1);
                 }
 
-
                 java.sql.Statement stm12 = connectDB.createStatement();
                 java.sql.ResultSet rse12 = stm12.executeQuery("select code,activity from pb_activity where activity_category = 'PR'");
                 while (rse12.next()) {
@@ -113,7 +112,7 @@ public class AutomatedIPCharges {
                         }
                         if (jTable1.getModel().getValueAt(i, 0) != null) {
                             java.sql.Statement stm12q = connectDB.createStatement();
-                            java.sql.ResultSet rse12q = stm12q.executeQuery("select count(description) from hp_patient_card where date::date = now()::date AND service ilike 'DAILY BED CHARGES%' AND patient_no =  '" + jTable1.getValueAt(i, 0).toString() + "'");
+                            java.sql.ResultSet rse12q = stm12q.executeQuery("select count(description) from hp_patient_card where date::date = now()::date AND service ilike 'Accomodation%' AND patient_no =  '" + jTable1.getValueAt(i, 0).toString() + "'");
                             while (rse12q.next()) {
                                 patno = rse12q.getInt(1);
                             }
@@ -152,7 +151,7 @@ public class AutomatedIPCharges {
                                 java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
 
                                 pstmt.setObject(1, jTable1.getValueAt(i, 0).toString());
-                                pstmt.setObject(2, "DAILY BED CHARGES");
+                                pstmt.setObject(2, "Accomodation");
                                 pstmt.setString(3, patientCat);
                                 pstmt.setString(4, payMode);
                                 pstmt.setString(5, transNo);
@@ -181,7 +180,6 @@ public class AutomatedIPCharges {
                                 pstmt.setString(28, visitid);
                                 pstmt.executeUpdate();
 
-
                                 java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
                                 pstmt2.setString(1, com.afrisoftech.lib.WardGLAccountsFactory.getBedChargesGLAccount(connectDB, jTable1.getValueAt(i, 2).toString()));
                                 pstmt2.setObject(2, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connDB, com.afrisoftech.lib.WardGLAccountsFactory.getBedChargesGLAccount(connectDB, jTable1.getValueAt(i, 2).toString())));
@@ -196,7 +194,7 @@ public class AutomatedIPCharges {
                                 pstmt2.setString(11, "");
                                 pstmt2.setString(12, "");
                                 pstmt2.setString(13, "");
-                                pstmt2.setString(14, "DAILY BED CHARGES");
+                                pstmt2.setString(14, "Accomodation");
                                 pstmt2.setString(15, "Billing");
                                 pstmt2.setDouble(16, 0.00);
                                 pstmt2.setDouble(17, java.lang.Double.valueOf(jTable1.getValueAt(i, 5).toString()));
@@ -240,7 +238,6 @@ public class AutomatedIPCharges {
                                     pstmtr.setString(28, visitid);
                                     pstmtr.executeUpdate();
 
-
                                     java.sql.PreparedStatement pstmt2r = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
                                     pstmt2r.setString(1, com.afrisoftech.lib.WardGLAccountsFactory.getNursingChargesGLAccount(connectDB, jTable1.getValueAt(i, 2).toString()));
                                     pstmt2r.setObject(2, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connDB, com.afrisoftech.lib.WardGLAccountsFactory.getNursingChargesGLAccount(connectDB, jTable1.getValueAt(i, 2).toString())));
@@ -268,16 +265,92 @@ public class AutomatedIPCharges {
                                     pstmt2r.executeUpdate();
 
                                 }
+
+                                java.sql.Statement stm12qx = connectDB.createStatement();
+                                java.sql.ResultSet rse12qx = stm12qx.executeQuery("SELECT service_type, rate, main_service,  gl_account  FROM pb_operating_parameters WHERE auto_bill =true");
+                                while (rse12qx.next()) {
+
+                                    service = rse12qx.getString(1);
+                                    rate = rse12qx.getDouble(2);
+                                    String mainservice = rse12qx.getString(3);
+                                    String glaccount = rse12qx.getString(4);
+                                    System.err.println("Working on "+service);
+                                    if (rate > 0) {
+                                        System.err.println("Patiint No : "+jTable1.getValueAt(i, 0).toString());
+
+                                        java.sql.PreparedStatement pstmtr = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?,?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
+                                        pstmtr.setObject(1, jTable1.getValueAt(i, 0).toString());
+                                        pstmtr.setObject(2, service);
+                                        pstmtr.setString(3, patientCat);
+                                        pstmtr.setString(4, payMode);
+                                        pstmtr.setString(5, transNo);
+                                        pstmtr.setString(7, scheme);
+                                        pstmtr.setString(6, cardNo);
+                                        pstmtr.setString(8, cardName);
+                                        pstmtr.setString(9, isurer);
+                                        pstmtr.setDate(10, null);
+                                        pstmtr.setString(11, "");
+                                        pstmtr.setDouble(12, rate);
+                                        pstmtr.setDouble(13, 0.00);
+                                        pstmtr.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                        pstmtr.setObject(15, patientAcc);
+                                        pstmtr.setString(16, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connDB, com.afrisoftech.lib.WardGLAccountsFactory.getBedChargesGLAccount(connectDB, jTable1.getValueAt(i, 2).toString())));//mainservice);
+                                        pstmtr.setDouble(17, 1.00);
+                                        pstmtr.setObject(18, staffNo);
+                                        pstmtr.setBoolean(19, false);
+                                        pstmtr.setString(20, "Billing");
+                                        pstmtr.setBoolean(21, false);
+                                        pstmtr.setString(22, AccDesc);
+                                        pstmtr.setString(23, visitid);
+                                        pstmtr.setString(24, user);
+                                        pstmtr.setString(25, billNo);
+                                        pstmtr.setString(26, "IP");
+                                        pstmtr.setTimestamp(27, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+                                        pstmtr.setString(28, visitid);
+                                        pstmtr.executeUpdate();
+
+                                        java.sql.PreparedStatement pstmt2r = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+//                                        pstmt2r.setString(1, glaccount);
+//                                        pstmt2r.setObject(2, mainService);
+                                        pstmt2r.setString(1, com.afrisoftech.lib.WardGLAccountsFactory.getBedChargesGLAccount(connectDB, jTable1.getValueAt(i, 2).toString()));
+                                        pstmt2r.setObject(2, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connDB, com.afrisoftech.lib.WardGLAccountsFactory.getBedChargesGLAccount(connectDB, jTable1.getValueAt(i, 2).toString())));
+                                
+                                        
+                                        pstmt2r.setObject(3, jTable1.getValueAt(i, 0).toString());
+                                        pstmt2r.setString(4, jTable1.getValueAt(i, 1).toString());
+                                        pstmt2r.setString(5, "");
+                                        pstmt2r.setString(6, "");
+                                        pstmt2r.setString(7, "");
+                                        pstmt2r.setString(8, "IP");
+                                        pstmt2r.setString(9, "");
+                                        pstmt2r.setString(10, payMode);
+                                        pstmt2r.setString(11, "");
+                                        pstmt2r.setString(12, "");
+                                        pstmt2r.setString(13, "");
+                                        pstmt2r.setString(14, service);
+                                        pstmt2r.setString(15, "Billing");
+                                        pstmt2r.setDouble(16, 0.00);
+                                        pstmt2r.setDouble(17, Double.parseDouble(jTable1.getValueAt(i, 6).toString()));
+                                        pstmt2r.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                        pstmt2r.setString(19, transNo);
+                                        pstmt2r.setBoolean(20, false);
+                                        pstmt2r.setBoolean(21, false);
+                                        pstmt2r.setBoolean(22, false);
+                                        pstmt2r.setString(23, user);
+                                        pstmt2r.executeUpdate();
+                                    }
+
+                                }
+
                             }
                         }
                     }
                 }
 
-
                 //  }
                 connectDB.commit();
                 connectDB.setAutoCommit(true);
-                
+
                 System.out.println("Bed charges completed!");
 
                 for (int k = 0; k < jTable1.getRowCount(); k++) {
@@ -285,7 +358,7 @@ public class AutomatedIPCharges {
                         jTable1.getModel().setValueAt(null, k, r);
                     }
                 }
-                
+
             } catch (java.sql.SQLException sq) {
                 sq.printStackTrace();
                 try {
@@ -297,7 +370,7 @@ public class AutomatedIPCharges {
                 System.out.println(sq.getMessage());
                 // javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
-              ///  //System.exit(1);
+                ///  //System.exit(1);
             }
 
         } catch (java.lang.Exception ex) {
@@ -311,14 +384,13 @@ public class AutomatedIPCharges {
     public static void main(String args[]) {
 
         AutomatedIPCharges automatedCharges = new AutomatedIPCharges();
-        
+
         connectDB = getDBConnection();
 
         automatedCharges.chargeDailyFees(connectDB);
-        
-       // System.exit(0);
-        //automatedCharges.billMortCharges(connectDB);
 
+        // System.exit(0);
+        //automatedCharges.billMortCharges(connectDB);
     }
 
     private static java.sql.Connection getDBConnection() {
@@ -330,7 +402,9 @@ public class AutomatedIPCharges {
 
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
-            Logger.getLogger(AutomatedIPCharges.class.getName()).log(Level.SEVERE, null, ex);
+            Logger
+                    .getLogger(AutomatedIPCharges.class
+                            .getName()).log(Level.SEVERE, null, ex);
             //System.exit(1);
         }
         try {
@@ -341,7 +415,9 @@ public class AutomatedIPCharges {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            Logger.getLogger(AutomatedIPCharges.class.getName()).log(Level.SEVERE, null, ex);
+            Logger
+                    .getLogger(AutomatedIPCharges.class
+                            .getName()).log(Level.SEVERE, null, ex);
             //System.exit(1);
         }
 
@@ -365,8 +441,6 @@ public class AutomatedIPCharges {
         bedsHeaderRowVector.addElement("Nursing Fee");
         bedsHeaderRowVector.addElement("Visit ID");
 
-
-
         int j = 0;
         int i = 0;
 
@@ -381,6 +455,7 @@ public class AutomatedIPCharges {
             java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT"
                     + " patient_no,upper(patient_name) as name,ward,bed_no,deposit,nursing,visit_id "
                     + " FROM hp_admission WHERE check_out = false AND (ward not ilike '%renal unit%' or ward NOT ILIKE '%EMERGENCY%')"
+                    + " AND patient_no NOT IN (SELECT patient_no FROM hp_mortuary)"
                     + " ORDER BY visit_id");
 
             while (rsetTable1.next()) {
@@ -425,7 +500,6 @@ public class AutomatedIPCharges {
                     i++;
                     bedsRowVector.addElement(columnDataVector);
 
-
                 }
             }
 
@@ -434,7 +508,7 @@ public class AutomatedIPCharges {
             // jTable1.setModel(bedsTableModel);
         } catch (java.sql.SQLException sqlExec) {
             sqlExec.printStackTrace();
-          //  //System.exit(1);
+            //  //System.exit(1);
             // javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
         }
 
@@ -454,12 +528,14 @@ public class AutomatedIPCharges {
             pstmtMortOcc = connectDB.prepareStatement("SELECT annual_no FROM hp_mortuary WHERE discharged = false");
             java.sql.ResultSet rsetMortOcc = pstmtMortOcc.executeQuery();
             while (rsetMortOcc.next()) {
-                System.out.println("Annual numbers ["+rsetMortOcc.getObject(1)+"]");
+                System.out.println("Annual numbers [" + rsetMortOcc.getObject(1) + "]");
                 mortOccVector.add(rsetMortOcc.getObject(1));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            Logger.getLogger(AutomatedIPCharges.class.getName()).log(Level.SEVERE, null, ex);
+            Logger
+                    .getLogger(AutomatedIPCharges.class
+                            .getName()).log(Level.SEVERE, null, ex);
         }
 
         mortOccupancy = mortOccVector.toArray();
@@ -480,8 +556,6 @@ public class AutomatedIPCharges {
         bedsHeaderRowVector.addElement("GL_Code");
         bedsHeaderRowVector.addElement("SERVICE_DEPARTMENT");
 
-
-
         int j = 0;
         int i = 0;
 
@@ -497,29 +571,28 @@ public class AutomatedIPCharges {
                         + " upper(patient_name) FROM hp_mortuary  WHERE annual_no = '" + mortOccupancy[k] + "'");
                 while (rsetTable1.next()) {
 
-
                     java.sql.PreparedStatement pstmtAutoServices = connectDB.prepareStatement("SELECT * FROM pb_mort_auto_charges where auto_billing = true");
                     java.sql.ResultSet rsetAutoServices = pstmtAutoServices.executeQuery();
 
                     while (rsetAutoServices.next()) {
-                     //   if (totalAmt > 0) {
-                            java.util.Vector columnDataVector = new java.util.Vector(1, 1);
-                            System.out.println("Working at farewell table row " + k);
-                            columnDataVector.addElement(mortOccupancy[k]);
-                            columnDataVector.addElement(rsetTable1.getObject(1));
-                            columnDataVector.addElement("Farewell Home");
-                            columnDataVector.addElement(rsetAutoServices.getObject(3));
-                            columnDataVector.addElement(/*
+                        //   if (totalAmt > 0) {
+                        java.util.Vector columnDataVector = new java.util.Vector(1, 1);
+                        System.out.println("Working at farewell table row " + k);
+                        columnDataVector.addElement(mortOccupancy[k]);
+                        columnDataVector.addElement(rsetTable1.getObject(1));
+                        columnDataVector.addElement("Farewell Home");
+                        columnDataVector.addElement(rsetAutoServices.getObject(3));
+                        columnDataVector.addElement(/*
                                      * (noofDays - bedCharged)
-                                     */1);
-                            columnDataVector.addElement(rsetAutoServices.getObject(4));
-                            columnDataVector.addElement(rsetAutoServices.getObject(5));
-                            columnDataVector.addElement(mortOccupancy[k]);
-                            columnDataVector.addElement(rsetAutoServices.getObject(1));
-                            columnDataVector.addElement(rsetAutoServices.getObject(7));
-                            bedsRowVector.addElement(columnDataVector);
+                                 */1);
+                        columnDataVector.addElement(rsetAutoServices.getObject(4));
+                        columnDataVector.addElement(rsetAutoServices.getObject(5));
+                        columnDataVector.addElement(mortOccupancy[k]);
+                        columnDataVector.addElement(rsetAutoServices.getObject(1));
+                        columnDataVector.addElement(rsetAutoServices.getObject(7));
+                        bedsRowVector.addElement(columnDataVector);
 
-                       // }
+                        // }
                     }
 
                 }
@@ -529,26 +602,25 @@ public class AutomatedIPCharges {
 
             // jTable1.setModel(bedsTableModel);
         } catch (java.sql.SQLException sqlExec) {
-           
+
             sqlExec.printStackTrace();
-           
-           // //System.exit(1);
+
+            // //System.exit(1);
             // javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
         }
 
         return bedsTableModel;
 
         //   return mortOccupancy;
-
     }
 
     public void billMortCharges(java.sql.Connection connDb) {
 
         System.out.println("Entering billing area fro farewell");
-        
+
         dbObject = new com.afrisoftech.lib.DBObject();
 
-        connectDB =connDb;
+        connectDB = connDb;
 
         jTable1.setModel(this.getMortOccupancy());
 
@@ -592,7 +664,6 @@ public class AutomatedIPCharges {
                     user = rse12q1.getString(1);
                 }
 
-
                 java.sql.Statement stm12 = connectDB.createStatement();
                 java.sql.ResultSet rse12 = stm12.executeQuery("select code,activity from pb_activity where activity_category = 'PR'");
                 while (rse12.next()) {
@@ -613,8 +684,8 @@ public class AutomatedIPCharges {
                     if (jTable1.getValueAt(i, 0) != null) {
                         java.sql.Statement stm121 = connectDB.createStatement();
                         System.err.println("Farewell Item considered" + jTable1.getValueAt(i, 2).toString());
-                            glAcc = jTable1.getValueAt(i, 8).toString();
-                            mainAcc = jTable1.getValueAt(i, 9).toString();
+                        glAcc = jTable1.getValueAt(i, 8).toString();
+                        mainAcc = jTable1.getValueAt(i, 9).toString();
                         if (jTable1.getModel().getValueAt(i, 0) != null) {
                             java.sql.Statement stm12q = connectDB.createStatement();
                             java.sql.ResultSet rse12q = stm12q.executeQuery("select count(description) from hp_patient_card where date::date = now()::date AND service ilike 'BED CHARGES%' AND patient_no =  '" + jTable1.getValueAt(i, 0).toString() + "'");
@@ -626,7 +697,6 @@ public class AutomatedIPCharges {
                                 // javax.swing.JOptionPane.showMessageDialog(this, "Beds have been Charged for '" + datePicker1.getDate().toString() + "'", "Comfirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                             } else {
 
-                                
                                 visitid = jTable1.getValueAt(i, 0).toString();
                                 // }
                                 java.sql.Statement stm1 = connectDB.createStatement();
@@ -663,7 +733,6 @@ public class AutomatedIPCharges {
                                 pstmt.setString(28, visitid);
                                 pstmt.executeUpdate();
 
-
                                 java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
                                 pstmt2.setObject(2, mainAcc);
                                 pstmt2.setString(1, glAcc);
@@ -689,19 +758,17 @@ public class AutomatedIPCharges {
                                 pstmt2.setBoolean(22, false);
                                 pstmt2.setString(23, user);
                                 pstmt2.executeUpdate();
-                                
-                                System.out.println("Doing for another body ["+visitid+"]");
+
+                                System.out.println("Doing for another body [" + visitid + "]");
 
                             }
                         }
                     }
                 }
 
-
                 //  }
                 connectDB.commit();
                 connectDB.setAutoCommit(true);
-
 
             } catch (java.sql.SQLException sq) {
                 sq.printStackTrace();
@@ -723,7 +790,8 @@ public class AutomatedIPCharges {
 
         }
     }
-        public javax.swing.table.TableModel getMortRegistrationBill(String annualNo) {
+
+    public javax.swing.table.TableModel getMortRegistrationBill(String annualNo) {
 
         Object mortOccupancy[] = null;
         java.util.Vector mortOccVector = new java.util.Vector(1, 1);
@@ -733,12 +801,14 @@ public class AutomatedIPCharges {
             pstmtMortOcc.setObject(1, annualNo);
             java.sql.ResultSet rsetMortOcc = pstmtMortOcc.executeQuery();
             while (rsetMortOcc.next()) {
-                System.out.println("Annual numbers ["+rsetMortOcc.getObject(1)+"]");
+                System.out.println("Annual numbers [" + rsetMortOcc.getObject(1) + "]");
                 mortOccVector.add(rsetMortOcc.getObject(1));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            Logger.getLogger(AutomatedIPCharges.class.getName()).log(Level.SEVERE, null, ex);
+            Logger
+                    .getLogger(AutomatedIPCharges.class
+                            .getName()).log(Level.SEVERE, null, ex);
         }
 
         mortOccupancy = mortOccVector.toArray();
@@ -759,8 +829,6 @@ public class AutomatedIPCharges {
         bedsHeaderRowVector.addElement("GL_Code");
         bedsHeaderRowVector.addElement("SERVICE_DEPARTMENT");
 
-
-
         int j = 0;
         int i = 0;
 
@@ -776,29 +844,28 @@ public class AutomatedIPCharges {
                         + " upper(patient_name) FROM hp_mortuary  WHERE annual_no = '" + mortOccupancy[k] + "'");
                 while (rsetTable1.next()) {
 
-
                     java.sql.PreparedStatement pstmtAutoServices = connectDB.prepareStatement("SELECT * FROM pb_mort_auto_charges where one_time_billing = true");
                     java.sql.ResultSet rsetAutoServices = pstmtAutoServices.executeQuery();
 
                     while (rsetAutoServices.next()) {
-                     //   if (totalAmt > 0) {
-                            java.util.Vector columnDataVector = new java.util.Vector(1, 1);
-                            System.out.println("Working at farewell table row " + k);
-                            columnDataVector.addElement(mortOccupancy[k]);
-                            columnDataVector.addElement(rsetTable1.getObject(1));
-                            columnDataVector.addElement("Farewell Home");
-                            columnDataVector.addElement(rsetAutoServices.getObject(3));
-                            columnDataVector.addElement(/*
+                        //   if (totalAmt > 0) {
+                        java.util.Vector columnDataVector = new java.util.Vector(1, 1);
+                        System.out.println("Working at farewell table row " + k);
+                        columnDataVector.addElement(mortOccupancy[k]);
+                        columnDataVector.addElement(rsetTable1.getObject(1));
+                        columnDataVector.addElement("Farewell Home");
+                        columnDataVector.addElement(rsetAutoServices.getObject(3));
+                        columnDataVector.addElement(/*
                                      * (noofDays - bedCharged)
-                                     */1);
-                            columnDataVector.addElement(rsetAutoServices.getObject(4));
-                            columnDataVector.addElement(rsetAutoServices.getObject(5));
-                            columnDataVector.addElement(mortOccupancy[k]);
-                            columnDataVector.addElement(rsetAutoServices.getObject(1));
-                            columnDataVector.addElement(rsetAutoServices.getObject(7));
-                            bedsRowVector.addElement(columnDataVector);
+                                 */1);
+                        columnDataVector.addElement(rsetAutoServices.getObject(4));
+                        columnDataVector.addElement(rsetAutoServices.getObject(5));
+                        columnDataVector.addElement(mortOccupancy[k]);
+                        columnDataVector.addElement(rsetAutoServices.getObject(1));
+                        columnDataVector.addElement(rsetAutoServices.getObject(7));
+                        bedsRowVector.addElement(columnDataVector);
 
-                       // }
+                        // }
                     }
 
                 }
@@ -808,9 +875,9 @@ public class AutomatedIPCharges {
 
             // jTable1.setModel(bedsTableModel);
         } catch (java.sql.SQLException sqlExec) {
-           
+
             sqlExec.printStackTrace();
-           
+
             ////System.exit(1);
             // javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
         }
@@ -818,16 +885,15 @@ public class AutomatedIPCharges {
         return bedsTableModel;
 
         //   return mortOccupancy;
-
     }
 
     public void billRegistrationMortCharges(java.sql.Connection connDb, String annualNo) {
 
         System.out.println("Entering registration billing area for farewell");
-        
+
         dbObject = new com.afrisoftech.lib.DBObject();
 
-        connectDB =connDb;
+        connectDB = connDb;
 
         jTable1.setModel(this.getMortRegistrationBill(annualNo));
 
@@ -871,7 +937,6 @@ public class AutomatedIPCharges {
                     user = rse12q1.getString(1);
                 }
 
-
                 java.sql.Statement stm12 = connectDB.createStatement();
                 java.sql.ResultSet rse12 = stm12.executeQuery("select code,activity from pb_activity where activity_category = 'PR'");
                 while (rse12.next()) {
@@ -892,8 +957,8 @@ public class AutomatedIPCharges {
                     if (jTable1.getValueAt(i, 0) != null) {
                         java.sql.Statement stm121 = connectDB.createStatement();
                         System.err.println("Farewell Item considered" + jTable1.getValueAt(i, 2).toString());
-                            glAcc = jTable1.getValueAt(i, 8).toString();
-                            mainAcc = jTable1.getValueAt(i, 9).toString();
+                        glAcc = jTable1.getValueAt(i, 8).toString();
+                        mainAcc = jTable1.getValueAt(i, 9).toString();
                         if (jTable1.getModel().getValueAt(i, 0) != null) {
                             java.sql.Statement stm12q = connectDB.createStatement();
                             java.sql.ResultSet rse12q = stm12q.executeQuery("select count(description) from hp_patient_card where date::date = now()::date AND service ilike 'BED CHARGES%' AND patient_no =  '" + jTable1.getValueAt(i, 0).toString() + "'");
@@ -905,7 +970,6 @@ public class AutomatedIPCharges {
                                 // javax.swing.JOptionPane.showMessageDialog(this, "Beds have been Charged for '" + datePicker1.getDate().toString() + "'", "Comfirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                             } else {
 
-                                
                                 visitid = jTable1.getValueAt(i, 0).toString();
                                 // }
                                 java.sql.Statement stm1 = connectDB.createStatement();
@@ -942,7 +1006,6 @@ public class AutomatedIPCharges {
                                 pstmt.setString(28, visitid);
                                 pstmt.executeUpdate();
 
-
                                 java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
                                 pstmt2.setObject(2, mainAcc);
                                 pstmt2.setString(1, glAcc);
@@ -968,19 +1031,17 @@ public class AutomatedIPCharges {
                                 pstmt2.setBoolean(22, false);
                                 pstmt2.setString(23, user);
                                 pstmt2.executeUpdate();
-                                
-                                System.out.println("Doing for another body ["+visitid+"]");
+
+                                System.out.println("Doing for another body [" + visitid + "]");
 
                             }
                         }
                     }
                 }
 
-
                 //  }
                 connectDB.commit();
                 connectDB.setAutoCommit(true);
-
 
             } catch (java.sql.SQLException sq) {
                 sq.printStackTrace();
@@ -993,7 +1054,7 @@ public class AutomatedIPCharges {
                 System.out.println(sq.getMessage());
                 // javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
-               // //System.exit(1);
+                // //System.exit(1);
             }
 
         } catch (java.lang.Exception ex) {

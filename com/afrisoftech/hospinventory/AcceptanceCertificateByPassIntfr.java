@@ -6,7 +6,7 @@
 package com.afrisoftech.hospinventory;
 
 import java.sql.SQLException;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *

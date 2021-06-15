@@ -8,7 +8,7 @@ package com.afrisoftech.hospinventory;
 import java.awt.Color;
 import java.sql.SQLException;
 import org.jdesktop.swingx.decorator.ColorHighlighter;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -488,7 +488,7 @@ public class StoresLedgerReportsIntfr extends javax.swing.JInternalFrame {
 
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
         }
         return new javax.swing.table.DefaultTableModel(rowDataVector, columnNamesVector);

@@ -374,7 +374,8 @@ public class DiagByDocPdf implements java.lang.Runnable {
 
                         try {
 
-                            java.sql.PreparedStatement st = connectDB.prepareStatement("select DISTINCT (patient_no) as patient_no,date_recorded::date,initcap(patient_name),initcap(disease), comments from hp_patient_diagnosis WHERE date_recorded::date BETWEEN ? AND ? and ((UPPER(user_name) = UPPER(?) or UPPER(user_name) = (SELECT DISTINCT UPPER(login_name) from secure_menu_access where UPPER(f_name || ' '|| l_name) = UPPER(?) LIMIT 1))) order by 2");
+                            java.sql.PreparedStatement st = connectDB.prepareStatement("select DISTINCT (patient_no) as patient_no,date_recorded::date,initcap(patient_name),initcap(disease), comments from hp_patient_diagnosis WHERE date_recorded::date BETWEEN ? AND ? and ((UPPER(user_name) = UPPER(?) or UPPER(user_name) = (SELECT DISTINCT UPPER(login_name) from secure_menu_access where UPPER(f_name || ' '|| l_name) = UPPER(?) LIMIT 1))) "
+                                    + " UNION SELECT DISTINCT patient_no, date,initcap(patient_name), typeof_test, comments  FROM public.hp_clinical_results WHERE patient_no NOT IN (select DISTINCT (patient_no) as patient_no from hp_patient_diagnosis WHERE date_recorded::date BETWEEN ? AND ? and ((UPPER(user_name) = UPPER(?) or UPPER(user_name) = (SELECT DISTINCT UPPER(login_name) from secure_menu_access where UPPER(f_name || ' '|| l_name) = UPPER(?) LIMIT 1)))) AND date::date BETWEEN ? AND ? and ((UPPER(user_name) = UPPER(?) or UPPER(user_name) = (SELECT DISTINCT UPPER(login_name) from secure_menu_access where UPPER(f_name || ' '|| l_name) = UPPER(?) LIMIT 1))) order by 2");
 
                             st.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
 
@@ -383,6 +384,22 @@ public class DiagByDocPdf implements java.lang.Runnable {
                             st.setObject(3, memNo);
                             
                             st.setObject(4, memNo);
+                            
+                            st.setDate(5, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+                            st.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+                            st.setObject(7, memNo);
+                            
+                            st.setObject(8, memNo);
+                            
+                            st.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+                            st.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+                            st.setObject(11, memNo);
+                            
+                            st.setObject(12, memNo);
 
                             java.sql.ResultSet rset = st.executeQuery();
 
@@ -397,6 +414,7 @@ public class DiagByDocPdf implements java.lang.Runnable {
                             st1.setObject(4, memNo);
 
                             java.sql.ResultSet rset1 = st1.executeQuery();
+                            int count = 0;
 
                             while (rset.next()) {
 
@@ -429,6 +447,8 @@ public class DiagByDocPdf implements java.lang.Runnable {
                                 phrase = new Phrase(dbObject.getDBObject(rset.getObject(5), "-"), pFontHeader1);
 
                                 table.addCell(phrase);
+                                
+                                count ++;
 
                             }
 
@@ -437,14 +457,14 @@ public class DiagByDocPdf implements java.lang.Runnable {
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             phrase = new Phrase(" ", pFontHeader1);
                             table.addCell(phrase);
-                            while (rset1.next()) {
+//                            while (rset1.next()) {
 
                                 table.getDefaultCell().setColspan(5);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Total Count : " + rset1.getObject(1).toString(), pFontHeader1);
+                                phrase = new Phrase("Total Count : " + count, pFontHeader1);
                                 table.addCell(phrase);
-                            }
+//                            }
                             docPdf.add(table);
 
                         } catch (java.sql.SQLException SqlExec) {

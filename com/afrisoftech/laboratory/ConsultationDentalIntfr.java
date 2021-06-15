@@ -23,7 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
 import org.jdesktop.swingx.decorator.ColorHighlighter;
-////import org.openide.util.Exceptions;
+////
 
 /**
  *
@@ -9492,7 +9492,7 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
         Boolean patientPaid = false;
         switch (patType.toLowerCase().trim()) {

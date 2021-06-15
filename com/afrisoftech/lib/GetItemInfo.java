@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -49,6 +49,25 @@ public class GetItemInfo {
         return code;
 
     }
+    
+    public static boolean byPassVotingForDirectOrdering( java.sql.Connection connectDB) {
+        boolean bypass = false;
+
+        try {//
+            java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT bypass_voting   FROM pb_patient_names ");
+            java.sql.ResultSet rsetCode = pst.executeQuery();
+            while (rsetCode.next()) {
+
+                bypass = rsetCode.getBoolean(1);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GetItemInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return bypass;
+
+    }
 
     public static Double itemBalance(java.sql.Connection connectDB, String itemcode, String Store, Date date1) {
         Double bal = 0.0;
@@ -63,6 +82,35 @@ public class GetItemInfo {
             ex.printStackTrace();
         }
         return bal;
+
+    }
+    
+    public static boolean checkNegativestoreBalances(java.sql.Connection connectDB,String store, javax.swing.JTable itemsTable, int balColumn, int qtyToDeductColumn) {
+        boolean neg = true;
+        try {
+
+            java.sql.Statement pstmt1 = connectDB.createStatement();
+            java.sql.ResultSet rs1 = pstmt1.executeQuery("select neg_allow from st_stock_control WHERE UPPER(store) =  '"+store.toUpperCase()+"' "); //from orders where supplier ='"+jTable1.getValueAt(i,4).toString()+"'");
+
+            while (rs1.next()) {
+                neg = rs1.getBoolean(1);
+            }
+
+        } catch (java.sql.SQLException sq) {
+            sq.printStackTrace();
+            
+            System.out.println(sq.getMessage());
+
+        }
+        if(!neg){
+            for (int i = 0; i < itemsTable.getRowCount(); i++) {
+                if( Double.valueOf(itemsTable.getValueAt(i, balColumn).toString())<  Double.valueOf(itemsTable.getValueAt(i, qtyToDeductColumn).toString())){
+                    neg = false;
+                }
+            }
+        }
+        
+        return neg;
 
     }
 
@@ -378,6 +426,48 @@ public class GetItemInfo {
         }
 
         //return status;
+    }
+    
+    public static boolean allowOutOfSockPrescription( java.sql.Connection connectDB) {
+        boolean allow = true;
+        com.afrisoftech.lib.DBObject DBObject = new com.afrisoftech.lib.DBObject();
+        try {
+            java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT prescribe_unavailable_stock from pb_patient_names ");
+            //java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT DISTINCT upper(status) from st_main_stores where store_name ilike '"+store_name+"' union  select  distinct  upper(cs_code) as status from st_stores where store_name ilike '"+store_name+"' ORDER BY 1 limit 1");
+            java.sql.ResultSet rsetdesc = pst.executeQuery();
+            while (rsetdesc.next()) {
+
+                allow = rsetdesc.getBoolean(1);
+
+            }
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
+            Logger.getLogger(GetItemInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return allow;
+
+    }
+    
+    public static boolean showDrugsBalance( java.sql.Connection connectDB) {
+        boolean allow = true;
+        com.afrisoftech.lib.DBObject DBObject = new com.afrisoftech.lib.DBObject();
+        try {
+            java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT show_drug_balance from pb_hospitalprofile ");
+            //java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT DISTINCT upper(status) from st_main_stores where store_name ilike '"+store_name+"' union  select  distinct  upper(cs_code) as status from st_stores where store_name ilike '"+store_name+"' ORDER BY 1 limit 1");
+            java.sql.ResultSet rsetdesc = pst.executeQuery();
+            while (rsetdesc.next()) {
+
+                allow = rsetdesc.getBoolean(1);
+
+            }
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
+            Logger.getLogger(GetItemInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return allow;
+
     }
 
     public static java.lang.String getIRQapprover(java.lang.String irq, java.sql.Connection connectDB) {

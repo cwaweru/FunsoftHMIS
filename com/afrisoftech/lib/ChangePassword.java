@@ -248,6 +248,10 @@ public class ChangePassword extends javax.swing.JDialog {
                         
                         stmt.executeUpdate("ALTER USER " + currentUser + " WITH PASSWORD '" + newPasswordField.getText() + "'");
                         
+                        java.sql.PreparedStatement pstmtUpdatePassswd = connectDB.prepareStatement("UPDATE passwd_sop SET change_time = now(),changing_user=current_user WHERE user_name = current_user");
+                        
+                        pstmtUpdatePassswd.executeUpdate();
+                        
                         java.sql.PreparedStatement pstmtChangeControl = connectDB.prepareStatement("INSERT INTO account_access_control("
                                 + "           account_change_type, user_account_affected"
                                 + "            )"
@@ -258,6 +262,7 @@ public class ChangePassword extends javax.swing.JDialog {
                         //                        pstmt.executeUpdate();
             
                     javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), "Password changed for user : " + currentUser);
+                    com.afrisoftech.hospital.HospitalMain.passwordChange = true;
                         
                         this.dispose();
                         

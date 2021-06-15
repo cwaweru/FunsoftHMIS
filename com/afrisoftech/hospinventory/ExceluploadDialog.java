@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -1273,7 +1273,7 @@ public class ExceluploadDialog extends javax.swing.JDialog {
                 }
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -1287,7 +1287,7 @@ public class ExceluploadDialog extends javax.swing.JDialog {
             }
 
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return code;

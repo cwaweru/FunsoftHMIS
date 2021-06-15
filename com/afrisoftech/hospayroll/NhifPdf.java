@@ -345,17 +345,18 @@ public class NhifPdf implements java.lang.Runnable {
                                 while(rset2.next()){
                                     while(rset4.next()){
                                         
-                                        phrase = new Phrase("FROM :  "+rset2.getString(1).toUpperCase(), pFontHeader);
+                                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER); 
+                                        phrase = new Phrase(""+rset2.getString(1).toUpperCase(), pFontHeader);
                                         
                                         table.addCell(phrase);
                                         
                                         phrase = new Phrase("TO :  "+rset4.getString(1).toUpperCase()+"   "+rset4.getString(2).toUpperCase(), pFontHeader);
                                         
-                                        table.addCell(phrase);
+                                       // table.addCell(phrase);
                                         table.getDefaultCell().setColspan(2);
                                         
-                                        
-                                        phrase = new Phrase("MONTHLY CONTRIBUTIONS ON CCP SYSTEM :  ", pFontHeader);
+                                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT); 
+                                        phrase = new Phrase("NHIF MONTHLY CONTRIBUTIONS :  ", pFontHeader);
                                         
                                         table.addCell(phrase);
                                         
@@ -408,9 +409,9 @@ public class NhifPdf implements java.lang.Runnable {
                     try {
                         
                         
-                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(5);
+                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(6);
                         
-                        int headerwidths[] = {8,40,20,20,20};
+                        int headerwidths[] = {9,9,40,20,20,20};
                         
                         table.setWidths(headerwidths);
                         
@@ -427,8 +428,12 @@ public class NhifPdf implements java.lang.Runnable {
                         
                         //    table.getDefaultCell().setBackgroundColor(java.awt.Color.LIGHT_GRAY);
                         
-                       table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER); 
+                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER); 
                        phrase = new Phrase("No.",pFontHeader);
+                        table.addCell(phrase);
+                        
+                       table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER); 
+                       phrase = new Phrase("Staff No.",pFontHeader);
                         table.addCell(phrase);
                         
                         phrase = new Phrase("EMPLOYEE NAME",pFontHeader);
@@ -479,8 +484,11 @@ public class NhifPdf implements java.lang.Runnable {
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                                   
                                     numberSeq = numberSeq+1;
-                                   
+                                    
                                     phrase = new Phrase(""+numberSeq+"   ", pFontHeader1);
+                                    table.addCell(phrase);
+                                   
+                                    phrase = new Phrase(""+listofStaffNos[j]+"   ", pFontHeader1);
                                     table.addCell(phrase);
                                  
                                     
@@ -512,7 +520,7 @@ public class NhifPdf implements java.lang.Runnable {
                             
                             while (rsetTotals.next()) {
                                 
-                                table.getDefaultCell().setColspan(2);
+                                table.getDefaultCell().setColspan(3);
                                 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase = new Phrase("TOTAL DUE FOR PAYMENT", pFontHeader);
@@ -592,7 +600,7 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
             
             java.sql.Statement stmt1 = connectDB.createStatement();
             
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT staff_no from posting WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND (description ILIKE 'NHIF%' OR description ILIKE 'N.H.I.F%') and company_name ilike '"+bank+"'");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT staff_no from posting WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND (description ILIKE 'NHIF%' OR description ILIKE 'N.H.I.F%') and company_name ilike '"+bank+"' order by 1");
             
             while (rSet1.next()) {
                 

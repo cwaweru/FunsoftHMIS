@@ -11,7 +11,7 @@ import java.io.IOException;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfWriter;
 import com.lowagie.text.pdf.*;
-import org.openide.util.Exceptions;
+
 
 public class UHCNHIFClaimCardPdf implements java.lang.Runnable {
 

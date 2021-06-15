@@ -29,7 +29,7 @@ public class DiseaseAnalysisPdf implements java.lang.Runnable {
     boolean threadCheck = true;
     java.lang.Thread threadSample;
     com.lowagie.text.Font pFontHeader = FontFactory.getFont(FontFactory.HELVETICA, 8, Font.BOLD);
-    com.lowagie.text.Font pFontHeader1 = FontFactory.getFont(FontFactory.HELVETICA, 8, Font.NORMAL);
+    com.lowagie.text.Font pFontHeader1 = FontFactory.getFont(FontFactory.HELVETICA, 7, Font.NORMAL);
     com.lowagie.text.Font pFontHeader2 = FontFactory.getFont(FontFactory.HELVETICA, 10, Font.BOLD);
     //   com.lowagie.text.ParagraphFont pgraph = Paragraph();
     java.lang.Runtime rtThreadSample = java.lang.Runtime.getRuntime();
@@ -352,9 +352,9 @@ public class DiseaseAnalysisPdf implements java.lang.Runnable {
                     try {
 
 
-                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(12);
+                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(15);
 
-                        int headerwidths[] = {5, 12, 30, 10, 12, 15, 15, 10, 14, 13, 15, 13};
+                        int headerwidths[] = {5, 12, 30, 10, 12, 15, 15, 10, 14, 13, 15, 13,13,13,10};
 
                         table.setWidths(headerwidths);
 
@@ -400,7 +400,7 @@ public class DiseaseAnalysisPdf implements java.lang.Runnable {
 
                             //  table.addCell(phrase);
                             table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
-                            table.getDefaultCell().setColspan(12);
+                            table.getDefaultCell().setColspan(15);
 
 
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
@@ -417,13 +417,13 @@ public class DiseaseAnalysisPdf implements java.lang.Runnable {
                             phrase = new Phrase("Printed On  :" + date, pFontHeader);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-                            table.getDefaultCell().setColspan(8);
+                            table.getDefaultCell().setColspan(9);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
                             phrase = new Phrase("NAMES OF DISEASE : " + diseaseName, pFontHeader);
                             table.addCell(phrase);
 
-                            table.getDefaultCell().setColspan(4);
+                            table.getDefaultCell().setColspan(6);
                             phrase = new Phrase("ICD CODE : " + diseaseCode, pFontHeader);
                             table.addCell(phrase);
 
@@ -511,6 +511,13 @@ public class DiseaseAnalysisPdf implements java.lang.Runnable {
 
                             phrase = new Phrase("Unit No ", pFontHeader1);
                             table.addCell(phrase);
+                            phrase = new Phrase("Tel No ", pFontHeader1);
+                            table.addCell(phrase);
+                            phrase = new Phrase("Residence", pFontHeader1);
+                            table.addCell(phrase);
+                            
+                            phrase = new Phrase("Code ", pFontHeader1);
+                            table.addCell(phrase);
 
                             // variables declalition
 
@@ -528,7 +535,7 @@ public class DiseaseAnalysisPdf implements java.lang.Runnable {
                             for (int i = 0; i < listofAct.length; i++) {
                                 int occu = 0;
                                 if (patCategory.equalsIgnoreCase("OP") || patCategory.equalsIgnoreCase("IP")) {
-                                    java.sql.ResultSet rset = st.executeQuery("SELECT distinct patient_no,patient_name,pat_age,gender,date_admitted,date_discharged, length_of_stay,admission_outcome,marital_status, (SELECT occupation FROM hp_admission WHERE hp_admission.patient_no = hp_patient_diagnosis.patient_no AND occupation is not null ORDER BY 1 LIMIT 1) as occupation, (SELECT sub_chief FROM hp_admission WHERE hp_admission.patient_no = hp_patient_diagnosis.patient_no AND sub_chief is not null ORDER BY 1 LIMIT 1) as unit_no FROM hp_patient_diagnosis WHERE date_discharged::date BETWEEN  '" + beginDate + "' AND '" + endDate + "' AND main_service = '" + diseaseCode + "' AND pat_category ilike '" + patCategory + "' AND patient_no = '" + listofAct[i] + "'");
+                                    java.sql.ResultSet rset = st.executeQuery("SELECT distinct patient_no,patient_name,pat_age,gender,date_admitted,date_discharged, length_of_stay,admission_outcome,marital_status, (SELECT occupation FROM hp_admission WHERE hp_admission.patient_no = hp_patient_diagnosis.patient_no AND occupation is not null ORDER BY 1 LIMIT 1) as occupation, (SELECT sub_chief FROM hp_admission WHERE hp_admission.patient_no = hp_patient_diagnosis.patient_no AND sub_chief is not null ORDER BY 1 LIMIT 1) as unit_no,main_service,((SELECT tel_no FROM hp_patient_register where hp_patient_register.patient_no = hp_patient_diagnosis.patient_no UNION SELECT tel_no FROM hp_inpatient_register where hp_inpatient_register.patient_no = hp_patient_diagnosis.patient_no)) AS tel,((SELECT residence FROM hp_patient_register where hp_patient_register.patient_no = hp_patient_diagnosis.patient_no UNION SELECT residence FROM hp_inpatient_register where hp_inpatient_register.patient_no = hp_patient_diagnosis.patient_no)) AS residence  FROM hp_patient_diagnosis WHERE date_discharged::date BETWEEN  '" + beginDate + "' AND '" + endDate + "' AND main_service ILIKE '" + diseaseCode + "%' AND pat_category ilike '" + patCategory + "' AND patient_no = '" + listofAct[i] + "'");
                                     java.sql.ResultSet rsets = st3.executeQuery("SELECT main_service FROM hp_patient_diagnosis WHERE date_discharged::date BETWEEN  '" + beginDate + "' AND '" + endDate + "' AND patient_no = '" + listofAct[i] + "' AND pat_category ilike '" + patCategory + "' AND main_service != '" + diseaseCode + "'");
                                     while (rsets.next()) {
                                         // phrase = new Phrase(dbObject.getDBObject(rsets.getObject(1), "-"), pFontHeader1);
@@ -559,18 +566,25 @@ public class DiseaseAnalysisPdf implements java.lang.Runnable {
                                         table.addCell(phrase);
                                         phrase = new Phrase(dbObject.getDBObject(rset.getObject(11), "-"), pFontHeader1);
                                         table.addCell(phrase);
+                                        phrase = new Phrase(dbObject.getDBObject(rset.getObject(13), "-"), pFontHeader1);
+                                        table.addCell(phrase);
+                                        phrase = new Phrase(dbObject.getDBObject(rset.getObject(14), "-"), pFontHeader1);
+                                        table.addCell(phrase);
+                                        phrase = new Phrase(dbObject.getDBObject(rset.getObject(12), "-"), pFontHeader1);
+                                        table.addCell(phrase);
                                         count++;
 
                                     }
                                 } else {
+                                    System.err.println("SELECT distinct patient_no,patient_name,pat_age,gender,date_admitted,date_discharged, length_of_stay,admission_outcome,marital_status, (SELECT occupation FROM hp_admission WHERE hp_admission.patient_no = hp_patient_diagnosis.patient_no AND occupation is not null ORDER BY 1 LIMIT 1) as occupation, (SELECT sub_chief FROM hp_admission WHERE hp_admission.patient_no = hp_patient_diagnosis.patient_no AND sub_chief is not null ORDER BY 1 LIMIT 1) as unit_no,main_service FROM hp_patient_diagnosis WHERE date_discharged::date BETWEEN  '" + beginDate + "' AND '" + endDate + "' AND main_service ilike '" + diseaseCode + "%'  AND patient_no = '" + listofAct[i] + "'");
 
                                     String otherDisease = "-";
-                                    java.sql.ResultSet rset = st.executeQuery("SELECT distinct patient_no,patient_name,pat_age,gender,date_admitted,date_discharged, length_of_stay,admission_outcome,marital_status, (SELECT occupation FROM hp_admission WHERE hp_admission.patient_no = hp_patient_diagnosis.patient_no AND occupation is not null ORDER BY 1 LIMIT 1) as occupation, (SELECT sub_chief FROM hp_admission WHERE hp_admission.patient_no = hp_patient_diagnosis.patient_no AND sub_chief is not null ORDER BY 1 LIMIT 1) as unit_no FROM hp_patient_diagnosis WHERE date_discharged::date BETWEEN  '" + beginDate + "' AND '" + endDate + "' AND main_service = '" + diseaseCode + "' AND pat_category ilike '" + patCategory + "' AND patient_no = '" + listofAct[i] + "'");
+                                    java.sql.ResultSet rset = st.executeQuery("SELECT distinct patient_no,patient_name,pat_age,gender,date_admitted,date_discharged, length_of_stay,admission_outcome,marital_status, (SELECT occupation FROM hp_admission WHERE hp_admission.patient_no = hp_patient_diagnosis.patient_no AND occupation is not null ORDER BY 1 LIMIT 1) as occupation, (SELECT sub_chief FROM hp_admission WHERE hp_admission.patient_no = hp_patient_diagnosis.patient_no AND sub_chief is not null ORDER BY 1 LIMIT 1) as unit_no,main_service,((SELECT tel_no FROM hp_patient_register where hp_patient_register.patient_no = hp_patient_diagnosis.patient_no UNION SELECT tel_no FROM hp_inpatient_register where hp_inpatient_register.patient_no = hp_patient_diagnosis.patient_no) LIMIT 1) AS tel,((SELECT residence FROM hp_patient_register where hp_patient_register.patient_no = hp_patient_diagnosis.patient_no UNION SELECT residence FROM hp_inpatient_register where hp_inpatient_register.patient_no = hp_patient_diagnosis.patient_no)) AS residence  FROM hp_patient_diagnosis WHERE date_discharged::date BETWEEN  '" + beginDate + "' AND '" + endDate + "' AND main_service ilike '" + diseaseCode + "%'  AND patient_no = '" + listofAct[i] + "'");
                                     java.sql.ResultSet rsets = st3.executeQuery("SELECT distinct main_service FROM hp_patient_diagnosis WHERE date_discharged::date BETWEEN  '" + beginDate + "' AND '" + endDate + "' AND patient_no = '" + listofAct[i] + "' AND main_service != '" + diseaseCode + "'");
                                     while (rset.next()) {
                                         // while (rsets.next()) {
                                         occu = occu + 1;
-                                        // if (occu == 1) {
+                                        // if (occu == 1) { 
                                         table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
                                         table.getDefaultCell().setBorder(Rectangle.LEFT | Rectangle.BOTTOM | Rectangle.TOP | Rectangle.RIGHT);
                                         // otherDisease = dbObject.getDBObject(rsets.getObject(1), "-");
@@ -599,6 +613,12 @@ public class DiseaseAnalysisPdf implements java.lang.Runnable {
                                         phrase = new Phrase(dbObject.getDBObject(rset.getObject(10), "-"), pFontHeader1);
                                         table.addCell(phrase);
                                         phrase = new Phrase(dbObject.getDBObject(rset.getObject(11), "-"), pFontHeader1);
+                                        table.addCell(phrase);
+                                        phrase = new Phrase(dbObject.getDBObject(rset.getObject(13), "-"), pFontHeader1);
+                                        table.addCell(phrase);
+                                        phrase = new Phrase(dbObject.getDBObject(rset.getObject(14), "-"), pFontHeader1);
+                                        table.addCell(phrase);
+                                        phrase = new Phrase(dbObject.getDBObject(rset.getObject(12), "-"), pFontHeader1);
                                         table.addCell(phrase);
 
 
@@ -725,7 +745,8 @@ public class DiseaseAnalysisPdf implements java.lang.Runnable {
             if (patCategory.equalsIgnoreCase("OP") || patCategory.equalsIgnoreCase("IP")) {
                 java.sql.Statement stmt1 = connectDB.createStatement();
 
-                java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT  patient_no FROM hp_patient_diagnosis WHERE date_discharged::date BETWEEN  '" + beginDate + "' AND '" + endDate + "' AND main_service = '" + diseaseCode + "' AND pat_category ilike '" + patCategory + "'");
+                System.err.println("SELECT DISTINCT  patient_no FROM hp_patient_diagnosis WHERE date_discharged::date BETWEEN  '" + beginDate + "' AND '" + endDate + "' AND main_service ilike '" + diseaseCode + "%' AND pat_category ilike '" + patCategory + "'");
+                java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT  patient_no FROM hp_patient_diagnosis WHERE date_discharged::date BETWEEN  '" + beginDate + "' AND '" + endDate + "' AND main_service ilike '" + diseaseCode + "%' AND pat_category ilike '" + patCategory + "'");
 
                 while (rSet1.next()) {
 
@@ -734,8 +755,8 @@ public class DiseaseAnalysisPdf implements java.lang.Runnable {
                 }
             } else {
                 java.sql.Statement stmt1 = connectDB.createStatement();
-
-                java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT  patient_no FROM hp_patient_diagnosis WHERE date_discharged::date BETWEEN  '" + beginDate + "' AND '" + endDate + "' AND main_service = '" + diseaseCode + "'");
+                System.err.println("SELECT DISTINCT  patient_no FROM hp_patient_diagnosis WHERE date_discharged::date BETWEEN  '" + beginDate + "' AND '" + endDate + "' AND main_service ilike '" + diseaseCode + "%'");
+                java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT  patient_no FROM hp_patient_diagnosis WHERE date_discharged::date BETWEEN  '" + beginDate + "' AND '" + endDate + "' AND main_service ilike '" + diseaseCode + "%'");
 
                 while (rSet1.next()) {
 

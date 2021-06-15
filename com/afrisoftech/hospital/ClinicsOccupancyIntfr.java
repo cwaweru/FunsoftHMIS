@@ -63,7 +63,7 @@ public class ClinicsOccupancyIntfr extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         totalsLabel = new javax.swing.JLabel();
         occupationsHeaderTable = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox();
+        clinicsCmbx = new javax.swing.JComboBox();
         datePicker1 = new com.afrisoftech.lib.DatePicker();
         datePicker2 = new com.afrisoftech.lib.DatePicker();
         jLabel1 = new javax.swing.JLabel();
@@ -84,11 +84,11 @@ public class ClinicsOccupancyIntfr extends javax.swing.JInternalFrame {
         datePicker6 = new com.afrisoftech.lib.DatePicker();
         View1 = new javax.swing.JCheckBox();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new com.afrisoftech.dbadmin.JTable();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        bookingsReportTable = new com.afrisoftech.dbadmin.JTable();
+        bookedChkbx = new javax.swing.JCheckBox();
+        attendedChbx = new javax.swing.JCheckBox();
+        cancelledChkbx = new javax.swing.JCheckBox();
+        noshowChkbx = new javax.swing.JCheckBox();
         specialtyClinicCmbx = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
 
@@ -102,10 +102,12 @@ public class ClinicsOccupancyIntfr extends javax.swing.JInternalFrame {
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        occupationsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Clinic Booking Data"));
+        occupationsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clinic Booking  - Tick on attendance column to confirm attendance then use the confirm button to update list", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 11), new java.awt.Color(255, 0, 102))); // NOI18N
         occupationsPanel.setLayout(new java.awt.GridBagLayout());
 
-        occupationTable.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        occupationJScrl.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
+
+        occupationTable.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
         occupationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -138,7 +140,7 @@ public class ClinicsOccupancyIntfr extends javax.swing.JInternalFrame {
         occupationButtonPanel.setLayout(new java.awt.GridBagLayout());
 
         jButton1.setMnemonic('U');
-        jButton1.setText("Update clinic bookings information");
+        jButton1.setText("Confirm attendance");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -198,10 +200,10 @@ public class ClinicsOccupancyIntfr extends javax.swing.JInternalFrame {
         occupationsHeaderTable.setBorder(javax.swing.BorderFactory.createTitledBorder("Select the clinic name here to bookings generate  report"));
         occupationsHeaderTable.setLayout(new java.awt.GridBagLayout());
 
-        jComboBox1.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT clinic FROM pb_bookings order by clinic"));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        clinicsCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT UPPER(clinic) FROM pb_bookings order by 1"));
+        clinicsCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                clinicsCmbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -210,7 +212,7 @@ public class ClinicsOccupancyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        occupationsHeaderTable.add(jComboBox1, gridBagConstraints);
+        occupationsHeaderTable.add(clinicsCmbx, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -370,7 +372,7 @@ public class ClinicsOccupancyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
         jPanel3.add(datePicker6, gridBagConstraints);
 
-        View1.setText("View");
+        View1.setText("View report");
         View1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 View1ActionPerformed(evt);
@@ -381,12 +383,12 @@ public class ClinicsOccupancyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 1;
         jPanel3.add(View1, gridBagConstraints);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        bookingsReportTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "No", "Patient_no", "Patient_name", "Appointment date", "Telephone_no", "Service", "Unit_no"
+                "No", "Patient No.", "Patient Name", "Appointment date", "Telephone No", "Service", "Unit No"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -397,7 +399,7 @@ public class ClinicsOccupancyIntfr extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(bookingsReportTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -408,41 +410,41 @@ public class ClinicsOccupancyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 3.0;
         jPanel3.add(jScrollPane2, gridBagConstraints);
 
-        buttonGroup1.add(jCheckBox1);
-        jCheckBox1.setSelected(true);
-        jCheckBox1.setText("Booked");
+        buttonGroup1.add(bookedChkbx);
+        bookedChkbx.setSelected(true);
+        bookedChkbx.setText("Booked");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        jPanel3.add(jCheckBox1, gridBagConstraints);
+        jPanel3.add(bookedChkbx, gridBagConstraints);
 
-        buttonGroup1.add(jCheckBox2);
-        jCheckBox2.setText("Honoured");
+        buttonGroup1.add(attendedChbx);
+        attendedChbx.setText("Honoured");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
-        jPanel3.add(jCheckBox2, gridBagConstraints);
+        jPanel3.add(attendedChbx, gridBagConstraints);
 
-        buttonGroup1.add(jCheckBox3);
-        jCheckBox3.setText("Cancelled");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(cancelledChkbx);
+        cancelledChkbx.setText("Cancelled");
+        cancelledChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
+                cancelledChkbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
-        jPanel3.add(jCheckBox3, gridBagConstraints);
+        jPanel3.add(cancelledChkbx, gridBagConstraints);
 
-        buttonGroup1.add(jCheckBox4);
-        jCheckBox4.setText("No show");
+        buttonGroup1.add(noshowChkbx);
+        noshowChkbx.setText("No show");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
-        jPanel3.add(jCheckBox4, gridBagConstraints);
+        jPanel3.add(noshowChkbx, gridBagConstraints);
 
-        specialtyClinicCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT distinct clinics FROM pb_clinics ORDER BY clinics"));
+        specialtyClinicCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT distinct UPPER(clinic) FROM pb_bookings ORDER BY 1"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -472,21 +474,97 @@ public class ClinicsOccupancyIntfr extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-/*
+
         try {
 
             for (int i = 0; i < occupationTable.getRowCount(); i++) {
-                
-                if(Boolean.parseBoolean(occupationTable.getValueAt(i, 6).toString())){
-                
-                java.sql.PreparedStatement pstmtTotal = connectDB.prepareStatement("UPDATE pb_bookings set check_out = true WHERE patient_no = ? and visit_id = ?");
 
-                pstmtTotal.setString(1, occupationTable.getValueAt(i, 0).toString());
-                
-                pstmtTotal.setString(2, occupationTable.getValueAt(i, 1).toString());
-                
-                pstmtTotal.executeUpdate();
-                
+                if (Boolean.parseBoolean(occupationTable.getValueAt(i, 7).toString())) {
+                    String gender = "";
+                     String mS = "";
+                      int age = 0;
+                       String nok = "";
+                        String residence = "";
+                        String noktel ="";
+                    
+                    java.sql.Statement stmt = connectDB.createStatement();
+            java.sql.ResultSet rset = stmt.executeQuery("SELECT nok,residence,year_of_birth,tel_no,address,upper(sex) as sex,"
+                    + "pay_mode,last_visit,upper(second_name) as other_names, upper(first_name) as surname,emails,id_no,"
+                    + "information_source,education_level,occupation, emails, id_no, nok_add, pat_nationality, nok_telno,"
+                    + "nok_relationship, nok_residence, nok_email, pat_marital_status, tribe, district, locations,"
+                    + "sub_location, chief_name, sub_chief, (current_date-year_of_birth::date)/365 AS age,pat_marital_status FROM hp_patient_register WHERE patient_no ILIKE '" + occupationTable.getValueAt(i, 0).toString() + "'");
+            while (rset.next()) {
+                residence = rset.getString(2);
+                age = rset.getInt("age");
+                gender = rset.getString("sex");
+                mS = rset.getString("pat_marital_status");
+                nok = rset.getString("nok");
+                noktel = rset.getString("nok_telno");
+            }
+
+                    java.sql.PreparedStatement pstmt21a = connectDB.prepareStatement("INSERT INTO hp_patient_visit("
+                            + "patient_no, name, ip_no, payment, visit_no, services, quantity,"
+                            + "department, amount, test, date, result, doctor_name, user_name,"
+                            + "input_date, transaction_type, nature, time, comments, parameter,"
+                            + "status, age, gender, marital_status,clinic, urgency, patient_disability,"
+                            + " service_start_time, samaritan_name, samaritan_tel_no, nok_name, nok_tel_no, "
+                            + "referral_type, referral_county, referral_facility)"
+                            + "VALUES (?, ?, ?, ?, ?, ?, ?,"
+                            + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,"
+                            + "?,?,?,?, ?, ?, ?, ?, ?)");
+                    pstmt21a.setString(1, occupationTable.getValueAt(i, 0).toString());
+                    pstmt21a.setString(2, occupationTable.getValueAt(i, 2).toString());
+                    pstmt21a.setString(3, "OP");
+                    pstmt21a.setObject(4, "Cash");
+                    pstmt21a.setInt(5, 0);
+                    pstmt21a.setObject(6, "Clinic booking");
+                    pstmt21a.setDouble(7, 1);
+                    pstmt21a.setObject(8, clinicsCmbx.getSelectedItem());
+                    pstmt21a.setDouble(9, 0.00);
+                    pstmt21a.setString(10, residence);
+                    pstmt21a.setDate(11, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
+                    pstmt21a.setDouble(12, 0.00);
+                    pstmt21a.setString(13, "");
+                    pstmt21a.setString(14, com.afrisoftech.lib.UserName.getUserName(connectDB));
+                    pstmt21a.setTimestamp(15, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));
+                    pstmt21a.setString(16, "Registration");
+                    pstmt21a.setString(17, "1");
+                    pstmt21a.setInt(18, Integer.parseInt("0"));
+                    pstmt21a.setString(19, "Old");
+                    
+                    pstmt21a.setObject(20, "Booking Office");
+                    pstmt21a.setBoolean(21, false);
+                    pstmt21a.setDouble(22, age);
+                    pstmt21a.setString(23, gender);
+                    pstmt21a.setString(24, mS);
+                    pstmt21a.setObject(25, clinicsCmbx.getSelectedItem());
+                    pstmt21a.setObject(26, "Normal");
+                    pstmt21a.setObject(27, "No");
+                    pstmt21a.setTimestamp(28, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));
+//                    if (samaritanChkbx.isSelected()) {
+//                        pstmt21a.setObject(29, nokNameTxt.getText());
+//                        pstmt21a.setObject(30, nokTelephoneTxt.getText());
+                        pstmt21a.setObject(31, null);
+                        pstmt21a.setObject(32, null);
+//                    } else {
+                        pstmt21a.setObject(29, nok);
+                        pstmt21a.setObject(30, noktel);
+//                        pstmt21a.setObject(31, nokNameTxt.getText());
+//                        pstmt21a.setObject(32, nokTelephoneTxt.getText());
+//                    }
+                    pstmt21a.setObject(33, "");
+                    pstmt21a.setObject(34, "");
+                    pstmt21a.setObject(35, "");
+                    pstmt21a.executeUpdate();
+
+                    java.sql.PreparedStatement pstmtTotal = connectDB.prepareStatement("UPDATE pb_bookings set attended = true WHERE patient_no = ? and appointment_date = ?");
+
+                    pstmtTotal.setString(1, occupationTable.getValueAt(i, 0).toString());
+
+                    pstmtTotal.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+
+                    pstmtTotal.executeUpdate();
+
                 }
 
             }
@@ -501,8 +579,10 @@ public class ClinicsOccupancyIntfr extends javax.swing.JInternalFrame {
 
         }
         
-        this.jComboBox1ActionPerformed(evt);
-        */
+        javax.swing.JOptionPane.showMessageDialog(this, "Confirmation Successful");
+
+        this.clinicsCmbxActionPerformed(evt);
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -512,15 +592,15 @@ public class ClinicsOccupancyIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void clinicsCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clinicsCmbxActionPerformed
 
-        this.occupationTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, unit_no, trim(p_name)as patient_name, service, doctor_req as consultant, patient_source, booking_type FROM pb_bookings WHERE clinic = '" + this.jComboBox1.getSelectedItem().toString() + "' and appointment_date between '"+datePicker1.getDate()+"' and '"+datePicker2.getDate()+"' order by 2"));
+        this.occupationTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, unit_no, trim(p_name)as patient_name, service, doctor_req as consultant, patient_source, booking_type, false as Attended FROM pb_bookings WHERE clinic ILIKE '" + this.clinicsCmbx.getSelectedItem().toString() + "' and appointment_date between '" + datePicker1.getDate() + "' and '" + datePicker2.getDate() + "' order by 2"));
 
         int patientTotal = 0;
 
         try {
 
-            java.sql.PreparedStatement pstmtTotal = connectDB.prepareStatement("SELECT  count(*) FROM pb_bookings WHERE clinic = '" + this.jComboBox1.getSelectedItem().toString() + "' and appointment_date between '"+datePicker1.getDate()+"' and '"+datePicker2.getDate()+"'");
+            java.sql.PreparedStatement pstmtTotal = connectDB.prepareStatement("SELECT  count(*) FROM pb_bookings WHERE clinic ILIKE '" + this.clinicsCmbx.getSelectedItem().toString() + "' and appointment_date between '" + datePicker1.getDate() + "' and '" + datePicker2.getDate() + "'");
 
             java.sql.ResultSet rsetTotal = pstmtTotal.executeQuery();
 
@@ -529,7 +609,6 @@ public class ClinicsOccupancyIntfr extends javax.swing.JInternalFrame {
                 patientTotal = rsetTotal.getInt(1);
 
             }
-
 
         } catch (SQLException ex) {
 
@@ -544,118 +623,127 @@ public class ClinicsOccupancyIntfr extends javax.swing.JInternalFrame {
         this.totalsLabel.setText("Number of appointments for this clinic: " + patientTotal);
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_clinicsCmbxActionPerformed
 
     private void ViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewActionPerformed
-if(View.isSelected()){
-     jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,""
-            + "SELECT distinct  clinics, '' as booked,  '' as honoured, '' as No_show_patients, '' as cancelled FROM pb_clinics order by 1; "));
-     try{
-     for(int i=0; i<jTable1.getRowCount();i++){
-         
-         
-         java.sql.Statement ps114 = connectDB.createStatement();
-                java.sql.ResultSet rst114 = ps114.executeQuery(" SELECT    count( distinct patient_no)  FROM pb_bookings where appointment_date between '"+datePicker3.getDate()+"' and '"+datePicker4.getDate()+"' and clinic= '"+jTable1.getValueAt(i, 0)+"' ");
-                while (rst114.next()) {
-                  jTable1.setValueAt(rst114.getString(1), i, 1); ;
-                }
-                
-                 rst114 = ps114.executeQuery("SELECT count( distinct hp_patient_visit.patient_no)  FROM hp_patient_visit,pb_bookings where hp_patient_visit.patient_no=pb_bookings.patient_no and appointment_date=date and appointment_date between '"+datePicker3.getDate()+"' and '"+datePicker4.getDate()+"' and pb_bookings.clinic= '"+jTable1.getValueAt(i, 0)+"' ");
-                while (rst114.next()) {
-                  jTable1.setValueAt(rst114.getString(1), i, 2); ;
-                }
-                
-                rst114 = ps114.executeQuery("SELECT    count(distinct patient_no)  FROM pb_bookings where appointment_date between '"+datePicker3.getDate()+"' and '"+datePicker4.getDate()+"' and cancel=true and clinic= '"+jTable1.getValueAt(i, 0)+"' ");
-                while (rst114.next()) {
-                  jTable1.setValueAt(rst114.getString(1), i, 4); ;
-                }
-        
-                int noshow=0;
-                noshow=Integer.valueOf(jTable1.getValueAt(i, 1).toString())-Integer.valueOf(jTable1.getValueAt(i, 2).toString())-Integer.valueOf(jTable1.getValueAt(i, 4).toString());
-                jTable1.setValueAt(noshow, i, 3); ;
-     }
-     }catch (java.sql.SQLException sq) {
-
+        if (View.isSelected()) {
+            jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+                    + "SELECT distinct  clinics, '' as booked,  '' as honoured, '' as No_show_patients, '' as cancelled FROM pb_clinics order by 1; "));
             try {
-                connectDB.rollback();
-            } catch (java.sql.SQLException sql) {
-                javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                for (int i = 0; i < jTable1.getRowCount(); i++) {
+
+                    java.sql.Statement ps114 = connectDB.createStatement();
+                    java.sql.ResultSet rst114 = ps114.executeQuery(" SELECT    count( distinct patient_no)  FROM pb_bookings where appointment_date between '" + datePicker3.getDate() + "' and '" + datePicker4.getDate() + "' and clinic= '" + jTable1.getValueAt(i, 0) + "' ");
+                    while (rst114.next()) {
+                        jTable1.setValueAt(rst114.getString(1), i, 1);;
+                    }
+
+                    rst114 = ps114.executeQuery("SELECT count( distinct hp_patient_visit.patient_no)  FROM hp_patient_visit,pb_bookings where hp_patient_visit.patient_no=pb_bookings.patient_no and appointment_date=date and appointment_date between '" + datePicker3.getDate() + "' and '" + datePicker4.getDate() + "' and pb_bookings.clinic= '" + jTable1.getValueAt(i, 0) + "' ");
+                    while (rst114.next()) {
+                        jTable1.setValueAt(rst114.getString(1), i, 2);;
+                    }
+
+                    rst114 = ps114.executeQuery("SELECT    count(distinct patient_no)  FROM pb_bookings where appointment_date between '" + datePicker3.getDate() + "' and '" + datePicker4.getDate() + "' and cancel=true and clinic= '" + jTable1.getValueAt(i, 0) + "' ");
+                    while (rst114.next()) {
+                        jTable1.setValueAt(rst114.getString(1), i, 4);;
+                    }
+
+                    int noshow = 0;
+                    noshow = Integer.valueOf(jTable1.getValueAt(i, 1).toString()) - Integer.valueOf(jTable1.getValueAt(i, 2).toString()) - Integer.valueOf(jTable1.getValueAt(i, 4).toString());
+                    jTable1.setValueAt(noshow, i, 3);;
+                }
+            } catch (java.sql.SQLException sq) {
+
+                try {
+                    connectDB.rollback();
+                } catch (java.sql.SQLException sql) {
+                    javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                }
+                System.out.println(sq.getMessage());
+                javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+
             }
-            System.out.println(sq.getMessage());
-            javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
         }
-     
-}
 // TODO add your handling code here:
     }//GEN-LAST:event_ViewActionPerformed
 
     private void View1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_View1ActionPerformed
-if(View1.isSelected()){
-    if (jCheckBox1.isSelected()) jTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"SELECT distinct patient_no,p_name,appointment_date,telno, service , unit_no  FROM pb_bookings where clinic='"+specialtyClinicCmbx.getSelectedItem().toString()+"' and appointment_date between '"+datePicker5.getDate()+"' and '"+datePicker6.getDate()+"'"));
-    if (jCheckBox3.isSelected()) jTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"SELECT distinct patient_no,p_name,appointment_date,telno, service , unit_no  FROM pb_bookings where clinic='"+specialtyClinicCmbx.getSelectedItem().toString()+"' and appointment_date between '"+datePicker5.getDate()+"' and '"+datePicker6.getDate()+"' and cancel=true"));
+        if (View1.isSelected()) {
+            if (bookedChkbx.isSelected()) {
+                bookingsReportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct patient_no,p_name,appointment_date,telno, service , unit_no  FROM pb_bookings where clinic ILIKE '" + specialtyClinicCmbx.getSelectedItem().toString() + "' and appointment_date between '" + datePicker5.getDate() + "' and '" + datePicker6.getDate() + "'"));
+            }
+            if (cancelledChkbx.isSelected()) {
+                bookingsReportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct patient_no,p_name,appointment_date,telno, service , unit_no  FROM pb_bookings where clinic ILIKE '" + specialtyClinicCmbx.getSelectedItem().toString() + "' and appointment_date between '" + datePicker5.getDate() + "' and '" + datePicker6.getDate() + "' and cancel=true"));
+            }
 
-    if (jCheckBox2.isSelected()){
-        jTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"SELECT  distinct hp_patient_visit.patient_no ,'' as p_name,'' as appointment_date,'' as  telno,'' as  service , '' as unit_no FROM hp_patient_visit,pb_bookings where hp_patient_visit.patient_no=pb_bookings.patient_no and appointment_date=date and  appointment_date between '"+datePicker5.getDate()+"' and '"+datePicker6.getDate()+"' and pb_bookings.clinic= '"+specialtyClinicCmbx.getSelectedItem().toString()+"' "));
-    try{
-    java.sql.Statement ps114 = connectDB.createStatement();
-    for(int i=0; i<jTable2.getRowCount();i++){
-                java.sql.ResultSet rst114 = ps114.executeQuery("SELECT p_name,appointment_date,telno, service , unit_no  FROM pb_bookings where clinic='"+specialtyClinicCmbx.getSelectedItem().toString()+"' and appointment_date between '"+datePicker5.getDate()+"' and '"+datePicker6.getDate()+"' and patient_no='"+jTable2.getValueAt(i, 0)+"'" +
-"");
-                while (rst114.next()) {
-                    jTable2.setValueAt(rst114.getString(1), i, 1);
-                    jTable2.setValueAt(rst114.getString(2), i, 2);
-                    jTable2.setValueAt(rst114.getString(3), i, 3);
-                    jTable2.setValueAt(rst114.getString(4), i, 4);
-                    jTable2.setValueAt(rst114.getString(5), i, 5);
-                    
-                }
-        }
-    }
-        catch(Exception esd){
-            System.out.println("the error is "+esd);
-        }
-        
-    }
-    
-    if (jCheckBox4.isSelected()){
-        jTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"SELECT distinct patient_no,'' as p_name,'' as appointment_date,'' as  telno,'' as  service , '' as unit_no   FROM pb_bookings where clinic='"+specialtyClinicCmbx.getSelectedItem().toString()+"' and appointment_date between '"+datePicker5.getDate()+"' and '"+datePicker6.getDate()+"' except SELECT  distinct hp_patient_visit.patient_no ,'' as p_name,'' as appointment_date,'' as  telno,'' as  service , '' as unit_no FROM hp_patient_visit,pb_bookings where hp_patient_visit.patient_no=pb_bookings.patient_no and appointment_date=date and   appointment_date between '"+datePicker5.getDate()+"' and '"+datePicker6.getDate()+"' and pb_bookings.clinic= '"+specialtyClinicCmbx.getSelectedItem().toString()+"' "));
-    try{
-    java.sql.Statement ps114 = connectDB.createStatement();
-    for(int i=0; i<jTable2.getRowCount();i++){
-                java.sql.ResultSet rst114 = ps114.executeQuery("(SELECT p_name,appointment_date,telno, service , unit_no  FROM pb_bookings where clinic='"+specialtyClinicCmbx.getSelectedItem().toString()+"' and appointment_date between '"+datePicker5.getDate()+"' and '"+datePicker6.getDate()+"' and patient_no='"+jTable2.getValueAt(i, 0)+"')" +
-"");
-                while (rst114.next()) {
-                    jTable2.setValueAt(rst114.getString(1), i, 1);
-                    jTable2.setValueAt(rst114.getString(2), i, 2);
-                    jTable2.setValueAt(rst114.getString(3), i, 3);
-                    jTable2.setValueAt(rst114.getString(4), i, 4);
-                    jTable2.setValueAt(rst114.getString(5), i, 5);
-                    
-                }
-        }
-    }
-        catch(Exception esd){
-            System.out.println("the error is "+esd);
-        }
-        
-    }
+            if (attendedChbx.isSelected()) {
+                bookingsReportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, p_name as patient_name, service, quantity, status, booking_date, booking_no, \n"
+                        + "       appointment_date,  doctor_req, telno, email, clinic, \n"
+                        + "       patient_source, booking_type, type_of_booking, unit_no \n"
+                        + "  FROM public.pb_bookings WHERE attended = true AND  appointment_date between '" + datePicker5.getDate() + "' and '" + datePicker6.getDate() + "' and pb_bookings.clinic ILIKE '" + specialtyClinicCmbx.getSelectedItem().toString() + "' ORDER BY 2"));
 
-    
-}
-        
+//        bookingsReportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"SELECT  distinct hp_patient_visit.patient_no ,'' as p_name,'' as appointment_date,'' as  telno,'' as  service , '' as unit_no FROM hp_patient_visit,pb_bookings where hp_patient_visit.patient_no=pb_bookings.patient_no and appointment_date=date and  appointment_date between '"+datePicker5.getDate()+"' and '"+datePicker6.getDate()+"' and pb_bookings.clinic ILIKE '"+specialtyClinicCmbx.getSelectedItem().toString()+"' "));
+//    try{
+//    java.sql.Statement ps114 = connectDB.createStatement();
+//    for(int i=0; i<jTable2.getRowCount();i++){
+//                java.sql.ResultSet rst114 = ps114.executeQuery("SELECT p_name as patient_no,appointment_date,telno, service , unit_no  FROM pb_bookings where clinic ILIKE '"+specialtyClinicCmbx.getSelectedItem().toString()+"' and appointment_date between '"+datePicker5.getDate()+"' and '"+datePicker6.getDate()+"' and patient_no='"+jTable2.getValueAt(i, 0)+"'" +
+//"");
+//                while (rst114.next()) {
+//                    jTable2.setValueAt(rst114.getString(1), i, 1);
+//                    jTable2.setValueAt(rst114.getString(2), i, 2);
+//                    jTable2.setValueAt(rst114.getString(3), i, 3);
+//                    jTable2.setValueAt(rst114.getString(4), i, 4);
+//                    jTable2.setValueAt(rst114.getString(5), i, 5);
+//                    
+//                }
+//        }
+//    }
+//        catch(Exception esd){
+//            System.out.println("the error is "+esd);
+//        }
+            }
+
+            if (noshowChkbx.isSelected()) {
+                bookingsReportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct patient_no,'' as p_name,'' as appointment_date,'' as  telno,'' as  service , '' as unit_no   FROM pb_bookings where clinic ILIKE '" + specialtyClinicCmbx.getSelectedItem().toString() + "' and appointment_date between '" + datePicker5.getDate() + "' and '" + datePicker6.getDate() + "' except SELECT  distinct hp_patient_visit.patient_no ,'' as p_name,'' as appointment_date,'' as  telno,'' as  service , '' as unit_no FROM hp_patient_visit,pb_bookings where hp_patient_visit.patient_no=pb_bookings.patient_no and appointment_date=date and   appointment_date between '" + datePicker5.getDate() + "' and '" + datePicker6.getDate() + "' and pb_bookings.clinic ILIKE '" + specialtyClinicCmbx.getSelectedItem().toString() + "' "));
+                try {
+                    java.sql.Statement ps114 = connectDB.createStatement();
+                    for (int i = 0; i < bookingsReportTable.getRowCount(); i++) {
+                        java.sql.ResultSet rst114 = ps114.executeQuery("(SELECT p_name,appointment_date,telno, service , unit_no  FROM pb_bookings where clinic ILIKE '" + specialtyClinicCmbx.getSelectedItem().toString() + "' and appointment_date between '" + datePicker5.getDate() + "' and '" + datePicker6.getDate() + "' and patient_no='" + bookingsReportTable.getValueAt(i, 0) + "')"
+                                + "");
+                        while (rst114.next()) {
+                            bookingsReportTable.setValueAt(rst114.getString(1), i, 1);
+                            bookingsReportTable.setValueAt(rst114.getString(2), i, 2);
+                            bookingsReportTable.setValueAt(rst114.getString(3), i, 3);
+                            bookingsReportTable.setValueAt(rst114.getString(4), i, 4);
+                            bookingsReportTable.setValueAt(rst114.getString(5), i, 5);
+
+                        }
+                    }
+                } catch (Exception esd) {
+                    System.out.println("the error is " + esd);
+                }
+
+            }
+
+        }
 
 // TODO add your handling code here:
     }//GEN-LAST:event_View1ActionPerformed
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+    private void cancelledChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelledChkbxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
+    }//GEN-LAST:event_cancelledChkbxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox View;
     private javax.swing.JCheckBox View1;
+    private javax.swing.JCheckBox attendedChbx;
+    private javax.swing.JCheckBox bookedChkbx;
+    private javax.swing.JTable bookingsReportTable;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JCheckBox cancelledChkbx;
+    private javax.swing.JComboBox clinicsCmbx;
     private com.afrisoftech.lib.DatePicker datePicker1;
     private com.afrisoftech.lib.DatePicker datePicker2;
     private com.afrisoftech.lib.DatePicker datePicker3;
@@ -665,11 +753,6 @@ if(View1.isSelected()){
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -685,7 +768,7 @@ if(View1.isSelected()){
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JCheckBox noshowChkbx;
     private javax.swing.JPanel occupationButtonPanel;
     private javax.swing.JScrollPane occupationJScrl;
     private javax.swing.JTable occupationTable;

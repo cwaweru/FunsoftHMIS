@@ -44,36 +44,33 @@ import javax.mail.internet.*;
 import javax.activation.*;
 
 /**
- * sendfile will create a multipart message with the second
- * block of the message being the given file.<p>
+ * sendfile will create a multipart message with the second block of the message
+ * being the given file.<p>
  *
- * This demonstrates how to use the FileDataSource to send
- * a file via mail.<p>
+ * This demonstrates how to use the FileDataSource to send a file via mail.<p>
  *
- * usage: <code>java sendfile <i>to from smtp file true|false</i></code>
- * where <i>to</i> and <i>from</i> are the destination and
- * origin email addresses, respectively, and <i>smtp</i>
- * is the hostname of the machine that has smtp server
- * running.  <i>file</i> is the file to send. The next parameter
- * either turns on or turns off debugging during sending.
+ * usage: <code>java sendfile <i>to from smtp file true|false</i></code> where
+ * <i>to</i> and <i>from</i> are the destination and origin email addresses,
+ * respectively, and <i>smtp</i>
+ * is the hostname of the machine that has smtp server running. <i>file</i> is
+ * the file to send. The next parameter either turns on or turns off debugging
+ * during sending.
  *
  * @author	Christopher Cotton
  */
 public class AdvancedSendFile {
-    
-    
+
     // private String filename;
-    
     public void SendFile() {
-        
+
     }
-    
+
     public static void SendFile(java.sql.Connection connection, String fileNames[], String toAddresses[], String ccAddresses[], String bccAddresses[], String mailSubject, String msgBody) {
-        
-        System.out.println("No of file names :["+fileNames.length+"]");
-        
+        if (fileNames != null) {
+            System.out.println("No of file names :[" + fileNames.length + "]");
+        }
+
         //  for(int){
-        
         //  }
         //  System.out.println("Scheme mail adress ::: ["+schemeMailAddress+"]");
         //	String to = System.getProperty("claims.email.address");
@@ -81,102 +78,135 @@ public class AdvancedSendFile {
         //	String host = System.getProperty("claims.host.address");
         // String to = schemeMailAddress;//"waweru@systempartners.com";
         System.out.println("Sending funsoft mail");
-        String from = System.getProperty(biz.systempartners.utils.FunsoftUser.getEmailAddress(connection), "cwaweru@systempartners.biz");
-        String host = System.getProperty("mail.smtp.host","127.0.0.1");//"192.168.0.105";
+        String from = biz.systempartners.utils.FunsoftUser.getEmailAddress(connection); //System.getProperty(biz.systempartners.utils.FunsoftUser.getEmailAddress(connection), "cwaweru@systempartners.biz");
+        String host = biz.systempartners.utils.FunsoftUser.getMailServerAddress(connection); //System.getProperty("mail.smtp.host", "127.0.0.1");//"192.168.0.105";
         //filename = fileName;
         //boolean debug = Boolean.valueOf(System.getProperty("claims.debug.boolean")).booleanValue();
         boolean debug = true;
         //String msgText1 = "Claim file : ["+fileName+"].\n";
         //String subject = "Claim file : ["+fileName+"]";//"Sending a file";
-        
+
         //System.out.println("Sending File : "+fileName);
-        
         // create some properties and get the default Session
         Properties props = System.getProperties();
         props.put("mail.smtp.host", host);
+ //       props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.port", "587"); //TLS Port
+        props.put("mail.smtp.auth", "true"); //enable authentication
+        props.put("mail.smtp.starttls.enable", "true"); //enable STARTTLS
+
+        final String fromEmail = "hr@komarockmodernhealthcare.org>"; //requires valid gmail id//needs to come from a properties file or db
+        final String password = "kmhc@3020!"; // correct password for gmail id
+       // final String toEmail = "myemail@yahoo.com";
         
-        Session session = Session.getInstance(props, null);
+
+
+
+
+       
+                        //create Authenticator object to pass in Session.getInstance argument
+		Authenticator auth = new Authenticator() {
+			//override the getPasswordAuthentication method
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(fromEmail, password);
+			}
+		};
+		Session session = Session.getInstance(props, auth);
+		
+	//	EmailUtil.sendEmail(session, toEmail,"TLSEmail Testing Subject", "TLSEmail Testing Body");
+		
+	
+        
+        ////Session session = Session.getInstance(props, null);
         session.setDebug(debug);
-        
+
         try {
             // create a message
             MimeMessage msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress(from));
-            
+
             // create to addresses
             InternetAddress[] toAddress = new InternetAddress[toAddresses.length];
-            for(int i = 0; i < toAddresses.length; i++){
+            for (int i = 0; i < toAddresses.length; i++) {
                 toAddress[i] = new InternetAddress(toAddresses[i]);
             }
             msg.setRecipients(Message.RecipientType.TO, toAddress);
-            
+
             // create cc addresses
-            InternetAddress[] ccAddress = new InternetAddress[ccAddresses.length];
-            for(int j = 0; j < ccAddresses.length; j++){
-                ccAddress[j] = new InternetAddress(toAddresses[j]);
+            if (ccAddresses != null) {
+                InternetAddress[] ccAddress = new InternetAddress[ccAddresses.length];
+                for (int j = 0; j < ccAddresses.length; j++) {
+                    ccAddress[j] = new InternetAddress(toAddresses[j]);
+                }
+                msg.setRecipients(Message.RecipientType.CC, ccAddress);
+
             }
-            msg.setRecipients(Message.RecipientType.CC, ccAddress);
-            
+
             // create bcc addresses
-            InternetAddress[] bccAddress = new InternetAddress[bccAddresses.length];
-            for(int k = 0; k < bccAddresses.length; k++){
-                bccAddress[k] = new InternetAddress(bccAddresses[k]);
+            if (bccAddresses != null) {
+                InternetAddress[] bccAddress = new InternetAddress[bccAddresses.length];
+                for (int k = 0; k < bccAddresses.length; k++) {
+                    bccAddress[k] = new InternetAddress(bccAddresses[k]);
+                }
+                msg.setRecipients(Message.RecipientType.BCC, bccAddress);
+
             }
-            msg.setRecipients(Message.RecipientType.BCC, ccAddress);
-            
+
             msg.setSubject(mailSubject);
-            
+
             // create the Multipart and add its parts to it
             Multipart mp = new MimeMultipart();
             // create and fill the first message part
             MimeBodyPart mbp1 = new MimeBodyPart();
             mbp1.setText(msgBody);
-            
-            
-            // create the second message part
-            MimeBodyPart mbpAttachments[] = new MimeBodyPart[fileNames.length];
-            
-            // attach the file to the message
-            for(int m =0; m < fileNames.length; m++){
-                FileDataSource fds = new FileDataSource(fileNames[m]);
-                mbpAttachments[m] = new MimeBodyPart();
-                mbpAttachments[m].setDataHandler(new DataHandler(fds));
-                mbpAttachments[m].setFileName(fds.getName());
-            }
-            
             mp.addBodyPart(mbp1);
-            
-            for(int n = 0; n < mbpAttachments.length; n++){
-                mp.addBodyPart(mbpAttachments[n]);
+
+            // create the second message part
+            if (fileNames != null) {
+                MimeBodyPart mbpAttachments[] = new MimeBodyPart[fileNames.length];
+
+                // attach the file to the message
+                for (int m = 0; m < fileNames.length; m++) {
+                    FileDataSource fds = new FileDataSource(fileNames[m]);
+                    mbpAttachments[m] = new MimeBodyPart();
+                    mbpAttachments[m].setDataHandler(new DataHandler(fds));
+                    mbpAttachments[m].setFileName(fds.getName());
+                }
+
+                for (int n = 0; n < mbpAttachments.length; n++) {
+                    mp.addBodyPart(mbpAttachments[n]);
+                }
             }
-            
+
             // add the Multipart to the message
             msg.setContent(mp);
-            
+
             // set the Date: header
             msg.setSentDate(new Date());
-            
+
             // send the message
             Transport.send(msg);
-            
+
+            System.err.println(mailSubject + " Sent succussfully  :");
+
         } catch (MessagingException mex) {
             mex.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), mex.getMessage(), "Error send email!",javax.swing.JOptionPane.ERROR_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), mex.getMessage(), "Error send email!", javax.swing.JOptionPane.ERROR_MESSAGE);
             Exception ex = null;
             if ((ex = mex.getNextException()) != null) {
                 ex.printStackTrace();
-                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage(), "Error send email!",javax.swing.JOptionPane.ERROR_MESSAGE);
-                
+                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage(), "Error send email!", javax.swing.JOptionPane.ERROR_MESSAGE);
+
             }
         }
     }
     //   }
-   /*
-    public static void main(String[] args) {
-        if (args.length != 5) {
-            System.out.println("usage: java sendfile <to> <from> <smtp> <file> true|false");
-            System.exit(1);
-        }
-    }
-    */
+    /*
+     public static void main(String[] args) {
+     if (args.length != 5) {
+     System.out.println("usage: java sendfile <to> <from> <smtp> <file> true|false");
+     System.exit(1);
+     }
+     }
+     */
 }

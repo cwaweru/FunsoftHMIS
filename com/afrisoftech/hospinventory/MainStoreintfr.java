@@ -473,11 +473,13 @@ public class MainStoreintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void centralStoresTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_centralStoresTableMouseClicked
+        if(centralStoresTable.getSelectedColumn() == 2){
         System.out.println("Showing dialog");
         java.awt.Point point = centralStoresScrollPane.getLocationOnScreen();
         jSearchDialog1.setSize(700, 200);
         jSearchDialog1.setLocation(point);
         jSearchDialog1.setVisible(true);
+        }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_centralStoresTableMouseClicked
@@ -486,7 +488,7 @@ public class MainStoreintfr extends javax.swing.JInternalFrame {
         int i = jSearchTable1.getSelectedRow();
         int j = centralStoresTable.getSelectedColumn();
 
-        jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select code,activity FROM pb_activity WHERE activity ILIKE '" + jTextField111.getText() + "%' AND (sub_category ILIKE '%stock%' OR sub_category ILIKE '%invento%') order by activity"));
+        jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select code,activity FROM pb_activity WHERE activity ILIKE '" + jTextField111.getText() + "%' order by 2"));
         jSearchScrollPane1.setViewportView(jSearchTable1);
         System.out.println("Cannot sort out");
 

@@ -40,7 +40,7 @@ public class TableColumnTotal {
             
             if(table.getValueAt(i, qtyColumn) != null && table.getValueAt(i, unitColumn) != null ){
                 
-                columnTotal = columnTotal + (java.lang.Double.parseDouble(table.getValueAt(i, qtyColumn).toString().replace(",", "")) * java.lang.Double.parseDouble(table.getValueAt(i, qtyColumn).toString().replace(",", "")) );
+                columnTotal = columnTotal + (java.lang.Double.parseDouble(table.getValueAt(i, qtyColumn).toString().replace(",", "")) * java.lang.Double.parseDouble(table.getValueAt(i, unitColumn).toString().replace(",", "")) );
                 
             }
         }

@@ -1267,6 +1267,14 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maindeptmnitActionPerformed"/>
                   </Events>
                 </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="sectionsmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Sections"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sectionsmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="depatmnit">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Departments"/>
@@ -1453,6 +1461,14 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="xrayservicesmanagermnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="diagnosticmachinesmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Diagnostic Machines"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="diagnosticmachinesmnitActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>
@@ -1748,6 +1764,14 @@
             </Menu>
             <MenuItem class="javax.swing.JSeparator" name="jSeparator25">
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="buyerallocationmnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Section Allocation"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buyerallocationmnitActionPerformed"/>
+              </Events>
+            </MenuItem>
             <Menu class="javax.swing.JMenu" name="jMenu5">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Vote-Book Setup"/>
@@ -1813,6 +1837,14 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
+            <MenuItem class="javax.swing.JMenuItem" name="lockSessionMenu">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Lock Session"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lockSessionMenuActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="exitmnITb">
               <Properties>
                 <Property name="mnemonic" type="int" value="120"/>
@@ -1883,6 +1915,7 @@
                   <KeyStroke key="Shift+Alt+F3"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Registration With OPD No."/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="patientregnummnitActionPerformed"/>
@@ -2386,6 +2419,14 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
+            <MenuItem class="javax.swing.JMenuItem" name="employeeDigitizedFilemnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Employee Digitized File"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="employeeDigitizedFilemnitActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="nursing">
@@ -3385,10 +3426,18 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="activatemobileTxmnit">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Activate Mobile Transaction"/>
+                    <Property name="text" type="java.lang.String" value="Activate/Deactivate Mobile Txn"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="activatemobileTxmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="reconcilembileTxmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Reconcile Mobile Transactions"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reconcilembileTxmnitActionPerformed"/>
                   </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="fpPosmnit">
@@ -3577,6 +3626,24 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="unfinalizeInvoicemnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator109">
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="onlineInvoicingDatedmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Online Invoicing - Dated"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="onlineInvoicingDatedmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="finalizeInvoiceDatedmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Finalise IN-Patient Invoice - Dated"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finalizeInvoiceDatedmnitActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>
@@ -4238,7 +4305,6 @@
                 <MenuItem class="javax.swing.JMenuItem" name="raisecashVouchmnit">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Raise Voucher"/>
-                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="raisecashVouchmnitActionPerformed"/>
@@ -5378,45 +5444,6 @@
                 </Menu>
                 <MenuItem class="javax.swing.JSeparator" name="jSeparator12">
                 </MenuItem>
-                <Menu class="javax.swing.JMenu" name="Receiptmn">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Receipts"/>
-                  </Properties>
-                  <SubComponents>
-                    <MenuItem class="javax.swing.JMenuItem" name="receiptscopymnit">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Other Receipts Copy"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="receiptscopymnitActionPerformed"/>
-                      </Events>
-                    </MenuItem>
-                    <MenuItem class="javax.swing.JMenuItem" name="receiptperpayermnit">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Receipt Per Payer"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="receiptperpayermnitActionPerformed"/>
-                      </Events>
-                    </MenuItem>
-                    <MenuItem class="javax.swing.JMenuItem" name="debreceiptsmnit">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Debtors Receipts Listing"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="debreceiptsmnitActionPerformed"/>
-                      </Events>
-                    </MenuItem>
-                    <MenuItem class="javax.swing.JMenuItem" name="alteredreceiptsmnit">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Cancelled/Transfered Receipt"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alteredreceiptsmnitActionPerformed"/>
-                      </Events>
-                    </MenuItem>
-                  </SubComponents>
-                </Menu>
                 <MenuItem class="javax.swing.JSeparator" name="jSeparator13">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -5493,6 +5520,14 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="schemeStatementmnitActionPerformed"/>
+                      </Events>
+                    </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="dailydetailedstmtsmnit">
+                      <Properties>
+                        <Property name="label" type="java.lang.String" value="Detailed Statement Breakdown (All Departments)"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dailydetailedstmtsmnitActionPerformed"/>
                       </Events>
                     </MenuItem>
                   </SubComponents>
@@ -5635,6 +5670,45 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="debtorSchemeStatementmnitActionPerformed"/>
                       </Events>
                     </MenuItem>
+                    <Menu class="javax.swing.JMenu" name="Receiptmn">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Receipts"/>
+                      </Properties>
+                      <SubComponents>
+                        <MenuItem class="javax.swing.JMenuItem" name="receiptscopymnit">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Other Receipts Copy"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="receiptscopymnitActionPerformed"/>
+                          </Events>
+                        </MenuItem>
+                        <MenuItem class="javax.swing.JMenuItem" name="receiptperpayermnit">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Receipt Per Payer"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="receiptperpayermnitActionPerformed"/>
+                          </Events>
+                        </MenuItem>
+                        <MenuItem class="javax.swing.JMenuItem" name="debreceiptsmnit">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Debtors Receipts Listing"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="debreceiptsmnitActionPerformed"/>
+                          </Events>
+                        </MenuItem>
+                        <MenuItem class="javax.swing.JMenuItem" name="alteredreceiptsmnit">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Cancelled/Transfered Receipt"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alteredreceiptsmnitActionPerformed"/>
+                          </Events>
+                        </MenuItem>
+                      </SubComponents>
+                    </Menu>
                   </SubComponents>
                 </Menu>
                 <MenuItem class="javax.swing.JSeparator" name="jSeparator20">
@@ -6389,6 +6463,14 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="shiftstotalmnitActionPerformed"/>
                       </Events>
                     </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="shiftstotalpettymnit">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Shifts Total Vs Petty Cash"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="shiftstotalpettymnitActionPerformed"/>
+                      </Events>
+                    </MenuItem>
                     <MenuItem class="javax.swing.JMenuItem" name="uncollectedshiftsmnit">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Uncollected Shifts"/>
@@ -6399,7 +6481,7 @@
                     </MenuItem>
                     <MenuItem class="javax.swing.JMenuItem" name="shiftstotalsummnit">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Total Shifts Summary"/>
+                        <Property name="text" type="java.lang.String" value="Shifts Total Vs Petty Cash"/>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <Events>
@@ -6568,6 +6650,14 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CashsalesmnitActionPerformed"/>
                       </Events>
                     </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="Cashsalesanalysismnit">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Receipts Analysis Report"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CashsalesanalysismnitActionPerformed"/>
+                      </Events>
+                    </MenuItem>
                     <MenuItem class="javax.swing.JMenuItem" name="CashSalesbrdmnit">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Cash Sales Breakdown"/>
@@ -6598,6 +6688,14 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="debtshiftmnitActionPerformed"/>
+                      </Events>
+                    </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="patcontrolaccountmnit">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Patient Control Account BreakDown"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="patcontrolaccountmnitActionPerformed"/>
                       </Events>
                     </MenuItem>
                     <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator103">
@@ -7419,6 +7517,28 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DailyrevmnitActionPerformed"/>
                   </Events>
                 </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="MohCashanalysisuhcmnit">
+                  <Properties>
+                    <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                      <KeyStroke key="F7"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="UHC - MOH Cash Collection Analysis"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MohCashanalysisuhcmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="Mohrevenueanalysismnit">
+                  <Properties>
+                    <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                      <KeyStroke key="F7"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="MOH Revenue Analysis"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MohrevenueanalysismnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
                 <MenuItem class="javax.swing.JSeparator" name="jSeparator36">
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="weeklyrevmnit">
@@ -8102,6 +8222,14 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emrDashBoardmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="referralsmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Referrals"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="referralsmnitActionPerformed"/>
                   </Events>
                 </MenuItem>
                 <Menu class="javax.swing.JMenu" name="diagnosist">
@@ -9571,6 +9699,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="accessControlMnit">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Set Global Access Control"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="accessControlMnitActionPerformed"/>
@@ -9643,14 +9772,14 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,94,0,0,5,-64"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,94,0,0,4,-108"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="mainPanel">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(); /*{&#xa;        &#xa;        public void paintComponent(java.awt.Graphics g) {&#xa;         &#xa;            java.awt.Dimension d = getSize();&#xa;            &#xa;            g.drawImage(desktopPaneIcon.getImage(), 0, 0, d.width, d.height,null);&#xa;         //   System.out.println(&quot;still drawing&quot;);&#xa;            setOpaque(false);&#xa;            &#xa;            super.paintComponent(g);&#xa;            &#xa;        }&#xa;        &#xa;    };&#xa;*/&#xa;    "/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;        &#xa;        public void paintComponent(java.awt.Graphics g) {&#xa;         &#xa;            java.awt.Dimension d = getSize();&#xa;            &#xa;            g.drawImage(desktopPaneIcon.getImage(), 0, 0, d.width, d.height,null);&#xa;         //   System.out.println(&quot;still drawing&quot;);&#xa;            setOpaque(false);&#xa;            &#xa;            super.paintComponent(g);&#xa;            &#xa;        }&#xa;        &#xa;    };&#xa;&#xa;    "/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -9708,7 +9837,7 @@
                 <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(); /* {&#xa;        &#xa;&#xa;        public void paintComponent(java.awt.Graphics g) {&#xa;         &#xa;            desktopPane.setSize(100, 80);&#xa;&#xa;            java.awt.Dimension d = desktopPane.getSize();&#xa;            &#xa;            g.drawImage(desktopPaneIcon.getImage(), 0, 0, d.width, d.height,null);&#xa;       //     System.out.println(&quot;still drawing&quot;);&#xa;            setOpaque(false);&#xa;            &#xa;            super.paintComponent(g);&#xa;            &#xa;        }&#xa;        &#xa;    };&#xa;    */"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel();/*  {&#xa;        &#xa;&#xa;        public void paintComponent(java.awt.Graphics g) {&#xa;         &#xa;            desktopPane.setSize(100, 80);&#xa;&#xa;            java.awt.Dimension d = desktopPane.getSize();&#xa;            &#xa;            g.drawImage(desktopPaneIcon.getImage(), 0, 0, d.width, d.height,null);&#xa;       //     System.out.println(&quot;still drawing&quot;);&#xa;            setOpaque(false);&#xa;            &#xa;            super.paintComponent(g);&#xa;            &#xa;        }&#xa;        &#xa;    }; */&#xa;    "/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">

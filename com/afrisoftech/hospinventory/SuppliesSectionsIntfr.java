@@ -15,7 +15,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -349,7 +349,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select user to set in selected section", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
+        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select user to set in selected section", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
         jPanel13.setLayout(new java.awt.GridBagLayout());
 
         moduleTbl.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -888,7 +888,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
 
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
-        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select user to set in selected section", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
+        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select user to set in selected section", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
         jPanel14.setLayout(new java.awt.GridBagLayout());
 
         moduleTbl1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -1435,7 +1435,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel4.add(jLabel1, gridBagConstraints);
 
-        moduleCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Quotation", "Tender" }));
+        moduleCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Quotation", "Tender", "Inventory Transactions", "HOD Approvals", "Votebook Transactions", "Payroll", "Payroll Approval", "M-Pesa Refunds" }));
         moduleCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 moduleCmbxActionPerformed(evt);
@@ -1473,6 +1473,8 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         jPanel4.add(setpwdbtn, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1963,7 +1965,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
             }
 
         } catch (SQLException ex) {
-            ex.printStackTrace(); //Exceptions.printStackTrace(ex);
+            ex.printStackTrace(); //ex.printStackTrace();
         }
         return inference;
     }
@@ -2110,7 +2112,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
             }
 
         } catch (SQLException ex) {
-            ex.printStackTrace(); //Exceptions.printStackTrace(ex);
+            ex.printStackTrace(); //ex.printStackTrace();
         }
         return fullname;
     }
@@ -2132,7 +2134,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
 
                 usertxt.setText(null);
             } catch (SQLException ex) {
-                ex.printStackTrace(); //Exceptions.printStackTrace(ex);
+                ex.printStackTrace(); //ex.printStackTrace();
             }
 
         } else {
@@ -2141,7 +2143,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
                 java.sql.PreparedStatement pstmts = connectDB.prepareStatement("UPDATE secure_levels_access set authorisation='" + md5(jPasswordField4.getText()) + "' where login_username='" + usertxt.getText() + "' and menu_access='" + moduleCmbx.getSelectedItem() + "'");
                 pstmts.executeUpdate();
             } catch (SQLException ex) {
-                ex.printStackTrace(); //Exceptions.printStackTrace(ex);
+                ex.printStackTrace(); //ex.printStackTrace();
             }
 
             JOptionPane.showMessageDialog(null, "Password Changed Successfully", "CONFIRMATION MESSAGE", JOptionPane.INFORMATION_MESSAGE);
@@ -2177,7 +2179,7 @@ public class SuppliesSectionsIntfr extends javax.swing.JInternalFrame {
                     }
                 }
             } catch (SQLException ex) {
-                ex.printStackTrace(); //Exceptions.printStackTrace(ex);
+                ex.printStackTrace(); //ex.printStackTrace();
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed

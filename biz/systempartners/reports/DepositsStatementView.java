@@ -205,6 +205,11 @@ public class DepositsStatementView extends javax.swing.JInternalFrame {
                 glAccountCmbxItemStateChanged(evt);
             }
         });
+        glAccountCmbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                glAccountCmbxActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -237,15 +242,13 @@ public class DepositsStatementView extends javax.swing.JInternalFrame {
 
         depositsTableView.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         depositsTableView.setForeground(new java.awt.Color(0, 0, 255));
-
-        javax.swing.table.TableColumn hyperlinkEditor = depositsTableView.getColumnModel().getColumn(3);
-        com.afrisoftech.lib.HyperLinkCellEditor hyperlinkCellEditor = new  com.afrisoftech.lib.HyperLinkCellEditor(new org.jdesktop.swingx.JXHyperlink(),depositsTableView);
-        hyperlinkEditor.setCellEditor(hyperlinkCellEditor);
+        //javax.swing.table.TableColumn hyperlinkEditor = depositsTableView.getColumnModel().getColumn(3);
+        //com.afrisoftech.lib.HyperLinkCellEditor hyperlinkCellEditor = new  com.afrisoftech.lib.HyperLinkCellEditor(new org.jdesktop.swingx.JXHyperlink(),depositsTableView);
+        //hyperlinkEditor.setCellEditor(hyperlinkCellEditor);
         //jTable1.setRowHeight(30);
-        javax.swing.table.DefaultTableCellRenderer cellRenderer1 = new javax.swing.table.DefaultTableCellRenderer();
-        cellRenderer1.setHorizontalAlignment(cellRenderer1.TRAILING);
-        hyperlinkEditor.setCellRenderer(cellRenderer1);
-
+        //javax.swing.table.DefaultTableCellRenderer cellRenderer1 = new javax.swing.table.DefaultTableCellRenderer();
+        //cellRenderer1.setHorizontalAlignment(cellRenderer1.TRAILING);
+        //hyperlinkEditor.setCellRenderer(cellRenderer1);
         depositsTableView.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 depositsTableViewMouseClicked(evt);
@@ -352,6 +355,14 @@ public class DepositsStatementView extends javax.swing.JInternalFrame {
                 }
             }
             
+            
+            javax.swing.table.TableColumn hyperlinkEditor = depositsTableView.getColumnModel().getColumn(3);
+            com.afrisoftech.lib.HyperLinkCellEditor hyperlinkCellEditor = new com.afrisoftech.lib.HyperLinkCellEditor(new org.jdesktop.swingx.JXHyperlink(), depositsTableView);
+            hyperlinkEditor.setCellEditor(hyperlinkCellEditor);
+            javax.swing.table.DefaultTableCellRenderer cellRenderer1 = new javax.swing.table.DefaultTableCellRenderer();
+            cellRenderer1.setHorizontalAlignment(cellRenderer1.TRAILING);
+            hyperlinkEditor.setCellRenderer(cellRenderer1);
+            
         } catch (SQLException ex) {
             Logger.getLogger(DepositsStatementView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -368,6 +379,10 @@ public class DepositsStatementView extends javax.swing.JInternalFrame {
 " order by 2"));
             this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_depositsTableViewMouseClicked
+
+    private void glAccountCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_glAccountCmbxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_glAccountCmbxActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acclabel;

@@ -606,7 +606,12 @@ public class DetailedPatientFinalInvpdf implements java.lang.Runnable {
 
                             java.sql.ResultSet rset11 = st11.executeQuery(" select initcap(CASE WHEN (service ilike 'receipt' AND service = main_service) THEN service||' - '||requisition_no ELSE main_service END) as service,sum(dosage)::int,sum(credit-debit) from hp_patient_card where visit_id = '" + memNo + "' "
                                     + "AND (service = 'N.H.I.F' or service ilike 'Receipt%' or service ilike 'Receipt Adj'  or service ilike '%DIFF '  OR service ilike 'Discou%')\n "
-                                    + " group by service, main_service,requisition_no having sum(credit-debit) >0  order by service");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
+                                    + " group by service, main_service,requisition_no order by service");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
+////CWW; 18/11/2020; to prevent reversed invoices failing to appear on the invoice thus resulting in over-payments on invoices                            
+//                                                        java.sql.ResultSet rset11 = st11.executeQuery(" select initcap(CASE WHEN (service ilike 'receipt' AND service = main_service) THEN service||' - '||requisition_no ELSE main_service END) as service,sum(dosage)::int,sum(credit-debit) from hp_patient_card where visit_id = '" + memNo + "' "
+//                                    + "AND (service = 'N.H.I.F' or service ilike 'Receipt%' or service ilike 'Receipt Adj'  or service ilike '%DIFF '  OR service ilike 'Discou%')\n "
+//                                    + " group by service, main_service,requisition_no having sum(credit-debit) >0  order by service");
+                            
                             java.sql.ResultSet rsetTotals1 = st21.executeQuery("select sum(credit-debit) from hp_patient_card where visit_id = '" + memNo + "' having sum(credit-debit) >0 "
                                     + "---and (service = 'N.H.I.F' or service ilike 'Receipt' or service ilike 'Receipt Adj'  OR service ilike 'Discou%'  or service ilike '%DIFF ')");
 

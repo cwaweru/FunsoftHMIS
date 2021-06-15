@@ -7,7 +7,7 @@ package com.afrisoftech.lib;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -134,7 +134,7 @@ public class StockItemFactory {
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return isConsumable;
@@ -154,7 +154,7 @@ public class StockItemFactory {
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         if (i > 0) {
             isConsumable = true;

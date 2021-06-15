@@ -110,6 +110,64 @@ public class GLCodesFactory {
         }
 
     }
+    
+    public static boolean getServiceSchemeExclusionStatus(java.sql.Connection connDB, String scheme , String service , String glAccount) {
+        boolean execluded = false;
+        java.lang.String[] listSet = null;
+        service = service.trim();
+        try {
+            java.sql.PreparedStatement pstmt = connDB.prepareStatement("SELECT   exclusions , initcap('"+service+"') as services FROM public.ac_schemes_exclusions WHERE scheme_name ILIKE ? AND gl_account = ?");
+            pstmt.setString(1, scheme);
+            pstmt.setString(2, glAccount);
+            java.sql.ResultSet rset = pstmt.executeQuery();
+
+            while (rset.next()) {
+                java.sql.Array arraySet = rset.getArray(1);
+               // service = rset.getString(2);
+                java.lang.Object[] listSetTest = (java.lang.Object[]) arraySet.getArray();
+                if (!(listSetTest == null)) {
+                    listSet = (java.lang.String[]) arraySet.getArray();
+                    execluded = java.util.Arrays.asList(listSet).contains(service);
+                }       
+                
+            }
+            
+            
+            System.err.println("Service - "+service +" Scheme - "+scheme +" Exclusion Status - "+execluded);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+
+        
+            return execluded;
+            
+        
+    }
+    
+    public static String getDefaultPaymode(java.sql.Connection connDB) {
+        java.lang.String paymode = "Cash";
+        try {
+            java.sql.PreparedStatement pstmt = connDB.prepareStatement("SELECT default_pay_mode FROM sales_prefs ");
+            java.sql.ResultSet rset = pstmt.executeQuery();
+            while (rset.next()) {
+                paymode = rset.getString(1);
+            }
+            
+           
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+
+        
+            return paymode;
+            
+        
+    }
+    
+    
 
     /**
      * @param aStoreSalesGLCode the storeSalesGLCode to set

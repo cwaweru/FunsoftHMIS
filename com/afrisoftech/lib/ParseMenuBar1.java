@@ -1642,7 +1642,7 @@ public class ParseMenuBar1 {
                             com.afrisoftech.hospital.HospitalMain.oAuthKey = new String(rset.getBytes(1), "UTF-8");
                             System.out.println("Key : ["+com.afrisoftech.hospital.HospitalMain.oAuthKey+"]");
                             com.afrisoftech.hospital.HospitalMain.passKey = new String(rset.getBytes(2), "UTF-8");
-                            System.out.println("Pass : ["+com.afrisoftech.hospital.HospitalMain.passKey+"]");
+                        //    System.out.println("Pass : ["+com.afrisoftech.hospital.HospitalMain.passKey+"]");
                             com.afrisoftech.hospital.HospitalMain.payBillNumber = rset.getString(3);
                             
                         }

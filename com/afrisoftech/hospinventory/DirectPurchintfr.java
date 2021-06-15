@@ -1195,7 +1195,7 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
             // policy.DiscCreditorsInvoicesPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker1.getDate().toLocaleString(),jTextField91.getText().toString(),this.jTextField7.getText().toString());
 
             com.afrisoftech.hospinventory.mtrhreports.SthirteenPdf policy = new com.afrisoftech.hospinventory.mtrhreports.SthirteenPdf();
-            policy.SthirteenPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker1.getDate().toLocaleString(), jTextField91.getText().toString(), this.jTextField7.getText().toString(), "");
+            policy.SthirteenPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker1.getDate().toLocaleString(), jTextField91.getText().toString(), this.jTextField7.getText().toString(), this.jTextField7.getText().toString());
 
             //       jTextField7.setText("");
             jTextField3.setText("");
@@ -1540,8 +1540,8 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
                                         "            supplier, delivery_note_no, date, cost_center, transaction_type, \n" +
                                         "            debit, credit, activity_code, invoice_no, description, transaction_no, \n" +
                                         "            sub_store_issuing, user_name, approved, vat_amount, old_grn_date, \n" +
-                                        "            item_code, strength,inv_no)"
-                                    + " values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
+                                        "            item_code, strength,inv_no,grn_no)"
+                                    + " values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?)");
 
                             pstmt.setString(1, "");
                             pstmt.setString(2, jComboBox2.getSelectedItem().toString());
@@ -1562,7 +1562,7 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
                             pstmt.setObject(7, units);
                             pstmt.setString(8, jTextField9.getText());
                             pstmt.setString(9, jTextField3.getText());
-                            pstmt.setString(10, "");
+                            pstmt.setString(10, jTextField7.getText());
                             pstmt.setDouble(11, quantity);
                             pstmt.setDouble(12, 0.00);
                             pstmt.setDouble(13, java.lang.Double.valueOf(grnDetailsTable.getValueAt(i, 6).toString()));
@@ -1598,6 +1598,7 @@ public class DirectPurchintfr extends javax.swing.JInternalFrame {
                             }else {
                                 pstmt.setObject(34, "Donations");
                             }
+                            pstmt.setString(35, jTextField7.getText());
                             pstmt.executeUpdate();
 
                             java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("insert into st_sub_stores values(? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?)");

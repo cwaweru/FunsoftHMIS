@@ -6,7 +6,7 @@
 package com.afrisoftech.lib;
 
 import java.sql.SQLException;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -41,7 +41,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         if (count == 1) {
             return "1";
@@ -77,7 +77,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return dosageGiven;
     }
@@ -107,7 +107,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return dispensedQty;
     }
@@ -133,7 +133,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -159,7 +159,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -187,7 +187,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -213,7 +213,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -239,7 +239,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -265,7 +265,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -291,7 +291,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -317,7 +317,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -343,7 +343,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -369,7 +369,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -395,7 +395,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -421,7 +421,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -447,7 +447,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -473,7 +473,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -499,7 +499,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -529,7 +529,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -555,7 +555,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -581,7 +581,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -607,7 +607,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -633,7 +633,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -659,7 +659,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -685,7 +685,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -711,7 +711,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -737,7 +737,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -763,7 +763,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -789,7 +789,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -815,7 +815,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -841,7 +841,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -867,7 +867,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -893,7 +893,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -919,7 +919,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -945,7 +945,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -971,7 +971,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -997,7 +997,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -1023,7 +1023,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -1053,7 +1053,7 @@ public class FPServiceIndicators {
 
             } catch (SQLException ex) {
                 javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //ex.printStackTrace();
             }
         } else {
             //  int visitCount = 0;
@@ -1076,7 +1076,7 @@ public class FPServiceIndicators {
 
             } catch (SQLException ex) {
                 javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //ex.printStackTrace();
             }
         }
         return visitCount;
@@ -1109,7 +1109,7 @@ public class FPServiceIndicators {
 
             } catch (SQLException ex) {
                 javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //ex.printStackTrace();
             }
         } else {
             //  int visitCount = 0;
@@ -1132,7 +1132,7 @@ public class FPServiceIndicators {
 
             } catch (SQLException ex) {
                 javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //ex.printStackTrace();
             }
         }
         return visitCount;
@@ -1161,7 +1161,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1190,7 +1190,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1219,7 +1219,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1248,7 +1248,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1275,7 +1275,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1302,7 +1302,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1329,7 +1329,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1356,7 +1356,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1383,7 +1383,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1410,7 +1410,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1437,7 +1437,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1464,7 +1464,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1491,7 +1491,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1522,7 +1522,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1553,7 +1553,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1584,7 +1584,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1615,7 +1615,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1646,7 +1646,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1677,7 +1677,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1708,7 +1708,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1735,7 +1735,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1764,7 +1764,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1793,7 +1793,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1822,7 +1822,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1851,7 +1851,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1881,7 +1881,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1911,7 +1911,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1938,7 +1938,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1965,7 +1965,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -1992,7 +1992,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2019,7 +2019,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2046,7 +2046,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2073,7 +2073,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2100,7 +2100,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2127,7 +2127,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2154,7 +2154,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2181,7 +2181,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2208,7 +2208,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2235,7 +2235,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2264,7 +2264,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2291,7 +2291,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2318,7 +2318,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2345,7 +2345,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2372,7 +2372,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2399,7 +2399,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2426,7 +2426,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2453,7 +2453,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2480,7 +2480,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2509,7 +2509,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2536,7 +2536,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2630,7 +2630,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2657,7 +2657,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return fifAmount;
@@ -2684,7 +2684,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return fifAmount;
@@ -2711,7 +2711,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return fifAmount;
@@ -2751,7 +2751,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2791,7 +2791,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2831,7 +2831,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2863,7 +2863,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;
@@ -2903,7 +2903,7 @@ public class FPServiceIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return visitCount;

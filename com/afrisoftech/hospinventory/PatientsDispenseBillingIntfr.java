@@ -4405,7 +4405,7 @@ public class PatientsDispenseBillingIntfr extends javax.swing.JInternalFrame {
         // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
         java.awt.Point point = this.patientNumberTxt.getLocationOnScreen();
 
-        patientSearchDialog.setSize(400, 200);
+        patientSearchDialog.setSize(600, 200);
 
         patientSearchDialog.setLocation(point);
 

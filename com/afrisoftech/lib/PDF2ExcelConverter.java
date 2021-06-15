@@ -35,7 +35,8 @@ public class PDF2ExcelConverter {
             javax.swing.JOptionPane.showMessageDialog(null, "File to convert is mandatory!");
         } else {
 
-            final String apiKey = "ktxpfvf0i5se";
+            //     final String apiKey = "ktxpfvf0i5se";
+            final String apiKey = "b1148e630177542bdb3d9f902b9b03bfea9ee40f";
             final String format = "xlsx-single".toLowerCase();
             final String pdfFilename = pdfFile2Convert;
 
@@ -53,41 +54,62 @@ public class PDF2ExcelConverter {
                 javax.swing.JOptionPane.showMessageDialog(null, "File to convert is mandatory!");
             }
 
-            try (CloseableHttpClient httpclient = HttpClients.custom().setDefaultRequestConfig(globalConfig).build()) {
-                HttpPost httppost = new HttpPost("https://pdftables.com/api?format=" + format + "&key=" + apiKey);
-                FileBody fileBody = new FileBody(inputFile);
+            com.afrisoftech.lib.pdf2excel.StartJob.startJob(pdfFilename, apiKey, getOutputFilename(pdfFilename, format.replaceFirst("-.*$", "")));
 
-                HttpEntity requestBody = MultipartEntityBuilder.create().addPart("f", fileBody).build();
-                httppost.setEntity(requestBody);
+            String outputFilename = getOutputFilename(pdfFilename, format.replaceFirst("-.*$", ""));
+            
+            System.out.println("Writing output to " + outputFilename);
 
-                System.out.println("Sending request");
-
-                try (CloseableHttpResponse response = httpclient.execute(httppost)) {
-                    if (response.getStatusLine().getStatusCode() != 200) {
-                        System.out.println(response.getStatusLine());
-                        javax.swing.JOptionPane.showMessageDialog(null, "Internet connection is a must. Consult IT administrator for further assistance");
-                    }
-                    HttpEntity resEntity = response.getEntity();
-                    if (resEntity != null) {
-                        final String outputFilename = getOutputFilename(pdfFilename, format.replaceFirst("-.*$", ""));
-                        System.out.println("Writing output to " + outputFilename);
-
-                        final File outputFile = new File(outputFilename);
-                        FileUtils.copyInputStreamToFile(resEntity.getContent(), outputFile);
-                        if (java.awt.Desktop.isDesktopSupported()) {
-                            try {
-                                java.awt.Desktop.getDesktop().open(outputFile);
-                            } catch (IOException ex) {
-                                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
-                                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
-                            }
-                        }
-                    } else {
-                        System.out.println("Error: file missing from response");
-                        javax.swing.JOptionPane.showMessageDialog(null, "Error: file missing from response! Internet connection is a must.");
-                    }
+            final File outputFile = new File(outputFilename);
+        //    FileUtils.copyInputStreamToFile(resEntity.getContent(), outputFile);
+            if (java.awt.Desktop.isDesktopSupported()) {
+                try {
+                    java.awt.Desktop.getDesktop().open(outputFile);
+                } catch (IOException ex) {
+                    javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
+                    ex.printStackTrace();             //ex.printStackTrace();
                 }
+
+            } else {
+                System.out.println("Error: file missing from response");
+                javax.swing.JOptionPane.showMessageDialog(null, "Error: file missing from response! Internet connection is a must.");
             }
+
+//            try (CloseableHttpClient httpclient = HttpClients.custom().setDefaultRequestConfig(globalConfig).build()) {
+//                HttpPost httppost = new HttpPost("https://pdftables.com/api?format=" + format + "&key=" + apiKey);
+//                FileBody fileBody = new FileBody(inputFile);
+//
+//                HttpEntity requestBody = MultipartEntityBuilder.create().addPart("f", fileBody).build();
+//                httppost.setEntity(requestBody);
+//
+//                System.out.println("Sending request");
+//
+//                try (CloseableHttpResponse response = httpclient.execute(httppost)) {
+//                    if (response.getStatusLine().getStatusCode() != 200) {
+//                        System.out.println(response.getStatusLine());
+//                        javax.swing.JOptionPane.showMessageDialog(null, "Internet connection is a must. Consult IT administrator for further assistance");
+//                    }
+//                    HttpEntity resEntity = response.getEntity();
+//                    if (resEntity != null) {
+//                        final String outputFilename = getOutputFilename(pdfFilename, format.replaceFirst("-.*$", ""));
+//                        System.out.println("Writing output to " + outputFilename);
+//
+//                        final File outputFile = new File(outputFilename);
+//                        FileUtils.copyInputStreamToFile(resEntity.getContent(), outputFile);
+//                        if (java.awt.Desktop.isDesktopSupported()) {
+//                            try {
+//                                java.awt.Desktop.getDesktop().open(outputFile);
+//                            } catch (IOException ex) {
+//                                javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
+//                                ex.printStackTrace();             //ex.printStackTrace();
+//                            }
+//                        }
+//                    } else {
+//                        System.out.println("Error: file missing from response");
+//                        javax.swing.JOptionPane.showMessageDialog(null, "Error: file missing from response! Internet connection is a must.");
+//                    }
+//                }
+//            }
         }
     }
 

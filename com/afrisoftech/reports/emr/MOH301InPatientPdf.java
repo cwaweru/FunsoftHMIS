@@ -331,7 +331,7 @@ public class MOH301InPatientPdf implements java.lang.Runnable {
 
                         com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(18);
 
-                        int headerwidths[] = {5, 10, 7, 25, 7, 7, 12, 12, 12, 9, 9, 9, 12, 12, 10, 7, 7, 12};
+                        int headerwidths[] = {5, 12, 12, 25, 12, 7, 12, 12, 12, 9, 9, 9, 12, 12, 10, 7, 7, 12};
 
                         table.setWidths(headerwidths);
 
@@ -526,7 +526,7 @@ public class MOH301InPatientPdf implements java.lang.Runnable {
                                 java.sql.PreparedStatement stw = connectDB.prepareStatement("SELECT"
                                         + " date_part('day', date_admitted::date) ||'-'||date_part('month',"
                                         + " date_admitted::date) ||'-'||date_part('year', date_admitted::date), "
-                                        + "patient_no, patient_name, pat_age, gender,"
+                                        + "patient_no, patient_name, (SELECT  funsoft_patient_age(year_of_birth::date) FROM hp_inpatient_register WHERE hp_inpatient_register.patient_no = hp_admission.patient_no LIMIT 1), gender,"
                                         + " pat_location, (SELECT residence FROM hp_inpatient_register"
                                         + " WHERE hp_admission.patient_no = hp_inpatient_register.patient_no"
                                         + " UNION SELECT residence FROM hp_patient_register WHERE "

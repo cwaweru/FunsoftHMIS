@@ -2965,15 +2965,17 @@ public class PettyCashPymIntfr extends javax.swing.JInternalFrame {
                             }
                         }
                     }
+                    
+                     java.sql.PreparedStatement pstmt22 = connectDB.prepareStatement("UPDATE ac_petty_cash_requisition SET paid = 'true' WHERE requisition_no = '"+jComboBox131.getSelectedItem().toString()+"'");// AND document = '"+jTextPane1.getText()+"'");
+                    pstmt22.executeUpdate();
+                    com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select distinct requisition_no from ac_petty_cash_requisition WHERE paid = false AND approved = true ORDER BY requisition_no ");
+                    
                     connectDB.commit();
                     connectDB.setAutoCommit(true);
                     javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully","Comfirmation Message",javax.swing.JOptionPane.INFORMATION_MESSAGE);
                     //  com.afrisoftech.reports.PettyPayVoucherPdf policy = new com.afrisoftech.reports.PettyPayVoucherPdf();
                     //  policy.PettyPayVoucherPdf(connectDB,voucherNo);
-                    java.sql.PreparedStatement pstmt22 = connectDB.prepareStatement("UPDATE ac_petty_cash_requisition SET paid = 'true' WHERE requisition_no = '"+jComboBox131.getSelectedItem().toString()+"'");// AND document = '"+jTextPane1.getText()+"'");
-                    pstmt22.executeUpdate();
-                    com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select distinct requisition_no from ac_petty_cash_requisition WHERE paid = false AND approved = true ORDER BY requisition_no ");
-                    
+                   
                     for (int k = 0; k < jTable1.getRowCount(); k++ ) {
                         for (int r = 0; r < jTable1.getColumnCount(); r++ ) {
                             jTable1.getModel().setValueAt(null,k,r);
@@ -2986,7 +2988,9 @@ public class PettyCashPymIntfr extends javax.swing.JInternalFrame {
                     jRadioButton1.setSelected(true);
                     //                crset1.execute();
                 }   catch(java.sql.SQLException sq){
+                    sq.printStackTrace();
                     try {
+                        
                         connectDB.rollback();
                     }catch (java.sql.SQLException sql){
                         javax.swing.JOptionPane.showMessageDialog(this,sql.getMessage(),"Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -2996,6 +3000,7 @@ public class PettyCashPymIntfr extends javax.swing.JInternalFrame {
                 }
                 
             } catch(java.lang.Exception ex) {
+                ex.printStackTrace();
                 System.out.println(ex.getMessage());
                 javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries.", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
                 

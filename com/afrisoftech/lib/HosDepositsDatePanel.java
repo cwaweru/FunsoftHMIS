@@ -636,7 +636,7 @@ public class HosDepositsDatePanel extends javax.swing.JDialog {
             case 65: {
                 com.afrisoftech.reports.CashSaleRepPdf policy = new com.afrisoftech.reports.CashSaleRepPdf();
 
-                policy.CashSaleRepPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
+                policy.CashSaleRepPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),"-");
 
                 this.dispose();
 
@@ -1652,7 +1652,7 @@ public class HosDepositsDatePanel extends javax.swing.JDialog {
             case 5217: {
                 com.afrisoftech.reports.IPDaysPdf policy = new com.afrisoftech.reports.IPDaysPdf();
 
-                policy.IPDaysPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
+//                policy.IPDaysPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
 
                 this.dispose();
 
@@ -1681,7 +1681,7 @@ public class HosDepositsDatePanel extends javax.swing.JDialog {
             case 5223: {
                 com.afrisoftech.reports.DetailedCashReportPdf policy = new com.afrisoftech.reports.DetailedCashReportPdf();
 
-                policy.DetailedCashReportPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
+                policy.DetailedCashReportPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),"");
 
                 this.dispose();
 

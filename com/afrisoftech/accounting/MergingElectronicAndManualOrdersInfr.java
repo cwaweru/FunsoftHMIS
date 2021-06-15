@@ -5,7 +5,7 @@
 package com.afrisoftech.accounting;
 
 import java.sql.SQLException;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -438,7 +438,7 @@ public class MergingElectronicAndManualOrdersInfr extends javax.swing.JInternalF
         } catch (SQLException ex) {
             //javax.swing.JOptionPane.showMessageDialog(this, "Order number updated successfully");
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 

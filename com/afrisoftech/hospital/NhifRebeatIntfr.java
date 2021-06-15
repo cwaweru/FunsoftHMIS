@@ -24,6 +24,11 @@ public class NhifRebeatIntfr extends javax.swing.JInternalFrame {
         pConnDB = pconnDB;
 
         initComponents();
+        
+        for (int k = 0; k < jTable1.getRowCount(); k++) {
+                jTable1.getModel().setValueAt(false, k, 2);
+            
+        }
     }
 
     /**
@@ -301,14 +306,14 @@ public class NhifRebeatIntfr extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             java.sql.Statement pstmt = connectDB.createStatement();
-            java.sql.ResultSet rs = pstmt.executeQuery("SELECT DISTINCT code,address FROM pb_nssf_rebeats");
+            java.sql.ResultSet rs = pstmt.executeQuery("SELECT DISTINCT scheme_code,address FROM pb_nssf_rebeats");
 
             while (rs.next()) {
                 jTextField11.setText(rs.getObject(1).toString());
                 jTextField3.setText(rs.getObject(2).toString());
 
             }
-            jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT name as description,rate,compute_days::boolean, package_amount,code FROM pb_nssf_rebeats"));
+            jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT name as description,rate,compute_days::boolean, package_amount,scheme_code FROM pb_nssf_rebeats"));
             jButton1.setText("Update");
         } catch (java.sql.SQLException sqlex) {
             System.out.println(sqlex.getMessage());

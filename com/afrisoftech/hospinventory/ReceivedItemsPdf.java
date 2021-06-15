@@ -652,7 +652,7 @@ public class ReceivedItemsPdf implements java.lang.Runnable {
             
             java.sql.Statement stmt1 = connectDB.createStatement();
             
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT invoice_no FROM st_stock_cardex WHERE date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' and supplier = '"+suppName+"' order by invoice_no");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT invoice_no FROM st_stock_cardex WHERE date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' and invoice_no != '' and supplier = '"+suppName+"' order by invoice_no");
             
             while (rSet1.next()) {
                 

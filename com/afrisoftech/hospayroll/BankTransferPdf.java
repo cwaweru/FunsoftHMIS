@@ -19,6 +19,7 @@ public class BankTransferPdf implements java.lang.Runnable {
     java.util.Date endDate = null;
     java.lang.String bankName = null;
     String letter_det = null;
+    java.lang.String compName = null;
     String addresse = null;
     String contact = null;
     String mainTitle = null;
@@ -41,7 +42,7 @@ public class BankTransferPdf implements java.lang.Runnable {
     java.lang.Runtime rtThreadSample = java.lang.Runtime.getRuntime();
     java.lang.Process prThread;
 
-    public void BankTransferPdf(java.sql.Connection connDb, java.util.Date begindate, java.util.Date endate, java.lang.String bank) {
+    public void BankTransferPdf(java.sql.Connection connDb, java.util.Date begindate, java.util.Date endate, java.lang.String bank,java.lang.String comp) {
         //public void OutstOrdersPdf(java.sql.Connection connDb) {
 
         connectDB = connDb;
@@ -50,7 +51,7 @@ public class BankTransferPdf implements java.lang.Runnable {
 
         bankName = bank;
 
-
+        compName = comp;
 
         threadSample = new java.lang.Thread(this, "SampleThread");
 
@@ -697,7 +698,7 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
 
             java.sql.Statement stmt1 = connectDB.createStatement();
 
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT employee_no FROM master_file where bank ILIKE '" + bankName + "%' order by employee_no");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT employee_no FROM master_file where bank ILIKE '" + bankName + "%' and company_name ilike '"+compName+"' order by employee_no");
 
             while (rSet1.next()) {
 

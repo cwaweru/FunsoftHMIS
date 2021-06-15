@@ -7,7 +7,7 @@ package com.afrisoftech.hospinventory;
 
 import com.afrisoftech.lib.StockFormulae;
 import java.sql.SQLException;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -435,7 +435,7 @@ public class InventoryLevels {
             }
 
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return expiryStatus;
     }

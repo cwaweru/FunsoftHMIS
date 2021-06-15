@@ -4,11 +4,15 @@
  */
 package com.afrisoftech.lib;
 
+import com.afrisoftech.hospital.HospitalMain;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,6 +42,72 @@ public class UserName {
 
         return userName;
 
+    }
+    
+    public static String getPayrollAuthorization() {
+        java.sql.Connection connectDB = HospitalMain.connectDB;
+        String passwd ="ALLC123";      
+       
+        try {
+            PreparedStatement pst = connectDB.prepareStatement("SELECT authorisation FROM secure_levels_access WHERE login_username = current_user AND menu_access ='Payroll'");
+            ResultSet rset = pst.executeQuery();
+            while(rset.next()){
+                passwd = rset.getString(1);
+            } 
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
+        }
+        
+        
+        
+        System.err.println(getLoginName(connectDB)+ "  pwd  ["+passwd+"]");
+        return passwd;
+        
+    }
+    
+    public static String getRefundsAuthorization() {
+        java.sql.Connection connectDB = HospitalMain.connectDB;
+        String passwd ="ALLC123";      
+       
+        try {
+            PreparedStatement pst = connectDB.prepareStatement("SELECT authorisation FROM secure_levels_access WHERE login_username = current_user AND menu_access ='M-Pesa Refunds'");
+            ResultSet rset = pst.executeQuery();
+            while(rset.next()){
+                passwd = rset.getString(1);
+            } 
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
+        }
+        
+        
+        
+        System.err.println(getLoginName(connectDB)+ "  pwd  ["+passwd+"]");
+        return passwd;
+        
+    }
+    
+    public static String getPayrollApprovalAuthorization() {
+        java.sql.Connection connectDB = HospitalMain.connectDB;
+        String passwd ="ALLC123";      
+       
+        try {
+            PreparedStatement pst = connectDB.prepareStatement("SELECT authorisation FROM secure_levels_access WHERE login_username = current_user AND menu_access ='Payroll Approval'");
+            ResultSet rset = pst.executeQuery();
+            while(rset.next()){
+                passwd = rset.getString(1);
+            } 
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
+        }
+        
+        
+        
+        System.err.println(getLoginName(connectDB)+ "  pwd  ["+passwd+"]");
+        return passwd;
+        
     }
 
     public static String getLoginName(java.sql.Connection connectDB) {

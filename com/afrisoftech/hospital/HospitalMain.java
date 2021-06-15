@@ -9,7 +9,7 @@
  * @author Rugendo Kego Kamakia <kamakia@systempartners.biz> -- [Chief Business Logic Contributor]
  * @author Francis King'oi Waweru <francis@systempartners.biz>
  * @author Peter Ndung'u Waweru <peter.waweru@systempartners.biz>
- *
+ * @author Samuel Ndiritu <sndiritu@systempartners.biz>
  */
 //43359
 //531849
@@ -18,6 +18,7 @@ package com.afrisoftech.hospital;
 import biz.systempartners.claims.Claim;
 import static com.afrisoftech.hospinventory.StockMain.medicdspane;
 import com.afrisoftech.lib.UserName;
+import com.afrisoftech.lib.md5Factory;
 import com.afrisoftech.nursing.NursingWards;
 import com.afrisoftech.reports.UserAccountsDialog;
 import java.io.File;
@@ -31,15 +32,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import com.inet.jortho.SpellChecker;
 import com.inet.jortho.FileUserDictionary;
+import java.awt.SystemTray;
+import java.awt.TrayIcon;
 import java.io.UnsupportedEncodingException;
-import org.openide.util.Exceptions;
-//import org.openide.util.Exceptions;
+import java.net.URL;
+import javax.swing.JPasswordField;
+import com.afrisoftech.hospital.LockScreen;
+
+//
 
 /**
  *
  * @author Charles Wanjema Waweru <cwaweru@systempartners.biz>
  */
-public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnable {
+public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnable , java.awt.event.AWTEventListener {
 
     public static boolean discreetReceipt = false;
     public static String patientID = null;
@@ -50,6 +56,8 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     public static String mobileTxType = null;
     public static boolean mobileTxTest = false;
     public static boolean mobileTxAutoInsert = false;
+    
+    private TrayIcon icon = null;
 
     private String newline = "\n";
     private String newTab = "\t";
@@ -401,6 +409,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     int FperSex = 5249;
     int FpConptPerType = 5250;
     int MohCash = 5251;
+    int MohCashUhc = 5251222;
     int MohCashUniversal = 525111;
     int DocAllocs = 5252;
     int TransactionsAudit = 5253;
@@ -694,7 +703,12 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     public static String oAuthKey = null;
     public static String passKey = null;
     public static String callBackURL = null;
+    public static boolean passwordChange = false;
 
+    
+    public javax.swing.Timer idleTimer;
+    private int DelayTime = 1000 * 60 * 10;
+    
     /**
      * Default constructor
      */
@@ -906,6 +920,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
          *
          * }
          */
+        configIdleListener();
         this.mainSplitPane.setOpaque(false);
 
         this.saccopn.setOpaque(false);
@@ -1002,7 +1017,142 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         invalidate();
         validate();
         repaint();
+        
+        
+        
+        
+        int passExpiryDays = 60;
+
+        if (psWord.length() < 8) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Your password has less than recommended characters in ICT standard operating procedures        .\n You MUST use the dialog provided after this to change your password to comply with ICT password regulations    .\n Please note that your new password MUST have at least 8 characters. ");
+            com.afrisoftech.lib.ChangePassword chgPasswd = new com.afrisoftech.lib.ChangePassword(this, true, connectDB, psWord);
+            chgPasswd.setVisible(true);
+
+            if (!passwordChange) {
+                javax.swing.JOptionPane.showMessageDialog(this, "It is mandatory to change your password at this point.Please login again and change your password.");
+                System.exit(0);
+            }
+        }
+
+        try {
+            java.sql.PreparedStatement pstmtPasswd = connectDB.prepareStatement("SELECT count(*) FROM passwd_sop WHERE user_name = current_user ");
+            java.sql.ResultSet rsetPasswd = pstmtPasswd.executeQuery();
+
+            int passwdCount = 0;
+            while (rsetPasswd.next()) {
+                passwdCount = rsetPasswd.getInt(1);
+            }
+
+            pstmtPasswd = connectDB.prepareStatement("SELECT password_expiry_period FROM pb_password_control ");
+            rsetPasswd = pstmtPasswd.executeQuery();
+
+            while (rsetPasswd.next()) {
+                passExpiryDays = rsetPasswd.getInt(1);
+            }
+
+            if (passwdCount < 1) {
+                javax.swing.JOptionPane.showMessageDialog(this, "YOU MUST RESET your password .");
+
+                com.afrisoftech.lib.ChangePassword chgPasswd = new com.afrisoftech.lib.ChangePassword(this, true, connectDB, psWord);
+                chgPasswd.setVisible(true);
+                if (!passwordChange) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "It is mandatory to change your password at this point. Please login again and change your password.");
+                    System.exit(0);
+                }
+                java.sql.PreparedStatement pstmtInsertPasswd = connectDB.prepareStatement("INSERT INTO public.passwd_sop(user_name) VALUES (current_user)");
+                pstmtInsertPasswd.execute();
+//                javax.swing.JOptionPane.showMessageDialog (this, "YOU MUST change your password within 60 days from today. You shall get a reminder 2 days to the expiry date.");
+            } else {
+                int daysLeft = 0;
+                String userAccount = "";
+                String changingUser = "";
+                java.sql.PreparedStatement pstmtUpdatePasswd = connectDB.prepareStatement("SELECT current_date - change_time::date,user_name,changing_user FROM passwd_sop WHERE user_name = current_user");
+                java.sql.ResultSet rsetUpdatePasswd = pstmtUpdatePasswd.executeQuery();
+                while (rsetUpdatePasswd.next()) {
+                    daysLeft = passExpiryDays - rsetUpdatePasswd.getInt(1);
+                    userAccount = rsetUpdatePasswd.getString(2);
+                    changingUser = rsetUpdatePasswd.getString(3);
+                }
+
+                System.err.println("Days Lefstttt " + daysLeft);
+                System.err.println("Days Expiry " + passExpiryDays);
+                if (!userAccount.toLowerCase().equalsIgnoreCase(changingUser.toLowerCase())) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Your Password was changed by a different user. You MUST RESET the password!.\n You MUST use the dialog provided after this to change your password to comply with ICT password regulations.\n Please note that your new password MUST have at least 8 characters.");
+                    com.afrisoftech.lib.ChangePassword chgPasswd = new com.afrisoftech.lib.ChangePassword(this, true, connectDB, psWord);
+                    chgPasswd.setVisible(true);
+                    if (!passwordChange) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "It is mandatory to change your password at this point. Please login again and change your password.");
+                        System.exit(0);
+                    }
+                } else {
+
+                    if (daysLeft <= 2 && daysLeft >= 0) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Your password is nearing expiry date. You have " + daysLeft + " days to change your password");
+                    } else if (daysLeft < 0) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Your password has expired!.\n You MUST use the dialog provided after this to change your password to comply with ICT password regulations.\n Please note that your new password MUST have at least 8 characters.");
+
+                        com.afrisoftech.lib.ChangePassword chgPasswd = new com.afrisoftech.lib.ChangePassword(this, true, connectDB, psWord);
+
+                        chgPasswd.setVisible(true);
+
+                        if (!passwordChange) {
+                            javax.swing.JOptionPane.showMessageDialog(this, "It is mandatory to change your password at this point. Please login again and change your password.");
+                            System.exit(0);
+
+                        }
+                    }
+                }
+            }
+///// smsReader.start();  ///SMS reader thread starter call
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
         ///// smsReader.start();  ///SMS reader thread starter call
+    }
+    
+    public void lockScreen(boolean b) {
+        jMenuBar1.setVisible(!b);
+//        treePane.setVisible(!b);
+        desktopPane.setVisible(!b);
+//        taskBar.setVisible(!b);
+        //     jToolBar3.setVisible(!b);
+        jToolBar31.setVisible(!b);
+//        jToolBar311.setVisible(!b);
+
+        this.repaint();
+        this.validate();
+        if (b) {
+            minimizeToTray();
+        } else {
+            HospitalMain.this.setVisible(true);
+            HospitalMain.this.setExtendedState(HospitalMain.MAXIMIZED_BOTH);
+            //SystemTray.getSystemTray().remove(icon);
+        }
+        System.out.println("Lock screen activated");
+    }
+
+    public void minimizeToTray() {
+        URL resource = getClass().getResource("/funsoft_logo.gif");
+        java.awt.Image image = java.awt.Toolkit.getDefaultToolkit().getImage(resource);
+        if (SystemTray.isSupported()) {
+            icon = new TrayIcon(image);
+            icon.setToolTip("FUNSOFT  still Running");
+            //icon.setPopupMenu(createPopupMenu());
+            icon.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    HospitalMain.this.setVisible(true);
+                    HospitalMain.this.setExtendedState(HospitalMain.MAXIMIZED_BOTH);
+                    SystemTray.getSystemTray().remove(icon);
+                }
+            });
+            HospitalMain.this.setVisible(false);
+            try {
+                SystemTray.getSystemTray().add(icon);
+            } catch (java.awt.AWTException e1) {
+                e1.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -1102,7 +1252,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
-        mainPanel = new javax.swing.JPanel(); /*{
+        mainPanel = new javax.swing.JPanel(){
 
             public void paintComponent(java.awt.Graphics g) {
 
@@ -1117,11 +1267,11 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
 
         };
-        */
+
         ;
         mainSplitPane = new javax.swing.JSplitPane();
         treePane = new javax.swing.JPanel();
-        desktopPane = new javax.swing.JPanel(); /* {
+        desktopPane = new javax.swing.JPanel();/*  {
 
             public void paintComponent(java.awt.Graphics g) {
 
@@ -1137,8 +1287,8 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
             }
 
-        };
-        */;
+        }; */
+        ;
         saccopn = new kiwi.ui.KDesktopPane();
         new javax.swing.JDesktopPane(){
 
@@ -1257,6 +1407,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         jSeparator64 = new javax.swing.JSeparator();
         departmentalmn = new javax.swing.JMenu();
         maindeptmnit = new javax.swing.JMenuItem();
+        sectionsmnit = new javax.swing.JMenuItem();
         depatmnit = new javax.swing.JMenuItem();
         Operatingchamn = new javax.swing.JMenu();
         Operatingparamertersmnit = new javax.swing.JMenuItem();
@@ -1280,6 +1431,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         clerkingServicesmnit = new javax.swing.JMenuItem();
         xrayFilmTypesmnit = new javax.swing.JMenuItem();
         xrayservicesmanagermnit = new javax.swing.JMenuItem();
+        diagnosticmachinesmnit = new javax.swing.JMenuItem();
         jSeparator31 = new javax.swing.JSeparator();
         patientCategorymn = new javax.swing.JMenu();
         patcategmnit = new javax.swing.JMenuItem();
@@ -1323,6 +1475,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         closesupplaccmnit = new javax.swing.JMenuItem();
         mergesuppliermnit = new javax.swing.JMenuItem();
         jSeparator25 = new javax.swing.JSeparator();
+        buyerallocationmnit = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         hcmACL1mnit = new javax.swing.JMenuItem();
         payrollACL1mnit = new javax.swing.JMenuItem();
@@ -1331,6 +1484,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         inventoryACLmnit = new javax.swing.JMenuItem();
         hcmACLmnit = new javax.swing.JMenuItem();
         payrollACLmnit = new javax.swing.JMenuItem();
+        lockSessionMenu = new javax.swing.JMenuItem();
         exitmnITb = new javax.swing.JMenuItem();
         emrmn = new javax.swing.JMenu();
         patientregstmnit = new javax.swing.JMenuItem();
@@ -1404,6 +1558,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         bodycollectionmnit = new javax.swing.JMenuItem();
         permitcollectormnit = new javax.swing.JMenuItem();
         mortOccupancymnit = new javax.swing.JMenuItem();
+        employeeDigitizedFilemnit = new javax.swing.JMenuItem();
         nursing = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         triagemnit = new javax.swing.JMenuItem();
@@ -1530,6 +1685,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         refundsmnit = new javax.swing.JMenuItem();
         rcttrfmnit = new javax.swing.JMenuItem();
         activatemobileTxmnit = new javax.swing.JMenuItem();
+        reconcilembileTxmnit = new javax.swing.JMenuItem();
         fpPosmnit = new javax.swing.JMenuItem();
         otherReceiptsmnit = new javax.swing.JMenuItem();
         cafeteriaSalesmnit = new javax.swing.JMenuItem();
@@ -1552,6 +1708,9 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         jSeparator80 = new javax.swing.JSeparator();
         CreditnoteSchmnit = new javax.swing.JMenuItem();
         unfinalizeInvoicemnit = new javax.swing.JMenuItem();
+        jSeparator109 = new javax.swing.JPopupMenu.Separator();
+        onlineInvoicingDatedmnit = new javax.swing.JMenuItem();
+        finalizeInvoiceDatedmnit = new javax.swing.JMenuItem();
         inpatcashinvmnit = new javax.swing.JMenuItem();
         Billinginvoicesmnit = new javax.swing.JMenuItem();
         gledgermn = new javax.swing.JMenu();
@@ -1781,11 +1940,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         Outpatientinvoicetmnit = new javax.swing.JMenuItem();
         debtorinvmnit = new javax.swing.JMenuItem();
         jSeparator12 = new javax.swing.JSeparator();
-        Receiptmn = new javax.swing.JMenu();
-        receiptscopymnit = new javax.swing.JMenuItem();
-        receiptperpayermnit = new javax.swing.JMenuItem();
-        debreceiptsmnit = new javax.swing.JMenuItem();
-        alteredreceiptsmnit = new javax.swing.JMenuItem();
         jSeparator13 = new javax.swing.JSeparator();
         detstmtmn = new javax.swing.JMenu();
         statementofaccmnit = new javax.swing.JMenuItem();
@@ -1796,6 +1950,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         detailedstmtsmnit = new javax.swing.JMenuItem();
         nhifStatementmnit = new javax.swing.JMenuItem();
         schemeStatementmnit = new javax.swing.JMenuItem();
+        dailydetailedstmtsmnit = new javax.swing.JMenuItem();
         jSeparator14 = new javax.swing.JSeparator();
         Statementsmn = new javax.swing.JMenu();
         submStmtmnit = new javax.swing.JMenuItem();
@@ -1814,6 +1969,11 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         DebtStatttxtmnit = new javax.swing.JMenuItem();
         DebtStattexlmnit = new javax.swing.JMenuItem();
         debtorSchemeStatementmnit = new javax.swing.JMenuItem();
+        Receiptmn = new javax.swing.JMenu();
+        receiptscopymnit = new javax.swing.JMenuItem();
+        receiptperpayermnit = new javax.swing.JMenuItem();
+        debreceiptsmnit = new javax.swing.JMenuItem();
+        alteredreceiptsmnit = new javax.swing.JMenuItem();
         jSeparator20 = new javax.swing.JSeparator();
         ageingmn = new javax.swing.JMenu();
         compdebtorsmnit = new javax.swing.JMenuItem();
@@ -1921,6 +2081,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         shiftreprecmnit = new javax.swing.JMenuItem();
         shiftrepDetmnit = new javax.swing.JMenuItem();
         shiftstotalmnit = new javax.swing.JMenuItem();
+        shiftstotalpettymnit = new javax.swing.JMenuItem();
         uncollectedshiftsmnit = new javax.swing.JMenuItem();
         shiftstotalsummnit = new javax.swing.JMenuItem();
         patreceiptsmnit = new javax.swing.JMenuItem();
@@ -1944,10 +2105,12 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         Salesmn = new javax.swing.JMenu();
         Cashanalysismnit = new javax.swing.JMenuItem();
         Cashsalesmnit = new javax.swing.JMenuItem();
+        Cashsalesanalysismnit = new javax.swing.JMenuItem();
         CashSalesbrdmnit = new javax.swing.JMenuItem();
         Salesmnit = new javax.swing.JMenuItem();
         ipservicesmnit = new javax.swing.JMenuItem();
         debtshiftmnit = new javax.swing.JMenuItem();
+        patcontrolaccountmnit = new javax.swing.JMenuItem();
         jSeparator103 = new javax.swing.JPopupMenu.Separator();
         universalHealthcareReportsmn = new javax.swing.JMenu();
         creditSalesDepartmentReportsmnit = new javax.swing.JMenuItem();
@@ -2065,6 +2228,8 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         ManagementReportmn = new javax.swing.JMenu();
         MohCashanalysismnit = new javax.swing.JMenuItem();
         Dailyrevmnit = new javax.swing.JMenuItem();
+        MohCashanalysisuhcmnit = new javax.swing.JMenuItem();
+        Mohrevenueanalysismnit = new javax.swing.JMenuItem();
         jSeparator36 = new javax.swing.JSeparator();
         weeklyrevmnit = new javax.swing.JMenuItem();
         weeklyrevCompmnit = new javax.swing.JMenuItem();
@@ -2158,6 +2323,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         jSeparator831 = new javax.swing.JSeparator();
         PatientRecordsmn = new javax.swing.JMenu();
         emrDashBoardmnit = new javax.swing.JMenuItem();
+        referralsmnit = new javax.swing.JMenuItem();
         diagnosist = new javax.swing.JMenu();
         Ipmobiditymatalitymnit = new javax.swing.JMenuItem();
         patientdiagmnit = new javax.swing.JMenuItem();
@@ -3905,6 +4071,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         departmentalmn.add(maindeptmnit);
 
+        sectionsmnit.setText("Sections");
+        sectionsmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sectionsmnitActionPerformed(evt);
+            }
+        });
+        departmentalmn.add(sectionsmnit);
+
         depatmnit.setText("Departments");
         depatmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4087,6 +4261,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         departmentalmn.add(xrayservicesmanagermnit);
+
+        diagnosticmachinesmnit.setText("Diagnostic Machines");
+        diagnosticmachinesmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diagnosticmachinesmnitActionPerformed(evt);
+            }
+        });
+        departmentalmn.add(diagnosticmachinesmnit);
 
         setupmn.add(departmentalmn);
         setupmn.add(jSeparator31);
@@ -4354,6 +4536,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         setupmn.add(supmn);
         setupmn.add(jSeparator25);
 
+        buyerallocationmnit.setText("Section Allocation");
+        buyerallocationmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyerallocationmnitActionPerformed(evt);
+            }
+        });
+        setupmn.add(buyerallocationmnit);
+
         jMenu5.setText("Vote-Book Setup");
 
         hcmACL1mnit.setText("Votes Setup");
@@ -4411,6 +4601,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         setupmn.add(jMenu1);
 
+        lockSessionMenu.setText("Lock Session");
+        lockSessionMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lockSessionMenuActionPerformed(evt);
+            }
+        });
+        setupmn.add(lockSessionMenu);
+
         exitmnITb.setMnemonic('x');
         exitmnITb.setText("Exit");
         exitmnITb.setToolTipText("Exit System");
@@ -4466,6 +4664,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         patientregnummnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
         patientregnummnit.setText("Registration With OPD No.");
+        patientregnummnit.setEnabled(false);
         patientregnummnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 patientregnummnitActionPerformed(evt);
@@ -4927,6 +5126,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         morturymn.add(mortOccupancymnit);
 
         emrmn.add(morturymn);
+
+        employeeDigitizedFilemnit.setText("Employee Digitized File");
+        employeeDigitizedFilemnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                employeeDigitizedFilemnitActionPerformed(evt);
+            }
+        });
+        emrmn.add(employeeDigitizedFilemnit);
 
         jMenuBar1.add(emrmn);
 
@@ -5806,13 +6013,21 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         receiptsmn.add(rcttrfmnit);
 
-        activatemobileTxmnit.setText("Activate Mobile Transaction");
+        activatemobileTxmnit.setText("Activate/Deactivate Mobile Txn");
         activatemobileTxmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 activatemobileTxmnitActionPerformed(evt);
             }
         });
         receiptsmn.add(activatemobileTxmnit);
+
+        reconcilembileTxmnit.setText("Reconcile Mobile Transactions");
+        reconcilembileTxmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reconcilembileTxmnitActionPerformed(evt);
+            }
+        });
+        receiptsmn.add(reconcilembileTxmnit);
 
         fpPosmnit.setText("FP Cash Sale");
         fpPosmnit.setEnabled(false);
@@ -5971,6 +6186,23 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         SchemeInvoicinmn.add(unfinalizeInvoicemnit);
+        SchemeInvoicinmn.add(jSeparator109);
+
+        onlineInvoicingDatedmnit.setText("Online Invoicing - Dated");
+        onlineInvoicingDatedmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onlineInvoicingDatedmnitActionPerformed(evt);
+            }
+        });
+        SchemeInvoicinmn.add(onlineInvoicingDatedmnit);
+
+        finalizeInvoiceDatedmnit.setText("Finalise IN-Patient Invoice - Dated");
+        finalizeInvoiceDatedmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalizeInvoiceDatedmnitActionPerformed(evt);
+            }
+        });
+        SchemeInvoicinmn.add(finalizeInvoiceDatedmnit);
 
         invoicingmn.add(SchemeInvoicinmn);
 
@@ -6520,7 +6752,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         pettycashmn.add(imprestPettyCashPaymentsmnit);
 
         raisecashVouchmnit.setText("Raise Voucher");
-        raisecashVouchmnit.setEnabled(false);
         raisecashVouchmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 raisecashVouchmnitActionPerformed(evt);
@@ -7586,42 +7817,6 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         patacctmn.add(invoicesmn);
         patacctmn.add(jSeparator12);
 
-        Receiptmn.setText("Receipts");
-
-        receiptscopymnit.setText("Other Receipts Copy");
-        receiptscopymnit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                receiptscopymnitActionPerformed(evt);
-            }
-        });
-        Receiptmn.add(receiptscopymnit);
-
-        receiptperpayermnit.setText("Receipt Per Payer");
-        receiptperpayermnit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                receiptperpayermnitActionPerformed(evt);
-            }
-        });
-        Receiptmn.add(receiptperpayermnit);
-
-        debreceiptsmnit.setText("Debtors Receipts Listing");
-        debreceiptsmnit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                debreceiptsmnitActionPerformed(evt);
-            }
-        });
-        Receiptmn.add(debreceiptsmnit);
-
-        alteredreceiptsmnit.setText("Cancelled/Transfered Receipt");
-        alteredreceiptsmnit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alteredreceiptsmnitActionPerformed(evt);
-            }
-        });
-        Receiptmn.add(alteredreceiptsmnit);
-
-        patacctmn.add(Receiptmn);
-
         jSeparator13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "wwww", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         patacctmn.add(jSeparator13);
 
@@ -7690,6 +7885,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         detstmtmn.add(schemeStatementmnit);
+
+        dailydetailedstmtsmnit.setLabel("Detailed Statement Breakdown (All Departments)");
+        dailydetailedstmtsmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dailydetailedstmtsmnitActionPerformed(evt);
+            }
+        });
+        detstmtmn.add(dailydetailedstmtsmnit);
 
         patacctmn.add(detstmtmn);
         patacctmn.add(jSeparator14);
@@ -7824,6 +8027,42 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         Statementsmn.add(debtorSchemeStatementmnit);
+
+        Receiptmn.setText("Receipts");
+
+        receiptscopymnit.setText("Other Receipts Copy");
+        receiptscopymnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                receiptscopymnitActionPerformed(evt);
+            }
+        });
+        Receiptmn.add(receiptscopymnit);
+
+        receiptperpayermnit.setText("Receipt Per Payer");
+        receiptperpayermnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                receiptperpayermnitActionPerformed(evt);
+            }
+        });
+        Receiptmn.add(receiptperpayermnit);
+
+        debreceiptsmnit.setText("Debtors Receipts Listing");
+        debreceiptsmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                debreceiptsmnitActionPerformed(evt);
+            }
+        });
+        Receiptmn.add(debreceiptsmnit);
+
+        alteredreceiptsmnit.setText("Cancelled/Transfered Receipt");
+        alteredreceiptsmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alteredreceiptsmnitActionPerformed(evt);
+            }
+        });
+        Receiptmn.add(alteredreceiptsmnit);
+
+        Statementsmn.add(Receiptmn);
 
         patacctmn.add(Statementsmn);
 
@@ -8526,6 +8765,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         CashierRepmn.add(shiftstotalmnit);
 
+        shiftstotalpettymnit.setText("Shifts Total Vs Petty Cash");
+        shiftstotalpettymnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shiftstotalpettymnitActionPerformed(evt);
+            }
+        });
+        CashierRepmn.add(shiftstotalpettymnit);
+
         uncollectedshiftsmnit.setText("Uncollected Shifts");
         uncollectedshiftsmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -8534,7 +8781,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         CashierRepmn.add(uncollectedshiftsmnit);
 
-        shiftstotalsummnit.setText("Total Shifts Summary");
+        shiftstotalsummnit.setText("Shifts Total Vs Petty Cash");
         shiftstotalsummnit.setEnabled(false);
         shiftstotalsummnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -8696,6 +8943,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         Salesmn.add(Cashsalesmnit);
 
+        Cashsalesanalysismnit.setText("Receipts Analysis Report");
+        Cashsalesanalysismnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CashsalesanalysismnitActionPerformed(evt);
+            }
+        });
+        Salesmn.add(Cashsalesanalysismnit);
+
         CashSalesbrdmnit.setText("Cash Sales Breakdown");
         CashSalesbrdmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -8727,6 +8982,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         Salesmn.add(debtshiftmnit);
+
+        patcontrolaccountmnit.setText("Patient Control Account BreakDown");
+        patcontrolaccountmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patcontrolaccountmnitActionPerformed(evt);
+            }
+        });
+        Salesmn.add(patcontrolaccountmnit);
         Salesmn.add(jSeparator103);
 
         universalHealthcareReportsmn.setText("Universal Healthcare Reports");
@@ -9491,6 +9754,24 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         ManagementReportmn.add(Dailyrevmnit);
+
+        MohCashanalysisuhcmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
+        MohCashanalysisuhcmnit.setText("UHC - MOH Cash Collection Analysis");
+        MohCashanalysisuhcmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MohCashanalysisuhcmnitActionPerformed(evt);
+            }
+        });
+        ManagementReportmn.add(MohCashanalysisuhcmnit);
+
+        Mohrevenueanalysismnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
+        Mohrevenueanalysismnit.setText("MOH Revenue Analysis");
+        Mohrevenueanalysismnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MohrevenueanalysismnitActionPerformed(evt);
+            }
+        });
+        ManagementReportmn.add(Mohrevenueanalysismnit);
         ManagementReportmn.add(jSeparator36);
 
         weeklyrevmnit.setText("Weekly Revenue");
@@ -10132,6 +10413,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         PatientRecordsmn.add(emrDashBoardmnit);
+
+        referralsmnit.setText("Referrals");
+        referralsmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                referralsmnitActionPerformed(evt);
+            }
+        });
+        PatientRecordsmn.add(referralsmnit);
 
         diagnosist.setText("Diagnosis");
         diagnosist.addActionListener(new java.awt.event.ActionListener() {
@@ -11493,6 +11782,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         utilitymn.add(jSeparator77);
 
         accessControlMnit.setText("Set Global Access Control");
+        accessControlMnit.setEnabled(false);
         accessControlMnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 accessControlMnitActionPerformed(evt);
@@ -13794,9 +14084,13 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     }//GEN-LAST:event_labpendingmnitActionPerformed
 
     private void ipdaysmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipdaysmnitActionPerformed
-        com.afrisoftech.lib.HosDatePanel dates = new com.afrisoftech.lib.HosDatePanel(this, true, IPDays, connectDB);
+//       com.afrisoftech.lib.HosDatePanel dates = new com.afrisoftech.lib.HosDatePanel(this, true, IPDays, connectDB);rr
+//
+//        dates.setVisible(true);
+        
+com.afrisoftech.lib.HosWardsDatePanel dates = new com.afrisoftech.lib.HosWardsDatePanel(this, pConnDB, true, IPDays, connectDB);
 
-        dates.setVisible(true);  // Add your handling code here:
+        dates.setVisible(true);// Add your handling code here:
     }//GEN-LAST:event_ipdaysmnitActionPerformed
 
     private void marketertnovermnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marketertnovermnitActionPerformed
@@ -16531,7 +16825,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             try {
                 connectDB.close();
             } catch (SQLException ex) {
-                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                ex.printStackTrace();             //ex.printStackTrace();
             }
 
             System.exit(0);
@@ -16540,11 +16834,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     }
 
     private void fahrmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fahrmnitActionPerformed
-        com.afrisoftech.lib.LoginToPayrollModule dates = new com.afrisoftech.lib.LoginToPayrollModule(this, pConnDB, true, this.login2payroll, connectDB);
-
-        dates.setVisible(true);
-
-        if (allowedAccess) {
+       JPasswordField pf = new JPasswordField();
+        String pwd = null;
+        int okCxl = JOptionPane.showConfirmDialog(null, pf, "Enter Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        if (okCxl == JOptionPane.OK_OPTION) {
+            pwd = new String(pf.getPassword());
+        }
+        // String pwd = JOptionPane.showInputDialog(this, "Please enter your authorization password");
+        if (md5Factory.md5(pwd).equals(UserName.getPayrollAuthorization())) {
 
             javax.swing.JScrollPane payrollTaskScrollPane = new javax.swing.JScrollPane();
 
@@ -16556,7 +16853,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
             payrollTaskScrollPane.setViewportView(payrollTaskPane);
 
-            jOutLookBar.addTab("HR & Payroll", payrollTaskScrollPane);
+            jOutLookBar.addTab("Payroll Management System", payrollTaskScrollPane);
 
             javax.swing.JScrollPane reportTaskScrollPane = new javax.swing.JScrollPane();
 
@@ -16571,17 +16868,12 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             jOutLookBar.addTab("Reports & Utilities", reportTaskScrollPane);
 
             //            payrollKey.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "You are not cleared to perform this action. Please consult your Systems Administrator");
+
         }
-        /*
-         * this.jTabbedPane1.setSelectedComponent(payrollSplitPane);
-         *
-         * this.invalidate();
-         *
-         * this.setJMenuBar(payrollMenuBar);
-         *
-         * this.validate();
-         *
-         */ // Add your handling code here:
+        
+        
     }//GEN-LAST:event_fahrmnitActionPerformed
 
     private void accountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountsmnit1ActionPerformed
@@ -16827,7 +17119,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             java.sql.Statement stmt1 = connectDB.createStatement();
             // java.sql.ResultSet rset = stmt.executeQuery("select user,count(debit),sum(debit + credit) from ac_cash_book where account_no ='"+jComboBox2.getSelectedItem()+"' and description !='' and reconciled = false AND date BETWEEN '"+datePicker1.getDate().toString()+"' AND '"+datePicker2.getDate().toString()+"' group by account_name");
             // java.sql.ResultSet rset1 = stmt1.executeQuery("select count(user_name) from ac_shifts where  user_name ilike '"+System.getProperty("currentuser")+"' AND (status = 'Running' OR status = 'Suspended')");
-            java.sql.ResultSet rset1 = stmt1.executeQuery("select count(user_name) from ac_shifts where  user_name ilike current_user AND cash_point = '" + cashPointPett + "' AND (status = 'Running' OR status = 'Suspended')");
+            java.sql.ResultSet rset1 = stmt1.executeQuery("select count(user_name) from ac_shifts where  user_name ilike current_user  AND (status = 'Running' OR status = 'Suspended')");  //AND cash_point = '" + cashPointPett + "'
 
             while (rset1.next()) {
 
@@ -19789,12 +20081,100 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     }//GEN-LAST:event_attendancepaidupmnitActionPerformed
 
     private void otherReceiptsmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherReceiptsmnitActionPerformed
-        com.afrisoftech.accounting.OtherRecptintfr comp = new com.afrisoftech.accounting.OtherRecptintfr(connectDB, pConnDB);
+   int rowsNo = 0;
+
+        try {
+
+
+            /*
+             * java.sql.Statement stmtx = connectDB.createStatement();
+             * java.sql.ResultSet rsetx = stmtx.executeQuery("select code from
+             * ac_cash_points_setup where description = current_user"); while
+             * (rsetx.next()) { cashPointPett = rsetx.getObject(1).toString();
+             *
+             * }
+             */
+            java.sql.Statement stmt = connectDB.createStatement();
+            java.sql.Statement stmt1 = connectDB.createStatement();
+            // java.sql.ResultSet rset = stmt.executeQuery("select user,count(debit),sum(debit + credit) from ac_cash_book where account_no ='"+jComboBox2.getSelectedItem()+"' and description !='' and reconciled = false AND date BETWEEN '"+datePicker1.getDate().toString()+"' AND '"+datePicker2.getDate().toString()+"' group by account_name");
+            // java.sql.ResultSet rset1 = stmt1.executeQuery("select count(user_name) from ac_shifts where  user_name ilike '"+System.getProperty("currentuser")+"' AND (status = 'Running' OR status = 'Suspended')");
+            java.sql.ResultSet rset1 = stmt1.executeQuery("select count(user_name) from ac_shifts where  user_name ilike current_user AND (status = 'Running' OR status = 'Suspended')");
+
+            while (rset1.next()) {
+
+                rowsNo = rset1.getInt(1);
+
+            }
+            if (rowsNo < 1) {
+                int openShift = javax.swing.JOptionPane.showConfirmDialog(this, "Opening new shift", "Starting a new shift ...", javax.swing.JOptionPane.YES_NO_OPTION, javax.swing.JOptionPane.QUESTION_MESSAGE);
+
+                if (openShift == javax.swing.JOptionPane.YES_OPTION) {
+                    java.util.Calendar calendar = java.util.Calendar.getInstance();
+
+                    long dateNow = calendar.getTimeInMillis();
+
+                    java.sql.Date datenowSql1 = new java.sql.Date(dateNow);
+
+                    System.out.println(datenowSql1.toString());
+
+                    java.sql.Timestamp datenowSql = new java.sql.Timestamp(dateNow);
+
+                    System.out.println(datenowSql.toString());
+
+                    String current_user;
+
+                    try {
+
+                        java.sql.Statement stmtf = connectDB.createStatement();
+                        java.sql.ResultSet rsetf = stmtf.executeQuery("select code from ac_cash_points_setup where description = current_user");
+                        while (rsetf.next()) {
+                            cashPointPett = rsetf.getObject(1).toString();
+                            System.setProperty("cashpoint", cashPointPett);
+                        }
+                    } catch (java.sql.SQLException sqe) {
+                        sqe.printStackTrace();
+                        System.out.println("select not successful");
+                    }
+                    try {
+                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO ac_shifts values(?,?)");
+                        // pstmt.setString(1, System.getProperty("cashpoint"));
+                        pstmt.setString(1, cashPointPett);
+                        pstmt.setString(2, "Running");
+                        pstmt.executeUpdate();
+                    } catch (java.sql.SQLException sqE) {
+                        sqE.printStackTrace();
+                        javax.swing.JOptionPane.showMessageDialog(this, sqE.getMessage());
+                    }
+                    System.out.println("Opening shift");
+
+                    //  status = true;
+                    com.afrisoftech.accounting.OtherRecptintfr comp = new com.afrisoftech.accounting.OtherRecptintfr(connectDB, pConnDB);
         saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
         try {
             comp.setSelected(true);
         } catch (java.beans.PropertyVetoException pvt) {
         }
+
+                }
+            } else {
+                com.afrisoftech.accounting.OtherRecptintfr comp = new com.afrisoftech.accounting.OtherRecptintfr(connectDB, pConnDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }
+
+            }
+        } catch (java.sql.SQLException sqlex) {
+            sqlex.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, sqlex.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+            System.out.println(sqlex.getMessage());
+
+        }
+        
+        
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_otherReceiptsmnitActionPerformed
 
@@ -20222,6 +20602,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private void clinicBookingsmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clinicBookingsmnitActionPerformed
         com.afrisoftech.hospital.ClinicsOccupancyIntfr dismth = new com.afrisoftech.hospital.ClinicsOccupancyIntfr(connectDB);
         saccopn.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dismth.setSize(saccopn.getSize());
         try {
             dismth.setSelected(true);
         } catch (java.beans.PropertyVetoException pvt) {
@@ -20407,7 +20788,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                         try {
                             connectDB.close();
                         } catch (SQLException ex) {
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //ex.printStackTrace();
                         }
                         System.exit(0);
                     }
@@ -21827,6 +22208,274 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
         }  // TODO add your handling code here:
     }//GEN-LAST:event_stockpackagesmnitActionPerformed
 
+    private void onlineInvoicingDatedmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onlineInvoicingDatedmnitActionPerformed
+        com.afrisoftech.accounting.FinSchemeInvsBackDatesIntfr comp = new com.afrisoftech.accounting.FinSchemeInvsBackDatesIntfr(connectDB, pConnDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        comp.setSize(saccopn.getSize());
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_onlineInvoicingDatedmnitActionPerformed
+
+    private void finalizeInvoiceDatedmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizeInvoiceDatedmnitActionPerformed
+        int rowsNo = 0;
+        int codes = 0;
+        try {
+
+            java.sql.Statement stmtx1 = connectDB.createStatement();
+            java.sql.ResultSet rsetx1 = stmtx1.executeQuery("select COUNT(code) from ac_cash_points_setup where description = current_user");
+            while (rsetx1.next()) {
+                codes = rsetx1.getInt(1);
+
+            }
+            if (codes > 0) {
+                java.sql.Statement stmtx = connectDB.createStatement();
+                java.sql.ResultSet rsetx = stmtx.executeQuery("select code from ac_cash_points_setup where description = current_user");
+                while (rsetx.next()) {
+                    //  cashPointPett = rsetx.getObject(1).toString();
+                }
+
+                java.sql.Statement stmt = connectDB.createStatement();
+                java.sql.Statement stmt1 = connectDB.createStatement();
+                java.sql.ResultSet rset1 = stmt1.executeQuery("select count(user_name) from ac_shifts where  user_name ilike current_user AND (status = 'Running' OR status = 'Suspended')");
+
+                while (rset1.next()) {
+
+                    rowsNo = rset1.getInt(1);
+
+                }
+                rowsNo = 1;
+                if (rowsNo < 1) {
+                    int openShift = javax.swing.JOptionPane.showConfirmDialog(this, "Opening new shift", "Starting a new shift ...", javax.swing.JOptionPane.YES_NO_OPTION, javax.swing.JOptionPane.QUESTION_MESSAGE);
+
+                    if (openShift == javax.swing.JOptionPane.YES_OPTION) {
+                        java.util.Calendar calendar = java.util.Calendar.getInstance();
+
+                        long dateNow = calendar.getTimeInMillis();
+
+                        java.sql.Date datenowSql1 = new java.sql.Date(dateNow);
+
+                        System.out.println(datenowSql1.toString());
+
+                        java.sql.Timestamp datenowSql = new java.sql.Timestamp(dateNow);
+
+                        System.out.println(datenowSql.toString());
+
+                        String current_user;
+
+                        try {
+
+                            java.sql.Statement stmtf = connectDB.createStatement();
+                            java.sql.ResultSet rsetf = stmtf.executeQuery("select code from ac_cash_points_setup where description ilike current_user");
+                            while (rsetf.next()) {
+                                //cashPointPett = rsetf.getObject(1).toString();
+                            }
+                        } catch (java.sql.SQLException sqe) {
+                            sqe.printStackTrace();
+                            System.out.println("select not successful");
+                        }
+                        try {
+                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO ac_shifts values(?,?)");
+
+                            pstmt.setString(1, cashPoint);
+                            pstmt.setString(2, "Running");
+                            pstmt.executeUpdate();
+                        } catch (java.sql.SQLException sqE) {
+                            sqE.printStackTrace();
+                        }
+                        System.out.println("Opening shift");
+
+                        com.afrisoftech.accounting.FinSchemeInvsNhifBackDatesIntfr prod = new com.afrisoftech.accounting.FinSchemeInvsNhifBackDatesIntfr(connectDB, pConnDB);
+                        saccopn.add(prod, javax.swing.JLayeredPane.DEFAULT_LAYER);
+                        try {
+                            prod.setSelected(true);
+                        } catch (java.beans.PropertyVetoException pvt) {
+                        }
+
+                    }
+                } else {
+                    com.afrisoftech.accounting.FinSchemeInvsNhifBackDatesIntfr prod = new com.afrisoftech.accounting.FinSchemeInvsNhifBackDatesIntfr(connectDB, pConnDB);
+                    saccopn.add(prod, javax.swing.JLayeredPane.DEFAULT_LAYER);
+                    try {
+                        prod.setSelected(true);
+                    } catch (java.beans.PropertyVetoException pvt) {
+                    }
+
+                }
+            } else {
+                com.afrisoftech.accounting.FinSchemeInvsNhifBackDatesIntfr prod = new com.afrisoftech.accounting.FinSchemeInvsNhifBackDatesIntfr(connectDB, pConnDB);
+                saccopn.add(prod, javax.swing.JLayeredPane.DEFAULT_LAYER);
+                try {
+                    prod.setSelected(true);
+                } catch (java.beans.PropertyVetoException pvt) {
+                }
+            }
+        } catch (java.sql.SQLException sqlex) {
+            sqlex.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, sqlex.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+            System.out.println(sqlex.getMessage());
+
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_finalizeInvoiceDatedmnitActionPerformed
+
+    private void patcontrolaccountmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patcontrolaccountmnitActionPerformed
+        com.afrisoftech.lib.HosDepPRDatePanel dates = new com.afrisoftech.lib.HosDepPRDatePanel(this, pConnDB, true, 1, connectDB);
+
+        dates.setVisible(true);    // TODO add your handling code here:
+    }//GEN-LAST:event_patcontrolaccountmnitActionPerformed
+
+    private void referralsmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_referralsmnitActionPerformed
+
+        com.afrisoftech.lib.HosIPOPDatePanel dates = new com.afrisoftech.lib.HosIPOPDatePanel(this,  true, 1, connectDB);
+        
+        dates.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_referralsmnitActionPerformed
+
+    private void MohCashanalysisuhcmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MohCashanalysisuhcmnitActionPerformed
+     com.afrisoftech.lib.HosDatePanel dates = new com.afrisoftech.lib.HosDatePanel(this, true, this.MohCashUhc, connectDB);
+
+        dates.setVisible(true);   // TODO add your handling code here:
+    }//GEN-LAST:event_MohCashanalysisuhcmnitActionPerformed
+
+    private void dailydetailedstmtsmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dailydetailedstmtsmnitActionPerformed
+      com.afrisoftech.lib.HosScemesDatePanel dates = new com.afrisoftech.lib.HosScemesDatePanel(this, pConnDB, true, 123456, connectDB);
+
+        //  dates.
+        dates.setVisible(true);  // TODO add your handling code here:
+    }//GEN-LAST:event_dailydetailedstmtsmnitActionPerformed
+
+    private void sectionsmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectionsmnitActionPerformed
+        com.afrisoftech.hr.SectionsIntfr comp = new com.afrisoftech.hr.SectionsIntfr(connectDB,pConnDB);        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        comp.setSize(saccopn.getSize());
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }   
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sectionsmnitActionPerformed
+
+    private void shiftstotalpettymnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shiftstotalpettymnitActionPerformed
+       com.afrisoftech.lib.HosDatePanel dates = new com.afrisoftech.lib.HosDatePanel(this, true, 13444, connectDB);
+
+        dates.setVisible(true); // TODO add your handling code here:
+    }//GEN-LAST:event_shiftstotalpettymnitActionPerformed
+
+    private void buyerallocationmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyerallocationmnitActionPerformed
+        // TODO add your handling code here:
+        javax.swing.JInternalFrame dismth = new com.afrisoftech.hospinventory.SuppliesSectionsIntfr(connectDB, null);
+        medicdspane.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            dismth.setSelected(true);
+            dismth.setVisible(true);
+            dismth.setSize(medicdspane.getSize());
+        } catch (java.beans.PropertyVetoException pvt) {
+        }
+
+    }//GEN-LAST:event_buyerallocationmnitActionPerformed
+
+    private void diagnosticmachinesmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diagnosticmachinesmnitActionPerformed
+        com.afrisoftech.laboratory.DiagnosticMachines comp = new com.afrisoftech.laboratory.DiagnosticMachines(connectDB, pConnDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        } // TODO add your handling code here:
+    }//GEN-LAST:event_diagnosticmachinesmnitActionPerformed
+public void eventDispatched(java.awt.AWTEvent evt) {
+        reStartTimer();
+    }
+
+    public void reStartTimer() {
+
+        if (idleTimer == null) {
+            idleTimer = new javax.swing.Timer(DelayTime, lockScreen);
+            idleTimer.start();
+            // System.err.println("recreating timer and strating");
+        }
+
+        if (idleTimer.isRunning()) {
+            //idleTimer.stop();
+            idleTimer.restart();
+        }
+
+    }
+    ///
+    java.awt.event.ActionListener lockScreen = new java.awt.event.ActionListener() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            if (HospitalMain.this.isVisible()) {
+                // lockButtonScrn.doClick();
+                lockSessionMenu.doClick();
+            }
+        }
+    };
+
+    public void configIdleListener() {
+        idleTimer = new javax.swing.Timer(DelayTime, lockScreen);
+        idleTimer.start();
+        getToolkit().addAWTEventListener(this, java.awt.AWTEvent.KEY_EVENT_MASK | java.awt.AWTEvent.MOUSE_EVENT_MASK | java.awt.AWTEvent.MOUSE_MOTION_EVENT_MASK);
+    }
+
+    public void stopWindowsEvent() {
+        idleTimer.stop();
+        idleTimer = null;
+        getToolkit().removeAWTEventListener((java.awt.event.AWTEventListener) this);
+    }
+    private void lockSessionMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockSessionMenuActionPerformed
+        try {
+            String usr = null;
+            java.sql.Statement st = connectDB.createStatement();
+            java.sql.ResultSet r = st.executeQuery("SELECT CURRENT_USER");
+            while (r.next()) {
+                usr = r.getString(1);
+            }
+
+            LockScreen lock = new LockScreen(HospitalMain.this, true, usr);
+            lock.setVisible(true);
+        } catch (SQLException sQLException) {
+        }   // TODO add your handling code here:
+    }//GEN-LAST:event_lockSessionMenuActionPerformed
+
+    private void MohrevenueanalysismnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MohrevenueanalysismnitActionPerformed
+            biz.systempartners.reports.BillingReportIntfr comp = new biz.systempartners.reports.BillingReportIntfr(connectDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            comp.setSelected(true);
+            comp.setSize(saccopn.getSize());
+        } catch (java.beans.PropertyVetoException pvt) {
+        }    // TODO add your handling code here:
+    }//GEN-LAST:event_MohrevenueanalysismnitActionPerformed
+
+    private void employeeDigitizedFilemnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeDigitizedFilemnitActionPerformed
+        com.afrisoftech.hr.HRDocumentManager comp = new com.afrisoftech.hr.HRDocumentManager(connectDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        comp.setSize(saccopn.getSize());
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }         // TODO add your handling code here:
+    }//GEN-LAST:event_employeeDigitizedFilemnitActionPerformed
+
+    private void reconcilembileTxmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reconcilembileTxmnitActionPerformed
+              com.afrisoftech.accounting.ReconcileMobileTxintfr comp = new com.afrisoftech.accounting.ReconcileMobileTxintfr(connectDB, pConnDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        comp.setSize(saccopn.getSize());
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        } // TODO add your handling code here:  // TODO add your handling code here:
+    }//GEN-LAST:event_reconcilembileTxmnitActionPerformed
+
+    private void CashsalesanalysismnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CashsalesanalysismnitActionPerformed
+      com.afrisoftech.lib.HosDatePanel dates = new com.afrisoftech.lib.HosDatePanel(this, true, 667, connectDB);
+
+        dates.setVisible(true);    // TODO add your handling code here:
+    }//GEN-LAST:event_CashsalesanalysismnitActionPerformed
+
     /**
      * Exit the Application
      */
@@ -22611,6 +23260,8 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                 com.afrisoftech.hospital.PatientRegisterIntfr comp = new com.afrisoftech.hospital.PatientRegisterIntfr(connectDB, pConnDB);
 
                 saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+                
+                comp.setSize(saccopn.getSize());
 
                 loadingMode = false;
 
@@ -23072,7 +23723,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                             } catch (SQLException ex) {
                                 // ex.printStackTrace();
                                 javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
-                                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                                ex.printStackTrace();             //ex.printStackTrace();
                                 connectDB.close();
                                 System.exit(1);
                             }
@@ -23082,7 +23733,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
                 } catch (SQLException ex) {
                     javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
-                    ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                    ex.printStackTrace();             //ex.printStackTrace();
                     try {
                         connectDB.close();
                     } catch (SQLException ex1) {
@@ -24378,7 +25029,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
                     JOptionPane.showMessageDialog(this, "You currently have approximately [" + supp + "] IRQs and [" + supp1 + "] PRQs to approve");
 
                 } catch (SQLException ex) {
-                    //            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                    //            ex.printStackTrace();             //ex.printStackTrace();
                     ex.printStackTrace();
                 }
 
@@ -25035,7 +25686,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
 
                     String phoneNumber = "254714433693";
 
-                        biz.systempartners.claims.SendSMS.SendSMS(phoneNumber, "Funsoft I-HMIS Messaging:\n\n" + "This is an alert for suspect token!" + "\n\nFrom:\n" + com.afrisoftech.hospital.HospitalMain.getAbsoluteCompanyName());
+                    biz.systempartners.claims.SendSMS.SendSMS(phoneNumber, "Funsoft I-HMIS Messaging:\n\n" + "This is an alert for suspect token!" + "\n\nFrom:\n" + com.afrisoftech.hospital.HospitalMain.getAbsoluteCompanyName());
 
                 }
 
@@ -25051,32 +25702,32 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     }
 
     private boolean checkMpesaTokenMessages() {
-       
+
         boolean checkItems = false;
-        
+
         try {
-            
+
             java.sql.PreparedStatement pstmtMpesaTokens = connectDB.prepareStatement("SELECT count(*) FROM mobile_payments WHERE checkout_request_id IS NOT NULL AND date = now()::date AND mobile_alert = false AND (SELECT current_user) = admin' AND credit = 0");
 
             java.sql.ResultSet rsetMpesaTokens = pstmtMpesaTokens.executeQuery();
 
             while (rsetMpesaTokens.next()) {
-               
+
                 int tokens = 0;
 
                 tokens = rsetMpesaTokens.getInt(1);
 
                 if (tokens > 0) {
-                    
+
                     checkItems = true;
-                    
+
                 }
             }
-            
+
         } catch (SQLException ex) {
-            
+
             ex.printStackTrace();
-            
+
         }
         return checkItems;
     }
@@ -25509,6 +26160,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem Cashanalysisdeptmnit;
     private javax.swing.JMenuItem Cashanalysismnit;
     private javax.swing.JMenu CashierRepmn;
+    private javax.swing.JMenuItem Cashsalesanalysismnit;
     private javax.swing.JMenuItem Cashsalesmnit;
     private javax.swing.JMenuItem Categorysetupmnit;
     private javax.swing.JMenu Clinical;
@@ -25566,6 +26218,8 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenu ManagementReportmn;
     private javax.swing.JMenuItem Mergedocaccmnit;
     private javax.swing.JMenuItem MohCashanalysismnit;
+    private javax.swing.JMenuItem MohCashanalysisuhcmnit;
+    private javax.swing.JMenuItem Mohrevenueanalysismnit;
     private javax.swing.JMenuItem MonthlyDiagAnalysismnit;
     private javax.swing.JMenuItem MonthlyrevCompmnit;
     private javax.swing.JMenuItem Monthlyrevmnit;
@@ -25737,6 +26391,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem budgettotalmnit;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.JMenuItem buyerallocationmnit;
     private javax.swing.JMenuItem cafeteriaDebtorsStatementmnit;
     private javax.swing.JMenuItem cafeteriaSalesmnit;
     private javax.swing.JButton calcBttn;
@@ -25852,6 +26507,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem dailybedreturnSummarymnit;
     private javax.swing.JMenuItem dailybedreturnmnit;
     private javax.swing.JMenuItem dailybltmnit;
+    private javax.swing.JMenuItem dailydetailedstmtsmnit;
     private javax.swing.JMenuItem dailyrevmnit;
     private javax.swing.JMenuItem dailywardsdischmnit;
     private javax.swing.JMenuItem dailywardstmtmnit;
@@ -25904,6 +26560,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem diagbydptmnit;
     private javax.swing.JMenuItem diagnosisperdiesesemnit;
     private javax.swing.JMenu diagnosist;
+    private javax.swing.JMenuItem diagnosticmachinesmnit;
     private javax.swing.JMenuItem diagsummarymnit;
     private javax.swing.JMenuItem directPaymentsmnit;
     private javax.swing.JMenuItem directbankingmnit;
@@ -25951,6 +26608,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JButton editButtn;
     private javax.swing.JMenuItem editPatientNamesmnit;
     private javax.swing.JMenuItem educationmnit;
+    private javax.swing.JMenuItem employeeDigitizedFilemnit;
     private javax.swing.JMenuItem emrDashBoardmnit;
     private javax.swing.JMenu emrmn;
     private javax.swing.JCheckBoxMenuItem enableExemptionsmnit;
@@ -25978,6 +26636,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem finalisedinvmnit;
     public static javax.swing.JMenuItem finaliseipmnit;
     public static javax.swing.JMenuItem finaliseipnhifmnit;
+    private javax.swing.JMenuItem finalizeInvoiceDatedmnit;
     private javax.swing.JMenu financeopermn;
     private javax.swing.JMenu financialsmn;
     private javax.swing.JMenuItem financistmtmnit;
@@ -26122,6 +26781,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JPopupMenu.Separator jSeparator106;
     private javax.swing.JPopupMenu.Separator jSeparator107;
     private javax.swing.JPopupMenu.Separator jSeparator108;
+    private javax.swing.JPopupMenu.Separator jSeparator109;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator13;
@@ -26262,6 +26922,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenu lnfmn;
     private javax.swing.JButton loadQuery;
     private javax.swing.JMenuItem localeSettingsMnit;
+    private javax.swing.JMenuItem lockSessionMenu;
     private javax.swing.JMenuItem logonwatermarkmnit;
     private javax.swing.JCheckBoxMenuItem macmnit1;
     private javax.swing.JRadioButtonMenuItem macos1mnit1;
@@ -26343,6 +27004,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem occupationmnit;
     private javax.swing.JMenuItem office2003mn;
     private javax.swing.JMenuItem officexpmn;
+    private javax.swing.JMenuItem onlineInvoicingDatedmnit;
     private javax.swing.JMenuItem opAttendanceAnalyticsmnit;
     private javax.swing.JMenuItem opattendbydocmnit;
     private javax.swing.JButton openShift;
@@ -26378,6 +27040,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem patbedoccupancymnit;
     private javax.swing.JMenuItem patbillmergemnit;
     private javax.swing.JMenuItem patcategmnit;
+    private javax.swing.JMenuItem patcontrolaccountmnit;
     private javax.swing.JMenuItem patdischmnit;
     private javax.swing.JMenuItem patdocstmtmnit;
     private javax.swing.JMenu patientCategorymn;
@@ -26514,6 +27177,8 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JLabel receivedMessageLbl;
     public javax.swing.JTextField receivedMessageTxt;
     private javax.swing.JMenuItem reconcilationreportermnit;
+    private javax.swing.JMenuItem reconcilembileTxmnit;
+    private javax.swing.JMenuItem referralsmnit;
     private javax.swing.JMenuItem refferalsmnit;
     private javax.swing.JMenuItem refundsmnit;
     private javax.swing.JMenuItem registersmnit;
@@ -26576,6 +27241,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem scmepfmmnit;
     private javax.swing.JMenuItem scmperfrmnit;
     private javax.swing.JMenuItem scmstatusmnit;
+    private javax.swing.JMenuItem sectionsmnit;
     private javax.swing.JMenuItem securityReleasemnit;
     private javax.swing.JButton sendMessageBtn;
     private javax.swing.JTextField sendMessageTxt;
@@ -26596,6 +27262,7 @@ private void glaccountsmnit1ActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuItem shiftreptotalmnit;
     private javax.swing.JMenuItem shiftrptbrdwnmnit;
     private javax.swing.JMenuItem shiftstotalmnit;
+    private javax.swing.JMenuItem shiftstotalpettymnit;
     private javax.swing.JMenuItem shiftstotalsummnit;
     private javax.swing.JMenuItem shiftsurrendermnit;
     private javax.swing.JMenuItem shifttotalpercashpointmnit;

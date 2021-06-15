@@ -3250,7 +3250,7 @@ public class PatientsConsultBillingIntfr extends javax.swing.JInternalFrame impl
 
         com.afrisoftech.reports.PrescPdf policy = new com.afrisoftech.reports.PrescPdf();
 
-        policy.PrescPdf(connectDB, receiptNo);
+        policy.PrescPdf(connectDB, receiptNo,false);
 
     // Add your handling code here:
     }//GEN-LAST:event_jTable121MouseClicked
@@ -3462,7 +3462,7 @@ public class PatientsConsultBillingIntfr extends javax.swing.JInternalFrame impl
 
                         com.afrisoftech.reports.PrescPdf policy = new com.afrisoftech.reports.PrescPdf();
 
-                        policy.PrescPdf(connectDB, receiptNo);
+                        policy.PrescPdf(connectDB, receiptNo,false);
 
 
                         java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request SET paid = true,collected = false where inv_no = '" + jTable12.getValueAt(jTable12.getSelectedRow(), 3).toString() + "'");
@@ -3610,7 +3610,7 @@ public class PatientsConsultBillingIntfr extends javax.swing.JInternalFrame impl
 
                         com.afrisoftech.reports.PrescPdf policy = new com.afrisoftech.reports.PrescPdf();
 
-                        policy.PrescPdf(connectDB, receiptNo);
+                        policy.PrescPdf(connectDB, receiptNo,false);
 
 
                         java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request SET paid = true,collected = false where inv_no = '" + jTable12.getValueAt(jTable12.getSelectedRow(), 3).toString() + "'");

@@ -205,12 +205,11 @@ public class IntFooterIntfr extends javax.swing.JInternalFrame {
             java.sql.PreparedStatement stmt11 = connectDB.prepareStatement("delete from interim_footer");
             // java.sql.ResultSet rset = stmt.executeQuery("delete from pb_header");
             stmt11.executeUpdate();
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into interim_footer values(?,?,?)");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into interim_footer values(?,?)");
             if(this.jTextPane1.getText().equals("")){
                 javax.swing.JOptionPane.showMessageDialog(this, "You must enter Footer","Error Message!",javax.swing.JOptionPane.ERROR_MESSAGE);
             }else{
                 pstmt.setString(1,jTextPane1.getText());
-                pstmt.setDate(2,null);
                 pstmt.setString(2,jTextPane2.getText());
             }
            /*
@@ -228,7 +227,7 @@ public class IntFooterIntfr extends javax.swing.JInternalFrame {
             
             System.out.println(sq.getMessage());
             jLabel3.setForeground(java.awt.Color.red);
-            jLabel3.setText("Sorry. Another country Code already exists");
+            jLabel3.setText("Sorry. Another footer code already exists");
         } // Add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
     

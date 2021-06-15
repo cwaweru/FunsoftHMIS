@@ -575,7 +575,7 @@ public class HosGRNDatePanel extends javax.swing.JDialog {
     private void jTextField11111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField11111CaretUpdate
         {
             jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                    + "select distinct trim(invoice_no) as scheme,date as name, requisition_no as transaction_no, order_no from st_stock_cardex"
+                    + "select distinct trim(invoice_no) as invoice_no,date as date, requisition_no as transaction_no, order_no from st_stock_cardex"
                     + " where invoice_no ILIKE '%" + jTextField11111.getText().toString() + "%' and supplier = '" + this.supplierNameTxt.getText() + "' and date between '" + this.datePicker1.getDate() + "' and '" + this.datePicker2.getDate() + "' ORDER BY date"));
             jSearchTable11.setShowHorizontalLines(false);
             jSearchScrollPane11.setViewportView(jSearchTable11);
@@ -690,7 +690,7 @@ public class HosGRNDatePanel extends javax.swing.JDialog {
 
                 try {
                     java.sql.Statement st119 = connectDB.createStatement();
-                    java.sql.ResultSet ress19 = st119.executeQuery("SELECT DISTINCT grn_no FROM st_stock_cardex WHERE order_no = '" + lpoNumberTxt.getText() + "' AND grn_no is not null");
+                    java.sql.ResultSet ress19 = st119.executeQuery("SELECT DISTINCT grn_no FROM st_stock_cardex WHERE order_no = '" + lpoNumberTxt.getText() + "' and requisition_no = '"+transactionNo+"' AND grn_no is not null");
                     while (ress19.next()) {
                         com.afrisoftech.hospinventory.mtrhreports.MtrhSthirteenPdf policy1 = new com.afrisoftech.hospinventory.mtrhreports.MtrhSthirteenPdf();
                         policy1.MtrhSthirteenPdf(connectDB, lpoNumberTxt.getText(), supplierNameTxt.getText(), ress19.getString(1));

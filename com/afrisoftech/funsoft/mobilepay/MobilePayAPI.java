@@ -25,9 +25,11 @@ import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
+//import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.crypto.BadPaddingException;
@@ -47,7 +49,8 @@ import org.apache.directory.server.core.authn.PasswordUtil;
 import org.bouncycastle.util.encoders.Base64;
 import org.json.JSONException;
 import org.json.JSONObject;
-//import org.openide.util.Exceptions;
+import org.json.*;
+//
 
 //import org.ow2.util.base64.Base64;
 /**
@@ -79,8 +82,10 @@ public class MobilePayAPI {
         @Override
         public void run() {
 
-            encryptInitiatorPassword("cert.cer", "erer");
-            System.out.println("Encrypted Initiator Password : [" + encryptInitiatorPassword("cert.cer", "erer") + "]");
+            isTransactionValid("618984", "Coast General API", encryptInitiatorPassword("/root/safcomcert.cer", "Jc4*lyfe8"), getOAuthAccessToken());
+
+            encryptInitiatorPassword("/root/safcomcert.cer", "Jc4*lyfe8");
+            System.out.println("Encrypted Initiator Password : [" + encryptInitiatorPassword("/root/safcomcert.cer", "Jc4*lyfe8") + "]");
 
             String app_key = "Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw";
             String app_secret = "DlPLOhUtuwdAjzDB";
@@ -140,8 +145,12 @@ public class MobilePayAPI {
 
     public String getOAuthAccessToken() {
         String accessToken = null;
-        String app_key = "Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw";
-        String app_secret = "DlPLOhUtuwdAjzDB";
+//        String app_key = "Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw";
+//        String app_secret = "DlPLOhUtuwdAjzDB";
+//        Consumer Key 	ksKCZUrlFIoyk7AL1JnFPssekrBDLLBo
+//Consumer Secret 	gRgYfzMR4Xte6g1B 
+        String app_key = "otKtLo6jsYrDCeMOjQ2zvGHq4KYjQCYN";
+        String app_secret = "dG0btLjBwOS3f1WA";
         String appKeySecret = app_key + ":" + app_secret;
         String auth = null;
         byte[] bytes = null;
@@ -254,6 +263,82 @@ public class MobilePayAPI {
         }
 
         return encryptedPassword;
+    }
+
+    public boolean isTransactionValid(String shortCode, String initiator, String securityCredential, String accessToken) {
+        boolean isAuthentic = false;
+        MediaType mediaType = MediaType.parse("application/json");
+        OkHttpClient client = new OkHttpClient();
+        String message = null;
+        JSONObject json = new JSONObject();
+        try {
+            json.put("SecurityCredential", securityCredential);
+            json.put("CommandID", "TransactionStatusQuery");
+            json.put("Initiator", initiator);
+            json.put("PartyA", shortCode);
+            json.put("IdentifierType", "4");
+            json.put("Remarks", "test");
+            json.put("Occasion", "test");
+            json.put("ResultURL", "https://192.162.85.226:17933/FunsoftWebServices/funsoft/InvoiceService/mpvalidate");
+            json.put("TransactionID", "PEC7UJZO81");
+            json.put("QueueTimeOutURL", "https://192.162.85.226:17933/FunsoftWebServices/funsoft/InvoiceService/mpvalidate");
+            message = json.toString();
+            System.out.println("This is the JSON String : " + message);
+
+        } catch (JSONException ex) {
+            Logger.getLogger(MobilePayAPI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        RequestBody body = RequestBody.create(mediaType, message);
+        Request request = null;
+//        if (com.afrisoftech.hospital.HospitalMain.mobileTxTest) {
+//            request = new Request.Builder()
+//                    .url("https://sandbox.safaricom.co.ke/mpesa/transactionstatus/v1/query") // for sandbox test cases        
+//                    .post(body)
+//                    .addHeader("authorization", "Bearer " + accessToken)
+//                    .addHeader("content-type", "application/json")
+//                    .build();
+//        } else {
+        request = new Request.Builder()
+                .url("https://api.safaricom.co.ke/mpesa/transactionstatus/v1/query")
+                .post(body)
+                .addHeader("authorization", "Bearer " + accessToken)
+                .addHeader("content-type", "application/json")
+                .build();
+        //       }
+        try {
+            Response response = client.newCall(request).execute();
+            JSONObject myJsonObject = null;
+            try {
+                myJsonObject = new JSONObject(response.body().string());
+                System.out.println("JSON Object result: "+myJsonObject);
+            } catch (JSONException ex) {
+                Logger.getLogger(MobilePayAPI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            if (myJsonObject.toString().contains("error")) {
+                try {
+                    isAuthentic = false;
+                    System.out.println("Checkout Request ID : [" + myJsonObject.getString("errorMessage") + "]");
+                    javax.swing.JOptionPane.showMessageDialog(null, "Payment Request Error : " + myJsonObject.getString("errorMessage") + ". Try again.");
+                } catch (JSONException ex) {
+                    ex.printStackTrace();
+                }
+            } else if (myJsonObject.toString().contains("success")) {
+                try {
+                    isAuthentic = true;
+                    System.out.println("Checout Request ID : [" + myJsonObject.getString("ResponseDescription") + "]");
+
+                } catch (JSONException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            System.out.println("Response for Process Request : [" + myJsonObject.toString() + "]");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        return isAuthentic;
     }
 
     public void sendPaymentRequest(String accessToken) {
@@ -563,33 +648,30 @@ public class MobilePayAPI {
 
     public static void sendLabRequestBlis(java.sql.Connection connectDB, String accessToken, String requestNo, String patientNo, String patientName, String paymentMode, String schemeName, String requesterAccount, String patientType) {
         try {
-            
-            
+
             String doa = "";
-            String  pd ="";
-            String comments ="";
+            String pd = "";
+            String comments = "";
             String dpt = "";
-            
+
             java.sql.Statement stm12p = connectDB.createStatement();
             java.sql.ResultSet rse12p = null;
-            
-            if(patientType.equalsIgnoreCase("OP")){
-                rse12p = stm12p.executeQuery("select date,clinic from hp_patient_visit where date = current_date and patient_no = '"+patientNo+"' order by date desc limit 1 ");
-            }else{
-                rse12p = stm12p.executeQuery("select date_admitted,ward from hp_admission where patient_no = '"+patientNo+"' order by date_admitted desc limit 1");
-          
+
+            if (patientType.equalsIgnoreCase("OP")) {
+                rse12p = stm12p.executeQuery("select date,clinic from hp_patient_visit where date = current_date and patient_no = '" + patientNo + "' order by date desc limit 1 ");
+            } else {
+                rse12p = stm12p.executeQuery("select date_admitted,ward from hp_admission where patient_no = '" + patientNo + "' order by date_admitted desc limit 1");
+
             }
             while (rse12p.next()) {
                 doa = rse12p.getString(1);
                 dpt = rse12p.getString(2);
             }//
-            
-            rse12p = stm12p.executeQuery("select  description,date from hp_clinical_results where patient_no = '"+patientNo+"' and date > current_date - 10 and description is not null and description !=''  order by date desc limit 1 ");
-             while (rse12p.next()) {
+
+            rse12p = stm12p.executeQuery("select  description,date from hp_clinical_results where patient_no = '" + patientNo + "' and date > current_date - 10 and description is not null and description !=''  order by date desc limit 1 ");
+            while (rse12p.next()) {
                 pd = rse12p.getString(1);
             }
-             
-             
 
             System.err.println("Patient Typeeeeeee------->" + patientType);
             System.err.println("SELECT inpatient_no, service, revenue_code, amount FROM hp_patient_billing WHERE doctor = ? AND patient_no = ? AND UPPER(revenue_code) IN (SELECT UPPER(activity) FROM pb_activity WHERE department = 'LAB')"
@@ -606,11 +688,11 @@ public class MobilePayAPI {
             while (rsetlabRequestJSON.next()) {
                 String test = rsetlabRequestJSON.getString(2);
                 double amount = rsetlabRequestJSON.getDouble(4);
-                
-                rse12p = stm12p.executeQuery("select  notes,trans_date from pb_doctors_request where patient_no = '"+patientNo+"' and upper(service) = '"+test.toUpperCase()+"' order by trans_date desc limit 1");
+
+                rse12p = stm12p.executeQuery("select  notes,trans_date from pb_doctors_request where patient_no = '" + patientNo + "' and upper(service) = '" + test.toUpperCase() + "' order by trans_date desc limit 1");
                 while (rse12p.next()) {
-                   comments = rse12p.getString(1);
-               }
+                    comments = rse12p.getString(1);
+                }
 
                 boolean checkoutRequestStatus = true;
                 OkHttpClient client = new OkHttpClient();
@@ -628,11 +710,11 @@ public class MobilePayAPI {
                     //Sent to Bliss
                     json.put("system_id", "fansoft_bg");
                     json.put("api_key", accessToken);
-                    json.put("lab_request", com.afrisoftech.lib.LabRequestJSON.getLabRequestBlis(connectDB, accessToken, requestNo, patientNo, patientName, paymentMode, schemeName, requesterAccount, patientType, test, amount,doa,dpt,pd,comments));
+                    json.put("lab_request", com.afrisoftech.lib.LabRequestJSON.getLabRequestBlis(connectDB, accessToken, requestNo, patientNo, patientName, paymentMode, schemeName, requesterAccount, patientType, test, amount, doa, dpt, pd, comments));
 
                     message = json.toString();
                     System.out.println("This is the LIMS request JSON String : " + message);
-                    System.err.println("Lab Request" + com.afrisoftech.lib.LabRequestJSON.getLabRequestBlis(connectDB, accessToken, requestNo, patientNo, patientName, paymentMode, schemeName, requesterAccount, patientType, test, amount,doa,dpt,pd,comments));
+                    System.err.println("Lab Request" + com.afrisoftech.lib.LabRequestJSON.getLabRequestBlis(connectDB, accessToken, requestNo, patientNo, patientName, paymentMode, schemeName, requesterAccount, patientType, test, amount, doa, dpt, pd, comments));
 
                 } catch (JSONException ex) {
                     Logger.getLogger(MobilePayAPI.class.getName()).log(Level.SEVERE, null, ex);
@@ -648,7 +730,7 @@ public class MobilePayAPI {
                         .post(body)
                         .addHeader("api_key", accessToken)
                         .addHeader("system_id", "fansoft_bg")
-                        .addHeader("lab_request", com.afrisoftech.lib.LabRequestJSON.getLabRequestBlis(connectDB, accessToken, requestNo, patientNo, patientName, paymentMode, schemeName, requesterAccount, patientType, test, amount,doa,dpt,pd,comments))
+                        .addHeader("lab_request", com.afrisoftech.lib.LabRequestJSON.getLabRequestBlis(connectDB, accessToken, requestNo, patientNo, patientName, paymentMode, schemeName, requesterAccount, patientType, test, amount, doa, dpt, pd, comments))
                         .addHeader("content-type", "application/json")
                         .build();
                 System.err.println("URL-------------> http://" + limsServerIP + "" + "/api/receiver");
@@ -740,15 +822,27 @@ public class MobilePayAPI {
 
         String message = null;
         JSONObject json = new JSONObject();
+        JSONObject messageBag = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
 
         try {
             //Sent to Bliss
-            json.put("phone", telephoneNumber);
-            json.put("key", accessToken);
-            json.put("message", smsText);
+            ArrayList jsonMap = new ArrayList();
+            HashMap jsonMaps = new HashMap();
+            jsonMaps.put("numbers", telephoneNumber.replace("-", ""));
+            jsonMaps.put("sender", "FUNSOFT HMIS");
+            jsonMaps.put("message", smsText);
+            messageBag.put("message_bag", jsonMaps);
+            jsonArray.put(messageBag);
+            // json.add(json);
 
+            json.put("data", jsonArray);
+
+//            json.put("phone", telephoneNumber);
+//            json.put("key", accessToken);
+//            json.put("message", smsText);
             message = json.toString();
-     //       System.out.println("This is the SMS request JSON String : " + message);
+            System.out.println("This is the SMS request JSON String : \n" + message);
 
         } catch (JSONException ex) {
             Logger.getLogger(MobilePayAPI.class.getName()).log(Level.SEVERE, null, ex);
@@ -757,46 +851,29 @@ public class MobilePayAPI {
         Request request = null;
 
         request = new Request.Builder()
-                .url("https://textbelt.com/text") // for sandbox test cases        
+                .url("https://ujumbesms.co.ke/api/messaging") // for sandbox test cases        
                 .post(body)
+                .addHeader("X-Authorization", accessToken)
+                .addHeader("Email", "info@systempartners.biz")
+                .addHeader("Cache-Control", "no-cache")
                 .addHeader("content-type", "application/json")
                 .build();
-        System.err.println("Request : \n" + request);
+        //    System.err.println("Request : \n" + request);
 
         try {
             Response response = client.newCall(request).execute();
             JSONObject myJsonObject = null;
-            //  System.err.println("Response :"+response.body().string());
+            //          System.err.println("Response :\n"+response.body().string());
             try {
                 myJsonObject = new JSONObject(response.body().string());
             } catch (JSONException ex) {
-                Logger.getLogger(MobilePayAPI.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
             }
 
             if (myJsonObject.toString().contains("error")) {
-                try {
-//                    checkoutRequestID = myJsonObject.getString("errorMessage");
-                    checkoutRequestStatus = false;
-                    System.out.println("Checkout Request ID : [" + myJsonObject.getString("status") + "]");
-                    javax.swing.JOptionPane.showMessageDialog(null, "Payment Request Error : " + myJsonObject.getString("status") + ". Try again.");
-
-                } catch (JSONException ex) {
-                    ex.printStackTrace();
-                }
+                System.out.println("SMS not sent");
             } else if (myJsonObject.toString().contains("Success")) {
-                try {
-                    checkoutRequestStatus = true;
-                    com.afrisoftech.hospital.GeneralBillingIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
-                    com.afrisoftech.hospinventory.PatientsBillingIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
-                    com.afrisoftech.accounting.InpatientDepositIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
-                    com.afrisoftech.accounting.InpatientRecpIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
-                    com.afrisoftech.hospital.HospitalMain.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
-                    com.afrisoftech.accounting.GovBillPaymentsIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
-                    System.out.println("Checout Request ID : [" + myJsonObject.getString("CheckoutRequestID") + "]");
-
-                } catch (JSONException ex) {
-                    ex.printStackTrace();
-                }
+                System.out.println("SMS sent successfully");
             }
 
             System.out.println("Response for Process Request : [" + myJsonObject.toString() + "]");
@@ -941,7 +1018,7 @@ public class MobilePayAPI {
         try {
             json.put("ShortCode", shortCode);
             json.put("ConfirmationURL", callBackURL);
-            json.put("ValidationURL", callBackURL);
+            json.put("ValidationURL", validationURL);
             json.put("ResponseType", "Success");
             message = json.toString();
             System.out.println("This is the JSON String : " + message);

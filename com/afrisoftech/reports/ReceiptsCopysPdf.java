@@ -559,32 +559,34 @@ public class ReceiptsCopysPdf implements java.lang.Runnable {
             }
             
             docPdf.close();
+             //docPdf.close();
+            com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
             
-            try {
-                
-                if (System.getProperty("os.name").equalsIgnoreCase("Linux"))  {
-                    
-                    System.out.println(tempFile);
-                    
-                    // wait_for_Pdf2Show = rt.exec("kghostview "+tempFile+"");
-                    wait_for_Pdf2Show = rt.exec("cat kghostview "+tempFile+"");
-                    
-                    wait_for_Pdf2Show.waitFor();
-                    
-                } else {
-                    
-                    wait_for_Pdf2Show = rt.exec("c:/Program Files/Adobe/Acrobat 5.0/Reader/AcroRd32.exe "+tempFile);
-                    // wait_for_Pdf2Show = rt.exec("cmd.exe /C AcroRd32 /p /h "+tempFile);
-                    
-                    wait_for_Pdf2Show.waitFor();
-                    
-                }
-                
-            } catch(java.lang.InterruptedException intrExec) {
-                
-                javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), intrExec.getMessage());
-                
-            }
+//            try {
+//                
+//                if (System.getProperty("os.name").equalsIgnoreCase("Linux"))  {
+//                    
+//                    System.out.println(tempFile);
+//                    
+//                    // wait_for_Pdf2Show = rt.exec("kghostview "+tempFile+"");
+//                    wait_for_Pdf2Show = rt.exec("cat kghostview "+tempFile+"");
+//                    
+//                    wait_for_Pdf2Show.waitFor();
+//                    
+//                } else {
+//                    
+//                    wait_for_Pdf2Show = rt.exec("c:/Program Files/Adobe/Acrobat 5.0/Reader/AcroRd32.exe "+tempFile);
+//                    // wait_for_Pdf2Show = rt.exec("cmd.exe /C AcroRd32 /p /h "+tempFile);
+//                    
+//                    wait_for_Pdf2Show.waitFor();
+//                    
+//                }
+//                
+//            } catch(java.lang.InterruptedException intrExec) {
+//                
+//                javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), intrExec.getMessage());
+//                
+//            }
             
             
             

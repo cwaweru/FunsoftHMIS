@@ -142,6 +142,11 @@ public class PatientDiagIntfr extends javax.swing.JInternalFrame {
         indexingTable = new com.afrisoftech.dbadmin.JXTable();
         startDatePicker = new com.afrisoftech.lib.DatePicker();
         endDatePicker = new com.afrisoftech.lib.DatePicker();
+        notIndexedPanel = new javax.swing.JPanel();
+        indexingScrollPane1 = new javax.swing.JScrollPane();
+        nonindexedTable = new com.afrisoftech.dbadmin.JXTable();
+        startDatePicker1 = new com.afrisoftech.lib.DatePicker();
+        endDatePicker1 = new com.afrisoftech.lib.DatePicker();
         jButton2 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
 
@@ -1238,6 +1243,40 @@ public class PatientDiagIntfr extends javax.swing.JInternalFrame {
 
         codingTabbedPane.addTab("Indexing form", indexingPanel);
 
+        notIndexedPanel.setLayout(new java.awt.GridBagLayout());
+
+        nonindexedTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date_recorded as coding_date, user_name, patient_no, main_service as code, disease as code_description, doctor_surgeon, scrub_nurse as classification, ward_name as unit_name, pat_category as patient_category, pat_age as patient_age, gender from hp_patient_diagnosis WHERE date_recorded = now()::date order by 1"));
+        indexingScrollPane1.setViewportView(nonindexedTable);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 200.0;
+        notIndexedPanel.add(indexingScrollPane1, gridBagConstraints);
+
+        startDatePicker1.setBorder(javax.swing.BorderFactory.createTitledBorder("Start Date"));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        notIndexedPanel.add(startDatePicker1, gridBagConstraints);
+
+        endDatePicker1.setBorder(javax.swing.BorderFactory.createTitledBorder("End Date"));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        notIndexedPanel.add(endDatePicker1, gridBagConstraints);
+
+        codingTabbedPane.addTab("Non Indexed OUT Patients", notIndexedPanel);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -1267,7 +1306,7 @@ public class PatientDiagIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jLabel19, gridBagConstraints);
 
-        setBounds(0, 0, 856, 596);
+        setBounds(0, 0, 950, 596);
     }// </editor-fold>//GEN-END:initComponents
 
     private void departmentcmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentcmbxActionPerformed
@@ -1809,8 +1848,10 @@ public class PatientDiagIntfr extends javax.swing.JInternalFrame {
                     pstmt1xg.setBoolean(1, false);
                     pstmt1xg.executeUpdate();
 
-                    java.sql.PreparedStatement pstmt21 = connectDB.prepareStatement("UPDATE hp_admission SET discharge = true,diagnosed = true,discharge_date = '" + datePicker3.getDate().toString() + "',discharged_by = current_user,transaction_type = '" + jComboBox4.getSelectedItem() + "', diagnosis1 = '" + codingTable.getValueAt(0, 1) + "',diagnosis2 = '" + codingTable.getValueAt(1, 1) + "',diagnosis3 = '" + codingTable.getValueAt(2, 1) + "' WHERE patient_no ilike '" + jTextField36.getText() + "' AND visit_id ilike '" + jTextField7.getText() + "'");
-
+                    java.sql.PreparedStatement pstmt21 = connectDB.prepareStatement("UPDATE hp_admission SET discharge = true,diagnosed = true,discharge_date = '" + datePicker3.getDate().toString() + "',discharged_by = current_user,transaction_type = '" + jComboBox4.getSelectedItem() + "', diagnosis1 = ?,diagnosis2 = ? ,diagnosis3 = ? WHERE patient_no ilike '" + jTextField36.getText() + "' AND visit_id ilike '" + jTextField7.getText() + "'");
+                    pstmt21.setObject(1, codingTable.getValueAt(0, 1));
+                    pstmt21.setObject(2, codingTable.getValueAt(1, 1));//codingTable.getValueAt(1, 1) 
+                    pstmt21.setObject(3, codingTable.getValueAt(2, 1));
                     pstmt21.executeUpdate();
                     if (jComboBox6.getSelectedItem() == null) {
                         java.sql.PreparedStatement pstmt23 = connectDB.prepareStatement("UPDATE hp_inpatient_register SET discharge_date = '" + datePicker3.getDate().toString() + "' WHERE patient_no ilike '" + jTextField36.getText() + "'");
@@ -1888,6 +1929,11 @@ public class PatientDiagIntfr extends javax.swing.JInternalFrame {
         indexingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date_recorded as coding_date, user_name, patient_no, main_service as code, disease as code_description, doctor_surgeon, scrub_nurse as classification, ward_name as unit_name, pat_category as patient_category, pat_age as patient_age, gender from hp_patient_diagnosis WHERE date_recorded BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' ORDER BY 1"));
 
         codingTabbedPane.setSelectedIndex(1);
+         nonindexedTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, name, ip_no,  date as visit_date,  user_name as registrar, clinic, \n" +
+                "(SELECT user_name FROM hp_clinical_results WHERE hp_clinical_results.patient_no = hp_patient_visit.patient_no\n" +
+                "AND hp_patient_visit.date = hp_clinical_results.date LIMIT 1 ) AS SEEN_BY\n" +
+                "FROM hp_patient_visit WHERE date  BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' and patient_no not in (SELECT patient_no FROM    hp_patient_diagnosis WHERE date_recorded BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' )"));
+
 
 
         // TODO add your handling code here:
@@ -1921,8 +1967,10 @@ public class PatientDiagIntfr extends javax.swing.JInternalFrame {
     private com.afrisoftech.lib.DatePicker datePicker3;
     private javax.swing.JComboBox departmentcmbx;
     private com.afrisoftech.lib.DatePicker endDatePicker;
+    private com.afrisoftech.lib.DatePicker endDatePicker1;
     private javax.swing.JPanel indexingPanel;
     private javax.swing.JScrollPane indexingScrollPane;
+    private javax.swing.JScrollPane indexingScrollPane1;
     private javax.swing.JTable indexingTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -2010,9 +2058,12 @@ public class PatientDiagIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField jTextField92;
+    private javax.swing.JTable nonindexedTable;
+    private javax.swing.JPanel notIndexedPanel;
     private javax.swing.JButton searchButton;
     private javax.swing.JButton searchButton2;
     private com.afrisoftech.lib.DatePicker startDatePicker;
+    private com.afrisoftech.lib.DatePicker startDatePicker1;
     private javax.swing.JTextField unitNumberTxt;
     // End of variables declaration//GEN-END:variables
 }

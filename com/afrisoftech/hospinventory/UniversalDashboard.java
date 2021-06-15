@@ -18,7 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.JTableHeader;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -2003,7 +2003,7 @@ public class UniversalDashboard extends javax.swing.JPanel {
             countApprtxt.setText(String.valueOf(approved));
 
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         jTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct item_code,item_description,old_req_no TENDER_OR_QUOTATION,terms ORDER_NO from st_receive_requisation where requisition_no ilike '" + pr + "' and terms != '-' "));
@@ -2029,7 +2029,7 @@ public class UniversalDashboard extends javax.swing.JPanel {
             countApprtxt1.setText(String.valueOf(quantity));
 
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         jTable3.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct code,item,units,quantity,unit_price from st_orders where order_no ilike '" + po + "'  "));
@@ -2687,7 +2687,7 @@ public class UniversalDashboard extends javax.swing.JPanel {
                     viewlposbtn.doClick();
 
                 } catch (SQLException ex) {
-                                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                                ex.printStackTrace();             //ex.printStackTrace();
                     try {
                         connectDB.rollback();
                     } catch (SQLException ex1) {
@@ -2710,7 +2710,7 @@ public class UniversalDashboard extends javax.swing.JPanel {
                 pst.executeUpdate();
                 System.err.println("updated");
             } catch (SQLException ex) {
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //ex.printStackTrace();
                 try {
                     connectDB.rollback();
                 } catch (SQLException ex1) {
@@ -2754,7 +2754,7 @@ public class UniversalDashboard extends javax.swing.JPanel {
                 prq = rset.getString(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return prq;
@@ -2772,7 +2772,7 @@ public class UniversalDashboard extends javax.swing.JPanel {
                 LPO = rset.getString(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return LPO;
@@ -2790,7 +2790,7 @@ public class UniversalDashboard extends javax.swing.JPanel {
                 tender = rset.getString(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return tender;
@@ -2808,7 +2808,7 @@ public class UniversalDashboard extends javax.swing.JPanel {
                 LPO = rset.getString(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return LPO;
@@ -2827,7 +2827,7 @@ public class UniversalDashboard extends javax.swing.JPanel {
                 grndate1 = rset.getString(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return grndate1;
@@ -2863,7 +2863,7 @@ public class UniversalDashboard extends javax.swing.JPanel {
                 supplier = rset.getString(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return supplier;
@@ -2960,7 +2960,7 @@ public class UniversalDashboard extends javax.swing.JPanel {
                     System.out.println("UPDATE st_orders SET  ordering_store ='" + UserName.getUserAllocatedSection(connectDB, listofAct[i].toString()) + "' WHERE ordered_by ='" + listofAct[i].toString() + "'");
                 }
             } catch (SQLException ex) {
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //ex.printStackTrace();
             }
         }
 
@@ -2989,7 +2989,7 @@ public class UniversalDashboard extends javax.swing.JPanel {
                 );
                 //}
             } catch (SQLException ex) {
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //ex.printStackTrace();
             }
         }
     }//GEN-LAST:event_jButton4ActionPerformed

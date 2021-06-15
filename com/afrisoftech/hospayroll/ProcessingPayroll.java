@@ -20,16 +20,18 @@ public class ProcessingPayroll {
     java.util.Date endDate = null;
     java.lang.String compName = null;
     boolean status;
+    String staff_no = "";
 
     /**
      * Creates a new instance of ProcessingPayroll
      */
-    public ProcessingPayroll(java.sql.Connection connDb, java.util.Date begindate, java.util.Date endate, java.lang.String comp) {
+    public ProcessingPayroll(java.sql.Connection connDb, java.util.Date begindate, java.util.Date endate, java.lang.String comp, String staffNoo) {
 
         connectDB = connDb;
 
         //  pConnDB = pconnDB;
         beginDate = begindate;
+        staff_no = staffNoo;
 
         endDate = endate;
         compName = comp;
@@ -114,6 +116,7 @@ public class ProcessingPayroll {
             double paye111 = 0.00;
             double basic11 = 0.00;
             double Amnt1 = 0.00;
+            double Prelief1 = 0.00;
             double Amnt11 = 0.00;
             double Amnt11s = 0.00;
             double Amnt111 = 0.00;
@@ -137,17 +140,17 @@ public class ProcessingPayroll {
                 System.out.println(compName);
                 connectDB.setAutoCommit(false);
                 java.sql.Statement stmtTable1w1 = connectDB.createStatement();
-                java.sql.ResultSet rst141sw1 = stmtTable1w1.executeQuery("SELECT processed FROM posting where company_name ilike '" + compName + "%' and date < '" + beginDate.toString() + "'");
+                java.sql.ResultSet rst141sw1 = stmtTable1w1.executeQuery("SELECT processed FROM posting where company_name = '" + compName + "' and date < '" + beginDate.toString() + "' and processed = false ");
 
                 while (rst141sw1.next()) {
                     status1 = rst141sw1.getBoolean(1);
                 }
                 if (status1 == false) {
-                    javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "You MUST approve payroll for the previous MONTH", "Information Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "You MUST approve payroll for the previous MONTHs", "Information Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
                     java.sql.Statement stmtTable1w = connectDB.createStatement();
-                    java.sql.ResultSet rst141sw = stmtTable1w.executeQuery("SELECT processed FROM posting where company_name ilike '" + compName + "%' and date between '" + beginDate.toString() + "' AND '" + endDate.toString() + "'");
+                    java.sql.ResultSet rst141sw = stmtTable1w.executeQuery("SELECT processed FROM posting where company_name = '" + compName + "' and date between '" + beginDate.toString() + "' AND '" + endDate.toString() + "'");
 
                     while (rst141sw.next()) {
                         status = rst141sw.getBoolean(1);
@@ -155,17 +158,50 @@ public class ProcessingPayroll {
 
                     if (status == false) {
 
-                        java.sql.PreparedStatement pstmt31w1 = connectDB.prepareStatement("delete from posting WHERE date between  '" + beginDate.toString() + "' and '" + endDate.toString() + "' AND processed = false and company_name ilike '" + compName + "%' ");
-                        pstmt31w1.executeUpdate();
+                        System.err.println("Queries to delete");
+                        System.err.println("delete from posting WHERE date between  '" + beginDate.toString() + "' and '" + endDate.toString() + "' AND processed = false and company_name = '" + compName + "'");
+                        System.err.println("delete from tax_card WHERE date between '" + beginDate.toString() + "' and '" + endDate.toString() + "' and company_name = '" + compName + "'");
 
-                        java.sql.PreparedStatement pstmt311z = connectDB.prepareStatement("delete from tax_card WHERE date between '" + beginDate.toString() + "' and '" + endDate.toString() + "' and company_name ilike '" + compName + "%'");
-                        pstmt311z.executeUpdate();
+                        java.sql.PreparedStatement pstmt31w1 = null;
+                        java.sql.PreparedStatement pstmt311z = null;
+                        if (staff_no.isEmpty()) {
+                            pstmt31w1 = connectDB.prepareStatement("delete from posting WHERE date between  '" + beginDate.toString() + "' and '" + endDate.toString() + "' AND processed = false and company_name = '" + compName + "' ");
+                            pstmt31w1.executeUpdate();
+
+                            pstmt311z = connectDB.prepareStatement("delete from tax_card WHERE date between '" + beginDate.toString() + "' and '" + endDate.toString() + "' and company_name = '" + compName + "'");
+                            pstmt311z.executeUpdate();
+
+                            pstmt311z = connectDB.prepareStatement("delete from master_updates WHERE date between '" + beginDate.toString() + "' and '" + endDate.toString() + "' and company_name = '" + compName + "'");
+                            pstmt311z.executeUpdate();
+
+                            pstmt311z = connectDB.prepareStatement("delete from sacco_balances WHERE end_date between '" + beginDate.toString() + "' and '" + endDate.toString() + "' ");
+                            pstmt311z.executeUpdate();
+                        } else {
+                            pstmt31w1 = connectDB.prepareStatement("delete from posting WHERE date between  '" + beginDate.toString() + "' and '" + endDate.toString() + "' AND processed = false and company_name = '" + compName + "' AND staff_no = '" + staff_no + "' ");
+                            pstmt31w1.executeUpdate();
+
+                            pstmt311z = connectDB.prepareStatement("delete from tax_card WHERE date between '" + beginDate.toString() + "' and '" + endDate.toString() + "' and company_name = '" + compName + "' AND staff_no = '" + staff_no + "' ");
+                            pstmt311z.executeUpdate();
+
+                            pstmt311z = connectDB.prepareStatement("delete from master_updates WHERE date between '" + beginDate.toString() + "' and '" + endDate.toString() + "' and company_name = '" + compName + "' AND staff_no = '" + staff_no + "' ");
+                            pstmt311z.executeUpdate();
+
+                            pstmt311z = connectDB.prepareStatement("delete from sacco_balances WHERE end_date between '" + beginDate.toString() + "' and '" + endDate.toString() + "' AND staff_no = '" + staff_no + "' ");
+                            pstmt311z.executeUpdate();
+                        }
 
                         for (int j = 0; j < listofStaffNos.length; j++) {
+                            Prelief1 = 0.00;
+                            System.err.println("Working on Employee no " + listofStaffNos[j]);
+
+                            java.sql.PreparedStatement pstmtx = connectDB.prepareStatement("INSERT INTO master_updates(staff_no, staff_name, desgination, grade, department, bank_name,  account_no, date, company_name)\n"
+                                    + "SELECT  employee_no, trim(first_name || ' ' || middle_name || ' ' || last_name ),official_desgnation , employee_grade, \n"
+                                    + "department ,bank,bank_account_no, '" + endDate.toString() + "' AS date,company_name FROM master_file WHERE employee_no = '" + listofStaffNos[j] + "' and company_name = '" + compName + "' ");
+                            pstmtx.executeUpdate();
 
                             java.sql.Statement stmtTable1 = connectDB.createStatement();
 
-                            java.sql.ResultSet rst141s = stmtTable1.executeQuery("SELECT staff_no,staff_name,description, amount,trans_type,hours,acc_bal FROM posting_view where staff_no = '" + listofStaffNos[j] + "'");
+                            java.sql.ResultSet rst141s = stmtTable1.executeQuery("SELECT staff_no,staff_name,description, SUM(amount),trans_type,hours,acc_bal FROM posting_view where staff_no = '" + listofStaffNos[j] + "' GROUP BY 1,2,3,5,6,7");
 
                             while (rst141s.next()) {
                                 staffNos = rst141s.getObject(1).toString();
@@ -179,7 +215,7 @@ public class ProcessingPayroll {
                                 java.sql.PreparedStatement pstmt141 = connectDB.prepareStatement("insert into posting values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                                 pstmt141.setString(1, staffNos);
                                 pstmt141.setString(2, staffNames);
-                                pstmt141.setString(3, dess);
+                                pstmt141.setString(3, dess.toUpperCase());
                                 pstmt141.setDouble(4, amounts);
                                 pstmt141.setString(5, transType);
                                 pstmt141.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
@@ -204,6 +240,16 @@ public class ProcessingPayroll {
                                 benefit11 = rstnh1.getDouble(1);
                             }
 
+                            java.sql.Statement pstmtnh211C = connectDB.createStatement();
+                            java.sql.ResultSet rstnh11C = pstmtnh211C.executeQuery(" SELECT  sum(amount)  FROM public.posting_journal WHERE  date between '" + beginDate + "' and '" + endDate + "' and staff_no='" + listofStaffNos[j] + "' and allowance_deduction='Insurance Relief'"
+                                    + "   UNION  ALL SELECT amount FROM public.allowances_benefits WHERE staff_no='" + listofStaffNos[j] + "' and trans_type='Insurance Relief' ");
+                            System.err.println("SELECT  amount  FROM public.posting_journal WHERE  date between '" + beginDate + "' and '" + endDate + "' and staff_no='" + listofStaffNos[j] + "' and allowance_deduction='Insurance Relief'"
+                                    + "   UNION  ALL SELECT amount FROM public.allowances_benefits WHERE staff_no='" + listofStaffNos[j] + "' and trans_type='Insurance Relief' ");
+                            while (rstnh11C.next()) {
+                                Prelief1 = Prelief1 + rstnh11C.getDouble(1);
+                            }
+                            System.out.println("Insurance Relief is ..........." + Prelief1);
+
                             java.sql.Statement pstmtnh211 = connectDB.createStatement();
                             java.sql.ResultSet rstnh11 = pstmtnh211.executeQuery("SELECT personal_relief from defined_contribution");
                             while (rstnh11.next()) {
@@ -217,7 +263,7 @@ public class ProcessingPayroll {
                             }
 
                             java.sql.Statement pstmt133 = connectDB.createStatement();
-                            java.sql.ResultSet rst143 = pstmt133.executeQuery("SELECT nssfexempt from master_file st where st.employee_no ILIKE '" + listofStaffNos[j] + "%' ");
+                            java.sql.ResultSet rst143 = pstmt133.executeQuery("SELECT nssfexempt from master_file st where st.employee_no ILIKE '" + listofStaffNos[j] + "' ");
 
                             while (rst143.next()) {
                                 exempt = rst143.getBoolean(1);
@@ -246,7 +292,7 @@ public class ProcessingPayroll {
                                     java.sql.PreparedStatement pstmt141 = connectDB.prepareStatement("insert into posting values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                                     pstmt141.setString(1, staffNo);
                                     pstmt141.setString(2, staffName);
-                                    pstmt141.setString(3, desc);
+                                    pstmt141.setString(3, desc.toUpperCase());
                                     pstmt141.setDouble(4, Amnt11s);
                                     pstmt141.setString(5, type);
                                     pstmt141.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
@@ -262,6 +308,67 @@ public class ProcessingPayroll {
                                     System.out.println("Has inserted succesfully 1" + compName);
                                 }
                             }
+
+                            //--------------------Pension control self-------------------
+                            Boolean pension = false;
+
+                            pstmt133 = connectDB.createStatement();
+                            rst143 = pstmt133.executeQuery("SELECT pension,basic_pay from master_file st where st.employee_no ILIKE '" + listofStaffNos[j] + "' ");
+
+                            while (rst143.next()) {
+                                pension = rst143.getBoolean(1);
+                                desc = "Pension Contr. Self";
+                                type = "Deduction";
+                             //   Amnt11s = rst143.getDouble(2) * 7 / 100; //commeneted by sam
+                            }
+
+                            java.sql.Statement stmt1 = connectDB.createStatement();
+                            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT amount FROM  allowances_benefits WHERE staff_no = '" + listofStaffNos[j] + "' AND description ilike 'BASIC PAY' ");
+                            while (rSet1.next()) {
+                                Amnt11s = rSet1.getDouble(1) * 7 / 100;
+
+                            }
+
+                            System.out.println(charge);
+                            // paye111 = charge11;
+
+                            pstmt131 = connectDB.createStatement();
+                            rst141 = pstmt131.executeQuery("SELECT st.staff_no,st.staff_name,date('now') AS date,true,user,false from posting st where st.staff_no = '" + listofStaffNos[j] + "' ");
+                            while (rst141.next()) {
+                                staffNo = rst141.getObject(1).toString();
+                                staffName = rst141.getObject(2).toString();
+                                desc = "PENSION CONTR. SELF";
+                                //Amnt11s = paye111;
+                                type = "Less Relief";
+                                date = rst141.getObject(3).toString();
+                                user = rst141.getObject(5).toString();
+                            }
+                            if (pension == false) {
+
+                            } else {
+                                if (Amnt11s > 0) {
+
+                                    java.sql.PreparedStatement pstmt141 = connectDB.prepareStatement("insert into posting values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                    pstmt141.setString(1, staffNo);
+                                    pstmt141.setString(2, staffName);
+                                    pstmt141.setString(3, desc.toUpperCase());
+                                    pstmt141.setDouble(4, Amnt11s);
+                                    pstmt141.setString(5, type);
+                                    pstmt141.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+                                    pstmt141.setBoolean(7, true);
+                                    pstmt141.setString(8, user);
+                                    pstmt141.setBoolean(9, false);
+                                    pstmt141.setDouble(10, 0.00);
+                                    pstmt141.setBoolean(11, false);
+                                    pstmt141.setString(12, " ");
+                                    pstmt141.setString(13, " ");
+                                    pstmt141.setObject(14, compName);
+                                    pstmt141.executeUpdate();
+                                    System.out.println("Has inserted succesfully 1" + compName);
+                                }
+                            }
+
+                            //------------------End Pension Control Self------------
                             java.sql.Statement pstmt151q = connectDB.createStatement();
                             java.sql.ResultSet rs121q = pstmt151q.executeQuery("select description,rate,acc_balances from deductions_allowances where allowance_deduction ILIKE 'Less Relief%' and rate >0");
                             while (rs121q.next()) {
@@ -282,7 +389,7 @@ public class ProcessingPayroll {
                                     java.sql.PreparedStatement pstmt141 = connectDB.prepareStatement("insert into posting values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                                     pstmt141.setString(1, staffNo);
                                     pstmt141.setString(2, staffName);
-                                    pstmt141.setString(3, desc);
+                                    pstmt141.setString(3, desc.toUpperCase());
                                     pstmt141.setDouble(4, Amnt11);
                                     pstmt141.setString(5, type);
                                     pstmt141.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
@@ -303,7 +410,7 @@ public class ProcessingPayroll {
                                     java.sql.PreparedStatement pstmt141 = connectDB.prepareStatement("insert into posting values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                                     pstmt141.setString(1, staffNo);
                                     pstmt141.setString(2, staffName);
-                                    pstmt141.setString(3, desc);
+                                    pstmt141.setString(3, desc.toUpperCase());
                                     pstmt141.setDouble(4, Amnt11);
                                     pstmt141.setString(5, type);
                                     pstmt141.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
@@ -322,16 +429,53 @@ public class ProcessingPayroll {
                             java.sql.Statement pstmt5 = connectDB.createStatement();
                             java.sql.Statement pstmt62 = connectDB.createStatement();
                             java.sql.Statement pstmt621 = connectDB.createStatement();
-                            java.sql.ResultSet rs62 = pstmt621.executeQuery("SELECT unused_relief from master_file where employee_no ilike '" + listofStaffNos[j] + "%'");
+                            java.sql.ResultSet rs62 = pstmt621.executeQuery("SELECT unused_relief from master_file where employee_no ilike '" + listofStaffNos[j] + "'");
 
                             while (rs62.next()) {
                                 unused = rs62.getDouble(1);
                             }
 
+                            Boolean disabled = false;
+                            Boolean payeeexempt = false;
+                            Boolean withholdingTax = false;
+                            Boolean withholdingTax2 = false;
+                            Boolean policeTax = false;
+                            Boolean knunded = false;
+                            java.sql.Statement psd = connectDB.createStatement();
+                            java.sql.ResultSet rsd = psd.executeQuery("SELECT disabled,payeexempt,withholding_tax,police_tax,knun_ded, withholding_tax2 FROM master_file where employee_no ilike '" + listofStaffNos[j] + "'  ");
+                            while (rsd.next()) {
+                                disabled = rsd.getBoolean(1);
+                                payeeexempt = rsd.getBoolean(2);
+                                withholdingTax = rsd.getBoolean(3);
+                                withholdingTax2 = rsd.getBoolean(6);
+                                policeTax = rsd.getBoolean(4);
+                                knunded = rsd.getBoolean(5);
+                            }
+
+                            Double rel = 0.00;
+                            java.sql.Statement psx = connectDB.createStatement();
+                            java.sql.ResultSet rsx = psx.executeQuery("SELECT staff_no,sum(amount) from net_taxable_amount1 where staff_no ilike '" + listofStaffNos[j] + "'  and amount<0 group by staff_no ");
+                            while (rsx.next()) {
+                                rel = rsx.getDouble(2) * -1;
+                            }
+
+                            rsx = psx.executeQuery("SELECT sum(amount) from posting_journal where staff_no ilike '" + listofStaffNos[j] + "'  and description ilike 'ABSENTEESM (DAYS)' and date between '" + beginDate + "' and '" + endDate + "'  ");
+                            while (rsx.next()) {
+                                rel = rel - rsx.getDouble(1);
+                            }
+
                             java.sql.Statement ps = connectDB.createStatement();
-                            java.sql.ResultSet rs = ps.executeQuery("SELECT staff_no,sum(amount) from total_net_taxable_amount1 where staff_no ilike '" + listofStaffNos[j] + "%'  group by staff_no");
+                            java.sql.ResultSet rs = ps.executeQuery("SELECT staff_no,sum(amount) from total_net_taxable_amount1 where staff_no ilike '" + listofStaffNos[j] + "'  group by staff_no");
                             while (rs.next()) {
                                 benefit = rs.getDouble(2);
+                            }
+
+                            if (rel > 20000) {
+                                benefit = benefit + (rel - 20000);
+                            }
+
+                            if (disabled) {
+                                benefit = benefit - 150000;
                             }
                             java.sql.Statement pstmt1 = connectDB.createStatement();
 
@@ -345,6 +489,8 @@ public class ProcessingPayroll {
 
                                 System.out.println(lower + " ," + upper + " , " + rate1);
                             }
+                            System.err.println(">>>>>"+benefit);
+                            System.err.println(">>>>><<<<"+(benefit- lower));
                             tax1 = (benefit - lower) * rate1 / 100;
                             System.out.println(tax1);
 
@@ -355,10 +501,18 @@ public class ProcessingPayroll {
                              }
                              System.out.println(charge);
                              */
-                            paye1 = (charge + tax1) - Prelief;
+                            
+                             paye1 = (charge + tax1) - (Prelief + Prelief1);
+                            System.out.println("--------------------------------------");
+                            System.out.println("Paye -- "+paye1);
+                            System.out.println("charge -- "+charge);
+                            System.out.println("tax1 -- "+tax1);
+                            System.out.println("Prelief -- "+Prelief);
+                            System.out.println("Prelief 1 -- "+Prelief1);
+                           
 
                             java.sql.Statement pstmt11 = connectDB.createStatement();
-                            java.sql.ResultSet rst1 = pstmt11.executeQuery("SELECT distinct st.staff_no,st.staff_name,true,user,false from posting st where st.staff_no ILIKE '" + listofStaffNos[j] + "%' ");
+                            java.sql.ResultSet rst1 = pstmt11.executeQuery("SELECT distinct st.staff_no,st.staff_name,true,user,false from posting st where st.staff_no ILIKE '" + listofStaffNos[j] + "' ");
                             while (rst1.next()) {
                                 staffNo = rst1.getObject(1).toString();
                                 staffName = rst1.getObject(2).toString();
@@ -366,56 +520,300 @@ public class ProcessingPayroll {
                                 if (unused > 0) {
                                     Amnt = 0;
                                 } else {
-                                    Amnt = paye1;
+                                    Amnt = Math.round(paye1);
                                 }
                                 type = "Deduction";
                                 // date = rst1.getObject(3).toString();
                                 user = rst1.getObject(4).toString();
                             }
+                            System.out.println("Amount  -- "+Amnt);
 
-                            if (Amnt > 0) {
-                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into posting values(?,?,?,ROUND(?),?,?,?,?,?,?,?,?,?,?)");
-                                pstmt.setString(1, staffNo);
-                                pstmt.setString(2, staffName);
-                                pstmt.setString(3, desc);
-                                pstmt.setDouble(4, Amnt);
-                                pstmt.setString(5, type);
-                                pstmt.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
-                                pstmt.setBoolean(7, true);
-                                pstmt.setString(8, user);
-                                pstmt.setBoolean(9, false);
-                                pstmt.setDouble(10, 0.00);
-                                pstmt.setBoolean(11, false);
-                                pstmt.setString(12, " ");
-                                pstmt.setString(13, " ");
-                                pstmt.setObject(14, compName);
-                                pstmt.executeUpdate();
+                            if (!payeeexempt) {
+                                if (Amnt > 0) {
+                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into posting values(?,?,?,CEILING(?),?,?,?,?,?,?,?,?,?,?)");
+                                    pstmt.setString(1, staffNo);
+                                    pstmt.setString(2, staffName);
+                                    pstmt.setString(3, desc.toUpperCase());
+                                    pstmt.setDouble(4, Amnt);
+                                    pstmt.setString(5, type);
+                                    pstmt.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+                                    pstmt.setBoolean(7, true);
+                                    pstmt.setString(8, user);
+                                    pstmt.setBoolean(9, false);
+                                    pstmt.setDouble(10, 0.00);
+                                    pstmt.setBoolean(11, false);
+                                    pstmt.setString(12, " ");
+                                    pstmt.setString(13, " ");
+                                    pstmt.setObject(14, compName);
+                                    pstmt.executeUpdate();
 
-                                java.sql.PreparedStatement pstmtw = connectDB.prepareStatement("insert into posting values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                                pstmtw.setString(1, staffNo);
-                                pstmtw.setString(2, staffName);
-                                pstmtw.setString(3, "Monthly Personal Relief");
-                                pstmtw.setDouble(4, Prelief);
-                                pstmtw.setString(5, "Monthly Personal Relief");
-                                pstmtw.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
-                                pstmtw.setBoolean(7, true);
-                                pstmtw.setString(8, user);
-                                pstmtw.setBoolean(9, false);
-                                pstmtw.setDouble(10, 0.00);
-                                pstmtw.setBoolean(11, false);
-                                pstmtw.setString(12, " ");
-                                pstmtw.setString(13, " ");
-                                pstmtw.setObject(14, compName);
-                                pstmtw.executeUpdate();
-                                System.out.println("Has inserted succesfully 3" + compName);
+                                    java.sql.PreparedStatement pstmtw = connectDB.prepareStatement("insert into posting values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                    pstmtw.setString(1, staffNo);
+                                    pstmtw.setString(2, staffName);
+                                    pstmtw.setString(3, "Monthly Personal Relief".toUpperCase());
+                                    pstmtw.setDouble(4, Prelief);
+                                    pstmtw.setString(5, "Monthly Personal Relief");
+                                    pstmtw.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+                                    pstmtw.setBoolean(7, true);
+                                    pstmtw.setString(8, user);
+                                    pstmtw.setBoolean(9, false);
+                                    pstmtw.setDouble(10, 0.00);
+                                    pstmtw.setBoolean(11, false);
+                                    pstmtw.setString(12, " ");
+                                    pstmtw.setString(13, " ");
+                                    pstmtw.setObject(14, compName);
+                                    pstmtw.executeUpdate();
+                                    System.out.println("Has inserted succesfully 3" + compName);
+                                }
                             }
+
+                            if (withholdingTax) {
+
+                                desc = "Withholding Tax";
+                                benefit = 0.00;
+                                ps = connectDB.createStatement();
+                                rs = ps.executeQuery("SELECT sum(amount) from payroll_postings where staff_no ilike '" + listofStaffNos[j] + "' and (date between '" + beginDate + "' and '" + endDate + "' OR type='Recurrent') group by staff_no");
+                                while (rs.next()) {
+                                    benefit = rs.getDouble(1);
+                                }
+
+                                Double wthrate = 0.00;
+                                ps = connectDB.createStatement();
+                                rs = ps.executeQuery("SELECT rate from tax_bracket where tax_type ilike 'W.H.TAX' and '" + benefit + "'  between lower_limit and upper_limit  ");
+                                while (rs.next()) {
+                                    wthrate = rs.getDouble(1);
+                                }
+                                Amnt = benefit * wthrate / 100;
+                                if (Amnt > 0) {
+                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into posting values(?,?,?,ROUND(?),?,?,?,?,?,?,?,?,?,?)");
+                                    pstmt.setString(1, staffNo);
+                                    pstmt.setString(2, staffName);
+                                    pstmt.setString(3, desc.toUpperCase());
+                                    pstmt.setDouble(4, Amnt);
+                                    pstmt.setString(5, type);
+                                    pstmt.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+                                    pstmt.setBoolean(7, true);
+                                    pstmt.setString(8, user);
+                                    pstmt.setBoolean(9, false);
+                                    pstmt.setDouble(10, 0.00);
+                                    pstmt.setBoolean(11, false);
+                                    pstmt.setString(12, " ");
+                                    pstmt.setString(13, " ");
+                                    pstmt.setObject(14, compName);
+                                    pstmt.executeUpdate();
+                                }
+                            }
+
+                            if (withholdingTax2) {
+
+                                System.err.println("Deducting withholding tax 2....................");
+                                desc = "Paye 3";
+                                benefit = 0.00;
+                                ps = connectDB.createStatement();
+                                rs = ps.executeQuery("SELECT sum(amount) from payroll_postings where staff_no ilike '" + listofStaffNos[j] + "' and (date between '" + beginDate + "' and '" + endDate + "' OR type='Recurrent') group by staff_no");
+                                while (rs.next()) {
+                                    benefit = rs.getDouble(1);
+                                }
+                                System.err.println("Benefit..................." + benefit);
+
+                                Double wthrate = 0.00;
+                                ps = connectDB.createStatement();
+                                rs = ps.executeQuery("SELECT rate from tax_bracket where tax_type ilike 'W.H.TAX30' and '" + benefit + "'  between lower_limit and upper_limit  ");
+                                while (rs.next()) {
+                                    wthrate = rs.getDouble(1);
+                                }
+                                Amnt = benefit * wthrate / 100;
+                                System.err.println("Amt..................." + Amnt);
+                                if (Amnt > 0) {
+                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into posting values(?,?,?,ROUND(?),?,?,?,?,?,?,?,?,?,?)");
+                                    pstmt.setString(1, staffNo);
+                                    pstmt.setString(2, staffName);
+                                    pstmt.setString(3, desc.toUpperCase());
+                                    pstmt.setDouble(4, Amnt);
+                                    pstmt.setString(5, type);
+                                    pstmt.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+                                    pstmt.setBoolean(7, true);
+                                    pstmt.setString(8, user);
+                                    pstmt.setBoolean(9, false);
+                                    pstmt.setDouble(10, 0.00);
+                                    pstmt.setBoolean(11, false);
+                                    pstmt.setString(12, " ");
+                                    pstmt.setString(13, " ");
+                                    pstmt.setObject(14, compName);
+                                    pstmt.executeUpdate();
+                                }
+                            }
+
+                            if (knunded) {
+                                desc = "KNUN DED 1.5% BASIC";
+                                benefit = 0.00;
+                                ps = connectDB.createStatement();
+                                rs = ps.executeQuery("SELECT sum(amount) from allowances_benefits where staff_no ilike '" + listofStaffNos[j] + "'   AND description = 'BASIC PAY' ");
+                                while (rs.next()) {
+                                    benefit = rs.getDouble(1);
+                                }
+
+                                Double knunrate = 0.00;
+                                ps = connectDB.createStatement();
+                                rs = ps.executeQuery("SELECT rate from tax_bracket where tax_type ilike 'KNUN_DED' ");
+                                while (rs.next()) {
+                                    knunrate = rs.getDouble(1);
+                                }
+
+                                Amnt = benefit * knunrate / 100;
+                                if (Amnt > 0) {
+                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into posting values(?,?,?,ROUND(?),?,?,?,?,?,?,?,?,?,?)");
+                                    pstmt.setString(1, staffNo);
+                                    pstmt.setString(2, staffName);
+                                    pstmt.setString(3, desc.toUpperCase());
+                                    pstmt.setDouble(4, Amnt);
+                                    pstmt.setString(5, type);
+                                    pstmt.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+                                    pstmt.setBoolean(7, true);
+                                    pstmt.setString(8, user);
+                                    pstmt.setBoolean(9, false);
+                                    pstmt.setDouble(10, 0.00);
+                                    pstmt.setBoolean(11, false);
+                                    pstmt.setString(12, " ");
+                                    pstmt.setString(13, " ");
+                                    pstmt.setObject(14, compName);
+                                    pstmt.executeUpdate();
+                                }
+                            }
+
+                            if (policeTax) {
+                                desc = "Paye 2";
+                                benefit = 0.00;
+                                ps = connectDB.createStatement();
+                                rs = ps.executeQuery("SELECT sum(amount) from total_net_taxable_amount1 where staff_no ilike '" + listofStaffNos[j] + "'  group by staff_no");
+                                while (rs.next()) {
+                                    benefit = rs.getDouble(1);
+                                }
+
+                                Double policerate = 0.00;
+                                ps = connectDB.createStatement();
+                                rs = ps.executeQuery("SELECT rate from tax_bracket where tax_type ilike 'POLICE.TAX' ");
+                                while (rs.next()) {
+                                    policerate = rs.getDouble(1);
+                                }
+
+                                Amnt = benefit * policerate / 100;
+                                if (Amnt > 0) {
+                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into posting values(?,?,?,ROUND(?),?,?,?,?,?,?,?,?,?,?)");
+                                    pstmt.setString(1, staffNo);
+                                    pstmt.setString(2, staffName);
+                                    pstmt.setString(3, desc.toUpperCase());
+                                    pstmt.setDouble(4, Amnt);
+                                    pstmt.setString(5, type);
+                                    pstmt.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+                                    pstmt.setBoolean(7, true);
+                                    pstmt.setString(8, user);
+                                    pstmt.setBoolean(9, false);
+                                    pstmt.setDouble(10, 0.00);
+                                    pstmt.setBoolean(11, false);
+                                    pstmt.setString(12, " ");
+                                    pstmt.setString(13, " ");
+                                    pstmt.setObject(14, compName);
+                                    pstmt.executeUpdate();
+                                }
+                            }
+
+                            //---------------------------INSERT FROM SACCO DEDUCTIONS--------------------------------------------------
+                            java.sql.Statement pstmtn = connectDB.createStatement();
+                            java.sql.ResultSet rstn = pstmtn.executeQuery("SELECT sacco_name, amount, month_deduction,trans_type,loan_id  FROM sacco_deductions WHERE active_loan=TRUE AND staff_no ILIKE '" + listofStaffNos[j] + "' and sacco_name not ilike 'Pension%' ");
+                            while (rstn.next()) {
+                                desc = rstn.getString(1);
+                                Amnt = rstn.getDouble(3);
+                                type = "Deduction";
+                                String loan = "";
+                                String loan_id = "";
+                                loan_id = rstn.getString(5);
+
+//                                java.sql.Statement stmtTable1x = connectDB.createStatement();
+                                System.err.println("SELECT balance_category FROM deductions_allowances where upper(description) = '" + desc.toUpperCase() + "' ");
+//                                java.sql.ResultSet rsetTable1 = stmtTable1x.executeQuery("SELECT balance_category FROM deductions_allowances where upper(description) = '" + desc.toUpperCase() + "'  ");
+//
+//                                while (rsetTable1.next()) {
+//                                    loan = rsetTable1.getString(1);
+//                                    //    monthHours = rsetTable1.getDouble(1);
+//                                }
+
+                                String cat = "";
+                                java.sql.Statement pss = connectDB.createStatement();
+                                java.sql.ResultSet rst = pss.executeQuery("SELECT balance_category,category FROM deductions_allowances where upper(description) = '" + desc.toUpperCase() + "' ");
+                                while (rst.next()) {
+                                    loan = rst.getObject(1).toString();
+                                    cat = rst.getObject(2).toString();
+                                }
+
+                                if (loan.equalsIgnoreCase("Bal")) {
+                                    //if(!cat.equalsIgnoreCase("Bal_")){
+//                                        java.sql.Statement stmtTable11 = connectDB.createStatement();
+//                                        java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT sum(amount) FROM payroll_balances WHERE  sacco_name ILIKE '" + desc + "' and staff_no ILIKE '" + listofStaffNos[j] + "'");
+//                                        while (rsetTable11.next()) {
+//                                            if (Amnt > rsetTable11.getDouble(1)) {
+//                                                Amnt = rsetTable11.getDouble(1);
+//                                            }
+//                                        }
+
+                                    java.sql.Statement stmtTable11 = connectDB.createStatement();
+                                    java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT sum(amount) FROM payroll_balances WHERE  sacco_name ILIKE '" + desc + "' and staff_no ILIKE '" + listofStaffNos[j] + "'");
+                                    while (rsetTable11.next()) {
+                                        if (Amnt > rsetTable11.getDouble(1)) {
+                                            Amnt = rsetTable11.getDouble(1);
+                                        }
+                                    }
+
+                                    //}
+                                    if (Amnt > 0) {
+                                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into posting(staff_no, staff_name, description, amount, allowance_deduction,  date, approved, approved_by, processed, hoursdays, acc_bal, bank,  acc_no, company_name, loan_id) values(?,?,?,ROUND(?),?,?,?,?,?,?,?,?,?,?,?)");
+                                        pstmt.setString(1, staffNo);
+                                        pstmt.setString(2, staffName);
+                                        pstmt.setString(3, desc.toUpperCase());
+                                        pstmt.setDouble(4, Amnt);
+                                        pstmt.setString(5, type);
+                                        pstmt.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+                                        pstmt.setBoolean(7, true);
+                                        pstmt.setString(8, user);
+                                        pstmt.setBoolean(9, false);
+                                        pstmt.setDouble(10, 0.00);
+                                        pstmt.setBoolean(11, false);
+                                        pstmt.setString(12, " ");
+                                        pstmt.setString(13, " ");
+                                        pstmt.setObject(14, compName);
+                                        pstmt.setString(15, loan_id);
+                                        pstmt.executeUpdate();
+                                    }
+                                } else {
+
+                                    if (Amnt > 0) {
+                                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into posting(staff_no, staff_name, description, amount, allowance_deduction,  date, approved, approved_by, processed, hoursdays, acc_bal, bank,  acc_no, company_name, loan_id) values(?,?,?,ROUND(?),?,?,?,?,?,?,?,?,?,?,?)");
+                                        pstmt.setString(1, staffNo);
+                                        pstmt.setString(2, staffName);
+                                        pstmt.setString(3, desc.toUpperCase());
+                                        pstmt.setDouble(4, Amnt);
+                                        pstmt.setString(5, type);
+                                        pstmt.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+                                        pstmt.setBoolean(7, true);
+                                        pstmt.setString(8, user);
+                                        pstmt.setBoolean(9, false);
+                                        pstmt.setDouble(10, 0.00);
+                                        pstmt.setBoolean(11, false);
+                                        pstmt.setString(12, " ");
+                                        pstmt.setString(13, " ");
+                                        pstmt.setObject(14, compName);
+                                        pstmt.setString(15, loan_id);
+                                        pstmt.executeUpdate();
+                                    }
+                                }
+                            }
+
+                            //----------------------------------------------------------------------------------------------------
                             nhifz = 0.00;
                             java.sql.Statement pstmtnh = connectDB.createStatement();
 
-                            //    //java.sql.ResultSet rstnh = pstmtnh.executeQuery("SELECT bp.amount from posting bp, master_file WHERE bp.processed = false AND bp.description::text ILIKE 'BASIC%'::text AND bp.staff_no ILIKE '"+listofStaffNos[j]+"%'");
-                            /////java.sql.ResultSet rstnh = pstmtnh.executeQuery("SELECT sum(bp.amount) from posting bp WHERE bp.processed = false AND bp.allowance_deduction::text ILIKE 'Earning%'::text AND bp.staff_no ILIKE '"+listofStaffNos[j]+"%'");
-                            //               java.sql.ResultSet rstnh = pstmtnh.executeQuery("SELECT sum(bp.amount) from posting bp WHERE bp.processed = false AND (bp.description::text ILIKE 'BASIC PAY%'::text OR bp.description::text ILIKE 'HOUSE ALLOWANCE%'::text)  AND bp.staff_no ILIKE '"+listofStaffNos[j]+"%'");
-                            java.sql.ResultSet rstnh = pstmtnh.executeQuery("SELECT sum(bp.amount) from posting bp WHERE bp.processed = false AND (bp.allowance_deduction::text ILIKE 'Earning%'::text OR  bp.allowance_deduction::text ILIKE 'Non Cash%'::text) AND bp.staff_no ILIKE '" + listofStaffNos[j] + "%'");
+                            java.sql.ResultSet rstnh = pstmtnh.executeQuery("SELECT sum(bp.amount) from posting bp WHERE bp.processed = false AND (bp.allowance_deduction::text ILIKE 'Earning%'::text OR  bp.allowance_deduction::text ILIKE 'Non Cash%'::text) AND bp.staff_no ILIKE '" + listofStaffNos[j] + "' AND UPPER(bp.description::text) NOT IN (SELECT UPPER(description) FROM public.deductions_allowances WHERE taxable = false ) ");
+                            //java.sql.ResultSet rstnh = pstmtnh.executeQuery("SELECT staff_no,sum(amount) from total_net_taxable_amount1 where staff_no ilike '" + listofStaffNos[j] + "'  group by staff_no");
                             while (rstnh.next()) {
                                 nhifz = rstnh.getDouble(1);
                             }
@@ -428,7 +826,7 @@ public class ProcessingPayroll {
                             }
 
                             java.sql.Statement pstmt13 = connectDB.createStatement();
-                            java.sql.ResultSet rst14 = pstmt13.executeQuery("SELECT nhifexempt from master_file st where st.employee_no ILIKE '" + listofStaffNos[j] + "%' ");
+                            java.sql.ResultSet rst14 = pstmt13.executeQuery("SELECT nhifexempt from master_file st where st.employee_no ILIKE '" + listofStaffNos[j] + "' ");
 
                             while (rst14.next()) {
                                 exempt = rst14.getBoolean(1);
@@ -443,7 +841,7 @@ public class ProcessingPayroll {
                             java.sql.PreparedStatement pstmt14 = connectDB.prepareStatement("insert into posting values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                             pstmt14.setString(1, staffNo);
                             pstmt14.setString(2, staffName);
-                            pstmt14.setString(3, desc);
+                            pstmt14.setString(3, desc.toUpperCase());
                             if (exempt == false) {
                                 pstmt14.setDouble(4, nhifs);
                             } else {
@@ -490,7 +888,7 @@ public class ProcessingPayroll {
                                 java.sql.PreparedStatement pstmt142 = connectDB.prepareStatement("insert into posting values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                                 pstmt142.setString(1, staffNo);
                                 pstmt142.setString(2, staffName.toUpperCase());
-                                pstmt142.setString(3, desc);
+                                pstmt142.setString(3, desc.toUpperCase());
                                 if (paye1111 > 150) {
                                     pstmt142.setDouble(4, 150);
                                 } else {
@@ -539,33 +937,45 @@ public class ProcessingPayroll {
                             tax = tax1 + charge;
                             paye = paye1;
 
-                            java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into tax_card values(?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-                            pstmt2.setString(1, staffNo1);
-                            pstmt2.setString(2, monthName);
-                            pstmt2.setDouble(3, cash);
-                            pstmt2.setDouble(4, noncash);
-                            pstmt2.setDouble(5, 0.00);
-                            pstmt2.setDouble(6, cash + noncash);
-                            pstmt2.setDouble(7, (rate / 100) * (cash + noncash));
-                            pstmt2.setDouble(8, 0.00);
-                            pstmt2.setDouble(9, fixed);
-                            pstmt2.setDouble(10, 0.00);
-                            pstmt2.setDouble(11, Amnt11 + Amnt11s);
-                            pstmt2.setDouble(12, benefit);
-                            pstmt2.setDouble(13, charge + tax1);
-                            pstmt2.setDouble(14, Prelief);
-                            pstmt2.setDouble(15, 0.00);
-                            pstmt2.setDouble(16, paye);
-                            pstmt2.setDate(17, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
-                            pstmt2.setString(18, user);
-                            pstmt2.setObject(19, compName);
-                            pstmt2.executeUpdate();
+                            if (staffNo1 != null) {
+                                java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into tax_card values(?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+                                pstmt2.setString(1, staffNo1);
+                                pstmt2.setString(2, monthName);
+                                pstmt2.setDouble(3, cash);
+                                pstmt2.setDouble(4, noncash);
+                                pstmt2.setDouble(5, 0.00);
+                                pstmt2.setDouble(6, cash + noncash);
+                                pstmt2.setDouble(7, (rate / 100) * (cash + noncash));
+                                pstmt2.setDouble(8, 0.00);
+                                pstmt2.setDouble(9, fixed);
+                                pstmt2.setDouble(10, 0.00);
+                                pstmt2.setDouble(11, Amnt11 + Amnt11s);
+                                pstmt2.setDouble(12, benefit);
+                                pstmt2.setDouble(13, charge + tax1);
+                                pstmt2.setDouble(14, Prelief);
+                                pstmt2.setDouble(15, 0.00);
+                                pstmt2.setDouble(16, paye);
+                                pstmt2.setDate(17, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+                                pstmt2.setString(18, user);
+                                pstmt2.setObject(19, compName);
+                                pstmt2.executeUpdate();
+                            }
 
                             java.sql.PreparedStatement pstmt311x = connectDB.prepareStatement("UPDATE posting SET bank = master_file.bank, acc_no = master_file.bank_account_no from master_file WHERE staff_no ILIKE '" + listofStaffNos[j] + "' AND staff_no = master_file.employee_no and processed = false");
                             pstmt311x.executeUpdate();
                             System.out.println("Has inserted succesfully 5");
 
-                          //  connectDB.commit();
+                            pstmt311x = connectDB.prepareStatement("INSERT INTO public.sacco_balances(staff_no, staff_name, amount, month_deduction, deducted_amount,  balance, sacco_name, end_date)\n"
+                                    + "SELECT  staff_no, staff_name, amount, month_deduction, deducted_amount, \n"
+                                    + "CASE WHEN ((( SELECT deductions_allowances.balance_category  FROM deductions_allowances \n"
+                                    + "WHERE deductions_allowances.description::text =  payroll_balances2.sacco_name::text))::text) = 'TOTAL'::text \n"
+                                    + "THEN amount+deducted_amount   ELSE amount-deducted_amount END  as   balance, sacco_name ,'" + endDate + "'::date \n"
+                                    + "FROM payroll_balances2 where staff_no='" + listofStaffNos[j] + "' AND \n"
+                                    + " sacco_name not ilike 'Staff Welfare' AND  sacco_name not ilike 'UNION DUE'\n"
+                                    + "    ");
+                            pstmt311x.executeUpdate();
+
+                            //  connectDB.commit();
                             //  connectDB.setAutoCommit(true);
                         }
                         connectDB.commit();
@@ -605,9 +1015,16 @@ public class ProcessingPayroll {
 
             //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
             java.sql.Statement stmt1 = connectDB.createStatement();
+            java.sql.ResultSet rSet1 = null;
 
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT ab.staff_no FROM allowances_benefits ab where ab.company_name ilike  '" + compName + "' ORDER BY ab.staff_no");
-            // java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT staff_no FROM posting where approved ORDER BY staff_no");
+            if (staff_no.isEmpty()) {
+                rSet1 = stmt1.executeQuery("(SELECT DISTINCT ab.staff_no FROM allowances_benefits ab where ab.company_name =  '" + compName + "'    UNION SELECT DISTINCT ab.staff_no FROM posting_journal ab where ab.company_name =  '" + compName + "'  ) EXCEPT SELECT employee_no  FROM master_file WHERE suspend=TRUE OR retired = TRUE  ORDER BY 1 ");
+
+            } else {
+                rSet1 = stmt1.executeQuery("(SELECT DISTINCT ab.staff_no FROM allowances_benefits ab where ab.staff_no = '" + staff_no + "' AND ab.company_name =  '" + compName + "'    UNION SELECT DISTINCT ab.staff_no FROM posting_journal ab where ab.staff_no = '" + staff_no + "' AND  ab.company_name =  '" + compName + "'  ) EXCEPT SELECT employee_no  FROM master_file WHERE suspend=TRUE OR retired = TRUE ORDER BY 1");
+
+            }
+// java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT staff_no FROM posting where approved ORDER BY staff_no");
 
             while (rSet1.next()) {
 

@@ -18,6 +18,7 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
     org.netbeans.lib.sql.pool.PooledConnectionSource pConnDB = null;
     javax.swing.JComboBox cmBox = null;
     com.afrisoftech.lib.DBObject dbObject;
+    String serviceGLAccount = null;
 
     public SchemesIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
@@ -159,23 +160,6 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
         jLabel15311 = new javax.swing.JLabel();
         schemeCompanyRegistrationNumberTxt = new javax.swing.JTextField();
         schemeLegalStatusCmbx = new javax.swing.JComboBox();
-        jPanel52212 = new javax.swing.JPanel();
-        jButton202212 = new javax.swing.JButton();
-        jSeparator71212 = new javax.swing.JSeparator();
-        jPanel31 = new javax.swing.JPanel();
-        jLabel15312 = new javax.swing.JLabel();
-        jLabel622212 = new javax.swing.JLabel();
-        schemeLimitTxt = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        schemeExcludedList = new javax.swing.JList();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        exclusionsList = new javax.swing.JList();
-        addExclusionsBtn = new javax.swing.JButton();
-        removeExclusionsBtn = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        creditControllerTxt = new javax.swing.JTextField();
-        schemeContactPersonCmbx = new javax.swing.JComboBox();
         schemeContactsPanel = new javax.swing.JPanel();
         otherSchemeContactJscrl = new javax.swing.JScrollPane();
         otherSchemeContactsTxt = new javax.swing.JTextPane();
@@ -183,6 +167,23 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
         schemeContactsInformationTxt = new javax.swing.JTextPane();
         debtCollectorNameCmbx = new javax.swing.JComboBox();
         debtCollectorNameLbl = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        creditControllerTxt = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        schemeContactPersonCmbx = new javax.swing.JComboBox();
+        jSeparator1 = new javax.swing.JSeparator();
+        jPanel52212 = new javax.swing.JPanel();
+        jButton202212 = new javax.swing.JButton();
+        jSeparator71212 = new javax.swing.JSeparator();
+        jPanel31 = new javax.swing.JPanel();
+        schemeLimitTxt = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        schemeExcludedList = new javax.swing.JList();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        exclusionsList = new javax.swing.JList();
+        addExclusionsBtn = new javax.swing.JButton();
+        removeExclusionsBtn = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
         listofPayersPanel = new javax.swing.JPanel();
         payersScrollPane = new javax.swing.JScrollPane();
         payersListTable = new com.afrisoftech.dbadmin.JXTable();
@@ -1289,7 +1290,7 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
         jPanel5.add(jLabel642211, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -1298,7 +1299,7 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
         jLabel622211.setText("Profesional Reg. No.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -1354,157 +1355,6 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
         gridBagConstraints.weighty = 1.0;
         jPanel5.add(schemeLegalStatusCmbx, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 7.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        jPanel52211.add(jPanel5, gridBagConstraints);
-
-        jTabbedPane1.addTab("Statutory", jPanel52211);
-
-        jPanel52212.setLayout(new java.awt.GridBagLayout());
-
-        jButton202212.setMnemonic('l');
-        jButton202212.setText("Clear");
-        jButton202212.setToolTipText("Click here vto clear fields");
-        jButton202212.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton202212ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel52212.add(jButton202212, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel52212.add(jSeparator71212, gridBagConstraints);
-
-        jPanel31.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter Scheme limit & Exclusions"));
-        jPanel31.setLayout(new java.awt.GridBagLayout());
-
-        jLabel15312.setText("Exclusions");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        jPanel31.add(jLabel15312, gridBagConstraints);
-
-        jLabel622212.setText("Scheme Limit");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel31.add(jLabel622212, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel31.add(schemeLimitTxt, gridBagConstraints);
-
-        schemeExcludedList.setBorder(javax.swing.BorderFactory.createTitledBorder("Exclusions"));
-        schemeExcludedList.setDragEnabled(true);
-        schemeExcludedList.setDropMode(javax.swing.DropMode.INSERT);
-        schemeExcludedList.setValueIsAdjusting(true);
-        schemeExcludedList.setVisibleRowCount(20);
-        jScrollPane1.setViewportView(schemeExcludedList);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 50;
-        gridBagConstraints.weightx = 3.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel31.add(jScrollPane1, gridBagConstraints);
-
-        exclusionsList.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        exclusionsList.setModel(com.afrisoftech.lib.ListModel.listModel(connectDB, "SELECT exclusion_type FROM pb_scheme_exclusions ORDER BY exclusion_type"));
-        exclusionsList.setDragEnabled(true);
-        exclusionsList.setValueIsAdjusting(true);
-        exclusionsList.setVisibleRowCount(20);
-        schemeExcludedList.setDropTarget(new java.awt.dnd.DropTarget(exclusionsList,null));
-        jScrollPane2.setViewportView(exclusionsList);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 3.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPanel31.add(jScrollPane2, gridBagConstraints);
-
-        addExclusionsBtn.setText("Add>>");
-        addExclusionsBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addExclusionsBtnActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel31.add(addExclusionsBtn, gridBagConstraints);
-
-        removeExclusionsBtn.setText("<<Remove");
-        removeExclusionsBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeExclusionsBtnActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel31.add(removeExclusionsBtn, gridBagConstraints);
-
-        jLabel7.setText("Marketing Contact");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.weightx = 1.0;
-        jPanel31.add(jLabel7, gridBagConstraints);
-
-        jLabel8.setText("Credit Controller");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        jPanel31.add(jLabel8, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel31.add(creditControllerTxt, gridBagConstraints);
-
-        schemeContactPersonCmbx.setEditable(true);
-        schemeContactPersonCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' union all select distinct marketing_contact from ac_schemes order by 1"));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel31.add(schemeContactPersonCmbx, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 10.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        jPanel52212.add(jPanel31, gridBagConstraints);
-
         schemeContactsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter Scheme Contact Persons here"));
         schemeContactsPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -1546,14 +1396,184 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 3.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 10);
-        jPanel52212.add(schemeContactsPanel, gridBagConstraints);
+        jPanel5.add(schemeContactsPanel, gridBagConstraints);
+
+        jLabel8.setText("Credit Controller");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        jPanel5.add(jLabel8, gridBagConstraints);
+
+        creditControllerTxt.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel5.add(creditControllerTxt, gridBagConstraints);
+
+        jLabel7.setText("Marketing Contact");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.weightx = 1.0;
+        jPanel5.add(jLabel7, gridBagConstraints);
+
+        schemeContactPersonCmbx.setEditable(true);
+        schemeContactPersonCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' union all select distinct marketing_contact from ac_schemes order by 1"));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanel5.add(schemeContactPersonCmbx, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel5.add(jSeparator1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 7.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        jPanel52211.add(jPanel5, gridBagConstraints);
+
+        jTabbedPane1.addTab("Statutory", jPanel52211);
+
+        jPanel52212.setLayout(new java.awt.GridBagLayout());
+
+        jButton202212.setMnemonic('l');
+        jButton202212.setText("Save Exclusions Data");
+        jButton202212.setToolTipText("Click here vto clear fields");
+        jButton202212.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton202212ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel52212.add(jButton202212, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanel52212.add(jSeparator71212, gridBagConstraints);
+
+        jPanel31.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter Scheme limit & Exclusions"));
+        jPanel31.setLayout(new java.awt.GridBagLayout());
+
+        schemeLimitTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Scheme Limit"));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel31.add(schemeLimitTxt, gridBagConstraints);
+
+        schemeExcludedList.setBorder(javax.swing.BorderFactory.createTitledBorder("Exclusions"));
+        schemeExcludedList.setDragEnabled(true);
+        schemeExcludedList.setDropMode(javax.swing.DropMode.INSERT);
+        schemeExcludedList.setValueIsAdjusting(true);
+        schemeExcludedList.setVisibleRowCount(20);
+        jScrollPane1.setViewportView(schemeExcludedList);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridheight = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 3.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel31.add(jScrollPane1, gridBagConstraints);
+
+        exclusionsList.setBorder(javax.swing.BorderFactory.createTitledBorder("Available Services List"));
+        //exclusionsList.setModel(com.afrisoftech.lib.ListModel.listModel(connectDB, "SELECT exclusion_type FROM pb_scheme_exclusions ORDER BY exclusion_type"));
+        exclusionsList.setModel(com.afrisoftech.lib.ListModel.listModel(connectDB, "SELECT  '-' "));
+        exclusionsList.setDragEnabled(true);
+        exclusionsList.setValueIsAdjusting(true);
+        exclusionsList.setVisibleRowCount(20);
+        schemeExcludedList.setDropTarget(new java.awt.dnd.DropTarget(exclusionsList,null));
+        jScrollPane2.setViewportView(exclusionsList);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridheight = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 3.0;
+        jPanel31.add(jScrollPane2, gridBagConstraints);
+
+        addExclusionsBtn.setText("Add>>");
+        addExclusionsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addExclusionsBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
+        jPanel31.add(addExclusionsBtn, gridBagConstraints);
+
+        removeExclusionsBtn.setText("<<Remove");
+        removeExclusionsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeExclusionsBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
+        jPanel31.add(removeExclusionsBtn, gridBagConstraints);
+
+        jComboBox1.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' UNION SELECT UPPER(ac.activity) as activity from pb_activity ac where (ac.activity_category ilike 'I%' OR ac.activity_category ILIKE 'PLID'  ) ORDER BY 1 "));
+        jComboBox1.setBorder(javax.swing.BorderFactory.createTitledBorder("Revenue Department"));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel31.add(jComboBox1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 10.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        jPanel52212.add(jPanel31, gridBagConstraints);
 
         jTabbedPane1.addTab("Schemes", jPanel52212);
 
@@ -1592,7 +1612,7 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         getContentPane().add(jTabbedPane1, gridBagConstraints);
 
-        setBounds(0, 0, 750, 515);
+        setBounds(0, 0, 1030, 515);
     }// </editor-fold>//GEN-END:initComponents
 
     private void schemeGLAccountSearchCloseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schemeGLAccountSearchCloseBtnActionPerformed
@@ -1729,8 +1749,6 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
             schemeSearchTable.setShowHorizontalLines(false);
             schemeSearchScrollPane.setViewportView(schemeSearchTable);
 
-
-
         }        // Add your handling code here:
     }//GEN-LAST:event_schemeSearchTxtCaretUpdate
 
@@ -1774,7 +1792,6 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
             rset.close();
             stmt.close();
 
-
         } catch (java.sql.SQLException sqe) {
             sqe.printStackTrace();
             System.out.println("selection not successful");
@@ -1807,7 +1824,6 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
              */
             payerSearchTable.setShowHorizontalLines(false);
             payerSearchScrollPane.setViewportView(payerSearchTable);
-
 
         }     // Add your handling code here:
     }//GEN-LAST:event_payerSearchTxtCaretUpdate
@@ -1853,13 +1869,91 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
 
     }
     private void jButton202212ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton202212ActionPerformed
-        schemeContactsInformationTxt.setText("");
-        //jTextPane2.setText("");
-        // jTextField14.setText("");
-        otherSchemeContactsTxt.setText("");
-        //   jTextPane31.setText("");
-        //                jTextPane11.setText("");
-        this.schemeLimitTxt.setText("");        // Add your handling code here:
+        try {
+            connectDB.setAutoCommit(false);
+            int j = 0;
+            java.sql.PreparedStatement stmtTable11 = connectDB.prepareStatement("SELECT count(*)  FROM ac_schemes_exclusions WHERE account_no ilike  ? and gl_account = ? ");
+            stmtTable11.setString(1, debtorAccountNumberTxt.getText());
+            stmtTable11.setString(2, serviceGLAccount);
+            java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery();
+
+            while (rsetTable11.next()) {
+                j = rsetTable11.getInt(1);
+            }
+
+            java.lang.String str = null;
+            java.lang.Object[] selectedValues = null;
+            java.sql.Array arraySet = null;
+
+
+            if (schemeExcludedList.getModel().getSize() < 1) {//getModel().getElementAt(0) == null){
+
+               
+            } else {
+
+                java.util.Vector item2add = new java.util.Vector(5, 5);
+
+                javax.swing.DefaultListModel listModel = new javax.swing.DefaultListModel();
+
+                listModel = (javax.swing.DefaultListModel) schemeExcludedList.getModel();
+
+                java.util.Enumeration listEnum = listModel.elements();
+
+                while (listEnum.hasMoreElements()) {
+
+                    item2add.addElement(listEnum.nextElement());
+
+                }
+
+                selectedValues = item2add.toArray();
+                
+                for (int k = 0; k < selectedValues.length; k++) {
+
+                    System.out.print("Values : " + "\t" + selectedValues[k] + "\t");
+
+                }
+                arraySet = connectDB.createArrayOf("varchar", selectedValues);
+            }
+
+            if (j <= 0) {
+
+                System.out.println("Registering new Exclusion.");
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO public.ac_schemes_exclusions(scheme_name, account_no, gl_account, department, exclusions)  VALUES (?, ?, ?, ?, ?) ");
+
+                if (schemeNameTxt.getText().isEmpty()) {
+
+                    javax.swing.JOptionPane.showMessageDialog(this, "Select Scheme First", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                } else {
+                    pstmt.setObject(1, schemeNameTxt.getText());
+                }
+                pstmt.setObject(2, debtorAccountNumberTxt.getText());
+                pstmt.setString(3, serviceGLAccount);
+                pstmt.setObject(4, jComboBox1.getSelectedItem().toString());
+                pstmt.setArray(5, arraySet);
+                pstmt.execute();//teUpdate();
+            } else {
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("UPDATE public.ac_schemes_exclusions SET   exclusions=?, trans_date = now(), user_name = current_user WHERE account_no=? AND gl_account=? ");
+                pstmt.setArray(1, arraySet);
+                pstmt.setObject(2, debtorAccountNumberTxt.getText());
+                pstmt.setString(3, serviceGLAccount);
+                pstmt.executeUpdate();
+            }
+            
+            connectDB.commit();
+                        connectDB.setAutoCommit(true);
+
+                        javax.swing.JOptionPane.showMessageDialog(this, "Successfully set Exclusions for : [" + schemeNameTxt.getText() + "] Under " + jComboBox1.getSelectedItem().toString() + " " );
+
+        } catch (java.sql.SQLException sq) {
+            sq.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+            try {
+                connectDB.rollback();
+            } catch (java.sql.SQLException sql) {
+                javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        //        this.schemeLimitTxt.setText("");        // Add your handling code here:
     }//GEN-LAST:event_jButton202212ActionPerformed
 
     private void removeExclusionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeExclusionsBtnActionPerformed
@@ -1920,6 +2014,13 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
         this.schemeProfessionalRegNumberTxt.setText("");
         this.schemeCompanyRegistrationNumberTxt.setText("");
         this.schemeTradeLicenseNumberTxt.setText("");
+        schemeContactsInformationTxt.setText("");
+        //jTextPane2.setText("");
+        // jTextField14.setText("");
+        otherSchemeContactsTxt.setText("");
+        //   jTextPane31.setText("");
+        //                jTextPane11.setText("");
+
         //       this.jTextField49.setText("");
         //       this.jTextField56.setText("");// Add your handling code here:
     }//GEN-LAST:event_jButton202211ActionPerformed
@@ -1955,7 +2056,6 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
         //jTextField552.setText("");*//*
         mainFaxTxt.setText("");// */
         countryTxt.setSelectedItem(null);
-
 
         //     Add your handling code here:
     }//GEN-LAST:event_refreshBtnActionPerformed
@@ -2004,8 +2104,6 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
             javax.swing.DefaultListModel listModel = new javax.swing.DefaultListModel();
 
             listModel = (javax.swing.DefaultListModel) schemeExcludedList.getModel();
-
-
 
             java.util.Enumeration listEnum = listModel.elements();
 
@@ -2244,6 +2342,72 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
         // Add your handling code here:
     }//GEN-LAST:event_registerDebtorBtnActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        serviceGLAccount = com.afrisoftech.lib.GLCodesFactory.getGlCode(connectDB, jComboBox1.getSelectedItem().toString());
+
+        if (jComboBox1.getSelectedItem().toString().toLowerCase().contains("pharmacy")) {
+            exclusionsList.setModel(com.afrisoftech.lib.ListModel.listModel(connectDB, "SELECT  DISTINCT TRIM(product || ' ' || strength)  FROM public.st_stock_prices WHERE gl_code = '"+serviceGLAccount+"' ORDER BY 1 "));
+        } else {
+            exclusionsList.setModel(com.afrisoftech.lib.ListModel.listModel(connectDB, "select DISTINCT service_type from pb_operating_parameters WHERE main_service ilike '" + jComboBox1.getSelectedItem() + "'  ORDER BY 1  "));
+        }
+        
+        java.lang.String[] listSet = null;
+
+        java.sql.ResultSet rsetArray = null;
+         javax.swing.DefaultListModel dfListModel = new javax.swing.DefaultListModel();
+
+        
+        try{
+            
+            java.sql.Statement stmt = connectDB.createStatement();
+
+            java.sql.ResultSet rs = stmt.executeQuery("select exclusions from ac_schemes_exclusions where account_no  = '" + debtorAccountNumberTxt.getText() + "'  AND department ilike '"+jComboBox1.getSelectedItem().toString()+"' ORDER BY 1");
+
+            while (rs.next()) {
+
+                java.sql.Array arraySet = rs.getArray(1);
+
+                java.lang.Object[] listSetTest = (java.lang.Object[]) arraySet.getArray();
+
+                if (!(listSetTest == null)) {
+
+                    listSet = (java.lang.String[]) arraySet.getArray();
+
+                    rsetArray = arraySet.getResultSet();
+
+                } else {
+
+                    listSet = null;
+
+                }
+            }
+
+        } catch (java.sql.SQLException sqlExec) {
+
+            javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
+
+        }
+
+        if (listSet != null) {
+
+            for (int i = 0; i < listSet.length; i++) {
+
+                System.out.println(listSet[i].toString());
+
+                dfListModel.addElement(listSet[i].toString());
+
+            }
+        } else {
+
+            dfListModel = new javax.swing.DefaultListModel();
+
+        }
+
+        this.schemeExcludedList.setModel(dfListModel);
+
+// Add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     public void run() {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2276,10 +2440,10 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
     private javax.swing.JButton jButton20221;
     private javax.swing.JButton jButton202211;
     private javax.swing.JButton jButton202212;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel1531;
     private javax.swing.JLabel jLabel15311;
-    private javax.swing.JLabel jLabel15312;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
@@ -2296,7 +2460,6 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
     private javax.swing.JLabel jLabel622;
     private javax.swing.JLabel jLabel62221;
     private javax.swing.JLabel jLabel622211;
-    private javax.swing.JLabel jLabel622212;
     private javax.swing.JLabel jLabel642;
     private javax.swing.JLabel jLabel64221;
     private javax.swing.JLabel jLabel642211;
@@ -2321,6 +2484,7 @@ public class SchemesIntfr extends javax.swing.JInternalFrame implements java.lan
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator71;
     private javax.swing.JSeparator jSeparator7121;
     private javax.swing.JSeparator jSeparator71211;

@@ -804,7 +804,7 @@
     </Container>
     <Component class="javax.swing.ButtonGroup" name="diseaseSearchBtngrp">
     </Component>
-    <Container class="javax.swing.JDialog" name="jSearchDialog4">
+    <Container class="javax.swing.JDialog" name="repeatedNamesSearch">
       <Properties>
         <Property name="autoRequestFocus" type="boolean" value="false"/>
         <Property name="focusable" type="boolean" value="false"/>
@@ -813,12 +813,12 @@
         <Property name="resizable" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="componentHidden" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="jSearchDialog4ComponentHidden"/>
+        <EventHandler event="componentHidden" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="repeatedNamesSearchComponentHidden"/>
       </Events>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jSearchPanel5">
+        <Container class="javax.swing.JPanel" name="repeatedNameSearchPanel">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -835,22 +835,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="jTextField28">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="focusable" type="boolean" value="false"/>
-              </Properties>
-              <Events>
-                <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="jTextField28CaretUpdate"/>
-                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField28FocusLost"/>
-              </Events>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                  <GridBagConstraints gridX="0" gridY="0" gridWidth="2" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="5" anchor="10" weightX="300.0" weightY="1.0"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Container class="javax.swing.JScrollPane" name="jSearchScrollPane4">
+            <Container class="javax.swing.JScrollPane" name="repeatedSearchScrollPanel">
               <Properties>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -879,20 +864,6 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="dispose3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Dispose/Close"/>
-                <Property name="focusable" type="boolean" value="false"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dispose3ActionPerformed"/>
-              </Events>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                  <GridBagConstraints gridX="2" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
-                </Constraint>
-              </Constraints>
-            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
@@ -1899,9 +1870,6 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel57">
                           <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="14" style="1"/>
-                            </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="99" green="33" red="ff" type="rgb"/>
                             </Property>
@@ -2661,6 +2629,9 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel31">
                           <Properties>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="33" green="33" red="ff" type="rgb"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="SubCounty/Location"/>
                           </Properties>
                           <Constraints>
@@ -2691,6 +2662,9 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="residenceCountyLbl">
                           <Properties>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="33" green="33" red="ff" type="rgb"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="County of Residence"/>
                           </Properties>
                           <Constraints>
@@ -2716,6 +2690,9 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                               <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT DISTINCT country_name FROM pb_country ORDER BY 1&quot;)" type="code"/>
+                            </Property>
+                            <Property name="selectedItem" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="&quot;Kenya&quot;" type="code"/>
                             </Property>
                           </Properties>
                           <Constraints>
@@ -4108,6 +4085,23 @@
                             </Constraint>
                           </Constraints>
                         </Component>
+                        <Component class="javax.swing.JTextField" name="seachPatTxt">
+                          <Properties>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                                <TitledBorder title="Search Patient"/>
+                              </Border>
+                            </Property>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="seachPatTxtCaretUpdate"/>
+                          </Events>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
                       </SubComponents>
                     </Container>
                     <Container class="javax.swing.JPanel" name="reportsMainPanel">
@@ -4134,11 +4128,11 @@
                             <Component class="javax.swing.JTable" name="reportsTable">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                                  <Connection code="com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, &quot;SELECT DISTINCT patient_no, initcap(name) as patient_name, input_date::time(0) as registration_time, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE date = current_date order by 3&quot;)&#xd;&#xa;" type="code"/>
+                                  <Connection code="com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, &quot;SELECT DISTINCT patient_no, initcap(name) as patient_name, input_date::time(0) as registration_time, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, clinic, (SELECT tel_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as tel_no, (SELECT id_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as id_no , user_name as registrar from hp_patient_visit WHERE date = current_date order by 3&quot;)&#xa;    " type="code"/>
                                 </Property>
                               </Properties>
                               <AuxValues>
-                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JXTable();"/>
+                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JXTable()"/>
                               </AuxValues>
                             </Component>
                           </SubComponents>
@@ -4158,6 +4152,9 @@
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Refresh report"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshBtnActionPerformed"/>
+                          </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                               <GridBagConstraints gridX="1" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>

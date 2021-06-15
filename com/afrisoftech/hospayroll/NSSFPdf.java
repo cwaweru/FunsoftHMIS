@@ -14,6 +14,9 @@ import java.io.IOException;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfWriter;
 import com.lowagie.text.pdf.*;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class NSSFPdf implements java.lang.Runnable {
@@ -319,80 +322,67 @@ public class NSSFPdf implements java.lang.Runnable {
                         table2.getDefaultCell().setColspan(6);
                         
                         Phrase phrase2;
-                        table2.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
+//                        table2.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
                         
                         
                         try {
+                            
                             java.sql.Statement st3 = connectDB.createStatement();
-                            java.sql.Statement st4 = connectDB.createStatement();
-                            
-                            java.sql.ResultSet rset2 = st3.executeQuery("SELECT hospital_name,nssf_no,postal_code||' '||box_no,main_telno from pb_hospitalprofile");
-                            java.sql.ResultSet rset4 = st4.executeQuery("SELECT institution_name,address,branch from statutory_institutions where (deduction_type = 'NSSF' OR deduction_type = 'N.S.S.F')");
-                            
-                            java.lang.Object listofStaffNos[] = this.getListofStaffNos();
-                            
-                            for (int j = 0; j < listofStaffNos.length; j++) {
-                                java.sql.Statement st = connectDB.createStatement();
+                                java.sql.Statement st4 = connectDB.createStatement();
                                 
-                                java.sql.Statement st2 = connectDB.createStatement();
+                                Phrase phrase;
                                 
+                                java.sql.ResultSet rset2 = st3.executeQuery("SELECT hospital_name,nhif_no from pb_hospitalprofile");
+                                java.sql.ResultSet rset4 = st4.executeQuery("SELECT institution_name,branch from statutory_institutions where (deduction_type ILIKE 'NHIF%' OR deduction_type ILIKE 'N.H.I.%' )");
                                 
-                                while (rset2.next()) {
-                                    
-                                    while (rset4.next()) {
+                                java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MONTH_FIELD);//MEDIUM);
+                                
+                                java.util.Date formattedDate = null;
+                            try {
+                                formattedDate = dateFormat.parse(endDate); //dateInstance.toLocaleString());
+                            } catch (ParseException ex) {
+                                Logger.getLogger(NSSFPdf.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                                
+                                while(rset2.next()){
+                                    while(rset4.next()){
                                         
+                                        table2.getDefaultCell().setColspan(6);
+                                        table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER); 
+                                        phrase = new Phrase(""+rset2.getString(1).toUpperCase(), pFontHeader);
+                                        
+                                        table2.addCell(phrase);
+                                        
+                                        phrase = new Phrase("TO :  "+rset4.getString(1).toUpperCase()+"   "+rset4.getString(2).toUpperCase(), pFontHeader);
+                                        
+                                       // table.addCell(phrase);
                                         table2.getDefaultCell().setColspan(3);
                                         
-                                        table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                        phrase2 = new Phrase("EMPLOYER'S NAME :     "+rset2.getObject(1).toString(), pFontHeader);
-                                        table2.addCell(phrase2);
-                                        // table.getDefaultCell().setColspan(1);
-                                        table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                        phrase2 = new Phrase(rset4.getObject(1).toString(), pFontHeader);
-                                        table2.addCell(phrase2);
-                                        //   table.getDefaultCell().setColspan(1);
+                                        table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT); 
+                                        phrase = new Phrase("NSSF MONTHLY CONTRIBUTIONS :  ", pFontHeader);
                                         
-                                        table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                        phrase2 = new Phrase("EMPLOYER'S NUMBER : "+rset2.getObject(2).toString(), pFontHeader);
-                                        table2.addCell(phrase2);
-                                        //   table.getDefaultCell().setColspan(1);
-                                        table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                        phrase2 = new Phrase(rset4.getObject(2).toString(), pFontHeader);
-                                        table2.addCell(phrase2);
+                                        table2.addCell(phrase);
                                         
-                                        table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                        phrase2 = new Phrase("ADDRESS :         "+rset2.getObject(3).toString(), pFontHeader);
-                                        table2.addCell(phrase2);
+                                        phrase = new Phrase(dateFormat.format(formattedDate), pFontHeader);
                                         
-                                        table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                        phrase2 = new Phrase(rset4.getObject(3).toString(), pFontHeader);
-                                        table2.addCell(phrase2);
+                                        table2.addCell(phrase);
                                         
-                                        table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                        phrase2 = new Phrase("TEL No. :            "+rset2.getObject(4).toString(), pFontHeader);
-                                        table2.addCell(phrase2);
+                                        phrase = new Phrase("EMPLOYER NAME :  "+rset2.getString(1).toUpperCase(), pFontHeader);
                                         
-                                        table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                        phrase2 = new Phrase("  " , pFontHeader);
-                                        table2.addCell(phrase2);
+                                        table2.addCell(phrase);
+                                        
+                                        phrase = new Phrase("CODE NO.  "+rset2.getString(2).toUpperCase(), pFontHeader);
+                                        
+                                        table2.addCell(phrase);
                                     }
                                 }
-                            }
-                            table2.getDefaultCell().setColspan(6);
-                            
-                            table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                            phrase2 = new Phrase("STANDARD CONTRIBUTIONS RETURN FORM", pFontHeader);
-                            table2.addCell(phrase2);
-                            
-                            table2.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
-                            
-                            table2.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP | Rectangle.RIGHT | Rectangle.LEFT);
-                            
-                            
-                            table2.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                            phrase2 = new Phrase("1. FOR OFFICIAL USE ONLY", pFontHeader);
-                            table2.addCell(phrase2);
-                            
+                                
+                                table2.getDefaultCell().setColspan(4);
+                                
+                                
+                                phrase = new Phrase("      ", pFontHeader1);
+                                
+                                table2.addCell(phrase);
                             
                             docPdf.add(table2);
                             
@@ -434,34 +424,34 @@ public class NSSFPdf implements java.lang.Runnable {
                         //    table.getDefaultCell().setBackgroundColor(java.awt.Color.LIGHT_GRAY);
                         table1.getDefaultCell().setColspan(1);
                         
-                        table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                        phrase1 = new Phrase("  ",pFontHeader);
-                        table1.addCell(phrase1);
-                        
-                        phrase1 = new Phrase("BATCH NUMBER",pFontHeader);
-                        table1.addCell(phrase1);
-                        table1.getDefaultCell().setColspan(1);
-                        
-                        phrase1 = new Phrase("EMPLOYER NUMBER",pFontHeader);
-                        table1.addCell(phrase1);
-                        table1.getDefaultCell().setColspan(1);
-                        
-                        //  table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                        phrase1 = new Phrase("NO. OF ENTRIES",pFontHeader);
-                        table1.addCell(phrase1);
-                        
-                        
-                        phrase1 = new Phrase("TOTAL VALUE (SHILLINGS)",pFontHeader);
-                        table1.addCell(phrase1);
-                        
-                        phrase1 = new Phrase("SERIAL NUMBER",pFontHeader);
-                        table1.addCell(phrase1);
-                        
-                        phrase1 = new Phrase("MONTH",pFontHeader);
-                        table1.addCell(phrase1);
-                        phrase1 = new Phrase("YEAR",pFontHeader);
-                        table1.addCell(phrase1);
-                        
+//                        table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+//                        phrase1 = new Phrase("  ",pFontHeader);
+//                        table1.addCell(phrase1);
+//                        
+//                        phrase1 = new Phrase("BATCH NUMBER",pFontHeader);
+//                        table1.addCell(phrase1);
+//                        table1.getDefaultCell().setColspan(1);
+//                        
+//                        phrase1 = new Phrase("EMPLOYER NUMBER",pFontHeader);
+//                        table1.addCell(phrase1);
+//                        table1.getDefaultCell().setColspan(1);
+//                        
+//                        //  table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+//                        phrase1 = new Phrase("NO. OF ENTRIES",pFontHeader);
+//                        table1.addCell(phrase1);
+//                        
+//                        
+//                        phrase1 = new Phrase("TOTAL VALUE (SHILLINGS)",pFontHeader);
+//                        table1.addCell(phrase1);
+//                        
+//                        phrase1 = new Phrase("SERIAL NUMBER",pFontHeader);
+//                        table1.addCell(phrase1);
+//                        
+//                        phrase1 = new Phrase("MONTH",pFontHeader);
+//                        table1.addCell(phrase1);
+//                        phrase1 = new Phrase("YEAR",pFontHeader);
+//                        table1.addCell(phrase1);
+//                        
                         try {
                             java.sql.Statement st3 = connectDB.createStatement();
                             java.sql.Statement st4 = connectDB.createStatement();
@@ -473,8 +463,7 @@ public class NSSFPdf implements java.lang.Runnable {
                             
                             
                             
-                            while (rset2.next()) {
-                                
+                            while (rset2.next()) {                               
                                 while (rset4.next()) {
                                     
                                     table1.getDefaultCell().setColspan(1);
@@ -517,7 +506,7 @@ public class NSSFPdf implements java.lang.Runnable {
                             }
                             
                             
-                            docPdf.add(table1);
+//                            docPdf.add(table1);
                             
                             
                         } catch(java.sql.SQLException SqlExec) {
@@ -537,7 +526,7 @@ public class NSSFPdf implements java.lang.Runnable {
                         double payee = 0;
                         com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(7);
                         
-                        int headerwidths[] = {7,15,35,10,10,10,15};
+                        int headerwidths[] = {10,10,15,35,10,10,18};
                         
                         table.setWidths(headerwidths);
                         
@@ -563,6 +552,9 @@ public class NSSFPdf implements java.lang.Runnable {
                         phrase = new Phrase("No.",pFontHeader);
                         table.addCell(phrase);
                         
+                        phrase = new Phrase("Staff No.",pFontHeader);
+                        table.addCell(phrase);
+                        
                         phrase = new Phrase("ID NUMBER",pFontHeader);
                         table.addCell(phrase);
                         
@@ -581,12 +573,12 @@ public class NSSFPdf implements java.lang.Runnable {
                         
                         
                         phrase = new Phrase("REMARKS",pFontHeader);
-                        table.addCell(phrase);
+                        //table.addCell(phrase);
                         
                         
                         try {
                             java.sql.Statement st3 = connectDB.createStatement();
-                            java.sql.ResultSet rsetTotals = st3.executeQuery("SELECT SUM(amount*2) from posting WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND (description ILIKE 'NSSF%' or description ilike 'N.s.s.%') and company_name ilike '"+bank+"'");
+                            java.sql.ResultSet rsetTotals = st3.executeQuery("SELECT SUM(amount*2) from posting WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND (description ILIKE 'NSSF' or description ilike 'N.s.s.f') and company_name ilike '"+bank+"'");
                             
                             java.lang.Object listofStaffNos[] = this.getListofStaffNos();
                             
@@ -598,7 +590,7 @@ public class NSSFPdf implements java.lang.Runnable {
                                 
                                 java.sql.ResultSet rset = st.executeQuery("select distinct id_no,first_name||' '||middle_name||' '||last_name as name,nssf_no from master_file where employee_no ILIKE '"+listofStaffNos[j]+"%' AND company_name ilike '"+bank+"' order by name");
                                 
-                                java.sql.ResultSet rset1 = st2.executeQuery("SELECT sum(amount*2) from posting WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND staff_no = '"+listofStaffNos[j]+"'  AND (description ILIKE 'NSSF%' OR description ilike 'N.s.s.%') AND company_name ilike '"+bank+"' group by staff_no");
+                                java.sql.ResultSet rset1 = st2.executeQuery("SELECT sum(amount*2) from posting WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND staff_no = '"+listofStaffNos[j]+"'  AND (description ILIKE 'NSSF' OR description ilike 'N.S.S.F') AND company_name ilike '"+bank+"' group by staff_no");
                                 
                                 
                                 
@@ -610,6 +602,11 @@ public class NSSFPdf implements java.lang.Runnable {
                                     phrase = new Phrase(""+numSeq,  pFontHeader1);
                                     table.addCell(phrase);
                                     
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                                    phrase = new Phrase(""+listofStaffNos[j],  pFontHeader1);
+                                    table.addCell(phrase);
+                                    
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                     phrase = new Phrase(rset.getObject(1).toString(), pFontHeader1);
                                     table.addCell(phrase);
@@ -619,7 +616,7 @@ public class NSSFPdf implements java.lang.Runnable {
                                     table.addCell(phrase);
                                     table.getDefaultCell().setColspan(2);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase(rset.getObject(3).toString(), pFontHeader1);
+                                    phrase = new Phrase(rset.getString(3), pFontHeader1);
                                     
                                     table.addCell(phrase);
                                 }
@@ -638,7 +635,7 @@ public class NSSFPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase = new Phrase("  ", pFontHeader1);
                                 
-                                table.addCell(phrase);
+                                //table.addCell(phrase);
                             }
                             
                             while (rsetTotals.next()) {
@@ -714,8 +711,11 @@ public class NSSFPdf implements java.lang.Runnable {
                                 
                                 table.addCell(phrase);
                                 
-                                
                                 table.getDefaultCell().setColspan(1);
+                                
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                phrase = new Phrase("    ", pFontHeader1);
+                                table.addCell(phrase);
                                 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                                 
@@ -724,10 +724,7 @@ public class NSSFPdf implements java.lang.Runnable {
                             }
                             
                             
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase("    ", pFontHeader1);
                             
-                            table.addCell(phrase);
                             
                             table.getDefaultCell().setColspan(7);
                             
@@ -870,7 +867,7 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
             
             java.sql.Statement stmt1 = connectDB.createStatement();
             
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT staff_no,staff_name from posting WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND (description ILIKE 'NSSF%' or description ILIKE 'N.S.S.F%') and company_name ilike '"+bank+"' order by staff_name");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT staff_no,staff_name from posting WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND (description ILIKE 'NSSF%' or description ILIKE 'N.S.S.F%') and company_name ilike '"+bank+"' order by staff_no");
             
             while (rSet1.next()) {
                 

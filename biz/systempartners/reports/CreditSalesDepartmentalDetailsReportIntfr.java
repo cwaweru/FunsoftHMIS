@@ -157,7 +157,7 @@ public class CreditSalesDepartmentalDetailsReportIntfr extends javax.swing.JInte
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(saveReportBtn, gridBagConstraints);
 
-        schemeNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT initcap(scheme_name) FROM ac_schemes ORDER BY 1"));
+        schemeNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' UNION SELECT DISTINCT initcap(scheme_name) FROM ac_schemes ORDER BY 1"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;

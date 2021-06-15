@@ -153,15 +153,15 @@ public class CallBackURSIntfr extends javax.swing.JInternalFrame {
 
     private void registerURLBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerURLBtnActionPerformed
 
-        String registerURL = paybillNoCmbx.getSelectedItem().toString();//javax.swing.JOptionPane.showInputDialog(this, "Register URL", "Call Back URL Registration", javax.swing.JOptionPane.QUESTION_MESSAGE);
+        String paybillNo = paybillNoCmbx.getSelectedItem().toString();//javax.swing.JOptionPane.showInputDialog(this, "Register URL", "Call Back URL Registration", javax.swing.JOptionPane.QUESTION_MESSAGE);
 
-        if (registerURL != null) {
-            if (registerURL != null) {
-                com.afrisoftech.hospital.HospitalMain.payBillNumber = registerURL;
+        if (paybillNo != null) {
+            if (paybillNo != null) {
+                com.afrisoftech.hospital.HospitalMain.payBillNumber = paybillNo;
                 try {
                     java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT DISTINCT merchant_id, consumer_secrets FROM ac_cash_points WHERE paybill_no = ?");
 
-                    pstmt.setString(1, registerURL);
+                    pstmt.setString(1, paybillNo);
                     java.sql.ResultSet rset = pstmt.executeQuery();
                     while (rset.next()) {
                         try {
@@ -179,14 +179,19 @@ public class CallBackURSIntfr extends javax.swing.JInternalFrame {
             } else {
                 javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a paybill in order to proceed");
             }
-            System.out.println("Working on : [" + registerURL + "]");
+            System.out.println("Working on : [" + paybillNo + "]");
 
             callBackURL = callbackURLTxt.getText();
 
             validationURL = validationURLTxt.getText();
 
-            com.afrisoftech.funsoft.mobilepay.MobilePayAPI.registerCallbackURL(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), registerURL, callBackURL, validationURL);
+            boolean urlRegistered = com.afrisoftech.funsoft.mobilepay.MobilePayAPI.registerCallbackURL(com.afrisoftech.funsoft.mobilepay.Base64Encoding.encodetoBase64String("Si1Y0dik7IoBEFC9buVTGBBdM0A9mQLw:DlPLOhUtuwdAjzDB"), paybillNo, callBackURL, validationURL);
 
+            if (urlRegistered) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Call back URLs registered successfully");
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "ERROR : Callback URL registration failed!. Please check your entries and try again.");
+            }
             try {
                 java.sql.PreparedStatement pstmtCallBack = connectDB.prepareStatement("INSERT INTO public.call_back_url_logs( call_back_url, validation_url) VALUES (?, ?)");
                 pstmtCallBack.setString(1, callBackURL);
@@ -195,8 +200,6 @@ public class CallBackURSIntfr extends javax.swing.JInternalFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(CallBackURSIntfr.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            javax.swing.JOptionPane.showMessageDialog(this, "Call back URLs registered successfully");
 
         }
         // TODO add your handling code here:

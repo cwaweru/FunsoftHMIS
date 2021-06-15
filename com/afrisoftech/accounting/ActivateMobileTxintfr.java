@@ -6,6 +6,13 @@
  */
 package com.afrisoftech.accounting;
 
+import com.afrisoftech.lib.UserName;
+import com.afrisoftech.lib.md5Factory;
+import java.sql.SQLException;
+import javafx.scene.control.PasswordField;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+
 /**
  *
  * @author root
@@ -45,6 +52,13 @@ public class ActivateMobileTxintfr extends javax.swing.JInternalFrame {
         receiptSearchScrollPane1 = new javax.swing.JScrollPane();
         receiptSearchTable1 = new com.afrisoftech.dbadmin.JTable();
         disposeBtn1 = new javax.swing.JButton();
+        mobilepayTxSearchDialog = new javax.swing.JDialog();
+        jSearchPanel22 = new javax.swing.JPanel();
+        mobilepayTxSearchTxt = new javax.swing.JTextField();
+        jSearchScrollPane22 = new javax.swing.JScrollPane();
+        mobilepayTxtSearchTable = new com.afrisoftech.dbadmin.JTable();
+        jButton422 = new javax.swing.JButton();
+        jButton522 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -69,6 +83,70 @@ public class ActivateMobileTxintfr extends javax.swing.JInternalFrame {
         datePicker1 = new com.afrisoftech.lib.DatePicker();
         jLabel9 = new javax.swing.JLabel();
         mobilePayTokenBalanceTxt = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        deactivateBtn = new javax.swing.JButton();
+        viewBtn = new javax.swing.JButton();
+        closeBtn = new javax.swing.JButton();
+        removeRowBtn = new javax.swing.JButton();
+        clearBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        deactivateTransactionTbl = new com.afrisoftech.dbadmin.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        datePicker2 = new com.afrisoftech.lib.DatePicker();
+        jLabel15 = new javax.swing.JLabel();
+        datePicker3 = new com.afrisoftech.lib.DatePicker();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        searchTxnTxt = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        refundBtn = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        datePicker4 = new com.afrisoftech.lib.DatePicker();
+        jLabel17 = new javax.swing.JLabel();
+        datePicker5 = new com.afrisoftech.lib.DatePicker();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        searchTxnTxt1 = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        waitRefundsTbl = new com.afrisoftech.dbadmin.JTable();
+        closeBtn1 = new javax.swing.JButton();
+        refundBtn1 = new javax.swing.JButton();
+        viewBtn1 = new javax.swing.JButton();
+        refundBtn2 = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        datePicker6 = new com.afrisoftech.lib.DatePicker();
+        jLabel20 = new javax.swing.JLabel();
+        datePicker7 = new com.afrisoftech.lib.DatePicker();
+        jLabel21 = new javax.swing.JLabel();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        searchTxnTxt2 = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        paidupRefundsTbl = new com.afrisoftech.dbadmin.JTable();
+        viewBtn2 = new javax.swing.JButton();
+        jPanel13 = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        searchTxnTxt3 = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        datePicker8 = new com.afrisoftech.lib.DatePicker();
+        jLabel27 = new javax.swing.JLabel();
+        datePicker9 = new com.afrisoftech.lib.DatePicker();
+        jLabel28 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        transAuditTbl = new com.afrisoftech.dbadmin.JTable();
+        viewBtn3 = new javax.swing.JButton();
 
         receiptSearchDialog1.setModal(true);
         receiptSearchDialog1.setUndecorated(true);
@@ -146,6 +224,94 @@ public class ActivateMobileTxintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         receiptSearchDialog1.getContentPane().add(jSearchPanel3, gridBagConstraints);
+
+        mobilepayTxSearchDialog.setModal(true);
+        mobilepayTxSearchDialog.setUndecorated(true);
+        mobilepayTxSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jSearchPanel22.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jSearchPanel22.setLayout(new java.awt.GridBagLayout());
+
+        mobilepayTxSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                mobilepayTxSearchTxtCaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 300.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jSearchPanel22.add(mobilepayTxSearchTxt, gridBagConstraints);
+
+        mobilepayTxtSearchTable.setToolTipText("Click on the target row to select the patient from the search.");
+        mobilepayTxtSearchTable.setShowHorizontalLines(false);
+        /*javax.swing.table.TableColumn column = null;
+
+        for (int i = 0; i < 4; i++) {
+
+            column = jSearchTable2.getColumnModel().getColumn(i);
+
+            if (i == 1) {
+
+                column.setPreferredWidth(400);
+                //sport column is bigger
+            } else {
+
+                column.setPreferredWidth(200);
+
+            }
+        }
+        */
+        mobilepayTxtSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mobilepayTxtSearchTableMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mobilepayTxtSearchTableMouseEntered(evt);
+            }
+        });
+        jSearchScrollPane22.setViewportView(mobilepayTxtSearchTable);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 20.0;
+        jSearchPanel22.add(jSearchScrollPane22, gridBagConstraints);
+
+        jButton422.setText("Select");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jSearchPanel22.add(jButton422, gridBagConstraints);
+
+        jButton522.setText("Dispose");
+        jButton522.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton522ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jSearchPanel22.add(jButton522, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        mobilepayTxSearchDialog.getContentPane().add(jSearchPanel22, gridBagConstraints);
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -420,13 +586,1142 @@ public class ActivateMobileTxintfr extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Activate M-Pesa transactions", jPanel1);
 
+        jPanel2.setLayout(new java.awt.GridBagLayout());
+
+        deactivateBtn.setText("Deactivate Transactions");
+        deactivateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deactivateBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jPanel2.add(deactivateBtn, gridBagConstraints);
+
+        viewBtn.setMnemonic('l');
+        viewBtn.setText("View Deactivated Tokens");
+        viewBtn.setToolTipText("Click here to clear fields");
+        viewBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jPanel2.add(viewBtn, gridBagConstraints);
+
+        closeBtn.setMnemonic('C');
+        closeBtn.setText("Close form");
+        closeBtn.setToolTipText("Click here to close ");
+        closeBtn.setSelected(true);
+        closeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jPanel2.add(closeBtn, gridBagConstraints);
+
+        removeRowBtn.setMnemonic('l');
+        removeRowBtn.setText("Remove Row");
+        removeRowBtn.setToolTipText("Click here to clear fields");
+        removeRowBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeRowBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jPanel2.add(removeRowBtn, gridBagConstraints);
+
+        clearBtn.setMnemonic('l');
+        clearBtn.setText("Clear form");
+        clearBtn.setToolTipText("Click here to clear fields");
+        clearBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jPanel2.add(clearBtn, gridBagConstraints);
+
+        deactivateTransactionTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Transaction No", "Account No", "Transaction Date", "Amount Paid", "Token Balance", "User", "Date Deactivated"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        deactivateTransactionTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deactivateTransactionTblMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(deactivateTransactionTbl);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 5.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 2, 0);
+        jPanel2.add(jScrollPane1, gridBagConstraints);
+
+        jPanel3.setLayout(new java.awt.GridBagLayout());
+
+        jLabel14.setText("Begin Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel3.add(jLabel14, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
+        jPanel3.add(datePicker2, gridBagConstraints);
+
+        jLabel15.setText("End Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel3.add(jLabel15, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
+        jPanel3.add(datePicker3, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jLabel1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 0);
+        jPanel2.add(jPanel3, gridBagConstraints);
+
+        jPanel4.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel4.add(jLabel2, gridBagConstraints);
+
+        searchTxnTxt.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                searchTxnTxtCaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel4.add(searchTxnTxt, gridBagConstraints);
+
+        jLabel3.setText("Search Transaction(Mobile/Transaction No)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel4.add(jLabel3, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        jPanel2.add(jPanel4, gridBagConstraints);
+
+        refundBtn.setMnemonic('l');
+        refundBtn.setText("Save Marked Token for Refund");
+        refundBtn.setToolTipText("Click here to clear fields");
+        refundBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refundBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jPanel2.add(refundBtn, gridBagConstraints);
+
+        jTabbedPane1.addTab("Deactivate Transaction", jPanel2);
+
+        jPanel7.setLayout(new java.awt.GridBagLayout());
+
+        jPanel9.setLayout(new java.awt.GridBagLayout());
+
+        jLabel16.setText("Begin Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel9.add(jLabel16, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
+        jPanel9.add(datePicker4, gridBagConstraints);
+
+        jLabel17.setText("End Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel9.add(jLabel17, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
+        jPanel9.add(datePicker5, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel9.add(jLabel5, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 0);
+        jPanel7.add(jPanel9, gridBagConstraints);
+
+        jPanel10.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel10.add(jLabel7, gridBagConstraints);
+
+        searchTxnTxt1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                searchTxnTxt1CaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel10.add(searchTxnTxt1, gridBagConstraints);
+
+        jLabel18.setText("Search Transaction(Mobile/Transaction No)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel10.add(jLabel18, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        jPanel7.add(jPanel10, gridBagConstraints);
+
+        waitRefundsTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Transaction No", "Account No", "Transaction Date", "Amount Paid", "Token Balance", "User", "Date Deactivated"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        waitRefundsTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                waitRefundsTblMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(waitRefundsTbl);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 5.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 2, 0);
+        jPanel7.add(jScrollPane2, gridBagConstraints);
+
+        closeBtn1.setMnemonic('C');
+        closeBtn1.setText("Close form");
+        closeBtn1.setToolTipText("Click here to close ");
+        closeBtn1.setSelected(true);
+        closeBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtn1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jPanel7.add(closeBtn1, gridBagConstraints);
+
+        refundBtn1.setMnemonic('l');
+        refundBtn1.setText("Remove Marked Token from Refund List ");
+        refundBtn1.setToolTipText("Click here to clear fields");
+        refundBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refundBtn1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jPanel7.add(refundBtn1, gridBagConstraints);
+
+        viewBtn1.setMnemonic('l');
+        viewBtn1.setText("View Wait Listed Refunds");
+        viewBtn1.setToolTipText("Click here to clear fields");
+        viewBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewBtn1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jPanel7.add(viewBtn1, gridBagConstraints);
+
+        refundBtn2.setMnemonic('l');
+        refundBtn2.setText("Save Marked Token as Refunded");
+        refundBtn2.setToolTipText("Click here to clear fields");
+        refundBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refundBtn2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jPanel7.add(refundBtn2, gridBagConstraints);
+
+        jTabbedPane1.addTab("Wait-Listed refunds", jPanel7);
+
+        jPanel8.setLayout(new java.awt.GridBagLayout());
+
+        jPanel11.setLayout(new java.awt.GridBagLayout());
+
+        jLabel19.setText("Begin Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel11.add(jLabel19, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
+        jPanel11.add(datePicker6, gridBagConstraints);
+
+        jLabel20.setText("End Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel11.add(jLabel20, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
+        jPanel11.add(datePicker7, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel11.add(jLabel21, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 0);
+        jPanel8.add(jPanel11, gridBagConstraints);
+
+        jPanel12.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel12.add(jLabel22, gridBagConstraints);
+
+        searchTxnTxt2.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                searchTxnTxt2CaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel12.add(searchTxnTxt2, gridBagConstraints);
+
+        jLabel23.setText("Search Transaction(Mobile/Transaction No)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel12.add(jLabel23, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        jPanel8.add(jPanel12, gridBagConstraints);
+
+        paidupRefundsTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Transaction No", "Account No", "Transaction Date", "Amount Paid", "Token Balance", "User", "Date Deactivated"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        paidupRefundsTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                paidupRefundsTblMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(paidupRefundsTbl);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 5.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 2, 0);
+        jPanel8.add(jScrollPane3, gridBagConstraints);
+
+        viewBtn2.setMnemonic('l');
+        viewBtn2.setText("View Paid up Refunds");
+        viewBtn2.setToolTipText("Click here to clear fields");
+        viewBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewBtn2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jPanel8.add(viewBtn2, gridBagConstraints);
+
+        jTabbedPane1.addTab("Paid-Up Refunds", jPanel8);
+
+        jPanel13.setLayout(new java.awt.GridBagLayout());
+
+        jPanel14.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel14.add(jLabel24, gridBagConstraints);
+
+        searchTxnTxt3.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                searchTxnTxt3CaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel14.add(searchTxnTxt3, gridBagConstraints);
+
+        jLabel25.setText("Search Transaction(Mobile/Transaction No)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel14.add(jLabel25, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        jPanel13.add(jPanel14, gridBagConstraints);
+
+        jPanel15.setLayout(new java.awt.GridBagLayout());
+
+        jLabel26.setText("Begin Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel15.add(jLabel26, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
+        jPanel15.add(datePicker8, gridBagConstraints);
+
+        jLabel27.setText("End Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel15.add(jLabel27, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
+        jPanel15.add(datePicker9, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel15.add(jLabel28, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 0);
+        jPanel13.add(jPanel15, gridBagConstraints);
+
+        transAuditTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Transaction No", "Account No", "Transaction Date", "Amount Paid", "Token Balance", "User", "Date Deactivated"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        transAuditTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                transAuditTblMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(transAuditTbl);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 5.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 2, 0);
+        jPanel13.add(jScrollPane4, gridBagConstraints);
+
+        viewBtn3.setMnemonic('l');
+        viewBtn3.setText("Generate Report");
+        viewBtn3.setToolTipText("Click here to clear fields");
+        viewBtn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewBtn3ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jPanel13.add(viewBtn3, gridBagConstraints);
+
+        jTabbedPane1.addTab("Transaction Allocation Audit", jPanel13);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jTabbedPane1, gridBagConstraints);
 
-        setBounds(0, 0, 760, 500);
+        setBounds(0, 0, 1009, 501);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
@@ -462,15 +1757,15 @@ public class ActivateMobileTxintfr extends javax.swing.JInternalFrame {
             pst63x.setString(1, mobileTransactionNumberTxt1.getText());
             pst63x.setString(2, payerTelephoneNoTxt1.getText());
             pst63x.setDate(3, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-            
+
             pst63x.executeUpdate();
-            
-              javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful. " , "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-               mobilePayTokenBalanceTxt.setText("0.00");
+
+            javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful. ", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            mobilePayTokenBalanceTxt.setText("0.00");
         } catch (java.sql.SQLException sq) {
             sq.printStackTrace();
             javax.swing.JOptionPane.showConfirmDialog(this, sq.getMessage());
-            
+
             System.out.println(sq.getMessage());
             javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
@@ -492,8 +1787,16 @@ public class ActivateMobileTxintfr extends javax.swing.JInternalFrame {
         transactionIdentifierTxt1.setText(receiptSearchTable1.getValueAt(receiptSearchTable1.getSelectedRow(), 1).toString());
         mobileTransactionNumberTxt1.setText(receiptSearchTable1.getValueAt(receiptSearchTable1.getSelectedRow(), 1).toString());
         payerTelephoneNoTxt1.setText(receiptSearchTable1.getValueAt(receiptSearchTable1.getSelectedRow(), 2).toString());
-        
-         mobilePayTokenBalanceTxt.setText(String.valueOf(com.afrisoftech.lib.MobilePayments.getTokenValue(connectDB, mobileTransactionNumberTxt1.getText())));
+
+        mobilePayTokenBalanceTxt.setText(String.valueOf(com.afrisoftech.lib.MobilePayments.getTokenValue(connectDB, mobileTransactionNumberTxt1.getText())));
+
+        if (Double.valueOf(mobilePayTokenBalanceTxt.getText().replace(",", "")) < 1) {
+            javax.swing.JOptionPane.showMessageDialog(this, "The selected transaction has no balance and therefore cannot be activated ", "Info Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+            jButton2.setEnabled(false);
+        } else {
+            jButton2.setEnabled(true);
+        }
 
         receiptSearchDialog1.dispose();
         // TODO add your handling code here:
@@ -501,10 +1804,332 @@ public class ActivateMobileTxintfr extends javax.swing.JInternalFrame {
 
     private void receiptSearchTxt1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_receiptSearchTxt1CaretUpdate
         if (receiptSearchTxt1.getText().length() > 5) {
-            receiptSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_time::time(0), mobile_tx_id, account_no, date, paid_amount, upper(dealer) as client_name, journal_no as paybill_no, mobilepay_alert as processed FROM public.mobile_payments WHERE account_no ilike '%" + receiptSearchTxt1.getText() + "%' AND  debit > 0 ORDER BY account_no"));
+            receiptSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_time::time(0), mobile_tx_id, account_no, date, paid_amount, upper(dealer) as client_name,"
+                    + " journal_no as paybill_no, mobilepay_alert as processed,(SELECT SUM(debit-credit) FROM mobile_payments mp1 WHERE mp1.mobile_tx_id = mp.mobile_tx_id ) AS  balance FROM public.mobile_payments mp WHERE "
+                    + " account_no ilike '%" + receiptSearchTxt1.getText() + "%' AND  debit > 0  and mobile_tx_id NOT IN (SELECT transaction_id  FROM mobile_payment_deactivations WHERE trans_refund = true ) ORDER BY account_no"));
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_receiptSearchTxt1CaretUpdate
+
+    private void deactivateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deactivateBtnActionPerformed
+        try {
+            connectDB.setAutoCommit(false);
+
+            for (int i = 0; i < deactivateTransactionTbl.getRowCount(); i++) {
+                if (deactivateTransactionTbl.getValueAt(i, 0) != null) {
+                    java.sql.PreparedStatement pst63x = connectDB.prepareStatement("INSERT INTO mobile_payment_deactivations( transaction_id, account_no, "
+                            + " date_paid, token_amount, token_balance) VALUES (?, ?, ?, ?, ?);");
+                    pst63x.setString(1, deactivateTransactionTbl.getValueAt(i, 0).toString());
+                    pst63x.setString(2, deactivateTransactionTbl.getValueAt(i, 1).toString());
+                    pst63x.setString(3, deactivateTransactionTbl.getValueAt(i, 2).toString());
+                    pst63x.setDouble(4, Double.valueOf(deactivateTransactionTbl.getValueAt(i, 3).toString()));
+                    pst63x.setDouble(5, Double.valueOf(deactivateTransactionTbl.getValueAt(i, 4).toString()));
+
+                    pst63x.executeUpdate();
+                }
+            }
+
+            connectDB.commit();
+            connectDB.setAutoCommit(true);
+            javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful. ", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            clearBtn.doClick();
+        } catch (java.sql.SQLException sq) {
+            sq.printStackTrace();
+            javax.swing.JOptionPane.showConfirmDialog(this, sq.getMessage());
+
+            System.out.println(sq.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+        } // TODO add your handling code here:
+    }//GEN-LAST:event_deactivateBtnActionPerformed
+
+    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
+        deactivateTransactionTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_id, account_no, date_paid, token_amount, token_balance, \n"
+                + "       user_name, trans_time, trans_refund \n"
+                + "  FROM mobile_payment_deactivations    WHERE trans_time::date BETWEEN '" + datePicker2.getDate() + "' AND '" + datePicker3.getDate() + "' "));
+        deactivateBtn.setEnabled(false);
+// TODO add your handling code here:
+    }//GEN-LAST:event_viewBtnActionPerformed
+
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+        this.dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_closeBtnActionPerformed
+
+    private void removeRowBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeRowBtnActionPerformed
+
+        int rows2Delete = deactivateTransactionTbl.getSelectedRowCount();
+
+        int[] selectedRows = deactivateTransactionTbl.getSelectedRows();
+
+        if (rows2Delete < 1) {
+
+            java.awt.Toolkit.getDefaultToolkit().beep();
+
+            javax.swing.JOptionPane.showMessageDialog(this, "There are no selected rows to delete!");
+
+        } else {
+
+            if (rows2Delete > 1) {
+
+                for (int i = 0; i
+                        < selectedRows.length; i++) {
+
+                    javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) deactivateTransactionTbl.getModel();
+
+                    defTableModel.removeRow(selectedRows[i]);
+
+                }
+
+            } else {
+
+                javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) deactivateTransactionTbl.getModel();
+
+                defTableModel.removeRow(deactivateTransactionTbl.getSelectedRow());
+            }
+
+        }  // TODO add your handling code here:
+    }//GEN-LAST:event_removeRowBtnActionPerformed
+
+    private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
+        deactivateBtn.setEnabled(true);
+        for (int k = 0; k < deactivateTransactionTbl.getRowCount(); k++) {
+            for (int r = 0; r < deactivateTransactionTbl.getColumnCount(); r++) {
+                deactivateTransactionTbl.getModel().setValueAt(null, k, r);
+            }
+
+        }
+
+        searchTxnTxt.setText("");
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_clearBtnActionPerformed
+
+    private void mobilepayTxSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_mobilepayTxSearchTxtCaretUpdate
+
+        if (mobilepayTxSearchTxt.getText().length() > 5) {
+            mobilepayTxtSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_time::time(0), mobile_tx_id, account_no, date, paid_amount, upper(dealer) as client_name, journal_no as paybill_no, mobilepay_alert as processed FROM public.mobile_payments WHERE mobilepay_alert = false AND (mobile_tx_id ilike '%" + mobilepayTxSearchTxt.getText() + "%' OR account_no ilike '%" + mobilepayTxSearchTxt.getText() + "%' ) AND debit > 0 ORDER BY account_no"));
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobilepayTxSearchTxtCaretUpdate
+
+    private void mobilepayTxtSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobilepayTxtSearchTableMouseClicked
+
+        deactivateTransactionTbl.setValueAt(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 1), deactivateTransactionTbl.getSelectedRow(), 0);
+        deactivateTransactionTbl.setValueAt(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 2), deactivateTransactionTbl.getSelectedRow(), 1);
+        deactivateTransactionTbl.setValueAt(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 4), deactivateTransactionTbl.getSelectedRow(), 3);
+        deactivateTransactionTbl.setValueAt(mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 3) + " @ " + mobilepayTxtSearchTable.getValueAt(mobilepayTxtSearchTable.getSelectedRow(), 0), deactivateTransactionTbl.getSelectedRow(), 2);
+
+        deactivateTransactionTbl.setValueAt(com.afrisoftech.lib.MobilePayments.getTokenValue(connectDB, deactivateTransactionTbl.getValueAt(deactivateTransactionTbl.getSelectedRow(), 0).toString()), deactivateTransactionTbl.getSelectedRow(), 4);
+
+        mobilepayTxSearchDialog.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobilepayTxtSearchTableMouseClicked
+
+    private void mobilepayTxtSearchTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobilepayTxtSearchTableMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobilepayTxtSearchTableMouseEntered
+
+    private void jButton522ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton522ActionPerformed
+
+        mobilepayTxSearchDialog.dispose();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton522ActionPerformed
+
+    private void deactivateTransactionTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deactivateTransactionTblMouseClicked
+        if (deactivateTransactionTbl.getSelectedColumn() == 0) {
+            java.awt.Point point = this.deactivateTransactionTbl.getLocationOnScreen();
+
+            mobilepayTxSearchDialog.setSize(700, 200);
+
+            mobilepayTxSearchDialog.setLocation(point);
+
+            mobilepayTxSearchDialog.setVisible(true);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_deactivateTransactionTblMouseClicked
+
+    private void searchTxnTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchTxnTxtCaretUpdate
+        if (searchTxnTxt.getCaretPosition() > 3) {
+            deactivateTransactionTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_id, account_no, date_paid, token_amount, token_balance, \n"
+                    + "       user_name, trans_time\n"
+                    + "  FROM mobile_payment_deactivations    WHERE transaction_id ILIKE '%" + searchTxnTxt.getText() + "%' OR account_no ILIKE '%" + searchTxnTxt.getText() + "%' "));
+            deactivateBtn.setEnabled(false);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchTxnTxtCaretUpdate
+
+    private void refundBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refundBtnActionPerformed
+        JPasswordField pf = new JPasswordField();
+        String pwd = null;
+        int okCxl = JOptionPane.showConfirmDialog(null, pf, "Enter Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        if (okCxl == JOptionPane.OK_OPTION) {
+            pwd = new String(pf.getPassword());
+        }
+        // String pwd = JOptionPane.showInputDialog(this, "Please enter your authorization password");
+        if (md5Factory.md5(pwd).equals(UserName.getRefundsAuthorization())) {
+            try {
+                connectDB.setAutoCommit(false);
+                for (int i = 0; i < deactivateTransactionTbl.getRowCount(); i++) {
+                    if (deactivateTransactionTbl.getValueAt(i, 0) != null && Boolean.parseBoolean(deactivateTransactionTbl.getValueAt(i, 7).toString())) {
+                        java.sql.PreparedStatement pstmt112 = connectDB.prepareStatement("UPDATE mobile_payment_deactivations SET trans_refund = true  WHERE transaction_id = ?");
+                        pstmt112.setString(1, deactivateTransactionTbl.getValueAt(i, 0).toString());
+                        pstmt112.executeUpdate();
+                    }
+                }
+
+                connectDB.commit();
+            connectDB.setAutoCommit(true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            
+            javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful. ", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refundBtnActionPerformed
+
+    private void searchTxnTxt1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchTxnTxt1CaretUpdate
+        if (searchTxnTxt1.getCaretPosition() > 3) {
+            waitRefundsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_id, account_no, date_paid, token_amount, token_balance, \n"
+                    + "       user_name, trans_time, trans_refund, refund_completed, false AS remove_from_refund_list \n"
+                    + "  FROM mobile_payment_deactivations    WHERE ( account_no ILIKE '%" + searchTxnTxt1.getText() + "%'  or transaction_id ILIKE '%" + searchTxnTxt1.getText() + "%' ) and trans_refund = true AND refund_completed = false AND  trans_time::date BETWEEN '" + datePicker4.getDate() + "' AND '" + datePicker5.getDate() + "' "));
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_searchTxnTxt1CaretUpdate
+
+    private void waitRefundsTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_waitRefundsTblMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_waitRefundsTblMouseClicked
+
+    private void closeBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtn1ActionPerformed
+        this.dispose();; // TODO add your handling code here:
+    }//GEN-LAST:event_closeBtn1ActionPerformed
+
+    private void refundBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refundBtn1ActionPerformed
+        JPasswordField pf = new JPasswordField();
+        String pwd = null;
+        int okCxl = JOptionPane.showConfirmDialog(null, pf, "Enter Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        if (okCxl == JOptionPane.OK_OPTION) {
+            pwd = new String(pf.getPassword());
+        }
+        // String pwd = JOptionPane.showInputDialog(this, "Please enter your authorization password");
+        if (md5Factory.md5(pwd).equals(UserName.getRefundsAuthorization())) {
+            int exitOption = javax.swing.JOptionPane.showConfirmDialog(this, "Do you really want to rempve marked transaction from refund list?", "Caution before Saving!", javax.swing.JOptionPane.YES_NO_CANCEL_OPTION);
+
+            if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
+                try {
+                    connectDB.setAutoCommit(false);
+                    for (int i = 0; i < waitRefundsTbl.getRowCount(); i++) {
+                        if (waitRefundsTbl.getValueAt(i, 0) != null && Boolean.parseBoolean(waitRefundsTbl.getValueAt(i, 9).toString())) {
+                            java.sql.PreparedStatement pstmt112 = connectDB.prepareStatement("UPDATE mobile_payment_deactivations SET trans_refund = false  WHERE transaction_id = ?");
+                            System.err.println("UPDATE mobile_payment_deactivations SET trans_refund = false  WHERE transaction_id = '"+waitRefundsTbl.getValueAt(i, 0).toString()+"' ");
+                            pstmt112.setString(1, waitRefundsTbl.getValueAt(i, 0).toString());
+                            pstmt112.executeUpdate();
+                        }
+                    }
+
+                    connectDB.commit();
+            connectDB.setAutoCommit(true);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                javax.swing.JOptionPane.showMessageDialog(this, "Marked items removed from list. ", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+            }
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_refundBtn1ActionPerformed
+
+    private void viewBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtn1ActionPerformed
+        waitRefundsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_id, account_no, date_paid, token_amount, token_balance, \n"
+                + "       user_name, trans_time, trans_refund, refund_completed, false AS remove_from_refund_list \n"
+                + "  FROM mobile_payment_deactivations    WHERE trans_refund = true AND refund_completed = false AND  trans_time::date BETWEEN '" + datePicker4.getDate() + "' AND '" + datePicker5.getDate() + "' "));
+
+    }//GEN-LAST:event_viewBtn1ActionPerformed
+
+    private void refundBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refundBtn2ActionPerformed
+        JPasswordField pf = new JPasswordField();
+        String pwd = null;
+        int okCxl = JOptionPane.showConfirmDialog(null, pf, "Enter Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        if (okCxl == JOptionPane.OK_OPTION) {
+            pwd = new String(pf.getPassword());
+        }
+        // String pwd = JOptionPane.showInputDialog(this, "Please enter your authorization password");
+        if (md5Factory.md5(pwd).equals(UserName.getRefundsAuthorization())) {
+
+            int exitOption = javax.swing.JOptionPane.showConfirmDialog(this, "Do you really want to Save Marked tokens as refunded?", "Caution before Saving!", javax.swing.JOptionPane.YES_NO_CANCEL_OPTION);
+
+            if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
+                try {
+                    connectDB.setAutoCommit(false);
+                    for (int i = 0; i < waitRefundsTbl.getRowCount(); i++) {
+                        if (waitRefundsTbl.getValueAt(i, 0) != null && Boolean.parseBoolean(waitRefundsTbl.getValueAt(i, 8).toString())) {
+                            java.sql.PreparedStatement pstmt112 = connectDB.prepareStatement("UPDATE mobile_payment_deactivations SET refund_completed = true, refund_user= current_user, refund_time = now()  WHERE transaction_id = ?");
+                            pstmt112.setString(1, waitRefundsTbl.getValueAt(i, 0).toString());
+                            pstmt112.executeUpdate();
+                        }
+                    }
+
+                    connectDB.commit();
+            connectDB.setAutoCommit(true);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                javax.swing.JOptionPane.showMessageDialog(this, "Marked items have been saved as refunded. ", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+            }
+
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refundBtn2ActionPerformed
+
+    private void searchTxnTxt2CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchTxnTxt2CaretUpdate
+        if (searchTxnTxt3.getCaretPosition() > 3) {
+            paidupRefundsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_id, account_no, date_paid, token_amount, token_balance, trans_time AS date_deactivated, \n"
+                    + "       refund_user, refund_time   \n"
+                    + "  FROM mobile_payment_deactivations    WHERE ( account_no ILIKE '%" + searchTxnTxt2.getText() + "%'  or transaction_id ILIKE '%" + searchTxnTxt2.getText() + "%' ) and trans_refund = true AND refund_completed= true AND  refund_time::date BETWEEN '" + datePicker6.getDate() + "' AND '" + datePicker7.getDate() + "' "));
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_searchTxnTxt2CaretUpdate
+
+    private void paidupRefundsTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paidupRefundsTblMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_paidupRefundsTblMouseClicked
+
+    private void viewBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtn2ActionPerformed
+        paidupRefundsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_id, account_no, date_paid, token_amount, token_balance, trans_time AS date_deactivated, \n"
+                + "       refund_user, refund_time   \n"
+                + "  FROM mobile_payment_deactivations    WHERE trans_refund = true AND refund_completed= true AND  refund_time::date BETWEEN '" + datePicker6.getDate() + "' AND '" + datePicker7.getDate() + "' "));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewBtn2ActionPerformed
+
+    private void searchTxnTxt3CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchTxnTxt3CaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchTxnTxt3CaretUpdate
+
+    private void transAuditTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transAuditTblMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transAuditTblMouseClicked
+
+    private void viewBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtn3ActionPerformed
+        transAuditTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, dealer, UPPER(acc.journal_no) AS trans_id, SUM(debit-credit) AS amount_used,\n"
+                + "(SELECT SUM(debit-credit) FROM mobile_payments WHERE UPPER(mobile_tx_id) = UPPER(acc.journal_no) AND  debit >0 ) AS amount_paid\n"
+                + " FROM ac_cash_collection acc  WHERE UPPER(journal_no) IN ( \n"
+                + "SELECT trans_id from  (SELECT UPPER(journal_no) AS trans_id, COUNT(DISTINCT patient_no) AS patient_count  from ac_cash_collection acc where payment_mode ilike 'M-Pesa'  \n"
+                + "AND journal_no != '' AND journal_no IS NOT null AND  UPPER(journal_no) IN (SELECT UPPER(mobile_tx_id) FROM mobile_payments WHERE date \n"
+                + "BETWEEN '" + datePicker8.getDate() + "' AND '" + datePicker9.getDate() + "'  )\n"
+                + "GROUP BY 1 HAVING COUNT( DISTINCT patient_no) > 1 ) AS foo) GROUP BY 1,2,3,5 ORDER BY 3 "));
+        System.err.println("SELECT UPPER(journal_no) AS trans_id,(SELECT SUM(debit-credit) FROM mobile_payments WHERE UPPER(mobile_tx_id) = UPPER(acc.journal_no) AND  debit >0 ) AS amount,\n"
+                + "(SELECT DISTINCT account_no FROM mobile_payments WHERE UPPER(mobile_tx_id) = UPPER(acc.journal_no) AND  debit >0 LIMIT 1) AS account_no, COUNT(DISTINCT patient_no) AS patient_count ,'' AS patient_no, '' as patient_name, 0 as amount from ac_cash_collection acc where payment_mode ilike 'M-Pesa'  \n"
+                + "AND journal_no != '' AND journal_no IS NOT null AND  UPPER(journal_no) IN (SELECT UPPER(mobile_tx_id) FROM mobile_payments WHERE date \n"
+                + "BETWEEN '" + datePicker8.getDate() + "' AND '" + datePicker9.getDate() + "'  )\n"
+                + "GROUP BY 1,2,3 HAVING COUNT( DISTINCT patient_no) > 1");
+
+//        for(int i = 0; i < transAuditTbl.getRowCount(); i++){
+//            Object[] items = new Object[]{mobilepayTxNoTxt.getText(), payerMobileTelephoneNumberTxt.getText(), txAmount};
+//                    com.afrisoftech.lib.ClearTable.addRowData(transAuditTbl, items);
+//        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewBtn3ActionPerformed
     /*
      * public void tableModelTableChanged(javax.swing.event.TableModelEvent evt)
      * {
@@ -539,35 +2164,106 @@ public class ActivateMobileTxintfr extends javax.swing.JInternalFrame {
      * }
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton clearBtn;
+    public javax.swing.JButton closeBtn;
+    public javax.swing.JButton closeBtn1;
     private com.afrisoftech.lib.DatePicker datePicker1;
+    private com.afrisoftech.lib.DatePicker datePicker2;
+    private com.afrisoftech.lib.DatePicker datePicker3;
+    private com.afrisoftech.lib.DatePicker datePicker4;
+    private com.afrisoftech.lib.DatePicker datePicker5;
+    private com.afrisoftech.lib.DatePicker datePicker6;
+    private com.afrisoftech.lib.DatePicker datePicker7;
+    private com.afrisoftech.lib.DatePicker datePicker8;
+    private com.afrisoftech.lib.DatePicker datePicker9;
+    private javax.swing.JButton deactivateBtn;
+    private javax.swing.JTable deactivateTransactionTbl;
     private javax.swing.JButton disposeBtn1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton422;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton522;
     public javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel92;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JPanel jSearchPanel22;
     private javax.swing.JPanel jSearchPanel3;
+    private javax.swing.JScrollPane jSearchScrollPane22;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField mobilePayTokenBalanceTxt;
     private javax.swing.JTextField mobileTransactionNumberTxt1;
+    private javax.swing.JDialog mobilepayTxSearchDialog;
+    private javax.swing.JTextField mobilepayTxSearchTxt;
+    private javax.swing.JTable mobilepayTxtSearchTable;
+    private javax.swing.JTable paidupRefundsTbl;
     private javax.swing.JTextField payerNameTxt1;
     private javax.swing.JTextField payerTelephoneNoTxt1;
     private javax.swing.JDialog receiptSearchDialog1;
     private javax.swing.JScrollPane receiptSearchScrollPane1;
     private javax.swing.JTable receiptSearchTable1;
     private javax.swing.JTextField receiptSearchTxt1;
+    private javax.swing.JButton refundBtn;
+    private javax.swing.JButton refundBtn1;
+    private javax.swing.JButton refundBtn2;
+    private javax.swing.JButton removeRowBtn;
     private javax.swing.JButton searchButton1;
+    private javax.swing.JTextField searchTxnTxt;
+    private javax.swing.JTextField searchTxnTxt1;
+    private javax.swing.JTextField searchTxnTxt2;
+    private javax.swing.JTextField searchTxnTxt3;
+    private javax.swing.JTable transAuditTbl;
     private javax.swing.JTextField transactionDateTxt1;
     private javax.swing.JTextField transactionIdentifierTxt1;
+    private javax.swing.JButton viewBtn;
+    private javax.swing.JButton viewBtn1;
+    private javax.swing.JButton viewBtn2;
+    private javax.swing.JButton viewBtn3;
+    private javax.swing.JTable waitRefundsTbl;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,7 +7,7 @@ package com.afrisoftech.hospayroll;
 
 import java.sql.SQLException;
 
-////import com.sun.star.lib.uno.environments.java.java_environment;
+//import com.sun.star.lib.uno.environments.java.java_environment;
 /**
  *
  * @author Charles W. Waweru <cwaweru@systempartners.biz>

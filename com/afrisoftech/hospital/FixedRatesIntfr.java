@@ -25,6 +25,11 @@ public class FixedRatesIntfr extends javax.swing.JInternalFrame {
         pConnDB = pconnDB;
 
         initComponents();
+        
+        for (int k = 0; k < jTable1.getRowCount(); k++) {
+                jTable1.getModel().setValueAt(false, k, 6);
+            
+        }
     }
 
     /**

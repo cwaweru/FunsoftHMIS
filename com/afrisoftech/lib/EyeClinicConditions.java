@@ -6,7 +6,7 @@
 package com.afrisoftech.lib;
 
 import java.sql.SQLException;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -26,7 +26,7 @@ public class EyeClinicConditions {
                 conditionRank = rsetRank.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 

@@ -809,7 +809,8 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
             //java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT ac.activity_code FROM ac_cash_collection ac, pb_activity pb where receipt_time::DATE = '" + tDates + "' AND transaction_type not ilike 'Bank%' AND pb.activity_category != 'IEDS' AND pb.activity_category != 'IEXE' AND ac.activity_code = pb.code ORDER BY activity_code");
             // java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT ac.activity_code FROM ac_cash_collection ac, pb_activity pb WHERE receipt_time::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "' AND transaction_type not ilike 'Bank%' AND pb.activity_category != 'IEDS' AND pb.activity_category != 'IEXE' AND ac.activity_code = pb.code ORDER BY activity_code");
 
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT gl_account FROM pb_operating_parameters ac WHERE ac.category != 'IEDS' AND ac.category != 'IEXE' ORDER BY 1 ASC");
+            //java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT gl_account FROM pb_operating_parameters ac WHERE ac.category != 'IEDS' AND ac.category != 'IEXE' ORDER BY 1 ASC");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT code FROM pb_activity ac WHERE ( ac.activity_category ILIKE 'I' or ac.activity_category ILIKE 'B' OR ac.activity_category ILIKE 'PLID' OR ac.activity_category ILIKE 'PR') AND  ac.activity_category != 'IEDS' AND ac.activity_category != 'IEXE' ORDER BY 1 ASC");
 
 
 

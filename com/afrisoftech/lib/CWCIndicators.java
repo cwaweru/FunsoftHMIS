@@ -6,7 +6,7 @@
 package com.afrisoftech.lib;
 
 import java.sql.SQLException;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -37,7 +37,7 @@ public class CWCIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         if (count < 1) {
             return "N";
@@ -73,7 +73,7 @@ public class CWCIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -107,7 +107,7 @@ public class CWCIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }
@@ -138,7 +138,7 @@ public class CWCIndicators {
 
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return visitCount;
     }

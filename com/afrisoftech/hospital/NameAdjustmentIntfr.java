@@ -6,7 +6,7 @@ package com.afrisoftech.hospital;
 
 import java.beans.PropertyChangeEvent;
 import java.sql.SQLException;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -1057,7 +1057,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
                     clearForm();
                     javax.swing.JOptionPane.showMessageDialog(this, "Patient names update successfully");
                 } catch (SQLException ex) {
-                    ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                    ex.printStackTrace();             //ex.printStackTrace();
                     javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
                 }
 
@@ -1146,7 +1146,7 @@ public class NameAdjustmentIntfr extends javax.swing.JInternalFrame {
                     clearBodyForm();
                     javax.swing.JOptionPane.showMessageDialog(this, "Body names update successfully");
                 } catch (SQLException ex) {
-                    ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                    ex.printStackTrace();             //ex.printStackTrace();
                     javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
                 }
 

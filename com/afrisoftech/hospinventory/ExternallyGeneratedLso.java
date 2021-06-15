@@ -48,7 +48,7 @@ import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *

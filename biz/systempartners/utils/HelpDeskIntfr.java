@@ -7,7 +7,7 @@ package biz.systempartners.utils;
 import java.awt.Color;
 import java.sql.SQLException;
 import org.jdesktop.swingx.decorator.ColorHighlighter;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -110,7 +110,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(departmentCmbx, gridBagConstraints);
 
-        sectionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT section FROM master_file ORDER BY 1"));
+        sectionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT INITCAP(section) FROM hr.hr_sections ORDER BY 1"));
         sectionCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Select section"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -208,7 +208,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(actionPanel, gridBagConstraints);
 
-        bodyPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Describe the nature of the problem here (Emergency - in 30Mins, Urgent - in 1 Hr, Important -  in 2 hrs, Routine - in 12 Hrs)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(153, 153, 255)));
+        bodyPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Describe the nature of the problem here (Emergency - in 30Mins, Urgent - in 1 Hr, Important -  in 2 hrs, Routine - in 12 Hrs)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(153, 153, 255))); // NOI18N
         bodyPanel.setLayout(new java.awt.GridBagLayout());
 
         interventionRequestJscrl.setViewportView(interventionRequestEditorPane);
@@ -360,7 +360,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
     }//GEN-LAST:event_sendRequestBtnActionPerformed
 
@@ -389,7 +389,7 @@ public class HelpDeskIntfr extends javax.swing.JInternalFrame {
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //ex.printStackTrace();
             }
         }
         // TODO add your handling code here:

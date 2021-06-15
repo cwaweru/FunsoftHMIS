@@ -1817,7 +1817,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
         try {
 
             java.sql.Statement pstmt1 = connectDB.createStatement();
-            java.sql.ResultSet rs1 = pstmt1.executeQuery("select neg_allow from st_stock_control"); //from orders where supplier ='"+jTable1.getValueAt(i,4).toString()+"'");
+            java.sql.ResultSet rs1 = pstmt1.executeQuery("select neg_allow from st_stock_control WHERE UPPER(store) =  '"+issuingStoreCmbx.getSelectedItem().toString().toUpperCase()+"' "); //from orders where supplier ='"+jTable1.getValueAt(i,4).toString()+"'");
 
             while (rs1.next()) {
 
@@ -2189,6 +2189,12 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             System.err.println(Timestamp.valueOf(sdf.format(transactionTimepicker.getDate())));
+            boolean negativeBalance = com.afrisoftech.lib.GetItemInfo.checkNegativestoreBalances(connectDB, issuingStoreCmbx.getSelectedItem().toString(), issuingItemsTable, 4, 8);
+            
+//            if(!negativeBalance){
+//                 javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Kindly check the quantities to Issus against the Store Balances");
+//                   
+//            }else{
 
             for (int h = 0; h < issuingItemsTable.getModel().getRowCount(); h++) {
                 if (Double.parseDouble(issuingItemsTable.getValueAt(h, 8).toString().trim())
@@ -2601,6 +2607,7 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
                 }
                 
             }
+        
 //
 //            } else {
 //                javax.swing.JOptionPane.showMessageDialog(null, "Please check to ensure that all entered quantities are correct, some may be having zero value");

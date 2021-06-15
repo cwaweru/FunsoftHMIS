@@ -10,6 +10,7 @@ import com.lowagie.text.pdf.PdfWriter;
 import com.lowagie.text.pdf.*;
 import java.awt.Desktop;
 import java.io.FileOutputStream;
+import java.sql.SQLException;
 //import com.lowagie.text.pdf.PdfWriter;
 
 public class GatePassPdf implements java.lang.Runnable {
@@ -72,8 +73,24 @@ public class GatePassPdf implements java.lang.Runnable {
         while (threadCheck) {
 
             System.out.println("O.K. see how we execute target program");
+            int count = 0;
+            try {
+                java.sql.Statement st = connectDB.createStatement();
+                java.sql.ResultSet rs = st.executeQuery("select COUNT(*) from hp_patient_discharge cb where inv_no = '" + invoiceNo + "' AND patient_no = '" + patientNo + "' AND discharge_no = '" + dischargeNo + "'");
 
-            this.generatePdf(MNo);
+                while (rs.next()) {
+                    count = rs.getInt(1);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            if (count > 0) {
+                this.generatePdf(MNo);
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), "The release paper cannot be generated since the patient release details are missing", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+            }
 
             try {
 
@@ -458,7 +475,7 @@ public class GatePassPdf implements java.lang.Runnable {
                                 phrase = new Phrase("  ", pFontHeader);
 
                                 table.addCell(phrase);
-                                phrase = new Phrase("Accountant Incharge : .....................................Sign/Stamp:................................Check-Out Date..............................", pFontHeader);
+                                phrase = new Phrase("Finance Dept. : .....................................Sign/Stamp:................................Check-Out Date..............................", pFontHeader);
 
                                 table.addCell(phrase);
 

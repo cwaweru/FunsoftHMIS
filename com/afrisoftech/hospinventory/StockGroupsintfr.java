@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -1276,63 +1276,63 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Group Code", "Description", "Markup"
+                "Group Code", "Description", "Markup", "Department"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1385,6 +1385,7 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
         jPanel1.add(jButton6, gridBagConstraints);
 
         servOrStock.add(jCheckBox2);
+        jCheckBox2.setSelected(true);
         jCheckBox2.setText("Main Stock Categories");
         jPanel1.add(jCheckBox2, new java.awt.GridBagConstraints());
 
@@ -2414,9 +2415,9 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void storeNameCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeNameCmbxActionPerformed
-        
+
         saveBtn.setEnabled(true);
-        
+
         storeGLCodeTxt.setText(com.afrisoftech.lib.GLCodesFactory.getStoreSalesGLCode(connectDB, storeNameCmbx.getSelectedItem().toString()));
         // Add your handling code here:
     }//GEN-LAST:event_storeNameCmbxActionPerformed
@@ -2473,7 +2474,78 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton411ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton411ActionPerformed
-        setVisible(false);   // Add your handling code here:
+
+//        try {
+//
+//            java.sql.Statement stmtc = connectDB.createStatement();
+//            java.sql.ResultSet rsetc = stmtc.executeQuery("SELECT  item_code, description      department,count(*)  FROM public.st_stock_item group by 1,2 having count(*) > 1 order by 3 desc");
+//
+//            while (rsetc.next()) {
+//                String code = rsetc.getString(1);
+//                int h = 0;
+//
+//                java.sql.Statement stmt = connectDB.createStatement();
+//                java.sql.ResultSet rset = stmt.executeQuery("SELECT  item_code, description ,department,oid FROM public.st_stock_item  WHERE item_code = '" + code + "'");
+//
+//                while (rset.next()) {
+//                    if (h == 0) {
+//                        System.err.println("Deleting  ---- " + rset.getString(2));
+//                        String oid = rset.getString(4);
+//
+//                        java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("DELETE from st_stock_item where  oid = '" + oid + "' ");
+//                        pstmt31.executeUpdate();
+//                    } else {
+//                        System.err.println("Not Deleting  ---- " + rset.getString(2));
+//                    }
+//                    h++;
+//                }
+//
+//            }
+//
+//        } catch (java.sql.SQLException sq) {
+//            javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+//            System.out.println(sq.getMessage());
+//            //  jLabel4.setText("Sorry. Another Code already exists");
+//        }
+
+try {
+
+            java.sql.Statement stmtc = connectDB.createStatement();
+            java.sql.ResultSet rsetc = stmtc.executeQuery("SELECT   product, product_id,        department,strength ,COUNT(*)  FROM public.st_stock_prices GROUP BY 1,2,3,4  having COUNT(*)>1 ORDER BY 5 DESC ");
+
+            while (rsetc.next()) {
+                System.err.println(rsetc.getString(5)+" Working on ---"+rsetc.getString(1));
+                String code = rsetc.getString(2);
+                String dpt = rsetc.getString(3);
+                String str = rsetc.getString(4);
+                int h = 0;
+
+                java.sql.Statement stmt = connectDB.createStatement();
+                java.sql.ResultSet rset = stmt.executeQuery("SELECT  product_id, product ,department,strength,oid FROM public.st_stock_prices  WHERE product_id = '" + code + "' and department = '" + dpt + "' and strength = '"+str+"' ");
+
+                while (rset.next()) {
+                    if (h == 0) {
+                        System.err.println("Deleting  ---- " + rset.getString(2));
+                        String oid = rset.getString(5);
+
+                        java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("DELETE from st_stock_prices where  oid = '" + oid + "' ");
+                        pstmt31.executeUpdate();
+                    } else {
+                        System.err.println("Not Deleting  ---- " + rset.getString(2));
+                    }
+                    h++;
+                }
+
+            }
+
+        } catch (java.sql.SQLException sq) {
+            javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+            System.out.println(sq.getMessage());
+            //  jLabel4.setText("Sorry. Another Code already exists");
+        }
+
+
+        //setVisible(false);   // Add your handling code here:
     }//GEN-LAST:event_jButton411ActionPerformed
 
     private void jButton512ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton512ActionPerformed
@@ -2576,13 +2648,30 @@ public class StockGroupsintfr extends javax.swing.JInternalFrame {
             }
         });
 
-        java.lang.Object[] strCmb1 = {"A", "B", "C", "D"};
+        /*java.lang.Object[] strCmb1 = {"A", "B", "C", "D"};
 
         javax.swing.JComboBox cmBox1 = new javax.swing.JComboBox(strCmb1);
 
         javax.swing.table.TableColumn teditor1 = this.itemsTable.getColumn("PRICE_CATEGORY");
 
         teditor1.setCellEditor(new javax.swing.DefaultCellEditor(cmBox1));
+                */
+                
+                cmbox51 = new javax.swing.JComboBox();
+
+        cmbox51.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT description FROM st_price_category ORDER BY 1"));
+
+        javax.swing.table.TableColumn seditor11 = this.itemsTable.getColumn("PRICE_CATEGORY");
+
+        seditor11.setCellEditor(new javax.swing.DefaultCellEditor(cmbox51));
+
+        cmbox51.addActionListener(new java.awt.event.ActionListener() {
+
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                cmbox51ActionPerformed(evt);
+            }
+        });
 
 
         /*

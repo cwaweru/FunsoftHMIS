@@ -399,12 +399,12 @@ public class StoresBalPdf implements java.lang.Runnable {
                                     //java.sql.ResultSet rset = st.executeQuery("SELECT sum(qty)::NUMERIC(15,0) AS BALANCE FROM stock_balance_qty where department = '"+CBox+"' AND item_code = '"+listofAct[i]+"' AND dates <= '"+endDate+"'");
                                     
                                     //java.sql.ResultSet rset = st.executeQuery("SELECT sum(qty)::NUMERIC(15,0) AS BALANCE FROM stock_balance_qty where department = '"+CBox+"' AND item_code = '"+listofAct[i]+"' AND dates <= '"+endDate+"'");
-                                    java.sql.ResultSet rset = st.executeQuery("SELECT sum(qty)::NUMERIC(15,0) AS BALANCE FROM stock_balance_qty where department ilike '"+CBox+"%' AND upper(item_code) ilike '"+listofAct[i]+"%' AND dates::date <= '"+endDate+"'"+condition);
+                                    java.sql.ResultSet rset = st.executeQuery("SELECT sum(qty)::NUMERIC(15,0) AS BALANCE FROM stock_balance_qty where UPPER(department) ilike '"+CBox.toUpperCase()+"' AND upper(item_code) ilike '"+listofAct[i]+"' AND dates::date <= '"+endDate+"'"+condition);
                                     //java.sql.ResultSet rset3 = st3.executeQuery("SELECT product_id,initcap(product),initcap(strength) FROM st_stock_prices WHERE department ilike '"+CBox+"' AND product_id = '"+listofAct[i]+"'");
                                     java.sql.ResultSet rset3 = st3.executeQuery("SELECT DISTINCT product_id,initcap(product),initcap(strength) FROM st_stock_prices WHERE UPPER(department) = UPPER('"+CBox+"') AND product_id = '"+listofAct[i]+"'");
                                     //java.sql.ResultSet rset2 = st2.executeQuery("SELECT transfer_price FROM stockprices WHERE product_id =  '"+listofAct[i]+"' AND department = '"+CBox+"'");
                                     //java.sql.ResultSet rset2 = st2.executeQuery("SELECT transfer_price FROM stockprices WHERE product_id =  '"+listofAct[i]+"' AND department ilike '"+CBox+"'");
-                                    java.sql.ResultSet rset2 = st2.executeQuery("SELECT DISTINCT transfer_price FROM stockprices WHERE product_id =  '"+listofAct[i]+"' AND department ilike '"+CBox+"'");
+                                    java.sql.ResultSet rset2 = st2.executeQuery("SELECT DISTINCT transfer_price FROM stockprices WHERE product_id =  '"+listofAct[i]+"' AND UPPER(department) ilike '"+CBox.toUpperCase()+"'");
                                     
                                     while (rset3.next()) {
                                         while (rset.next()) {
@@ -442,11 +442,11 @@ public class StoresBalPdf implements java.lang.Runnable {
                                     String condition = "";
                                     if(itemsAboveZeroo) condition = "HAVING sum(qty)::NUMERIC(15,0) > 0";
                                     //java.sql.ResultSet rset = st.executeQuery("SELECT sum(qty)::NUMERIC(15,0) AS BALANCE FROM stock_balance_qty where department = '"+CBox+"' AND item_code = '"+listofAct[i]+"' AND dates <= '"+endDate+"'");
-                                    java.sql.ResultSet rset = st.executeQuery("SELECT sum(qty)::NUMERIC(15,0) AS BALANCE FROM stock_balance_qty where initcap(department) = '"+CBox+"' AND  item_code = '"+listofAct[i]+"' AND dates::date <= '"+endDate+"' "+condition);//OKAY
+                                    java.sql.ResultSet rset = st.executeQuery("SELECT sum(qty)::NUMERIC(15,0) AS BALANCE FROM stock_balance_qty where UPPER(department) = '"+CBox.toUpperCase()+"' AND  item_code = '"+listofAct[i]+"' AND dates::date <= '"+endDate+"' "+condition);//OKAY
                                     //java.sql.ResultSet rset3 = st3.executeQuery("SELECT item_code,initcap(description),initcap(strength) FROM st_stock_item WHERE department = '"+CBox+"' AND item_code = '"+listofAct[i]+"'"); --ORIGINAL QUERY BROUGHT DUPLICATES IN REPORT
                                     java.sql.ResultSet rset3 = st3.executeQuery("SELECT DISTINCT item_code,initcap(description),initcap(strength) FROM st_stock_item WHERE initcap(department) = initcap('"+CBox+"') AND item_code = '"+listofAct[i]+"'");
                                     //java.sql.ResultSet rset2 = st2.executeQuery("SELECT buying_price,packaging FROM stockitem WHERE item_code =  '"+listofAct[i]+"' AND department = '"+CBox+"'"); --ORIGINAL QUERY BROUGHT DUPLICATES IN REPORT
-                                    java.sql.ResultSet rset2 = st2.executeQuery("SELECT DISTINCT buying_price,packaging FROM stockitem WHERE item_code =  '"+listofAct[i]+"' AND initcap(department) = '"+CBox+"'");
+                                    java.sql.ResultSet rset2 = st2.executeQuery("SELECT DISTINCT buying_price,packaging FROM stockitem WHERE item_code =  '"+listofAct[i]+"' AND UPPER(department) = '"+CBox.toUpperCase()+"'");
                                     
                                   
                                     
@@ -576,14 +576,14 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
             java.sql.Statement stmt1 = connectDB.createStatement();
             
             //java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT item_code, description FROM stock_balance_qty  WHERE department = '"+CBox+"' AND dates <= '"+endDate+"' AND item_code IS NOT NULL order by 2");
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT item_code,description FROM st_stock_item WHERE initcap(department) = '"+CBox+"' AND description NOT LIKE '%FEE' ORDER BY 2,1");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT item_code,description FROM st_stock_item WHERE UPPER(department) = '"+CBox.toUpperCase()+"' AND description NOT LIKE '%FEE' ORDER BY 2,1");
             
             if(!rSet1.next()){
                 //javax.swing.JOptionPane.showMessageDialog(null, "Maina, I think we should run the query on st_stock_prices instead.");
                 rSet1=null;
                 listActVector=new java.util.Vector(1,1);
                 
-                rSet1=stmt1.executeQuery("SELECT DISTINCT product_id,product FROM st_stock_prices WHERE initcap(department) ilike '"+CBox+"' and product NOT LIKE '%FEE' ORDER BY 2,1");
+                rSet1=stmt1.executeQuery("SELECT DISTINCT product_id,product FROM st_stock_prices WHERE UPPER(department) ilike '"+CBox.toUpperCase()+"' and product NOT LIKE '%FEE' ORDER BY 2,1");
                 
                 
             }

@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -89,7 +89,6 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
 
 //        netscape.javascript.JSObject global = netscape.javascript.JSObject.getWindow(null);
 //        global.eval("document.title = 'Funsoft Integrated Healthcare Management Information System (Funsoft ERP/I-HMIS/UHCMIS)'");
-
         desktopPaneIcon = new javax.swing.ImageIcon(System.getProperty("backgrdimg", "c:/Tests/clouds.jpg"));
 
         // waitThread = new com.afrisoftech.sys.SplashScreenDialog.WaitThread();
@@ -520,7 +519,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
 
                 backgrdimg = appProp.getProperty("backgrdimg", "c:/Tests/clouds.jpg");
 
-             //   cashpoint = appProp.getProperty("cashpoint");
+                //   cashpoint = appProp.getProperty("cashpoint");
                 docsdir = appProp.getProperty("docsdir");
 
                 defaultPrinter = appProp.getProperty("defaultprinter", "PRN");
@@ -651,7 +650,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
     }
 
@@ -706,7 +705,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
 
                 connDB = this.getDbConnection(userName, passWord);
 
-              // connDB.setClientInfo("ApplicationName", "Funsoft I-HMIS");
+                // connDB.setClientInfo("ApplicationName", "Funsoft I-HMIS");
                 pconnDB = this.getPooledConnectionSource();
 
                 retrieveFunsoftProperties(connDB);
@@ -716,13 +715,12 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
                     javax.swing.SwingUtilities.updateComponentTreeUI(splashScreen);
 
                     startRunning();
-                    
+
 //                    com.afrisoftech.enterprise.EnterpriseMain enterpriseMain = new com.afrisoftech.enterprise.EnterpriseMain(connDB);
 //
 //                    enterpriseMain.setExtendedState(JFrame.MAXIMIZED_BOTH);
 //                    
 //                    enterpriseMain.setVisible(true);
-                            
                     secureLogin2Stock = new com.afrisoftech.sys.SecureLogin2HospInventory(new java.awt.Frame(), false, connDB, pconnDB, userName);
 
                     secureStockInst = secureLogin2Stock.logOn2System();
@@ -1060,7 +1058,10 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
             if (activeDatabase == null) {
                 activeDatabase = "funsoft";
             }
-            connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + this.dbServerIp + ":" + dbPort + "/" + activeDatabase, userName, passWord);
+            connection = java.sql.DriverManager.getConnection("jdbc:postgresql://" + this.dbServerIp + ":" + dbPort + "/" + activeDatabase + ""
+                    + "?verifyServerCertificate=true"
+                    + "&useSSL=true"
+                    + "&requireSSL=true", userName, passWord);
 
             //  connection.
             version = "9.0 R 2.0";

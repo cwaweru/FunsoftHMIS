@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JSpinner;
-//import org.openide.util.Exceptions;
+//
 
 ////import com.sun.star.lib.uno.environments.java.java_environment;
 /**
@@ -23,6 +23,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     private JSpinner beginDateSpinner;
     private JSpinner beginDateSpinner1;
     javax.swing.SpinnerDateModel beginDate1;
+    String initialGroup = "";
 
     public UsersetupHospitalIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
@@ -33,6 +34,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         initComponents();
         this.spacerLabel.setForeground(java.awt.Color.blue);
         this.spacerLabel.setText("Total number of registered users : [" + this.staffControlsTbl.getRowCount() + "]");
+         datePanel.setVisible(false);
     }
 
     /**
@@ -75,6 +77,25 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
             e1.printStackTrace();
         }
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        currentGroupCmbx = new javax.swing.JComboBox();
+        jLabel17 = new javax.swing.JLabel();
+        usernameCmbx = new javax.swing.JComboBox();
+        changeUserGroupBtn = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        currentGroupTxt = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        removeUserCmbx = new javax.swing.JComboBox();
+        removeUserBtn = new javax.swing.JButton();
+        jSearchDialog221 = new javax.swing.JDialog();
+        jSearchPanel221 = new javax.swing.JPanel();
+        jTextField11321 = new javax.swing.JTextField();
+        jSearchScrollPane221 = new javax.swing.JScrollPane();
+        jSearchTable221 = new com.afrisoftech.dbadmin.JTable();
+        jButton5221 = new javax.swing.JButton();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         groupsManagerPane = new javax.swing.JTabbedPane();
         manageGroupsTabbedPane = new javax.swing.JPanel();
         groupManagementPanel = new javax.swing.JPanel();
@@ -103,8 +124,8 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         jSeparator71 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         logonNameTxt = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField5412 = new javax.swing.JTextField();
+        firstNameTxt = new javax.swing.JTextField();
+        lastNameTxt = new javax.swing.JTextField();
         jButton301 = new javax.swing.JButton();
         jLabel572 = new javax.swing.JLabel();
         jLabel582 = new javax.swing.JLabel();
@@ -114,22 +135,47 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         jLabel642 = new javax.swing.JLabel();
         newRetypedPasswordField = new javax.swing.JPasswordField();
         newPasswordField = new javax.swing.JPasswordField();
-        jComboBox3 = new javax.swing.JComboBox();
+        departmentCmbx = new javax.swing.JComboBox();
         targetGroupLbl1 = new javax.swing.JLabel();
-        removeGroupCmbx2 = new javax.swing.JComboBox();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
-        jButton3011 = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox();
-        jLabel17 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox();
-        changeUserGroupBtn = new javax.swing.JButton();
-        jLabel13 = new javax.swing.JLabel();
-        currentGroupTxt = new javax.swing.JTextField();
+        userGroupCmbx = new javax.swing.JComboBox();
+        jLabel18 = new javax.swing.JLabel();
+        personalNoTxt = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        middleNameTxt = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        emailAddressTxt = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        telephoneNoTxt = new javax.swing.JTextField();
+        tempAccountChbx = new javax.swing.JCheckBox();
+        datePanel = new javax.swing.JPanel();
+        dateCollectedDatePicker = new com.afrisoftech.lib.DatePicker();
+        jLabel21 = new javax.swing.JLabel();
+        idNoTxt = new javax.swing.JTextField();
         jButton202 = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
+        firstNameTxt1 = new javax.swing.JTextField();
+        lastNameTxt1 = new javax.swing.JTextField();
+        jLabel573 = new javax.swing.JLabel();
+        jLabel583 = new javax.swing.JLabel();
+        jLabel613 = new javax.swing.JLabel();
+        jLabel593 = new javax.swing.JLabel();
+        departmentCmbx1 = new javax.swing.JComboBox();
+        targetGroupLbl2 = new javax.swing.JLabel();
+        removeGroupCmbx3 = new javax.swing.JComboBox();
+        jLabel24 = new javax.swing.JLabel();
+        middleNameTxt1 = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        personalNoTxt1 = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        emailAddressTxt1 = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        telephoneNoTxt1 = new javax.swing.JTextField();
+        jPanel412 = new javax.swing.JPanel();
+        logonNameTxt1 = new javax.swing.JTextField();
+        searchButton11 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        idNoTxt1 = new javax.swing.JTextField();
         activityDomainsPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -204,10 +250,13 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         restoreAccountBtn = new javax.swing.JButton();
         refreshBtn = new javax.swing.JButton();
         closeFormBtn = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
         searchPanel = new javax.swing.JPanel();
         selectAccountLbl = new javax.swing.JLabel();
         selectUserAccountTxt = new javax.swing.JTextField();
         alterUserDatePicker = new com.afrisoftech.lib.DatePicker();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
         listofScheduledTasksPanel = new javax.swing.JPanel();
         scheduledTasksScrollPane = new javax.swing.JScrollPane();
         scheduledTasksTable = new com.afrisoftech.dbadmin.JTable();
@@ -232,6 +281,23 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         auditTrailBtn = new javax.swing.JButton();
         closeBtn = new javax.swing.JButton();
         auditSpacerLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jListAllActivities = new javax.swing.JList();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        userListTbl = new com.afrisoftech.dbadmin.JTable();
+        jLabel29 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        userListTbl1 = new com.afrisoftech.dbadmin.JTable();
+        departmentCmbx2 = new javax.swing.JComboBox();
+        jLabel594 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jButton9 = new javax.swing.JButton();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        targetGroupCmbx1 = new javax.swing.JComboBox();
+        jLabel595 = new javax.swing.JLabel();
 
         crset3.setConnectionSource(pConnDB);
 
@@ -244,6 +310,205 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         crsetusertables.setConnectionSource(pConnDB);
 
         crsetdataccess.setConnectionSource(pConnDB);
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Change user From one Group to another"));
+        jPanel7.setLayout(new java.awt.GridBagLayout());
+
+        jLabel16.setText("Target User Group");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel7.add(jLabel16, gridBagConstraints);
+
+        currentGroupCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group ORDER BY groname"));
+        currentGroupCmbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                currentGroupCmbxActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 50.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel7.add(currentGroupCmbx, gridBagConstraints);
+
+        jLabel17.setText("User Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel7.add(jLabel17, gridBagConstraints);
+
+        usernameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' ORDER BY usename "));
+        usernameCmbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameCmbxActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel7.add(usernameCmbx, gridBagConstraints);
+
+        changeUserGroupBtn.setMnemonic('O');
+        changeUserGroupBtn.setText("Change User Group");
+        changeUserGroupBtn.setToolTipText("Click here to enter data");
+        changeUserGroupBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeUserGroupBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel7.add(changeUserGroupBtn, gridBagConstraints);
+
+        jLabel13.setText("Current Group");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel7.add(jLabel13, gridBagConstraints);
+
+        currentGroupTxt.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel7.add(currentGroupTxt, gridBagConstraints);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Remove users from the system"));
+        jPanel3.setLayout(new java.awt.GridBagLayout());
+
+        jLabel15.setText("User Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jLabel15, gridBagConstraints);
+
+        removeUserCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' ORDER BY usename "));
+        removeUserCmbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeUserCmbxActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(removeUserCmbx, gridBagConstraints);
+
+        removeUserBtn.setMnemonic('O');
+        removeUserBtn.setText("Remove user");
+        removeUserBtn.setToolTipText("Click here to enter data");
+        removeUserBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeUserBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(removeUserBtn, gridBagConstraints);
+
+        jSearchDialog221.setModal(true);
+        jSearchDialog221.setUndecorated(true);
+        jSearchDialog221.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jSearchPanel221.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jSearchPanel221.setLayout(new java.awt.GridBagLayout());
+
+        jTextField11321.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jTextField11321CaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 300.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jSearchPanel221.add(jTextField11321, gridBagConstraints);
+
+        jSearchTable221.setToolTipText("Click on the target row to select the patient from the search.");
+        jSearchTable221.setShowHorizontalLines(false);
+        /*javax.swing.table.TableColumn column = null;
+
+        for (int i = 0; i < 4; i++) {
+
+            column = jSearchTable2.getColumnModel().getColumn(i);
+
+            if (i == 1) {
+
+                column.setPreferredWidth(400);
+                //sport column is bigger
+            } else {
+
+                column.setPreferredWidth(200);
+
+            }
+        }
+        */
+        jSearchTable221.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSearchTable221MouseClicked(evt);
+            }
+        });
+        jSearchScrollPane221.setViewportView(jSearchTable221);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 20.0;
+        jSearchPanel221.add(jSearchScrollPane221, gridBagConstraints);
+
+        jButton5221.setMnemonic('l');
+        jButton5221.setText("Close");
+        jButton5221.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5221ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jSearchPanel221.add(jButton5221, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jSearchDialog221.getContentPane().add(jSearchPanel221, gridBagConstraints);
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -511,23 +776,23 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel2.add(logonNameTxt, gridBagConstraints);
 
-        jTextField2.setDragEnabled(true);
+        firstNameTxt.setDragEnabled(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel2.add(jTextField2, gridBagConstraints);
+        jPanel2.add(firstNameTxt, gridBagConstraints);
 
-        jTextField5412.setDragEnabled(true);
+        lastNameTxt.setDragEnabled(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel2.add(jTextField5412, gridBagConstraints);
+        jPanel2.add(lastNameTxt, gridBagConstraints);
 
         jButton301.setMnemonic('r');
         jButton301.setText("Create User Account");
@@ -539,7 +804,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
@@ -579,7 +844,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         jLabel592.setText("Department");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -589,7 +854,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         jLabel622.setText("Initial Password");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -599,7 +864,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         jLabel642.setText("Confirm Password");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -607,7 +872,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         jPanel2.add(jLabel642, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -615,21 +880,21 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         jPanel2.add(newRetypedPasswordField, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel2.add(newPasswordField, gridBagConstraints);
 
-        jComboBox3.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select depart_name from pb_main_department order by depart_name"));
+        departmentCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select depart_name from pb_main_department order by depart_name"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        jPanel2.add(jComboBox3, gridBagConstraints);
+        jPanel2.add(departmentCmbx, gridBagConstraints);
 
         targetGroupLbl1.setText("Target Group Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -642,14 +907,142 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel2.add(targetGroupLbl1, gridBagConstraints);
 
-        removeGroupCmbx2.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group ORDER BY groname"));
+        userGroupCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group ORDER BY groname"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel2.add(removeGroupCmbx2, gridBagConstraints);
+        jPanel2.add(userGroupCmbx, gridBagConstraints);
+
+        jLabel18.setText("Personal No. (PF/No)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        jPanel2.add(jLabel18, gridBagConstraints);
+
+        personalNoTxt.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                personalNoTxtCaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel2.add(personalNoTxt, gridBagConstraints);
+
+        jLabel14.setText("Middle Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        jPanel2.add(jLabel14, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel2.add(middleNameTxt, gridBagConstraints);
+
+        jLabel19.setText("Email Address");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        jPanel2.add(jLabel19, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        jPanel2.add(emailAddressTxt, gridBagConstraints);
+
+        jLabel20.setText("ID/Passport No");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        jPanel2.add(jLabel20, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        jPanel2.add(telephoneNoTxt, gridBagConstraints);
+
+        tempAccountChbx.setForeground(new java.awt.Color(255, 51, 102));
+        tempAccountChbx.setText("Tick for Temporary Account");
+        tempAccountChbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tempAccountChbxActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        jPanel2.add(tempAccountChbx, gridBagConstraints);
+
+        datePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Date until which Account is valid"));
+        datePanel.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        datePanel.add(dateCollectedDatePicker, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel2.add(datePanel, gridBagConstraints);
+
+        jLabel21.setText("Telephone No.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        jPanel2.add(jLabel21, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        jPanel2.add(idNoTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 5;
@@ -659,148 +1052,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 200.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         userRegistrationPanel.add(jPanel2, gridBagConstraints);
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Remove users from the system"));
-        jPanel3.setLayout(new java.awt.GridBagLayout());
-
-        jLabel15.setText("User Name");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jLabel15, gridBagConstraints);
-
-        jComboBox2.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' ORDER BY usename "));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jComboBox2, gridBagConstraints);
-
-        jButton3011.setMnemonic('O');
-        jButton3011.setText("Remove user");
-        jButton3011.setToolTipText("Click here to enter data");
-        jButton3011.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3011ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jButton3011, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 100.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        userRegistrationPanel.add(jPanel3, gridBagConstraints);
-
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Change user From one Group to another"));
-        jPanel7.setLayout(new java.awt.GridBagLayout());
-
-        jLabel16.setText("User Group");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel7.add(jLabel16, gridBagConstraints);
-
-        jComboBox5.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group ORDER BY groname"));
-        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox5ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 50.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
-        jPanel7.add(jComboBox5, gridBagConstraints);
-
-        jLabel17.setText("User Name");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel7.add(jLabel17, gridBagConstraints);
-
-        jComboBox6.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' ORDER BY usename "));
-        jComboBox6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox6ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel7.add(jComboBox6, gridBagConstraints);
-
-        changeUserGroupBtn.setMnemonic('O');
-        changeUserGroupBtn.setText("Change User Group");
-        changeUserGroupBtn.setToolTipText("Click here to enter data");
-        changeUserGroupBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changeUserGroupBtnActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel7.add(changeUserGroupBtn, gridBagConstraints);
-
-        jLabel13.setText("Current Group");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel7.add(jLabel13, gridBagConstraints);
-
-        currentGroupTxt.setEditable(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel7.add(currentGroupTxt, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 100.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        userRegistrationPanel.add(jPanel7, gridBagConstraints);
 
         jButton202.setMnemonic('n');
         jButton202.setText("Clear Fields");
@@ -816,6 +1067,272 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         userRegistrationPanel.add(jButton202, gridBagConstraints);
+
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Edit User"));
+        jPanel8.setLayout(new java.awt.GridBagLayout());
+
+        firstNameTxt1.setDragEnabled(true);
+        firstNameTxt1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                firstNameTxt1CaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel8.add(firstNameTxt1, gridBagConstraints);
+
+        lastNameTxt1.setDragEnabled(true);
+        lastNameTxt1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                lastNameTxt1CaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel8.add(lastNameTxt1, gridBagConstraints);
+
+        jLabel573.setText("User Account");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        jPanel8.add(jLabel573, gridBagConstraints);
+
+        jLabel583.setText("First Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        jPanel8.add(jLabel583, gridBagConstraints);
+
+        jLabel613.setText("Last Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        jPanel8.add(jLabel613, gridBagConstraints);
+
+        jLabel593.setText("Department");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
+        jPanel8.add(jLabel593, gridBagConstraints);
+
+        departmentCmbx1.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select depart_name from pb_main_department order by depart_name"));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel8.add(departmentCmbx1, gridBagConstraints);
+
+        targetGroupLbl2.setText("Group Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
+        jPanel8.add(targetGroupLbl2, gridBagConstraints);
+
+        removeGroupCmbx3.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group  EXCEPT SELECT rolname FROM pg_catalog.pg_authid WHERE rolvaliduntil::date = '1970-01-01' ORDER BY groname"));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
+        jPanel8.add(removeGroupCmbx3, gridBagConstraints);
+
+        jLabel24.setText("Middle Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        jPanel8.add(jLabel24, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel8.add(middleNameTxt1, gridBagConstraints);
+
+        jLabel25.setText("Personal No. (PF/No)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        jPanel8.add(jLabel25, gridBagConstraints);
+
+        personalNoTxt1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                personalNoTxt1CaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
+        jPanel8.add(personalNoTxt1, gridBagConstraints);
+
+        jLabel26.setText("Email Address");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
+        jPanel8.add(jLabel26, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
+        jPanel8.add(emailAddressTxt1, gridBagConstraints);
+
+        jLabel27.setText("Telephone No.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
+        jPanel8.add(jLabel27, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
+        jPanel8.add(telephoneNoTxt1, gridBagConstraints);
+
+        jPanel412.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel412.setLayout(new java.awt.GridBagLayout());
+
+        logonNameTxt1.setEditable(false);
+        logonNameTxt1.setToolTipText("Enter the First Name, Last Name and PF No for username Generation");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel412.add(logonNameTxt1, gridBagConstraints);
+
+        searchButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
+        searchButton11.setToolTipText("Search");
+        searchButton11.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        searchButton11.setMaximumSize(new java.awt.Dimension(74, 53));
+        searchButton11.setMinimumSize(new java.awt.Dimension(74, 53));
+        searchButton11.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        searchButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButton11ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        jPanel412.add(searchButton11, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel8.add(jPanel412, gridBagConstraints);
+
+        jButton8.setText("Update User Details");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
+        jPanel8.add(jButton8, gridBagConstraints);
+
+        jLabel23.setText("ID/Passport No");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        jPanel8.add(jLabel23, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
+        jPanel8.add(idNoTxt1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 200.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        userRegistrationPanel.add(jPanel8, gridBagConstraints);
 
         groupsManagerPane.addTab("Users Management", userRegistrationPanel);
 
@@ -1471,7 +1988,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
         listingPanel.setLayout(new java.awt.GridBagLayout());
 
-        staffControlsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct upper(login_name) as login_name, upper(f_name||' '||l_name) as user_name, department, false as dormant_account, (CASE WHEN (SELECT rolcanlogin FROM pg_catalog.pg_roles WHERE secure_menu_access.login_name = pg_catalog.pg_roles.rolname) = true THEN 'ACTIVE' ELSE 'DORMANT' END) as ACCOUNT_STATUS from secure_menu_access order by 1"));
+        staffControlsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct upper(login_name) as login_name, upper(f_name||' '||l_name) as user_name, department, false as dormant_account, (CASE WHEN (SELECT rolcanlogin FROM pg_catalog.pg_roles WHERE secure_menu_access.login_name = pg_catalog.pg_roles.rolname) = true THEN 'ACTIVE' ELSE 'DORMANT' END) as ACCOUNT_STATUS,m_name as OTHER_NAMES,pf_no,id_no,email_address,telephone_no, (SELECT rolvaliduntil FROM pg_catalog.pg_roles WHERE secure_menu_access.login_name = pg_catalog.pg_roles.rolname) AS valid_until from secure_menu_access order by 1"));
         staffControlsScrollPane.setViewportView(staffControlsTbl);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1517,7 +2034,10 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
                 refreshBtnActionPerformed(evt);
             }
         });
-        staffOperationsButtonPanel.add(refreshBtn, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        staffOperationsButtonPanel.add(refreshBtn, gridBagConstraints);
 
         closeFormBtn.setText("Close Form");
         closeFormBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -1525,7 +2045,21 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
                 closeFormBtnActionPerformed(evt);
             }
         });
-        staffOperationsButtonPanel.add(closeFormBtn, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 0;
+        staffOperationsButtonPanel.add(closeFormBtn, gridBagConstraints);
+
+        jButton10.setText("Change Marked Account Expiry");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        staffOperationsButtonPanel.add(jButton10, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1537,7 +2071,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
         searchPanel.setLayout(new java.awt.GridBagLayout());
 
-        selectAccountLbl.setText("Select User Account(Type logon account or employee number or name to serach)");
+        selectAccountLbl.setText("Select User Account(Search By username, email, PF No, ID No or telephone No)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -1549,14 +2083,47 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         searchPanel.add(selectUserAccountTxt, gridBagConstraints);
+
+        alterUserDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder("Expiry Date"));
+        alterUserDatePicker.setDate(null);
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         searchPanel.add(alterUserDatePicker, gridBagConstraints);
+
+        buttonGroup2.add(jCheckBox1);
+        jCheckBox1.setSelected(true);
+        jCheckBox1.setText("Active");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        searchPanel.add(jCheckBox1, gridBagConstraints);
+
+        buttonGroup2.add(jCheckBox2);
+        jCheckBox2.setText("Dormant");
+        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        searchPanel.add(jCheckBox2, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -1812,6 +2379,199 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
         groupsManagerPane.addTab("User Administration Audit Trail", userAdministrationAuitTrailPanel);
 
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        jLabel28.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel28.setText("Available Activity Domains");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weightx = 1.0;
+        jPanel1.add(jLabel28, gridBagConstraints);
+
+        jListAllActivities.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jListAllActivities.setModel(com.afrisoftech.lib.ListModel.listModel(connectDB, "SELECT item_desc FROM menu_item_list WHERE app_name = 'hospital_main' ORDER BY item_desc"));
+        jListAllActivities.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListAllActivities.setDragEnabled(true);
+        jListAllActivities.setValueIsAdjusting(true);
+        jListAllActivities.setVisibleRowCount(20);
+        jListAllActivities.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListAllActivitiesMouseClicked(evt);
+            }
+        });
+        jScrollPane8.setViewportView(jListAllActivities);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 10.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel1.add(jScrollPane8, gridBagConstraints);
+
+        jScrollPane9.setBorder(javax.swing.BorderFactory.createTitledBorder("List of users with selected Right"));
+
+        userListTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Login_name", "Department", "Group"
+            }
+        ));
+        jScrollPane9.setViewportView(userListTbl);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel1.add(jScrollPane9, gridBagConstraints);
+
+        jLabel29.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel29.setText("Users List");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        jPanel1.add(jLabel29, gridBagConstraints);
+
+        groupsManagerPane.addTab("Users with Particular Right", jPanel1);
+
+        jPanel9.setLayout(new java.awt.GridBagLayout());
+
+        jScrollPane10.setBorder(javax.swing.BorderFactory.createTitledBorder("List of Groups"));
+
+        userListTbl1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Group Name", "Category", "Rights", "Users"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane10.setViewportView(userListTbl1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 20.0;
+        gridBagConstraints.weighty = 20.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jPanel9.add(jScrollPane10, gridBagConstraints);
+
+        departmentCmbx2.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' union select depart_name from pb_main_department order by 1"));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
+        jPanel9.add(departmentCmbx2, gridBagConstraints);
+
+        jLabel594.setText("Group Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
+        jPanel9.add(jLabel594, gridBagConstraints);
+
+        jPanel10.setLayout(new java.awt.GridBagLayout());
+
+        jButton9.setText("Export to PDF");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel10.add(jButton9, gridBagConstraints);
+
+        jCheckBox3.setText("List Groups Rights");
+        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox3ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel10.add(jCheckBox3, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
+        jPanel9.add(jPanel10, gridBagConstraints);
+
+        targetGroupCmbx1.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' UNION SELECT login_name   FROM public.secure_menu_access_group ORDER BY 1"));
+        targetGroupCmbx1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        targetGroupCmbx1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                targetGroupCmbx1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
+        jPanel9.add(targetGroupCmbx1, gridBagConstraints);
+
+        jLabel595.setText("Department");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
+        jPanel9.add(jLabel595, gridBagConstraints);
+
+        groupsManagerPane.addTab("Group Report", jPanel9);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.gridheight = 4;
@@ -1821,7 +2581,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         getContentPane().add(groupsManagerPane, gridBagConstraints);
 
-        setBounds(0, 0, 750, 450);
+        setBounds(0, 0, 1086, 501);
     }// </editor-fold>//GEN-END:initComponents
 
     private void targetGroupCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_targetGroupCmbxActionPerformed
@@ -2382,9 +3142,9 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_closebtnActionPerformed
 
-    private void jButton3011ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3011ActionPerformed
+    private void removeUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserBtnActionPerformed
 
-        java.lang.String user2del = this.jComboBox2.getSelectedItem().toString();
+        java.lang.String user2del = this.removeUserCmbx.getSelectedItem().toString();
 
         try {
             //  java.sql.Connection con = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/hospital","postgres","pilsiner");
@@ -2433,7 +3193,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
             // connectDB.setAutoCommit(true);
 
             com.afrisoftech.lib.SecuritySettings.setUserAccessControl(connectDB, logonNameTxt.getText());
-            jComboBox2.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
+            removeUserCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
 
             accountNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
 
@@ -2450,7 +3210,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         }
 
         // Add your handling code here:
-    }//GEN-LAST:event_jButton3011ActionPerformed
+    }//GEN-LAST:event_removeUserBtnActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
@@ -2581,9 +3341,9 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_accountNameCmbxActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void removeUserCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserCmbxActionPerformed
         // Add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_removeUserCmbxActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         /*
@@ -2715,16 +3475,26 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton252ActionPerformed
 
     private void jButton202ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton202ActionPerformed
-        jTextField2.setText("");
+        firstNameTxt.setText("");
         //  jTextField3.setText("");
-        jTextField5412.setText("");
-        this.jComboBox3.setSelectedItem(null);
-        this.jComboBox2.setSelectedItem(null);
+        lastNameTxt.setText("");
+        this.departmentCmbx.setSelectedItem(null);
+        this.removeUserCmbx.setSelectedItem(null);
 
         logonNameTxt.setText("");
         this.newPasswordField.setText("");
         this.newRetypedPasswordField.setText("");
+        emailAddressTxt.setText(null);
+        idNoTxt.setText(null);
+        telephoneNoTxt.setText(null);
+        personalNoTxt.setText(null);
+        emailAddressTxt1.setText(null);
+        idNoTxt1.setText(null);
+        telephoneNoTxt1.setText(null);
+        personalNoTxt1.setText(null);
+        
 
+        
         // Add your handling code here:
     }//GEN-LAST:event_jButton202ActionPerformed
 
@@ -2734,211 +3504,260 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
             if (this.newPasswordField.getText().equals(this.newRetypedPasswordField.getText())) {
 
-                java.lang.String[] listSet = {};
-
-                java.sql.ResultSet rsetArray = null;
-
-                java.lang.String[] listData = {};
-
-                java.sql.Array arraySet = null;
-
-                java.sql.Array arraySet1 = null;
-
-                java.sql.Array arraySet2 = null;
-
-                java.sql.Array arraySet3 = null;
-
-                org.netbeans.lib.sql.NBRowSet nbRset;
-
-                javax.swing.DefaultListModel dfListModel = new javax.swing.DefaultListModel();
-
-                java.util.Vector item2add = new java.util.Vector(5, 5);
-
-                javax.swing.DefaultListModel listModel = new javax.swing.DefaultListModel();
-
-                java.lang.Object[] selectedValues = null;
-
-                java.util.Enumeration listEnum = listModel.elements();
-
-                while (listEnum.hasMoreElements()) {
-
-                    item2add.addElement(listEnum.nextElement());
-
-                }
-
-                selectedValues = item2add.toArray();
-
-                for (int k = 0; k < selectedValues.length; k++) {
-
-                    System.out.print("Values : " + "\t" + selectedValues[k] + "\t");
-                }
+                int count = 0;
+                java.sql.Statement stmtxx;
                 try {
+                    stmtxx = connectDB.createStatement();
 
-                    arraySet = connectDB.createArrayOf("varchar", selectedValues);
-
-                } catch (SQLException ex) {
-
-                    ex.printStackTrace();
-
-                }
-
-                if (this.logonNameTxt.getText().equals("")) {
-
-                    javax.swing.JOptionPane.showMessageDialog(this, "Cannot create void username");
-
-                } else {
-                    java.sql.Savepoint registerSavePoint = null;
-                    try {
-
-                        connectDB.setAutoCommit(false);
-                        registerSavePoint = connectDB.setSavepoint("registration");
-
-                        java.sql.Statement stmt = connectDB.createStatement();
-
-                        java.sql.ResultSet rs = stmt.executeQuery("SELECT menu_list from secure_menu_access_group WHERE login_name = '" + removeGroupCmbx2.getSelectedItem().toString() + "'  AND sys_name ilike 'Hospital_Main' ORDER BY menu_list");
-
-                        while (rs.next()) {
-
-                            arraySet = rs.getArray(1);
-
-                        }
-
-                        java.sql.Statement stmt1 = connectDB.createStatement();
-
-                        java.sql.ResultSet rs1 = stmt1.executeQuery("SELECT menu_list from secure_menu_access_group WHERE login_name = '" + removeGroupCmbx2.getSelectedItem().toString() + "'  AND sys_name ilike 'hospital_payroll' ORDER BY menu_list");
-
-                        while (rs1.next()) {
-
-                            arraySet1 = rs1.getArray(1);
-
-                        }
-
-                        java.sql.Statement stmt2 = connectDB.createStatement();
-
-                        java.sql.ResultSet rs2 = stmt2.executeQuery("SELECT menu_list from secure_menu_access_group WHERE login_name = '" + removeGroupCmbx2.getSelectedItem().toString() + "'  AND sys_name ilike 'hospital_inventory' ORDER BY menu_list");
-
-                        while (rs2.next()) {
-
-                            arraySet2 = rs2.getArray(1);
-
-                        }
-
-                        java.sql.Statement stmt3 = connectDB.createStatement();
-
-                        java.sql.ResultSet rs3 = stmt3.executeQuery("SELECT menu_list from secure_menu_access_group WHERE login_name = '" + removeGroupCmbx2.getSelectedItem().toString() + "'  AND sys_name ilike 'hospital_hr' ORDER BY menu_list");
-
-                        while (rs3.next()) {
-
-                            arraySet3 = rs3.getArray(1);
-
-                        }
-
-                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("CREATE USER " + logonNameTxt.getText() + " WITH PASSWORD '" + newPasswordField.getText() + "' SUPERUSER");
-
-                        pstmt.execute();
-
-                        java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO secure_menu_access(login_name, menu_list, f_name, l_name, department, sys_name, group_name) VALUES (lower(?),?,?,?,?,?,?)");
-
-                        java.sql.PreparedStatement pstmt4 = connectDB.prepareStatement("INSERT INTO secure_menu_access(login_name, menu_list, f_name, l_name, department, sys_name, group_name) VALUES (lower(?),?,?,?,?,?,?)");
-
-                        java.sql.PreparedStatement pstmt5 = connectDB.prepareStatement("INSERT INTO secure_menu_access(login_name, menu_list, f_name, l_name,department, sys_name, group_name) VALUES (lower(?),?,?,?,?,?,?)");
-
-                        java.sql.PreparedStatement pstmt6 = connectDB.prepareStatement("INSERT INTO secure_menu_access(login_name, menu_list, f_name, l_name, department, sys_name, group_name) VALUES (lower(?),?,?,?,?,?,?)");
-
-                        java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO secure_password values(lower(?),?,?,?,?,?)");
-
-                        // java.sql.PreparedStatement pstmt3 = connectDB.prepareStatement("GRANT SELECT ON secure_password TO " + jTextField582.getText());
-                        pstmt1.setObject(1, logonNameTxt.getText());
-                        pstmt1.setArray(2, arraySet);
-                        pstmt1.setObject(3, jTextField2.getText());
-                        pstmt1.setObject(4, jTextField5412.getText());
-                        pstmt1.setObject(5, jComboBox3.getSelectedItem().toString());
-                        pstmt1.setObject(6, "hospital_main");
-                        pstmt1.setObject(7, removeGroupCmbx2.getSelectedItem().toString());
-
-                        pstmt4.setObject(1, logonNameTxt.getText());
-                        pstmt4.setArray(2, arraySet1);
-                        pstmt4.setObject(3, jTextField2.getText());
-                        pstmt4.setObject(4, jTextField5412.getText());
-                        pstmt4.setObject(5, jComboBox3.getSelectedItem().toString());
-                        pstmt4.setObject(6, "hospital_payroll");
-                        pstmt4.setObject(7, removeGroupCmbx2.getSelectedItem().toString());
-
-                        pstmt5.setObject(1, logonNameTxt.getText());
-                        pstmt5.setArray(2, arraySet2);
-                        pstmt5.setObject(3, jTextField2.getText());
-                        pstmt5.setObject(4, jTextField5412.getText());
-                        pstmt5.setObject(5, jComboBox3.getSelectedItem().toString());
-                        pstmt5.setObject(6, "hospital_inventory");
-                        pstmt5.setObject(7, removeGroupCmbx2.getSelectedItem().toString());
-
-                        pstmt6.setObject(1, logonNameTxt.getText());
-                        pstmt6.setArray(2, arraySet3);
-                        pstmt6.setObject(3, jTextField2.getText());
-                        pstmt6.setObject(4, jTextField5412.getText());
-                        pstmt6.setObject(5, jComboBox3.getSelectedItem().toString());
-                        pstmt6.setObject(6, "hospital_hr");
-                        pstmt6.setObject(7, removeGroupCmbx2.getSelectedItem().toString());
-
-                        pstmt2.setObject(1, "P0001");
-                        pstmt2.setObject(2, logonNameTxt.getText());
-                        pstmt2.setObject(3, "jmenubar1");
-                        pstmt2.setObject(4, "hospital_main");
-                        pstmt2.setObject(5, "exitmnit");
-                        pstmt2.setBoolean(6, java.lang.Boolean.TRUE);
-
-                        //    pstmt.executeUpdate();
-                        pstmt1.executeUpdate();
-
-                        pstmt2.executeUpdate();
-
-                        //pstmt3.executeUpdate();
-                        pstmt4.executeUpdate();
-
-                        pstmt5.executeUpdate();
-
-                        pstmt6.executeUpdate();
-
-                        jComboBox2.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
-
-                        accountNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
-
-                        targetAccountNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
-
-                        jComboBox4.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
-
-                        jComboBox42.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
-
-                        java.sql.PreparedStatement pstmtChangeControl = connectDB.prepareStatement("INSERT INTO account_access_control("
-                                + "           account_change_type, user_account_affected"
-                                + "            )"
-                                + "    VALUES (?, ?)");
-                        pstmtChangeControl.setString(1, "ACCOUNT_CREATION");
-                        pstmtChangeControl.setString(2, logonNameTxt.getText());
-                        pstmtChangeControl.execute();
-                        connectDB.commit();
-                        connectDB.setAutoCommit(true);
-
-                       // com.afrisoftech.lib.SecuritySettings.setUserAccessControl(connectDB, logonNameTxt.getText());
-
-                        javax.swing.JOptionPane.showMessageDialog(this, "Successfully created new user : [" + logonNameTxt.getText() + "]");
-
-                    } catch (java.lang.Exception sq) {
-                        sq.printStackTrace();
-                        //               }catch(java.sql.SQLException sq){
-                        try {
-                            connectDB.rollback(registerSavePoint);
-                            System.out.println("Rolling back to save point at cashpoint");
-                        } catch (java.sql.SQLException sql) {
-                            sql.printStackTrace();
-                            javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                        }
-                        System.out.println(sq.getMessage());
-                        javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-
+                    java.sql.ResultSet rsxx = stmtxx.executeQuery("SELECT COUNT(*) from secure_menu_access WHERE pf_no = '" + personalNoTxt.getText().toString() + "'  ");
+                    while (rsxx.next()) {
+                        count = rsxx.getInt(1);
                     }
-
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
                 }
+                if (count < 1) {
+
+                    if (firstNameTxt.getText().length() > 1 && personalNoTxt.getText().length() > 2 && lastNameTxt.getText().length() > 1
+                            && emailAddressTxt.getText().length() > 5 && telephoneNoTxt.getText().length() > 5 && idNoTxt.getText().length() > 4) {
+
+                        java.lang.String[] listSet = {};
+
+                        java.sql.ResultSet rsetArray = null;
+
+                        java.lang.String[] listData = {};
+
+                        java.sql.Array arraySet = null;
+
+                        java.sql.Array arraySet1 = null;
+
+                        java.sql.Array arraySet2 = null;
+
+                        java.sql.Array arraySet3 = null;
+
+                        org.netbeans.lib.sql.NBRowSet nbRset;
+
+                        javax.swing.DefaultListModel dfListModel = new javax.swing.DefaultListModel();
+
+                        java.util.Vector item2add = new java.util.Vector(5, 5);
+
+                        javax.swing.DefaultListModel listModel = new javax.swing.DefaultListModel();
+
+                        java.lang.Object[] selectedValues = null;
+
+                        java.util.Enumeration listEnum = listModel.elements();
+
+                        while (listEnum.hasMoreElements()) {
+
+                            item2add.addElement(listEnum.nextElement());
+
+                        }
+
+                        selectedValues = item2add.toArray();
+
+                        for (int k = 0; k < selectedValues.length; k++) {
+
+                            System.out.print("Values : " + "\t" + selectedValues[k] + "\t");
+                        }
+                        try {
+
+                            arraySet = connectDB.createArrayOf("varchar", selectedValues);
+
+                        } catch (SQLException ex) {
+
+                            ex.printStackTrace();
+
+                        }
+
+                        if (this.logonNameTxt.getText().equals("")) {
+
+                            javax.swing.JOptionPane.showMessageDialog(this, "Cannot create void username");
+
+                        } else {
+                            java.sql.Savepoint registerSavePoint = null;
+                            try {
+
+                                connectDB.setAutoCommit(false);
+                                registerSavePoint = connectDB.setSavepoint("registration");
+
+                                java.sql.Statement stmt = connectDB.createStatement();
+
+                                java.sql.ResultSet rs = stmt.executeQuery("SELECT menu_list from secure_menu_access_group WHERE login_name = '" + userGroupCmbx.getSelectedItem().toString() + "'  AND sys_name ilike 'Hospital_Main' ORDER BY menu_list");
+
+                                while (rs.next()) {
+
+                                    arraySet = rs.getArray(1);
+
+                                }
+
+                                java.sql.Statement stmt1 = connectDB.createStatement();
+
+                                java.sql.ResultSet rs1 = stmt1.executeQuery("SELECT menu_list from secure_menu_access_group WHERE login_name = '" + userGroupCmbx.getSelectedItem().toString() + "'  AND sys_name ilike 'hospital_payroll' ORDER BY menu_list");
+
+                                while (rs1.next()) {
+
+                                    arraySet1 = rs1.getArray(1);
+
+                                }
+
+                                java.sql.Statement stmt2 = connectDB.createStatement();
+
+                                java.sql.ResultSet rs2 = stmt2.executeQuery("SELECT menu_list from secure_menu_access_group WHERE login_name = '" + userGroupCmbx.getSelectedItem().toString() + "'  AND sys_name ilike 'hospital_inventory' ORDER BY menu_list");
+
+                                while (rs2.next()) {
+
+                                    arraySet2 = rs2.getArray(1);
+
+                                }
+
+                                java.sql.Statement stmt3 = connectDB.createStatement();
+
+                                java.sql.ResultSet rs3 = stmt3.executeQuery("SELECT menu_list from secure_menu_access_group WHERE login_name = '" + userGroupCmbx.getSelectedItem().toString() + "'  AND sys_name ilike 'hospital_hr' ORDER BY menu_list");
+
+                                while (rs3.next()) {
+
+                                    arraySet3 = rs3.getArray(1);
+
+                                }
+
+                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("CREATE USER " + logonNameTxt.getText().toLowerCase() + " WITH PASSWORD '" + newPasswordField.getText() + "' SUPERUSER");
+
+                                pstmt.execute();
+
+                                java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("INSERT INTO secure_menu_access(login_name, menu_list, f_name, l_name, department, sys_name, group_name, m_name, pf_no, telephone_no, email_address,id_no) VALUES (lower(?),?,?,?,?,?,?,?,?,?,?,?)");
+
+                                java.sql.PreparedStatement pstmt4 = connectDB.prepareStatement("INSERT INTO secure_menu_access(login_name, menu_list, f_name, l_name, department, sys_name, group_name, m_name, pf_no, telephone_no, email_address,id_no) VALUES (lower(?),?,?,?,?,?,?,?,?,?,?,?)");
+
+                                java.sql.PreparedStatement pstmt5 = connectDB.prepareStatement("INSERT INTO secure_menu_access(login_name, menu_list, f_name, l_name,department, sys_name, group_name, m_name, pf_no, telephone_no, email_address,id_no) VALUES (lower(?),?,?,?,?,?,?,?,?,?,?,?)");
+
+                                java.sql.PreparedStatement pstmt6 = connectDB.prepareStatement("INSERT INTO secure_menu_access(login_name, menu_list, f_name, l_name, department, sys_name, group_name, m_name, pf_no, telephone_no, email_address,id_no) VALUES (lower(?),?,?,?,?,?,?,?,?,?,?,?)");
+
+                                java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO secure_password values(lower(?),?,?,?,?,?)");
+
+                                // java.sql.PreparedStatement pstmt3 = connectDB.prepareStatement("GRANT SELECT ON secure_password TO " + jTextField582.getText());
+                                pstmt1.setObject(1, logonNameTxt.getText());
+                                pstmt1.setArray(2, arraySet);
+                                pstmt1.setObject(3, firstNameTxt.getText());
+                                pstmt1.setObject(4, lastNameTxt.getText());
+                                pstmt1.setObject(5, departmentCmbx.getSelectedItem().toString());
+                                pstmt1.setObject(6, "hospital_main");
+                                pstmt1.setObject(7, userGroupCmbx.getSelectedItem().toString());
+                                pstmt1.setObject(8, middleNameTxt.getText());
+                                pstmt1.setObject(9, personalNoTxt.getText());
+                                pstmt1.setObject(10, telephoneNoTxt.getText());
+                                pstmt1.setObject(11, emailAddressTxt.getText());
+                                pstmt1.setObject(12, idNoTxt.getText());
+
+                                pstmt4.setObject(1, logonNameTxt.getText());
+                                pstmt4.setArray(2, arraySet1);
+                                pstmt4.setObject(3, firstNameTxt.getText());
+                                pstmt4.setObject(4, lastNameTxt.getText());
+                                pstmt4.setObject(5, departmentCmbx.getSelectedItem().toString());
+                                pstmt4.setObject(6, "hospital_payroll");
+                                pstmt4.setObject(7, userGroupCmbx.getSelectedItem().toString());
+                                pstmt4.setObject(8, middleNameTxt.getText());
+                                pstmt4.setObject(9, personalNoTxt.getText());
+                                pstmt4.setObject(10, telephoneNoTxt.getText());
+                                pstmt4.setObject(11, emailAddressTxt.getText());
+                                pstmt4.setObject(12, idNoTxt.getText());
+
+                                pstmt5.setObject(1, logonNameTxt.getText());
+                                pstmt5.setArray(2, arraySet2);
+                                pstmt5.setObject(3, firstNameTxt.getText());
+                                pstmt5.setObject(4, lastNameTxt.getText());
+                                pstmt5.setObject(5, departmentCmbx.getSelectedItem().toString());
+                                pstmt5.setObject(6, "hospital_inventory");
+                                pstmt5.setObject(7, userGroupCmbx.getSelectedItem().toString());
+                                pstmt5.setObject(8, middleNameTxt.getText());
+                                pstmt5.setObject(9, personalNoTxt.getText());
+                                pstmt5.setObject(10, telephoneNoTxt.getText());
+                                pstmt5.setObject(11, emailAddressTxt.getText());
+                                pstmt5.setObject(12, idNoTxt.getText());
+
+                                pstmt6.setObject(1, logonNameTxt.getText());
+                                pstmt6.setArray(2, arraySet3);
+                                pstmt6.setObject(3, firstNameTxt.getText());
+                                pstmt6.setObject(4, lastNameTxt.getText());
+                                pstmt6.setObject(5, departmentCmbx.getSelectedItem().toString());
+                                pstmt6.setObject(6, "hospital_hr");
+                                pstmt6.setObject(7, userGroupCmbx.getSelectedItem().toString());
+                                pstmt6.setObject(8, middleNameTxt.getText());
+                                pstmt6.setObject(9, personalNoTxt.getText());
+                                pstmt6.setObject(10, telephoneNoTxt.getText());
+                                pstmt6.setObject(11, emailAddressTxt.getText());
+                                pstmt6.setObject(12, idNoTxt.getText());
+
+                                pstmt2.setObject(1, "P0001");
+                                pstmt2.setObject(2, logonNameTxt.getText());
+                                pstmt2.setObject(3, "jmenubar1");
+                                pstmt2.setObject(4, "hospital_main");
+                                pstmt2.setObject(5, "exitmnit");
+                                pstmt2.setBoolean(6, java.lang.Boolean.TRUE);
+
+                                //    pstmt.executeUpdate();
+                                pstmt1.executeUpdate();
+
+                                pstmt2.executeUpdate();
+
+                                //pstmt3.executeUpdate();
+                                pstmt4.executeUpdate();
+
+                                pstmt5.executeUpdate();
+
+                                pstmt6.executeUpdate();
+
+                                if (tempAccountChbx.isSelected()) {
+
+                                    java.sql.PreparedStatement pstmtUpdateUser = connectDB.prepareStatement("ALTER ROLE " + logonNameTxt.getText() + "   VALID UNTIL '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateCollectedDatePicker.getDate()) + " 23:59:59'");
+                                    pstmtUpdateUser.execute();
+                                }
+
+                                removeUserCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
+
+                                accountNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
+
+                                targetAccountNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
+
+                                jComboBox4.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
+
+                                jComboBox42.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select usename from pg_user where usename !='postgres' "));
+
+                                java.sql.PreparedStatement pstmtChangeControl = connectDB.prepareStatement("INSERT INTO account_access_control("
+                                        + "           account_change_type, user_account_affected"
+                                        + "            )"
+                                        + "    VALUES (?, ?)");
+                                pstmtChangeControl.setString(1, "ACCOUNT_CREATION");
+                                pstmtChangeControl.setString(2, logonNameTxt.getText());
+                                pstmtChangeControl.execute();
+                                connectDB.commit();
+                                connectDB.setAutoCommit(true);
+
+                                // com.afrisoftech.lib.SecuritySettings.setUserAccessControl(connectDB, logonNameTxt.getText());
+                                javax.swing.JOptionPane.showMessageDialog(this, "Successfully created new user : [" + logonNameTxt.getText() + "]");
+
+                            } catch (java.lang.Exception sq) {
+                                sq.printStackTrace();
+                                //               }catch(java.sql.SQLException sq){
+                                try {
+                                    connectDB.rollback(registerSavePoint);
+                                    System.out.println("Rolling back to save point at cashpoint");
+                                } catch (java.sql.SQLException sql) {
+                                    sql.printStackTrace();
+                                    javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                }
+                                System.out.println(sq.getMessage());
+                                javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+                            }
+
+                        }
+                    } else {
+                        javax.swing.JOptionPane.showMessageDialog(this, "The First Name, Last Name, ID No., Email, Telephone No. and Personal Number fields are mandatory!");
+                    }
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Personal Number already in use!");
+                }
+
             } else {
 
                 javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), "New password must be confirmed by an identical entry on the Retyped password entry.");
@@ -2951,14 +3770,14 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_jButton301ActionPerformed
 
-    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+    private void currentGroupCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentGroupCmbxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox5ActionPerformed
+    }//GEN-LAST:event_currentGroupCmbxActionPerformed
 
-    private void jComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox6ActionPerformed
+    private void usernameCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameCmbxActionPerformed
         try {
             //   jComboBox5.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT group_name FROM secure_menu_access"));
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT DISTINCT group_name FROM secure_menu_access WHERE login_name = '" + jComboBox6.getSelectedItem().toString() + "'");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT DISTINCT group_name FROM secure_menu_access WHERE login_name = '" + usernameCmbx.getSelectedItem().toString() + "'");
             java.sql.ResultSet rset = pstmt.executeQuery();
             while (rset.next()) {
                 currentGroupTxt.setText(rset.getString(1));
@@ -2967,9 +3786,9 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
-    }//GEN-LAST:event_jComboBox6ActionPerformed
+    }//GEN-LAST:event_usernameCmbxActionPerformed
 
     private void changeUserGroupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeUserGroupBtnActionPerformed
         java.lang.String[] listSet = null;
@@ -3031,7 +3850,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
             java.sql.Statement stmt = connectDB.createStatement();
 
-            java.sql.ResultSet rs = stmt.executeQuery("SELECT menu_list from secure_menu_access_group WHERE login_name = '" + jComboBox5.getSelectedItem().toString() + "'  AND sys_name ilike 'Hospital_Main' ORDER BY menu_list");
+            java.sql.ResultSet rs = stmt.executeQuery("SELECT menu_list from secure_menu_access_group WHERE login_name = '" + removeGroupCmbx3.getSelectedItem().toString() + "'  AND sys_name ilike 'Hospital_Main' ORDER BY menu_list");
 
             while (rs.next()) {
 
@@ -3042,10 +3861,23 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
             java.sql.PreparedStatement pmstmt = connectDB.prepareStatement("UPDATE secure_menu_access SET menu_list = ?, group_name = ?  WHERE login_name = ? AND sys_name ilike 'hospital_main'");
 
             pmstmt.setArray(1, arraySet);
-            pmstmt.setObject(2, jComboBox5.getSelectedItem().toString());
-            pmstmt.setObject(3, jComboBox6.getSelectedItem().toString());
+            pmstmt.setObject(2, currentGroupCmbx.getSelectedItem().toString());
+            pmstmt.setObject(3, usernameCmbx.getSelectedItem().toString());
 
             pmstmt.executeUpdate();
+
+            rs = stmt.executeQuery("SELECT menu_list from secure_menu_access_group WHERE login_name = '" + removeGroupCmbx3.getSelectedItem().toString() + "'  AND sys_name ilike 'hospital_inventory' ORDER BY menu_list");
+            while (rs.next()) {
+                arraySet = rs.getArray(1);
+                System.err.println("Working for hos inventory");
+            }
+
+            pmstmt = connectDB.prepareStatement("UPDATE secure_menu_access SET menu_list = ?, group_name = ?  WHERE login_name = ? AND sys_name ilike 'hospital_inventory' ");
+            pmstmt.setArray(1, arraySet);
+            pmstmt.setObject(2, removeGroupCmbx3.getSelectedItem().toString());
+            pmstmt.setObject(3, logonNameTxt1.getText());
+            pmstmt.executeUpdate();
+            System.err.println("Done for Working for hos inventory");
 
             System.out.println("----------------------------------------------------------------");
             java.sql.PreparedStatement pstmtChangeControl = connectDB.prepareStatement("INSERT INTO account_access_control("
@@ -3053,7 +3885,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
                     + "            )"
                     + "    VALUES (?, ?)");
             pstmtChangeControl.setString(1, "CHANGE_OF_USER_GROUP");
-            pstmtChangeControl.setString(2, jComboBox6.getSelectedItem().toString());
+            pstmtChangeControl.setString(2, usernameCmbx.getSelectedItem().toString());
             pstmtChangeControl.execute();
 //            connectDB.commit();
 //            connectDB.setAutoCommit(true);
@@ -3061,7 +3893,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 //            com.afrisoftech.lib.SecuritySettings.setUserAccessControl(connectDB, logonNameTxt.getText());
 //            connectDB.commit();
 //            connectDB.setAutoCommit(true);
-            javax.swing.JOptionPane.showMessageDialog(this, "Successfuly updated access privileges for user : [ " + this.jComboBox6.getSelectedItem().toString().toUpperCase() + " ]");
+            javax.swing.JOptionPane.showMessageDialog(this, "Successfuly updated access privileges for user : [ " + this.usernameCmbx.getSelectedItem().toString().toUpperCase() + " ]");
         } catch (java.sql.SQLException sq) {
             sq.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -3117,7 +3949,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
             } catch (ParseException ex) {
                 ex.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                ex.printStackTrace();             //ex.printStackTrace();
             }
 
             // pstmt.setTimestamp(2, new java.sql.Timestamp.);
@@ -3125,7 +3957,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
     }//GEN-LAST:event_scheduleTaskBtnActionPerformed
 
@@ -3142,7 +3974,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
                         pstmtUpdateUser.execute();
                     } catch (SQLException ex) {
                         javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                                    ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
                     }
 
                 }
@@ -3158,7 +3990,16 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_closeFormBtnActionPerformed
 
     private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
-        staffControlsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct upper(login_name) as login_name, upper(f_name||' '||l_name) as user_name, department, false as dormant_account, (CASE WHEN (SELECT rolcanlogin FROM pg_catalog.pg_roles WHERE secure_menu_access.login_name = pg_catalog.pg_roles.rolname) = true THEN 'ACTIVE' ELSE 'DORMANT' END) as ACCOUNT_STATUS from secure_menu_access order by 1"));
+        //staffControlsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct upper(login_name) as login_name, upper(f_name||' '||l_name) as user_name, department, false as dormant_account, (CASE WHEN (SELECT rolcanlogin FROM pg_catalog.pg_roles WHERE secure_menu_access.login_name = pg_catalog.pg_roles.rolname) = true THEN 'ACTIVE' ELSE 'DORMANT' END) as ACCOUNT_STATUS,m_name as OTHER_NAMES,pf_no,id_no,email_address,telephone_no, (SELECT rolvaliduntil FROM pg_catalog.pg_roles WHERE secure_menu_access.login_name = pg_catalog.pg_roles.rolname) AS valid_until from secure_menu_access order by 1"));
+
+        if (jCheckBox1.isSelected()) {
+            staffControlsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct upper(login_name) as login_name, upper(f_name||' '||l_name) as user_name, department, false as dormant_account, (CASE WHEN (SELECT rolcanlogin FROM pg_catalog.pg_roles WHERE secure_menu_access.login_name = pg_catalog.pg_roles.rolname) = true THEN 'ACTIVE' ELSE 'DORMANT' END) as ACCOUNT_STATUS, m_name as OTHER_NAMES,pf_no,id_no,email_address,telephone_no,(SELECT rolvaliduntil FROM pg_catalog.pg_roles WHERE secure_menu_access.login_name = pg_catalog.pg_roles.rolname) AS valid_until,pf_no from secure_menu_access WHERE  login_name IN (SELECT pg_catalog.pg_roles.rolname FROM pg_catalog.pg_roles WHERE rolcanlogin = true)  order by 1"));
+
+        } else {
+
+            staffControlsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct upper(login_name) as login_name, upper(f_name||' '||l_name) as user_name, department, false as dormant_account, (CASE WHEN (SELECT rolcanlogin FROM pg_catalog.pg_roles WHERE secure_menu_access.login_name = pg_catalog.pg_roles.rolname) = true THEN 'ACTIVE' ELSE 'DORMANT' END) as ACCOUNT_STATUS, m_name as OTHER_NAMES,pf_no,id_no,email_address,telephone_no,(SELECT rolvaliduntil FROM pg_catalog.pg_roles WHERE secure_menu_access.login_name = pg_catalog.pg_roles.rolname) AS valid_until,pf_no from secure_menu_access WHERE  login_name IN (SELECT pg_catalog.pg_roles.rolname FROM pg_catalog.pg_roles WHERE rolcanlogin = false)  order by 1"));
+        }
+        //staffControlsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct upper(login_name) as login_name, upper(f_name||' '||l_name) as user_name, department, false as dormant_account, (CASE WHEN (SELECT rolcanlogin FROM pg_catalog.pg_roles WHERE secure_menu_access.login_name = pg_catalog.pg_roles.rolname) = true THEN 'ACTIVE' ELSE 'DORMANT' END) as ACCOUNT_STATUS from secure_menu_access order by 1"));
 // TODO add your handling code here:
     }//GEN-LAST:event_refreshBtnActionPerformed
 
@@ -3175,7 +4016,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
                         pstmtUpdateUser.execute();
                     } catch (SQLException ex) {
                         javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                                    ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
                     }
 
                 }
@@ -3188,13 +4029,17 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_restoreAccountBtnActionPerformed
 
     private void selectUserAccountTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_selectUserAccountTxtCaretUpdate
-
         staffControlsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT "
                 + "distinct upper(login_name) as login_name, upper(f_name||' '||l_name) as user_name,"
                 + " department, false as dormant_account, (CASE WHEN (SELECT rolcanlogin FROM pg_catalog.pg_roles WHERE secure_menu_access.login_name = pg_catalog.pg_roles.rolname)"
-                + " = true THEN 'ACTIVE' ELSE 'DORMANT' END) as ACCOUNT_STATUS  from secure_menu_access"
-                + " WHERE login_name ilike '%" + selectUserAccountTxt.getText() + "%' or f_name||' '||l_name ilike '%" + selectUserAccountTxt.getText() + "%' order by 1"));
+                + " = true THEN 'ACTIVE' ELSE 'DORMANT' END) as ACCOUNT_STATUS, m_name as OTHER_NAMES ,(SELECT rolvaliduntil FROM pg_catalog.pg_roles WHERE secure_menu_access.login_name = pg_catalog.pg_roles.rolname) AS valid_until,pf_no  from secure_menu_access"
+                + " WHERE email_address ilike '%" + selectUserAccountTxt.getText() + "%' or telephone_no ilike '%" + selectUserAccountTxt.getText() + "%' or id_no ilike '%" + selectUserAccountTxt.getText() + "%' or pf_no ilike '%" + selectUserAccountTxt.getText() + "%' or login_name ilike '%" + selectUserAccountTxt.getText() + "%' or f_name||' '||l_name ilike '%" + selectUserAccountTxt.getText() + "%' order by 1"));
 
+//        staffControlsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT "
+//                + "distinct upper(login_name) as login_name, upper(f_name||' '||l_name) as user_name,"
+//                + " department, false as dormant_account, (CASE WHEN (SELECT rolcanlogin FROM pg_catalog.pg_roles WHERE secure_menu_access.login_name = pg_catalog.pg_roles.rolname)"
+//                + " = true THEN 'ACTIVE' ELSE 'DORMANT' END) as ACCOUNT_STATUS  from secure_menu_access"
+//                + " WHERE login_name ilike '%" + selectUserAccountTxt.getText() + "%' or f_name||' '||l_name ilike '%" + selectUserAccountTxt.getText() + "%' order by 1"));
         // TODO add your handling code here:
     }//GEN-LAST:event_selectUserAccountTxtCaretUpdate
 
@@ -3236,7 +4081,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
     }//GEN-LAST:event_saveAccessControlpolicyBtnActionPerformed
 
@@ -3267,13 +4112,13 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
             } catch (ParseException ex) {
                 ex.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                ex.printStackTrace();             //ex.printStackTrace();
             }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_updateScheduleTaskBtnActionPerformed
@@ -3295,14 +4140,14 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
                     formattedDate = dateFormat.parse(dateInstance.toLocaleString());
                     maintenanceTaskDescription1.setText(scheduledTasksTable.getValueAt(scheduledTasksTable.getSelectedRow(), 1).toString());
                 } catch (ParseException ex) {
-                                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                    ex.printStackTrace();             //ex.printStackTrace();
                 }
             }
             // TODO add your handling code here:
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
     }//GEN-LAST:event_scheduledTasksTableMouseClicked
 
@@ -3327,7 +4172,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_closeBtnActionPerformed
 
     private void auditTrailBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auditTrailBtnActionPerformed
-             auditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM account_access_control WHERE account_change_timestamp::date BETWEEN '"+startDatePicker.getDate()+"' AND '"+endDatePicker.getDate()+"' ORDER BY 3"));
+        auditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM account_access_control WHERE account_change_timestamp::date BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' ORDER BY 3"));
         // TODO add your handling code here:
     }//GEN-LAST:event_auditTrailBtnActionPerformed
 
@@ -3335,8 +4180,8 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
         if (auditTrailUserCmbx.getSelectedItem().toString().contains("--ALL--")) {
             auditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM account_access_control ORDER BY 3"));
-        }else {
-            auditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM account_access_control WHERE action_user ilike '"+auditTrailUserCmbx.getSelectedItem().toString()+"' ORDER BY 3"));
+        } else {
+            auditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM account_access_control WHERE action_user ilike '" + auditTrailUserCmbx.getSelectedItem().toString() + "' ORDER BY 3"));
 
         }
 
@@ -3347,12 +4192,296 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
         if (auditTrailSysAdmCmbx.getSelectedItem().toString().contains("--ALL--")) {
             auditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM account_access_control ORDER BY 3"));
-        }else {
-            auditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM account_access_control WHERE user_account_affected ilike '"+auditTrailSysAdmCmbx.getSelectedItem().toString()+"' ORDER BY 3"));
+        } else {
+            auditTrailTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM account_access_control WHERE user_account_affected ilike '" + auditTrailSysAdmCmbx.getSelectedItem().toString() + "' ORDER BY 3"));
 
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_auditTrailSysAdmCmbxActionPerformed
+
+    private void personalNoTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_personalNoTxtCaretUpdate
+        //generateUserName();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_personalNoTxtCaretUpdate
+
+    private void tempAccountChbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tempAccountChbxActionPerformed
+        if (tempAccountChbx.isSelected()) {
+            datePanel.setVisible(true);
+        } else {
+            datePanel.setVisible(false);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tempAccountChbxActionPerformed
+
+    private void firstNameTxt1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_firstNameTxt1CaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_firstNameTxt1CaretUpdate
+
+    private void lastNameTxt1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_lastNameTxt1CaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lastNameTxt1CaretUpdate
+
+    private void personalNoTxt1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_personalNoTxt1CaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_personalNoTxt1CaretUpdate
+    private void searchButton221Clicked() {
+
+        System.out.println("Showing dialog");
+
+        // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
+        java.awt.Point point = this.logonNameTxt1.getLocationOnScreen();
+
+        jSearchDialog221.setSize(400, 200);
+
+        jSearchDialog221.setLocation(point);
+
+        jSearchDialog221.setVisible(true);
+    }
+    private void searchButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton11ActionPerformed
+        searchButton221Clicked();         // Add your handling code here:
+        // Add your handling code here:
+    }//GEN-LAST:event_searchButton11ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        if (firstNameTxt1.getText().length() > 1 && personalNoTxt1.getText().length() > 2 && lastNameTxt1.getText().length() > 1
+                && emailAddressTxt1.getText().length() > 5 && telephoneNoTxt1.getText().length() > 5 && idNoTxt1.getText().length() > 4) {
+
+            try {
+                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("UPDATE secure_menu_access SET f_name = ?, l_name = ?, m_name = ?, department = ?, pf_no = ?, telephone_no = ?, email_address = ?,group_name = ?, id_no = ? WHERE login_name = ?");
+
+                pstmt.setString(1, firstNameTxt1.getText());
+                pstmt.setString(2, lastNameTxt1.getText());
+                pstmt.setString(3, middleNameTxt1.getText());
+                pstmt.setObject(4, departmentCmbx1.getSelectedItem());
+                pstmt.setString(5, personalNoTxt1.getText());
+                pstmt.setString(6, telephoneNoTxt1.getText());
+                pstmt.setString(7, emailAddressTxt1.getText());
+                pstmt.setObject(8, removeGroupCmbx3.getSelectedItem());
+                pstmt.setString(9, idNoTxt1.getText());
+                pstmt.setString(10, logonNameTxt1.getText());
+
+                pstmt.executeUpdate();
+                if (!initialGroup.equalsIgnoreCase(removeGroupCmbx3.getSelectedItem().toString())) {
+                    changeUserGroupBtn.doClick();
+                }
+                javax.swing.JOptionPane.showMessageDialog(this, "User Details updated successfully.");
+                //personalNoTxt1.setEditable(true);
+                firstNameTxt1.setText("");
+                lastNameTxt1.setText("");
+                middleNameTxt1.setText("");
+                telephoneNoTxt1.setText("");
+                personalNoTxt1.setText("");
+                emailAddressTxt1.setText("");
+                logonNameTxt1.setText("");
+
+            } catch (java.sql.SQLException sqe) {
+                sqe.printStackTrace();
+                javax.swing.JOptionPane.showMessageDialog(this, sqe.getMessage());
+            }
+
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "The First Name, Last Name, ID No., Email, Telephone No. and  and Personal Number fields are mandatory!");
+
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jTextField11321CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField11321CaretUpdate
+        if (this.jTextField11321.getCaretPosition() < 3) {
+            System.out.print("Nothing");
+        } else {
+            jSearchTable221.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT login_name FROM secure_menu_access WHERE login_name ILIKE '%" + jTextField11321.getText() + "%' ORDER BY login_name"));
+
+            jSearchScrollPane221.setViewportView(jSearchTable221);
+            System.out.println("Cannot sort out");
+
+        }   // Add your handling code here:
+    }//GEN-LAST:event_jTextField11321CaretUpdate
+
+    private void jSearchTable221MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable221MouseClicked
+        int i = 0;
+
+        //this.jTextField31.setText("");
+        //  jTextField81.setText("");
+        String code = null;
+
+        logonNameTxt1.setText(jSearchTable221.getValueAt(jSearchTable221.getSelectedRow(), 0).toString());
+
+        try {
+
+            java.sql.Statement stmt = connectDB.createStatement();
+            java.sql.ResultSet rset = stmt.executeQuery("SELECT DISTINCT f_name, l_name, department  \n"
+                    + ", m_name, pf_no, telephone_no, email_address,group_name,id_no  FROM public.secure_menu_access WHERE login_name ILIKE '" + logonNameTxt1.getText() + "'");
+            while (rset.next()) {
+                firstNameTxt1.setText(rset.getString(1));
+                lastNameTxt1.setText(rset.getString(2));
+                departmentCmbx1.setSelectedItem(rset.getObject(3));
+
+                middleNameTxt1.setText(rset.getString(4));
+                personalNoTxt1.setText(rset.getString(5));
+                telephoneNoTxt1.setText(rset.getString(6));
+                emailAddressTxt1.setText(rset.getString(7));
+                idNoTxt1.setText(rset.getString(9));
+                removeGroupCmbx3.setSelectedItem(rset.getString(8));
+
+            }
+            initialGroup = removeGroupCmbx3.getSelectedItem().toString();
+            //personalNoTxt1.setEditable(false);
+        } catch (java.sql.SQLException sqe) {
+            sqe.printStackTrace();
+            System.out.println("Select not successful");
+        }
+
+        jSearchDialog221.dispose();
+
+        // Add your handling code here:
+    }//GEN-LAST:event_jSearchTable221MouseClicked
+
+    private void jButton5221ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5221ActionPerformed
+        jSearchDialog221.dispose();  // Add your handling code here:
+    }//GEN-LAST:event_jButton5221ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if (alterUserDatePicker.getDate() == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "SELECT ACCOUNT EXPIRY DATE.");
+        } else {
+            int k = javax.swing.JOptionPane.showInternalConfirmDialog(this, "ARE YOU SURE THAT YOU WANT TO ALTER THE EXPIRY OF THE SELECTED ACCOUNT(S)?");
+            if (k < 1) {
+
+                for (int i = 0; i < staffControlsTbl.getRowCount(); i++) {
+                    if (Boolean.parseBoolean(staffControlsTbl.getValueAt(i, 3).toString())) {
+                        java.sql.PreparedStatement pstmtUpdateUser;
+                        try {
+                            pstmtUpdateUser = connectDB.prepareStatement("ALTER ROLE " + staffControlsTbl.getValueAt(i, 0).toString().toLowerCase() + " LOGIN"
+                                    + "  CREATEDB"
+                                    + "   VALID UNTIL '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(alterUserDatePicker.getDate()) + " 00:00:00'");
+                            pstmtUpdateUser.execute();
+
+                            java.sql.PreparedStatement pstmtChangeControl = connectDB.prepareStatement("INSERT INTO account_access_control("
+                                    + "           account_change_type, user_account_affected"
+                                    + "            )"
+                                    + "    VALUES (?, ?)");
+                            pstmtChangeControl.setString(1, "ACCOUNT_EXPIRY_CHANGED");
+                            pstmtChangeControl.setString(2, staffControlsTbl.getValueAt(i, 0).toString().toLowerCase());
+                            pstmtChangeControl.execute();
+                        } catch (SQLException ex) {
+                            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+                            ex.printStackTrace();
+                        }
+
+                    }
+                }
+                javax.swing.JOptionPane.showMessageDialog(this, "SELECTED USER ACCOUNT(S) HAVE BEEN ALTERED.");
+                staffControlsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct upper(login_name) as login_name, upper(f_name||' '||l_name) as user_name, department, false as dormant_account, (CASE WHEN (SELECT rolcanlogin FROM pg_catalog.pg_roles WHERE secure_menu_access.login_name = pg_catalog.pg_roles.rolname) = true THEN 'ACTIVE' ELSE 'DORMANT' END) as ACCOUNT_STATUS,m_name as OTHER_NAMES,pf_no,id_no,email_address,telephone_no, (SELECT rolvaliduntil FROM pg_catalog.pg_roles WHERE secure_menu_access.login_name = pg_catalog.pg_roles.rolname) AS valid_until from secure_menu_access order by 1"));
+
+                //staffControlsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct upper(login_name) as login_name, upper(f_name||' '||l_name) as user_name, department, false as dormant_account, (CASE WHEN (SELECT rolcanlogin FROM pg_catalog.pg_roles WHERE secure_menu_access.login_name = pg_catalog.pg_roles.rolname) = true THEN 'ACTIVE' ELSE 'DORMANT' END) as ACCOUNT_STATUS from secure_menu_access order by 1"));
+            }
+            alterUserDatePicker.setDate(null);
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    private void jListAllActivitiesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListAllActivitiesMouseClicked
+        showAccounts();   // TODO add your handling code here:
+    }//GEN-LAST:event_jListAllActivitiesMouseClicked
+    private void showAccounts() {
+        java.lang.Object[] listSel = null;
+
+        listSel = jListAllActivities.getSelectedValues();
+        for (int i = 0; i < listSel.length; i++) {
+
+            jLabel23.setText((listSel[i].toString()));
+            userListTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT login_name,  f_name, l_name, department, group_name,menu_list  FROM public.secure_menu_access WHERE menu_list::character varying ilike '%" + jLabel23.getText() + "%' and sys_name = 'hospital_main'"));
+
+        }
+    }
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        com.afrisoftech.reports.UseraccountsGroupsPdf policy = new com.afrisoftech.reports.UseraccountsGroupsPdf();
+
+        policy.userAccountsPdf(connectDB, departmentCmbx2.getSelectedItem().toString(), targetGroupCmbx1.getSelectedItem().toString());  // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+        try {
+            java.sql.Statement stmt = connectDB.createStatement();
+            //            java.sql.ResultSet rs = stmt.executeQuery("SELECT COUNT( DISTINCT login_name ) FROM public.secure_menu_access_group;");
+            //            int i =0;
+            //            int groupCount = 0;
+            //
+            //            while (rs.next()) {
+            //
+            //               groupCount = rs.getInt(1)*4;
+            //            }
+            String condition = "";
+            if (targetGroupCmbx1.getSelectedItem().toString().equalsIgnoreCase("-")) {
+
+            } else {
+                condition = "AND UPPER(login_name) = '" + targetGroupCmbx1.getSelectedItem().toString().toUpperCase() + "' ";
+            }
+            if (departmentCmbx2.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                userListTbl1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT login_name as group_name,'' as users,sys_name, menu_list  FROM public.secure_menu_access_group WHERE sys_name not ilike '%hr%' and sys_name not ilike '%payroll%' " + condition + " order by 1"));
+
+            } else {
+                userListTbl1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT login_name as group_name,'' as users,sys_name, menu_list  FROM public.secure_menu_access_group WHERE sys_name not ilike '%hr%' and sys_name not ilike '%payroll%' " + condition + " AND login_name IN (SELECT DISTINCT group_name  FROM public.secure_menu_access WHERE department = '" + departmentCmbx2.getSelectedItem().toString() + "') order by 1"));
+            }
+            String gN = "";
+            for (int i = 0; i < userListTbl1.getRowCount(); i++) {
+
+                System.err.println("Row " + i);
+                if (userListTbl1.getValueAt(i, 0) != null) {
+
+                    if (userListTbl1.getValueAt(i, 0).toString().equalsIgnoreCase(userListTbl1.getValueAt(i + 1, 0).toString())) {
+                        userListTbl1.setValueAt(null, i + 1, 0);
+                    }
+                    System.err.println(userListTbl1.getValueAt(i, 0).toString() + "  ---- " + gN);
+                    if (userListTbl1.getValueAt(i, 0).toString().equalsIgnoreCase(gN)) {
+                        userListTbl1.setValueAt(null, i, 0);
+                    }
+                    if (userListTbl1.getValueAt(i, 0) != null) {
+                        gN = userListTbl1.getValueAt(i, 0).toString();
+                    }
+                }
+                if (userListTbl1.getValueAt(i, 0) != null) {
+                    userListTbl1.setValueAt(getUsers(userListTbl1.getValueAt(i, 0).toString()), i, 1);
+                }
+
+            }
+
+            // TODO add your handling code here:
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jCheckBox3ActionPerformed
+    public String getUsers(String group) {
+        String users = "";
+        try {
+
+            java.sql.Statement stmt = connectDB.createStatement();
+            java.sql.ResultSet rs = stmt.executeQuery("SELECT DISTINCT login_name  FROM public.secure_menu_access WHERE group_name = '" + group + "' AND login_name IN (SELECT pg_catalog.pg_roles.rolname  FROM pg_catalog.pg_roles WHERE rolcanlogin  = true)");
+
+            while (rs.next()) {
+
+                users = users + rs.getString(1) + ", ";
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return users;
+
+    }
+    private void targetGroupCmbx1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_targetGroupCmbx1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_targetGroupCmbx1ActionPerformed
 
     public String getSqlString(java.lang.Object[] arrayfromJList) {
 
@@ -3388,6 +4517,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox auditTrailUserCmbx;
     private javax.swing.JPanel bodyPanel;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JButton changeUserGroupBtn;
     private javax.swing.JButton clearFormPaaswordPolicyBrn;
@@ -3400,44 +4530,70 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     private org.netbeans.lib.sql.NBCachedRowSet crset4;
     private org.netbeans.lib.sql.NBCachedRowSet crsetdataccess;
     private org.netbeans.lib.sql.NBCachedRowSet crsetusertables;
+    private javax.swing.JComboBox currentGroupCmbx;
     private javax.swing.JTextField currentGroupTxt;
     private javax.swing.JPanel dataaccessPane;
+    private com.afrisoftech.lib.DatePicker dateCollectedDatePicker;
+    private javax.swing.JPanel datePanel;
     private javax.swing.JTextField daystoExpireTxt;
+    private javax.swing.JComboBox departmentCmbx;
+    private javax.swing.JComboBox departmentCmbx1;
+    private javax.swing.JComboBox departmentCmbx2;
     private javax.swing.JButton dropGroupBtn;
+    private javax.swing.JTextField emailAddressTxt;
+    private javax.swing.JTextField emailAddressTxt1;
     private com.afrisoftech.lib.DatePicker endDatePicker;
+    private javax.swing.JTextField firstNameTxt;
+    private javax.swing.JTextField firstNameTxt1;
     private javax.swing.JPanel groupManagementPanel;
     private javax.swing.JTabbedPane groupsManagerPane;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel headerPanel1;
+    private javax.swing.JTextField idNoTxt;
+    private javax.swing.JTextField idNoTxt1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton202;
     private javax.swing.JButton jButton252;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton301;
-    private javax.swing.JButton jButton3011;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton5221;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JComboBox jComboBox4;
     private javax.swing.JComboBox jComboBox41;
     private javax.swing.JComboBox jComboBox411;
     private javax.swing.JComboBox jComboBox42;
-    private javax.swing.JComboBox jComboBox5;
-    private javax.swing.JComboBox jComboBox6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -3445,12 +4601,18 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel572;
+    private javax.swing.JLabel jLabel573;
     private javax.swing.JLabel jLabel582;
+    private javax.swing.JLabel jLabel583;
     private javax.swing.JLabel jLabel592;
+    private javax.swing.JLabel jLabel593;
+    private javax.swing.JLabel jLabel594;
+    private javax.swing.JLabel jLabel595;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel611;
     private javax.swing.JLabel jLabel612;
+    private javax.swing.JLabel jLabel613;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel622;
     private javax.swing.JLabel jLabel642;
@@ -3464,13 +4626,20 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JList jList2;
     private javax.swing.JList jList3;
     private javax.swing.JList jList4;
+    private javax.swing.JList jListAllActivities;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel412;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane31;
@@ -3478,20 +4647,30 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JDialog jSearchDialog221;
+    private javax.swing.JPanel jSearchPanel221;
+    private javax.swing.JScrollPane jSearchScrollPane221;
+    private javax.swing.JTable jSearchTable221;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator71;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField5412;
+    private javax.swing.JTextField jTextField11321;
+    private javax.swing.JTextField lastNameTxt;
+    private javax.swing.JTextField lastNameTxt1;
     private javax.swing.JPanel listingPanel;
     private javax.swing.JPanel listofScheduledTasksPanel;
     private javax.swing.JTextField logonNameTxt;
+    private javax.swing.JTextField logonNameTxt1;
     private javax.swing.JTextArea maintenanceTaskDescription;
     private javax.swing.JTextArea maintenanceTaskDescription1;
     private javax.swing.JPanel manageGroupsTabbedPane;
+    private javax.swing.JTextField middleNameTxt;
+    private javax.swing.JTextField middleNameTxt1;
     private javax.swing.JLabel newGroupNameLbl;
     private javax.swing.JTextField newGroupNameTxt;
     private javax.swing.JPasswordField newPasswordField;
@@ -3499,20 +4678,25 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton passwdControlCloseBtn;
     private javax.swing.JTextField passwordLegnthTxt;
     private javax.swing.JLabel passwordsSpacelLabel;
+    private javax.swing.JTextField personalNoTxt;
+    private javax.swing.JTextField personalNoTxt1;
     private javax.swing.JButton refreshBtn;
     private javax.swing.JButton refreshTasksScheduleBtn;
     private javax.swing.JButton refreshbtn;
     private javax.swing.JPanel registerGroupPanel;
     private javax.swing.JButton registerNewGroupBtn;
     private javax.swing.JComboBox removeGroupCmbx;
-    private javax.swing.JComboBox removeGroupCmbx2;
+    private javax.swing.JComboBox removeGroupCmbx3;
     private javax.swing.JPanel removeGroupPanel;
+    private javax.swing.JButton removeUserBtn;
+    private javax.swing.JComboBox removeUserCmbx;
     private javax.swing.JButton restoreAccountBtn;
     private javax.swing.JButton revokebtn;
     private javax.swing.JButton saveAccessControlpolicyBtn;
     private javax.swing.JButton scheduleTaskBtn;
     private javax.swing.JScrollPane scheduledTasksScrollPane;
     private javax.swing.JTable scheduledTasksTable;
+    private javax.swing.JButton searchButton11;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JLabel selectAccountLbl;
     private javax.swing.JTextField selectUserAccountTxt;
@@ -3524,14 +4708,23 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     private com.afrisoftech.lib.DatePicker startDatePicker;
     private javax.swing.JComboBox targetAccountNameCmbx;
     private javax.swing.JComboBox targetGroupCmbx;
+    private javax.swing.JComboBox targetGroupCmbx1;
     private javax.swing.JLabel targetGroupLbl;
     private javax.swing.JLabel targetGroupLbl1;
+    private javax.swing.JLabel targetGroupLbl2;
     private javax.swing.JLabel taskIdLbl;
     private javax.swing.JButton tasksCloseFormBtn;
+    private javax.swing.JTextField telephoneNoTxt;
+    private javax.swing.JTextField telephoneNoTxt1;
+    private javax.swing.JCheckBox tempAccountChbx;
     private javax.swing.JButton updateLoginAccountBtn;
     private javax.swing.JButton updateScheduleTaskBtn;
     private javax.swing.JPanel userAdministrationAuitTrailPanel;
+    private javax.swing.JComboBox userGroupCmbx;
+    private javax.swing.JTable userListTbl;
+    private javax.swing.JTable userListTbl1;
     private javax.swing.JPanel userRegistrationPanel;
+    private javax.swing.JComboBox usernameCmbx;
     private javax.swing.JCheckBox warnUsersForScheduledTaskChkbx;
     private javax.swing.JCheckBox warnUsersForScheduledTaskChkbx1;
     // End of variables declaration//GEN-END:variables

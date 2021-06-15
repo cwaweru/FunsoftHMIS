@@ -188,9 +188,10 @@ public class MapPanel extends JPanel implements ILatLongToScreenCoordinatesConve
         //                new TileServer("https://maps.wikimedia.org/osm-intl", 18),
         // https://1.base.maps.api.here.com/maptile/2.1/maptile/newest/normal.day/13/4400/2686/256/png8?app_id=aqV3H4z609XLRLsGC180&app_code=YJJ-fu2Z5ZvqYNHpJN-yXg
         //  new TileServer("https://1.base.maps.api.here.com/maptile/2.1/maptile/newest/normal.day/13/4400/2686/256/png8", 18),
-        new TileServer("https://tile.thunderforest.com/outdoors/", 18), //working
-        new TileServer("http://tile.thunderforest.com/cycle/", 18),
-        new TileServer("http://a.tile.opentopomap.org/", 17),};
+        ////new TileServer("https://tile.thunderforest.com/outdoors/", 18), //working
+//        new TileServer("http://mt1.google.com/vt/lyrs=m&x=1325&y=3143&z=13", 18),
+        new TileServer("http://tile.thunderforest.com/cycle/", 18)};//,
+//        new TileServer("http://a.tile.opentopomap.org/", 17),};
 
     private static final String NAMEFINDER_URL = "http://nominatim.openstreetmap.org/search";
     private static final int PREFERRED_WIDTH = 320;

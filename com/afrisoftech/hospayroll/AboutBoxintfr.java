@@ -94,7 +94,7 @@ public class AboutBoxintfr extends javax.swing.JInternalFrame {
 
         jTextArea1.setEditable(false);
         jTextArea1.setBackground(new java.awt.Color(204, 204, 255));
-        jTextArea1.setText("Funsoft HMIS Payroll Version 8.0 Release 10\n\n");
+        jTextArea1.setText("Funsoft ERP/I-HMIS Payroll Version 8.0 Release 3.3\n\n");
         jTextArea1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -121,10 +121,19 @@ public class AboutBoxintfr extends javax.swing.JInternalFrame {
         jTable1.setFont(new java.awt.Font("Serif", 0, 10)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-
+                "Key", "Value"
             }
         ));
         jTable1.setRowSelectionAllowed(false);
@@ -194,7 +203,7 @@ public class AboutBoxintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanel1, gridBagConstraints);
 
-        setBounds(0, 0, 512, 300);
+        setBounds(0, 0, 624, 321);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked

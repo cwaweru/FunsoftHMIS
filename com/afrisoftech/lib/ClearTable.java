@@ -72,6 +72,18 @@ public class ClearTable {
         
         
     }
+      
+      public static void removeRow(javax.swing.JTable tableName, int row){
+        javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel)tableName.getModel();
+        defTableModel.removeRow(row);
+    }
+      
+      public static void addRowData(javax.swing.JTable tableName, Object[] data) {
+
+      javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) tableName.getModel();
+      defTableModel.addRow(data);
+
+    }
     
     
     

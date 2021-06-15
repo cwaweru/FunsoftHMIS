@@ -18,7 +18,8 @@ public class CancelTheatre extends javax.swing.JPanel {
     public CancelTheatre() {
         initComponents();
         javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/Icons/nursing/theatre.jpg"));
-        icon.paintIcon(this, this.getGraphics(), this.getWidth(), this.getHeight());
+        
+      //  icon.paintIcon(this, this.getGraphics(), 0, 0);
     }
 
     /**

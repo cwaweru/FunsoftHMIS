@@ -64,6 +64,8 @@ public class ReceivablesDashBoardIntfr extends javax.swing.JInternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
         dashBoardHeaderPanel = new javax.swing.JPanel();
         debtorAccountCmbx = new javax.swing.JComboBox();
         payerAcccountCmbx = new javax.swing.JComboBox();
@@ -79,6 +81,21 @@ public class ReceivablesDashBoardIntfr extends javax.swing.JInternalFrame {
         clearBtn = new javax.swing.JButton();
         closeBtn = new javax.swing.JButton();
         spacerLbl = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        dashBoardHeaderPanel1 = new javax.swing.JPanel();
+        debtorAccountCmbx1 = new javax.swing.JComboBox();
+        startDatePicker1 = new com.afrisoftech.lib.DatePicker();
+        endDatePicker1 = new com.afrisoftech.lib.DatePicker();
+        staffAccountCmbx = new javax.swing.JComboBox();
+        dashBoardBodyPanel1 = new javax.swing.JPanel();
+        dashBoardScrollPane1 = new javax.swing.JScrollPane();
+        receivablesDashboardTable1 = new com.afrisoftech.dbadmin.JXTable();
+        dashBoardButtonPanel1 = new javax.swing.JPanel();
+        refreshBtn1 = new javax.swing.JButton();
+        editBtn1 = new javax.swing.JButton();
+        clearBtn1 = new javax.swing.JButton();
+        closeBtn1 = new javax.swing.JButton();
+        spacerLbl1 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -92,6 +109,8 @@ public class ReceivablesDashBoardIntfr extends javax.swing.JInternalFrame {
         }
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jPanel1.setLayout(new java.awt.GridBagLayout());
 
         dashBoardHeaderPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -131,10 +150,10 @@ public class ReceivablesDashBoardIntfr extends javax.swing.JInternalFrame {
             }
         });
         startDatePicker.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 startDatePickerInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         startDatePicker.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -185,7 +204,7 @@ public class ReceivablesDashBoardIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 5.0;
-        getContentPane().add(dashBoardHeaderPanel, gridBagConstraints);
+        jPanel1.add(dashBoardHeaderPanel, gridBagConstraints);
 
         dashBoardBodyPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -221,7 +240,7 @@ public class ReceivablesDashBoardIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 100.0;
-        getContentPane().add(dashBoardBodyPanel, gridBagConstraints);
+        jPanel1.add(dashBoardBodyPanel, gridBagConstraints);
 
         dashBoardButtonPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -283,7 +302,184 @@ public class ReceivablesDashBoardIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(dashBoardButtonPanel, gridBagConstraints);
+        jPanel1.add(dashBoardButtonPanel, gridBagConstraints);
+
+        jTabbedPane1.addTab("Receivable dashBoard", jPanel1);
+
+        jPanel2.setLayout(new java.awt.GridBagLayout());
+
+        dashBoardHeaderPanel1.setLayout(new java.awt.GridBagLayout());
+
+        debtorAccountCmbx1.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' UNION SELECT scheme_name FROM ac_schemes WHERE scheme_name != '' and scheme_name is not null ORDER BY 1"));
+        debtorAccountCmbx1.setBorder(javax.swing.BorderFactory.createTitledBorder("Scheme/Debtor Account"));
+        debtorAccountCmbx1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                debtorAccountCmbx1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        dashBoardHeaderPanel1.add(debtorAccountCmbx1, gridBagConstraints);
+
+        startDatePicker1.setBorder(javax.swing.BorderFactory.createTitledBorder("Start Date"));
+
+        this.startDatePicker.getDateEditor().addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                changeDate();
+            }
+        });
+        startDatePicker1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                startDatePicker1InputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
+        startDatePicker1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                startDatePicker1PropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        dashBoardHeaderPanel1.add(startDatePicker1, gridBagConstraints);
+
+        endDatePicker1.setBorder(javax.swing.BorderFactory.createTitledBorder("End Date"));
+
+        this.endDatePicker.getDateEditor().addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                changeDate();
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        dashBoardHeaderPanel1.add(endDatePicker1, gridBagConstraints);
+
+        staffAccountCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' UNION SELECT DISTINCT upper(user_name) FROM ac_credit_slip_print ORDER BY 1"));
+        staffAccountCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("SELECT STAFF ACCOUNT"));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        dashBoardHeaderPanel1.add(staffAccountCmbx, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 5.0;
+        jPanel2.add(dashBoardHeaderPanel1, gridBagConstraints);
+
+        dashBoardBodyPanel1.setLayout(new java.awt.GridBagLayout());
+
+        receivablesDashboardTable1.setAutoCreateRowSorter(true);
+        receivablesDashboardTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                receivablesDashboardTable1MouseClicked(evt);
+            }
+        });
+        dashBoardScrollPane1.setViewportView(receivablesDashboardTable1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        dashBoardBodyPanel1.add(dashBoardScrollPane1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 100.0;
+        jPanel2.add(dashBoardBodyPanel1, gridBagConstraints);
+
+        dashBoardButtonPanel1.setLayout(new java.awt.GridBagLayout());
+
+        refreshBtn1.setText("Refresh listing");
+        refreshBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtn1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        dashBoardButtonPanel1.add(refreshBtn1, gridBagConstraints);
+
+        editBtn1.setText("Edit information");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        dashBoardButtonPanel1.add(editBtn1, gridBagConstraints);
+
+        clearBtn1.setText("Clear form");
+        clearBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearBtn1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        dashBoardButtonPanel1.add(clearBtn1, gridBagConstraints);
+
+        closeBtn1.setText("Close form");
+        closeBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtn1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        dashBoardButtonPanel1.add(closeBtn1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        dashBoardButtonPanel1.add(spacerLbl1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel2.add(dashBoardButtonPanel1, gridBagConstraints);
+
+        jTabbedPane1.addTab("Credit slip", jPanel2);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        getContentPane().add(jTabbedPane1, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -384,6 +580,41 @@ public class ReceivablesDashBoardIntfr extends javax.swing.JInternalFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_receivablesDashboardTableMouseClicked
+
+    private void debtorAccountCmbx1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_debtorAccountCmbx1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_debtorAccountCmbx1ActionPerformed
+
+    private void startDatePicker1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_startDatePicker1InputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startDatePicker1InputMethodTextChanged
+
+    private void startDatePicker1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_startDatePicker1PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startDatePicker1PropertyChange
+
+    private void receivablesDashboardTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_receivablesDashboardTable1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_receivablesDashboardTable1MouseClicked
+
+    private void refreshBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtn1ActionPerformed
+        String condition = "";
+        if(!staffAccountCmbx.getSelectedItem().toString().equalsIgnoreCase("-"))
+            condition += " AND user_name ILIKE '"+staffAccountCmbx.getSelectedItem().toString()+"' ";
+        if(!debtorAccountCmbx1.getSelectedItem().toString().equalsIgnoreCase("-"))
+            condition += " AND scheme ILIKE '"+debtorAccountCmbx1.getSelectedItem().toString()+"' ";
+        
+        this.receivablesDashboardTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT slip_no, patient_no, patient_name, date, trans_time::TIME(0) AS time, scheme, amount, user_name  FROM public.ac_credit_slip_print WHERE date BETWEEN '" + startDatePicker1.getDate() + "' and '" + endDatePicker1.getDate() + "' "+condition+" ORDER BY 1"));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refreshBtn1ActionPerformed
+
+    private void clearBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clearBtn1ActionPerformed
+
+    private void closeBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_closeBtn1ActionPerformed
     void changeDate() {
         if (debtorAccountCmbx.getSelectedItem().toString().equalsIgnoreCase("-All-")) {
             this.receivablesDashboardTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, invoice_no,  admission_no as patient_no, (SELECT DISTINCT claim_no FROM hp_patient_discharge WHERE hp_patient_discharge.inv_no = ac_debtors.invoice_no ORDER BY 1 DESC LIMIT 1) as claim_no, user_name as originator, upper(dealer) as payer, upper(payee) as debtor, upper(account_no) as debtor_acc_no, upper(item) as client_name, sum(debit-credit) invoice_balance, dispatch_no, false as vetted, sent as dispatched, approved as confirmed, paid as settled FROM ac_debtors WHERE date between '" + startDatePicker.getDate() + "' and '" + endDatePicker.getDate() + "' GROUP BY 1,2,3,4,5,6,7,8,9,11,12,13,14,15 ORDER by 1"));
@@ -400,19 +631,36 @@ public class ReceivablesDashBoardIntfr extends javax.swing.JInternalFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clearBtn;
+    private javax.swing.JButton clearBtn1;
     private javax.swing.JButton closeBtn;
+    private javax.swing.JButton closeBtn1;
     private javax.swing.JPanel dashBoardBodyPanel;
+    private javax.swing.JPanel dashBoardBodyPanel1;
     private javax.swing.JPanel dashBoardButtonPanel;
+    private javax.swing.JPanel dashBoardButtonPanel1;
     private javax.swing.JPanel dashBoardHeaderPanel;
+    private javax.swing.JPanel dashBoardHeaderPanel1;
     private javax.swing.JScrollPane dashBoardScrollPane;
+    private javax.swing.JScrollPane dashBoardScrollPane1;
     private javax.swing.JComboBox debtorAccountCmbx;
+    private javax.swing.JComboBox debtorAccountCmbx1;
     private javax.swing.JTextField dispatchNoTxt;
     private javax.swing.JButton editBtn;
+    private javax.swing.JButton editBtn1;
     private com.afrisoftech.lib.DatePicker endDatePicker;
+    private com.afrisoftech.lib.DatePicker endDatePicker1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox payerAcccountCmbx;
     private javax.swing.JTable receivablesDashboardTable;
+    private javax.swing.JTable receivablesDashboardTable1;
     private javax.swing.JButton refreshBtn;
+    private javax.swing.JButton refreshBtn1;
     private javax.swing.JLabel spacerLbl;
+    private javax.swing.JLabel spacerLbl1;
+    private javax.swing.JComboBox staffAccountCmbx;
     private com.afrisoftech.lib.DatePicker startDatePicker;
+    private com.afrisoftech.lib.DatePicker startDatePicker1;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,10 +10,11 @@ package com.afrisoftech.lib;
  * @author root
  */
 public class HosDatePanel extends javax.swing.JDialog {
-
+ 
     int reportName;
     java.sql.Connection connectDB = null;
     java.util.Vector dateStartEnd = null;
+    String glCode = null;
 
     //  javax.swing.JSpinner beginDateSpinner = null;
     // javax.swing.JSpinner endDateSpinner = null;
@@ -37,6 +38,14 @@ public class HosDatePanel extends javax.swing.JDialog {
             jCheckBox4.setVisible(true);
             clinicCmbx.setVisible(true);
         }
+        
+        if (reportName == 65 || reportName == 5223) {
+            reportTypeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' UNION SELECT DISTINCT activity from pb_activity WHERE activity_category ILIKE 'I%' OR activity_category ILIKE 'PLID%' ORDER BY 1"));
+            
+        }
+        
+        
+        
 
         //       return dateStartEnd;
     }
@@ -148,6 +157,11 @@ public class HosDatePanel extends javax.swing.JDialog {
         jPanel1.add(nodaysCmb, gridBagConstraints);
 
         reportTypeCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Summary", "Detailed" }));
+        reportTypeCmbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportTypeCmbxActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -269,6 +283,11 @@ public class HosDatePanel extends javax.swing.JDialog {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox4ActionPerformed
+
+    private void reportTypeCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportTypeCmbxActionPerformed
+       
+// TODO add your handling code here:
+    }//GEN-LAST:event_reportTypeCmbxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -655,7 +674,17 @@ public class HosDatePanel extends javax.swing.JDialog {
 
             case 65: {
                 com.afrisoftech.reports.CashSaleRepPdf policy = new com.afrisoftech.reports.CashSaleRepPdf();
+ 
+                policy.CashSaleRepPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),reportTypeCmbx.getSelectedItem().toString());
 
+                this.dispose();
+
+            }
+            break;
+            
+            case 667: {
+                com.afrisoftech.reports.CashSaleRepAnalysisPdf policy = new com.afrisoftech.reports.CashSaleRepAnalysisPdf();
+ 
                 policy.CashSaleRepPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
 
                 this.dispose();
@@ -974,6 +1003,15 @@ public class HosDatePanel extends javax.swing.JDialog {
 
             case 134: {
                 com.afrisoftech.reports.ShiftsTotalPdf policy = new com.afrisoftech.reports.ShiftsTotalPdf();
+
+                policy.ShiftsTotalPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
+
+                // this.dispose();
+            }
+            break;
+            
+            case 13444: {
+                com.afrisoftech.reports.ShiftsTotalPettyPdf policy = new com.afrisoftech.reports.ShiftsTotalPettyPdf();
 
                 policy.ShiftsTotalPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
 
@@ -1680,15 +1718,15 @@ public class HosDatePanel extends javax.swing.JDialog {
             
              } break;*/
 
-            case 5217: {
-                com.afrisoftech.reports.IPDaysPdf policy = new com.afrisoftech.reports.IPDaysPdf();
-
-                policy.IPDaysPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
-
-                this.dispose();
-
-            }
-            break;
+//            case 5217: {
+//                com.afrisoftech.reports.IPDaysPdf policy = new com.afrisoftech.reports.IPDaysPdf();
+//
+//                policy.IPDaysPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
+//
+//                this.dispose();
+//
+//            }
+//            break;
 
             case 5220: {
                 com.afrisoftech.reports.DeathsPdf policy = new com.afrisoftech.reports.DeathsPdf();
@@ -1712,7 +1750,7 @@ public class HosDatePanel extends javax.swing.JDialog {
             case 5223: {
                 com.afrisoftech.reports.DetailedCashReportPdf policy = new com.afrisoftech.reports.DetailedCashReportPdf();
 
-                policy.DetailedCashReportPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
+                policy.DetailedCashReportPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(), reportTypeCmbx.getSelectedItem().toString());
 
                 this.dispose();
 
@@ -1804,6 +1842,18 @@ public class HosDatePanel extends javax.swing.JDialog {
 
                 ///policy.CashMonthlyRevPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
                 com.afrisoftech.reports.MohReportPdf policy = new com.afrisoftech.reports.MohReportPdf();
+
+                policy.MohReportPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
+
+                ///this.dispose();
+            }
+            break;
+            
+            case 5251222: {
+                //com.afrisoftech.reports.CashMonthlyRevPdf policy = new com.afrisoftech.reports.CashMonthlyRevPdf();
+
+                ///policy.CashMonthlyRevPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
+                com.afrisoftech.reports.MohReportUHCPdf policy = new com.afrisoftech.reports.MohReportUHCPdf();
 
                 policy.MohReportPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
 

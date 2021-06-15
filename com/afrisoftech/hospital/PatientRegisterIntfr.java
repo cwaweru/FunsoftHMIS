@@ -44,7 +44,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -92,6 +92,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     java.sql.Timestamp serviceStartTime = null;
     File imageFile = null;
     String defaultServicePoint = null;
+    private java.lang.Thread newPatientThread;
+    boolean patientRunning = false;
 
     public PatientRegisterIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
@@ -188,12 +190,10 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         diseaseSearchTable = new com.afrisoftech.dbadmin.JTable();
         disposeDiseaseSearchBtn = new javax.swing.JButton();
         diseaseSearchBtngrp = new javax.swing.ButtonGroup();
-        jSearchDialog4 = new javax.swing.JDialog();
-        jSearchPanel5 = new javax.swing.JPanel();
-        jTextField28 = new javax.swing.JTextField();
-        jSearchScrollPane4 = new javax.swing.JScrollPane();
+        repeatedNamesSearch = new javax.swing.JDialog();
+        repeatedNameSearchPanel = new javax.swing.JPanel();
+        repeatedSearchScrollPanel = new javax.swing.JScrollPane();
         jSearchTable4 = new com.afrisoftech.dbadmin.JXTable();
-        dispose3 = new javax.swing.JButton();
         ageTxt = new javax.swing.JTextField();
         facilitySearchDialog = new javax.swing.JDialog();
         facilitySearchMainPanel = new javax.swing.JPanel();
@@ -430,6 +430,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         startDatePicker = new com.afrisoftech.lib.DatePicker();
         endDatePicker = new com.afrisoftech.lib.DatePicker();
         patientSpecialityCmbx = new javax.swing.JComboBox();
+        seachPatTxt = new javax.swing.JTextField();
         reportsMainPanel = new javax.swing.JPanel();
         reportsScrollPane = new javax.swing.JScrollPane();
         reportsTable = new com.afrisoftech.dbadmin.JXTable();
@@ -1406,45 +1407,23 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                 gridBagConstraints.weighty = 1.0;
                                 diseaseDialog.getContentPane().add(jSearchPanel4, gridBagConstraints);
 
-                                jSearchDialog4.setAutoRequestFocus(false);
-                                jSearchDialog4.setFocusable(false);
-                                jSearchDialog4.setFocusableWindowState(false);
-                                jSearchDialog4.setUndecorated(true);
-                                jSearchDialog4.setResizable(false);
-                                jSearchDialog4.addComponentListener(new java.awt.event.ComponentAdapter() {
+                                repeatedNamesSearch.setAutoRequestFocus(false);
+                                repeatedNamesSearch.setFocusable(false);
+                                repeatedNamesSearch.setFocusableWindowState(false);
+                                repeatedNamesSearch.setUndecorated(true);
+                                repeatedNamesSearch.setResizable(false);
+                                repeatedNamesSearch.addComponentListener(new java.awt.event.ComponentAdapter() {
                                     public void componentHidden(java.awt.event.ComponentEvent evt) {
-                                        jSearchDialog4ComponentHidden(evt);
+                                        repeatedNamesSearchComponentHidden(evt);
                                     }
                                 });
-                                jSearchDialog4.getContentPane().setLayout(new java.awt.GridBagLayout());
+                                repeatedNamesSearch.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-                                jSearchPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-                                jSearchPanel5.setFocusable(false);
-                                jSearchPanel5.setLayout(new java.awt.GridBagLayout());
+                                repeatedNameSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+                                repeatedNameSearchPanel.setFocusable(false);
+                                repeatedNameSearchPanel.setLayout(new java.awt.GridBagLayout());
 
-                                jTextField28.setEditable(false);
-                                jTextField28.setFocusable(false);
-                                jTextField28.addCaretListener(new javax.swing.event.CaretListener() {
-                                    public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                                        jTextField28CaretUpdate(evt);
-                                    }
-                                });
-                                jTextField28.addFocusListener(new java.awt.event.FocusAdapter() {
-                                    public void focusLost(java.awt.event.FocusEvent evt) {
-                                        jTextField28FocusLost(evt);
-                                    }
-                                });
-                                gridBagConstraints = new java.awt.GridBagConstraints();
-                                gridBagConstraints.gridx = 0;
-                                gridBagConstraints.gridy = 0;
-                                gridBagConstraints.gridwidth = 2;
-                                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                                gridBagConstraints.weightx = 300.0;
-                                gridBagConstraints.weighty = 1.0;
-                                gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-                                jSearchPanel5.add(jTextField28, gridBagConstraints);
-
-                                jSearchScrollPane4.setFocusable(false);
+                                repeatedSearchScrollPanel.setFocusable(false);
 
                                 jSearchTable4.setToolTipText("Click on the target row to select the patient from the search.");
                                 jSearchTable4.setFocusable(false);
@@ -1501,7 +1480,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                             jSearchTable4MouseClicked(evt);
                                         }
                                     });
-                                    jSearchScrollPane4.setViewportView(jSearchTable4);
+                                    repeatedSearchScrollPanel.setViewportView(jSearchTable4);
 
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridx = 0;
@@ -1510,21 +1489,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
                                     gridBagConstraints.weightx = 1.0;
                                     gridBagConstraints.weighty = 20.0;
-                                    jSearchPanel5.add(jSearchScrollPane4, gridBagConstraints);
-
-                                    dispose3.setText("Dispose/Close");
-                                    dispose3.setFocusable(false);
-                                    dispose3.addActionListener(new java.awt.event.ActionListener() {
-                                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                            dispose3ActionPerformed(evt);
-                                        }
-                                    });
-                                    gridBagConstraints = new java.awt.GridBagConstraints();
-                                    gridBagConstraints.gridx = 2;
-                                    gridBagConstraints.gridy = 0;
-                                    gridBagConstraints.weightx = 1.0;
-                                    gridBagConstraints.weighty = 1.0;
-                                    jSearchPanel5.add(dispose3, gridBagConstraints);
+                                    repeatedNameSearchPanel.add(repeatedSearchScrollPanel, gridBagConstraints);
 
                                     gridBagConstraints = new java.awt.GridBagConstraints();
                                     gridBagConstraints.gridx = 0;
@@ -1532,7 +1497,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
                                     gridBagConstraints.weightx = 1.0;
                                     gridBagConstraints.weighty = 1.0;
-                                    jSearchDialog4.getContentPane().add(jSearchPanel5, gridBagConstraints);
+                                    repeatedNamesSearch.getContentPane().add(repeatedNameSearchPanel, gridBagConstraints);
 
                                     ageTxt.setEditable(false);
                                     ageTxt.setEnabled(false);
@@ -2316,7 +2281,6 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.weighty = 1.0;
                                         patientSearchPanel.add(urgencyCMBX, gridBagConstraints);
 
-                                        jLabel57.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
                                         jLabel57.setForeground(new java.awt.Color(255, 51, 153));
                                         jLabel57.setText("Patient Urgency");
                                         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -2971,6 +2935,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
                                         otherPatientDetailsPanel.add(jLabel32, gridBagConstraints);
 
+                                        jLabel31.setForeground(new java.awt.Color(255, 51, 51));
                                         jLabel31.setText("SubCounty/Location");
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 0;
@@ -2999,6 +2964,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
                                         otherPatientDetailsPanel.add(countyofBirthLbl, gridBagConstraints);
 
+                                        residenceCountyLbl.setForeground(new java.awt.Color(255, 51, 51));
                                         residenceCountyLbl.setText("County of Residence");
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 0;
@@ -3021,6 +2987,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         otherPatientDetailsPanel.add(idNoLbl1, gridBagConstraints);
 
                                         nationalityCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT country_name FROM pb_country ORDER BY 1"));
+                                        nationalityCmbx.setSelectedItem("Kenya");
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 1;
                                         gridBagConstraints.gridy = 2;
@@ -4115,6 +4082,18 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.weighty = 1.0;
                                         reportsHeaderPanel.add(patientSpecialityCmbx, gridBagConstraints);
 
+                                        seachPatTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Search Patient"));
+                                        seachPatTxt.addCaretListener(new javax.swing.event.CaretListener() {
+                                            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                                                seachPatTxtCaretUpdate(evt);
+                                            }
+                                        });
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                                        gridBagConstraints.weightx = 1.0;
+                                        gridBagConstraints.weighty = 1.0;
+                                        reportsHeaderPanel.add(seachPatTxt, gridBagConstraints);
+
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
                                         gridBagConstraints.weightx = 1.0;
@@ -4123,7 +4102,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                         reportsMainPanel.setLayout(new java.awt.GridBagLayout());
 
-                                        reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, input_date::time(0) as registration_time, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE date = current_date order by 3")
+                                        reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, input_date::time(0) as registration_time, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, clinic, (SELECT tel_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as tel_no, (SELECT id_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as id_no , user_name as registrar from hp_patient_visit WHERE date = current_date order by 3")
                                         );
                                         reportsScrollPane.setViewportView(reportsTable);
 
@@ -4144,6 +4123,11 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         reportsActionPanel.setLayout(new java.awt.GridBagLayout());
 
                                         refreshBtn.setText("Refresh report");
+                                        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+                                            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                                refreshBtnActionPerformed(evt);
+                                            }
+                                        });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 1;
                                         gridBagConstraints.gridy = 0;
@@ -5154,6 +5138,13 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_revisitRbtnActionPerformed
 
     private void createNewFileRbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewFileRbtnActionPerformed
+        NewPatientFile newPatientThread = new NewPatientFile();
+        newPatientThread.start();
+
+        // Add your handling code here:
+    }//GEN-LAST:event_createNewFileRbtnActionPerformed
+
+    private void createNewPatient() {                                                  
         servicePointCmbx.setSelectedItem(defaultServicePoint);
         serviceStartTime = com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB);
         paymentModeCmbx.setSelectedItem("Cash");
@@ -5224,11 +5215,11 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
         try {
             java.sql.Statement stmt = connectDB.createStatement();
-            java.sql.ResultSet rset = stmt.executeQuery("select distinct patient_no,oid from hp_patient_register where date is not null ORDER BY oid DESC LIMIT 1");
-            while (rset.next()) {
-//                currentFileSeqNoTxt.setText(rset.getObject(1).toString());
-            }
-            rset.close();
+//            java.sql.ResultSet rset = stmt.executeQuery("select distinct patient_no,oid from hp_patient_register where date is not null ORDER BY oid DESC LIMIT 1");
+//            while (rset.next()) {
+////                currentFileSeqNoTxt.setText(rset.getObject(1).toString());
+//            }
+//            rset.close();
             stmt.close();
 
             java.sql.Statement stmtx = connectDB.createStatement();
@@ -5248,8 +5239,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         }
 
         // Add your handling code here:
-    }//GEN-LAST:event_createNewFileRbtnActionPerformed
-
+    }
+    
     private void savePrintRegistrationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePrintRegistrationBtnActionPerformed
         String cmbx1 = paymentModeCmbx.getSelectedItem().toString();
         saveRegistrationBtnActionPerformed(evt);
@@ -5362,7 +5353,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
-            java.sql.ResultSet rset = stmt.executeQuery("select payer,description,account_no,member_name,expiry_date from hp_patient_register where patient_no ='" + patientNumberTxt.getText() + "'");
+            java.sql.ResultSet rset = stmt.executeQuery("select payer,description,card_no,member_name,expiry_date from hp_patient_register where patient_no ='" + patientNumberTxt.getText() + "'");
             while (rset.next()) {
                 // jComboBox6.setSelectedItem(rset.getObject(1).toString());
                 jTextField2.setText(dbObject.getDBObject(rset.getObject(1), "-"));
@@ -5946,7 +5937,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         firstNameTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 1).toString());
         surNameTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 2).toString());
         patientSearchDialog.dispose();
-        jSearchDialog4.dispose();
+        repeatedNamesSearch.dispose();
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
@@ -5955,7 +5946,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                     + "information_source,education_level,occupation, emails, id_no, nok_add, pat_nationality, nok_telno,"
                     + "nok_relationship, nok_residence, nok_email, pat_marital_status, tribe, district, locations,"
                     + "sub_location, chief_name, sub_chief, (current_date-year_of_birth::date)/365,home_county,residence_county,patient_race,charge_sheet_no,tribe,refer_source "
-                    + ",year_of_birth::date, nhif_number, nhif_status, birth_place FROM hp_patient_register WHERE patient_no ILIKE '" + patientNumberTxt.getText() + "'");
+                    + ",year_of_birth::date, nhif_number, nhif_status, birth_place  FROM hp_patient_register WHERE patient_no ILIKE '" + patientNumberTxt.getText() + "'");
             while (rset.next()) {
                 //jComboBox1.setSelectedItem(dbObject.getDBObject(rset.getObject(7), "-"));
                 dateofLastVisitTxt.setText(dbObject.getDBObject(rset.getObject(8), "-"));
@@ -5989,14 +5980,14 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                 this.nationalityCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(19), "-"));
                 this.nokTelephoneTxt.setText(dbObject.getDBObject(rset.getObject(20), "-"));
                 this.nokRelationShipCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(21), "-"));
-                System.out.println("here is the nok  " + rset.getObject(21).toString());
+                 //System.out.println("here is the nok  " + rset.getObject(21).toString());
                 this.nokResidenceTxt.setText(dbObject.getDBObject(rset.getObject(22), "-"));
                 this.emailAddTxt1.setText(dbObject.getDBObject(rset.getObject(23), "-"));
                 //       this.(dbObject.getDBObject(rset.getObject(24), "-"));
                 this.jTextField19.setText(dbObject.getDBObject(rset.getObject(25), "-"));
                 this.ageTxt.setText(dbObject.getDBObject(rset.getObject(31), "-"));
                 this.datePickerYOB.setDate(Date.valueOf(String.valueOf(dbObject.getDBObject(rset.getDate("year_of_birth"), ""))));
-                this.locationTxt.setSelectedItem(dbObject.getDBObject(rset.getObject(27), "-"));
+
                 this.currentResidenceTxt.setText(dbObject.getDBObject(rset.getObject(28), "-"));
                 this.jTextField25.setText(dbObject.getDBObject(rset.getObject(29), "-"));
                 this.jTextField26.setText(dbObject.getDBObject(rset.getObject(30), "-"));
@@ -6031,6 +6022,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                 countyofBirthCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(32), "-"));
                 countyofResidenceCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(33), "-"));
+                this.locationTxt.setSelectedItem(dbObject.getDBObject(rset.getObject(27), "-"));
                 jTextField5821.setText(dbObject.getDBObject(rset.getObject(4), "-"));
                 oldFileNumberTxt.setText(dbObject.getDBObject(rset.getObject(34), "-"));
                 cSheetNoTxt.setText(dbObject.getDBObject(rset.getObject(35), "-"));
@@ -6047,12 +6039,13 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
-            java.sql.ResultSet rset = stmt.executeQuery("select payer,description,account_no,member_name,expiry_date from hp_patient_register where patient_no ='" + patientNumberTxt.getText() + "'");
+            java.sql.ResultSet rset = stmt.executeQuery("select payer,description,card_no,member_name,expiry_date,account_no from hp_patient_register where patient_no ='" + patientNumberTxt.getText() + "'");
             while (rset.next()) {
                 // jComboBox6.setSelectedItem(rset.getObject(1).toString());
                 jTextField2.setText(dbObject.getDBObject(rset.getObject(1), "-"));
                 jTextField361.setText(dbObject.getDBObject(rset.getObject(2), "-"));
-                jTextField15.setText(dbObject.getDBObject(rset.getObject(3), "-"));
+                jTextField15.setText(dbObject.getDBObject(rset.getObject(6), "-"));
+                jTextField13.setText(dbObject.getDBObject(rset.getObject(3), "-"));
                 jTextField36.setText(dbObject.getDBObject(rset.getObject(4), "-"));
                 jTextField18.setText(dbObject.getDBObject(rset.getObject(5), "-"));
                 nokNameTxt.setEditable(true);
@@ -6133,12 +6126,12 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
             }
 
         } else if (searchbyNumberChkbx.isSelected()) {
-            if (patientSearchTxt.getCaretPosition() < 3) {
+            if (patientSearchTxt.getCaretPosition() < 6) {
 
                 System.out.println("Nothing");
             } else {
 
-                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence, patient_race as unit_number, tel_no as telephone_no, id_no, nok_telno as nok_tel_no, nok as next_of_kin from hp_patient_register where patient_no ILIKE '%" + patientSearchTxt.getText() + "%'  or patient_race ILIKE '" + patientSearchTxt.getText() + "%' or tel_no ILIKE '" + patientSearchTxt.getText() + "%' or nok_telno  ILIKE '" + patientSearchTxt.getText() + "%' or id_no ILIKE '" + patientSearchTxt.getText() + "%'  order by patient_no"));
+                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence, patient_race as unit_number, tel_no as telephone_no, id_no, nok_telno as nok_tel_no, nok as next_of_kin,(SELECT booking_no FROM pb_bookings WHERE  pb_bookings.patient_no = hp_patient_register.patient_no LIMIT 1) as booking_no from hp_patient_register where patient_no ILIKE '%" + patientSearchTxt.getText() + "%'  or patient_race ILIKE '" + patientSearchTxt.getText() + "%' or tel_no ILIKE '" + patientSearchTxt.getText() + "%' or nok_telno  ILIKE '" + patientSearchTxt.getText() + "%' or id_no ILIKE '" + patientSearchTxt.getText() + "%'  or patient_no IN ( SELECT patient_no FROM pb_bookings WHERE  booking_no ILIKE '" + patientSearchTxt.getText() + "%' ) order by patient_no"));
 
                 patientSearchTable.setShowHorizontalLines(false);
                 patientSearchJscrollPane.setViewportView(patientSearchTable);
@@ -6243,9 +6236,9 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                     + "information_source,education_level,occupation, emails, id_no, nok_add, pat_nationality, nok_telno,"
                     + "nok_relationship, nok_residence, nok_email, pat_marital_status, tribe, district, locations,"
                     + "sub_location, chief_name, sub_chief,(current_date-year_of_birth::date)/365 FROM hp_patient_register WHERE patient_no ILIKE '" + patientNumberTxt.getText() + "'");
-            jSearchDialog4.setVisible(false);
+            repeatedNamesSearch.setVisible(false);
             while (rset.next()) {
-                
+
                 dateofLastVisitTxt.setText(dbObject.getDBObject(rset.getObject(8), "-"));
                 nokNameTxt.setText(dbObject.getDBObject(rset.getObject(1), "-"));
                 residenceTxt.setText(dbObject.getDBObject(rset.getObject(2), "-"));
@@ -6298,7 +6291,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
-            java.sql.ResultSet rset = stmt.executeQuery("select payer,description,account_no,member_name,expiry_date from hp_patient_register where patient_no ='" + patientNumberTxt.getText() + "'");
+            java.sql.ResultSet rset = stmt.executeQuery("select payer,description,card_no,member_name,expiry_date from hp_patient_register where patient_no ='" + patientNumberTxt.getText() + "'");
             while (rset.next()) {
                 // jComboBox6.setSelectedItem(rset.getObject(1).toString());
                 jTextField2.setText(dbObject.getDBObject(rset.getObject(1), "-"));
@@ -6497,1576 +6490,1577 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 //                if (referredcombo.getSelectedItem() != "-") {
 //                    if (nokRelationShipCmbx.getSelectedItem() != null) {
 //                        if (nokNameTxt.getText().toCharArray().length > 2) {
-if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
-        if (nationalityCmbx.getSelectedItem() != null) {
+        if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
+            if (nationalityCmbx.getSelectedItem() != null) {
 //            if (ageTxt.getText().toCharArray().length > 0) {
-            if (!specialtyClinicCmbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
-                if (residenceTxt.getText().toCharArray().length > 0) {
-                    //  if (cSheetNoTxt.getText().toCharArray().length >= 0) {
-                    if (firstNameTxt.getText().toCharArray().length > 2) {
-                        if (surNameTxt.getText().toCharArray().length > 2) {
-                            if (paymentModeCmbx.getSelectedItem() != null) {
-                                if (!countyofResidenceCmbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
-                                if (!locationTxt.getSelectedItem().toString().equalsIgnoreCase("-") && !locationTxt.getSelectedItem().toString().equalsIgnoreCase("")) {
-                                if (patientCategoryCmbx.getSelectedItem() != null) {
-                                    if (urgencyCMBX.getSelectedIndex() > 0) {
-                                        Object category = paymentModeCmbx.getSelectedItem();
-                                        double ager = java.lang.Double.valueOf(ageTxt.getText().toString());
-                                        if (ager < 5) {
-                                            patientCategoryCmbx.setSelectedItem("Under 5 Yrs".toUpperCase());
-                                        }
-                                        if (category == null) {
-                                            javax.swing.JOptionPane.showMessageDialog(this, "You must select patient category", "Warning Message!", javax.swing.JOptionPane.WARNING_MESSAGE);
-
-                                        } else {
-                                            if (createNewFileRbtn.isSelected()) {
-                                                reVisit = false;
-                                            } else {
-                                                reVisit = true;
-                                            }
-                                            java.util.Date periodFrom = null;
-                                            java.util.Date periodTo = null;
-                                            java.util.Date todays = null;
-                                            java.util.Calendar calendar = java.util.Calendar.getInstance();
-                                            String yrs = null;
-                                            java.sql.Savepoint registerSavePoint = null;
-                                            java.sql.Date dateOfBirth = null;
-                                            java.sql.Date toDaysDate = null;
-                                            int saveOption = 0;
-                                            java.sql.Timestamp datenowSql = null;
-
-                                            try {
-                                                //   try {
-                                                try {
-                                                    connectDB.setAutoCommit(false);
-                                                    registerSavePoint = connectDB.setSavepoint("registration");
-                                                    java.sql.Statement stm12fa = connectDB.createStatement();
-                                                    java.sql.ResultSet rse12fa = stm12fa.executeQuery("select current_user,now()");
-                                                    while (rse12fa.next()) {
-                                                        datenowSql = rse12fa.getTimestamp(2);
+                if (!specialtyClinicCmbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                    if (residenceTxt.getText().toCharArray().length > 0) {
+                        //  if (cSheetNoTxt.getText().toCharArray().length >= 0) {
+                        if (firstNameTxt.getText().toCharArray().length > 2) {
+                            if (surNameTxt.getText().toCharArray().length > 2) {
+                                if (paymentModeCmbx.getSelectedItem() != null) {
+                                    if (!countyofResidenceCmbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                                        if (!locationTxt.getSelectedItem().toString().equalsIgnoreCase("-") && !locationTxt.getSelectedItem().toString().equalsIgnoreCase("")) {
+                                            if (patientCategoryCmbx.getSelectedItem() != null) {
+                                                if (urgencyCMBX.getSelectedIndex() > 0) {
+                                                    Object category = paymentModeCmbx.getSelectedItem();
+                                                    double ager = java.lang.Double.valueOf(ageTxt.getText().toString());
+                                                    if (ager < 5) {
+                                                        patientCategoryCmbx.setSelectedItem("Under 5 Yrs".toUpperCase());
                                                     }
+                                                    if (category == null) {
+                                                        javax.swing.JOptionPane.showMessageDialog(this, "You must select patient category", "Warning Message!", javax.swing.JOptionPane.WARNING_MESSAGE);
 
-                                                    String patientNo2 = null;
-
-                                                    // System.out.println("This date is not printing " + datenowSql.toString());
-                                                    java.sql.Statement stmtfd = connectDB.createStatement();
-                                                    java.sql.ResultSet rsetfd = stmtfd.executeQuery("SELECT EXTRACT(YEAR FROM TIMESTAMP 'now')");
-                                                    while (rsetfd.next()) {
-                                                        yrs = rsetfd.getString(1);
-                                                    }
-
-                                                    java.sql.Statement stmtfa = connectDB.createStatement();
-                                                    java.sql.ResultSet rsetfa = stmtfa.executeQuery("SELECT 'now'::date");
-                                                    while (rsetfa.next()) {
-                                                        toDaysDate = rsetfa.getDate(1);
-                                                        todays = rsetfa.getDate(1);
-
-                                                    }
-                                                    try {
-
-                                                        // Date parser
-                                                        java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yy");
-                                                        com.afrisoftech.lib.DateFormatter dateFormatter = new com.afrisoftech.lib.DateFormatter(dateFormat.parse(datePicker1.getDate().toString().trim()), "yy");
-
-                                                        java.lang.String monthString = dateFormatter.getDateString();
-
-                                                        yrs = monthString;
-
-                                                        // Catch java.text.parse exception.
-                                                    } catch (java.text.ParseException prs) {
-                                                        prs.printStackTrace();
-                                                    }
-
-                                                    java.sql.Statement stmtf = connectDB.createStatement();
-                                                    java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + datePicker4.getDate() + "' BETWEEN period_from AND period_to");
-                                                    while (rsetf.next()) {
-                                                        periodFrom = rsetf.getDate(1);
-                                                        periodTo = rsetf.getDate(2);
-                                                    }
-
-                                                    java.sql.Statement stmtfs = connectDB.createStatement();
-                                                    java.sql.ResultSet rsetfs = stmtfs.executeQuery("SELECT '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePickerYOB.getDate()) + "'::DATE ");
-                                                    while (rsetfs.next()) {
-                                                        dateOfBirth = rsetfs.getDate(1);
-
-                                                    }
-                                                    if (periodFrom != null && periodTo != null) {
-                                                        if (datePicker4.getDate().before(periodFrom) || datePicker4.getDate().after(periodTo)) {
-                                                            javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
+                                                    } else {
+                                                        if (createNewFileRbtn.isSelected()) {
+                                                            reVisit = false;
                                                         } else {
+                                                            reVisit = true;
+                                                        }
+                                                        java.util.Date periodFrom = null;
+                                                        java.util.Date periodTo = null;
+                                                        java.util.Date todays = null;
+                                                        java.util.Calendar calendar = java.util.Calendar.getInstance();
+                                                        String yrs = null;
+                                                        java.sql.Savepoint registerSavePoint = null;
+                                                        java.sql.Date dateOfBirth = null;
+                                                        java.sql.Date toDaysDate = null;
+                                                        int saveOption = 0;
+                                                        java.sql.Timestamp datenowSql = null;
 
-                                                            if (saveOption == javax.swing.JOptionPane.YES_OPTION || datePicker4.getDate().equals(toDaysDate)) {
-
-                                                                int occurence = 0;
-                                                                String mainAcc = null;
-                                                                String activity = null;
-                                                                String actNo = null;
-                                                                String billNo = null;
-                                                                String rate = null;
-                                                                String transNo = null;
-                                                                String patientAcc = null;
-                                                                String insAcc = null;
-                                                                String cardAcc = null;
-                                                                String AccDesc = null;
-                                                                String cardName = null;
-                                                                String insName = null;
-                                                                String user = null;
-                                                                String preFix = null;
-                                                                int digitNo = 0;
-                                                                String yrEnd = null;
-                                                                boolean incYr = false;
-                                                                int slipNo = 0;
-                                                                String Cons = null;
-
-                                                                String selectedchkbx1 = null;
-                                                                String useoneNumber = null;
-
-                                                                if (jCheckBox9.isSelected()) {
-                                                                    Cons = jCheckBox9.getText();
-                                                                } else {
-                                                                    if (jCheckBox2.isSelected()) {
-                                                                        Cons = jCheckBox2.getText();
-                                                                    }
-                                                                    Cons = jCheckBox1.getText();
-                                                                }
-                                                                if (this.jCheckBox2111.isSelected()) {
-                                                                    selectedchkbx = jCheckBox2111.getText();
-                                                                } else {
-
-                                                                    selectedchkbx = jCheckBox1111.getText();
+                                                        try {
+                                                            //   try {
+                                                            try {
+                                                                connectDB.setAutoCommit(false);
+                                                                registerSavePoint = connectDB.setSavepoint("registration");
+                                                                java.sql.Statement stm12fa = connectDB.createStatement();
+                                                                java.sql.ResultSet rse12fa = stm12fa.executeQuery("select current_user,now()");
+                                                                while (rse12fa.next()) {
+                                                                    datenowSql = rse12fa.getTimestamp(2);
                                                                 }
 
-                                                                if (this.jCheckBox2113.isSelected()) {
-                                                                    selectedchkbx1 = jCheckBox2113.getText();
-                                                                } else {
+                                                                String patientNo2 = null;
 
-                                                                    selectedchkbx1 = jCheckBox1113.getText();
+                                                                // System.out.println("This date is not printing " + datenowSql.toString());
+                                                                java.sql.Statement stmtfd = connectDB.createStatement();
+                                                                java.sql.ResultSet rsetfd = stmtfd.executeQuery("SELECT EXTRACT(YEAR FROM TIMESTAMP 'now')");
+                                                                while (rsetfd.next()) {
+                                                                    yrs = rsetfd.getString(1);
                                                                 }
-                                                                String patientNo = null;
-                                                                String patientsNo = com.afrisoftech.lib.DateLables.getDateLabel();
-                                                                int pNo = 0;
 
-                                                                if (saveRegistrationBtn.getText().equalsIgnoreCase("Save file data")) {
+                                                                java.sql.Statement stmtfa = connectDB.createStatement();
+                                                                java.sql.ResultSet rsetfa = stmtfa.executeQuery("SELECT 'now'::date");
+                                                                while (rsetfa.next()) {
+                                                                    toDaysDate = rsetfa.getDate(1);
+                                                                    todays = rsetfa.getDate(1);
 
-                                                                    //     if (this.jTextField21.getText().toCharArray().length < 1 || this.jTextField6.getText().toCharArray().length < 1){// || this.jTextField1.getText().toCharArray().length < 1){
-                                                                    java.sql.Statement stm12 = connectDB.createStatement();
+                                                                }
+                                                                try {
 
-                                                                    java.sql.ResultSet rse12 = stm12.executeQuery("select code,activity from pb_activity where activity_category ='PR'");
-                                                                    while (rse12.next()) {
+                                                                    // Date parser
+                                                                    java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yy");
+                                                                    com.afrisoftech.lib.DateFormatter dateFormatter = new com.afrisoftech.lib.DateFormatter(dateFormat.parse(datePicker1.getDate().toString().trim()), "yy");
 
-                                                                        patientAcc = rse12.getObject(1).toString();
-                                                                        AccDesc = rse12.getObject(2).toString();
-                                                                    }
+                                                                    java.lang.String monthString = dateFormatter.getDateString();
 
-                                                                    java.sql.Statement stmt3 = connectDB.createStatement();
-                                                                    java.sql.ResultSet rset3 = stmt3.executeQuery("select nextval('transaction_no_seq')");
-                                                                    while (rset3.next()) {
-                                                                        transNo = rset3.getObject(1).toString();
-                                                                        receiptNo1 = "O" + rset3.getObject(1).toString();
+                                                                    yrs = monthString;
 
-                                                                    }
-                                                                    java.sql.Statement stmn = connectDB.createStatement();
-                                                                    java.sql.ResultSet rsn = stmn.executeQuery("select current_user");
-                                                                    while (rsn.next()) {
-                                                                        user = rsn.getObject(1).toString();
-                                                                    }
+                                                                    // Catch java.text.parse exception.
+                                                                } catch (java.text.ParseException prs) {
+                                                                    prs.printStackTrace();
+                                                                }
 
-                                                                    java.sql.Statement stmnz = connectDB.createStatement();
-                                                                    java.sql.ResultSet rsnz = stmnz.executeQuery("select auto_numbering,use_one_number from pb_patient_names");
-                                                                    while (rsnz.next()) {
-                                                                        manualNo = rsnz.getBoolean(1);
-                                                                        useoneNumber = rsnz.getString(2);
-                                                                    }
+                                                                java.sql.Statement stmtf = connectDB.createStatement();
+                                                                java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + datePicker4.getDate() + "' BETWEEN period_from AND period_to");
+                                                                while (rsetf.next()) {
+                                                                    periodFrom = rsetf.getDate(1);
+                                                                    periodTo = rsetf.getDate(2);
+                                                                }
 
-                                                                    if (manualNo) {
-                                                                        java.sql.Statement stmnz1 = connectDB.createStatement();
-                                                                        java.sql.ResultSet rsnz1 = stmnz1.executeQuery("select prefix_item,digit_no,yr_end,inc_year from pb_patient_names");
-                                                                        while (rsnz1.next()) {
-                                                                            preFix = rsnz1.getString(1);
-                                                                            digitNo = rsnz1.getInt(2);
-                                                                            yrEnd = rsnz1.getString(3);
-                                                                            incYr = rsnz1.getBoolean(4);
-                                                                        }
-                                                                    }
-                                                                    java.sql.Statement stmt = connectDB.createStatement();
-                                                                    if (jCheckBox9.isSelected()) {
-                                                                        java.sql.ResultSet rset = stmt.executeQuery("select service_type,gl_account,main_service from pb_operating_parameters where category ILIKE 'SP%'");
-                                                                        while (rset.next()) {
-                                                                            activity = rset.getObject(1).toString();
-                                                                            actNo = rset.getObject(2).toString();
-                                                                            mainAcc = rset.getObject(3).toString();
+                                                                java.sql.Statement stmtfs = connectDB.createStatement();
+                                                                java.sql.ResultSet rsetfs = stmtfs.executeQuery("SELECT '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePickerYOB.getDate()) + "'::DATE ");
+                                                                while (rsetfs.next()) {
+                                                                    dateOfBirth = rsetfs.getDate(1);
 
-                                                                        }
+                                                                }
+                                                                if (periodFrom != null && periodTo != null) {
+                                                                    if (datePicker4.getDate().before(periodFrom) || datePicker4.getDate().after(periodTo)) {
+                                                                        javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set \n Contact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
                                                                     } else {
-                                                                        if (jCheckBox2.isSelected()) {
-                                                                            java.sql.ResultSet rset = stmt.executeQuery("select service_type,gl_account,main_service from pb_operating_parameters where category ILIKE 'RV%'");
-                                                                            while (rset.next()) {
-                                                                                activity = rset.getObject(1).toString();
-                                                                                actNo = rset.getObject(2).toString();
-                                                                                mainAcc = rset.getObject(3).toString();
 
+                                                                        if (saveOption == javax.swing.JOptionPane.YES_OPTION || datePicker4.getDate().equals(toDaysDate)) {
+
+                                                                            int occurence = 0;
+                                                                            String mainAcc = null;
+                                                                            String activity = null;
+                                                                            String actNo = null;
+                                                                            String billNo = null;
+                                                                            String rate = null;
+                                                                            String transNo = null;
+                                                                            String patientAcc = null;
+                                                                            String insAcc = null;
+                                                                            String cardAcc = null;
+                                                                            String AccDesc = null;
+                                                                            String cardName = null;
+                                                                            String insName = null;
+                                                                            String user = null;
+                                                                            String preFix = null;
+                                                                            int digitNo = 0;
+                                                                            String yrEnd = null;
+                                                                            boolean incYr = false;
+                                                                            int slipNo = 0;
+                                                                            String Cons = null;
+
+                                                                            String selectedchkbx1 = null;
+                                                                            String useoneNumber = null;
+
+                                                                            if (jCheckBox9.isSelected()) {
+                                                                                Cons = jCheckBox9.getText();
+                                                                            } else {
+                                                                                if (jCheckBox2.isSelected()) {
+                                                                                    Cons = jCheckBox2.getText();
+                                                                                }
+                                                                                Cons = jCheckBox1.getText();
                                                                             }
-                                                                        } else {
-                                                                            if (jCheckBox1.isSelected()) {
-                                                                                java.sql.ResultSet rset = stmt.executeQuery("select service_type,gl_account,main_service from pb_operating_parameters where category ILIKE 'CF%'");
-                                                                                while (rset.next()) {
-                                                                                    activity = rset.getObject(1).toString();
-                                                                                    actNo = rset.getObject(2).toString();
-                                                                                    mainAcc = rset.getObject(3).toString();
+                                                                            if (this.jCheckBox2111.isSelected()) {
+                                                                                selectedchkbx = jCheckBox2111.getText();
+                                                                            } else {
+
+                                                                                selectedchkbx = jCheckBox1111.getText();
+                                                                            }
+
+                                                                            if (this.jCheckBox2113.isSelected()) {
+                                                                                selectedchkbx1 = jCheckBox2113.getText();
+                                                                            } else {
+
+                                                                                selectedchkbx1 = jCheckBox1113.getText();
+                                                                            }
+                                                                            String patientNo = null;
+                                                                            String patientsNo = com.afrisoftech.lib.DateLables.getDateLabel();
+                                                                            int pNo = 0;
+
+                                                                            if (saveRegistrationBtn.getText().equalsIgnoreCase("Save file data")) {
+
+                                                                                //     if (this.jTextField21.getText().toCharArray().length < 1 || this.jTextField6.getText().toCharArray().length < 1){// || this.jTextField1.getText().toCharArray().length < 1){
+                                                                                java.sql.Statement stm12 = connectDB.createStatement();
+
+                                                                                java.sql.ResultSet rse12 = stm12.executeQuery("select code,activity from pb_activity where activity_category ='PR'");
+                                                                                while (rse12.next()) {
+
+                                                                                    patientAcc = rse12.getObject(1).toString();
+                                                                                    AccDesc = rse12.getObject(2).toString();
+                                                                                }
+
+                                                                                java.sql.Statement stmt3 = connectDB.createStatement();
+                                                                                java.sql.ResultSet rset3 = stmt3.executeQuery("select nextval('transaction_no_seq')");
+                                                                                while (rset3.next()) {
+                                                                                    transNo = rset3.getObject(1).toString();
+                                                                                    receiptNo1 = "O" + rset3.getObject(1).toString();
 
                                                                                 }
-                                                                            } else {
-                                                                                if (jCheckBox10.isSelected()) {
-                                                                                    java.sql.ResultSet rset = stmt.executeQuery("select service_type,gl_account,main_service from pb_operating_parameters where category ILIKE 'OP%'");
+                                                                                java.sql.Statement stmn = connectDB.createStatement();
+                                                                                java.sql.ResultSet rsn = stmn.executeQuery("select current_user");
+                                                                                while (rsn.next()) {
+                                                                                    user = rsn.getObject(1).toString();
+                                                                                }
+
+                                                                                java.sql.Statement stmnz = connectDB.createStatement();
+                                                                                java.sql.ResultSet rsnz = stmnz.executeQuery("select auto_numbering,use_one_number from pb_patient_names");
+                                                                                while (rsnz.next()) {
+                                                                                    manualNo = rsnz.getBoolean(1);
+                                                                                    useoneNumber = rsnz.getString(2);
+                                                                                }
+
+                                                                                if (manualNo) {
+                                                                                    java.sql.Statement stmnz1 = connectDB.createStatement();
+                                                                                    java.sql.ResultSet rsnz1 = stmnz1.executeQuery("select prefix_item,digit_no,yr_end,inc_year from pb_patient_names");
+                                                                                    while (rsnz1.next()) {
+                                                                                        preFix = rsnz1.getString(1);
+                                                                                        digitNo = rsnz1.getInt(2);
+                                                                                        yrEnd = rsnz1.getString(3);
+                                                                                        incYr = rsnz1.getBoolean(4);
+                                                                                    }
+                                                                                }
+                                                                                java.sql.Statement stmt = connectDB.createStatement();
+                                                                                if (jCheckBox9.isSelected()) {
+                                                                                    java.sql.ResultSet rset = stmt.executeQuery("select service_type,gl_account,main_service from pb_operating_parameters where category ILIKE 'SP%'");
                                                                                     while (rset.next()) {
                                                                                         activity = rset.getObject(1).toString();
                                                                                         actNo = rset.getObject(2).toString();
                                                                                         mainAcc = rset.getObject(3).toString();
 
                                                                                     }
-                                                                                }
-
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                    //booking
-
-                                                                    String bill = "";
-                                                                    java.sql.Statement ps11d = connectDB.createStatement();
-                                                                    java.sql.ResultSet rst11d = ps11d.executeQuery("select nextval('booking_no_seq')");
-                                                                    while (rst11d.next()) {
-                                                                        // rst11.getObject(1).toString();
-                                                                        bill = rst11d.getObject(1).toString();
-                                                                    }
-
-                                                                    if (datePicker2.getDate().after(datePicker4.getDate())) {
-
-                                                                        java.sql.PreparedStatement pstmts = connectDB.prepareStatement("INSERT INTO pb_bookings VALUES(initcap(?),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-                                                                        pstmts.setString(1, surNameTxt.getText() + " " + firstNameTxt.getText());
-                                                                        pstmts.setObject(2, "Consultation");
-                                                                        pstmts.setDouble(3, java.lang.Double.valueOf("1.00"));
-                                                                        pstmts.setString(4, "Booked");
-                                                                        pstmts.setTimestamp(5, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
-                                                                        pstmts.setString(6, bill);
-                                                                        pstmts.setDate(7, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker2.getDate()));
-                                                                        pstmts.setString(8, patientNumberTxt.getText());
-                                                                        pstmts.setString(9, user);
-                                                                        pstmts.setString(10, jTextField5821.getText());
-                                                                        pstmts.setObject(11, emailAddTxt.getText());
-                                                                        pstmts.setObject(12, specialtyClinicCmbx.getSelectedItem());
-                                                                        pstmts.setObject(13, "OP");
-                                                                        pstmts.setObject(14, "Normal");
-                                                                        pstmts.setObject(15, "New Booking");
-                                                                        pstmts.setObject(16, oldFileNumberTxt.getText());
-                                                                        pstmts.executeUpdate();
-
-                                                                    }
-
-                                                                    //if (this.jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Cash") | this.jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Cheque")) {
-                                                                    if (!this.paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
-
-                                                                        if (revisitRbtn.isSelected()) {
-                                                                            if (!inpatientActivation) {
-                                                                                java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("UPDATE hp_patient_register set pay_mode = '" + paymentModeCmbx.getSelectedItem().toString() + "',category = '" + patientCategoryCmbx.getSelectedItem().toString() + "',last_visit = '" + datePicker4.getDate().toString() + "',payer = '',description = ''  WHERE patient_no = '" + patientNumberTxt.getText() + "'");
-                                                                                pstmt1.executeUpdate();
-                                                                                // this.registrationStatusLbl.setText("PATIENT ACTIVATED SUCCESSFULLY");
-                                                                                //  this.registrationStatusLbl.setVisible(true);
-
-                                                                                javax.swing.JOptionPane.showMessageDialog(this, "Patient Activated Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                                                                            } else {
-
-                                                                                java.sql.Statement stm = connectDB.createStatement();
-
-                                                                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-                                                                                pstmt.setString(1, patientNumberTxt.getText());
-
-                                                                                if (surNameTxt.getText().equals("")) {
-                                                                                    javax.swing.JOptionPane.showMessageDialog(this, "You must enter names", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                                                                                 } else {
-                                                                                    pstmt.setString(2, surNameTxt.getText());
-                                                                                }
-                                                                                pstmt.setString(3, firstNameTxt.getText());
-                                                                                pstmt.setString(4, "");
-                                                                                pstmt.setString(5, nokNameTxt.getText());
-                                                                                pstmt.setString(6, residenceTxt.getText());
-                                                                                pstmt.setString(7, jTextField5.getText());
-                                                                                pstmt.setDate(8, dateOfBirth);
-                                                                                pstmt.setString(9, jTextField5821.getText());
-                                                                                if (selectedchkbx == null) {
-                                                                                    javax.swing.JOptionPane.showMessageDialog(this, "You must tick patient Gender", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                                                                } else {
-                                                                                    pstmt.setObject(10, selectedchkbx);
-                                                                                }
+                                                                                    if (jCheckBox2.isSelected()) {
+                                                                                        java.sql.ResultSet rset = stmt.executeQuery("select service_type,gl_account,main_service from pb_operating_parameters where category ILIKE 'RV%'");
+                                                                                        while (rset.next()) {
+                                                                                            activity = rset.getObject(1).toString();
+                                                                                            actNo = rset.getObject(2).toString();
+                                                                                            mainAcc = rset.getObject(3).toString();
 
-                                                                                pstmt.setDate(11, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
-                                                                                pstmt.setObject(12, paymentModeCmbx.getSelectedItem());
-                                                                                pstmt.setString(13, "");
-                                                                                pstmt.setString(14, "");
-                                                                                pstmt.setString(15, "");
-                                                                                pstmt.setObject(16, patientCategoryCmbx.getSelectedItem());
-                                                                                pstmt.setObject(17, null);
-                                                                                pstmt.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
-                                                                                pstmt.setObject(19, clinicNumberTxt.getText());
-                                                                                pstmt.setString(20, "");
-                                                                                pstmt.setString(21, "");
-                                                                                pstmt.setString(22, emailAddTxt.getText());
-                                                                                pstmt.setString(23, idPassportTxt.getText());
-                                                                                pstmt.setString(24, jTextField20.getText());
-                                                                                pstmt.setObject(25, patientsNo);
-                                                                                pstmt.setString(26, nationalityCmbx.getSelectedItem().toString());
-                                                                                pstmt.setString(27, nokTelephoneTxt.getText());
-                                                                                pstmt.setString(28, nokRelationShipCmbx.getSelectedItem().toString().toUpperCase());
-                                                                                pstmt.setString(29, nokResidenceTxt.getText());
-                                                                                pstmt.setString(30, emailAddTxt1.getText());
-                                                                                pstmt.setObject(31, selectedchkbx1);
-                                                                                pstmt.setString(32, clinicNumberTxt.getText());
-                                                                                pstmt.setString(33, this.districtCmbx.getSelectedItem().toString());
-                                                                                pstmt.setString(34, locationTxt.getSelectedItem().toString());
-                                                                                pstmt.setString(35, currentResidenceTxt.getText());
-                                                                                pstmt.setString(36, jTextField25.getText());
-                                                                                pstmt.setString(37, jTextField26.getText());
-                                                                                pstmt.setString(38, informationSourceCmbx.getSelectedItem().toString());
-                                                                                pstmt.setString(39, educationLevelCmbx.getSelectedItem().toString());
-                                                                                pstmt.setString(40, occupationCmbx.getSelectedItem().toString());
-                                                                                pstmt.setString(41, religionCmbx.getSelectedItem().toString());
-                                                                                pstmt.setString(42, oldFileNumberTxt.getText());
-                                                                                pstmt.setString(43, placeOfBirthTxt.getText());
-                                                                                pstmt.setBoolean(44, true);
-                                                                                pstmt.setString(45, this.emailAddTxt.getText());
-                                                                                pstmt.setString(46, this.countyofBirthCmbx.getSelectedItem().toString());
-                                                                                pstmt.setString(47, this.countyofResidenceCmbx.getSelectedItem().toString());
-                                                                                pstmt.setBoolean(48, this.nhifChbx.isSelected());
-                                                                                pstmt.setString(49, this.nhifNumberTxt.getText());
-                                                                                pstmt.setString(50, this.employerTxt.getText());
-                                                                                pstmt.setString(51, this.employerTelTxt.getText());
-                                                                                pstmt.setString(52, this.referralTypeCmbx.getSelectedItem().toString());
-                                                                                pstmt.setString(53, this.cSheetNoTxt.getText());
-                                                                                pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
-                                                                                pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
-
-                                                                                pstmt.executeUpdate();
-                                                                                javax.swing.JOptionPane.showMessageDialog(this, "Patient File Activated Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-                                                                                inpatientActivation = false;
-                                                                            }
-
-                                                                        } else {
-                                                                            if (createNewFileRbtn.isSelected() || createOldFileRbtn.isSelected()) {
-
-                                                                                java.sql.Statement stmtp = connectDB.createStatement();
-                                                                                java.sql.ResultSet rsetp = stmtp.executeQuery("select patient_no from hp_patient_register where patient_no ='" + this.patientNumberTxt.getText() + "' AND patient_no != ''");
-                                                                                while (rsetp.next()) {
-                                                                                    patientNo = rsetp.getObject(1).toString();
-                                                                                }
-
-                                                                                if (this.patientNumberTxt.getText().equalsIgnoreCase(patientNo)) {
-                                                                                    this.registrationStatusLbl.setForeground(java.awt.Color.red);
-                                                                                    this.registrationStatusLbl.setText("Patient No. Already On File");
-
-                                                                                } else {
-                                                                                    if (createNewFileRbtn.isSelected()) {
-                                                                                        // File to be automatically numbered if new.
-                                                                                        manualNo = true;
-                                                                                    } else {
-                                                                                        if (revisitRbtn.isSelected() || createOldFileRbtn.isSelected()) {
-                                                                                            // File to be assigned number appearing on the file.
-                                                                                            manualNo = false;
                                                                                         }
-                                                                                    }
-                                                                                    java.sql.Statement stm1 = connectDB.createStatement();
-                                                                                    if (manualNo) {
-
-                                                                                        patientsNo = patientsNo;
                                                                                     } else {
-                                                                                        if (patientNumberTxt.getText().toString().equalsIgnoreCase("") | patientNumberTxt.getText().toString().equalsIgnoreCase(" ") | patientNumberTxt.getText().toString().equalsIgnoreCase("  ") | patientNumberTxt.getText().toString().equalsIgnoreCase("   ") | patientNumberTxt.getText().toString().equalsIgnoreCase("    ")) {
-                                                                                            // if(jTextField3.getText().toString().equalsIgnoreCase("") | jTextField3.getText().toString().equalsIgnoreCase(" ").concat("")){
-                                                                                            javax.swing.JOptionPane.showMessageDialog(this, "You cannot save without the patient no", "CAUTION MESSAGE", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                                                                                        } else {
-                                                                                            if (revisitRbtn.isSelected() || createOldFileRbtn.isSelected()) {
-                                                                                                patientsNo = patientNumberTxt.getText();
+                                                                                        if (jCheckBox1.isSelected()) {
+                                                                                            java.sql.ResultSet rset = stmt.executeQuery("select service_type,gl_account,main_service from pb_operating_parameters where category ILIKE 'CF%'");
+                                                                                            while (rset.next()) {
+                                                                                                activity = rset.getObject(1).toString();
+                                                                                                actNo = rset.getObject(2).toString();
+                                                                                                mainAcc = rset.getObject(3).toString();
+
                                                                                             }
-                                                                                        }
-                                                                                    }
-
-                                                                                    java.sql.Statement stm = connectDB.createStatement();
-
-                                                                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-                                                                                    pstmt.setString(1, patientsNo);
-
-                                                                                    if (surNameTxt.getText().equals("")) {
-                                                                                        javax.swing.JOptionPane.showMessageDialog(this, "You must enter names", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                                                                    } else {
-                                                                                        pstmt.setString(2, surNameTxt.getText());
-                                                                                    }
-                                                                                    pstmt.setString(3, firstNameTxt.getText());
-                                                                                    pstmt.setString(4, "");
-                                                                                    pstmt.setString(5, nokNameTxt.getText());
-                                                                                    pstmt.setString(6, residenceTxt.getText());
-                                                                                    pstmt.setString(7, jTextField5.getText());
-                                                                                    pstmt.setDate(8, dateOfBirth);
-                                                                                    pstmt.setString(9, jTextField5821.getText());
-                                                                                    if (selectedchkbx == null) {
-                                                                                        javax.swing.JOptionPane.showMessageDialog(this, "You must tick patient Gender", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                                                                    } else {
-                                                                                        pstmt.setObject(10, selectedchkbx);
-                                                                                    }
-
-                                                                                    pstmt.setDate(11, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
-                                                                                    pstmt.setObject(12, paymentModeCmbx.getSelectedItem());
-                                                                                    pstmt.setString(13, "");
-                                                                                    pstmt.setString(14, "");
-                                                                                    pstmt.setString(15, "");
-                                                                                    pstmt.setObject(16, patientCategoryCmbx.getSelectedItem());
-                                                                                    pstmt.setObject(17, null);
-                                                                                    pstmt.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
-                                                                                    pstmt.setObject(19, branchTxt.getText());
-                                                                                    pstmt.setString(20, "");
-                                                                                    pstmt.setString(21, "");
-                                                                                    pstmt.setString(22, emailAddTxt.getText());
-                                                                                    pstmt.setString(23, idPassportTxt.getText());
-                                                                                    pstmt.setString(24, jTextField20.getText());
-                                                                                    pstmt.setObject(25, patientsNo);
-                                                                                    pstmt.setString(26, nationalityCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setString(27, nokTelephoneTxt.getText());
-                                                                                    pstmt.setString(28, nokRelationShipCmbx.getSelectedItem().toString().toUpperCase());
-                                                                                    pstmt.setString(29, nokResidenceTxt.getText());
-                                                                                    pstmt.setString(30, emailAddTxt1.getText());
-                                                                                    pstmt.setObject(31, selectedchkbx1);
-                                                                                    pstmt.setString(32, clinicNumberTxt.getText());
-                                                                                    pstmt.setString(33, this.districtCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setString(34, locationTxt.getSelectedItem().toString());
-                                                                                    pstmt.setString(35, currentResidenceTxt.getText());
-                                                                                    pstmt.setString(36, jTextField25.getText());
-                                                                                    pstmt.setString(37, jTextField26.getText());
-                                                                                    pstmt.setString(38, informationSourceCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setString(39, educationLevelCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setString(40, occupationCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setString(41, religionCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setString(42, oldFileNumberTxt.getText());
-                                                                                    pstmt.setString(43, placeOfBirthTxt.getText());
-                                                                                    pstmt.setBoolean(44, true);
-                                                                                    pstmt.setString(45, this.emailAddTxt.getText());
-                                                                                    pstmt.setString(46, this.countyofBirthCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setString(47, this.countyofResidenceCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setBoolean(48, this.nhifChbx.isSelected());
-                                                                                    pstmt.setString(49, this.nhifNumberTxt.getText());
-                                                                                    pstmt.setString(50, this.employerTxt.getText());
-                                                                                    pstmt.setString(51, this.employerTelTxt.getText());
-                                                                                    pstmt.setString(52, this.referralTypeCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setString(53, this.cSheetNoTxt.getText());
-                                                                                    pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
-
-                                                                                    pstmt.executeUpdate();
-                                                                                    // javax.swing.JOptionPane.showMessageDialog(this, "Patient Registered Successfully for Pateint Number :["++"] and Name : ["++"]", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-                                                                                    //      this.registrationStatusLbl.setText("PATIENT REGISTRATION SUCCESSFUL");
-                                                                                    //     this.registrationStatusLbl.setVisible(true);
-                                                                                }
-                                                                            }
-                                                                        }
-
-                                                                    } else {
-                                                                        if (this.paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Credit Card")) {
-                                                                            if (revisitRbtn.isSelected()) {
-                                                                                if (!inpatientActivation) {
-                                                                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("UPDATE hp_patient_register set description = '" + jComboBox3.getSelectedItem() + "',member_name = '',payer = '" + jTextField7.getText() + "',account_no ='" + jTextField8.getText() + "',expiry_date = '" + java.sql.Date.valueOf(jTextField18.getText().toString()) + "',last_visit = '" + datePicker4.getDate() + "',pay_mode = '" + paymentModeCmbx.getSelectedItem().toString() + "', category =  '" + patientCategoryCmbx.getSelectedItem().toString() + "' WHERE patient_no ilike '" + patientNumberTxt.getText() + "%'");
-                                                                                    pstmt.executeUpdate();
-                                                                                    // this.registrationStatusLbl.setText("PATIENT ACTIVATED SUCCESSFULLY");
-                                                                                    // this.registrationStatusLbl.setVisible(true);
-                                                                                    javax.swing.JOptionPane.showMessageDialog(this, "Patient Activated Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                                                                                } else {
-                                                                                    java.sql.Statement stm = connectDB.createStatement();
-
-                                                                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-                                                                                    pstmt.setString(1, patientNumberTxt.getText());
-
-                                                                                    if (surNameTxt.getText().equals("")) {
-                                                                                        javax.swing.JOptionPane.showMessageDialog(this, "You must enter names", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                                                                    } else {
-                                                                                        pstmt.setString(2, surNameTxt.getText());
-                                                                                    }
-                                                                                    pstmt.setString(3, firstNameTxt.getText());
-                                                                                    pstmt.setString(4, "");
-                                                                                    pstmt.setString(5, nokNameTxt.getText());
-                                                                                    pstmt.setString(6, residenceTxt.getText());
-                                                                                    pstmt.setString(7, jTextField5.getText());
-                                                                                    pstmt.setDate(8, dateOfBirth);
-                                                                                    pstmt.setString(9, jTextField5821.getText());
-                                                                                    if (selectedchkbx == null) {
-                                                                                        javax.swing.JOptionPane.showMessageDialog(this, "You must tick patient Gender", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                                                                    } else {
-                                                                                        pstmt.setObject(10, selectedchkbx);
-                                                                                    }
-
-                                                                                    pstmt.setDate(11, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
-                                                                                    pstmt.setObject(12, paymentModeCmbx.getSelectedItem());
-                                                                                    pstmt.setString(13, jTextField7.getText());
-                                                                                    pstmt.setString(14, jTextField8.getText());
-                                                                                    pstmt.setString(15, jComboBox3.getSelectedItem().toString());
-                                                                                    pstmt.setObject(16, patientCategoryCmbx.getSelectedItem());
-                                                                                    pstmt.setDate(17, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                                                                                    pstmt.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
-                                                                                    pstmt.setObject(19, branchTxt.getText());
-                                                                                    pstmt.setString(20, "");
-                                                                                    pstmt.setString(21, jTextField8.getText());
-                                                                                    pstmt.setString(22, emailAddTxt.getText());
-                                                                                    pstmt.setString(23, idPassportTxt.getText());
-                                                                                    pstmt.setString(24, jTextField20.getText());
-                                                                                    pstmt.setObject(25, patientsNo);
-                                                                                    pstmt.setString(26, nationalityCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setString(27, nokTelephoneTxt.getText());
-                                                                                    pstmt.setString(28, nokRelationShipCmbx.getSelectedItem().toString().toUpperCase());
-                                                                                    pstmt.setString(29, nokResidenceTxt.getText());
-                                                                                    pstmt.setString(30, emailAddTxt1.getText());
-                                                                                    pstmt.setObject(31, selectedchkbx1);
-                                                                                    pstmt.setString(32, clinicNumberTxt.getText());
-                                                                                    pstmt.setString(33, ageTxt.getText());
-                                                                                    pstmt.setString(34, locationTxt.getSelectedItem().toString());
-                                                                                    pstmt.setString(35, currentResidenceTxt.getText());
-                                                                                    pstmt.setString(36, jTextField25.getText());
-                                                                                    pstmt.setString(37, jTextField26.getText());
-                                                                                    pstmt.setString(38, informationSourceCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setString(39, educationLevelCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setString(40, occupationCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setString(41, religionCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setString(42, oldFileNumberTxt.getText());
-                                                                                    pstmt.setString(43, placeOfBirthTxt.getText());
-                                                                                    pstmt.setBoolean(44, true);
-                                                                                    pstmt.setString(45, this.emailAddTxt.getText());
-                                                                                    pstmt.setString(46, this.countyofBirthCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setString(47, this.countyofResidenceCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setBoolean(48, this.nhifChbx.isSelected());
-                                                                                    pstmt.setString(49, this.nhifNumberTxt.getText());
-                                                                                    pstmt.setString(50, this.employerTxt.getText());
-                                                                                    pstmt.setString(51, this.employerTelTxt.getText());
-                                                                                    pstmt.setString(52, this.referralTypeCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setString(53, this.cSheetNoTxt.getText());
-                                                                                    pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
-                                                                                    pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
-                                                                                    pstmt.executeUpdate();
-
-                                                                                    //  this.registrationStatusLbl.setText("PATIENT REGISTRATION SUCCESSFUL");
-                                                                                    //  this.registrationStatusLbl.setVisible(true);
-                                                                                    javax.swing.JOptionPane.showMessageDialog(this, "Patient Activated Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                                                                                    inpatientActivation = false;
-                                                                                }
-                                                                            } else {
-                                                                                if (createNewFileRbtn.isSelected() || createOldFileRbtn.isSelected()) {
-
-                                                                                    java.sql.Statement stmtp = connectDB.createStatement();
-                                                                                    java.sql.ResultSet rsetp = stmtp.executeQuery("select patient_no from hp_patient_register where patient_no ='" + this.patientNumberTxt.getText() + "' AND patient_no != ''");
-                                                                                    while (rsetp.next()) {
-                                                                                        patientNo = rsetp.getObject(1).toString();
-                                                                                    }
-
-                                                                                    if (this.patientNumberTxt.getText().equalsIgnoreCase(patientNo)) {
-                                                                                        this.registrationStatusLbl.setForeground(java.awt.Color.red);
-                                                                                        this.registrationStatusLbl.setText("Patient No. Already On File");
-                                                                                        this.registrationStatusLbl.setVisible(true);
-                                                                                    } else {
-                                                                                        // Check if the file being created is a new on or its an old file which has not been created
-                                                                                        if (createNewFileRbtn.isSelected()) {
-                                                                                            // File to be automatically numbered if new.
-                                                                                            manualNo = true;
                                                                                         } else {
-                                                                                            if (revisitRbtn.isSelected() || createOldFileRbtn.isSelected()) {
-                                                                                                // File to be assigned number appearing on the file.
-                                                                                                manualNo = false;
-                                                                                            }
-                                                                                        }
-                                                                                        java.sql.Statement stm1 = connectDB.createStatement();
-                                                                                        if (manualNo) {
-                                                                                            patientsNo = patientsNo;
-                                                                                        } else {
-                                                                                            if (patientNumberTxt.getText().toString().equalsIgnoreCase("") | patientNumberTxt.getText().toString().equalsIgnoreCase(" ") | patientNumberTxt.getText().toString().equalsIgnoreCase("  ") | patientNumberTxt.getText().toString().equalsIgnoreCase("   ") | patientNumberTxt.getText().toString().equalsIgnoreCase("    ")) {
-                                                                                                // if(jTextField3.getText().toString().equalsIgnoreCase("") | jTextField3.getText().toString().equalsIgnoreCase(" ").concat("")){
-                                                                                                javax.swing.JOptionPane.showMessageDialog(this, "You cannot save without the patient no", "CAUTION MESSAGE", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                                                                                            } else {
-                                                                                                if (revisitRbtn.isSelected() || createOldFileRbtn.isSelected()) {
-                                                                                                    patientsNo = patientNumberTxt.getText();
+                                                                                            if (jCheckBox10.isSelected()) {
+                                                                                                java.sql.ResultSet rset = stmt.executeQuery("select service_type,gl_account,main_service from pb_operating_parameters where category ILIKE 'OP%'");
+                                                                                                while (rset.next()) {
+                                                                                                    activity = rset.getObject(1).toString();
+                                                                                                    actNo = rset.getObject(2).toString();
+                                                                                                    mainAcc = rset.getObject(3).toString();
+
                                                                                                 }
                                                                                             }
+
                                                                                         }
-
-                                                                                        java.sql.Statement stm = connectDB.createStatement();
-
-                                                                                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-                                                                                        pstmt.setString(1, patientsNo);
-
-                                                                                        if (surNameTxt.getText().equals("")) {
-                                                                                            javax.swing.JOptionPane.showMessageDialog(this, "You must enter names", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                                                                        } else {
-                                                                                            pstmt.setString(2, surNameTxt.getText());
-                                                                                        }
-                                                                                        pstmt.setString(3, firstNameTxt.getText());
-                                                                                        pstmt.setString(4, "");
-                                                                                        pstmt.setString(5, nokNameTxt.getText());
-                                                                                        pstmt.setString(6, residenceTxt.getText());
-                                                                                        pstmt.setString(7, jTextField5.getText());
-                                                                                        pstmt.setDate(8, dateOfBirth);
-                                                                                        pstmt.setString(9, jTextField5821.getText());
-                                                                                        if (selectedchkbx == null) {
-                                                                                            javax.swing.JOptionPane.showMessageDialog(this, "You must tick patient Gender", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                                                                        } else {
-                                                                                            pstmt.setObject(10, selectedchkbx);
-                                                                                        }
-
-                                                                                        pstmt.setDate(11, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
-                                                                                        pstmt.setObject(12, paymentModeCmbx.getSelectedItem());
-                                                                                        pstmt.setString(13, jTextField7.getText());
-                                                                                        pstmt.setString(14, jTextField8.getText());
-                                                                                        pstmt.setString(15, jComboBox3.getSelectedItem().toString());
-                                                                                        pstmt.setObject(16, patientCategoryCmbx.getSelectedItem());
-                                                                                        pstmt.setDate(17, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                                                                                        pstmt.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
-                                                                                        pstmt.setObject(19, branchTxt.getText());
-                                                                                        pstmt.setString(20, "");
-                                                                                        pstmt.setString(21, jTextField8.getText());
-                                                                                        pstmt.setString(22, emailAddTxt.getText());
-                                                                                        pstmt.setString(23, idPassportTxt.getText());
-                                                                                        pstmt.setString(24, jTextField20.getText());
-                                                                                        pstmt.setObject(25, patientsNo);
-                                                                                        pstmt.setString(26, nationalityCmbx.getSelectedItem().toString());
-                                                                                        pstmt.setString(27, nokTelephoneTxt.getText());
-                                                                                        pstmt.setString(28, nokRelationShipCmbx.getSelectedItem().toString().toUpperCase());
-                                                                                        pstmt.setString(29, nokResidenceTxt.getText());
-                                                                                        pstmt.setString(30, emailAddTxt1.getText());
-                                                                                        pstmt.setObject(31, selectedchkbx1);
-                                                                                        pstmt.setString(32, clinicNumberTxt.getText());
-                                                                                        pstmt.setString(33, ageTxt.getText());
-                                                                                        pstmt.setString(34, locationTxt.getSelectedItem().toString());
-                                                                                        pstmt.setString(35, currentResidenceTxt.getText());
-                                                                                        pstmt.setString(36, jTextField25.getText());
-                                                                                        pstmt.setString(37, jTextField26.getText());
-                                                                                        pstmt.setString(38, informationSourceCmbx.getSelectedItem().toString());
-                                                                                        pstmt.setString(39, educationLevelCmbx.getSelectedItem().toString());
-                                                                                        pstmt.setString(40, occupationCmbx.getSelectedItem().toString());
-                                                                                        pstmt.setString(41, religionCmbx.getSelectedItem().toString());
-                                                                                        pstmt.setString(42, oldFileNumberTxt.getText());
-                                                                                        pstmt.setString(43, placeOfBirthTxt.getText());
-                                                                                        pstmt.setBoolean(44, true);
-                                                                                        pstmt.setString(45, this.emailAddTxt.getText());
-                                                                                        pstmt.setString(46, this.countyofBirthCmbx.getSelectedItem().toString());
-                                                                                        pstmt.setString(47, this.countyofResidenceCmbx.getSelectedItem().toString());
-                                                                                        pstmt.setBoolean(48, this.nhifChbx.isSelected());
-                                                                                        pstmt.setString(49, this.nhifNumberTxt.getText());
-                                                                                        pstmt.setString(50, this.employerTxt.getText());
-                                                                                        pstmt.setString(51, this.employerTelTxt.getText());
-                                                                                        pstmt.setString(52, this.referralTypeCmbx.getSelectedItem().toString());
-                                                                                        pstmt.setString(53, this.cSheetNoTxt.getText());
-                                                                                        pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
-                                                                                        pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
-                                                                                        pstmt.executeUpdate();
-
-                                                                                        //  this.registrationStatusLbl.setText("PATIENT REGISTRATION SUCCESSFUL");
-                                                                                        //  this.registrationStatusLbl.setVisible(true);
-                                                                                        ////             javax.swing.JOptionPane.showMessageDialog(this, "Patient Registered Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                                                                                     }
                                                                                 }
-                                                                            }
+                                                                                //booking
 
-                                                                        } else {
-                                                                            if (this.paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
-                                                                                java.util.Date time = null;
-                                                                                java.util.Date term = null;
-                                                                                java.util.Date exp = null;
-                                                                                java.util.Date date = null;
-                                                                                double limit = 0.00;
-                                                                                double balance = 0.00;
-                                                                                String Suspended = null;
-                                                                                String Closed = null;
-                                                                                jSearchDialog11.dispose();
-                                                                                java.sql.Statement stmt1h = connectDB.createStatement();
-                                                                                java.sql.ResultSet rset1h = stmt1h.executeQuery("select count(payee) from ac_debtors where payee = '" + jTextField361.getText() + "' and dealer = '" + jTextField2.getText() + "'");
-                                                                                while (rset1h.next()) {
-                                                                                    occurence = rset1h.getInt(1);
+                                                                                String bill = "";
+                                                                                java.sql.Statement ps11d = connectDB.createStatement();
+                                                                                java.sql.ResultSet rst11d = ps11d.executeQuery("select nextval('booking_no_seq')");
+                                                                                while (rst11d.next()) {
+                                                                                    // rst11.getObject(1).toString();
+                                                                                    bill = rst11d.getObject(1).toString();
                                                                                 }
-                                                                                if (occurence > 1) {
-                                                                                    java.sql.Statement stmt1 = connectDB.createStatement();
-                                                                                    java.sql.ResultSet rset1 = stmt1.executeQuery("select sum(balance-credit_bal) from ac_debtors where payee = '" + jTextField361.getText() + "' and dealer = '" + jTextField2.getText() + "'");
-                                                                                    while (rset1.next()) {
-                                                                                        balance = rset1.getDouble(1);
-                                                                                    }
-                                                                                } else {
-                                                                                    balance = 0.00;
+
+                                                                                if (datePicker2.getDate().after(datePicker4.getDate())) {
+
+                                                                                    java.sql.PreparedStatement pstmts = connectDB.prepareStatement("INSERT INTO pb_bookings VALUES(initcap(?),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+                                                                                    pstmts.setString(1, surNameTxt.getText() + " " + firstNameTxt.getText());
+                                                                                    pstmts.setObject(2, "Consultation");
+                                                                                    pstmts.setDouble(3, java.lang.Double.valueOf("1.00"));
+                                                                                    pstmts.setString(4, "Booked");
+                                                                                    pstmts.setTimestamp(5, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+                                                                                    pstmts.setString(6, bill);
+                                                                                    pstmts.setDate(7, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker2.getDate()));
+                                                                                    pstmts.setString(8, patientNumberTxt.getText());
+                                                                                    pstmts.setString(9, user);
+                                                                                    pstmts.setString(10, jTextField5821.getText());
+                                                                                    pstmts.setObject(11, emailAddTxt.getText());
+                                                                                    pstmts.setObject(12, specialtyClinicCmbx.getSelectedItem());
+                                                                                    pstmts.setObject(13, "OP");
+                                                                                    pstmts.setObject(14, "Normal");
+                                                                                    pstmts.setObject(15, "New Booking");
+                                                                                    pstmts.setObject(16, oldFileNumberTxt.getText());
+                                                                                    pstmts.executeUpdate();
+
                                                                                 }
-                                                                                java.sql.PreparedStatement stmtq = connectDB.prepareStatement("select suspended, closed,expiry_date,current_date,scheme_limit,term_date,current_timestamp from ac_schemes where account_no = ?");//createStatement();
-                                                                                stmtq.setString(1, jTextField15.getText());
-                                                                                java.sql.ResultSet rsetq = stmtq.executeQuery();// scheme_name = '"+jTextField361.getText()+"' and payer_name = '"+jTextField2.getText()+"'");
-                                                                                while (rsetq.next()) {
-                                                                                    Suspended = rsetq.getObject(1).toString();
-                                                                                    Closed = rsetq.getObject(2).toString();
-                                                                                    exp = rsetq.getDate(3);
-                                                                                    date = rsetq.getDate(4);
-                                                                                    limit = rsetq.getDouble(5);
-                                                                                    term = rsetq.getTimestamp(6);
-                                                                                    time = rsetq.getTimestamp(7);
-                                                                                }
-                                                                                if (Suspended.equals("true")) {
 
-                                                                                    javax.swing.JOptionPane.showMessageDialog(this, "SCHEME SUSPENDED !!", "Suspension MESSAGE", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                                                                                    jTextField361.setText("");
-                                                                                    jTextField2.setText("");
-                                                                                } else {
-                                                                                    if (Closed.equals("true")) {
+                                                                                //if (this.jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Cash") | this.jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Cheque")) {
+                                                                                if (!this.paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
 
-                                                                                        javax.swing.JOptionPane.showMessageDialog(this, "SCHEME CLOSED !!", "Viability MESSAGE", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                                                                                        jTextField361.setText("");
-                                                                                        jTextField2.setText("");
-                                                                                    } else {
-                                                                                        if (exp.before(date)) {
+                                                                                    if (revisitRbtn.isSelected()) {
+                                                                                        if (!inpatientActivation) {
+                                                                                            java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("UPDATE hp_patient_register set pay_mode = '" + paymentModeCmbx.getSelectedItem().toString() + "',residence_county='" + countyofResidenceCmbx.getSelectedItem().toString() + "',locations='" + locationTxt.getSelectedItem().toString() + "',category = '" + patientCategoryCmbx.getSelectedItem().toString() + "',last_visit = '" + datePicker4.getDate().toString() + "',payer = '',description = ''  WHERE patient_no = '" + patientNumberTxt.getText() + "'");
+                                                                                            pstmt1.executeUpdate();
+                                                                                            // this.registrationStatusLbl.setText("PATIENT ACTIVATED SUCCESSFULLY");
+                                                                                            //  this.registrationStatusLbl.setVisible(true);
 
-                                                                                            javax.swing.JOptionPane.showMessageDialog(this, "SCHEME EXPIRED !! ON " + exp, "Expiry MESSAGE", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                                                                                            jTextField361.setText("");
-                                                                                            jTextField2.setText("");
+                                                                                            javax.swing.JOptionPane.showMessageDialog(this, "Patient Activated Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                                                                                         } else {
-                                                                                            if (term.before(time)) {
 
-                                                                                                javax.swing.JOptionPane.showMessageDialog(this, "SCHEME TERMINATED !! ON " + term, "Expiry MESSAGE", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                                                                                                jTextField361.setText("");
-                                                                                                jTextField2.setText("");
+                                                                                            java.sql.Statement stm = connectDB.createStatement();
+
+                                                                                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+                                                                                            pstmt.setString(1, patientNumberTxt.getText());
+
+                                                                                            if (surNameTxt.getText().equals("")) {
+                                                                                                javax.swing.JOptionPane.showMessageDialog(this, "You must enter names", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                                                                                             } else {
+                                                                                                pstmt.setString(2, surNameTxt.getText());
+                                                                                            }
+                                                                                            pstmt.setString(3, firstNameTxt.getText());
+                                                                                            pstmt.setString(4, "");
+                                                                                            pstmt.setString(5, nokNameTxt.getText());
+                                                                                            pstmt.setString(6, residenceTxt.getText());
+                                                                                            pstmt.setString(7, jTextField5.getText());
+                                                                                            pstmt.setDate(8, dateOfBirth);
+                                                                                            pstmt.setString(9, jTextField5821.getText());
+                                                                                            if (selectedchkbx == null) {
+                                                                                                javax.swing.JOptionPane.showMessageDialog(this, "You must tick patient Gender", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                                                            } else {
+                                                                                                pstmt.setObject(10, selectedchkbx);
+                                                                                            }
 
-                                                                                                if (balance > limit) {
+                                                                                            pstmt.setDate(11, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
+                                                                                            pstmt.setObject(12, paymentModeCmbx.getSelectedItem());
+                                                                                            pstmt.setString(13, "");
+                                                                                            pstmt.setString(14, "");
+                                                                                            pstmt.setString(15, "");
+                                                                                            pstmt.setObject(16, patientCategoryCmbx.getSelectedItem());
+                                                                                            pstmt.setObject(17, null);
+                                                                                            pstmt.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
+                                                                                            pstmt.setObject(19, clinicNumberTxt.getText());
+                                                                                            pstmt.setString(20, "");
+                                                                                            pstmt.setString(21, "");
+                                                                                            pstmt.setString(22, emailAddTxt.getText());
+                                                                                            pstmt.setString(23, idPassportTxt.getText());
+                                                                                            pstmt.setString(24, jTextField20.getText());
+                                                                                            pstmt.setObject(25, patientsNo);
+                                                                                            pstmt.setString(26, nationalityCmbx.getSelectedItem().toString());
+                                                                                            pstmt.setString(27, nokTelephoneTxt.getText());
+                                                                                            pstmt.setString(28, nokRelationShipCmbx.getSelectedItem().toString().toUpperCase());
+                                                                                            pstmt.setString(29, nokResidenceTxt.getText());
+                                                                                            pstmt.setString(30, emailAddTxt1.getText());
+                                                                                            pstmt.setObject(31, selectedchkbx1);
+                                                                                            pstmt.setString(32, clinicNumberTxt.getText());
+                                                                                            pstmt.setString(33, this.districtCmbx.getSelectedItem().toString());
+                                                                                            pstmt.setString(34, locationTxt.getSelectedItem().toString());
+                                                                                            pstmt.setString(35, currentResidenceTxt.getText());
+                                                                                            pstmt.setString(36, jTextField25.getText());
+                                                                                            pstmt.setString(37, jTextField26.getText());
+                                                                                            pstmt.setString(38, informationSourceCmbx.getSelectedItem().toString());
+                                                                                            pstmt.setString(39, educationLevelCmbx.getSelectedItem().toString());
+                                                                                            pstmt.setString(40, occupationCmbx.getSelectedItem().toString());
+                                                                                            pstmt.setString(41, religionCmbx.getSelectedItem().toString());
+                                                                                            pstmt.setString(42, oldFileNumberTxt.getText());
+                                                                                            pstmt.setString(43, placeOfBirthTxt.getText());
+                                                                                            pstmt.setBoolean(44, true);
+                                                                                            pstmt.setString(45, this.emailAddTxt.getText());
+                                                                                            pstmt.setString(46, this.countyofBirthCmbx.getSelectedItem().toString());
+                                                                                            pstmt.setString(47, this.countyofResidenceCmbx.getSelectedItem().toString());
+                                                                                            pstmt.setBoolean(48, this.nhifChbx.isSelected());
+                                                                                            pstmt.setString(49, this.nhifNumberTxt.getText());
+                                                                                            pstmt.setString(50, this.employerTxt.getText());
+                                                                                            pstmt.setString(51, this.employerTelTxt.getText());
+                                                                                            pstmt.setString(52, this.referralTypeCmbx.getSelectedItem().toString());
+                                                                                            pstmt.setString(53, this.cSheetNoTxt.getText());
+                                                                                            pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
+                                                                                            pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
 
-                                                                                                    javax.swing.JOptionPane.showMessageDialog(this, "SCHEME LIMIT IS " + limit + " AND DEBT IS " + balance + "\n Hence Limit exceeded by " + (balance - limit), "Debt Status MESSAGE", javax.swing.JOptionPane.PLAIN_MESSAGE);
-                                                                                                    jTextField361.setText("");
-                                                                                                    jTextField2.setText("");
+                                                                                            pstmt.executeUpdate();
+                                                                                            javax.swing.JOptionPane.showMessageDialog(this, "Patient File Activated Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                                                                                            inpatientActivation = false;
+                                                                                        }
+
+                                                                                    } else {
+                                                                                        if (createNewFileRbtn.isSelected() || createOldFileRbtn.isSelected()) {
+
+                                                                                            java.sql.Statement stmtp = connectDB.createStatement();
+                                                                                            java.sql.ResultSet rsetp = stmtp.executeQuery("select patient_no from hp_patient_register where patient_no ='" + this.patientNumberTxt.getText() + "' AND patient_no != ''");
+                                                                                            while (rsetp.next()) {
+                                                                                                patientNo = rsetp.getObject(1).toString();
+                                                                                            }
+
+                                                                                            if (this.patientNumberTxt.getText().equalsIgnoreCase(patientNo)) {
+                                                                                                this.registrationStatusLbl.setForeground(java.awt.Color.red);
+                                                                                                this.registrationStatusLbl.setText("Patient No. Already On File");
+
+                                                                                            } else {
+                                                                                                if (createNewFileRbtn.isSelected()) {
+                                                                                                    // File to be automatically numbered if new.
+                                                                                                    manualNo = true;
                                                                                                 } else {
-
-                                                                                                    java.sql.Statement stm = connectDB.createStatement();
-                                                                                                    java.sql.ResultSet rs = stm.executeQuery("select nextval('creditslip_no_seq'),current_user");
-                                                                                                    while (rs.next()) {
-                                                                                                        slipNo = rs.getInt(1);
-                                                                                                        //  user = rs.getObject(2).toString();
+                                                                                                    if (revisitRbtn.isSelected() || createOldFileRbtn.isSelected()) {
+                                                                                                        // File to be assigned number appearing on the file.
+                                                                                                        manualNo = false;
                                                                                                     }
+                                                                                                }
+                                                                                                java.sql.Statement stm1 = connectDB.createStatement();
+                                                                                                if (manualNo) {
 
-                                                                                                    if (revisitRbtn.isSelected()) {
-                                                                                                        if (!inpatientActivation) {
-                                                                                                            java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("UPDATE hp_patient_register set description = '" + jTextField361.getText() + "',payer = '" + jTextField2.getText() + "',account_no ='" + jTextField15.getText() + "',expiry_date = '" + datePicker1.getDate() + "',member_name ='" + jTextField36.getText() + "',last_visit = '" + datePicker4.getDate().toString() + "',pay_mode = '" + paymentModeCmbx.getSelectedItem().toString() + "',category = '" + patientCategoryCmbx.getSelectedItem() + "',card_no = '" + jTextField13.getText() + "' WHERE patient_no ilike '" + patientNumberTxt.getText() + "'");
-                                                                                                            pstmt11.executeUpdate();
-                                                                                                            javax.swing.JOptionPane.showMessageDialog(this, "Patient Activated Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                                                                                                        } else {
-                                                                                                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-                                                                                                            pstmt.setString(1, patientNumberTxt.getText());
-
-                                                                                                            if (surNameTxt.getText().equals("")) {
-                                                                                                                javax.swing.JOptionPane.showMessageDialog(this, "You must enter names", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                                                                                            } else {
-                                                                                                                pstmt.setString(2, surNameTxt.getText());
-                                                                                                            }
-                                                                                                            pstmt.setString(3, firstNameTxt.getText());
-                                                                                                            pstmt.setString(4, "");
-                                                                                                            pstmt.setString(5, nokNameTxt.getText());
-                                                                                                            pstmt.setString(6, residenceTxt.getText());
-                                                                                                            pstmt.setString(7, jTextField5.getText());
-                                                                                                            pstmt.setDate(8, dateOfBirth);
-                                                                                                            pstmt.setString(9, jTextField5821.getText());
-                                                                                                            if (selectedchkbx == null) {
-                                                                                                                javax.swing.JOptionPane.showMessageDialog(this, "You must tick patient Gender", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                                                                                            } else {
-                                                                                                                pstmt.setObject(10, selectedchkbx);
-                                                                                                            }
-
-                                                                                                            pstmt.setDate(11, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
-                                                                                                            pstmt.setObject(12, paymentModeCmbx.getSelectedItem());
-                                                                                                            pstmt.setString(13, jTextField2.getText());
-                                                                                                            pstmt.setString(14, jTextField15.getText());
-                                                                                                            pstmt.setString(15, jTextField361.getText());
-                                                                                                            pstmt.setObject(16, patientCategoryCmbx.getSelectedItem());
-                                                                                                            pstmt.setObject(17, java.sql.Date.valueOf(jTextField18.getText()));
-                                                                                                            pstmt.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
-                                                                                                            pstmt.setObject(19, branchTxt.getText());
-                                                                                                            pstmt.setString(20, jTextField36.getText());
-                                                                                                            pstmt.setString(21, jTextField13.getText());
-                                                                                                            pstmt.setString(22, emailAddTxt.getText());
-                                                                                                            pstmt.setString(23, idPassportTxt.getText());
-                                                                                                            pstmt.setString(24, jTextField20.getText());
-                                                                                                            pstmt.setObject(25, patientsNo);
-                                                                                                            pstmt.setString(26, nationalityCmbx.getSelectedItem().toString());
-                                                                                                            pstmt.setString(27, nokTelephoneTxt.getText());
-                                                                                                            pstmt.setString(28, nokRelationShipCmbx.getSelectedItem().toString().toUpperCase());
-                                                                                                            pstmt.setString(29, nokResidenceTxt.getText());
-                                                                                                            pstmt.setString(30, emailAddTxt1.getText());
-                                                                                                            pstmt.setObject(31, selectedchkbx1);
-                                                                                                            pstmt.setString(32, clinicNumberTxt.getText());
-                                                                                                            pstmt.setString(33, ageTxt.getText());
-                                                                                                            pstmt.setString(34, locationTxt.getSelectedItem().toString());
-                                                                                                            pstmt.setString(35, currentResidenceTxt.getText());
-                                                                                                            pstmt.setString(36, jTextField25.getText());
-                                                                                                            pstmt.setString(37, jTextField26.getText());
-                                                                                                            pstmt.setString(38, informationSourceCmbx.getSelectedItem().toString());
-                                                                                                            pstmt.setString(39, educationLevelCmbx.getSelectedItem().toString());
-                                                                                                            pstmt.setString(40, occupationCmbx.getSelectedItem().toString());
-                                                                                                            pstmt.setString(41, religionCmbx.getSelectedItem().toString());
-                                                                                                            pstmt.setString(42, oldFileNumberTxt.getText());
-                                                                                                            pstmt.setString(43, placeOfBirthTxt.getText());
-                                                                                                            pstmt.setBoolean(44, true);
-                                                                                                            pstmt.setString(45, this.emailAddTxt.getText());
-                                                                                                            pstmt.setString(46, this.countyofBirthCmbx.getSelectedItem().toString());
-                                                                                                            pstmt.setString(47, this.countyofResidenceCmbx.getSelectedItem().toString());
-                                                                                                            pstmt.setBoolean(48, this.nhifChbx.isSelected());
-                                                                                                            pstmt.setString(49, this.nhifNumberTxt.getText());
-                                                                                                            pstmt.setString(50, this.employerTxt.getText());
-                                                                                                            pstmt.setString(51, this.employerTelTxt.getText());
-                                                                                                            pstmt.setString(52, this.referralTypeCmbx.getSelectedItem().toString());
-                                                                                                            pstmt.setString(53, this.cSheetNoTxt.getText());
-                                                                                                            pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
-                                                                                                            pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
-                                                                                                            pstmt.executeUpdate();
-
-                                                                                                            // this.registrationStatusLbl.setText("PATIENT REGISTRATION SUCCESSFUL");
-                                                                                                            javax.swing.JOptionPane.showMessageDialog(this, "Patient File Activated Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-                                                                                                            inpatientActivation = false;
-                                                                                                        }
-
-                                                                                                    } else {
-                                                                                                        if (createNewFileRbtn.isSelected() || createOldFileRbtn.isSelected()) {
-
-                                                                                                            java.sql.Statement stmtp = connectDB.createStatement();
-                                                                                                            java.sql.ResultSet rsetp = stmtp.executeQuery("select patient_no from hp_patient_register where patient_no ='" + this.patientNumberTxt.getText() + "'  AND patient_no != ''");
-                                                                                                            while (rsetp.next()) {
-                                                                                                                patientNo = rsetp.getObject(1).toString();
-                                                                                                            }
-
-                                                                                                            if (this.patientNumberTxt.getText().equalsIgnoreCase(patientNo)) {
-                                                                                                                this.registrationStatusLbl.setForeground(java.awt.Color.red);
-                                                                                                                this.registrationStatusLbl.setText("Patient No. Already On File");
-
-                                                                                                            } else {
-// Check if the file being created is a new or its an old file which has not been created
-                                                                                                                if (createNewFileRbtn.isSelected()) {
-                                                                                                                    // File to be automatically numbered if new.
-                                                                                                                    manualNo = true;
-                                                                                                                } else {
-                                                                                                                    if (revisitRbtn.isSelected() || createOldFileRbtn.isSelected()) {
-                                                                                                                        // File to be assigned number appearing on the file.
-                                                                                                                        manualNo = false;
-                                                                                                                    }
-                                                                                                                }
-                                                                                                                java.sql.Statement stm1 = connectDB.createStatement();
-                                                                                                                if (manualNo) {
-
-                                                                                                                    patientsNo = patientsNo;
-                                                                                                                } else {
-                                                                                                                    if (patientNumberTxt.getText().toString().equalsIgnoreCase("") | patientNumberTxt.getText().toString().equalsIgnoreCase(" ") | patientNumberTxt.getText().toString().equalsIgnoreCase("  ") | patientNumberTxt.getText().toString().equalsIgnoreCase("   ") | patientNumberTxt.getText().toString().equalsIgnoreCase("    ")) {
-                                                                                                                        // if(jTextField3.getText().toString().equalsIgnoreCase("") | jTextField3.getText().toString().equalsIgnoreCase(" ").concat("")){
-                                                                                                                        javax.swing.JOptionPane.showMessageDialog(this, "You cannot save without the patient no", "CAUTION MESSAGE", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                                                                                                                    } else {
-                                                                                                                        if (revisitRbtn.isSelected() || createOldFileRbtn.isSelected()) {
-                                                                                                                            patientsNo = patientNumberTxt.getText();
-                                                                                                                        }
-                                                                                                                    }
-                                                                                                                }
-
-                                                                                                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-                                                                                                                pstmt.setString(1, patientsNo);
-
-                                                                                                                if (surNameTxt.getText().equals("")) {
-                                                                                                                    javax.swing.JOptionPane.showMessageDialog(this, "You must enter names", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                                                                                                } else {
-                                                                                                                    pstmt.setString(2, surNameTxt.getText());
-                                                                                                                }
-                                                                                                                pstmt.setString(3, firstNameTxt.getText());
-                                                                                                                pstmt.setString(4, "");
-                                                                                                                pstmt.setString(5, nokNameTxt.getText());
-                                                                                                                pstmt.setString(6, residenceTxt.getText());
-                                                                                                                pstmt.setString(7, jTextField5.getText());
-                                                                                                                pstmt.setDate(8, dateOfBirth);
-                                                                                                                pstmt.setString(9, jTextField5821.getText());
-                                                                                                                if (selectedchkbx == null) {
-                                                                                                                    javax.swing.JOptionPane.showMessageDialog(this, "You must tick patient Gender", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                                                                                                } else {
-                                                                                                                    pstmt.setObject(10, selectedchkbx);
-                                                                                                                }
-
-                                                                                                                pstmt.setDate(11, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
-                                                                                                                pstmt.setObject(12, paymentModeCmbx.getSelectedItem());
-                                                                                                                pstmt.setString(13, jTextField2.getText());
-                                                                                                                pstmt.setString(14, jTextField15.getText());
-                                                                                                                pstmt.setString(15, jTextField361.getText());
-                                                                                                                pstmt.setObject(16, patientCategoryCmbx.getSelectedItem());
-                                                                                                                pstmt.setObject(17, java.sql.Date.valueOf(jTextField18.getText()));
-                                                                                                                pstmt.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
-                                                                                                                pstmt.setObject(19, branchTxt.getText());
-                                                                                                                pstmt.setString(20, jTextField36.getText());
-                                                                                                                pstmt.setString(21, jTextField13.getText());
-                                                                                                                pstmt.setString(22, emailAddTxt.getText());
-                                                                                                                pstmt.setString(23, idPassportTxt.getText());
-                                                                                                                pstmt.setString(24, jTextField20.getText());
-                                                                                                                pstmt.setObject(25, patientsNo);
-                                                                                                                pstmt.setString(26, nationalityCmbx.getSelectedItem().toString());
-                                                                                                                pstmt.setString(27, nokTelephoneTxt.getText());
-                                                                                                                pstmt.setString(28, nokRelationShipCmbx.getSelectedItem().toString().toUpperCase());
-                                                                                                                pstmt.setString(29, nokResidenceTxt.getText());
-                                                                                                                pstmt.setString(30, emailAddTxt1.getText());
-                                                                                                                pstmt.setObject(31, selectedchkbx1);
-                                                                                                                pstmt.setString(32, clinicNumberTxt.getText());
-                                                                                                                pstmt.setString(33, ageTxt.getText());
-                                                                                                                pstmt.setString(34, locationTxt.getSelectedItem().toString());
-                                                                                                                pstmt.setString(35, currentResidenceTxt.getText());
-                                                                                                                pstmt.setString(36, jTextField25.getText());
-                                                                                                                pstmt.setString(37, jTextField26.getText());
-                                                                                                                pstmt.setString(38, informationSourceCmbx.getSelectedItem().toString());
-                                                                                                                pstmt.setString(39, educationLevelCmbx.getSelectedItem().toString());
-                                                                                                                pstmt.setString(40, occupationCmbx.getSelectedItem().toString());
-                                                                                                                pstmt.setString(41, religionCmbx.getSelectedItem().toString());
-                                                                                                                pstmt.setString(42, oldFileNumberTxt.getText());
-                                                                                                                pstmt.setString(43, placeOfBirthTxt.getText());
-                                                                                                                pstmt.setBoolean(44, true);
-                                                                                                                pstmt.setString(45, this.emailAddTxt.getText());
-                                                                                                                pstmt.setString(46, this.countyofBirthCmbx.getSelectedItem().toString());
-                                                                                                                pstmt.setString(47, this.countyofResidenceCmbx.getSelectedItem().toString());
-                                                                                                                pstmt.setBoolean(48, this.nhifChbx.isSelected());
-                                                                                                                pstmt.setString(49, this.nhifNumberTxt.getText());
-                                                                                                                pstmt.setString(50, this.employerTxt.getText());
-                                                                                                                pstmt.setString(51, this.employerTelTxt.getText());
-                                                                                                                pstmt.setString(52, this.referralTypeCmbx.getSelectedItem().toString());
-                                                                                                                pstmt.setString(53, this.cSheetNoTxt.getText());
-                                                                                                                pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
-                                                                                                                pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
-
-                                                                                                                pstmt.executeUpdate();
-
-                                                                                                                // this.registrationStatusLbl.setText("PATIENT REGISTRATION SUCCESSFUL");
-                                                                                                                ////                   javax.swing.JOptionPane.showMessageDialog(this, "Patient Registered Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                                                                                                            }
-                                                                                                        }
-                                                                                                    }
-
-                                                                                                    if (createNewFileRbtn.isSelected()) {
-                                                                                                        patientsNo = patientsNo;
+                                                                                                    patientsNo = patientsNo;
+                                                                                                } else {
+                                                                                                    if (patientNumberTxt.getText().toString().equalsIgnoreCase("") | patientNumberTxt.getText().toString().equalsIgnoreCase(" ") | patientNumberTxt.getText().toString().equalsIgnoreCase("  ") | patientNumberTxt.getText().toString().equalsIgnoreCase("   ") | patientNumberTxt.getText().toString().equalsIgnoreCase("    ")) {
+                                                                                                        // if(jTextField3.getText().toString().equalsIgnoreCase("") | jTextField3.getText().toString().equalsIgnoreCase(" ").concat("")){
+                                                                                                        javax.swing.JOptionPane.showMessageDialog(this, "You cannot save without the patient no", "CAUTION MESSAGE", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                                                                                                     } else {
                                                                                                         if (revisitRbtn.isSelected() || createOldFileRbtn.isSelected()) {
                                                                                                             patientsNo = patientNumberTxt.getText();
                                                                                                         }
                                                                                                     }
-                                                                                                    java.sql.PreparedStatement pstmt2a = connectDB.prepareStatement("INSERT INTO credit_acc_slip VALUES(?,?,?,?,?,?, ?, ?,?,?,?,?,?)");
-
-                                                                                                    pstmt2a.setString(1, patientsNo);
-                                                                                                    pstmt2a.setString(2, firstNameTxt.getText() + " " + surNameTxt.getText());
-                                                                                                    pstmt2a.setString(3, jTextField361.getText());
-                                                                                                    pstmt2a.setString(4, jTextField2.getText());
-                                                                                                    pstmt2a.setDouble(5, 0.00);
-                                                                                                    pstmt2a.setInt(6, slipNo);
-                                                                                                    pstmt2a.setDate(8, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
-                                                                                                    pstmt2a.setString(7, user);
-                                                                                                    pstmt2a.setString(9, jTextField15.getText());
-                                                                                                    pstmt2a.setString(10, jTextField13.getText());
-                                                                                                    pstmt2a.setString(11, jTextField36.getText());
-                                                                                                    pstmt2a.setString(12, cardSerialNoTxt.getText());
-                                                                                                    System.out.println("Text Field 12 : [" + jTextField12.getText().toCharArray().length + "]");
-                                                                                                    if (jTextField12.getText().trim().toCharArray().length > 0) {
-                                                                                                        pstmt2a.setDouble(13, java.lang.Double.parseDouble(jTextField12.getText()));// == "" ? 0.00 : java.lang.Double.parseDouble(jTextField12.getText()));
-                                                                                                    } else {
-                                                                                                        pstmt2a.setDouble(13, 0.00);
-                                                                                                    }
-                                                                                                    //                                     pstmt2a.setObject(13,jTextField12.getText());
-                                                                                                    pstmt2a.executeUpdate();
-
-                                                                                                    if (jTextField17.getText().equalsIgnoreCase("")) {
-                                                                                                    } else {
-                                                                                                        java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("UPDATE ac_schemes SET usesmartcard = true,sch_abbrev = '" + jTextField17.getText() + "' WHERE account_no = '" + jTextField15.getText() + "'");
-                                                                                                        pstmt11.executeUpdate();
-                                                                                                    }
-
                                                                                                 }
+
+                                                                                                java.sql.Statement stm = connectDB.createStatement();
+
+                                                                                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+                                                                                                pstmt.setString(1, patientsNo);
+
+                                                                                                if (surNameTxt.getText().equals("")) {
+                                                                                                    javax.swing.JOptionPane.showMessageDialog(this, "You must enter names", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                                                                } else {
+                                                                                                    pstmt.setString(2, surNameTxt.getText());
+                                                                                                }
+                                                                                                pstmt.setString(3, firstNameTxt.getText());
+                                                                                                pstmt.setString(4, "");
+                                                                                                pstmt.setString(5, nokNameTxt.getText());
+                                                                                                pstmt.setString(6, residenceTxt.getText());
+                                                                                                pstmt.setString(7, jTextField5.getText());
+                                                                                                pstmt.setDate(8, dateOfBirth);
+                                                                                                pstmt.setString(9, jTextField5821.getText());
+                                                                                                if (selectedchkbx == null) {
+                                                                                                    javax.swing.JOptionPane.showMessageDialog(this, "You must tick patient Gender", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                                                                } else {
+                                                                                                    pstmt.setObject(10, selectedchkbx);
+                                                                                                }
+
+                                                                                                pstmt.setDate(11, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
+                                                                                                pstmt.setObject(12, paymentModeCmbx.getSelectedItem());
+                                                                                                pstmt.setString(13, "");
+                                                                                                pstmt.setString(14, "");
+                                                                                                pstmt.setString(15, "");
+                                                                                                pstmt.setObject(16, patientCategoryCmbx.getSelectedItem());
+                                                                                                pstmt.setObject(17, null);
+                                                                                                pstmt.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
+                                                                                                pstmt.setObject(19, branchTxt.getText());
+                                                                                                pstmt.setString(20, "");
+                                                                                                pstmt.setString(21, "");
+                                                                                                pstmt.setString(22, emailAddTxt.getText());
+                                                                                                pstmt.setString(23, idPassportTxt.getText());
+                                                                                                pstmt.setString(24, jTextField20.getText());
+                                                                                                pstmt.setObject(25, patientsNo);
+                                                                                                pstmt.setString(26, nationalityCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(27, nokTelephoneTxt.getText());
+                                                                                                pstmt.setString(28, nokRelationShipCmbx.getSelectedItem().toString().toUpperCase());
+                                                                                                pstmt.setString(29, nokResidenceTxt.getText());
+                                                                                                pstmt.setString(30, emailAddTxt1.getText());
+                                                                                                pstmt.setObject(31, selectedchkbx1);
+                                                                                                pstmt.setString(32, clinicNumberTxt.getText());
+                                                                                                pstmt.setString(33, this.districtCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(34, locationTxt.getSelectedItem().toString());
+                                                                                                pstmt.setString(35, currentResidenceTxt.getText());
+                                                                                                pstmt.setString(36, jTextField25.getText());
+                                                                                                pstmt.setString(37, jTextField26.getText());
+                                                                                                pstmt.setString(38, informationSourceCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(39, educationLevelCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(40, occupationCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(41, religionCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(42, oldFileNumberTxt.getText());
+                                                                                                pstmt.setString(43, placeOfBirthTxt.getText());
+                                                                                                pstmt.setBoolean(44, true);
+                                                                                                pstmt.setString(45, this.emailAddTxt.getText());
+                                                                                                pstmt.setString(46, this.countyofBirthCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(47, this.countyofResidenceCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setBoolean(48, this.nhifChbx.isSelected());
+                                                                                                pstmt.setString(49, this.nhifNumberTxt.getText());
+                                                                                                pstmt.setString(50, this.employerTxt.getText());
+                                                                                                pstmt.setString(51, this.employerTelTxt.getText());
+                                                                                                pstmt.setString(52, this.referralTypeCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(53, this.cSheetNoTxt.getText());
+                                                                                                pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
+
+                                                                                                pstmt.executeUpdate();
+                                                                                                // javax.swing.JOptionPane.showMessageDialog(this, "Patient Registered Successfully for Pateint Number :["++"] and Name : ["++"]", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                                                                                                //      this.registrationStatusLbl.setText("PATIENT REGISTRATION SUCCESSFUL");
+                                                                                                //     this.registrationStatusLbl.setVisible(true);
                                                                                             }
                                                                                         }
                                                                                     }
-                                                                                }
-                                                                                //  javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
-                                                                            }
-                                                                        }
-                                                                    }
-
-                                                                    if (createNewFileRbtn.isSelected()) {
-                                                                        patientsNo = patientsNo;
-                                                                    } else {
-                                                                        if (revisitRbtn.isSelected() || createOldFileRbtn.isSelected()) {
-                                                                            patientsNo = patientNumberTxt.getText();
-                                                                        }
-                                                                    }
-
-                                                                    java.sql.PreparedStatement pstmt21a = connectDB.prepareStatement("INSERT INTO hp_patient_visit("
-                                                                            + "patient_no, name, ip_no, payment, visit_no, services, quantity,"
-                                                                            + "department, amount, test, date, result, doctor_name, user_name,"
-                                                                            + "input_date, transaction_type, nature, time, comments, parameter,"
-                                                                            + "status, age, gender, marital_status,clinic, urgency, patient_disability,"
-                                                                            + " service_start_time, samaritan_name, samaritan_tel_no, nok_name, nok_tel_no, "
-                                                                            + "referral_type, referral_county, referral_facility)"
-                                                                            + "VALUES (?, ?, ?, ?, ?, ?, ?,"
-                                                                            + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,"
-                                                                            + "?,?,?,?, ?, ?, ?, ?, ?)");
-                                                                    pstmt21a.setString(1, patientsNo);
-                                                                    pstmt21a.setString(2, firstNameTxt.getText() + " " + surNameTxt.getText());
-                                                                    pstmt21a.setString(3, "OP");
-                                                                    pstmt21a.setObject(4, paymentModeCmbx.getSelectedItem());
-                                                                    pstmt21a.setInt(5, slipNo);
-                                                                    pstmt21a.setObject(6, referralTypeCmbx.getSelectedItem());
-                                                                    pstmt21a.setDouble(7, 1);
-                                                                    pstmt21a.setObject(8, patientCategoryCmbx.getSelectedItem());
-                                                                    pstmt21a.setDouble(9, 0.00);
-                                                                    pstmt21a.setString(10, residenceTxt.getText());
-                                                                    pstmt21a.setDate(11, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
-                                                                    pstmt21a.setDouble(12, 0.00);
-                                                                    pstmt21a.setString(13, "");
-                                                                    pstmt21a.setString(14, user);
-                                                                    pstmt21a.setTimestamp(15, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));
-                                                                    pstmt21a.setString(16, "Registration");
-                                                                    pstmt21a.setString(17, "1");
-                                                                    pstmt21a.setInt(18, Integer.parseInt("0"));
-                                                                    if (createNewFileRbtn.isSelected()) {
-                                                                        pstmt21a.setString(19, "New");
-                                                                    } else {
-                                                                        pstmt21a.setString(19, "Old");
-                                                                    }
-                                                                    pstmt21a.setObject(20, servicePointCmbx.getSelectedItem());
-                                                                    pstmt21a.setBoolean(21, false);
-                                                                    pstmt21a.setDouble(22, Double.parseDouble(ageTxt.getText()));
-                                                                    pstmt21a.setString(23, selectedchkbx);
-                                                                    pstmt21a.setString(24, selectedchkbx1);
-                                                                    pstmt21a.setObject(25, specialtyClinicCmbx.getSelectedItem());
-                                                                    pstmt21a.setObject(26, urgencyCMBX.getSelectedItem());
-                                                                    pstmt21a.setObject(27, disabilityCmbx.getSelectedItem());
-                                                                    pstmt21a.setTimestamp(28, serviceStartTime);
-                                                                    if (samaritanChkbx.isSelected()) {
-                                                                        pstmt21a.setObject(29, nokNameTxt.getText());
-                                                                        pstmt21a.setObject(30, nokTelephoneTxt.getText());
-                                                                        pstmt21a.setObject(31, null);
-                                                                        pstmt21a.setObject(32, null);
-                                                                    } else {
-                                                                        pstmt21a.setObject(29, null);
-                                                                        pstmt21a.setObject(30, null);
-                                                                        pstmt21a.setObject(31, nokNameTxt.getText());
-                                                                        pstmt21a.setObject(32, nokTelephoneTxt.getText());
-                                                                    }
-                                                                    pstmt21a.setObject(33, referralTypeCmbx.getSelectedItem());
-                                                                    pstmt21a.setObject(34, referralCountyCmbx.getSelectedItem());
-                                                                    pstmt21a.setObject(35, referralFacilityNameTxt.getText());
-                                                                    pstmt21a.executeUpdate();
-
-                                                                    java.sql.Statement stm1 = connectDB.createStatement();
-                                                                    if (createNewFileRbtn.isSelected()) {
-                                                                        java.sql.Statement stmnz1 = connectDB.createStatement();
-                                                                        java.sql.ResultSet rsnz1 = stmnz1.executeQuery("select prefix_item,digit_no,yr_end,inc_year from pb_patient_names");
-                                                                        while (rsnz1.next()) {
-                                                                            preFix = rsnz1.getString(1);
-                                                                            digitNo = rsnz1.getInt(2);
-                                                                            yrEnd = rsnz1.getString(3);
-                                                                            incYr = rsnz1.getBoolean(4);
-                                                                        }
-                                                                        String patNos = null;
-
-                                                                        java.sql.Statement stmtx = connectDB.createStatement();
-
-                                                                        if (manualNo) {
-                                                                            java.sql.Statement pss1x = connectDB.createStatement();
-                                                                            java.sql.ResultSet rss1x = pss1x.executeQuery("select nextval('outpatient_no_seq')");
-                                                                            while (rss1x.next()) {
-                                                                                patNos = rss1x.getObject(1).toString();
-
-                                                                                if (incYr) {
-                                                                                    if (preFix.equalsIgnoreCase("noPrefix")) {
-                                                                                        java.sql.Statement pss1 = connectDB.createStatement();
-                                                                                        java.sql.ResultSet rss1 = pss1.executeQuery("select lpad('" + patNos + "'," + digitNo + ",'0')||'/'||'" + yrs + "'");
-                                                                                        while (rss1.next()) {
-                                                                                            patientNo2 = rss1.getObject(1).toString();
-                                                                                            patientNumberTxt.setText(rss1.getObject(1).toString());
-                                                                                        }
-                                                                                    } else {
-                                                                                        java.sql.Statement pss1 = connectDB.createStatement();
-                                                                                        java.sql.ResultSet rss1 = pss1.executeQuery("select '" + preFix + "'||lpad('" + patNos + "'," + digitNo + ",'0')||'/'||'" + yrs + "'");
-                                                                                        while (rss1.next()) {
-                                                                                            patientNo2 = rss1.getObject(1).toString();
-                                                                                            patientNumberTxt.setText(rss1.getObject(1).toString());
-                                                                                        }
-                                                                                    }
                                                                                 } else {
-                                                                                    if (preFix.equalsIgnoreCase("noPrefix")) {
-                                                                                        java.sql.Statement pss1 = connectDB.createStatement();
-                                                                                        java.sql.ResultSet rss1 = pss1.executeQuery("select lpad('" + patNos + "'," + digitNo + ",'0')");
-                                                                                        while (rss1.next()) {
-                                                                                            patientNo2 = rss1.getObject(1).toString();
-                                                                                            patientNumberTxt.setText(rss1.getObject(1).toString());
+                                                                                    if (this.paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Credit Card")) {
+                                                                                        if (revisitRbtn.isSelected()) {
+                                                                                            if (!inpatientActivation) {
+                                                                                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("UPDATE hp_patient_register set description = '" + jComboBox3.getSelectedItem() + "',residence_county='" + countyofResidenceCmbx.getSelectedItem().toString() + "',locations='" + locationTxt.getSelectedItem().toString() + "', member_name = '',payer = '" + jTextField7.getText() + "',account_no ='" + jTextField8.getText() + "',expiry_date = '" + java.sql.Date.valueOf(jTextField18.getText().toString()) + "',last_visit = '" + datePicker4.getDate() + "',pay_mode = '" + paymentModeCmbx.getSelectedItem().toString() + "', category =  '" + patientCategoryCmbx.getSelectedItem().toString() + "' WHERE patient_no ilike '" + patientNumberTxt.getText() + "%'");
+                                                                                                pstmt.executeUpdate();
+                                                                                                // this.registrationStatusLbl.setText("PATIENT ACTIVATED SUCCESSFULLY");
+                                                                                                // this.registrationStatusLbl.setVisible(true);
+                                                                                                javax.swing.JOptionPane.showMessageDialog(this, "Patient Activated Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                                                                            } else {
+                                                                                                java.sql.Statement stm = connectDB.createStatement();
+
+                                                                                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+                                                                                                pstmt.setString(1, patientNumberTxt.getText());
+
+                                                                                                if (surNameTxt.getText().equals("")) {
+                                                                                                    javax.swing.JOptionPane.showMessageDialog(this, "You must enter names", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                                                                } else {
+                                                                                                    pstmt.setString(2, surNameTxt.getText());
+                                                                                                }
+                                                                                                pstmt.setString(3, firstNameTxt.getText());
+                                                                                                pstmt.setString(4, "");
+                                                                                                pstmt.setString(5, nokNameTxt.getText());
+                                                                                                pstmt.setString(6, residenceTxt.getText());
+                                                                                                pstmt.setString(7, jTextField5.getText());
+                                                                                                pstmt.setDate(8, dateOfBirth);
+                                                                                                pstmt.setString(9, jTextField5821.getText());
+                                                                                                if (selectedchkbx == null) {
+                                                                                                    javax.swing.JOptionPane.showMessageDialog(this, "You must tick patient Gender", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                                                                } else {
+                                                                                                    pstmt.setObject(10, selectedchkbx);
+                                                                                                }
+
+                                                                                                pstmt.setDate(11, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
+                                                                                                pstmt.setObject(12, paymentModeCmbx.getSelectedItem());
+                                                                                                pstmt.setString(13, jTextField7.getText());
+                                                                                                pstmt.setString(14, jTextField8.getText());
+                                                                                                pstmt.setString(15, jComboBox3.getSelectedItem().toString());
+                                                                                                pstmt.setObject(16, patientCategoryCmbx.getSelectedItem());
+                                                                                                pstmt.setDate(17, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                                                                                pstmt.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
+                                                                                                pstmt.setObject(19, branchTxt.getText());
+                                                                                                pstmt.setString(20, "");
+                                                                                                pstmt.setString(21, jTextField8.getText());
+                                                                                                pstmt.setString(22, emailAddTxt.getText());
+                                                                                                pstmt.setString(23, idPassportTxt.getText());
+                                                                                                pstmt.setString(24, jTextField20.getText());
+                                                                                                pstmt.setObject(25, patientsNo);
+                                                                                                pstmt.setString(26, nationalityCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(27, nokTelephoneTxt.getText());
+                                                                                                pstmt.setString(28, nokRelationShipCmbx.getSelectedItem().toString().toUpperCase());
+                                                                                                pstmt.setString(29, nokResidenceTxt.getText());
+                                                                                                pstmt.setString(30, emailAddTxt1.getText());
+                                                                                                pstmt.setObject(31, selectedchkbx1);
+                                                                                                pstmt.setString(32, clinicNumberTxt.getText());
+                                                                                                pstmt.setString(33, ageTxt.getText());
+                                                                                                pstmt.setString(34, locationTxt.getSelectedItem().toString());
+                                                                                                pstmt.setString(35, currentResidenceTxt.getText());
+                                                                                                pstmt.setString(36, jTextField25.getText());
+                                                                                                pstmt.setString(37, jTextField26.getText());
+                                                                                                pstmt.setString(38, informationSourceCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(39, educationLevelCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(40, occupationCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(41, religionCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(42, oldFileNumberTxt.getText());
+                                                                                                pstmt.setString(43, placeOfBirthTxt.getText());
+                                                                                                pstmt.setBoolean(44, true);
+                                                                                                pstmt.setString(45, this.emailAddTxt.getText());
+                                                                                                pstmt.setString(46, this.countyofBirthCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(47, this.countyofResidenceCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setBoolean(48, this.nhifChbx.isSelected());
+                                                                                                pstmt.setString(49, this.nhifNumberTxt.getText());
+                                                                                                pstmt.setString(50, this.employerTxt.getText());
+                                                                                                pstmt.setString(51, this.employerTelTxt.getText());
+                                                                                                pstmt.setString(52, this.referralTypeCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(53, this.cSheetNoTxt.getText());
+                                                                                                pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
+                                                                                                pstmt.executeUpdate();
+
+                                                                                                //  this.registrationStatusLbl.setText("PATIENT REGISTRATION SUCCESSFUL");
+                                                                                                //  this.registrationStatusLbl.setVisible(true);
+                                                                                                javax.swing.JOptionPane.showMessageDialog(this, "Patient Activated Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                                                                                inpatientActivation = false;
+                                                                                            }
+                                                                                        } else {
+                                                                                            if (createNewFileRbtn.isSelected() || createOldFileRbtn.isSelected()) {
+
+                                                                                                java.sql.Statement stmtp = connectDB.createStatement();
+                                                                                                java.sql.ResultSet rsetp = stmtp.executeQuery("select patient_no from hp_patient_register where patient_no ='" + this.patientNumberTxt.getText() + "' AND patient_no != ''");
+                                                                                                while (rsetp.next()) {
+                                                                                                    patientNo = rsetp.getObject(1).toString();
+                                                                                                }
+
+                                                                                                if (this.patientNumberTxt.getText().equalsIgnoreCase(patientNo)) {
+                                                                                                    this.registrationStatusLbl.setForeground(java.awt.Color.red);
+                                                                                                    this.registrationStatusLbl.setText("Patient No. Already On File");
+                                                                                                    this.registrationStatusLbl.setVisible(true);
+                                                                                                } else {
+                                                                                                    // Check if the file being created is a new on or its an old file which has not been created
+                                                                                                    if (createNewFileRbtn.isSelected()) {
+                                                                                                        // File to be automatically numbered if new.
+                                                                                                        manualNo = true;
+                                                                                                    } else {
+                                                                                                        if (revisitRbtn.isSelected() || createOldFileRbtn.isSelected()) {
+                                                                                                            // File to be assigned number appearing on the file.
+                                                                                                            manualNo = false;
+                                                                                                        }
+                                                                                                    }
+                                                                                                    java.sql.Statement stm1 = connectDB.createStatement();
+                                                                                                    if (manualNo) {
+                                                                                                        patientsNo = patientsNo;
+                                                                                                    } else {
+                                                                                                        if (patientNumberTxt.getText().toString().equalsIgnoreCase("") | patientNumberTxt.getText().toString().equalsIgnoreCase(" ") | patientNumberTxt.getText().toString().equalsIgnoreCase("  ") | patientNumberTxt.getText().toString().equalsIgnoreCase("   ") | patientNumberTxt.getText().toString().equalsIgnoreCase("    ")) {
+                                                                                                            // if(jTextField3.getText().toString().equalsIgnoreCase("") | jTextField3.getText().toString().equalsIgnoreCase(" ").concat("")){
+                                                                                                            javax.swing.JOptionPane.showMessageDialog(this, "You cannot save without the patient no", "CAUTION MESSAGE", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                                                                                        } else {
+                                                                                                            if (revisitRbtn.isSelected() || createOldFileRbtn.isSelected()) {
+                                                                                                                patientsNo = patientNumberTxt.getText();
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+
+                                                                                                    java.sql.Statement stm = connectDB.createStatement();
+
+                                                                                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+                                                                                                    pstmt.setString(1, patientsNo);
+
+                                                                                                    if (surNameTxt.getText().equals("")) {
+                                                                                                        javax.swing.JOptionPane.showMessageDialog(this, "You must enter names", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                                                                    } else {
+                                                                                                        pstmt.setString(2, surNameTxt.getText());
+                                                                                                    }
+                                                                                                    pstmt.setString(3, firstNameTxt.getText());
+                                                                                                    pstmt.setString(4, "");
+                                                                                                    pstmt.setString(5, nokNameTxt.getText());
+                                                                                                    pstmt.setString(6, residenceTxt.getText());
+                                                                                                    pstmt.setString(7, jTextField5.getText());
+                                                                                                    pstmt.setDate(8, dateOfBirth);
+                                                                                                    pstmt.setString(9, jTextField5821.getText());
+                                                                                                    if (selectedchkbx == null) {
+                                                                                                        javax.swing.JOptionPane.showMessageDialog(this, "You must tick patient Gender", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                                                                    } else {
+                                                                                                        pstmt.setObject(10, selectedchkbx);
+                                                                                                    }
+
+                                                                                                    pstmt.setDate(11, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
+                                                                                                    pstmt.setObject(12, paymentModeCmbx.getSelectedItem());
+                                                                                                    pstmt.setString(13, jTextField7.getText());
+                                                                                                    pstmt.setString(14, jTextField8.getText());
+                                                                                                    pstmt.setString(15, jComboBox3.getSelectedItem().toString());
+                                                                                                    pstmt.setObject(16, patientCategoryCmbx.getSelectedItem());
+                                                                                                    pstmt.setDate(17, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                                                                                    pstmt.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
+                                                                                                    pstmt.setObject(19, branchTxt.getText());
+                                                                                                    pstmt.setString(20, "");
+                                                                                                    pstmt.setString(21, jTextField8.getText());
+                                                                                                    pstmt.setString(22, emailAddTxt.getText());
+                                                                                                    pstmt.setString(23, idPassportTxt.getText());
+                                                                                                    pstmt.setString(24, jTextField20.getText());
+                                                                                                    pstmt.setObject(25, patientsNo);
+                                                                                                    pstmt.setString(26, nationalityCmbx.getSelectedItem().toString());
+                                                                                                    pstmt.setString(27, nokTelephoneTxt.getText());
+                                                                                                    pstmt.setString(28, nokRelationShipCmbx.getSelectedItem().toString().toUpperCase());
+                                                                                                    pstmt.setString(29, nokResidenceTxt.getText());
+                                                                                                    pstmt.setString(30, emailAddTxt1.getText());
+                                                                                                    pstmt.setObject(31, selectedchkbx1);
+                                                                                                    pstmt.setString(32, clinicNumberTxt.getText());
+                                                                                                    pstmt.setString(33, ageTxt.getText());
+                                                                                                    pstmt.setString(34, locationTxt.getSelectedItem().toString());
+                                                                                                    pstmt.setString(35, currentResidenceTxt.getText());
+                                                                                                    pstmt.setString(36, jTextField25.getText());
+                                                                                                    pstmt.setString(37, jTextField26.getText());
+                                                                                                    pstmt.setString(38, informationSourceCmbx.getSelectedItem().toString());
+                                                                                                    pstmt.setString(39, educationLevelCmbx.getSelectedItem().toString());
+                                                                                                    pstmt.setString(40, occupationCmbx.getSelectedItem().toString());
+                                                                                                    pstmt.setString(41, religionCmbx.getSelectedItem().toString());
+                                                                                                    pstmt.setString(42, oldFileNumberTxt.getText());
+                                                                                                    pstmt.setString(43, placeOfBirthTxt.getText());
+                                                                                                    pstmt.setBoolean(44, true);
+                                                                                                    pstmt.setString(45, this.emailAddTxt.getText());
+                                                                                                    pstmt.setString(46, this.countyofBirthCmbx.getSelectedItem().toString());
+                                                                                                    pstmt.setString(47, this.countyofResidenceCmbx.getSelectedItem().toString());
+                                                                                                    pstmt.setBoolean(48, this.nhifChbx.isSelected());
+                                                                                                    pstmt.setString(49, this.nhifNumberTxt.getText());
+                                                                                                    pstmt.setString(50, this.employerTxt.getText());
+                                                                                                    pstmt.setString(51, this.employerTelTxt.getText());
+                                                                                                    pstmt.setString(52, this.referralTypeCmbx.getSelectedItem().toString());
+                                                                                                    pstmt.setString(53, this.cSheetNoTxt.getText());
+                                                                                                    pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
+                                                                                                    pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
+                                                                                                    pstmt.executeUpdate();
+
+                                                                                                    //  this.registrationStatusLbl.setText("PATIENT REGISTRATION SUCCESSFUL");
+                                                                                                    //  this.registrationStatusLbl.setVisible(true);
+                                                                                                    ////             javax.swing.JOptionPane.showMessageDialog(this, "Patient Registered Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                                                                                }
+                                                                                            }
                                                                                         }
+
                                                                                     } else {
-                                                                                        java.sql.Statement pss1 = connectDB.createStatement();
-                                                                                        java.sql.ResultSet rss1 = pss1.executeQuery("select '" + preFix + "'||lpad('" + patNos + "'," + digitNo + ",'0')");
-                                                                                        while (rss1.next()) {
-                                                                                            patientNo2 = rss1.getObject(1).toString();
-                                                                                            patientNumberTxt.setText(rss1.getObject(1).toString());
+                                                                                        if (this.paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
+                                                                                            java.util.Date time = null;
+                                                                                            java.util.Date term = null;
+                                                                                            java.util.Date exp = null;
+                                                                                            java.util.Date date = null;
+                                                                                            double limit = 0.00;
+                                                                                            double balance = 0.00;
+                                                                                            String Suspended = null;
+                                                                                            String Closed = null;
+                                                                                            jSearchDialog11.dispose();
+                                                                                            java.sql.Statement stmt1h = connectDB.createStatement();
+                                                                                            java.sql.ResultSet rset1h = stmt1h.executeQuery("select count(payee) from ac_debtors where payee = '" + jTextField361.getText() + "' and dealer = '" + jTextField2.getText() + "'");
+                                                                                            while (rset1h.next()) {
+                                                                                                occurence = rset1h.getInt(1);
+                                                                                            }
+                                                                                            if (occurence > 1) {
+                                                                                                java.sql.Statement stmt1 = connectDB.createStatement();
+                                                                                                java.sql.ResultSet rset1 = stmt1.executeQuery("select sum(balance-credit_bal) from ac_debtors where payee = '" + jTextField361.getText() + "' and dealer = '" + jTextField2.getText() + "'");
+                                                                                                while (rset1.next()) {
+                                                                                                    balance = rset1.getDouble(1);
+                                                                                                }
+                                                                                            } else {
+                                                                                                balance = 0.00;
+                                                                                            }
+                                                                                            java.sql.PreparedStatement stmtq = connectDB.prepareStatement("select suspended, closed,expiry_date,current_date,scheme_limit,term_date,current_timestamp from ac_schemes where account_no = ?");//createStatement();
+                                                                                            stmtq.setString(1, jTextField15.getText());
+                                                                                            java.sql.ResultSet rsetq = stmtq.executeQuery();// scheme_name = '"+jTextField361.getText()+"' and payer_name = '"+jTextField2.getText()+"'");
+                                                                                            while (rsetq.next()) {
+                                                                                                Suspended = rsetq.getObject(1).toString();
+                                                                                                Closed = rsetq.getObject(2).toString();
+                                                                                                exp = rsetq.getDate(3);
+                                                                                                date = rsetq.getDate(4);
+                                                                                                limit = rsetq.getDouble(5);
+                                                                                                term = rsetq.getTimestamp(6);
+                                                                                                time = rsetq.getTimestamp(7);
+                                                                                            }
+                                                                                            if (Suspended.equals("true")) {
+
+                                                                                                javax.swing.JOptionPane.showMessageDialog(this, "SCHEME SUSPENDED !!", "Suspension MESSAGE", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                                                                                jTextField361.setText("");
+                                                                                                jTextField2.setText("");
+                                                                                            } else {
+                                                                                                if (Closed.equals("true")) {
+
+                                                                                                    javax.swing.JOptionPane.showMessageDialog(this, "SCHEME CLOSED !!", "Viability MESSAGE", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                                                                                    jTextField361.setText("");
+                                                                                                    jTextField2.setText("");
+                                                                                                } else {
+                                                                                                    if (exp.before(date)) {
+
+                                                                                                        javax.swing.JOptionPane.showMessageDialog(this, "SCHEME EXPIRED !! ON " + exp, "Expiry MESSAGE", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                                                                                        jTextField361.setText("");
+                                                                                                        jTextField2.setText("");
+                                                                                                    } else {
+                                                                                                        if (term.before(time)) {
+
+                                                                                                            javax.swing.JOptionPane.showMessageDialog(this, "SCHEME TERMINATED !! ON " + term, "Expiry MESSAGE", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                                                                                            jTextField361.setText("");
+                                                                                                            jTextField2.setText("");
+                                                                                                        } else {
+
+                                                                                                            if (balance > limit) {
+
+                                                                                                                javax.swing.JOptionPane.showMessageDialog(this, "SCHEME LIMIT IS " + limit + " AND DEBT IS " + balance + "\n Hence Limit exceeded by " + (balance - limit), "Debt Status MESSAGE", javax.swing.JOptionPane.PLAIN_MESSAGE);
+                                                                                                                jTextField361.setText("");
+                                                                                                                jTextField2.setText("");
+                                                                                                            } else {
+
+                                                                                                                java.sql.Statement stm = connectDB.createStatement();
+                                                                                                                java.sql.ResultSet rs = stm.executeQuery("select nextval('creditslip_no_seq'),current_user");
+                                                                                                                while (rs.next()) {
+                                                                                                                    slipNo = rs.getInt(1);
+                                                                                                                    //  user = rs.getObject(2).toString();
+                                                                                                                }
+
+                                                                                                                if (revisitRbtn.isSelected()) {
+                                                                                                                    if (!inpatientActivation) {
+                                                                                                                        java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("UPDATE hp_patient_register set description = '" + jTextField361.getText() + "',payer = '" + jTextField2.getText() + "',residence_county='" + countyofResidenceCmbx.getSelectedItem().toString() + "',locations='" + locationTxt.getSelectedItem().toString() + "',account_no ='" + jTextField15.getText() + "',expiry_date = '" + datePicker1.getDate() + "',member_name ='" + jTextField36.getText() + "',last_visit = '" + datePicker4.getDate().toString() + "',pay_mode = '" + paymentModeCmbx.getSelectedItem().toString() + "',category = '" + patientCategoryCmbx.getSelectedItem() + "',card_no = '" + jTextField13.getText() + "' WHERE patient_no ilike '" + patientNumberTxt.getText() + "'");
+                                                                                                                        pstmt11.executeUpdate();
+                                                                                                                        javax.swing.JOptionPane.showMessageDialog(this, "Patient Activated Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                                                                                                    } else {
+                                                                                                                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+                                                                                                                        pstmt.setString(1, patientNumberTxt.getText());
+
+                                                                                                                        if (surNameTxt.getText().equals("")) {
+                                                                                                                            javax.swing.JOptionPane.showMessageDialog(this, "You must enter names", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                                                                                        } else {
+                                                                                                                            pstmt.setString(2, surNameTxt.getText());
+                                                                                                                        }
+                                                                                                                        pstmt.setString(3, firstNameTxt.getText());
+                                                                                                                        pstmt.setString(4, "");
+                                                                                                                        pstmt.setString(5, nokNameTxt.getText());
+                                                                                                                        pstmt.setString(6, residenceTxt.getText());
+                                                                                                                        pstmt.setString(7, jTextField5.getText());
+                                                                                                                        pstmt.setDate(8, dateOfBirth);
+                                                                                                                        pstmt.setString(9, jTextField5821.getText());
+                                                                                                                        if (selectedchkbx == null) {
+                                                                                                                            javax.swing.JOptionPane.showMessageDialog(this, "You must tick patient Gender", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                                                                                        } else {
+                                                                                                                            pstmt.setObject(10, selectedchkbx);
+                                                                                                                        }
+
+                                                                                                                        pstmt.setDate(11, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
+                                                                                                                        pstmt.setObject(12, paymentModeCmbx.getSelectedItem());
+                                                                                                                        pstmt.setString(13, jTextField2.getText());
+                                                                                                                        pstmt.setString(14, jTextField15.getText());
+                                                                                                                        pstmt.setString(15, jTextField361.getText());
+                                                                                                                        pstmt.setObject(16, patientCategoryCmbx.getSelectedItem());
+                                                                                                                        pstmt.setObject(17, java.sql.Date.valueOf(jTextField18.getText()));
+                                                                                                                        pstmt.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
+                                                                                                                        pstmt.setObject(19, branchTxt.getText());
+                                                                                                                        pstmt.setString(20, jTextField36.getText());
+                                                                                                                        pstmt.setString(21, jTextField13.getText());
+                                                                                                                        pstmt.setString(22, emailAddTxt.getText());
+                                                                                                                        pstmt.setString(23, idPassportTxt.getText());
+                                                                                                                        pstmt.setString(24, jTextField20.getText());
+                                                                                                                        pstmt.setObject(25, patientsNo);
+                                                                                                                        pstmt.setString(26, nationalityCmbx.getSelectedItem().toString());
+                                                                                                                        pstmt.setString(27, nokTelephoneTxt.getText());
+                                                                                                                        pstmt.setString(28, nokRelationShipCmbx.getSelectedItem().toString().toUpperCase());
+                                                                                                                        pstmt.setString(29, nokResidenceTxt.getText());
+                                                                                                                        pstmt.setString(30, emailAddTxt1.getText());
+                                                                                                                        pstmt.setObject(31, selectedchkbx1);
+                                                                                                                        pstmt.setString(32, clinicNumberTxt.getText());
+                                                                                                                        pstmt.setString(33, ageTxt.getText());
+                                                                                                                        pstmt.setString(34, locationTxt.getSelectedItem().toString());
+                                                                                                                        pstmt.setString(35, currentResidenceTxt.getText());
+                                                                                                                        pstmt.setString(36, jTextField25.getText());
+                                                                                                                        pstmt.setString(37, jTextField26.getText());
+                                                                                                                        pstmt.setString(38, informationSourceCmbx.getSelectedItem().toString());
+                                                                                                                        pstmt.setString(39, educationLevelCmbx.getSelectedItem().toString());
+                                                                                                                        pstmt.setString(40, occupationCmbx.getSelectedItem().toString());
+                                                                                                                        pstmt.setString(41, religionCmbx.getSelectedItem().toString());
+                                                                                                                        pstmt.setString(42, oldFileNumberTxt.getText());
+                                                                                                                        pstmt.setString(43, placeOfBirthTxt.getText());
+                                                                                                                        pstmt.setBoolean(44, true);
+                                                                                                                        pstmt.setString(45, this.emailAddTxt.getText());
+                                                                                                                        pstmt.setString(46, this.countyofBirthCmbx.getSelectedItem().toString());
+                                                                                                                        pstmt.setString(47, this.countyofResidenceCmbx.getSelectedItem().toString());
+                                                                                                                        pstmt.setBoolean(48, this.nhifChbx.isSelected());
+                                                                                                                        pstmt.setString(49, this.nhifNumberTxt.getText());
+                                                                                                                        pstmt.setString(50, this.employerTxt.getText());
+                                                                                                                        pstmt.setString(51, this.employerTelTxt.getText());
+                                                                                                                        pstmt.setString(52, this.referralTypeCmbx.getSelectedItem().toString());
+                                                                                                                        pstmt.setString(53, this.cSheetNoTxt.getText());
+                                                                                                                        pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
+                                                                                                                        pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
+                                                                                                                        pstmt.executeUpdate();
+
+                                                                                                                        // this.registrationStatusLbl.setText("PATIENT REGISTRATION SUCCESSFUL");
+                                                                                                                        javax.swing.JOptionPane.showMessageDialog(this, "Patient File Activated Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                                                                                                                        inpatientActivation = false;
+                                                                                                                    }
+
+                                                                                                                } else {
+                                                                                                                    if (createNewFileRbtn.isSelected() || createOldFileRbtn.isSelected()) {
+
+                                                                                                                        java.sql.Statement stmtp = connectDB.createStatement();
+                                                                                                                        java.sql.ResultSet rsetp = stmtp.executeQuery("select patient_no from hp_patient_register where patient_no ='" + this.patientNumberTxt.getText() + "'  AND patient_no != ''");
+                                                                                                                        while (rsetp.next()) {
+                                                                                                                            patientNo = rsetp.getObject(1).toString();
+                                                                                                                        }
+
+                                                                                                                        if (this.patientNumberTxt.getText().equalsIgnoreCase(patientNo)) {
+                                                                                                                            this.registrationStatusLbl.setForeground(java.awt.Color.red);
+                                                                                                                            this.registrationStatusLbl.setText("Patient No. Already On File");
+
+                                                                                                                        } else {
+// Check if the file being created is a new or its an old file which has not been created
+                                                                                                                            if (createNewFileRbtn.isSelected()) {
+                                                                                                                                // File to be automatically numbered if new.
+                                                                                                                                manualNo = true;
+                                                                                                                            } else {
+                                                                                                                                if (revisitRbtn.isSelected() || createOldFileRbtn.isSelected()) {
+                                                                                                                                    // File to be assigned number appearing on the file.
+                                                                                                                                    manualNo = false;
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                            java.sql.Statement stm1 = connectDB.createStatement();
+                                                                                                                            if (manualNo) {
+
+                                                                                                                                patientsNo = patientsNo;
+                                                                                                                            } else {
+                                                                                                                                if (patientNumberTxt.getText().toString().equalsIgnoreCase("") | patientNumberTxt.getText().toString().equalsIgnoreCase(" ") | patientNumberTxt.getText().toString().equalsIgnoreCase("  ") | patientNumberTxt.getText().toString().equalsIgnoreCase("   ") | patientNumberTxt.getText().toString().equalsIgnoreCase("    ")) {
+                                                                                                                                    // if(jTextField3.getText().toString().equalsIgnoreCase("") | jTextField3.getText().toString().equalsIgnoreCase(" ").concat("")){
+                                                                                                                                    javax.swing.JOptionPane.showMessageDialog(this, "You cannot save without the patient no", "CAUTION MESSAGE", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                                                                                                                } else {
+                                                                                                                                    if (revisitRbtn.isSelected() || createOldFileRbtn.isSelected()) {
+                                                                                                                                        patientsNo = patientNumberTxt.getText();
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+
+                                                                                                                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+                                                                                                                            pstmt.setString(1, patientsNo);
+
+                                                                                                                            if (surNameTxt.getText().equals("")) {
+                                                                                                                                javax.swing.JOptionPane.showMessageDialog(this, "You must enter names", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                                                                                            } else {
+                                                                                                                                pstmt.setString(2, surNameTxt.getText());
+                                                                                                                            }
+                                                                                                                            pstmt.setString(3, firstNameTxt.getText());
+                                                                                                                            pstmt.setString(4, "");
+                                                                                                                            pstmt.setString(5, nokNameTxt.getText());
+                                                                                                                            pstmt.setString(6, residenceTxt.getText());
+                                                                                                                            pstmt.setString(7, jTextField5.getText());
+                                                                                                                            pstmt.setDate(8, dateOfBirth);
+                                                                                                                            pstmt.setString(9, jTextField5821.getText());
+                                                                                                                            if (selectedchkbx == null) {
+                                                                                                                                javax.swing.JOptionPane.showMessageDialog(this, "You must tick patient Gender", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                                                                                            } else {
+                                                                                                                                pstmt.setObject(10, selectedchkbx);
+                                                                                                                            }
+
+                                                                                                                            pstmt.setDate(11, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
+                                                                                                                            pstmt.setObject(12, paymentModeCmbx.getSelectedItem());
+                                                                                                                            pstmt.setString(13, jTextField2.getText());
+                                                                                                                            pstmt.setString(14, jTextField15.getText());
+                                                                                                                            pstmt.setString(15, jTextField361.getText());
+                                                                                                                            pstmt.setObject(16, patientCategoryCmbx.getSelectedItem());
+                                                                                                                            pstmt.setObject(17, java.sql.Date.valueOf(jTextField18.getText()));
+                                                                                                                            pstmt.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
+                                                                                                                            pstmt.setObject(19, branchTxt.getText());
+                                                                                                                            pstmt.setString(20, jTextField36.getText());
+                                                                                                                            pstmt.setString(21, jTextField13.getText());
+                                                                                                                            pstmt.setString(22, emailAddTxt.getText());
+                                                                                                                            pstmt.setString(23, idPassportTxt.getText());
+                                                                                                                            pstmt.setString(24, jTextField20.getText());
+                                                                                                                            pstmt.setObject(25, patientsNo);
+                                                                                                                            pstmt.setString(26, nationalityCmbx.getSelectedItem().toString());
+                                                                                                                            pstmt.setString(27, nokTelephoneTxt.getText());
+                                                                                                                            pstmt.setString(28, nokRelationShipCmbx.getSelectedItem().toString().toUpperCase());
+                                                                                                                            pstmt.setString(29, nokResidenceTxt.getText());
+                                                                                                                            pstmt.setString(30, emailAddTxt1.getText());
+                                                                                                                            pstmt.setObject(31, selectedchkbx1);
+                                                                                                                            pstmt.setString(32, clinicNumberTxt.getText());
+                                                                                                                            pstmt.setString(33, ageTxt.getText());
+                                                                                                                            pstmt.setString(34, locationTxt.getSelectedItem().toString());
+                                                                                                                            pstmt.setString(35, currentResidenceTxt.getText());
+                                                                                                                            pstmt.setString(36, jTextField25.getText());
+                                                                                                                            pstmt.setString(37, jTextField26.getText());
+                                                                                                                            pstmt.setString(38, informationSourceCmbx.getSelectedItem().toString());
+                                                                                                                            pstmt.setString(39, educationLevelCmbx.getSelectedItem().toString());
+                                                                                                                            pstmt.setString(40, occupationCmbx.getSelectedItem().toString());
+                                                                                                                            pstmt.setString(41, religionCmbx.getSelectedItem().toString());
+                                                                                                                            pstmt.setString(42, oldFileNumberTxt.getText());
+                                                                                                                            pstmt.setString(43, placeOfBirthTxt.getText());
+                                                                                                                            pstmt.setBoolean(44, true);
+                                                                                                                            pstmt.setString(45, this.emailAddTxt.getText());
+                                                                                                                            pstmt.setString(46, this.countyofBirthCmbx.getSelectedItem().toString());
+                                                                                                                            pstmt.setString(47, this.countyofResidenceCmbx.getSelectedItem().toString());
+                                                                                                                            pstmt.setBoolean(48, this.nhifChbx.isSelected());
+                                                                                                                            pstmt.setString(49, this.nhifNumberTxt.getText());
+                                                                                                                            pstmt.setString(50, this.employerTxt.getText());
+                                                                                                                            pstmt.setString(51, this.employerTelTxt.getText());
+                                                                                                                            pstmt.setString(52, this.referralTypeCmbx.getSelectedItem().toString());
+                                                                                                                            pstmt.setString(53, this.cSheetNoTxt.getText());
+                                                                                                                            pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
+                                                                                                                            pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
+
+                                                                                                                            pstmt.executeUpdate();
+
+                                                                                                                            // this.registrationStatusLbl.setText("PATIENT REGISTRATION SUCCESSFUL");
+                                                                                                                            ////                   javax.swing.JOptionPane.showMessageDialog(this, "Patient Registered Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+
+                                                                                                                if (createNewFileRbtn.isSelected()) {
+                                                                                                                    patientsNo = patientsNo;
+                                                                                                                } else {
+                                                                                                                    if (revisitRbtn.isSelected() || createOldFileRbtn.isSelected()) {
+                                                                                                                        patientsNo = patientNumberTxt.getText();
+                                                                                                                    }
+                                                                                                                }
+                                                                                                                java.sql.PreparedStatement pstmt2a = connectDB.prepareStatement("INSERT INTO credit_acc_slip VALUES(?,?,?,?,?,?, ?, ?,?,?,?,?,?)");
+
+                                                                                                                pstmt2a.setString(1, patientsNo);
+                                                                                                                pstmt2a.setString(2, firstNameTxt.getText() + " " + surNameTxt.getText());
+                                                                                                                pstmt2a.setString(3, jTextField361.getText());
+                                                                                                                pstmt2a.setString(4, jTextField2.getText());
+                                                                                                                pstmt2a.setDouble(5, 0.00);
+                                                                                                                pstmt2a.setInt(6, slipNo);
+                                                                                                                pstmt2a.setDate(8, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
+                                                                                                                pstmt2a.setString(7, user);
+                                                                                                                pstmt2a.setString(9, jTextField15.getText());
+                                                                                                                pstmt2a.setString(10, jTextField13.getText());
+                                                                                                                pstmt2a.setString(11, jTextField36.getText());
+                                                                                                                pstmt2a.setString(12, cardSerialNoTxt.getText());
+                                                                                                                System.out.println("Text Field 12 : [" + jTextField12.getText().toCharArray().length + "]");
+                                                                                                                if (jTextField12.getText().trim().toCharArray().length > 0) {
+                                                                                                                    pstmt2a.setDouble(13, java.lang.Double.parseDouble(jTextField12.getText()));// == "" ? 0.00 : java.lang.Double.parseDouble(jTextField12.getText()));
+                                                                                                                } else {
+                                                                                                                    pstmt2a.setDouble(13, 0.00);
+                                                                                                                }
+                                                                                                                //                                     pstmt2a.setObject(13,jTextField12.getText());
+                                                                                                                pstmt2a.executeUpdate();
+
+                                                                                                                if (jTextField17.getText().equalsIgnoreCase("")) {
+                                                                                                                } else {
+                                                                                                                    java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("UPDATE ac_schemes SET usesmartcard = true,sch_abbrev = '" + jTextField17.getText() + "' WHERE account_no = '" + jTextField15.getText() + "'");
+                                                                                                                    pstmt11.executeUpdate();
+                                                                                                                }
+
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                            //  javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
                                                                                         }
                                                                                     }
                                                                                 }
-                                                                            }
-                                                                            java.sql.PreparedStatement pstm = connectDB.prepareStatement("UPDATE hp_patient_register SET patient_no = '" + patientNumberTxt.getText() + "' WHERE patient_no = '" + patientsNo + "'");
-                                                                            pstm.executeUpdate();
 
-                                                                            java.sql.PreparedStatement pstmt112 = connectDB.prepareStatement("UPDATE hp_patient_billing SET patient_no = '" + patientNumberTxt.getText() + "' WHERE patient_no = '" + patientsNo + "'");
-                                                                            pstmt112.executeUpdate();
+                                                                                if (createNewFileRbtn.isSelected()) {
+                                                                                    patientsNo = patientsNo;
+                                                                                } else {
+                                                                                    if (revisitRbtn.isSelected() || createOldFileRbtn.isSelected()) {
+                                                                                        patientsNo = patientNumberTxt.getText();
+                                                                                    }
+                                                                                }
+                                                                                System.err.println("Patient No : <><><>"+patientsNo);
 
-                                                                            java.sql.PreparedStatement pstmt112x = connectDB.prepareStatement("UPDATE ac_ledger SET patient_no = '" + patientNumberTxt.getText() + "' WHERE patient_no = '" + patientsNo + "'");
-                                                                            pstmt112x.executeUpdate();
+                                                                                java.sql.PreparedStatement pstmt21a = connectDB.prepareStatement("INSERT INTO hp_patient_visit("
+                                                                                        + "patient_no, name, ip_no, payment, visit_no, services, quantity,"
+                                                                                        + "department, amount, test, date, result, doctor_name, user_name,"
+                                                                                        + "input_date, transaction_type, nature, time, comments, parameter,"
+                                                                                        + "status, age, gender, marital_status,clinic, urgency, patient_disability,"
+                                                                                        + " service_start_time, samaritan_name, samaritan_tel_no, nok_name, nok_tel_no, "
+                                                                                        + "referral_type, referral_county, referral_facility)"
+                                                                                        + "VALUES (?, ?, ?, ?, ?, ?, ?,"
+                                                                                        + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,"
+                                                                                        + "?,?,?,?, ?, ?, ?, ?, ?)");
+                                                                                pstmt21a.setString(1, patientsNo);
+                                                                                pstmt21a.setString(2, firstNameTxt.getText() + " " + surNameTxt.getText());
+                                                                                pstmt21a.setString(3, "OP");
+                                                                                pstmt21a.setObject(4, paymentModeCmbx.getSelectedItem());
+                                                                                pstmt21a.setInt(5, slipNo);
+                                                                                pstmt21a.setObject(6, referralTypeCmbx.getSelectedItem());
+                                                                                pstmt21a.setDouble(7, 1);
+                                                                                pstmt21a.setObject(8, patientCategoryCmbx.getSelectedItem());
+                                                                                pstmt21a.setDouble(9, 0.00);
+                                                                                pstmt21a.setString(10, residenceTxt.getText());
+                                                                                pstmt21a.setDate(11, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
+                                                                                pstmt21a.setDouble(12, 0.00);
+                                                                                pstmt21a.setString(13, "");
+                                                                                pstmt21a.setString(14, user);
+                                                                                pstmt21a.setTimestamp(15, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));
+                                                                                pstmt21a.setString(16, "Registration");
+                                                                                pstmt21a.setString(17, "1");
+                                                                                pstmt21a.setInt(18, Integer.parseInt("0"));
+                                                                                if (createNewFileRbtn.isSelected()) {
+                                                                                    pstmt21a.setString(19, "New");
+                                                                                } else {
+                                                                                    pstmt21a.setString(19, "Old");
+                                                                                }
+                                                                                pstmt21a.setObject(20, servicePointCmbx.getSelectedItem());
+                                                                                pstmt21a.setBoolean(21, false);
+                                                                                pstmt21a.setDouble(22, Double.parseDouble(ageTxt.getText()));
+                                                                                pstmt21a.setString(23, selectedchkbx);
+                                                                                pstmt21a.setString(24, selectedchkbx1);
+                                                                                pstmt21a.setObject(25, specialtyClinicCmbx.getSelectedItem());
+                                                                                pstmt21a.setObject(26, urgencyCMBX.getSelectedItem());
+                                                                                pstmt21a.setObject(27, disabilityCmbx.getSelectedItem());
+                                                                                pstmt21a.setTimestamp(28, serviceStartTime);
+                                                                                if (samaritanChkbx.isSelected()) {
+                                                                                    pstmt21a.setObject(29, nokNameTxt.getText());
+                                                                                    pstmt21a.setObject(30, nokTelephoneTxt.getText());
+                                                                                    pstmt21a.setObject(31, null);
+                                                                                    pstmt21a.setObject(32, null);
+                                                                                } else {
+                                                                                    pstmt21a.setObject(29, null);
+                                                                                    pstmt21a.setObject(30, null);
+                                                                                    pstmt21a.setObject(31, nokNameTxt.getText());
+                                                                                    pstmt21a.setObject(32, nokTelephoneTxt.getText());
+                                                                                }
+                                                                                pstmt21a.setObject(33, referralTypeCmbx.getSelectedItem());
+                                                                                pstmt21a.setObject(34, referralCountyCmbx.getSelectedItem());
+                                                                                pstmt21a.setObject(35, referralFacilityNameTxt.getText());
+                                                                                pstmt21a.executeUpdate();
 
-                                                                            java.sql.PreparedStatement pstmt112c = connectDB.prepareStatement("UPDATE hp_patient_card SET patient_no = '" + patientNumberTxt.getText() + "' WHERE patient_no = '" + patientsNo + "'");
-                                                                            pstmt112c.executeUpdate();
+                                                                                java.sql.Statement stm1 = connectDB.createStatement();
+                                                                                if (createNewFileRbtn.isSelected()) {
+                                                                                    java.sql.Statement stmnz1 = connectDB.createStatement();
+                                                                                    java.sql.ResultSet rsnz1 = stmnz1.executeQuery("select prefix_item,digit_no,yr_end,inc_year from pb_patient_names");
+                                                                                    while (rsnz1.next()) {
+                                                                                        preFix = rsnz1.getString(1);
+                                                                                        digitNo = rsnz1.getInt(2);
+                                                                                        yrEnd = rsnz1.getString(3);
+                                                                                        incYr = rsnz1.getBoolean(4);
+                                                                                    }
+                                                                                    String patNos = null;
 
-                                                                            java.sql.PreparedStatement pstmn = connectDB.prepareStatement("UPDATE hp_patient_visit SET patient_no = '" + patientNumberTxt.getText() + "' WHERE patient_no = '" + patientsNo + "'");
-                                                                            pstmn.executeUpdate();
+                                                                                    java.sql.Statement stmtx = connectDB.createStatement();
 
-                                                                            java.sql.PreparedStatement pstmg = connectDB.prepareStatement("UPDATE credit_acc_slip SET patient_no = '" + patientNumberTxt.getText() + "' WHERE patient_no = '" + patientsNo + "'");
-                                                                            pstmg.executeUpdate();
+                                                                                    if (manualNo) {
+                                                                                        java.sql.Statement pss1x = connectDB.createStatement();
+                                                                                        java.sql.ResultSet rss1x = pss1x.executeQuery("select nextval('outpatient_no_seq')");
+                                                                                        while (rss1x.next()) {
+                                                                                            patNos = rss1x.getObject(1).toString();
 
-                                                                            javax.swing.JOptionPane.showMessageDialog(this, "Patient registration successful for Patient Number :[" + patientNumberTxt.getText() + "] and Name : [" + firstNameTxt.getText() + " " + surNameTxt.getText() + "]", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                                                                            if (incYr) {
+                                                                                                if (preFix.equalsIgnoreCase("noPrefix")) {
+                                                                                                    java.sql.Statement pss1 = connectDB.createStatement();
+                                                                                                    java.sql.ResultSet rss1 = pss1.executeQuery("select lpad('" + patNos + "'," + digitNo + ",'0')||'/'||'" + yrs + "'");
+                                                                                                    while (rss1.next()) {
+                                                                                                        patientNo2 = rss1.getObject(1).toString();
+                                                                                                        patientNumberTxt.setText(rss1.getObject(1).toString());
+                                                                                                    }
+                                                                                                } else {
+                                                                                                    java.sql.Statement pss1 = connectDB.createStatement();
+                                                                                                    java.sql.ResultSet rss1 = pss1.executeQuery("select '" + preFix + "'||lpad('" + patNos + "'," + digitNo + ",'0')||'/'||'" + yrs + "'");
+                                                                                                    while (rss1.next()) {
+                                                                                                        patientNo2 = rss1.getObject(1).toString();
+                                                                                                        patientNumberTxt.setText(rss1.getObject(1).toString());
+                                                                                                    }
+                                                                                                }
+                                                                                            } else {
+                                                                                                if (preFix.equalsIgnoreCase("noPrefix")) {
+                                                                                                    java.sql.Statement pss1 = connectDB.createStatement();
+                                                                                                    java.sql.ResultSet rss1 = pss1.executeQuery("select lpad('" + patNos + "'," + digitNo + ",'0')");
+                                                                                                    while (rss1.next()) {
+                                                                                                        patientNo2 = rss1.getObject(1).toString();
+                                                                                                        patientNumberTxt.setText(rss1.getObject(1).toString());
+                                                                                                    }
+                                                                                                } else {
+                                                                                                    java.sql.Statement pss1 = connectDB.createStatement();
+                                                                                                    java.sql.ResultSet rss1 = pss1.executeQuery("select '" + preFix + "'||lpad('" + patNos + "'," + digitNo + ",'0')");
+                                                                                                    while (rss1.next()) {
+                                                                                                        patientNo2 = rss1.getObject(1).toString();
+                                                                                                        patientNumberTxt.setText(rss1.getObject(1).toString());
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                        java.sql.PreparedStatement pstm = connectDB.prepareStatement("UPDATE hp_patient_register SET patient_no = '" + patientNumberTxt.getText() + "' WHERE patient_no = '" + patientsNo + "'");
+                                                                                        pstm.executeUpdate();
 
-                                                                        } else {
-                                                                            if (patientNumberTxt.getText().toString().equalsIgnoreCase("") | patientNumberTxt.getText().toString().equalsIgnoreCase(" ") | patientNumberTxt.getText().toString().equalsIgnoreCase("  ") | patientNumberTxt.getText().toString().equalsIgnoreCase("   ") | patientNumberTxt.getText().toString().equalsIgnoreCase("    ")) {
-                                                                                // if(jTextField3.getText().toString().equalsIgnoreCase("") | jTextField3.getText().toString().equalsIgnoreCase(" ").concat("")){
-                                                                                javax.swing.JOptionPane.showMessageDialog(this, "You cannot save without a patient no", "CAUTION!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                                                                        java.sql.PreparedStatement pstmt112 = connectDB.prepareStatement("UPDATE hp_patient_billing SET patient_no = '" + patientNumberTxt.getText() + "' WHERE patient_no = '" + patientsNo + "'");
+                                                                                        pstmt112.executeUpdate();
+
+                                                                                        java.sql.PreparedStatement pstmt112x = connectDB.prepareStatement("UPDATE ac_ledger SET patient_no = '" + patientNumberTxt.getText() + "' WHERE patient_no = '" + patientsNo + "'");
+                                                                                        pstmt112x.executeUpdate();
+
+                                                                                        java.sql.PreparedStatement pstmt112c = connectDB.prepareStatement("UPDATE hp_patient_card SET patient_no = '" + patientNumberTxt.getText() + "' WHERE patient_no = '" + patientsNo + "'");
+                                                                                        pstmt112c.executeUpdate();
+
+                                                                                        java.sql.PreparedStatement pstmn = connectDB.prepareStatement("UPDATE hp_patient_visit SET patient_no = '" + patientNumberTxt.getText() + "' WHERE patient_no = '" + patientsNo + "'");
+                                                                                        pstmn.executeUpdate();
+
+                                                                                        java.sql.PreparedStatement pstmg = connectDB.prepareStatement("UPDATE credit_acc_slip SET patient_no = '" + patientNumberTxt.getText() + "' WHERE patient_no = '" + patientsNo + "'");
+                                                                                        pstmg.executeUpdate();
+
+                                                                                        javax.swing.JOptionPane.showMessageDialog(this, "Patient registration successful for Patient Number :[" + patientNumberTxt.getText() + "] and Name : [" + firstNameTxt.getText() + " " + surNameTxt.getText() + "]", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                                                                                    } else {
+                                                                                        if (patientNumberTxt.getText().toString().equalsIgnoreCase("") | patientNumberTxt.getText().toString().equalsIgnoreCase(" ") | patientNumberTxt.getText().toString().equalsIgnoreCase("  ") | patientNumberTxt.getText().toString().equalsIgnoreCase("   ") | patientNumberTxt.getText().toString().equalsIgnoreCase("    ")) {
+                                                                                            // if(jTextField3.getText().toString().equalsIgnoreCase("") | jTextField3.getText().toString().equalsIgnoreCase(" ").concat("")){
+                                                                                            javax.swing.JOptionPane.showMessageDialog(this, "You cannot save without a patient no", "CAUTION!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                                                                        } else {
+                                                                                            patientsNo = patientNumberTxt.getText();
+                                                                                        }
+                                                                                    }
+                                                                                }
+
+                                                                                java.sql.Statement stmtn = connectDB.createStatement();
+                                                                                java.sql.ResultSet rsetn = stmtn.executeQuery("select distinct patient_no,oid from hp_patient_register where patient_no is not null AND department = '" + branchTxt.getText() + "' ORDER BY oid DESC LIMIT 1");
+                                                                                while (rsetn.next()) {
+                                                                                    //   currentFileSeqNoTxt.setText(rsetn.getObject(1).toString());
+                                                                                }
+
                                                                             } else {
-                                                                                patientsNo = patientNumberTxt.getText();
+                                                                                if (saveRegistrationBtn.getText().equalsIgnoreCase("Update")) {
+
+                                                                                    //    System.out.println("PSTMT1 : and JTEXTFIELD21 : "+jTextField21.toString());
+                                                                                    java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("UPDATE hp_patient_register set first_name = ?,"
+                                                                                            + " category = ?,second_name = ?,nok = ?, "
+                                                                                            + " residence = ?,address = ?, year_of_birth = ?,"
+                                                                                            + " tel_no = ?, emails = ?, id_no = ?,nok_add = ?, "
+                                                                                            + " pat_nationality = ?,nok_telno = ?,nok_relationship = ?, "
+                                                                                            + " nok_residence = ?, nok_email = ?, pat_marital_status = ?,"
+                                                                                            + " tribe = ?, district = ?, locations = ?, sub_location = ?, chief_name = ?,"
+                                                                                            + " sub_chief = ?, information_source = ?, education_level = ?, "
+                                                                                            + " occupation = ?,pat_religion = ?,sex = ?, home_county = ?, "
+                                                                                            + "residence_county = ?, nhif_status = ?, "
+                                                                                            + "nhif_number = ?, employer_name = ?, employer_telephone = ?, refer_source = ?,"
+                                                                                            + "charge_sheet_no = ?, specialty_clinic = ?,patient_race = ?, birth_place = ? WHERE patient_no = ?");
+                                                                                    pstmt1.setString(1, surNameTxt.getText());
+                                                                                    pstmt1.setObject(2, patientCategoryCmbx.getSelectedItem());
+                                                                                    pstmt1.setString(3, firstNameTxt.getText());
+                                                                                    pstmt1.setString(4, nokNameTxt.getText());
+                                                                                    pstmt1.setString(5, residenceTxt.getText());
+                                                                                    pstmt1.setString(6, jTextField5.getText());
+                                                                                    pstmt1.setDate(7, dateOfBirth);
+                                                                                    pstmt1.setString(8, jTextField5821.getText());
+                                                                                    pstmt1.setString(9, emailAddTxt.getText());
+                                                                                    pstmt1.setString(10, idPassportTxt.getText());
+                                                                                    pstmt1.setObject(11, jTextField20.getText());
+                                                                                    pstmt1.setObject(12, nationalityCmbx.getSelectedItem());
+                                                                                    pstmt1.setString(13, nokTelephoneTxt.getText());
+                                                                                    pstmt1.setObject(14, nokRelationShipCmbx.getSelectedItem());
+                                                                                    pstmt1.setString(15, nokResidenceTxt.getText());
+                                                                                    pstmt1.setString(16, emailAddTxt1.getText());
+                                                                                    pstmt1.setString(17, selectedchkbx1);
+                                                                                    pstmt1.setString(18, clinicNumberTxt.getText());
+                                                                                    pstmt1.setObject(19, districtCmbx.getSelectedItem());
+                                                                                    pstmt1.setString(20, locationTxt.getSelectedItem().toString());
+                                                                                    pstmt1.setString(21, currentResidenceTxt.getText());
+                                                                                    pstmt1.setString(22, jTextField25.getText());
+                                                                                    pstmt1.setString(23, jTextField26.getText());
+                                                                                    pstmt1.setObject(24, informationSourceCmbx.getSelectedItem());
+                                                                                    pstmt1.setObject(25, educationLevelCmbx.getSelectedItem());
+                                                                                    pstmt1.setObject(26, occupationCmbx.getSelectedItem());
+                                                                                    pstmt1.setObject(27, religionCmbx.getSelectedItem());
+                                                                                    pstmt1.setString(28, selectedchkbx);
+                                                                                    pstmt1.setObject(29, countyofBirthCmbx.getSelectedItem());
+                                                                                    pstmt1.setObject(30, countyofResidenceCmbx.getSelectedItem());
+                                                                                    pstmt1.setObject(31, nhifChbx.isSelected());
+                                                                                    pstmt1.setString(32, nhifNumberTxt.getText());
+                                                                                    pstmt1.setString(33, employerTxt.getText());
+                                                                                    pstmt1.setString(34, employerTelTxt.getText());
+                                                                                    pstmt1.setObject(35, referralTypeCmbx.getSelectedItem());
+                                                                                    pstmt1.setString(36, cSheetNoTxt.getText());
+                                                                                    pstmt1.setObject(37, specialtyClinicCmbx.getSelectedItem());
+                                                                                    pstmt1.setString(38, oldFileNumberTxt.getText());
+                                                                                    pstmt1.setString(39, placeOfBirthTxt.getText());
+                                                                                    pstmt1.setString(40, patientNumberTxt.getText());
+
+                                                                                    pstmt1.executeUpdate();
+
+                                                                                    java.sql.PreparedStatement pstmn = connectDB.prepareStatement("UPDATE hp_patient_visit SET name = ? WHERE patient_no = ?");
+                                                                                    pstmn.setString(1, firstNameTxt.getText() + " " + surNameTxt.getText());
+                                                                                    pstmn.setString(2, patientNumberTxt.getText());
+                                                                                    pstmn.executeUpdate();
+
+                                                                                    java.sql.PreparedStatement pstmny = connectDB.prepareStatement("UPDATE hp_patient_visit SET  age = '" + ageTxt.getText() + "', gender = '" + selectedchkbx + "', marital_status = '" + selectedchkbx1 + "' WHERE patient_no = '" + patientNumberTxt.getText() + "' AND date = '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()) + "'");
+                                                                                    // pstmny.
+                                                                                    pstmny.executeUpdate();
+
+                                                                                    java.sql.PreparedStatement pstmnx = connectDB.prepareStatement("UPDATE credit_acc_slip SET pat_name = '" + firstNameTxt.getText() + " " + surNameTxt.getText() + "' WHERE patient_no = '" + patientNumberTxt.getText() + "'");
+                                                                                    pstmnx.executeUpdate();
+
+                                                                                    java.sql.PreparedStatement pstmnw = connectDB.prepareStatement("UPDATE ac_ledger SET dealer = '" + firstNameTxt.getText() + " " + surNameTxt.getText() + "' WHERE patient_no = '" + patientNumberTxt.getText() + "' and description not ilike '%grn account%'");
+                                                                                    pstmnw.executeUpdate();
+
+                                                                                    java.sql.PreparedStatement pstmnf = connectDB.prepareStatement("UPDATE hp_patient_billing SET patient_name = '" + firstNameTxt.getText() + " " + surNameTxt.getText() + "' WHERE patient_no = '" + patientNumberTxt.getText() + "'");
+                                                                                    pstmnf.executeUpdate();
+
+                                                                                    java.sql.PreparedStatement pstmnq = connectDB.prepareStatement("UPDATE hp_pharmacy SET patient_name = '" + firstNameTxt.getText() + " " + surNameTxt.getText() + "' WHERE patient_no = '" + patientNumberTxt.getText() + "'");
+                                                                                    pstmnq.executeUpdate();
+
+                                                                                    java.sql.PreparedStatement pstm = connectDB.prepareStatement("UPDATE hp_patient_register SET waiting_patient = 'true' WHERE patient_no = '" + patientNumberTxt.getText() + "'");
+                                                                                    pstm.executeUpdate();
+                                                                                }
                                                                             }
-                                                                        }
-                                                                    }
 
-                                                                    java.sql.Statement stmtn = connectDB.createStatement();
-                                                                    java.sql.ResultSet rsetn = stmtn.executeQuery("select distinct patient_no,oid from hp_patient_register where patient_no is not null AND department = '" + branchTxt.getText() + "' ORDER BY oid DESC LIMIT 1");
-                                                                    while (rsetn.next()) {
-                                                                        //   currentFileSeqNoTxt.setText(rsetn.getObject(1).toString());
-                                                                    }
+                                                                            java.lang.Boolean registerReceipt = false;
+                                                                            java.sql.Statement stm12fd = connectDB.createStatement();
+                                                                            java.sql.ResultSet rse12fd = stm12fd.executeQuery("SELECT register_receipt FROM pb_patient_names");
+                                                                            while (rse12fd.next()) {
+                                                                                registerReceipt = rse12fd.getBoolean(1);
+                                                                            }
 
-                                                                } else {
-                                                                    if (saveRegistrationBtn.getText().equalsIgnoreCase("Update")) {
+                                                                            java.sql.Date dates = null;
+                                                                            String mdepartment = null;
+                                                                            String Department = null;
+                                                                            String glCode = null;
+                                                                            String services = null;
+                                                                            double amts = 0.00;
+                                                                            String rcode = null;
 
-                                                                        //    System.out.println("PSTMT1 : and JTEXTFIELD21 : "+jTextField21.toString());
-                                                                        java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("UPDATE hp_patient_register set first_name = ?,"
-                                                                                + " category = ?,second_name = ?,nok = ?, "
-                                                                                + " residence = ?,address = ?, year_of_birth = ?,"
-                                                                                + " tel_no = ?, emails = ?, id_no = ?,nok_add = ?, "
-                                                                                + " pat_nationality = ?,nok_telno = ?,nok_relationship = ?, "
-                                                                                + " nok_residence = ?, nok_email = ?, pat_marital_status = ?,"
-                                                                                + " tribe = ?, district = ?, locations = ?, sub_location = ?, chief_name = ?,"
-                                                                                + " sub_chief = ?, information_source = ?, education_level = ?, "
-                                                                                + " occupation = ?,pat_religion = ?,sex = ?, home_county = ?, "
-                                                                                + "residence_county = ?, nhif_status = ?, "
-                                                                                + "nhif_number = ?, employer_name = ?, employer_telephone = ?, refer_source = ?,"
-                                                                                + "charge_sheet_no = ?, specialty_clinic = ?,patient_race = ?, birth_place = ? WHERE patient_no = ?");
-                                                                        pstmt1.setString(1, surNameTxt.getText());
-                                                                        pstmt1.setObject(2, patientCategoryCmbx.getSelectedItem());
-                                                                        pstmt1.setString(3, firstNameTxt.getText());
-                                                                        pstmt1.setString(4, nokNameTxt.getText());
-                                                                        pstmt1.setString(5, residenceTxt.getText());
-                                                                        pstmt1.setString(6, jTextField5.getText());
-                                                                        pstmt1.setDate(7, dateOfBirth);
-                                                                        pstmt1.setString(8, jTextField5821.getText());
-                                                                        pstmt1.setString(9, emailAddTxt.getText());
-                                                                        pstmt1.setString(10, idPassportTxt.getText());
-                                                                        pstmt1.setObject(11, jTextField20.getText());
-                                                                        pstmt1.setObject(12, nationalityCmbx.getSelectedItem());
-                                                                        pstmt1.setString(13, nokTelephoneTxt.getText());
-                                                                        pstmt1.setObject(14, nokRelationShipCmbx.getSelectedItem());
-                                                                        pstmt1.setString(15, nokResidenceTxt.getText());
-                                                                        pstmt1.setString(16, emailAddTxt1.getText());
-                                                                        pstmt1.setString(17, selectedchkbx1);
-                                                                        pstmt1.setString(18, clinicNumberTxt.getText());
-                                                                        pstmt1.setObject(19, districtCmbx.getSelectedItem());
-                                                                        pstmt1.setString(20, locationTxt.getSelectedItem().toString());
-                                                                        pstmt1.setString(21, currentResidenceTxt.getText());
-                                                                        pstmt1.setString(22, jTextField25.getText());
-                                                                        pstmt1.setString(23, jTextField26.getText());
-                                                                        pstmt1.setObject(24, informationSourceCmbx.getSelectedItem());
-                                                                        pstmt1.setObject(25, educationLevelCmbx.getSelectedItem());
-                                                                        pstmt1.setObject(26, occupationCmbx.getSelectedItem());
-                                                                        pstmt1.setObject(27, religionCmbx.getSelectedItem());
-                                                                        pstmt1.setString(28, selectedchkbx);
-                                                                        pstmt1.setObject(29, countyofBirthCmbx.getSelectedItem());
-                                                                        pstmt1.setObject(30, countyofResidenceCmbx.getSelectedItem());
-                                                                        pstmt1.setObject(31, nhifChbx.isSelected());
-                                                                        pstmt1.setString(32, nhifNumberTxt.getText());
-                                                                        pstmt1.setString(33, employerTxt.getText());
-                                                                        pstmt1.setString(34, employerTelTxt.getText());
-                                                                        pstmt1.setObject(35, referralTypeCmbx.getSelectedItem());
-                                                                        pstmt1.setString(36, cSheetNoTxt.getText());
-                                                                        pstmt1.setObject(37, specialtyClinicCmbx.getSelectedItem());
-                                                                        pstmt1.setString(38, oldFileNumberTxt.getText());
-                                                                        pstmt1.setString(39, placeOfBirthTxt.getText());
-                                                                        pstmt1.setString(40, patientNumberTxt.getText());
+                                                                            java.sql.Statement stm1211 = connectDB.createStatement();
+                                                                            java.sql.ResultSet rse1211 = stm1211.executeQuery("select activity,code from pb_activity where activity_category ='RC'");
+                                                                            while (rse1211.next()) {
+                                                                                //rname = rse1211.getObject(1).toString();
+                                                                                rcode = rse1211.getObject(2).toString();
+                                                                            }
+                                                                            boolean exempt = false;
+                                                                            java.sql.Statement stmX = connectDB.createStatement();
+                                                                            java.sql.ResultSet rseX = stmX.executeQuery("SELECT exemption FROM pb_patient_categories WHERE patient_type ILIKE '" + patientCategoryCmbx.getSelectedItem().toString() + "'");
+                                                                            while (rseX.next()) {
+                                                                                //rname = rse1211.getObject(1).toString();
+                                                                                exempt = rseX.getBoolean(1);
+                                                                            }
 
-                                                                        pstmt1.executeUpdate();
+                                                                            java.sql.Statement stm121x = connectDB.createStatement();
+                                                                            java.sql.ResultSet rse121x = null;
 
-                                                                        java.sql.PreparedStatement pstmn = connectDB.prepareStatement("UPDATE hp_patient_visit SET name = ? WHERE patient_no = ?");
-                                                                        pstmn.setString(1, firstNameTxt.getText() + " " + surNameTxt.getText());
-                                                                        pstmn.setString(2, patientNumberTxt.getText());
-                                                                        pstmn.executeUpdate();
+                                                                            if (exempt) {
+                                                                                rse121x = stm121x.executeQuery("SELECT service_type,0,gl_account from pb_operating_parameters WHERE (category ILIKE 'rfee' OR category ILIKE 'sfee')");
 
-                                                                        java.sql.PreparedStatement pstmny = connectDB.prepareStatement("UPDATE hp_patient_visit SET  age = '" + ageTxt.getText() + "', gender = '" + selectedchkbx + "', marital_status = '" + selectedchkbx1 + "' WHERE patient_no = '" + patientNumberTxt.getText() + "' AND date = '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()) + "'");
-                                                                        // pstmny.
-                                                                        pstmny.executeUpdate();
+                                                                            } else {
 
-                                                                        java.sql.PreparedStatement pstmnx = connectDB.prepareStatement("UPDATE credit_acc_slip SET pat_name = '" + firstNameTxt.getText() + " " + surNameTxt.getText() + "' WHERE patient_no = '" + patientNumberTxt.getText() + "'");
-                                                                        pstmnx.executeUpdate();
+                                                                                if (ager > 5) {
+                                                                                    rse121x = stm121x.executeQuery("SELECT service_type,rate,gl_account from pb_operating_parameters WHERE (category ILIKE 'rfee' OR category ILIKE 'sfee')");
 
-                                                                        java.sql.PreparedStatement pstmnw = connectDB.prepareStatement("UPDATE ac_ledger SET dealer = '" + firstNameTxt.getText() + " " + surNameTxt.getText() + "' WHERE patient_no = '" + patientNumberTxt.getText() + "' and description not ilike '%grn account%'");
-                                                                        pstmnw.executeUpdate();
+                                                                                } else {
+                                                                                    if (createNewFileRbtn.isSelected()) {
+                                                                                        rse121x = stm121x.executeQuery("SELECT service_type,rate,gl_account from pb_operating_parameters WHERE (category ILIKE 'pdfee' OR category ILIKE 'sfee')");
 
-                                                                        java.sql.PreparedStatement pstmnf = connectDB.prepareStatement("UPDATE hp_patient_billing SET patient_name = '" + firstNameTxt.getText() + " " + surNameTxt.getText() + "' WHERE patient_no = '" + patientNumberTxt.getText() + "'");
-                                                                        pstmnf.executeUpdate();
+                                                                                    } else {
+                                                                                        rse121x = stm121x.executeQuery("SELECT service_type,0,gl_account from pb_operating_parameters WHERE (category ILIKE 'pdfee' OR category ILIKE 'sfee')");
 
-                                                                        java.sql.PreparedStatement pstmnq = connectDB.prepareStatement("UPDATE hp_pharmacy SET patient_name = '" + firstNameTxt.getText() + " " + surNameTxt.getText() + "' WHERE patient_no = '" + patientNumberTxt.getText() + "'");
-                                                                        pstmnq.executeUpdate();
-
-                                                                        java.sql.PreparedStatement pstm = connectDB.prepareStatement("UPDATE hp_patient_register SET waiting_patient = 'true' WHERE patient_no = '" + patientNumberTxt.getText() + "'");
-                                                                        pstm.executeUpdate();
-                                                                    }
-                                                                }
-
-                                                                java.lang.Boolean registerReceipt = false;
-                                                                java.sql.Statement stm12fd = connectDB.createStatement();
-                                                                java.sql.ResultSet rse12fd = stm12fd.executeQuery("SELECT register_receipt FROM pb_patient_names");
-                                                                while (rse12fd.next()) {
-                                                                    registerReceipt = rse12fd.getBoolean(1);
-                                                                }
-
-                                                                java.sql.Date dates = null;
-                                                                String mdepartment = null;
-                                                                String Department = null;
-                                                                String glCode = null;
-                                                                String services = null;
-                                                                double amts = 0.00;
-                                                                String rcode = null;
-
-                                                                java.sql.Statement stm1211 = connectDB.createStatement();
-                                                                java.sql.ResultSet rse1211 = stm1211.executeQuery("select activity,code from pb_activity where activity_category ='RC'");
-                                                                while (rse1211.next()) {
-                                                                    //rname = rse1211.getObject(1).toString();
-                                                                    rcode = rse1211.getObject(2).toString();
-                                                                }
-                                                                boolean exempt = false;
-                                                                java.sql.Statement stmX = connectDB.createStatement();
-                                                                java.sql.ResultSet rseX = stmX.executeQuery("SELECT exemption FROM pb_patient_categories WHERE patient_type ILIKE '" + patientCategoryCmbx.getSelectedItem().toString() + "'");
-                                                                while (rseX.next()) {
-                                                                    //rname = rse1211.getObject(1).toString();
-                                                                    exempt = rseX.getBoolean(1);
-                                                                }
-
-                                                                java.sql.Statement stm121x = connectDB.createStatement();
-                                                                java.sql.ResultSet rse121x = null;
-
-                                                                if (exempt) {
-                                                                    rse121x = stm121x.executeQuery("SELECT service_type,0,gl_account from pb_operating_parameters WHERE (category ILIKE 'rfee' OR category ILIKE 'sfee')");
-
-                                                                } else {
-
-                                                                    if (ager > 5) {
-                                                                        rse121x = stm121x.executeQuery("SELECT service_type,rate,gl_account from pb_operating_parameters WHERE (category ILIKE 'rfee' OR category ILIKE 'sfee')");
-
-                                                                    } else {
-                                                                        if (createNewFileRbtn.isSelected()) {
-                                                                            rse121x = stm121x.executeQuery("SELECT service_type,rate,gl_account from pb_operating_parameters WHERE (category ILIKE 'pdfee' OR category ILIKE 'sfee')");
-
-                                                                        } else {
-                                                                            rse121x = stm121x.executeQuery("SELECT service_type,0,gl_account from pb_operating_parameters WHERE (category ILIKE 'pdfee' OR category ILIKE 'sfee')");
-
-                                                                        }
-                                                                    }
-
-                                                                    if (!this.paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
-                                                                        if (!registerReceipt) {
-                                                                            while (rse121x.next()) {
-
-                                                                                services = rse121x.getObject(1).toString();
-                                                                                amts = rse121x.getDouble(2);
-                                                                                glCode = rse121x.getObject(3).toString();
-                                                                                java.sql.Statement stm121 = connectDB.createStatement();
-                                                                                java.sql.ResultSet rse121 = stm121.executeQuery("select activity,code,department from pb_activity where code = '" + glCode + "'");
-                                                                                while (rse121.next()) {
-
-                                                                                    Department = rse121.getObject(1).toString();
-                                                                                    glCode = rse121.getObject(2).toString();
-                                                                                    mdepartment = rse121.getObject(3).toString();
+                                                                                    }
                                                                                 }
 
-                                                                                java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO hp_patient_billing("
-                                                                                        + "patient_no, patient_name, payment_mode, patient_category, service,"
-                                                                                        + "quantity, amount, gl_code, trans_date, inpatient_no, user_name, "
-                                                                                        + "paid, revenue_code, visit_id, doctor, collected) VALUES (?, ?, ?, ?, ?,"
-                                                                                        + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                                                                if (!this.paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
+                                                                                    if (!registerReceipt) {
+                                                                                        while (rse121x.next()) {
 
-                                                                                pstmt2.setString(1, patientNumberTxt.getText());
-                                                                                pstmt2.setString(2, firstNameTxt.getText() + " " + surNameTxt.getText());
-                                                                                pstmt2.setObject(3, paymentModeCmbx.getSelectedItem());
-                                                                                pstmt2.setObject(4, patientCategoryCmbx.getSelectedItem());
-                                                                                pstmt2.setString(5, services);
-                                                                                pstmt2.setDouble(6, 1);
-                                                                                pstmt2.setDouble(7, amts);
-                                                                                pstmt2.setString(8, glCode);
-                                                                                pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
-                                                                                pstmt2.setString(10, transNo);
-                                                                                pstmt2.setBoolean(12, false);
-                                                                                pstmt2.setString(11, user);
-                                                                                pstmt2.setString(13, Department);
-                                                                                pstmt2.setString(14, transNo);
-                                                                                pstmt2.setString(15, "");
-                                                                                pstmt2.setBoolean(16, true);
-                                                                                pstmt2.executeUpdate();
-                                                                            }
-                                                                        } else {
-                                                                            java.sql.Statement stm12fx = connectDB.createStatement();
-                                                                            java.sql.ResultSet rse12fx = stm12fx.executeQuery("select cash_point,start_date::DATE from ac_shifts WHERE shift_no = '" + jTextField22.getText() + "'");
-                                                                            while (rse12fx.next()) {
-                                                                                cashPoint = rse12fx.getString(1);
-                                                                                dates = rse12fx.getDate(2);
-                                                                            }
-                                                                            while (rse121x.next()) {
-                                                                                services = rse121x.getObject(1).toString();
-                                                                                amts = rse121x.getDouble(2);
-                                                                                glCode = rse121x.getObject(3).toString();
-                                                                                java.sql.Statement stm121 = connectDB.createStatement();
-                                                                                java.sql.ResultSet rse121 = stm121.executeQuery("select activity,code,department from pb_activity where code = '" + glCode + "'");
-                                                                                while (rse121.next()) {
+                                                                                            services = rse121x.getObject(1).toString();
+                                                                                            amts = rse121x.getDouble(2);
+                                                                                            glCode = rse121x.getObject(3).toString();
+                                                                                            java.sql.Statement stm121 = connectDB.createStatement();
+                                                                                            java.sql.ResultSet rse121 = stm121.executeQuery("select activity,code,department from pb_activity where code = '" + glCode + "'");
+                                                                                            while (rse121.next()) {
 
-                                                                                    Department = rse121.getObject(1).toString();
-                                                                                    glCode = rse121.getObject(2).toString();
-                                                                                    mdepartment = rse121.getObject(3).toString();
+                                                                                                Department = rse121.getObject(1).toString();
+                                                                                                glCode = rse121.getObject(2).toString();
+                                                                                                mdepartment = rse121.getObject(3).toString();
+                                                                                            }
+
+                                                                                            java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("INSERT INTO hp_patient_billing("
+                                                                                                    + "patient_no, patient_name, payment_mode, patient_category, service,"
+                                                                                                    + "quantity, amount, gl_code, trans_date, inpatient_no, user_name, "
+                                                                                                    + "paid, revenue_code, visit_id, doctor, collected) VALUES (?, ?, ?, ?, ?,"
+                                                                                                    + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+                                                                                            pstmt2.setString(1, patientNumberTxt.getText());
+                                                                                            pstmt2.setString(2, firstNameTxt.getText() + " " + surNameTxt.getText());
+                                                                                            pstmt2.setObject(3, paymentModeCmbx.getSelectedItem());
+                                                                                            pstmt2.setObject(4, patientCategoryCmbx.getSelectedItem());
+                                                                                            pstmt2.setString(5, services);
+                                                                                            pstmt2.setDouble(6, 1);
+                                                                                            pstmt2.setDouble(7, amts);
+                                                                                            pstmt2.setString(8, glCode);
+                                                                                            pstmt2.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker4.getDate()));
+                                                                                            pstmt2.setString(10, transNo);
+                                                                                            pstmt2.setBoolean(12, false);
+                                                                                            pstmt2.setString(11, user);
+                                                                                            pstmt2.setString(13, Department);
+                                                                                            pstmt2.setString(14, transNo);
+                                                                                            pstmt2.setString(15, "");
+                                                                                            pstmt2.setBoolean(16, true);
+                                                                                            pstmt2.executeUpdate();
+                                                                                        }
+                                                                                    } else {
+                                                                                        java.sql.Statement stm12fx = connectDB.createStatement();
+                                                                                        java.sql.ResultSet rse12fx = stm12fx.executeQuery("select cash_point,start_date::DATE from ac_shifts WHERE shift_no = '" + jTextField22.getText() + "'");
+                                                                                        while (rse12fx.next()) {
+                                                                                            cashPoint = rse12fx.getString(1);
+                                                                                            dates = rse12fx.getDate(2);
+                                                                                        }
+                                                                                        while (rse121x.next()) {
+                                                                                            services = rse121x.getObject(1).toString();
+                                                                                            amts = rse121x.getDouble(2);
+                                                                                            glCode = rse121x.getObject(3).toString();
+                                                                                            java.sql.Statement stm121 = connectDB.createStatement();
+                                                                                            java.sql.ResultSet rse121 = stm121.executeQuery("select activity,code,department from pb_activity where code = '" + glCode + "'");
+                                                                                            while (rse121.next()) {
+
+                                                                                                Department = rse121.getObject(1).toString();
+                                                                                                glCode = rse121.getObject(2).toString();
+                                                                                                mdepartment = rse121.getObject(3).toString();
+                                                                                            }
+
+                                                                                            java.sql.PreparedStatement pstmt212 = connectDB.prepareStatement("INSERT INTO ac_ledger values(?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+                                                                                            pstmt212.setObject(1, glCode);
+                                                                                            pstmt212.setString(2, Department);
+                                                                                            pstmt212.setString(3, patientNumberTxt.getText());
+
+                                                                                            pstmt212.setString(4, firstNameTxt.getText() + " " + surNameTxt.getText());
+                                                                                            pstmt212.setString(5, "");
+                                                                                            pstmt212.setString(6, "");
+                                                                                            pstmt212.setString(7, "");
+                                                                                            pstmt212.setString(8, "OP");
+                                                                                            pstmt212.setString(9, "");
+                                                                                            pstmt212.setObject(10, paymentModeCmbx.getSelectedItem());
+                                                                                            pstmt212.setString(11, jTextField22.getText());
+                                                                                            pstmt212.setString(12, "");
+                                                                                            pstmt212.setString(13, "");
+                                                                                            pstmt212.setString(14, services);
+                                                                                            pstmt212.setString(15, "Revenue");
+                                                                                            pstmt212.setDouble(16, 0.00);
+                                                                                            pstmt212.setDouble(17, amts);
+                                                                                            pstmt212.setDate(18, dates);//.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                                                                            pstmt212.setString(19, transNo);
+                                                                                            pstmt212.setBoolean(20, false);
+                                                                                            pstmt212.setBoolean(21, false);
+                                                                                            pstmt212.setBoolean(22, false);
+                                                                                            pstmt212.setString(23, user);
+                                                                                            pstmt212.setString(24, cashPoint);
+                                                                                            pstmt212.setString(25, jTextField22.getText());
+                                                                                            pstmt212.executeUpdate();
+                                                                                            //}
+
+                                                                                            java.sql.PreparedStatement pstmt25 = connectDB.prepareStatement("INSERT INTO ac_cash_collection values(?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
+                                                                                            pstmt25.setObject(1, glCode);
+                                                                                            pstmt25.setObject(2, services);
+                                                                                            pstmt25.setString(3, patientNumberTxt.getText());
+                                                                                            pstmt25.setString(4, firstNameTxt.getText() + " " + surNameTxt.getText());
+                                                                                            pstmt25.setObject(5, paymentModeCmbx.getSelectedItem());
+                                                                                            pstmt25.setString(6, "");
+                                                                                            pstmt25.setString(7, "");
+                                                                                            pstmt25.setString(8, "");
+                                                                                            pstmt25.setString(9, "");
+                                                                                            pstmt25.setString(10, rcode);
+                                                                                            pstmt25.setString(11, "");
+                                                                                            pstmt25.setString(12, receiptNo1);
+                                                                                            pstmt25.setString(13, "");
+                                                                                            pstmt25.setString(14, firstNameTxt.getText() + " " + surNameTxt.getText());
+                                                                                            pstmt25.setString(15, "Receipts");
+                                                                                            pstmt25.setDouble(16, amts);
+                                                                                            pstmt25.setDouble(17, 0.00);
+                                                                                            pstmt25.setDate(18, dates);//com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                                                                            pstmt25.setString(19, "" + transNo + "");
+                                                                                            pstmt25.setBoolean(20, false);
+                                                                                            pstmt25.setBoolean(21, false);
+                                                                                            pstmt25.setBoolean(22, false);
+                                                                                            pstmt25.setString(23, user);
+                                                                                            pstmt25.setString(24, cashPoint);
+                                                                                            pstmt25.setString(25, jTextField22.getText());
+                                                                                            pstmt25.setDate(26, null);
+                                                                                            pstmt25.setDouble(27, 1);
+                                                                                            pstmt25.setDate(28, null);
+                                                                                            pstmt25.setTimestamp(29, datenowSql);
+                                                                                            pstmt25.setString(30, mdepartment);
+                                                                                            pstmt25.executeUpdate();
+                                                                                        }
+
+                                                                                        java.sql.PreparedStatement psr = connectDB.prepareStatement("INSERT INTO ac_receipts_no("
+                                                                                                + "account_no, account_name, date, amount, shift_no, "
+                                                                                                + "cash_point, reference, user_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                                                                                        psr.setString(1, patientNumberTxt.getText());
+                                                                                        psr.setString(2, firstNameTxt.getText() + " " + surNameTxt.getText());
+                                                                                        psr.setDate(3, dates); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                                                                        psr.setDouble(4, amts);
+                                                                                        psr.setInt(5, java.lang.Integer.valueOf(jTextField22.getText()));
+                                                                                        psr.setString(6, cashPoint);
+                                                                                        psr.setString(7, receiptNo1);
+                                                                                        psr.setString(8, user);
+                                                                                        psr.executeUpdate();
+                                                                                        System.out.println(receiptNo1 + "  2");
+                                                                                        java.sql.Statement ps1q = connectDB.createStatement();
+                                                                                        java.sql.ResultSet rst1q = ps1q.executeQuery("SELECT LPAD(receipt_no::TEXT,6,'0'::TEXT) FROM ac_receipts_no WHERE reference = '" + receiptNo1 + "'");
+                                                                                        while (rst1q.next()) {
+                                                                                            receiptNo2 = rst1q.getObject(1).toString();
+                                                                                        }
+
+                                                                                        java.sql.PreparedStatement pstmt112f = connectDB.prepareStatement("UPDATE ac_cash_collection SET receipt_no = '" + receiptNo2 + "' WHERE receipt_no = '" + receiptNo1 + "'");
+                                                                                        pstmt112f.executeUpdate();
+                                                                                        //      com.afrisoftech.txtreports.GokReceiptsTxt policy = new com.afrisoftech.txtreports.GokReceiptsTxt(connectDB, firstNameTxt.getText() + " " + surNameTxt.getText(), java.lang.String.valueOf(amts), receiptNo2, this.paymentModeCmbx.getSelectedItem().toString(), java.lang.String.valueOf(amts), java.lang.String.valueOf(0), jTextField22.getText(), oldFileNumberTxt.getText());
+
+                                                                                    }
+
+                                                                                }
+                                                                            }
+                                                                            if (createNewFileRbtn.isSelected()) {
+                                                                                //  com.afrisoftech.reports.PatientFilePdf pFile = new com.afrisoftech.reports.PatientFilePdf();
+                                                                                //  pFile.PatientFilePdf(connectDB, jTextField3.getText().toUpperCase(),jTextField6.getText().toUpperCase()+" "+jTextField21.getText().toUpperCase(),datePickerYOB.getDate(),selectedchkbx.toUpperCase(),selectedchkbx1.toUpperCase(), this.districtCmbx.getSelectedItem().toString().toUpperCase(),jTextField23.getText().toUpperCase(),jTextField24.getText().toUpperCase(),jTextField5.getText().toUpperCase(),jTextField5821.getText().toUpperCase(),jTextField1.getText().toUpperCase(),nokRelationShipCmbx.getSelectedItem().toString().toUpperCase(),jTextField20.getText().toUpperCase(),nokTelTxt.getText().toUpperCase(),nokResidenceTxt.getText().toUpperCase());
+                                                                            }
+                                                                            java.sql.PreparedStatement pstm = connectDB.prepareStatement("UPDATE hp_patient_register SET waiting_patient = 'true' WHERE patient_no = '" + patientNumberTxt.getText() + "'");
+                                                                            pstm.executeUpdate();
+                                                                            if (paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
+
+                                                                                String rct = null;
+                                                                                java.sql.Statement stm = connectDB.createStatement();
+                                                                                java.sql.ResultSet rs = stm.executeQuery("select nextval('creditslip_no_seq')");
+                                                                                //java.sql.ResultSet rs = stm.executeQuery("select currval('creditslip_no_seq')");
+                                                                                while (rs.next()) {
+                                                                                    slipNo = rs.getInt(1);
+
+                                                                                }
+                                                                                java.sql.Statement ps112 = connectDB.createStatement();
+                                                                                java.sql.ResultSet rst112 = ps112.executeQuery("select rct_format from receipt_pref");
+                                                                                while (rst112.next()) {
+                                                                                    rct = rst112.getObject(1).toString();
                                                                                 }
 
-                                                                                java.sql.PreparedStatement pstmt212 = connectDB.prepareStatement("INSERT INTO ac_ledger values(?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-                                                                                pstmt212.setObject(1, glCode);
-                                                                                pstmt212.setString(2, Department);
-                                                                                pstmt212.setString(3, patientNumberTxt.getText());
+                                                                                com.afrisoftech.txtreports.CreditSlipTxt policy = new com.afrisoftech.txtreports.CreditSlipTxt(connectDB, patientNumberTxt.getText(), jTextField361.getText(), firstNameTxt.getText() + " " + surNameTxt.getText(), jTextField2.getText(), jTextField13.getText(), slipNo);
 
-                                                                                pstmt212.setString(4, firstNameTxt.getText() + " " + surNameTxt.getText());
-                                                                                pstmt212.setString(5, "");
-                                                                                pstmt212.setString(6, "");
-                                                                                pstmt212.setString(7, "");
-                                                                                pstmt212.setString(8, "OP");
-                                                                                pstmt212.setString(9, "");
-                                                                                pstmt212.setObject(10, paymentModeCmbx.getSelectedItem());
-                                                                                pstmt212.setString(11, jTextField22.getText());
-                                                                                pstmt212.setString(12, "");
-                                                                                pstmt212.setString(13, "");
-                                                                                pstmt212.setString(14, services);
-                                                                                pstmt212.setString(15, "Revenue");
-                                                                                pstmt212.setDouble(16, 0.00);
-                                                                                pstmt212.setDouble(17, amts);
-                                                                                pstmt212.setDate(18, dates);//.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                                                                                pstmt212.setString(19, transNo);
-                                                                                pstmt212.setBoolean(20, false);
-                                                                                pstmt212.setBoolean(21, false);
-                                                                                pstmt212.setBoolean(22, false);
-                                                                                pstmt212.setString(23, user);
-                                                                                pstmt212.setString(24, cashPoint);
-                                                                                pstmt212.setString(25, jTextField22.getText());
-                                                                                pstmt212.executeUpdate();
-                                                                                //}
-
-                                                                                java.sql.PreparedStatement pstmt25 = connectDB.prepareStatement("INSERT INTO ac_cash_collection values(?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
-                                                                                pstmt25.setObject(1, glCode);
-                                                                                pstmt25.setObject(2, services);
-                                                                                pstmt25.setString(3, patientNumberTxt.getText());
-                                                                                pstmt25.setString(4, firstNameTxt.getText() + " " + surNameTxt.getText());
-                                                                                pstmt25.setObject(5, paymentModeCmbx.getSelectedItem());
-                                                                                pstmt25.setString(6, "");
-                                                                                pstmt25.setString(7, "");
-                                                                                pstmt25.setString(8, "");
-                                                                                pstmt25.setString(9, "");
-                                                                                pstmt25.setString(10, rcode);
-                                                                                pstmt25.setString(11, "");
-                                                                                pstmt25.setString(12, receiptNo1);
-                                                                                pstmt25.setString(13, "");
-                                                                                pstmt25.setString(14, firstNameTxt.getText() + " " + surNameTxt.getText());
-                                                                                pstmt25.setString(15, "Receipts");
-                                                                                pstmt25.setDouble(16, amts);
-                                                                                pstmt25.setDouble(17, 0.00);
-                                                                                pstmt25.setDate(18, dates);//com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                                                                                pstmt25.setString(19, "" + transNo + "");
-                                                                                pstmt25.setBoolean(20, false);
-                                                                                pstmt25.setBoolean(21, false);
-                                                                                pstmt25.setBoolean(22, false);
-                                                                                pstmt25.setString(23, user);
-                                                                                pstmt25.setString(24, cashPoint);
-                                                                                pstmt25.setString(25, jTextField22.getText());
-                                                                                pstmt25.setDate(26, null);
-                                                                                pstmt25.setDouble(27, 1);
-                                                                                pstmt25.setDate(28, null);
-                                                                                pstmt25.setTimestamp(29, datenowSql);
-                                                                                pstmt25.setString(30, mdepartment);
-                                                                                pstmt25.executeUpdate();
                                                                             }
 
-                                                                            java.sql.PreparedStatement psr = connectDB.prepareStatement("INSERT INTO ac_receipts_no("
-                                                                                    + "account_no, account_name, date, amount, shift_no, "
-                                                                                    + "cash_point, reference, user_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-                                                                            psr.setString(1, patientNumberTxt.getText());
-                                                                            psr.setString(2, firstNameTxt.getText() + " " + surNameTxt.getText());
-                                                                            psr.setDate(3, dates); //com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
-                                                                            psr.setDouble(4, amts);
-                                                                            psr.setInt(5, java.lang.Integer.valueOf(jTextField22.getText()));
-                                                                            psr.setString(6, cashPoint);
-                                                                            psr.setString(7, receiptNo1);
-                                                                            psr.setString(8, user);
-                                                                            psr.executeUpdate();
-                                                                            System.out.println(receiptNo1 + "  2");
-                                                                            java.sql.Statement ps1q = connectDB.createStatement();
-                                                                            java.sql.ResultSet rst1q = ps1q.executeQuery("SELECT LPAD(receipt_no::TEXT,6,'0'::TEXT) FROM ac_receipts_no WHERE reference = '" + receiptNo1 + "'");
-                                                                            while (rst1q.next()) {
-                                                                                receiptNo2 = rst1q.getObject(1).toString();
+                                                                            if (patientCategoryCmbx.getSelectedItem().toString().equalsIgnoreCase("RTA")) {
+
+                                                                                java.text.SimpleDateFormat simpleDateFormat = new java.text.SimpleDateFormat();
+
+                                                                                simpleDateFormat.applyPattern("EEE MMM dd hh:mm:ss zzz yyyy");
+
+                                                                                java.text.DateFormat dateFormat = SimpleDateFormat.getDateTimeInstance();
+
+                                                                                java.sql.PreparedStatement pstmtRTA = connectDB.prepareStatement("INSERT INTO rta_info("
+                                                                                        + "patient_no, accident_type, arrival_mode, police_officer_no, police_station,"
+                                                                                        + "date_time, driver_name, accident_vehicle_no, driver_license, driver_id_no)"
+                                                                                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                                                                pstmtRTA.setString(1, patientNumberTxt.getText());
+                                                                                pstmtRTA.setString(2, this.typeofAccidentCmbx.getSelectedItem().toString());
+                                                                                pstmtRTA.setString(3, this.modeofArrivalCmbx.getSelectedItem().toString());
+                                                                                pstmtRTA.setString(4, this.nameofPoliceOfficerTxt.getText());
+                                                                                pstmtRTA.setString(5, this.policeStationTxt.getText());
+                                                                                pstmtRTA.setTimestamp(6, new java.sql.Timestamp(simpleDateFormat.parse(accidentTimeDateSpinner.getValue().toString()).getTime()));
+                                                                                pstmtRTA.setString(7, this.driverNameTxt.getText());
+                                                                                pstmtRTA.setString(8, this.accidentVehicleNumberTxt.getText());
+                                                                                pstmtRTA.setString(9, this.accidentDriverLicenseTxt.getText());
+                                                                                pstmtRTA.setString(10, this.accidentDriverIDTxt.getText());
+                                                                                pstmtRTA.execute();
+
                                                                             }
 
-                                                                            java.sql.PreparedStatement pstmt112f = connectDB.prepareStatement("UPDATE ac_cash_collection SET receipt_no = '" + receiptNo2 + "' WHERE receipt_no = '" + receiptNo1 + "'");
-                                                                            pstmt112f.executeUpdate();
-                                                                            //      com.afrisoftech.txtreports.GokReceiptsTxt policy = new com.afrisoftech.txtreports.GokReceiptsTxt(connectDB, firstNameTxt.getText() + " " + surNameTxt.getText(), java.lang.String.valueOf(amts), receiptNo2, this.paymentModeCmbx.getSelectedItem().toString(), java.lang.String.valueOf(amts), java.lang.String.valueOf(0), jTextField22.getText(), oldFileNumberTxt.getText());
+                                                                            paymentModeCmbx.setSelectedItem(null);
+                                                                            saveRegistrationBtn.setEnabled(false);
+                                                                            savePrintRegistrationBtn.setEnabled(false);
+                                                                            saveRegistrationBtn.setText("Save file data");
 
+                                                                            connectDB.commit();
+                                                                            connectDB.setAutoCommit(true);
+
+                                                                        } else {
+                                                                            javax.swing.JOptionPane.showMessageDialog(this, "Please confirm that you are working within the open accounting period");
                                                                         }
-
-                                                                    }
-                                                                }
-                                                                if (createNewFileRbtn.isSelected()) {
-                                                                    //  com.afrisoftech.reports.PatientFilePdf pFile = new com.afrisoftech.reports.PatientFilePdf();
-                                                                    //  pFile.PatientFilePdf(connectDB, jTextField3.getText().toUpperCase(),jTextField6.getText().toUpperCase()+" "+jTextField21.getText().toUpperCase(),datePickerYOB.getDate(),selectedchkbx.toUpperCase(),selectedchkbx1.toUpperCase(), this.districtCmbx.getSelectedItem().toString().toUpperCase(),jTextField23.getText().toUpperCase(),jTextField24.getText().toUpperCase(),jTextField5.getText().toUpperCase(),jTextField5821.getText().toUpperCase(),jTextField1.getText().toUpperCase(),nokRelationShipCmbx.getSelectedItem().toString().toUpperCase(),jTextField20.getText().toUpperCase(),nokTelTxt.getText().toUpperCase(),nokResidenceTxt.getText().toUpperCase());
-                                                                }
-                                                                java.sql.PreparedStatement pstm = connectDB.prepareStatement("UPDATE hp_patient_register SET waiting_patient = 'true' WHERE patient_no = '" + patientNumberTxt.getText() + "'");
-                                                                pstm.executeUpdate();
-                                                                if (paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
-
-                                                                    String rct = null;
-                                                                    java.sql.Statement stm = connectDB.createStatement();
-                                                                    java.sql.ResultSet rs = stm.executeQuery("select nextval('creditslip_no_seq')");
-                                                                    //java.sql.ResultSet rs = stm.executeQuery("select currval('creditslip_no_seq')");
-                                                                    while (rs.next()) {
-                                                                        slipNo = rs.getInt(1);
-
-                                                                    }
-                                                                    java.sql.Statement ps112 = connectDB.createStatement();
-                                                                    java.sql.ResultSet rst112 = ps112.executeQuery("select rct_format from receipt_pref");
-                                                                    while (rst112.next()) {
-                                                                        rct = rst112.getObject(1).toString();
                                                                     }
 
-                                                                    com.afrisoftech.txtreports.CreditSlipTxt policy = new com.afrisoftech.txtreports.CreditSlipTxt(connectDB, patientNumberTxt.getText(), jTextField361.getText(), firstNameTxt.getText() + " " + surNameTxt.getText(), jTextField2.getText(), jTextField13.getText(), slipNo);
+                                                                }
+                                                            } catch (java.lang.Exception sq) {
+                                                                sq.printStackTrace();
+                                                                System.out.println(sq.getMessage());
+                                                                javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
+                                                                try {
+                                                                    connectDB.rollback(registerSavePoint);
+                                                                } catch (java.sql.SQLException sql) {
+                                                                    sql.printStackTrace();
+                                                                    javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
                                                                 }
 
-                                                                if (patientCategoryCmbx.getSelectedItem().toString().equalsIgnoreCase("RTA")) {
+                                                            }
 
-                                                                    java.text.SimpleDateFormat simpleDateFormat = new java.text.SimpleDateFormat();
-
-                                                                    simpleDateFormat.applyPattern("EEE MMM dd hh:mm:ss zzz yyyy");
-
-                                                                    java.text.DateFormat dateFormat = SimpleDateFormat.getDateTimeInstance();
-
-                                                                    java.sql.PreparedStatement pstmtRTA = connectDB.prepareStatement("INSERT INTO rta_info("
-                                                                            + "patient_no, accident_type, arrival_mode, police_officer_no, police_station,"
-                                                                            + "date_time, driver_name, accident_vehicle_no, driver_license, driver_id_no)"
-                                                                            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                                                                    pstmtRTA.setString(1, patientNumberTxt.getText());
-                                                                    pstmtRTA.setString(2, this.typeofAccidentCmbx.getSelectedItem().toString());
-                                                                    pstmtRTA.setString(3, this.modeofArrivalCmbx.getSelectedItem().toString());
-                                                                    pstmtRTA.setString(4, this.nameofPoliceOfficerTxt.getText());
-                                                                    pstmtRTA.setString(5, this.policeStationTxt.getText());
-                                                                    pstmtRTA.setTimestamp(6, new java.sql.Timestamp(simpleDateFormat.parse(accidentTimeDateSpinner.getValue().toString()).getTime()));
-                                                                    pstmtRTA.setString(7, this.driverNameTxt.getText());
-                                                                    pstmtRTA.setString(8, this.accidentVehicleNumberTxt.getText());
-                                                                    pstmtRTA.setString(9, this.accidentDriverLicenseTxt.getText());
-                                                                    pstmtRTA.setString(10, this.accidentDriverIDTxt.getText());
-                                                                    pstmtRTA.execute();
-
-                                                                }
-
-                                                                paymentModeCmbx.setSelectedItem(null);
-                                                                saveRegistrationBtn.setEnabled(false);
-                                                                savePrintRegistrationBtn.setEnabled(false);
-                                                                saveRegistrationBtn.setText("Save file data");
-
-                                                                connectDB.commit();
-                                                                connectDB.setAutoCommit(true);
-
+                                                            if (nhifChbx.isSelected()) {
+                                                                nhifStatusTxt = "YES";
                                                             } else {
-                                                                javax.swing.JOptionPane.showMessageDialog(this, "Please confirm that you are working within the open accounting period");
+                                                                nhifStatusTxt = "NO";
                                                             }
-                                                        }
 
-                                                    }
-                                                } catch (java.lang.Exception sq) {
-                                                    sq.printStackTrace();
-                                                    System.out.println(sq.getMessage());
-                                                    javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-
-                                                    try {
-                                                        connectDB.rollback(registerSavePoint);
-                                                    } catch (java.sql.SQLException sql) {
-                                                        sql.printStackTrace();
-                                                        javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                                    }
-
-                                                }
-
-                                                if (nhifChbx.isSelected()) {
-                                                    nhifStatusTxt = "YES";
-                                                } else {
-                                                    nhifStatusTxt = "NO";
-                                                }
-
-                                                try {
-                                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT current_user");
-                                                    java.sql.ResultSet rset = pstmt.executeQuery();
-                                                    while (rset.next()) {
-                                                        interviewer = rset.getString(1);
-                                                    }
-                                                } catch (java.sql.SQLException sqlEx) {
-                                                    sqlEx.printStackTrace();
-                                                    javax.swing.JOptionPane.showMessageDialog(this, sqlEx.getMessage());
-                                                }
-
-                                                String selectedchkbx = null;
-                                                String selectedchkbx1 = null;
-
-                                                if (this.jCheckBox2111.isSelected()) {
-                                                    selectedchkbx = jCheckBox2111.getText();
-                                                } else {
-
-                                                    selectedchkbx = jCheckBox1111.getText();
-                                                }
-
-                                                if (this.jCheckBox2113.isSelected()) {
-                                                    selectedchkbx1 = jCheckBox2113.getText();
-                                                } else {
-                                                    if (this.jCheckBox1113.isSelected()) {
-                                                        selectedchkbx1 = jCheckBox1113.getText();
-                                                    } else {
-                                                        if (this.jCheckBox3.isSelected()) {
-                                                            selectedchkbx1 = jCheckBox3.getText();
-                                                        } else {
-                                                            if (this.jCheckBox11.isSelected()) {
-                                                                selectedchkbx1 = jCheckBox11.getText();
+                                                            try {
+                                                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT current_user");
+                                                                java.sql.ResultSet rset = pstmt.executeQuery();
+                                                                while (rset.next()) {
+                                                                    interviewer = rset.getString(1);
+                                                                }
+                                                            } catch (java.sql.SQLException sqlEx) {
+                                                                sqlEx.printStackTrace();
+                                                                javax.swing.JOptionPane.showMessageDialog(this, sqlEx.getMessage());
                                                             }
-                                                        }
-                                                    }
-                                                }
 
-                                                selectedStatusgender = selectedchkbx;
-                                                selectedStatus = selectedchkbx1;
+                                                            String selectedchkbx = null;
+                                                            String selectedchkbx1 = null;
 
-                                                //  com.afrisoftech.reports.PatientRegFormPdf.connectDB = connectDB;
-                                                com.afrisoftech.reports.PatientRegFormPdf regForm = new com.afrisoftech.reports.PatientRegFormPdf();
-                                                String accidentDate = "";
-                                                if (patientCategoryCmbx.getSelectedItem().toString().equalsIgnoreCase("RTA")) {
-                                                    accidentDate = accidentTimeDateSpinner.getValue().toString();
-                                                } else {
-                                                    accidentDate = "";
-                                                }
+                                                            if (this.jCheckBox2111.isSelected()) {
+                                                                selectedchkbx = jCheckBox2111.getText();
+                                                            } else {
+
+                                                                selectedchkbx = jCheckBox1111.getText();
+                                                            }
+
+                                                            if (this.jCheckBox2113.isSelected()) {
+                                                                selectedchkbx1 = jCheckBox2113.getText();
+                                                            } else {
+                                                                if (this.jCheckBox1113.isSelected()) {
+                                                                    selectedchkbx1 = jCheckBox1113.getText();
+                                                                } else {
+                                                                    if (this.jCheckBox3.isSelected()) {
+                                                                        selectedchkbx1 = jCheckBox3.getText();
+                                                                    } else {
+                                                                        if (this.jCheckBox11.isSelected()) {
+                                                                            selectedchkbx1 = jCheckBox11.getText();
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+
+                                                            selectedStatusgender = selectedchkbx;
+                                                            selectedStatus = selectedchkbx1;
+
+                                                            //  com.afrisoftech.reports.PatientRegFormPdf.connectDB = connectDB;
+                                                            com.afrisoftech.reports.PatientRegFormPdf regForm = new com.afrisoftech.reports.PatientRegFormPdf();
+                                                            String accidentDate = "";
+                                                            if (patientCategoryCmbx.getSelectedItem().toString().equalsIgnoreCase("RTA")) {
+                                                                accidentDate = accidentTimeDateSpinner.getValue().toString();
+                                                            } else {
+                                                                accidentDate = "";
+                                                            }
 //                                                                             System.out.println(firstNameTxt.getText().toUpperCase() + " " + surNameTxt.getText().toUpperCase()+ " " + 
 //                                                                                    ageTxt.getText()+ " " +  selectedStatus+ " " +  nationalityCmbx.getSelectedItem().toString()+ " " + 
 //                                                                                    idPassportTxt.getText()+ " " +  districtCmbx.getSelectedItem().toString()+ " " +  occupationCmbx.getSelectedItem().toString()+ " " +  selectedStatus+ " " + 
@@ -8093,67 +8087,67 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
 //                                                                                     policeStationTxt.getText(), accidentDate,
 //                                                                                     driverNameTxt.getText(),accidentVehicleNumberTxt.getText(),
 //                                                                                     accidentDriverLicenseTxt.getText(),accidentDriverIDTxt.getText());
-                                                this.typeofAccidentCmbx.setSelectedItem(null);
-                                                this.modeofArrivalCmbx.setSelectedItem(null);
-                                                this.nameofPoliceOfficerTxt.setText(null);
-                                                this.policeStationTxt.setText(null);
-                                                this.driverNameTxt.setText(null);
-                                                this.accidentVehicleNumberTxt.setText(null);
-                                                this.accidentDriverLicenseTxt.setText(null);
-                                                this.accidentDriverIDTxt.setText(null);
-                                                patientSearchbtnGrp.clearSelection();
-                                                this.clearForm();
-                                            } catch (java.lang.Exception ex) {
-                                                ex.printStackTrace();
-                                                System.out.println(ex.getMessage());
-                                                javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : " + ex.toString(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                                            this.typeofAccidentCmbx.setSelectedItem(null);
+                                                            this.modeofArrivalCmbx.setSelectedItem(null);
+                                                            this.nameofPoliceOfficerTxt.setText(null);
+                                                            this.policeStationTxt.setText(null);
+                                                            this.driverNameTxt.setText(null);
+                                                            this.accidentVehicleNumberTxt.setText(null);
+                                                            this.accidentDriverLicenseTxt.setText(null);
+                                                            this.accidentDriverIDTxt.setText(null);
+                                                            patientSearchbtnGrp.clearSelection();
+                                                            this.clearForm();
+                                                        } catch (java.lang.Exception ex) {
+                                                            ex.printStackTrace();
+                                                            System.out.println(ex.getMessage());
+                                                            javax.swing.JOptionPane.showMessageDialog(this, "TRANSACTION ERROR : Please double check your entries. \n DETAILS : " + ex.toString(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
+                                                        }
+
+                                                    }
+                                                } else {
+                                                    javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"Patient Urgency\" field MUST be Selected");
+                                                }
+
+                                            } else {
+                                                javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"Patient Category\" field MUST be filled");
                                             }
-
+                                        } else {
+                                            javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"SubCounty/Location\" field MUST be filled");
                                         }
                                     } else {
-                                        javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"Patient Urgency\" field MUST be Selected");
+                                        javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"County of Residence\" field MUST be filled");
                                     }
 
                                 } else {
-                                    javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"Patient Category\" field MUST be filled");
-                                }
-                                } else {
-                                    javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"SubCounty/Location\" field MUST be filled");
-                                }
-                            } else {
-                                    javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"County of Residence\" field MUST be filled");
+                                    javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"Pay Mode\" field MUST be filled");
                                 }
 
                             } else {
-                                javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"Pay Mode\" field MUST be filled");
+                                javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"Patient Last/Surname Name\" field MUST be filled");
                             }
 
                         } else {
-                            javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"Patient Last/Surname Name\" field MUST be filled");
+                            javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"First Name\" field MUST be filled");
                         }
-
-                    } else {
-                        javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"First Name\" field MUST be filled");
-                    }
 
 //                                            } else {
 //                                                javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"Charge Sheet (C-Sheet) Number\" field MUST be filled");
 //                                            }
-                } else {
-                    javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"Physical Residence\" field MUST be filled");
-                }
+                    } else {
+                        javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"Physical Residence\" field MUST be filled");
+                    }
 
-            } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"Specialty Clinic\" field MUST be filled");
-            }
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"Specialty Clinic\" field MUST be filled");
+                }
 
 //            } else {
 //                javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"Age (in years)\" field MUST be filled");
 //            }
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"Nationality\" field MUST be filled");
-        }
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "ERROR: The \"Nationality\" field MUST be filled");
+            }
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "ERROR: Patient \"Gender\" MUST Selected");
         }
@@ -8262,14 +8256,6 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
         // TODO add your handling code here:
     }//GEN-LAST:event_patientNumberTxtActionPerformed
 
-    private void jTextField28CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField28CaretUpdate
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField28CaretUpdate
-
-    private void jTextField28FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField28FocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField28FocusLost
-
     private void jSearchTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable4MouseClicked
 
         revisitRbtn.setSelected(true);
@@ -8277,7 +8263,7 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
         patientNumberTxt.setText(jSearchTable4.getValueAt(jSearchTable4.getSelectedRow(), 0).toString());
         firstNameTxt.setText(jSearchTable4.getValueAt(jSearchTable4.getSelectedRow(), 1).toString());
         surNameTxt.setText(jSearchTable4.getValueAt(jSearchTable4.getSelectedRow(), 2).toString());
-        jSearchDialog4.dispose();
+        repeatedNamesSearch.dispose();
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
@@ -8340,7 +8326,7 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
-            java.sql.ResultSet rset = stmt.executeQuery("select payer,description,account_no,member_name,expiry_date from hp_patient_register where patient_no ='" + patientNumberTxt.getText() + "'");
+            java.sql.ResultSet rset = stmt.executeQuery("select payer,description,card_no,member_name,expiry_date from hp_patient_register where patient_no ='" + patientNumberTxt.getText() + "'");
             while (rset.next()) {
                 // jComboBox6.setSelectedItem(rset.getObject(1).toString());
                 jTextField2.setText(dbObject.getDBObject(rset.getObject(1), "-"));
@@ -8359,21 +8345,14 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
         //     idNoTxt.setText("");
         saveRegistrationBtn.setEnabled(true);
 
-        jSearchDialog4.dispose();
+        repeatedNamesSearch.dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jSearchTable4MouseClicked
 
-    private void dispose3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dispose3ActionPerformed
-
-        jSearchDialog4.dispose();
-
+    private void repeatedNamesSearchComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_repeatedNamesSearchComponentHidden
         // TODO add your handling code here:
-    }//GEN-LAST:event_dispose3ActionPerformed
-
-    private void jSearchDialog4ComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jSearchDialog4ComponentHidden
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jSearchDialog4ComponentHidden
+    }//GEN-LAST:event_repeatedNamesSearchComponentHidden
 
     private void scanDocumentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanDocumentBtnActionPerformed
         /*
@@ -8554,9 +8533,9 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
 
     private void patientSpecialityCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientSpecialityCmbxActionPerformed
         if (patientSpecialityCmbx.getSelectedItem().toString().contains("ALL")) {
-            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, input_date::time(0) as registration_time, (SELECT home_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as birth_county, (SELECT residence_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as residence_county, comments as NEW_OR_REVISIT, test as home_address, department as category, payment as pay_mode, age::int, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "' AND transaction_type = 'Registration' order by 3"));
+            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, input_date::time(0) as registration_time, (SELECT tel_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as tel_no , (SELECT id_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as id_no, (SELECT home_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as birth_county, (SELECT residence_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as residence_county, comments as NEW_OR_REVISIT, test as home_address, department as category, payment as pay_mode, age::int, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "' AND transaction_type = 'Registration' order by 3"));
         } else {
-            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, input_date::time(0) as registration_time, (SELECT home_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as birth_county, (SELECT residence_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as residence_county, comments as NEW_OR_REVISIT, test as home_address, department as category, payment as pay_mode, age::int, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "' AND clinic ilike '" + patientSpecialityCmbx.getSelectedItem().toString() + "' AND transaction_type = 'Registration'  order by 3"));
+            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, input_date::time(0) as registration_time,(SELECT tel_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as tel_no , (SELECT id_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as id_no , (SELECT home_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as birth_county, (SELECT residence_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as residence_county, comments as NEW_OR_REVISIT, test as home_address, department as category, payment as pay_mode, age::int, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "' AND clinic ilike '" + patientSpecialityCmbx.getSelectedItem().toString() + "' AND transaction_type = 'Registration'  order by 3"));
         }
         reportsSpacerLbl.setForeground(Color.red);
         reportsSpacerLbl.setText("Number of patients : [" + reportsTable.getRowCount() + "]");
@@ -8565,17 +8544,17 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
 
     private void endDatePickerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_endDatePickerPropertyChange
         if (patientSpecialityCmbx.getSelectedItem().toString().contains("ALL")) {
-            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, user_name as registar from hp_patient_visit WHERE date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "'  order by name"));
+            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status,(SELECT tel_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as tel_no , (SELECT id_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as id_no, user_name as registar from hp_patient_visit WHERE date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "'  order by name"));
         } else {
-            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, user_name as registar from hp_patient_visit WHERE date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "' AND department ilike '" + patientSpecialityCmbx.getSelectedItem().toString() + "' order by name"));
+            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status,(SELECT tel_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as tel_no , (SELECT id_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as id_no, user_name as registar from hp_patient_visit WHERE date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "' AND department ilike '" + patientSpecialityCmbx.getSelectedItem().toString() + "' order by name"));
         }        // TODO add your handling code here:
     }//GEN-LAST:event_endDatePickerPropertyChange
 
     private void startDatePickerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_startDatePickerPropertyChange
         if (patientSpecialityCmbx.getSelectedItem().toString().contains("ALL")) {
-            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, user_name as registar from hp_patient_visit WHERE date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "'  order by 2"));
+            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status,(SELECT tel_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as tel_no , (SELECT id_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as id_no, user_name as registar from hp_patient_visit WHERE date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "'  order by 2"));
         } else {
-            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status, user_name as registar from hp_patient_visit WHERE date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "' AND department ilike '" + patientSpecialityCmbx.getSelectedItem().toString() + "' order by 2"));
+            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, date as visit_date, comments as NEW_OR_REVISIT, test as home_address, department as clinic, payment as pay_mode, age, gender, marital_status,(SELECT tel_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as tel_no, (SELECT id_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as id_no , user_name as registar from hp_patient_visit WHERE date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "' AND department ilike '" + patientSpecialityCmbx.getSelectedItem().toString() + "' order by 2"));
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_startDatePickerPropertyChange
@@ -8753,11 +8732,11 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
 
         point.setLocation(firstNameTxt.getLocationOnScreen().x, firstNameTxt.getLocationOnScreen().y + 20);
 
-        jSearchDialog4.setSize(700, 200);
+        repeatedNamesSearch.setSize(700, 200);
 
-        jSearchDialog4.setLocation(point);
+        repeatedNamesSearch.setLocation(point);
 
-        jSearchDialog4.setVisible(true);
+        repeatedNamesSearch.setVisible(true);
 
         if (searchbyNameChkbx.isSelected()) {
             if (firstNameTxt.getCaretPosition() < 3) {
@@ -8768,7 +8747,7 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
 //                jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM patient_names('" + firstNameTxt.getText() + "','" + surNameTxt.getText() + "','' ) order by second_name"));
 
                 jSearchTable4.setShowHorizontalLines(false);
-                jSearchScrollPane4.setViewportView(jSearchTable4);
+                repeatedSearchScrollPanel.setViewportView(jSearchTable4);
             }
             firstNameTxt.requestFocusInWindow();
         } else if (searchbyNumberChkbx.isSelected()) {
@@ -8780,7 +8759,7 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
                 jSearchTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, upper(second_name) as other_names, upper(first_name) as surname, year_of_birth, residence from hp_patient_register where patient_no ILIKE '%" + firstNameTxt.getText() + "%' order by patient_no"));
 
                 jSearchTable4.setShowHorizontalLines(false);
-                jSearchScrollPane4.setViewportView(jSearchTable4);
+                repeatedSearchScrollPanel.setViewportView(jSearchTable4);
 
             }
 
@@ -8853,8 +8832,7 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
     }//GEN-LAST:event_buttonPanelHierarchyChanged
 
     private void ageYrsTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_ageYrsTxtCaretUpdate
-
-        if (ageYrsTxt.getText().length() > 0) {
+        if (ageYrsTxt.getText().length() > 0 ) {//&& !ageYrsTxt.getText().matches("0.") && !ageYrsTxt.getText().matches(".") && !ageYrsTxt.getText().matches("0")
             try {
                 java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT current_date - round(? * 365.25)::int");
                 pstmt.setInt(1, Integer.parseInt(ageYrsTxt.getText()));
@@ -8867,6 +8845,8 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
                 javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage());
                 sq.printStackTrace();
             }
+            
+            System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>"+ageYrsTxt.getText().length());
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_ageYrsTxtCaretUpdate
@@ -8929,14 +8909,14 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
         if (panel != null) {
-        panel.stop();
+            panel.stop();
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void firstNameTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_firstNameTxtFocusLost
 
-        jSearchDialog4.dispose();
+        repeatedNamesSearch.dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_firstNameTxtFocusLost
@@ -8944,7 +8924,7 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
     private void servicePointCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_servicePointCmbxActionPerformed
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(patient_no) FROM ac_ledger WHERE date = '" + datePicker2.getDate() + "' AND service_type ILIKE '%card%' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE UPPER(parameter) = '" + servicePointCmbx.getSelectedItem().toString().toUpperCase() + "' AND date = '" + datePicker2.getDate() + "')");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(patient_no) FROM ac_ledger WHERE date = '" + datePicker2.getDate() + "' AND service_type ILIKE '%card%' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE UPPER(parameter) = UPPER('" + servicePointCmbx.getSelectedItem() + "') AND date = '" + datePicker2.getDate() + "')");
             java.sql.ResultSet rset = pstmt.executeQuery();
             while (rset.next()) {
                 cardsSoldTxt.setText(String.valueOf(rset.getInt(1)));
@@ -8956,7 +8936,7 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
         }
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(patient_no) FROM ac_ledger WHERE date = '" + datePicker2.getDate() + "' AND service_type ILIKE '%file%' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE UPPER(parameter) = '" + servicePointCmbx.getSelectedItem().toString().toUpperCase() + "' AND date = '" + datePicker2.getDate() + "' UNION SELECT patient_no FROM hp_admission WHERE UPPER(diagnosis3) = '" + servicePointCmbx.getSelectedItem().toString().toUpperCase() + "' AND date = '" + datePicker2.getDate() + "')");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT count(patient_no) FROM ac_ledger WHERE date = '" + datePicker2.getDate() + "' AND service_type ILIKE '%file%' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE UPPER(parameter) = UPPER('" + servicePointCmbx.getSelectedItem() + "') AND date = '" + datePicker2.getDate() + "' UNION SELECT patient_no FROM hp_admission WHERE UPPER(diagnosis3) = UPPER('" + servicePointCmbx.getSelectedItem() + "') AND date = '" + datePicker2.getDate() + "')");
             java.sql.ResultSet rset = pstmt.executeQuery();
             while (rset.next()) {
                 filesSoldTxt.setText(String.valueOf(rset.getInt(1)));
@@ -8988,9 +8968,25 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
     }//GEN-LAST:event_facilitySearchDialogFocusLost
 
     private void countyofResidenceCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countyofResidenceCmbxActionPerformed
-      locationTxt.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' union SELECT sub_county_name FROM pb_sub_county WHERE county_name ilike '"+countyofResidenceCmbx.getSelectedItem()+"' ORDER BY 1"));
-  // TODO add your handling code here:
+        locationTxt.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' union SELECT sub_county_name FROM pb_sub_county WHERE county_name ilike '" + countyofResidenceCmbx.getSelectedItem().toString().replace("\'", "") + "' ORDER BY 1"));
+        // TODO add your handling code here:
     }//GEN-LAST:event_countyofResidenceCmbxActionPerformed
+
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+      if (patientSpecialityCmbx.getSelectedItem().toString().contains("ALL")) {
+            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, input_date::time(0) as registration_time, (SELECT tel_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as tel_no , (SELECT id_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as id_no, (SELECT home_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as birth_county, (SELECT residence_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as residence_county, comments as NEW_OR_REVISIT, test as home_address, department as category, payment as pay_mode, age::int, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "' AND transaction_type = 'Registration' order by 3"));
+        } else {
+            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, input_date::time(0) as registration_time,(SELECT tel_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as tel_no , (SELECT id_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as id_no , (SELECT home_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as birth_county, (SELECT residence_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as residence_county, comments as NEW_OR_REVISIT, test as home_address, department as category, payment as pay_mode, age::int, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "' AND clinic ilike '" + patientSpecialityCmbx.getSelectedItem().toString() + "' AND transaction_type = 'Registration'  order by 3"));
+        }
+        reportsSpacerLbl.setForeground(Color.red);
+        reportsSpacerLbl.setText("Number of patients : [" + reportsTable.getRowCount() + "]");   // TODO add your handling code here:
+    }//GEN-LAST:event_refreshBtnActionPerformed
+
+    private void seachPatTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_seachPatTxtCaretUpdate
+        if(seachPatTxt.getCaretPosition()>3)
+        reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, input_date::time(0) as registration_time, (SELECT tel_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as tel_no , (SELECT id_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as id_no, (SELECT home_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as birth_county, (SELECT residence_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as residence_county, comments as NEW_OR_REVISIT, test as home_address, department as category, payment as pay_mode, age::int, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE (patient_no ilike '%"+seachPatTxt.getText()+"%' OR name ilike '%"+seachPatTxt.getText()+"%') AND date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "' AND transaction_type = 'Registration' order by 3"));
+         // TODO add your handling code here:
+    }//GEN-LAST:event_seachPatTxtCaretUpdate
     private void changeDate() {
         ageLabel.setText(com.afrisoftech.lib.PatientAge.getPatientActualAge(connectDB, this.datePickerYOB.getDate()));
         ageTxt.setText(String.valueOf(com.afrisoftech.lib.PatientAge.getPatientAge(connectDB, this.datePickerYOB.getDate())));
@@ -9122,7 +9118,7 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
-            java.sql.ResultSet rset = stmt.executeQuery("select payer,description,account_no,member_name,expiry_date from hp_patient_register where patient_no ='" + patientNumberTxt.getText() + "'");
+            java.sql.ResultSet rset = stmt.executeQuery("select payer,description,card_no,member_name,expiry_date from hp_patient_register where patient_no ='" + patientNumberTxt.getText() + "'");
             while (rset.next()) {
                 // jComboBox6.setSelectedItem(rset.getObject(1).toString());
                 jTextField2.setText(dbObject.getDBObject(rset.getObject(1), "-"));
@@ -9212,6 +9208,16 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
                 panel.start();
             }
         }
+    }
+    
+    public class NewPatientFile extends Thread {
+
+        @Override
+        public void run() {
+            createNewPatient();
+             //To change body of generated methods, choose Tools | Templates.
+        }
+        
     }
 
     // jSearchDialog.dispose();
@@ -9332,7 +9338,6 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
     private javax.swing.JButton dispose11;
     private javax.swing.JButton dispose111;
     private javax.swing.JButton dispose2;
-    private javax.swing.JButton dispose3;
     private javax.swing.JButton dispose4;
     private javax.swing.JButton disposeDiseaseSearchBtn;
     private javax.swing.JComboBox districtCmbx;
@@ -9472,20 +9477,17 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
     private javax.swing.JDialog jSearchDialog111;
     private javax.swing.JDialog jSearchDialog2;
     private javax.swing.JDialog jSearchDialog3;
-    private javax.swing.JDialog jSearchDialog4;
     private javax.swing.JPanel jSearchPanel1;
     private javax.swing.JPanel jSearchPanel11;
     private javax.swing.JPanel jSearchPanel111;
     private javax.swing.JPanel jSearchPanel2;
     private javax.swing.JPanel jSearchPanel3;
     private javax.swing.JPanel jSearchPanel4;
-    private javax.swing.JPanel jSearchPanel5;
     private javax.swing.JScrollPane jSearchScrollPane1;
     private javax.swing.JScrollPane jSearchScrollPane11;
     private javax.swing.JScrollPane jSearchScrollPane111;
     private javax.swing.JScrollPane jSearchScrollPane2;
     private javax.swing.JScrollPane jSearchScrollPane3;
-    private javax.swing.JScrollPane jSearchScrollPane4;
     private javax.swing.JTable jSearchTable1;
     private javax.swing.JTable jSearchTable11;
     private javax.swing.JTable jSearchTable111;
@@ -9512,7 +9514,6 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
     private javax.swing.JTextField jTextField22;
     private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField26;
-    private javax.swing.JTextField jTextField28;
     private javax.swing.JTextField jTextField3111;
     private javax.swing.JTextField jTextField36;
     private javax.swing.JTextField jTextField361;
@@ -9576,6 +9577,9 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
     private javax.swing.JLabel registrationPointLbl;
     private javax.swing.JLabel registrationStatusLbl;
     private javax.swing.JComboBox religionCmbx;
+    private javax.swing.JPanel repeatedNameSearchPanel;
+    private javax.swing.JDialog repeatedNamesSearch;
+    private javax.swing.JScrollPane repeatedSearchScrollPanel;
     private javax.swing.JPanel reportsActionPanel;
     private javax.swing.JPanel reportsHeaderPanel;
     private javax.swing.JButton reportsHelpBtn;
@@ -9598,6 +9602,7 @@ if (jCheckBox1111.isSelected() || jCheckBox2111.isSelected()) {
     private javax.swing.JButton savePrintRegistrationBtn;
     public static javax.swing.JButton saveRegistrationBtn;
     private javax.swing.JButton scanDocumentBtn;
+    private javax.swing.JTextField seachPatTxt;
     private javax.swing.JButton searchButton;
     private javax.swing.JButton searchButton1;
     private javax.swing.JButton searchButton11;

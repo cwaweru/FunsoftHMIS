@@ -207,6 +207,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="masterflmnitActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="masterflupdatemnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Employee Data Update"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="masterflupdatemnitActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="membershipnomnit">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Other Staff Contributions"/>
@@ -217,7 +225,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="benefitsallocationmnit">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Benefits Allocation"/>
+                <Property name="text" type="java.lang.String" value="Benefits Allocation (Recurrent)"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="benefitsallocationmnitActionPerformed"/>
@@ -291,7 +299,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="saccomnit">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Sacco Deductions"/>
+                <Property name="text" type="java.lang.String" value="Payroll Deductions"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saccomnitActionPerformed"/>
@@ -307,7 +315,7 @@
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="Postingmn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Posting"/>
+                <Property name="text" type="java.lang.String" value="Posting (Monthly)"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="postingmnit">
@@ -383,6 +391,22 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emplistmnitActionPerformed"/>
                   </Events>
                 </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="Staffhistoryanalysismnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Staff History Analysis"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="StaffhistoryanalysismnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="staffgeneraldetailsmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Staff General Details"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="staffgeneraldetailsmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
               </SubComponents>
             </Menu>
             <MenuItem class="javax.swing.JSeparator" name="jSeparator11">
@@ -424,12 +448,44 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="payslipvmnitActionPerformed"/>
                   </Events>
                 </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="AnalysisPayslipsmonthlymnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Company Totals - Monthly"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AnalysisPayslipsmonthlymnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="AnalysisPayslipsmnit">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Total Payslip Analysis"/>
+                    <Property name="text" type="java.lang.String" value="Company Totals - Yearly"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AnalysisPayslipsmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="saccostatementmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Staff Deduction Statement"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saccostatementmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="earningsstatementmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Staff Earnings Statement"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="earningsstatementmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="transactionstatementmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Staff Transactions"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="transactionstatementmnitActionPerformed"/>
                   </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="payslipmnit1">
@@ -438,6 +494,14 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="payslipmnit1ActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="sendpayslipmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Send Pay Slips"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sendpayslipmnitActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>
@@ -579,6 +643,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cashpaymentsmnitActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="payrollanalysismnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Payroll Analysis"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="payrollanalysismnitActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="chqpmntmnit">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Bank Transfer"/>
@@ -649,7 +721,7 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="nssfmnit">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="NSSF Deductions"/>
+                    <Property name="text" type="java.lang.String" value="NSSF Deductions Combined"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nssfmnitActionPerformed"/>
@@ -658,6 +730,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="nssfTmnit">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="NSSF Deductions Combined"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nssfTmnitActionPerformed"/>
@@ -731,6 +804,22 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="p10mnitActionPerformed"/>
                   </Events>
                 </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="consultancytaxmnit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Consultancy Tax Certificate"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultancytaxmnitActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="sendP9mnit1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Send P9"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sendP9mnit1ActionPerformed"/>
+                  </Events>
+                </MenuItem>
               </SubComponents>
             </Menu>
             <MenuItem class="javax.swing.JSeparator" name="jSeparator7">
@@ -757,6 +846,46 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BankTransfermnit1ActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="loanreportmnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Loan Report"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loanreportmnitActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="reportmnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Deduction/Allowance Reports"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reportmnitActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="reportswumnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Welfare Reports"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reportswumnitActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="payrolldashboardmnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Payroll DashBoard"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="payrolldashboardmnitActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="terminationmnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Staff Suspension/Termination Report"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="terminationmnitActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

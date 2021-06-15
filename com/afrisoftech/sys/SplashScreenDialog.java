@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import javax.swing.*;
 import java.util.*;
 import javax.swing.plaf.*;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -463,12 +463,16 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-
+        //SansSerif
         java.util.HashMap fontAttributes = new java.util.HashMap();
+     //   fontAttributes.put(java.awt.font.TextAttribute.FAMILY, "BODONI");
+     ////   fontAttributes.put(java.awt.font.TextAttribute.FAMILY, "Dialog");
         fontAttributes.put(java.awt.font.TextAttribute.FAMILY, "TAHOMA");
         // fontAttributes.put(java.awt.font.TextAttribute.FAMILY, "MONOSPACE");
-        fontAttributes.put(java.awt.font.TextAttribute.SIZE, new java.lang.Float(11.0));
+        fontAttributes.put(java.awt.font.TextAttribute.SIZE, new java.lang.Float(12.0));
+    //    fontAttributes.put(java.awt.font.TextAttribute.WIDTH, java.awt.font.TextAttribute.WIDTH_CONDENSED);//WIDTH_CONDENSED);//TH_CONDENSED);
         fontAttributes.put(java.awt.font.TextAttribute.WIDTH, java.awt.font.TextAttribute.WIDTH_REGULAR);//WIDTH_CONDENSED);//TH_CONDENSED);
+    ////    fontAttributes.put(java.awt.font.TextAttribute.WEIGHT, java.awt.font.TextAttribute.WEIGHT_REGULAR);//IGHT_EXTRA_LIGHT);
         fontAttributes.put(java.awt.font.TextAttribute.WEIGHT, java.awt.font.TextAttribute.WEIGHT_REGULAR);//IGHT_EXTRA_LIGHT);
         Font FONT_STANDARD = new Font(fontAttributes);
         // Font FONT_STANDARD = new Font("Helvetica",Font.PLAIN,11);
@@ -478,7 +482,7 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
             Object key = keys.nextElement();
             Object value = UIManager.get(key);
             if (value instanceof FontUIResource) {
-                UIManager.put(key, FONT_UI_RES_STANDARD);
+                UIManager.put(key, FONT_UI_RES_STANDARD);  
             }
         }
         try {

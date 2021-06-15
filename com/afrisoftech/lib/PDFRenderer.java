@@ -90,6 +90,30 @@ public class PDFRenderer {
         }
 
     }
+    
+    public static javax.swing.JPanel renderPDF1(java.io.File fileName, javax.swing.JPanel component) {
+        
+        
+        //  viewerComponentPanel = component;
+        org.icepdf.ri.common.SwingController controller = new org.icepdf.ri.common.SwingController();
+        
+        com.afrisoftech.hr.HRDocumentManager.controller = controller;
+
+        org.icepdf.ri.common.SwingViewBuilder factory = new org.icepdf.ri.common.SwingViewBuilder(controller);
+
+        component = factory.buildViewerPanel();
+
+        //factory.
+        org.icepdf.ri.common.ComponentKeyBinding.install(controller, component);
+
+        controller.getDocumentViewController().setAnnotationCallback(
+                new org.icepdf.ri.common.MyAnnotationCallback(
+                        controller.getDocumentViewController()));
+
+        controller.openDocument(fileName.getPath());
+
+        return component;
+    }
 
     public static void renderPDF(java.io.File fileName, java.awt.Component component) {
 

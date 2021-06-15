@@ -318,9 +318,9 @@ public class CreditSalesDetailsIntfr extends javax.swing.JInternalFrame {
     private void loadReport() {
     //    reportBodyTable = new com.afrisoftech.dbadmin.JTable();
         this.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
-        reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT "
+        reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT "
                 + "CASE WHEN (gl_code is null) THEN '600-60600-60031' ELSE (select code from pb_activity where pb_activity.activity ILIKE service) END as gl_code, CASE WHEN"
-                + " (service ilike '%pharmacy%') THEN 'Pharmacy fee' ELSE service END as service, sum(total)"
+                + " (service ilike '%pharmacy%') THEN 'Pharmacy fee' ELSE service END as service, sum(total) as amount"
                 + " from (select * from funsoft_credit_sales('" + beginDatePicker.getDate() + "','" 
                 + endDatePicker.getDate() + "')) as foo  "
                 + "group by 2, 1  UNION select * from funsoft_credit_sales_others('"

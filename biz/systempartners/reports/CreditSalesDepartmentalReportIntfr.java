@@ -157,7 +157,7 @@ public class CreditSalesDepartmentalReportIntfr extends javax.swing.JInternalFra
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(saveReportBtn, gridBagConstraints);
 
-        schemeNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT initcap(scheme_name) FROM ac_schemes ORDER BY 1"));
+        schemeNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' UNION SELECT DISTINCT initcap(scheme_name) FROM ac_schemes ORDER BY 1"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -284,7 +284,7 @@ public class CreditSalesDepartmentalReportIntfr extends javax.swing.JInternalFra
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(totalsPanel, gridBagConstraints);
 
-        setBounds(0, 0, 720, 379);
+        setBounds(0, 0, 917, 379);
     }// </editor-fold>//GEN-END:initComponents
 
     private void openReportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openReportBtnActionPerformed

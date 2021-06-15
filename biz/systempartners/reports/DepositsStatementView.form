@@ -183,6 +183,7 @@
           </Properties>
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="glAccountCmbxItemStateChanged"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="glAccountCmbxActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -268,8 +269,8 @@
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="depositsTableViewMouseClicked"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable();"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="&#xa;javax.swing.table.TableColumn hyperlinkEditor = depositsTableView.getColumnModel().getColumn(3);&#xa;com.afrisoftech.lib.HyperLinkCellEditor hyperlinkCellEditor = new  com.afrisoftech.lib.HyperLinkCellEditor(new org.jdesktop.swingx.JXHyperlink(),depositsTableView);&#xa;hyperlinkEditor.setCellEditor(hyperlinkCellEditor);&#xa;//jTable1.setRowHeight(30);&#xa;javax.swing.table.DefaultTableCellRenderer cellRenderer1 = new javax.swing.table.DefaultTableCellRenderer();&#xa;cellRenderer1.setHorizontalAlignment(cellRenderer1.TRAILING);&#xa;hyperlinkEditor.setCellRenderer(cellRenderer1);&#xa;&#xa;"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable()"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="//javax.swing.table.TableColumn hyperlinkEditor = depositsTableView.getColumnModel().getColumn(3);&#xa;//com.afrisoftech.lib.HyperLinkCellEditor hyperlinkCellEditor = new  com.afrisoftech.lib.HyperLinkCellEditor(new org.jdesktop.swingx.JXHyperlink(),depositsTableView);&#xa;//hyperlinkEditor.setCellEditor(hyperlinkCellEditor);&#xa;//jTable1.setRowHeight(30);&#xa;//javax.swing.table.DefaultTableCellRenderer cellRenderer1 = new javax.swing.table.DefaultTableCellRenderer();&#xa;//cellRenderer1.setHorizontalAlignment(cellRenderer1.TRAILING);&#xa;//hyperlinkEditor.setCellRenderer(cellRenderer1);"/>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                   </AuxValues>
                 </Component>

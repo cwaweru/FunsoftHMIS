@@ -14,9 +14,7 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox cmbox2;
     private javax.swing.JComboBox cmbox1;
     private javax.swing.JComboBox cmbox;
-    
-    
-    
+
     /**
      * Creates new form loanpymntintfr
      */
@@ -84,14 +82,14 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 
             }
         });
-                  cashBookTable.getModel().addTableModelListener(new javax.swing.event.TableModelListener() {
+        cashBookTable.getModel().addTableModelListener(new javax.swing.event.TableModelListener() {
             public void tableChanged(javax.swing.event.TableModelEvent evt) {
 
                 setTotals();
 
             }
-        }); 
-        
+        });
+
     }
 
     /**
@@ -152,6 +150,12 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
         staffSearchScrollPane = new javax.swing.JScrollPane();
         staffSearchTable = new com.afrisoftech.dbadmin.JTable();
         staffCloseBtn = new javax.swing.JButton();
+        shiftSearchDialog = new javax.swing.JDialog();
+        shiftSearchPanel = new javax.swing.JPanel();
+        shiftJTextField = new javax.swing.JTextField();
+        shiftSearchScrollPane = new javax.swing.JScrollPane();
+        shiftSearchTable = new com.afrisoftech.dbadmin.JTable();
+        shiftjButton51 = new javax.swing.JButton();
         try  {
             java.lang.Class.forName("org.postgresql.Driver");
             System.out.println("Found driver");
@@ -223,10 +227,10 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
         };
         receiptsTable = new com.afrisoftech.dbadmin.JTable(){
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, true, true, true
+                true, false, true, true, true,false,false,false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -747,6 +751,83 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         staffAccountSearchDialog.getContentPane().add(staffSearchPanel, gridBagConstraints);
 
+        shiftSearchDialog.setModal(true);
+        shiftSearchDialog.setUndecorated(true);
+        shiftSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        shiftSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        shiftSearchPanel.setLayout(new java.awt.GridBagLayout());
+
+        shiftJTextField.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                shiftJTextFieldCaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 300.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        shiftSearchPanel.add(shiftJTextField, gridBagConstraints);
+
+        shiftSearchTable.setToolTipText("Click on the target row to select the patient from the search.");
+        shiftSearchTable.setShowHorizontalLines(false);
+        /*javax.swing.table.TableColumn column = null;
+
+        for (int i = 0; i < 4; i++) {
+
+            column = jSearchTable.getColumnModel().getColumn(i);
+
+            if (i == 1) {
+
+                column.setPreferredWidth(400);
+                //sport column is bigger
+            } else {
+
+                column.setPreferredWidth(200);
+
+            }
+        }
+        */
+        shiftSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                shiftSearchTableMouseClicked(evt);
+            }
+        });
+        shiftSearchScrollPane.setViewportView(shiftSearchTable);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 20.0;
+        shiftSearchPanel.add(shiftSearchScrollPane, gridBagConstraints);
+
+        shiftjButton51.setText("Close");
+        shiftjButton51.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shiftjButton51ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        shiftSearchPanel.add(shiftjButton51, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        shiftSearchDialog.getContentPane().add(shiftSearchPanel, gridBagConstraints);
+
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
@@ -755,6 +836,12 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
         setTitle("Journal Vouchers posting");
         setVisible(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
@@ -762,13 +849,7 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameActivated(evt);
             }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -913,86 +994,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
@@ -1044,106 +1045,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 
         generalLedgerTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -1388,106 +1289,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
@@ -1633,106 +1434,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
                 {null, null, null, null, null, null}
             },
             new String [] {
@@ -1779,216 +1480,116 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 
         receiptsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Sales A/C", "Ref.", "Debit", "Credit", "Reason"
+                "Sales A/C", "Ref.", "Debit", "Credit", "Reason", "Shift No", "UserName", "Receipt No"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, true, true
+                false, false, true, true, true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -2004,7 +1605,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
         receiptsTable.setDragEnabled(true);
         receiptsTable.setShowHorizontalLines(false);
         receiptsTable.setSurrendersFocusOnKeystroke(true);
-
         /*   cmbox.setModel(new org.netbeans.lib.sql.models.ComboBoxModel (crset3, "activity_code", null, null, null));
         //javax.swing.table.TableColumn s = this.jTable1.getColumnModel().getColumn(0);
         javax.swing.table.TableColumn s = this.jTable1.getColumn("GL Code");
@@ -2024,106 +1624,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 
         pettyCashTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -2368,106 +1868,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null}
             },
             new String [] {
@@ -2514,106 +1914,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 
         patientControlAccountTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -3093,7 +2393,7 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         getContentPane().add(totalCreditTxt, gridBagConstraints);
 
-        setBounds(0, 0, 704, 518);
+        setBounds(0, 0, 878, 518);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton94ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton94ActionPerformed
@@ -3172,7 +2472,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 
 //            System.out.println("Nothing");
 //        }else{
-
             jSearchTable13.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_patient_register WHERE second_name||' '||first_name||' '||last_name ILIKE '%" + patientCltrtxt.getText() + "%' UNION ALL SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, year_of_birth, residence from hp_inpatient_register where patient_no ILIKE '%" + patientCltrtxt.getText() + "%' UNION ALL SELECT annual_no, upper(patient_name) as name,date_of_death::character varying dod,home_county from hp_mortuary where annual_no ilike '%" + patientCltrtxt.getText() + "%'  order by 2"));
 
             jSearchTable13.setShowHorizontalLines(false);
@@ -3224,9 +2523,9 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
         if (pettyCashTable.getSelectedColumn() == 0) {
 
             this.cmboxMouseClicked212();
-        } else if(pettyCashTable.getSelectedColumn() == 5 || pettyCashTable.getSelectedColumn() == 6){
-        this.cmboxMouseClicked21222();
-    }// Add your handling code here:
+        } else if (pettyCashTable.getSelectedColumn() == 5 || pettyCashTable.getSelectedColumn() == 6) {
+            this.cmboxMouseClicked21222();
+        }// Add your handling code here:
     }//GEN-LAST:event_pettyCashTableMouseClicked
     private void cmboxMouseClicked212() {
 
@@ -3241,6 +2540,16 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 
             this.cmboxMouseClicked211();
         }        // Add your handling code here:
+        if (receiptsTable.getSelectedColumn() == 7) {
+
+            shiftSearchDialog.dispose();
+            java.awt.Point point = this.jScrollPane1.getLocationOnScreen();
+
+            shiftSearchDialog.setSize(400, 200);
+
+            shiftSearchDialog.setLocation(point);
+            shiftSearchDialog.setVisible(true);
+        }
 
         // Add your handling code here:
     }//GEN-LAST:event_receiptsTableMouseClicked
@@ -3326,11 +2635,8 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 
             jSearchTable12.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT code,activity from pb_activity where activity ILIKE '" + jTextField11112.getText() + "%' order by activity"));
 
-
             jSearchTable12.setShowHorizontalLines(false);
             jSearchScrollPane12.setViewportView(jSearchTable12);
-
-
 
         }        // Add your handling code here:
     }//GEN-LAST:event_jTextField11112CaretUpdate
@@ -3378,11 +2684,8 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
         } else {
             jSearchTable111.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT code,supplier_name from st_suppliers where supplier_name ILIKE '" + jTextField111111.getText() + "%' order by supplier_name"));
 
-
             jSearchTable111.setShowHorizontalLines(false);
             jSearchScrollPane111.setViewportView(jSearchTable111);
-
-
 
             /*try {
              
@@ -3461,14 +2764,10 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 //                System.out.println("Nothing");
 //            }
 //            else{
-
                 jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT account_no,scheme_name,payer_name from ac_schemes where scheme_name ILIKE '" + searchAccounttxt.getText() + "%'  order by scheme_name"));
-
 
                 jSearchTable11.setShowHorizontalLines(false);
                 jSearchScrollPane11.setViewportView(jSearchTable11);
-
-
 
             }
         } else {
@@ -3479,12 +2778,8 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 //                }else{
                     jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT staff_no,first_name||' '||middle_name as name from pb_doctors_list where first_name||' '||middle_name ILIKE '" + searchAccounttxt.getText() + "%' order by name"));
 
-
-
                     jSearchTable11.setShowHorizontalLines(false);
                     jSearchScrollPane11.setViewportView(jSearchTable11);
-
-
 
                 }
             }
@@ -3616,7 +2911,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
             }
         }
 
-
         for (int k = 0; k < generalLedgerTable.getRowCount(); k++) {
             for (int r = 0; r < generalLedgerTable.getColumnCount(); r++) {
                 creditorsTable.getModel().setValueAt(null, k, r);
@@ -3629,7 +2923,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
             }
         }
 
-
         for (int k = 0; k < cashBookTable.getRowCount(); k++) {
             for (int r = 0; r < cashBookTable.getColumnCount(); r++) {
                 cashBookTable.getModel().setValueAt(null, k, r);
@@ -3640,7 +2933,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                 pettyCashTable.getModel().setValueAt(null, k, r);
             }
         }
-
 
         for (int k = 0; k < patientControlAccountTable.getRowCount(); k++) {
             for (int r = 0; r < patientControlAccountTable.getColumnCount(); r++) {
@@ -3653,7 +2945,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                 receiptsTable.getModel().setValueAt(null, k, r);
             }
         }
-
 
         for (int k = 0; k < consultantsTable.getRowCount(); k++) {
             for (int r = 0; r < consultantsTable.getColumnCount(); r++) {
@@ -3684,22 +2975,17 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 
                 for (int i = 0; i < selectedRows.length; i++) {
 
-
-
                     javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) debtorsTable.getModel();
 
                     defTableModel.removeRow(selectedRows[i]);
 
                 }
 
-
-
             } else {
 
                 javax.swing.table.DefaultTableModel defTableModel = (javax.swing.table.DefaultTableModel) debtorsTable.getModel();
 
                 defTableModel.removeRow(debtorsTable.getSelectedRow());
-
 
             }
         }
@@ -3963,7 +3249,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                 String invoice = null;
                 String journal = null;
 
-
                 for (int j = 0; j < debtorsTable.getModel().getRowCount(); j++) {
 
                     if (debtorsTable.getModel().getValueAt(j, 3) != null) {
@@ -4084,7 +3369,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 
                 }
 
-
                 for (int a = 0; a < consultantsTable.getModel().getRowCount(); a++) {
 
                     if (consultantsTable.getModel().getValueAt(a, 4) != null) {
@@ -4105,7 +3389,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 
                 }
 
-
                 for (int u = 0; u < patientControlAccountTable.getModel().getRowCount(); u++) {
 
                     if (patientControlAccountTable.getModel().getValueAt(u, 4) != null) {
@@ -4125,8 +3408,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                     }
 
                 }
-
-
 
                 totalDebits = debitsTable1 + debitsTable11 + debitsTable12 + debitsTable13 + debitsTable121 + debitsTable122 + debitsTable4 + debitsTable4x;
 
@@ -4178,9 +3459,9 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                         } else {
                             journal = journalNumberTxt.getText();
                         }
-                        
+
                         journal = transNo;
-                        
+
                         java.sql.Statement psg = connectDB.createStatement();
                         java.sql.ResultSet rstg = psg.executeQuery("select current_user");
                         while (rstg.next()) {
@@ -4229,8 +3510,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                                 pstmt1.setObject(29, "-");
                                 pstmt1.setString(30, "-");
                                 pstmt1.executeUpdate();
-
-
 
                                 java.sql.PreparedStatement pstmt2z1 = connectDB.prepareStatement("insert into ac_journal values(?,?,?,?,?,?,?, ?, ?, ?)");
                                 pstmt2z1.setObject(1, cashBookTable.getModel().getValueAt(i, 4).toString());
@@ -4319,7 +3598,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                             }
                         }
                         String Payer = null;
-
 
                         for (int i = 0; i < debtorsTable.getModel().getRowCount(); i++) {
                             if (debtorsTable.getModel().getValueAt(i, 0) != null) {
@@ -4487,7 +3765,7 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                                 pstmt25.setString(9, "-");
                                 pstmt25.setObject(10, receiptsTable.getModel().getValueAt(w, 0).toString());
                                 pstmt25.setString(11, "-");
-                                pstmt25.setString(12, "-");
+                                pstmt25.setString(12, receiptsTable.getModel().getValueAt(w, 7).toString());//pstmt25.setString(12, "-");
                                 pstmt25.setString(13, journal);
                                 pstmt25.setString(14, "-");
                                 pstmt25.setString(15, transactionTypeCmbx.getSelectedItem().toString());
@@ -4508,9 +3786,9 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                                 pstmt25.setBoolean(20, true);
                                 pstmt25.setBoolean(21, false);
                                 pstmt25.setBoolean(22, false);
-                                pstmt25.setString(23, user);
+                                pstmt25.setString(23, receiptsTable.getModel().getValueAt(w, 6).toString());//pstmt25.setString(23, user);
                                 pstmt25.setString(24, "-");
-                                pstmt25.setString(25, "-");
+                                pstmt25.setString(25, receiptsTable.getModel().getValueAt(w, 5).toString());
                                 pstmt25.setDate(26, com.afrisoftech.lib.SQLDateFormat.getSQLDate(transactionDatePicker.getDate()));
                                 pstmt25.setDouble(27, 0.00);
                                 pstmt25.executeUpdate();
@@ -4544,7 +3822,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                                     pstmt25121.setObject(10, receiptsTable.getModel().getValueAt(w, 4).toString());
                                 }
                                 pstmt25121.executeUpdate();
-
 
                             }
                         }
@@ -4586,7 +3863,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                                 pstmt251.setString(19, "-");
                                 pstmt251.executeUpdate();
 
-
                                 java.sql.PreparedStatement pstmt2512 = connectDB.prepareStatement("insert into ac_journal values(?,?,?,?,?,?,?, ?, ?, ?)");
                                 pstmt2512.setObject(1, pettyCashTable.getModel().getValueAt(o, 0).toString());
                                 pstmt2512.setObject(2, pettyCashTable.getModel().getValueAt(o, 1).toString());
@@ -4627,10 +3903,9 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                                 java.sql.PreparedStatement pstmt251y = connectDB.prepareStatement("insert into ac_doctors_ledger values(?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                                 pstmt251y.setObject(1, consultantsTable.getModel().getValueAt(y, 0).toString());
                                 pstmt251y.setObject(2, consultantsTable.getModel().getValueAt(y, 2).toString());
-                                
+
                                 pstmt251y.setObject(3, consultantsTable.getModel().getValueAt(y, 1).toString());
 
-                                
                                 pstmt251y.setString(4, transNo);
                                 pstmt251y.setObject(5, consultantsTable.getModel().getValueAt(y, 6).toString());
                                 pstmt251y.setString(6, transactionTypeCmbx.getSelectedItem().toString());
@@ -4668,7 +3943,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                                 }
                                 pstmt251y.setString(19, "Journal");
                                 pstmt251y.executeUpdate();
-
 
                                 java.sql.PreparedStatement pstmt2512y = connectDB.prepareStatement("insert into ac_journal values(?,?,?,?,?,?,?, ?, ?, ?,?)");
                                 pstmt2512y.setObject(1, consultantsTable.getModel().getValueAt(y, 6).toString());
@@ -4730,7 +4004,11 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 
                                 java.sql.PreparedStatement pstmtpt = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
                                 pstmtpt.setObject(1, patientControlAccountTable.getValueAt(q, 0).toString());
-                                pstmtpt.setObject(2, patientControlAccountTable.getValueAt(q, 2).toString());
+                                if (transactionTypeCmbx.getSelectedItem().toString().contains("Receipt")) {
+                                    pstmtpt.setObject(2, "Receipt");
+                                } else {
+                                    pstmtpt.setObject(2, patientControlAccountTable.getValueAt(q, 2).toString());
+                                }
                                 pstmtpt.setString(3, "General");
                                 pstmtpt.setString(4, payMod);
                                 pstmtpt.setString(5, journal);
@@ -4754,11 +4032,20 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                                 }
                                 pstmtpt.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(transactionDatePicker.getDate()));
                                 pstmtpt.setObject(15, patientAcc);
-                                pstmtpt.setObject(16, patientControlAccountTable.getValueAt(q, 6).toString());
+                                if (transactionTypeCmbx.getSelectedItem().toString().contains("Receipt")) {
+                                    pstmtpt.setObject(16, patientControlAccountTable.getValueAt(q, 2).toString());
+                                } else {
+                                    pstmtpt.setObject(16, patientControlAccountTable.getValueAt(q, 6).toString());
+                                }
+
                                 pstmtpt.setDouble(17, 1);
                                 pstmtpt.setObject(18, staffNo);
                                 pstmtpt.setBoolean(19, false);
-                                pstmtpt.setString(20, transactionTypeCmbx.getSelectedItem().toString());
+                                if (transactionTypeCmbx.getSelectedItem().toString().contains("Receipt")) {
+                                    pstmtpt.setString(20, "Receipt");
+                                } else {
+                                    pstmtpt.setString(20, transactionTypeCmbx.getSelectedItem().toString());
+                                }
                                 pstmtpt.setBoolean(21, false);
                                 pstmtpt.setString(22, AccDesc);
                                 pstmtpt.setString(23, "");
@@ -4800,7 +4087,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 
                             }
                         }
-
 
                         connectDB.commit();
                         connectDB.setAutoCommit(true);
@@ -4859,7 +4145,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 
                 }
 
-
             } catch (java.lang.Exception ex) {
                 ex.printStackTrace();
                 try {
@@ -4869,7 +4154,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                 }
                 System.out.println(ex.getMessage());
                 javax.swing.JOptionPane.showMessageDialog(this, "Please click on the data entry table(s) and \n press the TAB key once then try saving again.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-
 
             }
         }
@@ -4941,7 +4225,7 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
 
     private void staffCltrtxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_staffCltrtxtCaretUpdate
 
-        staffSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT employee_no, first_name||' '||middle_name||' '||last_name FROM master_file WHERE employee_no ilike '%"+this.staffCltrtxt.getText()+"%' OR first_name||' '||middle_name||' '||last_name ilike '%"+this.staffCltrtxt.getText()+"%' ORDER BY 2"));
+        staffSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT employee_no, first_name||' '||middle_name||' '||last_name FROM master_file WHERE employee_no ilike '%" + this.staffCltrtxt.getText() + "%' OR first_name||' '||middle_name||' '||last_name ilike '%" + this.staffCltrtxt.getText() + "%' ORDER BY 2"));
         // TODO add your handling code here:
     }//GEN-LAST:event_staffCltrtxtCaretUpdate
 
@@ -4958,6 +4242,48 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
         this.staffAccountSearchDialog.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_staffCloseBtnActionPerformed
+
+    private void shiftJTextFieldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_shiftJTextFieldCaretUpdate
+        if (shiftJTextField.getCaretPosition() < 5) {
+
+        } else {
+            shiftSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select shift_no as shift,receipt_no,user_name from ac_cash_collection where receipt_no::CHARACTER VARYING ILIKE '" + shiftJTextField.getText().toString() + "%'  ORDER BY receipt_no DESC"));
+
+            shiftSearchTable.setShowHorizontalLines(false);
+            shiftSearchScrollPane.setViewportView(shiftSearchTable);
+        }
+
+
+    }//GEN-LAST:event_shiftJTextFieldCaretUpdate
+
+    private void shiftSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_shiftSearchTableMouseClicked
+        receiptsTable.setValueAt(shiftSearchTable.getValueAt(shiftSearchTable.getSelectedRow(), 0).toString(), receiptsTable.getSelectedRow(), 5);
+        receiptsTable.setValueAt(shiftSearchTable.getValueAt(shiftSearchTable.getSelectedRow(), 2).toString(), receiptsTable.getSelectedRow(), 6);
+        receiptsTable.setValueAt(shiftSearchTable.getValueAt(shiftSearchTable.getSelectedRow(), 1).toString(), receiptsTable.getSelectedRow(), 7);
+        //statusTxt.setText(shiftSearchTable.getValueAt(shiftSearchTable.getSelectedRow(), 1).toString());
+
+        /*
+        * try { // if(this.jCheckBox1.isSelected()){ java.sql.Statement stmt1 =
+            * connectDB.createStatement(); java.sql.ResultSet rset1 =
+            * stmt1.executeQuery("select patient_category,payment_mode from
+                * hp_patient_card where patient_no ='"+jTextField36.getText()+"' order
+                * by date desc limit 1"); while (rset1.next()){
+                * jTextField2.setText(rset1.getObject(1).toString());
+                * jTextField4.setText(rset1.getObject(2).toString()); }
+            *
+            * } catch (java.sql.SQLException sqe) { sqe.printStackTrace(); //
+            * System.out.println("Insert not successful"); }
+        *
+        *
+        * }
+        * }
+         */
+        shiftSearchDialog.dispose();         // Add your handling code here:
+    }//GEN-LAST:event_shiftSearchTableMouseClicked
+
+    private void shiftjButton51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shiftjButton51ActionPerformed
+        shiftSearchDialog.dispose();        // Add your handling code here:
+    }//GEN-LAST:event_shiftjButton51ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel accountsSelectionPane;
@@ -5033,6 +4359,12 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox salesChkbx;
     private javax.swing.JButton saveJournalBtn;
     private javax.swing.JTextField searchAccounttxt;
+    private javax.swing.JTextField shiftJTextField;
+    private javax.swing.JDialog shiftSearchDialog;
+    private javax.swing.JPanel shiftSearchPanel;
+    private javax.swing.JScrollPane shiftSearchScrollPane;
+    private javax.swing.JTable shiftSearchTable;
+    private javax.swing.JButton shiftjButton51;
     private javax.swing.JDialog staffAccountSearchDialog;
     private javax.swing.JButton staffCloseBtn;
     private javax.swing.JTextField staffCltrtxt;
@@ -5054,5 +4386,6 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
         java.awt.Point point = jScrollPane1.getLocationOnScreen();
         staffAccountSearchDialog.setSize(700, 200);
         staffAccountSearchDialog.setLocation(point);
-        staffAccountSearchDialog.setVisible(true);   }
+        staffAccountSearchDialog.setVisible(true);
+    }
 }

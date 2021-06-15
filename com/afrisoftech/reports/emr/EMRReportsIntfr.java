@@ -611,7 +611,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         reportsHeaderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         reportsHeaderPanel.setLayout(new java.awt.GridBagLayout());
 
-        startDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Report Start date", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 51, 255)));
+        startDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Report Start date", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
@@ -629,7 +629,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         reportsHeaderPanel.add(endDatePicker, gridBagConstraints);
 
-        patientTypeSectionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gender Selection Panel", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 51, 255)));
+        patientTypeSectionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gender Selection Panel", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         patientTypeSectionPanel.setLayout(new java.awt.GridBagLayout());
 
         buttonGroup1.add(femaleChkbx);
@@ -672,7 +672,7 @@ public class EMRReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         reportsHeaderPanel.add(patientTypeSectionPanel, gridBagConstraints);
 
-        genderTypeSelectionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patient Type Selection Panel", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 51, 255)));
+        genderTypeSelectionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patient Type Selection Panel", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         genderTypeSelectionPanel.setLayout(new java.awt.GridBagLayout());
 
         buttonGroup2.add(outPatientRdbtn);

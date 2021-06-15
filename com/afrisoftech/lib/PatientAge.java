@@ -18,7 +18,7 @@ public class PatientAge {
     public static String getPatientActualAge(java.sql.Connection connectDB, java.util.Date date) {
         String actualAge = null;
         try {
-            java.sql.PreparedStatement pstmtAge = connectDB.prepareStatement("select age('" + date + "'::date)");
+            java.sql.PreparedStatement pstmtAge = connectDB.prepareStatement("select funsoft_patient_age('" + date + "'::date)");
             java.sql.ResultSet rstAge = pstmtAge.executeQuery();
             while (rstAge.next()) {
                 actualAge = rstAge.getString(1);

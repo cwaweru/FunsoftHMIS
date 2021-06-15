@@ -11,26 +11,15 @@ import com.lowagie.text.DocumentException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 //import org.openide.util.Exceptions;
 import java.io.IOException;
 
-//import com.asprise.imaging.core.Imaging;
-//import com.asprise.imaging.core.Request;
-//import com.asprise.imaging.core.Result;
-import com.lowagie.text.BadElementException;
-import com.lowagie.text.Document;
+import com.itextpdf.text.Document;
 //import com.itextpdf.text.Document;
-import com.lowagie.text.pdf.PdfContentByte;
-import com.lowagie.text.pdf.PdfWriter;
-import com.lowagie.text.pdf.PdfCopy;
-import com.lowagie.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.PdfWriter;
 import eu.gnome.morena.Device;
 import eu.gnome.morena.Manager;
 import eu.gnome.morena.Scanner;
@@ -42,14 +31,17 @@ import com.itextpdf.text.pdf.BadPdfFormatException;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import org.openide.util.Exceptions;
+//import org.openide.util.Exceptions;
 
 /**
  *
- * @author saleem
+ * @Author root
  */
 public class DocumentationIntfr extends javax.swing.JInternalFrame {
 
@@ -70,6 +62,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         pConnDB = pconnDB;
 
         initComponents();
+        //jTabbedPane1.remove(1);
 
         //docmanage.refNotxt.setText(prno.getText());
     }
@@ -85,24 +78,44 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jFileChooser1 = new javax.swing.JFileChooser();
+        lpoSearchDialog = new javax.swing.JDialog();
+        jSearchPanel2 = new javax.swing.JPanel();
+        lpoNumberTxt = new javax.swing.JTextField();
+        jSearchScrollPane2 = new javax.swing.JScrollPane();
+        lpoNumberTbl = new com.afrisoftech.dbadmin.JTable();
+        jButton52 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
-        jPanel29 = new javax.swing.JPanel();
-        jButton13 = new javax.swing.JButton();
+        scanningPanel = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
-        jScrollPane15 = new javax.swing.JScrollPane();
+        commentsScrollPane = new javax.swing.JScrollPane();
         detailsPane = new javax.swing.JTextArea();
-        docNametxt = new javax.swing.JTextField();
+        docNameTxt = new javax.swing.JTextField();
         refNotxt = new javax.swing.JTextField();
-        jButton34 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        filePathLbl = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        pathTofile = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        pathToFile = new javax.swing.JTextField();
+        pathToFileSearchBtn = new javax.swing.JButton();
+        orderNoPanel = new javax.swing.JPanel();
+        orderNoTxt = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
+        orderNoLbl = new javax.swing.JLabel();
+        feederUnitLbl = new javax.swing.JLabel();
+        feederUnitCmbx = new javax.swing.JComboBox<>();
+        scannerResolutionLbl = new javax.swing.JLabel();
+        scannerResolutionCmbx = new javax.swing.JComboBox<>();
+        duplexScanningLbl = new javax.swing.JLabel();
+        duplexScanningCkbx = new javax.swing.JCheckBox();
+        compressionRatioCmbx = new javax.swing.JComboBox<>();
+        compressionRationLbl = new javax.swing.JLabel();
+        actionPanel = new javax.swing.JPanel();
+        scanDocumentBtn = new javax.swing.JButton();
+        previewDocumentBtn = new javax.swing.JButton();
+        uploadDocumentBtn = new javax.swing.JButton();
+        spacerLbl = new javax.swing.JLabel();
+        searchPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         dataTbl = new com.afrisoftech.dbadmin.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -113,6 +126,83 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         viewBtn = new javax.swing.JRadioButton();
         endPckr = new com.afrisoftech.lib.DatePicker();
         beginPckr = new com.afrisoftech.lib.DatePicker();
+
+        lpoSearchDialog.setModal(true);
+        lpoSearchDialog.setUndecorated(true);
+        lpoSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jSearchPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jSearchPanel2.setLayout(new java.awt.GridBagLayout());
+
+        lpoNumberTxt.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                lpoNumberTxtCaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 300.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jSearchPanel2.add(lpoNumberTxt, gridBagConstraints);
+
+        lpoNumberTbl.setToolTipText("Click on the target row to select the patient from the search.");
+        lpoNumberTbl.setShowHorizontalLines(false);
+        /*javax.swing.table.TableColumn column = null;
+
+        for (int i = 0; i < 4; i++) {
+
+            column = lpoNumberTbl.getColumnModel().getColumn(i);
+
+            if (i == 1) {
+
+                column.setPreferredWidth(400);
+                //sport column is bigger
+            } else {
+
+                column.setPreferredWidth(200);
+
+            }
+        }
+        */
+        lpoNumberTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lpoNumberTblMouseClicked(evt);
+            }
+        });
+        jSearchScrollPane2.setViewportView(lpoNumberTbl);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 20.0;
+        jSearchPanel2.add(jSearchScrollPane2, gridBagConstraints);
+
+        jButton52.setText("Dispose");
+        jButton52.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton52ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jSearchPanel2.add(jButton52, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        lpoSearchDialog.getContentPane().add(jSearchPanel2, gridBagConstraints);
 
         setClosable(true);
         setIconifiable(true);
@@ -125,55 +215,40 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder("Bidders' Documentation"));
-        jPanel29.setLayout(new java.awt.GridBagLayout());
-
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/48x48/Internet Connections 1.png"))); // NOI18N
-        jButton13.setText("Upload document to database");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel29.add(jButton13, gridBagConstraints);
+        scanningPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Bidders' Documentation"));
+        scanningPanel.setLayout(new java.awt.GridBagLayout());
 
         jLabel30.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel30.setText("Doc Description (e.g Purchase order to 'ABC Company')");
+        jLabel30.setText("Doc Description (e.g LPO to \"Company', Employee name)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel29.add(jLabel30, gridBagConstraints);
+        scanningPanel.add(jLabel30, gridBagConstraints);
 
         jLabel32.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel32.setText("Doc Ref_No (e.g LPO/LSO, PRQ number, Patient No)");
+        jLabel32.setText("Doc Ref_No (e.g LPO/LSO, PRQ number, Patient No, Staff No., Vc.No.)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel29.add(jLabel32, gridBagConstraints);
+        scanningPanel.add(jLabel32, gridBagConstraints);
 
         detailsPane.setColumns(20);
         detailsPane.setRows(5);
         detailsPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Commenst on documentation"));
-        jScrollPane15.setViewportView(detailsPane);
+        commentsScrollPane.setViewportView(detailsPane);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel29.add(jScrollPane15, gridBagConstraints);
+        scanningPanel.add(commentsScrollPane, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -181,7 +256,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel29.add(docNametxt, gridBagConstraints);
+        scanningPanel.add(docNameTxt, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -189,71 +264,225 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel29.add(refNotxt, gridBagConstraints);
+        scanningPanel.add(refNotxt, gridBagConstraints);
 
-        jButton34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/48x48/Document.png"))); // NOI18N
-        jButton34.setText("Preview Document Before Upload ");
-        jButton34.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton34ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
-        jPanel29.add(jButton34, gridBagConstraints);
-
-        jLabel1.setText("File Path");
+        filePathLbl.setText("File Path");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        jPanel29.add(jLabel1, gridBagConstraints);
+        gridBagConstraints.gridy = 5;
+        scanningPanel.add(filePathLbl, gridBagConstraints);
 
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        pathTofile.setEditable(false);
-        pathTofile.setText("pathtofile/file.pdf");
+        pathToFile.setEditable(false);
+        pathToFile.setText("pathtofile/file.pdf");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(pathTofile, gridBagConstraints);
+        jPanel4.add(pathToFile, gridBagConstraints);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Folders/Folder Yellow Documents.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        pathToFileSearchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Folders/Folder Yellow Documents.png"))); // NOI18N
+        pathToFileSearchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                pathToFileSearchBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        jPanel4.add(jButton1, gridBagConstraints);
+        jPanel4.add(pathToFileSearchBtn, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        scanningPanel.add(jPanel4, gridBagConstraints);
+
+        orderNoPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        orderNoPanel.setLayout(new java.awt.GridBagLayout());
+
+        orderNoTxt.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        orderNoPanel.add(orderNoTxt, gridBagConstraints);
+
+        searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi/images/date.gif"))); // NOI18N
+        searchButton.setToolTipText("Search");
+        searchButton.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        searchButton.setMaximumSize(new java.awt.Dimension(74, 53));
+        searchButton.setMinimumSize(new java.awt.Dimension(74, 53));
+        searchButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        orderNoPanel.add(searchButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        jPanel29.add(jPanel4, gridBagConstraints);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 3.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        scanningPanel.add(orderNoPanel, gridBagConstraints);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/48x48/Pics 2.png"))); // NOI18N
-        jButton2.setText("Scan new document");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        orderNoLbl.setText("Order Number");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        scanningPanel.add(orderNoLbl, gridBagConstraints);
+
+        feederUnitLbl.setText("Scanner feeder unit");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        scanningPanel.add(feederUnitLbl, gridBagConstraints);
+
+        feederUnitCmbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Automatic feeder", "Flatbed" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel29.add(jButton2, gridBagConstraints);
+        scanningPanel.add(feederUnitCmbx, gridBagConstraints);
+
+        scannerResolutionLbl.setText("Scanner resolution");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        scanningPanel.add(scannerResolutionLbl, gridBagConstraints);
+
+        scannerResolutionCmbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "75", "100", "200", "300" }));
+        scannerResolutionCmbx.setSelectedIndex(1);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        scanningPanel.add(scannerResolutionCmbx, gridBagConstraints);
+
+        duplexScanningLbl.setText("Enable Duplex Scanning");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        scanningPanel.add(duplexScanningLbl, gridBagConstraints);
+
+        duplexScanningCkbx.setText("Check if you want duplex mode");
+        duplexScanningCkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        scanningPanel.add(duplexScanningCkbx, gridBagConstraints);
+
+        compressionRatioCmbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "High", "Medium", "Low" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        scanningPanel.add(compressionRatioCmbx, gridBagConstraints);
+
+        compressionRationLbl.setText("Compression Level");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        scanningPanel.add(compressionRationLbl, gridBagConstraints);
+
+        actionPanel.setLayout(new java.awt.GridBagLayout());
+
+        scanDocumentBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/48x48/Pics 2.png"))); // NOI18N
+        scanDocumentBtn.setText("Scan new document");
+        scanDocumentBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                scanDocumentBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        actionPanel.add(scanDocumentBtn, gridBagConstraints);
+
+        previewDocumentBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/48x48/Document.png"))); // NOI18N
+        previewDocumentBtn.setText("Preview Document Before Upload ");
+        previewDocumentBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                previewDocumentBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 11;
+        actionPanel.add(previewDocumentBtn, gridBagConstraints);
+
+        uploadDocumentBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/48x48/Internet Connections 1.png"))); // NOI18N
+        uploadDocumentBtn.setText("Upload document to database");
+        uploadDocumentBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadDocumentBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        actionPanel.add(uploadDocumentBtn, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        actionPanel.add(spacerLbl, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        scanningPanel.add(actionPanel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -261,11 +490,11 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel2.add(jPanel29, gridBagConstraints);
+        jPanel2.add(scanningPanel, gridBagConstraints);
 
         jTabbedPane1.addTab("Data Upload", jPanel2);
 
-        jPanel3.setLayout(new java.awt.GridBagLayout());
+        searchPanel.setLayout(new java.awt.GridBagLayout());
 
         dataTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -279,11 +508,11 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
             }
         ));
         dataTbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dataTblMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 dataTblMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dataTblMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(dataTbl);
@@ -295,10 +524,10 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jScrollPane1, gridBagConstraints);
+        searchPanel.add(jScrollPane1, gridBagConstraints);
 
         jLabel2.setText("Search Key(Ref No or Doc Name)");
-        jPanel3.add(jLabel2, new java.awt.GridBagConstraints());
+        searchPanel.add(jLabel2, new java.awt.GridBagConstraints());
 
         keySearch.setText("Type ref_no here and press enter...");
         keySearch.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -320,7 +549,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        jPanel3.add(keySearch, gridBagConstraints);
+        searchPanel.add(keySearch, gridBagConstraints);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Apply a date filter to view multiple uploads"));
         jPanel5.setLayout(new java.awt.GridBagLayout());
@@ -369,9 +598,9 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel3.add(jPanel5, gridBagConstraints);
+        searchPanel.add(jPanel5, gridBagConstraints);
 
-        jTabbedPane1.addTab("Search Docs", jPanel3);
+        jTabbedPane1.addTab("Search Docs", searchPanel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -388,24 +617,29 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+    private void uploadDocumentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadDocumentBtnActionPerformed
         // TODO add your handling code here:
-        if (!pathTofile.getText().contains("pathtofile/file.pdf")) {
+        if (!pathToFile.getText().contains("pathtofile/file.pdf")) {
+            
             try {
-                File file = new File(pathTofile.getText());
+                File file = new File(pathToFile.getText());
                 java.io.FileInputStream fis = null;
                 try {
                     fis = new java.io.FileInputStream(file);
                 } catch (FileNotFoundException ex) {
                     ex.printStackTrace();
                 }
+                
+                
+                System.err.println("<<>>"+fis);
                 connectDB.setAutoCommit(false);
-                PreparedStatement pst = connectDB.prepareStatement("INSERT INTO st_scm_docs(ref_no, document_name,  other_details,uploaded_file) VALUES (?, ?, ?, ? )");
+                PreparedStatement pst = connectDB.prepareStatement("INSERT INTO st_scm_docs(ref_no, document_name,  other_details, uploaded_file, document_initials) VALUES (?, ?, ?, ?, ?)");
 
                 pst.setObject(1, refNotxt.getText());
-                pst.setObject(2, docNametxt.getText());
+                pst.setObject(2, docNameTxt.getText());
                 pst.setObject(3, detailsPane.getText());
                 pst.setBinaryStream(4, fis, (int) file.length());
+                pst.setObject(5, orderNoTxt.getText());
 
                 pst.executeUpdate();
 
@@ -422,26 +656,28 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
                 }
             }
 
-        } else {
-            JOptionPane.showMessageDialog(this, pathTofile.getText() + " Not a valid filename");
-        }
-    }//GEN-LAST:event_jButton13ActionPerformed
+            pathToFile.setText("pathtofile/file.pdf");
 
-    private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
+        } else {
+            JOptionPane.showMessageDialog(this, pathToFile.getText() + " Not a valid filename");
+        }
+    }//GEN-LAST:event_uploadDocumentBtnActionPerformed
+
+    private void previewDocumentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previewDocumentBtnActionPerformed
         // TODO add your handling code here:
 
-        if (!pathTofile.getText().contains("pathtofile/file.pdf")) {
+        if (!pathToFile.getText().contains("pathtofile/file.pdf")) {
 
-            File file = new File(pathTofile.getText());
+            File file = new File(pathToFile.getText());
 
             com.afrisoftech.lib.PDFRenderer.renderPDF(file);
 
         } else {
-            JOptionPane.showMessageDialog(this, pathTofile.getText() + " Not a valid filename");
+            JOptionPane.showMessageDialog(this, pathToFile.getText() + " Not a valid filename");
         }
-    }//GEN-LAST:event_jButton34ActionPerformed
+    }//GEN-LAST:event_previewDocumentBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void pathToFileSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pathToFileSearchBtnActionPerformed
         // TODO add your handling code here:
         com.afrisoftech.lib.ExampleFileFilter filter = new com.afrisoftech.lib.ExampleFileFilter();
         filter.addExtension("pdf");
@@ -457,12 +693,12 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
             String pic = doc.getName();
             String picp = doc.getAbsolutePath();
 
-            pathTofile.setText(picp.toString());
+            pathToFile.setText(picp.toString());
 
             System.out.println("umeupload" + pic.toString());
 
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_pathToFileSearchBtnActionPerformed
 
     private void keySearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keySearchActionPerformed
         // TODO add your handling code here:
@@ -473,14 +709,14 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
 
-            dataTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT ref_no,document_name,entered_by,input_date , FALSE AS Remove_Entry FROM st_scm_docs WHERE (ref_no ilike '%" + keySearch.getText() + "%' or document_name ilike '%" + keySearch.getText() + "%') "));
+            dataTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT ref_no,document_name,entered_by,input_date , FALSE AS Remove_Entry FROM st_scm_docs WHERE ref_no ILIKE 'PRQ%' AND  (ref_no ilike '%" + keySearch.getText() + "%' or document_name ilike '%" + keySearch.getText() + "%') "));
         }
     }//GEN-LAST:event_keySearchKeyTyped
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
         // TODO add your handling code here:
         dataTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT ref_no,document_name,entered_by,input_date , FALSE AS Remove_Entry "
-                + "FROM st_scm_docs WHERE input_date::date BETWEEN  '" + SQLDateFormat.getSQLDate(beginPckr.getDate()) + "' AND '" + SQLDateFormat.getSQLDate(endPckr.getDate()) + "'"));
+                + "FROM st_scm_docs WHERE ref_no ILIKE 'PRQ%' AND input_date::date BETWEEN  '" + SQLDateFormat.getSQLDate(beginPckr.getDate()) + "' AND '" + SQLDateFormat.getSQLDate(endPckr.getDate()) + "'"));
     }//GEN-LAST:event_viewBtnActionPerformed
 
     private void dataTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataTblMouseClicked
@@ -550,90 +786,311 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_keySearchMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void scanDocumentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanDocumentBtnActionPerformed
 
-        Document document = new Document();
-        PdfWriter writer = null;
+        float quality;
+
+        if (compressionRatioCmbx.getSelectedItem().toString().equalsIgnoreCase("HIGH")) {
+            quality = 0.05f;
+        } else if (compressionRatioCmbx.getSelectedItem().toString().equalsIgnoreCase("MEDIUM")) {
+            quality = 0.1f;
+        } else {
+            quality = 0.5f;
+        }
+
+        java.io.File resultantTempFile = null;
 
         try {
-            tempFile = java.io.File.createTempFile("REP" + com.afrisoftech.lib.DateLables.getDateLabel() + "_", ".pdf");
+            resultantTempFile = java.io.File.createTempFile("REP" + com.afrisoftech.lib.DateLables.getDateLabel() + "_", ".pdf");
         } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
+            ex.printStackTrace();
         }
-        tempFile.deleteOnExit();
 
+        resultantTempFile.deleteOnExit();
+        com.itextpdf.text.Document document2 = new com.itextpdf.text.Document();
+        // step 2
+        com.itextpdf.text.pdf.PdfCopy copy = null;
         try {
             try {
-                writer = PdfWriter.getInstance(document, new java.io.FileOutputStream(tempFile));
-            } catch (DocumentException ex) {
-                Exceptions.printStackTrace(ex);
+                copy = new com.itextpdf.text.pdf.PdfCopy(document2, new FileOutputStream(resultantTempFile));
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
             }
-        } catch (FileNotFoundException ex) {
-            Exceptions.printStackTrace(ex);
+        } catch (com.itextpdf.text.DocumentException ex) {
+            ex.printStackTrace();
+            this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+        // step 3
+        document2.open();
+        // step 4
+        com.itextpdf.text.pdf.PdfReader reader = null;
 
-        document.open();
+        Configuration.addDeviceType(".*fficejet.*", true);
 
         Manager manager = Manager.getInstance();
 
         List<? extends Device> devices = manager.listDevices();
+
         List<File> filesToDelete = new ArrayList<File>();
-        if (devices.size() > 0) {
-            Device device = devices.get(0);
 
-            if (device != null) {
+        Device device = manager.selectDevice(this);
+//        if (devices.size() > 0) {
+        // Device device = null;
 
-                // for scanner device set the scanning parameters
-                if (device instanceof Scanner) {
-                    Scanner scanner = (Scanner) device;
-                    scanner.setMode(Scanner.RGB_8);
-                    scanner.setResolution(200);
-                    // find feeder unit
-                    int feederUnit = scanner.getFeederFunctionalUnit();
-                    System.out.println("Feeder unit : " + (feederUnit >= 0 ? feederUnit : "none found - trying 0"));
-                    if (feederUnit < 0) {
-                        feederUnit = 0; // 0 designates a default unit
-                    }
-                    if (scanner.isDuplexSupported()) {
+//            if (devices.iterator().hasNext()) {
+//                device = (Device) devices.iterator();
+        System.out.println("Scanner device detected : [" + device.toString() + "]");
+        // }
+        if (device != null) {
+            System.out.println("Scanner device detected : [" + device.toString() + "]");
+            // for scanner device set the scanning parameters
+            if (!(device instanceof Camera)) {
+                //             if(device.toString().contains("Scanner")){
+                Scanner scanner = (Scanner) device;
+                scanner.setMode(Scanner.RGB_8);
+//                if (scanTypeCmbx.getSelectedItem().toString().equalsIgnoreCase("Black/White Low Resolution")) {
+//                    scanner.setMode(Scanner.GRAY_8);
+//                } else if (scanTypeCmbx.getSelectedItem().toString().equalsIgnoreCase("Black/White High Resolution")) {
+//                    scanner.setMode(Scanner.GRAY_16);
+//                } else if (scanTypeCmbx.getSelectedItem().toString().equalsIgnoreCase("Colour Low Resolution")) {
+//                    scanner.setMode(Scanner.RGB_8);
+//                } else {
+//                    scanner.setMode(Scanner.RGB_16);
+//                }
+                scanner.setResolution(Integer.parseInt(scannerResolutionCmbx.getSelectedItem().toString()));
+                // find feeder unit
+                int feederUnit = 0;
+                if (feederUnitCmbx.getSelectedItem().toString().contains("Automatic")) {
+                    feederUnit = scanner.getFeederFunctionalUnit();
+                } else {
+                    feederUnit = scanner.getFlatbedFunctionalUnit();
+                }
+
+                System.out.println("Feeder unit : " + (feederUnit >= 0 ? feederUnit : "none found - trying 0"));
+                if (feederUnit < 0) {
+                    feederUnit = 0; // 0 designates a default unit
+                }
+                if (scanner.isDuplexSupported()) {
+                    if (duplexScanningCkbx.isEnabled()) {
                         scanner.setDuplexEnabled(true);
+                    } else {
+                        scanner.setDuplexEnabled(false);
+                    }
+                }
+
+                System.out.println("Feeder unit [" + feederUnit + "]");
+                int pageNo = 1;
+                int n = 0;
+                ScanSession session = new ScanSession();
+                // start single image scan
+                if (feederUnit == scanner.getFlatbedFunctionalUnit()) {
+                    try {
+                        session.startSession(device, feederUnit);
+
+                        File file = null;
+
+                        //    while (null != (file = session.getImageFile())) {
+                        file = session.getImageFile();
+                        filesToDelete.add(file);
+                        // image processing - image file is transformed to JPEG format
+                        BufferedImage image = ImageIO.read(file);
+                        System.out.println("scanned image " + file.getPath() + " : size=(" + image.getWidth() + ", " + image.getHeight() + ")   bit mode=" + image.getColorModel().getPixelSize());
+                        // if (!"jpg".equalsIgnoreCase(ScanSession.getExt(file))) { // convert to jpeg if not already in jpeg format
+                        if (!file.getPath().contains(".jpg")) {
+                            File jpgFile = new File(file.getParent(), "Morena_example_img_" + com.afrisoftech.lib.DateLables.getDateLabel() + ".jpg");
+//                            File jpgFile = new File(file.getParent(), "Morena_example_img_" + (pageNo++) + ".jpg");                            File jpgFile = new File(file.getParent(), "Morena_example_img_" + (pageNo++) + ".jpg");
+
+                            FileOutputStream fout = new FileOutputStream(jpgFile);
+                            ImageIO.write(image, "jpeg", fout);
+                            fout.close();
+                            filesToDelete.add(jpgFile);
+//                            Image image2 = Toolkit.getDefaultToolkit().createImage(jpgFile.getPath());
+                            // Compress JPEG file
+                            File compressedJPGFile = new File(file.getParent(), "Morena_compressed_img" + com.afrisoftech.lib.DateLables.getDateLabel() + ".jpg");
+
+                            com.afrisoftech.lib.CompressJPEGFile.compress(jpgFile, compressedJPGFile, quality);
+
+                            com.itextpdf.text.Image iTextImage = null;
+
+                            iTextImage = com.itextpdf.text.Image.getInstance(compressedJPGFile.getPath());
+
+                            filesToDelete.add(compressedJPGFile);
+//                            try {
+//                                iTextImage = com.itextpdf.text.Image.getInstance(image2, null);
+//                            } catch (IOException ex) {
+//                                ex.printStackTrace();
+//                            }
+                            Document document = new Document();
+                            PdfWriter writer = null;
+
+                            try {
+                                tempFile = java.io.File.createTempFile("REP" + com.afrisoftech.lib.DateLables.getDateLabel() + "_", ".pdf");
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                            tempFile.deleteOnExit();
+
+                            try {
+                                try {
+                                    writer = PdfWriter.getInstance(document, new java.io.FileOutputStream(tempFile));
+
+                                    writer.setFullCompression();
+
+                                } catch (com.itextpdf.text.DocumentException ex) {
+                                    ex.printStackTrace();
+                                }
+                            } catch (FileNotFoundException ex) {
+                                ex.printStackTrace();
+                            }
+
+                            document.open();
+
+                            com.itextpdf.text.pdf.PdfPTable table = new com.itextpdf.text.pdf.PdfPTable(1);
+
+                            int headerwidths[] = {15};
+
+                            try {
+                                table.setWidths(headerwidths);
+                            } catch (com.itextpdf.text.DocumentException ex) {
+                                ex.printStackTrace();
+                            }
+
+                            table.setWidthPercentage((100));
+
+                            table.getDefaultCell().setColspan(1);
+
+                            table.addCell(iTextImage);
+
+                            document.add(table);
+
+                            document.close();
+
+                            reader = new com.itextpdf.text.pdf.PdfReader(tempFile.getPath());
+                            // loop over the pages in that document
+                            n = reader.getNumberOfPages();
+                            for (int page = 0; page < n;) {
+                                try {
+                                    copy.addPage(copy.getImportedPage(reader, ++page));
+                                } catch (BadPdfFormatException ex) {
+                                    ex.printStackTrace();
+                                    //    this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+                                    javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+                                }
+                            }
+                            copy.freeReader(reader);
+                            reader.close();
+
+                        }
+
+                        // }
+                        manager.close();
+                        if (n > 0) {
+                            document2.close();
+                        }
+                    } catch (Exception ex) { // check if error is related to empty ADF
+                        if (session.isEmptyFeeder()) {
+                            System.out.println("No more sheets in the document feeder");
+                        } else {
+                            ex.printStackTrace();
+                        }
                     }
 
-                    int pageNo = 1;
-                    ScanSession session = new ScanSession();
+                } else {
                     // start batch scan
                     try {
                         session.startSession(device, feederUnit);
+
                         File file = null;
+
                         while (null != (file = session.getImageFile())) {
+
                             filesToDelete.add(file);
                             // image processing - image file is transformed to JPEG format
                             BufferedImage image = ImageIO.read(file);
                             System.out.println("scanned image " + file.getPath() + " : size=(" + image.getWidth() + ", " + image.getHeight() + ")   bit mode=" + image.getColorModel().getPixelSize());
-                            if (!"jpg".equalsIgnoreCase(ScanSession.getExt(file))) { // convert to jpeg if not already in jpeg format
-                                File jpgFile = new File(file.getParent(), "Morena_example_img_" + (pageNo++) + ".jpg");
+                            // if (!"jpg".equalsIgnoreCase(ScanSession.getExt(file))) { // convert to jpeg if not already in jpeg format
+                            if (!file.getPath().contains(".jpg")) {
+                                File jpgFile = new File(file.getParent(), "Morena_example_img_" + com.afrisoftech.lib.DateLables.getDateLabel() + ".jpg");
+                                //                          File jpgFile = new File(file.getParent(), "Morena_example_img_" + (pageNo++) + ".jpg");
                                 FileOutputStream fout = new FileOutputStream(jpgFile);
                                 ImageIO.write(image, "jpeg", fout);
                                 fout.close();
                                 filesToDelete.add(jpgFile);
-                                //Image image2 = Toolkit.getDefaultToolkit().createImage(jpgFile.getPath());
+                                // Compress JPEG file
+                                File compressedJPGFile = new File(file.getParent(), "Morena_compressed_img" + com.afrisoftech.lib.DateLables.getDateLabel() + ".jpg");
 
-                                com.lowagie.text.Image iTextImage = null;
+                                com.afrisoftech.lib.CompressJPEGFile.compress(jpgFile, compressedJPGFile, quality);
+
+                                com.itextpdf.text.Image iTextImage = null;
+                                iTextImage = com.itextpdf.text.Image.getInstance(compressedJPGFile.getPath());
+                                filesToDelete.add(compressedJPGFile);
+                                Document document = new Document();
+                                PdfWriter writer = null;
+
                                 try {
-                                    iTextImage = com.lowagie.text.Image.getInstance(image, null);
-                                } catch (BadElementException ex) {
-                                    Exceptions.printStackTrace(ex);
+                                    tempFile = java.io.File.createTempFile("REP" + com.afrisoftech.lib.DateLables.getDateLabel() + "_", ".pdf");
                                 } catch (IOException ex) {
-                                    Exceptions.printStackTrace(ex);
+                                    ex.printStackTrace();
                                 }
-                                iTextImage.setAbsolutePosition(0, 0);
 
-                                PdfContentByte cb = writer.getDirectContent();
+                                tempFile.deleteOnExit();
+
                                 try {
-                                    cb.addImage(iTextImage);
-                                } catch (DocumentException ex) {
-                                    Exceptions.printStackTrace(ex);
+                                    try {
+                                        writer = PdfWriter.getInstance(document, new java.io.FileOutputStream(tempFile));
+
+                                        writer.setFullCompression();
+                                    } catch (com.itextpdf.text.DocumentException ex) {
+                                        ex.printStackTrace();
+                                    }
+                                } catch (FileNotFoundException ex) {
+                                    ex.printStackTrace();
                                 }
+
+                                document.open();
+
+                                com.itextpdf.text.pdf.PdfPTable table = new com.itextpdf.text.pdf.PdfPTable(1);
+
+                                int headerwidths[] = {15};
+
+                                try {
+                                    table.setWidths(headerwidths);
+                                } catch (com.itextpdf.text.DocumentException ex) {
+                                    ex.printStackTrace();
+                                }
+
+                                table.setWidthPercentage((100));
+
+                                table.getDefaultCell().setColspan(1);
+
+                                table.addCell(iTextImage);
+
+                                document.add(table);
+
+                                document.close();
+
+                                reader = new com.itextpdf.text.pdf.PdfReader(tempFile.getPath());
+                                // loop over the pages in that document
+                                n = reader.getNumberOfPages();
+                                for (int page = 0; page < n;) {
+                                    try {
+                                        copy.addPage(copy.getImportedPage(reader, ++page));
+                                    } catch (BadPdfFormatException ex) {
+                                        ex.printStackTrace();
+                                        //    this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+                                        javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+                                    }
+                                }
+                                copy.freeReader(reader);
+                                reader.close();
+
                             }
+
+                        }
+                        manager.close();
+                        if (n > 0) {
+                            document2.close();
                         }
 
                     } catch (Exception ex) { // check if error is related to empty ADF
@@ -643,44 +1100,69 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
                             ex.printStackTrace();
                         }
                     }
-                }
-            }
-            System.out.println("Scanning completed - check the images ... waiting 15 seconds");
-            try {
-                Thread.sleep(15000);
-            } catch (InterruptedException ex) {
-                Exceptions.printStackTrace(ex);
-            }
 
-            // all files are deleted on the exit
-            for (File file : filesToDelete) {
-                // file.deleteOnExit();
+                }
+
+            } else if (device instanceof Camera) {
+                System.out.println("Camera detected : [" + device.toString() + "]");
             }
-        } else {
-            System.out.println("No device connected!!!");
+        }
+        System.out.println("Scanning completed - check the images ... waiting 15 seconds");
+        try {
+            Thread.sleep(15000);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
         }
 
-        document.close();
+        // all files are deleted on the exit
+        for (File file : filesToDelete) {
+            file.deleteOnExit();
+        }
 
-        pathTofile.setText(tempFile.getPath());
-//        Imaging imaging = new Imaging("Funsoft document management scan utility", 0);
-//        Result result;
-//        try {
-//            result = imaging.scan(Request.fromJson(
-//                    "{"
-//                    + "\"output_settings\" : [ {"
-//                    + "  \"type\" : \"save\","
-//                    + "  \"format\" : \"pdf\","
-//                    + "  \"save_path\" : \"${TMP}\\\\${TMS}${EXT}\""
-//                    + "} ]"
-//                    + "}"), "select", false, false);
-//            System.out.println(result == null ? "(null)" : result.toJson(true));
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
+        pathToFile.setText(resultantTempFile.getPath());
 
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        javax.swing.JOptionPane.showMessageDialog(this, "File scanning complete.");
+
+        previewDocumentBtn.doClick();
+
+
+    }//GEN-LAST:event_scanDocumentBtnActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        searchButtonClicked();         // Add your handling code here:
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void lpoNumberTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_lpoNumberTxtCaretUpdate
+        if (lpoNumberTxt.getCaretPosition() > 5) {
+            //            System.out.println("Nothing");
+            //        } else {
+            lpoNumberTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT distinct order_no,supplier, requisition_no from st_orders WHERE order_no ILIKE '%" + lpoNumberTxt.getText() + "%' and ordered = true AND order_no IN (SELECT DISTINCT order_no FROM st_orders EXCEPT SELECT DISTINCT order_no FROM st_stock_cardex) order by order_no"));
+
+            lpoNumberTbl.setShowHorizontalLines(false);
+            jSearchScrollPane2.setViewportView(lpoNumberTbl);
+
+        }        // Add your handling code here:
+    }//GEN-LAST:event_lpoNumberTxtCaretUpdate
+
+    private void lpoNumberTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lpoNumberTblMouseClicked
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+
+        orderNoTxt.setText("");
+
+        orderNoTxt.setText(lpoNumberTbl.getValueAt(lpoNumberTbl.getSelectedRow(), 0).toString());
+
+//        requestIDTxt.setText(lpoNumberTbl.getValueAt(lpoNumberTbl.getSelectedRow(), 2).toString());
+        lpoSearchDialog.dispose();
+
+        //        System.err.println("Selected LPO is " + orderNotxt.getText() + "::" + supplierNameTxt.getText());
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        lpoSearchDialog.dispose();// Add your handling code here:
+    }//GEN-LAST:event_lpoNumberTblMouseClicked
+
+    private void jButton52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton52ActionPerformed
+        this.lpoSearchDialog.dispose();          // Add your handling code here:
+    }//GEN-LAST:event_jButton52ActionPerformed
     public java.io.File getStoredPDF(java.sql.Connection connDB, String documentRefNumber) throws FileNotFoundException, DocumentException {
         java.io.File tempFile = null;
         java.io.File tempFile2 = null;
@@ -692,14 +1174,13 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
 //            java.io.OutputStream fileIS = null;
 ////                    fileIS.flush();
 //            fileIS = new java.io.FileOutputStream(tempFile);
-
             com.itextpdf.text.Document document = new com.itextpdf.text.Document();
             // step 2
             com.itextpdf.text.pdf.PdfCopy copy = null;
             try {
                 copy = new com.itextpdf.text.pdf.PdfCopy(document, new FileOutputStream(tempFile2));
             } catch (com.itextpdf.text.DocumentException ex) {
-                Exceptions.printStackTrace(ex);
+                ex.printStackTrace();
             }
             // step 3
             document.open();
@@ -742,7 +1223,7 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
                         try {
                             copy.addPage(copy.getImportedPage(reader, ++page));
                         } catch (BadPdfFormatException ex) {
-                            Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();
                         }
                     }
                     copy.freeReader(reader);
@@ -767,18 +1248,37 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
 
     }
 
+    private void searchButtonClicked() {
+
+        System.out.println("Showing dialog");
+
+        // java.awt.Point point = this.jComboBox1311.getLocationOnScreen();
+        java.awt.Point point = this.orderNoTxt.getLocationOnScreen();
+
+        lpoSearchDialog.setSize(400, 200);
+
+        lpoSearchDialog.setLocation(point);
+
+        lpoSearchDialog.setVisible(true);
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel actionPanel;
     private com.afrisoftech.lib.DatePicker beginPckr;
+    private javax.swing.JScrollPane commentsScrollPane;
+    private javax.swing.JComboBox<String> compressionRatioCmbx;
+    private javax.swing.JLabel compressionRationLbl;
     private javax.swing.JTable dataTbl;
     private javax.swing.JTextArea detailsPane;
-    private javax.swing.JTextField docNametxt;
+    public static javax.swing.JTextField docNameTxt;
+    private javax.swing.JCheckBox duplexScanningCkbx;
+    private javax.swing.JLabel duplexScanningLbl;
     private com.afrisoftech.lib.DatePicker endPckr;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton34;
+    private javax.swing.JComboBox<String> feederUnitCmbx;
+    private javax.swing.JLabel feederUnitLbl;
+    private javax.swing.JLabel filePathLbl;
+    private javax.swing.JButton jButton52;
     private javax.swing.JFileChooser jFileChooser1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
@@ -786,16 +1286,31 @@ public class DocumentationIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel29;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JPanel jSearchPanel2;
+    private javax.swing.JScrollPane jSearchScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField keySearch;
-    private javax.swing.JTextField pathTofile;
+    private javax.swing.JTable lpoNumberTbl;
+    private javax.swing.JTextField lpoNumberTxt;
+    private javax.swing.JDialog lpoSearchDialog;
+    private javax.swing.JLabel orderNoLbl;
+    private javax.swing.JPanel orderNoPanel;
+    public static javax.swing.JTextField orderNoTxt;
+    private javax.swing.JTextField pathToFile;
+    private javax.swing.JButton pathToFileSearchBtn;
+    private javax.swing.JButton previewDocumentBtn;
     public static javax.swing.JTextField refNotxt;
+    private javax.swing.JButton scanDocumentBtn;
+    private javax.swing.JComboBox<String> scannerResolutionCmbx;
+    private javax.swing.JLabel scannerResolutionLbl;
+    private javax.swing.JPanel scanningPanel;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JPanel searchPanel;
+    private javax.swing.JLabel spacerLbl;
+    private javax.swing.JButton uploadDocumentBtn;
     private javax.swing.JRadioButton viewBtn;
     // End of variables declaration//GEN-END:variables
 }

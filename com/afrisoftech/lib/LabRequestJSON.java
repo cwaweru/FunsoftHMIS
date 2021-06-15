@@ -12,7 +12,7 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.openide.util.Exceptions;
+
 
 /**
  *
@@ -215,7 +215,7 @@ public class LabRequestJSON {
             }
             
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+            ex.printStackTrace();
         }
         return serverIP;
     }
@@ -230,7 +230,8 @@ public class LabRequestJSON {
             }
             
         } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
+       //     ex.printStackTrace();
+            ex.printStackTrace();
         }
         return port;
     }

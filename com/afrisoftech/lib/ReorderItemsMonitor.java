@@ -5,7 +5,7 @@
 package com.afrisoftech.lib;
 
 import java.sql.SQLException;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -35,7 +35,7 @@ public class ReorderItemsMonitor implements Runnable {
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //ex.printStackTrace();
             }
         }
     }
@@ -91,7 +91,7 @@ public class ReorderItemsMonitor implements Runnable {
 
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
 
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
     }

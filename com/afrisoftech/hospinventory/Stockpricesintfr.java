@@ -1525,9 +1525,9 @@ public class Stockpricesintfr extends javax.swing.JInternalFrame implements java
                 for (int i = 0; i < jTable1.getRowCount(); i++) {
                     if (jTable1.getModel().getValueAt(i, 4) != null) {
                         if (jButton1.getLabel().equalsIgnoreCase("Update")) {
-                            java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE st_stock_item SET description = ?, strength= '" + jTable1.getValueAt(i, 2).toString() + "',units = '" + jTable1.getValueAt(i, 3).toString() + "'  WHERE item_code = '" + jTable1.getModel().getValueAt(i, 0).toString() + "'");
-                            pstmt31.setString(1, jTable1.getValueAt(i, 1).toString().toUpperCase() );
-                            pstmt31.executeUpdate();
+//                            java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE st_stock_item SET description = ?, strength= '" + jTable1.getValueAt(i, 2).toString() + "',units = '" + jTable1.getValueAt(i, 3).toString() + "'  WHERE item_code = '" + jTable1.getModel().getValueAt(i, 0).toString() + "'");
+//                            pstmt31.setString(1, jTable1.getValueAt(i, 1).toString().toUpperCase() );
+//                            pstmt31.executeUpdate();
                             java.sql.PreparedStatement pstmt311 = connectDB.prepareStatement("UPDATE st_stock_prices SET product = ?, balance = '" + jTable1.getValueAt(i, 4).toString() + "',transfer_price = '" + jTable1.getValueAt(i, 5).toString() + "',selling_price = '" + jTable1.getValueAt(i, 6).toString() + "' WHERE product_id = '" + jTable1.getModel().getValueAt(i, 0).toString() + "' AND department ilike '" + this.jComboBox2.getSelectedItem() + "'");
                             pstmt311.setString(1, jTable1.getValueAt(i, 1).toString().toUpperCase() );
                             //pstmt311.executeUpdate();

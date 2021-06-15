@@ -55,6 +55,8 @@ public class GokReceiptsTxt implements java.lang.Runnable {
     private java.lang.Runtime rt = null;
     private String shiftNumber;
     private String unitNumber;
+    private String txNo = "";
+    private String telNo = "";
 
     public GokReceiptsTxt(java.sql.Connection connDb, java.lang.String combox, java.lang.String amount, java.lang.String receipt, java.lang.String paymode, java.lang.String cash, java.lang.String change, java.lang.String shiftNo, java.lang.String unitNo) {
 
@@ -424,7 +426,7 @@ public class GokReceiptsTxt implements java.lang.Runnable {
                     + "receipt_time)||'-'||date_part('month', receipt_time)||'-'||date_part('year', receipt_time)||'@ '||date_part('hour', receipt_time)||':'||date_part('minute', receipt_time) AS receipt_time "
                     + "FROM ac_cash_collection WHERE receipt_no = '" + getReceipt() + "'");
             java.sql.ResultSet rset5 = st5.executeQuery("SELECT initcap(description),sum(quantity),sum(debit),round(sum(debit/quantity)) from ac_cash_collection where receipt_no = '" + getReceipt() + "' and transaction_type = 'Receipts' group by description");
-            java.sql.ResultSet rset6 = st6.executeQuery("SELECT distinct user_name,cash_point,journal_no,patient_no from ac_cash_collection where receipt_no = '" + getReceipt() + "'");
+            java.sql.ResultSet rset6 = st6.executeQuery("SELECT distinct user_name,cash_point,journal_no,patient_no, account_no from ac_cash_collection where receipt_no = '" + getReceipt() + "'");
             java.sql.ResultSet rset51 = st51.executeQuery("SELECT sum(credit) from ac_cash_collection where receipt_no = '" + getReceipt() + "' and credit > 0 AND (transaction_type ILIKE 'Waive%' OR transaction_type ILIKE 'Exempti%')");
             java.sql.ResultSet rset6d = st2.executeQuery("SELECT distinct journal_no from ac_cash_collection where receipt_no = '" + getReceipt() + "' AND credit > 0");
 
@@ -480,6 +482,10 @@ public class GokReceiptsTxt implements java.lang.Runnable {
 
 
                     pNumber = getDbObject().getDBObject(rset6.getObject(4), "-");
+                    
+                    txNo = getDbObject().getDBObject(rset6.getObject(3), "-");
+                    
+                    telNo = getDbObject().getDBObject(rset6.getObject(5), "-");
 
                 }
 
@@ -597,6 +603,12 @@ public class GokReceiptsTxt implements java.lang.Runnable {
                 tableF.addCell("Cashier: " + Cashier);
 
                 tableF.addCell("Shift No: " + shiftNumber);
+                
+                if(getPaymode().toLowerCase().contains("pesa")){
+                tableF.addCell("Tx. No: " + txNo);
+
+                tableF.addCell("Tel. No: " + telNo);
+                }
 
 
                 tableF.addCell(" ");

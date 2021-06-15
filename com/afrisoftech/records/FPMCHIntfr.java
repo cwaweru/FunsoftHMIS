@@ -6,7 +6,7 @@
 package com.afrisoftech.records;
 
 import java.sql.SQLException;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -23,6 +23,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
 
         //  pConnDB = pconnDB;
         initComponents();
+        jPanel2.setVisible(false);
     }
 
     /**
@@ -83,16 +84,10 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
         educationLevelLbl1 = new javax.swing.JLabel();
         educationLevelCmbx1 = new javax.swing.JComboBox();
         weightLbl = new javax.swing.JLabel();
-        bloodGroupTxt = new javax.swing.JTextField();
         bloodPressureLbl = new javax.swing.JLabel();
-        rhesusFactorTxt = new javax.swing.JTextField();
         counsellingLbl = new javax.swing.JLabel();
         counsellingCmbx = new javax.swing.JComboBox();
-        hbLbl = new javax.swing.JLabel();
-        bloodGroupLbl = new javax.swing.JLabel();
-        rhesusFactorLbl = new javax.swing.JLabel();
         gestationPeriodTxt = new javax.swing.JTextField();
-        hbTxt = new javax.swing.JTextField();
         numberofVisitlbl = new javax.swing.JLabel();
         numberofVisitTxt = new javax.swing.JTextField();
         cardOpeningOptionsPanel = new javax.swing.JPanel();
@@ -101,8 +96,6 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
         createExistingCardRdbtn = new javax.swing.JRadioButton();
         weightTxt = new javax.swing.JTextField();
         ancCardSearchField = new javax.swing.JButton();
-        serologyLbl = new javax.swing.JLabel();
-        serologyCmbx = new javax.swing.JComboBox();
         hivStatusPanel = new javax.swing.JPanel();
         hivInitialLbl = new javax.swing.JLabel();
         hivInitialCmbx = new javax.swing.JComboBox();
@@ -118,6 +111,23 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
         breastExamCmbx = new javax.swing.JComboBox();
         referralsINCmbx = new javax.swing.JComboBox();
         referralsOUTCmbx = new javax.swing.JComboBox();
+        jPanel1 = new javax.swing.JPanel();
+        serologyLbl = new javax.swing.JLabel();
+        serologyCmbx = new javax.swing.JComboBox();
+        rhesusFactorLbl = new javax.swing.JLabel();
+        rhesusFactorTxt = new javax.swing.JTextField();
+        bloodGroupLbl = new javax.swing.JLabel();
+        bloodGroupTxt = new javax.swing.JTextField();
+        hbTxt = new javax.swing.JTextField();
+        hbLbl3 = new javax.swing.JLabel();
+        hbLbl4 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        hbLbl = new javax.swing.JLabel();
+        hbLbl1 = new javax.swing.JLabel();
+        hbLbl2 = new javax.swing.JLabel();
+        rbsTxt = new javax.swing.JTextField();
+        bsTxt = new javax.swing.JTextField();
+        urinalysisTxt = new javax.swing.JTextField();
         ancCardDetailsPanel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
@@ -316,7 +326,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             religionLbl.setText("Religion");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 10;
+            gridBagConstraints.gridy = 11;
             gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
@@ -328,7 +338,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             religionCmbx.setPreferredSize(new java.awt.Dimension(150, 19));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 10;
+            gridBagConstraints.gridy = 11;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
@@ -401,7 +411,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             occupationLbl.setText("Occupation");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 12;
+            gridBagConstraints.gridy = 13;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -413,7 +423,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             occupationCmbx.setPreferredSize(new java.awt.Dimension(150, 20));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 12;
+            gridBagConstraints.gridy = 13;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
@@ -423,7 +433,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             educationLevelLbl.setText("Education Level");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 11;
+            gridBagConstraints.gridy = 12;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             ancMotherInfoPanel.add(educationLevelLbl, gridBagConstraints);
@@ -432,7 +442,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             educationLevelCmbx.setPreferredSize(new java.awt.Dimension(150, 19));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 11;
+            gridBagConstraints.gridy = 12;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
@@ -473,7 +483,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             howclientKnewcentreLbl.setText("Next of Kin");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 13;
+            gridBagConstraints.gridy = 14;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -572,7 +582,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             nextTxt.setPreferredSize(new java.awt.Dimension(150, 20));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 13;
+            gridBagConstraints.gridy = 14;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
@@ -619,7 +629,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             ancMotherInfoPanel.add(eddLbl, gridBagConstraints);
 
-            dobPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter date of birth or patient Age here ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 51, 153))); // NOI18N
+            dobPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter date of birth or patient Age here ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 51, 153))); // NOI18N
             dobPanel.setLayout(new java.awt.GridBagLayout());
 
             dobLbl.setText("Date of Birth");
@@ -715,13 +725,6 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             ancMotherInfoPanel.add(weightLbl, gridBagConstraints);
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 4;
-            gridBagConstraints.gridy = 11;
-            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.weighty = 1.0;
-            ancMotherInfoPanel.add(bloodGroupTxt, gridBagConstraints);
 
             bloodPressureLbl.setText("Blood Pressure (BP)");
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -732,13 +735,6 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
             ancMotherInfoPanel.add(bloodPressureLbl, gridBagConstraints);
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 4;
-            gridBagConstraints.gridy = 12;
-            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.weighty = 1.0;
-            ancMotherInfoPanel.add(rhesusFactorTxt, gridBagConstraints);
 
             counsellingLbl.setText("Counselled on");
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -758,34 +754,6 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             ancMotherInfoPanel.add(counsellingCmbx, gridBagConstraints);
 
-            hbLbl.setText("HB");
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 3;
-            gridBagConstraints.gridy = 10;
-            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-            gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-            ancMotherInfoPanel.add(hbLbl, gridBagConstraints);
-
-            bloodGroupLbl.setText("Blood Group");
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 3;
-            gridBagConstraints.gridy = 11;
-            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-            gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.weighty = 1.0;
-            gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-            ancMotherInfoPanel.add(bloodGroupLbl, gridBagConstraints);
-
-            rhesusFactorLbl.setText("Rhesus");
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 3;
-            gridBagConstraints.gridy = 12;
-            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-            gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.weighty = 1.0;
-            gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-            ancMotherInfoPanel.add(rhesusFactorLbl, gridBagConstraints);
-
             gestationPeriodTxt.setToolTipText("This must be a numerical value");
             gestationPeriodTxt.setMinimumSize(new java.awt.Dimension(50, 20));
             gestationPeriodTxt.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -796,17 +764,6 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             ancMotherInfoPanel.add(gestationPeriodTxt, gridBagConstraints);
-
-            hbTxt.setToolTipText("This must be a numerical value");
-            hbTxt.setMinimumSize(new java.awt.Dimension(50, 20));
-            hbTxt.setPreferredSize(new java.awt.Dimension(50, 20));
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 4;
-            gridBagConstraints.gridy = 10;
-            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-            gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.weighty = 1.0;
-            ancMotherInfoPanel.add(hbTxt, gridBagConstraints);
 
             numberofVisitlbl.setText("Number of Visits");
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -919,24 +876,6 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weightx = 1.0;
             ancMotherInfoPanel.add(ancCardSearchField, gridBagConstraints);
 
-            serologyLbl.setText("Serology(VDRL/RPR)");
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 3;
-            gridBagConstraints.gridy = 13;
-            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-            gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-            ancMotherInfoPanel.add(serologyLbl, gridBagConstraints);
-
-            serologyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Non Reactive", "Reactive" }));
-            gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 4;
-            gridBagConstraints.gridy = 13;
-            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-            gridBagConstraints.weightx = 1.0;
-            gridBagConstraints.weighty = 1.0;
-            ancMotherInfoPanel.add(serologyCmbx, gridBagConstraints);
-
             hivStatusPanel.setLayout(new java.awt.GridBagLayout());
 
             hivInitialLbl.setText("HIV Initial");
@@ -975,7 +914,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
-            gridBagConstraints.gridy = 14;
+            gridBagConstraints.gridy = 15;
             gridBagConstraints.gridwidth = 2;
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.weightx = 1.0;
@@ -1001,7 +940,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             jLabel1.setText("ANC Exercise done");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 15;
+            gridBagConstraints.gridy = 16;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -1011,7 +950,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             ancExerciseCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N", "Y" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 15;
+            gridBagConstraints.gridy = 16;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -1020,7 +959,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             jLabel2.setText("Breast examination done");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 14;
+            gridBagConstraints.gridy = 15;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -1030,7 +969,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             breastExamCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Y", "N" }));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 14;
+            gridBagConstraints.gridy = 15;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -1040,7 +979,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             referralsINCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Referrals IN"));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
-            gridBagConstraints.gridy = 15;
+            gridBagConstraints.gridy = 16;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -1050,11 +989,162 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             referralsOUTCmbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Referrals OUT"));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 4;
-            gridBagConstraints.gridy = 15;
+            gridBagConstraints.gridy = 16;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             ancMotherInfoPanel.add(referralsOUTCmbx, gridBagConstraints);
+
+            jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            jPanel1.setLayout(new java.awt.GridBagLayout());
+
+            serologyLbl.setText("Serology(VDRL/RPR)");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 14;
+            gridBagConstraints.gridwidth = 2;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+            jPanel1.add(serologyLbl, gridBagConstraints);
+
+            serologyCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Non Reactive", "Reactive" }));
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 3;
+            gridBagConstraints.gridy = 14;
+            gridBagConstraints.gridwidth = 2;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel1.add(serologyCmbx, gridBagConstraints);
+
+            rhesusFactorLbl.setText("Rhesus");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 3;
+            gridBagConstraints.gridy = 13;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+            jPanel1.add(rhesusFactorLbl, gridBagConstraints);
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 4;
+            gridBagConstraints.gridy = 13;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel1.add(rhesusFactorTxt, gridBagConstraints);
+
+            bloodGroupLbl.setText("Blood Group");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 3;
+            gridBagConstraints.gridy = 12;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+            jPanel1.add(bloodGroupLbl, gridBagConstraints);
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 4;
+            gridBagConstraints.gridy = 12;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel1.add(bloodGroupTxt, gridBagConstraints);
+
+            hbTxt.setToolTipText("This must be a numerical value");
+            hbTxt.setMinimumSize(new java.awt.Dimension(50, 20));
+            hbTxt.setPreferredSize(new java.awt.Dimension(50, 20));
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 4;
+            gridBagConstraints.gridy = 11;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel1.add(hbTxt, gridBagConstraints);
+
+            hbLbl3.setText("HB");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 3;
+            gridBagConstraints.gridy = 11;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+            jPanel1.add(hbLbl3, gridBagConstraints);
+
+            hbLbl4.setText("HB");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 3;
+            gridBagConstraints.gridy = 11;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+            jPanel1.add(hbLbl4, gridBagConstraints);
+
+            jPanel2.setLayout(new java.awt.GridBagLayout());
+
+            hbLbl.setText("Urinalysis");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 11;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+            jPanel2.add(hbLbl, gridBagConstraints);
+
+            hbLbl1.setText("BS for MPS");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 12;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+            jPanel2.add(hbLbl1, gridBagConstraints);
+
+            hbLbl2.setText("RBS");
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 13;
+            gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+            jPanel2.add(hbLbl2, gridBagConstraints);
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 1;
+            gridBagConstraints.gridy = 13;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel2.add(rbsTxt, gridBagConstraints);
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 1;
+            gridBagConstraints.gridy = 12;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel2.add(bsTxt, gridBagConstraints);
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 1;
+            gridBagConstraints.gridy = 11;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel2.add(urinalysisTxt, gridBagConstraints);
+
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 11;
+            gridBagConstraints.gridwidth = 2;
+            gridBagConstraints.gridheight = 3;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel1.add(jPanel2, gridBagConstraints);
+
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 3;
+            gridBagConstraints.gridy = 10;
+            gridBagConstraints.gridwidth = 2;
+            gridBagConstraints.gridheight = 5;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            ancMotherInfoPanel.add(jPanel1, gridBagConstraints);
 
             jTabbedPane1.addTab("Antenatal Care Register : Page 1", ancMotherInfoPanel);
 
@@ -1655,7 +1745,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             getContentPane().add(buttonPanel, gridBagConstraints);
 
-            setBounds(0, 0, 759, 476);
+            setBounds(0, 0, 1024, 476);
         }// </editor-fold>//GEN-END:initComponents
 
     private void gravidaTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gravidaTxtActionPerformed
@@ -1682,7 +1772,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                ex.printStackTrace();             //ex.printStackTrace();
             }
             ancNumberTxt.setText(ancNumber);
         }
@@ -1698,7 +1788,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
                     + "other_con, deworm, ipt, tt_dose, iron, folic, r_itn, add_treatment,"
                     + "couple_canc, patner_tested, reffered, remarks,"
                     + "visit_date, blood_group, rhesus, anc_exercise, breast_exam, ferrous_folate"
-                    + ", referrals_in, referrals_out)"
+                    + ", referrals_in, referrals_out, urinalysis, bs_mps, rbs)"
                     + "VALUES (?, ?, ?, ?, ?,"
                     + "?, ?, ?, ?, ?, ?, "
                     + "?, ?, ?, ?, ?, ?, "
@@ -1706,7 +1796,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
                     + "?, ?, ?, ?, ?, ?, ?,"
                     + "?, ?, ?, ?, ?, ?, ?,"
                     + "?, ?, ?, ?, ?, ?, ?, ?,"
-                    + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
             pstmtMotherInfo.setString(1, ancNumberTxt.getText());
             pstmtMotherInfo.setString(2, middleNameTxt.getText());
             pstmtMotherInfo.setString(3, this.firstNameTxt.getText());
@@ -1775,6 +1865,9 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
             pstmtMotherInfo.setObject(56, ferrousFolateCmbx.getSelectedItem());
             pstmtMotherInfo.setObject(57, referralsINCmbx.getSelectedItem());
             pstmtMotherInfo.setObject(58, referralsOUTCmbx.getSelectedItem());
+            pstmtMotherInfo.setString(59, urinalysisTxt.getText());
+            pstmtMotherInfo.setString(60, bsTxt.getText());
+            pstmtMotherInfo.setString(61, rbsTxt.getText());
             pstmtMotherInfo.execute();
             results();
 
@@ -1997,6 +2090,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField bloodGroupTxt;
     private javax.swing.JLabel bloodPressureLbl;
     private javax.swing.JComboBox breastExamCmbx;
+    private javax.swing.JTextField bsTxt;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JPanel cardOpeningOptionsPanel;
@@ -2028,6 +2122,10 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField gravidaTxt;
     private javax.swing.JComboBox haartCmbx;
     private javax.swing.JLabel hbLbl;
+    private javax.swing.JLabel hbLbl1;
+    private javax.swing.JLabel hbLbl2;
+    private javax.swing.JLabel hbLbl3;
+    private javax.swing.JLabel hbLbl4;
     private javax.swing.JTextField hbTxt;
     private javax.swing.JTextField heightTxt;
     private javax.swing.JComboBox hivInitialCmbx;
@@ -2067,6 +2165,8 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -2092,6 +2192,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel parityLbl;
     private javax.swing.JTextField parityTxt;
     private javax.swing.JComboBox partnerHIVResultsCmbx;
+    private javax.swing.JTextField rbsTxt;
     private javax.swing.JLabel reasonForVisitLbl;
     private javax.swing.JTextField referralTxt;
     private javax.swing.JComboBox referralsINCmbx;
@@ -2118,6 +2219,7 @@ public class FPMCHIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tbStatusTxt;
     private javax.swing.JTextField telephoneTxt;
     private javax.swing.JComboBox ttDoseCmbx;
+    private javax.swing.JTextField urinalysisTxt;
     private javax.swing.JLabel villageTxt;
     private javax.swing.JLabel weightLbl;
     private javax.swing.JTextField weightTxt;

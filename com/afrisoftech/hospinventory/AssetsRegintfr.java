@@ -6,7 +6,6 @@
 package com.afrisoftech.hospinventory;
 
 import static com.afrisoftech.hospinventory.PatientsBillingIntfr_.patientNameTxt;
-import static com.afrisoftech.hospinventory.PatientsBillingIntfr_.mainItemstbl;
 import static com.afrisoftech.hospinventory.PatientsBillingIntfr_.patientNumberTxt;
 import static com.afrisoftech.hospinventory.PatientsBillingIntfr_.transNo;
 import net.sourceforge.barbecue.BarcodeFactory;
@@ -24,7 +23,8 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.awt.*;
 import java.sql.SQLException;
-//import org.openide.util.Exceptions;
+import static com.afrisoftech.hospinventory.PatientsBillingIntfr_.mainItemsTbl;
+//
 
 /**
  *
@@ -1907,7 +1907,7 @@ public class AssetsRegintfr extends javax.swing.JInternalFrame implements java.l
                 ex.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //ex.printStackTrace();
             }
             jLabel2.setForeground(java.awt.Color.red);
             jLabel2.setText("ERROR! Please double check your entries");
@@ -2002,7 +2002,7 @@ public class AssetsRegintfr extends javax.swing.JInternalFrame implements java.l
             registerAssetsBtn.setText("Update Asset Register");
         } catch (SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         this.assetSearchDialog.dispose();
 
@@ -2243,7 +2243,7 @@ public class AssetsRegintfr extends javax.swing.JInternalFrame implements java.l
                 ex.printStackTrace();
                 javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //ex.printStackTrace();
             }
             jLabel2.setForeground(java.awt.Color.red);
             jLabel2.setText("ERROR! Please double check your entries");

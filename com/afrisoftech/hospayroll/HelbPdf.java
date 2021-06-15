@@ -653,16 +653,16 @@ public class HelbPdf implements java.lang.Runnable {
                                 java.sql.Statement st41 = connectDB.createStatement();
                                 
                                 java.sql.ResultSet rset2 = st3.executeQuery("SELECT id_no,pin_no from master_file where employee_no ilike '"+listofStaffNos[j]+"'");
-                                java.sql.ResultSet rset4 = st4.executeQuery("SELECT staff_no,staff_name,sum(amount) from posting where (description ILIKE 'hel%' or description ilike 'h.e.l%') AND date BETWEEN '"+beginDate+"' AND '"+endDate+"' and staff_no ilike '"+listofStaffNos[j]+"' GROUP BY staff_no,staff_name");
-                                java.sql.ResultSet rset41 = st41.executeQuery("SELECT sacco_no,balance from sacco_deductions where (sacco_name ILIKE 'hel%' or sacco_name ilike 'h.e.l%') and staff_no ilike '"+listofStaffNos[j]+"'");
+                                java.sql.ResultSet rset4 = st4.executeQuery("SELECT staff_no,staff_name,sum(amount) from posting where (description ILIKE 'helb%' or description ilike 'h.e.l%') AND date BETWEEN '"+beginDate+"' AND '"+endDate+"' and staff_no ilike '"+listofStaffNos[j]+"' GROUP BY staff_no,staff_name");
+//                                java.sql.ResultSet rset41 = st41.executeQuery("SELECT sacco_no,balance from sacco_deductions where (sacco_name ILIKE 'helb%' or sacco_name ilike 'h.e.l%') and staff_no ilike '"+listofStaffNos[j]+"'");
                                 
                                 while (rset2.next()) {
                                     while (rset4.next()) {
-                                        while (rset41.next()) {
+//                                        while (rset41.next()) {
                                             table.getDefaultCell().setColspan(1);
                                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                                             numberSeq = numberSeq +1;
-                                            phrase = new Phrase(""+numberSeq+"   ", pFontHeader);
+                                            phrase = new Phrase(""+listofStaffNos[j]+"   ", pFontHeader);
                                             table.addCell(phrase);
                                             
                                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -674,7 +674,7 @@ public class HelbPdf implements java.lang.Runnable {
                                             table.addCell(phrase);
                                             
                                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                            phrase = new Phrase(rset41.getObject(1).toString(), pFontHeader1);
+                                            phrase = new Phrase(listofStaffNos[j].toString(), pFontHeader1);
                                             
                                             table.addCell(phrase);
                                             
@@ -694,12 +694,12 @@ public class HelbPdf implements java.lang.Runnable {
                                             deduction = deduction + rset4.getDouble(3);
                                             
                                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset41.getString(2)),pFontHeader1);
+                                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset4.getString(3)),pFontHeader1);
                                             table.addCell(phrase);
                                             
-                                            balance = balance + rset41.getDouble(2);
+                                            balance = balance + rset4.getDouble(3);
                                             
-                                        }
+//                                        }
                                     }
                                 }
                                 
@@ -798,34 +798,34 @@ public class HelbPdf implements java.lang.Runnable {
                 
             }
             
-             
+             docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
             
-            try {
-                
-                if (System.getProperty("os.name").equalsIgnoreCase("Linux"))  {
-                    
-                    System.out.println(tempFile);
-                    
-                    wait_for_Pdf2Show = rt.exec("kghostview "+tempFile+"");
-                    
-                    
-                    // wait_for_Pdf2Show = rt.exec("xpdf "+tempFile+"");
-                    
-                    wait_for_Pdf2Show.waitFor();
-                    
-                } else {
-                    
-                    wait_for_Pdf2Show = rt.exec("c:/Program Files/Adobe/Acrobat 5.0/Reader/AcroRd32.exe "+tempFile);
-                    
-                    wait_for_Pdf2Show.waitFor();
-                    
-                }
-                
-            } catch(java.lang.InterruptedException intrExec) {
-                
-                javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), intrExec.getMessage());
-                
-            }
+//            try {
+//                
+//                if (System.getProperty("os.name").equalsIgnoreCase("Linux"))  {
+//                    
+//                    System.out.println(tempFile);
+//                    
+//                    wait_for_Pdf2Show = rt.exec("kghostview "+tempFile+"");
+//                    
+//                    
+//                    // wait_for_Pdf2Show = rt.exec("xpdf "+tempFile+"");
+//                    
+//                    wait_for_Pdf2Show.waitFor();
+//                    
+//                } else {
+//                    
+//                    wait_for_Pdf2Show = rt.exec("c:/Program Files/Adobe/Acrobat 5.0/Reader/AcroRd32.exe "+tempFile);
+//                    
+//                    wait_for_Pdf2Show.waitFor();
+//                    
+//                }
+//                
+//            } catch(java.lang.InterruptedException intrExec) {
+//                
+//                javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), intrExec.getMessage());
+//                
+//            }
             
             
             
@@ -851,7 +851,7 @@ public class HelbPdf implements java.lang.Runnable {
             
             java.sql.Statement stmt1 = connectDB.createStatement();
             
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT staff_no from posting WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND (description ILIKE 'hel%' or description ILIKE 'h.e.l%') order by staff_no");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT staff_no from posting WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND (description ILIKE 'helb%' or description ILIKE 'h.e.l%') order by staff_no");
             
             while (rSet1.next()) {
                 

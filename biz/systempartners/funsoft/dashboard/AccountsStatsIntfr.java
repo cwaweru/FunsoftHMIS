@@ -1219,7 +1219,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
             while (true) {
                 // if(endDatePicker.getDate() != null){
                 try {
-                    java.sql.PreparedStatement dailyOpdStaffPstmt = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date::date = '" + endDatePicker.getDate() + "'::date AND department ILIKE 'Staff' ");
+                    java.sql.PreparedStatement dailyOpdStaffPstmt = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date::date = '" + endDatePicker.getDate() + "'::date AND department ILIKE '%Staff%' ");
                     java.sql.ResultSet dailyOpdStaffRset = dailyOpdStaffPstmt.executeQuery();
                     while (dailyOpdStaffRset.next()) {
                         staffOPDAttendanceTxt.setText(String.valueOf(dailyOpdStaffRset.getInt(1)));
@@ -1520,6 +1520,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                 try {
                     java.sql.PreparedStatement MonthOpdPstmt = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date between ? AND ?");
                     try {
+                        System.err.println(">>>"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(monthrangeDates[0][0].toString().trim())));
                         MonthOpdPstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(monthrangeDates[0][0].toString().trim())));
                         // MonthCashCollectionPstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(monthrangeDates[0][1].toString().trim())));
                         MonthOpdPstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(endDatePicker.getDate().toString())));
@@ -1567,6 +1568,7 @@ private void weeklyAdmissionsTxtActionPerformed(java.awt.event.ActionEvent evt) 
                 try {
                     java.sql.PreparedStatement yearlyOpdPstmt = connectDB.prepareStatement("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date between ? AND ?");
                     try {
+                        System.err.println("SELECT COUNT(patient_no) FROM hp_patient_visit WHERE date between '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(rangeDates[0][0].toString().trim()))+"' AND '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(endDatePicker.getDate().toString()))+"'");
                         yearlyOpdPstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(rangeDates[0][0].toString().trim())));
                         yearlyOpdPstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(dateFormat.parse(endDatePicker.getDate().toString())));
                     } catch (ParseException ex) {

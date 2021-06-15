@@ -531,6 +531,7 @@ public class FinalInterimPatientlnvSummPdf implements java.lang.Runnable {
                         javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), BadElExec.getMessage());
 
                     }
+                    //--------------------------
 
                     try {
 

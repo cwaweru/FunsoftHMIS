@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-/*
+ /*
  * TotalShiftsIntfr.java
  *
  * Created on 10-Jul-2009, 12:51:24
@@ -33,6 +33,20 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
     double dCash = 0.00;
     private double mCash = 0.00;
     double mpCash = 0.00;
+
+    double Rct1 = 0.00;
+    double Cash1 = 0.00;
+    double Cheque1 = 0.00;
+    double Eft1 = 0.00;
+    double Chq1 = 0.00;
+    double Card1 = 0.00;
+    double Refund1 = 0.00;
+    double Net1 = 0.00;
+    double Total1 = 0.00;
+    double dCash1 = 0.00;
+    private double mCash1 = 0.00;
+    double mpCash1 = 0.00;
+
     com.afrisoftech.lib.DBObject dbObject;
 
     /**
@@ -64,6 +78,8 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        summarisedShiftsReportPanel = new javax.swing.JPanel();
         datesPanel = new javax.swing.JPanel();
         endDatePicker = new com.afrisoftech.lib.DatePicker();
         beginDateLbl = new javax.swing.JLabel();
@@ -93,6 +109,36 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
         spacerLbl = new javax.swing.JLabel();
         refreshBtn = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        detailedShiftsReportPanel = new javax.swing.JPanel();
+        detailedDatesPanel = new javax.swing.JPanel();
+        detailedEndDatePicker = new com.afrisoftech.lib.DatePicker();
+        detailedBeginDateLbl = new javax.swing.JLabel();
+        detailedEndDatePanel = new javax.swing.JLabel();
+        detailedBeginDatePicker = new com.afrisoftech.lib.DatePicker();
+        detailedMainPanel = new javax.swing.JPanel();
+        shiftTotalsJscrl1 = new javax.swing.JScrollPane();
+        shiftTotalsTable1 = new com.afrisoftech.dbadmin.JTable();
+        shiftsTotalAmountLbl1 = new javax.swing.JLabel();
+        shiftsTotalAmountTxt1 = new javax.swing.JFormattedTextField();
+        totalcashLbl1 = new javax.swing.JLabel();
+        totalChequesLbl2 = new javax.swing.JLabel();
+        totalEftLbl2 = new javax.swing.JLabel();
+        totalCashTxt1 = new javax.swing.JFormattedTextField();
+        totalChequesTxt2 = new javax.swing.JFormattedTextField();
+        totalEFTTxt2 = new javax.swing.JFormattedTextField();
+        totalRefundsLbl1 = new javax.swing.JLabel();
+        totalRefundsTxt1 = new javax.swing.JFormattedTextField();
+        totalChequesLbl3 = new javax.swing.JLabel();
+        totalChequesTxt3 = new javax.swing.JFormattedTextField();
+        totalEftLbl3 = new javax.swing.JLabel();
+        totalEFTTxt3 = new javax.swing.JFormattedTextField();
+        totalMPayLbl1 = new javax.swing.JLabel();
+        totalMPayTxt1 = new javax.swing.JFormattedTextField();
+        detailedActionsPanel = new javax.swing.JPanel();
+        reconcilemnit1 = new javax.swing.JButton();
+        spacerLbl1 = new javax.swing.JLabel();
+        refreshBtn1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -101,6 +147,8 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
         setTitle("Total Shifts Report");
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        summarisedShiftsReportPanel.setLayout(new java.awt.GridBagLayout());
 
         datesPanel.setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -149,7 +197,7 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(datesPanel, gridBagConstraints);
+        summarisedShiftsReportPanel.add(datesPanel, gridBagConstraints);
 
         mainPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -364,7 +412,7 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1000.0;
-        getContentPane().add(mainPanel, gridBagConstraints);
+        summarisedShiftsReportPanel.add(mainPanel, gridBagConstraints);
 
         actionsPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -409,7 +457,333 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(actionsPanel, gridBagConstraints);
+        summarisedShiftsReportPanel.add(actionsPanel, gridBagConstraints);
+
+        jTabbedPane1.addTab("Summarised Shifts Report", summarisedShiftsReportPanel);
+
+        detailedShiftsReportPanel.setLayout(new java.awt.GridBagLayout());
+
+        detailedDatesPanel.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedDatesPanel.add(detailedEndDatePicker, gridBagConstraints);
+
+        detailedBeginDateLbl.setText("Begin Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedDatesPanel.add(detailedBeginDateLbl, gridBagConstraints);
+
+        detailedEndDatePanel.setText("End Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedDatesPanel.add(detailedEndDatePanel, gridBagConstraints);
+
+        detailedBeginDatePicker.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                detailedBeginDatePickerMouseClicked(evt);
+            }
+        });
+        detailedBeginDatePicker.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                detailedBeginDatePickerPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedDatesPanel.add(detailedBeginDatePicker, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedShiftsReportPanel.add(detailedDatesPanel, gridBagConstraints);
+
+        detailedMainPanel.setLayout(new java.awt.GridBagLayout());
+
+        shiftTotalsJscrl1.setBorder(javax.swing.BorderFactory.createTitledBorder("Shift totals table"));
+
+        shiftTotalsTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        shiftTotalsTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                shiftTotalsTable1MouseClicked(evt);
+            }
+        });
+        shiftTotalsJscrl1.setViewportView(shiftTotalsTable1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridwidth = 16;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1000.0;
+        detailedMainPanel.add(shiftTotalsJscrl1, gridBagConstraints);
+
+        shiftsTotalAmountLbl1.setText("Net Amount");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 14;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedMainPanel.add(shiftsTotalAmountLbl1, gridBagConstraints);
+
+        shiftsTotalAmountTxt1.setEditable(false);
+        shiftsTotalAmountTxt1.setForeground(new java.awt.Color(0, 0, 204));
+        shiftsTotalAmountTxt1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤¤#,##0.00"))));
+        shiftsTotalAmountTxt1.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        shiftsTotalAmountTxt1.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        shiftsTotalAmountTxt1.setMinimumSize(new java.awt.Dimension(50, 20));
+        shiftsTotalAmountTxt1.setPreferredSize(new java.awt.Dimension(50, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 15;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedMainPanel.add(shiftsTotalAmountTxt1, gridBagConstraints);
+
+        totalcashLbl1.setText("Total (Cash)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedMainPanel.add(totalcashLbl1, gridBagConstraints);
+
+        totalChequesLbl2.setText("Total (Exemptions)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedMainPanel.add(totalChequesLbl2, gridBagConstraints);
+
+        totalEftLbl2.setText("Total (D/Banking)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedMainPanel.add(totalEftLbl2, gridBagConstraints);
+
+        totalCashTxt1.setEditable(false);
+        totalCashTxt1.setForeground(new java.awt.Color(0, 51, 204));
+        totalCashTxt1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤¤#,##0.00"))));
+        totalCashTxt1.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        totalCashTxt1.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        totalCashTxt1.setMinimumSize(new java.awt.Dimension(50, 20));
+        totalCashTxt1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalCashTxt1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedMainPanel.add(totalCashTxt1, gridBagConstraints);
+
+        totalChequesTxt2.setEditable(false);
+        totalChequesTxt2.setForeground(new java.awt.Color(0, 0, 204));
+        totalChequesTxt2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤¤#,##0.00"))));
+        totalChequesTxt2.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        totalChequesTxt2.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        totalChequesTxt2.setMinimumSize(new java.awt.Dimension(50, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedMainPanel.add(totalChequesTxt2, gridBagConstraints);
+
+        totalEFTTxt2.setEditable(false);
+        totalEFTTxt2.setForeground(new java.awt.Color(0, 0, 204));
+        totalEFTTxt2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤¤#,##0.00"))));
+        totalEFTTxt2.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        totalEFTTxt2.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        totalEFTTxt2.setMinimumSize(new java.awt.Dimension(50, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedMainPanel.add(totalEFTTxt2, gridBagConstraints);
+
+        totalRefundsLbl1.setText("Total Refunds");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedMainPanel.add(totalRefundsLbl1, gridBagConstraints);
+
+        totalRefundsTxt1.setEditable(false);
+        totalRefundsTxt1.setForeground(new java.awt.Color(255, 0, 0));
+        totalRefundsTxt1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤¤#,##0"))));
+        totalRefundsTxt1.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        totalRefundsTxt1.setFont(new java.awt.Font("Trebuchet MS", 3, 11)); // NOI18N
+        totalRefundsTxt1.setMinimumSize(new java.awt.Dimension(50, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedMainPanel.add(totalRefundsTxt1, gridBagConstraints);
+
+        totalChequesLbl3.setText("Total (Chq)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedMainPanel.add(totalChequesLbl3, gridBagConstraints);
+
+        totalChequesTxt3.setEditable(false);
+        totalChequesTxt3.setForeground(new java.awt.Color(0, 0, 204));
+        totalChequesTxt3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤¤#,##0.00"))));
+        totalChequesTxt3.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        totalChequesTxt3.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        totalChequesTxt3.setMinimumSize(new java.awt.Dimension(50, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedMainPanel.add(totalChequesTxt3, gridBagConstraints);
+
+        totalEftLbl3.setText("Total (Eft)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedMainPanel.add(totalEftLbl3, gridBagConstraints);
+
+        totalEFTTxt3.setEditable(false);
+        totalEFTTxt3.setForeground(new java.awt.Color(0, 0, 204));
+        totalEFTTxt3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤¤#,##0.00"))));
+        totalEFTTxt3.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        totalEFTTxt3.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        totalEFTTxt3.setMinimumSize(new java.awt.Dimension(50, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedMainPanel.add(totalEFTTxt3, gridBagConstraints);
+
+        totalMPayLbl1.setText("Total Mobile/Pay");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedMainPanel.add(totalMPayLbl1, gridBagConstraints);
+
+        totalMPayTxt1.setEditable(false);
+        totalMPayTxt1.setForeground(new java.awt.Color(0, 0, 204));
+        totalMPayTxt1.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        totalMPayTxt1.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        totalMPayTxt1.setMinimumSize(new java.awt.Dimension(50, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedMainPanel.add(totalMPayTxt1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1000.0;
+        detailedShiftsReportPanel.add(detailedMainPanel, gridBagConstraints);
+
+        detailedActionsPanel.setLayout(new java.awt.GridBagLayout());
+
+        reconcilemnit1.setText("Reconcile shift(s)");
+        reconcilemnit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reconcilemnit1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedActionsPanel.add(reconcilemnit1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1000.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedActionsPanel.add(spacerLbl1, gridBagConstraints);
+
+        refreshBtn1.setText("Refresh report");
+        refreshBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtn1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedActionsPanel.add(refreshBtn1, gridBagConstraints);
+
+        jButton4.setText("Close form");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedActionsPanel.add(jButton4, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        detailedShiftsReportPanel.add(detailedActionsPanel, gridBagConstraints);
+
+        jTabbedPane1.addTab("Detailed Shifts Report", detailedShiftsReportPanel);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        getContentPane().add(jTabbedPane1, gridBagConstraints);
 
         setBounds(0, 0, 839, 369);
     }// </editor-fold>//GEN-END:initComponents
@@ -454,6 +828,30 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_refreshBtnActionPerformed
 
+    private void detailedBeginDatePickerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailedBeginDatePickerMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_detailedBeginDatePickerMouseClicked
+
+    private void detailedBeginDatePickerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_detailedBeginDatePickerPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_detailedBeginDatePickerPropertyChange
+
+    private void shiftTotalsTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_shiftTotalsTable1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_shiftTotalsTable1MouseClicked
+
+    private void totalCashTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalCashTxt1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalCashTxt1ActionPerformed
+
+    private void refreshBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refreshBtn1ActionPerformed
+
+    private void reconcilemnit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reconcilemnit1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reconcilemnit1ActionPerformed
+
     public class GetShiftTotals extends java.lang.Thread {
 
         public void GetShiftTotals() {
@@ -473,6 +871,17 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
                     totalEFTTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(shiftTotalsTable, 7))));
                     totalRefundsTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(shiftTotalsTable, 12))));
                     shiftsTotalAmountTxt.setText(java.lang.String.valueOf(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(shiftTotalsTable, 13))));
+                }
+                shiftTotalsJscrl1.setViewportView(getDetailedTotalShiftsTable());
+                if (shiftTotalsTable1.getRowCount() > 0) {
+                    totalCashTxt1.setText(java.lang.String.valueOf(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(shiftTotalsTable1, 5))));
+                    totalChequesTxt2.setText(java.lang.String.valueOf(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(shiftTotalsTable1, 6))));
+                    totalEFTTxt2.setText(java.lang.String.valueOf(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(shiftTotalsTable1, 9))));
+                    totalMPayTxt1.setText(java.lang.String.valueOf(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(shiftTotalsTable1, 8))));
+                    totalChequesTxt1.setText(java.lang.String.valueOf(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(shiftTotalsTable1, 10))));
+                    totalEFTTxt1.setText(java.lang.String.valueOf(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(shiftTotalsTable1, 7))));
+                    totalRefundsTxt1.setText(java.lang.String.valueOf(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(shiftTotalsTable1, 12))));
+                    shiftsTotalAmountTxt1.setText(java.lang.String.valueOf(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(shiftTotalsTable1, 13))));
                 }
                 try {
                     Thread.sleep(10000);
@@ -593,18 +1002,18 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
 
                 // java.sql.ResultSet rset12 = st12.executeQuery("select count(ad.patient_no) from hp_admission ad where ad.patient_no ='"+listofAct[i]+"' ORDER BY patient_no DESC LIMIT 1");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
                 //java.sql.ResultSet rset1 = st.executeQuery("select ad.date_admitted,ad.patient_no,ad.patient_name,ad.ward,ad.bed_no,ad.mode_of_payment,sum(pc.credit),sum(pc.debit) from hp_admission ad,hp_patient_card pc where ad.discharge =false and pc.patient_no = ad.patient_no and pc.date >= ad.date_admitted group by ad.date_admitted,ad.mode_of_payment,ad.patient_no,ad.patient_name,ad.ward,ad.bed_no");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
-                java.sql.ResultSet rset1 = st1.executeQuery("select sum(debit-credit) from ac_cash_collection where shift_no ='" + listofAct[i] + "' and payment_mode = 'Cash'");// and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
-                java.sql.ResultSet rset17 = st17.executeQuery("select sum(debit-credit) from ac_cash_collection where shift_no ='" + listofAct[i] + "' and payment_mode = 'Cheque'");// and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
-                java.sql.ResultSet rset18 = st18.executeQuery("select sum(debit-credit) from ac_cash_collection where shift_no ='" + listofAct[i] + "' and payment_mode = 'Eft'");// and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
-                java.sql.ResultSet rset22 = st22.executeQuery("select sum(debit-credit) from ac_cash_collection where shift_no ='" + listofAct[i] + "' AND (payment_mode ILIKE 'DBA' OR payment_mode ILIKE '%DIRECT BANKING%')");;// and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset1 = st1.executeQuery("select sum(debit-credit) from ac_cash_collection where shift_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + " and payment_mode = 'Cash'");// and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset17 = st17.executeQuery("select sum(debit-credit) from ac_cash_collection where shift_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + " and payment_mode = 'Cheque'");// and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset18 = st18.executeQuery("select sum(debit-credit) from ac_cash_collection where shift_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + " and payment_mode = 'Eft'");// and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset22 = st22.executeQuery("select sum(debit-credit) from ac_cash_collection where shift_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + "  AND (payment_mode ILIKE 'DBA' OR payment_mode ILIKE '%DIRECT BANKING%')");;// and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
                 java.sql.ResultSet rset11 = st11.executeQuery("select DISTINCT shift_no::int,upper(user_name), cash_point from ac_shifts where shift_no ='" + listofAct[i] + "'");// and start_date::date > '"+beginDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
-                java.sql.ResultSet rset21 = st21.executeQuery("select count(DISTINCT receipt_no) from ac_cash_collection  where shift_no ='" + listofAct[i] + "'");//and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
-                java.sql.ResultSet rset12 = st12.executeQuery("select sum(credit-debit) from ac_cash_collection where shift_no ='" + listofAct[i] + "' AND transaction_type = 'Exemptions'");//and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
-                java.sql.ResultSet rset13 = st13.executeQuery("select sum(credit-debit) from ac_cash_collection where shift_no ='" + listofAct[i] + "' AND transaction_type = 'Waiver'");// and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset21 = st21.executeQuery("select count(DISTINCT receipt_no) from ac_cash_collection  where shift_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + " ");//and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset12 = st12.executeQuery("select sum(credit-debit) from ac_cash_collection where shift_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + " AND transaction_type = 'Exemptions'");//and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset13 = st13.executeQuery("select sum(credit-debit) from ac_cash_collection where shift_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + " AND transaction_type = 'Waiver'");// and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
                 java.sql.ResultSet rset14 = st14.executeQuery("select start_date::timestamp(0),end_date::timestamp(0),status from ac_shifts where shift_no ='" + listofAct[i] + "' ");// and start_date::date > '"+beginDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
-                java.sql.ResultSet rset15 = st15.executeQuery("select sum(credit) from ac_cash_collection where shift_no ='" + listofAct[i] + "'  AND transaction_type = 'RECEIPT CANCELLATION'");//and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
-                java.sql.ResultSet rset16 = st16.executeQuery("select sum(debit - credit) from ac_cash_collection where shift_no ='" + listofAct[i] + "'");// and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
-                java.sql.ResultSet rset32 = st32.executeQuery("select sum(debit-credit) from ac_cash_collection where shift_no ='" + listofAct[i] + "' and (payment_mode ilike 'M-PESA' or payment_mode ilike 'Mobile Pay')");
+                java.sql.ResultSet rset15 = st15.executeQuery("select sum(credit) from ac_cash_collection where shift_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + " AND transaction_type = 'RECEIPT CANCELLATION'");//and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset16 = st16.executeQuery("select sum(debit - credit) from ac_cash_collection where shift_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + " ");// and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset32 = st32.executeQuery("select sum(debit-credit) from ac_cash_collection where shift_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + " and (payment_mode ilike 'M-PESA' or payment_mode ilike 'Mobile Pay')");
                 // java.sql.ResultSet rsetTotals = st2.executeQuery("SELECT sum(debit),SUM(credit) from general_ledger_view WHERE date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND gl_code = '"+bank+"'");
                 int noSeq = 0;
 
@@ -658,7 +1067,7 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
                     mpCash = mpCash + rset32.getDouble(1);
                     table.addCell(Double.parseDouble(dbObject.getDBObject(rset32.getObject(1), "0.00")));
                 }
-                
+
                 while (rset18.next()) {
                     //table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                     // phrase = new Phrase(dbObject.getDBObject(rset1.getObject(1), "0.00"), pFontNum);
@@ -752,7 +1161,7 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
             table.addCell(java.lang.String.valueOf(Cheque));
 
             table.addCell(java.lang.String.valueOf(dCash));
-            
+
             table.addCell(java.lang.String.valueOf(mpCash));
 
             table.addCell(java.lang.String.valueOf(Eft));
@@ -775,8 +1184,7 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
             //  phrase = new Phrase(" ", pFontHeader);
             //  table.addCell(phrase);
             //  docPdf.add(table);
-          /////  shiftTotalsTable = new javax.swing.JTable();//table.getDataVector(), columnVector);
-            
+            /////  shiftTotalsTable = new javax.swing.JTable();//table.getDataVector(), columnVector);
             shiftTotalsTable = new com.afrisoftech.dbadmin.JXTable();
 
             shiftTotalsTable.setModel(new javax.swing.table.DefaultTableModel(table.getDataVector(), columnVector) {
@@ -828,12 +1236,358 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
         } catch (java.sql.SQLException SqlExec) {
 
             SqlExec.printStackTrace();
-            
+
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
         }
 
         return shiftTotalsTable;
+
+    }
+
+    private javax.swing.JTable getDetailedTotalShiftsTable() {
+
+        //   javax.swing.JTable shiftTotalsTable = new javax.swing.JTable();
+        int horizontalAlignments[] = {biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_LEFT,
+            biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_LEFT,
+            biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_LEFT,
+            biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_LEFT,
+            biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_RIGHT,
+            biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_RIGHT,
+            biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_RIGHT,
+            biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_RIGHT,
+            biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_RIGHT,
+            biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_RIGHT,
+            biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_LEFT,
+            biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_LEFT,
+            biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_LEFT,
+            biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_RIGHT};
+
+        //    double floats[] = {5, 5, 10, 5, 10, 10, 10, 10, 10, 10, 10, 10, 10};
+        //   int colSizes[] = textReport.createTableHeader(13, floats);
+        biz.systempartners.txtreports.PlainTextTable table = new biz.systempartners.txtreports.PlainTextTable(14);
+
+        //    com.afrisoftech.lib.DBObject dbObject = new com.afrisoftech.lib.DBObject();
+        java.util.Vector columnVector = new java.util.Vector(1, 1);
+
+        //  Phrase phrase = new Phrase("No", pFontHeader);
+        columnVector.addElement("Rct No");
+        //  table.addCell(phrase);
+        columnVector.addElement("Shift No.");
+
+        columnVector.addElement("Cashier");//, pFontHeader);
+        //  table.addCell(phrase);
+
+        columnVector.addElement("Cash Point");//, pFontHeader);
+
+        columnVector.addElement("Time");//, pFontHeader);
+        //  table.addCell(phrase);
+
+        //  table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+        columnVector.addElement("Cash");//, pFontHeader);
+        //  table.addCell(phrase);
+
+        columnVector.addElement("Cheque");
+
+        columnVector.addElement("D/Banking");
+
+        columnVector.addElement("M-PESA");
+
+        columnVector.addElement("E.F.T");
+
+        //    columnVector.addElement("Mobile/Pay");
+        columnVector.addElement("Exemptions");//, pFontHeader);
+        //  table.addCell(phrase);
+
+        columnVector.addElement("Credit");//, pFontHeader); // was Waiver
+        // table.addCell(phrase);
+
+        columnVector.addElement("Refund");//, pFontHeader);
+        // table.addCell(phrase);
+
+        columnVector.addElement("Net Amt(KSH)");//, pFontHeader);
+        // table.addCell(phrase);
+
+//        //  table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+//        columnVector.addElement("Start Date");//, pFontHeader);
+//
+//        //  table.addCell(phrase);
+//        columnVector.addElement("End Date");//, pFontHeader);
+        //  table.addCell(phrase);
+//        columnVector.addElement("Status");//, pFontHeader);
+        //  table.addCell(phrase);
+        //   columnVector.addElement("Reconcile");// pFontHeader);
+        try {
+
+            java.lang.Object[] listofAct = this.getListofReceiptNos();
+
+            System.out.println(listofAct.length);
+            //java.sql.Statement st12 = connectDB.createStatement();
+
+            //  java.sql.ResultSet rset12 = st12.executeQuery("SELECT DISTINCT count(patient_no) FROM hp_admission WHERE discharge = false");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+            for (int i = 0; i < listofAct.length; i++) {
+
+                java.sql.Statement st1 = connectDB.createStatement();
+
+                java.sql.Statement st2 = connectDB.createStatement();
+                java.sql.Statement st21 = connectDB.createStatement();
+                // java.sql.Statement st1 = connectDB.createStatement();
+
+                java.sql.Statement st11 = connectDB.createStatement();
+                java.sql.Statement st12 = connectDB.createStatement();
+                java.sql.Statement st13 = connectDB.createStatement();
+
+                java.sql.Statement st14 = connectDB.createStatement();
+                java.sql.Statement st15 = connectDB.createStatement();
+
+                java.sql.Statement st16 = connectDB.createStatement();
+                java.sql.Statement st17 = connectDB.createStatement();
+                java.sql.Statement st18 = connectDB.createStatement();
+                java.sql.Statement st22 = connectDB.createStatement();
+                java.sql.Statement st32 = connectDB.createStatement();
+
+                // java.sql.ResultSet rset12 = st12.executeQuery("select count(ad.patient_no) from hp_admission ad where ad.patient_no ='"+listofAct[i]+"' ORDER BY patient_no DESC LIMIT 1");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                //java.sql.ResultSet rset1 = st.executeQuery("select ad.date_admitted,ad.patient_no,ad.patient_name,ad.ward,ad.bed_no,ad.mode_of_payment,sum(pc.credit),sum(pc.debit) from hp_admission ad,hp_patient_card pc where ad.discharge =false and pc.patient_no = ad.patient_no and pc.date >= ad.date_admitted group by ad.date_admitted,ad.mode_of_payment,ad.patient_no,ad.patient_name,ad.ward,ad.bed_no");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset1 = st1.executeQuery("select sum(debit-credit) from ac_cash_collection where receipt_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + " and payment_mode = 'Cash'");// and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset17 = st17.executeQuery("select sum(debit-credit) from ac_cash_collection where receipt_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + " and payment_mode = 'Cheque'");// and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset18 = st18.executeQuery("select sum(debit-credit) from ac_cash_collection where receipt_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + " and payment_mode = 'Eft'");// and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset22 = st22.executeQuery("select sum(debit-credit) from ac_cash_collection where receipt_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + "  AND (payment_mode ILIKE 'DBA' OR payment_mode ILIKE '%DIRECT BANKING%')");;// and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset11 = st11.executeQuery("select DISTINCT shift_no::int,upper(user_name), cash_point from ac_cash_collection where receipt_no ='" + listofAct[i] + "' LIMIT 1");// and start_date::date > '"+beginDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset21 = st21.executeQuery("select receipt_time::time(0) from ac_cash_collection  where receipt_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + " LIMIT 1 ");//and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset12 = st12.executeQuery("select sum(credit-debit) from ac_cash_collection where receipt_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + " AND transaction_type = 'Exemptions'");//and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset13 = st13.executeQuery("select sum(credit-debit) from ac_cash_collection where receipt_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + " AND transaction_type = 'Waiver'");// and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                // java.sql.ResultSet rset14 = st14.executeQuery("select start_date::timestamp(0),end_date::timestamp(0),status from ac_shifts where shift_no ='" + listofAct[i] + "' ");// and start_date::date > '"+beginDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset15 = st15.executeQuery("select sum(credit) from ac_cash_collection where receipt_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + " AND transaction_type = 'RECEIPT CANCELLATION'");//and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset16 = st16.executeQuery("select sum(debit - credit) from ac_cash_collection where receipt_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + " ");// and date between '"+beginDate+"'::date and  '"+endDate+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                java.sql.ResultSet rset32 = st32.executeQuery("select sum(debit-credit) from ac_cash_collection where receipt_no ='" + listofAct[i] + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") + " and (payment_mode ilike 'M-PESA' or payment_mode ilike 'Mobile Pay')");
+                // java.sql.ResultSet rsetTotals = st2.executeQuery("SELECT sum(debit),SUM(credit) from general_ledger_view WHERE date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND gl_code = '"+bank+"'");
+                int noSeq = 0;
+
+                while (rset11.next()) {
+
+                    noSeq = noSeq + 1;
+                    //  phrase = new Phrase(java.lang.String.valueOf(noSeq), pFontNum);
+                    table.addCell(listofAct[i]);
+
+                    // table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                    // phrase = new Phrase(dbObject.getDBObject(rset11.getObject(1), "-"), pFontNum);
+                    table.addCell(dbObject.getDBObject(rset11.getObject(1), "-"));
+
+                    // table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                    // phrase = new Phrase(dbObject.getDBObject(rset11.getObject(2), "-"), pFontNum);
+                    table.addCell(dbObject.getDBObject(rset11.getObject(2), "-"));
+                    table.addCell(dbObject.getDBObject(rset11.getObject(3), "-"));
+                }
+
+                while (rset21.next()) {
+                    // table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                    // phrase = new Phrase(dbObject.getDBObject(rset21.getObject(1), "0"), pFontNum);
+                   // Rct = Rct + rset21.getDouble(1);
+                    table.addCell(dbObject.getDBObject(rset21.getObject(1), "-"));
+                }
+
+                // table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                while (rset1.next()) {
+                    //table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                    // phrase = new Phrase(dbObject.getDBObject(rset1.getObject(1), "0.00"), pFontNum);
+                    Cash = Cash + rset1.getDouble(1);
+                    table.addCell(Double.parseDouble(dbObject.getDBObject(rset1.getObject(1), "0.00")));
+                }
+
+                while (rset17.next()) {
+                    //table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                    // phrase = new Phrase(dbObject.getDBObject(rset1.getObject(1), "0.00"), pFontNum);
+                    Cheque = Cheque + rset17.getDouble(1);
+                    table.addCell(Double.parseDouble(dbObject.getDBObject(rset17.getObject(1), "0.00")));
+                }
+
+                while (rset22.next()) {
+                    //table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                    // phrase = new Phrase(dbObject.getDBObject(rset1.getObject(1), "0.00"), pFontNum);
+                    dCash = dCash + rset22.getDouble(1);
+                    table.addCell(Double.parseDouble(dbObject.getDBObject(rset22.getObject(1), "0.00")));
+                }
+                while (rset32.next()) {
+                    //table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                    // phrase = new Phrase(dbObject.getDBObject(rset1.getObject(1), "0.00"), pFontNum);
+                    mpCash = mpCash + rset32.getDouble(1);
+                    table.addCell(Double.parseDouble(dbObject.getDBObject(rset32.getObject(1), "0.00")));
+                }
+
+                while (rset18.next()) {
+                    //table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                    // phrase = new Phrase(dbObject.getDBObject(rset1.getObject(1), "0.00"), pFontNum);
+                    Eft = Eft + rset18.getDouble(1);
+                    table.addCell(Double.parseDouble(dbObject.getDBObject(rset18.getObject(1), "0.00")));
+                }
+
+                while (rset12.next()) {
+                    //  table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                    // phrase = new Phrase(dbObject.getDBObject(rset12.getObject(1), "0.0"), pFontNum);
+                    Chq = Chq + rset12.getDouble(1);
+                    table.addCell(Double.parseDouble(dbObject.getDBObject(rset12.getObject(1), "0.0")));
+
+                }
+
+                while (rset13.next()) {
+                    //  table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                    // phrase = new Phrase(dbObject.getDBObject(rset13.getObject(1), "0.0"), pFontNum);
+                    Card = Card + rset13.getDouble(1);
+                    table.addCell(Double.parseDouble(dbObject.getDBObject(rset13.getObject(1), "0.0")));
+                }
+                while (rset15.next()) {
+                    //  table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                    //phrase = new Phrase(dbObject.getDBObject(rset15.getObject(1), "0.0"), pFontNum);
+                    Refund = Refund + rset15.getDouble(1);
+                    table.addCell(Double.parseDouble(dbObject.getDBObject(rset15.getObject(1), "0.0")));
+                }
+                while (rset16.next()) {
+                    //  table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                    // phrase = new Phrase(dbObject.getDBObject(rset16.getObject(1), "0.0"), pFontNum);
+                    Net = Net + rset16.getDouble(1);
+                    table.addCell(Double.parseDouble(dbObject.getDBObject(rset16.getObject(1), "0.0")));
+                }
+//                while (rset14.next()) {
+//                    // table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+//                    // phrase = new Phrase(dbObject.getDBObject(rset14.getObject(1), "-"), pFontNum);
+//
+//                    table.addCell(dbObject.getDBObject(rset14.getObject(1), "-"));
+//
+//                    // table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+//                    // phrase = new Phrase(dbObject.getDBObject(rset14.getObject(2), "-"), pFontNum);
+//                    table.addCell(dbObject.getDBObject(rset14.getObject(2), "-"));
+//
+//                    // table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+//                    // phrase = new Phrase(dbObject.getDBObject(rset14.getObject(3), "-"), pFontNum);
+//                    table.addCell(dbObject.getDBObject(rset14.getObject(3), "-"));
+//                }
+
+                rset1.close();
+                rset11.close();
+                rset21.close();
+                rset12.close();
+                rset13.close();
+//                rset14.close();
+                rset15.close();
+                rset16.close();
+                rset22.close();
+                rset17.close();
+                rset18.close();
+                rset32.close();
+                st1.close();
+                st11.close();
+                st21.close();
+                st12.close();
+                st13.close();
+                st14.close();
+                st15.close();
+                st16.close();
+                st22.close();
+                st17.close();
+                st18.close();
+                st32.close();
+
+            }
+
+            // table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
+            //  table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP);
+            //  table.getDefaultCell().setColspan(3);
+            //  table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+            //  phrase = new Phrase("Total", pFontHeader);
+            table.addCell(java.lang.String.valueOf(Total1));
+
+            //  table.getDefaultCell().setColspan(1);
+            //   table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+            //   phrase = new Phrase("" + Rct, pFontHeader);
+            table.addCell(java.lang.String.valueOf(Rct1));
+
+            //   phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(Cash)), pFontHeader);
+            table.addCell(java.lang.String.valueOf(Cash1));
+
+            table.addCell(java.lang.String.valueOf(Cheque1));
+
+            table.addCell(java.lang.String.valueOf(dCash1));
+
+            table.addCell(java.lang.String.valueOf(mpCash1));
+
+            table.addCell(java.lang.String.valueOf(Eft1));
+            //   phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(Chq)), pFontHeader);
+
+            //    table.addCell(java.lang.String.valueOf(mCash));
+            table.addCell(java.lang.String.valueOf(Chq1));
+            //  phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(Card)), pFontHeader);
+
+            table.addCell(java.lang.String.valueOf(Card1));
+
+            //  phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(Refund)), pFontHeader);
+            table.addCell(java.lang.String.valueOf(Refund1));
+            // phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(Net)), pFontHeader);
+
+            table.addCell(java.lang.String.valueOf(Net1));
+
+            //  table.getDefaultCell().setColspan(3);
+            //  table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+            //  phrase = new Phrase(" ", pFontHeader);
+            //  table.addCell(phrase);
+            //  docPdf.add(table);
+            /////  shiftTotalsTable = new javax.swing.JTable();//table.getDataVector(), columnVector);
+            shiftTotalsTable1 = new com.afrisoftech.dbadmin.JXTable();
+
+            shiftTotalsTable1.setModel(new javax.swing.table.DefaultTableModel(table.getDataVector(), columnVector) {
+
+                Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class,
+                    java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class,
+                    java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class,
+                    java.lang.Double.class
+                };
+                boolean[] canEdit = new boolean[]{
+                    false, false, false, false, false, false, false, false, false, false, false, false, false, false
+
+                };
+
+                public Class getColumnClass(int columnIndex) {
+                    return types[columnIndex];
+                }
+
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return canEdit[columnIndex];
+                }
+            });
+
+            shiftTotalsTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    //shiftTotalsTableMouseClicked(evt);
+                    // closeShift();
+                }
+            });
+
+            javax.swing.table.TableColumn column1 = null;
+            for (int i = 0; i < 4; i++) {
+                column1 = shiftTotalsTable1.getColumnModel().getColumn(i);
+                if (i == 2 | i == 3) {
+
+                    column1.setPreferredWidth(200); //sport column is bigger
+                } else if (i == 0 | i == 1 | i == 4) {
+
+                    column1.setPreferredWidth(50);
+
+                } else {
+
+                    column1.setPreferredWidth(100);
+                }
+            }
+
+        } catch (java.sql.SQLException SqlExec) {
+
+            SqlExec.printStackTrace();
+
+            javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
+
+        }
+
+        return shiftTotalsTable1;
 
     }
 
@@ -859,6 +1613,8 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
 
         } catch (java.sql.SQLException sqlExec) {
 
+            sqlExec.printStackTrace();
+
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
 
         }
@@ -866,6 +1622,39 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
         listofStaffNos = listStaffNoVector.toArray();
         System.out.println("Done list of Staff Nos ...");
         return listofStaffNos;
+    }
+
+    public java.lang.Object[] getListofReceiptNos() {
+
+        java.lang.Object[] listofReceiptNos = null;
+
+        java.util.Vector listReceiptNoVector = new java.util.Vector(1, 1);
+
+        try {
+
+            //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
+            java.sql.Statement stmt1 = connectDB.createStatement();
+
+            //java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT shift_no,date FROM ac_cash_collection WHERE date between '"+beginDate+"'::date and  '"+endDate+"' and shift_no is not null and shift_no !='' Order by date ASC");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT receipt_no FROM ac_cash_collection WHERE date::date between '" + detailedBeginDatePicker.getDate() + "'::date and  '" + detailedEndDatePicker.getDate() + "' AND " + com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +  " Order by receipt_no ASC");
+
+            while (rSet1.next()) {
+
+                listReceiptNoVector.addElement(rSet1.getObject(1).toString());
+
+            }
+
+        } catch (java.sql.SQLException sqlExec) {
+
+            sqlExec.printStackTrace();
+
+            javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
+
+        }
+
+        listofReceiptNos = listReceiptNoVector.toArray();
+        System.out.println("Done list of receipt Nos ...");
+        return listofReceiptNos;
     }
 
     private void closeShift() {
@@ -889,7 +1678,7 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
         double totalMobilePay = 0.00;
         try {
             java.sql.Statement st24 = connectDB.createStatement();
-            java.sql.ResultSet rset24 = st24.executeQuery("select sum(debit-credit) from ac_cash_collection where payment_mode ilike 'M-PESA' and shift_no = '"+shiftNumber+"'");
+            java.sql.ResultSet rset24 = st24.executeQuery("select sum(debit-credit) from ac_cash_collection where payment_mode ilike 'M-PESA' and shift_no = '" + shiftNumber + "'");
 
             while (rset24.next()) {
                 //table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -908,30 +1697,62 @@ public class TotalShiftsIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel beginDateLbl;
     private com.afrisoftech.lib.DatePicker beginDatePicker;
     private javax.swing.JPanel datesPanel;
+    private javax.swing.JPanel detailedActionsPanel;
+    private javax.swing.JLabel detailedBeginDateLbl;
+    private com.afrisoftech.lib.DatePicker detailedBeginDatePicker;
+    private javax.swing.JPanel detailedDatesPanel;
+    private javax.swing.JLabel detailedEndDatePanel;
+    private com.afrisoftech.lib.DatePicker detailedEndDatePicker;
+    private javax.swing.JPanel detailedMainPanel;
+    private javax.swing.JPanel detailedShiftsReportPanel;
     private javax.swing.JLabel endDatePanel;
     private com.afrisoftech.lib.DatePicker endDatePicker;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton reconcilemnit;
+    private javax.swing.JButton reconcilemnit1;
     private javax.swing.JButton refreshBtn;
+    private javax.swing.JButton refreshBtn1;
     private javax.swing.JScrollPane shiftTotalsJscrl;
+    private javax.swing.JScrollPane shiftTotalsJscrl1;
     private javax.swing.JTable shiftTotalsTable;
+    private javax.swing.JTable shiftTotalsTable1;
     private javax.swing.JLabel shiftsTotalAmountLbl;
+    private javax.swing.JLabel shiftsTotalAmountLbl1;
     private javax.swing.JFormattedTextField shiftsTotalAmountTxt;
+    private javax.swing.JFormattedTextField shiftsTotalAmountTxt1;
     private javax.swing.JLabel spacerLbl;
+    private javax.swing.JLabel spacerLbl1;
+    private javax.swing.JPanel summarisedShiftsReportPanel;
     private javax.swing.JFormattedTextField totalCashTxt;
+    private javax.swing.JFormattedTextField totalCashTxt1;
     private javax.swing.JLabel totalChequesLbl;
     private javax.swing.JLabel totalChequesLbl1;
+    private javax.swing.JLabel totalChequesLbl2;
+    private javax.swing.JLabel totalChequesLbl3;
     private javax.swing.JFormattedTextField totalChequesTxt;
     private javax.swing.JFormattedTextField totalChequesTxt1;
+    private javax.swing.JFormattedTextField totalChequesTxt2;
+    private javax.swing.JFormattedTextField totalChequesTxt3;
     private javax.swing.JFormattedTextField totalEFTTxt;
     private javax.swing.JFormattedTextField totalEFTTxt1;
+    private javax.swing.JFormattedTextField totalEFTTxt2;
+    private javax.swing.JFormattedTextField totalEFTTxt3;
     private javax.swing.JLabel totalEftLbl;
     private javax.swing.JLabel totalEftLbl1;
+    private javax.swing.JLabel totalEftLbl2;
+    private javax.swing.JLabel totalEftLbl3;
     private javax.swing.JLabel totalMPayLbl;
+    private javax.swing.JLabel totalMPayLbl1;
     private javax.swing.JFormattedTextField totalMPayTxt;
+    private javax.swing.JFormattedTextField totalMPayTxt1;
     private javax.swing.JLabel totalRefundsLbl;
+    private javax.swing.JLabel totalRefundsLbl1;
     private javax.swing.JFormattedTextField totalRefundsTxt;
+    private javax.swing.JFormattedTextField totalRefundsTxt1;
     private javax.swing.JLabel totalcashLbl;
+    private javax.swing.JLabel totalcashLbl1;
     // End of variables declaration//GEN-END:variables
 }

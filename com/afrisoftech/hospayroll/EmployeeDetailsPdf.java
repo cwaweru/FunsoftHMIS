@@ -302,7 +302,7 @@ public class EmployeeDetailsPdf implements java.lang.Runnable {
                         while(rset4.next()){
                             date = rset4.getObject(1).toString();
                         }
-                        com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase(""+compName+"                                                        Printed On: "+date+""),false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
+                        com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase(""+compName+"                       Printed On: "+date+""),false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
                         
                         //  com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase(""+compName+""),false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
                         headerFoter.setRight(5);
@@ -315,7 +315,7 @@ public class EmployeeDetailsPdf implements java.lang.Runnable {
                     }
                     
                     
-                    com.lowagie.text.HeaderFooter footer = new com.lowagie.text.HeaderFooter(new Phrase("General Ledger - Page: "), true);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 12, Font.BOLDITALIC,java.awt.Color.blue));
+                    com.lowagie.text.HeaderFooter footer = new com.lowagie.text.HeaderFooter(new Phrase("Staff Details - Page: "), true);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 12, Font.BOLDITALIC,java.awt.Color.blue));
                     
                     docPdf.setFooter(footer);
                     
@@ -349,7 +349,7 @@ public class EmployeeDetailsPdf implements java.lang.Runnable {
                         // java.util.Date formattedDate = dateFormat.parse(endDate);//dateInstance.toLocaleString());
                         
                         
-                        phrase = new Phrase("Staff Details", pFontNum);
+                        phrase = new Phrase("Staff Details".toUpperCase(), pFontNum);
                         
                         table.addCell(phrase);
                         // } catch(java.text.ParseException psExec) {
@@ -390,7 +390,7 @@ public class EmployeeDetailsPdf implements java.lang.Runnable {
                             
                             System.out.println("Statements Created ...");
                             java.sql.ResultSet rset1 = st1.executeQuery("select DISTINCT employee_no,upper(first_name||' '||middle_name||' '||last_name),marital_status,birth_date,nationality,id_no,date_employed,official_desgnation,employee_grade,department,address,tel_no,estate,district,division,village,"+
-                                    "pin_no,nhif_no,nssf_no,payment_mode,bank,bank_account_no from master_file where employee_no = '"+bank+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                                    "pin_no,nhif_no,nssf_no,payment_mode,bank,bank_account_no,email_address,bank_branch,disabled ,date_employed from master_file where employee_no = '"+bank+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
                             java.sql.ResultSet rset2 = st2.executeQuery("select description,amount from allowances_benefits where staff_no = '"+bank+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
                             
                             //  java.sql.ResultSet rset = st2.executeQuery("select EXTRACT (month from date)||' '||EXTRACT (year from date) as date,description,amount from posting where staff_no = '"+listofAct[i]+"' AND description IS NOT NULL AND date BETWEEN '"+beginDate+"' AND '"+endDate+"' order by date");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
@@ -437,6 +437,19 @@ public class EmployeeDetailsPdf implements java.lang.Runnable {
                                 
                                 table.addCell(phrase);
                                 
+                                String dis="";
+                                if (!rset1.getBoolean(25)) dis="NO";
+                                else dis ="YES";
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                phrase = new Phrase("Disabled  :  " +dis, pFontHeader);
+                                
+                                table.addCell(phrase);
+                                
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                phrase = new Phrase("Date employed  :  " +rset1.getObject(26).toString(), pFontHeader);
+                                
+                                table.addCell(phrase);
+                                
                                 table.getDefaultCell().setColspan(4);
                                 //  table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                                 phrase = new Phrase("ID Details : ", pFontNum);
@@ -479,7 +492,7 @@ public class EmployeeDetailsPdf implements java.lang.Runnable {
                                 
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Email  :  " +rset1.getObject(16).toString(), pFontHeader);
+                                phrase = new Phrase("Email  :  " +rset1.getObject(23).toString(), pFontHeader);
                                 
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(4);
@@ -530,7 +543,7 @@ public class EmployeeDetailsPdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(4);
                                 
-                                phrase = new Phrase("Payroll Details  :  ", pFontNum);
+                                phrase = new Phrase("Bank Details  :  ", pFontNum);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(2);
                                 
@@ -538,31 +551,50 @@ public class EmployeeDetailsPdf implements java.lang.Runnable {
                                 phrase = new Phrase("Payment Mode  :  "+rset1.getObject(20).toString(), pFontHeader);
                                 
                                 table.addCell(phrase);
-                                table.getDefaultCell().setColspan(2);
+                                
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("", pFontHeader);
+                                phrase = new Phrase("A/C No.  : " +rset1.getObject(22).toString(), pFontHeader);
+                                
                                 table.addCell(phrase);
+                                
+                                
                                 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase = new Phrase("Bank  :  " +rset1.getObject(21).toString(), pFontHeader);
                                 
                                 table.addCell(phrase);
-                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("A/C No.  : " +rset1.getObject(22).toString(), pFontHeader);
                                 
+                                table.getDefaultCell().setColspan(2);
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                phrase = new Phrase("Branch : "+rset1.getObject(24).toString(), pFontHeader);
                                 table.addCell(phrase);
+                                
                                 
                             }
                             // table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             // phrase = new Phrase("HELB No." , pFontHeader);
                             
                             // table.addCell(phrase);
-                            //  }
+                            //  
+                            
+                            table.getDefaultCell().setColspan(4);
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                            phrase = new Phrase(" ".toUpperCase(), pFontNum);
+                            table.addCell(phrase); 
+                            
+                            table.getDefaultCell().setColspan(4);
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                            phrase = new Phrase("Payroll details".toUpperCase(), pFontNum);
+                            table.addCell(phrase);
+                            
+                            
+                            
                             
                             while (rset2.next()) {
+                                
                                 table.getDefaultCell().setColspan(2);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase(rset2.getObject(1).toString(),pFontNum);
+                                phrase = new Phrase(rset2.getObject(1).toString(),pFontHeader);
                                 
                                 table.addCell(phrase);
                                 
@@ -574,7 +606,7 @@ public class EmployeeDetailsPdf implements java.lang.Runnable {
                                 
                                 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset2.getString(2)),pFontNum);
+                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset2.getString(2)),pFontHeader);
                                 table.addCell(phrase);
                                 
                                 //   table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
@@ -582,6 +614,72 @@ public class EmployeeDetailsPdf implements java.lang.Runnable {
                                 //   table.addCell(phrase);
                             }
                             
+                            table.getDefaultCell().setColspan(4);
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                            phrase = new Phrase("".toUpperCase(), pFontNum);
+                            table.addCell(phrase);
+                            
+                            table.getDefaultCell().setColspan(4);
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                            phrase = new Phrase("Payroll Payables".toUpperCase(), pFontNum);
+                            table.addCell(phrase);
+                            
+                            
+                            table.getDefaultCell().setColspan(1);
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                            phrase = new Phrase("Description", pFontNum);
+                            table.addCell(phrase);
+                            
+                            table.getDefaultCell().setColspan(1);
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                            phrase = new Phrase("Amount", pFontNum);
+                            table.addCell(phrase);
+                            
+                            table.getDefaultCell().setColspan(1);
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                            phrase = new Phrase("Monthly Ded", pFontNum);
+                            table.addCell(phrase);
+                            
+                            table.getDefaultCell().setColspan(1);
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                            phrase = new Phrase("Balance", pFontNum);
+                            table.addCell(phrase);
+
+                           
+                            
+                            rset2 = st2.executeQuery("select sacco_name,amount ,month_deduction,date from sacco_deductions where staff_no = '"+bank+"'");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                            while(rset2.next()){
+                                
+                                table.getDefaultCell().setColspan(1);
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                phrase = new Phrase(""+rset2.getObject(1).toString(), pFontHeader);
+                                table.addCell(phrase);
+                                
+                                table.getDefaultCell().setColspan(1);
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                                phrase = new Phrase(""+rset2.getObject(2).toString(), pFontHeader);
+                                table.addCell(phrase);
+                                
+                                Double deducted=0.0;
+                                java.sql.Statement stmt = connectDB.createStatement();
+                                java.sql.ResultSet rset = stmt.executeQuery("SELECT sum(amount) from posting WHERE staff_no = '"+bank+"' and description = '"+rset2.getString(1)+"' AND date > '"+rset2.getDate(4)+"' ");
+                                while (rset.next()){
+                                    deducted=rset.getDouble(1);
+                                }
+                                
+                                Double bal=rset2.getDouble(2)-deducted;
+                                
+                                table.getDefaultCell().setColspan(1);
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                                phrase = new Phrase(""+rset2.getObject(3).toString(), pFontHeader);
+                                table.addCell(phrase);
+                                
+                                table.getDefaultCell().setColspan(1);
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                                phrase = new Phrase(""+bal, pFontHeader);
+                                table.addCell(phrase);
+                                
+                            }
                             // }
                             
                             table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);

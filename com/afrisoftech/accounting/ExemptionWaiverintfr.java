@@ -1058,7 +1058,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                     System.err.println("SELECT date::date, service, (sum(dosage) - COALESCE((SELECT sum(quantity) FROM ac_cash_collection WHERE upper(description) ilike hp_patient_card.service \n" +
                         " AND activity_code = (SELECT code FROM pb_activity WHERE UPPER(pb_activity.activity) = UPPER(hp_patient_card.main_service)) AND journal_no = hp_patient_card.visit_id),0) ) as quantity, \n" +
                         " (Sum(debit-credit) - COALESCE((SELECT sum(debit-credit) FROM ac_cash_collection WHERE upper(description) = UPPER(hp_patient_card.service) \n" +
-                        " AND activity_code = (SELECT code FROM pb_activity WHERE UPPER(pb_activity.activity) = UPPER(hp_patient_card.main_service)) AND journal_no = hp_patient_card.visit_id),0 ) ) as Total, sum(0) as \"exempted/waived\", false as \"waive?\",\n" +
+                        " AND activity_code = (SELECT code FROM pb_activity WHERE UPPER(pb_activity.activity) = UPPER(hp_patient_card.main_service)) AND journal_no = hp_patient_card.visit_id),0 ) ) as Total, 0.00 as \"exempted/waived\", false as \"waive?\",\n" +
                         "(SELECT DISTINCT gl_account FROM pb_operating_parameters WHERE upper(main_service) = UPPER(hp_patient_card.main_service) \n" +
                         " UNION SELECT DISTINCT gl_code FROM st_stock_prices WHERE upper(department) = UPPER(hp_patient_card.main_service) ) as gl_code    \n" +
                         " FROM hp_patient_card WHERE patient_no = \n" +
@@ -1070,15 +1070,15 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
                                 + "OR UPPER(hp_patient_card.main_service) = 'EXEMPTIONS' ORDER BY 1");
                     
                     jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date::date, service, (sum(dosage) - COALESCE((SELECT sum(quantity) FROM ac_cash_collection WHERE upper(description) ilike hp_patient_card.service \n" +
-                        " AND activity_code = (SELECT code FROM pb_activity WHERE UPPER(pb_activity.activity) = UPPER(hp_patient_card.main_service)) AND journal_no = hp_patient_card.visit_id),0) ) as quantity, \n" +
+                        " AND activity_code = (SELECT code FROM pb_activity WHERE UPPER(pb_activity.activity) = UPPER(hp_patient_card.main_service) LIMIT 1 ) AND journal_no = hp_patient_card.visit_id),0) ) as quantity, \n" +
                         " (Sum(debit-credit) - COALESCE((SELECT sum(debit-credit) FROM ac_cash_collection WHERE upper(description) = UPPER(hp_patient_card.service) \n" +
-                        " AND activity_code = (SELECT code FROM pb_activity WHERE UPPER(pb_activity.activity) = UPPER(hp_patient_card.main_service)) AND journal_no = hp_patient_card.visit_id),0 ) ) as Total, sum(0) as \"exempted/waived\", false as \"waive?\",\n" +
+                        " AND activity_code = (SELECT code FROM pb_activity WHERE UPPER(pb_activity.activity) = UPPER(hp_patient_card.main_service) LIMIT 1 ) AND journal_no = hp_patient_card.visit_id),0 ) ) as Total, 0.00 as \"exempted/waived\", false as \"waive?\",\n" +
                         "((SELECT DISTINCT gl_account FROM pb_operating_parameters WHERE upper(main_service) = UPPER(hp_patient_card.main_service) LIMIT 1) \n" +
                         " UNION SELECT DISTINCT gl_code FROM st_stock_prices WHERE upper(department) = UPPER(hp_patient_card.main_service) LIMIT 1 ) as gl_code    \n" +
                         " FROM hp_patient_card WHERE patient_no = \n" +
                         " '" + patient_no + "' AND  paid = false AND visit_id = '"+visitIDTxt.getText()+"' GROUP BY 1,2,6, hp_patient_card.visit_id, hp_patient_card.main_service having (Sum(debit-credit) - \n" +
                         "COALESCE((SELECT sum(debit-credit) FROM ac_cash_collection WHERE upper(description) = UPPER(hp_patient_card.service) \n" +
-                        " AND activity_code = (SELECT code FROM pb_activity WHERE UPPER(pb_activity.activity) = UPPER(hp_patient_card.main_service)) "
+                        " AND activity_code = (SELECT code FROM pb_activity WHERE UPPER(pb_activity.activity) = UPPER(hp_patient_card.main_service) LIMIT 1) "
                                 + "AND journal_no = hp_patient_card.visit_id),0)) > 0 OR UPPER(hp_patient_card.main_service) = 'WAIVERS'  OR"
                                 + " hp_patient_card.service = 'Invoice'  OR UPPER(hp_patient_card.main_service) = 'RECEIPT' "
                                 + "OR UPPER(hp_patient_card.main_service) = 'EXEMPTIONS' ORDER BY 1"));
@@ -1124,7 +1124,7 @@ public class ExemptionWaiverintfr extends javax.swing.JInternalFrame {
         double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 3);
         // double waiverSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 4);
         jTextField3.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
-        jTextField3.setText(java.lang.String.valueOf(totalSum));
+        jTextField3.setText(java.lang.String.valueOf(j));
 
     }
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked

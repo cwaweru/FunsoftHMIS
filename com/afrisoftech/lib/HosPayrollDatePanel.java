@@ -55,14 +55,14 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
         datePicker2 = new com.afrisoftech.lib.DatePicker();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        companyNameCmbx = new javax.swing.JComboBox();
+        jComboBox1 = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
-        setTitle("Begin & End Date");
+        setTitle("Reporting data filter dialog");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -117,7 +117,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weightx = 1.0;
         jPanel4.add(jLabel4, gridBagConstraints);
 
-        companyNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select DISTINCT company_name from payroll_comsetup order by company_name"));
+        jComboBox1.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select DISTINCT company_name from payroll_comsetup order by company_name"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -125,7 +125,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
         gridBagConstraints.ipadx = 50;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(companyNameCmbx, gridBagConstraints);
+        jPanel4.add(jComboBox1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -203,8 +203,8 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
         getContentPane().add(jPanel3, gridBagConstraints);
 
-        setSize(new java.awt.Dimension(540, 368));
-        setLocationRelativeTo(null);
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-411)/2, (screenSize.height-251)/2, 411, 251);
     }// </editor-fold>//GEN-END:initComponents
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -254,7 +254,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.hospayroll.ProcessPayrollPdf policy = new com.afrisoftech.hospayroll.ProcessPayrollPdf();
                 
-                policy.ProcessPayrollPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.ProcessPayrollPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -276,7 +276,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.hospayroll.DeductionsPdf policy = new com.afrisoftech.hospayroll.DeductionsPdf();
                 
-                policy.DeductionsPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.DeductionsPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -301,7 +301,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.hospayroll.PayeListPdf policy = new com.afrisoftech.hospayroll.PayeListPdf();
                 
-                policy.PayeListPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.PayeListPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -312,7 +312,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.hospayroll.CashPaymentsPdf policy = new com.afrisoftech.hospayroll.CashPaymentsPdf();
                 
-                policy.CashPaymentsPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.CashPaymentsPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -323,7 +323,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.hospayroll.NetSalaryPdf policy = new com.afrisoftech.hospayroll.NetSalaryPdf();
                 
-                policy.NetSalaryPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.NetSalaryPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -334,7 +334,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.hospayroll.PayMasterPdf policy = new com.afrisoftech.hospayroll.PayMasterPdf();
                 
-                policy.PayMasterPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.PayMasterPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -345,7 +345,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.hospayroll.StaffEarningsPdf policy = new com.afrisoftech.hospayroll.StaffEarningsPdf();
                 
-                policy.StaffEarningsPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.StaffEarningsPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -356,7 +356,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.hospayroll.NSSFPdf policy = new com.afrisoftech.hospayroll.NSSFPdf();
                 
-                policy.NSSFPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.NSSFPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -367,7 +367,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.hospayroll.NhifPdf policy = new com.afrisoftech.hospayroll.NhifPdf();
                 
-                policy.NhifPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.NhifPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -401,7 +401,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.hospayroll.SalaryJournalPdf policy = new com.afrisoftech.hospayroll.SalaryJournalPdf();
                 
-                policy.SalaryJournalPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.SalaryJournalPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -412,23 +412,23 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.hospayroll.PostedStaffPdf policy = new com.afrisoftech.hospayroll.PostedStaffPdf();
                 
-                policy.PostedStaffPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.PostedStaffPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
             } break;
-            
+           /* 
             case 21:
                 
             {
-                com.afrisoftech.hospayroll.ProcessingPayroll processingPayroll = new com.afrisoftech.hospayroll.ProcessingPayroll(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(), this.companyNameCmbx.getSelectedItem().toString());
+                com.afrisoftech.hospayroll.ProcessingPayroll processingPayroll = new com.afrisoftech.hospayroll.ProcessingPayroll(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
                 
                 processingPayroll.processPayroll();
                 
                 this.dispose();
                 
             } break;
-            
+            */
             
              case 24:
                 
@@ -446,7 +446,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                com.afrisoftech.hospayroll.PayrollSummaryHsePdf policy = new com.afrisoftech.hospayroll.PayrollSummaryHsePdf();
                 
-                policy.PayrollSummaryHsePdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.PayrollSummaryHsePdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -457,7 +457,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                com.afrisoftech.hospayroll.PayrollDiffPdf policy = new com.afrisoftech.hospayroll.PayrollDiffPdf();
                 
-                policy.PayrollDiffPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.PayrollDiffPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -468,7 +468,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                com.afrisoftech.hospayroll.PayslipAnalisysPdf policy = new com.afrisoftech.hospayroll.PayslipAnalisysPdf();
                 
-                policy.PayslipAnalisysPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.PayslipAnalisysPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -479,7 +479,19 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                com.afrisoftech.hospayroll.PayrollAnnualAnalisysPdf policy = new com.afrisoftech.hospayroll.PayrollAnnualAnalisysPdf();
                 
-                policy.PayrollAnnualAnalisysPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.PayrollAnnualAnalisysPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.jComboBox1.getSelectedItem().toString());
+                
+                this.dispose();
+                
+            } break;
+            
+            
+            case 67890:
+                
+            {
+               com.afrisoftech.hospayroll.PayrollMonthlyAnalisysPdf policy = new com.afrisoftech.hospayroll.PayrollMonthlyAnalisysPdf();
+                
+                policy.PayrollMonthlyAnalisysPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -490,7 +502,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                com.afrisoftech.hospayroll.PayrollComparisonPdf policy = new com.afrisoftech.hospayroll.PayrollComparisonPdf();
                 
-                policy.PayrollComparisonPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.PayrollComparisonPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -502,7 +514,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                com.afrisoftech.hospayroll.P10ListPdf policy = new com.afrisoftech.hospayroll.P10ListPdf();
                 
-                policy.P10ListPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.P10ListPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -512,7 +524,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                com.afrisoftech.hospayroll.PayrollChangesPdf policy = new com.afrisoftech.hospayroll.PayrollChangesPdf();
                 
-                policy.PayrollChangesPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.PayrollChangesPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -523,7 +535,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                com.afrisoftech.hospayroll.GrossAnalisysPdf policy = new com.afrisoftech.hospayroll.GrossAnalisysPdf();
                 
-                policy.GrossAnalisysPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.GrossAnalisysPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -534,7 +546,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.hospayroll.ChequeVoucherPdf policy = new com.afrisoftech.hospayroll.ChequeVoucherPdf();
                 
-                policy.ChequeVoucherPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.ChequeVoucherPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -545,7 +557,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.hospayroll.ChqPaymentsPdf policy = new com.afrisoftech.hospayroll.ChqPaymentsPdf();
                 
-                policy.ChqPaymentsPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.ChqPaymentsPdf(connectDB, this.datePicker1.getDate().toLocaleString(), this.datePicker2.getDate().toLocaleString(),this.jComboBox1.getSelectedItem().toString());
                 
                 this.dispose();
                 
@@ -556,7 +568,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                com.afrisoftech.hospayroll.PayrollSummaryDepartPdf policy = new com.afrisoftech.hospayroll.PayrollSummaryDepartPdf();
                 
-                policy.PayrollSummaryDepartPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.PayrollSummaryDepartPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.jComboBox1.getSelectedItem().toString());
                 
                 //this.dispose();
                 
@@ -567,7 +579,7 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.hospayroll.TransferInvoicePdf policy = new com.afrisoftech.hospayroll.TransferInvoicePdf();
 
-                policy.TransferInvoicePdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.companyNameCmbx.getSelectedItem().toString());
+                policy.TransferInvoicePdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),this.jComboBox1.getSelectedItem().toString());
 
                 
             } break;
@@ -638,11 +650,11 @@ public class HosPayrollDatePanel extends javax.swing.JDialog {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox companyNameCmbx;
     private com.afrisoftech.lib.DatePicker datePicker1;
     private com.afrisoftech.lib.DatePicker datePicker2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

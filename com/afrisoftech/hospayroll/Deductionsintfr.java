@@ -626,7 +626,7 @@ public class Deductionsintfr extends javax.swing.JInternalFrame implements java.
             
             System.out.println("Nothing");
         }else{
-            jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select employee_no,first_name||' '||middle_name||' '||last_name AS name,department from master_file where first_name||' '||middle_name||' '||last_name ILIKE '"+jTextField11.getText()+"%' ORDER BY first_name||' '||middle_name||' '||last_name"));
+            jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select employee_no,first_name||' '||middle_name||' '||last_name AS name,department from master_file where first_name||' '||middle_name||' '||last_name ILIKE '"+jTextField11.getText()+"%' OR employee_no ILIKE '"+jTextField11.getText()+"%'  ORDER BY first_name||' '||middle_name||' '||last_name"));
             
             jSearchTable.setShowHorizontalLines(false);
             jSearchScrollPane.setViewportView(jSearchTable);

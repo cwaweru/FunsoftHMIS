@@ -338,9 +338,9 @@ public class PayeListPdf implements java.lang.Runnable {
                     try {
                         
                         
-                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(5);
+                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(6);
                         
-                        int headerwidths[] = {7,40,15,20,25};
+                        int headerwidths[] = {9,9,40,15,20,25};
                         
                         table.setWidths(headerwidths);
                         
@@ -350,7 +350,7 @@ public class PayeListPdf implements java.lang.Runnable {
                         
                         //  table.getDefaultCell().setBorder(Rectangle.BOTTOM);
                         
-                        table.getDefaultCell().setColspan(5);
+                        table.getDefaultCell().setColspan(6);
                         
                         Phrase phrase;
                         
@@ -379,6 +379,9 @@ public class PayeListPdf implements java.lang.Runnable {
                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                         
                         phrase = new Phrase("NO.",pFontHeader);
+                        table.addCell(phrase);
+                        
+                         phrase = new Phrase("Staff No.",pFontHeader);
                         table.addCell(phrase);
                         
                         phrase = new Phrase("EMPLOYEE NAME",pFontHeader);
@@ -426,6 +429,9 @@ public class PayeListPdf implements java.lang.Runnable {
                                     phrase = new Phrase(""+numberSeq+"   ", pFontHeader1);
                                     table.addCell(phrase);
                                     
+                                    phrase = new Phrase(""+listofStaffNos[j]+"   ", pFontHeader1);
+                                    table.addCell(phrase);
+                                    
                                     
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                     phrase = new Phrase(rset.getObject(1).toString().toUpperCase(), pFontHeader1);
@@ -444,14 +450,14 @@ public class PayeListPdf implements java.lang.Runnable {
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                                     phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset1.getString(1)),pFontHeader1);
                                     table.addCell(phrase);
-                                    payee=rset1.getDouble(1);
+                                    payee=payee+rset1.getDouble(1);
                                     
                                     
                                 }
                             }
                             //while (rsetTotals.next()) {
                             
-                            table.getDefaultCell().setColspan(4);
+                            table.getDefaultCell().setColspan(5);
                             
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             phrase = new Phrase("Total", pFontHeader);

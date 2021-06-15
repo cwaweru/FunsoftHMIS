@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.2" maxVersion="1.2" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+<Form version="1.5" maxVersion="1.5" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JDialog" name="pharmacySearchDialog">
       <Properties>
@@ -1717,6 +1717,7 @@
             <Component class="javax.swing.JButton" name="tbScreeningSaveInvestigationsBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Save Screening Investigations"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbScreeningSaveInvestigationsBtnActionPerformed"/>
@@ -1827,6 +1828,7 @@
             <Component class="javax.swing.JButton" name="tbScreeningSaveInvestigationsResultsBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Save Screening Investigation Results"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbScreeningSaveInvestigationsResultsBtnActionPerformed"/>
@@ -2094,7 +2096,7 @@
                 <Component class="javax.swing.JComboBox" name="waitingclinicscmbx">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT &apos;--ALL--&apos; as clinics UNION SELECT distinct clinics FROM pb_clinics ORDER BY 1 asc&quot;)" type="code"/>
+                      <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT distinct clinics FROM pb_clinics ORDER BY 1 asc&quot;)" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -2102,7 +2104,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="waitingclinicscmbxActionPerformed"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="&#xa;"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="//SELECT &apos;--ALL--&apos; as clinics UNION"/>
                   </AuxValues>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -2502,7 +2504,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                          <GridBagConstraints gridX="0" gridY="7" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="0.5"/>
+                          <GridBagConstraints gridX="0" gridY="8" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="0.5"/>
                         </Constraint>
                       </Constraints>
 
@@ -2563,7 +2565,7 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                          <GridBagConstraints gridX="0" gridY="10" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+                          <GridBagConstraints gridX="0" gridY="11" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -2576,7 +2578,7 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                          <GridBagConstraints gridX="0" gridY="9" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+                          <GridBagConstraints gridX="0" gridY="10" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -2589,7 +2591,7 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                          <GridBagConstraints gridX="0" gridY="8" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+                          <GridBagConstraints gridX="0" gridY="9" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -2657,7 +2659,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="1" gridY="2" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="0.0"/>
+                              <GridBagConstraints gridX="1" gridY="2" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="3.0" weightY="1.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -2752,6 +2754,16 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                          <GridBagConstraints gridX="0" gridY="7" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="schemeTxt">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                           <GridBagConstraints gridX="0" gridY="6" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
                         </Constraint>
                       </Constraints>
@@ -2786,7 +2798,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
                       <SubComponents>
-                        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+                        <Container class="javax.swing.JScrollPane" name="clerkingwaitingJscrl">
                           <Properties>
                             <Property name="autoscrolls" type="boolean" value="true"/>
                           </Properties>
@@ -4238,7 +4250,7 @@
                                           </Events>
                                           <AuxValues>
                                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable()"/>
-                                            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="javax.swing.table.TableColumn column1 = null;&#xa;        for (int i = 0; i &lt; 9; i++) {&#xa;            column1 = pharmacyTable.getColumnModel().getColumn(i);&#xa;            if (i == 0) {&#xa;&#xa;                column1.setPreferredWidth(200); //sport column is bigger&#xa;            } else {&#xa;                if (i == 1) {&#xa;                    column1.setPreferredWidth(50);&#xa;                } else {&#xa;                    if (i == 6) {&#xa;                        column1.setPreferredWidth(100);&#xa;                    } else {&#xa;                        //if (i == 2) {&#xa;                        column1.setPreferredWidth(50);&#xa;                    // }  else&#xa;                    //column.setPreferredWidth(50);&#xa;                    }&#xa;                }&#xa;            }&#xa;        }&#xa;&#xa;&#xa;     //   java.lang.Object[] strCmb2 = {&quot;Oral&quot;, &quot;I.M&quot;, &quot;I.V&quot;, &quot;Intramuscular&quot;, &quot;Topical&quot;, &quot;Vaginal&quot;, &quot;Rectal&quot;, &quot;Sublingual&quot;, &quot;Subcutaneuos&quot;, &quot;Intrathical&quot;, &quot;Intradermal&quot;,&quot;Nebulization&quot;};&#xa;&#xa;        javax.swing.JComboBox cmBox2 = new javax.swing.JComboBox(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT admin_mode FROM st_admin_mode ORDER BY rank&quot;));&#xa;&#xa;        javax.swing.table.TableColumn teditor2 = this.pharmacyTable.getColumn(&quot;Route&quot;);&#xa;&#xa;        teditor2.setCellEditor(new javax.swing.DefaultCellEditor(cmBox2));&#xa;&#xa;&#xa;        java.lang.Object[] strCmb1 = {&quot;OD&quot;, &quot;BD&quot;, &quot;TID&quot;, &quot;QID&quot;, &quot;Stat&quot;, &quot;Mane&quot;, &quot;Nocte&quot;, &quot;Prn&quot;};&#xa;&#xa;        javax.swing.JComboBox cmBox1 = new javax.swing.JComboBox(strCmb1);&#xa;&#xa;        javax.swing.table.TableColumn teditor1 = this.pharmacyTable.getColumn(&quot;Freqcy&quot;);&#xa;&#xa;        cmBox1.addActionListener(new java.awt.event.ActionListener() {&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;                cmBox1ActionPerformed(evt);&#xa;            }&#xa;        });&#xa;&#xa;        teditor1.setCellEditor(new javax.swing.DefaultCellEditor(cmBox1));&#xa;&#xa;        java.lang.Object[] strCmb3 = {&quot;Once&quot;, &quot;1&quot;, &quot;3&quot;, &quot;5&quot;, &quot;7&quot;, &quot;10&quot;, &quot;14&quot;, &quot;30&quot;, &quot;90&quot;};&#xa;&#xa;        javax.swing.JComboBox cmBox3 = new javax.swing.JComboBox(strCmb3);&#xa;        &#xa;        cmBox3.addActionListener(new java.awt.event.ActionListener() {&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;                cmBox3ActionPerformed(evt);&#xa;            }&#xa;        });&#xa;        cmBox3.setEditable(true);&#xa;        javax.swing.table.TableColumn teditor3 = this.pharmacyTable.getColumn(&quot;No.of Days&quot;);&#xa;&#xa;        teditor3.setCellEditor(new javax.swing.DefaultCellEditor(cmBox3));&#xa;        &#xa;        java.lang.Object[] strCmb4 = {&quot;I&quot;, &quot;II&quot;, &quot;III&quot;, &quot;IV&quot;, &quot;2ml&quot;, &quot;5ml&quot;, &quot;10ml&quot;, &quot;15ml&quot;, &quot;20&quot;};&#xa;&#xa;        javax.swing.JComboBox cmBox4 = new javax.swing.JComboBox(strCmb4);&#xa;        cmBox4.setEditable(true);&#xa;        javax.swing.table.TableColumn teditor4 = this.pharmacyTable.getColumn(&quot;Dosage&quot;);&#xa;&#xa;        teditor4.setCellEditor(new javax.swing.DefaultCellEditor(cmBox4));"/>
+                                            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="javax.swing.table.TableColumn column1 = null;&#xa;        for (int i = 0; i &lt; 9; i++) {&#xa;            column1 = pharmacyTable.getColumnModel().getColumn(i);&#xa;            if (i == 0) {&#xa;&#xa;                column1.setPreferredWidth(200); //sport column is bigger&#xa;            } else {&#xa;                if (i == 1) {&#xa;                    column1.setPreferredWidth(50);&#xa;                } else {&#xa;                    if (i == 6) {&#xa;                        column1.setPreferredWidth(100);&#xa;                    } else {&#xa;                        //if (i == 2) {&#xa;                        column1.setPreferredWidth(50);&#xa;                    // }  else&#xa;                    //column.setPreferredWidth(50);&#xa;                    }&#xa;                }&#xa;            }&#xa;        }&#xa;&#xa;&#xa;     //   java.lang.Object[] strCmb2 = {&quot;Oral&quot;, &quot;I.M&quot;, &quot;I.V&quot;, &quot;Intramuscular&quot;, &quot;Topical&quot;, &quot;Vaginal&quot;, &quot;Rectal&quot;, &quot;Sublingual&quot;, &quot;Subcutaneuos&quot;, &quot;Intrathical&quot;, &quot;Intradermal&quot;,&quot;Nebulization&quot;};&#xa;&#xa;        javax.swing.JComboBox cmBox2 = new javax.swing.JComboBox(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT admin_mode FROM st_admin_mode ORDER BY rank&quot;));&#xa;&#xa;        javax.swing.table.TableColumn teditor2 = this.pharmacyTable.getColumn(&quot;Route&quot;);&#xa;&#xa;        teditor2.setCellEditor(new javax.swing.DefaultCellEditor(cmBox2));&#xa;&#xa;&#xa;        java.lang.Object[] strCmb1 = {&quot;OD&quot;, &quot;BD&quot;, &quot;TID&quot;, &quot;QID&quot;, &quot;Stat&quot;, &quot;Mane&quot;, &quot;Nocte&quot;, &quot;Prn&quot;};&#xa;&#xa;        javax.swing.JComboBox cmBox1 = new javax.swing.JComboBox(strCmb1);&#xa;&#xa;        javax.swing.table.TableColumn teditor1 = this.pharmacyTable.getColumn(&quot;Freqcy&quot;);&#xa;&#xa;        cmBox1.addActionListener(new java.awt.event.ActionListener() {&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;                cmBox1ActionPerformed(evt);&#xa;            }&#xa;        });&#xa;&#xa;        teditor1.setCellEditor(new javax.swing.DefaultCellEditor(cmBox1));&#xa;&#xa;        java.lang.Object[] strCmb3 = {&quot;Once&quot;, &quot;1&quot;, &quot;3&quot;, &quot;5&quot;, &quot;7&quot;, &quot;10&quot;, &quot;14&quot;, &quot;30&quot;,&quot;60&quot;, &quot;90&quot;};&#xa;&#xa;        javax.swing.JComboBox cmBox3 = new javax.swing.JComboBox(strCmb3);&#xa;        &#xa;        cmBox3.addActionListener(new java.awt.event.ActionListener() {&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;                cmBox3ActionPerformed(evt);&#xa;            }&#xa;        });&#xa;        cmBox3.setEditable(true);&#xa;        javax.swing.table.TableColumn teditor3 = this.pharmacyTable.getColumn(&quot;No.of Days&quot;);&#xa;&#xa;        teditor3.setCellEditor(new javax.swing.DefaultCellEditor(cmBox3));&#xa;        &#xa;        java.lang.Object[] strCmb4 = {&quot;I&quot;, &quot;II&quot;, &quot;III&quot;, &quot;IV&quot;, &quot;2ml&quot;, &quot;5ml&quot;, &quot;10ml&quot;, &quot;15ml&quot;, &quot;20&quot;};&#xa;&#xa;        javax.swing.JComboBox cmBox4 = new javax.swing.JComboBox(strCmb4);&#xa;        cmBox4.setEditable(true);&#xa;        javax.swing.table.TableColumn teditor4 = this.pharmacyTable.getColumn(&quot;Dosage&quot;);&#xa;&#xa;        teditor4.setCellEditor(new javax.swing.DefaultCellEditor(cmBox4));"/>
                                           </AuxValues>
                                         </Component>
                                       </SubComponents>
@@ -4421,19 +4433,42 @@
                         <Component class="javax.swing.JTable" name="diagnosisTable">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="2" rowCount="10">
+                              <Table columnCount="3" rowCount="10">
                                 <Column editable="true" title="Code" type="java.lang.Object"/>
                                 <Column editable="true" title="Description" type="java.lang.Object"/>
+                                <Column editable="true" title="Category" type="java.lang.Object"/>
                               </Table>
                             </Property>
+                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                              <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                              </TableColumnModel>
+                            </Property>
                             <Property name="rowHeight" type="int" value="25"/>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                            </Property>
                           </Properties>
                           <Events>
                             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="diagnosisTableMouseClicked"/>
                           </Events>
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable();"/>
-                            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="javax.swing.table.TableColumn column3x = null;&#xa;for (int i = 0; i &lt; 2; i++) {&#xa;    column3x = diagnosisTable.getColumnModel().getColumn(i);&#xa;    if (i == 1) {&#xa;        &#xa;        column3x.setPreferredWidth(300); //sport column is bigger&#xa;    } else {&#xa;        &#xa;            column3x.setPreferredWidth(50);&#xa;        }&#xa;    }&#xa;"/>
+                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable()"/>
+                            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="javax.swing.table.TableColumn column3x = null;&#xa;for (int i = 0; i &lt; 3; i++) {&#xa;    column3x = diagnosisTable.getColumnModel().getColumn(i);&#xa;    if (i == 1) {&#xa;        &#xa;        column3x.setPreferredWidth(300); //sport column is bigger&#xa;    } else if (i == 2) {&#xa;        &#xa;        column3x.setPreferredWidth(100); //sport column is bigger&#xa;    } else{&#xa;        &#xa;            column3x.setPreferredWidth(50);&#xa;        }&#xa;    }&#xa;&#xa;javax.swing.JComboBox cmBox2x = new javax.swing.JComboBox(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT DISTINCT classification FROM hp_opdisease_classification UNION SELECT DISTINCT classification FROM hp_opdisease_underfive ORDER BY 1&quot;));&#xa;javax.swing.table.TableColumn teditor2x = this.diagnosisTable.getColumn(&quot;Category&quot;);&#xa;teditor2x.setCellEditor(new javax.swing.DefaultCellEditor(cmBox2x));"/>
                           </AuxValues>
                         </Component>
                       </SubComponents>

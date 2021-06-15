@@ -130,6 +130,11 @@ public class HosDatePanelPrescription extends javax.swing.JDialog {
 
         buttonGroup1.add(allChbx);
         allChbx.setText("All");
+        allChbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allChbxActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -244,6 +249,10 @@ public class HosDatePanelPrescription extends javax.swing.JDialog {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_closeDialog
+
+    private void allChbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allChbxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_allChbxActionPerformed
 
     /**
      * @param args the command line arguments

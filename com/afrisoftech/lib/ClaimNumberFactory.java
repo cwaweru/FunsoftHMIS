@@ -22,7 +22,7 @@ public class ClaimNumberFactory {
         String claimNumber = null;
         
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT regexp_replace(date_part('year', current_date)::text, 0::varchar, ''::varchar) ||''|| lpad(date_part('month', current_date)::text, 2, '0') ||''|| lpad(nextval('claim_no_seq')::text, 5, '0')");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT regexp_replace(date_part('year', current_date)::text, 0::varchar, ''::varchar) ||''|| lpad(date_part('month', current_date)::text, 2, '0') ||''|| lpad(nextval('claim_no_seq')::text, 6, '0')");
             java.sql.ResultSet rset = pstmt.executeQuery();
             while(rset.next()){
                claimNumber = rset.getString(1);

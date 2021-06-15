@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -907,7 +907,7 @@ public class MergeInventoryItemsIntfr extends javax.swing.JInternalFrame {
 
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
 
         refreshbtn.doClick();
@@ -959,7 +959,7 @@ public class MergeInventoryItemsIntfr extends javax.swing.JInternalFrame {
             }
 
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return status;
     }
@@ -1023,7 +1023,7 @@ public class MergeInventoryItemsIntfr extends javax.swing.JInternalFrame {
             refresh();
             calculator();
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

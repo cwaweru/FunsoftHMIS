@@ -20,7 +20,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-//import org.openide.util.Exceptions;
+//
 //ACABAS DE DECIR QUE NO ENTIENDE
 //BIEN. PERO NECCESITAS APRENDER ESPANOL HERMANO
 
@@ -2095,7 +2095,7 @@ public class OrderingTenderItemsintfr extends javax.swing.JInternalFrame {
                 supp = rsetTablez.getObject(1).toString();
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
         }
         return supp;
     }
@@ -2921,7 +2921,7 @@ public class OrderingTenderItemsintfr extends javax.swing.JInternalFrame {
                     remark = rset.getString(1);
                 }
             } catch (SQLException ex) {
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //ex.printStackTrace();
             }
 
             waitingPRs.setValueAt(remark, i, 5);

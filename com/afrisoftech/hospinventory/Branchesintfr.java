@@ -418,7 +418,7 @@ public class Branchesintfr extends javax.swing.JInternalFrame {
         int j = subStoresTable.getSelectedColumn();
 
         if (j == 4) {
-            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select code,activity FROM pb_activity WHERE activity ILIKE '" + jTextField111.getText() + "%' AND (sub_category ILIKE '%stock%' OR sub_category ILIKE '%invento%') order by activity"));
+            jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select code,activity FROM pb_activity WHERE activity ILIKE '" + jTextField111.getText() + "%' AND (activity ILIKE '%stock%' OR activity ILIKE '%invento%') order by activity"));
             jSearchScrollPane1.setViewportView(jSearchTable1);
             System.out.println("Cannot sort out");
         } else {
@@ -564,6 +564,7 @@ public class Branchesintfr extends javax.swing.JInternalFrame {
             saveStoresBtn.setLabel("Save stores data");
             jLabel2.setForeground(java.awt.Color.blue);
             jLabel2.setText("Insert successful");
+            javax.swing.JOptionPane.showMessageDialog(this, "Data saved successfully.");
 
         } catch (java.sql.SQLException sq) {
             javax.swing.JOptionPane.showMessageDialog(this, "ERROR: " + sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);

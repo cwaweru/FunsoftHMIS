@@ -55,6 +55,7 @@ public class GokBillingTxt implements java.lang.Runnable {
     private java.lang.Runtime rt = null;
     private String shiftNumber;
     private String unitNumber;
+    String userName = "";
 
     public GokBillingTxt(java.sql.Connection connDb, java.lang.String combox, java.lang.String amount, java.lang.String transNo, java.lang.String paymode) {
 
@@ -416,7 +417,7 @@ public class GokBillingTxt implements java.lang.Runnable {
                     + "billing_time)||'-'||date_part('month', billing_time)||'-'||date_part('year', billing_time)||'@ '||date_part('hour', billing_time)||':'||date_part('minute', billing_time) AS receipt_time "
                     + "FROM hp_patient_card WHERE reference = '" + getReceipt() + "'");
             java.sql.ResultSet rset5 = st5.executeQuery("SELECT initcap(service),sum(dosage),sum(debit), round(sum(debit)/sum(dosage)) from hp_patient_card where reference = '" + getReceipt() + "' and transaction_type = 'Billing' group by service");
-            java.sql.ResultSet rset6 = st6.executeQuery("SELECT distinct user_name, '' as cash_point, '' as journal_no, patient_no from hp_patient_card where reference = '" + getReceipt() + "'");
+            java.sql.ResultSet rset6 = st6.executeQuery("SELECT distinct user_name, '' as cash_point, '' as journal_no, patient_no,current_user from hp_patient_card where reference = '" + getReceipt() + "'");
 //            java.sql.ResultSet rset51 = st51.executeQuery("SELECT sum(credit) from ac_cash_collection where receipt_no = '" + getReceipt() + "' and credit > 0 AND (transaction_type ILIKE 'Waive%' OR transaction_type ILIKE 'Exempti%')");
 //            java.sql.ResultSet rset6d = st2.executeQuery("SELECT distinct journal_no from ac_cash_collection where receipt_no = '" + getReceipt() + "' AND credit > 0");
 
@@ -444,7 +445,7 @@ public class GokBillingTxt implements java.lang.Runnable {
                 while (rset6.next()) {
                     System.out.println("Cashier = " + Cashier);
                     System.out.println("Cashpoint " + Cashpoint);
-                    Cashier = getDbObject().getDBObject(rset6.getObject(1).toString().toUpperCase(), "-");
+                    Cashier = getDbObject().getDBObject(rset6.getObject(5).toString().toUpperCase(), "-");
 
                     Cashpoint = getDbObject().getDBObject(rset6.getObject(2), "-");
 

@@ -3337,7 +3337,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
 
             admissionListingPanel.setLayout(new java.awt.GridBagLayout());
 
-            admissionListingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, sub_chief as unit_number, visit_id, patient_name, gender, pat_age as patient_age, ward, wing, mode_of_payment, data_capture_time from hp_admission where user_name = current_user and date_admitted = now()::date order by data_capture_time"));
+            admissionListingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, sub_chief as unit_number, date_admitted,visit_id, patient_name, gender, pat_age as patient_age, ward, wing, mode_of_payment, data_capture_time,user_name AS registrar from hp_admission where user_name = current_user and date_admitted = now()::date order by data_capture_time"));
             refreshScrollPane.setViewportView(admissionListingTable);
 
             gridBagConstraints = new java.awt.GridBagConstraints();
@@ -4785,7 +4785,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             }
 
             java.sql.Statement stmt = connectDB.createStatement();
-            java.sql.ResultSet rset = stmt.executeQuery("select nok,residence,year_of_birth::date,address,sex,tel_no,('now'::date-year_of_birth::date)/365 from hp_inpatient_register where patient_no ='" + admissionNumberTxt.getText() + "'");
+            java.sql.ResultSet rset = stmt.executeQuery("select nok,residence,year_of_birth::date,address,sex,tel_no,('now'::date-year_of_birth::date)/365,payer,account_no,member_name,description from hp_inpatient_register where patient_no ='" + admissionNumberTxt.getText() + "'");
             while (rset.next()) {
                 nokNameTxt.setText(rset.getObject(1).toString());
                 currentResidence.setText(rset.getObject(2).toString());
@@ -4805,6 +4805,10 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 } else {
                     femaleChkbx.setSelected(true);
                 }
+                schemeNameTxt.setText(rset.getString(8));
+                memberNumberTxt.setText(rset.getString(9));
+                memberNameTxt.setText(rset.getString(10));
+                schemeMangerTxt.setText(rset.getString(11));
             }
 
             java.sql.Statement stmt11 = connectDB.createStatement();
@@ -4858,11 +4862,11 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                 java.sql.Statement stmt1111 = connectDB.createStatement();
                 java.sql.ResultSet rset1111 = stmt1111.executeQuery("select date_admitted::date,discharge_date::date,CASE WHEN (visit_id IS NULL) THEN '-' ELSE visit_id END AS visit_id,ward,bed_no from hp_admission where patient_no ='" + admissionNumberTxt.getText() + "' order by date_admitted DESC LIMIT 1");
                 while (rset1111.next()) {
-                    previousDischargeDateTxt.setText(rset1111.getObject(2).toString());
-                    previousAdmissionDateTxt.setText(rset1111.getObject(1).toString());
-                    previousVisitIDTxt.setText(rset1111.getObject(3).toString());
-                    wardAdmittedTxt.setText(rset1111.getObject(4).toString());
-                    bedoccupiedTxt.setText(rset1111.getObject(5).toString());
+                    previousDischargeDateTxt.setText(rset1111.getString(2));
+                    previousAdmissionDateTxt.setText(rset1111.getString(1));
+                    previousVisitIDTxt.setText(rset1111.getString(3));
+                    wardAdmittedTxt.setText(rset1111.getString(4));
+                    bedoccupiedTxt.setText(rset1111.getString(5));
                 }
             }
 
@@ -4896,6 +4900,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
 
             } else {
                 if (this.searchbyPatientNumberChkbx.isSelected()) {
+//                    ipSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT hd.patient_no, (upper(hd.second_name||' '||hd.last_name)) as name, hd.first_name AS surname, (SELECT hp.sub_chief FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) as unit_number, hd.tel_no as telephone_no, (SELECT hp.id_no FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) as id_no, hd.nok as next_of_kin from hp_inpatient_register hd where hd.patient_no ILIKE '%" + ipSearchTxt.getText().toString() + "%' or (SELECT hp.sub_chief FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) ilike '%" + ipSearchTxt.getText().toString() + "%' ORDER BY second_name"));
                     ipSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT hd.patient_no, (upper(hd.second_name||' '||hd.last_name)) as name,hd.first_name AS surname, (SELECT hp.sub_chief FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) as unit_number, hd.tel_no as telephone_no, (SELECT hp.id_no FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) as id_no, hd.nok as next_of_kin from hp_inpatient_register hd where hd.patient_no ILIKE '%" + ipSearchTxt.getText().toString() + "%' or (SELECT hp.sub_chief FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) ilike '%" + ipSearchTxt.getText().toString() + "%'  or hd.nok ilike '%" + ipSearchTxt.getText().toString() + "%'  or (SELECT hp.id_no FROM hp_admission hp WHERE hp.patient_no = hd.patient_no order by 1 LIMIT 1) ilike '%" + ipSearchTxt.getText().toString() + "%'  or hd.tel_no ilike '%" + ipSearchTxt.getText().toString() + "%' ORDER BY second_name"));
                     ipSearchTable.setShowHorizontalLines(false);
                     ipSearchScrollPane.setViewportView(ipSearchTable);
@@ -5045,7 +5050,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
 
                 try {
                     connectDB.setAutoCommit(false);
-                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into hp_inpatient_register values(?, initcap(?), initcap(?), ?, ?, ?, ?, ?, ?, ?)");
+                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("insert into hp_inpatient_register(patient_no, first_name, second_name, last_name, nok, residence, address, year_of_birth, tel_no, sex,op_no) values(?, initcap(?), initcap(?), ?, ?, ?, ?, ?, ?, ?,?)");
                     if (jTextField21.getText().equals("")) {
                         javax.swing.JOptionPane.showMessageDialog(this, "You must enter Member No.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                     } else {
@@ -5075,6 +5080,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
                     } else {
                         pstmt.setObject(10, selectedchkbx);
                     }
+                    pstmt.setString(11, opdNoTxt.getText());
 
                     pstmt.executeUpdate();
                     connectDB.commit();
@@ -5759,8 +5765,8 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
             }
 
             com.afrisoftech.reports.PatientRegFormPdf.connectDB = connectDB;
-////            com.afrisoftech.reports.PatientRegFormPdf regForm = new com.afrisoftech.reports.PatientRegFormPdf();
-////            regForm.callPdf(connectDB, admissionNumberTxt.getText(), "IP");
+            com.afrisoftech.reports.PatientRegFormPdf regForm = new com.afrisoftech.reports.PatientRegFormPdf();
+            regForm.callPdf(connectDB, admissionNumberTxt.getText(), "IP");
         } catch (SQLException ex) {
             ex.printStackTrace();
 
@@ -5787,18 +5793,18 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
 
     private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
         if (reportTypeChooserCmbx.getSelectedItem().toString().equalsIgnoreCase("ALL Records Officers")) {
-            admissionListingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, sub_chief as unit_number, visit_id, patient_name, gender, pat_age as patient_age, ward, wing, mode_of_payment, data_capture_time from hp_admission where date_admitted between '" + startDatePicker.getDate() + "' and '" + endDatePicker.getDate() + "' order by data_capture_time"));
+            admissionListingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, sub_chief as unit_number,date_admitted, visit_id, patient_name, gender, pat_age as patient_age, ward, wing, mode_of_payment, data_capture_time,user_name AS registrar from hp_admission where date_admitted between '" + startDatePicker.getDate() + "' and '" + endDatePicker.getDate() + "' order by data_capture_time"));
         } else {
-            admissionListingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, sub_chief as unit_number, visit_id, patient_name, gender, pat_age as patient_age, ward, wing, mode_of_payment, data_capture_time from hp_admission where user_name = current_user and date_admitted between '" + startDatePicker.getDate() + "' and '" + endDatePicker.getDate() + "' order by data_capture_time"));
+            admissionListingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, sub_chief as unit_number,date_admitted, visit_id, patient_name, gender, pat_age as patient_age, ward, wing, mode_of_payment, data_capture_time,user_name AS registrar from hp_admission where user_name = current_user and date_admitted between '" + startDatePicker.getDate() + "' and '" + endDatePicker.getDate() + "' order by data_capture_time"));
         }
 // TODO add your handling code here:
     }//GEN-LAST:event_refreshBtnActionPerformed
 
     private void reportTypeChooserCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportTypeChooserCmbxActionPerformed
         if (reportTypeChooserCmbx.getSelectedItem().toString().equalsIgnoreCase("ALL Records Officers")) {
-            admissionListingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, sub_chief as unit_number, visit_id, patient_name, gender, pat_age as patient_age, ward, wing, mode_of_payment, data_capture_time from hp_admission where date_admitted between '" + startDatePicker.getDate() + "' and '" + endDatePicker.getDate() + "' order by data_capture_time"));
+            admissionListingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, sub_chief as unit_number,date_admitted, visit_id, patient_name, gender, pat_age as patient_age, ward, wing, mode_of_payment, data_capture_time,user_name AS registrar from hp_admission where date_admitted between '" + startDatePicker.getDate() + "' and '" + endDatePicker.getDate() + "' order by data_capture_time"));
         } else {
-            admissionListingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, sub_chief as unit_number, visit_id, patient_name, gender, pat_age as patient_age, ward, wing, mode_of_payment, data_capture_time from hp_admission where user_name = current_user and date_admitted between '" + startDatePicker.getDate() + "' and '" + endDatePicker.getDate() + "' order by data_capture_time"));
+            admissionListingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, sub_chief as unit_number, date_admitted, visit_id, patient_name, gender, pat_age as patient_age, ward, wing, mode_of_payment, data_capture_time,user_name AS registrar from hp_admission where user_name = current_user and date_admitted between '" + startDatePicker.getDate() + "' and '" + endDatePicker.getDate() + "' order by data_capture_time"));
 
         }
         // TODO add your handling code here:
@@ -6469,7 +6475,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                         patientsNo = admissionNumberTxt.getText();
                                         patientsNo2 = patientsNo;
                                     }
-                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_inpatient_register VALUES(?, UPPER(?), UPPER(?), ?, ?, ?, ?, ?, ?, ?)");
+                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_inpatient_register(patient_no, first_name, second_name, last_name, nok, residence, address, year_of_birth, tel_no, sex,op_no) VALUES(?, UPPER(?), UPPER(?), ?, ?, ?, ?, ?, ?, ?,?)");
                                     pstmt.setString(1, patientsNo2);
                                     if (surNameTxt.getText().equals("")) {
                                         javax.swing.JOptionPane.showMessageDialog(this, "You must enter First Name and Second Name", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -6493,7 +6499,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                     } else {
                                         pstmt.setObject(10, selectedchkbx);
                                     }
-
+                                    pstmt.setString(11, opdNoTxt.getText());
                                     pstmt.executeUpdate();
                                     this.admitBtn.setVisible(false);
                                     //   javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully","Comfirmation Message",javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -7386,7 +7392,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                     patientsNo = admissionNumberTxt.getText();
                                     patientsNo2 = patientsNo;
                                 }
-                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_inpatient_register VALUES(?, UPPER(?), UPPER(?), ?, ?, ?, ?, ?, ?, ?)");
+                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_inpatient_register(patient_no, first_name, second_name, last_name, nok, residence, address, year_of_birth, tel_no, sex,op_no) VALUES(?, UPPER(?), UPPER(?), ?, ?, ?, ?, ?, ?, ?,?)");
                                 pstmt.setString(1, patientsNo2);
                                 if (surNameTxt.getText().equals("")) {
                                     javax.swing.JOptionPane.showMessageDialog(this, "You must enter First Name and Second Name", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -7410,6 +7416,8 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                 } else {
                                     pstmt.setObject(10, selectedchkbx);
                                 }
+                                
+                                pstmt.setString(11, opdNoTxt.getText());
 
                                 pstmt.executeUpdate();
                                 this.admitBtn.setVisible(false);

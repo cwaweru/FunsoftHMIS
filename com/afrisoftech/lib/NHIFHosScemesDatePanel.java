@@ -585,7 +585,7 @@ this.dispose();        // Add your handling code here:
             {
                 com.afrisoftech.reports.StatementAccDetailPdf policy = new com.afrisoftech.reports.StatementAccDetailPdf();
 //                k''
-                policy.StatementAccDetailPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),jTextField36.getText(),this.jTextField2.getText(),option);
+                policy.StatementAccDetailPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),jTextField36.getText(),this.jTextField2.getText(),option,"-");
                 
                 
                 this.dispose();

@@ -333,7 +333,7 @@ public class MOH204AOPUnder5RegisterPdf implements java.lang.Runnable {
 
                         com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(26);
 
-                        int headerwidths[] = {5, 10, 10, 7, 7, 25, 7, 12, 12, 12, 9, 9, 9, 12, 12, 25, 7, 7, 12, 9, 25, 9, 9, 9, 9, 20};
+                        int headerwidths[] = {5, 12, 12, 7, 7, 25, 12, 12, 12, 12, 9, 9, 9, 12, 12, 25, 7, 7, 12, 9, 25, 9, 9, 9, 9, 20};
 
                         table.setWidths(headerwidths);
 
@@ -583,7 +583,7 @@ public class MOH204AOPUnder5RegisterPdf implements java.lang.Runnable {
                                         + " date_part('day', date) ||'-'||date_part('month', date) ||'-'||date_part('year', date), patient_no,"
                                         + " (SELECT patient_race FROM hp_patient_register WHERE hp_patient_register.patient_no = "
                                         + " hp_patient_visit.patient_no ORDER BY 1 DESC LIMIT 1) as cwc_no, (CASE WHEN comments = 'Old' THEN 'YES' ELSE 'NO' END) as revisit, "
-                                        + " initcap(name), age::int, (SELECT initcap(gender) FROM hp_patient_register WHERE hp_patient_register.patient_no = hp_patient_visit.patient_no ORDER BY 1 DESC LIMIT 1) as gender, "
+                                        + " initcap(name),  (SELECT  funsoft_patient_age(year_of_birth::date) FROM hp_patient_register WHERE hp_patient_register.patient_no = hp_patient_visit.patient_no LIMIT 1), (SELECT initcap(gender) FROM hp_patient_register WHERE hp_patient_register.patient_no = hp_patient_visit.patient_no ORDER BY 1 DESC LIMIT 1) as gender, "
                                         + " (SELECT initcap(residence) FROM hp_inpatient_register"
                                         + " WHERE hp_patient_visit.patient_no = hp_inpatient_register.patient_no"
                                         + " UNION SELECT initcap(residence) FROM hp_patient_register WHERE "
@@ -778,7 +778,7 @@ public class MOH204AOPUnder5RegisterPdf implements java.lang.Runnable {
 
         try {
 
-            java.sql.PreparedStatement stmt1 = connectDB.prepareStatement("SELECT DISTINCT patient_no, name FROM hp_patient_visit where date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::int < 5 ORDER BY name ASC");
+            java.sql.PreparedStatement stmt1 = connectDB.prepareStatement("SELECT DISTINCT patient_no, name,date FROM hp_patient_visit where date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::int < 5 ORDER BY date,name ASC");
 
             java.sql.ResultSet rSet1 = stmt1.executeQuery();
 

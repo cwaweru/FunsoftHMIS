@@ -487,7 +487,7 @@ public class P9PerStaffPdf implements java.lang.Runnable {
                             phrase = new Phrase("Month",pFontHeader);
                             table.addCell(phrase);
                             
-                            phrase = new Phrase("Basic Salary",pFontHeader);
+                            phrase = new Phrase("Gross Pay",pFontHeader);
                             table.addCell(phrase);
                             
                             phrase = new Phrase("Non Cash Benefits",pFontHeader);
@@ -516,7 +516,7 @@ public class P9PerStaffPdf implements java.lang.Runnable {
                             phrase = new Phrase("Tax on (H)",pFontHeader);
                             table.addCell(phrase);
                             
-                            phrase = new Phrase("Relief Monthly",pFontHeader);
+                            phrase = new Phrase("Relief Monthly/Insurance Relief",pFontHeader);
                             table.addCell(phrase);
                             
                             phrase = new Phrase("PAYE Tax (J-K)",pFontHeader);
@@ -656,7 +656,7 @@ public class P9PerStaffPdf implements java.lang.Runnable {
                                     java.sql.ResultSet rs4 = st11e.executeQuery("SELECT count(amount) FROM posting WHERE staff_no = '"+listofStaffNos[j]+"' AND date = '"+listofAct[l]+"' AND description ilike 'House Value'");
                                     java.sql.ResultSet rs5 = st11f.executeQuery("SELECT count(amount) FROM posting WHERE staff_no = '"+listofStaffNos[j]+"' AND date = '"+listofAct[l]+"' AND allowance_deduction ILIKE 'Less Relief'");
                                     java.sql.ResultSet rs7 = st11g.executeQuery("SELECT count(amount) FROM posting WHERE staff_no = '"+listofStaffNos[j]+"' AND date = '"+listofAct[l]+"' AND description ilike '%P.A.%'");
-                                    java.sql.ResultSet rs6 = st11h.executeQuery("SELECT count(amount) FROM posting WHERE staff_no = '"+listofStaffNos[j]+"' AND date = '"+listofAct[l]+"' AND description ilike 'Monthly Personal%'");
+                                    java.sql.ResultSet rs6 = st11h.executeQuery("SELECT count(amount) FROM posting WHERE staff_no = '"+listofStaffNos[j]+"' AND date = '"+listofAct[l]+"' AND description ilike 'Monthly Personal%' ");
                                     java.sql.ResultSet rs8 = st11m.executeQuery("select count(amount) from non_taxed_earnings WHERE staff_no = '"+listofStaffNos[j]+"' AND date = '"+listofAct[l]+"'");
                                     
                                     
@@ -666,12 +666,13 @@ public class P9PerStaffPdf implements java.lang.Runnable {
                                     java.sql.ResultSet rset1 = st1.executeQuery("SELECT date,sum(amount) FROM earnings WHERE staff_no = '"+listofStaffNos[j]+"' AND date = '"+listofAct[l]+"' AND amount > 0 GROUP BY date ORDER BY date ASC");
                                  
                                     java.sql.ResultSet rset =  st.executeQuery("SELECT date, sum(amount) FROM posting WHERE staff_no = '"+listofStaffNos[j]+"' AND date = '"+listofAct[l]+"' AND allowance_deduction ILIKE 'Non Cash%' AND description not ilike 'House value' GROUP BY date ORDER BY date ASC");
+                                    System.err.println("SELECT date, sum(amount) FROM posting WHERE staff_no = '"+listofStaffNos[j]+"' AND date = '"+listofAct[l]+"' AND allowance_deduction ILIKE 'Non Cash%' AND description not ilike 'House value' GROUP BY date ORDER BY date ASC");
                                     //java.sql.ResultSet rset =  st.executeQuery("SELECT 0 FROM posting WHERE staff_no = '"+listofStaffNos[j]+"' AND date = '"+listofAct[l]+"' AND allowance_deduction ILIKE 'Non Cash%'");
                                     
                                     java.sql.ResultSet rset2 = st2.executeQuery("SELECT date, sum(amount) FROM posting WHERE staff_no = '"+listofStaffNos[j]+"' AND date = '"+listofAct[l]+"' AND description ilike 'House Value' GROUP BY date ORDER BY date ASC");
                                     java.sql.ResultSet rset3 = st3.executeQuery("SELECT date, sum(amount) FROM posting WHERE staff_no = '"+listofStaffNos[j]+"' AND date = '"+listofAct[l]+"' AND allowance_deduction ILIKE 'Less Relief' GROUP BY date ORDER BY date ASC");
                                     java.sql.ResultSet rset4 = st4.executeQuery("SELECT date, sum(amount) FROM posting WHERE staff_no = '"+listofStaffNos[j]+"' AND date = '"+listofAct[l]+"' AND description ilike '%P.A.%' GROUP BY date ORDER BY date ASC");
-                                    java.sql.ResultSet rset5 = st5.executeQuery("SELECT date, sum(amount) FROM posting WHERE staff_no = '"+listofStaffNos[j]+"' AND date = '"+listofAct[l]+"' AND description ilike 'Monthly Personal%' GROUP BY date ORDER BY date ASC");
+                                    java.sql.ResultSet rset5 = st5.executeQuery("SELECT date, sum(amount) FROM posting WHERE staff_no = '"+listofStaffNos[j]+"' AND date = '"+listofAct[l]+"' AND (description ilike 'Monthly Personal%' OR description ilike '%INSURANCE RELIEF%') GROUP BY date ORDER BY date ASC");
                                     
                                     java.sql.ResultSet rset11F = st21.executeQuery("select sum(amount) from non_taxed_earnings WHERE staff_no = '"+listofStaffNos[j]+"' AND date = '"+listofAct[l]+"'");
                                     
@@ -743,7 +744,7 @@ public class P9PerStaffPdf implements java.lang.Runnable {
                                         // }
                                     }
                                     while (rset.next()) {
-                                        if(april > 0){
+                                        if(rset.getDouble(2) > 0){
                                             non = rset.getDouble(2);
                                             
                                         }else{
@@ -771,6 +772,9 @@ public class P9PerStaffPdf implements java.lang.Runnable {
                                             retir = 0.00;
                                         }
                                     }
+                                    if(retir > 20000){
+                                            retir = 20000.00;
+                                        }
                                     while (rset4.next()) {
                                         
                                         if(jul > 0){
@@ -1022,32 +1026,33 @@ public class P9PerStaffPdf implements java.lang.Runnable {
                 
             }
             
-             
+                docPdf.close();
+                com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
             
-            try {
-                
-                if (System.getProperty("os.name").equalsIgnoreCase("Linux"))  {
-                    
-                    System.out.println(tempFile);
-                    //      wait_for_Pdf2Show = rt.exec("kghostview "+tempFile+"");
-                    
-                    wait_for_Pdf2Show = rt.exec("xpdf "+tempFile+"");
-                    
-                    wait_for_Pdf2Show.waitFor();
-                    
-                } else {
-                    
-                    wait_for_Pdf2Show = rt.exec("c:/Program Files/Adobe/Acrobat 5.0/Reader/AcroRd32.exe "+tempFile);
-                    
-                    wait_for_Pdf2Show.waitFor();
-                    
-                }
-                
-            } catch(java.lang.InterruptedException intrExec) {
-                
-                javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), intrExec.getMessage());
-                
-            }
+//            try {
+//                
+//                if (System.getProperty("os.name").equalsIgnoreCase("Linux"))  {
+//                    
+//                    System.out.println(tempFile);
+//                    //      wait_for_Pdf2Show = rt.exec("kghostview "+tempFile+"");
+//                    
+//                    wait_for_Pdf2Show = rt.exec("xpdf "+tempFile+"");
+//                    
+//                    wait_for_Pdf2Show.waitFor();
+//                    
+//                } else {
+//                    
+//                    wait_for_Pdf2Show = rt.exec("c:/Program Files/Adobe/Acrobat 5.0/Reader/AcroRd32.exe "+tempFile);
+//                    
+//                    wait_for_Pdf2Show.waitFor();
+//                    
+//                }
+//                
+//            } catch(java.lang.InterruptedException intrExec) {
+//                
+//                javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), intrExec.getMessage());
+//                
+//            }
             
             
             

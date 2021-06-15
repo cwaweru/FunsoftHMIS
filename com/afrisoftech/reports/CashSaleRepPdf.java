@@ -35,12 +35,14 @@ public class CashSaleRepPdf implements java.lang.Runnable {
     java.lang.Runtime rtThreadSample = java.lang.Runtime.getRuntime();
     
     java.lang.Process prThread;
+    String dept = null;
     
-    public void CashSaleRepPdf(java.sql.Connection connDb,java.util.Date begindate, java.util.Date endate) {
+    public void CashSaleRepPdf(java.sql.Connection connDb,java.util.Date begindate, java.util.Date endate, String department) {
         
         connectDB = connDb;
         beginDate = begindate;
         endDate = endate;
+        dept = department;
         
         threadSample = new java.lang.Thread(this,"SampleThread");
         
@@ -202,7 +204,7 @@ public class CashSaleRepPdf implements java.lang.Runnable {
                 
             }
             
-        }
+        } 
         
         if (date_now_str < 10) {
             
@@ -350,7 +352,10 @@ public class CashSaleRepPdf implements java.lang.Runnable {
                             //  table.addCell(phrase);
                             table.getDefaultCell().setColspan(2);
                             
-                            phrase = new Phrase("Receipts Summary Breakdown:  Period : "  +dateFormat.format(endDate11)+" ------ "+dateFormat.format(endDate1), pFontHeader);
+                            String title = "";
+                            if(!dept.equalsIgnoreCase("-")) title = dept;
+                            
+                            phrase = new Phrase(title+" Receipts Summary Breakdown:  Period : "  +dateFormat.format(endDate11)+" ------ "+dateFormat.format(endDate1), pFontHeader);
                             
                             table.addCell(phrase);
                             table.getDefaultCell().setColspan(2);
@@ -405,18 +410,21 @@ public class CashSaleRepPdf implements java.lang.Runnable {
                             
                             //    java.sql.Connection conDb1 = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
                             
-                            
-                            
+                            String condition = "";
+                            if(!dept.equalsIgnoreCase("-")){
+                                dept = com.afrisoftech.lib.GLCodesFactory.getGlCode(connectDB, dept);
+                                condition = "AND activity_code = '"+dept+"' ";
+                            }
                             java.sql.Statement st = connectDB.createStatement();
                             
                             java.sql.Statement st2 = connectDB.createStatement();
                             
                             java.sql.Statement st3 = connectDB.createStatement();
                             
-                            rsetTotals1 = st3.executeQuery("SELECT payment_mode,sum(debit-credit) as amt from ac_cash_collection WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"'  AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +" AND transaction_type NOT ILIKE 'Banking%' group by payment_mode order by amt desc");
+                            rsetTotals1 = st3.executeQuery("SELECT payment_mode,sum(debit-credit) as amt from ac_cash_collection WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"'  AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +" AND transaction_type NOT ILIKE 'Banking%' "+condition+" group by payment_mode order by amt desc");
                              
                             System.out.println("Statements Created ...");
-                            java.sql.ResultSet rset = st.executeQuery("select pb.activity,SUM(ac.debit-ac.credit) as amt,ac.activity_code from ac_cash_collection ac ,pb_activity pb where ac.date BETWEEN '"+beginDate+"' AND '"+endDate+"'  AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +" and ac.transaction_type NOT ILIKE 'Banking%' and pb.code = ac.activity_code  GROUP BY pb.activity,ac.activity_code order by amt desc");
+                            java.sql.ResultSet rset = st.executeQuery("select pb.activity,SUM(ac.debit-ac.credit) as amt,ac.activity_code from ac_cash_collection ac ,pb_activity pb where ac.date BETWEEN '"+beginDate+"' AND '"+endDate+"'  AND "+ com.afrisoftech.lib.DBObject.addColumnCondition("receipt_no", "Numeric") +" and ac.transaction_type NOT ILIKE 'Banking%' and pb.code = ac.activity_code "+condition+"  GROUP BY pb.activity,ac.activity_code order by amt desc");
                             System.out.println("Select A done ...");
                             while (rsetTotals1.next()) {
                                 table.getDefaultCell().setColspan(2);

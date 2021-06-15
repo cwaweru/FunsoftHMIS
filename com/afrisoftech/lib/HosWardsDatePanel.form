@@ -175,7 +175,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBox11">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;select DISTINCT ward_name from hp_wards order by ward_name&quot;)" type="code"/>
+              <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;select &apos;-&apos; UNION select DISTINCT ward_name from hp_wards order by 1&quot;)" type="code"/>
             </Property>
           </Properties>
           <Constraints>

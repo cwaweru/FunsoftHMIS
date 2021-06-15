@@ -115,9 +115,9 @@ public class StockMain extends javax.swing.JFrame {
     int NutritionDepReport = 5555;
     int NutritionistReport = 6666;
     int NutritionCompReport = 7777;
-    int presciptionSumm=76867701; 
-    int presciptionSummgender=76867702; 
-    int presciptionSummage=76867703;
+    int presciptionSumm = 76867701;
+    int presciptionSummgender = 76867702;
+    int presciptionSummage = 76867703;
 
     /**
      * Creates new form medic
@@ -788,6 +788,7 @@ public class StockMain extends javax.swing.JFrame {
         setupmn.add(setItemSellingPricemnit);
 
         directPriceAdjustmentmnit.setText("Direct Price Adjustment");
+        directPriceAdjustmentmnit.setEnabled(false);
         directPriceAdjustmentmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 directPriceAdjustmentmnitActionPerformed(evt);
@@ -4988,7 +4989,7 @@ public class StockMain extends javax.swing.JFrame {
 
         dismth.setBounds(350, 200, 350, 300);
         dismth.setVisible(true);
-           // dismth.setSize(medicdspane.getSize());
+        // dismth.setSize(medicdspane.getSize());
 
 
     }//GEN-LAST:event_serviceslistmnitActionPerformed
@@ -5526,7 +5527,7 @@ public class StockMain extends javax.swing.JFrame {
     }//GEN-LAST:event_bypassAcceptanceCertificatemnitActionPerformed
 
     private void storesLedgerReportsmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storesLedgerReportsmnitActionPerformed
-            javax.swing.JInternalFrame dismth = new com.afrisoftech.hospinventory.StoresDashboardReportsIntfr(connectDB);
+        javax.swing.JInternalFrame dismth = new com.afrisoftech.hospinventory.StoresDashboardReportsIntfr(connectDB);
         medicdspane.add(dismth, javax.swing.JLayeredPane.DEFAULT_LAYER);
         try {
             dismth.setSelected(true);
@@ -5552,48 +5553,48 @@ public class StockMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void patientperpharmacymnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientperpharmacymnitActionPerformed
-     com.afrisoftech.lib.ReportPerStore dates = new com.afrisoftech.lib.ReportPerStore(this, pConnDB, true, 1234, connectDB);
+        com.afrisoftech.lib.ReportPerStore dates = new com.afrisoftech.lib.ReportPerStore(this, pConnDB, true, 1234, connectDB);
 
         dates.setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_patientperpharmacymnitActionPerformed
 
     private void pharmreptmn itActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pharmreptmn itActionPerformed
-    com.afrisoftech.lib.HospharmDatePanel dates = new com.afrisoftech.lib.HospharmDatePanel(this, true, this.presciptionSumm, connectDB);
+        com.afrisoftech.lib.HospharmDatePanel dates = new com.afrisoftech.lib.HospharmDatePanel(this, true, this.presciptionSumm, connectDB);
 
         dates.setVisible(true);
-    // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_pharmreptmn itActionPerformed
 
     private void agedispensationmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agedispensationmnitActionPerformed
-       com.afrisoftech.lib.HospharmDatePanel dates = new com.afrisoftech.lib.HospharmDatePanel(this, true, this.presciptionSummage, connectDB);
+        com.afrisoftech.lib.HospharmDatePanel dates = new com.afrisoftech.lib.HospharmDatePanel(this, true, this.presciptionSummage, connectDB);
         dates.setVisible(true);  // TODO add your handling code here:
     }//GEN-LAST:event_agedispensationmnitActionPerformed
 
     private void genderdispensationmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderdispensationmnitActionPerformed
-       com.afrisoftech.lib.HospharmDatePanel dates = new com.afrisoftech.lib.HospharmDatePanel(this, true, this.presciptionSummgender, connectDB);
+        com.afrisoftech.lib.HospharmDatePanel dates = new com.afrisoftech.lib.HospharmDatePanel(this, true, this.presciptionSummgender, connectDB);
         dates.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_genderdispensationmnitActionPerformed
 
     private void dispensationsummarymnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dispensationsummarymnitActionPerformed
-com.afrisoftech.lib.HospharmDatePanel dates = new com.afrisoftech.lib.HospharmDatePanel(this, true, this.presciptionSumm, connectDB);
+        com.afrisoftech.lib.HospharmDatePanel dates = new com.afrisoftech.lib.HospharmDatePanel(this, true, this.presciptionSumm, connectDB);
 
         dates.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_dispensationsummarymnitActionPerformed
 
     private void dispensationbygendermnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dispensationbygendermnitActionPerformed
-     com.afrisoftech.lib.HospharmDatePanel dates = new com.afrisoftech.lib.HospharmDatePanel(this, true, this.presciptionSummgender, connectDB);
+        com.afrisoftech.lib.HospharmDatePanel dates = new com.afrisoftech.lib.HospharmDatePanel(this, true, this.presciptionSummgender, connectDB);
 
         dates.setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_dispensationbygendermnitActionPerformed
 
     private void dispensationbyagemnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dispensationbyagemnitActionPerformed
-      com.afrisoftech.lib.HospharmDatePanel dates = new com.afrisoftech.lib.HospharmDatePanel(this, true, this.presciptionSummage, connectDB);
+        com.afrisoftech.lib.HospharmDatePanel dates = new com.afrisoftech.lib.HospharmDatePanel(this, true, this.presciptionSummage, connectDB);
 
         dates.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_dispensationbyagemnitActionPerformed
 
     private void patientperstoremnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientperstoremnitActionPerformed
-      com.afrisoftech.lib.ReportPerStore dates = new com.afrisoftech.lib.ReportPerStore(this,pConnDB,true, 1234, connectDB);
+        com.afrisoftech.lib.ReportPerStore dates = new com.afrisoftech.lib.ReportPerStore(this, pConnDB, true, 1234, connectDB);
 
         dates.setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_patientperstoremnitActionPerformed

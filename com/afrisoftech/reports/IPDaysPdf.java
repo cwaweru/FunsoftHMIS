@@ -35,6 +35,7 @@ public class IPDaysPdf implements java.lang.Runnable {
     
     com.lowagie.text.Font pFontHeader = FontFactory.getFont(FontFactory.HELVETICA, 10, Font.BOLD);
     com.lowagie.text.Font pFontHeader1 = FontFactory.getFont(FontFactory.HELVETICA, 9, Font.NORMAL);
+    String ward = null;
     
     //   com.lowagie.text.ParagraphFont pgraph = Paragraph();
     
@@ -43,12 +44,13 @@ public class IPDaysPdf implements java.lang.Runnable {
     
     java.lang.Process prThread;
     
-    public void IPDaysPdf(java.sql.Connection connDb, java.util.Date begindate, java.util.Date endate) {
+    public void IPDaysPdf(java.sql.Connection connDb, java.util.Date begindate, java.util.Date endate,String dpt) {
         dbObject = new com.afrisoftech.lib.DBObject();
         
         connectDB = connDb;
         beginDate = begindate;
         endDate = endate;
+        ward =dpt;
         
         threadSample = new java.lang.Thread(this,"SampleThread");
         
@@ -361,6 +363,13 @@ public class IPDaysPdf implements java.lang.Runnable {
                             phrase = new Phrase("Printed On  :" +date , pFontHeader);
                             
                             table.addCell(phrase);
+                            
+                            table.getDefaultCell().setColspan(6);
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                            
+                            phrase = new Phrase("Ward  : " +ward , pFontHeader);
+                            
+                            table.addCell(phrase);
                         } catch(java.text.ParseException psExec) {
                             
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), psExec.getMessage());
@@ -406,8 +415,15 @@ public class IPDaysPdf implements java.lang.Runnable {
                             java.sql.Statement st = connectDB.createStatement();
                             
                             
-                            java.sql.ResultSet rset = st.executeQuery("select DISTINCT ad.date_admitted,(ad.patient_no),initcap(ad.patient_name),dc.discharge_date ,dc.discharge_date-ad.date_admitted from hp_admission ad ,hp_patient_discharge dc WHERE ad.date_admitted BETWEEN '"+beginDate+"' AND '"+endDate+"' and dc.discharge_date-ad.date_admitted >0 and dc.patient_no = ad.patient_no order by ad.date_admitted");
+                            java.sql.ResultSet rset = null;
                             
+                            if(ward.equalsIgnoreCase("-")){
+                                rset = st.executeQuery("select DISTINCT ad.date_admitted,(ad.patient_no),initcap(ad.patient_name),dc.discharge_date ,dc.discharge_date-ad.date_admitted from hp_admission ad ,hp_patient_discharge dc WHERE ad.date_admitted BETWEEN '"+beginDate+"' AND '"+endDate+"' and dc.discharge_date-ad.date_admitted >0 and dc.patient_no = ad.patient_no order by ad.date_admitted");
+                            
+                            }else{
+                                rset = st.executeQuery("select DISTINCT ad.date_admitted,(ad.patient_no),initcap(ad.patient_name),dc.discharge_date ,dc.discharge_date-ad.date_admitted from hp_admission ad ,hp_patient_discharge dc WHERE ad.ward ilike '"+ward+"' and  ad.date_admitted BETWEEN '"+beginDate+"' AND '"+endDate+"' and dc.discharge_date-ad.date_admitted >0 and dc.patient_no = ad.patient_no order by ad.date_admitted");
+                            
+                            }
                             
                             
                             while (rset.next()) {
@@ -437,7 +453,7 @@ public class IPDaysPdf implements java.lang.Runnable {
                                 table.addCell(phrase);
                                 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset.getString(5)),pFontHeader1);
+                                phrase = new Phrase(rset.getString(5),pFontHeader1);
                                 osBalance1 = osBalance1 + rset.getDouble(5);
                                 
                                 table.addCell(phrase);
@@ -463,7 +479,7 @@ public class IPDaysPdf implements java.lang.Runnable {
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                             
                             //  phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetTotals.getString(1)), pFontHeader);
-                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance1)),pFontHeader);
+                            phrase = new Phrase(java.lang.String.valueOf(osBalance1),pFontHeader);
                             
                             
                             table.addCell(phrase);

@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -2184,7 +2184,7 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
                 dates = rset.getDate(1);
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
         com.afrisoftech.reports.XrayResultPdf policy = new com.afrisoftech.reports.XrayResultPdf();
 

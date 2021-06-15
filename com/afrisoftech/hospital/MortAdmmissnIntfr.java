@@ -1575,13 +1575,12 @@ public class MortAdmmissnIntfr extends javax.swing.JInternalFrame {
                             pstmt.setDate(25, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker21.getDate()));
                             pstmt.setString(26, "");
                             pstmt.setObject(27, "");
-
                             pstmt.setString(28, null);
                             pstmt.setBoolean(29, false);
                             pstmt.setString(30, "");
                             pstmt.setString(31, categoryNumberCmbx.getSelectedItem().toString());
                             pstmt.setDouble(32, Double.parseDouble(unitRateTxt.getText()));
-                            pstmt.setString(33, fringeNumberCmbx.getSelectedItem().toString());
+                            pstmt.setObject(33, fringeNumberCmbx.getSelectedItem());
                             pstmt.setString(34, homeCountyCmbx.getSelectedItem().toString());
                             pstmt.setString(35, tagNumberTxt.getText());
                             pstmt.setString(36, burialCountyCmbx.getSelectedItem().toString());
@@ -1598,9 +1597,9 @@ public class MortAdmmissnIntfr extends javax.swing.JInternalFrame {
                             com.afrisoftech.hmis.automatedoperations.AutomatedIPCharges autoMortCharges = new com.afrisoftech.hmis.automatedoperations.AutomatedIPCharges();
                             autoMortCharges.billRegistrationMortCharges(connectDB, serialNumberTxt.getText());
 
-                            java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("UPDATE hp_admission set discharge = true WHERE patient_no = ?");
-                            pstmt1.setString(1, intPatientNoTxt.getText());
-                            pstmt1.executeUpdate();
+//                            java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("UPDATE hp_admission set discharge = true WHERE patient_no = ?");
+//                            pstmt1.setString(1, intPatientNoTxt.getText());
+//                            pstmt1.executeUpdate();
                             clearForm();
                         } catch (java.sql.SQLException sq) {
                             sq.printStackTrace();
@@ -1677,6 +1676,7 @@ public class MortAdmmissnIntfr extends javax.swing.JInternalFrame {
                     intGenderTxt.setText(rset1.getObject(3).toString());
                     unitRateTxt.setText("");
                     datePicker22.setDate(rset1.getDate(5));
+                    wardorclinicAttendedTxt.setText(rset1.getString(4));
 
                 }
             } catch (java.sql.SQLException sqe) {
@@ -1836,13 +1836,12 @@ public class MortAdmmissnIntfr extends javax.swing.JInternalFrame {
                 pstmt.setDate(25, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
                 pstmt.setString(26, bidPoliceOfficerTxt.getText());
                 pstmt.setObject(27, "");
-
                 pstmt.setString(28, null);
                 pstmt.setBoolean(29, false);
                 pstmt.setString(30, "");
                 pstmt.setString(31, bidCategoryNumberCmbx.getSelectedItem().toString());
                 pstmt.setDouble(32, Double.parseDouble(bidUnitRateTxt.getText()));
-                pstmt.setString(33, bidFringeNumberCmbx.getSelectedItem().toString());
+                pstmt.setObject(33, bidFringeNumberCmbx.getSelectedItem());
                 pstmt.setString(34, homeCountyCmbx1.getSelectedItem().toString());
                 pstmt.setString(35, bidTagNumberTxt.getText());
                 pstmt.setString(36, burialCountyCmbx1.getSelectedItem().toString());

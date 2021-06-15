@@ -37,12 +37,12 @@ public class DepartmentsIntfr extends javax.swing.JInternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jSearchDialog1 = new javax.swing.JDialog();
-        jSearchPanel1 = new javax.swing.JPanel();
-        jTextField111 = new javax.swing.JTextField();
-        jSearchScrollPane1 = new javax.swing.JScrollPane();
-        jSearchTable1 = new com.afrisoftech.dbadmin.JTable();
-        jButton91 = new javax.swing.JButton();
+        departmentSearchDialog = new javax.swing.JDialog();
+        departmentSearchPanel = new javax.swing.JPanel();
+        departmentSearchTxt = new javax.swing.JTextField();
+        departmentSearchScrollPane = new javax.swing.JScrollPane();
+        departmentSearchTable = new com.afrisoftech.dbadmin.JTable();
+        departmentSearchBtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -69,17 +69,18 @@ public class DepartmentsIntfr extends javax.swing.JInternalFrame {
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        jSearchDialog1.setModal(true);
-        jSearchDialog1.setUndecorated(true);
-        jSearchDialog1.getContentPane().setLayout(new java.awt.GridBagLayout());
+        departmentSearchDialog.setModal(true);
+        departmentSearchDialog.setUndecorated(true);
+        departmentSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jSearchPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jSearchPanel1.setLayout(new java.awt.GridBagLayout());
+        departmentSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        departmentSearchPanel.setLayout(new java.awt.GridBagLayout());
 
-        jTextField111.addCaretListener(new javax.swing.event.CaretListener() {
+        departmentSearchTxt.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField111CaretUpdate(evt);
+                departmentSearchTxtCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -87,9 +88,9 @@ public class DepartmentsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 10.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
-        jSearchPanel1.add(jTextField111, gridBagConstraints);
+        departmentSearchPanel.add(departmentSearchTxt, gridBagConstraints);
 
-        jSearchTable1.setShowHorizontalLines(false);
+        departmentSearchTable.setShowHorizontalLines(false);
         /*    try {
             searchRowSet.setCommand("select product,selling_price,gl_code FROM st_stock_prices WHERE department = 'Pharmacy' order by product");
             searchRowSet.setConnectionSource(pConnDB);
@@ -111,12 +112,12 @@ public class DepartmentsIntfr extends javax.swing.JInternalFrame {
             System.out.println(sqlex.getMessage());
         }
         */
-        jSearchTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        departmentSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSearchTable1MouseClicked(evt);
+                departmentSearchTableMouseClicked(evt);
             }
         });
-        jSearchScrollPane1.setViewportView(jSearchTable1);
+        departmentSearchScrollPane.setViewportView(departmentSearchTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -125,18 +126,18 @@ public class DepartmentsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
-        jSearchPanel1.add(jSearchScrollPane1, gridBagConstraints);
+        departmentSearchPanel.add(departmentSearchScrollPane, gridBagConstraints);
 
-        jButton91.setText("Close");
-        jButton91.addActionListener(new java.awt.event.ActionListener() {
+        departmentSearchBtn.setText("Close");
+        departmentSearchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton91ActionPerformed(evt);
+                departmentSearchBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchPanel1.add(jButton91, gridBagConstraints);
+        departmentSearchPanel.add(departmentSearchBtn, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -144,7 +145,7 @@ public class DepartmentsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchDialog1.getContentPane().add(jSearchPanel1, gridBagConstraints);
+        departmentSearchDialog.getContentPane().add(departmentSearchPanel, gridBagConstraints);
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -549,7 +550,7 @@ public class DepartmentsIntfr extends javax.swing.JInternalFrame {
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jButton1.setMnemonic('O');
-        jButton1.setText("Ok");
+        jButton1.setText("Save data");
         jButton1.setToolTipText("Click here to enter data");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -557,7 +558,7 @@ public class DepartmentsIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -572,7 +573,7 @@ public class DepartmentsIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -586,7 +587,7 @@ public class DepartmentsIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
         jPanel2.add(jButton5, gridBagConstraints);
@@ -600,7 +601,7 @@ public class DepartmentsIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -615,7 +616,7 @@ public class DepartmentsIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -624,11 +625,18 @@ public class DepartmentsIntfr extends javax.swing.JInternalFrame {
         jButton6.setMnemonic('H');
         jButton6.setText("Help");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel2.add(jButton6, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel2.add(jLabel1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -642,39 +650,39 @@ public class DepartmentsIntfr extends javax.swing.JInternalFrame {
         setBounds(0, 0, 683, 366);
     }// </editor-fold>//GEN-END:initComponents
     
-    private void jSearchTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable1MouseClicked
-        int i = jSearchTable1.getSelectedRow();
+    private void departmentSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_departmentSearchTableMouseClicked
+        int i = departmentSearchTable.getSelectedRow();
         int j = jTable1.getSelectedColumn();
         if(j == 0){
-            jTable1.setValueAt(jSearchTable1.getValueAt(i,1),jTable1.getSelectedRow(), j);
+            jTable1.setValueAt(departmentSearchTable.getValueAt(i,1),jTable1.getSelectedRow(), j);
         }else{
             if(j == 4 || j == 5 || j == 6 || j == 7 || j == 8 || j == 9){
-                jTable1.setValueAt(jSearchTable1.getValueAt(i,0),jTable1.getSelectedRow(), j);
+                jTable1.setValueAt(departmentSearchTable.getValueAt(i,0),jTable1.getSelectedRow(), j);
             }
         }
-        jSearchDialog1.dispose();         // Add your handling code here:
-    }//GEN-LAST:event_jSearchTable1MouseClicked
+        departmentSearchDialog.dispose();         // Add your handling code here:
+    }//GEN-LAST:event_departmentSearchTableMouseClicked
     
-    private void jButton91ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton91ActionPerformed
-        this.jSearchDialog1.dispose();
+    private void departmentSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentSearchBtnActionPerformed
+        this.departmentSearchDialog.dispose();
         // Add your handling code here:
-    }//GEN-LAST:event_jButton91ActionPerformed
+    }//GEN-LAST:event_departmentSearchBtnActionPerformed
     
-    private void jTextField111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField111CaretUpdate
-        jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select code,activity FROM pb_activity WHERE activity ILIKE '"+jTextField111.getText()+"%' order by activity"));
+    private void departmentSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_departmentSearchTxtCaretUpdate
+        departmentSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"SELECT code,activity as department FROM pb_activity WHERE activity ILIKE '"+departmentSearchTxt.getText()+"%' UNION SELECT store_code as code, store_name as department FROM st_stores WHERE store_name ILIKE  '"+departmentSearchTxt.getText()+"%' order by 2"));
         
         
-        jSearchScrollPane1.setViewportView(jSearchTable1);
+        departmentSearchScrollPane.setViewportView(departmentSearchTable);
         System.out.println("Cannot sort out");
         // Add your handling code here:
-    }//GEN-LAST:event_jTextField111CaretUpdate
+    }//GEN-LAST:event_departmentSearchTxtCaretUpdate
     private void cmbox1MouseClicked() {
         
         System.out.println("Showing dialog");
         java.awt.Point point = jScrollPane1.getLocationOnScreen();
-        jSearchDialog1.setSize(400,200);
-        jSearchDialog1.setLocation(point);
-        jSearchDialog1.setVisible(true);
+        departmentSearchDialog.setSize(600,200);
+        departmentSearchDialog.setLocation(point);
+        departmentSearchDialog.setVisible(true);
     }
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         if (jTable1.getSelectedColumn() == 0 || jTable1.getSelectedColumn() == 4 || jTable1.getSelectedColumn() == 5 || jTable1.getSelectedColumn() == 6 || jTable1.getSelectedColumn() == 7 || jTable1.getSelectedColumn() == 8 || jTable1.getSelectedColumn() == 9) {
@@ -900,23 +908,24 @@ public class DepartmentsIntfr extends javax.swing.JInternalFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton departmentSearchBtn;
+    private javax.swing.JDialog departmentSearchDialog;
+    private javax.swing.JPanel departmentSearchPanel;
+    private javax.swing.JScrollPane departmentSearchScrollPane;
+    private javax.swing.JTable departmentSearchTable;
+    private javax.swing.JTextField departmentSearchTxt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton91;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JDialog jSearchDialog1;
-    private javax.swing.JPanel jSearchPanel1;
-    private javax.swing.JScrollPane jSearchScrollPane1;
-    private javax.swing.JTable jSearchTable1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField111;
     // End of variables declaration//GEN-END:variables
     
 }

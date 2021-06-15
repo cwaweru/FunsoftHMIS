@@ -6,7 +6,7 @@
 package com.afrisoftech.records;
 
 import java.sql.SQLException;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -823,7 +823,7 @@ public class ImmunisationRecordsIntfr extends javax.swing.JInternalFrame {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
         if (ancNumberTxt.getText().isEmpty()) {
             ancNumberTxt.setText(cwcNumber);

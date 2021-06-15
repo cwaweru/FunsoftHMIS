@@ -5,7 +5,7 @@
 package com.afrisoftech.reports;
 
 import java.sql.SQLException;
-import org.openide.util.Exceptions;
+
 
 /**
  *
@@ -199,7 +199,7 @@ public class MobileTxBalanceIntfr extends javax.swing.JInternalFrame {
 //            }
 //
 //        } catch (SQLException ex) {
-//            Exceptions.printStackTrace(ex);
+//            ex.printStackTrace();
 //        }
     }//GEN-LAST:event_refreshBtn1ActionPerformed
 

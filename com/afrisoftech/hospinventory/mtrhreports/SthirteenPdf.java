@@ -545,7 +545,13 @@ public class SthirteenPdf implements java.lang.Runnable {
                                     + "WHERE supplier = '" + suppName + "' and invoice_no = '" + invNo + "' "
                                     + "AND requisition_no='"+transactionNo+"' AND (transaction_type NOT LIKE 'Stock Returns' OR delivery_note_no NOT LIKE 'PCRT%') ");
 
-
+                            
+                            System.err.println("SELECT item,SUM(quantity_required),SUM(quantity_received), "
+                                    + "price_per_item,sum(debit),item_code FROM st_stock_cardex "
+                                    + "WHERE supplier = '" + suppName + "' "
+                                    + "and invoice_no = '" + invNo + "' "
+                                    + " and requisition_no='"+transactionNo+"' AND (transaction_type NOT LIKE 'Stock Returns' OR delivery_note_no NOT LIKE 'PCRT%') GROUP BY "
+                                    + "item,price_per_item,item_code ORDER BY item");
                             java.sql.ResultSet rset = st.executeQuery("SELECT item,SUM(quantity_required),SUM(quantity_received), "
                                     + "price_per_item,sum(debit),item_code FROM st_stock_cardex "
                                     + "WHERE supplier = '" + suppName + "' "

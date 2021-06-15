@@ -63,7 +63,7 @@ public class HosWardsDatePanel extends javax.swing.JDialog {
         jLabel41 = new javax.swing.JLabel();
         jComboBox11 = new javax.swing.JComboBox();
 
-        setTitle("Reporting data filter dialog");
+        setTitle("Begin & End Date");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -171,7 +171,7 @@ public class HosWardsDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weightx = 1.0;
         jPanel4.add(jLabel41, gridBagConstraints);
 
-        jComboBox11.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select DISTINCT ward_name from hp_wards order by ward_name"));
+        jComboBox11.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' UNION select DISTINCT ward_name from hp_wards order by 1"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -190,8 +190,8 @@ public class HosWardsDatePanel extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
         getContentPane().add(jPanel4, gridBagConstraints);
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-453)/2, (screenSize.height-266)/2, 453, 266);
+        setSize(new java.awt.Dimension(453, 266));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
         private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -247,6 +247,16 @@ this.dispose();            // Add your handling code here:
                 //this.dispose();
                 
             } break;
+            
+            case 5217: {
+                com.afrisoftech.reports.IPDaysPdf policy = new com.afrisoftech.reports.IPDaysPdf();
+
+                policy.IPDaysPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),jComboBox11.getSelectedItem().toString());
+
+                this.dispose();
+
+            }
+            break;
 
             case 585680:
 

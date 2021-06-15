@@ -6,7 +6,7 @@
 package com.afrisoftech.lib;
 
 import java.sql.SQLException;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -35,7 +35,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -59,7 +59,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -84,7 +84,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -111,7 +111,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -139,7 +139,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -165,7 +165,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -188,7 +188,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -212,7 +212,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -235,7 +235,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -259,7 +259,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -282,7 +282,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -306,7 +306,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -329,7 +329,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -355,7 +355,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -380,7 +380,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -399,7 +399,7 @@ public class EyeUnitReportingIndicators {
                 noofBeds = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -420,7 +420,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -441,7 +441,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -463,7 +463,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -485,7 +485,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -507,7 +507,7 @@ public class EyeUnitReportingIndicators {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -530,7 +530,7 @@ public class EyeUnitReportingIndicators {
                 visitCount = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 

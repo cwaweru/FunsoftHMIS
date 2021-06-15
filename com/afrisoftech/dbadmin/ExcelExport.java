@@ -7,7 +7,7 @@
 package com.afrisoftech.dbadmin;
 
 import java.io.IOException;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -136,7 +136,7 @@ public class ExcelExport implements java.lang.Runnable {
                 java.awt.Desktop.getDesktop().open(excelDocFile);
             } catch (IOException ex) {
                 javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
-                            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                            ex.printStackTrace();             //ex.printStackTrace();
             }
         }
         

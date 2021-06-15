@@ -7,7 +7,7 @@ package com.afrisoftech.records;
 
 import java.beans.PropertyChangeEvent;
 import java.sql.SQLException;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -1354,7 +1354,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
 
             jPanel16.setLayout(new java.awt.GridBagLayout());
 
-            religionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT religion_name FROM pb_religion ORDER BY oid"));
+            religionCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT religion_name FROM pb_religion ORDER BY 1"));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 2;
@@ -4819,20 +4819,35 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
                         while (rss1x.next()) {
                             patNos = rss1x.getObject(1).toString();
                         }
+                        boolean maternity_manual_numbers = false;
                         java.sql.Statement stmnz1 = connectDB.createStatement();
-                        java.sql.ResultSet rsnz1 = stmnz1.executeQuery("select ip_prefix,ip_digit,ip_yr from pb_patient_names");
+                        java.sql.ResultSet rsnz1 = stmnz1.executeQuery("select ip_prefix,ip_digit,ip_yr,maternity_manual_numbers from pb_patient_names");
                         while (rsnz1.next()) {
                             preFix = rsnz1.getString(1);
                             digitNo = rsnz1.getInt(2);
                             incYr = rsnz1.getBoolean(3);
+                            maternity_manual_numbers = rsnz1.getBoolean(4);
                         }
+                        
+                        
 
-                        java.sql.Statement pss1 = connectDB.createStatement();
-                        java.sql.ResultSet rss1 = pss1.executeQuery("select '" + "OBS" + "'||lpad('" + patNos + "'," + digitNo + ",'0')||'/'||'" + yrs + "'");
-                        while (rss1.next()) {
-                            patientsNo = rss1.getObject(1).toString();
-                            jTextField12.setText(rss1.getObject(1).toString());
+                        //comment by sam
+                        
+                        if(maternity_manual_numbers){
+                           patientsNo = jTextField12.getText(); 
+                        }else{
+                            java.sql.Statement pss1 = connectDB.createStatement();
+                            java.sql.ResultSet rss1 = pss1.executeQuery("select '" + "OBS" + "'||lpad('" + patNos + "'," + digitNo + ",'0')||'/'||'" + yrs + "'");
+                            while (rss1.next()) {
+                                patientsNo = rss1.getObject(1).toString();
+                                jTextField12.setText(rss1.getObject(1).toString());
+                            }
                         }
+                        
+                        //added by sam
+                        
+                        
+                        
 
                         java.sql.PreparedStatement pstmt11 = connectDB.prepareStatement("UPDATE hp_inpatient_register SET patient_no = '" + jTextField12.getText() + "'  WHERE patient_no = '" + patientsNo2 + "'");
                         pstmt11.executeUpdate();
@@ -5188,7 +5203,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
                 autonumber = rsetx.getBoolean(1);
                 useonenumber = rsetx.getString(2);
                 java.sql.Statement pss1 = connectDB.createStatement();
-                java.sql.ResultSet rss1 = pss1.executeQuery("select file_no from hp_maternity_register ORDER BY OID desc LIMIT 1");
+                java.sql.ResultSet rss1 = pss1.executeQuery("select file_no from hp_maternity_register ORDER BY 1 desc LIMIT 1");
                 while (rss1.next()) {
                     // patientsNo = rss1.getObject(1).toString();
                     jTextField24.setText(rss1.getObject(1).toString());
@@ -5198,6 +5213,8 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
             stmtx.close();
             if (autonumber) {
                 jTextField12.setEditable(false);
+                jTextField12.setEditable(true);
+                System.err.println("Its auto number");
 
             } else {
                 jTextField12.setEditable(true);
@@ -5685,7 +5702,7 @@ public class BirthsIntfr extends javax.swing.JInternalFrame {
                 regimenDrugCodeTxt.setText(rset.getString(1));
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_regimenDrugCmbxActionPerformed

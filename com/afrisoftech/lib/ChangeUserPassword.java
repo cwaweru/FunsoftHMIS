@@ -272,6 +272,14 @@ public class ChangeUserPassword extends javax.swing.JDialog {
                         stmt.executeUpdate("ALTER USER " + this.userAccountCmbx.getSelectedItem().toString().toLowerCase() + " WITH PASSWORD '" + newPasswordField.getText() + "'");
 
 //                        pstmt.executeUpdate();
+
+                    java.sql.PreparedStatement pstmtUpdatePassswd = connectDB.prepareStatement("UPDATE passwd_sop SET change_time = now(),changing_user=current_user WHERE user_name = ?");
+
+                    pstmtUpdatePassswd.setString(1, userAccountCmbx.getSelectedItem().toString().toLowerCase());
+
+                    pstmtUpdatePassswd.executeUpdate();
+
+
                         java.sql.PreparedStatement pstmtChangeControl = connectDB.prepareStatement("INSERT INTO account_access_control("
                                 + "           account_change_type, user_account_affected"
                                 + "            )"

@@ -8,7 +8,7 @@ package com.afrisoftech.hospinventory;
 import com.afrisoftech.lib.GetItemInfo;
 import java.sql.SQLException;
 import java.util.Vector;
-//import org.openide.util.Exceptions;
+//
 //import org.postgresql.core.Logger;
 
 /**
@@ -1696,7 +1696,7 @@ public class CreditNoteintfr extends javax.swing.JInternalFrame {
                 }
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
         }
         if (deliveryStatus) {

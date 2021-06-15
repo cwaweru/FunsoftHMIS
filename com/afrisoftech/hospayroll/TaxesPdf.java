@@ -360,9 +360,9 @@ public class TaxesPdf implements java.lang.Runnable {
                     try {
                         
                         
-                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(7);
+                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(5);
                         
-                        int headerwidths[] = {8,20,40,20,20,15,20};
+                        int headerwidths[] = {8,20,40,20,20};
                         
                         table.setWidths(headerwidths);
                         
@@ -372,7 +372,7 @@ public class TaxesPdf implements java.lang.Runnable {
                         
                         table.getDefaultCell().setBorder(Rectangle.BOTTOM);
                         
-                        table.getDefaultCell().setColspan(7);
+                        table.getDefaultCell().setColspan(5);
                         
                         Phrase phrase;
                         try {
@@ -413,10 +413,10 @@ public class TaxesPdf implements java.lang.Runnable {
                         table.addCell(phrase);
                         
                         phrase = new Phrase("RATE",pFontHeader);
-                        table.addCell(phrase);
+                       // table.addCell(phrase);
                         
                         phrase = new Phrase("BAL/DAYS/HRS",pFontHeader);
-                        table.addCell(phrase);
+                        //table.addCell(phrase);
                         
                         table.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
                         table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
@@ -445,7 +445,7 @@ public class TaxesPdf implements java.lang.Runnable {
                                 java.sql.Statement st311 = connectDB.createStatement();
                                 
                                 java.sql.ResultSet rset = st.executeQuery("select np.employee_no,np.first_name||' '||np.middle_name||' '||np.last_name,np.id_no,'' from master_file np where np.employee_no = '"+listofStaffNos[j]+"' order by np.employee_no");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
-                                java.sql.ResultSet rset1 = st3.executeQuery("select sum(np.amount),sum(hoursdays) as days from posting np where np.description = '"+bank+"' and np.staff_no = '"+listofStaffNos[j]+"' AND date BETWEEN '"+beginDate+"' AND '"+endDate+"' and company_name ilike '"+bank1+"' group by staff_no order by np.staff_no");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
+                                java.sql.ResultSet rset1 = st3.executeQuery("select sum(np.amount),sum(hoursdays) as days from posting np where np.description ilike  '"+bank+"' and np.staff_no = '"+listofStaffNos[j]+"' AND date BETWEEN '"+beginDate+"' AND '"+endDate+"' and company_name ilike '"+bank1+"' group by staff_no order by np.staff_no");// tn,debit_note db WHERE tn.policy_no != '' and tn.policy_no = db.policy_no GROUP BY tn.policy_no,db.policy_class");
                                 java.sql.ResultSet rset31 = st31.executeQuery("select sum(np.balance),np.acc_bal from sacco_deductions np where np.sacco_name = '"+bank+"' and np.staff_no = '"+listofStaffNos[j]+"' group by np.staff_no,np.acc_bal");
                                 java.sql.ResultSet rset311 = st311.executeQuery("select count(staff_no) from sacco_deductions np where np.sacco_name = '"+bank+"' and np.staff_no = '"+listofStaffNos[j]+"' group by np.staff_no");
                                 
@@ -492,58 +492,58 @@ public class TaxesPdf implements java.lang.Runnable {
                                             staff = rset311.getInt(1);
                                             
                                         }
-                                        if (staff>0){
-                                            while (rset31.next()){
-                                                
-                                                bal = rset31.getBoolean(2);
-                                                if (bal==true){
-                                                    balance = balance + balance1 + total1;
-                                                    balance1 = rset31.getDouble(1);
-                                                    
-                                                    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(0.00)),pFontHeader1);
-                                                    table.addCell(phrase);
-                                                    
-                                                    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(balance1+total1)),pFontHeader1);
-                                                    table.addCell(phrase);
-                                                }else{
-                                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                                                    balance1 = rset31.getDouble(1);
-                                                    
-                                                    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(0.00)),pFontHeader1);
-                                                    table.addCell(phrase);
-                                                    
-                                                    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(balance1-total1)),pFontHeader1);
-                                                    
-                                                    table.addCell(phrase);
-                                                    balance = balance + balance1 - total1;
-                                                }
-                                            }
-                                        }else{
-                                            balance = balance + rset1.getDouble(2);
-                                            
-                                            
-                                            if (rate > 0){
-                                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(total1/rate)),pFontHeader1);
-                                                
-                                                table.addCell(phrase);
-                                                
-                                                rates = rates + total1/rate;
-                                                
-                                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(rset1.getString(2),"0.00")),pFontHeader1);
-                                                
-                                                table.addCell(phrase);
-                                            }else{
-                                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency("0.00"),pFontHeader1);
-                                                
-                                                table.addCell(phrase);
-                                                
-                                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(rset1.getString(2),"0.00")),pFontHeader1);
-                                                
-                                                table.addCell(phrase);
-                                                
-                                            }
-                                            
-                                        }
+//                                        if (staff>0){
+//                                            while (rset31.next()){
+//                                                
+//                                                bal = rset31.getBoolean(2);
+//                                                if (bal==true){
+//                                                    balance = balance + balance1 + total1;
+//                                                    balance1 = rset31.getDouble(1);
+//                                                    
+//                                                    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(0.00)),pFontHeader1);
+//                                                    table.addCell(phrase);
+//                                                    
+//                                                    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(balance1+total1)),pFontHeader1);
+//                                                    table.addCell(phrase);
+//                                                }else{
+//                                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+//                                                    balance1 = rset31.getDouble(1);
+//                                                    
+//                                                    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(0.00)),pFontHeader1);
+//                                                    table.addCell(phrase);
+//                                                    
+//                                                    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(balance1-total1)),pFontHeader1);
+//                                                    
+//                                                    table.addCell(phrase);
+//                                                    balance = balance + balance1 - total1;
+//                                                }
+//                                            }
+//                                        }else{
+//                                            balance = balance + rset1.getDouble(2);
+//                                            
+//                                            
+//                                            if (rate > 0){
+//                                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(total1/rate)),pFontHeader1);
+//                                                
+//                                                table.addCell(phrase);
+//                                                
+//                                                rates = rates + total1/rate;
+//                                                
+//                                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(rset1.getString(2),"0.00")),pFontHeader1);
+//                                                
+//                                                table.addCell(phrase);
+//                                            }else{
+//                                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency("0.00"),pFontHeader1);
+//                                                
+//                                                table.addCell(phrase);
+//                                                
+//                                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(rset1.getString(2),"0.00")),pFontHeader1);
+//                                                
+//                                                table.addCell(phrase);
+//                                                
+//                                            }
+//                                            
+//                                        }
                                     }
                                 }
                             }
@@ -564,16 +564,16 @@ public class TaxesPdf implements java.lang.Runnable {
                             
                             table.addCell(phrase);
                             
-                            if (balance > 0){
-                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(total/balance)),pFontHeader1);
-                                
-                                table.addCell(phrase);
-                            }else{
-                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(0.00)),pFontHeader1);
-                                
-                                table.addCell(phrase);
-                                
-                            }
+//                            if (balance > 0){
+//                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(total/balance)),pFontHeader1);
+//                                
+//                                table.addCell(phrase);
+//                            }else{
+//                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(0.00)),pFontHeader1);
+//                                
+//                                table.addCell(phrase);
+//                                
+//                            }
                             // }
                             // while (rset311.next()){
                             
@@ -583,7 +583,7 @@ public class TaxesPdf implements java.lang.Runnable {
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                             phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(balance)),pFontHeader1);
                             
-                            table.addCell(phrase);
+//                            table.addCell(phrase);
                             // }else{
                             //   phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(balance)),pFontHeader1);
                             
@@ -647,7 +647,8 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
             
             java.sql.Statement stmt1 = connectDB.createStatement();
             
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT staff_no FROM posting where description ='"+bank+"' AND date BETWEEN '"+beginDate+"' AND '"+endDate+"' and company_name ilike '"+bank1+"'  and amount > 0 order by staff_no");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT staff_no FROM posting where description ilike '"+bank+"' AND date BETWEEN '"+beginDate+"' AND '"+endDate+"' and company_name ilike '"+bank1+"'  and amount > 0 order by staff_no");
+            System.err.println("SELECT DISTINCT staff_no FROM posting where description ilike '"+bank+"' AND date BETWEEN '"+beginDate+"' AND '"+endDate+"' and company_name ilike '"+bank1+"'  and amount > 0 order by staff_no");
             //java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT staff_no FROM deduction_summary WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' and description ='"+bank+"' order by staff_no");
             
             while (rSet1.next()) {

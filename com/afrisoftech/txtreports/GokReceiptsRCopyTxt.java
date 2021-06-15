@@ -38,6 +38,8 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
     org.netbeans.lib.sql.pool.PooledConnectionSource pConnDB = null;
     java.io.File tempFile = null;
     boolean threadCheck = true;
+    private String txNo = "";
+    private String telNo = "";
     java.lang.Thread threadSample;
     java.lang.Process wait_for_Pdf2Show;
     java.lang.Runtime rt = null;
@@ -362,7 +364,7 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
             java.sql.ResultSet rset3 = st3.executeQuery("SELECT DISTINCT header,footer from ac_receipt_header");
             java.sql.ResultSet rset1 = st1.executeQuery("select date_part('day', receipt_time)||'-'||date_part('month', receipt_time)||'-'||date_part('year', receipt_time)||'@'||date_part('hour', receipt_time)||':'||date_part('minute', receipt_time) as receipt_time from ac_cash_collection where receipt_no = '" + Receipt + "'");
             java.sql.ResultSet rset5 = st5.executeQuery("select initcap(description),sum(quantity),sum(debit)::numeric(30,2),round(sum(debit/quantity))::numeric(30,2) from ac_cash_collection where receipt_no = '" + Receipt + "' and debit > 0 group by description");
-            java.sql.ResultSet rset6 = st6.executeQuery("select distinct user_name,cash_point,journal_no,patient_no,dealer,shift_no,payment_mode from ac_cash_collection where receipt_no = '" + Receipt + "'");
+            java.sql.ResultSet rset6 = st6.executeQuery("select distinct user_name,cash_point,journal_no,patient_no,dealer,shift_no,payment_mode,account_no from ac_cash_collection where receipt_no = '" + Receipt + "'");
             java.sql.ResultSet rset51 = st51.executeQuery("select sum(credit) from ac_cash_collection where receipt_no = '" + Receipt + "' and credit > 0 AND (transaction_type ILIKE 'Waive%' OR transaction_type ILIKE 'Exempti%')");
 
             if (rHeader.equalsIgnoreCase("True")) {
@@ -406,6 +408,9 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
                     MNo = dbObject.getDBObject(rset6.getObject(5), "-");
                     shiftNumber = dbObject.getDBObject(rset6.getObject(6), "-");
                     Paymode = dbObject.getDBObject(rset6.getObject(7), "-");
+                    txNo = dbObject.getDBObject(rset6.getObject(3), "-");
+                    
+                    telNo = dbObject.getDBObject(rset6.getObject(8), "-");
                 }
 
                 while (rset51.next()) {
@@ -475,6 +480,10 @@ public class GokReceiptsRCopyTxt implements java.lang.Runnable {
                 tableF.addCell("Cashier: " + Cashier.toUpperCase());
 
                 tableF.addCell("Shift No: " + shiftNumber);
+                
+                tableF.addCell("Tx. No: " + txNo);
+
+                tableF.addCell("Tel. No: " + telNo);
 
                 tableF.addCell(" ");
                 tableF.addCell(" ");

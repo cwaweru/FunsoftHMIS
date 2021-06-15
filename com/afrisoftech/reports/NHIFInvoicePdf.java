@@ -572,7 +572,8 @@ public class NHIFInvoicePdf implements java.lang.Runnable {
                             for (int j = 0; j < listofStaffNos.length; j++) {
                                 //      java.sql.ResultSet rset1 = st1.executeQuery("select date::date,initcap(service) as service,dosage,(debit-credit)/dosage,debit-credit from hp_patient_card where patient_no = '"+MNo+"' AND date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' and main_service = '"+listofStaffNos[j]+"' order by date::date");
 
-                                java.sql.ResultSet rset1 = st1.executeQuery("select date::date,initcap(service) as service,dosage,(debit)/dosage,debit from hp_patient_card where visit_id = '" + visitID + "' AND patient_no = '" + pMNo + "' and main_service = '" + listofStaffNos[j] + "' AND debit >0  AND transaction_type != 'Remittance' UNION ALL select date::date,initcap(service) as service,dosage,(credit)/dosage,-credit from hp_patient_card where main_service = '" + listofStaffNos[j] + "' AND credit > 0 AND visit_id = '" + visitID + "' AND patient_no = '" + pMNo + "' AND transaction_type ILIKE 'Billing%' group by 1,2,3,4,5 order by 1");
+                                java.sql.ResultSet rset1 = st1.executeQuery("select date::date,initcap(service) as service,dosage,(debit)/dosage,debit from hp_patient_card where visit_id = '" + visitID + "' AND patient_no = '" + pMNo + "' and main_service = '" + listofStaffNos[j] + "' AND debit >0  AND transaction_type != 'Remittance' AND transaction_type = 'Billing' "
+                                        + " UNION ALL select date::date,initcap(service) as service,dosage,(credit)/dosage,-credit from hp_patient_card where main_service = '" + listofStaffNos[j] + "' AND credit > 0 AND visit_id = '" + visitID + "' AND patient_no = '" + pMNo + "' AND transaction_type ILIKE 'Billing%' group by 1,2,3,4,5 order by 1");
                                 table.getDefaultCell().setColspan(6);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -830,7 +831,7 @@ public class NHIFInvoicePdf implements java.lang.Runnable {
 
             //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
             java.sql.Statement st4 = connectDB.createStatement();
-            java.sql.ResultSet rSet1 = st4.executeQuery("SELECT distinct main_service FROM hp_patient_card WHERE visit_id = '" + visitID + "' and debit > 0 order by main_service");
+            java.sql.ResultSet rSet1 = st4.executeQuery("SELECT distinct main_service FROM hp_patient_card WHERE visit_id = '" + visitID + "' and debit > 0  AND transaction_type = 'Billing' order by main_service");
            //// java.sql.ResultSet rSet1 = st4.executeQuery("SELECT distinct main_service FROM hp_patient_card WHERE invoice_no = '" + MNo + "' and debit > 0 order by main_service");
 
             // java.sql.ResultSet rSet1 = pSet1.executeQuery();

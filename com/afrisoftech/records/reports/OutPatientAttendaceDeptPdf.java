@@ -7,7 +7,7 @@ package com.afrisoftech.records.reports;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.*;
 import java.sql.SQLException;
-//import org.openide.util.Exceptions;
+//
 //import //java.awt.Desktop;
 
 public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
@@ -296,7 +296,7 @@ public class OutPatientAttendaceDeptPdf implements java.lang.Runnable {
                         }
                     } catch (SQLException ex) {
                         javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
-                        ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+                        ex.printStackTrace();             //ex.printStackTrace();
                     }
                     com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase(compName.toUpperCase()), false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
                     headerFoter.setAlignment(com.lowagie.text.HeaderFooter.ALIGN_CENTER);

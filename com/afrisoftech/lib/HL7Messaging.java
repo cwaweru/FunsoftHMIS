@@ -51,7 +51,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import org.apache.log4j.Logger;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -126,7 +126,7 @@ public class HL7Messaging {
             hl7Messaging.generateHL7Message(java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/funsoft", "admin", "funsoft"), "32534");
 
         } catch (SQLException ex) {
-            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
     }
 
@@ -959,10 +959,10 @@ public class HL7Messaging {
             createRemoteOrder("localhost", 1080);
             //  obx.
         } catch (HL7Exception ex) {
-            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
         } catch (IOException ex) {
-            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
         }
         return adt;
@@ -996,7 +996,7 @@ public class HL7Messaging {
         } catch (SQLException ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex);
-            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
 
         return (String.valueOf(hl7SequenceID));

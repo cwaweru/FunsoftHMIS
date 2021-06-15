@@ -6,7 +6,7 @@
 package com.afrisoftech.laboratory;
 
 import java.sql.SQLException;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -1588,7 +1588,7 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel111.add(deleteParametersBtn, gridBagConstraints);
 
-        labProceduresHierarchyTabbedPane.addTab("Specimen", jPanel111);
+        labProceduresHierarchyTabbedPane.addTab("Lab Parameters", jPanel111);
 
         reportPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -1665,7 +1665,7 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
     gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
     getContentPane().add(labProceduresHierarchyTabbedPane, gridBagConstraints);
 
-    setBounds(0, 0, 750, 450);
+    setBounds(0, 0, 1018, 450);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton92ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton92ActionPerformed
@@ -2311,7 +2311,7 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
     private void deleteParametersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteParametersBtnActionPerformed
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("DELETE FROM pb_lab_standards WHERE \"paramater_ID\" = ?");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("DELETE FROM pb_lab_standards WHERE \"parameter_ID\" = ?");//parameter_ID
             pstmt.setInt(1, Integer.parseInt(siParametersTable.getValueAt(siParametersTable.getSelectedRow(), 10).toString()));
             pstmt.executeUpdate();
             javax.swing.JOptionPane.showMessageDialog(this, "Parameters adjusted successfully.");

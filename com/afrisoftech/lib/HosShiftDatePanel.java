@@ -47,12 +47,12 @@ public class HosShiftDatePanel extends javax.swing.JDialog {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jSearchDialog1 = new javax.swing.JDialog();
-        jSearchPanel1 = new javax.swing.JPanel();
-        jTextField1111 = new javax.swing.JTextField();
-        jSearchScrollPane1 = new javax.swing.JScrollPane();
-        jSearchTable1 = new com.afrisoftech.dbadmin.JTable();
-        jButton51 = new javax.swing.JButton();
+        shiftSearchDialog = new javax.swing.JDialog();
+        shiftSearchPanel = new javax.swing.JPanel();
+        shiftJTextField = new javax.swing.JTextField();
+        shiftSearchScrollPane = new javax.swing.JScrollPane();
+        shiftSearchTable = new com.afrisoftech.dbadmin.JTable();
+        shiftjButton51 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         cancelBtn = new javax.swing.JButton();
         generateRptBtn = new javax.swing.JButton();
@@ -68,16 +68,16 @@ public class HosShiftDatePanel extends javax.swing.JDialog {
         shiftTxt = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
 
-        jSearchDialog1.setModal(true);
-        jSearchDialog1.setUndecorated(true);
-        jSearchDialog1.getContentPane().setLayout(new java.awt.GridBagLayout());
+        shiftSearchDialog.setModal(true);
+        shiftSearchDialog.setUndecorated(true);
+        shiftSearchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jSearchPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jSearchPanel1.setLayout(new java.awt.GridBagLayout());
+        shiftSearchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        shiftSearchPanel.setLayout(new java.awt.GridBagLayout());
 
-        jTextField1111.addCaretListener(new javax.swing.event.CaretListener() {
+        shiftJTextField.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField1111CaretUpdate(evt);
+                shiftJTextFieldCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -87,10 +87,10 @@ public class HosShiftDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weightx = 300.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-        jSearchPanel1.add(jTextField1111, gridBagConstraints);
+        shiftSearchPanel.add(shiftJTextField, gridBagConstraints);
 
-        jSearchTable1.setToolTipText("Click on the target row to select the patient from the search.");
-        jSearchTable1.setShowHorizontalLines(false);
+        shiftSearchTable.setToolTipText("Click on the target row to select the patient from the search.");
+        shiftSearchTable.setShowHorizontalLines(false);
         /*javax.swing.table.TableColumn column = null;
 
         for (int i = 0; i < 4; i++) {
@@ -108,12 +108,12 @@ public class HosShiftDatePanel extends javax.swing.JDialog {
             }
         }
         */
-        jSearchTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        shiftSearchTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSearchTable1MouseClicked(evt);
+                shiftSearchTableMouseClicked(evt);
             }
         });
-        jSearchScrollPane1.setViewportView(jSearchTable1);
+        shiftSearchScrollPane.setViewportView(shiftSearchTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -122,12 +122,12 @@ public class HosShiftDatePanel extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 20.0;
-        jSearchPanel1.add(jSearchScrollPane1, gridBagConstraints);
+        shiftSearchPanel.add(shiftSearchScrollPane, gridBagConstraints);
 
-        jButton51.setText("Close");
-        jButton51.addActionListener(new java.awt.event.ActionListener() {
+        shiftjButton51.setText("Close");
+        shiftjButton51.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton51ActionPerformed(evt);
+                shiftjButton51ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -135,7 +135,7 @@ public class HosShiftDatePanel extends javax.swing.JDialog {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchPanel1.add(jButton51, gridBagConstraints);
+        shiftSearchPanel.add(shiftjButton51, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -143,7 +143,7 @@ public class HosShiftDatePanel extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jSearchDialog1.getContentPane().add(jSearchPanel1, gridBagConstraints);
+        shiftSearchDialog.getContentPane().add(shiftSearchPanel, gridBagConstraints);
 
         setTitle("Begin & End Date");
         setResizable(false);
@@ -313,9 +313,9 @@ public class HosShiftDatePanel extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jSearchTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable1MouseClicked
-        shiftTxt.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 0).toString());
-        statusTxt.setText(jSearchTable1.getValueAt(jSearchTable1.getSelectedRow(), 1).toString());
+    private void shiftSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_shiftSearchTableMouseClicked
+        shiftTxt.setText(shiftSearchTable.getValueAt(shiftSearchTable.getSelectedRow(), 0).toString());
+        statusTxt.setText(shiftSearchTable.getValueAt(shiftSearchTable.getSelectedRow(), 1).toString());
 
         /*
          * try { // if(this.jCheckBox1.isSelected()){ java.sql.Statement stmt1 =
@@ -333,11 +333,11 @@ public class HosShiftDatePanel extends javax.swing.JDialog {
          * }
          * }
          */
-        jSearchDialog1.dispose();         // Add your handling code here:
-    }//GEN-LAST:event_jSearchTable1MouseClicked
+        shiftSearchDialog.dispose();         // Add your handling code here:
+    }//GEN-LAST:event_shiftSearchTableMouseClicked
 
-    private void jTextField1111CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1111CaretUpdate
-        jSearchTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select shift_no as shift,status,start_date::date from ac_shifts where shift_no::CHARACTER VARYING ILIKE '" + jTextField1111.getText().toString() + "%' and user_name ilike '" + cashierCmbx.getSelectedItem() + "' ORDER BY shift_no::int DESC"));
+    private void shiftJTextFieldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_shiftJTextFieldCaretUpdate
+        shiftSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select shift_no as shift,status,start_date::date from ac_shifts where shift_no::CHARACTER VARYING ILIKE '" + shiftJTextField.getText().toString() + "%' and user_name ilike '" + cashierCmbx.getSelectedItem() + "' ORDER BY shift_no::int DESC"));
 
 
         /*
@@ -356,8 +356,8 @@ public class HosShiftDatePanel extends javax.swing.JDialog {
          * org.netbeans.lib.sql.models.TableModel.Column("start_date", "Date",
          * false) }));
          */
-        jSearchTable1.setShowHorizontalLines(false);
-        jSearchScrollPane1.setViewportView(jSearchTable1);
+        shiftSearchTable.setShowHorizontalLines(false);
+        shiftSearchScrollPane.setViewportView(shiftSearchTable);
 
 
         /*
@@ -369,11 +369,11 @@ public class HosShiftDatePanel extends javax.swing.JDialog {
          * }
          */
         // Add your handling code here:
-    }//GEN-LAST:event_jTextField1111CaretUpdate
+    }//GEN-LAST:event_shiftJTextFieldCaretUpdate
 
-    private void jButton51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton51ActionPerformed
-        jSearchDialog1.dispose();        // Add your handling code here:
-    }//GEN-LAST:event_jButton51ActionPerformed
+    private void shiftjButton51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shiftjButton51ActionPerformed
+        shiftSearchDialog.dispose();        // Add your handling code here:
+    }//GEN-LAST:event_shiftjButton51ActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         searchButton11Clicked();  // Add your handling code here:
@@ -382,13 +382,13 @@ public class HosShiftDatePanel extends javax.swing.JDialog {
 
         System.out.println("Showing dialog");
 
-        jSearchDialog1.dispose();
+        shiftSearchDialog.dispose();
         java.awt.Point point = this.shiftTxt.getLocationOnScreen();
 
-        jSearchDialog1.setSize(400, 200);
+        shiftSearchDialog.setSize(400, 200);
 
-        jSearchDialog1.setLocation(point);
-        jSearchDialog1.setVisible(true);
+        shiftSearchDialog.setLocation(point);
+        shiftSearchDialog.setVisible(true);
 
     }
     private void cashierCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashierCmbxActionPerformed
@@ -588,7 +588,6 @@ public class HosShiftDatePanel extends javax.swing.JDialog {
     private javax.swing.JButton cancelBtn;
     private javax.swing.JComboBox cashierCmbx;
     private javax.swing.JButton generateRptBtn;
-    private javax.swing.JButton jButton51;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -597,13 +596,14 @@ public class HosShiftDatePanel extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JDialog jSearchDialog1;
-    private javax.swing.JPanel jSearchPanel1;
-    private javax.swing.JScrollPane jSearchScrollPane1;
-    private javax.swing.JTable jSearchTable1;
-    private javax.swing.JTextField jTextField1111;
     private javax.swing.JButton searchButton;
+    private javax.swing.JTextField shiftJTextField;
+    private javax.swing.JDialog shiftSearchDialog;
+    private javax.swing.JPanel shiftSearchPanel;
+    private javax.swing.JScrollPane shiftSearchScrollPane;
+    private javax.swing.JTable shiftSearchTable;
     private javax.swing.JTextField shiftTxt;
+    private javax.swing.JButton shiftjButton51;
     private javax.swing.JTextField statusTxt;
     // End of variables declaration//GEN-END:variables
 }

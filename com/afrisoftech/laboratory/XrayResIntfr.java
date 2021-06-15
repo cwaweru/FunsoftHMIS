@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -92,7 +92,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         maleCheckBox = new javax.swing.JCheckBox();
         femaleCheckBox = new javax.swing.JCheckBox();
         jLabel8 = new javax.swing.JLabel();
-        ageTextField = new javax.swing.JTextField();
+        ageTxt = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         receiptTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -989,7 +989,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(ageTextField, gridBagConstraints);
+        jPanel1.add(ageTxt, gridBagConstraints);
 
         jLabel10.setText("Receipt No");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1354,12 +1354,12 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                     if (outPatientChkbx.isSelected()) {
                         java.sql.Statement stmtTable113 = connectDB.createStatement();
 
-                        java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("SELECT DISTINCT  age, gender FROM  pb_doctors_request WHERE  "
-                                + "  paid = true and"
-                                + " request_id  = '" + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 10).toString().trim() + "'");
+                        java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("SELECT DISTINCT  funsoft_patient_age(pr.year_of_birth::date) as age, pb.gender FROM  pb_doctors_request pb, hp_patient_register pr WHERE  "
+                                + "  pb.paid = true and"
+                                + " pb.patient_no = pr.patient_no AND request_id  = '" + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 10).toString().trim() + "'");
 
                         while (rsetTable113.next()) {
-                            ageTextField.setText(rsetTable113.getString("age"));
+                            ageTxt.setText(rsetTable113.getString("age"));
                             Sex = rsetTable113.getString("gender");
                             if (Sex.equalsIgnoreCase("male")) {
                                 this.maleCheckBox.setSelected(true);
@@ -1370,11 +1370,11 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                     }
                     // Get age and gender for IN-patient
                     if (inPatientChkbx.isSelected()) {
-                        java.sql.PreparedStatement pstmtIPBio = connectDB.prepareStatement("SELECT pat_age, gender FROM hp_admission WHERE patient_no = ? ORDER BY date_admitted DESC LIMIT 1");
+                        java.sql.PreparedStatement pstmtIPBio = connectDB.prepareStatement("SELECT funsoft_patient_age(pr.year_of_birth::date), hp.gender FROM hp_admission hp, hp_inpatient_register pr WHERE patient_no = ? AND hp.patient_no = pr.patient_no ORDER BY hp.date_admitted DESC LIMIT 1");
                         pstmtIPBio.setString(1, paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 1).toString());
                         java.sql.ResultSet rsetIPBio = pstmtIPBio.executeQuery();
                         while (rsetIPBio.next()) {
-                            ageTextField.setText(rsetIPBio.getString("pat_age"));
+                            ageTxt.setText(rsetIPBio.getString(1));
                             Sex = rsetIPBio.getString("gender");
                             if (Sex.equalsIgnoreCase("male")) {
                                 this.maleCheckBox.setSelected(true);
@@ -1572,7 +1572,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                                     pstmt.setString(1, patientNoTxt.getText());
                                     pstmt.setString(2, jTextField1.getText());
                                     pstmt.setString(3, billNo);
-                                    pstmt.setObject(4, ageTextField.getText());
+                                    pstmt.setObject(4, ageTxt.getText());
                                     pstmt.setObject(5, Sex);
                                     pstmt.setString(6, radiographerReportTxt.getText());
                                     pstmt.setString(7, xrayTestTable.getValueAt(i, 0).toString());
@@ -1652,7 +1652,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                     jTextField1.setText("");
                     //jTextField2.setText("");
 
-                    ageTextField.setText("");
+                    ageTxt.setText("");
                     nooffilmTextField.setText("");
                     // clearButton.doClick();
                 } catch (Exception sq) {
@@ -2236,7 +2236,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                 dates = rset.getDate(1);
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
         com.afrisoftech.reports.XrayResultPdf policy = new com.afrisoftech.reports.XrayResultPdf();
 
@@ -2256,13 +2256,14 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                     pstmt4611.setObject(1, confirmRequestsTable.getValueAt(i, 7).toString().trim());
                     pstmt4611.setString(2, confirmRequestsTable.getValueAt(i, 4).toString().toUpperCase());
                     pstmt4611.executeUpdate();
-                    javax.swing.JOptionPane.showMessageDialog(this, "Request(s) submitted to pay point.");
+                    
                 } catch (java.sql.SQLException sqe) {
                     sqe.printStackTrace();
                     javax.swing.JOptionPane.showMessageDialog(this, sqe.getMessage());
                 }
             }
         }
+        javax.swing.JOptionPane.showMessageDialog(this, "Request(s) submitted to pay point.");
         refreshbutton.doClick();
         jTabbedPane1.setSelectedIndex(1);
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -2413,7 +2414,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                     + "request_id as Request_id,time_due,false as cancel,revenue_code,gl_code  from pb_doctors_request pb "
                     + " WHERE (pb.requisition_no ilike 'X-RAY' OR pb.requisition_no ilike 'XRAY') "
                     + " and paid = false AND collected = false and trans_date::date  >= '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2"
-                    + "  ORDER BY trans_date asc"));
+                    + " AND pb.bed_no NOT IN (SELECT DISTINCT inpatient_no FROM hp_patient_billing hp WHERE hp.inpatient_no = pb.bed_no AND hp.collected = true AND UPPER(pb.service) = UPPER(hp.service)) ORDER BY trans_date asc"));
 
         } catch (Exception sqlExec) {
 
@@ -2471,7 +2472,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel actionPanel;
-    private javax.swing.JTextField ageTextField;
+    private javax.swing.JTextField ageTxt;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;

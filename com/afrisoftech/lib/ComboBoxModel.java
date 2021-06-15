@@ -91,4 +91,13 @@ public class ComboBoxModel {
         return comboDataVector;
 
     }
+    
+    public static javax.swing.DefaultComboBoxModel ComboBoxYearsModel(java.sql.Connection connectDB) {
+        String comboDBDataQuery = "SELECT  '-' union  SELECT '2021' union SELECT '2022' union SELECT '2023' order by 1";
+
+        javax.swing.DefaultComboBoxModel comboBoxModel = new javax.swing.DefaultComboBoxModel(submitQuery(connectDB, comboDBDataQuery));
+
+        return comboBoxModel;
+
+    }
 }

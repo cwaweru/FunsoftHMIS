@@ -23,6 +23,7 @@ public class DirectOrderingintfr extends javax.swing.JInternalFrame {
     double resVal1 = 0.00;
 
     double resVal11 = 0.00;
+    boolean byPassVoting = false;
     java.sql.Connection connectDB = null;
 
     org.netbeans.lib.sql.pool.PooledConnectionSource pConnDB = null;
@@ -37,6 +38,7 @@ public class DirectOrderingintfr extends javax.swing.JInternalFrame {
         pConnDB = pconnDB;
 
         initComponents();
+        byPassVoting = com.afrisoftech.lib.GetItemInfo.byPassVotingForDirectOrdering(connectDB);
     }
 
     /**
@@ -2213,7 +2215,9 @@ public class DirectOrderingintfr extends javax.swing.JInternalFrame {
 
     private void postbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postbtnActionPerformed
 
-        if (jTextField3.getText().length() > 0) {
+        
+        
+        if (jTextField3.getText().length() > 0 || byPassVoting) {
 
             int exitOption = javax.swing.JOptionPane.showConfirmDialog(this, "You Are About To Generate an " + orderCmbx.getSelectedItem() + " To " + supplierCmbx.getSelectedItem() + "\nVotebook details: " + jTextField3.getText() + "-" + jTextField6.getText() + "\nYes To Continue", "Caution before Saving!", javax.swing.JOptionPane.YES_NO_CANCEL_OPTION);
 

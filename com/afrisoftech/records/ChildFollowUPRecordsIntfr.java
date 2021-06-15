@@ -6,7 +6,7 @@
 package com.afrisoftech.records;
 
 import java.sql.SQLException;
-//import org.openide.util.Exceptions;
+//
 
 /**
  *
@@ -863,7 +863,7 @@ public class ChildFollowUPRecordsIntfr extends javax.swing.JInternalFrame {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            ex.printStackTrace();             //Exceptions.printStackTrace(ex);
+            ex.printStackTrace();             //ex.printStackTrace();
         }
         if (cwcNumber != null) {
             cwcNumberTxt.setText(cwcNumber);

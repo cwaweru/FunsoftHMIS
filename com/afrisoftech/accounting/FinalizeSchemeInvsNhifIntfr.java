@@ -3404,10 +3404,26 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                             disno = rst1.getObject(1).toString();
 //                            UserName = rst1.getObject(2).toString();
                         }
+                        
+                        
+                        
                         //com.afrisoftech.txtreports.GatePassTxt policy = new com.afrisoftech.txtreports.GatePassTxt(connectDB, disno);
                         if (invoiceNoTxt.getText().length() > 0) {
-                            com.afrisoftech.reports.FinalInPatientInvSummPdf policy = new com.afrisoftech.reports.FinalInPatientInvSummPdf();
-                            policy.FinalInPatientInvSummPdf(connectDB, invoiceNoTxt.getText());
+                            
+                            
+                           
+                            
+//                            com.afrisoftech.reports.FinalInPatientInvSummPdf policy = new com.afrisoftech.reports.FinalInPatientInvSummPdf();
+//                            policy.FinalInPatientInvSummPdf(connectDB, invoiceNoTxt.getText()); 
+                           
+                            java.sql.PreparedStatement pstmtSCHEMES = connectDB.prepareStatement("SELECT DISTINCT service FROM hp_patient_card WHERE invoice_no='" + invoiceNoTxt.getText() + "' AND UPPER (service) = 'RECEIPT' UNION SELECT distinct  dealer  FROM ac_debtors where  invoice_no='" + invoiceNoTxt.getText() + "' group by 1 having sum(debit-credit)>0 order by 1 asc");
+                            java.sql.ResultSet rsetSCHEMES = pstmtSCHEMES.executeQuery();
+                            while (rsetSCHEMES.next()) {
+
+                                com.afrisoftech.reports.StatementPatientInvoicePdf policy = new com.afrisoftech.reports.StatementPatientInvoicePdf();
+
+                                policy.StatementPatientInvoicePdf(connectDB, visitIDTxt.getText().trim(), invoiceNoTxt.getText(), rsetSCHEMES.getString(1).trim());
+                            }
                         }
 
                         if (disno.length() > 0 && invoiceNoTxt.getText().length() > 0 && patientNumberTxt.getText().length() > 0) {

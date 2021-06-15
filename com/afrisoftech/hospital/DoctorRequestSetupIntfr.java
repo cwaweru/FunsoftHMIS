@@ -45,6 +45,15 @@ public class DoctorRequestSetupIntfr extends javax.swing.JInternalFrame {
         jButton91 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 =  new com.afrisoftech.dbadmin.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jPanel8 = new javax.swing.JPanel();
         try{
             java.lang.Class.forName("org.postgresql.Driver");
         }catch (java.lang.ClassNotFoundException sl){
@@ -52,18 +61,21 @@ public class DoctorRequestSetupIntfr extends javax.swing.JInternalFrame {
         }
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 =  new com.afrisoftech.dbadmin.JTable();
         jButton5 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        jButton3 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2link = new com.afrisoftech.dbadmin.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        requestsCMBX = new javax.swing.JComboBox();
+        jPanel6 = new javax.swing.JPanel();
         try{
             java.lang.Class.forName("org.postgresql.Driver");
         }catch (java.lang.ClassNotFoundException sl){
@@ -73,15 +85,9 @@ public class DoctorRequestSetupIntfr extends javax.swing.JInternalFrame {
         editlink = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         clearlink = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2link = new com.afrisoftech.dbadmin.JTable();
-        removelink = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         deletelink = new javax.swing.JButton();
-        requestsCMBX = new javax.swing.JComboBox();
+        removelink = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         jSearchDialog1.setModal(true);
         jSearchDialog1.setUndecorated(true);
@@ -175,82 +181,23 @@ public class DoctorRequestSetupIntfr extends javax.swing.JInternalFrame {
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setMnemonic('O');
-        jButton1.setText("Save");
-        jButton1.setToolTipText("Click here to enter data");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel2.add(jButton1, gridBagConstraints);
+        jPanel7.setLayout(new java.awt.GridBagLayout());
 
-        jButton2.setMnemonic('E');
-        jButton2.setText("Edit");
-        jButton2.setToolTipText("click to edit&update");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel2.add(jButton2, gridBagConstraints);
+        jLabel1.setText("Source");
+        jPanel7.add(jLabel1, new java.awt.GridBagConstraints());
 
-        jButton3.setMnemonic('C');
-        jButton3.setText("Close");
-        jButton3.setToolTipText("click to close");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox1.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '--ALL--' As clinics UNION SELECT clinics FROM pb_clinics ORDER BY 1")
+        );
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jComboBox1ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel2.add(jButton3, gridBagConstraints);
-
-        jButton4.setMnemonic('l');
-        jButton4.setText("Clear");
-        jButton4.setToolTipText("Click to clear fields");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel2.add(jButton4, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel2.add(jSeparator1, gridBagConstraints);
-
-        jLabel4.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        jPanel2.add(jLabel4, gridBagConstraints);
+        gridBagConstraints.weighty = 1.0;
+        jPanel7.add(jComboBox1, gridBagConstraints);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Set Wards here."));
         jPanel1.setLayout(new java.awt.GridBagLayout());
@@ -359,7 +306,7 @@ public class DoctorRequestSetupIntfr extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Category Code", "categry Name", "Rev .Desc", "Rev. Code"
+                "Category Code", "Category Name", "Revenue Descsription", "Revenue Code"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -394,8 +341,62 @@ public class DoctorRequestSetupIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 10.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel2.add(jPanel1, gridBagConstraints);
+        jPanel7.add(jPanel1, gridBagConstraints);
+
+        jLabel4.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        jPanel7.add(jLabel4, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        jPanel7.add(jSeparator1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 100.0;
+        jPanel2.add(jPanel7, gridBagConstraints);
+
+        jPanel8.setLayout(new java.awt.GridBagLayout());
+
+        jButton1.setMnemonic('O');
+        jButton1.setText("Save");
+        jButton1.setToolTipText("Click here to enter data");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel8.add(jButton1, gridBagConstraints);
+
+        jButton2.setMnemonic('E');
+        jButton2.setText("Edit");
+        jButton2.setToolTipText("click to edit&update");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel8.add(jButton2, gridBagConstraints);
 
         jButton5.setMnemonic('R');
         jButton5.setText("RemoveRow");
@@ -405,13 +406,25 @@ public class DoctorRequestSetupIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
-        jPanel2.add(jButton5, gridBagConstraints);
+        jPanel8.add(jButton5, gridBagConstraints);
 
-        jLabel1.setText("Source");
-        jPanel2.add(jLabel1, new java.awt.GridBagConstraints());
+        jButton4.setMnemonic('l');
+        jButton4.setText("Clear");
+        jButton4.setToolTipText("Click to clear fields");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel8.add(jButton4, gridBagConstraints);
 
         jButton6.setMnemonic('d');
         jButton6.setText("Delete");
@@ -422,90 +435,54 @@ public class DoctorRequestSetupIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel2.add(jButton6, gridBagConstraints);
+        jPanel8.add(jButton6, gridBagConstraints);
 
-        jComboBox1.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '--ALL--' As clinics UNION SELECT clinics FROM pb_clinics ORDER BY 1")
-        );
+        jButton3.setMnemonic('C');
+        jButton3.setText("Close");
+        jButton3.setToolTipText("click to close");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel2.add(jComboBox1, gridBagConstraints);
+        jPanel8.add(jButton3, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel8.add(jLabel6, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel2.add(jPanel8, gridBagConstraints);
 
         jTabbedPane1.addTab("Register Request Category", jPanel2);
 
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        savelink.setMnemonic('O');
-        savelink.setText("Save");
-        savelink.setToolTipText("Click here to enter data");
-        savelink.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                savelinkActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel3.add(savelink, gridBagConstraints);
-
-        editlink.setMnemonic('E');
-        editlink.setText("Edit");
-        editlink.setToolTipText("click to edit&update");
-        editlink.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editlinkActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel3.add(editlink, gridBagConstraints);
-
-        jButton9.setMnemonic('C');
-        jButton9.setText("Close");
-        jButton9.setToolTipText("click to close");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel3.add(jButton9, gridBagConstraints);
-
-        clearlink.setMnemonic('l');
-        clearlink.setText("Clear");
-        clearlink.setToolTipText("Click to clear fields");
-        clearlink.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearlinkActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel3.add(clearlink, gridBagConstraints);
+        jPanel5.setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel3.add(jSeparator2, gridBagConstraints);
+        jPanel5.add(jSeparator2, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -515,7 +492,7 @@ public class DoctorRequestSetupIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel3.add(jLabel5, gridBagConstraints);
+        jPanel5.add(jLabel5, gridBagConstraints);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Set Wards here."));
         jPanel4.setLayout(new java.awt.GridBagLayout());
@@ -630,7 +607,7 @@ public class DoctorRequestSetupIntfr extends javax.swing.JInternalFrame {
                 {null, null, null}
             },
             new String [] {
-                "Request Name", "Request Code", "gl Code"
+                "Request Name", "Request Code", "G/L Code"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -665,39 +642,10 @@ public class DoctorRequestSetupIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 10.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel3.add(jPanel4, gridBagConstraints);
-
-        removelink.setMnemonic('R');
-        removelink.setText("RemoveRow");
-        removelink.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removelinkActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.weightx = 1.0;
-        jPanel3.add(removelink, gridBagConstraints);
+        jPanel5.add(jPanel4, gridBagConstraints);
 
         jLabel2.setText("Reequest Category");
-        jPanel3.add(jLabel2, new java.awt.GridBagConstraints());
-
-        deletelink.setMnemonic('d');
-        deletelink.setText("Delete");
-        deletelink.setToolTipText("Click to clear fields");
-        deletelink.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deletelinkActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel3.add(deletelink, gridBagConstraints);
+        jPanel5.add(jLabel2, new java.awt.GridBagConstraints());
 
         requestsCMBX.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select concat(request_code,'-',request_name,'-',department) as Category FROM clerking_requests_category order by 1 asc ;"));
         requestsCMBX.addItemListener(new java.awt.event.ItemListener() {
@@ -709,9 +657,120 @@ public class DoctorRequestSetupIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel3.add(requestsCMBX, gridBagConstraints);
+        jPanel5.add(requestsCMBX, gridBagConstraints);
 
-        jTabbedPane1.addTab("Link Procedures To Theatres", jPanel3);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 100.0;
+        jPanel3.add(jPanel5, gridBagConstraints);
+
+        jPanel6.setLayout(new java.awt.GridBagLayout());
+
+        savelink.setMnemonic('O');
+        savelink.setText("Save");
+        savelink.setToolTipText("Click here to enter data");
+        savelink.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                savelinkActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel6.add(savelink, gridBagConstraints);
+
+        editlink.setMnemonic('E');
+        editlink.setText("Edit");
+        editlink.setToolTipText("click to edit&update");
+        editlink.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editlinkActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel6.add(editlink, gridBagConstraints);
+
+        jButton9.setMnemonic('C');
+        jButton9.setText("Close");
+        jButton9.setToolTipText("click to close");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel6.add(jButton9, gridBagConstraints);
+
+        clearlink.setMnemonic('l');
+        clearlink.setText("Clear");
+        clearlink.setToolTipText("Click to clear fields");
+        clearlink.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearlinkActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel6.add(clearlink, gridBagConstraints);
+
+        deletelink.setMnemonic('d');
+        deletelink.setText("Delete");
+        deletelink.setToolTipText("Click to clear fields");
+        deletelink.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletelinkActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel6.add(deletelink, gridBagConstraints);
+
+        removelink.setMnemonic('R');
+        removelink.setText("RemoveRow");
+        removelink.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removelinkActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.weightx = 1.0;
+        jPanel6.add(removelink, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 200.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel6.add(jLabel3, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jPanel6, gridBagConstraints);
+
+        jTabbedPane1.addTab("Link Procedures to Diagnostic Stations", jPanel3);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -949,7 +1008,7 @@ public class DoctorRequestSetupIntfr extends javax.swing.JInternalFrame {
         if (jTable2link.getSelectedColumn() == 0) {
 
             System.out.println("Showing dialog");
-            java.awt.Point point = jTable2link.getLocationOnScreen();
+            java.awt.Point point = jPanel4.getLocationOnScreen();
             jSearchDialog1.setSize(400, 200);
             jSearchDialog1.setLocation(point);
             jSearchDialog1.setVisible(true);
@@ -1090,6 +1149,10 @@ public class DoctorRequestSetupIntfr extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clearlink;
@@ -1106,12 +1169,18 @@ public class DoctorRequestSetupIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JDialog jSearchDialog1;

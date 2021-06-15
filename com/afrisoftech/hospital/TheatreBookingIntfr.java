@@ -50,6 +50,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         searchservicetxt = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         serviceSearchTable = new com.afrisoftech.dbadmin.JTable();
+        buttonGroup5 = new javax.swing.ButtonGroup();
         try {
             java.lang.Class.forName("org.postgresql.Driver");
         }catch (java.lang.ClassNotFoundException sl){
@@ -67,7 +68,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         servicesTable = new com.afrisoftech.dbadmin.JTable();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        patNameTxt = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jComboBox11 = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
@@ -97,6 +98,8 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        clinicNoTxt = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         searchOutPatientChkbx = new javax.swing.JCheckBox();
@@ -108,6 +111,9 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         newBookingChkbx = new javax.swing.JCheckBox();
         theatreBooking = new javax.swing.JCheckBox();
         oldBookingChkbx = new javax.swing.JCheckBox();
+        jPanel4 = new javax.swing.JPanel();
+        newClinicBookingChkb = new javax.swing.JCheckBox();
+        revistClinicBookingChkb = new javax.swing.JCheckBox();
 
         patientSearchDialog.setModal(true);
         patientSearchDialog.setUndecorated(true);
@@ -426,6 +432,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 6, 0, 6);
         jPanel1.add(jScrollPane2, gridBagConstraints);
 
+        jLabel9.setForeground(new java.awt.Color(255, 0, 51));
         jLabel9.setText("Patient No.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -435,6 +442,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(14, 36, 0, 0);
         jPanel1.add(jLabel9, gridBagConstraints);
 
+        jLabel11.setForeground(new java.awt.Color(255, 0, 51));
         jLabel11.setText("Patient Name ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -451,7 +459,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.ipadx = 147;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 30, 0, 0);
-        jPanel1.add(jTextField11, gridBagConstraints);
+        jPanel1.add(patNameTxt, gridBagConstraints);
 
         jLabel21.setText("Health Information Officer");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -595,10 +603,10 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 36, 0, 0);
         jPanel1.add(jLabel5, gridBagConstraints);
 
-        jLabel6.setText("Patient Source");
+        jLabel6.setText("Clinic No");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(8, 20, 0, 0);
@@ -609,7 +617,6 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 15;
         gridBagConstraints.gridy = 10;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 140;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 30, 0, 0);
@@ -691,6 +698,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(19, 7, 0, 0);
         jPanel1.add(urgentBookingChkbx, gridBagConstraints);
 
+        jLabel10.setForeground(new java.awt.Color(255, 0, 51));
         jLabel10.setText("Unit No");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 9;
@@ -748,7 +756,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 30, 0, 0);
         jPanel1.add(jTextField7, gridBagConstraints);
 
-        jButton2.setText("View List");
+        jButton2.setText("View List of Booked Patients");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -756,10 +764,31 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridy = 12;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(8, 20, 0, 0);
         jPanel1.add(jButton2, gridBagConstraints);
+
+        jLabel13.setText("Patient Source");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(8, 20, 0, 0);
+        jPanel1.add(jLabel13, gridBagConstraints);
+
+        clinicNoTxt.setEditable(false);
+        clinicNoTxt.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        clinicNoTxt.setForeground(new java.awt.Color(51, 51, 255));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 15;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 140;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 30, 0, 0);
+        jPanel1.add(clinicNoTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -790,7 +819,6 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
         buttonGroup2.add(searchOutPatientChkbx);
-        searchOutPatientChkbx.setSelected(true);
         searchOutPatientChkbx.setText("Out Patient");
         searchOutPatientChkbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -798,7 +826,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
@@ -813,7 +841,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
@@ -822,7 +850,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         buttonGroup3.add(searchByNameChkbx);
         searchByNameChkbx.setText("Search By name");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanel3.add(searchByNameChkbx, gridBagConstraints);
@@ -831,7 +859,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         searchByNoChkbx.setSelected(true);
         searchByNoChkbx.setText("Search By No.");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
@@ -921,6 +949,47 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jPanel2, gridBagConstraints);
 
+        jPanel4.setLayout(new java.awt.GridBagLayout());
+
+        buttonGroup5.add(newClinicBookingChkb);
+        newClinicBookingChkb.setText("New Clinic Booking");
+        newClinicBookingChkb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newClinicBookingChkbActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel4.add(newClinicBookingChkb, gridBagConstraints);
+
+        buttonGroup5.add(revistClinicBookingChkb);
+        revistClinicBookingChkb.setSelected(true);
+        revistClinicBookingChkb.setText("Clinic Revist Booking");
+        revistClinicBookingChkb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                revistClinicBookingChkbActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        jPanel4.add(revistClinicBookingChkb, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jPanel4, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -954,7 +1023,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         this.patientSearchDialog.dispose();
         patientNumberTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 0).toString());
         unitNumberTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 0).toString());
-        jTextField11.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 1).toString());
+        patNameTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 1).toString());
         jTextField2.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 2).toString());
         jTextField1.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 3).toString());
 
@@ -1051,7 +1120,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
             if (patientSearchTxt.getCaretPosition() < 6) {
                 System.out.println("Nothing");
             } else {
-                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name,address,tel_no,patient_race as unit_no from hp_patient_register where patient_no ILIKE '" + patientSearchTxt.getText() + "%' OR patient_race ilike '" + patientSearchTxt.getText() + "%'  order by second_name"));
+                patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name,address,tel_no,(SELECT unit_no FROM pb_bookings WHERE pb_bookings.patient_no  = hp_patient_register.patient_no AND unit_no != '' LIMIT 1) as unit_no from hp_patient_register where patient_no ILIKE '" + patientSearchTxt.getText() + "%' OR patient_no IN (SELECT patient_no FROM pb_bookings WHERE pb_bookings.unit_no ILIKE '%" + patientSearchTxt.getText() + "%')  order by second_name"));
 
                 patientSearchTable.setShowHorizontalLines(false);
                 patientSearchScrollPane.setViewportView(patientSearchTable);
@@ -1062,7 +1131,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
                 if (patientSearchTxt.getCaretPosition() < 6) {
                     System.out.println("Nothing");
                 } else {
-                    patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, address,tel_no,patient_race as unit_no  from hp_patient_register where second_name||' '||first_name||' '||last_name ILIKE '" + patientSearchTxt.getText() + "%' order by second_name"));
+                    patientSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, (upper(second_name||' '||first_name||' '||last_name)) as name, address,tel_no,(SELECT unit_no FROM pb_bookings WHERE pb_bookings.patient_no  = hp_patient_register.patient_no AND unit_no != '' LIMIT 1) as unit_no  from hp_patient_register where second_name||' '||first_name||' '||last_name ILIKE '" + patientSearchTxt.getText() + "%'  OR patient_no IN (SELECT patient_no FROM pb_bookings WHERE pb_bookings.unit_no ILIKE '%" + patientSearchTxt.getText() + "%' order by second_name"));
 
                     patientSearchTable.setShowHorizontalLines(false);
                     patientSearchScrollPane.setViewportView(patientSearchTable);
@@ -1325,8 +1394,8 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
                 } else if (wardBookingChkbx.isSelected()) {
                     bookingstatus = "Ward Booking";
                 }
-                if (patientNumberTxt.getText().equalsIgnoreCase("") || jTextField11.getText().equalsIgnoreCase("") || unitNumberTxt.getText().equalsIgnoreCase("")) {
-                    javax.swing.JOptionPane.showMessageDialog(this, "You need to enter the patient Information", "Comfirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                if (patientNumberTxt.getText().equalsIgnoreCase("") || patNameTxt.getText().equalsIgnoreCase("") || (unitNumberTxt.getText().equalsIgnoreCase("") && revistClinicBookingChkb.isSelected()) ) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "You need to enter the patient Information including Patient Number,Name and Unit Number", "Comfirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
                     if (jButton1.getText().equalsIgnoreCase("Update Booking")) {
@@ -1384,10 +1453,17 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
 //                        }
                         if (patients < bookings) {
                             java.sql.Statement ps11 = connectDB.createStatement();
-                            java.sql.ResultSet rst11 = ps11.executeQuery("select nextval('booking_no_seq')");
+                            if(newClinicBookingChkb.isSelected()){
+                            java.sql.ResultSet rst11 = ps11.executeQuery("select 'BK'||lpad(nextval('outpatient_clinic_no_seq')::text, 7, 0::text)");
                             while (rst11.next()) {
                                 // rst11.getObject(1).toString();
                                 billNo = rst11.getObject(1).toString();
+                                
+                                    unitNumberTxt.setText(billNo);
+                                    clinicNoTxt.setText(billNo);
+                                }
+                            }else{
+                                billNo = unitNumberTxt.getText();
                             }
                             java.sql.Statement ps11x = connectDB.createStatement();
                             java.sql.ResultSet rst11x = ps11x.executeQuery("select DISTINCT UPPER(f_name||' '||l_name) FROM secure_menu_access WHERE login_name = CURRENT_USER ");
@@ -1409,7 +1485,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
                                         java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO pb_bookings VALUES(initcap(?),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                                         //1 for (int i = 0; i < jTable1.getRowCount(); i++){
 
-                                        pstmt.setString(1, jTextField11.getText());
+                                        pstmt.setString(1, patNameTxt.getText());
                                         pstmt.setObject(2, servicesTable.getValueAt(i, 0).toString());
                                         pstmt.setDouble(3, java.lang.Double.valueOf(servicesTable.getValueAt(i, 1).toString()));
                                         pstmt.setString(4, "Booked");
@@ -1450,7 +1526,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
                     jTextPane1.setText("");
                     patientNumberTxt.setText("");
                     jTextField1.setText("");
-                    jTextField11.setText("");
+                    patNameTxt.setText("");
 
                     for (int k = 0; k < servicesTable.getRowCount(); k++) {
                         for (int r = 0; r < servicesTable.getColumnCount(); r++) {
@@ -1617,11 +1693,21 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_wardBookingChkbxActionPerformed
 
+    private void newClinicBookingChkbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newClinicBookingChkbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newClinicBookingChkbActionPerformed
+
+    private void revistClinicBookingChkbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_revistClinicBookingChkbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_revistClinicBookingChkbActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.ButtonGroup buttonGroup5;
+    private javax.swing.JTextField clinicNoTxt;
     private com.afrisoftech.lib.DatePicker datePicker1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -1636,6 +1722,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
@@ -1648,6 +1735,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -1655,7 +1743,6 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -1664,8 +1751,10 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JComboBox mainserviceCMBX;
     private javax.swing.JCheckBox newBookingChkbx;
+    private javax.swing.JCheckBox newClinicBookingChkb;
     private javax.swing.JCheckBox normalBookingChkbx;
     private javax.swing.JCheckBox oldBookingChkbx;
+    private javax.swing.JTextField patNameTxt;
     private javax.swing.JTextField patientNumberTxt;
     private javax.swing.JDialog patientSearchDialog;
     private javax.swing.JPanel patientSearchPanel;
@@ -1673,6 +1762,7 @@ public class TheatreBookingIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTable patientSearchTable;
     private javax.swing.JTextField patientSearchTxt;
     private javax.swing.JCheckBox rescheduleBookingChkbx;
+    private javax.swing.JCheckBox revistClinicBookingChkb;
     private javax.swing.JButton searchButton;
     private javax.swing.JCheckBox searchByNameChkbx;
     private javax.swing.JCheckBox searchByNoChkbx;

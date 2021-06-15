@@ -601,24 +601,30 @@ public class ReceiptsPdf implements java.lang.Runnable {
                                     phrase = new Phrase("Mobile Tel. No: " + rset6.getString(6), pFontHeader);
                                     table.addCell(phrase);
                                 }
-                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                                table.getDefaultCell().setColspan(6);
-                                // docPdf.add(new Paragraph("Barcode 128"));
-                                cb = null;
-                                cb = writer.getDirectContent();
-                                Barcode128 code128 = new Barcode128();
-                                code128.setCode(MNo);
-                                code128.setBarHeight(16);
-                                //code128.setSize(7);
 
-                                code128.setTextAlignment(Element.ALIGN_CENTER);
-                                code128.setCodeType(Barcode128.CODE128);
-                                System.out.println("Print Content Byte : [" + cb.toString() + "]");
-                                Image code128Image = code128.createImageWithBarcode(cb, null, null);
-                                PdfPCell cell = new PdfPCell(code128Image);
-                                table.addCell(cell);
+                                table.getDefaultCell().setBorder(Rectangle.TOP);
+
+                                table.addCell("");
+                                table.addCell("");
+
+                                table.getDefaultCell().setColspan(6);
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                                PdfContentByte cb = writer.getDirectContent();
+
+                                Barcode128 code128 = new Barcode128();
+
+                                System.out.println("Barcode content : " + MNo.toUpperCase());
+                                code128.setCode(MNo.toUpperCase());
+
+                                code128.setBarHeight(10);
+
+                                code128.setTextAlignment(Element.ALIGN_LEFT);
+
                                 docPdf.add(table);
-                                // docPdf.add(code128.createImageWithBarcode(cb, null, null));
+
+                                docPdf.add(code128.createImageWithBarcode(cb, null, null));
+
+                                docPdf.close();
                                 //docPdf.add(p);
                                 //  java.sql.PreparedStatement pstmt4 = connectDB.prepareStatement("UPDATE hp_patient_card SET paid ='true' WHERE patient_no = '"+MNo+"' AND date::date = current_date");
                                 //  pstmt4.executeUpdate();
@@ -645,13 +651,13 @@ public class ReceiptsPdf implements java.lang.Runnable {
 
                     javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), lwDocexec.getMessage());
 
-                }
+                }//Did we close the pdf?
 
-                docPdf.close();
-                PdfContentByte under;
-                PdfReader reader = new PdfReader(tempFile.getPath());
-                int n = reader.getNumberOfPages();
-                int i = 0;
+//                docPdf.close();
+//                PdfContentByte under;
+//                PdfReader reader = new PdfReader(tempFile.getPath());
+//                int n = reader.getNumberOfPages();
+//                int i = 0;
                 //               tempFile.delete();
                 java.io.File tempFile2 = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
 

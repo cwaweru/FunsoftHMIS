@@ -44,6 +44,7 @@ public class TBScreeningRegisterReportIntfr extends javax.swing.JInternalFrame {
         generateReportBtn = new javax.swing.JButton();
         refreshReportBtn = new javax.swing.JButton();
         closeReportBtn = new javax.swing.JButton();
+        generateReportBtn1 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -129,7 +130,10 @@ public class TBScreeningRegisterReportIntfr extends javax.swing.JInternalFrame {
                 generateReportBtnActionPerformed(evt);
             }
         });
-        buttonPanel.add(generateReportBtn, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        buttonPanel.add(generateReportBtn, gridBagConstraints);
 
         refreshReportBtn.setText("Refresh report");
         refreshReportBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +141,10 @@ public class TBScreeningRegisterReportIntfr extends javax.swing.JInternalFrame {
                 refreshReportBtnActionPerformed(evt);
             }
         });
-        buttonPanel.add(refreshReportBtn, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        buttonPanel.add(refreshReportBtn, gridBagConstraints);
 
         closeReportBtn.setText("Close form");
         closeReportBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +152,21 @@ public class TBScreeningRegisterReportIntfr extends javax.swing.JInternalFrame {
                 closeReportBtnActionPerformed(evt);
             }
         });
-        buttonPanel.add(closeReportBtn, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        buttonPanel.add(closeReportBtn, gridBagConstraints);
+
+        generateReportBtn1.setText("Generate Negative TB Screening Report");
+        generateReportBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateReportBtn1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        buttonPanel.add(generateReportBtn1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -185,6 +206,21 @@ public class TBScreeningRegisterReportIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_refreshReportBtnActionPerformed
 
+    private void generateReportBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportBtn1ActionPerformed
+              if(clinicsCmbx.getSelectedItem().toString().contains("--ALL--")){
+        registerReportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT visit_date::date as service_date, visit_date::time(0) as service_time , data_index as entry_id,  patient_no, initcap(patient_name) as patient_name, clinic_attended, indicator_checked as diagnosed_condition,  "
+                + "        gender as gender, patient_age, "
+                + "       emergency, remarks,"
+                + " user_name as clinician FROM public.hp_screening_data_neg WHERE visit_date::date BETWEEN '"+startDatePicker.getDate()+"' AND '"+endDatePicker.getDate()+"' ORDER BY 1"));
+        } else {
+              registerReportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT visit_date::date as service_date, visit_date::time(0) as service_time , data_index as entry_id,  patient_no, initcap(patient_name) as patient_name, indicator_checked as diagnosed_condition,  "
+                + "        gender as gender, patient_age, "
+                + "       emergency, remarks,"
+                + " user_name as clinician FROM public.hp_screening_data_neg WHERE upper(clinic_attended) = '"+clinicsCmbx.getSelectedItem().toString().toUpperCase()+"' AND visit_date::date BETWEEN '"+startDatePicker.getDate()+"' AND '"+endDatePicker.getDate()+"' ORDER BY 1"));
+    
+        }  // TODO add your handling code here:
+    }//GEN-LAST:event_generateReportBtn1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodyPanel;
@@ -193,6 +229,7 @@ public class TBScreeningRegisterReportIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton closeReportBtn;
     private com.afrisoftech.lib.DatePicker endDatePicker;
     private javax.swing.JButton generateReportBtn;
+    private javax.swing.JButton generateReportBtn1;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JButton refreshReportBtn;
     private javax.swing.JTable registerReportTable;

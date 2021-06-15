@@ -102,11 +102,14 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
 
             threadCheck = false;
 
+
             System.out.println("We shall be lucky to get back to start in one piece");
 
         }
 
         if (!threadCheck) {
+
+
 
             Thread.currentThread().stop();
 
@@ -277,11 +280,14 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
 
         java.lang.String pdfDateStamp = dateStampPdf.toString();
 
+
         //  try {
+
         try {
 
             //   Image img = Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo());
             //   //Image imgWaterMark = Image.getInstance(System.getProperty("company.watermark"));
+
             java.io.File tempFile = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
 
             tempFile.deleteOnExit();
@@ -294,11 +300,15 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
 
             com.lowagie.text.Document docPdf = new com.lowagie.text.Document();
 
+
+
             try {
 
                 try {
 
                     com.lowagie.text.pdf.PdfWriter.getInstance(docPdf, new java.io.FileOutputStream(tempFile));
+
+
 
                     String Address = null;
                     String Tel = null;
@@ -319,10 +329,13 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
                         System.out.println(datenowSql.toString());
 
                         //       java.lang.Object listofStaffNos[] = this.getListofStaffNos();
+
+
                         com.lowagie.text.pdf.PdfPTable table1 = new com.lowagie.text.pdf.PdfPTable(7);
                         //  com.lowagie.text.Table table = new com.lowagie.text.Table(7);
 
                         // table.endHeaders();
+
                         int headerwidths[] = {15, 15, 30, 15, 15, 15, 15};
                         try {
                             table1.setWidths(headerwidths);
@@ -350,15 +363,20 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
                                 table1.addCell(phrase);
                             }
 
+
                             table1.getDefaultCell().setBorder(Rectangle.BOTTOM);
 
                             table1.getDefaultCell().setColspan(7);
 
                             //       Phrase phrase = new Phrase();
+
                             //  table.addCell(phrase);
+
                             table1.getDefaultCell().setColspan(1);
                             table1.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
                             table1.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
+
+
 
                             java.sql.Statement st2x = connectDB.createStatement();
 
@@ -384,6 +402,7 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
 
                         }
 
+
                         docPdf.add(table1);
 
                     } catch (com.lowagie.text.BadElementException BadElExec) {
@@ -393,6 +412,9 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
                         javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), BadElExec.getMessage());
 
                     }
+
+
+
 
                     try {
 
@@ -426,15 +448,18 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
                         headerFoter.setRight(5);
                         docPdf.setHeader(headerFoter);
 
+
                     } catch (java.sql.SQLException SqlExec) {
 
                         javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
                     }
 
+
                     String Messg = null;
 
                     try {
+
 
                         java.sql.Statement st3 = connectDB.createStatement();
                         java.sql.Statement st4 = connectDB.createStatement();
@@ -446,14 +471,17 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
                             Messg = rset2.getObject(1).toString();
                         }
 
+
                         //  while(rset4.next())
                         //    date = rset4.getObject(1).toString();
+
                         com.lowagie.text.HeaderFooter footer = new com.lowagie.text.HeaderFooter(new Phrase("" + Messg + ""), false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
 
                         //  com.lowagie.text.HeaderFooter headerFoter = new com.lowagie.text.HeaderFooter(new Phrase(""+compName+""),false);// FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
                         //  headerFoter.ALIGN_CENTER;
                         //  headerFoter.setRight(5);
                         docPdf.setFooter(footer);
+
 
                     } catch (java.sql.SQLException SqlExec) {
 
@@ -463,6 +491,11 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
 
                     }
 
+
+
+
+
+
                     try {
 
                         java.lang.Object listofStaffNos[] = this.getListofStaffNos();
@@ -470,11 +503,12 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
                         for (int j = 0; j < listofStaffNos.length; j++) {
                             com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(6);
 
-                            int headerwidths[] = {12, 43, 15, 15, 15, 15};
+                            int headerwidths[] = {28, 43, 15, 15, 15, 15};
 
                             table.setWidths(headerwidths);
 
                             table.setWidthPercentage((100));
+
 
                             table.getDefaultCell().setBorder(Rectangle.BOTTOM);
 
@@ -483,6 +517,7 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
                             Phrase phrase = new Phrase();
 
                             //  table.addCell(phrase);
+
                             table.getDefaultCell().setColspan(1);
                             // table.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
                             table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
@@ -500,26 +535,27 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
                                 java.sql.Statement st31 = connectDB.createStatement();
                                 java.sql.Statement st4 = connectDB.createStatement();
                                 java.sql.Statement st5 = connectDB.createStatement();
-                                java.sql.Statement stSettle = connectDB.createStatement();
+                                java.sql.Statement stc = connectDB.createStatement();
                                 //java.sql.ResultSet rset311 = st311.executeQuery("select ap.payer_id from ac_debtors ac,ac_scheme_providers ap where ac.dealer = ap.scheme_manager AND ac.invoice_no = '"+listofStaffNos[j]+"'");
 
-                                java.sql.ResultSet rset31 = st31.executeQuery("select pc.payee,sp.postal_code||' '||sp.address,sp.tel_main||' '||sp.other_tel,sp.main_fax from ac_schemes sp,ac_debtors pc where pc.account_no = sp.account_no and pc.invoice_no = '" + listofStaffNos[j] + "'");
-                                java.sql.ResultSet rset4 = st4.executeQuery("select dealer from ac_debtors where invoice_no = '" + listofStaffNos[j] + "'");
-                                java.sql.ResultSet rset5 = st5.executeQuery("select db.member_no,'-' from ac_debtors db where db.invoice_no = '" + listofStaffNos[j] + "'");
-                                java.sql.ResultSet rset = st.executeQuery("select admission_no,initcap(item) from ac_debtors where invoice_no = '" + listofStaffNos[j] + "'");
-                                java.sql.ResultSet rset1 = st1.executeQuery("select date::date,initcap(service) as service,dosage::int,reference::int4,debit-credit from hp_patient_card where invoice_no = '" + listofStaffNos[j] + "' AND reference NOT ILIKE 'C%' AND service not ilike 'Invoice' AND service not ilike '%Receipt%' AND transaction_type not ilike '%Receipt%' order by debit-credit desc");
-                                java.sql.ResultSet rset1d = st1d.executeQuery("select date::date,initcap(service) as service,dosage::int,reference::int4,debit-credit from hp_patient_card where invoice_no = '" + listofStaffNos[j] + "' AND service not ilike 'Invoice' AND service not ilike '%Receipt%' AND transaction_type not ilike '%Receipt%'  AND reference ILIKE 'C%'");
+
+                                java.sql.ResultSet rset31 = st31.executeQuery("select pc.payee,sp.postal_code||' '||sp.address,sp.tel_main||' '||sp.other_tel,sp.main_fax from ac_schemes sp,ac_debtors pc where pc.account_no = sp.account_no and pc.invoice_no = '" + listofStaffNos[j] + "' LIMIT 1");
+                                java.sql.ResultSet rset4 = st4.executeQuery("select dealer,oid from ac_debtors where invoice_no = '" + listofStaffNos[j] + "' order by oid asc limit 1");
+                                java.sql.ResultSet rset5 = st5.executeQuery("select DISTINCT db.member_no,'-' from ac_debtors db where db.invoice_no = '" + listofStaffNos[j] + "'");
+                                java.sql.ResultSet rset = st.executeQuery("select DISTINCT admission_no,(CASE WHEN item IS NULL or item = '' THEN (SELECT first_name || ' ' || second_name from hp_patient_register where admission_no = patient_no LIMIT 1) else initcap(item) END) as Name from ac_debtors where invoice_no = '" + listofStaffNos[j] + "'");
+                                java.sql.ResultSet rset1 = st1.executeQuery("select date::date::character varying || ' - ' || billing_time::time(0),initcap(service) as service,dosage::int,reference::int4,debit-credit from hp_patient_card where invoice_no = '" + listofStaffNos[j] + "' AND reference NOT ILIKE 'C%' AND service NOT ilike 'NHIF DI%'  and service not ILIKE 'CO-PAYMENT%' AND service not ilike 'Invoice' order by debit-credit desc");
+                                java.sql.ResultSet rset1d = st1d.executeQuery("select date::date,(initcap(service) || '-' || scheme) as service,requisition_no,reference::int4, credit-debit from hp_patient_card where invoice_no = '" + listofStaffNos[j] + "' AND (service ilike 'NHIF DI%'  OR  service ilike 'Invoice'  OR service ILIKE 'CO-PAYMENT%') ");
                                 java.sql.ResultSet rsetTotals = st2.executeQuery("select sum(credit) from hp_patient_card where invoice_no = '" + listofStaffNos[j] + "' AND paid = true");
-                                java.sql.ResultSet rset12 = st12.executeQuery("select date from ac_debtors where invoice_no = '" + listofStaffNos[j] + "'");
-                                java.sql.ResultSet rset11 = st11.executeQuery("select invoice_no, claim_no, journal_no from ac_debtors where invoice_no = '" + listofStaffNos[j] + "' and invoice_no IS NOT NULL");
-                                java.sql.ResultSet rsetSettle = stSettle.executeQuery("select date::date,initcap(service) as service,dosage::int,reference::int4,credit-debit from hp_patient_card where invoice_no = '" + listofStaffNos[j] + "' AND (service ilike '%copay%' or service ilike '%co-pay%') AND service not ilike '%invoice%' order by credit-debit desc");
-
+                                java.sql.ResultSet rset12 = st12.executeQuery("select DISTINCT date from ac_debtors where invoice_no = '" + listofStaffNos[j] + "'");
+                                java.sql.ResultSet rset11 = st11.executeQuery("select DISTINCT invoice_no, claim_no, journal_no,wrt_user from ac_debtors where invoice_no = '" + listofStaffNos[j] + "' and invoice_no IS NOT NULL");
+                                
                                 double osBalance = 0.00;
+                                double osBalance1 = 0.00;
                                 double current = 0.00;
-                                double payments = 0.00;
-
                                 System.out.println(listofStaffNos[j]);
                                 System.out.println("Step1 Complete");
+
+
 
                                 table.getDefaultCell().setColspan(6);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
@@ -580,7 +616,7 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
 
                                                 table.getDefaultCell().setColspan(3);
                                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                                phrase = new Phrase("Fax.: " + dbObject.getDBObject(rset31.getObject(4), "-"), pFontHeader);
+                                                phrase = new Phrase("Reference No.: " + dbObject.getDBObject(rset11.getObject(4), "-"), pFontHeader);
 
                                                 table.addCell(phrase);      //  table.getDefaultCell().setColspan(1);
                                                 table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
@@ -598,18 +634,29 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
                                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                                     // phrase = new Phrase("Member No.", pFontHeader);
 
-                                                    phrase = new Phrase("Card/Referral No.: " + dbObject.getDBObject(rset11.getObject(3), "-"), pFontHeader);
+//                                                    phrase = new Phrase("Card/Referral No.: " + dbObject.getDBObject(rset11.getObject(3), "-"), pFontHeader);
 
-                                                    table.addCell(phrase);
+//                                                    table.addCell(phrase);
 
                                                     System.out.println("Step4 Complete");
 
+                                                    String cardno="";
                                                     while (rset.next()) {
+                                                        java.sql.ResultSet rsetc = stc.executeQuery("select card_no from hp_patient_register where patient_no = '"+rset.getString(1)+"'");
+                                                        while (rsetc.next()) {
+                                                            cardno=rsetc.getString(1);
+                                                        }
 
+                                                        phrase = new Phrase("Card/Referral No.: " + dbObject.getDBObject(cardno, "-"), pFontHeader);
+
+                                                        table.addCell(phrase);
+                                                        
                                                         table.getDefaultCell().setColspan(3);
                                                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                                         phrase = new Phrase("Patient Name.: " + dbObject.getDBObject(rset.getObject(2), "-"), pFontHeader);
                                                         table.addCell(phrase);
+
+
 
                                                         table.getDefaultCell().setColspan(3);
                                                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -617,6 +664,8 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
                                                         //   phrase = new Phrase("Member Name  ", pFontHeader);
 
                                                         table.addCell(phrase);
+
+
 
                                                         table.getDefaultCell().setColspan(3);
                                                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
@@ -630,6 +679,7 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
                                         }
                                     }
                                 }
+
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
@@ -679,6 +729,7 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
                                     phrase = new Phrase(java.lang.String.valueOf(dos), pFontHeader);
 
                                     //  phrase = new Phrase(dbObject.getDBObject(rset1.getObject(3), "-"), pFontHeader);
+
                                     table.addCell(phrase);
 
                                     table.getDefaultCell().setColspan(1);
@@ -697,23 +748,24 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
                                     phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance)), pFontHeader);
                                     table.addCell(phrase);
 
+
                                 }
-//                                table.getDefaultCell().setColspan(3);
-//
-//                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-//                                phrase = new Phrase("", pFontHeader);
-//
-//                                table.addCell(phrase);
+                                table.getDefaultCell().setColspan(3);
+
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                                phrase = new Phrase("", pFontHeader);
+
+                                table.addCell(phrase);
                                 table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
 
                                 table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP);
 
                                 while (rsetTotals.next()) {
 
-                                    table.getDefaultCell().setColspan(4);
+                                    table.getDefaultCell().setColspan(1);
 
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                                    phrase = new Phrase("Bill Total Amount", pFontHeader1);
+                                    phrase = new Phrase("Inv amt.", pFontHeader1);
 
                                     table.addCell(phrase);
 
@@ -728,8 +780,19 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
 
                                     table.addCell(phrase);
 
+
                                     //phrase = new Phrase(" ");
+
+
+
                                 }
+                                
+                                    table.getDefaultCell().setColspan(6);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase("Bill Settlement Details", pFontHeader1);
+                                    table.addCell(phrase);
+                                    phrase = new Phrase("", pFontHeader1);
+                                    table.addCell(phrase);
 
                                 while (rset1d.next()) {
                                     table.getDefaultCell().setColspan(1);
@@ -761,120 +824,61 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
 
                                     phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rset1d.getString(5)), pFontHeader);
+                                    // osBalance = osBalance + rset.getDouble(5);
+                                    table.addCell(phrase);
+                                    osBalance1 = osBalance1 + rset1d.getDouble(5);
+
+                                    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance1)), pFontHeader);
+                                    //   current = current + osBalance;
 
                                     table.addCell(phrase);
+                                    //  osBalance = osBalance + rset.getDouble(5);
+                                    // table.addCell(phrase);
 
-                                    osBalance = osBalance - rset1d.getDouble(5);
-
-                                    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance)), pFontHeader);
-
-                                    table.addCell(phrase);
 
                                 }
-                                table.getDefaultCell().setColspan(36);
-                                phrase = new Phrase(" ", pFontHeader);
+
+                                table.getDefaultCell().setColspan(2);
+
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                                phrase = new Phrase("", pFontHeader);
+
                                 table.addCell(phrase);
-                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                table.getDefaultCell().setColspan(36);
-                                phrase = new Phrase("Co-Payment and other settlements", pFontHeader1);
+                                table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
+
+                                table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP);
+
+
+                                table.getDefaultCell().setColspan(2);
+
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                                phrase = new Phrase("Total Settlement", pFontHeader1);
+
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setColspan(1);
+
+                                //   phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance)), pFontHeader);
+                                phrase = new Phrase(" ", pFontHeader);
+
+                                table.addCell(phrase);
+
+                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance1)), pFontHeader1);
+
                                 table.addCell(phrase);
                                 
-                                    while (rsetSettle.next()) {
-                                    table.getDefaultCell().setColspan(1);
-                                    table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
-
-                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase(dbObject.getDBObject(rsetSettle.getObject(1), "-"), pFontHeader);
-
-                                    table.addCell(phrase);
-                                    table.getDefaultCell().setColspan(1);
-
-                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase(dbObject.getDBObject(rsetSettle.getObject(2), "-"), pFontHeader);
-
-                                    table.addCell(phrase);
-                                    table.getDefaultCell().setColspan(1);
-                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                                    phrase = new Phrase(dbObject.getDBObject(rsetSettle.getObject(3), "-"), pFontHeader);
-
-                                    table.addCell(phrase);
-
-                                    table.getDefaultCell().setColspan(1);
-                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                                    phrase = new Phrase(dbObject.getDBObject(rsetSettle.getObject(4), "-"), pFontHeader);
-
-                                    table.addCell(phrase);
-
-                                    table.getDefaultCell().setColspan(1);
-                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-
-                                    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetSettle.getString(5)), pFontHeader);
-
-                                    table.addCell(phrase);
-
-                                    payments = payments + rsetSettle.getDouble(5);
-
-                                    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(payments)), pFontHeader);
-
-                                    table.addCell(phrase);
-
-                                }
-                                    
-//                                table.getDefaultCell().setColspan(3);
-//
-//                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-//                                phrase = new Phrase("", pFontHeader);
-//
-//                                table.addCell(phrase);
-                                table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
-
-                                table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP);
-
-                                table.getDefaultCell().setColspan(4);
-
+                                table.getDefaultCell().setColspan(5);
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                phrase = new Phrase("Net Amount", pFontHeader1);
+                                table.addCell(phrase);
+                                
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                                phrase = new Phrase("Total Settlements", pFontHeader1);
-
-                                table.addCell(phrase);
-
                                 table.getDefaultCell().setColspan(1);
-
-                                //   phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance)), pFontHeader);
-                                phrase = new Phrase(" ", pFontHeader);
-
+                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance-osBalance1)), pFontHeader1);
                                 table.addCell(phrase);
 
-                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(payments)), pFontHeader1);
 
-                                table.addCell(phrase);
 
-//                                table.getDefaultCell().setColspan(3);
-//
-//                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-//                                phrase = new Phrase("", pFontHeader);
-
-//                                table.addCell(phrase);
-                                table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
-
-                                table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP);
-
-                                table.getDefaultCell().setColspan(4);
-
-                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                                phrase = new Phrase("Invoice Balance Due", pFontHeader1);
-
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-
-                                //   phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance)), pFontHeader);
-                                phrase = new Phrase(" ", pFontHeader);
-
-                                table.addCell(phrase);
-
-                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance-payments)), pFontHeader1);
-
-                                table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(36);
 
@@ -896,7 +900,6 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
                             } catch (java.sql.SQLException SqlExec) {
 
                                 SqlExec.printStackTrace();
-
                                 javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
                             }
@@ -926,8 +929,56 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
 
             }
 
-            docPdf.close();
+
+            //     PdfContentByte under;
+            //     PdfReader reader = new PdfReader(tempFile.getPath());
+            //      int n = reader.getNumberOfPages();
+            //      int i = 0;
+            //               tempFile.delete();
+            //       java.io.File tempFile2 = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
+//                tempFile = tempFile.createNewFile();
+               /* try{
+             PdfStamper stamp = new PdfStamper(reader, new FileOutputStream(tempFile2));
+             imgWaterMark.scaleToFit(docPdf.getPageSize().width(), docPdf.getPageSize().height());
+             //                      img.scalePercent(50);
+                
+             imgWaterMark.setAbsolutePosition(0, 0);
+             while (i < n) {
+             i++;
+             // watermark under the existing page
+             under = stamp.getUnderContent(i);
+             //                       under.showTextAligned(Element.ALIGN_LEFT, "DUPLICATE", 230, 430, 45);
+             //under.addImage(img);
+             under.addImage(imgWaterMark);
+             }
+             stamp.close();
+             } catch(com.lowagie.text.DocumentException docEx){
+             docEx.printStackTrace();
+             }
+             */ docPdf.close();
+             
+              String payer = "";
+            try {
+                java.sql.Statement st3 = connectDB.createStatement();
+
+                java.sql.ResultSet rset3 = st3.executeQuery("SELECT distinct  UPPER(dealer)  FROM ac_debtors where  invoice_no='" +beginDate + "' group by 1 having sum(debit-credit)>0 "
+                 + " UNION SELECT distinct  (CASE WHEN requisition_no IS NOT NULL and requisition_no !='' THEN 'CASH' ELSE service END ) AS dealer  FROM hp_patient_card where invoice_no='" + beginDate + "' and requisition_no IS NOT NULL and requisition_no !='' and transaction_type ilike 'Receipt'  order by 1 asc");
+                int i=0;
+                while (rset3.next()) {                  
+                    if(i==0) payer = rset3.getString(1); 
+                    else payer = payer+" & "+rset3.getString(1);
+                    i++;
+
+                }
+            } catch (java.sql.SQLException ex) {
+                ex.printStackTrace();
+            }
+
+            
+             
             com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
+
+
 
         } catch (java.io.IOException IOexec) {
 
@@ -949,10 +1000,11 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
 
         java.util.Vector listStaffNoVector = new java.util.Vector(1, 1);
 
+
         try {
 
             //    java.sql.Connection connDB = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-            java.sql.PreparedStatement pSet1 = connectDB.prepareStatement("SELECT  invoice_no FROM ac_debtors WHERE invoice_no  BETWEEN ? AND ? AND transaction_type = ? AND payee != ? order by invoice_no");
+            java.sql.PreparedStatement pSet1 = connectDB.prepareStatement("SELECT DISTINCT invoice_no FROM ac_debtors WHERE invoice_no  BETWEEN ? AND ? AND transaction_type = ? AND payee != ? order by invoice_no");
            // java.sql.PreparedStatement pSet1 = connectDB.prepareStatement("SELECT distinct invoice_no FROM ac_debtors WHERE invoice_no  = ?  AND payee != ? order by invoice_no");
 
             //  java.sql.PreparedStatement pSet1 = connectDB.prepareStatement("SELECT distinct patient_no FROM hp_patient_register WHERE last_visit  BETWEEN ? AND ? AND pay_mode = ? order by patient_no");
@@ -963,7 +1015,9 @@ public class FinalInvoiceByinvPdf implements java.lang.Runnable {
             java.sql.ResultSet rSet1 = pSet1.executeQuery();
 
             // java.sql.Statement stmt1 = connectDB.createStatement();
+
             // java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT distinct patient_no FROM hp_patient_card WHERE date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND payment_mode = 'Scheme' order by patient_no");
+
             while (rSet1.next()) {
 
                 listStaffNoVector.addElement(rSet1.getObject(1).toString());
